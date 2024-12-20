@@ -7,19 +7,17 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TWODSIX } from "../config";
-import { handleSkillRoll, handleTableRoll } from "../utils/enrichers";
+//import { handleSkillRoll, handleTableRoll } from "../utils/enrichers";
 
-Hooks.on("renderChatLog", (_app, html, _data) => {
+Hooks.on("renderChatLog", (_app, htmlElement, _data) => {
+  const html = $(htmlElement);
   html.on("click", ".card-buttons button", onChatCardAction);
   html.on("click", ".item-name", onChatCardToggleContent);
-  html.on("click", ".skill-roll", handleSkillRoll);
-  html.on("click", ".table-roll", handleTableRoll);
 });
-Hooks.on("renderChatPopout", (_app, html, _data) => {
+Hooks.on("renderChatPopout", (_app, htmlElement, _data) => {
+  const html = $(htmlElement);
   html.on("click", ".card-buttons button", onChatCardAction);
   html.on("click", ".item-name", onChatCardToggleContent);
-  html.on("click", ".skill-roll", handleSkillRoll);
-  html.on("click", ".table-roll", handleTableRoll);
 });
 
 /* -------------------------------------------- */
@@ -250,31 +248,32 @@ async function skillDialog(skillList: object): Promise<string|boolean> {
   const select = `<select name="item-select">${options}</select>`;
   const content = `<form><div class="form-group"><label>${game.i18n.localize("TWODSIX.Rolls.SkillName")} (${game.i18n.localize("TWODSIX.Actor.Skills.Level")}): ${select}</label></div></form>`;
 
-  const buttons = {
-    ok: {
-      label: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
-      icon: '<i class="fa-solid fa-list"></i>',
-      callback: async (htmlObject) => {
-        const skillId = htmlObject[0].querySelector("select[name='item-select']").value;
-        returnValue = skillId;
+  const buttons = [
+    {
+      action: "ok",
+      label: "TWODSIX.Rolls.SelectSkill",
+      icon: "fa-solid fa-list",
+      callback: (event, button, dialog) => {
+        returnValue = dialog.querySelector("select[name='item-select']").value;
       }
     },
-    cancel: {
-      icon: '<i class="fa-solid fa-xmark"></i>',
-      label: game.i18n.localize("Cancel"),
+    {
+      action: "cancel",
+      icon: "fa-solid fa-xmark",
+      label: "Cancel",
       callback: () => {
         returnValue = false;
       }
     }
-  };
+  ];
 
   return new Promise<void>((resolve) => {
-    new Dialog({
-      title: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
+    new foundry.applications.api.DialogV2({
+      window: {title: "TWODSIX.Rolls.SelectSkill"},
       content: content,
       buttons: buttons,
       default: 'ok',
-      close: () => {
+      submit: () => {
         resolve(returnValue);
       },
     }).render(true);

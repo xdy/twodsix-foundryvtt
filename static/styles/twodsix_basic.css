@@ -108,7 +108,7 @@ label.checkbox > input[type="checkbox"] {
 .npc-content-container {
   display: grid;
   grid-template-columns: 15em 22em 0.9fr;
-  grid-template-rows: 19em 0.5fr 0.5fr;
+  grid-template-rows: 20em 0.5fr 0.5fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -120,7 +120,7 @@ label.checkbox > input[type="checkbox"] {
 .npc-content-container-spells {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 18em 0.5fr 0.5fr;
+  grid-template-rows: 20em 0.5fr 0.5fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -846,6 +846,7 @@ span.bgi-charEdit {
   font-size: smaller;
   /* max-width: 100%; */
   /* height: -webkit-fill-available; */
+  border-radius: 0;
 }
 
 .table-header-row {
@@ -1243,7 +1244,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .skill-top-row {
   display: flex;
   /* flex-direction: row-reverse; */
-  margin-left: 28.8em;
+  margin-left: 33.7em;
 }
 
 .add-skill {
@@ -1281,7 +1282,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 /* Style overrides */
 
 .skills input[type='number'] {
-  width: 2em;
+  /*width: 2em;*/
   justify-self: center;
 }
 
@@ -1648,7 +1649,7 @@ span.total-output {
   position: absolute;
   display: grid;
   grid-template-columns:  51% 49%;
-  grid-template-rows: 5ch 19% 14% 8% 51%;
+  grid-template-rows: 5ch 20% 14% 8% 51%;
   gap: 1px;
   grid-template-areas:
     "ship-image ship-name"
@@ -1746,7 +1747,7 @@ img.ship-mask-bg {
   /*margin-top: -0.2em;*/
   /*margin-left: 1.3em;*/
   font-size: 1.8ch;
-  width: 6ch;
+  width: 5ch;
   border: solid 1px;
   border-radius: 0.5ch;
 }
@@ -1815,8 +1816,8 @@ img.ship-mask-bg {
 }
 
 .ship-armor-name textarea, .battle-armor-name textarea  {
-  border: 2px solid;
-  border-radius: 1ch !important;
+  /*border: 2px solid;
+  border-radius: 1ch !important;*/
   text-align: center;
   font-size: x-small;
   overflow-wrap: break-word;
@@ -2171,11 +2172,14 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   border: 1px solid;
   border-radius: 0;
   align-content: space-evenly;
+  display: flex;
 }
 
 .ship-position-add-box {
   text-align: center;
   min-height: 14ch;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ship-position-add-position {
@@ -2609,7 +2613,7 @@ select.form-input, input.form-input, span.form-input {
 }*/
 
 .sheet-navigation.tabs {
-  padding-bottom: 0.5em;
+  padding: 0.5em 0;
   border-bottom: 1px solid var(--color-border-light-tertiary);
   margin-bottom: 0.5em;
 
@@ -2688,12 +2692,12 @@ select.form-input, input.form-input, span.form-input {
   border-radius: 0 10px 10px 0;
 }
 
-.item-sheet .form-consumable-count {
+.item-class .form-consumable-count {
   width: 50px;
   text-align: center;
 }
 
-.item-sheet table {
+.item-class table {
   background-color: inherit;
 }
 
@@ -2905,8 +2909,24 @@ background: var(--sidebar-background);
 .flavor-line {
   display: inline-flex;
   gap: 0 5px;
+  padding-bottom: 1ch;
+  width:  98%
 }
 
+.flavor-table {
+  width: calc(100% - 2ch);
+  background-color: var(--color-text-light-3);
+  margin: 1ch;
+  border: 1px solid;
+}
+
+.flavor-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.flavor-table th, .flavor-table td {
+  padding: 0.5ch;
+}
 /*
 #settings button {
     position: relative;
@@ -3032,8 +3052,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 }
 */
 form .form-group > label {
-  flex: 4;
-  line-height: 18px;
+  line-height: 2ch;
 }
 
 /* EDITOR */
@@ -3075,7 +3094,7 @@ form .form-group > label {
 }*/
 
 .editor-content {
-  height: 95%;
+  /*height: 95%;*/
   padding-left: 4px;
 }
 
@@ -3119,6 +3138,12 @@ form .form-group > label {
 }
 */
 /* ------ Damage Dialog ------ */
+.damage-dialog {
+  font-size: revert;
+}
+.damage-table {
+  max-width: 30ch;
+}
 
 .damage-dialog .red {
   color: var(--s2d6-damage-red);
@@ -3195,13 +3220,18 @@ input[type="text"].color {
 
 .effects-container {
   display: grid;
-  grid-template-columns: 4ch 19ch 14ch 12ch 10ch;
+  grid-template-columns: 5% 30% 25% 20% 15%;
   grid-template-areas: ". . . . .";
   align-items: center;
   /* grid-gap: 4px 2px; */
   grid-auto-flow: column;
   height: auto;
   padding: 0.5ch 0;
+  width:  98%
+}
+
+.items-list.effects-list {
+  width: 98%;
 }
 
 .effect-name, .effect-source, .effect-duration {
@@ -3212,7 +3242,6 @@ input[type="text"].color {
 
 .effect:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
-  width: fit-content;
   /* height: max-content; */
 }
 
@@ -3502,4 +3531,23 @@ input.red {
   display: grid;
   grid-template-columns: 40% 15% 15% 15% 10%;
   padding-left: 1%;
+}
+
+.selectTokens {
+  height: auto !important;
+  min-height: 5ch;
+}
+
+/************ v13 Changes *******/
+
+.standard-form {
+  overflow-y: auto;
+}
+
+table {
+  border-radius: 0;
+}
+
+.standard-form .form-group {
+  flex: 2 1 0%;
 }
