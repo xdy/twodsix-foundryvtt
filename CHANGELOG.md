@@ -1,3 +1,10 @@
+## [5.12.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.2...v5.12.3) (2024-12-04)
+
+
+### Bug Fixes
+
+*  range labels in roll setting dialog and auto damage permissions ([#1705](https://github.com/xdy/twodsix-foundryvtt/issues/1705)) ([ab0ece4](https://github.com/xdy/twodsix-foundryvtt/commit/ab0ece40c3dd131277f731216058da92de6b9527))
+
 ## [5.12.2](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.1...v5.12.2) (2024-11-26)
 
 
