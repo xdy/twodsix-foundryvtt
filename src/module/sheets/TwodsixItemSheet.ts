@@ -492,7 +492,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     });
   }
 
-
   /**************
    *
    * Drag Drop Overrides
