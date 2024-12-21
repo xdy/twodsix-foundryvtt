@@ -4424,3 +4424,8 @@ section.item-class {
 .item-class table{
   margin: 0.5rem 0;
 }
+
+#context-menu {
+  background: var(--s2d6-background-opaque);
+  color: var(--s2d6-default-color);
+}
