@@ -111,7 +111,7 @@ export default class TwodsixItem extends Item {
     if (game.settings.get('twodsix', 'showTLonItemsTab')) {
       if([...TWODSIX.WeightlessItems, "ship_position"].includes(this.type)) {
         return;
-      } else if (this.isEmbedded || this.compendium) {
+      } else if (this.isEmbedded || this.inCompendium) {
         return;
       } else if (changed.system?.techLevel) {
         ui.items.render();
