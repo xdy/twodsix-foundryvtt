@@ -36,7 +36,9 @@ import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
 import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
-import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
+import { TwodsixChatLog } from "./module/entities/TwodsixChatLog";
+//import { TWODSIX } from "./module/config";
+//import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -213,14 +215,7 @@ Hooks.once('init', async function () {
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
   //Add chat context
-  const cls = CONFIG.ui.chat;
-  const originalOptions = cls.prototype._getEntryContextOptions;
-  cls.prototype._getEntryContextOptions = function () {
-    const options = originalOptions.call(this);
-    addChatMessageContextOptions(options);
-    return options;
-  };
-
+  CONFIG.ui.chat = TwodsixChatLog;
 });
 
 Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
