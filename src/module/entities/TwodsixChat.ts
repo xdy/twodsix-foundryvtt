@@ -27,9 +27,8 @@ export class TwodsixChatLog extends foundry.applications.sidebar.tabs.ChatLog {
    * @inheritDoc
    */
   _getEntryContextOptions():ContextMenuEntry[] {
-    let options:ContextMenuEntry[] = super._getEntryContextOptions();
-    options = newContextOptions(options);
-    return options;
+    const options:ContextMenuEntry[] = super._getEntryContextOptions();
+    return newContextOptions(options);
   }
 }
 
@@ -52,9 +51,8 @@ export class TwodsixChatPopout extends foundry.applications.sidebar.apps.ChatPop
    * @inheritDoc
    */
   _getEntryContextOptions():ContextMenuEntry[] {
-    let options:ContextMenuEntry[] = super._getEntryContextOptions();
-    options = newContextOptions(options);
-    return options;
+    const options:ContextMenuEntry[] = super._getEntryContextOptions();
+    return newContextOptions(options);
   }
 }
 
