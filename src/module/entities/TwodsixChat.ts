@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import TwodsixItem from "../entities/TwodsixItem";
+import TwodsixItem from "./TwodsixItem";
 import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
-import TwodsixActor from "../entities/TwodsixActor";
+import TwodsixActor from "./TwodsixActor";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TWODSIX } from "../config";
@@ -13,129 +13,174 @@ import { TWODSIX } from "../config";
  * @mixes HandlebarsApplication
  */
 export class TwodsixChatLog extends foundry.applications.sidebar.tabs.ChatLog {
+  static onChatCardAction: any;
   /** @inheritDoc */
   _initializeApplicationOptions(options) {
     const applicationOptions = super._initializeApplicationOptions(options);
-    applicationOptions.actions = Object.assign(applicationOptions.actions, {
-      opposed: this.onChatCardAction,
-      chain: this.onChatCardAction,
-      expand: this.onChatCardAction,
-      abilityCheck: this.onChatCardAction,
-      damage: this.onChatCardAction
-    });
+    applicationOptions.actions = assignNewActions(applicationOptions.actions);
     return applicationOptions;
   }
+
   /**
    * Get context menu entries for chat messages in the log.
    * @returns {ContextMenuEntry[]}
    * @inheritDoc
    */
   _getEntryContextOptions():ContextMenuEntry[] {
-    const options = super._getEntryContextOptions();
-    const canApply = li => {
-      const message = game.messages.get(li.dataset?.messageId);
-      return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
-    };
-    options.push(
-      {
-        name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDamage"),
-        icon: '<i class="fas fa-user-minus"></i>',
-        condition: canApply,
-        callback: li => applyChatCardDamage(li, 1)
-      },
-      {
-        name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDestructiveDamage"),
-        icon: '<i class="fas fa-user-injured"></i>',
-        condition: canApply,
-        callback: li => applyChatCardDamage(li, 10)
-      },
-      {
-        name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyReducedDamage"),
-        icon: '<i class="fas fa-user-shield"></i>',
-        condition: canApply,
-        callback: li => applyChatCardDamage(li, 0.1)
-      },
-      {
-        name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyHealing"),
-        icon: '<i class="fas fa-user-plus"></i>',
-        condition: canApply,
-        callback: li => applyChatCardDamage(li, -1)
-      }
-    );
+    let options:ContextMenuEntry[] = super._getEntryContextOptions();
+    options = newContextOptions(options);
     return options;
   }
+}
+
+/**
+ * The chat popout
+ * @extends {ChatPopout}
+ *
+ */
+export class TwodsixChatPopout extends foundry.applications.sidebar.apps.ChatPopout {
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    const applicationOptions = super._initializeApplicationOptions(options);
+    applicationOptions.actions = assignNewActions(applicationOptions.actions);
+    return applicationOptions;
+  }
+
   /**
+   * Get context menu entries for chat messages in the log.
+   * @returns {ContextMenuEntry[]}
+   * @inheritDoc
+   */
+  _getEntryContextOptions():ContextMenuEntry[] {
+    let options:ContextMenuEntry[] = super._getEntryContextOptions();
+    options = newContextOptions(options);
+    return options;
+  }
+}
+
+/** Function that adds custom chat card buttons to action object
+* @param {Partial<Configuration>} coreActions
+* @returns {Partial<Configuration>} object of actions links
+*/
+function assignNewActions(coreActions:Partial<Configuration>):Partial<Configuration> {
+  return Object.assign(coreActions, {
+    opposed: onChatCardAction,
+    chain: onChatCardAction,
+    expand: onChatCardAction,
+    abilityCheck: onChatCardAction,
+    damage: onChatCardAction
+  });
+}
+
+/** Function that adds chat card context
+* @param {ContextMenuEntry[]} coreContext
+* @returns {ContextMenuEntry[]} object of context
+*/
+function newContextOptions(coreContext:ContextMenuEntry[] ):ContextMenuEntry[]  {
+  const canApply = li => {
+    const message = game.messages.get(li.dataset?.messageId);
+    return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
+  };
+  coreContext.push(
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDamage"),
+      icon: '<i class="fas fa-user-minus"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, 1)
+    },
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDestructiveDamage"),
+      icon: '<i class="fas fa-user-injured"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, 10)
+    },
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyReducedDamage"),
+      icon: '<i class="fas fa-user-shield"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, 0.1)
+    },
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyHealing"),
+      icon: '<i class="fas fa-user-plus"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, -1)
+    }
+  );
+  return coreContext;
+}
+
+/**
    * Handle execution of a chat card action via a click event on one of the card buttons
    * @param {Event} event       The originating click event
    * @param {HTMLElement} target Click Target
    * @returns {Promise}         A promise which resolves once the handler workflow is complete
    * @private
    */
-  async onChatCardAction(event: Event, target:HTMLElement): Promise<any> {
-    event.preventDefault();
-    //console.log(target);
+export async function onChatCardAction(event: Event, target:HTMLElement): Promise<any> {
+  event.preventDefault();
+  //console.log(target);
 
-    // Extract card data
-    const button = target;
-    //button.disabled = true;
-    const messageId = target.closest("[data-message-id]")?.dataset.messageId;
-    const message = game.messages.get(messageId);
-    if (!message) {
+  // Extract card data
+  const button = target;
+  //button.disabled = true;
+  const messageId = target.closest("[data-message-id]")?.dataset.messageId;
+  const message = game.messages.get(messageId);
+  if (!message) {
+    return;
+  }
+  const action = button.dataset.action;
+
+  // Handle different actions
+  if (action === "expand") {
+    onExpandClick(message);
+    return;
+  } else if (action === "abilityCheck") {
+    makeRequestedRoll(message);
+    return;
+  } else {
+    // Recover the actor for the chat card
+    const actor = await getChatCardActor(message);
+    if (!actor) {
       return;
     }
-    const action = button.dataset.action;
 
-    // Handle different actions
-    if (action === "expand") {
-      onExpandClick(message);
+    // Validate permission to proceed with the roll
+    const isTargettedAction = ["chain", "opposed"].includes(action);
+    if (!(isTargettedAction || game.user.isGM || actor.isOwner)) {
       return;
-    } else if (action === "abilityCheck") {
-      makeRequestedRoll(message);
-      return;
-    } else {
-      // Recover the actor for the chat card
-      const actor = await getChatCardActor(message);
-      if (!actor) {
-        return;
-      }
+    }
+    // Get the Item from stored flag data
+    const storedData = message.getFlag("twodsix", "itemUUID");
+    const item: TwodsixItem = storedData ? await fromUuid(storedData) : {};
+    if (!item) {
+      const err = game.i18n.format("DND5E.ActionWarningNoItem", { item: card.dataset.itemId, name: actor.name });
+      return ui.notifications.error(err);
+    }
 
-      // Validate permission to proceed with the roll
-      const isTargettedAction = ["chain", "opposed"].includes(action);
-      if (!(isTargettedAction || game.user.isGM || actor.isOwner)) {
-        return;
-      }
-      // Get the Item from stored flag data
-      const storedData = message.getFlag("twodsix", "itemUUID");
-      const item: TwodsixItem = storedData ? await fromUuid(storedData) : {};
-      if (!item) {
-        const err = game.i18n.format("DND5E.ActionWarningNoItem", { item: card.dataset.itemId, name: actor.name });
-        return ui.notifications.error(err);
-      }
-
-      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-      const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-      const bonusDamage: string = message.getFlag("twodsix", "bonusDamage");
-      const effect = message.getFlag("twodsix", "effect") ?? 0;
-      const addEffect: boolean = game.settings.get('twodsix', 'addEffectToDamage');
-      let totalBonusDamage = addEffect ? `${effect}` : ``;
-      if (bonusDamage !== "0" && bonusDamage !== "") {
-        totalBonusDamage += ((addEffect) ? ` + ` : ``) + `${bonusDamage}`;
-      }
-      switch (action) {
-        case "damage":
-          await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog);
-          break;
-        case "opposed":
-          //opposed roll
-          makeSecondaryRoll(message, "opposed", showFormulaDialog);
-          break;
-        case "chain":
-          //chain roll
-          makeSecondaryRoll(message, "chain", showFormulaDialog);
-          break;
-        default:
-          break;
-      }
+    const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+    const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+    const bonusDamage: string = message.getFlag("twodsix", "bonusDamage");
+    const effect = message.getFlag("twodsix", "effect") ?? 0;
+    const addEffect: boolean = game.settings.get('twodsix', 'addEffectToDamage');
+    let totalBonusDamage = addEffect ? `${effect}` : ``;
+    if (bonusDamage !== "0" && bonusDamage !== "") {
+      totalBonusDamage += ((addEffect) ? ` + ` : ``) + `${bonusDamage}`;
+    }
+    switch (action) {
+      case "damage":
+        await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog);
+        break;
+      case "opposed":
+        //opposed roll
+        makeSecondaryRoll(message, "opposed", showFormulaDialog);
+        break;
+      case "chain":
+        //chain roll
+        makeSecondaryRoll(message, "chain", showFormulaDialog);
+        break;
+      default:
+        break;
     }
   }
 }
@@ -368,3 +413,4 @@ async function makeRequestedRoll(message: ChatMessage): void {
     }
   }
 }
+

@@ -36,7 +36,8 @@ import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
 import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
-import { TwodsixChatLog } from "./module/entities/TwodsixChatLog";
+import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
+
 //import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
@@ -216,6 +217,7 @@ Hooks.once('init', async function () {
 
   //Add chat context
   CONFIG.ui.chat = TwodsixChatLog;
+  CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
 });
 
 Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
