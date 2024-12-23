@@ -42,6 +42,7 @@ export class TwodsixChatPopout extends foundry.applications.sidebar.apps.ChatPop
   _initializeApplicationOptions(options) {
     const applicationOptions = super._initializeApplicationOptions(options);
     applicationOptions.actions = assignNewActions(applicationOptions.actions);
+    Object.assign(applicationOptions.actions, {expandRoll: onExpandRoll});
     return applicationOptions;
   }
 
@@ -412,3 +413,12 @@ async function makeRequestedRoll(message: ChatMessage): void {
   }
 }
 
+/**
+ * Handle toggling the expanded state of a roll breakdown.
+ * @this {ChatLog}
+ * @type {ApplicationClickAction}
+ */
+function onExpandRoll(event, target) {
+  event.preventDefault();
+  target.classList.toggle("expanded");
+}
