@@ -176,8 +176,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   /** @override */
-  _onRender(context:Context, options:any): void {
-    super._onRender(context, options);
+  async _onRender(context:Context, options:any): void {
+    await super._onRender(context, options);
 
     // Everything below here is only needed if the sheet is editable
     if (!context.editable) {

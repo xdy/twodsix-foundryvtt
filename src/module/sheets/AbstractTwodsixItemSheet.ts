@@ -14,8 +14,8 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
     this.#dragDrop = this.#createDragDropHandlers();
   }
 
-  public _onRender(context:any, options: any):void {
-    super._onRender(context, options);
+  public async _onRender(context:any, options: any):void {
+    await super._onRender(context, options);
     this.#dragDrop.forEach((d) => d.bind(this.element));
   }
 
