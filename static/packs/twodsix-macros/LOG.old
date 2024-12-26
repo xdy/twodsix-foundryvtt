@@ -1,24 +1,8 @@
-2024/11/19-08:51:16.477125 70000fba7000 Recovering log #130
-2024/11/19-08:51:16.477401 70000fba7000 Level-0 table #132: started
-2024/11/19-08:51:16.478726 70000fba7000 Level-0 table #132: 53272 bytes OK
-2024/11/19-08:51:16.479972 70000fba7000 Delete type=3 #129
-2024/11/19-08:51:16.480157 70000fba7000 Delete type=0 #130
-2024/11/19-09:21:39.930112 700010c30000 Level-0 table #135: started
-2024/11/19-09:21:39.932258 700010c30000 Level-0 table #135: 103197 bytes OK
-2024/11/19-09:21:39.932678 700010c30000 Delete type=0 #133
-2024/11/19-09:21:39.936933 700010c30000 Manual compaction at level-0 from '!macros!6kBM5JsjjXQpaWRG' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at '!macros!xpgbOkPeYsAcjDrm' @ 128 : 1
-2024/11/19-09:21:39.936950 700010c30000 Compacting 2@0 + 0@1 files
-2024/11/19-09:21:39.938647 700010c30000 Generated table #136@0: 20 keys, 53288 bytes
-2024/11/19-09:21:39.938667 700010c30000 Compacted 2@0 + 0@1 files => 53288 bytes
-2024/11/19-09:21:39.938775 700010c30000 compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/11/19-09:21:39.938883 700010c30000 Delete type=2 #135
-2024/11/19-09:21:39.939109 700010c30000 Delete type=2 #132
-2024/11/19-09:21:39.943611 700010c30000 Manual compaction at level-0 from '!macros!xpgbOkPeYsAcjDrm' @ 128 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
-2024/11/19-09:21:39.945727 700010c30000 Manual compaction at level-1 from '!macros!6kBM5JsjjXQpaWRG' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at '!macros!xpgbOkPeYsAcjDrm' @ 168 : 1
-2024/11/19-09:21:39.945741 700010c30000 Compacting 1@1 + 1@2 files
-2024/11/19-09:21:39.947299 700010c30000 Generated table #137@1: 20 keys, 53288 bytes
-2024/11/19-09:21:39.947318 700010c30000 Compacted 1@1 + 1@2 files => 53288 bytes
-2024/11/19-09:21:39.947413 700010c30000 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/11/19-09:21:39.947473 700010c30000 Delete type=2 #136
-2024/11/19-09:21:39.947657 700010c30000 Delete type=2 #122
-2024/11/19-09:21:39.955816 700010c30000 Manual compaction at level-1 from '!macros!xpgbOkPeYsAcjDrm' @ 168 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
+2024/12/26-07:31:45.317311 700011384000 Recovering log #156
+2024/12/26-07:31:45.318823 700011384000 Delete type=3 #154
+2024/12/26-07:31:45.318999 700011384000 Delete type=0 #156
+2024/12/26-07:32:01.287938 700012c93000 Level-0 table #161: started
+2024/12/26-07:32:01.287983 700012c93000 Level-0 table #161: 0 bytes OK
+2024/12/26-07:32:01.288142 700012c93000 Delete type=0 #159
+2024/12/26-07:32:01.289286 700012c93000 Manual compaction at level-0 from '!macros!6kBM5JsjjXQpaWRG' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
+2024/12/26-07:32:01.289340 700012c93000 Manual compaction at level-1 from '!macros!6kBM5JsjjXQpaWRG' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
