@@ -1,3 +1,10 @@
+## [5.12.4](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.3...v5.12.4) (2024-12-26)
+
+
+### Bug Fixes
+
+* Cepheus sector import for v12 ([#1715](https://github.com/xdy/twodsix-foundryvtt/issues/1715)) ([7806c88](https://github.com/xdy/twodsix-foundryvtt/commit/7806c88276c2597bf61e9c03bdce4c88954f9d2d))
+
 ## [5.12.3](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.2...v5.12.3) (2024-12-04)
 
 
