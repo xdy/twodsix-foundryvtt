@@ -29,7 +29,8 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
     actions: {
       deleteAction: this._onDeleteAction,
       createAction: this._onCreateAction,
-      deleteActor: this._onDeleteActor
+      deleteActor: this._onDeleteActor,
+      showActor: this._onShowActor
     },
     tag: "form"
   };
@@ -157,5 +158,13 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
       "type": TWODSIX.SHIP_ACTION_TYPE.chatMessage
     } as ShipAction;
     await this.item.update({ "system.actions": actions });
+  }
+
+  static _onShowActor(event:Event, target:HTMLElement) {
+    const actorId = target.closest(".ship-position-details-actor").dataset.id;
+    if(actorId) {
+      const targetActor = game.actors.get(actorId);
+      targetActor.sheet.render(true);
+    }
   }
 }

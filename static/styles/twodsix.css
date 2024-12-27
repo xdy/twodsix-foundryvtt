@@ -4437,3 +4437,7 @@ section.item-class {
 .chat-sidebar {
   background-color: var(--s2d6-background-semi-opaque);
 }
+
+table.ship-action-table {
+  margin: 0.5rem 0;
+}

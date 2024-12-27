@@ -3096,6 +3096,7 @@ form .form-group > label {
 .editor-content {
   /*height: 95%;*/
   padding-left: 4px;
+  border: 1px solid
 }
 
 .tox .tox-editor-container {
@@ -3550,4 +3551,21 @@ table {
 
 .standard-form .form-group {
   flex: 2 1 0%;
+}
+
+table.ship-action-table {
+  margin: 0.5rem 0;
+}
+
+.action-name {
+  display: flex;
+}
+
+section.item-class {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem;
+}
+.item-class table{
+  margin: 0.5rem 0;
 }

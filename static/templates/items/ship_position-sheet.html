@@ -10,7 +10,7 @@
   {{#if hasShipActor}}
   <div class="form-section">
     {{localize "TWODSIX.Ship.Travellers"}}: <br>
-    <table>
+    <table class="ship-action-table">
       <thead>
         <tr>
           <th></th>
@@ -21,7 +21,7 @@
       <tbody>
         {{#each actors as |actor|}}
         <tr class="ship-position-details-actor" data-id="{{actor.id}}" data-drag="actor">
-          <td><img src="{{actor.img}}" width="20" height="20"></td>
+          <td><a><img src="{{actor.img}}" width="20" height="20" data-action="showActor"></a></td>
           <td>{{actor.name}}</td>
           <td class="centre">
             <a class="ship-position-details-actor-delete" data-id="{{actor.id}}" data-tooltip='{{localize "TWODSIX.Ship.RemoveTraveller"}}' data-action="deleteActor">
@@ -36,7 +36,7 @@
   {{/if}}
   <div class="form-section">
     {{localize "TWODSIX.Ship.Actions"}}: <br>
-    <table>
+    <table class="ship-action-table">
       <thead>
         <tr>
           <th style="min-width: 6ch;">{{localize "TWODSIX.Ship.Order"}}</th>
