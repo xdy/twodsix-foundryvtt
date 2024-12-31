@@ -49,14 +49,14 @@
   <!-- Reaction Information -->
   {{#if settings.displayReactionMorale}}
   <span class="bgi-reaction">
-    <span class="roll-reaction orange" style="align-self: center;"><i class="fa-solid fa-person-circle-question" data-tooltip='{{localize "TWODSIX.Animal.Reaction"}}'></i>:</span>
+    <span class="roll-reaction orange" style="align-self: center;" data-action="rollReaction"><i class="fa-solid fa-person-circle-question" data-tooltip='{{localize "TWODSIX.Animal.Reaction"}}'></i>:</span>
     <span>{{localize "TWODSIX.Animal.Attack"}}:
     <input name="system.reaction.attack" type="number" value="{{system.reaction.attack}}" data-tooltip="{{twodsix_getTooltip actor 'system.reaction.attack'}}"/>
     </span>
     <span>{{localize "TWODSIX.Animal.Flee"}}:
     <input name="system.reaction.flee" type="number" value="{{system.reaction.flee}}" data-tooltip="{{twodsix_getTooltip actor 'system.reaction.flee'}}"/>
     </span>
-    <span class="roll-morale orange" style="align-self: center;"><i class="fa-solid fa-hand-fist" data-tooltip='{{localize "TWODSIX.Animal.MoraleRoll"}}'></i>:</span>
+    <span class="roll-morale orange" style="align-self: center;" data-action="rollMorale"><i class="fa-solid fa-hand-fist" data-tooltip='{{localize "TWODSIX.Animal.MoraleRoll"}}'></i>:</span>
     <input name="system.moraleDM" type="text" value="{{system.moraleDM}}" data-tooltip="{{twodsix_getTooltip actor 'system.moraleDM'}}" placeholder='{{localize "TWODSIX.Items.Component.DM"}}'/>
     </span>
   <br>

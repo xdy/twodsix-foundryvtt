@@ -16,7 +16,6 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   async getData(): TwodsixShipSheetData {
     const context = <TwodsixShipSheetData>super.getData();
     context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>(this.actor), context);
     if ((<Ship>this.actor.system).shipPositionActorIds) {
       context.shipPositions = (<TwodsixActor>this.actor).itemTypes.ship_position.map((shipPosition: TwodsixItem) => {
         const shipPositionActorIds = Object?.entries(<ShipPositionActorIds>(<Ship>this.actor.system).shipPositionActorIds)?.filter(([, shipPositionId]) => shipPositionId === shipPosition.id);

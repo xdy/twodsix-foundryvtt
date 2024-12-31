@@ -12,7 +12,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Range"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Damage"}}</span>
       <span class="item-name centre">
-        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="weapon"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="weapon" data-action="item-create"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="weapon">
           {{#unless system.hideStoredItems.weapon}}
           <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
@@ -45,7 +45,7 @@
                   <a class="item-control item-fill-consumable" data-tooltip='{{localize "TWODSIX.Actor.Items.Refill"}}'><i class="fa-solid fa-battery-full"></i></a>
                 {{/unless}}{{/unless}}
                 <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
-                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
               </span>
             </span>
@@ -109,7 +109,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
       <span class="item-name centre">
-        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="armor"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="armor" data-action="item-create"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="armor">
           {{#unless system.hideStoredItems.armor}}
           <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
@@ -149,7 +149,7 @@
               {{/if}}
               <span class="item-controls centre">
                 <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
-                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
               </span>
             </span>
@@ -173,7 +173,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Effect"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Location"}}</span>
       <span class="item-name centre">
-        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="augment"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="augment" data-action="item-create"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="augment">
           {{#unless system.hideStoredItems.augment}}
           <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
@@ -197,7 +197,7 @@
               <span class="item-name centre">{{item.system.auglocation}}</span>
               <span class="item-controls centre">
                 <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
-                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+                <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
               </span>
             </span>
@@ -220,7 +220,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.ShortDescr"}}</span>
       <span class="item-name centre">
-        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="equipment"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="equipment" data-action="item-create"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="equipment">
           {{#unless system.hideStoredItems.equipment}}
           <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
@@ -247,7 +247,7 @@
                   {{/iff}}
                   <span class="item-controls centre">
                     <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
-                    <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
                   </span>
                 </span>
@@ -271,7 +271,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
       <span></span>
       <span class="item-name centre">
-        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="junk"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="junk" data-action="item-create"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="junk">
           {{#unless system.hideStoredItems.junk}}
           <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
@@ -295,7 +295,7 @@
                   <span></span>
                   <span class="item-controls centre">
                     {{#iff item.type "===" "junk"}}<a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>{{/iff}}
-                    <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
                   </span>
                 </span>
@@ -318,7 +318,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Count"}}</span>
       <span class="item-name centre">
-        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="consumable" data-subtype="consumable"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="consumable" data-subtype="consumable" data-action="item-create"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="consumable">
           {{#unless system.hideStoredItems.consumable}}
           <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
@@ -345,7 +345,7 @@
                       <span class="item-name centre">{{item.system.currentCount}}/{{item.system.max}}</span>
                       <span class="item-controls centre">
                         <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
-                        <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
                       </span>
                     </span>
@@ -370,7 +370,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">
-        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="consumable" data-subtype="attachment"><i class="fa-solid fa-plus"></i></a>
+        <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="consumable" data-subtype="attachment" data-action="item-create"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="attachment">
           {{#unless system.hideStoredItems.attachment}}
           <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
@@ -396,7 +396,7 @@
                 <span class="item-name centre">{{item.system.techLevel}}</span>
                 <span class="item-controls centre">
                   <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
-                  <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i class="fa-solid fa-pen-to-square"></i></a>
+                  <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                   <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
                 </span>
               </span>

@@ -54,12 +54,6 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
       }
     }
-    AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
-
-    //Prepare characteristic display values
-    setCharacteristicDisplay(returnData);
-    returnData.system.characteristics.displayOrder = getDisplayOrder(returnData);
-    //}
 
     // Add relevant data from system settings
     returnData.settings = {
@@ -355,62 +349,6 @@ export class TwodsixNPCSheet extends TwodsixActorSheet {
       dragDrop: [{dragSelector: ".item", dropSelector: null}]
     });
   }
-}
-
-export function setCharacteristicDisplay(returnData: object): void {
-  const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
-  returnData.system.characteristics.alternative1.displayChar = ['alternate', 'all'].includes(charMode) &&
-        (returnData.system.characteristics.alternative1.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
-  returnData.system.characteristics.alternative2.displayChar = ['alternate', 'all'].includes(charMode) &&
-        (returnData.system.characteristics.alternative2.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
-  returnData.system.characteristics.alternative3.displayChar = ['all'].includes(charMode) &&
-        (returnData.system.characteristics.alternative3.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
-  returnData.system.characteristics.dexterity.displayChar = true;
-  returnData.system.characteristics.education.displayChar = true;
-  returnData.system.characteristics.endurance.displayChar = true;
-  returnData.system.characteristics.intelligence.displayChar = true;
-  returnData.system.characteristics.lifeblood.displayChar = false;
-  returnData.system.characteristics.psionicStrength.displayChar = ['base', 'all'].includes(charMode) &&
-        (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero'));
-  returnData.system.characteristics.socialStanding.displayChar = true;
-  returnData.system.characteristics.stamina.displayChar = false;
-  returnData.system.characteristics.strength.displayChar = true;
-}
-
-export function getDisplayOrder(returnData: any): string[] {
-  const returnValue = ['strength', 'intelligence', 'dexterity', 'education', 'endurance', 'socialStanding'];
-  const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
-
-  switch (charMode) {
-    case 'core':
-      break;
-    case 'base':
-      if (returnData.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero')) {
-        returnValue.push('psionicStrength');
-      }
-      break;
-    case 'alternate':
-    case 'all':
-    {
-      const altList = ['alternative1', 'alternative2', 'alternative3'];
-      if (charMode === 'alternate') {
-        altList.pop();
-      } else {
-        altList.push('psionicStrength');
-      }
-
-      for (const key of altList) {
-        const displaySetting = key === 'psionicStrength' ? game.settings.get('twodsix', 'omitPSIifZero') : game.settings.get('twodsix', 'omitALTifZero');
-        if (returnData.system.characteristics[key].value !== 0 || !displaySetting) {
-          returnValue.push(key);
-        }
-      }
-      break;
-    }
-    default:
-      break;
-  }
-  return returnValue;
 }
 
 /**

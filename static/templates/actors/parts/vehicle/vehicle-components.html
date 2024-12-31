@@ -8,7 +8,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.hits"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
-      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = "otherInternal"> <i class="fa-solid fa-plus"></i></a></span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = "otherInternal" data-action="item-create"> <i class="fa-solid fa-plus"></i></a></span>
     </div>
   </div>
 
@@ -40,7 +40,7 @@
             {{> "systems/twodsix/templates/actors/parts/common/popup-state.html" item=item}}
           </span>
           <span class="item-controls centre">
-            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="item-edit"><i
               class="fa-solid fa-pen-to-square"></i></a>
             <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
               class="fa-solid fa-trash"></i></a>

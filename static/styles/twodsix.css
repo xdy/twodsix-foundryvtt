@@ -72,10 +72,7 @@ p span, p {
   background-color: transparent;
   font-family: inherit;
 }
-.application input[type="text"], .application input[type="number"], .application input[type="password"], .application input[type="date"],
-.application input[type="time"], .application input[type="search"], .application select,
-input[type='text'], input[type='number'], input[type='password'], input[type='datetime-local'], input[type='time'],
-input[type='search'], input[type='date'], div[contenteditable], textarea {
+.application input, .application select, input, div[contenteditable], textarea {
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-light-color);
   font-family: inherit;
@@ -556,9 +553,10 @@ h2 {
 }
 
 .animal-content-container {
+  height: 100%;
   display: grid;
-  grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 22em 0.5fr 0.5fr;
+  grid-template-columns: 25% 46% 25%;
+  grid-template-rows: 65% 12% 12%;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -906,7 +904,8 @@ h2 {
 
 .character-photo img {
   vertical-align: middle;
-  max-height: -webkit-fill-available;
+  max-height: 100%;
+  width: 100%;
   z-index: -1;
 }
 
@@ -1040,7 +1039,7 @@ h2 {
 }
 
 .bgi-reaction input {
-  width: 2em;
+  width: 2.6em;
   border: none;
 }
 
@@ -1083,14 +1082,14 @@ h2 {
 }
 
 .bgi-niche select {
-  width: 13ch;
+  width: 15ch;
   background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
 }
 
 .bgi-type select {
-  width: 16ch;
+  width: 17ch;
   background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
@@ -1411,9 +1410,10 @@ span.stat-modifier-table {
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
-  width: 4ch;
+  /*width: 4ch;*/
   height: 3.5ch;
   color: var(--s2d6-stat-input);
+  padding: 0;
 }
 
 span.stat-damage {
@@ -1432,7 +1432,7 @@ span.stat-damage-table input {
   border: solid;
   border-width: thin;
   border-radius: 15%;
-  width: 4ch;
+  /*width: 4ch;*/
   height: 3.5ch;
   border-color: var(--s2d6-default-color);
 }
@@ -1713,7 +1713,8 @@ a.actor-notes-tab:hover {
   /* padding: 0; */
   /* vertical-align: middle; */
   font-size: inherit;
-  line-height: 3ch;
+  /*line-height: 3ch;*/
+  display: inline-flex;
 }
 
 .skill-list {
@@ -4421,7 +4422,8 @@ section.item-class {
   overflow-x: hidden;
   padding-right: 0.5rem;
 }
-.item-class table{
+
+.item-class table {
   margin: 0.5rem 0;
 }
 
@@ -4440,4 +4442,11 @@ section.item-class {
 
 table.ship-action-table {
   margin: 0.5rem 0;
+}
+.stat-table-npc th, .stat-table-npc td {
+  padding: 2px;
+}
+
+.untabbed-sheet {
+  height: 100%;
 }

@@ -2,46 +2,92 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill} from "../utils/sheetUtils";
+import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill, openPDFReference, deletePDFReference, getDamageTypes, getRangeTypes } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
-import { openPDFReference, deletePDFReference } from "../utils/sheetUtils";
 import { sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { TWODSIX } from "../config";
 
-export abstract class AbstractTwodsixActorSheet extends ActorSheet {
+/**
+ * Extend the basic ActorheetV2 with common functions for all actors
+ * @extends {ActorSheetV2}
+ */
+export abstract class AbstractTwodsixActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
+  foundry.applications.sheets.ActorSheetV2) {
+  /** @override */
+  static DEFAULT_OPTIONS =  {
+    actions: {
+      itemCreate: this._onItemCreate,
+      itemEdit: this._onItemEdit,
+      itemDelete: this._onItemDelete,
+      editConsumable: this._onEditConsumable,
+      openLink: openPDFReference,
+      deleteLink: deletePDFReference
+    }
+  };
+
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
+    context.owner = this.actor;
+    context.actor = context.owner;
+    context.system = this.actor.system;
+
+    context.dtypes = ["String", "Number", "Boolean"];
+
+    // Add relevant data from system settings
+    context.settings = {
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      rangeTypes: getRangeTypes('short'),
+      ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
+      autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
+      showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
+      lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
+      showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
+      showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
+      showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
+      showIcons: game.settings.get("twodsix", "showIcons"),
+      showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
+      showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
+      useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
+      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
+      showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showSpells: game.settings.get('twodsix', 'showSpells'),
+      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
+      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
+      damageTypes: getDamageTypes(false),
+      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
+      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
+      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
+      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
+    };
+
+    if (!['ship', 'vehicle'].includes(this.actor.type)) {
+      const untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
+      if (untrainedSkill) {
+        context.untrainedSkill = untrainedSkill;
+      }
+      //Prepare characteristic display values
+      setCharacteristicDisplay(context);
+      if (this.actor.type === 'traveller') {
+        context.system.characteristics.displayOrder = getDisplayOrder(context);
+      }
+    }
+    this._prepareItemContainers(context);
+    context.config = TWODSIX;
+    return context;
+  }
 
   /** @override */
-  public activateListeners(html:JQuery):void {
-    super.activateListeners(html);
-
+  async _onRender(context:Context, options:any): void {
+    await super._onRender(context, options);
+    const html = $(this.element);
     // Everything below here is only needed if the sheet is editable
-    if (!this.options.editable) {
+    if (!context.editable) {
       return;
     }
-
-    // Add Inventory Item
-    html.find('.item-create').on('click', this._onItemCreate.bind(this));
-
-    // Update Inventory Item
-    html.find('.item-edit').on('click', (ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.items.get(li.data("itemId"));
-      item?.sheet?.render(true);
-    }));
-
-    // Update Consumable Item
-    html.find('.consumable-edit').on('click', (ev => {
-      const li = $(ev.currentTarget).parents(".consumable-row");
-      const item = this.actor.items.get(li.data("consumableId"));
-      item?.sheet?.render(true);
-    }));
-
-    // Delete Item
-    html.find('.item-delete').on('click', this._deleteItem.bind(this));
 
     // Drag events for macros.
     if (this.actor.isOwner) {
@@ -57,8 +103,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     }
 
     // Handle format stripping for content editable
-    html.find('div[contenteditable="true"][data-edit]').on('focusout', this._onSubmit.bind(this));
-    html.find('div[contenteditable="true"][data-edit]').on('paste', onPasteStripFormatting.bind(this));
+    this.handleContentEditable(this.element);
 
     //Non-ship actors listeners
     if (this.actor.type !== "ship") {
@@ -93,18 +138,14 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
       html.find('.effect-control').on('click', this._modifyEffect.bind(this));
     }
-
-    //Document links
-    html.find('.open-link').on('click', openPDFReference.bind(this, this.actor.system.docReference));
-    html.find('.delete-link').on('click', deletePDFReference.bind(this));
   }
 
   /**
    * Handle delete item for actor sheet.
    * @param {Event} event   The originating click event
    */
-  protected async _deleteItem(ev:Event):Promise<void> {
-    const li = ev.currentTarget.closest('.item');
+  static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
+    const li = target.closest('.item');
     const ownedItem = this.actor.items.get(li.dataset.itemId) || null;
 
     if (ownedItem) {
@@ -157,22 +198,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   }
 
   _onDragStart(ev:DragEvent):void {
-    if (ev.currentTarget && !(ev.currentTarget)["dataset"]) {
-      return;
+    const li = event.currentTarget;
+    if (li?.dataset) {
+      super._onDragStart(ev);
     }
-    // Active Effect
-    /*const li = $(event.currentTarget).data(".effect");
-      if (li) {
-      const effect = await fromUuid(li.dataset.uuid);
-      const dragData = {
-        data: effect.toObject(),
-        uuid: effect.uuid,
-        type: "ActiveEffect"
-      };
-      event.dataTransfer?.setData("text/plain", li.dataset.uuid);
-    }*/
-
-    return super._onDragStart(ev);
   }
 
   protected updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
@@ -229,9 +258,9 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
    * @param {Event} ev   The originating click event
-   * @private
+   * @static
    */
-  protected async _onItemCreate(ev:Event):Promise<void> {
+  static async _onItemCreate(ev:Event, target:HTMLElement):Promise<void> {
     ev.preventDefault();
     const header = ev.currentTarget;
     // Get the type of item to create.
@@ -262,6 +291,28 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
 
     // Finally, create the item!
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
+  }
+
+  /**
+   * Handle editing an item
+   * @param {Event} ev   The originating click event
+   * @static
+   */
+  static _onItemEdit(ev:Event, target:HTMLElement):Promise<void> {
+    const li = target.closest('.item');
+    const item = this.actor.items.get(li.dataset.itemId);
+    item?.sheet?.render(true);
+  }
+
+  /**
+   * Handle editing a consumable
+   * @param {Event} ev   The originating click event
+   * @static
+   */
+  static _onEditConsumable(ev:Event, target:HTMLElement):Promise<void> {
+    const li = target.closest(".consumable-row");
+    const item = this.actor.items.get(li.dataset.consumableId);
+    item?.sheet?.render(true);
   }
 
   /**
@@ -326,9 +377,10 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     return await (<TwodsixActor>this.actor).handleDroppedItem(itemData);
   }
 
-  protected static _prepareItemContainers(actor:TwodsixActor, sheetData:any):void {
-
+  _prepareItemContainers(context:any):void {
     // Initialize containers.
+    const actor:TwodsixActor = this.actor;
+    context.container = actor.itemTypes;
     const items = actor.items;
     const component = {};
     let numberOfSkills = 0;
@@ -370,7 +422,7 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
       //Add consumable labels
       if (["traveller"].includes(actor.type)  && item.type === "consumable") {
-        const parentItem = sheetData.items.find((i) => i.system.consumables?.includes(item.id));
+        const parentItem = context.items.find((i) => i.system.consumables?.includes(item.id));
         if (parentItem) {
           item.system.parentName = parentItem.name;
           item.system.parentType = parentItem.type;
@@ -396,22 +448,21 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
     });
 
     // Prepare Containers for sheetData
-    sheetData.container = actor.itemTypes;
-    sheetData.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
-    sheetData.container.storageAndJunk = actor.itemTypes.storage.concat(actor.itemTypes.junk);
-    sheetData.container.skillsList = skillsList;
-    sheetData.container.skillGroups = sortObj(skillGroups);
-    if (actor.type === "traveller") {
-      sheetData.numberOfSkills = numberOfSkills + (sheetData.jackOfAllTrades > 0 ? 1 : 0);
-      sheetData.numberListedSkills = numberOfSkills;
-      sheetData.skillRanks = skillRanks + sheetData.jackOfAllTrades;
-    } else if (actor.type === "ship" || actor.type === "vehicle" ) {
-      sheetData.componentObject = sortObj(component);
-      sheetData.summaryStatus = sortObj(summaryStatus);
-      sheetData.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
-      sheetData.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
+    context.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
+    context.container.storageAndJunk = actor.itemTypes.storage.concat(actor.itemTypes.junk);
+    context.container.skillsList = skillsList;
+    context.container.skillGroups = sortObj(skillGroups);
+    if (["traveller"].includes(actor.type)) {
+      context.numberOfSkills = numberOfSkills + (context.jackOfAllTrades > 0 ? 1 : 0);
+      context.numberListedSkills = numberOfSkills;
+      context.skillRanks = skillRanks + context.jackOfAllTrades;
+    } else if (["ship", "vehicle"].includes(actor.type)) {
+      context.componentObject = sortObj(component);
+      context.summaryStatus = sortObj(summaryStatus);
+      context.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
+      context.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
-    sheetData.effects = Array.from(actor.allApplicableEffects());
+    context.effects = Array.from(actor.allApplicableEffects());
   }
 
   protected _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
@@ -651,4 +702,86 @@ export abstract class AbstractTwodsixActorSheet extends ActorSheet {
       }
     }
   }
+
+  //These aren't necessary with change to prosemirror
+  protected handleContentEditable(element:HTMLElement):void {
+    element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
+      el.addEventListener('focusout', this._onChangeContenteditable.bind(this));
+    });
+    element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
+      el.addEventListener('paste', onPasteStripFormatting.bind(this));
+    });
+  }
+
+  /** @override */
+  // Not really needed with change to prosemirror
+  async _onChangeContenteditable(event) {
+    //console.log(event);
+    if (event.currentTarget?.name !== 'type') {
+      const  formField = event.currentTarget?.closest('div[contenteditable="true"][data-edit]');
+      if (formField) {
+        const target = formField.dataset?.edit;
+        const newValue = formField.closest('div[contenteditable="true"][data-edit]').innerHTML;
+        if (target) {
+          this.actor.update({[target]: newValue});
+        }
+      }
+    }
+  }
+}
+
+export function setCharacteristicDisplay(context: object): void {
+  const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
+  context.system.characteristics.alternative1.displayChar = ['alternate', 'all'].includes(charMode) &&
+        (context.system.characteristics.alternative1.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
+  context.system.characteristics.alternative2.displayChar = ['alternate', 'all'].includes(charMode) &&
+        (context.system.characteristics.alternative2.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
+  context.system.characteristics.alternative3.displayChar = ['all'].includes(charMode) &&
+        (context.system.characteristics.alternative3.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
+  context.system.characteristics.dexterity.displayChar = true;
+  context.system.characteristics.education.displayChar = true;
+  context.system.characteristics.endurance.displayChar = true;
+  context.system.characteristics.intelligence.displayChar = true;
+  context.system.characteristics.lifeblood.displayChar = false;
+  context.system.characteristics.psionicStrength.displayChar = ['base', 'all'].includes(charMode) &&
+        (context.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero'));
+  context.system.characteristics.socialStanding.displayChar = true;
+  context.system.characteristics.stamina.displayChar = false;
+  context.system.characteristics.strength.displayChar = true;
+}
+
+export function getDisplayOrder(context: any): string[] {
+  const returnValue = ['strength', 'intelligence', 'dexterity', 'education', 'endurance', 'socialStanding'];
+  const charMode = game.settings.get('twodsix', 'showAlternativeCharacteristics');
+
+  switch (charMode) {
+    case 'core':
+      break;
+    case 'base':
+      if (context.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero')) {
+        returnValue.push('psionicStrength');
+      }
+      break;
+    case 'alternate':
+    case 'all':
+    {
+      const altList = ['alternative1', 'alternative2', 'alternative3'];
+      if (charMode === 'alternate') {
+        altList.pop();
+      } else {
+        altList.push('psionicStrength');
+      }
+
+      for (const key of altList) {
+        const displaySetting = key === 'psionicStrength' ? game.settings.get('twodsix', 'omitPSIifZero') : game.settings.get('twodsix', 'omitALTifZero');
+        if (context.system.characteristics[key].value !== 0 || !displaySetting) {
+          returnValue.push(key);
+        }
+      }
+      break;
+    }
+    default:
+      break;
+  }
+  return returnValue;
 }

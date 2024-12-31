@@ -818,12 +818,11 @@ export default class TwodsixActor extends Actor {
   }
 
   public getUntrainedSkill(): TwodsixItem {
-    //TODO May need to update this type <Traveller>
-    return <TwodsixItem>this.items.get((<Traveller>this.system).untrainedSkill);
+    return <TwodsixItem>this.items.get((<TwodsixActor>this.system).untrainedSkill);
   }
 
   public createUntrainedSkillData(): any {
-    if ((<Traveller>this.system).untrainedSkill) {
+    if ((<TwodsixActor>this.system).untrainedSkill) {
       if (this.items.get(this.system.untrainedSkill)) {
         return;
       }

@@ -2,10 +2,6 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
-import { TWODSIX } from "../config";
-import TwodsixActor from "../entities/TwodsixActor";
-import { getDamageTypes, getRangeTypes } from "../utils/sheetUtils";
-import { setCharacteristicDisplay } from "./TwodsixActorSheet";
 
 export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
@@ -18,60 +14,22 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
   }
 
   /** @override */
-  async getData(): any {
-    const returnData: any = super.getData();
-    returnData.system = returnData.actor.system;
-    returnData.container = {};
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
+
     if (game.settings.get('twodsix', 'useProseMirror')) {
-      returnData.richText = {
-        description: await TextEditor.enrichHTML(returnData.system.description),
-        notes: await TextEditor.enrichHTML(returnData.system.notes)
+      context.richText = {
+        description: await TextEditor.enrichHTML(context.system.description),
+        notes: await TextEditor.enrichHTML(context.system.notes)
       };
     }
 
-    returnData.dtypes = ["String", "Number", "Boolean"];
-
-    // Prepare items.
-    if (this.actor.type == 'robot') {
-      const actor: TwodsixActor = <TwodsixActor>this.actor;
-      const untrainedSkill = actor.getUntrainedSkill();
-      if (untrainedSkill) {
-        returnData.untrainedSkill = untrainedSkill;
-      }
-      AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
-      setCharacteristicDisplay(returnData);
-    }
-
     // Add relevant data from system settings
-    returnData.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
-      rangeTypes: getRangeTypes('short'),
-      ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
-      autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
-      showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
-      lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
-      showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
-      showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
-      showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
-      showIcons: game.settings.get("twodsix", "showIcons"),
-      showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
-      showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
-      useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
-      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
-      showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      useHits: game.settings.get('twodsix', 'robotsUseHits'),
-      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
-      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
-      damageTypes: getDamageTypes(false),
-      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
-      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
-      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU',
-    };
-    //returnData.data.settings = returnData.settings; // DELETE WHEN CONVERSION IS COMPLETE
-    returnData.config = TWODSIX;
+    Object.assign(context.settings, {
+      useHits: game.settings.get('twodsix', 'robotsUseHits')
+    });
 
-    return returnData;
+    return context;
   }
 
   /** @override */

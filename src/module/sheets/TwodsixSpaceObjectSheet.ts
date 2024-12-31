@@ -17,7 +17,6 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     const context = <any>super.getData();
     context.system = this.actor.system;
     context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>this.actor, context);
     context.settings = <TwodsixSpaceObjectSheetSettings>{
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences')

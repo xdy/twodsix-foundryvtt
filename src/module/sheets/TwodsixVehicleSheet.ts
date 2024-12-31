@@ -14,7 +14,6 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
   getData(): TwodsixVehicleSheetData {
     const context = <TwodsixVehicleSheetData>super.getData();
     context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>this.actor, context);
     context.settings = <TwodsixVehicleSheetSettings>{
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
