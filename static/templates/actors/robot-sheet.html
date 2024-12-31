@@ -46,10 +46,10 @@
       {{#unless limited}}
       <div style="margin-left: 1ch;">
       {{#each_sort_item container.skillsList as |item id|}}
-              <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
+              <span class="item draggable" data-item-id="{{item.id}}">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
                 <!--<input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>-->
-                <input style="width: 2ch;"  type="number"
+                <input style="width: 4ch;"  type="number"
                 {{#if (twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name)))}}
                   value="{{twodsix_skillTotal ../actor item}}"
                   data-tooltip="{{twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name))}}"
@@ -80,7 +80,7 @@
       <div style="margin-left: 1ch">
         <span >
          {{#each_sort_item container.weapon as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+            <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange">{{twodsix_limitLength item.system.damage 6}}</span>
               {{#each item.system.consumableData as |consumableData|}}
               {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.html" consumableData}}{{/each}}
@@ -102,7 +102,7 @@
       <div style="margin-left: 1ch">
         <span >
          {{#each_sort_item container.trait as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+            <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>
               <span class="item-controls centre">
@@ -123,7 +123,7 @@
       <div style="margin-left: 1ch">
         <span >
          {{#each_sort_item container.augment as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+            <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name rollable">{{item.name}} </span>
               <span class="item-controls centre">
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i

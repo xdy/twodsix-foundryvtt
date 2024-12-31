@@ -198,7 +198,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   }
 
   _onDragStart(ev:DragEvent):void {
-    const li = event.currentTarget;
+    const li = ev.currentTarget;
     if (li?.dataset) {
       super._onDragStart(ev);
     }
