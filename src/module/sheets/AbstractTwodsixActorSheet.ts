@@ -138,6 +138,18 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
       html.find('.effect-control').on('click', this._modifyEffect.bind(this));
     }
+    //need to override DragDrop as only GM is allowed in core
+    if (game.user.isOwner && !game.user.isGM) {
+      new DragDrop({
+        dragSelector: ".draggable",
+        dropSelector: null,
+        callbacks: {
+          dragstart: this._onDragStart.bind(this),
+          dragover: this._onDragOver.bind(this),
+          drop: this._onDrop.bind(this)
+        }
+      }).bind(this.element);
+    }
   }
 
   /**
