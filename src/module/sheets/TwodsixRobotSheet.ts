@@ -13,6 +13,36 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
     return this.actor.type;
   }
 
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "sheet", "robot-actor"],
+    dragDrop: [{dragSelector: ".item", dropSelector: null}],
+    position: {
+      width: 'auto',
+      height: 600
+    },
+    window: {
+      resizable: true,
+      icon: "fa-solid fa-robot"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    actions: {
+      rollReaction: this._onRollReaction,
+      rollMorale: this._onRollMorale
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/robot-sheet.html",
+      //scrollable: ['']
+    }
+  };
+
+
   /** @override */
   async _prepareContext(options):any {
     const context = await super._prepareContext(options);
@@ -32,15 +62,4 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
     return context;
   }
 
-  /** @override */
-  static get defaultOptions(): ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "robot-actor"],
-      template: "systems/twodsix/templates/actors/robot-sheet.html",
-      width: 'auto',
-      height: 600,
-      resizable: true,
-      dragDrop: [{dragSelector: ".item", dropSelector: null}]
-    });
-  }
 }

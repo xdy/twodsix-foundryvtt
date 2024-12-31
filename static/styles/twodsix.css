@@ -580,6 +580,7 @@ h2 {
 }
 
 .robot-content-container {
+  height: 100%;
   display: grid;
   grid-template-columns: 15em 21em 18em;
   grid-template-rows: 21em 0.7fr 0.7fr 0.7fr;
