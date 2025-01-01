@@ -89,19 +89,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       return;
     }
 
-    // Drag events for macros.
-    if (this.actor.isOwner) {
-      const handler = ev => this._onDragStart(ev);
-
-      html.find('li.item').each((i, li) => {
-        if (li.classList.contains("inventory-header")) {
-          return;
-        }
-        li.setAttribute("draggable", 'true');
-        li.addEventListener("dragstart", handler, false);
-      });
-    }
-
     // Handle format stripping for content editable
     this.handleContentEditable(this.element);
 
@@ -138,17 +125,36 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
       html.find('.effect-control').on('click', this._modifyEffect.bind(this));
     }
-    //need to override DragDrop as only GM is allowed in core
-    if (game.user.isOwner && !game.user.isGM) {
-      new DragDrop({
-        dragSelector: ".draggable",
-        dropSelector: null,
-        callbacks: {
-          dragstart: this._onDragStart.bind(this),
-          dragover: this._onDragOver.bind(this),
-          drop: this._onDrop.bind(this)
+
+    /****************
+     *
+     * Drag Drop
+     *
+     ****************/
+
+    // Drag events for macros. ??? legacy - not for macros
+    if (this.actor.isOwner) {
+      html.find('li.item').each((i, li) => {
+        if (li.classList.contains("inventory-header")) {
+          return;
         }
-      }).bind(this.element);
+        li.setAttribute("draggable", 'true');
+      });
+    }
+
+    //need to augment DragDrop listener as only GM and droppable class is allowed in core ActorSheetV2
+    if (game.user.isOwner && this.options.dragDrop) {
+      (<object[]>this.options.dragDrop).forEach( (selector:{dragSelector: string, dropSelector:string}) => {
+        new DragDrop({
+          dragSelector: selector.dragSelector,
+          dropSelector: selector.dropSelector,
+          callbacks: {
+            dragstart: this._onDragStart.bind(this),
+            dragover: this._onDragOver.bind(this),
+            drop: this._onDrop.bind(this)
+          }
+        }).bind(this.element);
+      });
     }
   }
 
@@ -209,12 +215,29 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     }
   }
 
+  /**
+   * An event that occurs when a drag workflow begins for a draggable item on the sheet.
+   * @param {DragEvent} event       The initiating drag start event
+   * @returns {Promise<void>}
+   * @protected
+   */
   _onDragStart(ev:DragEvent):void {
     const li = ev.currentTarget;
     if (li?.dataset) {
       super._onDragStart(ev);
     }
   }
+
+  /**
+   * An event that occurs when a drag workflow moves over a drop target.
+   * @param {DragEvent} event
+   * @protected
+   */
+  _onDragOver(ev:DragEvent) {
+    super._onDragOver(ev);
+  }
+
+  /* -------------------------------------------- */
 
   protected updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
     switch (type) {
