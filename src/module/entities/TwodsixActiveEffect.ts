@@ -37,8 +37,12 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onCreate(data: object, options: object, userId: string):void {
     await super._onCreate(data, options, userId);
-    if(game.userId === userId  && this.parent?.type === 'traveller') {
+    if (game.userId === userId  && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
+    }
+    // A hack to fix a bug in v13
+    if (data.changes?.length === 0) {
+      data.changes.push({});
     }
   }
 

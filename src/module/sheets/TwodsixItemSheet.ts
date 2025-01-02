@@ -323,8 +323,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
             description: "",
             transfer: game.settings.get('twodsix', "useItemActiveEffects"),
             disabled: false,
-            _id: newId,
-            //flags: {twodsix: {sourceId: newId}}  //Needed?
+            _id: newId
           }, {renderSheet: true, parent: this.item});
         } else {
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantCreateEffect"));
@@ -337,9 +336,9 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else if (await fromUuid(this.item.uuid)) {
-      const editSheet = this.item.effects.contents[0].sheet?.render(true);
+      const editSheet = await this.item.effects.contents[0].sheet?.render(true);
       try {
-        editSheet?.bringToTop();
+        editSheet?.bringToFront();
       } catch(err) {
         console.log(err);
       }
