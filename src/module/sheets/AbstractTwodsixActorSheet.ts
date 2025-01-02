@@ -18,14 +18,16 @@ import { TWODSIX } from "../config";
 export abstract class AbstractTwodsixActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2) {
   /** @override */
-  static DEFAULT_OPTIONS =  {
+  static DEFAULT_OPTIONS = {
     actions: {
       itemCreate: this._onItemCreate,
       itemEdit: this._onItemEdit,
       itemDelete: this._onItemDelete,
       editConsumable: this._onEditConsumable,
       openLink: openPDFReference,
-      deleteLink: deletePDFReference
+      deleteLink: deletePDFReference,
+      adjustCounter: this._onAdjustCounter,
+      showChat: this._showInChat
     }
   };
 
@@ -105,16 +107,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       }
       //add hooks to allow skill levels and consumable counts to be updated on skill and equipment tabs, repectively
       html.find(".item-value-edit").on("input", this._onItemValueEdit.bind(this));
-      html.find(".item-value-edit").on("click", (event) => {
-        $(event.currentTarget).trigger("select");
-      });
-
-      //display trait item to chat
-      html.find(".showChat").on("click", (event:Event) => {
-        const item = this.getItem(event);
-        if (item) {
-          item.sendDescriptionToChat();
-        }
+      html.find(".item-value-edit").on("click", (ev:Event) => {
+        $(ev.currentTarget).trigger("select");
       });
 
       //Roll initiative from traveller sheet
@@ -238,57 +232,18 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   }
 
   /* -------------------------------------------- */
-
-  protected updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
-    switch (type) {
-      case "skills":
-        if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          const initialValue = CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
-          itemData.system.value = initialValue;
-        } else {
-          itemData.system.value = 0;
-        }
-        break;
-      case "weapon":
-        if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
-          itemData.system.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
-        }
-        if (!itemData.img) {
-          itemData.img = 'systems/twodsix/assets/icons/default_weapon.png';
-        }
-        break;
-      case "component":
-        itemData.system.subtype = subtype || "otherInternal";
-        if (subtype === "power") {
-          itemData.system.generatesPower = true;
-        }
-        itemData.system.status = "operational";
-        itemData.img = "systems/twodsix/assets/icons/components/" + itemData.system.subtype + ".svg";
-        break;
-      case "spell":
-        if (!itemData.img) {
-          itemData.img = 'systems/twodsix/assets/icons/spell-book.svg';
-        }
-        if (!itemData.system.associatedSkillName) {
-          itemData.system.associatedSkillName = game.settings.get("twodsix", "sorcerySkill") ?? "";
-        }
-        break;
-      case "consumable":
-        itemData.system.subtype = "other";
-        if (subtype === "attachment") {
-          itemData.system.isAttachment = true;
-          itemData.name = game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment");
-        } else {
-          itemData.system.max = 1;
-        }
-        break;
-      case "psiAbility":
-        if (!itemData.img) {
-          itemData.img = 'systems/twodsix/assets/icons/extra-lucid.svg';
-        }
-        break;
+  /**
+   * Handle show in chat click
+   * @param {Event} ev   The originating click event
+   * @static
+   */
+  static _showInChat(ev:Event, target: HTMLElement) {
+    const item:TwodsixItem = this.getItem(ev);
+    if (item) {
+      item.sendDescriptionToChat();
     }
   }
+
 
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
@@ -297,9 +252,9 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    */
   static async _onItemCreate(ev:Event, target:HTMLElement):Promise<void> {
     ev.preventDefault();
-    const header = ev.currentTarget;
+
     // Get the type of item to create.
-    const {type} = header.dataset;
+    const {type, subtype} = target.dataset;
 
     // Grab any data associated with this control.
     //const data = foundry.utils.duplicate(header.dataset) as Record<string, any>;
@@ -309,7 +264,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     let itemName = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
 
     if (itemType === "component") {
-      itemName += game.i18n.localize("TWODSIX.Items.Component." + (header.dataset.subtype || "otherInternal"));
+      itemName += game.i18n.localize("TWODSIX.Items.Component." + (subtype || "otherInternal"));
     } else {
       itemName += game.i18n.localize("TWODSIX.itemTypes." + itemType);
     }
@@ -322,7 +277,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
-    this.updateWithItemSpecificValues(itemData, <string>type, <string>header.dataset.subtype);
+    updateWithItemSpecificValues(itemData, <string>type, <string>(itemType === "component" ? subtype : ""));
 
     // Finally, create the item!
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
@@ -607,12 +562,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /**
    * Handle clickable skill and talent rolls.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  protected async _onSkillTalentRoll(event:Event, showThrowDiag: boolean): Promise<void> {
-    const item:TwodsixItem = this.getItem(event);
+  protected async _onSkillTalentRoll(ev:Event, showThrowDiag: boolean): Promise<void> {
+    const item:TwodsixItem = this.getItem(ev);
     if (item) {
       item.doSkillTalentRoll(showThrowDiag);
     }
@@ -706,16 +661,16 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     await this.render(false);
   }
 
-  private getItem(event): TwodsixItem {
-    const itemId = $(event.currentTarget).parents('.item').data('item-id');
+  private getItem(ev:Event): TwodsixItem {
+    const itemId = ev.target.closest('.item').dataset.itemId;
     return <TwodsixItem>this.actor.items.get(itemId);
   }
 
-  public async _onAdjustCounter(event): Promise<void> {
-    const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
-    const field = $(event.currentTarget).parents(".combined-buttons").data("field");
-    const li = $(event.currentTarget).parents(".item");
-    const itemSelected = this.actor.items.get(li.data("itemId"));
+  static async _onAdjustCounter(ev:Event, target:HTMLElement): Promise<void> {
+    const modifier = parseInt(target.dataset.value, 10);
+    const field = target.closest(".combined-buttons")?.dataset.field;
+    const li = target.closest(".item");
+    const itemSelected = this.actor.items.get(li.dataset.itemId);
     if (itemSelected && field) {
       if (field === "hits") {
         const newHits = (<Component>itemSelected.system).hits + modifier;
@@ -819,4 +774,55 @@ export function getDisplayOrder(context: any): string[] {
       break;
   }
   return returnValue;
+}
+
+function updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
+  switch (type) {
+    case "skills":
+      if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        const initialValue = CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+        itemData.system.value = initialValue;
+      } else {
+        itemData.system.value = 0;
+      }
+      break;
+    case "weapon":
+      if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
+        itemData.system.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
+      }
+      if (!itemData.img) {
+        itemData.img = 'systems/twodsix/assets/icons/default_weapon.png';
+      }
+      break;
+    case "component":
+      itemData.system.subtype = subtype || "otherInternal";
+      if (subtype === "power") {
+        itemData.system.generatesPower = true;
+      }
+      itemData.system.status = "operational";
+      itemData.img = "systems/twodsix/assets/icons/components/" + itemData.system.subtype + ".svg";
+      break;
+    case "spell":
+      if (!itemData.img) {
+        itemData.img = 'systems/twodsix/assets/icons/spell-book.svg';
+      }
+      if (!itemData.system.associatedSkillName) {
+        itemData.system.associatedSkillName = game.settings.get("twodsix", "sorcerySkill") ?? "";
+      }
+      break;
+    case "consumable":
+      itemData.system.subtype = "other";
+      if (subtype === "attachment") {
+        itemData.system.isAttachment = true;
+        itemData.name = game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment");
+      } else {
+        itemData.system.max = 1;
+      }
+      break;
+    case "psiAbility":
+      if (!itemData.img) {
+        itemData.img = 'systems/twodsix/assets/icons/extra-lucid.svg';
+      }
+      break;
+  }
 }

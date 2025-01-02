@@ -103,7 +103,7 @@
         <span >
          {{#each_sort_item container.trait as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
-              <span class="item-name showChat">{{item.name}} </span>
+              <span class="item-name showChat" data-action="showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>
               <span class="item-controls centre">
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i

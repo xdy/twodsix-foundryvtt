@@ -29,10 +29,11 @@
           <span class="item-name centre">
               {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
           </span>
-          <span class="item-name centre">{{item.system.hits}}
+          <span class="item-name centre with-buttons">
+            {{item.system.hits}}
             <span class="combined-buttons" data-field="hits">
-              <button type="button" class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
-              <button type="button" class="right-button adjust-counter" {{#iff item.system.hits "===" ../settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
+              <button type="button" class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-action="adjustCounter" data-value="-1" >-</button>
+              <button type="button" class="right-button adjust-counter" {{#iff item.system.hits "===" ../settings.maxComponentHits}}disabled{{/iff}} data-action="adjustCounter" data-value="1" >+</button>
             </span>
           </span>
           <span class="item-name centre" >
@@ -42,7 +43,7 @@
           <span class="item-controls centre">
             <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
               class="fa-solid fa-pen-to-square"></i></a>
-            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i
               class="fa-solid fa-trash"></i></a>
           </span>
         </li>

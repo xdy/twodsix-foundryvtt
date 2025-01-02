@@ -208,10 +208,11 @@ label.checkbox > input[type="checkbox"] {
 
 .animal-content-container {
   display: grid;
-  grid-template-columns: 15em 22em 18em;
-  grid-template-rows: 24em 0.5fr 0.5fr;
+  grid-template-columns: 25% 46% 25%;
+  grid-template-rows: 65% 12% 12%;
   gap: 16px;
   position: relative;
+  height: 100%;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-notes-container"
     "npc-skills npc-skills npc-traits"
@@ -234,8 +235,8 @@ label.checkbox > input[type="checkbox"] {
 .robot-content-container {
   display: grid;
   grid-template-columns: 15em 22em 18em;
-  grid-template-rows: 23.5em 0.7fr 0.7fr 0.7fr;
-  gap: 16px;
+  grid-template-rows: 22em 1fr 1fr 1fr;
+  gap: 12px;
   position: relative;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-augments"
@@ -415,11 +416,14 @@ label.checkbox > input[type="checkbox"] {
   scrollbar-width: thin;
   font-family: inherit;
   height: 16ch;
+  color: var(--s2d6-item-active);
 }
 
 .vehicle-cargo-list textarea {
   min-height: 16ch;
   resize: vertical;
+  color: var(--s2d6-item-active);
+  width: 100%;
 }
 
 .vehicle-traits-details textarea, .space-object-notes textarea {
@@ -428,11 +432,12 @@ label.checkbox > input[type="checkbox"] {
   scrollbar-width: thin;
   /*scrollbar-color: var(--s2d6-default-color);*/
   height: 88%;
-  max-width: 100%;
+  width: 100%;
   padding: 0 1ch;
   font-family: inherit;
   border-radius: 0 0  2ch 2ch;
   border: none;
+  color: var(--s2d6-item-active);
 }
 
 .space-object-notes {
@@ -597,12 +602,13 @@ img.character-info-mask {
 
 
 .character-name input[type='text'] {
-  background-color: transparent !important;
+  /* background-color: transparent !important;*/
   /* position: relative; */
   /*width: 30ch;*/
   font-size: 2.5ch;
   /* text-align: center; */
   border: none;
+  text-align: center;
 }
 
 .character-bgi {
@@ -695,7 +701,7 @@ img.character-info-mask {
 }
 
 .bgi-movement input {
-  width: 3ch;
+  width: 5ch;
   border: none;
   text-align: right;
 }
@@ -847,6 +853,7 @@ span.bgi-charEdit {
   /* max-width: 100%; */
   /* height: -webkit-fill-available; */
   border-radius: 0;
+  margin: 1ch 0 0;
 }
 
 .table-header-row {
@@ -964,13 +971,15 @@ span.stat-modifier {
 }
 
 span.stat-modifier-table {
-  text-align: center !important;
+  text-align: center;
   position: relative;
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
-  width: 4ch;
+  /*width: 4ch;*/
   height: 4ch;
+  padding: 0;
+  text-align: center;
 }
 
 span.stat-damage {
@@ -986,6 +995,8 @@ span.stat-damage {
 span.stat-damage-table {
   position: relative;
   text-align: center !important;
+  height: 4ch;
+  padding: 0;
 }
 
 span.stat-damage input, span.special-damage input {
@@ -998,8 +1009,8 @@ span.stat-damage-table input {
   border: solid;
   border-width: thin !important;
   border-radius: 15%;
-  width: 4ch;
   height: 4ch;
+  text-align: center;
 }
 
 span.special-ability {
@@ -1229,6 +1240,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   max-width: fit-content;
   cursor: pointer;
   line-height: 3ch;
+  display: inline-flex;
 }
 
 .skill-list {
@@ -1289,7 +1301,9 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 input.item-value-edit, input.joat-skill-input {
   /*padding: initial;*/
   text-align: center;
-  height: auto;
+  /*height: auto;*/
+  padding: 0;
+  height: 3ch;
 }
 
 .skill-box-name.inlineblock-left {
@@ -2568,7 +2582,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
 .item-target-area, .item-target-width, .item-popup, .item-processingPower,
 .item-priorType, .item-nonstackable, .item-parryAV, .item-isShield {
-  /* margin-top: 0.3em; */
+  margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1ch;
@@ -2665,8 +2679,7 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .combined-buttons {
-  width: 8em;
-  font-size: 0;
+  display: flex;
 }
 
 .combined-buttons button {
@@ -3566,6 +3579,31 @@ section.item-class {
   overflow-x: hidden;
   padding-right: 0.5rem;
 }
+
 .item-class table{
   margin: 0.5rem 0;
+}
+
+table.ship-action-table, table.vehicle-stats-table {
+  margin: 0.5rem 0;
+}
+
+.stat-table-npc th, .stat-table-npc td,
+.vehicle-stats-table th, .vehicle-stats-table td {
+  padding: 2px;
+}
+
+.untabbed-sheet {
+  height: 100%;
+}
+
+.with-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.item-image-name {
+  border-width: 1px 0;
+  border-color: var(--s2d6-input-background);
+  border-style: solid;
 }

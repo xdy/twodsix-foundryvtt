@@ -786,6 +786,7 @@ h2 {
 .vehicle-cargo-list textarea {
   min-height: 16ch;
   resize: vertical;
+  width: 100%;
 }
 
 .vehicle-traits-details textarea, .space-object-notes textarea {
@@ -793,7 +794,7 @@ h2 {
   resize: none;
   scrollbar-width: thin;
   height: 84%;
-  max-width: 100%;
+  width: 100%;
   padding: 0 1ch;
   border-radius: 0 0 2ch 2ch;
 }
@@ -918,21 +919,22 @@ h2 {
 .status-icons {
   position: absolute;
   left: 3ch;
-  top: 5.5ch;
+  top: 2ch;
   z-index: 1;
   flex-direction: column;
   display: flex;
   flex-wrap: wrap;
-  height: 80%;
+  height: 50%;
   /* width: 100%; */
   grid-area: character-photo;
 }
 
-.status-icons.npc {
+.npc .status-icons {
   position: absolute !important;
   top: 2ch;
   left: 1ch !important;
   align-content: flex-start;
+  width: 3ch;
 }
 
 .condition-icon {
@@ -3182,8 +3184,7 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .combined-buttons {
-  width: 8em;
-  font-size: 0;
+  display: flex;
 }
 
 .combined-buttons button {
@@ -4441,13 +4442,19 @@ section.item-class {
   background-color: var(--s2d6-background-semi-opaque);
 }
 
-table.ship-action-table {
+table.ship-action-table, table.vehicle-stats-table {
   margin: 0.5rem 0;
 }
-.stat-table-npc th, .stat-table-npc td {
+.stat-table-npc th, .stat-table-npc td,
+.vehicle-stats-table th, .vehicle-stats-table td {
   padding: 2px;
 }
 
 .untabbed-sheet {
   height: 100%;
+}
+
+.with-buttons {
+  display: flex;
+  justify-content: center;
 }
