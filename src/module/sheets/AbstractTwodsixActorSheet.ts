@@ -27,7 +27,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       openLink: openPDFReference,
       deleteLink: deletePDFReference,
       adjustCounter: this._onAdjustCounter,
-      showChat: this._showInChat
+      showChat: this._showInChat,
+      performAttack: this._onPerformAttack
     }
   };
 
@@ -195,12 +196,13 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   /**
    * Handle clickable weapon attacks.
    * @param {Event} ev   The originating click event
-   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @param {HTMLElement} target  HTMLElement clicked
    */
-  protected async _onPerformAttack(ev:Event, showThrowDiag: boolean): Promise<void> {
-    const attackType = ev.currentTarget["dataset"].attackType || "single";
-    const rof = ev.currentTarget["dataset"].rof ? parseInt(ev.currentTarget["dataset"].rof, 10) : 1;
-    const item = this.getItem(ev);
+  static async _onPerformAttack(ev:Event, target:HTMLElement): Promise<void> {
+    const attackType = target.dataset.attackType || "single";
+    const rof = target.dataset.rof ? parseInt(target.dataset.rof, 10) : 1;
+    const item = this.getItemFromTarget(target);
+    const showThrowDiag:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick') ? ev["shiftKey"] : !ev["shiftKey"];
     //console.log("Sheet Item Attack: ", item);
     if (this.options.template?.includes("npc-sheet") || ["robot", "animal"].includes(this.actor.type)) {
       item.resolveUnknownAutoMode();
@@ -238,7 +240,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static _showInChat(ev:Event, target: HTMLElement) {
-    const item:TwodsixItem = this.getItem(ev);
+    const item:TwodsixItem = this.getItemFromTarget(target);
     if (item) {
       item.sendDescriptionToChat();
     }
@@ -277,7 +279,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
-    updateWithItemSpecificValues(itemData, <string>type, <string>(itemType === "component" ? subtype : ""));
+    updateWithItemSpecificValues(itemData, <string>type, <string>(itemType === "component" ? subtype : ""), this.actor);
 
     // Finally, create the item!
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
@@ -461,9 +463,9 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       event.stopPropagation();
 
       const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-      const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+      const showThrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
 
-      func.bind(this)(event, showTrowDiag);
+      func.bind(this)(event, showThrowDiag);
     };
   }
 
@@ -660,9 +662,14 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     }
     await this.render(false);
   }
-
+  //Not Needed After Refactor
   private getItem(ev:Event): TwodsixItem {
     const itemId = ev.target.closest('.item').dataset.itemId;
+    return <TwodsixItem>this.actor.items.get(itemId);
+  }
+
+  static getItemFromTarget(target:HTMLElement): TwodsixItem {
+    const itemId = target.closest('.item').dataset.itemId;
     return <TwodsixItem>this.actor.items.get(itemId);
   }
 
@@ -776,7 +783,7 @@ export function getDisplayOrder(context: any): string[] {
   return returnValue;
 }
 
-function updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal"):void {
+function updateWithItemSpecificValues(itemData:Record<string, any>, type:string, subtype = "otherInternal", actor:TwodsixActor):void {
   switch (type) {
     case "skills":
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
@@ -788,7 +795,7 @@ function updateWithItemSpecificValues(itemData:Record<string, any>, type:string,
       break;
     case "weapon":
       if (game.settings.get('twodsix', 'hideUntrainedSkills')) {
-        itemData.system.skill = (<TwodsixActor>this.actor).getUntrainedSkill().id;
+        itemData.system.skill = actor.getUntrainedSkill().id;
       }
       if (!itemData.img) {
         itemData.img = 'systems/twodsix/assets/icons/default_weapon.png';

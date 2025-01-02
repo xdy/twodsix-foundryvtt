@@ -81,7 +81,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
    * @param {Event} ev   The originating click event
    * @private
    */
-  static async _onSkillRollVehicle(ev:Event, target:HTMLElement): Promise<void> {
+  static async _onSkillRollVehicle(ev:Event, /*target:HTMLElement*/): Promise<void> {
     ev.preventDefault();
     ev.stopPropagation();
 
