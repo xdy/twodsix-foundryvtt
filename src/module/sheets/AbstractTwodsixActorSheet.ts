@@ -91,7 +91,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   /** @override */
   async _onRender(context:Context, options:any): void {
     await super._onRender(context, options);
-    const html = $(this.element);
     // Everything below here is only needed if the sheet is editable
     if (!context.editable) {
       return;
@@ -107,10 +106,17 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         el.addEventListener('input', this._onItemValueEdit.bind(this));
       });
 
-      //Edit active effect shown on actor
-      html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
-      html.find('.condition-icon').on('contextmenu', this._onDeleteEffect.bind(this));
-      html.find('.effect-control').on('click', this._modifyEffect.bind(this));
+      //Edit active effects shown on actor
+      this.element.querySelectorAll('.condition-icon')?.forEach(el => {
+        el.addEventListener('click', this._onEditEffect.bind(this));
+      });
+      this.element.querySelectorAll('.condition-icon')?.forEach(el => {
+        el.addEventListener('contextmenu', this._onDeleteEffect.bind(this));
+      });
+
+      this.element.querySelectorAll('.effect-control')?.forEach(el => {
+        el.addEventListener('click', this._modifyEffect.bind(this));
+      });
     }
 
     /****************
@@ -121,6 +127,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     // Drag events for macros. ??? legacy - not for macros
     if (this.actor.isOwner) {
+      const html = $(this.element);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
           return;
@@ -603,7 +610,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   protected async _onEditEffect(ev:Event): Promise<void> {
-    const effectUuid:string = ev.currentTarget["dataset"].uuid;
+    const effectUuid:string = ev.currentTarget.dataset.uuid;
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
@@ -616,7 +623,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {Event} ev   The originating click event
    * @private
    */
-  protected async _onDeleteEffect(ev:Event): Promise<void> {
+  async _onDeleteEffect(ev:Event): Promise<void> {
     const effectUuid = ev.currentTarget.dataset.uuid;
     const selectedEffect = await fromUuid(effectUuid);
     if (await foundry.applications.api.DialogV2.confirm({
@@ -627,15 +634,16 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       await this.render(false); //needed because can right-click on icon over image instead of toggle icons
     }
   }
-
-  protected async _modifyEffect(ev): Promise<void> {
-    const action = ev.currentTarget["dataset"].action;
+  //THIS NEEDS TO BE CHECKED LATER
+  async _modifyEffect(ev:Event): Promise<void> {
+    const target:HTMLElement = ev.currentTarget;
+    const action = target.dataset.controlAction;
     if (action === "delete") {
       await this._onDeleteEffect(ev);
     } else if (action === "edit") {
       await this._onEditEffect(ev);
     } else if (action === "toggle") {
-      const selectedEffect:TwodsixActiveEffect = await fromUuid(ev.currentTarget["dataset"].uuid);
+      const selectedEffect:TwodsixActiveEffect = await fromUuid(target.dataset.uuid);
       if (selectedEffect) {
         await selectedEffect.update({disabled: !selectedEffect.disabled});
       }
@@ -651,11 +659,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       console.log("Unknown Action");
     }
     await this.render(false);
-  }
-  //Not Needed After Refactor
-  private getItem(ev:Event): TwodsixItem {
-    const itemId = ev.target.closest('.item').dataset.itemId;
-    return <TwodsixItem>this.actor.items.get(itemId);
   }
 
   static async _onAdjustCounter(ev:Event, target:HTMLElement): Promise<void> {

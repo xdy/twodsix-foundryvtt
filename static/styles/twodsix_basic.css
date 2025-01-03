@@ -1011,6 +1011,7 @@ span.stat-damage-table input {
   border-radius: 15%;
   height: 4ch;
   text-align: center;
+  padding: 0;
 }
 
 span.special-ability {

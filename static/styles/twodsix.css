@@ -1438,6 +1438,7 @@ span.stat-damage-table input {
   /*width: 4ch;*/
   height: 3.5ch;
   border-color: var(--s2d6-default-color);
+  padding: 0;
 }
 
 
