@@ -30,7 +30,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       showChat: this._onShowInChat,
       performAttack: this._onPerformAttack,
       skillTalentRoll: this._onSkillTalentRoll,
-      rollChar: this._onRollChar
+      rollChar: this._onRollChar,
+      rollDamage: onRollDamage
     }
   };
 
@@ -99,9 +100,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     //Non-ship actors listeners
     if (this.actor.type !== "ship") {
-      if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
-        html.find('.roll-damage').on('click', onRollDamage.bind(this));
-      }
       //add hooks to allow skill levels and consumable counts to be updated on skill and equipment tabs, repectively
       html.find(".item-value-edit").on("input", this._onItemValueEdit.bind(this));
       html.find(".item-value-edit").on("click", (ev:Event) => {

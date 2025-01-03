@@ -1234,17 +1234,17 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
 
 /**
  * Handle clickable damage rolls.
- * @param {Event} event   The originating click event
+ * @param {Event} ev   The originating click event
+ * @param {HTMLElement} target The clicked html element
  * @private
  */
-export async function onRollDamage(event:Event):Promise<void> {
-  event.preventDefault();
-  event.stopPropagation();
-  const itemId = $(event.currentTarget).parents('.item').data('item-id');
+export async function onRollDamage(ev:Event, target:HTMLElement):Promise<void> {
+  ev.preventDefault();
+  ev.stopPropagation();
+  const itemId = target.closest('.item').dataset.itemId;
   const item = this.actor.items.get(itemId) as TwodsixItem;
 
-  const element = $(event.currentTarget);
-  let bonusDamageFormula = String(element.data('bonus-damage') || 0);
+  let bonusDamageFormula = String(target.dataset.bonusDamage || 0);
   if (game.settings.get('twodsix', 'addEffectToManualDamage') && game.settings.get('twodsix', 'addEffectToDamage')) {
     const lastMessage = <ChatMessage>(game.messages?.contents.pop());
     if (lastMessage?.getFlag("twodsix", "effect")) {
@@ -1258,7 +1258,7 @@ export async function onRollDamage(event:Event):Promise<void> {
   }
 
   const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-  const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+  const showFormulaDialog = useInvertedShiftClick ? ev["shiftKey"] : !ev["shiftKey"];
 
   await item.rollDamage(item.type === 'psiAbility' ? "gmroll" : game.settings.get('core', 'rollMode'), bonusDamageFormula, true, showFormulaDialog);
 

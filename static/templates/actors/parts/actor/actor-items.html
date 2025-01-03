@@ -38,7 +38,7 @@
               {{else}}
               <span class="item-name centre">{{item.system.range}}</span>
               {{/if}}
-              <span class="item-name centre roll-damage">{{twodsix_limitLength item.system.damage 8}}</span>
+              <span class="item-name centre roll-damage" data-action="rollDamage">{{twodsix_limitLength item.system.damage 8}}</span>
               <span class="item-controls centre">
                 {{#unless item.system.useConsumableForAttack}}
                 {{#unless item.system.consumableData}}
