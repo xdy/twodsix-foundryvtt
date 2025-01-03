@@ -232,8 +232,9 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     const pack = game.packs.get(item.pack);
     item = await pack?.getDocument(item._id);
   }
-  const itemCopy = foundry.utils.duplicate(item);
-  return itemCopy;
+  //const itemCopy = foundry.utils.duplicate(item); ///Should this be copy???
+  //Object.assign(itemCopy, {uuid: item.uuid, id: item._id});
+  return item;
 }
 
 export function getHTMLLink(dropString:string): Record<string,unknown> {
@@ -283,8 +284,8 @@ export async function openJournalEntry():void {
 
 export async function deletePDFReference(event): Promise<void> {
   event.preventDefault();
-  if (this.object.system.pdfReference.href !== "") {
-    await this.object.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
+  if (this.document.system.pdfReference.href !== "") {
+    await this.document.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
   } else {
     ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
   }
@@ -304,20 +305,22 @@ export function isDisplayableSkill(skill:Skills): boolean {
 
 export async function confirmRollFormula(initFormula:string, title:string):Promise<string> {
   const returnText:string = await new Promise((resolve) => {
-    new Dialog({
-      title: title,
+    new foundry.applications.api.DialogV2({
+      window: {title: title},
       content:
         `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" value="` + initFormula + `"></input>`,
-      buttons: {
-        Roll: {
-          label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
-          callback:
-            (html:JQuery) => {
-              resolve(html.find('[name="outputFormula"]')[0]["value"]);
-            }
+      buttons: [
+        {
+          action: "roll",
+          icon: "fa-solid fa-dice",
+          label: "TWODSIX.Rolls.Roll",
+          callback: (event, button, dialog) => {
+            const html = $(dialog);
+            resolve(html.find('[name="outputFormula"]')[0]["value"]);
+          }
         }
-      },
-      default: `Roll`,
+      ],
+      default: `roll`,
     }).render(true);
   });
   return (returnText ?? "");

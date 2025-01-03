@@ -108,7 +108,7 @@ label.checkbox > input[type="checkbox"] {
 .npc-content-container {
   display: grid;
   grid-template-columns: 15em 22em 0.9fr;
-  grid-template-rows: 19em 0.5fr 0.5fr;
+  grid-template-rows: 20em 0.5fr 0.5fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -120,7 +120,7 @@ label.checkbox > input[type="checkbox"] {
 .npc-content-container-spells {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 18em 0.5fr 0.5fr;
+  grid-template-rows: 20em 0.5fr 0.5fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -208,10 +208,11 @@ label.checkbox > input[type="checkbox"] {
 
 .animal-content-container {
   display: grid;
-  grid-template-columns: 15em 22em 18em;
-  grid-template-rows: 24em 0.5fr 0.5fr;
+  grid-template-columns: 25% 46% 25%;
+  grid-template-rows: 65% 12% 12%;
   gap: 16px;
   position: relative;
+  height: 100%;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-notes-container"
     "npc-skills npc-skills npc-traits"
@@ -234,8 +235,8 @@ label.checkbox > input[type="checkbox"] {
 .robot-content-container {
   display: grid;
   grid-template-columns: 15em 22em 18em;
-  grid-template-rows: 23.5em 0.7fr 0.7fr 0.7fr;
-  gap: 16px;
+  grid-template-rows: 22em 1fr 1fr 1fr;
+  gap: 12px;
   position: relative;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-augments"
@@ -415,11 +416,14 @@ label.checkbox > input[type="checkbox"] {
   scrollbar-width: thin;
   font-family: inherit;
   height: 16ch;
+  color: var(--s2d6-item-active);
 }
 
 .vehicle-cargo-list textarea {
   min-height: 16ch;
   resize: vertical;
+  color: var(--s2d6-item-active);
+  width: 100%;
 }
 
 .vehicle-traits-details textarea, .space-object-notes textarea {
@@ -428,11 +432,12 @@ label.checkbox > input[type="checkbox"] {
   scrollbar-width: thin;
   /*scrollbar-color: var(--s2d6-default-color);*/
   height: 88%;
-  max-width: 100%;
+  width: 100%;
   padding: 0 1ch;
   font-family: inherit;
   border-radius: 0 0  2ch 2ch;
   border: none;
+  color: var(--s2d6-item-active);
 }
 
 .space-object-notes {
@@ -597,12 +602,13 @@ img.character-info-mask {
 
 
 .character-name input[type='text'] {
-  background-color: transparent !important;
+  /* background-color: transparent !important;*/
   /* position: relative; */
   /*width: 30ch;*/
   font-size: 2.5ch;
   /* text-align: center; */
   border: none;
+  text-align: center;
 }
 
 .character-bgi {
@@ -695,7 +701,7 @@ img.character-info-mask {
 }
 
 .bgi-movement input {
-  width: 3ch;
+  width: 5ch;
   border: none;
   text-align: right;
 }
@@ -846,6 +852,8 @@ span.bgi-charEdit {
   font-size: smaller;
   /* max-width: 100%; */
   /* height: -webkit-fill-available; */
+  border-radius: 0;
+  margin: 1ch 0 0;
 }
 
 .table-header-row {
@@ -963,13 +971,15 @@ span.stat-modifier {
 }
 
 span.stat-modifier-table {
-  text-align: center !important;
+  text-align: center;
   position: relative;
 }
 
 span.stat-ability-table input, span.stat-modifier-table input {
-  width: 4ch;
+  /*width: 4ch;*/
   height: 4ch;
+  padding: 0;
+  text-align: center;
 }
 
 span.stat-damage {
@@ -985,6 +995,8 @@ span.stat-damage {
 span.stat-damage-table {
   position: relative;
   text-align: center !important;
+  height: 4ch;
+  padding: 0;
 }
 
 span.stat-damage input, span.special-damage input {
@@ -997,8 +1009,9 @@ span.stat-damage-table input {
   border: solid;
   border-width: thin !important;
   border-radius: 15%;
-  width: 4ch;
   height: 4ch;
+  text-align: center;
+  padding: 0;
 }
 
 span.special-ability {
@@ -1228,6 +1241,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   max-width: fit-content;
   cursor: pointer;
   line-height: 3ch;
+  display: inline-flex;
 }
 
 .skill-list {
@@ -1243,7 +1257,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .skill-top-row {
   display: flex;
   /* flex-direction: row-reverse; */
-  margin-left: 28.8em;
+  margin-left: 33.7em;
 }
 
 .add-skill {
@@ -1281,14 +1295,16 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 /* Style overrides */
 
 .skills input[type='number'] {
-  width: 2em;
+  /*width: 2em;*/
   justify-self: center;
 }
 
 input.item-value-edit, input.joat-skill-input {
   /*padding: initial;*/
   text-align: center;
-  height: auto;
+  /*height: auto;*/
+  padding: 0;
+  height: 3ch;
 }
 
 .skill-box-name.inlineblock-left {
@@ -1648,7 +1664,7 @@ span.total-output {
   position: absolute;
   display: grid;
   grid-template-columns:  51% 49%;
-  grid-template-rows: 5ch 19% 14% 8% 51%;
+  grid-template-rows: 5ch 20% 14% 8% 51%;
   gap: 1px;
   grid-template-areas:
     "ship-image ship-name"
@@ -1746,7 +1762,7 @@ img.ship-mask-bg {
   /*margin-top: -0.2em;*/
   /*margin-left: 1.3em;*/
   font-size: 1.8ch;
-  width: 6ch;
+  width: 5ch;
   border: solid 1px;
   border-radius: 0.5ch;
 }
@@ -1815,8 +1831,8 @@ img.ship-mask-bg {
 }
 
 .ship-armor-name textarea, .battle-armor-name textarea  {
-  border: 2px solid;
-  border-radius: 1ch !important;
+  /*border: 2px solid;
+  border-radius: 1ch !important;*/
   text-align: center;
   font-size: x-small;
   overflow-wrap: break-word;
@@ -2171,11 +2187,14 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   border: 1px solid;
   border-radius: 0;
   align-content: space-evenly;
+  display: flex;
 }
 
 .ship-position-add-box {
   text-align: center;
   min-height: 14ch;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ship-position-add-position {
@@ -2564,7 +2583,7 @@ button.flexrow.flex-group-center.toggle-skills {
 .item-rollDifficulty, .item-rollType, .item-simplifiedName, .simplified-skill-description, .item-data, .item-powered, .item-circle, .item-duration, .item-handling,
 .item-target-area, .item-target-width, .item-popup, .item-processingPower,
 .item-priorType, .item-nonstackable, .item-parryAV, .item-isShield {
-  /* margin-top: 0.3em; */
+  margin-top: 0.3em;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1ch;
@@ -2609,7 +2628,7 @@ select.form-input, input.form-input, span.form-input {
 }*/
 
 .sheet-navigation.tabs {
-  padding-bottom: 0.5em;
+  padding: 0.5em 0;
   border-bottom: 1px solid var(--color-border-light-tertiary);
   margin-bottom: 0.5em;
 
@@ -2661,8 +2680,7 @@ select.form-input, input.form-input, span.form-input {
 }
 
 .combined-buttons {
-  width: 8em;
-  font-size: 0;
+  display: flex;
 }
 
 .combined-buttons button {
@@ -2688,12 +2706,12 @@ select.form-input, input.form-input, span.form-input {
   border-radius: 0 10px 10px 0;
 }
 
-.item-sheet .form-consumable-count {
+.item-class .form-consumable-count {
   width: 50px;
   text-align: center;
 }
 
-.item-sheet table {
+.item-class table {
   background-color: inherit;
 }
 
@@ -2905,8 +2923,24 @@ background: var(--sidebar-background);
 .flavor-line {
   display: inline-flex;
   gap: 0 5px;
+  padding-bottom: 1ch;
+  width:  98%
 }
 
+.flavor-table {
+  width: calc(100% - 2ch);
+  background-color: var(--color-text-light-3);
+  margin: 1ch;
+  border: 1px solid;
+}
+
+.flavor-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.flavor-table th, .flavor-table td {
+  padding: 0.5ch;
+}
 /*
 #settings button {
     position: relative;
@@ -3032,8 +3066,7 @@ div.app.window-app.twodsix.ship.actor header a.close {
 }
 */
 form .form-group > label {
-  flex: 4;
-  line-height: 18px;
+  line-height: 2ch;
 }
 
 /* EDITOR */
@@ -3075,8 +3108,9 @@ form .form-group > label {
 }*/
 
 .editor-content {
-  height: 95%;
+  /*height: 95%;*/
   padding-left: 4px;
+  border: 1px solid
 }
 
 .tox .tox-editor-container {
@@ -3119,6 +3153,12 @@ form .form-group > label {
 }
 */
 /* ------ Damage Dialog ------ */
+.damage-dialog {
+  font-size: revert;
+}
+.damage-table {
+  max-width: 30ch;
+}
 
 .damage-dialog .red {
   color: var(--s2d6-damage-red);
@@ -3195,13 +3235,18 @@ input[type="text"].color {
 
 .effects-container {
   display: grid;
-  grid-template-columns: 4ch 19ch 14ch 12ch 10ch;
+  grid-template-columns: 5% 30% 25% 20% 15%;
   grid-template-areas: ". . . . .";
   align-items: center;
   /* grid-gap: 4px 2px; */
   grid-auto-flow: column;
   height: auto;
   padding: 0.5ch 0;
+  width:  98%
+}
+
+.items-list.effects-list {
+  width: 98%;
 }
 
 .effect-name, .effect-source, .effect-duration {
@@ -3212,7 +3257,6 @@ input[type="text"].color {
 
 .effect:nth-of-type(even) {
   background: var(--s2d6-skill-list-even);
-  width: fit-content;
   /* height: max-content; */
 }
 
@@ -3502,4 +3546,65 @@ input.red {
   display: grid;
   grid-template-columns: 40% 15% 15% 15% 10%;
   padding-left: 1%;
+}
+
+.selectTokens {
+  height: auto !important;
+  min-height: 5ch;
+}
+
+/************ v13 Changes *******/
+
+.standard-form {
+  overflow-y: auto;
+}
+
+table {
+  border-radius: 0;
+}
+
+.standard-form .form-group {
+  flex: 2 1 0%;
+}
+
+table.ship-action-table {
+  margin: 0.5rem 0;
+}
+
+.action-name {
+  display: flex;
+}
+
+section.item-class {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.5rem;
+}
+
+.item-class table{
+  margin: 0.5rem 0;
+}
+
+table.ship-action-table, table.vehicle-stats-table {
+  margin: 0.5rem 0;
+}
+
+.stat-table-npc th, .stat-table-npc td,
+.vehicle-stats-table th, .vehicle-stats-table td {
+  padding: 2px;
+}
+
+.untabbed-sheet {
+  height: 100%;
+}
+
+.with-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.item-image-name {
+  border-width: 1px 0;
+  border-color: var(--s2d6-input-background);
+  border-style: solid;
 }

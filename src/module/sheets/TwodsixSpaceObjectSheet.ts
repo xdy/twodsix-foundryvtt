@@ -17,7 +17,6 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
     const context = <any>super.getData();
     context.system = this.actor.system;
     context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>this.actor, context);
     context.settings = <TwodsixSpaceObjectSheetSettings>{
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences')
@@ -83,6 +82,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
       }
     );
     await damage.toMessage({
+      title: game.i18n.localize("TWODSIX.Damage.DamageCard"),
       speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
       content: html,
       style: CONST.CHAT_MESSAGE_STYLES.OTHER,

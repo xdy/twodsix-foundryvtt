@@ -26,7 +26,7 @@
       {{/iff}}
       <span class="item-name centre">
         {{#iff item.system.subtype "===" "armament"}}
-          {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
+          {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
         {{else}}
         &mdash;
         {{/iff}}
@@ -43,7 +43,7 @@
         {{> "systems/twodsix/templates/actors/parts/common/popup-state.html"}}
       </span>
       <span class="item-controls centre">
-        <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}'><i
+        <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
           class="fa-solid fa-pen-to-square"></i></a>
         <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i
           class="fa-solid fa-trash"></i></a>

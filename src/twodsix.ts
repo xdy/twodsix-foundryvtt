@@ -35,6 +35,11 @@ import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, Ju
 import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
+import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
+import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
+
+//import { TWODSIX } from "./module/config";
+//import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -128,6 +133,7 @@ Hooks.once('init', async function () {
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
+  Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   Items.unregisterSheet("core", ItemSheet);
 
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
@@ -205,8 +211,13 @@ Hooks.once('init', async function () {
   //Add TL to compendium index
   CONFIG.Item.compendiumIndexFields.push('system.techLevel');
 
+  //Game pause icon change
+  CONFIG.ui.pause = TwodsixGamePause;
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
+  //Add chat context
+  CONFIG.ui.chat = TwodsixChatLog;
+  CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
 });
 
 Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {

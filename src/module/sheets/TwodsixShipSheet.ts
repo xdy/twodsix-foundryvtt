@@ -16,7 +16,6 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
   async getData(): TwodsixShipSheetData {
     const context = <TwodsixShipSheetData>super.getData();
     context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>(this.actor), context);
     if ((<Ship>this.actor.system).shipPositionActorIds) {
       context.shipPositions = (<TwodsixActor>this.actor).itemTypes.ship_position.map((shipPosition: TwodsixItem) => {
         const shipPositionActorIds = Object?.entries(<ShipPositionActorIds>(<Ship>this.actor.system).shipPositionActorIds)?.filter(([, shipPositionId]) => shipPositionId === shipPosition.id);
@@ -172,14 +171,15 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         }
       }
       const shipPositionId = $(event.currentTarget).parents(".ship-position").data("id");
-      this.actor?.items?.get(shipPositionId)?.sheet?.render(true);
+      const positionItem = this.actor?.items?.get(shipPositionId);
+      await positionItem?.sheet.render(true);
     }
   }
 
   private async _onShipPositionDelete(event:Event): Promise<void> {
-    if (event.currentTarget !== null && await Dialog.confirm({
-      title: "Delete position",
-      content: "Are you sure you want to delete this position?"
+    if (event.currentTarget !== null && await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.Ship.DeletePosition")},
+      content: game.i18n.localize("TWODSIX.Ship.ConfirmDeletePosition")
     })) {
       const shipPositionId = $(event.currentTarget).parents(".ship-position").data("id");
 
