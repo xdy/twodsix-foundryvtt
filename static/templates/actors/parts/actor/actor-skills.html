@@ -69,8 +69,8 @@
     <ol class="ol-no-indent" >
       <li class="flexrow" draggable="false">
         <span class="skill-container">
-          <span class="mini-dice centre rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"><i class="fa-solid fa-dice" alt="d6"></i></span>
-          <span class="item-name rollable">{{untrainedSkill.name}}</span>
+          <span class="mini-dice centre rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll"><i class="fa-solid fa-dice" alt="d6"></i></span>
+          <span class="item-name rollable" data-action="skillTalentRoll">{{untrainedSkill.name}}</span>
           <input class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
           <span class="item-name centre" for="skill-modifier">{{localize "TWODSIX.Items.Skills.NONE"}}</span>
           <span class="centre">&mdash;</span>

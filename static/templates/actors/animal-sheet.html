@@ -48,7 +48,7 @@
       <div style="margin-left: 1ch;">
       {{#each_sort_item container.skillsList as |item id|}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
-                <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
+                <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">{{item.name}}</span>
                 <!--<input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}"/>-->
                 <input style="width: 4ch;"  type="number"
                 {{#if (twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name)))}}
@@ -68,7 +68,7 @@
       {{/each_sort_item}}
       {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">
-          <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"> {{untrainedSkill.name}}</text>
+          <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" readonly/>
       </span>
       {{/if}}

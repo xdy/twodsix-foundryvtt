@@ -28,7 +28,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       deleteLink: deletePDFReference,
       adjustCounter: this._onAdjustCounter,
       showChat: this._showInChat,
-      performAttack: this._onPerformAttack
+      performAttack: this._onPerformAttack,
+      skillTalentRoll: this._onSkillTalentRoll
     }
   };
 
@@ -97,11 +98,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     //Non-ship actors listeners
     if (this.actor.type !== "ship") {
-      // Handle click for attack roll
-      html.find('.perform-attack').on('click', this._onRollWrapper(this._onPerformAttack));
-      if (this.actor.type != "vehicle") {  //Vehcile has a special skill roll
-        html.find('.rollable').on('click', this._onRollWrapper(this._onSkillTalentRoll));
-      }
       html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
       if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
         html.find('.roll-damage').on('click', onRollDamage.bind(this));
@@ -201,7 +197,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   static async _onPerformAttack(ev:Event, target:HTMLElement): Promise<void> {
     const attackType = target.dataset.attackType || "single";
     const rof = target.dataset.rof ? parseInt(target.dataset.rof, 10) : 1;
-    const item = this.getItemFromTarget(target);
+    const item: TwodsixItem = getItemFromTarget(target, this.actor);
     const showThrowDiag:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick') ? ev["shiftKey"] : !ev["shiftKey"];
     //console.log("Sheet Item Attack: ", item);
     if (this.options.template?.includes("npc-sheet") || ["robot", "animal"].includes(this.actor.type)) {
@@ -240,7 +236,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static _showInChat(ev:Event, target: HTMLElement) {
-    const item:TwodsixItem = this.getItemFromTarget(target);
+    const item:TwodsixItem = getItemFromTarget(target, this.actor);
     if (item) {
       item.sendDescriptionToChat();
     }
@@ -565,11 +561,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   /**
    * Handle clickable skill and talent rolls.
    * @param {Event} ev   The originating click event
-   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
-   * @private
+   * @param {HTMLElement} target  HTML element clicked
+   * @static
    */
-  protected async _onSkillTalentRoll(ev:Event, showThrowDiag: boolean): Promise<void> {
-    const item:TwodsixItem = this.getItem(ev);
+  static async _onSkillTalentRoll(ev:Event, target:HTMLElement): Promise<void> {
+    const showThrowDiag:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick') ? ev["shiftKey"] : !ev["shiftKey"];
+    const item:TwodsixItem = getItemFromTarget(target, this.actor);
     if (item) {
       item.doSkillTalentRoll(showThrowDiag);
     }
@@ -665,11 +662,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   //Not Needed After Refactor
   private getItem(ev:Event): TwodsixItem {
     const itemId = ev.target.closest('.item').dataset.itemId;
-    return <TwodsixItem>this.actor.items.get(itemId);
-  }
-
-  static getItemFromTarget(target:HTMLElement): TwodsixItem {
-    const itemId = target.closest('.item').dataset.itemId;
     return <TwodsixItem>this.actor.items.get(itemId);
   }
 
@@ -832,4 +824,13 @@ function updateWithItemSpecificValues(itemData:Record<string, any>, type:string,
       }
       break;
   }
+}
+/**
+* Get Item from target HTMLElement and sheet associated actor.
+* @param {HTMLElement} target  HTML element clicked
+* @param {TwodsixActor} actor   The sheet's actor
+*/
+function getItemFromTarget(target:HTMLElement, actor:TwodsixActor): TwodsixItem {
+  const itemId = target.closest('.item').dataset.itemId;
+  return <TwodsixItem>actor.items.get(itemId);
 }

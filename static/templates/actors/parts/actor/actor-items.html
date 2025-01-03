@@ -126,8 +126,8 @@
         <ol class="ol-no-indent">
           <li class="flexrow" >
             <span class="items-armor">
-              <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}"><i class="fa-solid fa-dice" alt="d6" ></i></span>
-              <span class="item-name rollable">
+              <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="skillTalentRoll"><i class="fa-solid fa-dice" alt="d6" ></i></span>
+              <span class="item-name rollable" data-action="skillTalentRoll">
                 {{item.name}}
                 {{#if item.system.nonstackable}}
                   {{#iff item.system.equipped "===" "equipped"}}
@@ -189,8 +189,8 @@
         <ol class="ol-no-indent">
           <li class="flexrow">
             <span class="items-augments">
-              <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"data-label="{{item.name}}"><i class="fa-solid fa-dice" alt="d6" ></i></span>
-              <span class="item-name rollable">{{item.name}}</span>
+              <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"data-label="{{item.name}}" data-action="skillTalentRoll"><i class="fa-solid fa-dice" alt="d6" ></i></span>
+              <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}}</span>
               <span class="item-name centre">{{item.system.techLevel}}</span>
               <span class="item-name centre">{{item.system.quantity}}</span>
               <span class="item-name centre">{{item.system.bonus}}</span>
@@ -236,8 +236,8 @@
           <ol class="ol-no-indent">
             <li class="flexrow">
                 <span class="items-equipment">
-                  <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}"><i class="fa-solid fa-dice" alt="d6" ></i></span>
-                  <span class="item-name rollable">{{item.name}}</span>
+                  <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="skillTalentRoll"><i class="fa-solid fa-dice" alt="d6" ></i></span>
+                  <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}}</span>
                   <span class="item-name centre">{{item.system.techLevel}}</span>
                   <span class="item-name centre">{{item.system.quantity}}</span>
                   {{#iff item.type "===" "computer"}}
@@ -287,8 +287,8 @@
           <ol class="ol-no-indent">
             <li class="flexrow">
                 <span class="items-armor">
-                  <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}"><i class="fa-solid fa-dice" alt="d6" ></i></span>
-                  <span class="item-name rollable">{{item.name}}</span>
+                  <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="skillTalentRoll"><i class="fa-solid fa-dice" alt="d6" ></i></span>
+                  <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}}</span>
                   <span class="item-name centre">{{item.system.techLevel}}</span>
                   <span class="item-name centre">{{item.system.quantity}}</span>
                   <span class="item-name centre">{{item.system.weight}}</span>
@@ -336,10 +336,10 @@
               <ol class="ol-no-indent">
                 <li class="flexrow">
                     <span class="items-consumable">
-                      <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">
+                      <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="skillTalentRoll">
                         <i class="fa-solid fa-dice" alt="d6" ></i>
                       </span>
-                      <span class="item-name rollable">{{item.name}}{{#iff item.system.parentName "!==" ""}} ({{item.system.parentName}}){{/iff}}</span>
+                      <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}}{{#iff item.system.parentName "!==" ""}} ({{item.system.parentName}}){{/iff}}</span>
                       <span class="item-name centre">{{twodsix_localizeConsumable item.system.subtype}}</span>
                       <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.system.quantity}}"/>
                       <span class="item-name centre">{{item.system.currentCount}}/{{item.system.max}}</span>
@@ -387,10 +387,10 @@
         <ol class="ol-no-indent">
           <li class="flexrow" >
               <span class="items-consumable">
-                <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}">
+                <span class="mini-dice rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="skillTalentRoll">
                   <i class="fa-solid fa-dice" alt="d6" ></i>
                 </span>
-                <span class="item-name rollable">{{item.name}}{{#iff item.system.parentName "!==" ""}} ({{item.system.parentName}}){{/iff}}</span>
+                <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}}{{#iff item.system.parentName "!==" ""}} ({{item.system.parentName}}){{/iff}}</span>
                 <span class="item-name centre">{{twodsix_localizeConsumable item.system.subtype}}</span>
                 <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.system.quantity}}"/>
                 <span class="item-name centre">{{item.system.techLevel}}</span>

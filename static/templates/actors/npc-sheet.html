@@ -49,13 +49,13 @@
         </span>
       {{#each_sort_item container.skillsList as |item id|}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
-                <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">{{item.name}}</span>
+                <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">{{item.name}}</span>
                 <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}" name="{{concat 'system.skills.' (skillName item.name)}}"/>{{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
               </span>
       {{/each_sort_item}}
       {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}" draggable="false">
-          <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}"> {{untrainedSkill.name}}</text>
+          <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" {{#if untrainedSkill.system.value}}name="{{concat 'system.skills.' (skillName untrainedSkill.name)}}"{{/if}} readonly/>
       </span>
       {{/if}}
@@ -69,7 +69,7 @@
         <span >
          {{#each_sort_item container.armor as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
-              <span class="item-name rollable">{{item.name}} </span>
+              <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}} </span>
               <span class="item-controls centre">
                 <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
@@ -138,7 +138,7 @@
         {{#each_sort_item container.spell as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name showChat" data-action="showChat">{{item.name}} </span>
-              <span class="item-name centre rollable">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
+              <span class="item-name centre rollable" data-action="skillTalentRoll">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
             </span>
         {{/each_sort_item}}
         </span>

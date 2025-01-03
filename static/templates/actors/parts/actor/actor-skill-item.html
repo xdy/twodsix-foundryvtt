@@ -2,10 +2,10 @@
   <ol class="ol-no-indent">
     <li class=" flexrow" >
       <span class="skill-container">
-        <span class="mini-dice centre rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}">
+        <span class="mini-dice centre rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">
           <i class="fa-solid fa-dice" alt="d6"></i>
         </span>
-        <span class="item-name rollable" data-label="{{item.name}}">{{item.name}}</span>
+        <span class="item-name rollable" data-label="{{item.name}}" data-action="skillTalentRoll">{{item.name}}</span>
         <input class= "item-value-edit" type="text" value="{{item.system.value}}" data-dtype="Number"/>
         <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic actor item.system.characteristic}}</span>
         <span class="item-name centre">{{{twodsix_adjustedSkillValue actor item}}}</span>
