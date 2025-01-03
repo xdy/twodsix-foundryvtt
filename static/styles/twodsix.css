@@ -1782,7 +1782,7 @@ a:hover, a.active {
 }
 
 input.item-value-edit, input.joat-skill-input {
-  /*padding: initial;*/
+  padding: initial;
   text-align: center;
   height: auto;
 }

@@ -32,7 +32,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       skillTalentRoll: this._onSkillTalentRoll,
       rollChar: this._onRollChar,
       rollDamage: onRollDamage,
-      rollInitiative: this._onRollInitiative
+      rollInitiative: this._onRollInitiative,
+      selectItem: this._onItemSelect
     }
   };
 
@@ -102,9 +103,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     //Non-ship actors listeners
     if (this.actor.type !== "ship") {
       //add hooks to allow skill levels and consumable counts to be updated on skill and equipment tabs, repectively
-      html.find(".item-value-edit").on("input", this._onItemValueEdit.bind(this));
-      html.find(".item-value-edit").on("click", (ev:Event) => {
-        $(ev.currentTarget).trigger("select");
+      this.element.querySelectorAll(".item-value-edit")?.forEach(el => {
+        el.addEventListener('input', this._onItemValueEdit.bind(this));
       });
 
       //Edit active effect shown on actor
@@ -147,7 +147,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /**
    * Handle delete item for actor sheet.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
     const li = target.closest('.item');
@@ -286,6 +286,15 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const li = target.closest('.item');
     const item = this.actor.items.get(li.dataset.itemId);
     item?.sheet?.render(true);
+  }
+
+  /**
+   * Handle selecting an item element to edit
+   * @param {Event} ev   The originating click event
+   * @static
+   */
+  static _onItemSelect(ev:Event, target:HTMLElement):Promise<void> {
+    target.select();
   }
 
   /**
@@ -574,16 +583,16 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {Event} ev  The originating input event
    * @private
    */
-  protected async _onItemValueEdit(ev): Promise<void> {
+  protected async _onItemValueEdit(ev:Event): Promise<void> {
     const newValue = parseInt(ev.currentTarget["value"], 10);
-    const li = $(ev.currentTarget).parents(".item");
-    const itemSelected = this.actor.items.get(li.data("itemId"));
+    const li = ev.currentTarget.closest(".item");
+    const itemSelected = this.actor.items.get(li.dataset.itemId);
 
     if (itemSelected && Number.isInteger(newValue)) {
       if (itemSelected.type === "skills" ) {
-        itemSelected.update({"system.value": newValue});
+        await itemSelected.update({"system.value": newValue});
       } else if (itemSelected.type === "consumable") {
-        itemSelected.update({"system.quantity": newValue});
+        await itemSelected.update({"system.quantity": newValue});
       }
     }
   }
