@@ -7,7 +7,7 @@
       <input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
         class="stat-name" value="{{char.displayShortLabel}}" maxlength="4"/>
       {{else}}
-        <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}">
+        <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}" data-action="rollChar">
           <i class="fa-solid fa-dice" alt="d6"></i>{{char.displayShortLabel}}
         </span>
       {{/if}}

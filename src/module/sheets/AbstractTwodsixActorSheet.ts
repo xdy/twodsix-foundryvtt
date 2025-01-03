@@ -27,9 +27,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       openLink: openPDFReference,
       deleteLink: deletePDFReference,
       adjustCounter: this._onAdjustCounter,
-      showChat: this._showInChat,
+      showChat: this._onShowInChat,
       performAttack: this._onPerformAttack,
-      skillTalentRoll: this._onSkillTalentRoll
+      skillTalentRoll: this._onSkillTalentRoll,
+      rollChar: this._onRollChar
     }
   };
 
@@ -98,7 +99,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     //Non-ship actors listeners
     if (this.actor.type !== "ship") {
-      html.find('.rollable-characteristic').on('click', this._onRollWrapper(this._onRollChar));
       if (this.actor.type != "space-object") {  //Space Object has a non-item damage roll
         html.find('.roll-damage').on('click', onRollDamage.bind(this));
       }
@@ -235,7 +235,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {Event} ev   The originating click event
    * @static
    */
-  static _showInChat(ev:Event, target: HTMLElement) {
+  static _onShowInChat(ev:Event, target: HTMLElement) {
     const item:TwodsixItem = getItemFromTarget(target, this.actor);
     if (item) {
       item.sendDescriptionToChat();
@@ -574,14 +574,13 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /**
    * Handle clickable characteristics rolls.
-   * @param {Event} event   The originating click event
-   * @param {boolean} showThrowDiag  Whether to show the throw dialog or not
-   * @private
+   * @param {Event} ev   The originating click event
+   * @param {HTMLElement} target  the clicked html element
+   * @static
    */
-  protected async _onRollChar(event:Event, showThrowDiag: boolean): Promise<void> {
-    const shortChar = $(event.currentTarget).data("label");
-    //const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, shortChar);
-    //const displayShortChar = (<TwodsixActor>this.actor).system["characteristics"][fullCharLabel].displayShortLabel;
+  static async _onRollChar(ev:Event, target: HTMLElement): Promise<void> {
+    const shortChar = target.dataset.label;
+    const showThrowDiag:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick') ? ev["shiftKey"] : !ev["shiftKey"];
     await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}}, showThrowDiag);
   }
 
