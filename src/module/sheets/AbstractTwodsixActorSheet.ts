@@ -12,12 +12,12 @@ import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { TWODSIX } from "../config";
 
 /**
- * Extend the basic ActorheetV2 with common functions for all actors
+ * Extend the basic ActorSheetV2 with common functions for all Twodsix actors
  * @extends {ActorSheetV2}
  */
 export abstract class AbstractTwodsixActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2) {
-  /** @override */
+
   static DEFAULT_OPTIONS = {
     actions: {
       itemCreate: this._onItemCreate,
