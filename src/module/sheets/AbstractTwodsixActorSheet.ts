@@ -31,7 +31,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       performAttack: this._onPerformAttack,
       skillTalentRoll: this._onSkillTalentRoll,
       rollChar: this._onRollChar,
-      rollDamage: onRollDamage
+      rollDamage: onRollDamage,
+      rollInitiative: this._onRollInitiative
     }
   };
 
@@ -105,9 +106,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       html.find(".item-value-edit").on("click", (ev:Event) => {
         $(ev.currentTarget).trigger("select");
       });
-
-      //Roll initiative from traveller sheet
-      html.find(".roll-initiative").on("click", this._onRollInitiative.bind(this));
 
       //Edit active effect shown on actor
       html.find('.condition-icon').on('click', this._onEditEffect.bind(this));
@@ -451,28 +449,17 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     context.effects = Array.from(actor.allApplicableEffects());
   }
 
-  protected _onRollWrapper(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
-    return (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-      const showThrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-
-      func.bind(this)(event, showThrowDiag);
-    };
-  }
-
   /**
    * Handle when the roll initiative button is pressed.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
+   * @param {HTMLElement} target The target element
    * @private
    */
-  protected async _onRollInitiative(event): Promise<void> {
-    if (!canvas.tokens?.ownedTokens.find(t => t.actor?.id === this.actor.id)) {
+  static async _onRollInitiative(ev:Event /*, target:HTMLElement*/): Promise<void> {
+    if (!canvas.tokens?.ownedTokens.find(t => t.actor?.id === this.actor.id)) { //would this.actor.token work as well? Maybe not for multile canvases
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
       return;
-    } else if (this.token?.combatant && this.token.combatant.initiative !== null ) {
+    } else if (this.token?.combatant && this.token?.combatant.initiative !== null ) {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
       return;
     } else if (!this.actor.isToken && game.combat?.combatants?.find(c => c.actor?.id === this.actor.id)?.initiative) {
@@ -480,7 +467,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       return;
     }
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-    const showThrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+    const showThrowDiag = useInvertedShiftClick ? ev["shiftKey"] : !ev["shiftKey"];
     const dialogData = {
       shouldRoll: false,
       rollType: "Normal",
@@ -584,12 +571,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /**
    * Update an item value when edited on skill or inventory tab.
-   * @param {Event} event  The originating input event
+   * @param {Event} ev  The originating input event
    * @private
    */
-  protected async _onItemValueEdit(event): Promise<void> {
-    const newValue = parseInt(event.currentTarget["value"], 10);
-    const li = $(event.currentTarget).parents(".item");
+  protected async _onItemValueEdit(ev): Promise<void> {
+    const newValue = parseInt(ev.currentTarget["value"], 10);
+    const li = $(ev.currentTarget).parents(".item");
     const itemSelected = this.actor.items.get(li.data("itemId"));
 
     if (itemSelected && Number.isInteger(newValue)) {
@@ -603,11 +590,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /**
    * Handle when the clicking on status icon.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    * @private
    */
-  protected async _onEditEffect(event:Event): Promise<void> {
-    const effectUuid:string = event.currentTarget["dataset"].uuid;
+  protected async _onEditEffect(ev:Event): Promise<void> {
+    const effectUuid:string = ev.currentTarget["dataset"].uuid;
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
@@ -617,11 +604,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /**
    * Handle when the right clicking on status icon.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    * @private
    */
-  protected async _onDeleteEffect(event:Event): Promise<void> {
-    const effectUuid = event.currentTarget.dataset.uuid;
+  protected async _onDeleteEffect(ev:Event): Promise<void> {
+    const effectUuid = ev.currentTarget.dataset.uuid;
     const selectedEffect = await fromUuid(effectUuid);
     if (await foundry.applications.api.DialogV2.confirm({
       window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
@@ -632,14 +619,14 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     }
   }
 
-  protected async _modifyEffect(event): Promise<void> {
-    const action = event.currentTarget["dataset"].action;
+  protected async _modifyEffect(ev): Promise<void> {
+    const action = ev.currentTarget["dataset"].action;
     if (action === "delete") {
-      await this._onDeleteEffect(event);
+      await this._onDeleteEffect(ev);
     } else if (action === "edit") {
-      await this._onEditEffect(event);
+      await this._onEditEffect(ev);
     } else if (action === "toggle") {
-      const selectedEffect:TwodsixActiveEffect = await fromUuid(event.currentTarget["dataset"].uuid);
+      const selectedEffect:TwodsixActiveEffect = await fromUuid(ev.currentTarget["dataset"].uuid);
       if (selectedEffect) {
         await selectedEffect.update({disabled: !selectedEffect.disabled});
       }
@@ -701,10 +688,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /** @override */
   // Not really needed with change to prosemirror
-  async _onChangeContenteditable(event) {
+  async _onChangeContenteditable(ev:Event) {
     //console.log(event);
-    if (event.currentTarget?.name !== 'type') {
-      const  formField = event.currentTarget?.closest('div[contenteditable="true"][data-edit]');
+    if (ev.currentTarget?.name !== 'type') {
+      const  formField = ev.currentTarget?.closest('div[contenteditable="true"][data-edit]');
       if (formField) {
         const target = formField.dataset?.edit;
         const newValue = formField.closest('div[contenteditable="true"][data-edit]').innerHTML;
