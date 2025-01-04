@@ -2614,6 +2614,10 @@ select.form-input, input.form-input, span.form-input {
   object-fit: contain;
 }
 
+img.item-img {
+  background-color: var(--s2d6-background-semi-opaque);
+}
+
 .pusher {
   display: block;
   height: 2em;
