@@ -209,7 +209,7 @@ label.checkbox > input[type="checkbox"] {
 .animal-content-container {
   display: grid;
   grid-template-columns: 25% 46% 25%;
-  grid-template-rows: 65% 12% 12%;
+  grid-template-rows: 60% 15% 15%;
   gap: 16px;
   position: relative;
   height: 100%;
@@ -289,8 +289,8 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 17em 5em 9fr;
-  gap: 16px;
+  grid-template-rows: 17em 17em 5em 9fr;
+  gap: 12px;
   position: relative;
   grid-template-areas:
     "vehicle-name-photo vehicle-stats vehicle-armor"
@@ -696,8 +696,9 @@ img.character-info-mask {
 }
 
 .bgi-reaction input {
-  width: 2em;
+  width: 5ch;
   border: none;
+  padding: 0;
 }
 
 .bgi-movement input {
@@ -715,7 +716,7 @@ img.character-info-mask {
 }
 
 .bgi-niche select {
-  width: 12ch;
+  width: 15ch;
   background-color: var(--s2d6-background-transparent) !important;
   border: none;
   font-size: smaller;
@@ -1635,11 +1636,6 @@ span.total-output {
   /* font-size: larger; */
   width: auto;
 }
-
-/*.editor-content {
-  background: var(--s2d6-input-background);
-  color: var(--color-text-dark-primary);
-}*/
 
 .notes-container .editor {
   border: 1px solid var(--color-border-light-tertiary);
@@ -3110,7 +3106,10 @@ form .form-group > label {
 .editor-content {
   /*height: 95%;*/
   padding-left: 4px;
-  border: 1px solid
+  border: 1px solid;
+  background: var(--s2d6-input-background);
+  color: var(--color-text-dark-primary);
+  min-height: inherit;
 }
 
 .tox .tox-editor-container {
@@ -3590,7 +3589,8 @@ table.ship-action-table, table.vehicle-stats-table {
 }
 
 .stat-table-npc th, .stat-table-npc td,
-.vehicle-stats-table th, .vehicle-stats-table td {
+.vehicle-stats-table th, .vehicle-stats-table td,
+.consumable th, .consumable td {
   padding: 2px;
 }
 
@@ -3605,6 +3605,6 @@ table.ship-action-table, table.vehicle-stats-table {
 
 .item-image-name {
   border-width: 1px 0;
-  border-color: var(--s2d6-input-background);
+  border-color: var(--s2d6-background-opaque);
   border-style: solid;
 }
