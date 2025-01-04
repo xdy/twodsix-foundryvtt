@@ -72,7 +72,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
     };
 
-    if (!['ship', 'vehicle'].includes(this.actor.type)) {
+    if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
       const untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       if (untrainedSkill) {
         context.untrainedSkill = untrainedSkill;
