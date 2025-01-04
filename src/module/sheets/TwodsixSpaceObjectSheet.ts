@@ -4,7 +4,6 @@
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import {confirmRollFormula } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import { TWODSIX } from "../config";
 import { simplifyRollFormula } from "../utils/dice";
 import { getDiceResults } from "../entities/TwodsixItem";
 import { getDamageTypes } from "../utils/sheetUtils";
@@ -47,7 +46,6 @@ export class TwodsixSpaceObjectSheet extends foundry.applications.api.Handlebars
         notes: await TextEditor.enrichHTML(context.system.notes)
       };
     }
-    context.config = TWODSIX;
     return context;
   }
 
