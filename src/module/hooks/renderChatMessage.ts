@@ -3,7 +3,7 @@
 
 import Crit from "../utils/crit";
 
-Hooks.on('renderChatMessageHTML', (app, htmlElement:HTMLElement) => {
+Hooks.on('renderChatMessageHTML', async (app, htmlElement:HTMLElement) => {
   //const html = $(htmlElement);
   const damageMessage = htmlElement.querySelector(".damage-message");
   if (damageMessage) {
@@ -31,7 +31,7 @@ Hooks.on('renderChatMessageHTML', (app, htmlElement:HTMLElement) => {
       if (game.settings.get("twodsix", "useDegreesOfSuccess") !== 'none' && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
         diceTotalText += `<section class="roll-detail">${app.getFlag("twodsix", "degreeOfSuccess")}</section>`;
       }
-      diceTotal.innerHTML = diceTotalText;
+      diceTotal.innerHTML= await TextEditor.enrichHTML( diceTotalText);
     }
 
     // Color crits
