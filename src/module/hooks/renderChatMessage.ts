@@ -3,7 +3,7 @@
 
 import Crit from "../utils/crit";
 
-Hooks.on('renderChatMessageHTML', async (app, htmlElement:HTMLElement) => {
+Hooks.on('renderChatMessageHTML', (app, htmlElement:HTMLElement) => {
   //const html = $(htmlElement);
   const damageMessage = htmlElement.querySelector(".damage-message");
   if (damageMessage) {
@@ -20,19 +20,19 @@ Hooks.on('renderChatMessageHTML', async (app, htmlElement:HTMLElement) => {
     if (!isNaN(Number(effect))) {
       const sumString = game.i18n.localize('TWODSIX.Rolls.sum').capitalize();
       const effectString = game.i18n.localize('TWODSIX.Rolls.Effect');
-      let diceTotalText = `<section>${sumString}: ${diceTotal.textContent} ${effectString}: ${effect}</section>`;
+      let diceTotalText = `${sumString}: ${diceTotal.textContent} ${effectString}: ${effect}\n`;
+
+      if (game.settings.get("twodsix", "useDegreesOfSuccess") !== 'none' && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
+        diceTotalText += `${app.getFlag("twodsix", "degreeOfSuccess")}\n`;
+      }
 
       if (game.settings.get("twodsix", "showTimeframe") && <string>app.getFlag("twodsix", "timeframe") !== '' && <string>app.getFlag("twodsix", "timeframe")) {
         const timeframe = <string>app.getFlag("twodsix", "timeframe");
         const timeString = game.i18n.localize('TWODSIX.Rolls.Timeframe');
-        diceTotalText += `<section class="roll-detail">${timeString}: ${timeframe}</section>`;
+        diceTotalText += `${timeString}: ${timeframe}\n`;
       }
 
-      if (game.settings.get("twodsix", "useDegreesOfSuccess") !== 'none' && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
-        diceTotalText += `<section class="roll-detail">${app.getFlag("twodsix", "degreeOfSuccess")}</section>`;
-      }
-      //$(diceTotal).html(diceTotalText); //Need a better solution for this in DOM without security error
-      diceTotal.innerHTML = await TextEditor.enrichHTML( diceTotalText);
+      diceTotal.textContent = diceTotalText;
     }
 
     // Color crits
