@@ -367,7 +367,7 @@ form .form-group span.units {
   cursor: pointer;
 }
 
-.item-name {
+.item-name, .item-name-nd {
   align-self: center;
   text-align: left;
 }
@@ -447,7 +447,7 @@ h2 {
 .npc-content-container {
   display: grid;
   grid-template-columns: 15em 21em 0.9fr;
-  grid-template-rows: 18em 0.5fr 0.5fr;
+  grid-template-rows: 18em 1fr 1fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -458,7 +458,7 @@ h2 {
 .npc-content-container-spells {
   display: grid;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 18em 0.5fr 0.5fr;
+  grid-template-rows: 18em 1fr 1fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -537,8 +537,6 @@ h2 {
 .npc {
   margin-top: inherit !important;
   margin-left: inherit !important;
-  width: inherit !important;
-  height: inherit !important;
   max-height: inherit !important;
   padding-top: inherit !important;
   left: inherit !important;
@@ -1031,7 +1029,7 @@ h2 {
 }
 
 .bgi-age input {
-  width: 2em;
+  width: 5ch;
   border: none;
 }
 
@@ -1171,6 +1169,7 @@ span.bgi-charEdit {
   margin-bottom: -0.5em;
   width: 5ch;
   border: none;
+  padding: 2px;
 }
 
 .bgi-encumbrance-wide input {
@@ -3153,7 +3152,7 @@ select.form-input, input.form-input, span.form-input {
 /* ------ Item page - Consumables ------ */
 .consumable-row {
   /* padding: 0; */
-  width: 94%;
+  /*width: 94%;*/
   /* height: 30px; */
   text-align: right;
 }

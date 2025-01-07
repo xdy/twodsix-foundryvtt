@@ -1,4 +1,4 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<section class="{{cssClass}} flexcol" autocomplete="off">
   {{#if settings.showSpells}}
   <div class="npc-content-container-spells">
   {{else}}
@@ -44,7 +44,7 @@
       {{#unless limited}}
       <div class="npc-list">
         <span class="fixed-item" data-item-id="{{joat-skill-input}}" >
-            <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
+            <span class="item-name-nd" draggable="false">{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
             <input type="number" value="{{jackOfAllTrades}}" class="joat-skill-input" style="width: 3ch;"/>,
         </span>
       {{#each_sort_item container.skillsList as |item id|}}
@@ -54,8 +54,8 @@
               </span>
       {{/each_sort_item}}
       {{#if settings.hideUntrainedSkills}}
-      <span class="item" data-item-id="{{untrainedSkill.id}}" draggable="false">
-          <text class="item-name rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll"> {{untrainedSkill.name}}</text>
+      <span class="item" data-item-id="{{untrainedSkill.id}}">
+          <text class="item-name-nd rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll" draggable="false"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" {{#if untrainedSkill.system.value}}name="{{concat 'system.skills.' (skillName untrainedSkill.name)}}"{{/if}} readonly/>
       </span>
       {{/if}}
@@ -66,19 +66,18 @@
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
       {{#unless limited}}
       <div class="npc-list">
-        <span >
          {{#each_sort_item container.armor as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}} </span>
               <span class="item-controls centre">
-                <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
+                <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}' data-action="toggleItem">
+                  <i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
                     class="fa-solid fa-pen-to-square"></i></a>
-                <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
+                <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
               </span>
             </span>
          {{/each_sort_item}}
-        </span>
       </div>
       {{/unless}}
     </div>
@@ -96,10 +95,12 @@
                 {{/iff}}
               {{/each}}
               <span class="item-controls centre">
-                <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}'><i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i></a>
+                <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}' data-action="toggleItem">
+                  <i class="{{twodsix_getEquippedIcon item.system.equipped}}"></i>
+                </a>
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
                     class="fa-solid fa-pen-to-square"></i></a>
-                <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
+                <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
               </span>
             </span>
          {{/each_sort_item}}
@@ -120,7 +121,7 @@
             <span class="item-controls centre" data-item-id="{{item.id}}">
               <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
                 class="fa-solid fa-pen-to-square"></i></a>
-              <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+              <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>
             </span>
           </span>
          {{/each_sort_item}}
@@ -147,4 +148,4 @@
     </div>
     {{/if}}
   </div>
-</form>
+</section>

@@ -13,7 +13,7 @@
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
-import {TwodsixActorSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixActorSheet";
+import {TwodsixTravellerSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixTravellerSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
@@ -70,9 +70,10 @@ Hooks.once('init', async function () {
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
-  Actors.unregisterSheet('core', ActorSheet);
+  //Actors.unregisterSheet('core', ActorSheet);
+  Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
 
-  Actors.registerSheet('twodsix', TwodsixActorSheet, {
+  Actors.registerSheet('twodsix', TwodsixTravellerSheet, {
     types: ["traveller"],
     label: "Traveller Sheet",
     makeDefault: true
@@ -134,7 +135,7 @@ Hooks.once('init', async function () {
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
   Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
-  Items.unregisterSheet("core", ItemSheet);
+  //Items.unregisterSheet("core", ItemSheet);
 
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
   Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});

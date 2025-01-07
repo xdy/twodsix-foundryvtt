@@ -3,19 +3,19 @@
   <span class="wrapper">
     {{name}}:
     {{#with system}}
-    <span class="consumable-count">
+    <span class="consumable-count with-buttons">
       <span>{{currentCount}}/{{max}}</span>
       <span class="combined-buttons">
-        <button type="button" class="left-button adjust-consumable" {{#iff currentCount "<=" 0}}disabled{{/iff}} data-value="1">-</button>
-        <button type="button" class="right-button adjust-consumable" {{#iff currentCount ">=" max}}disabled{{/iff}} data-value="-1">+</button>
+        <button type="button" class="left-button adjust-consumable" data-action="adjustConsumable" {{#iff currentCount "<=" 0}}disabled{{/iff}} data-value="1">-</button>
+        <button type="button" class="right-button adjust-consumable" data-action="adjustConsumable" {{#iff currentCount ">=" max}}disabled{{/iff}} data-value="-1">+</button>
       </span>
     </span>
-    <button type="button" {{#iff currentCount '>=' max}}disabled{{/iff}} class="refill-button">
+    <button type="button" {{#iff currentCount '>=' max}}disabled{{/iff}} class="refill-button" data-action="refillConsumable">
       {{twodsix_refillText subtype quantity}}
     </button>
     {{/with}}
     <span class="item-controls centre">
-      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
+      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}" data-action="toggleConsumable"
         {{#iff isSelected '===' consumableId}}
           style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.ActiveConsumable'}}"
         {{else}}
@@ -35,7 +35,7 @@
     {{/if}}
     <span class="item-controls centre">
       {{#iff system.subtype "===" "software"}}
-      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}"
+      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}" data-action="toggleConsumable"
         {{#if system.softwareActive}}
           style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOn'}}"
         {{else}}

@@ -6,100 +6,116 @@ import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
 import { Consumable, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
-import { getRangeTypes } from "../utils/sheetUtils";
-//import { applyEncumberedEffect } from "../hooks/showStatusIcons";
-//import { wait } from "../utils/sheetUtils";
 
-export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
+export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "sheet", "actor"],
+    position: {
+      width: 900,
+      height: 780
+    },
+    window: {
+      resizable: true,
+      icon: "fa-solid fa-user-astronaut"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    actions: {
+      adjustConsumable: this._onAdjustConsumableCount,
+      refillConsumable: this._onRefillConsumable,
+      autoCreateConsumable: this._onAutoAddConsumable,
+      toggleConsumable: this._onToggleConsumable,
+      toggleItem: this._onToggleItem,
+      toggleView: this._onViewToggle,
+      toggleSkillHeader: this._onSkillHeaderToggle
+    },
+    tag: "form"
+  };
 
-  /**
-   * Return the type of the current Actor
-   * @type {String}
-   */
-  get actorType(): string {
-    return this.actor.type;
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/traveller-sheet.html",
+      scrollable: [".skills", ".character-inventory", ".inventory", ".finances", ".info", ".effects", ".actor-notes"]
+    }
+  };
+
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    const applicationOptions = super._initializeApplicationOptions(options);
+    if (this.constructor.name !== 'TwodsixNPCSheet') {
+      applicationOptions.position.width = game.settings.get('twodsix', 'defaultActorSheetWidth');
+      applicationOptions.position.height = game.settings.get('twodsix', 'defaultActorSheetHeight');
+      applicationOptions.dragDrop = [{dragSelector: ".item", dropSelector: null}];
+    } else{
+      applicationOptions.dragDrop = [{dragSelector: ".item-name", dropSelector: null}];
+    }
+    return applicationOptions;
   }
 
   /** @override */
-  async getData(): any {
-    const returnData: any = super.getData();
-    returnData.system = returnData.actor.system;
-    returnData.container = {};
+  static get defaultOptions(): ActorSheet.Options {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
+    });
+  }
+
+  /** @override */
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
-      returnData.richText = {
-        description: await TextEditor.enrichHTML(returnData.system.description),
-        contacts: await TextEditor.enrichHTML(returnData.system.contacts),
-        bio: await TextEditor.enrichHTML(returnData.system.bio),
-        notes: await TextEditor.enrichHTML(returnData.system.notes),
-        xpNotes: await TextEditor.enrichHTML(returnData.system.xpNotes)
+      context.richText = {
+        description: await TextEditor.enrichHTML(context.system.description),
+        contacts: await TextEditor.enrichHTML(context.system.contacts),
+        bio: await TextEditor.enrichHTML(context.system.bio),
+        notes: await TextEditor.enrichHTML(context.system.notes),
+        xpNotes: await TextEditor.enrichHTML(context.system.xpNotes)
       };
     }
 
-    returnData.dtypes = ["String", "Number", "Boolean"];
-
-    // Prepare items.
-    //if (this.actor.type === 'traveller') {  //NEEDED??
     const actor: TwodsixActor = <TwodsixActor>this.actor;
     const untrainedSkill = actor.getUntrainedSkill();
     if (untrainedSkill) {
-      returnData.untrainedSkill = untrainedSkill;
-      returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
+      context.untrainedSkill = untrainedSkill;
+      context.jackOfAllTrades = TwodsixTravellerSheet.untrainedToJoat(context.untrainedSkill.system.value);
     } else {
       //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
       const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
       if (existingSkill) {
-        returnData.untrainedSkill = existingSkill;
-        returnData.jackOfAllTrades = TwodsixActorSheet.untrainedToJoat(returnData.untrainedSkill.system.value);
+        context.untrainedSkill = existingSkill;
+        context.jackOfAllTrades = TwodsixTravellerSheet.untrainedToJoat(context.untrainedSkill.system.value);
       } else {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
       }
     }
 
     // Add relevant data from system settings
-    returnData.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
-      rangeTypes: getRangeTypes('short'),
-      ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
-      autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
-      lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
-      showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
-      showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
-      showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
-      showIcons: game.settings.get("twodsix", "showIcons"),
-      showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
-      showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
+    Object.assign(context.settings, {
       ShowDoubleTap: game.settings.get('twodsix', 'ShowDoubleTap'),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
-      useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
-      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks'),
-      showSpells: game.settings.get('twodsix', 'showSpells'),
       useNationality: game.settings.get('twodsix', 'useNationality'),
-      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
-      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       showAllCharWithTable: game.settings.get('twodsix', 'showAllCharWithTable'),
       showSkillGroups: game.settings.get('twodsix', 'showSkillGroups'),
       useCEAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CE.key,
       useCTAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CT.key,
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCUAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CU.key,
-      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
-      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU',
       showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
       Infinity: Infinity,
       showAttachmentsList: game.settings.get('twodsix', 'showAttachmentsList'),
       showConsumablesList: game.settings.get('twodsix', 'showConsumablesList')
-    };
+    });
 
-    returnData.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
+    context.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
       const [ key, value ] = entry;
       ret[ value ] = key;
       return ret;
     }, {});
 
     //Add custom source labels for active effects
-    for(const effect of returnData.effects) {
+    for(const effect of context.effects) {
       if (["dead", "unconscious", "wounded", "encumbered"].includes(Array.from(effect.statuses)[0])) {
         effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.Condition");
       } else if (effect.origin && !effect.origin?.includes("Compendium")) {
@@ -115,78 +131,45 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         effect.sourceLabel = game.i18n.localize("TWODSIX.ActiveEffects.UnknownSource");
       }
     }
-    returnData.config = TWODSIX;
-
-    return returnData;
+    return context;
   }
 
-
-  /** @override */
-  static get defaultOptions(): ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "actor"],
-      template: "systems/twodsix/templates/actors/actor-sheet.html",
-      width: game.settings.get('twodsix', 'defaultActorSheetWidth'),
-      height: game.settings.get('twodsix', 'defaultActorSheetHeight'),
-      resizable: true,
-      tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
-      scrollY: [".skills", ".character-inventory", ".inventory", ".finances", ".info", ".effects", ".actor-notes"],
-      dragDrop: [{dragSelector: ".item", dropSelector: null}]
-    });
-  }
-
-
-  public activateListeners(html: JQuery): void {
-    super.activateListeners(html);
-
-    html.find('.joat-skill-input').on('input', this._updateJoatSkill.bind(this));
-    html.find('.joat-skill-input').on('blur', this._onJoatSkillBlur.bind(this));
-    html.find('.joat-skill-input').on('click', (event) => {
-      $(event.currentTarget).trigger("select");
-    });
-
-    html.find(".adjust-consumable").on("click", this._onAdjustConsumableCount.bind(this));
-    html.find(".refill-button").on("click", this._onRefillConsumable.bind(this));
-
-    html.find(".item-fill-consumable").on("click", this._onAutoAddConsumable.bind(this));
-    // Item State toggling
-    html.find(".item-toggle").on("click", this._onToggleItem.bind(this));
-    html.find(".item-viewToggle").on("click", this._onViewToggle.bind(this));
-    //Consumable Toggling
-    html.find(".consumable-toggle").on("click", this._onToggleConsumable.bind(this));
-    //Skill list toggling
-    html.find(".skill-header").on("click", this._onSkillHeaderToggle.bind(this));
-    /*html.find('.attachment-list').on('click', (event) => {
-      console.log(event);
-    });*/
+  async _onRender(context:Context, options:any): void {
+    await super._onRender(context, options);
+    // Everything below here is only needed if the sheet is editable
+    if (!context.editable) {
+      return;
+    }
+    this.element.querySelector(".joat-skill-input")?.addEventListener('input', this._updateJoatSkill.bind(this));
+    this.element.querySelector(".joat-skill-input")?.addEventListener('blur', this._onJoatSkillBlur.bind(this));
   }
 
   /**
    * Handle when the joat skill is changed.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    * @private
    */
-  private async _updateJoatSkill(event): Promise<void> {
-    const joatValue = parseInt(event.currentTarget["value"], 10);
-    const skillValue = TwodsixActorSheet.joatToUntrained(joatValue);
+  private async _updateJoatSkill(ev:Event): Promise<void> {
+    const joatValue = parseInt(ev.currentTarget.value, 10);
+    const skillValue = TwodsixTravellerSheet.joatToUntrained(joatValue);
 
     if (!isNaN(joatValue) && joatValue >= 0 && skillValue <= 0) {
       const untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       untrainedSkill.update({"system.value": skillValue});
-    } else if (event.currentTarget["value"] !== "") {
-      event.currentTarget["value"] = "";
+    } else if (ev.currentTarget.value !== "") {
+      ev.currentTarget.value = "";
     }
   }
 
   /**
    * Handle when user tabs out and leaves blank value.
-   * @param {Event} event   The originating click event
+   * @param {Event} ev   The originating click event
    * @private
    */
-  private async _onJoatSkillBlur(event): Promise<void> {
-    if (isNaN(parseInt(event.currentTarget["value"], 10))) {
+  private async _onJoatSkillBlur(ev:Event): Promise<void> {
+    if (isNaN(parseInt(ev.currentTarget.value, 10))) {
       const skillValue = (<Skills>(<TwodsixActor>this.actor).getUntrainedSkill().system).value;
-      event.currentTarget["value"] = TwodsixActorSheet.untrainedToJoat(skillValue);
+      ev.currentTarget.value = TwodsixTravellerSheet.untrainedToJoat(skillValue);
     }
   }
 
@@ -206,19 +189,19 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
     }
   }
 
-  private getConsumableItem(event): TwodsixItem {
-    const itemId = $(event.currentTarget).parents('.consumable-row').data('consumable-id');
+  private getConsumableItem(ev:Event, target:HTMLElement): TwodsixItem {
+    const itemId = target.closest('.consumable-row').dataset.consumableId;
     return this.actor.items.get(itemId) as TwodsixItem;
   }
 
-  private async _onAdjustConsumableCount(event): Promise<void> {
-    const modifier = parseInt(event.currentTarget["dataset"]["value"], 10);
-    const item = this.getConsumableItem(event);
+  static async _onAdjustConsumableCount(ev: Event, target:HTMLElement): Promise<void> {
+    const modifier = parseInt(target.dataset.value, 10);
+    const item:TwodsixItem = this.getConsumableItem(ev, target);
     await item.consume(modifier);
   }
 
-  private async _onRefillConsumable(event): Promise<void> {
-    const item = this.getConsumableItem(event);
+  static async _onRefillConsumable(ev: Event, target:HTMLElement): Promise<void> {
+    const item:TwodsixItem = this.getConsumableItem(ev, target);
     try {
       await item.refill();
     } catch (err) {
@@ -236,10 +219,11 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
   /**
    * Handle auto add of weapons consumables.
    * @param {Event} ev   The originating click event
+   * @param {HTMLElement} target THe clicked html element
    * @private
    */
-  private async _onAutoAddConsumable(ev:Event): Promise<void> {
-    const weaponSelected: any = this.actor.items.get(ev.currentTarget.closest(".item")?.dataset.itemId);
+  static async _onAutoAddConsumable(ev:Event, target:HTMLElement): Promise<void> {
+    const weaponSelected: any = this.actor.items.get(target.closest(".item")?.dataset.itemId);
 
     const max = weaponSelected.system.ammo;
     if (max > 0 && !weaponSelected.system.consumableData?.length) {
@@ -262,13 +246,14 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   /**
    * Handle toggling the state of an Owned Item within the Actor.
-   * @param {Event} event   The originating click event.
-   * @private
+   * @param {Event} ev   The originating click event.
+   * @param {HTMLElement} target The DOM element clicked
+   * @static
    */
-  private async _onToggleItem(event:Event): Promise<void> {
-    if (event.currentTarget) {
-      const li = $(event.currentTarget).parents(".item");
-      const itemSelected = <TwodsixItem>this.actor.items.get(li.data("itemId"));
+  static async _onToggleItem(ev:Event, target:HTMLElement): Promise<void> {
+    if (target) {
+      const li = target.closest(".item");
+      const itemSelected = <TwodsixItem>this.actor.items.get(li.dataset.itemId);
       const newSuspendedState = getNewEquippedState(itemSelected);
 
       //change equipped state
@@ -293,24 +278,23 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
 
   /**
    * Handle toggling the view state of an Item class.
-   * @param {Event} event   The originating click event.
+   * @param {Event} ev   The originating click event.
    * @private
    */
-  private async _onViewToggle(event): Promise<void> {
-    const itemType: string = $(event.currentTarget).data("itemType");
+  static async _onViewToggle(ev: Event, target:HTMLElement): Promise<void> {
+    const itemType: string = target.dataset.itemType;
     await this.actor.update({[`system.hideStoredItems.${itemType}`]: !this.actor.system.hideStoredItems[itemType]});
   }
 
   /**
    * Handle toggling the active consumable.
-   * @param {Event} event   The originating click event.
+   * @param {Event} ev   The originating click event.
+   * @param {HTMLElement} target The clicked DOM rlement
    * @private
    */
-  private async _onToggleConsumable(event): Promise<void> {
-    const parentId: string = $(event.currentTarget).data("parentId");
-    const consumableId: string = $(event.currentTarget).data("consumableId");
-    const parentItem: TwodsixItem = await this.actor.items.get(parentId);
-    const consumable: TwodsixItem = await this.actor.items.get(consumableId);
+  static async _onToggleConsumable(ev: Event, target:HTMLElement): Promise<void> {
+    const parentItem: TwodsixItem = await this.actor.items.get(target.dataset.parentId);
+    const consumable: TwodsixItem = await this.actor.items.get(target.dataset.consumableId);
     if (parentItem?.type === "weapon" && !["software", "processor", "suite"].includes(consumable.system.subtype)) {
       if (parentItem?.system.useConsumableForAttack != consumableId) {
         await parentItem.update({'system.useConsumableForAttack': consumableId});
@@ -320,35 +304,46 @@ export class TwodsixActorSheet extends AbstractTwodsixActorSheet {
         await consumable.update({'system.softwareActive': !consumable.system.softwareActive});
       }
     }
-    //console.log("Made it to toggle");
   }
 
   /**
    * Handle toggling the skill header.
    * @param {Event} event   The originating click event.
-   * @private
+   * @param {HTMLElement} target The clicked DOM element
+   * @static
    */
-  private async _onSkillHeaderToggle(event): Promise<void> {
-    const parentKey: string = $(event.currentTarget).data("parentKey");
+  static async _onSkillHeaderToggle(ev:Event, target:HTMLElement): Promise<void> {
+    const parentKey: string = target.dataset.parentKey;
     if (parentKey) {
-      //this.actor.system.displaySkillGroup[parentKey] = !this.actor.system.displaySkillGroup[parentKey];
       this.actor.update({[`system.displaySkillGroup.${parentKey}`]: !this.actor.system.displaySkillGroup[parentKey]});
-      //this.render(false);
     }
   }
 }
 
-export class TwodsixNPCSheet extends TwodsixActorSheet {
-  static get defaultOptions(): ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "npc-actor"],
-      template: "systems/twodsix/templates/actors/npc-sheet.html",
+export class TwodsixNPCSheet extends TwodsixTravellerSheet {
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "sheet", "npc-actor"],
+    //dragDrop: [{dragSelector: ".item", dropSelector: null}], //nt needed?
+    position: {
       width: 830,
-      height: 500,
+      height: 500
+    },
+    window: {
       resizable: true,
-      dragDrop: [{dragSelector: ".item", dropSelector: null}]
-    });
-  }
+      icon: "fa-solid fa-person"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/npc-sheet.html",
+    }
+  };
 }
 
 /**

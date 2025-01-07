@@ -31,7 +31,7 @@
           <span class="skill-container">
             <span></span>
             <span class="item-name" >{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
-            <input type="number" value="{{jackOfAllTrades}}" class="joat-skill-input"/>
+            <input type="number" value="{{jackOfAllTrades}}" class="joat-skill-input" data-action="selectItem"/>
           </span>
         </li>
       </ol>
@@ -43,7 +43,7 @@
     {{/each_sort_item}}
   {{else}}
     {{#each container.skillGroups}}
-      <div class="grid-columns-single-row skill-header" data-parent-key="{{@key}}">
+      <div class="grid-columns-single-row skill-header" data-parent-key="{{@key}}" data-action="toggleSkillHeader">
         <ol class="ol-no-indent header-row">
           {{@key}} {{#unless (lookup ../actor.system.displaySkillGroup @key)}}<i class="fa-solid fa-caret-right"></i>{{else}}<i class="fa-solid fa-caret-down" ></i>{{/unless}}
         </ol>
@@ -59,7 +59,7 @@
   {{/unless}}
 {{#if settings.hideUntrainedSkills}}
   {{#if settings.showSkillGroups}}
-  <div class="grid-columns-single-row skill-header" style="cursor: auto;">
+  <div class="grid-columns-single-row skill-header" style="cursor: auto;" data-action="toggleSkillHeader">
     <ol class="ol-no-indent header-row">
       {{twodsix_titleCase untrainedSkill.name}}
     </ol>

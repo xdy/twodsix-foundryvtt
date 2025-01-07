@@ -17,6 +17,14 @@ import { TWODSIX } from "../config";
  */
 export abstract class AbstractTwodsixActorSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ActorSheetV2) {
+  /**
+   * Return the type of the current Actor
+   * @type {String}
+   */
+  get actorType(): string {
+    return this.actor.type;
+  }
+
 
   static DEFAULT_OPTIONS = {
     actions: {
@@ -126,7 +134,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
      ****************/
 
     // Drag events for macros. ??? legacy - not for macros
-    if (this.actor.isOwner) {
+    if (this.actor.isOwner && !this.constructor.name === 'TwodsixNPCSheet') {
       const html = $(this.element);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
@@ -217,9 +225,30 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @protected
    */
   _onDragStart(ev:DragEvent):void {
-    const li = ev.currentTarget;
+    const li = ev.currentTarget.closest('.item');
     if (li?.dataset) {
-      super._onDragStart(ev);
+      if ( "link" in event.target.dataset ) {
+        return;
+      }
+      let dragData:any;
+
+      // Owned Items
+      if ( li.dataset.itemId ) {
+        const item = this.actor.items.get(li.dataset.itemId);
+        dragData = item.toDragData();
+      }
+
+      // Active Effect
+      if ( li.dataset.effectId ) {
+        const effect = this.actor.effects.get(li.dataset.effectId);
+        dragData = effect.toDragData();
+      }
+
+      // Set data transfer
+      if ( !dragData ) {
+        return;
+      }
+      event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
     }
   }
 
@@ -422,7 +451,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       }
       //Add consumable labels
       if (["traveller"].includes(actor.type)  && item.type === "consumable") {
-        const parentItem = context.items.find((i) => i.system.consumables?.includes(item.id));
+        const parentItem = actor.items.find((i) => i.system.consumables?.includes(item.id));
         if (parentItem) {
           item.system.parentName = parentItem.name;
           item.system.parentType = parentItem.type;

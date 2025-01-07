@@ -190,15 +190,15 @@ export function calcModFor(characteristic:number):number {
 // }
 
 
-export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
+export function getDataFromDropEvent(ev:DragEvent):Record<string, any> {
   try {
-    return JSON.parse(<string>event.dataTransfer?.getData('text/plain'));
+    return JSON.parse(ev.dataTransfer?.getData('text/plain'));
   } catch (err) {
-    const pdfRef = event.dataTransfer?.getData('text/html');
+    const pdfRef = ev.dataTransfer?.getData('text/html');
     if (pdfRef) {
       return getHTMLLink(pdfRef);
     } else {
-      const uriRef = event.dataTransfer?.getData('text/uri-list');
+      const uriRef = ev.dataTransfer?.getData('text/uri-list');
       if (uriRef) {
         return ({
           type: "html",
@@ -220,8 +220,10 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
     if (item.system.consumables?.length > 0) {
       item.system.consumables = [];
     }
-  } else {
+  } else if (dropData.uuid) {
     item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+  } else {
+    item = await game.items.get(dropData._id ?? dropData.data?._id); //not certain why needed for v13
   }
 
   if (!item) {
