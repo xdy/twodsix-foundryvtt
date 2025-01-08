@@ -316,7 +316,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     // Remove the type from the dataset since it's in the itemData.type prop.
     // delete itemData.data.type;
-    updateWithItemSpecificValues(itemData, <string>type, <string>(itemType === "component" ? subtype : ""), this.actor);
+    updateWithItemSpecificValues(itemData, <string>itemType, <string>(["component", "consumable"].includes(itemType) ? subtype : ""), this.actor);
 
     // Finally, create the item!
     await this.actor.createEmbeddedDocuments("Item", [itemData]);
