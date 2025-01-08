@@ -143,7 +143,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
      ****************/
 
     // Drag events for macros. ??? legacy - not for macros
-    if (this.actor.isOwner && this.constructor.name !== 'TwodsixNPCSheet') {
+    if (this.actor.isOwner && !['TwodsixNPCSheet', 'TwodsixAnimalSheet', 'TwodsixRobotSheet'].includes(this.constructor.name.replace('_', ''))) {
       const html = $(this.element);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {

@@ -8,7 +8,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
 
   static DEFAULT_OPTIONS =  {
     classes: ["twodsix", "sheet", "animal-actor"],
-    dragDrop: [{dragSelector: ".item", dropSelector: null}],
+    dragDrop: [{dragSelector: ".item-name", dropSelector: null}],
     position: {
       width: 720,
       height: 470

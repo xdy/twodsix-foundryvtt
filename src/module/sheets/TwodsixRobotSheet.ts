@@ -7,7 +7,7 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
   static DEFAULT_OPTIONS =  {
     classes: ["twodsix", "sheet", "robot-actor"],
-    dragDrop: [{dragSelector: ".item", dropSelector: null}],
+    dragDrop: [{dragSelector: ".item-name", dropSelector: null}],
     position: {
       width: 'auto',
       height: 600
