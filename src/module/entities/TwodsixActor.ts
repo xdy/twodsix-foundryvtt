@@ -995,7 +995,7 @@ export default class TwodsixActor extends Actor {
     let numberToMove = item.system?.quantity ?? 1;
 
     //Handle moving items from another actor if enabled by settings
-    if (item?.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
+    if (item.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
       if (item.system.quantity > 1) {
         numberToMove = await getMoveNumber(item);
         if (numberToMove >= item.system.quantity) {
