@@ -211,7 +211,7 @@ export function getDataFromDropEvent(ev:DragEvent):Record<string, any> {
   }
 }
 
-export async function getItemDataFromDropData(dropData:Record<string, any>) {
+export async function getItemFromDropData(dropData:Record<string, any>) {
   let item;
   if (game.modules.get("monks-enhanced-journal")?.active && dropData.itemId && dropData.uuid.includes("JournalEntry")) {
     const journalEntry = await fromUuid(dropData.uuid);
@@ -221,7 +221,7 @@ export async function getItemDataFromDropData(dropData:Record<string, any>) {
       item.system.consumables = [];
     }
   } else if (dropData.uuid) {
-    item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+    item = await fromUuid(dropData.uuid); //must use async function to drop from compendiums directly
   } else {
     item = await game.items.get(dropData._id ?? dropData.data?._id); //not certain why needed for v13
   }
@@ -274,8 +274,8 @@ export function openPDFReference(sourceString:string): void {
 }
 
 export async function openJournalEntry():void {
-  if (this.item.system.pdfReference.type === 'JournalEntry') {
-    const journalToOpen = await fromUuid(this.item.system.pdfReference.href);
+  if (this.document.system.pdfReference.type === 'JournalEntry') {
+    const journalToOpen = await fromUuid(this.document.system.pdfReference.href);
     if (journalToOpen) {
       journalToOpen.sheet.render(true);
     } else {

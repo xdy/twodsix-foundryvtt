@@ -3,7 +3,7 @@
 
 import { TwodsixShipSheetData, TwodsixShipSheetSettings } from "../../types/twodsix";
 import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
-import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import TwodsixActor from "../entities/TwodsixActor";
@@ -271,7 +271,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
         ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
         return false;
       }
-      const droppedObject:any = await getItemDataFromDropData(dropData);
+      const droppedObject:any = await getItemFromDropData(dropData);
 
       if (["traveller", "robot"].includes(droppedObject.type)) {
         const actorId = droppedObject._id;

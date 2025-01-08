@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet, onPasteStripFormatting } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemDataFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
 import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
@@ -559,7 +559,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
         TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
 
-        const itemData = await getItemDataFromDropData(dropData);
+        const itemData = await getItemFromDropData(dropData);
 
         TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
         TwodsixItemSheet.check(this.item.type === "consumable" && itemData.system.isAttachment, "CantDropAttachOnConsumables");
@@ -569,7 +569,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         if (this.item.actor?.items.get(itemData._id)) {
           itemId = itemData._id;
         } else {
-          const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [itemData]);
+          const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [foundry.utils.duplicate(itemData)]);
           if (!newItem) {
             throw new Error(`Somehow could not create item ${itemData}`);
           }

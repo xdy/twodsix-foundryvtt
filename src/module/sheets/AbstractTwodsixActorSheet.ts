@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getItemDataFromDropData, isDisplayableSkill, openPDFReference, deletePDFReference, getDamageTypes, getRangeTypes } from "../utils/sheetUtils";
+import {getDataFromDropEvent, getItemFromDropData, isDisplayableSkill, openPDFReference, deletePDFReference, getDamageTypes, getRangeTypes, openJournalEntry } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
@@ -41,7 +41,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       rollChar: this._onRollChar,
       rollDamage: onRollDamage,
       rollInitiative: this._onRollInitiative,
-      selectItem: this._onItemSelect
+      selectItem: this._onItemSelect,
+      openJournalEntry: openJournalEntry
     }
   };
 
@@ -74,6 +75,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       damageTypes: getDamageTypes(false),
+      Infinity: Infinity,
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
@@ -81,10 +83,17 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     };
 
     if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
-      const untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
-      if (untrainedSkill) {
-        context.untrainedSkill = untrainedSkill;
+      context.untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
+      if (!context.untrainedSkill) {
+        //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
+        const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
+        if (existingSkill) {
+          context.untrainedSkill = existingSkill;
+        } else {
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
+        }
       }
+
       //Prepare characteristic display values
       setCharacteristicDisplay(context);
       if (this.actor.type === 'traveller') {
@@ -357,7 +366,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       return false;
     }
 
-    if (actor.type === "traveller" && dropData.type === "Actor") {
+    if (actor.type === "traveller" && dropData.type === "Actor") { ///what about ship where valid?******************
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragActorOntoActor"));
       return false;
     }
@@ -366,44 +375,45 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showDamageDialog = useInvertedShiftClick ? ev["shiftKey"] : !ev["shiftKey"];
       return actor.handleDamageData(dropData.payload, showDamageDialog);
-    }
-
-    // Handle dropped scene on ship sheet
-    if (dropData.type === "Scene") {
+    } else if (dropData.type === "Scene") {
+      // Handle dropped scene on ship sheet
       if (actor.type === 'ship') {
         const scene = await fromUuid(dropData.uuid);
         actor.update({"system.deckPlan": scene.id});
       }
       return false;
-    }
-
-    // Handle droped pdf reference for sheet
-    if (dropData.type === 'html' || dropData.type === 'pdf'){
+    } else if (['html', 'pdf', 'JournalEntry'].includes(dropData.type)){
+      // Handle droped pdf reference for sheet
       if (dropData.href) {
         await this.actor.update({ system: { pdfReference: { type: dropData.type, href: dropData.href, label: dropData.label}}});
+      } else if (dropData.uuid) {
+        await this.actor.update({ system: { pdfReference: { type: dropData.type, href: dropData.uuid, label: dropData.type}}});
       }
       return false;
+    } else if (dropData.type === 'Item') {
+      const droppedItem:TwodsixItem = await getItemFromDropData(dropData);
+      return await this.processDroppedItem(ev, droppedItem);
+    } else {
+      console.log(`Unknown Drop Type ${dropData.type}`);
+      return false;
     }
-
-    const itemData = await getItemDataFromDropData(dropData);
-    return await this.processDroppedItem(ev, itemData);
   }
 
-  public async processDroppedItem(ev:DragEvent, itemData: any): Promise<boolean> {
-    const sameActor:TwodsixItem = this.actor.items.get(itemData._id);
+  public async processDroppedItem(ev:DragEvent, dropedItem: TwodsixItem): Promise<boolean> {
+    const sameActor:TwodsixItem = this.actor.items.get(dropedItem._id);
     if (sameActor) {
       const dropTargetId = ev.target.closest("[data-item-id]")?.dataset?.itemId;
       const targetItem = this.actor.items.get(dropTargetId);
       const sortSetting = ["ship", "vehicle"].includes(this.actor.type) ? 'allowDragDropOfListsShip' : 'allowDragDropOfListsActor';
       if (dropTargetId !== "" && !targetItem?.getFlag('twodsix','untrainedSkill') && game.settings.get('twodsix', sortSetting) && !sameActor.getFlag('twodsix','untrainedSkill')) {
-        console.log(`Twodsix | Moved item ${itemData.name} to another position in the ITEM list`);
+        console.log(`Twodsix | Moved item ${dropedItem.name} to another position in the ITEM list`);
         //super._onDrop(event); //needed?
-        return !!await this._onSortItem(ev, itemData); //.toJSON()???
+        return !!await this._onSortItem(ev, dropedItem); //.toJSON()???
       } else {
         return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
       }
     }
-    return await (<TwodsixActor>this.actor).handleDroppedItem(itemData);
+    return await (<TwodsixActor>this.actor).handleDroppedItem(dropedItem);
   }
 
   _prepareItemContainers(context:any):void {

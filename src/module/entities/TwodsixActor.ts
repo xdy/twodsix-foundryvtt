@@ -938,24 +938,24 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Function to add a dropped skill to an actor
-   * @param {any} skillData    The skill document
+   * @param {TwodsixItem} skill    The skill document
    * @returns {Promise} A boolean promise of whether the drop was sucessful
    * @private
    */
-  private async _addDroppedSkills(skillData: any): Promise<boolean>{
+  private async _addDroppedSkills(skill: TwodsixItem): Promise<boolean>{
     // Handle item sorting within the same Actor SHOULD NEVER DO THIS
-    const sameActor = this.items.get(skillData._id);
+    const sameActor = this.items.get(skill._id);
     if (sameActor) {
-      console.log(`Twodsix | Moved Skill ${skillData.name} to another position in the skill list`);
+      console.log(`Twodsix | Moved Skill ${skill.name} to another position in the skill list`);
       //return this._onSortItem(event, sameActor);
       return false;
     }
 
     //Check for pre-existing skill by same name
-    const matching = this.items.find(it => it.name === skillData.name && it.type === "skills");
+    const matching = this.items.find(it => it.name === skill.name && it.type === "skills");
 
     if (matching) {
-      console.log(`Twodsix | Skill ${skillData.name} already on character ${this.name}.`);
+      console.log(`Twodsix | Skill ${skill.name} already on character ${this.name}.`);
       //Increase skill value
       let updateValue = matching.system.value + 1;
       if (game.settings.get('twodsix', 'hideUntrainedSkills') && updateValue < 0) {
@@ -965,7 +965,7 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    const addedSkill = (await this.createEmbeddedDocuments("Item", [foundry.utils.duplicate(skillData)]))[0];
+    const addedSkill = (await this.createEmbeddedDocuments("Item", [foundry.utils.duplicate(skill)]))[0];
     if (addedSkill.system.value < 0 || !addedSkill.system.value) {
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
         const skillValue = CONFIG.Item.dataModels.skills.schema.getInitialValue().value ?? -3;
@@ -980,7 +980,7 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Method to add a dropped item to an actor
-   * @param {TwodsixItem} item    The item document
+   * @param {TwodsixItem} item  The original item document
    * @returns {Promise} A boolean promise of whether the drop was sucessful
    * @private
    */
@@ -992,26 +992,24 @@ export default class TwodsixActor extends Actor {
       return false;
     }
 
-    const itemCopy = foundry.utils.duplicate(item); //VERY IMPORTANT MUST MUTATE A COPY - OTHERWISE ORIGINAL DOCUMENT IS INVALID
-
     let numberToMove = item.system?.quantity ?? 1;
-    const originalItem:TwodsixItem = await fromUuid(item.uuid);
+
     //Handle moving items from another actor if enabled by settings
-    if (originalItem?.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
+    if (item?.actor  && game.settings.get("twodsix", "transferDroppedItems")) {
       if (item.system.quantity > 1) {
         numberToMove = await getMoveNumber(item);
         if (numberToMove >= item.system.quantity) {
-          await originalItem.update({"system.equipped": "ship"});
+          await item.update({"system.equipped": "ship"});
           numberToMove = item.system.quantity;
-          await originalItem.delete();
+          await item.delete();
         } else if (numberToMove === 0) {
           return false;
         } else {
-          await originalItem.update({'system.quantity': (item.system.quantity - numberToMove)});
+          await item.update({'system.quantity': (item.system.quantity - numberToMove)});
         }
       } else if (item.system.quantity === 1) {
-        await originalItem.update({"system.equipped": "ship"});
-        await originalItem.delete();
+        await item.update({"system.equipped": "ship"});
+        await item.delete();
       } else {
         return false;
       }
@@ -1035,6 +1033,7 @@ export default class TwodsixActor extends Actor {
     }
 
     // Create the owned item
+    const itemCopy = foundry.utils.duplicate(item); //VERY IMPORTANT MUST MUTATE A COPY - OTHERWISE ORIGINAL DOCUMENT IS INVALID
     itemCopy.system.quantity = numberToMove;
     itemCopy.system.equipped = "backpack";
     if (Object.hasOwn(itemCopy, '_id')) {
@@ -1053,7 +1052,7 @@ export default class TwodsixActor extends Actor {
     }
 
     //Link an actor skill with names defined by item.associatedSkillName
-    itemCopy.system.skill = this.getBestSkill(item.system.associatedSkillName, false)?.id ?? this.getUntrainedSkill()?.id;
+    itemCopy.system.skill = this.getBestSkill(itemCopy.system.associatedSkillName, false)?.id ?? this.getUntrainedSkill()?.id;
 
     //Remove any attached consumables
     itemCopy.system.consumables = [];
@@ -1068,41 +1067,41 @@ export default class TwodsixActor extends Actor {
     return (!!addedItem);
   }
 
-  public async handleDroppedItem(itemData): Promise<boolean> {
-    if(!itemData) {
+  public async handleDroppedItem(droppedItem:TwodsixItem): Promise<boolean> {
+    if(!droppedItem) {
       return false;
     }
 
     switch (this.type) {
       case 'traveller':
-        if (itemData.type === 'skills') {
-          return await this._addDroppedSkills(itemData);
-        } else if (!["component", "ship_position"].includes(itemData.type)) {
-          return await this._addDroppedEquipment(itemData);
+        if (droppedItem.type === 'skills') {
+          return await this._addDroppedSkills(droppedItem);
+        } else if (!["component", "ship_position"].includes(droppedItem.type)) {
+          return await this._addDroppedEquipment(droppedItem);
         }
         break;
       case 'animal':
-        if (itemData.type === 'skills') {
-          return this._addDroppedSkills(itemData);
-        } else if (["weapon", "trait"].includes(itemData.type)) {
-          return await this._addDroppedEquipment(itemData);
+        if (droppedItem.type === 'skills') {
+          return this._addDroppedSkills(droppedItem);
+        } else if (["weapon", "trait"].includes(droppedItem.type)) {
+          return await this._addDroppedEquipment(droppedItem);
         }
         break;
       case 'robot':
-        if (itemData.type === 'skills') {
-          return await this._addDroppedSkills(itemData);
-        } else if (["weapon", "trait", "augment"].includes(itemData.type)) {
-          return await this._addDroppedEquipment(itemData);
+        if (droppedItem.type === 'skills') {
+          return await this._addDroppedSkills(droppedItem);
+        } else if (["weapon", "trait", "augment"].includes(droppedItem.type)) {
+          return await this._addDroppedEquipment(droppedItem);
         }
         break;
       case 'ship':
-        if (!TWODSIX.WeightlessItems.includes(itemData.type)) {
-          return await this._addDroppedEquipment(itemData);
+        if (!TWODSIX.WeightlessItems.includes(droppedItem.type)) {
+          return await this._addDroppedEquipment(droppedItem);
         }
         break;
       case 'vehicle':
-        if (itemData.type === "component") {
-          return await this._addDroppedEquipment(itemData);
+        if (droppedItem.type === "component") {
+          return await this._addDroppedEquipment(droppedItem);
         }
         break;
     }

@@ -74,26 +74,14 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       };
     }
 
-    const actor: TwodsixActor = <TwodsixActor>this.actor;
-    const untrainedSkill = actor.getUntrainedSkill();
-    if (untrainedSkill) {
-      context.untrainedSkill = untrainedSkill;
+    //Assign JOAT Value
+    if (context.untrainedSkill) {
       context.jackOfAllTrades = TwodsixTravellerSheet.untrainedToJoat(context.untrainedSkill.system.value);
-    } else {
-      //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
-      const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
-      if (existingSkill) {
-        context.untrainedSkill = existingSkill;
-        context.jackOfAllTrades = TwodsixTravellerSheet.untrainedToJoat(context.untrainedSkill.system.value);
-      } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
-      }
     }
 
     // Add relevant data from system settings
     Object.assign(context.settings, {
       ShowDoubleTap: game.settings.get('twodsix', 'ShowDoubleTap'),
-      showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
       showSkillCountsRanks: game.settings.get('twodsix', 'showSkillCountsRanks'),
       useNationality: game.settings.get('twodsix', 'useNationality'),
       showAllCharWithTable: game.settings.get('twodsix', 'showAllCharWithTable'),
@@ -103,7 +91,6 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCUAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CU.key,
       showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
-      Infinity: Infinity,
       showAttachmentsList: game.settings.get('twodsix', 'showAttachmentsList'),
       showConsumablesList: game.settings.get('twodsix', 'showConsumablesList')
     });
@@ -142,6 +129,10 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
     }
     this.element.querySelector(".joat-skill-input")?.addEventListener('input', this._updateJoatSkill.bind(this));
     this.element.querySelector(".joat-skill-input")?.addEventListener('blur', this._onJoatSkillBlur.bind(this));
+    //Set special class for FVTT window-content section so that it overlaps with header
+    if (this.constructor.name === '_TwodsixTravellerSheet') {
+      this.element.querySelector(".window-content").classList.add("overlap-header");
+    }
   }
 
   /**
@@ -323,7 +314,6 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 export class TwodsixNPCSheet extends TwodsixTravellerSheet {
   static DEFAULT_OPTIONS =  {
     classes: ["twodsix", "sheet", "npc-actor"],
-    //dragDrop: [{dragSelector: ".item", dropSelector: null}], //nt needed?
     position: {
       width: 830,
       height: 500

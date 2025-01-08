@@ -1,5 +1,9 @@
 <!---- LINKS ---->
-<div style="margin: 0 1ch;">{{> "systems/twodsix/templates/actors/parts/actor/actor-reference.html"}}</div>
+{{#if settings.showActorReferences}}
+  <div style="margin: 0 1ch;">
+    {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
+  </div>
+{{/if}}
 
 <!---- TRAITS ---->
 <div><span class="pusher"></span>

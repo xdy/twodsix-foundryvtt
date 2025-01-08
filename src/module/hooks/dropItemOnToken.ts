@@ -4,7 +4,7 @@
 //Liberally adapted from "hey-catch" by Mana#4176
 //import { Skills } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
-import { getItemDataFromDropData } from "../utils/sheetUtils";
+import { getItemFromDropData } from "../utils/sheetUtils";
 Hooks.on('dropCanvasData', (canvasObject, dropData) => {
   if ((dropData.type === 'damageItem' || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {
     catchDrop(canvasObject, dropData).then();
@@ -26,8 +26,8 @@ async function catchDrop(canvasObject: Canvas, dropData) {
       return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
     } else if (dropData.type === 'Item') {
       if (targetActor?.isOwner) {
-        const itemData = await getItemDataFromDropData(dropData);
-        return targetActor.handleDroppedItem(itemData);
+        const droppedItem = await getItemFromDropData(dropData);
+        return targetActor.handleDroppedItem(droppedItem);
       } else {
         ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
       }

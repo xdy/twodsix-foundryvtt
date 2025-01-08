@@ -6,7 +6,11 @@
       </div>
       <div class="vehicle-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
       </div>
-      {{> "systems/twodsix/templates/actors/parts/actor/actor-reference.html"}}
+      {{#if settings.showActorReferences}}
+        <div class = "centre">
+        {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
+        </div>
+      {{/if}}
     </div>
     <div class="vehicle-stats">
       <span class="item-title-vehicle">Stats</span>

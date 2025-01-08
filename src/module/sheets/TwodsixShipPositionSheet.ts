@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { TWODSIX } from "../config";
-import { getDataFromDropEvent, getItemDataFromDropData } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getItemFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
 import { Ship, ShipAction, ShipPosition, ShipPositionActorIds, Skills } from "../../types/template";
@@ -110,7 +110,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
   async _onDrop(event: DragEvent): Promise<boolean | any> {
     event.preventDefault();
     const dropData:any = getDataFromDropEvent(event);
-    const droppedObject:any = await getItemDataFromDropData(dropData);
+    const droppedObject:any = await getItemFromDropData(dropData);
     if (droppedObject.type === "skills") {
       await TwodsixShipPositionSheet.createActionFromSkill(this.item, droppedObject);
     } else if (["traveller", "robot"].includes(droppedObject.type)) {
