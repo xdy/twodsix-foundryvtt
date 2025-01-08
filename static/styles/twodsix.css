@@ -247,17 +247,11 @@ table tr:nth-child(even) {
 }
 .sheet nav.actor-sheet-tabs {
   height: 100%;
-  /* flex: 0 0 23px !important; */
   margin: 0 !important;
-  /* line-height: 2ch !important; */
-  /* bottom: 5% !important; */
-  /* margin-bottom: 1em; */
-  border: none !important;
   padding-bottom: 2px;
-  margin-left: 3%;
   padding-left: 2.5ch;
+  padding-right: 1ch;
   overflow: hidden;
-  /* top: 7px; */
   z-index: 10;
   width: 90%;
   flex-direction: row;
@@ -426,8 +420,8 @@ h2 {
   grid-template-columns: 35% 63%;
   /* gap: 1px; */
   position: absolute;
-  top: 4%;
-  height: 104%;
+  top: 5%;
+  height: 100%;
   /* left: 7%; */
   grid-template-areas:
     "character-photo top-row"
@@ -842,14 +836,15 @@ h2 {
 }
 
 .content-background {
-  top: 0;
+  /*top: 0;
   left: 0;
   position: absolute;
-  z-index: 0;
+  z-index: 0;*/
   object-fit: fill;
   width: 100%;
   overflow: hidden;
   height: 100%;
+  height: -webkit-fill-available;
   /* max-width: 99%; */
   aspect-ratio: auto;
 }
@@ -879,11 +874,11 @@ h2 {
   pointer-events: none;
   width: 37%;
   object-fit: cover;
-  height: 96%;
+  height: 94%;
   /* object-fit: contain; */
   overflow: hidden;
   top: 4%;
-  left: 0.7%;
+  left: 1%;
   aspect-ratio: auto;
 }
 
@@ -935,7 +930,7 @@ h2 {
   width: 3ch;
 }
 
-.condition-icon {
+img.condition-icon {
   height: auto;
   width: 3ch;
   background-color: var(--s2d6-background-opaque);
@@ -1508,7 +1503,7 @@ svg:hover {
   border: solid 2px var(--s2d6-default-color);
   flex-direction: column;
   justify-content: center;
-  min-height: 2ch;
+  max-height: 3ch;
   flex-grow: 1;
   flex-shrink: 1;
 }
@@ -4457,4 +4452,23 @@ table.ship-action-table, table.vehicle-stats-table {
 .with-buttons {
   display: flex;
   justify-content: center;
+}
+
+.overlap-header {
+  position: absolute;
+  width: 100%
+}
+
+.transparent-header {
+  padding: 1% 5% 0 5%;
+  --button-size: 3ch;
+  border: none;
+  background-color: var(--s2d6-background-transparent);
+}
+
+.transparent-header button.header-control {
+  border: none;
+  background: none;
+  flex: 0 0 2ch;
+  font-size: larger;
 }

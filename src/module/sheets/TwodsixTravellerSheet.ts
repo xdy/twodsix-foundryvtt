@@ -132,6 +132,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
     //Set special class for FVTT window-content section so that it overlaps with header
     if (this.constructor.name === '_TwodsixTravellerSheet') {
       this.element.querySelector(".window-content").classList.add("overlap-header");
+      this.element.querySelector(".window-header").classList.add("transparent-header");
     }
   }
 
