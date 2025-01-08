@@ -105,13 +105,15 @@ async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
 function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
   if (activeEffect.changes.length > 0) {
     for (const change of activeEffect.changes) {
-      if (change.key.includes('system.characteristics.strength.value')  ||
-          change.key.includes('system.characteristics.strength.current') ||
-          change.key.includes('system.characteristics.strength.mod') ||
-          (change.key.includes('system.characteristics.endurance.value') && ['CEATOM', "BARBARIC"].includes(game.settings.get('twodsix', 'ruleset'))) ||
-          change.key.includes('system.encumbrance.max') ||
-          change.key.includes('system.encumbrance.value')) {
-        return true;
+      if (change.key){
+        if (change.key.includes('system.characteristics.strength.value')  ||
+        change.key.includes('system.characteristics.strength.current') ||
+        change.key.includes('system.characteristics.strength.mod') ||
+        (change.key.includes('system.characteristics.endurance.value') && ['CEATOM', "BARBARIC"].includes(game.settings.get('twodsix', 'ruleset'))) ||
+        change.key.includes('system.encumbrance.max') ||
+        change.key.includes('system.encumbrance.value')) {
+          return true;
+        }
       }
     }
   }

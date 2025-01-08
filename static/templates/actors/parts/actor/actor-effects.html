@@ -6,7 +6,7 @@
       <div class="effect-source">{{localize "TWODSIX.ActiveEffects.Duration"}}</div>
       <div class="item-controls effect-controls flexrow centre">
           {{#if @root.editable}}
-            <a class="effect-control" data-controlAction="create" title="{{localize 'TWODSIX.ActiveEffects.CreateEffect'}}">
+            <a class="effect-control" data-controlaction="create" title="{{localize 'TWODSIX.ActiveEffects.CreateEffect'}}">
               <i class="fa-solid fa-circle-plus"></i> {{localize "TWODSIX.ActiveEffects.Add"}}
             </a>
           {{/if}}
@@ -23,14 +23,14 @@
           <div class="effect-duration">{{effect.duration.label}}</div>
           <div class="item-controls effect-controls flexrow">
               {{#if @root.editable}}
-              <a class="effect-control" data-controlAction="toggle" data-uuid="{{effect.uuid}}"
+              <a class="effect-control" data-controlaction="toggle" data-uuid="{{effect.uuid}}"
                   data-tooltip="{{#if effect.disabled}}{{localize 'TWODSIX.ActiveEffects.EffectEnable'}}{{else}}{{localize 'TWODSIX.ActiveEffects.EffectDisable'}}{{/if}}">
                   <i class="fa-solid {{#if effect.disabled}}fa-circle-check{{else}}fa-circle-xmark{{/if}}"></i>
               </a>
-              <a class="effect-control" data-controlAction="edit" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
+              <a class="effect-control" data-controlaction="edit" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
                   <i class="fa-solid fa-edit"></i>
               </a>
-              <a class="effect-control" data-controlAction="delete" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
+              <a class="effect-control" data-controlaction="delete" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
                   <i class="fa-solid fa-trash"></i>
               </a>
               {{/if}}

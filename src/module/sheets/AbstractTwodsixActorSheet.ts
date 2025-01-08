@@ -676,7 +676,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   //THIS NEEDS TO BE CHECKED LATER
   async _modifyEffect(ev:Event): Promise<void> {
     const target:HTMLElement = ev.currentTarget;
-    const action = target.dataset.controlAction;
+    const action = target.dataset.controlaction;
     if (action === "delete") {
       await this._onDeleteEffect(ev);
     } else if (action === "edit") {
