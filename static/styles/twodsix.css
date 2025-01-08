@@ -1925,6 +1925,7 @@ span.total-output {
 
 .tab.finances {
   overflow: auto;
+  height: 98%;
 }
 
 .finances-container {

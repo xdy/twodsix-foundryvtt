@@ -41,6 +41,20 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
     }
   };
 
+  static TABS = {
+    primary: {
+      tabs: [
+        {id: "skills"},
+        {id: "inventory"},
+        {id: "finances"},
+        {id: "info"},
+        {id: "effects"},
+        {id: "actorNotes"}
+      ],
+      initial: "skills"
+    }
+  };
+
   /** @inheritDoc */
   _initializeApplicationOptions(options) {
     const applicationOptions = super._initializeApplicationOptions(options);
