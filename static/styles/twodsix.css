@@ -2180,7 +2180,7 @@ span.total-output {
 .ship-mask-bg {
   top: 0;
   left: 0;
-  position: absolute;
+  /*position: absolute;*/
   /* z-index: -50000; */
   pointer-events: none;
   height: 100%;
@@ -4462,13 +4462,20 @@ table.ship-action-table, table.vehicle-stats-table {
 }
 
 .transparent-header {
-  padding: 1% 5% 0 5%;
+  margin: 1% 5% 0 5%;
   --button-size: 3ch;
   border: none;
   background-color: var(--s2d6-background-transparent);
 }
 
-.transparent-header button.header-control {
+.transparent-header-ship {
+  margin: 2% 4% 0 5%;
+  --button-size: 3ch;
+  border: none;
+  background-color: var(--s2d6-background-transparent);
+}
+
+.transparent-header button.header-control, .transparent-header-ship button.header-control {
   border: none;
   background: none;
   flex: 0 0 2ch;

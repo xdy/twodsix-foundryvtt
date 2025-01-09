@@ -1,7 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { TwodsixShipSheetData, TwodsixShipSheetSettings } from "../../types/twodsix";
 import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
 import { getDataFromDropEvent, getItemFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
@@ -10,11 +9,57 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
 import TwodsixItem, { onRollDamage } from "../entities/TwodsixItem";
 
-export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
+export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix", "ship", "actor"],
+    position: {
+      width: 944,
+      height: 820
+    },
+    window: {
+      resizable: true,
+      icon: "fa-solid fa-rocket"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    dragDrop: [
+      //{dropSelector: ".ship-positions-list", dragSelector: ".drag"}, UNKNOWN NEED
+      {dropSelector: ".ship-position-box", dragSelector: ".ship-position-actor-token"},
+      {dragSelector: ".item", dropSelector: null}
+    ],
+    actions: {
+
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/ship-sheet.html",
+      scrollable: [".ship-tabs-info", ".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"]
+    }
+  };
+
+  static TABS = {
+    primary: {
+      tabs: [
+        {id: "shipPositions"},
+        {id: "shipCrew"},
+        {id: "shipComponent"},
+        {id: "shipStorage"},
+        {id: "shipCargo"},
+        {id: "shipFinance"},
+        {id: "shipNotes"}
+      ],
+      initial: "shipPositions"
+    }
+  };
 
   /** @override */
-  async getData(): TwodsixShipSheetData {
-    const context = <TwodsixShipSheetData>super.getData();
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
     context.dtypes = ["String", "Number", "Boolean"];
     if ((<Ship>this.actor.system).shipPositionActorIds) {
       context.shipPositions = (<TwodsixActor>this.actor).itemTypes.ship_position.map((shipPosition: TwodsixItem) => {
@@ -38,18 +83,14 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
       context.shipPositions = [];
     }
 
-    context.settings = <TwodsixShipSheetSettings>{
+    Object.assign(context.settings, {
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
       showBandwidth: game.settings.get('twodsix', 'showBandwidth'),
-      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
-      useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       allowDragDropOfListsShip: game.settings.get('twodsix', 'allowDragDropOfListsShip'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
-      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive",
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
@@ -59,7 +100,7 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
                                 (game.settings.get('twodsix', 'showComponentRating') ? ` rating` : ` no-rating`) +
                                 (game.settings.get('twodsix', 'showComponentDM') ? ` dm`:` no-dm`) +
                                 (game.settings.get('twodsix', 'showCost') ? ` cost`:` no-cost`))
-    };
+    });
 
     if (context.settings.useProseMirror) {
       context.richText = {
@@ -72,24 +113,18 @@ export class TwodsixShipSheet extends AbstractTwodsixActorSheet {
     return context;
   }
 
-  static get defaultOptions():ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "ship", "actor"],
-      template: "systems/twodsix/templates/actors/ship-sheet.html",
-      width: 944,
-      height: 820,
-      resizable: true,
-      tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "ship-positions"}],
-      scrollY: [".ship-tabs-info", ".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes"],
-      dragDrop: [
-        //{dropSelector: ".ship-positions-list", dragSelector: ".drag"}, UNKNOWN NEED
-        {
-          dropSelector: ".ship-position-box",
-          dragSelector: ".ship-position-actor-token"
-        },
-        {dragSelector: ".item", dropSelector: null}
-      ]
-    });
+  async _onRender(context:Context, options:any): void {
+    await super._onRender(context, options);
+    // Everything below here is only needed if the sheet is editable
+    if (!context.editable) {
+      return;
+    }
+
+    //Set special class for FVTT window-content section so that it overlaps with header
+    if (this.constructor.name.replace("_", "") === 'TwodsixShipSheet') {
+      this.element.querySelector(".window-content").classList.add("overlap-header");
+      this.element.querySelector(".window-header").classList.add("transparent-header-ship");
+    }
   }
 
   async _executeAction(event: DragEvent): Promise<boolean | any> {
