@@ -69,13 +69,6 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   }
 
   /** @override */
-  static get defaultOptions(): ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      tabs: [{navSelector: ".actor-sheet-tabs", contentSelector: ".sheet-body", initial: "skills"}],
-    });
-  }
-
-  /** @override */
   async _prepareContext(options):any {
     const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
@@ -326,7 +319,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   }
 }
 
-export class TwodsixNPCSheet extends TwodsixTravellerSheet {
+export class TwodsixNPCSheet extends foundry.applications.api.HandlebarsApplicationMixin(TwodsixTravellerSheet) {
   static DEFAULT_OPTIONS =  {
     classes: ["twodsix", "sheet", "npc-actor"],
     position: {

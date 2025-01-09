@@ -125,6 +125,7 @@ input[type='search']::placeholder {
 input[type= 'checkbox'] {
   vertical-align: middle;
   align-self: center;
+  background: none;
 }
 
 label.checkbox > input[type="checkbox"] {
