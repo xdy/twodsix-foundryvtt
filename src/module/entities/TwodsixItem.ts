@@ -168,7 +168,7 @@ export default class TwodsixItem extends Item {
   public async addConsumable(consumableId:string, gear:Gear = <Gear>this.system):Promise<void> {
     if (gear.consumables != undefined) {
       if (gear.consumables.includes(consumableId)) {
-        console.error(`Twodsix | Consumable already exists for item ${this.id}`);
+        console.log(`Twodsix | Consumable already exists for item ${this.id}`);
       } else {
         await this.update({"system.consumables": gear.consumables.concat(consumableId)}, {});
       }

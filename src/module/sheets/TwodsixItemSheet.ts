@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet, onPasteStripFormatting } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getItemFromDropData, openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
+import { openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
 import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
@@ -475,12 +475,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     this.render();
   }
 
-  private static check(cond: boolean, err: string) {
-    if (cond) {
-      throw new Error(game.i18n.localize(`TWODSIX.Errors.${err}`));
-    }
-  }
-
   //These aren't necessary with change to prosemirror
   protected handleContentEditable(element:HTMLElement):void {
     element.querySelectorAll('div[contenteditable="true"][data-edit]')?.forEach(el => {
@@ -522,65 +516,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       };
       // Set data transfer
       event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-    }
-  }
-
-  /**
-   * Callback actions which occur when dropping.  TWODSIX Specific!
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
-   */
-  protected async _onDrop(event: DragEvent): Promise<boolean | any> {
-    event.preventDefault();
-    try {
-      const dropData = getDataFromDropEvent(event);
-      TwodsixItemSheet.check(!dropData, "DraggingSomething");
-      if (['html', 'pdf'].includes(dropData.type)){
-        if (dropData.href) {
-          await this.item.update({
-            "system.pdfReference.type": dropData.type,
-            "system.pdfReference.href": dropData.href,
-            "system.pdfReference.label": dropData.label
-          });
-        }
-      } else if (['JournalEntry', 'JournalEntryPage'].includes(dropData.type)) {
-        const journalEntry = await fromUuid(dropData.uuid);
-        if (journalEntry) {
-          await this.item.update({
-            "system.pdfReference.type": 'JournalEntry',
-            "system.pdfReference.href": dropData.uuid,
-            "system.pdfReference.label": journalEntry.name
-          });
-        }
-      } else if (dropData.type === 'Item'){
-        //This part handles just comsumables
-        TwodsixItemSheet.check(!this.item.isOwned, "OnlyOwnedItems");
-        TwodsixItemSheet.check(TWODSIX.WeightlessItems.includes(this.item.type), "TraitsandSkillsNoConsumables");
-
-        TwodsixItemSheet.check(dropData.type !== "Item", "OnlyDropItems");
-
-        const itemData = await getItemFromDropData(dropData);
-
-        TwodsixItemSheet.check(itemData.type !== "consumable", "OnlyDropConsumables");
-        TwodsixItemSheet.check(this.item.type === "consumable" && itemData.system.isAttachment, "CantDropAttachOnConsumables");
-
-        // If the dropped item has the same actor as the current item let's just use the same id.
-        let itemId: string;
-        if (this.item.actor?.items.get(itemData._id)) {
-          itemId = itemData._id;
-        } else {
-          const newItem = await this.item.actor?.createEmbeddedDocuments("Item", [foundry.utils.duplicate(itemData)]);
-          if (!newItem) {
-            throw new Error(`Somehow could not create item ${itemData}`);
-          }
-          itemId = newItem[0].id;
-        }
-        await (<TwodsixItem>this.item).addConsumable(itemId);
-      }
-      this.render();
-    } catch (err) {
-      console.error(`Twodsix drop error| ${err}`);
-      ui.notifications.error(err);
     }
   }
 }

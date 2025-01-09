@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { isDisplayableSkill } from "../utils/sheetUtils";
+import { TWODSIX } from "../config";
+import { getDataFromDropEvent, getItemFromDropData, isDisplayableSkill } from "../utils/sheetUtils";
 import { sortByItemName } from "../utils/utils";
 
 /**
@@ -9,14 +10,23 @@ import { sortByItemName } from "../utils/utils";
  */
 export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ItemSheetV2) {
-  constructor(options = {}) {
-    super(options);
-    this.#dragDrop = this.#createDragDropHandlers();
-  }
 
   public async _onRender(context:any, options: any):void {
     await super._onRender(context, options);
-    this.#dragDrop.forEach((d) => d.bind(this.element));
+    //need to create DragDrop listener as none in core
+    if (game.user.isOwner && this.options.dragDrop) {
+      (<object[]>this.options.dragDrop).forEach( (selector:{dragSelector: string, dropSelector:string}) => {
+        new DragDrop({
+          dragSelector: selector.dragSelector,
+          dropSelector: selector.dropSelector,
+          callbacks: {
+            dragstart: this._onDragStart.bind(this),
+            dragover: this._onDragOver.bind(this),
+            drop: this._onDrop.bind(this)
+          }
+        }).bind(this.element);
+      });
+    }
   }
 
   async _prepareContext(options):any {
@@ -41,43 +51,11 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
    *
    * Drag Drop Handling
    *
-   * Code mainly from https://github.com/MetaMorphic-Digital/draw-steel/blob/main/src/module/apps/item-sheet.mjs
-   * and Foundry Wiki
+   * Code mainly from core
    *******************/
 
-  /**
-   * Create drag-and-drop workflow handlers for this Application
-   * @returns {DragDrop[]}     An array of DragDrop handlers
-   * @private
-   */
-  #createDragDropHandlers(): DragDrop[] {
-    return this.options.dragDrop.map((d) => {
-      d.permissions = {
-        dragstart: this._canDragStart.bind(this),
-        drop: this._canDragDrop.bind(this),
-      };
-      d.callbacks = {
-        dragstart: this._onDragStart.bind(this),
-        dragover: this._onDragOver.bind(this),
-        drop: this._onDrop.bind(this),
-      };
-      return new DragDrop(d);
-    });
-  }
 
   /** The following pieces set up drag handling and are unlikely to need modification  */
-
-  /**
-   * Returns an array of DragDrop instances
-   * @type {DragDrop[]}
-   */
-  get dragDrop() {
-    return this.#dragDrop;
-  }
-
-  // This is marked as private because there's no real need
-  // for subclasses or external hooks to mess with it directly
-  #dragDrop;
 
   /** @override */
   _canDragDrop(/*selector*/) {
@@ -97,26 +75,110 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
   }
 
   /**
-   * Callback actions which occur at the beginning of a drag start workflow.
-   * @param {DragEvent} event       The originating DragEvent
+   * An event that occurs when a drag workflow begins for a draggable item on the sheet.
+   * @param {DragEvent} event       The initiating drag start event
+   * @returns {Promise<void>}
    * @protected
    */
-  _onDragStart(/*event: Event*/) {}
+  _onDragStart(ev:DragEvent):void {
+    const li = ev.currentTarget.closest('.item');
+    if (li?.dataset) {
+      if ( "link" in event.target.dataset ) {
+        return;
+      }
+      let dragData:any;
+
+      // Owned Items
+      if ( li.dataset.itemId ) {
+        const item = this.actor.items.get(li.dataset.itemId);
+        dragData = item.toDragData();
+      }
+
+      // Active Effect
+      if ( li.dataset.effectId ) {
+        const effect = this.actor.effects.get(li.dataset.effectId);
+        dragData = effect.toDragData();
+      }
+
+      // Set data transfer
+      if ( !dragData ) {
+        return;
+      }
+      event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+    }
+  }
 
   /**
-   * Callback actions which occur when a dragged element is over a drop target.
-   * @param {DragEvent} event       The originating DragEvent
+   * An event that occurs when a drag workflow moves over a drop target.
+   * @param {DragEvent} event
    * @protected
    */
-  _onDragOver(/*event: Event*/) {}
+  _onDragOver(/*ev:DragEvent*/) {
+  }
 
   /**
-   * Callback actions which occur when a dragged element is dropped on a target.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
+   * Callback actions which occur when dropping.  TWODSIX Specific!
+   * @param {DragEvent} ev The originating DragEvent
    */
-  async _onDrop(/*event*/) {}
+  async _onDrop(ev: DragEvent): Promise<boolean | any> {
+    ev.preventDefault();
+    try {
+      const dropData = getDataFromDropEvent(ev);
+      this.check(!dropData, "DraggingSomething");
+      if (['html', 'pdf'].includes(dropData.type)){
+        if (dropData.href) {
+          await this.item.update({
+            "system.pdfReference.type": dropData.type,
+            "system.pdfReference.href": dropData.href,
+            "system.pdfReference.label": dropData.label
+          });
+        }
+      } else if (['JournalEntry', 'JournalEntryPage'].includes(dropData.type)) {
+        const journalEntry = await fromUuid(dropData.uuid);
+        if (journalEntry) {
+          await this.item.update({
+            "system.pdfReference.type": 'JournalEntry',
+            "system.pdfReference.href": dropData.uuid,
+            "system.pdfReference.label": journalEntry.name
+          });
+        }
+      } else if (dropData.type === 'Item'){
+        //This part handles just comsumables
+        this.check(!this.item.isOwned, "OnlyOwnedItems");
+        this.check(TWODSIX.WeightlessItems.includes(this.item.type), "TraitsandSkillsNoConsumables");
 
+        this.check(dropData.type !== "Item", "OnlyDropItems");
+
+        const itemData = await getItemFromDropData(dropData);
+
+        this.check(itemData.type !== "consumable", "OnlyDropConsumables");
+        this.check(this.item.type === "consumable" && itemData.system.isAttachment, "CantDropAttachOnConsumables");
+
+        // If the dropped item has the same actor as the current item let's just use the same id.
+        let itemId: string;
+        if (this.item.actor?.items.get(itemData._id)) {
+          itemId = itemData._id;
+        } else {
+          const newItem = await (<TwodsixActor>this.item.actor)?.createEmbeddedDocuments("Item", [foundry.utils.duplicate(itemData)]);
+          if (!newItem) {
+            throw new Error(`Somehow could not create item ${itemData}`);
+          }
+          itemId = newItem[0].id;
+        }
+        await (<TwodsixItem>this.item).addConsumable(itemId);
+      }
+      this.render();
+    } catch (err) {
+      console.error(`Twodsix drop error| ${err}`);
+      ui.notifications.error(err);
+    }
+  }
+
+  private check(cond: boolean, err: string) {
+    if (cond) {
+      throw new Error(game.i18n.localize(`TWODSIX.Errors.${err}`));
+    }
+  }
 }
 
 export function onPasteStripFormatting(event): void {
