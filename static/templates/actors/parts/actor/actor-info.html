@@ -118,7 +118,9 @@
   <div class="char-xp">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.XP"}}</span>
       {{#if settings.useProseMirror}}
-        {{editor richText.xpNotes target="system.xpNotes" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
+        <prose-mirror name="system.xpNotes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.xpNotes}}" collaborate="true" toggled="true">
+          {{{richText.xpNotes}}}
+        </prose-mirror>
       {{else}}
         <div contenteditable="true" data-edit="system.xpNotes">{{{system.xpNotes}}}</div>
       {{/if}}
@@ -131,7 +133,9 @@
   <div class="char-description">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.DESCRIPTION"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.description target="system.description" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
+      <prose-mirror name="system.description" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+        {{{richText.description}}}
+      </prose-mirror>
     {{else}}
       <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
     {{/if}}
@@ -139,7 +143,9 @@
   <div class="char-contacts">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.CONTACTS"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.contacts target="system.contacts" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
+      <prose-mirror name="system.contacts" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.contacts}}" collaborate="true" toggled="true">
+        {{{richText.contacts}}}
+      </prose-mirror>
     {{else}}
       <div contenteditable="true" data-edit="system.contacts">{{{system.contacts}}}</div>
     {{/if}}
@@ -147,7 +153,9 @@
   <div class="char-bio">
     <span class="item-title">{{localize "TWODSIX.Actor.Info.BIOGRAPHY"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.bio target="system.bio" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
+      <prose-mirror name="system.bio" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.bio}}" collaborate="true" toggled="true">
+        {{{richText.bio}}}
+      </prose-mirror>
     {{else}}
       <div contenteditable="true" data-edit="system.bio">{{{system.bio}}}</div>
     {{/if}}
