@@ -484,41 +484,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       el.addEventListener('paste', onPasteStripFormatting.bind(this));
     });
   }
-
-  /**************
-   *
-   * Drag Drop Overrides
-   *
-   **************/
-
-  /** @override */
-  _canDragDrop(/*selector*/) {
-    return this.isEditable && this.item.isOwner;
-  }
-
-  /**
-   * Callback actions which occur at the beginning of a drag start workflow.
-   * @param {DragEvent} event       The originating DragEvent
-   * @protected
-   */
-  _onDragStart(event: DragEvent):void {
-    if ('link' in event.target.dataset) {
-      return;
-    }
-
-    // Extract the data you need
-    const consumableId = event.currentTarget.closest(".consumable").dataset.consumableId;
-    const draggedConsumable = this.item.actor?.items.get(consumableId);
-    if (draggedConsumable) {
-      const dragData = {
-        type: "Item",
-        uuid: draggedConsumable.uuid
-      };
-      // Set data transfer
-      event.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-    }
-  }
 }
+
 /**
  * Function to return font awesome icon as string based on item type
  * @param {string} type item type

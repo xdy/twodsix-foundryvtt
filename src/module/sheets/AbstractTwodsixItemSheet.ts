@@ -51,7 +51,6 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
    *
    * Drag Drop Handling
    *
-   * Code mainly from core
    *******************/
 
 
@@ -59,58 +58,35 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
 
   /** @override */
   _canDragDrop(/*selector*/) {
-    //console.log("got to drop check", selector);
-    return this.isEditable;
+    return this.isEditable && this.item.isOwner;
   }
 
   /**
-   * Define whether a user is able to begin a dragstart workflow for a given drag selector
-   * @param {string} selector       The candidate HTML selector for dragging
-   * @returns {boolean}             Can the current user drag this selector?
+   * Callback actions which occur at the beginning of a drag start workflow.
+   * @param {DragEvent} ev       The originating DragEvent
    * @protected
    */
-  _canDragStart(/*selector*/) {
-    //console.log("got to start", selector);
-    return this.isEditable;
-  }
+  _onDragStart(ev: DragEvent):void {
+    if ('link' in ev.target.dataset) {
+      return;
+    }
 
-  /**
-   * An event that occurs when a drag workflow begins for a draggable item on the sheet.
-   * @param {DragEvent} event       The initiating drag start event
-   * @returns {Promise<void>}
-   * @protected
-   */
-  _onDragStart(ev:DragEvent):void {
-    const li = ev.currentTarget.closest('.item');
-    if (li?.dataset) {
-      if ( "link" in event.target.dataset ) {
-        return;
-      }
-      let dragData:any;
-
-      // Owned Items
-      if ( li.dataset.itemId ) {
-        const item = this.actor.items.get(li.dataset.itemId);
-        dragData = item.toDragData();
-      }
-
-      // Active Effect
-      if ( li.dataset.effectId ) {
-        const effect = this.actor.effects.get(li.dataset.effectId);
-        dragData = effect.toDragData();
-      }
-
+    // Extract the data you need
+    const consumableId = ev.currentTarget.closest(".consumable").dataset.consumableId;
+    const draggedConsumable = this.item.actor?.items.get(consumableId);
+    if (draggedConsumable) {
+      const dragData = {
+        type: "Item",
+        uuid: draggedConsumable.uuid
+      };
       // Set data transfer
-      if ( !dragData ) {
-        return;
-      }
-      event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+      ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
     }
   }
 
   /**
    * An event that occurs when a drag workflow moves over a drop target.
-   * @param {DragEvent} event
+   * @param {DragEvent} ev
    * @protected
    */
   _onDragOver(/*ev:DragEvent*/) {
