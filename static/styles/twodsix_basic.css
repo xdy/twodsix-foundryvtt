@@ -3372,7 +3372,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 .battle-content-container {
   display: grid;
   grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 15ch 19ch 0.34fr 0.34fr;
+  grid-template-rows: 18ch 23ch 15ch 16ch;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"
@@ -3609,4 +3609,8 @@ table.ship-action-table, table.vehicle-stats-table {
   border-width: 1px 0;
   border-color: var(--s2d6-background-opaque);
   border-style: solid;
+}
+
+input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], input[type="file"], select {
+  max-height: 3ch;
 }

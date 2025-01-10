@@ -20,9 +20,6 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
       submitOnChange: true,
       submitOnClose: true
     },
-    dragDrop: [
-      {dragSelector: ".item", dropSelector: null}
-    ],
     actions: {
       positionClick: this._onPositionClick
     },
@@ -35,6 +32,13 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
       scrollable: ["battle-content-container"]
     }
   };
+
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    const applicationOptions = super._initializeApplicationOptions(options);
+    applicationOptions.dragDrop = [{dragSelector: ".item", dropSelector: null}];
+    return applicationOptions;
+  }
 
   /** @override */
   async _prepareContext(options):any {
