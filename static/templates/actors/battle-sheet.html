@@ -47,10 +47,10 @@
                 <li class="battle-damage">
                   <span class="item-name"><i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i> {{item.name}}</span>
                   <span class="item-name centre">{{#if item.system.hardened}}<i class="fa-solid fa-gem"></i>{{else}}&mdash;{{/if}}</span>
-                  <span class="item-name centre">{{item.system.hits}}
+                  <span class="item-name centre with-buttons">{{item.system.hits}}
                     <span class="combined-buttons" data-field="hits">
-                      <button type="button" class="left-button adjust-counter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
-                      <button type="button" class="right-button adjust-counter" {{#iff item.system.hits "===" ../settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
+                      <button type="button" class="left-button adjust-counter" data-action="adjustCounter" {{#iff item.system.hits "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
+                      <button type="button" class="right-button adjust-counter" data-action="adjustCounter" {{#iff item.system.hits "===" ../settings.maxComponentHits}}disabled{{/iff}} data-value="1" >+</button>
                     </span>
                   </span>
                   <span class="item-name centre" >
@@ -184,7 +184,7 @@
               <div class="grid-columns-single-row item" data-item-id="{{position.id}}">
                 <ol class="ol-no-indent">
                   <li class="battle-positions">
-                    <a class="item-name position-name">{{position.name}}</a>
+                    <a class="item-name position-name" data-action="positionClick">{{position.name}}</a>
                     <select name="selectedActor">{{selectOptions position.actors selected = position.defaultActor}}</select>
                     <select name="selectedAction">{{selectOptions position.actions selected = position.defaultAction}}</select>
                     <span class="item-controls centre">
