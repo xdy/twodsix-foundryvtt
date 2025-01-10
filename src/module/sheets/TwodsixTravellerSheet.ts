@@ -9,6 +9,7 @@ import TwodsixItem  from "../entities/TwodsixItem";
 
 export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS =  {
+    id: "TwodsixTravellerSheet",
     classes: ["twodsix", "sheet", "actor"],
     position: {
       width: 900,
@@ -58,7 +59,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   /** @inheritDoc */
   _initializeApplicationOptions(options) {
     const applicationOptions = super._initializeApplicationOptions(options);
-    if (this.constructor.name !== 'TwodsixNPCSheet') {
+    if (applicationOptions.id !== 'TwodsixNPCSheet') {
       applicationOptions.position.width = game.settings.get('twodsix', 'defaultActorSheetWidth');
       applicationOptions.position.height = game.settings.get('twodsix', 'defaultActorSheetHeight');
       applicationOptions.dragDrop = [{dragSelector: ".item", dropSelector: null}];
@@ -137,7 +138,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
     this.element.querySelector(".joat-skill-input")?.addEventListener('input', this._updateJoatSkill.bind(this));
     this.element.querySelector(".joat-skill-input")?.addEventListener('blur', this._onJoatSkillBlur.bind(this));
     //Set special class for FVTT window-content section so that it overlaps with header
-    if (this.constructor.name.replace("_", "") === 'TwodsixTravellerSheet') {
+    if (this.options.id === 'TwodsixTravellerSheet') {
       this.element.querySelector(".window-content").classList.add("overlap-header");
       this.element.querySelector(".window-header").classList.add("transparent-header");
     }
@@ -321,6 +322,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 
 export class TwodsixNPCSheet extends foundry.applications.api.HandlebarsApplicationMixin(TwodsixTravellerSheet) {
   static DEFAULT_OPTIONS =  {
+    id: "TwodsixNPCSheet",
     classes: ["twodsix", "sheet", "npc-actor"],
     position: {
       width: 830,

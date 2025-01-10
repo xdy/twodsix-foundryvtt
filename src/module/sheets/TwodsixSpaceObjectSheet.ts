@@ -11,6 +11,7 @@ import { getDamageTypes } from "../utils/sheetUtils";
 export class TwodsixSpaceObjectSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   /** @override */
   static DEFAULT_OPTIONS =  {
+    id: "TwodsixSpaceObjectSheet",
     classes: ["twodsix", "space-object", "actor"],
     dragDrop: [{dragSelector: ".item", dropSelector: null}],
     position: {

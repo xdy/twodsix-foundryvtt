@@ -70,7 +70,7 @@ Hooks.once('init', async function () {
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
-  //Actors.unregisterSheet('core', ActorSheet);
+  Actors.unregisterSheet('core', ActorSheet);
   Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
 
   Actors.registerSheet('twodsix', TwodsixTravellerSheet, {

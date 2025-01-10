@@ -6,6 +6,7 @@ import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
   static DEFAULT_OPTIONS =  {
+    id: "TwodsixRobotSheet",
     classes: ["twodsix", "sheet", "robot-actor"],
     dragDrop: [{dragSelector: ".item-name", dropSelector: null}],
     position: {
