@@ -57,6 +57,7 @@
   --s2d6-damage-orange: rgba(255, 153, 0, 1);
   --s2d6-pie-color: var(--s2d6-default-color);
   --s2d6-pie-background-color: var(--s2d6-background-opaque);
+  --color-text-hyperlink: var(--s2d6-damage-orange);
 }
 
 body {
@@ -2231,7 +2232,7 @@ span.total-output {
   border-bottom: 2px solid var(--s2d6-default-color);
   z-index: 2;
   font-size: 2.5ch;
-  padding: 3px 2px 0px 4px;
+  padding: 5px 2px 0px 4px;
   width: 95%;
   overflow: hidden;
 }
@@ -2622,34 +2623,30 @@ input.power-current, input.power-total  {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
+  width: 100%;
   width: -webkit-fill-available;
-  /* display: flex; */
-  /* margin-left: 38%; */
+  margin-left: -25%;
   margin-right: 7%;
-  /* margin-top: -49px; */
-  /* z-index: 109; */
   height: 100%;
   grid-area: ship-tabs;
-  /* position: absolute; */
-  align-content: center;
 }
 
-
-a.ship-crew-tab:hover, a.ship-positions-tab:hover {
-  color: var(--s2d6-item-hover);
+a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
+  height: 100%;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-component-tab:hover, a.ship-notes-tab:hover {
-  /*background-image: url(../assets/ship/ship-tabs-hover.svg);*/
+a.ship-crew-tab:hover, a.ship-positions-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-component-tab:hover, a.ship-notes-tab:hover {
   color: var(--s2d6-item-hover);
 }
 
 a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active, a.ship-cargo-tab.active, a.ship-finance-tab.active, a.ship-component-tab.active, a.ship-notes-tab.active  {
-  /*background-image: url(../assets/ship/ship-tabs-active.svg);*/
   color: var(--s2d6-item-active);
   text-shadow: none !important; /*necessary*/
   background-color: var(--s2d6-default-color);
-  /* height: -webkit-fill-available; */
   padding: 2ch 1ch;
 }
 
@@ -3096,7 +3093,6 @@ a:hover {
 
 .item-link {
   display: inline-flex;
-  margin: 1rem 0;
   gap: 2ch;
   align-items: center;
 }

@@ -23,8 +23,8 @@
         {{/unless}}
         {{#iff actor.system.deckPlan "!==" ""}}
           <div class="battle-deckplan">
-            <a class="ship-deck-link" rel="bookmark">{{localize "TWODSIX.Ship.Deckplan"}}</a>
-            <a class="item-control ship-deck-unlink" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+            <a class="ship-deck-link" rel="bookmark" data-action="selectDeckplan">{{localize "TWODSIX.Ship.Deckplan"}}</a>
+            <a class="item-control ship-deck-unlink" data-action="deleteDeckplan" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
           </div>
         {{/iff}}
       </div>

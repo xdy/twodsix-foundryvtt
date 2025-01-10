@@ -1,4 +1,3 @@
-{{log this}}
 <section class="{{cssClass}} flexcol" autocomplete="off">
   {{#unless settings.useFoundryStandardStyle}}
     {{> "systems/twodsix/templates/actors/parts/ship/interface-overlay-2.html"}}
@@ -13,8 +12,8 @@
         {{> "systems/twodsix/templates/actors/parts/ship/ship-status.html"}}
       {{/if}}
       {{#iff actor.system.deckPlan "!==" ""}}
-        <a class="ship-deck-link" rel="bookmark">{{localize "TWODSIX.Ship.Deckplan"}}</a>
-        <a class="item-control ship-deck-unlink" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+        <a class="ship-deck-link" rel="bookmark" data-action="selectDeckplan">{{localize "TWODSIX.Ship.Deckplan"}}</a>
+        <a class="item-control ship-deck-unlink" data-action="deleteDeckplan" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
       {{/iff}}
     </div>
 

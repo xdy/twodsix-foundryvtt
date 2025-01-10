@@ -1,4 +1,4 @@
-<span class="component-toggle" data-type="status">
+<span class="component-toggle" data-type="status" data-action="toggleComponent">
   {{#iff item.system.status "===" 'operational'}} <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
   {{else}}
     {{#iff item.system.status "===" 'damaged'}} <i class="fa-solid fa-circle-exclamation" style="color: yellow;" data-tooltip='{{localize "TWODSIX.Items.Component.damaged"}}'></i>

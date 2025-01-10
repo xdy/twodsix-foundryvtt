@@ -4,7 +4,7 @@
       {{#iff item.system.actorLink "===" ""}}
         <span class="item-name">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</span>
       {{else}}
-        <a class="item-link orange" data-uuid="{{item.system.actorLink}}">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</a>
+        <a class="item-link orange" data-action="itemLink" data-uuid="{{item.system.actorLink}}">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</a>
       {{/iff}}
       {{#iff item.system.subtype "===" "armament"}}
         {{> "systems/twodsix/templates/actors/parts/common/armament-qty.html"}}
