@@ -84,7 +84,7 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
   static _onPositionClick(ev: Event, target:HTMLElement) {
     if (target !== null) {
       const li = target.closest(".item");
-      const selectedPositionId = li.dataset.itemId;
+      const selectedPositionId = li?.dataset.itemId;
       let selectedActorId = "";
       let selectedActionId = "";
       if (selectedPositionId) {
