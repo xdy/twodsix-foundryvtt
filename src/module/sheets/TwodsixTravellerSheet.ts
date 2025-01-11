@@ -82,11 +82,6 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       };
     }
 
-    //Assign JOAT Value
-    if (context.untrainedSkill) {
-      context.jackOfAllTrades = TwodsixTravellerSheet.untrainedToJoat(context.untrainedSkill.system.value);
-    }
-
     // Add relevant data from system settings
     Object.assign(context.settings, {
       ShowDoubleTap: game.settings.get('twodsix', 'ShowDoubleTap'),
@@ -151,7 +146,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
    */
   private async _updateJoatSkill(ev:Event): Promise<void> {
     const joatValue = parseInt(ev.currentTarget.value, 10);
-    const skillValue = TwodsixTravellerSheet.joatToUntrained(joatValue);
+    const skillValue = AbstractTwodsixActorSheet.joatToUntrained(joatValue);
 
     if (!isNaN(joatValue) && joatValue >= 0 && skillValue <= 0) {
       const untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
@@ -169,23 +164,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   private async _onJoatSkillBlur(ev:Event): Promise<void> {
     if (isNaN(parseInt(ev.currentTarget.value, 10))) {
       const skillValue = (<Skills>(<TwodsixActor>this.actor).getUntrainedSkill().system).value;
-      ev.currentTarget.value = TwodsixTravellerSheet.untrainedToJoat(skillValue);
-    }
-  }
-
-  private static untrainedToJoat(skillValue: number): number {
-    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
-      return skillValue >= 0 ? 1 : 0;
-    } else {
-      return skillValue - CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
-    }
-  }
-
-  private static joatToUntrained(joatValue: number): number {
-    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
-      return joatValue > 0 ? 0 : CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
-    } else {
-      return joatValue + CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+      ev.currentTarget.value = AbstractTwodsixActorSheet.untrainedToJoat(skillValue);
     }
   }
 

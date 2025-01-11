@@ -492,6 +492,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     context.container.skillsList = skillsList;
     context.container.skillGroups = sortObj(skillGroups);
     if (["traveller"].includes(actor.type)) {
+      //Assign JOAT Value
+      context.jackOfAllTrades = context.untrainedSkill ? AbstractTwodsixActorSheet.untrainedToJoat(context.untrainedSkill.system.value) : 0;
       context.numberOfSkills = numberOfSkills + (context.jackOfAllTrades > 0 ? 1 : 0);
       context.numberListedSkills = numberOfSkills;
       context.skillRanks = skillRanks + context.jackOfAllTrades;
@@ -502,6 +504,22 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
     context.effects = Array.from(actor.allApplicableEffects());
+  }
+
+  public static untrainedToJoat(skillValue: number): number {
+    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
+      return skillValue >= 0 ? 1 : 0;
+    } else {
+      return skillValue - CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+    }
+  }
+
+  public static joatToUntrained(joatValue: number): number {
+    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
+      return joatValue > 0 ? 0 : CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+    } else {
+      return joatValue + CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+    }
   }
 
   /**
