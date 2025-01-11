@@ -1252,8 +1252,8 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-top-row {
   display: flex;
-  /* flex-direction: row-reverse; */
-  margin-left: 31em;
+  flex-direction: row-reverse;
+  margin-right: 3%;
 }
 
 .add-skill {
@@ -2211,7 +2211,8 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-position-actor-token, .ship-position-action {
-  background-color: var(--color-text-dark-inactive);
+  background-color: var(--s2d6-background-nearly-transparent);
+  border: 1px solid var(--s2d6-default-color);
 }
 
 /*.crew-list, .ship-positions-list {
