@@ -26,6 +26,7 @@
   --s2d6-input-background: rgba(0, 0, 0, 0.05);
   --s2d6-pie-color: var(--s2d6-background-opaque);
   --s2d6-pie-background-color: var(--s2d6-background-transparent);
+  --s2d6-default-color: rgba(0, 0, 0, 1);
 }
 
 input[type= 'checkbox'] {
@@ -85,19 +86,13 @@ label.checkbox > input[type="checkbox"] {
 .content-container {
   display: grid;
   grid-template-columns: 35% 63%;
-  /* gap: 1px; */
-  position: absolute;
-  top: 4ch;
-  height: calc(100% - 4ch);
-  /* left: 7%; */
+  height: 100%;
   grid-template-areas:
     "character-photo top-row"
     "character-photo character-tabs"
     "character-name character-tabs"
     "character-bgi character-tabs"
     "character-characteristics character-tabs";
-  /* flex-direction: row; */
-  /* flex-wrap: nowrap; */
   justify-content: space-between;
   grid-template-rows: 6% 39% 4.6% 23.2% 27.2%;
   width: 99%;
@@ -107,7 +102,8 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-content-container {
   display: grid;
-  grid-template-columns: 15em 22em 0.9fr;
+  height: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 20em 1fr 1fr;
   gap: 16px;
   position: relative;
@@ -119,6 +115,7 @@ label.checkbox > input[type="checkbox"] {
 
 .npc-content-container-spells {
   display: grid;
+  height: 100%;
   grid-template-columns: 15em 21em 18em;
   grid-template-rows: 20em 1fr 1fr;
   gap: 16px;
@@ -206,11 +203,11 @@ label.checkbox > input[type="checkbox"] {
 
 .animal-content-container {
   display: grid;
+  height: 100%;
   grid-template-columns: 25% 46% 25%;
   grid-template-rows: 60% 15% 15%;
   gap: 16px;
   position: relative;
-  height: 100%;
   grid-template-areas:
     "npc-name-photo npc-bgi-stats npc-notes-container"
     "npc-skills npc-skills npc-traits"
@@ -219,6 +216,7 @@ label.checkbox > input[type="checkbox"] {
 
 .animal-content-container-small {
   display: grid;
+  height: 100%;
   grid-template-columns: 15em 24em 18em;
   grid-template-rows: 14em 9em 0.5fr 0.5fr;
   gap: 16px;
@@ -232,8 +230,9 @@ label.checkbox > input[type="checkbox"] {
 
 .robot-content-container {
   display: grid;
+  height: 100%;
   grid-template-columns: 15em 22em 18em;
-  grid-template-rows: 22em 1fr 1fr 1fr;
+  grid-template-rows: 21em 1fr 1fr 1fr;
   gap: 12px;
   position: relative;
   grid-template-areas:
@@ -286,6 +285,7 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-content-container {
   display: grid;
+  height: 100%;
   grid-template-columns: 19em 19em 17em;
   grid-template-rows: 17em 17em 5em 9fr;
   gap: 12px;
@@ -515,18 +515,14 @@ img.character-info-mask {
 }
 
 .character-photo {
-  /* margin-top: 2.15em; */
-  /* margin-left: 20px; */
-  /* position: relative; */
-  /* width: 260px; */
-  /* height: 280px; */
   z-index: 0;
   border: 2px solid;
   border-color: inherit;
   border-radius: 1ch 1ch 0 0;
-  text-align: center;
   object-fit: contain;
   grid-area: character-photo;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .character-photo img {
@@ -542,8 +538,8 @@ img.character-info-mask {
 
 .status-icons {
   position: absolute;
-  left: 1.5em;
-  top: 1.5em;
+  left: 2em;
+  top: 5em;
   z-index: 1;
   flex-direction: column;
   display: flex;
@@ -842,12 +838,12 @@ span.bgi-charEdit {
 
 .stat-table {
   font-size: 1.5ch;
-  /* max-width: 95%; */
-  /* max-height: 90%; */
-  padding-left: 1ch;
+  margin-left: 1ch;
+  margin-top: 1ch;
   grid-area: character-characteristics;
   overflow: auto;
 }
+
 .stat-table-npc {
   font-size: smaller;
   /* max-width: 100%; */
@@ -1061,7 +1057,7 @@ svg:hover {
 }
 
 .sheet nav.actor-sheet-tabs{
-  height: auto !important;
+  /*height: auto !important;*/
   /* line-height: 100%; */
   text-align: center;
   /* position: static; */
@@ -1257,7 +1253,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .skill-top-row {
   display: flex;
   /* flex-direction: row-reverse; */
-  margin-left: 33.7em;
+  margin-left: 31em;
 }
 
 .add-skill {
@@ -1656,7 +1652,7 @@ span.total-output {
 /*----------- Ship Sheet ---------*/
 
 .ship-container {
-  position: absolute;
+  height: 100%;
   display: grid;
   grid-template-columns:  51% 49%;
   grid-template-rows: 5ch 20% 14% 8% 51%;
@@ -1687,6 +1683,8 @@ img.ship-mask-bg {
   border-radius: 15px;
   text-align: center;
   background-color: var(--s2d6-input-background);
+  display: inline-flex;
+  justify-content: center;
 }
 
 .ship-image img{
@@ -1735,6 +1733,7 @@ img.ship-mask-bg {
   border-radius: 15px;
   overflow: hidden;
   width: 99%;
+  font-size: small;
 }
 
 .ship-info li {
@@ -1771,10 +1770,11 @@ img.ship-mask-bg {
 }
 
 .overdrive-mode input[type="checkbox"] {
-  width: 13px;
+  /*width: 13px;
   height: 13px;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: middle;*/
+  border: none;
 }
 
 .fuel-bar {
@@ -1840,6 +1840,7 @@ img.ship-mask-bg {
   width: 90%;
   font-family: inherit;
   scrollbar-width: thin;
+  color: var(--s2d6-default-color);
 }
 
 .ship-hull {
@@ -1904,7 +1905,7 @@ img.ship-mask-bg {
 
 .ship-mass input, .ship-tl input {
   background-color: var(--s2d6-input-background) !important;
-  border: 1px solid var(--color-text-dark-primary);
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 0.5ch;
   width: 7ch;
 }
@@ -1978,13 +1979,14 @@ img.ship-mask-bg {
   grid-template-columns: 17% 15% 15% 15% 15% 14%;
   left: 6.5%;
   gap: 0 1.5%;
-  grid-template-rows: 29% 30% 32%;
+  grid-template-rows: 28% 35% 35%;
   grid-template-areas:
     "pow title title title title title"
     "used col1 col2 col3 col4 col5"
     "avail col1 col2 col3 col4 col5";
   text-align: center;
   height: 100%;
+  margin-left: 4px;
 }
 
 /*.power-grid {
@@ -2091,10 +2093,11 @@ input.power-current, input.power-total {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
+  width: 100%;
   width: -webkit-fill-available;
   /* display: flex; */
-  /* margin-left: 38%; */
-  /* margin-right: 7%; */
+  margin-left: -10%;
+  margin-right: 2%;
   /* margin-top: -49px; */
   /* z-index: 109; */
   height: 100%;
@@ -2112,6 +2115,11 @@ a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab,
   padding: 3px 4px;
   font-size: 2ch;
   text-align: center;
+  height: 100%;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 a.ship-positions-tab:hover, a.ship-crew-tab:hover, a.ship-component-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-notes-tab:hover {
@@ -3367,12 +3375,14 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 .battle-content {
   container-type: inline-size;
   container-name: battle-content;
+  height: 100%;
 }
 
 .battle-content-container {
   display: grid;
+  height: 100%;
   grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 18ch 23ch 15ch 16ch;
+  grid-template-rows: 25% 31% 20% 22%;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"
@@ -3562,6 +3572,7 @@ input.red {
 
 table {
   border-radius: 0;
+  margin: 0;
 }
 
 .standard-form .form-group {
@@ -3590,6 +3601,7 @@ table.ship-action-table, table.vehicle-stats-table {
   margin: 0.5rem 0;
 }
 
+.stat-table th, .stat-table td,
 .stat-table-npc th, .stat-table-npc td,
 .vehicle-stats-table th, .vehicle-stats-table td,
 .consumable th, .consumable td {
@@ -3613,4 +3625,15 @@ table.ship-action-table, table.vehicle-stats-table {
 
 input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], input[type="file"], select {
   max-height: 3ch;
+  text-align: center;
+}
+
+.overlap-header {
+  width: 99%;
+  margin: 0;
+  height: 100%;
+}
+
+section.flexcol {
+  height: 100%;
 }

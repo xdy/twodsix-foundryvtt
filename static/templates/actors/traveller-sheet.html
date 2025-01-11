@@ -52,9 +52,11 @@
               {{/iff}}
               {{#iff settings.showAlternativeCharacteristics "===" "all"}}
                 {{#if settings.showAllCharWithTable}}
-                  <table class="stat-table-small">
+                  <div class="stat-table-small">
+                    <table>
                     {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-                  </table>
+                    </table>
+                  </div>
                 {{else}}
                   {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-rotate.html"}}
                 {{/if}}

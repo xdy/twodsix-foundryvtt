@@ -1,4 +1,4 @@
-<section class="{{cssClass}} flexcol" autocomplete="off">
+<section class="{{cssClass}} untabbed-sheet" autocomplete="off">
   {{#if settings.showSpells}}
   <div class="npc-content-container-spells">
   {{else}}
@@ -32,9 +32,11 @@
           {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
       </div>
       {{#unless limited}}
-        <table class="stat-table-npc">
+        <div class="stat-table-npc">
+          <table>
           {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-        </table>
+          </table>
+        </div>
       {{/unless}}
     </div>
     <div class="npc-notes-container">

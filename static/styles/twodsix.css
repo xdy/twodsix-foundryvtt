@@ -442,7 +442,8 @@ h2 {
 
 .npc-content-container {
   display: grid;
-  grid-template-columns: 15em 21em 0.9fr;
+  height: 100%;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 18em 1fr 1fr;
   gap: 16px;
   position: relative;
@@ -453,6 +454,7 @@ h2 {
 }
 .npc-content-container-spells {
   display: grid;
+  height: 100%;
   grid-template-columns: 15em 21em 18em;
   grid-template-rows: 18em 1fr 1fr;
   gap: 16px;
@@ -547,8 +549,8 @@ h2 {
 }
 
 .animal-content-container {
-  height: 100%;
   display: grid;
+  height: 100%;
   grid-template-columns: 25% 46% 25%;
   grid-template-rows: 65% 12% 12%;
   gap: 16px;
@@ -561,6 +563,7 @@ h2 {
 
 .animal-content-container-small {
   display: grid;
+  height: 100%;
   grid-template-columns: 15em 22em 18em;
   grid-template-rows: 12em 10em 0.5fr 0.5fr;
   gap: 16px;
@@ -589,6 +592,7 @@ h2 {
 
 .robot-content-container-small {
   display: grid;
+  height: 100%;
   grid-template-columns: 15em 21em 18em;
   grid-template-rows: 12.5em 10em 0.5fr 0.5fr;
   gap: 16px;
@@ -631,6 +635,7 @@ h2 {
 
 .vehicle-content-container {
   display: grid;
+  height: 100%;
   grid-template-columns: 19em 19em 17em;
   grid-template-rows: 15em 14em 5em 9fr;
   gap: 16px;
@@ -644,6 +649,7 @@ h2 {
 
 .space-object-content-container {
   display: grid;
+  height: 100%;
   grid-template-columns: 18em 18em;
   grid-template-rows: 22em 8em;
   gap: 16px;
@@ -1256,10 +1262,8 @@ span.bgi-charEdit {
   grid-area: character-characteristics;
   background-color: var(--s2d6-nav-background);
   font-size: 1.5ch;
-  margin-left: 7%;
-  margin-top: -3px;
-  /* margin-right: 14px; */
-  width: 92%;
+  margin-left: 8%;
+  margin-top: 4px;
   height: 84%;
   overflow: auto;
 }
@@ -4148,14 +4152,18 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   --color-scrollbar-track: var(--s2d6-nav-background);
   --s2d6-default-color: var(--s2d6-battle-color);
 }
+
 .battle-content {
   container-type: inline-size;
   container-name: battle-content;
+  height: 100%;
 }
+
 .battle-content-container {
   display: grid;
-  grid-template-columns: 24% 24% 48%;
-  grid-template-rows: 15ch 24ch 1fr 1fr;
+  height: 100%;
+  grid-template-columns: 26% 24% 48%;
+  grid-template-rows: 24% 30% 20% 22%;
   grid-template-areas:
     "battle-name-photo battle-status-container battle-damage-container"
     "battle-operations-container battle-defence-container battle-damage-container"
@@ -4253,6 +4261,7 @@ li.battle-damage button,  li.battle-weapons button{
   overflow-x: hidden;
   --color-scrollbar: var(--s2d6-battle-color);
   --color-scrollbar-track: var(--s2d6-nav-background);
+  min-height: 4ch;
 }
 
 .item-title-battle {
@@ -4394,6 +4403,7 @@ h4 {
 
 table {
   border-radius: 0;
+  margin: 0;
 }
 
 header.effect-change.effects-header.flexrow {
@@ -4438,6 +4448,9 @@ section.item-class {
 table.ship-action-table, table.vehicle-stats-table {
   margin: 0.5rem 0;
 }
+
+.stat-table th, .stat-table td,
+.stat-table-small th, .stat-table-small td,
 .stat-table-npc th, .stat-table-npc td,
 .vehicle-stats-table th, .vehicle-stats-table td {
   padding: 2px;
