@@ -3578,7 +3578,7 @@ input.red {
 /************ v13 Changes *******/
 
 .standard-form {
-  overflow-y: auto;
+  /*overflow-y: auto;*/
 }
 
 table {
