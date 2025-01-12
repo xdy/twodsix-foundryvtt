@@ -27,6 +27,13 @@
   --s2d6-pie-color: var(--s2d6-background-opaque);
   --s2d6-pie-background-color: var(--s2d6-background-transparent);
   --s2d6-default-color: rgba(0, 0, 0, 1);
+  --s2d6-color-text-light-highlight: rgba(247, 243, 232, 1);
+  --s2d6-color-shadow-dark: #111;
+  --s2d6-color-border-light-2: #999;
+  --s2d6-color-border-light-tertiary: #7a7971;
+  --s2d6-color-text-hyperlink: #ff6400;
+  --s2d6-color-shadow-primary: #603032;
+  --s2d6-color-text-light-3: #ccc;
 }
 
 input[type= 'checkbox'] {
@@ -891,8 +898,8 @@ input.stat-name-table {
   cursor: inherit;
   background-color: unset !important;
   border: none;
-  color: var(--color-text-light-highlight);
-  text-shadow: 1px 1px var(--color-shadow-dark);
+  color: var(--s2d6-color-text-light-highlight);
+  text-shadow: 1px 1px var(--s2d6-color-shadow-dark);
 }
 
 .stat input, .special input {
@@ -1381,7 +1388,7 @@ span.total-output {
 }
 
 .roll-detail {
-  border-top: 1px dashed var(--color-border-light-2);
+  border-top: 1px dashed var(--s2d6-color-border-light-2);
 }
 
 .skill-total {
@@ -1407,7 +1414,7 @@ span.total-output {
 .open-link, .open-journal-entry {
   text-align: left;
   align-self: center;
-  color: var(--color-text-hyperlink);
+  color: var(--s2d6-color-text-hyperlink);
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
@@ -1467,7 +1474,7 @@ span.total-output {
 }
 
 .financial-notes div[contenteditable] {
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   width: 223px;
   height: 434px;
   border-radius: 0 0 3px 3px;
@@ -1552,8 +1559,10 @@ span.total-output {
 /*-------Info Tab-----------*/
 
 .info-container {
-  display: grid;
-  grid-template-columns: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  /*grid-template-columns: 98%;
   grid-template-rows: 10em 2em 11em 12em 19em;
   gap: 30px 1px;
   grid-template-areas:
@@ -1565,6 +1574,7 @@ span.total-output {
   /*padding: 0em;*/
   position: relative;
   margin-top: 1em;
+  gap: 2ch;
 }
 
 .tab.info {
@@ -1574,7 +1584,7 @@ span.total-output {
 }
 
 .info-container .editor {
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
 }
 
@@ -1604,7 +1614,7 @@ span.total-output {
 }
 
 .char-description div[contenteditable], .char-contacts div[contenteditable], .char-bio div[contenteditable], .char-xp div[contenteditable] {
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
   height: 90%;
   overflow-y: auto;
@@ -1633,14 +1643,14 @@ span.total-output {
 }
 
 .notes-container .editor {
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
 }
 
 .notes-container > div[contenteditable] {
   height: 90%;
   width: 32.2em;
-  border: 1px solid var(--color-border-light-tertiary) !important;
+  border: 1px solid var(--s2d6-color-border-light-tertiary) !important;
   border-radius: 0 3px 3px;
   font-size: 15px;
   background-color: var(--s2d6-input-background) !important;
@@ -1702,7 +1712,7 @@ img.ship-mask-bg {
 }
 
 .ship-deck-link {
-  color: var(--color-text-hyperlink);
+  color: var(--s2d6-color-text-hyperlink);
   border: solid;
   border-radius: 1ch;
   padding: 0.2ch;
@@ -2402,7 +2412,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   padding: 0.2em;
   overflow-y: auto;
   background-color: var(--s2d6-input-background);
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
 }
 
@@ -2428,7 +2438,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-notes-container .editor, .ship-notes-container-short .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
   width: 100%;
   height: 88%;
@@ -2437,7 +2447,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .ship-notes-container >div[contenteditable], .ship-notes-container-short >div[contenteditable], .ship-finances-container >div[contenteditable], .cargo-wrapper >div[contenteditable] {
-  border: 1px solid var(--color-border-light-tertiary) !important;
+  border: 1px solid var(--s2d6-color-border-light-tertiary) !important;
   border-radius: 0 3px 3px;
   font-size: 15px;
   background-color: var(--s2d6-input-background) !important;
@@ -2460,7 +2470,7 @@ div.ship-value {
   flex-direction: column;
   justify-content: space-between;
   height: 33ch;
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
   width: 28ch;
   padding: 0 2ch;
@@ -2484,7 +2494,7 @@ div.ship-value {
 }
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   background-color: var(--s2d6-input-background) !important;
   width: 75ch;
   height: 35ch;
@@ -2611,7 +2621,7 @@ select.form-input, input.form-input, span.form-input {
 .item-descr div[contenteditable] {
   min-height: 10ch;
   /*background: rgba(0, 0, 0, 0.22);*/
-  border: 1px solid var(--color-border-light-tertiary);
+  border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 3px;
   padding: 0.5em;
   background: var(--s2d6-input-background);
@@ -2636,7 +2646,7 @@ img.item-img {
 
 .sheet-navigation.tabs {
   padding: 0.5em 0;
-  border-bottom: 1px solid var(--color-border-light-tertiary);
+  border-bottom: 1px solid var(--s2d6-color-border-light-tertiary);
   margin-bottom: 0.5em;
 
 }
@@ -2644,7 +2654,7 @@ img.item-img {
   height: auto !important;
 }
 .tabs .item.active {
-  text-shadow: 0 0 10px var(--color-shadow-primary);
+  text-shadow: 0 0 10px var(--s2d6-color-shadow-primary);
   background-color: var(--s2d6-background-transparent);
 }
 
@@ -2936,7 +2946,7 @@ background: var(--sidebar-background);
 
 .flavor-table {
   width: calc(100% - 2ch);
-  background-color: var(--color-text-light-3);
+  background-color: var(--s2d6-color-text-light-3);
   margin: 1ch;
   border: 1px solid;
 }
@@ -3115,11 +3125,11 @@ form .form-group > label {
 }*/
 
 .editor-content {
-  /*height: 95%;*/
+  height: 95%;
   padding-left: 4px;
   border: 1px solid;
   background: var(--s2d6-input-background);
-  color: var(--color-text-dark-primary);
+  color: var(--s2d6-default-color);
   min-height: inherit;
 }
 
@@ -3637,4 +3647,8 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 
 section.flexcol {
   height: 100%;
+}
+
+textarea {
+  color: var(--s2d6-default-color);
 }

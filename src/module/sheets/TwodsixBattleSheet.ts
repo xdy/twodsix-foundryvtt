@@ -93,7 +93,7 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
       let selectedActionId = "";
       if (selectedPositionId) {
         if (li?.querySelector("[name='selectedActor']").length > 0) {
-          selectedActorId =li.querySelector("[name='selectedActor']")?.value;
+          selectedActorId = li.querySelector("[name='selectedActor']")?.value;
         }
         if (li?.querySelector("[name='selectedAction']").length > 0) {
           selectedActionId = li.querySelector("[name='selectedAction']")?.value;

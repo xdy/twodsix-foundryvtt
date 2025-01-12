@@ -61,6 +61,7 @@
   {{#if settings.useProseMirror}}
   <prose-mirror name="system.cargo" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.cargo}}" collaborate="true" toggled="true">
     {{{richText.cargo}}}
+  </prose-mirror>
   {{else}}
     <div contenteditable="true" data-edit="system.cargo">{{#if actor.system.cargo}}{{{actor.system.cargo}}}{{/if}}</div>
   {{/if}}

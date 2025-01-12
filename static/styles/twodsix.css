@@ -57,7 +57,11 @@
   --s2d6-damage-orange: rgba(255, 153, 0, 1);
   --s2d6-pie-color: var(--s2d6-default-color);
   --s2d6-pie-background-color: var(--s2d6-background-opaque);
-  --color-text-hyperlink: var(--s2d6-damage-orange);
+  --s2d6-color-text-hyperlink:  #ff6400;
+  --s2d6-color-text-dark-2: #222;
+  --s2d6-color-border-light-1: #ddd;
+  --s2d6-color-shadow-primary: #603032;
+  --s2d6-color-border-light-tertiary: #7a7971;
 }
 
 body {
@@ -404,7 +408,7 @@ form .form-group span.units {
 }
 
 .app.sidebar-popout .window-content {
-  color: var(--color-border-light-1);
+  color: var(--s2d6-color-border-light-1);
 }
 
 .character-name h2 {
@@ -1749,7 +1753,7 @@ a.actor-notes-tab:hover {
 .add-skill:hover {
   color: var(--s2d6-item-hover);
   /*background-color: var(--s2d6-light-color);*/
-  text-shadow: 0 0 8px var(--color-shadow-primary);
+  text-shadow: 0 0 8px var(--s2d6-color-shadow-primary);
 }
 
 .skill {
@@ -1891,7 +1895,7 @@ span.total-output {
 .open-link, .open-journal-entry {
   text-align: left;
   align-self: center;
-  color: var(--color-text-hyperlink);
+  color: var(--s2d6-color-text-hyperlink);
 }
 
 .short-label input[type='text'], .short-label input[type='number'] {
@@ -2224,7 +2228,7 @@ span.total-output {
 }
 
 .ship-deck-link {
-  color: var(--color-text-hyperlink);
+  color: var(--s2d6-color-text-hyperlink);
   border: solid;
   border-radius: 1ch;
   padding: 0.3ch;
@@ -3124,7 +3128,7 @@ select.form-input, input.form-input, span.form-input {
 
 .standard-form .sheet-tabs.tabs {
   /*padding: 0.5em 0;
-  border-bottom: 1px solid var(--color-border-light-tertiary);
+  border-bottom: 1px solid var(--s2d6-color-border-light-tertiary);
   margin-bottom: 0.5em;*/
   line-height: 3ch;
   padding: 0 1rem;
@@ -3134,7 +3138,7 @@ select.form-input, input.form-input, span.form-input {
   height: auto !important;
 }
 /*.tabs .item.active {
-  text-shadow: 0 0 10px var(--color-shadow-primary);
+  text-shadow: 0 0 10px var(--s2d6-color-shadow-primary);
 }*/
 
 .protectionTypes option:checked {
@@ -3295,12 +3299,12 @@ background: var(--s2d6-sidebar-background);
 }
 
 .chat-message.blind {
-  background: var(--color-text-dark-2);
+  background: var(--s2d6-color-text-dark-2);
   border: 1px solid var(--s2d6-window-color);
 }
 
 .chat-message.whisper {
-  background: var(--color-text-dark-2);
+  background: var(--s2d6-color-text-dark-2);
   border: 1px solid var(--s2d6-header-border);
 }
 .chat-message.emote {
@@ -4048,13 +4052,13 @@ input[type="text"].color {
 
 /* Chrome scrollbar fix */
 /* * {
-  scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
+  scrollbar-color: var(--s2d6-default-color) var(--s2d6-color-text-dark-2);
   scrollbar-width: thin;
 }*/
 
 @-moz-document url-prefix() {
   * {
-      scrollbar-color: var(--s2d6-default-color) var(--color-text-dark-2);
+      scrollbar-color: var(--s2d6-default-color) var(--s2d6-color-text-dark-2);
       scrollbar-width: thin;
   }
 }
