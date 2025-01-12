@@ -476,7 +476,6 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: nowrap;
-  flex-basis: fit-content;
 }
 
 .npc-bgi-stats {
@@ -895,25 +894,28 @@ h2 {
 }
 
 .character-photo {
-  margin-top: 6%;
+  /*margin-top: 6%;*/
   margin-left: 18px;
   /* position: absolute; */
   /* width: 100%; */
   /* height: -webkit-fill-available; */
   text-align: center;
   /* z-index: 0; */
-  object-fit: contain;
+  /*object-fit: contain;*/
   /* height: auto; */
   grid-area: character-photo;
   /* width: -webkit-fill-available; */
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .character-photo img {
   vertical-align: middle;
   max-height: 100%;
   width: 100%;
-  z-index: -1;
+  margin: 0;
+  object-fit: contain;
 }
 
 .character-photo.npc {

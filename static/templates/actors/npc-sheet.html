@@ -6,7 +6,7 @@
   {{/if}}
     <div class="npc-name-photo">
       <div class="character-photo npc">
-        <img class="profile-img" style="height: 100%;" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
+        <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' />
         {{#if settings.showStatusIcons}}
         <span class="status-icons npc">
             {{#each effects as |anEffect|}}
@@ -14,7 +14,7 @@
             {{/each}}
         {{/if}}
       </div>
-      <div class="character-name npc" style="width: 100% !important; height: 3ch !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+      <div class="character-name npc"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                   onClick="this.select();" autocomplete="off"/></div>
       {{#if settings.showInitiativeButton}}
         <div class = "initiative">
