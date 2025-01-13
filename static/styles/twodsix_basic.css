@@ -2040,12 +2040,16 @@ img.ship-mask-bg {
   flex-direction: column;
   /* align-content: center; */
   /* flex-wrap: nowrap; */
-  /* text-align: center; */
+  text-align: center;
   justify-items: center;
   height: -webkit-fill-available;
   width: 100%;
   justify-content: space-evenly;
   overflow: hidden;
+}
+
+.ship-stat input {
+  text-align: center;
 }
 
 .cargo-weight .ship-stat {
@@ -2096,6 +2100,7 @@ span.power-now, span.power-max {
 
 input.power-current, input.power-total {
   font-size: 2ch;
+  text-align: center;
 }
 
 /*------------------*/
@@ -3578,7 +3583,8 @@ input.red {
 /************ v13 Changes *******/
 
 .standard-form {
-  /*overflow-y: auto;*/
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 table {
@@ -3636,7 +3642,7 @@ table.ship-action-table, table.vehicle-stats-table {
 
 input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], input[type="file"], select {
   max-height: 3ch;
-  text-align: center;
+  padding: 0 4px;
 }
 
 .overlap-header {

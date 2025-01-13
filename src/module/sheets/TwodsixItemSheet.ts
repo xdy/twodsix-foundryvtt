@@ -166,7 +166,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         delete tabs.power;
       }
       if (!["armament", "mount"].includes(this.item.system.subtype)) {
-        delete tab.attack;
+        delete tabs.attack;
       }
     }
     return tabs;
