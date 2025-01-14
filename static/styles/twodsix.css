@@ -3163,9 +3163,13 @@ select.form-input, input.form-input, span.form-input {
 .consumable-row-npc {
   display: inline-block;
 }
-/*.consumable-row .wrapper {
-  float: right;
-}*/
+
+.consumable-row .wrapper {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+  margin-right: 4px;
+}
 
 .consumable-row .refill-button {
   width: 10ch;

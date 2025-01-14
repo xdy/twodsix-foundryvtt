@@ -275,8 +275,8 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
     const parentItem: TwodsixItem = await this.actor.items.get(target.dataset.parentId);
     const consumable: TwodsixItem = await this.actor.items.get(target.dataset.consumableId);
     if (parentItem?.type === "weapon" && !["software", "processor", "suite"].includes(consumable.system.subtype)) {
-      if (parentItem?.system.useConsumableForAttack != consumableId) {
-        await parentItem.update({'system.useConsumableForAttack': consumableId});
+      if (parentItem?.system.useConsumableForAttack !== consumable.id) {
+        await parentItem.update({'system.useConsumableForAttack': consumable.id});
       }
     } else {
       if (consumable.system.subtype === "software") {
