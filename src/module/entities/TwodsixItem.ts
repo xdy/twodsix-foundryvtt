@@ -74,6 +74,10 @@ export default class TwodsixItem extends Item {
       }
     }
 
+    if (this.type === 'weapon') {
+      Object.assign(updates, {"system.damage": game.settings.get('twodsix', 'defaultWeaponDamage')});
+    }
+
     Object.assign(updates, {"system.type": this.type});
     Object.assign(updates, {"flags.twodsix.newItem": true});
     await this.updateSource(updates);

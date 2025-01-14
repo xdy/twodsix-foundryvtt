@@ -1609,6 +1609,10 @@
       "autoIncrementTime": {
         "hint": "Advance game time (optionally integrated with Simple Calendar) if timeframe for roll is selected.",
         "name": "Automatically Advance Game Time"
+      },
+      "defaultWeaponDamage": {
+        "hint": "The default damage formula for new weapons, e.g. '1d6'.",
+        "name": "Default Damage Formula for New Weapons"
       }
     },
     "CloseAndCreateNew": "Close and create new",
