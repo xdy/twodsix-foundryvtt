@@ -12,7 +12,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
 
   /** @override */
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixShipPositionSheet",
+    sheetType: "TwodsixShipPositionSheet",
     classes: ["twodsix", "sheet", "item"],
     dragDrop: [{dropSelector: null, dragSelector: ".ship-position-details-actor"}],
     position: {

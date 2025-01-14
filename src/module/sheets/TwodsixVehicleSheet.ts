@@ -10,7 +10,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
 
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixVehicleSheet",
+    sheetType: "TwodsixVehicleSheet",
     classes: ["twodsix", "vehicle", "actor"],
     dragDrop: [{dragSelector: ".item", dropSelector: null}],
     position: {

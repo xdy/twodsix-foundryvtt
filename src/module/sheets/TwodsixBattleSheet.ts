@@ -6,7 +6,7 @@ import { TwodsixShipSheet } from "./TwodsixShipSheet";
 
 export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsApplicationMixin(TwodsixShipSheet) {
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixBattleSheet",
+    sheetType: "TwodsixBattleSheet",
     classes: ["twodsix", "battle", "actor"],
     position: {
       width: 850,

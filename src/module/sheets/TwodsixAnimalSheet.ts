@@ -7,7 +7,7 @@ import { Animal } from "src/types/template";
 export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
 
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixAnimalSheet",
+    sheetType: "TwodsixAnimalSheet",
     classes: ["twodsix", "sheet", "animal-actor"],
     dragDrop: [{dragSelector: ".item-name", dropSelector: null}],
     position: {

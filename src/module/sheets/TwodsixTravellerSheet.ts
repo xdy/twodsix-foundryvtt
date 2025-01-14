@@ -9,7 +9,6 @@ import TwodsixItem  from "../entities/TwodsixItem";
 
 export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixTravellerSheet",
     classes: ["twodsix", "sheet", "actor"],
     position: {
       width: 900,
@@ -32,7 +31,8 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       toggleView: this._onViewToggle,
       toggleSkillHeader: this._onSkillHeaderToggle
     },
-    tag: "form"
+    tag: "form",
+    sheetType: "TwodsixTravellerSheet"
   };
 
   static PARTS = {
@@ -59,7 +59,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   /** @inheritDoc */
   _initializeApplicationOptions(options) {
     const applicationOptions = super._initializeApplicationOptions(options);
-    if (applicationOptions.id !== 'TwodsixNPCSheet') {
+    if (applicationOptions.sheetType !== 'TwodsixNPCSheet') {
       applicationOptions.position.width = game.settings.get('twodsix', 'defaultActorSheetWidth');
       applicationOptions.position.height = game.settings.get('twodsix', 'defaultActorSheetHeight');
       applicationOptions.dragDrop = [{dragSelector: ".item", dropSelector: null}];
@@ -133,7 +133,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
     this.element.querySelector(".joat-skill-input")?.addEventListener('input', this._updateJoatSkill.bind(this));
     this.element.querySelector(".joat-skill-input")?.addEventListener('blur', this._onJoatSkillBlur.bind(this));
     //Set special class for FVTT window-content section so that it overlaps with header
-    if (this.options.id === 'TwodsixTravellerSheet') {
+    if (this.options.sheetType === 'TwodsixTravellerSheet') {
       this.element.querySelector(".window-content").classList.add("overlap-header");
       this.element.querySelector(".window-header").classList.add("transparent-header");
     }
@@ -301,7 +301,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 
 export class TwodsixNPCSheet extends foundry.applications.api.HandlebarsApplicationMixin(TwodsixTravellerSheet) {
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixNPCSheet",
+    sheetType: "TwodsixNPCSheet",
     classes: ["twodsix", "sheet", "npc-actor"],
     position: {
       width: 830,

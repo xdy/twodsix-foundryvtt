@@ -19,7 +19,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
   /** @override */
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixItemSheet",
+    sheetType: "TwodsixItemSheet",
     classes: ["twodsix", "sheet", "item"],
     dragDrop: [{dropSelector: null, dragSelector: ".consumable"}],
     position: {

@@ -10,7 +10,7 @@ import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
 
 export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS =  {
-    id: "TwodsixShipSheet",
+    sheetType: "TwodsixShipSheet",
     classes: ["twodsix", "ship", "actor"],
     position: {
       width: 944,
@@ -130,7 +130,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     }
 
     //Set special class for FVTT window-content section so that it overlaps with header
-    if (this.options.id === 'TwodsixShipSheet') {
+    if (this.options.sheetType === 'TwodsixShipSheet') {
       this.element.querySelector(".window-content").classList.add("overlap-header");
       this.element.querySelector(".window-header").classList.add("transparent-header-ship");
     }
