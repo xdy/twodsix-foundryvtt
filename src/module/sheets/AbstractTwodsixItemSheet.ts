@@ -131,6 +131,11 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
         let itemId: string;
         if (this.item.actor?.items.get(itemData._id)) {
           itemId = itemData._id;
+          //Check to see if consumable exists on another item for actor
+          const previousItem:TwodsixItem = itemData.actor.items.find(it => it.system.consumables.includes(itemId));
+          if (previousItem) {
+            await previousItem.removeConsumable(itemId, previousItem.system);
+          }
         } else {
           const newItem = await (<TwodsixActor>this.item.actor)?.createEmbeddedDocuments("Item", [foundry.utils.duplicate(itemData)]);
           if (!newItem) {
