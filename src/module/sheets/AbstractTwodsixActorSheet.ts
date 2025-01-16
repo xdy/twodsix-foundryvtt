@@ -220,7 +220,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const item: TwodsixItem = getItemFromTarget(target, this.actor);
     const showThrowDiag:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick') ? ev["shiftKey"] : !ev["shiftKey"];
     //console.log("Sheet Item Attack: ", item);
-    if (this.options.template?.includes("npc-sheet") || ["robot", "animal"].includes(this.actor.type)) {
+    if (this.options.sheetType?.includes("TwodsixNPCSheet") || ["robot", "animal"].includes(this.actor.type)) {
       item.resolveUnknownAutoMode();
     } else {
       await item.performAttack(attackType, showThrowDiag, rof);
