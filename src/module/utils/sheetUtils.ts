@@ -277,7 +277,7 @@ export async function openJournalEntry():void {
   if (this.document.system.pdfReference.type === 'JournalEntry') {
     const journalToOpen = await fromUuid(this.document.system.pdfReference.href);
     if (journalToOpen) {
-      journalToOpen.sheet.render(true);
+      journalToOpen.sheet.render({force: true});
     } else {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoJournalFound"));
     }
@@ -323,7 +323,7 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
         }
       ],
       default: `roll`,
-    }).render(true);
+    }).render({force: true});
   });
   return (returnText ?? "");
 }

@@ -214,7 +214,7 @@ export async function handleTableRoll(event: Event): Promise<void> {
     if (event.type == "click") { // left click
       table.draw();
     } else { // right click
-      table.sheet.render(true);
+      table.sheet.render({force: true});
     }
   }
 }
@@ -243,7 +243,7 @@ export async function handleSkillRoll(event: Event): Promise<void> {
           }
           await skill.skillRoll(false, settings);
         } else { // right click
-          skill.sheet.render(true);
+          skill.sheet.render({force: true});
         }
       }
     }

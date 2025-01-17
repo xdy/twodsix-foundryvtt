@@ -348,7 +348,7 @@ async function skillDialog(skillList: object): Promise<string|boolean> {
       submit: () => {
         resolve(returnValue);
       },
-    }).render(true);
+    }).render({force: true});
   });
 }
 /**

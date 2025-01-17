@@ -330,7 +330,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   static _onItemEdit(ev:Event, target:HTMLElement):Promise<void> {
     const li = target.closest('.item');
     const item = this.actor.items.get(li.dataset.itemId);
-    item?.sheet?.render(true);
+    item?.sheet?.render({force: true});
   }
 
   /**
@@ -350,7 +350,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   static _onEditConsumable(ev:Event, target:HTMLElement):Promise<void> {
     const li = target.closest(".consumable-row");
     const item = this.actor.items.get(li.dataset.consumableId);
-    item?.sheet?.render(true);
+    item?.sheet?.render({force: true});
   }
 
   /**
@@ -612,7 +612,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         submit: () => {
           resolve();
         },
-      }).render(true);
+      }).render({force: true});
     });
   }
 
@@ -671,7 +671,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
-      await new foundry.applications.sheets.ActiveEffectConfig({document: selectedEffect}).render(true);
+      await new foundry.applications.sheets.ActiveEffectConfig({document: selectedEffect}).render({force: true});
     }
   }
 

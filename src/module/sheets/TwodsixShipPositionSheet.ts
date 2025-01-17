@@ -165,7 +165,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
     const actorId = target.closest(".ship-position-details-actor").dataset.id;
     if(actorId) {
       const targetActor = game.actors.get(actorId);
-      targetActor.sheet.render(true);
+      targetActor.sheet.render({force: true});
     }
   }
 }

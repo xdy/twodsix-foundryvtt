@@ -333,7 +333,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
     } else if (await fromUuid(this.item.uuid)) {
-      const editSheet = await this.item.effects.contents[0].sheet?.render(true);
+      const editSheet = await this.item.effects.contents[0].sheet?.render({force: true});
       try {
         editSheet?.bringToFront();
       } catch(err) {
@@ -370,7 +370,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   static _onEditConsumable(event:Event, target:HTMLElement): void {
-    this.getConsumable(target)?.sheet?.render(true);
+    this.getConsumable(target)?.sheet?.render({force: true});
   }
 
   static async _onDeleteConsumable(event:Event, target:HTMLElement): Promise<void> {
@@ -447,7 +447,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         }
       ],
       default: 'ok',
-    }).render(true);
+    }).render({force: true});
   }
 
   static async _onCreateAttachment():Promise<void> {

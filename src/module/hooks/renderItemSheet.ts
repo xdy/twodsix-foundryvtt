@@ -22,7 +22,7 @@ Hooks.on('renderItemSheet', async (app, html) => {
       // create new item of same type and show its sheet
       const newItem:TwodsixItem = await TwodsixItem.create({name: `${item.name} (${copyText})`, type: item.type});
 
-      newItem.sheet?.render(true);
+      newItem.sheet?.render({force: true});
     });
 
     // insert the new button just before the close button

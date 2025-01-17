@@ -199,7 +199,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       }
       const shipPositionId = target.closest(".ship-position").dataset.id;
       const positionItem = this.actor?.items?.get(shipPositionId);
-      await positionItem?.sheet.render(true);
+      await positionItem?.sheet.render({force: true});
     }
   }
 
@@ -367,6 +367,6 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
   static async _onDocumentLink(ev:Event, target: HTMLElement): Promise<void> {
     const documentUuid = target.dataset.uuid;
     const selectedDocument = await fromUuid(documentUuid);
-    selectedDocument?.sheet?.render(true);
+    selectedDocument?.sheet?.render({force: true});
   }
 }

@@ -21,7 +21,7 @@ Hooks.on('updateSetting', async (setting) => {
   const ruleset = game.settings.get('twodsix', 'ruleset');
   if (Object.keys(TWODSIX.RULESETS[ruleset].settings).includes(setting.key.slice(8))) {
     if (game.settings.sheet.rendered) {
-      game.settings.sheet.render(true);
+      game.settings.sheet.render({force: true});
     }
   }
 });

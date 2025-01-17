@@ -148,7 +148,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
         //console.log(returnValue);
         resolve(returnValue);
       }
-    }).render(true);
+    }).render({force: true});
   });
 }
 

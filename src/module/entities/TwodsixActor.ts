@@ -1416,7 +1416,7 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
         }
       ],
       default: `Transfer`
-    }).render(true);
+    }).render({force: true});
   });
   return Math.round(returnNumber);
 }
