@@ -41,8 +41,8 @@ Hooks.on('renderAdvancedSettings', async (app, htmlElement) => {
   });
 });
 
-Hooks.on('renderSettingsConfig', async (app, html:JQuery) => {
-  const htmlElement:HTMLElement = html.get(0); //Maybe not required when v13 fully Appv2
+Hooks.on('renderSettingsConfig', async (app, html:JQuery|HTMLElement) => {
+  const htmlElement:HTMLElement = (html instanceof jQuery) ? html.get(0) : html; //Maybe not required when v13 fully Appv2
   const ruleset = game.settings.get('twodsix', 'ruleset');
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
