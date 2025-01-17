@@ -1410,15 +1410,14 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
           icon: "fa-solid fa-arrow-right-arrow-left",
           label: "TWODSIX.Actor.Items.Transfer",
           callback: (event, button, dialog) => {
-            const html:jQuery = $(dialog);
-            resolve(html.find('[name="amount"]')[0]["value"]);
+            resolve(dialog.querySelector('[name="amount"]').value);
           }
         }
       ],
       default: `Transfer`
     }).render({force: true});
   });
-  return Math.round(returnNumber);
+  return parseInt(returnNumber);
 }
 
 /**
