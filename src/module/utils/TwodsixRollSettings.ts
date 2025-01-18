@@ -245,9 +245,9 @@ export class TwodsixRollSettings {
         callback: (event, button, dialog) => {
           const formElements = dialog.querySelector(".standard-form").elements;
           this.shouldRoll = true;
-          this.difficulty = this.difficulties[formElements["difficulty"].value];
-          this.rollType = formElements["rollType"].value;
-          this.rollMode = formElements["rollMode"].value;
+          this.difficulty = this.difficulties[formElements["difficulty"]?.value];
+          this.rollType = formElements["rollType"]?.value;
+          this.rollMode = formElements["rollMode"]?.value;
           this.rollModifiers.chain = dialogData.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value, 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value, 10) : this.rollModifiers.item;
