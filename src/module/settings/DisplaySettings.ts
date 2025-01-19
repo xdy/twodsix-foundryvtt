@@ -103,8 +103,8 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.general.push(booleanSetting('showItemIconsInChat', true));
     settings.actor.push(numberSetting('defaultActorSheetWidth', 900, false, 'world', refreshWindow));
     settings.actor.push(numberSetting('defaultActorSheetHeight', 780, false, 'world', refreshWindow));
-    settings.actor.push(booleanSetting('showAttachmentsList', false));
-    settings.actor.push(booleanSetting('showConsumablesList', false));
+    /*settings.actor.push(booleanSetting('showAttachmentsList', false));
+    settings.actor.push(booleanSetting('showConsumablesList', false));*/
     settings.ship.push(booleanSetting('showCombatPosition', false));
     const nonCargoTypes = foundry.utils.duplicate(TWODSIX.ComponentTypes);
     delete nonCargoTypes.cargo;

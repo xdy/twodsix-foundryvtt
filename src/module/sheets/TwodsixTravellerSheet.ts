@@ -29,7 +29,9 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       toggleConsumable: this._onToggleConsumable,
       toggleItem: this._onToggleItem,
       toggleView: this._onViewToggle,
-      toggleSkillHeader: this._onSkillHeaderToggle
+      toggleSkillHeader: this._onSkillHeaderToggle,
+      toggleAttachmentsList: this._onToggleAttachmentsList,
+      toggleConsumablesList: this._onToggleConsumablesList
     },
     tag: "form",
     sheetType: "TwodsixTravellerSheet"
@@ -93,9 +95,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       useCTAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CT.key,
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCUAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CU.key,
-      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
-      showAttachmentsList: game.settings.get('twodsix', 'showAttachmentsList'),
-      showConsumablesList: game.settings.get('twodsix', 'showConsumablesList')
+      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor')
     });
 
     context.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
@@ -171,6 +171,22 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   private getConsumableItem(ev:Event, target:HTMLElement): TwodsixItem {
     const itemId = target.closest('.consumable-row').dataset.consumableId;
     return this.actor.items.get(itemId) as TwodsixItem;
+  }
+
+  static _onToggleAttachmentsList(ev: Event, target:HTMLElement):void {
+    ev.preventDefault();
+    const item = this.actor.items.get(target.dataset.itemId);
+    const newState = !target.open;
+    item.showAttachmentsList = newState;
+    target.open = newState;
+  }
+
+  static _onToggleConsumablesList(ev: Event, target:HTMLElement): void {
+    ev.preventDefault();
+    const item = this.actor.items.get(target.dataset.itemId);
+    const newState = !target.open;
+    item.showConsumablesList = newState;
+    target.open = newState;
   }
 
   static async _onAdjustConsumableCount(ev: Event, target:HTMLElement): Promise<void> {
