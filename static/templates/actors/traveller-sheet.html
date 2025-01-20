@@ -4,67 +4,62 @@
     {{> "systems/twodsix/templates/actors/parts/actor/actor-overlay-1.html"}}
   {{/unless}}
   <div class="content-container">
-
-      {{#unless settings.useFoundryStandardStyle}}
-        <!--- -->
-      {{/unless}}
-
-        <div class="character-photo">
-          <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' data-action="editImage" data-edit="img"/>
-          {{#if settings.showStatusIcons}}
-          <span class="status-icons">
-              {{#each effects as |anEffect|}}
-              <!--{{actor.effects}}-->
-                {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
-              {{/each}}
-          {{/if}}
-          </span>
-        </div>
-        <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+    <div class="character-photo">
+      <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' data-action="editImage" data-edit="img"/>
+      {{#if settings.showStatusIcons}}
+      <span class="status-icons">
+          {{#each effects as |anEffect|}}
+          <!--{{actor.effects}}-->
+            {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
+          {{/each}}
+      {{/if}}
+      </span>
+    </div>
+    <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
                                           onClick="this.select();"/></div>
 
-        {{#if settings.showLifebloodStamina }}
-          <div class="character-bgi">
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
-          </div>
-        {{else if settings.showIcons}}
-          <div class="character-bgi">
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
-          </div>
-        {{else}}
-          <div class="character-bgi-std">
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
-          </div>
-        {{/if}}
-        {{#unless limited}}
-          {{#if settings.lifebloodInsteadOfCharacteristics}}
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
-          {{else}}
-            {{#if settings.useFoundryStandardStyle}}
-            <div class="stat-table">
-              <table>
-                {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-              </table>
-            </div>
-            {{else}}
-              {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
-                {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
-              {{/iff}}
-              {{#iff settings.showAlternativeCharacteristics "===" "all"}}
-                {{#if settings.showAllCharWithTable}}
-                  <div class="stat-table-small">
-                    <table>
-                    {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
-                    </table>
-                  </div>
-                {{else}}
-                  {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-rotate.html"}}
-                {{/if}}
-              {{/iff}}
-            {{/if}}
-          {{/if}}
-        {{/unless}}
+    {{#if settings.showLifebloodStamina }}
+      <div class="character-bgi">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
+      </div>
+    {{else if settings.showIcons}}
+      <div class="character-bgi">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.html"}}
+      </div>
+    {{else}}
+      <div class="character-bgi-std">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.html"}}
+      </div>
+    {{/if}}
 
+    {{#unless limited}}
+      {{#if settings.lifebloodInsteadOfCharacteristics}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.html"}}
+      {{else}}
+        {{#if settings.useFoundryStandardStyle}}
+        <div class="stat-table">
+          <table>
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+          </table>
+        </div>
+        {{else}}
+          {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.html"}}
+          {{/iff}}
+          {{#iff settings.showAlternativeCharacteristics "===" "all"}}
+            {{#if settings.showAllCharWithTable}}
+              <div class="stat-table-small">
+                <table>
+                {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.html"}}
+                </table>
+              </div>
+            {{else}}
+              {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-rotate.html"}}
+            {{/if}}
+          {{/iff}}
+        {{/if}}
+      {{/if}}
+    {{/unless}}
 
     {{#unless limited}}
     {{!-- Sheet Tab Navigation --}}
