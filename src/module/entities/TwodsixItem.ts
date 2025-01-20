@@ -821,11 +821,11 @@ export default class TwodsixItem extends Item {
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
       let damage = <Roll>{};
-      let apValue = this.system.armorPiercing ?? 0;
-
+      let apValue = 0;
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.getRollData());
         await damage.evaluate();
+        apValue += this.getValueFromRollFormula("armorPiercing");
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
         ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
@@ -910,19 +910,31 @@ export default class TwodsixItem extends Item {
     return returnValue;
   }
 
-  public getConsumableBonus(type:string):number {
+  public getConsumableBonus(key:string):number {
     let returnValue = 0;
     if (this.system.attachmentData) {
       for (const attach of this.system.attachmentData) {
         if (attach.system.subtype !== "software" || attach.system.softwareActive) {
-          returnValue += attach.system[type];
+          if (foundry.utils.hasProperty(attach.system, key)) {
+            if (typeof attach.system[key] === 'number') {
+              returnValue += attach.system[key];
+            } else {
+              returnValue += (<TwodsixItem>attach).getValueFromRollFormula(key);
+            }
+          }
         }
       }
     }
     if (this.system.useConsumableForAttack && this.actor) {
-      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
-      if (magazine?.type === "consumable" && magazine?.system[type]) {
-        returnValue += (<Consumable>magazine.system)[type];
+      const magazine:TwodsixItem = this.actor.items.get(this.system.useConsumableForAttack);
+      if (magazine?.type === "consumable") {
+        if (foundry.utils.hasProperty(magazine.system, key)) {
+          if (typeof magazine.system[key] === 'number') {
+            returnValue += magazine.system[key];
+          } else {
+            returnValue += (<TwodsixItem>magazine).getValueFromRollFormula(key);
+          }
+        }
       }
     }
     return returnValue;
@@ -1216,6 +1228,27 @@ export default class TwodsixItem extends Item {
       }
     }
   }
+
+  /**
+   * A method for getting a value from an item's roll formula
+   * @param {string} key The item.system object key for the formula
+   * @returns {number} The deterministic value as a number from a roll formula
+   */
+  public getValueFromRollFormula(key:string):number {
+    let returnValue = 0;
+    if (foundry.utils.hasProperty(this.system, key)) {
+      if (Roll.validate(this.system[key])) {
+        try {
+          const replacedFormula = Roll.replaceFormulaData(this.system[key], this.actor?.getRollData());
+          returnValue += replacedFormula ? Roll.safeEval(replacedFormula) : 0;
+        } catch (error) {
+          console.log ('Invalid formula', error);
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidFormula") + this.name);
+        }
+      }
+    }
+    return returnValue;
+  }
 }
 
 /**
@@ -1291,7 +1324,12 @@ export function getDiceResults(inputRoll:Roll) {
 export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): number {
   let returnValue = 0;
   if (Roll.validate(rollFormula)) {
-    returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData())) ?? 0;
+    try {
+      returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData())) ?? 0;
+    } catch (error) {
+      console.log ('Invalid formula', error);
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidFormula") + item.name);
+    }
   }
   return returnValue;
 }
