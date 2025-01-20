@@ -65,6 +65,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       applicationOptions.position.width = game.settings.get('twodsix', 'defaultActorSheetWidth');
       applicationOptions.position.height = game.settings.get('twodsix', 'defaultActorSheetHeight');
       applicationOptions.dragDrop = [{dragSelector: ".item", dropSelector: null}];
+      applicationOptions.dragDrop = [{dragSelector: ".effect", dropSelector: null}];
     } else{
       applicationOptions.dragDrop = [{dragSelector: ".item-name", dropSelector: null}];
     }

@@ -234,12 +234,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @protected
    */
   _onDragStart(ev:DragEvent):void {
-    const li = ev.currentTarget.closest('.item');
+    let li = ev.currentTarget.closest('.item');
+    let dragData:any;
     if (li?.dataset) {
       if ( "link" in event.target.dataset ) {
         return;
       }
-      let dragData:any;
 
       // Owned Items
       if ( li.dataset.itemId ) {
@@ -247,18 +247,19 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         dragData = item.toDragData();
       }
 
+    } else {
+      li = ev.currentTarget.closest('.effect');
       // Active Effect
-      if ( li.dataset.effectId ) {
-        const effect = this.actor.effects.get(li.dataset.effectId);
+      if ( li?.dataset.uuid ) {
+        const effect = fromUuidSync(li.dataset.uuid);
         dragData = effect.toDragData();
       }
-
-      // Set data transfer
-      if ( !dragData ) {
-        return;
-      }
-      event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
     }
+    // Set data transfer
+    if ( !dragData ) {
+      return;
+    }
+    event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
   }
 
   /**
@@ -379,7 +380,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       // Handle dropped scene on ship sheet
       if (actor.type === 'ship') {
         const scene = await fromUuid(dropData.uuid);
-        actor.update({"system.deckPlan": scene.id});
+        await actor.update({"system.deckPlan": scene.id});
       }
       return false;
     } else if (['html', 'pdf', 'JournalEntry'].includes(dropData.type)){
@@ -393,6 +394,9 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     } else if (dropData.type === 'Item') {
       const droppedItem:TwodsixItem = await getItemFromDropData(dropData);
       return await this.processDroppedItem(ev, droppedItem);
+    } else if (dropData.type === 'ActiveEffect') {
+      const droppedEffect = await fromUuid(dropData.uuid);
+      await this.onDropActiveEffect(ev, droppedEffect);
     } else {
       console.log(`Unknown Drop Type ${dropData.type}`);
       return false;
@@ -414,6 +418,25 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       }
     }
     return await (<TwodsixActor>this.actor).handleDroppedItem(dropedItem);
+  }
+
+  /**
+   * Handle a dropped Active Effect on the Actor Sheet.
+   * The default implementation creates an Active Effect embedded document on the Actor.
+   * @param {DragEvent} ev       The initiating drop event
+   * @param {ActiveEffect} effect   The dropped ActiveEffect document
+   * @returns {Promise<void>}
+   * @protected
+   */
+  async onDropActiveEffect(ev, effect) {
+    if ( !this.actor.isOwner ) {
+      return;
+    }
+    if ( !effect || (effect.target === this.actor) ) {
+      return;
+    }
+    const keepId = !this.actor.effects.has(effect.id);
+    await ActiveEffect.create(effect.toObject(), {parent: this.actor, keepId});
   }
 
   _prepareItemContainers(context:any):void {
