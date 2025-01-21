@@ -486,7 +486,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
     }
     return returnValues;
   } else {
-    ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
+    ui.notifications.error("TWODSIX.Ship.CannotParseArgument", {localize: true});
     return false;
   }
 }

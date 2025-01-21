@@ -18,7 +18,7 @@ async function catchDrop(canvasObject: Canvas, dropData): Promise<any> {
   const foundTokens = getTokensAtLocation(canvasObject, dropData.x, dropData.y);
 
   if (foundTokens?.length === 0 || !foundTokens) {
-    ui.notifications?.info(game.i18n.localize("TWODSIX.Warnings.NoTargetFound"));
+    ui.notifications?.info("TWODSIX.Warnings.NoTargetFound", {localize: true});
     return false;
   } else if (foundTokens.length === 1) {
     const targetActor = <TwodsixActor>foundTokens[0]?.actor;
@@ -35,17 +35,17 @@ async function catchDrop(canvasObject: Canvas, dropData): Promise<any> {
           return await targetActor.handleDroppedActiveEffect(droppedEffect);
         }
         default: {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDropOnToken"));
+          ui.notifications.warn("TWODSIX.Warnings.CantDropOnToken", {localize: true});
           return false;
         }
       }
     } else {
-      ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+      ui.notifications?.warn("TWODSIX.Warnings.LackPermissionToDamage", {localize: true});
       return false;
     }
   } else if (foundTokens.length > 1) {
     // Make sure only one token is there to avoid mistakes
-    ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.MultipleActorsFound"));
+    ui.notifications?.warn("TWODSIX.Warnings.MultipleActorsFound", {localize: true});
     return false;
   }
 }

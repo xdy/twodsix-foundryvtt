@@ -205,11 +205,11 @@ function applyChatCardDamage(li:HTMLElement, multiplier:number): Promise<any>|un
           t.actor.healActor(effect);
         }
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
+        ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
       }
     }));
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageToApply"));
+    ui.notifications.warn("TWODSIX.Warnings.NoDamageToApply", {localize: true});
   }
 }
 
@@ -255,7 +255,7 @@ async function onExpandClick(message: ChatMessage) {
 async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog: boolean): Promise<void> {
   const secondActor: TwodsixActor = getControlledTraveller();
   if (!secondActor) {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
     return;
   }
 
@@ -265,7 +265,7 @@ async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog:
   if (selectedSkillUuid === false) {
     return;
   } else if (selectedSkillUuid === "") {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSkillSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoSkillSelected", {localize: true});
     return;
   }
   const selectedSkill: TwodsixItem = await fromUuid(selectedSkillUuid);

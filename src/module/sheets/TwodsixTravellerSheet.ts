@@ -266,7 +266,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 
       //check for equipping more than one armor with nonstackable
       if (this.actor.system.layersWorn > 1 && this.actor.system.wearingNonstackable && itemSelected.type === 'armor') {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
+        ui.notifications.warn("TWODSIX.Warnings.WearingMultipleLayers", {localize: true});
       }
     }
   }

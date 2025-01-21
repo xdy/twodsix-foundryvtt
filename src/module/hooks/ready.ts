@@ -23,7 +23,7 @@ Hooks.once("ready", async function () {
   }
 
   if (!Roll.validate(game.settings.get('twodsix', 'maxEncumbrance'))) {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+    ui.notifications.warn("TWODSIX.Warnings.EncumbranceFormulaInvalid", {localize: true});
   }
 
   // Determine whether a system migration is required and feasible

@@ -206,7 +206,7 @@ export default class TwodsixItem extends Item {
     }
     const weapon:Weapon = <Weapon>this.system;
     if (!weapon.skill) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
 
@@ -226,7 +226,7 @@ export default class TwodsixItem extends Item {
     // Set characteristic from skill
     const skill:TwodsixItem | undefined  = this.actor?.items.get(weapon.skill) ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
     if (!skill) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
     tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
@@ -304,7 +304,7 @@ export default class TwodsixItem extends Item {
         await magazine.consume(usedAmmo);
       } catch (err) {
         if (err.name == "NoAmmoError") {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoAmmo"));
+          ui.notifications.error("TWODSIX.Errors.NoAmmo", {localize: true});
           return;
         } else {
           throw err;
@@ -313,7 +313,7 @@ export default class TwodsixItem extends Item {
     }
 
     if (targetTokens.length > numberOfAttacks) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyTargets"));
+      ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
     }
 
     //Make attack rolls
@@ -375,7 +375,7 @@ export default class TwodsixItem extends Item {
     const rof = parseInt(weapon.rateOfFire, 10);
     const rateOfFire: number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
     if (attackType !== 'single' && !rateOfFire) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
+      ui.notifications.error("TWODSIX.Errors.NoROFForAttack", {localize: true});
     }
 
     let usedAmmo = rateOfFire;
@@ -605,7 +605,7 @@ export default class TwodsixItem extends Item {
     if (!skill) {
       skill = workingActor?.getUntrainedSkill();
       if(!skill) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+        ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
         return;
       }
     }
@@ -642,14 +642,14 @@ export default class TwodsixItem extends Item {
           await magazine.consume(1);
         } catch (err) {
           if (err.name == "NoAmmoError") {
-            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.EmptyConsumable"));
+            ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
             return;
           } else {
             throw err;
           }
         }
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.EmptyConsumable"));
+        ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
         return;
       }
     }
@@ -690,7 +690,7 @@ export default class TwodsixItem extends Item {
       }
 
       if(isNaN(psiCost) || psiCost <= 0) {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PsiUsageGTZero"));
+        ui.notifications.warn("TWODSIX.Warnings.PsiUsageGTZero", {localize: true});
         return;
       }
 
@@ -771,7 +771,7 @@ export default class TwodsixItem extends Item {
     let rollEffect = 0;
     let rollMode = "gmroll";
     if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
+      ui.notifications.warn("TWODSIX.Warnings.NoPsiPoints", {localize: true});
     } else {
       await this.drawItemTemplate();
 
@@ -809,7 +809,7 @@ export default class TwodsixItem extends Item {
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<object | void> {
     const consumableDamage = this.getConsumableBonusDamage();
     if (!this.system.damage && !consumableDamage) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageForWeapon"));
+      ui.notifications.warn("TWODSIX.Warnings.NoDamageForWeapon", {localize: true});
       return;
     } else {
       //Calc regular damage
@@ -828,7 +828,7 @@ export default class TwodsixItem extends Item {
         apValue += this.getValueFromRollFormula("armorPiercing");
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
+        ui.notifications.error("TWODSIX.Errors.InvalidRollFormula", {localize: true});
         return;
       }
 
@@ -1105,7 +1105,7 @@ export default class TwodsixItem extends Item {
         if (targetActor.type === 'traveller') {
           const wornArmor = targetActor.itemTypes.armor.filter((armor:TwodsixItem) => armor.system.equipped === 'equipped');
           if (wornArmor.length > 2) {
-            ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyLayersOnTarget"));
+            ui.notifications.warn("TWODSIX.Warnings.TooManyLayersOnTarget", {localize: true});
           } else if (targetActor.system.reflectOn && wornArmor.length === 2) {
             const armor0Mod = lookupRow[wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
             const armor1Mod = lookupRow[wornArmor[1].system.armorType] + (wornArmor[1].system.armorDM ?? 0);
@@ -1123,7 +1123,7 @@ export default class TwodsixItem extends Item {
           armorLabel = targetActor.system.armorType;
         }
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidWeaponArmor"));
+        ui.notifications.error("TWODSIX.Errors.InvalidWeaponArmor", {localize: true});
       }
     }
     armorLabel = game.i18n.localize(armorLabel !== "" ? TWODSIX.CT_ARMOR_TYPES[armorLabel] : 'TWODSIX.Ship.Unknown');
@@ -1189,7 +1189,7 @@ export default class TwodsixItem extends Item {
             break;
         }
       } catch /*(err)*/ {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
+        ui.notifications.error("TWODSIX.Errors.InvalidRangeBand", {localize: true});
       }
     }
     return returnVal;
@@ -1224,7 +1224,7 @@ export default class TwodsixItem extends Item {
         //  ItemTemplate.targetTokensInTemplate(templates[0]);
         //}
       } catch /*(err)*/ {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+        ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
       }
     }
   }

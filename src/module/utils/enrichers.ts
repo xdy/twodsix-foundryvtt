@@ -194,7 +194,7 @@ function findTable(tableName:string, options?:any): RollTable {
 
 function sendWarning(msg, params) {
   if (!params) {
-    return ui.notifications.warn(game.i18n.localize(msg));
+    return ui.notifications.warn(msg, {localize: true});
   } else {
     return ui.notifications.warn(game.i18n.format(game.i18n.localize(msg), params));
   }
@@ -248,7 +248,7 @@ export async function handleSkillRoll(event: Event): Promise<void> {
       }
     }
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
   }
 }
 
@@ -267,6 +267,6 @@ export async function handleSkillRoll(event: Event): Promise<void> {
     }
     return skill;
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
   }
 }*/

@@ -90,7 +90,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         if (existingSkill) {
           context.untrainedSkill = existingSkill;
         } else {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MissingUntrainedSkill"));
+          ui.notifications.warn("TWODSIX.Warnings.MissingUntrainedSkill", {localize: true});
         }
       }
 
@@ -368,7 +368,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     }
 
     if (actor.type === "traveller" && dropData.type === "Actor") { ///what about ship where valid?******************
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragActorOntoActor"));
+      ui.notifications.warn("TWODSIX.Warnings.CantDragActorOntoActor", {localize: true});
       return false;
     }
 
@@ -549,13 +549,13 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    */
   static async _onRollInitiative(ev:Event /*, target:HTMLElement*/): Promise<void> {
     if (!canvas.tokens?.ownedTokens.find(t => t.actor?.id === this.actor.id)) { //would this.actor.token work as well? Maybe not for multile canvases
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActiveToken"));
+      ui.notifications.warn("TWODSIX.Warnings.NoActiveToken", {localize: true});
       return;
     } else if (this.token?.combatant && this.token?.combatant.initiative !== null ) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
+      ui.notifications.warn("TWODSIX.Warnings.ActorHasInitiativeAlready", {localize: true});
       return;
     } else if (!this.actor.isToken && game.combat?.combatants?.find(c => c.actor?.id === this.actor.id)?.initiative) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActorHasInitiativeAlready"));
+      ui.notifications.warn("TWODSIX.Warnings.ActorHasInitiativeAlready", {localize: true});
       return;
     }
     const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));

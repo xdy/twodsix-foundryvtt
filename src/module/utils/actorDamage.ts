@@ -235,7 +235,7 @@ class DamageDialogHandler {
         if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
           chrHtml.find(`.damage-input`).addClass("orange-border");
           if (stat.original.damage === 0) {
-            ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.DecreaseEnduranceFirst"));
+            ui.notifications.warn("TWODSIX.Warnings.DecreaseEnduranceFirst", {localize: true});
           }
         }
       } else {
@@ -291,7 +291,7 @@ class DamageDialogHandler {
     const value = parseInt($(event.currentTarget).val() as string, 10);
     const newVal = isNaN(value) ? 0 : value;
     if (newVal < 0) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.StatValBelowZero"));
+      ui.notifications.warn("TWODSIX.Warnings.StatValBelowZero", {localize: true});
       $(event.currentTarget).val(0);
       return 0;
     }
@@ -300,7 +300,7 @@ class DamageDialogHandler {
       const current = stat.original.current;
       if (value > current) {
         $(event.currentTarget).val(current);
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.MaxStatVal"));
+        ui.notifications.warn("TWODSIX.Warnings.MaxStatVal", {localize: true});
         return current;
       }
     }
@@ -419,10 +419,10 @@ export async function getParryValue(actor:TwodsixActor, canOnlyBeBlocked:boolean
           }
         }
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantFind" + (canOnlyBeBlocked ? "Shield" : "MeleeWeapon")));
+        ui.notifications.warn("TWODSIX.Warnings.CantFind" + (canOnlyBeBlocked ? "Shield" : "MeleeWeapon"), {localize: true});
       }
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantFindMeleeSkill"));
+      ui.notifications.warn("TWODSIX.Warnings.CantFindMeleeSkill", {localize: true});
     }
   }
   return returnValue;

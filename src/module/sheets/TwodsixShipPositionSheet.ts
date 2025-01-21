@@ -123,11 +123,11 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
           this.actor.items.get(currentShipPositionId)?.sheet?.render();
         }
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CantDropActorIfPositionIsNotOnShip"));
+        ui.notifications.error("TWODSIX.Ship.CantDropActorIfPositionIsNotOnShip", {localize: true});
         return false;
       }
     } else {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.InvalidDocumentForShipPosition"));
+      ui.notifications.error("TWODSIX.Ship.InvalidDocumentForShipPosition", {localize: true});
       return false;
     }
     return true;

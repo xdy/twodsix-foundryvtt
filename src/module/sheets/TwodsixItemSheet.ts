@@ -300,14 +300,14 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       const newValue = !this.item.system.nonstackable;
       //check for having more than one equipped armor when changing to nonstackable
       if (this.item.actor.system.layersWorn > 1 && newValue && this.item.system.equipped === 'equipped') {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.WearingMultipleLayers"));
+        ui.notifications.warn("TWODSIX.Warnings.WearingMultipleLayers", {localize: true});
       }
     }
   }
 
   static async _onCreateEffect(): Promise<void> {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+      ui.notifications.warn("TWODSIX.Warnings.CantEditCreateInCargo", {localize: true});
     } else {
       const newId = foundry.utils.randomID();
       if(game.settings.get('twodsix', 'useItemActiveEffects')) {
@@ -323,7 +323,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
             _id: newId
           }, {renderSheet: true, parent: this.item});
         } else {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantCreateEffect"));
+          ui.notifications.warn("TWODSIX.Warnings.CantCreateEffect", {localize: true});
         }
       }
     }
@@ -331,7 +331,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
   static async _onEditEffect(): void {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditCreateInCargo"));
+      ui.notifications.warn("TWODSIX.Warnings.CantEditCreateInCargo", {localize: true});
     } else if (await fromUuid(this.item.uuid)) {
       const editSheet = await this.item.effects.contents[0].sheet?.render({force: true});
       try {
@@ -340,7 +340,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         console.log(err);
       }
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantEditEffect"));
+      ui.notifications.warn("TWODSIX.Warnings.CantEditEffect", {localize: true});
     }
   }
 
@@ -355,7 +355,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
           this.item.actor.sheet.render(false);
         }
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDeleteEffect"));
+        ui.notifications.warn("TWODSIX.Warnings.CantDeleteEffect", {localize: true});
       }
     }
   }

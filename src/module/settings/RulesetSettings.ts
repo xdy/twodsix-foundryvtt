@@ -158,7 +158,7 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
 export const checkManualDamageSetting = function () {
   if (!game.settings.get('twodsix', 'addEffectToDamage') && game.settings.get('twodsix', 'addEffectToManualDamage')) {
     game.settings.set('twodsix', 'addEffectToManualDamage', false);
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ResetEffectForManualDamage"));
+    ui.notifications.warn("TWODSIX.Warnings.ResetEffectForManualDamage", {localize: true});
   }
 };
 

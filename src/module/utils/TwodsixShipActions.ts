@@ -98,7 +98,7 @@ export class TwodsixShipActions {
         }
       }
     } else {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
+      ui.notifications.error("TWODSIX.Ship.CannotParseArgument", {localize: true});
       return false;
     }
   }
@@ -136,7 +136,7 @@ export class TwodsixShipActions {
         const scope = {actor: <TwodsixActor>extra.actor, ship: extra.ship, component: extra.component};
         foundMacros.execute(scope);
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PlayerDoesNotHavePermission"));
+        ui.notifications.warn("TWODSIX.Warnings.PlayerDoesNotHavePermission", {localize: true});
       }
     }
   }

@@ -70,7 +70,7 @@ export default function registerHandlebarsHelpers(): void {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
       if (!showedError) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Handlebars.CantShowCharacteristic"));
+        ui.notifications.error("TWODSIX.Handlebars.CantShowCharacteristic", {localize: true});
         showedError = true;
       }
       return "XXX";

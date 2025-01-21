@@ -266,10 +266,10 @@ export function openPDFReference(sourceString:string): void {
       ui["pdfpager"].openPDFByCode(code, {page: selectedPage});
       //byJournalName(code, selectedPage);
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFPagerNotInstalled"));
+      ui.notifications.warn("TWODSIX.Warnings.PDFPagerNotInstalled", {localize: true});
     }
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+    ui.notifications.warn("TWODSIX.Warnings.NoSpecfiedLink", {localize: true});
   }
 }
 
@@ -279,7 +279,7 @@ export async function openJournalEntry():void {
     if (journalToOpen) {
       journalToOpen.sheet.render({force: true});
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoJournalFound"));
+      ui.notifications.warn("TWODSIX.Warnings.NoJournalFound", {localize: true});
     }
   }
 }
@@ -289,7 +289,7 @@ export async function deletePDFReference(event): Promise<void> {
   if (this.document.system.pdfReference.href !== "") {
     await this.document.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+    ui.notifications.warn("TWODSIX.Warnings.NoSpecfiedLink", {localize: true});
   }
 }
 

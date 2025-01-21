@@ -144,7 +144,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       if (shipPosActors.length === 1) {
         actorId = shipPosEl[0].dataset.id;
       } else if (shipPosActors.length === 0) {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Ship.NoActorsForAction"));
+        ui.notifications.warn("TWODSIX.Ship.NoActorsForAction", {localize: true});
         return null;
       } else {
         actorId = shipPosEl.querySelector(".ship-position-actor-token.force-border")?.dataset.id;
@@ -158,7 +158,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
   static performShipAction(positionId: string, actorId: string, actionId: string, shipActor:TwodsixActor): boolean {
     if (!actorId) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Ship.ActorMustBeSelectedForAction"));
+      ui.notifications.warn("TWODSIX.Ship.ActorMustBeSelectedForAction", {localize: true});
       return false;
     }
     const shipPosition = shipActor.items.get(positionId);
@@ -299,7 +299,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         await super._onDrop(ev);
         return true;
       } else if (dropData.type === 'damageItem') {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
+        ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
         return false;
       }
       const droppedObject:any = await getItemFromDropData(dropData);
@@ -330,7 +330,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         await this._addVehicleCraftToComponents(droppedObject, dropData.uuid);
         return true;
       } else if (droppedObject.type === "animal") {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.AnimalsCantHoldPositions"));
+        ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions", {localize: true});
         return false;
       } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable", "computer", "junk"].includes(droppedObject.type)) {
         this.processDroppedItem(ev, droppedObject);

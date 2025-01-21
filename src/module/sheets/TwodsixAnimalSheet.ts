@@ -68,7 +68,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
     let flavor = "";
 
     if (isNaN(reaction.flee) || isNaN(reaction.attack) || reaction.flee >= reaction.attack) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidReactionInputs"));
+      ui.notifications.warn("TWODSIX.Warnings.InvalidReactionInputs", {localize: true});
     } else {
       if (roll.total >= reaction.attack) {
         flavor = game.i18n.localize("TWODSIX.Animal.AttacksMessage");

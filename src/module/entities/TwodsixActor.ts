@@ -796,7 +796,7 @@ export default class TwodsixActor extends Actor {
   public async characteristicRoll(tmpSettings: any, showThrowDialog: boolean, showInChat = true): Promise<TwodsixDiceRoll | void> {
     //Set charactersitic label
     if (!tmpSettings.rollModifiers?.characteristic) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoCharacteristicForRoll"));
+      ui.notifications.error("TWODSIX.Errors.NoCharacteristicForRoll", {localize: true});
       return;
     }
     //Select Difficulty if needed
@@ -1105,7 +1105,7 @@ export default class TwodsixActor extends Actor {
         }
         break;
     }
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDragOntoActor"));
+    ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
     return false;
   }
 
@@ -1128,12 +1128,12 @@ export default class TwodsixActor extends Actor {
   public async handleDamageData(damagePayload:any, showDamageDialog:boolean): Promise<boolean> {
     if (["traveller", "animal", "robot"].includes(this.type)) {
       if (!this.isOwner && !showDamageDialog) {
-        console.log(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+        console.log("TWODSIX.Warnings.LackPermissionToDamage", {localize: true});
       }
       await this.damageActor(damagePayload, (this.isOwner ? showDamageDialog : true));
       return true;
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantAutoDamage"));
+      ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
       return false;
     }
   }

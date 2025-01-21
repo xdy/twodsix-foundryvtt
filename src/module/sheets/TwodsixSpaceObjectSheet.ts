@@ -61,7 +61,7 @@ export class TwodsixSpaceObjectSheet extends foundry.applications.api.Handlebars
       damage = new Roll(rollFormula, actor.system);
       await damage.evaluate(); // async: true will be default in foundry 0.10
     } else {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
+      ui.notifications.error("TWODSIX.Errors.InvalidRollFormula", {localize: true});
       return;
     }
 
