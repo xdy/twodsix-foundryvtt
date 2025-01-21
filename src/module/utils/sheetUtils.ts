@@ -317,8 +317,7 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
           icon: "fa-solid fa-dice",
           label: "TWODSIX.Rolls.Roll",
           callback: (event, button, dialog) => {
-            const html = $(dialog);
-            resolve(html.find('[name="outputFormula"]')[0]["value"]);
+            resolve(dialog.querySelector('[name="outputFormula"]')?.value);
           }
         }
       ],
