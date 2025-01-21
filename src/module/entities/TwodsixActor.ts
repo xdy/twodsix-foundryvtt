@@ -1109,6 +1109,15 @@ export default class TwodsixActor extends Actor {
     return false;
   }
 
+  public async handleDroppedActiveEffect(droppedEffect:TwodsixActiveEffect): Promise<boolean> {
+    if ( !droppedEffect || (droppedEffect.target === this) ) {
+      return false;
+    }
+    const keepId = !this.effects.has(droppedEffect.id);
+    await TwodsixActiveEffect.create(droppedEffect.toObject(), {parent: this, keepId});
+    return true;
+  }
+
   /**
    * Method to handle a dropped damage payload
    * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type & label)

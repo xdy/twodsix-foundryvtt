@@ -6,38 +6,47 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { getItemFromDropData } from "../utils/sheetUtils";
 Hooks.on('dropCanvasData', (canvasObject, dropData) => {
-  if ((dropData.type === 'damageItem' || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {
+  if ((['damageItem', 'ActiveEffect'].includes(dropData.type) || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {
     catchDrop(canvasObject, dropData).then();
     return false;
   }
 });
 
-async function catchDrop(canvasObject: Canvas, dropData) {
+async function catchDrop(canvasObject: Canvas, dropData): Promise<any> {
   // Reference used: PlaceablesLayer.selectObjects
   // Find token(s) at drop location
   const foundTokens = getTokensAtLocation(canvasObject, dropData.x, dropData.y);
 
   if (foundTokens?.length === 0 || !foundTokens) {
-    return ui.notifications?.info(game.i18n.localize("TWODSIX.Warnings.NoTargetFound"));
+    ui.notifications?.info(game.i18n.localize("TWODSIX.Warnings.NoTargetFound"));
+    return false;
   } else if (foundTokens.length === 1) {
     const targetActor = <TwodsixActor>foundTokens[0]?.actor;
-
-    if (dropData.type === 'damageItem') {
-      return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
-    } else if (dropData.type === 'Item') {
-      if (targetActor?.isOwner) {
-        const droppedItem = await getItemFromDropData(dropData);
-        return targetActor.handleDroppedItem(droppedItem);
-      } else {
-        ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+    if (targetActor?.isOwner) {
+      switch (dropData.type) {
+        case 'damageItem':
+          return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+        case 'Item': {
+          const droppedItem = await getItemFromDropData(dropData);
+          return await targetActor.handleDroppedItem(droppedItem);
+        }
+        case 'ActiveEffect': {
+          const droppedEffect = await fromUuid(dropData.uuid);
+          return await targetActor.handleDroppedActiveEffect(droppedEffect);
+        }
+        default: {
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDropOnToken"));
+          return false;
+        }
       }
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.CantDropOnToken"));
+      ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.LackPermissionToDamage"));
+      return false;
     }
-    return false;
   } else if (foundTokens.length > 1) {
     // Make sure only one token is there to avoid mistakes
-    return ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.MultipleActorsFound"));
+    ui.notifications?.warn(game.i18n.localize("TWODSIX.Warnings.MultipleActorsFound"));
+    return false;
   }
 }
 

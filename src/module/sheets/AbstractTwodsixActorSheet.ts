@@ -424,19 +424,15 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * Handle a dropped Active Effect on the Actor Sheet.
    * The default implementation creates an Active Effect embedded document on the Actor.
    * @param {DragEvent} ev       The initiating drop event
-   * @param {ActiveEffect} effect   The dropped ActiveEffect document
+   * @param {TwodsixActiveEffect} effect   The dropped ActiveEffect document
    * @returns {Promise<void>}
    * @protected
    */
-  async onDropActiveEffect(ev, effect) {
+  async onDropActiveEffect(ev:DragEvent, effect:TwodsixActiveEffect): Promise<void> {
     if ( !this.actor.isOwner ) {
       return;
     }
-    if ( !effect || (effect.target === this.actor) ) {
-      return;
-    }
-    const keepId = !this.actor.effects.has(effect.id);
-    await ActiveEffect.create(effect.toObject(), {parent: this.actor, keepId});
+    (<TwodsixActor>this.actor).handleDroppedActiveEffect(effect);
   }
 
   _prepareItemContainers(context:any):void {
