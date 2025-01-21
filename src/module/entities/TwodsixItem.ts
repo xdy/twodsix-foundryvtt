@@ -1239,7 +1239,7 @@ export default class TwodsixItem extends Item {
     if (foundry.utils.hasProperty(this.system, key)) {
       if (Roll.validate(this.system[key])) {
         try {
-          const replacedFormula = Roll.replaceFormulaData(this.system[key], this.actor?.getRollData());
+          const replacedFormula = Roll.replaceFormulaData(this.system[key], this.actor?.getRollData(), {missing: "0", warn: true});
           returnValue += replacedFormula ? Roll.safeEval(replacedFormula) : 0;
         } catch (error) {
           console.log ('Invalid formula', error);
@@ -1325,7 +1325,7 @@ export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): n
   let returnValue = 0;
   if (Roll.validate(rollFormula)) {
     try {
-      returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData())) ?? 0;
+      returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData(), {missing: "0", warn: true})) ?? 0;
     } catch (error) {
       console.log ('Invalid formula', error);
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidFormula") + item.name);
