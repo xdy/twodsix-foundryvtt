@@ -116,15 +116,15 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       label: "TWODSIX.Chat.Roll.RequestRoll",
       icon: "fa-solid fa-message",
       callback: (event, button, dialog) => {
-        const buttonHtml = $(dialog);
-        returnValue.selectedTokens = buttonHtml.find('[name="selectedTokens"]').val();
-        returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][buttonHtml.find('[name="difficulty"]').val()];
-        returnValue.rollType = buttonHtml.find('[name="rollType"]').val();
-        returnValue.rollMode = buttonHtml.find('[name="rollMode"]').val();
-        returnValue.characteristic = buttonHtml.find('[name="characteristic"]').val();
-        returnValue.skillName = skillsList[buttonHtml.find('[name="selectedSkill"]').val()];
+        const formElements = dialog.querySelector(".standard-form").elements;
+        returnValue.selectedTokens = formElements["selectedTokens"] ? Array.from(formElements["selectedTokens"].selectedOptions)?.map((({ value }) => value)) : [];
+        returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][formElements["difficulty"]?.value];
+        returnValue.rollType = formElements["rollType"]?.value;
+        returnValue.rollMode = formElements["rollMode"]?.value;
+        returnValue.characteristic = formElements["characteristic"]?.value;
+        returnValue.skillName = skillsList[formElements["selectedSkill"]?.value];
         returnValue.shouldRoll = returnValue.selectedTokens.length > 0;
-        returnValue.other = parseInt(buttonHtml.find('[name="other"]').val());
+        returnValue.other = parseInt(formElements["other"]?.value);
       }
     },
     {
