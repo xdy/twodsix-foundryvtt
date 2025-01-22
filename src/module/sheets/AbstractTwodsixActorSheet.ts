@@ -143,7 +143,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
      ****************/
 
     // Drag events for macros. ??? legacy - not for macros
-    if (this.actor.isOwner && !['TwodsixNPCSheet', 'TwodsixAnimalSheet', 'TwodsixRobotSheet'].includes(this.constructor.name.replace('_', ''))) {
+    /*if (this.actor.isOwner && !['TwodsixNPCSheet', 'TwodsixAnimalSheet', 'TwodsixRobotSheet'].includes(this.options.sheetType)) {
       const html = $(this.element);
       html.find('li.item').each((i, li) => {
         if (li.classList.contains("inventory-header")) {
@@ -151,7 +151,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         }
         li.setAttribute("draggable", 'true');
       });
-    }
+    }*/
 
     //need to augment DragDrop listener as only GM and droppable class is allowed in core ActorSheetV2
     if (game.user.isOwner && this.options.dragDrop) {
@@ -603,12 +603,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         label: "TWODSIX.Rolls.Roll",
         icon: "fa-solid fa-dice",
         callback: (event, button, dialog) => {
-          const buttonHtml = $(dialog);
+          const formElements = dialog.querySelector(".standard-form").elements;
           dialogData.shouldRoll = true;
-          dialogData.rollType = buttonHtml.find('[name="rollType"]').val();
-          dialogData.diceModifier = buttonHtml.find('[name="diceModifier"]').val();
-          dialogData.rollMode = buttonHtml.find('[name="rollMode"]').val();
-          dialogData.rollFormula = buttonHtml.find('[name="rollFormula"]').val();
+          dialogData.rollType = formElements["rollType"]?.value;
+          dialogData.diceModifier = formElements["diceModifier"]?.value;
+          dialogData.rollMode = formElements["rollMode"]?.value;
+          dialogData.rollFormula = formElements["rollFormula"]?.value;
         }
       },
       {

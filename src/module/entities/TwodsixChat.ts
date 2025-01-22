@@ -250,7 +250,7 @@ async function onExpandClick(message: ChatMessage) {
  * @param {ChatMessage} message    The originating message
  * @param {string} type The type of decondary roll, chain or opposed
  * @param {boolean} showDialog whether or not to show skill roll dialog
- * @returns {void}
+ * @returns {Promise<void>}
  */
 async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog: boolean): Promise<void> {
   const secondActor: TwodsixActor = getControlledTraveller();
