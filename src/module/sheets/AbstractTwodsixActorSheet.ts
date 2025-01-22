@@ -142,17 +142,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
      *
      ****************/
 
-    // Drag events for macros. ??? legacy - not for macros
-    /*if (this.actor.isOwner && !['TwodsixNPCSheet', 'TwodsixAnimalSheet', 'TwodsixRobotSheet'].includes(this.options.sheetType)) {
-      const html = $(this.element);
-      html.find('li.item').each((i, li) => {
-        if (li.classList.contains("inventory-header")) {
-          li.setAttribute("draggable", 'false');;
-        }
-        li.setAttribute("draggable", 'true');
-      });
-    }*/
-
     //need to augment DragDrop listener as only GM and droppable class is allowed in core ActorSheetV2
     if (game.user.isOwner && this.options.dragDrop) {
       (<object[]>this.options.dragDrop).forEach( (selector:{dragSelector: string, dropSelector:string}) => {
