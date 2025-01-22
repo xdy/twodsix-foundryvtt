@@ -62,7 +62,7 @@ function applyChatCardDamage(li, multiplier) {
       if (["traveller", "robot", "animal"].includes(t.actor.type)) {
         const damage = Math.floor(effect * multiplier);
         if (damage > 0) {
-          t.actor.damageActor(Math.floor(effect * multiplier), transfer?.payload.armorPiercingValue ?? 0, transfer?.payload.damageType ?? "", true);
+          (<TwodsixActor>t.actor).damageActor({damageValue: damage, armorPiercingValue: transfer?.payload.armorPiercingValue ?? 0, damageType: transfer?.payload.damageType ?? ""}, true);
         } else if (multiplier < 0) {
           t.actor.healActor(effect);
         }
