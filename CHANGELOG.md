@@ -1,3 +1,10 @@
+## [5.12.5](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.4...v5.12.5) (2025-01-22)
+
+
+### Bug Fixes
+
+* make applying damage from chat card context function ([#1733](https://github.com/xdy/twodsix-foundryvtt/issues/1733)) ([6bf8faa](https://github.com/xdy/twodsix-foundryvtt/commit/6bf8faa160e2ffcb9e5090966fe1ce28b1a2f1f7))
+
 ## [5.12.4](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.3...v5.12.4) (2024-12-26)
 
 
