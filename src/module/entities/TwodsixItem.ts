@@ -79,7 +79,6 @@ export default class TwodsixItem extends Item {
     }
 
     Object.assign(updates, {"system.type": this.type});
-    Object.assign(updates, {"flags.twodsix.newItem": true});
     await this.updateSource(updates);
   }
 
