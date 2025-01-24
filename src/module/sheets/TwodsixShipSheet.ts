@@ -136,13 +136,13 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  static _onExecuteAction(ev: DragEvent, target:HTMLElement): Promise<boolean | any> {
+  static _onExecuteAction(ev: Event, target:HTMLElement): Promise<boolean | any> {
     if (target !== null) {
       let actorId:string;
       const shipPosEl = target.closest(".ship-position");
       const shipPosActors = shipPosEl.querySelectorAll(".ship-position-actor-token");
       if (shipPosActors.length === 1) {
-        actorId = shipPosEl[0].dataset.id;
+        actorId = shipPosActors[0].dataset.id;
       } else if (shipPosActors.length === 0) {
         ui.notifications.warn("TWODSIX.Ship.NoActorsForAction", {localize: true});
         return null;
@@ -152,11 +152,11 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
       const actionId = target.dataset.id;
       const shipPositionId = shipPosEl.dataset.id;
-      TwodsixShipSheet.performShipAction(shipPositionId, actorId, actionId, this.actor);
+      TwodsixShipSheet.performShipAction(ev, shipPositionId, actorId, actionId, this.actor);
     }
   }
 
-  static performShipAction(positionId: string, actorId: string, actionId: string, shipActor:TwodsixActor): boolean {
+  static performShipAction(ev: Event, positionId: string, actorId: string, actionId: string, shipActor:TwodsixActor): boolean {
     if (!actorId) {
       ui.notifications.warn("TWODSIX.Ship.ActorMustBeSelectedForAction", {localize: true});
       return false;
@@ -169,7 +169,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         actor: game.actors?.get(actorId),
         ship: shipActor,
         component: <TwodsixItem>component,
-        event: event,
+        event: ev,
         actionName: action.name,
         positionName: shipPosition?.name ?? "",
         diceModifier: ""
@@ -307,8 +307,8 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       if (["traveller", "robot"].includes(droppedObject.type)) {
         const actorId = droppedObject._id;
         const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
-        if (ev.target !== null && $(ev.target).parents(".ship-position").length === 1) {
-          const shipPositionId = $(ev.target).parents(".ship-position").data("id");
+        if (ev.target !== null && ev.target?.closest(".ship-position")) {
+          const shipPositionId = ev.target.closest(".ship-position").dataset.id;
           await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
           this.actor.items.get(shipPositionId)?.sheet?.render();
         } else {
@@ -316,10 +316,10 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
         return true;
-      } else if ((droppedObject.type === "skills") && ev.target !== null && $(ev.target).parents(".ship-position").length === 1) {
+      } else if ((droppedObject.type === "skills") && ev.target !== null && ev.target?.closest(".ship-position")) {
         //check for double drop trigger, not clear why this occurs
         if (ev.currentTarget.className === "ship-position-box") {
-          const shipPositionId = $(ev.target).parents(".ship-position").data("id");
+          const shipPositionId = ev.target.closest(".ship-position").dataset.id;
           const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
           await TwodsixShipPositionSheet.createActionFromSkill(shipPosition, droppedObject);
           return true;

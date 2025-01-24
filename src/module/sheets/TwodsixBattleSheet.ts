@@ -99,7 +99,7 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
           selectedActionId = li.querySelector("[name='selectedAction']")?.value;
         }
       }
-      TwodsixShipSheet.performShipAction(selectedPositionId, selectedActorId, selectedActionId, this.actor);
+      TwodsixShipSheet.performShipAction(ev, selectedPositionId, selectedActorId, selectedActionId, this.actor);
     }
   }
 }
