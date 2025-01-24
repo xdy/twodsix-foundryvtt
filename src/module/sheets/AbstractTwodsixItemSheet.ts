@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { TWODSIX } from "../config";
-import { getDataFromDropEvent, getItemFromDropData, isDisplayableSkill } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getDocFromDropData, isDisplayableSkill } from "../utils/sheetUtils";
 import { sortByItemName } from "../utils/utils";
 
 /**
@@ -124,7 +124,7 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
 
         this.check(dropData.type !== "Item", "OnlyDropItems");
 
-        const itemData = await getItemFromDropData(dropData);
+        const itemData = await getDocFromDropData(dropData);
 
         this.check(itemData.type !== "consumable", "OnlyDropConsumables");
         this.check(this.item.type === "consumable" && itemData.system.isAttachment, "CantDropAttachOnConsumables");

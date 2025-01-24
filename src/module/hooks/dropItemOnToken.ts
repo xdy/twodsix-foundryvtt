@@ -4,7 +4,7 @@
 //Liberally adapted from "hey-catch" by Mana#4176
 //import { Skills } from "src/types/template";
 import TwodsixActor from "../entities/TwodsixActor";
-import { getItemFromDropData } from "../utils/sheetUtils";
+import { getDocFromDropData } from "../utils/sheetUtils";
 Hooks.on('dropCanvasData', (canvasObject, dropData) => {
   if ((['damageItem', 'ActiveEffect'].includes(dropData.type) || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {
     catchDrop(canvasObject, dropData).then();
@@ -27,7 +27,7 @@ async function catchDrop(canvasObject: Canvas, dropData): Promise<any> {
         case 'damageItem':
           return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         case 'Item': {
-          const droppedItem = await getItemFromDropData(dropData);
+          const droppedItem = await getDocFromDropData(dropData);
           return await targetActor.handleDroppedItem(droppedItem);
         }
         case 'ActiveEffect': {

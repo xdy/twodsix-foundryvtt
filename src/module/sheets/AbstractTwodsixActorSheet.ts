@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getItemFromDropData, isDisplayableSkill, openPDFReference, deletePDFReference, getDamageTypes, getRangeTypes, openJournalEntry } from "../utils/sheetUtils";
+import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFReference, deletePDFReference, getDamageTypes, getRangeTypes, openJournalEntry } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
@@ -381,7 +381,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       }
       return false;
     } else if (dropData.type === 'Item') {
-      const droppedItem:TwodsixItem = await getItemFromDropData(dropData);
+      const droppedItem:TwodsixItem = await getDocFromDropData(dropData);
       return await this.processDroppedItem(ev, droppedItem);
     } else if (dropData.type === 'ActiveEffect') {
       const droppedEffect = await fromUuid(dropData.uuid);

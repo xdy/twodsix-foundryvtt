@@ -211,32 +211,36 @@ export function getDataFromDropEvent(ev:DragEvent):Record<string, any> {
   }
 }
 
-export async function getItemFromDropData(dropData:Record<string, any>) {
-  let item;
+export async function getDocFromDropData(dropData:Record<string, any>):Promise<TwodsixActor|TwodsixItem> {
+  let doc;
   if (game.modules.get("monks-enhanced-journal")?.active && dropData.itemId && dropData.uuid.includes("JournalEntry")) {
     const journalEntry = await fromUuid(dropData.uuid);
-    const lootItems = await journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
-    item = await lootItems.find((it) => it._id === dropData.itemId);
-    if (item.system.consumables?.length > 0) {
-      item.system.consumables = [];
+    const lootItems = journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
+    doc = lootItems.find((it) => it._id === dropData.itemId);
+    if (doc.system.consumables?.length > 0) {
+      doc.system.consumables = [];
     }
   } else if (dropData.uuid) {
-    item = await fromUuid(dropData.uuid); //must use async function to drop from compendiums directly
+    doc = await fromUuid(dropData.uuid); //must use async function to drop from compendiums directly
   } else {
-    item = await game.items.get(dropData._id ?? dropData.data?._id); //not certain why needed for v13
+    if (dropData.type === "Item") {
+      doc = game.items.get(dropData._id ?? dropData.data?._id); //not certain why needed for v13
+    } else if (dropData.type === "Actor") {
+      doc = game.actors.get(dropData._id ?? dropData.data?._id); //not certain why needed for v13
+    }
   }
 
-  if (!item) {
+  if (!doc) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
   //handle drop from compendium
-  if (item.pack) {
-    const pack = game.packs.get(item.pack);
-    item = await pack?.getDocument(item._id);
+  if (doc.pack) {
+    const pack = game.packs.get(doc.pack);
+    doc = await pack?.getDocument(doc._id);
   }
   //const itemCopy = foundry.utils.duplicate(item); ///Should this be copy???
   //Object.assign(itemCopy, {uuid: item.uuid, id: item._id});
-  return item;
+  return doc;
 }
 
 export function getHTMLLink(dropString:string): Record<string,unknown> {

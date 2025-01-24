@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
-import { getDataFromDropEvent, getItemFromDropData } from "../utils/sheetUtils";
+import { getDataFromDropEvent, getDocFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import TwodsixActor from "../entities/TwodsixActor";
@@ -270,16 +270,16 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   _onDragStart(ev: DragEvent):void {
-    if (ev.dataTransfer !== null && ev.target !== null && $(ev.target).data("drag") === "actor") {
-      const actor = game.actors?.get($(ev.target).data("id"));
+    if (ev.dataTransfer !== null && ev.target !== null && ev.target.dataset?.drag === "actor") {
+      const actor = game.actors?.get(ev.target.dataset.id);
       ev.dataTransfer.setData("text/plain", JSON.stringify({
         "type": "Actor",
         "data": actor,  //Not Certain if this should be system instead
-        "actorId": this.actor.id,
-        "id": $(ev.target).data("id"),
+        "actorId": actor.id, //Why did this refer to ship actor previously?
+        "id": actor.id, //Necesssary?
         "uuid": actor?.uuid
       }));
-    } else if (ev.target && $(ev.target).hasClass("ship-position-action")) {
+    } else if (ev.target?.classList.contains("ship-position-action")) {
       return;
     } else {
       super._onDragStart(ev);
@@ -302,7 +302,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
         return false;
       }
-      const droppedObject:any = await getItemFromDropData(dropData);
+      const droppedObject:any = await getDocFromDropData(dropData);
 
       if (["traveller", "robot"].includes(droppedObject.type)) {
         const actorId = droppedObject._id;
