@@ -468,8 +468,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   private async _onChangeUseConsumableForAttack(event): Promise<void> {
-    await this.item.update({"system.useConsumableForAttack": $(event.currentTarget).val()});
-    this.render();
+    await this.item.update({"system.useConsumableForAttack": event.currentTarget.value});
+    /*this.render();*/
   }
 
   //These aren't necessary with change to prosemirror
