@@ -4,7 +4,6 @@
 import Crit from "../utils/crit";
 
 Hooks.on('renderChatMessageHTML', (app, htmlElement:HTMLElement) => {
-  //const html = $(htmlElement);
   const damageMessage = htmlElement.querySelector(".damage-message");
   if (damageMessage) {
     damageMessage.setAttribute("draggable", "true");
