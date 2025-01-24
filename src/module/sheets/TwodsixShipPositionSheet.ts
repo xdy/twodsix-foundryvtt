@@ -94,13 +94,12 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
   }
 
   _onDragStart(event: DragEvent):void {
-    if (event.dataTransfer !== null && event.target !== null && $(event.target).data("drag") === "actor") {
-      const actor = game.actors?.get($(event.target).data("id"));
+    if (event.dataTransfer !== null && event.target !== null && event.target.dataset.drag === "actor") {
+      const actor = game.actors?.get(event.target.dataset.id);
       event.dataTransfer.setData("text/plain", JSON.stringify({
         "type": "Actor",
         "data": actor,  //NOT CERTAIN WHAT TO DO ABOUT THIS ONE
-        //"actorId": this.actor?.id,
-        "id": actor?.id, //$(event.target).data("id")
+        "id": actor?.id,
         "uuid": actor?.uuid
       }));
     } else {
