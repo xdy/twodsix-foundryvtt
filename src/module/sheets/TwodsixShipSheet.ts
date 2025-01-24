@@ -275,8 +275,8 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       ev.dataTransfer.setData("text/plain", JSON.stringify({
         "type": "Actor",
         "data": actor,  //Not Certain if this should be system instead
-        "actorId": actor.id, //Why did this refer to ship actor previously?
-        "id": actor.id, //Necesssary?
+        "actorId": actor?.id, //Why did this refer to ship actor previously?
+        "id": actor?.id, //Necesssary?
         "uuid": actor?.uuid
       }));
     } else if (ev.target?.classList.contains("ship-position-action")) {
