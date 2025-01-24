@@ -64,20 +64,22 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
    * @protected
    */
   _onDragStart(ev: DragEvent):void {
-    if ('link' in ev.target.dataset) {
+    if ('link' in ev.target.dataset || this.options.sheetType === "ShipPositionSheet") {
       return;
     }
 
     // Extract the data you need
-    const consumableId = ev.currentTarget.closest(".consumable").dataset.consumableId;
-    const draggedConsumable = this.item.actor?.items.get(consumableId);
-    if (draggedConsumable) {
-      const dragData = {
-        type: "Item",
-        uuid: draggedConsumable.uuid
-      };
-      // Set data transfer
-      ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+    const consumableId = ev.currentTarget.closest(".consumable")?.dataset.consumableId;
+    if (consumableId) {
+      const draggedConsumable = this.item.actor?.items.get(consumableId);
+      if (draggedConsumable) {
+        const dragData = {
+          type: "Item",
+          uuid: draggedConsumable.uuid
+        };
+        // Set data transfer
+        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+      }
     }
   }
 
