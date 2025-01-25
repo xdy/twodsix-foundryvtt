@@ -419,6 +419,7 @@ form .form-group span.units {
 h2 {
   font-size: 1.5em;
   border-bottom: 1px solid var(--s2d6-header-border);
+  font-family: Asap, sans-serif;
 }
 
 .content-container {
