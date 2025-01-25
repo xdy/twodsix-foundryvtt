@@ -1,4 +1,4 @@
-<form>
+
 <div class="standard-form damage-dialog">
   {{#with stats}}
   <div class = "">
@@ -33,7 +33,7 @@
             <td><input type="number" value="{{parryArmor}}" class="armor" readonly></td>
           {{/if}}
           <td><input type="number" value="{{effectiveArmor}}" class="armor"></td>
-          <td class="applied-damage"></td>
+          <td class="applied-damage total-damage"></td>
         </tr>
         {{#iff damageLabel "!==" "---"}}
         <tr>
@@ -49,7 +49,7 @@
   </div>
   <div class = "">
     <label>{{localize "TWODSIX.Damage.Characteristics"}}</label>
-    <table class="damage center-table-text">
+    <table class="center-table-text">
       <thead class="centre">
         <tr>
           <th class="attribute-name-column"></th>
@@ -123,4 +123,3 @@
   </div>
   {{/with}}
 </div>
-<form>

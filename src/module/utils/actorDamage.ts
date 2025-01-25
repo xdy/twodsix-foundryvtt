@@ -111,7 +111,7 @@ export class Stats {
   }
 
   totalDamage(): number {
-    const rollData = foundry.utils.deepClone(this.actor.getRollData());
+    const rollData = foundry.utils.duplicate(this.actor.getRollData());
     Object.assign(rollData, {damage: this.damageValue, effectiveArmor: this.effectiveArmor});
     const damageFormula = this.armorPiercingValue === 9999 ? "@damage" : this.damageFormula;
     if (Roll.validate(damageFormula)) {
@@ -199,7 +199,7 @@ export class Stats {
  * accordingly.
  */
 class DamageDialogHandler {
-  html: JQuery;
+  html: HTMLElement;
   hooks = {};
   stats: Stats;
 
@@ -214,92 +214,101 @@ class DamageDialogHandler {
     this.refresh();
   }
 
-  public setHtml(html: JQuery): void {
+  public setHtml(html: HTMLElement): void {
     this.html = html;
     this.registerEventListeners();
     this.refresh();
   }
 
   private refresh(): void {
-    this.html.find(".applied-damage").html(this.stats.totalDamage().toString());
+    this.html.querySelector(".applied-damage").textContent = this.stats.totalDamage().toString();
 
     for (const characteristic of this.stats.damageCharacteristics) {
-      const chrHtml = this.html.find(`.${characteristic}`);
+      const chrHtml = this.html.querySelector(`.${characteristic}`);
       const stat = this.stats[characteristic];
-
-      if (!this.stats.edited) {
-        chrHtml.find(`.damage-input`).val(stat.damage);
-      }
-
-      if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
-        if (!chrHtml.find(`.damage-input`).hasClass("orange-border")) {
-          chrHtml.find(`.damage-input`).addClass("orange-border");
-          if (stat.original.damage === 0) {
-            ui.notifications.warn("TWODSIX.Warnings.DecreaseEnduranceFirst", {localize: true});
-          }
+      if (chrHtml) {
+        if (!this.stats.edited) {
+          chrHtml.querySelector(`.damage-input`).value = stat.damage;
         }
-      } else {
-        chrHtml.find(`.damage-input`).removeClass("orange-border");
-      }
 
-      chrHtml.find(`.original-value`).html(stat.original.value.toString());
-      chrHtml.find(`.original-current`).html(stat.original.current.toString());
-      chrHtml.find(`.result-value`).html(stat.current().toString());
-      chrHtml.find(`.result-total-damage`).html(stat.totalDamage().toString());
-      chrHtml.find(`.current-mod`).html(stat.original.mod.toString());
-      chrHtml.find(`.mod`).html(stat.mod().toString());
+        if (characteristic === this.stats.damageCharacteristics[0] && stat.current() !== 0 && this.stats.currentDamage() - stat.damage > 0) {
+          if (!chrHtml.querySelector(`.damage-input`)?.classList.contains("orange-border")) {
+            chrHtml.querySelector(`.damage-input`)?.classList.add("orange-border");
+            if (stat.original.damage === 0) {
+              ui.notifications.warn("TWODSIX.Warnings.DecreaseEnduranceFirst", {localize: true});
+            }
+          }
+        } else {
+          chrHtml.querySelector(`.damage-input`)?.classList.remove("orange-border");
+        }
+
+        chrHtml.querySelector(`.original-value`).innerHTML = stat.original.value.toString();
+        chrHtml.querySelector(`.original-current`).innerHTML = stat.original.current.toString();
+        chrHtml.querySelector(`.result-value`).innerHTML = stat.current().toString();
+        //chrHtml.querySelector(`.total-damage`).innerHTML = stat.totalDamage().toString();
+        chrHtml.querySelector(`.current-mod`).innerHTML = stat.original.mod.toString();
+        chrHtml.querySelector(`.mod`).innerHTML = stat.mod().toString();
+      }
     }
 
     if (this.stats.unallocatedDamage() !== 0) {
-      this.html.find(".unalocated-damage-text").addClass("orange");
+      this.html.querySelector(".unalocated-damage-text")?.classList.add("orange");
     } else {
-      this.html.find(".unalocated-damage-text").removeClass("orange");
+      this.html.querySelector(".unalocated-damage-text")?.classList.remove("orange");
     }
-    this.html.find(".unalocated-damage").html(this.stats.unallocatedDamage().toString());
+    this.html.querySelector(".unalocated-damage").innerHTML = this.stats.unallocatedDamage().toString();
 
-    const characterDead = this.html.find(".character-dead");
-    if (this.stats.totalCurrent() === 0) {
-      characterDead.show();
-    } else {
-      characterDead.hide();
+    const characterDead = this.html.querySelector(".character-dead");
+    if (characterDead) {
+      if (this.stats.totalCurrent() === 0) {
+        characterDead.style.display = '';
+      } else {
+        characterDead.style.display = 'none';
+      }
     }
   }
 
   private registerEventListeners() {
-    this.html.on('input', ".damage", (event) => {
-      this.stats.setDamage(this.getNumericValueFromEvent(event));
-      this.refresh();
+    this.html.querySelectorAll(".damage")?.forEach(el => {
+      el.addEventListener ('input', (ev:Event) => {
+        this.stats.setDamage(this.getNumericValueFromEvent(ev));
+        this.refresh();
+      });
     });
 
-    this.html.on('input', ".armor", (event) => {
-      this.stats.setArmor(this.getNumericValueFromEvent(event));
-      this.refresh();
+    this.html.querySelectorAll(".armor")?.forEach(el => {
+      el.addEventListener ('input', (ev:Event) => {
+        this.stats.setArmor(this.getNumericValueFromEvent(ev));
+        this.refresh();
+      });
     });
 
-    this.html.on('input', ".damage-input", (event) => {
-      const value = this.getNumericValueFromEvent(event, true);
-      const stat = this.stats[$(event.currentTarget).data("stat")];
+    this.html.querySelectorAll(".damage-input")?.forEach(el => {
+      el.addEventListener ('input', (ev:Event) => {
+        const value = this.getNumericValueFromEvent(ev, true);
+        const stat = this.stats[ev.currentTarget.dataset.stat];
 
-      this.stats.edited = true;
-      stat.damage = value;
+        this.stats.edited = true;
+        stat.damage = value;
 
-      this.refresh();
+        this.refresh();
+      });
     });
   }
 
-  private getNumericValueFromEvent(event, upper?: boolean): number {
-    const value = parseInt($(event.currentTarget).val() as string, 10);
+  private getNumericValueFromEvent(ev:Event, upper?: boolean): number {
+    const value = parseInt(ev.currentTarget.value as string, 10);
     const newVal = isNaN(value) ? 0 : value;
     if (newVal < 0) {
       ui.notifications.warn("TWODSIX.Warnings.StatValBelowZero", {localize: true});
-      $(event.currentTarget).val(0);
+      ev.currentTarget.value = 0;
       return 0;
     }
     if (upper) {
-      const stat = this.stats[$(event.currentTarget).data("stat")];
+      const stat = this.stats[ev.currentTarget.dataset.stat];
       const current = stat.original.current;
       if (value > current) {
-        $(event.currentTarget).val(current);
+        ev.currentTarget.value = current;
         ui.notifications.warn("TWODSIX.Warnings.MaxStatVal", {localize: true});
         return current;
       }
@@ -309,7 +318,7 @@ class DamageDialogHandler {
 
   public unRegisterListeners() {
     Object.entries(this.hooks).forEach(([hookName, hook]: [string, number]) => Hooks.off(hookName, hook));
-    this.html.off('change', "**");
+    //this.html.removeEventListener('change', "**");
   }
 }
 
@@ -334,7 +343,10 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
 
   await foundry.applications.api.DialogV2.wait({
-    window: {title: title},
+    window: {
+      title: title,
+      icon: "fa-solid fa-person-burst"
+    },
     content: renderedHtml,
     buttons: [
       {
@@ -359,9 +371,8 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
     ],
     default: 'ok',
     close: () => damageDialogHandler.unRegisterListeners(),
-    render: (event, html) => {
-      const inJQ = $(html);
-      damageDialogHandler.setHtml(inJQ);
+    render: (ev, html) => {
+      damageDialogHandler.setHtml(html);
     },
     rejectClose: false
   }, {id: damageId});
