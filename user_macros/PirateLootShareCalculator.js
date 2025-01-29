@@ -172,37 +172,37 @@
                   <tr>
                     <td>Traveller Shares</td>
                     <td>${travellerShares}</td>
-                    <td>${travellerCut !== "N/A" ? travellerCut : "N/A"}</td>
+                    <td>${isNaN(travellerCut)? "N/A" : travellerCut}</td>
                   </tr>
                   <tr>
                     <td>Captain Shares</td>
                     <td>${captainShares}</td>
-                    <td>${captainCut !== "N/A" ? captainCut : "N/A"}</td>
+                    <td>${isNaN(captainCut) ? "N/A" : captainCut}</td>
                   </tr>
                   <tr>
                     <td>Ordinary Shares</td>
                     <td>${valuesToCheck[3]}</td>
-                    <td>${ordinaryCut !== "N/A" ? ordinaryCut : "N/A"}</td>
+                    <td>${isNaN(ordinaryCut) ? "N/A" : ordinaryCut}</td>
                   </tr>
                   <tr>
                     <td>Good Shares</td>
                     <td>${goodShares}</td>
-                    <td>${goodCut !== "N/A" ? goodCut : "N/A"}</td>
+                    <td>${isNaN(goodCut) ? "N/A" : goodCut}</td>
                   </tr>
                   <tr>
                     <td>Excellent Shares</td>
                     <td>${excellentShares}</td>
-                    <td>${excellentCut !== "N/A" ? excellentCut : "N/A"}</td>
+                    <td>${isNaN(excellentCut) ? "N/A" : excellentCut}</td>
                   </tr>
                   <tr>
                     <td>Legendary Shares</td>
                     <td>${legendaryShares}</td>
-                    <td>${legendaryCut !== "N/A" ? legendaryCut : "N/A"}</td>
+                    <td>${isNaN(legendaryCut) ? "N/A" : legendaryCut}</td>
                   </tr>
                   <tr>
                     <td>Other Shares</td>
                     <td>${otherShares}</td>
-                    <td>${otherSharesCut !== "N/A" ? otherSharesCut : "N/A"}</td>
+                    <td>${isNaN(otherSharesCut) ? "N/A" : otherSharesCut}</td>
                   </tr>
                 </table>
                 <hr>
