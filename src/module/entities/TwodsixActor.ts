@@ -1418,12 +1418,12 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
           action: "Transfer",
           icon: "fa-solid fa-arrow-right-arrow-left",
           label: "TWODSIX.Actor.Items.Transfer",
+          default: true,
           callback: (event, button, dialog) => {
             resolve(dialog.querySelector('[name="amount"]').value);
           }
         }
-      ],
-      default: `Transfer`
+      ]
     }).render({force: true});
   });
   return parseInt(returnNumber);

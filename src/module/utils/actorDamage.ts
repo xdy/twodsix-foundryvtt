@@ -353,6 +353,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
         action: "ok",
         label: "TWODSIX.Damage.DealDamage",
         icon: "fa-solid fa-hand-fist",
+        default: true,
         callback: () => {
           stats.edited = true;
           stats.applyDamage();
@@ -369,7 +370,6 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
         }
       },
     ],
-    default: 'ok',
     close: () => damageDialogHandler.unRegisterListeners(),
     render: (ev, html) => {
       damageDialogHandler.setHtml(html);

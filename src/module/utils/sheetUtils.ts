@@ -320,12 +320,12 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
           action: "roll",
           icon: "fa-solid fa-dice",
           label: "TWODSIX.Rolls.Roll",
+          default: true,
           callback: (event, button, dialog) => {
             resolve(dialog.querySelector('[name="outputFormula"]')?.value);
           }
         }
       ],
-      default: `roll`,
     }).render({force: true});
   });
   return (returnText ?? "");

@@ -413,6 +413,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         {
           action: "ok",
           label: "TWODSIX.Create",
+          default: true,
           callback: async (event, button, dialog) => {
             const max = parseInt(dialog.querySelector('.consumable-max')?.value as string, 10) || 0;
             let equippedState = "";
@@ -444,8 +445,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
           action: "cancel",
           label: "Cancel"
         }
-      ],
-      default: 'ok',
+      ]
     }).render({force: true});
   }
 

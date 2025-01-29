@@ -591,6 +591,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         action: "ok",
         label: "TWODSIX.Rolls.Roll",
         icon: "fa-solid fa-dice",
+        default: true,
         callback: (event, button, dialog) => {
           const formElements = dialog.querySelector(".standard-form").elements;
           dialogData.shouldRoll = true;
@@ -616,7 +617,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         window: {title: "TWODSIX.Rolls.RollInitiative", icon: "fa-solid fa-dice"},
         content: html,
         buttons: buttons,
-        default: 'ok',
         submit: () => {
           resolve();
         },

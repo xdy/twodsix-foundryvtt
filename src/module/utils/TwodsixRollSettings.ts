@@ -242,6 +242,7 @@ export class TwodsixRollSettings {
         action: "ok",
         label: "TWODSIX.Rolls.Roll",
         icon: "fa-solid fa-dice",
+        default: true,
         callback: (event, button, dialog) => {
           const formElements = dialog.querySelector(".standard-form").elements;
           this.shouldRoll = true;
@@ -294,7 +295,6 @@ export class TwodsixRollSettings {
       window: {title: title, icon: "fa-solid fa-dice"},
       content: html,
       buttons: buttons,
-      default: 'ok',
       render: handleRender,
       close: () => {
         Promise.resolve();

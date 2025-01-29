@@ -1341,14 +1341,14 @@ async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
       buttons: [
         {
           action: "single",
-          label: "TWODSIX.Dialogs.ROFSingle"
+          label: "TWODSIX.Dialogs.ROFSingle",
+          default: true
         },
         {
           action: "double-tap",
           label: "TWODSIX.Dialogs.ROFDoubleTap",
         }
       ],
-      default: 'single',
       rejectClose: false
     });
   } else {
@@ -1358,7 +1358,8 @@ async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
       buttons: [
         {
           action: "single",
-          label: "TWODSIX.Dialogs.ROFSingle"
+          label: "TWODSIX.Dialogs.ROFSingle",
+          default: true
         },
         {
           action: "auto-burst",
@@ -1369,7 +1370,6 @@ async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
           label: "TWODSIX.Dialogs.ROFFull"
         }
       ],
-      default: "single",
       rejectClose: false
     });
   }
@@ -1387,6 +1387,7 @@ async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
       buttons.push({
         action: "single",
         label: "TWODSIX.Dialogs.ROFSingle",
+        default: true,
         callback: () => {
           item.performAttack("single", true, 1);
         }
@@ -1416,7 +1417,6 @@ async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
     window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
     content: "",
     buttons: buttons,
-    default: "single",
     rejectClose: false
   });
 }
@@ -1431,14 +1431,14 @@ async function promptForCTROF(modes: string[]): Promise<string> {
       buttons: [
         {
           action: "single",
-          label: "TWODSIX.Dialogs.ROFSingle"
+          label: "TWODSIX.Dialogs.ROFSingle",
+          default: true
         },
         {
           action: "auto-full",
           label: "TWODSIX.Dialogs.ROFFull"
         }
       ],
-      default: 'single',
       rejectClose: false
     });
   }

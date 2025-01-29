@@ -115,6 +115,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       action: "ok",
       label: "TWODSIX.Chat.Roll.RequestRoll",
       icon: "fa-solid fa-message",
+      default: true,
       callback: (event, button, dialog) => {
         const formElements = dialog.querySelector(".standard-form").elements;
         returnValue.selectedTokens = formElements["selectedTokens"] ? Array.from(formElements["selectedTokens"].selectedOptions)?.map((({ value }) => value)) : [];
@@ -143,7 +144,6 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       window: {title: "TWODSIX.Chat.Roll.RequestRoll", icon: "fa-solid fa-dice"},
       content: html,
       buttons: buttons,
-      default: 'ok',
       submit: () => {
         //console.log(returnValue);
         resolve(returnValue);
