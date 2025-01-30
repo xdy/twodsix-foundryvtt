@@ -26,9 +26,9 @@
   <div class="grid-columns-single">
     {{#if settings.allowDragDropOfListsShip}}
     <div class="item-list grid-columns-single">
-      {{#each_sort_item container.nonCargo as |item id|}}
+      {{#each container.nonCargo as |item id|}}
         {{> "systems/twodsix/templates/actors/parts/ship/ship-component-single-item.html" item = item settings = ../settings}}
-      {{/each_sort_item}}
+      {{/each}}
     </div>
     {{else}}
       {{#each componentObject}}
@@ -40,9 +40,9 @@
           </div>
 
           <div class="item-list grid-columns-single">
-            {{#each_sort_item this as |item id|}}
+            {{#each this as |item id|}}
               {{> "systems/twodsix/templates/actors/parts/ship/ship-component-single-item.html" item = item settings = ../../settings}}
-            {{/each_sort_item}}
+            {{/each}}
           </div>
         {{/iff}}
       {{/each}}

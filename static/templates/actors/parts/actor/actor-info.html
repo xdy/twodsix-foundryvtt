@@ -16,7 +16,7 @@
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="trait" data-action="itemCreate""><i class="fa-solid fa-plus"></i></a></span>
   </div>
   <section class="item-list">
-  {{#each_sort_item container.trait as |item id|}}
+  {{#each container.trait as |item id|}}
   <div class="item gear" data-item-id="{{item.id}}">
     <ol class="ol-no-indent">
       <li class="flexrow" >
@@ -39,7 +39,7 @@
       </li>
     </ol>
   </div>
-  {{/each_sort_item}}
+  {{/each}}
 </section>
 </div>
 
@@ -56,7 +56,7 @@
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="psiAbility" data-action="itemCreate""><i class="fa-solid fa-plus"></i></a></span>
   </div>
   <section class="item-list">
-    {{#each_sort_item container.psiAbility as |item id|}}
+    {{#each container.psiAbility as |item id|}}
       <div class="item gear" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
           <li class="flexrow" >
@@ -75,7 +75,7 @@
           </li>
         </ol>
       </div>
-    {{/each_sort_item}}
+    {{/each}}
   </section>
 </div>
 
@@ -92,7 +92,7 @@
         data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="spell" data-action="itemCreate""><i class="fa-solid fa-plus"></i></a></span>
   </div>
   <section class="item-list">
-  {{#each_sort_item container.spell as |item id|}}
+  {{#each container.spell as |item id|}}
   <div class="item gear" data-item-id="{{item.id}}">
     <ol class="ol-no-indent">
       <li class="flexrow" >
@@ -110,7 +110,7 @@
       </li>
     </ol>
   </div>
-  {{/each_sort_item}}
+  {{/each}}
 </section>
 </div>
 {{/if}}

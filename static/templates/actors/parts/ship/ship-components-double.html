@@ -21,9 +21,9 @@
   <div class="grid-columns-single">
     {{#if settings.allowDragDropOfListsShip}}
     <div class="item-list grid-columns-double">
-      {{#each_sort_item container.nonCargo as |item id|}}
+      {{#each container.nonCargo as |item id|}}
         {{> "systems/twodsix/templates/actors/parts/ship/ship-component-double-item.html" item = item settings = ../settings}}
-      {{/each_sort_item}}
+      {{/each}}
       {{#if (twodsix_isOdd container.nonCargo.length)}}
         <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
       {{/if}}
@@ -38,9 +38,9 @@
           </div>
 
           <div class="item-list grid-columns-double">
-            {{#each_sort_item this as |item id|}}
+            {{#each this as |item id|}}
               {{> "systems/twodsix/templates/actors/parts/ship/ship-component-double-item.html" item = item settings = ../../settings}}
-            {{/each_sort_item}}
+            {{/each}}
             {{#if (twodsix_isOdd this.length)}}
               <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
             {{/if}}

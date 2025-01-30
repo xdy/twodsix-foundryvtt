@@ -512,6 +512,19 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
     }
     context.effects = Array.from(actor.allApplicableEffects());
+
+    //Sort containers
+    const sortSetting = ["ship", "vehicle"].includes(this.type)  ? 'allowDragDropOfListsShip' : 'allowDragDropOfListsActor';
+    const sortLabel = game.settings.get('twodsix', sortSetting) ? "sort" : "name";
+    for (const key of Object.keys(context.container)) {
+      if (key !== "skillGroups") {
+        if (sortLabel === "sort") {
+          context.container[key].sort((a,b) => a[sortLabel] - b[sortLabel]);
+        } else {
+          context.container[key].sort((a,b) => a[sortLabel].localeCompare(b[sortLabel]));
+        }
+      }
+    }
   }
 
   public static untrainedToJoat(skillValue: number): number {

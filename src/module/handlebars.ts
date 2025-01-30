@@ -346,7 +346,8 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
-
+  /*** No longer needed ****/
+  /*
   Handlebars.registerHelper('each_sort_by_property', (property:string, array:TwodsixItem[], options) => {
     let sortedArray: TwodsixItem[] = [];
     const slice = array?.slice(0);
@@ -394,7 +395,7 @@ export default function registerHandlebarsHelpers(): void {
     }
     return Handlebars.helpers.each(sortedArray, options);
   });
-
+*/
   Handlebars.registerHelper('getComponentCost', (item: TwodsixItem) => {
     if (item.system.installedCost) {
       const maxDigits = item.system.installedCost < 0.1 ? 2 : 1;

@@ -38,9 +38,9 @@
     </span>
   </div>
   {{#unless settings.showSkillGroups}}
-    {{#each_sort_item container.skillsList as |item id|}}
+    {{#each container.skillsList as |item id|}}
       {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../actor}}
-    {{/each_sort_item}}
+    {{/each}}
   {{else}}
     {{#each container.skillGroups}}
       <div class="grid-columns-single-row skill-header" data-parent-key="{{@key}}" data-action="toggleSkillHeader">
@@ -50,9 +50,9 @@
       </div>
       {{#if (lookup ../actor.system.displaySkillGroup @key)}}
       <div class="item-list">
-        {{#each_sort_item this as |item id|}}
+        {{#each this as |item id|}}
           {{> "systems/twodsix/templates/actors/parts/actor/actor-skill-item.html" item = item id = id actor = ../../actor}}
-        {{/each_sort_item}}
+        {{/each}}
       </div>
       {{/if}}
     {{/each}}

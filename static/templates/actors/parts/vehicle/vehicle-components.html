@@ -13,7 +13,7 @@
   </div>
 
   <div class="item-list grid-columns-component">
-    {{#each_sort_item container.component as |item id|}}
+    {{#each container.component as |item id|}}
     <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
         <li class="components-stored">
@@ -49,6 +49,6 @@
         </li>
       </ol>
     </div>
-    {{/each_sort_item}}
+    {{/each}}
   </div>
 </div>

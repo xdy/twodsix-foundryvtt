@@ -53,12 +53,12 @@
             <span class="item-name-nd" draggable="false">{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
             <input type="number" value="{{jackOfAllTrades}}" class="joat-skill-input" style="width: 3ch;"/>,
         </span>
-      {{#each_sort_item container.skillsList as |item id|}}
+      {{#each container.skillsList as |item id|}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">{{item.name}}</span>
                 <input style="width: 3ch;" class= "item-value-edit" type="number" value="{{item.system.value}}" name="{{concat 'system.skills.' (skillName item.name)}}" data-action="selectItem"/>{{#if ../settings.hideUntrainedSkills}},{{else}}{{#unless @last}},{{/unless}}{{/if}}
               </span>
-      {{/each_sort_item}}
+      {{/each}}
       {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">
           <text class="item-name-nd rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll" draggable="false"> {{untrainedSkill.name}}</text>
@@ -72,7 +72,7 @@
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
       {{#unless limited}}
       <div class="npc-list">
-         {{#each_sort_item container.armor as |item id|}}
+         {{#each container.armor as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}} </span>
               <span class="item-controls centre">
@@ -83,7 +83,7 @@
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
               </span>
             </span>
-         {{/each_sort_item}}
+         {{/each}}
       </div>
       {{/unless}}
     </div>
@@ -92,7 +92,7 @@
       {{#unless limited}}
       <div class="npc-list">
         <span >
-         {{#each_sort_item container.weapon as |item id|}}
+         {{#each container.weapon as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="performAttack">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 6}}</span>
               {{#each item.system.consumableData as |consumableData|}}
@@ -109,7 +109,7 @@
                 <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>{{#unless @last}}, {{/unless}}
               </span>
             </span>
-         {{/each_sort_item}}
+         {{/each}}
         </span>
       </div>
       {{/unless}}
@@ -119,7 +119,7 @@
       {{#unless limited}}
       <div class="npc-list">
         <span >
-         {{#each_sort_item container.trait as |item id|}}
+         {{#each container.trait as |item id|}}
           <span class="item" data-item-id="{{item.id}}" >
               <span class="item-name showChat" data-action="showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
@@ -130,7 +130,7 @@
               <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i class="fa-solid fa-trash"></i></a>
             </span>
           </span>
-         {{/each_sort_item}}
+         {{/each}}
         </span>
       </div>
       {{/unless}}
@@ -142,12 +142,12 @@
       {{#unless limited}}
       <div class="npc-list">
         <span >
-        {{#each_sort_item container.spell as |item id|}}
+        {{#each container.spell as |item id|}}
             <span class="item" data-item-id="{{item.id}}">
               <span class="item-name showChat" data-action="showChat">{{item.name}} </span>
               <span class="item-name centre rollable" data-action="skillTalentRoll">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
             </span>
-        {{/each_sort_item}}
+        {{/each}}
         </span>
       </div>
       {{/unless}}

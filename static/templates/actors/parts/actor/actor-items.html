@@ -22,7 +22,7 @@
       </span>
     </div>
     <section class="item-list">
-      {{#each_sort_item container.weapon as |item id|}}
+      {{#each container.weapon as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.weapon item.system.equipped)}}
       <div class="item gear" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
@@ -94,7 +94,7 @@
         {{> "systems/twodsix/templates/actors/parts/actor/actor-attachment-consumable-list.html" item= item settings= ../settings}}
       </div>
       {{/unless}}
-      {{/each_sort_item}}
+      {{/each}}
     </section>
   </div>
 
@@ -120,7 +120,7 @@
     </div>
 
     <section class="item-list">
-      {{#each_sort_item container.armor as |item id|}}
+      {{#each container.armor as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.armor item.system.equipped)}}
       <div class="item gear" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
@@ -158,7 +158,7 @@
         {{> "systems/twodsix/templates/actors/parts/actor/actor-attachment-consumable-list.html" item= item settings= ../settings}}
       </div>
       {{/unless}}
-      {{/each_sort_item}}
+      {{/each}}
     </section>
   </div>
 
@@ -183,7 +183,7 @@
       </span>
     </div>
     <section class="item-list">
-      {{#each_sort_item container.augment as |item id|}}
+      {{#each container.augment as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.augment item.system.equipped)}}
       <div class="item gear" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
@@ -206,7 +206,7 @@
         {{> "systems/twodsix/templates/actors/parts/actor/actor-attachment-consumable-list.html" item= item settings= ../settings}}
       </div>
       {{/unless}}
-      {{/each_sort_item}}
+      {{/each}}
     </section>
   </div>
 
@@ -230,7 +230,7 @@
       </span>
     </div>
       <section class="item-list">
-        {{#each_sort_item container.equipmentAndTools as |item id|}}
+        {{#each container.equipmentAndTools as |item id|}}
         {{#unless (twodsix_hideItem ../system.hideStoredItems.equipment item.system.equipped)}}
         <div class="item gear" data-item-id="{{item.id}}">
           <ol class="ol-no-indent">
@@ -256,7 +256,7 @@
           {{> "systems/twodsix/templates/actors/parts/actor/actor-attachment-consumable-list.html" item= item settings= ../settings}}
         </div>
         {{/unless}}
-        {{/each_sort_item}}
+        {{/each}}
       </section>
   </div>
 
@@ -281,7 +281,7 @@
       </span>
     </div>
       <section class="item-list">
-        {{#each_sort_item container.storageAndJunk as |item id|}}
+        {{#each container.storageAndJunk as |item id|}}
         {{#unless (twodsix_hideItem ../system.hideStoredItems.junk item.system.equipped)}}
         <div class="item gear" data-item-id="{{item.id}}">
           <ol class="ol-no-indent">
@@ -303,7 +303,7 @@
           </ol>
         </div>
         {{/unless}}
-        {{/each_sort_item}}
+        {{/each}}
       </section>
   </div>
 
@@ -329,7 +329,7 @@
     </div>
 
     <div class="item-list">
-      {{#each_sort_item container.consumable as |item id|}}
+      {{#each container.consumable as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.consumable item.system.equipped)}}
         {{#unless item.system.isAttachment}}
         <div class="item gear" data-item-id="{{item.id}}">
@@ -355,7 +355,7 @@
         </div>
         {{/unless}}
         {{/unless}}
-      {{/each_sort_item}}
+      {{/each}}
     </div>
  </div>
 
@@ -380,7 +380,7 @@
       </span>
     </div>
     <div class="item-list">
-      {{#each_sort_item container.consumable as |item id|}}
+      {{#each container.consumable as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.attachment item.system.equipped)}}
       {{#if item.system.isAttachment}}
       <div class="item gear" data-item-id="{{item.id}}">
@@ -405,7 +405,7 @@
       </div>
       {{/if}}
       {{/unless}}
-      {{/each_sort_item}}
+      {{/each}}
     </div>
   </div>
 </div>

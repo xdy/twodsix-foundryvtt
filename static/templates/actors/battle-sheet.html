@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="item-list battle">
-          {{#each_sort_item container.nonCargoForDamage as |item id|}}
+          {{#each container.nonCargoForDamage as |item id|}}
             <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
               <ol class="ol-no-indent">
                 <li class="battle-damage">
@@ -66,7 +66,7 @@
                 </li>
               </ol>
             </div>
-            {{/each_sort_item}}
+            {{/each}}
         </div>
       </div>
 
@@ -87,7 +87,7 @@
           </div>
         </div>
         <div class="item-list battle">
-          {{#each_sort_item container.nonCargo as |item id|}}
+          {{#each container.nonCargo as |item id|}}
             {{#iff item.system.subtype "===" "armament"}}
               <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
                 <ol class="ol-no-indent">
@@ -110,7 +110,7 @@
                 </ol>
               </div>
             {{/iff}}
-          {{/each_sort_item}}
+          {{/each}}
 
         </div>
       </div>
@@ -211,7 +211,7 @@
           </div>
         </div>
         <div class="item-list battle">
-          {{#each_sort_item componentObject.cargo as |item id|}}
+          {{#each componentObject.cargo as |item id|}}
           <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
             <ol class="ol-no-indent">
               <li class="battle-cargo">
@@ -228,7 +228,7 @@
               </li>
             </ol>
           </div>
-          {{/each_sort_item}}
+          {{/each}}
         </div>
       </div>
     </div>
