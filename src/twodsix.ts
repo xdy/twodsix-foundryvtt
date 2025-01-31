@@ -67,6 +67,7 @@ Hooks.once('init', async function () {
   };
 
   CONFIG.ActiveEffect.legacyTransferral = false;
+  CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
