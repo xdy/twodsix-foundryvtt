@@ -1109,6 +1109,12 @@ export default class TwodsixActor extends Actor {
     return false;
   }
 
+  /**
+   * Handle a dropped ActiveEffect on the Actor.
+   * @param {TwodsixActiveEffect} droppedEffect         Dropped ActiveEffect
+   * @returns {Promise<boolean>}
+   *
+   */
   public async handleDroppedActiveEffect(droppedEffect:TwodsixActiveEffect): Promise<boolean> {
     if ( !droppedEffect || (droppedEffect.target === this) ) {
       return false;
@@ -1116,6 +1122,28 @@ export default class TwodsixActor extends Actor {
     const keepId = !this.effects.has(droppedEffect.id);
     await TwodsixActiveEffect.create(droppedEffect.toObject(), {parent: this, keepId});
     return true;
+  }
+
+  /**
+   * Handle a dropped Folder on the Actor.
+   * @param {FolderData} folder         Extracted folder document
+   * @returns {Promise<void>}
+   *
+   */
+  public async handleDroppedFolder(folder:FolderData): Promise<void> {
+    if (folder?.type === "Item" && folder?.contents.length > 0){
+      const confirmed = await foundry.applications.api.DialogV2.confirm({
+        window: {title: game.i18n.localize("TWODSIX.Warnings.AddMultipleItems")},
+        content: game.i18n.localize("TWODSIX.Warnings.ConfirmDrop")
+      });
+      if (confirmed) {
+        for (const it of folder.contents) {
+          await this.handleDroppedItem(it);
+        }
+      }
+    } else {
+      ui.notifications.warn("TWODSIX.Warnings.CantDropFolder", {localize: true});
+    }
   }
 
   /**

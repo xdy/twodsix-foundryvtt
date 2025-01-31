@@ -1711,7 +1711,10 @@
       "CantFindShield": "Can't find an equipped shield to block",
       "NoPsiPoints": "Must have at least one psionic point to use an ability",
       "PsiUsageGTZero": "PSI Points used must be greater than zero",
-      "InvalidFormula": "Formula is Invalid for: "
+      "InvalidFormula": "Formula is Invalid for: ",
+      "ConfirmDrop": "Add all contents of folder to actor?",
+      "AddMultipleItems": "Add Multiple Items",
+      "CantDropFolder": "Cannot drop this folder onto actor."
     }
   },
   "TYPES": {

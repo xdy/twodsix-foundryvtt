@@ -345,7 +345,7 @@ export default function registerHandlebarsHelpers(): void {
     return style;
   });
 
-  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
+  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed -YES. FVTT baseline concat works differently
   /*** No longer needed ****/
   /*
   Handlebars.registerHelper('each_sort_by_property', (property:string, array:TwodsixItem[], options) => {

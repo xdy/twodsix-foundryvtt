@@ -386,6 +386,9 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     } else if (dropData.type === 'ActiveEffect') {
       const droppedEffect = await fromUuid(dropData.uuid);
       await this.onDropActiveEffect(ev, droppedEffect);
+    } else if (dropData.type === 'Folder') {
+      const droppedFolder = await fromUuid(dropData.uuid);
+      await (<TwodsixActor>this.actor).handleDroppedFolder(droppedFolder);
     } else {
       console.log(`Unknown Drop Type ${dropData.type}`);
       return false;
