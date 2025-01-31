@@ -180,6 +180,9 @@ a.content-link {
   border-width: 1px;
   padding: 2px;
 }
+a.content-link i {
+  padding-right: 4px;
+}
 
 table tr:nth-child(even) {
   background-color: var(--s2d6-light-background-transparent);
