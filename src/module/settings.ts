@@ -50,7 +50,7 @@ export const registerSettings = function ():void {
   booleanSetting('NoDuplicatesOnHotbar', false, true, "client");
   //Store default partials for items and compendium tab - hidden
   stringSetting('defaultItemPartial', foundry.applications.sidebar.tabs.ItemDirectory._entryPartial, false, "client");
-  stringSetting('defaultCompendiumPartial', foundry.applications.sidebar.apps.Compendium.entryPartial, false, "client");
+  stringSetting('defaultCompendiumPartial', foundry.applications.sidebar.apps.Compendium._folderPartial, false, "client");
 
   function _onHideUntrainedSkillsChange(setting:boolean) {
     if (!setting) {
