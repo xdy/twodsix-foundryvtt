@@ -157,10 +157,10 @@ export const updateStatusIcons = function () {
 export const setDocumentPartials = function () {
   if (game.settings.get('twodsix', 'showTLonItemsTab')) {
     foundry.applications.sidebar.tabs.ItemDirectory._entryPartial = 'systems/twodsix/templates/misc/revised-document-partial.html';
-    Compendium.entryPartial = 'systems/twodsix/templates/misc/revised-compendium-index-partial.html';
+    foundry.applications.sidebar.apps.Compendium._folderPartial = 'systems/twodsix/templates/misc/revised-compendium-index-partial.html';
   } else {
     foundry.applications.sidebar.tabs.ItemDirectory._entryPartial = game.settings.get('twodsix', 'defaultItemPartial');
-    Compendium.entryPartial = game.settings.get('twodsix', 'defaultCompendiumPartial');
+    foundry.applications.sidebar.apps.Compendium._folderPartial = game.settings.get('twodsix', 'defaultCompendiumPartial');
   }
   ui.items.render();
 };
