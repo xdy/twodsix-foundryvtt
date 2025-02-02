@@ -260,7 +260,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value, 10);
           this.rollModifiers.wounds = dialogData.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value, 10) : 0;
           this.rollModifiers.selectedSkill = dialogData.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value: "";
-          this.rollModifiers.targetModifier = (dialogData.showTargetModifier) ? formElements["rollModifiers.targetModifier"]?.value : this.rollModifiers.targetModifier;
+          this.rollModifiers.targetModifier = (dialogData.showTargetModifier && formElements["rollModifiers.targetModifier"]) ? Array.from(formElements["rollModifiers.targetModifier"].selectedOptions).map(({value}) => value) : this.rollModifiers.targetModifier;
           this.rollModifiers.armorModifier  = (dialogData.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value, 10) : 0;
 
           if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {

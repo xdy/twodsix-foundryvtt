@@ -88,9 +88,10 @@
           </div>
         {{/if}}
         {{#if showTargetModifier}}
+          {{log this}}
           <div class="form-group">
             <label>{{#if rollModifiers.targetModifierOverride}}{{localize "TWODSIX.Chat.Roll.OverrideAuto"}} {{/if}}{{localize "TWODSIX.Chat.Roll.TargetModifier"}}</label>
-            <multi-select class="select target-modifier" name="rollModifiers.targetModifier">{{selectOptions targetDMList selected=targetModifier}}</multi-select>
+            <select class="select target-modifier" name="rollModifiers.targetModifier" multiple>{{selectOptions targetDMList selected=targetModifier}}</select>
           </div>
         {{/if}}
       {{/if}}
