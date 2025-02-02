@@ -101,8 +101,8 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.ship.push(booleanSetting('showCost', false));
     settings.actor.push(booleanSetting('showTotalArmor', false));
     settings.general.push(booleanSetting('showItemIconsInChat', true));
-    settings.actor.push(numberSetting('defaultActorSheetWidth', 900, false, 'world', refreshWindow));
-    settings.actor.push(numberSetting('defaultActorSheetHeight', 780, false, 'world', refreshWindow));
+    settings.actor.push(numberSetting('defaultActorSheetWidth', 915, false, 'world', refreshWindow));
+    settings.actor.push(numberSetting('defaultActorSheetHeight', 718, false, 'world', refreshWindow));
     /*settings.actor.push(booleanSetting('showAttachmentsList', false));
     settings.actor.push(booleanSetting('showConsumablesList', false));*/
     settings.ship.push(booleanSetting('showCombatPosition', false));
