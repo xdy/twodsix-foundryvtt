@@ -245,6 +245,7 @@ table tr:nth-child(even) {
   flex: 0 0 64px;
   margin-right: 6px;
   object-fit: scale-down;
+  max-width: 128px;
 }
 
 .item-img {
@@ -934,7 +935,7 @@ h2 {
   max-height: 100% !important;
 }
 
-.status-icons {
+.actor-status-icons {
   position: absolute;
   left: 3ch;
   top: 2ch;
@@ -947,7 +948,7 @@ h2 {
   grid-area: character-photo;
 }
 
-.npc .status-icons {
+.npc .actor-status-icons {
   position: absolute !important;
   top: 2ch;
   left: 1ch !important;
@@ -3329,7 +3330,17 @@ background: var(--s2d6-sidebar-background);
 }
 
 .chat-message .message-header {
+  border-color: var(--s2d6-default-color);
   color: var(--s2d6-default-color);
+}
+.chat-message button, .message-sender {
+  color: var(--color-light-3);
+  border-color: var(--s2d6-default-color);
+}
+
+.chat-message button:hover {
+  background: var(--s2d6-light-color);
+  color: var(--s2d6-color-text-dark-2);
 }
 
 .dice-roll .dice-formula, .dice-roll .dice-total {
@@ -3504,17 +3515,36 @@ form button {
 
 /*--- INTERFACE MAKEUP ---*/
 
-button {
-  /*position: relative;
-  margin: 0.3em 0.1em;*/
-  background-color: var(--s2d6-background-opaque);
-  border-color: var(--s2d6-default-color);
-  color: var(--s2d6-form-light);
+.ui-control {
+  --control-border-color: var(--s2d6-default-color);
+}
+
+.ui-control[aria-pressed=true] {
+  --control-bg-color: var(--control-active-bg-color);
+  --control-border-color: var(--control-active-border-color);
+  --control-icon-color: var(--control-active-icon-color);
+}
+.ui-control.button {
+  --control-border-color: var(--control-button-border-color);
+}
+
+.ui-control.toggle[aria-pressed=true] {
+  --control-bg-color: var(--toggle-active-bg-color);
+  --control-border-color: var(--toggle-active-border-color);
+}
+
+.themed.theme-dark a.button, .themed.theme-dark button {
+  --button-background-color: var(--s2d6-background-opaque);
+  --button-border-color: var(--s2d6-default-color);
+  --button-hover-background-color: var(--s2d6-default-color);
+  --button-hover-border-color: var(--s2d6-light-color);
+  --button-hover-text-color: var(--s2d6-color-text-dark-2);
 }
 
 form button, .application a.button, .application button {
   background: var(--s2d6-background-opaque);
   border: 2px groove var(--s2d6-default-color);
+  color: var(--color-light-3);
 }
 
 .application a.button:focus, .application button:focus {
@@ -3531,7 +3561,7 @@ form button, .application a.button, .application button {
 
 button:hover {
   box-shadow: 0 0 5px var(--s2d6-default-color);
-  color: var(--s2d6-light-color);
+  /*color: var(--s2d6-light-color);*/
   border-color: var(--s2d6-light-color);
 }
 
@@ -4061,6 +4091,7 @@ input[type="text"].color {
   display: flex;
   justify-content: space-between;
   padding-right: 1ch;
+  color: var(--color-light-3);
 }
 
 .active-effect-sheet .effect-change .value {
@@ -4511,3 +4542,50 @@ table.ship-action-table, table.vehicle-stats-table {
   flex: 0 0 2ch;
   font-size: larger;
 }
+
+.tl-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+header.folder-header i {
+  color: var(--color-light-3);
+}
+
+.compendium-name {
+  color: var(--color-light-3);
+}
+
+.ui-control.button:hover {
+  --control-bg-color: var(--s2d6-background-nearly-opaque);
+}
+
+h1.divider::before,
+  h2.divider::before,
+  h3.divider::before,
+  h4.divider::before {
+    border-top: 2px ridge var(--s2d6-default-color);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 100%);
+    mask-image: linear-gradient(90deg, transparent 0%, black 100%);
+  }
+  h1.divider::after,
+  h2.divider::after,
+  h3.divider::after,
+  h4.divider::after {
+    border-top: 2px ridge var(--s2d6-default-color);
+    -webkit-mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+    mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+  }
+
+  .reset-all {
+    background: var(--s2d6-default-color)
+  }
+
+  .select.target-modifier {
+    height: auto;
+  }
+
+  h1, h2 {
+    color: var(--s2d6-form-light);
+  }

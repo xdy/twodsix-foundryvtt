@@ -543,7 +543,7 @@ img.character-info-mask {
   min-height: 65%;
 }
 
-.status-icons {
+.actor-status-icons {
   position: absolute;
   left: 2em;
   top: 5em;
@@ -554,7 +554,7 @@ img.character-info-mask {
   height: 41%;
 }
 
-.status-icons.npc {
+.actor-status-icons.npc {
   position: absolute !important;
   top: 2ch;
   left: 1ch !important;
@@ -3660,4 +3660,14 @@ section.flexcol {
 
 textarea {
   color: var(--s2d6-default-color);
+}
+
+.tl-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.select.target-modifier {
+  height: auto;
 }

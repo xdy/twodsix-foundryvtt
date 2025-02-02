@@ -7,7 +7,7 @@
     <div class="character-photo">
       <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' data-action="editImage" data-edit="img"/>
       {{#if settings.showStatusIcons}}
-      <span class="status-icons">
+      <span class="actor-status-icons">
           {{#each effects as |anEffect|}}
           <!--{{actor.effects}}-->
             {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
