@@ -1,4 +1,4 @@
-<form class="roll-settings">
+<div class="roll-settings">
   <fieldset>
   <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
     <div class="form-group">
@@ -151,4 +151,14 @@
     </fieldset>
     <br>
   {{/if}}
-</form>
+
+  <footer class="form-footer">
+    {{#each buttons as |button|}}
+    <button type="{{button.type}}" {{#if button.name}}name="{{button.name}}"{{/if}} class="{{button.cssClass}}"
+            {{#if button.action}}data-action="{{button.action}}"{{/if}} {{#if button.disabled}}disabled{{/if}}>
+        {{#if button.icon}}<i class="{{button.icon}}" inert></i>{{/if}}
+        {{#if button.label}}<label>{{localize button.label}}</label>{{/if}}
+    </button>
+    {{/each}}
+  </footer>
+</div>

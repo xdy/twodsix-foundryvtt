@@ -11,6 +11,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
 import { getTargetDMSelectObject } from "./targetModifiers";
+import RollDialog from "./RollDialog";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -181,7 +182,7 @@ export class TwodsixRollSettings {
         title = twodsixRollSettings.displayLabel ?? "";
       }
 
-      await twodsixRollSettings._throwDialog(title, skill);
+      await twodsixRollSettings._throwDialog(title, twodsixRollSettings, skill);
 
       //Get display label
       if (skill && skill.actor) {
@@ -202,8 +203,8 @@ export class TwodsixRollSettings {
     return twodsixRollSettings;
   }
 
-  private async _throwDialog(title:string, skill?: TwodsixItem):Promise<void> {
-    const template = 'systems/twodsix/templates/chat/throw-dialog.html';
+  private async _throwDialog(title:string, twodsixRollSettings, skill?: TwodsixItem):Promise<void> {
+    /*const template = 'systems/twodsix/templates/chat/throw-dialog.html';
     const dialogData = {
       rollType: this.rollType,
       rollTypes: getRollTypeSelectObject(),
@@ -235,13 +236,23 @@ export class TwodsixRollSettings {
       showWounds: game.settings.get('twodsix', 'useWoundedStatusIndicators'),
       showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
       isPsionicAbility: this.isPsionicAbility
-    };
+    };*/
 
-    const buttons = {
-      ok: {
-        label: game.i18n.localize("TWODSIX.Rolls.Roll"),
-        icon: '<i class="fa-solid fa-dice"></i>',
-        callback: (buttonHtml) => {
+    /*const returnSettings =  await new Promise((resolve, reject) => {
+      const newDialog = new RollDialog({title: title, skill: skill, 'settings': twodsixRollSettings} );
+      return(newDialog.render(true));
+    });*/
+    const returnSettings =  await RollDialog.prompt({title: title, skill: skill, 'settings': twodsixRollSettings});
+    return(foundry.utils.mergeObject(twodsixRollSettings, returnSettings));
+    /*
+    const buttons = [
+      {
+        action: "ok",
+        label: "TWODSIX.Rolls.Roll",
+        icon: "fa-solid fa-dice",
+        default: true,
+        callback: (event, button, dialog) => {
+          const formElements = dialog.querySelector(".standard-form").elements;
           this.shouldRoll = true;
           this.difficulty = this.difficulties[buttonHtml.find('[name="difficulty"]').val()];
           this.rollType = buttonHtml.find('[name="rollType"]').val();
@@ -287,18 +298,16 @@ export class TwodsixRollSettings {
     };
 
     const html = await renderTemplate(template, dialogData);
-    return new Promise<void>((resolve) => {
-      new Dialog({
-        title: title,
-        content: html,
-        buttons: buttons,
-        default: 'ok',
-        render: handleRender,
-        close: () => {
-          resolve();
-        },
-      }).render(true);
-    });
+    await foundry.applications.api.DialogV2.wait({
+      window: {title: title, icon: "fa-solid fa-dice"},
+      content: html,
+      buttons: buttons,
+      render: handleRender,
+      close: () => {
+        Promise.resolve();
+      },
+      rejectClose: false
+    });*/
   }
 }
 function handleRender(html) {
