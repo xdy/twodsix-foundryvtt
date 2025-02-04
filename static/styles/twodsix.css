@@ -218,17 +218,17 @@ table tr:nth-child(even) {
 .sheet > .flex3 {
   flex: 3;
 }
-.sheet header.sheet-header {
+/*.sheet header.sheet-header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-}
-.sheet header.sheet-header > * {
+}*/
+/*.sheet header.sheet-header > * {
   flex: 1;
-}
-.sheet header.sheet-header > .flex0 {
+}*/
+/*.sheet header.sheet-header > .flex0 {
   display: block;
   flex: 0;
 }
@@ -242,11 +242,8 @@ table tr:nth-child(even) {
   flex: 3;
 }
 .sheet header.sheet-header img {
-  flex: 0 0 64px;
-  margin-right: 6px;
-  object-fit: scale-down;
-  max-width: 128px;
-}
+  object-fit: contain;
+}*/
 
 .item-img {
   height: auto !important; /*must make important*/
