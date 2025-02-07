@@ -3672,3 +3672,7 @@ textarea {
 .select.target-modifier {
   height: auto;
 }
+
+.tags.input-element-tags .tag {
+  border: 1px solid;
+}

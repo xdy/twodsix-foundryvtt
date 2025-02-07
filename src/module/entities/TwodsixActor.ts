@@ -818,11 +818,11 @@ export default class TwodsixActor extends Actor {
   }
 
   public getUntrainedSkill(): TwodsixItem {
-    return <TwodsixItem>this.items.get((<TwodsixActor>this.system).untrainedSkill);
+    return <TwodsixItem>this.items.get(this.system.untrainedSkill);
   }
 
   public createUntrainedSkillData(): any {
-    if ((<TwodsixActor>this.system).untrainedSkill) {
+    if (this.system.untrainedSkill) {
       if (this.items.get(this.system.untrainedSkill)) {
         return;
       }

@@ -3,6 +3,7 @@
 
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
+import TwodsixItem from "../entities/TwodsixItem";
 import { getDifficultiesSelectObject, getRollTypeSelectObject } from "./sheetUtils";
 import { getTargetDMSelectObject } from "./targetModifiers";
 import { getKeyByValue } from "./utils";
