@@ -2,6 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { TWODSIX } from "../config";
+import TwodsixActor from "../entities/TwodsixActor";
 import { getDifficultiesSelectObject, getRollTypeSelectObject } from "./sheetUtils";
 import { getTargetDMSelectObject } from "./targetModifiers";
 import { getKeyByValue } from "./utils";
@@ -39,7 +40,11 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
       submitOnChange: false,
       submitOnClose: false
     },
-    tag: "form"
+    tag: "form",
+    actions: {
+      ok: this._onSubmitRoll,
+      cancel: this._onCancelRoll
+    }
   };
 
   static PARTS = {
@@ -62,7 +67,6 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
       rollTypes: getRollTypeSelectObject(),
       difficulty: getKeyByValue(this.settings.difficulties, this.settings.difficulty),
       difficultyList: getDifficultiesSelectObject(this.settings.difficulties),
-      skillsList: (<TwodsixActor>this.skill?.actor)?.getSkillNameList(),
       rollMode: this.settings.rollMode,
       rollModes: CONFIG.Dice.rollModes,
       characteristicList: _getTranslatedCharacteristicList(<TwodsixActor>this.skill?.actor),
@@ -89,59 +93,18 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
       showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
       isPsionicAbility: this.settings.isPsionicAbility
     });
+    context.skillsList = (<TwodsixActor>this.skill?.actor)?.getSkillNameList();
     context.buttons = [
       {
         action: "ok",
         label: "TWODSIX.Rolls.Roll",
         icon: "fa-solid fa-dice",
-        default: true,
-        callback: (event, button, dialog) => {
-          const formElements = dialog.querySelector(".standard-form").elements;
-          this.settings.shouldRoll = true;
-          this.settings.difficulty = this.settings.difficulties[formElements["difficulty"]?.value];
-          this.settings.rollType = formElements["rollType"]?.value;
-          this.settings.rollMode = formElements["rollMode"]?.value;
-          this.settings.rollModifiers.chain = dialogData.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value, 10) : this.settings.rollModifiers.chain;
-          this.settings.rollModifiers.characteristic = dialogData.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.settings.rollModifiers.characteristic;
-          this.settings.rollModifiers.item = dialogData.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value, 10) : this.settings.rollModifiers.item;
-          this.settings.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value, 10) : this.settings.rollModifiers.rof;
-          this.settings.rollModifiers.dodgeParry = (dialogData.itemRoll && dialogData.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value, 10) : this.settings.rollModifiers.dodgeParry;
-          this.settings.rollModifiers.weaponsHandling = (dialogData.itemRoll && dialogData.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value, 10) : this.settings.rollModifiers.weaponsHandling;
-          this.settings.rollModifiers.weaponsRange = (dialogData.showRangeModifier) ? parseInt(formElements["rollModifiers.weaponsRange"]?.value, 10) : this.settings.rollModifiers.weaponsRange;
-          this.settings.rollModifiers.attachments = (dialogData.itemRoll && dialogData.rollModifiers.attachments) ? parseInt(formElements["rollModifiers.attachments"]?.value, 10) : this.settings.rollModifiers.attachments;
-          this.settings.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value, 10);
-          this.settings.rollModifiers.wounds = dialogData.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value, 10) : 0;
-          this.settings.rollModifiers.selectedSkill = dialogData.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value: "";
-          this.settings.rollModifiers.targetModifier = (dialogData.showTargetModifier && formElements["rollModifiers.targetModifier"]) ? Array.from(formElements["rollModifiers.targetModifier"].selectedOptions).map(({value}) => value) : this.settings.rollModifiers.targetModifier;
-          this.settings.rollModifiers.armorModifier  = (dialogData.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value, 10) : 0;
-
-          if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.settings.rollModifiers.characteristic))) {
-            //either dont show modifier or not a physical characterisitc
-            this.settings.rollModifiers.encumbered = 0;
-          } else {
-            const dialogEncValue = parseInt(formElements["rollModifiers.encumbered"]?.value, 10);
-            if (dialogData.initialChoice === this.settings.rollModifiers.characterisitc || dialogEncValue !== dialogData.rollModifiers.encumbered) {
-              //characteristic didn't change or encumbrance modifer changed
-              this.settings.rollModifiers.encumbered = isNaN(dialogEncValue) ? 0 : dialogEncValue;
-            } else {
-              this.settings.rollModifiers.encumbered = (<TwodsixActor>this.skill?.actor)?.system.conditions.encumberedEffect ?? (isNaN(dialogEncValue) ? 0 : dialogEncValue);
-            }
-          }
-
-          this.settings.selectedTimeUnit = formElements["timeUnit"]?.value;
-          this.settings.timeRollFormula = formElements["timeRollFormula"]?.value;
-
-          Promise.resolve(this.settings);
-        }
+        default: true
       },
       {
         action: "cancel",
         icon: "fa-solid fa-xmark",
-        label: "Cancel",
-        callback: () => {
-          this.settings.shouldRoll = false;
-          Promise.resolve(this.settings);
-        }
+        label: "Cancel"
       }
     ];
     return context;
@@ -184,6 +147,50 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
 
       dialog.render({force: true});
     });
+  }
+
+  static _onSubmitRoll(ev, target) {
+    const formElements = target.form.elements;
+    this.settings.shouldRoll = true;
+    this.settings.difficulty = this.settings.difficulties[formElements["difficulty"]?.value];
+    this.settings.rollType = formElements["rollType"]?.value;
+    this.settings.rollMode = formElements["rollMode"]?.value;
+    this.settings.rollModifiers.chain = this.settings.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value, 10) : this.settings.rollModifiers.chain;
+    this.settings.rollModifiers.characteristic = this.settings.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.settings.rollModifiers.characteristic;
+    this.settings.rollModifiers.item = this.settings.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value, 10) : this.settings.rollModifiers.item;
+    this.settings.rollModifiers.rof = (this.settings.itemRoll && this.settings.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value, 10) : this.settings.rollModifiers.rof;
+    this.settings.rollModifiers.dodgeParry = (this.settings.itemRoll && this.settings.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value, 10) : this.settings.rollModifiers.dodgeParry;
+    this.settings.rollModifiers.weaponsHandling = (this.settings.itemRoll && this.settings.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value, 10) : this.settings.rollModifiers.weaponsHandling;
+    this.settings.rollModifiers.weaponsRange = (this.settings.showRangeModifier) ? parseInt(formElements["rollModifiers.weaponsRange"]?.value, 10) : this.settings.rollModifiers.weaponsRange;
+    this.settings.rollModifiers.attachments = (this.settings.itemRoll && this.settings.rollModifiers.attachments) ? parseInt(formElements["rollModifiers.attachments"]?.value, 10) : this.settings.rollModifiers.attachments;
+    this.settings.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value, 10);
+    this.settings.rollModifiers.wounds = this.settings.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value, 10) : 0;
+    this.settings.rollModifiers.selectedSkill = this.settings.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value: "";
+    this.settings.rollModifiers.targetModifier = (this.settings.showTargetModifier && formElements["rollModifiers.targetModifier"]) ? Array.from(formElements["rollModifiers.targetModifier"].selectedOptions).map(({value}) => value) : this.settings.rollModifiers.targetModifier;
+    this.settings.rollModifiers.armorModifier  = (this.settings.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value, 10) : 0;
+
+    if(!this.settings.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.settings.rollModifiers.characteristic))) {
+      //either dont show modifier or not a physical characterisitc
+      this.settings.rollModifiers.encumbered = 0;
+    } else {
+      const dialogEncValue = parseInt(formElements["rollModifiers.encumbered"]?.value, 10);
+      if (this.settings.initialChoice === this.settings.rollModifiers.characterisitc || dialogEncValue !== this.settings.rollModifiers.encumbered) {
+        //characteristic didn't change or encumbrance modifer changed
+        this.settings.rollModifiers.encumbered = isNaN(dialogEncValue) ? 0 : dialogEncValue;
+      } else {
+        this.settings.rollModifiers.encumbered = (<TwodsixActor>this.skill?.actor)?.system.conditions.encumberedEffect ?? (isNaN(dialogEncValue) ? 0 : dialogEncValue);
+      }
+    }
+
+    this.settings.selectedTimeUnit = formElements["timeUnit"]?.value;
+    this.settings.timeRollFormula = formElements["timeRollFormula"]?.value;
+
+    Promise.resolve(this.settings);
+  }
+
+  static _onCancelRoll(ev, target) {
+    this.settings.shouldRoll = false;
+    Promise.resolve(this.settings);
   }
 }
 
