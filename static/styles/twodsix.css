@@ -3402,6 +3402,7 @@ background: var(--s2d6-sidebar-background);
 
 .card-buttons {
   display: inline-flex;
+  gap: 2px;
 }
 
 #tooltip {
