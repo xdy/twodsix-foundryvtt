@@ -4,7 +4,6 @@
 import { TWODSIX } from "../config";
 import { getDifficultiesSelectObject, getRollTypeSelectObject } from "./sheetUtils";
 import { getTargetDMSelectObject } from "./targetModifiers";
-import { _getTranslatedCharacteristicList } from "./TwodsixRollSettings";
 import { getKeyByValue } from "./utils";
 
 export default class RollDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
@@ -63,7 +62,7 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
       rollTypes: getRollTypeSelectObject(),
       difficulty: getKeyByValue(this.settings.difficulties, this.settings.difficulty),
       difficultyList: getDifficultiesSelectObject(this.settings.difficulties),
-      skillsList: await this.skill?.actor?.getSkillNameList(),
+      skillsList: (<TwodsixActor>this.skill?.actor)?.getSkillNameList(),
       rollMode: this.settings.rollMode,
       rollModes: CONFIG.Dice.rollModes,
       characteristicList: _getTranslatedCharacteristicList(<TwodsixActor>this.skill?.actor),
@@ -131,6 +130,8 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
 
           this.settings.selectedTimeUnit = formElements["timeUnit"]?.value;
           this.settings.timeRollFormula = formElements["timeRollFormula"]?.value;
+
+          Promise.resolve(this.settings);
         }
       },
       {
@@ -139,6 +140,7 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
         label: "Cancel",
         callback: () => {
           this.settings.shouldRoll = false;
+          Promise.resolve(this.settings);
         }
       }
     ];
@@ -183,4 +185,34 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
       dialog.render({force: true});
     });
   }
+}
+
+export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
+  const returnValue = {};
+  if (actor) {
+    returnValue["STR"] = getCharacteristicLabelWithMod(actor, "strength");
+    returnValue["DEX"] = getCharacteristicLabelWithMod(actor, "dexterity");
+    returnValue["END"] = getCharacteristicLabelWithMod(actor, "endurance");
+    returnValue["INT"] = getCharacteristicLabelWithMod(actor, "intelligence");
+    returnValue["EDU"] = getCharacteristicLabelWithMod(actor, "education");
+    returnValue["SOC"] = getCharacteristicLabelWithMod(actor, "socialStanding");
+    if (!['base', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
+      returnValue["ALT1"] = getCharacteristicLabelWithMod(actor, "alternative1");
+      returnValue["ALT2"] =  getCharacteristicLabelWithMod(actor, "alternative2");
+    }
+    if (['all'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
+      returnValue["ALT3"] =  getCharacteristicLabelWithMod(actor, "alternative3");
+    }
+    if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
+      returnValue["PSI"] =  getCharacteristicLabelWithMod(actor, "psionicStrength");
+    }
+  }
+  returnValue["NONE"] =  "---";
+  return returnValue;
+}
+
+export function getCharacteristicLabelWithMod(actor: TwodsixActor, characterisitc: string) : string {
+  return actor.system.characteristics[characterisitc].displayShortLabel + '(' +
+  (actor.system.characteristics[characterisitc].mod >= 0 ? '+' : '') +
+  actor.system.characteristics[characterisitc].mod + ')';
 }

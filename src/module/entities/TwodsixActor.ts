@@ -1250,7 +1250,7 @@ export default class TwodsixActor extends Actor {
    * @return {any} an object with skill name /level pairs
    * @public
    */
-  public async getSkillNameList(): any {
+  public getSkillNameList(): any {
     const returnObject = {};
     const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
     for (const skill of skillsArray) {
