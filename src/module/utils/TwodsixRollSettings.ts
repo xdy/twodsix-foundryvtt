@@ -163,7 +163,7 @@ export class TwodsixRollSettings {
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
     const twodsixRollSettings = new TwodsixRollSettings(settings, skill, item, sourceActor);
     if (sourceActor) {
-      twodsixRollSettings.rollModifiers.appliedEffects = await getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
+      twodsixRollSettings.rollModifiers.appliedEffects = getCustomModifiers(sourceActor, twodsixRollSettings.rollModifiers.characteristic, skill);
     }
     if (showThrowDialog) {
       let title:string;
@@ -241,11 +241,11 @@ export function getCharacteristicList(actor?:TwodsixActor|undefined): any {
   return returnValue;
 }
 
-export async function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): Promise<any> {
+export function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): Promise<any> {
   const characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;
   const returnObject = [];
-  const customEffects = await selectedActor.appliedEffects.filter(eff  => !eff.statuses.has('encumbered') && !eff.statuses.has('wounded'));
+  const customEffects = selectedActor.appliedEffects.filter(eff  => !eff.statuses.has('encumbered') && !eff.statuses.has('wounded'));
   for (const effect of customEffects) {
     for (const change of effect.changes) {
       if (change.key === `system.characteristics.${characteristicKey}.mod` || change.key === `system.characteristics.${characteristicKey}.value` || (change.key === simpleSkillRef) && simpleSkillRef) {
