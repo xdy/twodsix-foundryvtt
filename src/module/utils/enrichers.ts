@@ -12,18 +12,31 @@ import { TwodsixRollSettings } from "./TwodsixRollSettings";
 export function addCustomEnrichers() {
   CONFIG.TextEditor.enrichers.push(
     {
+      id: 'displayTable',
       pattern: /@DisplayTable\[(.+?)\](?:{(.+?)})?/gm,
-      enricher: enrichDisplayTable
+      enricher: enrichDisplayTable,
     },
     {
+      id: 'rollTable',
       pattern: /@Table\[(.+?)\](?:{(.+?)})?/gm,
-      enricher: rollTable
+      enricher: rollTable,
+      onRender: addTableRollListener
     },
     {
+      id: 'rollSkill',
       pattern: /@SkillRoll(?:\[(.*?)\])?(?:{(.*?)})?/gm,
-      enricher: rollSkill
+      enricher: rollSkill,
+      onRender: addSkillRollListener
     }
   );
+}
+
+function addTableRollListener(enrichedContent:HTMLElement):void {
+  enrichedContent.querySelector('.table-roll').addEventListener('click', handleTableRoll);
+}
+
+function addSkillRollListener(enrichedContent:HTMLElement):void {
+  enrichedContent.querySelector('.skill-roll').addEventListener('click', handleSkillRoll);
 }
 
 /**
@@ -181,7 +194,7 @@ function findTable(tableName:string, options?:any): RollTable {
 
 function sendWarning(msg, params) {
   if (!params) {
-    return ui.notifications.warn(game.i18n.localize(msg));
+    return ui.notifications.warn(msg, {localize: true});
   } else {
     return ui.notifications.warn(game.i18n.format(game.i18n.localize(msg), params));
   }
@@ -201,7 +214,7 @@ export async function handleTableRoll(event: Event): Promise<void> {
     if (event.type == "click") { // left click
       table.draw();
     } else { // right click
-      table.sheet.render(true);
+      table.sheet.render({force: true});
     }
   }
 }
@@ -230,12 +243,12 @@ export async function handleSkillRoll(event: Event): Promise<void> {
           }
           await skill.skillRoll(false, settings);
         } else { // right click
-          skill.sheet.render(true);
+          skill.sheet.render({force: true});
         }
       }
     }
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
   }
 }
 
@@ -254,6 +267,6 @@ export async function handleSkillRoll(event: Event): Promise<void> {
     }
     return skill;
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
   }
 }*/
