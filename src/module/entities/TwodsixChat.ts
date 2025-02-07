@@ -1,54 +1,129 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import TwodsixItem from "../entities/TwodsixItem";
-//import ItemTemplate from "../utils/ItemTemplate";
+import TwodsixItem from "./TwodsixItem";
 import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
-import TwodsixActor from "../entities/TwodsixActor";
+import TwodsixActor from "./TwodsixActor";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { TWODSIX } from "../config";
-import { handleSkillRoll, handleTableRoll } from "../utils/enrichers";
-
-Hooks.on("renderChatLog", (_app, html, _data) => {
-  html.on("click", ".card-buttons button", onChatCardAction);
-  html.on("click", ".item-name", onChatCardToggleContent);
-  html.on("click", ".skill-roll", handleSkillRoll);
-  html.on("click", ".table-roll", handleTableRoll);
-});
-Hooks.on("renderChatPopout", (_app, html, _data) => {
-  html.on("click", ".card-buttons button", onChatCardAction);
-  html.on("click", ".item-name", onChatCardToggleContent);
-  html.on("click", ".skill-roll", handleSkillRoll);
-  html.on("click", ".table-roll", handleTableRoll);
-});
-
-/* -------------------------------------------- */
-/*  Chat Message Helpers                        */
-/* -------------------------------------------- */
 
 /**
- * Apply listeners to chat messages.
- * @param {HTML} html  Rendered chat message.
+ * The sidebar chat tab.
+ * @extends {ChatLog}
+ * @mixes HandlebarsApplication
  */
-/*static function chatListeners(html) {
-  html.on("click", ".card-buttons button", onChatCardAction.bind(this));
-  html.on("click", ".item-name", onChatCardToggleContent.bind(this));
-}*/
-/* -------------------------------------------- */
+export class TwodsixChatLog extends foundry.applications.sidebar.tabs.ChatLog {
+  static onChatCardAction: any;
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    const applicationOptions = super._initializeApplicationOptions(options);
+    applicationOptions.actions = assignNewActions(applicationOptions.actions);
+    return applicationOptions;
+  }
+
+  /**
+   * Get context menu entries for chat messages in the log.
+   * @returns {ContextMenuEntry[]}
+   * @inheritDoc
+   */
+  _getEntryContextOptions():ContextMenuEntry[] {
+    const options:ContextMenuEntry[] = super._getEntryContextOptions();
+    return newContextOptions(options);
+  }
+}
 
 /**
- * Handle execution of a chat card action via a click event on one of the card buttons
- * @param {Event} event       The originating click event
- * @returns {Promise}         A promise which resolves once the handler workflow is complete
- * @private
+ * The chat popout
+ * @extends {ChatPopout}
+ *
  */
-async function onChatCardAction(event: Event): Promise<any> {
+export class TwodsixChatPopout extends foundry.applications.sidebar.apps.ChatPopout {
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    const applicationOptions = super._initializeApplicationOptions(options);
+    applicationOptions.actions = assignNewActions(applicationOptions.actions);
+    Object.assign(applicationOptions.actions, {expandRoll: onExpandRoll});
+    return applicationOptions;
+  }
+
+  /**
+   * Get context menu entries for chat messages in the log.
+   * @returns {ContextMenuEntry[]}
+   * @inheritDoc
+   */
+  _getEntryContextOptions():ContextMenuEntry[] {
+    const options:ContextMenuEntry[] = super._getEntryContextOptions();
+    return newContextOptions(options);
+  }
+}
+
+/** Function that adds custom chat card buttons to action object
+* @param {Partial<Configuration>} coreActions
+* @returns {Partial<Configuration>} object of actions links
+*/
+function assignNewActions(coreActions:Partial<Configuration>):Partial<Configuration> {
+  return Object.assign(coreActions, {
+    opposed: onChatCardAction,
+    chain: onChatCardAction,
+    expand: onChatCardAction,
+    abilityCheck: onChatCardAction,
+    damage: onChatCardAction
+  });
+}
+
+/** Function that adds chat card context
+* @param {ContextMenuEntry[]} coreContext
+* @returns {ContextMenuEntry[]} object of context
+*/
+function newContextOptions(coreContext:ContextMenuEntry[] ):ContextMenuEntry[]  {
+  const canApply = li => {
+    const message = game.messages.get(li.dataset?.messageId);
+    return message?.isRoll && message?.isContentVisible && canvas.tokens?.controlled.length;
+  };
+  coreContext.push(
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDamage"),
+      icon: '<i class="fas fa-user-minus"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, 1)
+    },
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDestructiveDamage"),
+      icon: '<i class="fas fa-user-injured"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, 10)
+    },
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyReducedDamage"),
+      icon: '<i class="fas fa-user-shield"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, 0.1)
+    },
+    {
+      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyHealing"),
+      icon: '<i class="fas fa-user-plus"></i>',
+      condition: canApply,
+      callback: li => applyChatCardDamage(li, -1)
+    }
+  );
+  return coreContext;
+}
+
+/**
+   * Handle execution of a chat card action via a click event on one of the card buttons
+   * @param {Event} event       The originating click event
+   * @param {HTMLElement} target Click Target
+   * @returns {Promise}         A promise which resolves once the handler workflow is complete
+   * @private
+   */
+export async function onChatCardAction(event: Event, target:HTMLElement): Promise<any> {
   event.preventDefault();
+  //console.log(target);
 
   // Extract card data
-  const button = event.currentTarget;
+  const button = target;
   //button.disabled = true;
-  const messageId = event.target.closest("[data-message-id]")?.dataset.messageId;
+  const messageId = target.closest("[data-message-id]")?.dataset.messageId;
   const message = game.messages.get(messageId);
   if (!message) {
     return;
@@ -109,20 +184,32 @@ async function onChatCardAction(event: Event): Promise<any> {
   }
 }
 
-/* -------------------------------------------- */
-
 /**
- * Handle toggling the visibility of chat card content when the name is clicked
- * @param {Event} event   The originating click event
- * @private
+ * Apply rolled dice damage to the token or tokens which are currently controlled.
+ *
+ * @param {HTMLElement} li      The chat entry which contains the roll data
+ * @param {number} multiplier   A damage multiplier to apply to the rolled damage.
+ * @returns {Promise|undefined}
  */
-function onChatCardToggleContent(event: Event) {
-  event.preventDefault();
-  const header = event.currentTarget;
-  const card = header.closest(".chat-card");
-  if (card) { //Check needed for MEJ Messages
-    const content = card.querySelector(".card-content");
-    content.style.display = content.style.display === "none" ? "block" : "none";
+function applyChatCardDamage(li:HTMLElement, multiplier:number): Promise<any>|undefined {
+  const message = game.messages.get(li.dataset?.messageId);
+  const transfer = message.flags.transfer ? JSON.parse(message.flags.transfer) : undefined;
+  const effect = transfer?.payload.damageValue ?? message.flags.twodsix?.effect ?? message.rolls[0].total;
+  if (effect > 0) {
+    return Promise.all(canvas.tokens.controlled.map(t => {
+      if (["traveller", "robot", "animal"].includes(t.actor.type)) {
+        const damage = Math.floor(effect * multiplier);
+        if (damage > 0) {
+          (<TwodsixActor>t.actor).damageActor({damageValue: damage, armorPiercingValue: transfer?.payload.armorPiercingValue ?? 0, damageType: transfer?.payload.damageType ?? ""}, true);
+        } else if (multiplier < 0) {
+          t.actor.healActor(effect);
+        }
+      } else {
+        ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
+      }
+    }));
+  } else {
+    ui.notifications.warn("TWODSIX.Warnings.NoDamageToApply", {localize: true});
   }
 }
 
@@ -145,23 +232,6 @@ async function getChatCardActor(message: ChatMessage): Actor | null {
 
 /* -------------------------------------------- */
 
-/**
- * Get the Actor which is the author of a chat card
- * @param {HTMLElement} card    The chat card being used
- * @returns {Token[]}            An Array of Token documents, if any
- * @private
- */
-/*function getChatCardTargets(): Token[] {
-  let targets = canvas.tokens.controlled.filter(t => !!t.actor);
-  if ( !targets.length && game.user.character ) {
-    targets = targets.concat(game.user.character.getActiveTokens());
-  }
-  if ( !targets.length ) {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ActionWarningNoToken"));
-  }
-  return targets;
-}*/
-
 /** Handle clicking of dice tooltip buttons
   * @param {Event} event
   * @private
@@ -180,12 +250,12 @@ async function onExpandClick(message: ChatMessage) {
  * @param {ChatMessage} message    The originating message
  * @param {string} type The type of decondary roll, chain or opposed
  * @param {boolean} showDialog whether or not to show skill roll dialog
- * @returns {void}
+ * @returns {Promise<void>}
  */
 async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog: boolean): Promise<void> {
   const secondActor: TwodsixActor = getControlledTraveller();
   if (!secondActor) {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
     return;
   }
 
@@ -195,7 +265,7 @@ async function makeSecondaryRoll(message: ChatMessage, type: string, showDialog:
   if (selectedSkillUuid === false) {
     return;
   } else if (selectedSkillUuid === "") {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSkillSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoSkillSelected", {localize: true});
     return;
   }
   const selectedSkill: TwodsixItem = await fromUuid(selectedSkillUuid);
@@ -250,34 +320,35 @@ async function skillDialog(skillList: object): Promise<string|boolean> {
   const select = `<select name="item-select">${options}</select>`;
   const content = `<form><div class="form-group"><label>${game.i18n.localize("TWODSIX.Rolls.SkillName")} (${game.i18n.localize("TWODSIX.Actor.Skills.Level")}): ${select}</label></div></form>`;
 
-  const buttons = {
-    ok: {
-      label: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
-      icon: '<i class="fa-solid fa-list"></i>',
-      callback: async (htmlObject) => {
-        const skillId = htmlObject[0].querySelector("select[name='item-select']").value;
-        returnValue = skillId;
+  const buttons = [
+    {
+      action: "ok",
+      label: "TWODSIX.Rolls.SelectSkill",
+      icon: "fa-solid fa-list",
+      default: true,
+      callback: (event, button, dialog) => {
+        returnValue = dialog.querySelector("select[name='item-select']").value;
       }
     },
-    cancel: {
-      icon: '<i class="fa-solid fa-xmark"></i>',
-      label: game.i18n.localize("Cancel"),
+    {
+      action: "cancel",
+      icon: "fa-solid fa-xmark",
+      label: "Cancel",
       callback: () => {
         returnValue = false;
       }
     }
-  };
+  ];
 
   return new Promise<void>((resolve) => {
-    new Dialog({
-      title: game.i18n.localize("TWODSIX.Rolls.SelectSkill"),
+    new foundry.applications.api.DialogV2({
+      window: {title: "TWODSIX.Rolls.SelectSkill"},
       content: content,
       buttons: buttons,
-      default: 'ok',
-      close: () => {
+      submit: () => {
         resolve(returnValue);
       },
-    }).render(true);
+    }).render({force: true});
   });
 }
 /**
@@ -340,4 +411,14 @@ async function makeRequestedRoll(message: ChatMessage): void {
       }
     }
   }
+}
+
+/**
+ * Handle toggling the expanded state of a roll breakdown.
+ * @this {ChatLog}
+ * @type {ApplicationClickAction}
+ */
+function onExpandRoll(event, target) {
+  event.preventDefault();
+  target.classList.toggle("expanded");
 }

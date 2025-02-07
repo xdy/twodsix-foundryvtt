@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import RulsetSettings from "./settings/RulsetSettings";
+import RulesetSettings from "./settings/RulesetSettings";
 import ItemSettings from "./settings/ItemSettings";
 import DisplaySettings from "./settings/DisplaySettings";
 import DebugSettings from "./settings/DebugSettings";
@@ -12,7 +12,7 @@ import { booleanSetting, stringChoiceSetting, stringSetting } from "./settings/s
 
 
 export const registerSettings = function ():void {
-  RulsetSettings.registerMenu(RulsetSettings.create(), "rulesetSettings", "gavel");
+  RulesetSettings.registerMenu(RulesetSettings.create(), "rulesetSettings", "gavel");
   ItemSettings.registerMenu(ItemSettings.create(), "itemSettings", "bars");
   DisplaySettings.registerMenu(DisplaySettings.create(), "displaySettings", "tv");
   DebugSettings.registerMenu(DebugSettings.create(), "debugSettings", "flask");
@@ -49,8 +49,8 @@ export const registerSettings = function ():void {
   booleanSetting('autoAddUnarmed', false, true);
   booleanSetting('NoDuplicatesOnHotbar', false, true, "client");
   //Store default partials for items and compendium tab - hidden
-  stringSetting('defaultItemPartial', ItemDirectory.entryPartial, false, "client");
-  stringSetting('defaultCompendiumPartial', Compendium.entryPartial, false, "client");
+  stringSetting('defaultItemPartial', foundry.applications.sidebar.tabs.ItemDirectory._entryPartial, false, "client");
+  stringSetting('defaultCompendiumPartial', foundry.applications.sidebar.apps.Compendium._entryPartial, false, "client");
 
   function _onHideUntrainedSkillsChange(setting:boolean) {
     if (!setting) {

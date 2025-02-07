@@ -2,6 +2,7 @@
   "Advantage": "Advantage",
   "Average": "Average",
   "Cancel": "Cancel",
+  "Save": "Save",
   "Difficult": "Difficult",
   "Disadvantage": "Disadvantage",
   "Easy": "Easy",
@@ -47,7 +48,9 @@
       "DamageFormula": "Damage Formula",
       "NoRegularDamage": "No Regular Damage",
       "CanBeBlocked": "Can be blocked",
-      "CanBeParried": "Can be parried"
+      "CanBeParried": "Can be parried",
+      "DamageCalculation": "Applied Damage Calculation",
+      "DamageCard": "Damage Card"
     },
     "DamageType": {
       "Acid": "Acid",
@@ -69,7 +72,11 @@
       "ROFBurst": "Burst Fire",
       "ROFFull": "Full Auto",
       "ROFDoubleTap": "Double Tap",
-      "ReplaceMacroCommand": "Update Macro Command"
+      "ReplaceMacroCommand": "Update Macro Command",
+      "rulesetChange": {
+        "title": "Change ruleset",
+        "content": "Do you want to change ruleset?<br>If you have custom options they will be erased. This step cannot be undone."
+      }
     },
     "Actor": {
       "Age": "Age",
@@ -467,7 +474,15 @@
           "ablat": "Ablat",
           "combat": "Combat"
         },
-        "Dice": "Dice"
+        "Dice": "Dice",
+        "Types": {
+          "SkillRoll": "Skill Roll Card",
+          "ItemRoll": "Item Roll Card",
+          "OtherRoll": "Other Roll Card",
+          "CharRoll": "Characteristic Roll Card",
+          "ShipAction": "Ship Action Card",
+          "TraitSpell": "Trait/Spell Card"
+        }
       }
     },
     "Table": {
@@ -657,14 +672,14 @@
         "Melee Combat": "Melee Combat"
       },
       "Traits": {
-              "Prerequisite": "Prerequisite",
-              "TraitName": "Trait Name",
-              "CreateEffect": "Create Effect",
-              "DeleteEffect": "Delete Effect",
-              "EditEffect": "Edit Effects",
-              "CreateTrait": "Create Trait",
-              "DeleteTrait": "Delete Trait",
-              "ShortDescAndEffects": "Short description and list of effects"
+        "Prerequisite": "Prerequisite",
+        "TraitName": "Trait Name",
+        "CreateEffect": "Create Effect",
+        "DeleteEffect": "Delete Effect",
+        "EditEffect": "Edit Effects",
+        "CreateTrait": "Create Trait",
+        "DeleteTrait": "Delete Trait",
+        "ShortDescAndEffects": "Short description and list of effects"
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -772,7 +787,7 @@
       "ActionRollFormula": "Action Roll Formula",
       "Unknown": "unknown",
       "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
-      "ActorMustBeSelectedForAction": "Since there are multiple actors, one must be selected to perform the action",
+      "ActorMustBeSelectedForAction": "No actor selected, one must be selected to perform the action",
       "AddShipPosition": "Add Ship Position",
       "Avail": "Avail.",
       "Available": "Available",
@@ -804,6 +819,8 @@
       "Deckplan": "Deck Plan",
       "Defense": "Defense",
       "DeleteAction": "Delete Action",
+      "DeletePosition": "Delete Position",
+      "ConfirmDeletePosition": "Are you sure you want to delete this position?",
       "Designation": "Designation",
       "Displacement": "Displacement",
       "Drives": "Drives",
@@ -1079,7 +1096,7 @@
         "hint": "checked=Show pseudo-skill 'Untrained' instead of all untrained skills. unchecked=Show all untrained skills",
         "name": "Hide all untrained skills, instead show a single pseudo-skill named 'Untrained'. This also makes it so new skills are added at 0 instead of the untrained skill value.",
         "warning": "Warning!",
-        "warningReset": "After saving the system settings all skills using the pseudo-skill Untrained will be permanently reset to using no skill.This action cannot be undone.",
+        "warningReset": "After saving the system settings, all skills using the pseudo-skill 'Untrained' <br> will be permanently reset to using no skill.  This action cannot be undone.",
         "warningUpdateWeapon": "After saving the system settings all actors' weapons that do not have a skill will be updated to use the pseudo-skill Untrained.This action cannot be undone."
       },
       "initiativeFormula": {
@@ -1592,6 +1609,10 @@
       "autoIncrementTime": {
         "hint": "Advance game time (optionally integrated with Simple Calendar) if timeframe for roll is selected.",
         "name": "Automatically Advance Game Time"
+      },
+      "defaultWeaponDamage": {
+        "hint": "The default damage formula for new weapons, e.g. '1d6'.",
+        "name": "Default Damage Formula for New Weapons"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1689,8 +1710,11 @@
       "CantFindMeleeWeapon": "Can't find an equipped melee weapon to parry",
       "CantFindShield": "Can't find an equipped shield to block",
       "NoPsiPoints": "Must have at least one psionic point to use an ability",
-      "PsiUsageGTZero": "PSI Points used must be greater than zero"
-
+      "PsiUsageGTZero": "PSI Points used must be greater than zero",
+      "InvalidFormula": "Formula is Invalid for: ",
+      "ConfirmDrop": "Add all contents of folder to actor?",
+      "AddMultipleItems": "Add Multiple Items",
+      "CantDropFolder": "Cannot drop this folder onto actor."
     }
   },
   "TYPES": {

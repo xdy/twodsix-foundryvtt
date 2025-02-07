@@ -7,7 +7,7 @@ import {booleanSetting, largeStringSetting, numberSetting, stringChoiceSetting, 
 import { refreshWindow } from "./DisplaySettings";
 import { generateTargetDMObject } from "../utils/targetModifiers";
 
-export default class RulesetSettings extends AdvancedSettings {
+export default class RulesetSettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {
     RulesetSettings.settings = RulesetSettings.registerSettings();
     return RulesetSettings;
@@ -18,8 +18,42 @@ export default class RulesetSettings extends AdvancedSettings {
   }
 
   /** @override */
-  getData() {
-    const data = super.getData();
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix"],
+    position: {
+      width: 675,
+      height: 'auto'
+    },
+    window: {
+      resizable: true,
+      contentClasses: ["standard-form"],
+      title: "TWODSIX.Settings.settingsInterface.rulesetSettings.name",
+      icon: "fa-solid fa-gavel"
+    },
+    form: {
+      handler: AdvancedSettings.onSubmit,
+      closeOnSubmit: true,
+      submitOnChange: false,
+      submitOnClose: false
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/misc/advanced-settings.html",
+      scrollable: ['']
+    }
+  };
+
+  /** @override */
+  tabGroups = {
+    primary: "general"  //set default tab
+  };
+
+  /** @override */
+  async _prepareContext(options): any {
+    const context: any = await super._prepareContext(options);
     const ruleset = TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')];
     const rulesetSettings = TWODSIX.RULESETS[ruleset.key].settings;
     const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
@@ -28,8 +62,9 @@ export default class RulesetSettings extends AdvancedSettings {
     const modified = game.i18n.localize("TWODSIX.Settings.settingsInterface.rulesetSettings.modified");
     const rulesetName = ruleset.name + (settings.every(v => v) ? "" : ` (${modified})`);
 
-    data.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.intro`)}: ${rulesetName}</h2><br>`;
-    return data;
+    context.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.rulesetSettings.intro`)}: ${rulesetName}</h2>`;
+    context.tabs = this.getTabs(RulesetSettings.settings, this.tabGroups.primary);
+    return context;
   }
 
   static registerSettings(): any {
@@ -123,7 +158,7 @@ export default class RulesetSettings extends AdvancedSettings {
 export const checkManualDamageSetting = function () {
   if (!game.settings.get('twodsix', 'addEffectToDamage') && game.settings.get('twodsix', 'addEffectToManualDamage')) {
     game.settings.set('twodsix', 'addEffectToManualDamage', false);
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.ResetEffectForManualDamage"));
+    ui.notifications.warn("TWODSIX.Warnings.ResetEffectForManualDamage", {localize: true});
   }
 };
 

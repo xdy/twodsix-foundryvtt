@@ -1,52 +1,58 @@
-<div class='twodsix-message dice-roll' data-transfer='{{transfer}}'>
+<div class='twodsix-message' data-transfer='{{transfer}}'>
   <div class='damage-message'>
     <div class='prefix'>{{{flavor}}}</div>
-
-    <div class="dice-result">
-      <div class="dice-formula">{{roll.formula}}</div>
-      <div class="dice-tooltip">
-        <section class="tooltip-part">
-          <div class="dice">
-            <header class="part-header flexrow">
-              <span class="part-formula">{{roll.formula}}</span>
-              <span class="part-total">{{roll.total}}</span>
-            </header>
-            <ol class="dice-rolls">
-              {{#each dice as |die|}}
-                <li class="{{twodsix_die_style die}}">{{die.result}}</li>
-              {{/each}}
-            </ol>
+    <div class = "dice-roll" data-action="expandRoll">
+      <div class="dice-result">
+        <div class="dice-formula">{{roll.formula}}</div>
+        <div class="dice-tooltip">
+          <div class="wrapper">
+            <section class="tooltip-part">
+              <div class="dice">
+                <header class="part-header flexrow">
+                  <span class="part-formula">{{roll.formula}}</span>
+                  <span class="part-total">{{roll.total}}</span>
+                </header>
+                <ol class="dice-rolls">
+                  {{#each dice as |die|}}
+                    <li class="{{twodsix_die_style die}}">{{die.result}}</li>
+                  {{/each}}
+                </ol>
+              </div>
+            </section>
           </div>
-        </section>
+        </div>
+        {{#iff damageValue '>' '0'}}
+          <h4 class="dice-total">{{damageValue}}</h4>
+        {{else}}
+          <h4 class="dice-total">{{localize "TWODSIX.Damage.NoRegularDamage"}}</h4>
+        {{/iff}}
       </div>
-      {{#iff damageValue '>' '0'}}
-        <h4 class="dice-total">{{damageValue}}</h4>
-      {{else}}
-        <h4 class="dice-total">{{localize "TWODSIX.Damage.NoRegularDamage"}}</h4>
-      {{/iff}}
     </div>
     {{#if radRoll}}
     <br>
-    {{localize "TWODSIX.Items.Component.RadiationDamage"}}
-    <br>
-    <div class="dice-result">
-      <div class="dice-formula">{{radRoll.formula}}</div>
-      <div class="dice-tooltip">
-        <section class="tooltip-part">
-          <div class="dice">
-            <header class="part-header flexrow">
-              <span class="part-formula">{{radRoll.formula}}</span>
-              <span class="part-total">{{radRoll.total}}</span>
-            </header>
-            <ol class="dice-rolls">
-              {{#each radDice as |die|}}
-                <li class="{{twodsix_die_style die}}">{{die.result}}</li>
-              {{/each}}
-            </ol>
+    <div class='prefix'>{{localize "TWODSIX.Items.Component.RadiationDamage"}}</div>
+    <div class = "dice-roll" data-action="expandRoll">
+      <div class="dice-result">
+        <div class="dice-formula">{{radRoll.formula}}</div>
+        <div class="dice-tooltip">
+          <div class="wrapper">
+            <section class="tooltip-part">
+              <div class="dice">
+                <header class="part-header flexrow">
+                  <span class="part-formula">{{radRoll.formula}}</span>
+                  <span class="part-total">{{radRoll.total}}</span>
+                </header>
+                <ol class="dice-rolls">
+                  {{#each radDice as |die|}}
+                    <li class="{{twodsix_die_style die}}">{{die.result}}</li>
+                  {{/each}}
+                </ol>
+              </div>
+            </section>
           </div>
-        </section>
+        </div>
+        <h4 class="dice-total">{{radDamage}}</h4>
       </div>
-      <h4 class="dice-total">{{radDamage}}</h4>
     </div>
     {{/if}}
   </div>

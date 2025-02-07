@@ -23,7 +23,7 @@ Hooks.once("ready", async function () {
   }
 
   if (!Roll.validate(game.settings.get('twodsix', 'maxEncumbrance'))) {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+    ui.notifications.warn("TWODSIX.Warnings.EncumbranceFormulaInvalid", {localize: true});
   }
 
   // Determine whether a system migration is required and feasible
@@ -90,14 +90,10 @@ Hooks.once("ready", async function () {
     setDocumentPartials();
   }
 
-  //Force colorScheme setting and disable core setting from config
-  const colorSettings = game.settings.settings.get("core.colorScheme");
-  colorSettings.config = false;
-  if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
-    game.settings.set('core', 'colorScheme', 'dark');
-  } else {
-    game.settings.set('core', 'colorScheme', 'light');
-  }
+  //Force colorScheme setting
+  const uiSettings = foundry.utils.duplicate(game.settings.get("core", "uiConfig"));
+  uiSettings.colorScheme = game.settings.get('twodsix', 'useFoundryStandardStyle') ? 'light' : 'dark';
+  await game.settings.set("core", "uiConfig", uiSettings);
 
   //Add index
   for (const pack of game.packs) {

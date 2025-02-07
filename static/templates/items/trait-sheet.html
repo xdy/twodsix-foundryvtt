@@ -1,22 +1,6 @@
-<form class="{{cssClass}} item-class" autocomplete="off">
+<section class="{{cssClass}} item-class" autocomplete="off">
   <div class="skill-container-small">
-    <div>
-      <table>
-        <tr>
-          <th>
-            <div class="item-img">
-              <img class="item-img" src="{{img}}" data-tooltip="{{img}}" alt="{{name}}" data-edit="img" width="128"
-                   height="128"/></div>
-          </th>
-          <th>
-            <div class="item-name">
-              <label for="name">{{localize "TWODSIX.Items.Traits.TraitName"}}</label>
-              <input name="name" type="text" value="{{name}}"/>
-            </div>
-          </th>
-        </tr>
-      </table>
-    </div>
+    {{> "systems/twodsix/templates/items/parts/image-name.html"}}
     <div class="item-lvl">
       <label for="system.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
       <input class="form-input" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
@@ -32,9 +16,11 @@
 
     <div class="item-descr">
       <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-      <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
+      <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+        {{{enrichedDescription}}}
+      </prose-mirror>
     </div>
     {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
     {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.html"}}{{/if}}
   </div>
-</form>
+</section>

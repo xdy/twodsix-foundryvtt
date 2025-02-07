@@ -1,4 +1,4 @@
-<form class="{{cssClass}} item-class" autocomplete="off">
+<section class="{{cssClass}} item-class" autocomplete="off">
   {{> "systems/twodsix/templates/items/parts/image-name.html"}}
   {{> "systems/twodsix/templates/items/parts/item-type.html"}}
   {{#if owner}}
@@ -74,8 +74,10 @@
 
   <div class="item-descr">
     <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
-    <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
+    <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+      {{{enrichedDescription}}}
+    </prose-mirror>
   </div>
 
   {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
-</form>
+</section>

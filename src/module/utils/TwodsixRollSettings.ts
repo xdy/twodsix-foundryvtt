@@ -3,15 +3,13 @@
 
 import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
-import {getDifficultiesSelectObject, getRollTypeSelectObject} from "./sheetUtils";
 import { getKeyByValue } from "./utils";
 import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
-import { getTargetDMSelectObject } from "./targetModifiers";
-import RollDialog from "./RollDialog";
+import RollDialog, { _getTranslatedCharacteristicList } from "./RollDialog";
 
 export class TwodsixRollSettings {
   difficulty:{ mod:number, target:number };
@@ -75,7 +73,7 @@ export class TwodsixRollSettings {
       }
 
       //Check for "Untrained" value and use if better to account for JOAT
-      const joat = (selectedActor.getUntrainedSkill().system)?.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+      const joat = (selectedActor.getUntrainedSkill()?.system)?.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
       if (joat > skillValue) {
         skillValue = joat;
         this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
@@ -204,161 +202,12 @@ export class TwodsixRollSettings {
   }
 
   private async _throwDialog(title:string, twodsixRollSettings, skill?: TwodsixItem):Promise<void> {
-    /*const template = 'systems/twodsix/templates/chat/throw-dialog.html';
-    const dialogData = {
-      rollType: this.rollType,
-      rollTypes: getRollTypeSelectObject(),
-      difficulty: getKeyByValue(this.difficulties, this.difficulty),
-      difficultyList: getDifficultiesSelectObject(this.difficulties),
-      skillsList: await skill?.actor?.getSkillNameList(),
-      rollMode: this.rollMode,
-      rollModes: CONFIG.Dice.rollModes,
-      characteristicList: _getTranslatedCharacteristicList(<TwodsixActor>skill?.actor),
-      initialChoice: this.rollModifiers.characteristic,
-      initialSkill: this.rollModifiers.selectedSkill,
-      rollModifiers: this.rollModifiers,
-      skillLabel: this.skillName,
-      itemLabel: this.itemName,
-      showRangeModifier: this.showRangeModifier,
-      showTargetModifier: this.showTargetModifier,
-      showArmorWeaponModifier: this.showArmorWeaponModifier,
-      armorModifier: this.rollModifiers.armorModifier,
-      armorLabel: this.rollModifiers.armorLabel,
-      targetModifier: this.rollModifiers.targetModifier,
-      targetModifierOverride: this.rollModifiers.targetModifierOverride,
-      targetDMList: getTargetDMSelectObject(),
-      skillRoll: this.skillRoll,
-      itemRoll: this.itemRoll,
-      timeUnits: TWODSIX.TimeUnits,
-      selectedTimeUnit: this.selectedTimeUnit,
-      timeRollFormula: this.timeRollFormula,
-      showConditions: (game.settings.get('twodsix', 'useWoundedStatusIndicators') || game.settings.get('twodsix', 'useEncumbranceStatusIndicators')),
-      showWounds: game.settings.get('twodsix', 'useWoundedStatusIndicators'),
-      showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
-      isPsionicAbility: this.isPsionicAbility
-    };*/
-
-    /*const returnSettings =  await new Promise((resolve, reject) => {
-      const newDialog = new RollDialog({title: title, skill: skill, 'settings': twodsixRollSettings} );
-      return(newDialog.render(true));
-    });*/
-    const returnSettings =  await RollDialog.prompt({title: title, skill: skill, 'settings': twodsixRollSettings});
-    return(foundry.utils.mergeObject(twodsixRollSettings, returnSettings));
-    /*
-    const buttons = [
-      {
-        action: "ok",
-        label: "TWODSIX.Rolls.Roll",
-        icon: "fa-solid fa-dice",
-        default: true,
-        callback: (event, button, dialog) => {
-          const formElements = dialog.querySelector(".standard-form").elements;
-          this.shouldRoll = true;
-          this.difficulty = this.difficulties[buttonHtml.find('[name="difficulty"]').val()];
-          this.rollType = buttonHtml.find('[name="rollType"]').val();
-          this.rollMode = buttonHtml.find('[name="rollMode"]').val();
-          this.rollModifiers.chain = dialogData.skillRoll ? parseInt(buttonHtml.find('[name="rollModifiers.chain"]').val(), 10) : this.rollModifiers.chain;
-          this.rollModifiers.characteristic = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.characteristic"]').val() : this.rollModifiers.characteristic;
-          this.rollModifiers.item = dialogData.itemRoll ? parseInt(buttonHtml.find('[name="rollModifiers.item"]').val(), 10) : this.rollModifiers.item;
-          this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(buttonHtml.find('[name="rollModifiers.rof"]').val(), 10) : this.rollModifiers.rof;
-          this.rollModifiers.dodgeParry = (dialogData.itemRoll && dialogData.rollModifiers.dodgeParry) ? parseInt(buttonHtml.find('[name="rollModifiers.dodgeParry"]').val(), 10) : this.rollModifiers.dodgeParry;
-          this.rollModifiers.weaponsHandling = (dialogData.itemRoll && dialogData.rollModifiers.weaponsHandling) ? parseInt(buttonHtml.find('[name="rollModifiers.weaponsHandling"]').val(), 10) : this.rollModifiers.weaponsHandling;
-          this.rollModifiers.weaponsRange = (dialogData.showRangeModifier) ? parseInt(buttonHtml.find('[name="rollModifiers.weaponsRange"]').val(), 10) : this.rollModifiers.weaponsRange;
-          this.rollModifiers.attachments = (dialogData.itemRoll && dialogData.rollModifiers.attachments) ? parseInt(buttonHtml.find('[name="rollModifiers.attachments"]').val(), 10) : this.rollModifiers.attachments;
-          this.rollModifiers.other = parseInt(buttonHtml.find('[name="rollModifiers.other"]').val(), 10);
-          this.rollModifiers.wounds = dialogData.showWounds ? parseInt(buttonHtml.find('[name="rollModifiers.wounds"]').val(), 10) : 0;
-          this.rollModifiers.selectedSkill = dialogData.skillRoll ? buttonHtml.find('[name="rollModifiers.selectedSkill"]').val() : "";
-          this.rollModifiers.targetModifier = (dialogData.showTargetModifier) ? buttonHtml.find('[name="rollModifiers.targetModifier"]').val() : this.rollModifiers.targetModifier;
-          this.rollModifiers.armorModifier  = (dialogData.showArmorWeaponModifier) ? parseInt(buttonHtml.find('[name="rollModifiers.armorModifier"]').val(), 10) : 0;
-
-          if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
-            //either dont show modifier or not a physical characterisitc
-            this.rollModifiers.encumbered = 0;
-          } else {
-            const dialogEncValue = parseInt(buttonHtml.find('[name="rollModifiers.encumbered"]').val(), 10);
-            if (dialogData.initialChoice === this.rollModifiers.characterisitc || dialogEncValue !== dialogData.rollModifiers.encumbered) {
-              //characteristic didn't change or encumbrance modifer changed
-              this.rollModifiers.encumbered = isNaN(dialogEncValue) ? 0 : dialogEncValue;
-            } else {
-              this.rollModifiers.encumbered = (<TwodsixActor>skill?.actor)?.system.conditions.encumberedEffect ?? (isNaN(dialogEncValue) ? 0 : dialogEncValue);
-            }
-          }
-
-          this.selectedTimeUnit = buttonHtml.find('[name="timeUnit"]').val();
-          this.timeRollFormula = buttonHtml.find('[name="timeRollFormula"]').val();
-        }
-      },
-      cancel: {
-        icon: '<i class="fa-solid fa-xmark"></i>',
-        label: game.i18n.localize("Cancel"),
-        callback: () => {
-          this.shouldRoll = false;
-        }
-      },
-    };
-
-    const html = await renderTemplate(template, dialogData);
-    await foundry.applications.api.DialogV2.wait({
-      window: {title: title, icon: "fa-solid fa-dice"},
-      content: html,
-      buttons: buttons,
-      render: handleRender,
-      close: () => {
-        Promise.resolve();
-      },
-      rejectClose: false
-    });*/
+    await RollDialog.prompt({title: title, skill: skill, 'settings': twodsixRollSettings});
+    return(twodsixRollSettings);
   }
 }
-function handleRender(html) {
-  html.on("change", ".select-skill", () => {
-    const characteristicElement = html.find('[name="rollModifiers.characteristic"]');
-    const newSkillUuid = html.find('[name="rollModifiers.selectedSkill"]').val();
-    const newSkill = fromUuidSync(newSkillUuid);
-    characteristicElement.val(newSkill.system.characteristic);
-    let title = "";
-    const titleElement = html.parent().parent().find('.window-title')[0];
-    if (titleElement) {
-      const usingWord = ' ' + game.i18n.localize("TWODSIX.Actor.using") + ' ';
-      if (titleElement.innerText.includes(usingWord)) {
-        title = `${titleElement.innerText.substring(0, titleElement.innerText.indexOf(usingWord))}${usingWord}${newSkill.name}`;
-      } else {
-        title = newSkill.name || "";
-      }
-      titleElement.innerText = title;
-    }
-  });
-}
 
-export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
-  const returnValue = {};
-  if (actor) {
-    returnValue["STR"] = getCharacteristicLabelWithMod(actor, "strength");
-    returnValue["DEX"] = getCharacteristicLabelWithMod(actor, "dexterity");
-    returnValue["END"] = getCharacteristicLabelWithMod(actor, "endurance");
-    returnValue["INT"] = getCharacteristicLabelWithMod(actor, "intelligence");
-    returnValue["EDU"] = getCharacteristicLabelWithMod(actor, "education");
-    returnValue["SOC"] = getCharacteristicLabelWithMod(actor, "socialStanding");
-    if (!['base', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
-      returnValue["ALT1"] = getCharacteristicLabelWithMod(actor, "alternative1");
-      returnValue["ALT2"] =  getCharacteristicLabelWithMod(actor, "alternative2");
-    }
-    if (['all'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
-      returnValue["ALT3"] =  getCharacteristicLabelWithMod(actor, "alternative3");
-    }
-    if (!['alternate', 'core'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
-      returnValue["PSI"] =  getCharacteristicLabelWithMod(actor, "psionicStrength");
-    }
-  }
-  returnValue["NONE"] =  "---";
-  return returnValue;
-}
 
-export function getCharacteristicLabelWithMod(actor: TwodsixActor, characterisitc: string) : string {
-  return actor.system.characteristics[characterisitc].displayShortLabel + '(' +
-  (actor.system.characteristics[characterisitc].mod >= 0 ? '+' : '') +
-  actor.system.characteristics[characterisitc].mod + ')';
-}
 
 export function _genUntranslatedCharacteristicList(): object {
   const returnValue = {};
@@ -487,7 +336,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
     }
     return returnValues;
   } else {
-    ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
+    ui.notifications.error("TWODSIX.Ship.CannotParseArgument", {localize: true});
     return false;
   }
 }

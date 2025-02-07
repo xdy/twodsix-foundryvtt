@@ -13,7 +13,7 @@
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
-import {TwodsixActorSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixActorSheet";
+import {TwodsixTravellerSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixTravellerSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
@@ -35,6 +35,11 @@ import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, Ju
 import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
+import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
+import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
+
+//import { TWODSIX } from "./module/config";
+//import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
@@ -62,12 +67,14 @@ Hooks.once('init', async function () {
   };
 
   CONFIG.ActiveEffect.legacyTransferral = false;
+  CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
   Actors.unregisterSheet('core', ActorSheet);
+  Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
 
-  Actors.registerSheet('twodsix', TwodsixActorSheet, {
+  Actors.registerSheet('twodsix', TwodsixTravellerSheet, {
     types: ["traveller"],
     label: "Traveller Sheet",
     makeDefault: true
@@ -128,7 +135,8 @@ Hooks.once('init', async function () {
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
-  Items.unregisterSheet("core", ItemSheet);
+  Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
+  //Items.unregisterSheet("core", ItemSheet);
 
   Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
   Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
@@ -205,8 +213,13 @@ Hooks.once('init', async function () {
   //Add TL to compendium index
   CONFIG.Item.compendiumIndexFields.push('system.techLevel');
 
+  //Game pause icon change
+  CONFIG.ui.pause = TwodsixGamePause;
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
+  //Add chat context
+  CONFIG.ui.chat = TwodsixChatLog;
+  CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
 });
 
 Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
