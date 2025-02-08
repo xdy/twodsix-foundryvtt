@@ -1714,7 +1714,8 @@
       "InvalidFormula": "Formula is Invalid for: ",
       "ConfirmDrop": "Add all contents of folder to actor?",
       "AddMultipleItems": "Add Multiple Items",
-      "CantDropFolder": "Cannot drop this folder onto actor."
+      "CantDropFolder": "Cannot drop this folder onto actor.",
+      "SkillsWithDuplicateNames": "Duplicate skill names.  Skill list not accurate."
     }
   },
   "TYPES": {
