@@ -3672,3 +3672,7 @@ textarea {
 .select.target-modifier {
   height: auto;
 }
+
+.standard-form .form-footer > button {
+  min-width: 100px;
+}
