@@ -1253,10 +1253,14 @@ export default class TwodsixActor extends Actor {
   public getSkillNameList(): any {
     const returnObject = {};
     const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
+    if (skillsArray?.length > Object.keys(this.system.skills)?.length) {
+      ui.notifications.warn("TWODSIX.Warnings.SkillsWithDuplicateNames", {localize: true});
+    }
     for (const skill of skillsArray) {
-      if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills') || this.system.skills[simplifySkillName(skill.name)] >= 0)
-         || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))
-        || (skill._id === this.system.untrainedSkill && game.settings.get('twodsix', 'hideUntrainedSkills'))) {
+      if (!game.settings.get('twodsix', 'hideUntrainedSkills')
+        || (skill.system.value >= 0 || this.system.skills[simplifySkillName(skill.name)] >= 0)
+        || (skill.getFlag("twodsix", "untrainedSkill"))
+        || (skill._id === this.system.untrainedSkill)) {
         Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
       }
     }
