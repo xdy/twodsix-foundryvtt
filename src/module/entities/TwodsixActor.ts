@@ -818,11 +818,11 @@ export default class TwodsixActor extends Actor {
   }
 
   public getUntrainedSkill(): TwodsixItem {
-    return <TwodsixItem>this.items.get((<TwodsixActor>this.system).untrainedSkill);
+    return <TwodsixItem>this.items.get(this.system.untrainedSkill);
   }
 
   public createUntrainedSkillData(): any {
-    if ((<TwodsixActor>this.system).untrainedSkill) {
+    if (this.system.untrainedSkill) {
       if (this.items.get(this.system.untrainedSkill)) {
         return;
       }
@@ -1255,7 +1255,8 @@ export default class TwodsixActor extends Actor {
     const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
     for (const skill of skillsArray) {
       if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills') || this.system.skills[simplifySkillName(skill.name)] >= 0)
-         || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
+         || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))
+        || (skill._id === this.system.untrainedSkill && game.settings.get('twodsix', 'hideUntrainedSkills'))) {
         Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
       }
     }
@@ -1480,6 +1481,9 @@ export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise
           await actor.update({"system.untrainedSkill": untrainedSkillData['_id']});
         }
       }
+    } else if (!untrainedSkill.getFlag("twodsix", "untrainedSkill")) {
+      console.log(`TWODSIX: Fixing missing untrained flag in ${actor.id} (${actor.name}).`);
+      await untrainedSkill.setFlag("twodsix", "untrainedSkill", true);
     }
   }
 }
