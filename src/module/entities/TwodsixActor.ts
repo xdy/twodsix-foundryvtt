@@ -1253,7 +1253,10 @@ export default class TwodsixActor extends Actor {
   public getSkillNameList(): any {
     const returnObject = {};
     const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
-    if (skillsArray?.length > Object.keys(this.system.skills)?.length) {
+    if (!skillsArray) {
+      console.log("TWODSIX - No skills to list!");
+    }
+    if (skillsArray.length > Object.keys(this.system.skills)?.length) {
       ui.notifications.warn("TWODSIX.Warnings.SkillsWithDuplicateNames", {localize: true});
     }
     for (const skill of skillsArray) {
