@@ -362,7 +362,7 @@
         "TiedRoll": "Tied contested / opposed roll. No winner.",
         "GMUtils": "GM Utilities",
         "RequestRoll": "Request Roll",
-        "RequestRollClip":"<div class='toolclip'><video src='systems/twodsix/assets/toolclips/requestRollToolClip.webm' autoplay muted loop></video><h4>Request Roll</h4><p>Select any Tokens from which you would like to request a skill roll. A pop-up dialog opens where you can select the particulars of the roll.</p><p class='faint'>Disable Toolclips in the Settings</p></div>",
+        "RequestRollDescription": "Select any Tokens from which you would like to request a skill/check roll. A pop-up dialog opens where you can select the particulars of the roll.",
         "GMRequestsRoll": "GM requests a _TYPE_ roll.",
         "normal": "normal",
         "AbilityCheck": "Ability / Characteristic Check",
