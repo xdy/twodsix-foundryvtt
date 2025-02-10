@@ -1272,6 +1272,24 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
+   * Generate a unique skill name for actor based on input name by adding numbers to end of string
+   * @param {string} skillName   Input Itme Name
+   * @returns {string} Unique skill name based on skillName
+   * @static
+   */
+  generateUniqueSkillName(skillName: string): string {
+    while (simplifySkillName(skillName + "_") in this.system.skills) {
+      const lastChar = skillName.slice(-1);
+      if (!isNaN(lastChar)) {
+        skillName = skillName.slice(0, -1) + (parseInt(lastChar) + 1).toString();
+      } else {
+        skillName = skillName + " 2";
+      }
+    }
+    return(skillName);
+  }
+
+  /**
    * Method stub to execute a ship action as a method from Token Action HUD.
    * @action {object} Ship Action type
    * @extra {object} Object of data defining the ship action

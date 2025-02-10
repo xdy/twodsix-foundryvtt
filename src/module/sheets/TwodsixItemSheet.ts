@@ -10,6 +10,7 @@ import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
+import TwodsixActor from "../entities/TwodsixActor";
 
 /**
  * Extend the basic AbstractTwodsixItemSheet
@@ -188,6 +189,21 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     this.element.querySelector(`[name="system.isBaseHull"]`)?.addEventListener('change', this._changeIsBaseHull.bind(this));
     this.element.querySelector(`[name="item.type"]`)?.addEventListener('change', this._changeType.bind(this));
     this.element.querySelector(`[name="system.nonstackable"]`)?.addEventListener('change', this._changeNonstackable.bind(this));
+    this.element.querySelector(`[name="name"]`)?.addEventListener('change', this._changeName.bind(this));
+  }
+
+  private async _changeName(ev: Event):Promise<void> {
+    //Only needed for skills on an actor
+    if (this.item.type !== "skills"  || !this.item.actor) {
+      return;
+    }
+    ev.preventDefault();
+    const newName = (<TwodsixActor>this.item.actor).generateUniqueSkillName(ev.target.value);
+    if (newName !== ev.target.value) {
+      console.log("TWODSIX: replacing skill name with unique value");
+      ev.target.value = newName;
+      await this.item.update({"name": newName});
+    }
   }
 
   private async _changeSubtype(ev:Event) {

@@ -7,7 +7,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
-import { sortObj, simplifySkillName } from "../utils/utils";
+import { sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { TWODSIX } from "../config";
 
@@ -301,14 +301,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     //Skill Names should be unique
     if (type === "skills") {
-      while (simplifySkillName(itemName + "_") in this.actor.system.skills) {
-        const lastChar = itemName.slice(-1);
-        if (!isNaN(lastChar)) {
-          itemName = itemName.slice(0, -1) + (parseInt(lastChar) + 1).toString();
-        } else {
-          itemName = itemName + "2";
-        }
-      }
+      itemName = (<TwodsixActor>this.actor).generateUniqueSkillName(itemName);
     }
     // Prepare the item object.
     const itemData = {
