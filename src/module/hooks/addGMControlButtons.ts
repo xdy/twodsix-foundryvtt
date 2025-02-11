@@ -18,7 +18,7 @@ Hooks.on("getSceneControlButtons", (controls) => {
       toolclip: {
         src: "systems/twodsix/assets/toolclips/requestRollToolClip.webm",
         heading: "TWODSIX.Chat.Roll.RequestRoll",
-        items: SceneControls.buildToolclipItems([{paragraph: "TWODSIX.Chat.Roll.RequestRollDescription"}, "selectAlt", "selectMultiple"])
+        items: foundry.applications.ui.SceneControls.buildToolclipItems([{paragraph: "TWODSIX.Chat.Roll.RequestRollDescription"}, "selectAlt", "selectMultiple"])
       },
       onChange: async (event, active) => {
         if (active) {
