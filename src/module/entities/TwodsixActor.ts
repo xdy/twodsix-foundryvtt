@@ -1147,6 +1147,24 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
+   * Handle a dropped list of items onto the Actor.
+   * @param {string} list         Comma separated list of items
+   * @returns {Promise<void>}
+   * @async
+   */
+  public async handleDroppedList(list:string): Promise<void> {
+    const itemNames = list.split(",").map(str => str.trim());
+    for (const it of itemNames) {
+      const newItem = game.items.getName(it);
+      if (newItem) {
+        await this.handleDroppedItem(newItem);
+      } else {
+        ui.notifications.warn(`${game.i18n.localize("TWODSIX.Warnings.CantFindItem")}: ${it}`);
+      }
+    }
+  }
+
+  /**
    * Method to handle a dropped damage payload
    * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type & label)
    * @param {boolean} showDamageDialog Whethter to show apply damage dialog

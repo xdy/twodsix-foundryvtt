@@ -27,6 +27,12 @@ export function addCustomEnrichers() {
       pattern: /@SkillRoll(?:\[(.*?)\])?(?:{(.*?)})?/gm,
       enricher: rollSkill,
       onRender: addSkillRollListener
+    },
+    {
+      id: 'itemList',
+      pattern: /@ItemList\s?(.+)/gm,
+      enricher: itemList,
+      onRender: addItemListTransfer
     }
   );
 }
@@ -37,6 +43,15 @@ function addTableRollListener(enrichedContent:HTMLElement):void {
 
 function addSkillRollListener(enrichedContent:HTMLElement):void {
   enrichedContent.querySelector('.skill-roll').addEventListener('click', handleSkillRoll);
+}
+
+function addItemListTransfer(enrichedContent:HTMLElement):void {
+  const link = enrichedContent.querySelector('.item-list');
+  if (link) {
+    link.addEventListener('dragstart', (ev) => {
+      ev.dataTransfer.setData('text/plain', JSON.stringify(link.dataset));
+    });
+  }
 }
 
 /**
@@ -107,6 +122,25 @@ async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement>
   a.classList.add("skill-roll");
   a.dataset.parseString = skillName;
   a.innerHTML = `<i class="fa-solid fa-dice"></i> ${descrip}`;
+  return a;
+}
+
+/**
+ * A list of items.
+ * @param {string} match   An array matching the RegEx expression. Match[0] is the unenriched JE string.  Match[1] is the delimitted list of items.
+ * @param {string} options Options to the roll action
+ * @returns {HTMLAnchorElement} The rolltable in an html format
+ */
+async function itemList (match: any, _options: any): Promise<HTMLAnchorElement> {
+  const itemNames = match[1].split(",").map(str => str.trim());
+  const a = document.createElement("a");
+  a.classList.add("item-list");
+  a.classList.add("content-link");
+  a.setAttribute("draggable", true);
+  const list = itemNames.join(', ');
+  a.dataset.parseString = list;
+  a.dataset.type = 'ItemList';
+  a.innerHTML = `<i class="fa-solid fa-box-open"></i> ${list}`;
   return a;
 }
 

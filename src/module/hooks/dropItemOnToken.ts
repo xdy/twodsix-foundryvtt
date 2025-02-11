@@ -6,7 +6,7 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import { getDocFromDropData } from "../utils/sheetUtils";
 Hooks.on('dropCanvasData', (canvasObject, dropData) => {
-  if ((['damageItem', 'ActiveEffect', 'Folder'].includes(dropData.type) || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {
+  if ((['damageItem', 'ActiveEffect', 'Folder', 'ItemList'].includes(dropData.type) || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {
     catchDrop(canvasObject, dropData).then();
     return false;
   }
@@ -37,6 +37,9 @@ async function catchDrop(canvasObject: Canvas, dropData): Promise<any> {
         case 'Folder': {
           const folder = await fromUuid(dropData.uuid);
           return targetActor.handleDroppedFolder(folder);
+        }
+        case 'ItemList': {
+          return targetActor.handleDroppedList(dropData.parseString);
         }
         default: {
           ui.notifications.warn("TWODSIX.Warnings.CantDropOnToken", {localize: true});
