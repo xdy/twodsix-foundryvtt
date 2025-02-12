@@ -1058,6 +1058,12 @@ export default class TwodsixActor extends Actor {
     itemCopy.system.consumables = [];
     itemCopy.system.useConsumableForAttack = '';
 
+    //Remove consumable references
+    if (itemCopy.type === "consumable") {
+      itemCopy.system.parentName = "";
+      itemCopy.system.parentType = "";
+    }
+
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemCopy]))[0];
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !TWODSIX.WeightlessItems.includes(addedItem.type)) {
@@ -1147,19 +1153,21 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Handle a dropped list of items onto the Actor.
-   * @param {string} list         Comma separated list of items
+   * Handle a dropped list of items (names or uuid's) onto the Actor.
+   * @param {string} list         Comma separated list of item names or uuid's
    * @returns {Promise<void>}
    * @async
    */
   public async handleDroppedList(list:string): Promise<void> {
-    const itemNames = list.split(",").map(str => str.trim());
-    for (const it of itemNames) {
-      const newItem = game.items.getName(it);
-      if (newItem) {
+    const itemReferences = list.split(",").map(str => str.trim());
+    for (const itemRef of itemReferences) {
+      //Look for item could be an item name or UUID
+      const newItem = foundry.utils.parseUuid(itemRef)?.id ? (await fromUuid(itemRef)) : game.items.getName(itemRef);
+
+      if (newItem?.name) {
         await this.handleDroppedItem(newItem);
       } else {
-        ui.notifications.warn(`${game.i18n.localize("TWODSIX.Warnings.CantFindItem")}: ${it}`);
+        ui.notifications.warn(`${game.i18n.localize("TWODSIX.Warnings.CantFindItem")}: ${itemRef}`);
       }
     }
   }

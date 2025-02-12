@@ -132,15 +132,23 @@ async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement>
  * @returns {HTMLAnchorElement} The rolltable in an html format
  */
 async function itemList (match: any, _options: any): Promise<HTMLAnchorElement> {
-  const itemNames = match[1].split(",").map(str => str.trim());
+  const itemRef = match[1].split(",").map(str => str.trim());
   const a = document.createElement("a");
   a.classList.add("item-list");
   a.classList.add("content-link");
   a.setAttribute("draggable", true);
-  const list = itemNames.join(', ');
-  a.dataset.parseString = list;
+  a.dataset.parseString = itemRef.join(', ');
   a.dataset.type = 'ItemList';
-  a.innerHTML = `<i class="fa-solid fa-box-open"></i> ${list}`;
+  const list:string[] = [];
+  for (const strRef of itemRef) {
+    if(foundry.utils.parseUuid(strRef)?.id) {
+      const tempName = fromUuidSync(strRef)?.name;
+      list.push(tempName ? tempName : `<i class="fa-solid fa-link-slash"></i>`);
+    } else {
+      list.push(strRef);
+    }
+  }
+  a.innerHTML = `<i class="fa-solid fa-box-open"></i> ${list.join(', ')}`;
   return a;
 }
 
