@@ -1220,10 +1220,10 @@ export default class TwodsixActor extends Actor {
     //Define derived data keys that can have active effects
     const overrides = {};
 
-    // Organize non-disabled effect changes using derived data list or CUSTOM by their application priority
+    // Organize non-disabled effect changes using derived data list by their application priority
     const changes = [];
     for ( const effect of this.appliedEffects ) {
-      changes.push(...effect.changes.filter( change => (change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM || derivedData.includes(change.key))).map(change => {
+      changes.push(...effect.changes.filter( change => (derivedData.includes(change.key))).map(change => {
         const c = foundry.utils.deepClone(change);
         c.effect = effect;
         c.priority = c.priority ?? (c.mode * 10);
