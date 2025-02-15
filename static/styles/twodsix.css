@@ -168,6 +168,7 @@ a.entity-link,
 a.inline-roll,
 a.content-link {
   background: var(--s2d6-background-transparent);
+  color: var(--s2d6-default-color);
 }
 a.entity-link i,
 a.inline-roll i,
@@ -180,7 +181,7 @@ a.content-link {
   border-width: 1px;
   padding: 2px;
 }
-a.content-link i {
+a.content-link > i {
   padding-right: 4px;
 }
 
@@ -1244,12 +1245,6 @@ span.bgi-charEdit {
   /* margin-left: 8%; */
   /* margin-top: 2%; */
   gap: 1ch;
-}
-
-.edit-mode {
-  position: relative;
-  margin-top: -1.5em;
-  margin-left: -1em;
 }
 
 .stat {
