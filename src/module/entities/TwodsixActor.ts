@@ -43,24 +43,30 @@ export default class TwodsixActor extends Actor {
       case "traveller":
       case "animal":
       case "robot": {
-        Object.assign(changeData, {
-          "system.movement.walk": this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
-          "system.movement.units": this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
+        foundry.utils.mergeObject(changeData, {
+          system: {
+            movement: {
+              walk: this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
+              units: this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
+            }
+          }
         });
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON ) {
           isDefaultImg = true;
           if (game.settings.get("twodsix", "defaultTokenSettings") && this.type === "traveller") {
-            Object.assign(changeData, {
-              "prototypeToken.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "prototypeToken.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "prototypeToken.sight": {
-                "enabled": true,
-                "visonMode": "basic",
-                "brightness": 1
-              },
-              "prototypeToken.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-              "prototypeToken.bar1": {
-                attribute: "hits"
+            foundry.utils.mergeObject(changeData, {
+              prototypeToken: {
+                displayName: CONST.TOKEN_DISPLAY_MODES.OWNER,
+                displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER,
+                sight: {
+                  enabled: true,
+                  visonMode: "basic",
+                  brightness: 1
+                },
+                disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+                bar1: {
+                  attribute: "hits"
+                }
               }
             });
           }
@@ -76,24 +82,30 @@ export default class TwodsixActor extends Actor {
             newImage = foundry.documents.BaseActor.DEFAULT_ICON;
           }
 
-          Object.assign(changeData, {
-            'img': newImage
+          foundry.utils.mergeObject(changeData, {
+            img: newImage
           });
         }
 
         //Setup Hits
         const newHits = this.getCurrentHits(this.system.characteristics);
-        Object.assign(changeData, {
-          'system.hits.value': newHits.value,
-          'system.hits.max': newHits.max
+        foundry.utils.mergeObject(changeData, {
+          system: {
+            hits: {
+              value: newHits.value,
+              max: newHits.max
+            }
+          }
         });
 
         if (this.type === "animal") {
-          Object.assign(changeData, {
-            'system.characteristics.education.label': 'Instinct',
-            'system.characteristics.education.displayShortLabel': 'INS',
-            'system.characteristics.socialStanding.label': 'Pack',
-            'system.characteristics.socialStanding.displayShortLabel': 'PAK'
+          foundry.utils.mergeObject(changeData, {
+            system: {
+              characteristics: {
+                education: {label: 'Instinct', displayShortLabel: 'INS'},
+                socialStanding: {label: 'Pack', displayShortLabel: 'PAK'}
+              }
+            }
           });
         }
 
@@ -105,7 +117,7 @@ export default class TwodsixActor extends Actor {
           const item = new CONFIG.Item.documentClass(untrainedSkillData);
           items.push(item.toObject());
           isUpdated = true;
-          Object.assign(changeData, {"system.untrainedSkill": untrainedSkillData._id});
+          foundry.utils.mergeObject(changeData, {system: {untrainedSkill: untrainedSkillData._id}});
         }
         if (game.settings.get("twodsix", "autoAddUnarmed")) {
           const unarmedData = this.createUnarmedData();
@@ -125,8 +137,8 @@ export default class TwodsixActor extends Actor {
       case "ship": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
-          Object.assign(changeData, {
-            'img': 'systems/twodsix/assets/icons/default_ship.png'
+          foundry.utils.mergeObject(changeData, {
+            img: 'systems/twodsix/assets/icons/default_ship.png'
           });
         }
         break;
@@ -134,8 +146,8 @@ export default class TwodsixActor extends Actor {
       case "vehicle": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
-          Object.assign(changeData, {
-            'img': 'systems/twodsix/assets/icons/default_vehicle.png'
+          foundry.utils.mergeObject(changeData, {
+            img: 'systems/twodsix/assets/icons/default_vehicle.png'
           });
         }
         break;
@@ -143,18 +155,18 @@ export default class TwodsixActor extends Actor {
       case "space-object": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
-          Object.assign(changeData, {
-            'img': 'systems/twodsix/assets/icons/default_space-object.png'
+          foundry.utils.mergeObject(changeData, {
+            img: 'systems/twodsix/assets/icons/default_space-object.png'
           });
         }
         break;
       }
     }
-    await this.updateSource(changeData);
+    this.updateSource(changeData);
 
     if (game.settings.get("twodsix", "useSystemDefaultTokenIcon") && isDefaultImg) {
-      await this.updateSource({
-        'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
+      this.prototypeToken.updateSource({
+        texture: {src: foundry.documents.BaseActor.DEFAULT_ICON} //'icons/svg/mystery-man.svg'
       });
     }
 
@@ -1226,7 +1238,7 @@ export default class TwodsixActor extends Actor {
       changes.push(...effect.changes.filter( change => (derivedData.includes(change.key))).map(change => {
         const c = foundry.utils.deepClone(change);
         c.effect = effect;
-        c.priority = c.priority ?? (c.mode * 10);
+        c.priority = c.priority ?? (c.mode * 10 - 100); //Add -100 to force pritority of derived data earlier
         return c;
       }));
       for ( const statusId of effect.statuses ) {
