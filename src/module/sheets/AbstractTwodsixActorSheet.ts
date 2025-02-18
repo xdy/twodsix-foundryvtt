@@ -813,13 +813,13 @@ export function setCharacteristicDisplay(context: object): void {
   context.system.characteristics.alternative3.displayChar = ['all'].includes(charMode) &&
         (context.system.characteristics.alternative3.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.dexterity.displayChar = true;
-  context.system.characteristics.education.displayChar = true;
+  context.system.characteristics.education.displayChar = (context.system.characteristics.education.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.endurance.displayChar = true;
-  context.system.characteristics.intelligence.displayChar = true;
+  context.system.characteristics.intelligence.displayChar = (context.system.characteristics.intelligence.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.lifeblood.displayChar = false;
   context.system.characteristics.psionicStrength.displayChar = ['base', 'all'].includes(charMode) &&
         (context.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero'));
-  context.system.characteristics.socialStanding.displayChar = true;
+  context.system.characteristics.socialStanding.displayChar = (context.system.characteristics.socialStanding.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.stamina.displayChar = false;
   context.system.characteristics.strength.displayChar = true;
 }
