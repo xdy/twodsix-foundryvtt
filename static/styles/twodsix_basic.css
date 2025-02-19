@@ -1065,12 +1065,11 @@ svg:hover {
 
 .sheet nav.actor-sheet-tabs{
   /*height: auto !important;*/
-  /* line-height: 100%; */
+  line-height: normal;
   text-align: center;
   /* position: static; */
   grid-area: top-row;
   /* margin: unset; */
-  /* border: none; */
   align-items: center;
   /* overflow: hidden; */
 }
@@ -1085,17 +1084,13 @@ svg:hover {
   height: 100%;
   overflow: auto;
 }
-
+/*
 .skill-tab, .item-tab, .finances-tab, .info-tab, .actor-notes-tab, .effects-tab {
-  /* background-position-x: -2px; */
   width: 12ch;
   height: 4ch;
-  /* display: block; */
   border: solid;
   border-radius: 2ch;
   align-self: center;
-  /* vertical-align: middle; */
-  /* padding-top: 0.5ch; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1112,6 +1107,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   text-shadow: none !important;
   border: inset;
 }
+*/
 
 .tab, div{
   scrollbar-width: thin;
@@ -1674,6 +1670,7 @@ span.total-output {
     "ship-deck ship-tabs"
     "ship-data ship-data";
   height: -webkit-fill-available;
+  position: absolute;
   /* top: 5ch; */
 }
 
@@ -1813,6 +1810,8 @@ img.ship-mask-bg {
   /* margin-top: 2px; */
   height: 98%;
   text-align: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .ship-state-grid span {
@@ -1874,7 +1873,9 @@ img.ship-mask-bg {
 
 .ship-hull-bandwidth {
   grid-area: ship-hull;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   text-align: center;
 }
 
@@ -2124,19 +2125,19 @@ input.power-current, input.power-total {
 }
 
 a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
-  border: 2px solid;
+  /*border: 2px solid;
   border-radius: 15px;
   vertical-align: middle;
   padding: 3px 4px;
   font-size: 2ch;
   text-align: center;
-  height: 100%;
+  height: 100%;*/
   line-height: normal;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
+/*
 a.ship-positions-tab:hover, a.ship-crew-tab:hover, a.ship-component-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-notes-tab:hover {
 
   color: var(--s2d6-item-hover);
@@ -2151,7 +2152,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   background-color: var(--s2d6-background-nearly-opaque);
   border: inset;
 }
-
+*/
 .ship-tabs-info.sheet-body {
   border: 2px solid;
   border-radius: 20px;
@@ -3650,9 +3651,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 }
 
 .overlap-header {
-  width: 99%;
-  margin: 0;
-  height: 100%;
+  overflow-y: auto;
 }
 
 .traveller-sheet {

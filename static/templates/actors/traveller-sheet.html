@@ -65,12 +65,12 @@
     {{!-- Sheet Tab Navigation --}}
       <div class="character-tabs">
         <nav class="actor-sheet-tabs tabs" data-group="primary">
-          <a class="skill-tab {{tabs.skills.cssClass}}" data-tab="skills" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.SkillsTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Skills"}}</a>
-          <a class="item-tab {{tabs.inventory.cssClass}}" data-tab="inventory" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.InventoryTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Inventory"}}</a>
-          <a class="finances-tab {{tabs.finances.cssClass}}" data-tab="finances" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.FinancesTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Finances"}}</a>
-          <a class="info-tab {{tabs.info.cssClass}}" data-tab="info" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.InfoTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Info"}}</a>
-          <a class="effects-tab {{tabs.effects.cssClass}}" data-tab="effects" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.EffectsTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Effects"}}</a>
-          <a class="actor-notes-tab {{tabs.actorNotes.cssClass}}" data-tab="actorNotes" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.NotesTabTooltip'}}">{{localize "TWODSIX.Actor.Tabs.Notes"}}</a>
+          <a class="skill-tab {{tabs.skills.cssClass}}" data-tab="skills" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.SkillsTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-dice"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Skills"}}</a>
+          <a class="item-tab {{tabs.inventory.cssClass}}" data-tab="inventory" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.InventoryTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-suitcase"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Inventory"}}</a>
+          <a class="finances-tab {{tabs.finances.cssClass}}" data-tab="finances" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.FinancesTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-money-bill"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Finances"}}</a>
+          <a class="info-tab {{tabs.info.cssClass}}" data-tab="info" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.InfoTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-circle-info"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Info"}}</a>
+          <a class="effects-tab {{tabs.effects.cssClass}}" data-tab="effects" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.EffectsTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-person-rays"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Effects"}}</a>
+          <a class="actor-notes-tab {{tabs.actorNotes.cssClass}}" data-tab="actorNotes" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.NotesTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-book"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Notes"}}</a>
         </nav>
       </div>
 
