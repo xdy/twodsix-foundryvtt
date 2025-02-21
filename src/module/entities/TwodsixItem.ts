@@ -74,8 +74,11 @@ export default class TwodsixItem extends Item {
       }
     }
 
+    if (this.type === 'weapon') {
+      Object.assign(updates, {"system.damage": game.settings.get('twodsix', 'defaultWeaponDamage')});
+    }
+
     Object.assign(updates, {"system.type": this.type});
-    Object.assign(updates, {"flags.twodsix.newItem": true});
     await this.updateSource(updates);
   }
 
@@ -111,7 +114,7 @@ export default class TwodsixItem extends Item {
     if (game.settings.get('twodsix', 'showTLonItemsTab')) {
       if([...TWODSIX.WeightlessItems, "ship_position"].includes(this.type)) {
         return;
-      } else if (this.isEmbedded || this.compendium) {
+      } else if (this.isEmbedded || this.inCompendium) {
         return;
       } else if (changed.system?.techLevel) {
         ui.items.render();
@@ -168,7 +171,7 @@ export default class TwodsixItem extends Item {
   public async addConsumable(consumableId:string, gear:Gear = <Gear>this.system):Promise<void> {
     if (gear.consumables != undefined) {
       if (gear.consumables.includes(consumableId)) {
-        console.error(`Twodsix | Consumable already exists for item ${this.id}`);
+        console.log(`Twodsix | Consumable already exists for item ${this.id}`);
       } else {
         await this.update({"system.consumables": gear.consumables.concat(consumableId)}, {});
       }
@@ -202,7 +205,7 @@ export default class TwodsixItem extends Item {
     }
     const weapon:Weapon = <Weapon>this.system;
     if (!weapon.skill) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
 
@@ -222,7 +225,7 @@ export default class TwodsixItem extends Item {
     // Set characteristic from skill
     const skill:TwodsixItem | undefined  = this.actor?.items.get(weapon.skill) ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
     if (!skill) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+      ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
     tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
@@ -300,7 +303,7 @@ export default class TwodsixItem extends Item {
         await magazine.consume(usedAmmo);
       } catch (err) {
         if (err.name == "NoAmmoError") {
-          ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoAmmo"));
+          ui.notifications.error("TWODSIX.Errors.NoAmmo", {localize: true});
           return;
         } else {
           throw err;
@@ -309,7 +312,7 @@ export default class TwodsixItem extends Item {
     }
 
     if (targetTokens.length > numberOfAttacks) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyTargets"));
+      ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
     }
 
     //Make attack rolls
@@ -371,7 +374,7 @@ export default class TwodsixItem extends Item {
     const rof = parseInt(weapon.rateOfFire, 10);
     const rateOfFire: number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
     if (attackType !== 'single' && !rateOfFire) {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoROFForAttack"));
+      ui.notifications.error("TWODSIX.Errors.NoROFForAttack", {localize: true});
     }
 
     let usedAmmo = rateOfFire;
@@ -601,7 +604,7 @@ export default class TwodsixItem extends Item {
     if (!skill) {
       skill = workingActor?.getUntrainedSkill();
       if(!skill) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.NoSkillForSkillRoll"));
+        ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
         return;
       }
     }
@@ -638,14 +641,14 @@ export default class TwodsixItem extends Item {
           await magazine.consume(1);
         } catch (err) {
           if (err.name == "NoAmmoError") {
-            ui.notifications.error(game.i18n.localize("TWODSIX.Errors.EmptyConsumable"));
+            ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
             return;
           } else {
             throw err;
           }
         }
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.EmptyConsumable"));
+        ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
         return;
       }
     }
@@ -686,7 +689,7 @@ export default class TwodsixItem extends Item {
       }
 
       if(isNaN(psiCost) || psiCost <= 0) {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PsiUsageGTZero"));
+        ui.notifications.warn("TWODSIX.Warnings.PsiUsageGTZero", {localize: true});
         return;
       }
 
@@ -767,7 +770,7 @@ export default class TwodsixItem extends Item {
     let rollEffect = 0;
     let rollMode = "gmroll";
     if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoPsiPoints"));
+      ui.notifications.warn("TWODSIX.Warnings.NoPsiPoints", {localize: true});
     } else {
       await this.drawItemTemplate();
 
@@ -805,7 +808,7 @@ export default class TwodsixItem extends Item {
   public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<object | void> {
     const consumableDamage = this.getConsumableBonusDamage();
     if (!this.system.damage && !consumableDamage) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoDamageForWeapon"));
+      ui.notifications.warn("TWODSIX.Warnings.NoDamageForWeapon", {localize: true});
       return;
     } else {
       //Calc regular damage
@@ -817,14 +820,14 @@ export default class TwodsixItem extends Item {
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
       let damage = <Roll>{};
-      let apValue = this.system.armorPiercing ?? 0;
-
+      let apValue = 0;
       if (Roll.validate(rollFormula)) {
         damage = new Roll(rollFormula, this.actor?.getRollData());
         await damage.evaluate();
+        apValue += this.getValueFromRollFormula("armorPiercing");
         apValue += this.getConsumableBonus("armorPiercing");
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
+        ui.notifications.error("TWODSIX.Errors.InvalidRollFormula", {localize: true});
         return;
       }
 
@@ -877,6 +880,7 @@ export default class TwodsixItem extends Item {
           }
         );
         await damage.toMessage({
+          title: game.i18n.localize("TWODSIX.Damage.DamageCard"),
           speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
           content: html,
           style: CONST.CHAT_MESSAGE_STYLES.OTHER,
@@ -905,19 +909,31 @@ export default class TwodsixItem extends Item {
     return returnValue;
   }
 
-  public getConsumableBonus(type:string):number {
+  public getConsumableBonus(key:string):number {
     let returnValue = 0;
     if (this.system.attachmentData) {
       for (const attach of this.system.attachmentData) {
         if (attach.system.subtype !== "software" || attach.system.softwareActive) {
-          returnValue += attach.system[type];
+          if (foundry.utils.hasProperty(attach.system, key)) {
+            if (typeof attach.system[key] === 'number') {
+              returnValue += attach.system[key];
+            } else {
+              returnValue += (<TwodsixItem>attach).getValueFromRollFormula(key);
+            }
+          }
         }
       }
     }
     if (this.system.useConsumableForAttack && this.actor) {
-      const magazine = this.actor.items.get(this.system.useConsumableForAttack);
-      if (magazine?.type === "consumable" && magazine?.system[type]) {
-        returnValue += (<Consumable>magazine.system)[type];
+      const magazine:TwodsixItem = this.actor.items.get(this.system.useConsumableForAttack);
+      if (magazine?.type === "consumable") {
+        if (foundry.utils.hasProperty(magazine.system, key)) {
+          if (typeof magazine.system[key] === 'number') {
+            returnValue += magazine.system[key];
+          } else {
+            returnValue += (<TwodsixItem>magazine).getValueFromRollFormula(key);
+          }
+        }
       }
     }
     return returnValue;
@@ -1088,7 +1104,7 @@ export default class TwodsixItem extends Item {
         if (targetActor.type === 'traveller') {
           const wornArmor = targetActor.itemTypes.armor.filter((armor:TwodsixItem) => armor.system.equipped === 'equipped');
           if (wornArmor.length > 2) {
-            ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.TooManyLayersOnTarget"));
+            ui.notifications.warn("TWODSIX.Warnings.TooManyLayersOnTarget", {localize: true});
           } else if (targetActor.system.reflectOn && wornArmor.length === 2) {
             const armor0Mod = lookupRow[wornArmor[0].system.armorType] + (wornArmor[0].system.armorDM ?? 0);
             const armor1Mod = lookupRow[wornArmor[1].system.armorType] + (wornArmor[1].system.armorDM ?? 0);
@@ -1106,7 +1122,7 @@ export default class TwodsixItem extends Item {
           armorLabel = targetActor.system.armorType;
         }
       } else {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidWeaponArmor"));
+        ui.notifications.error("TWODSIX.Errors.InvalidWeaponArmor", {localize: true});
       }
     }
     armorLabel = game.i18n.localize(armorLabel !== "" ? TWODSIX.CT_ARMOR_TYPES[armorLabel] : 'TWODSIX.Ship.Unknown');
@@ -1172,7 +1188,7 @@ export default class TwodsixItem extends Item {
             break;
         }
       } catch /*(err)*/ {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRangeBand"));
+        ui.notifications.error("TWODSIX.Errors.InvalidRangeBand", {localize: true});
       }
     }
     return returnVal;
@@ -1207,9 +1223,30 @@ export default class TwodsixItem extends Item {
         //  ItemTemplate.targetTokensInTemplate(templates[0]);
         //}
       } catch /*(err)*/ {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Errors.CantPlaceTemplate"));
+        ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
       }
     }
+  }
+
+  /**
+   * A method for getting a value from an item's roll formula
+   * @param {string} key The item.system object key for the formula
+   * @returns {number} The deterministic value as a number from a roll formula
+   */
+  public getValueFromRollFormula(key:string):number {
+    let returnValue = 0;
+    if (foundry.utils.hasProperty(this.system, key)) {
+      if (Roll.validate(this.system[key])) {
+        try {
+          const replacedFormula = Roll.replaceFormulaData(this.system[key], this.actor?.getRollData(), {missing: "0", warn: true});
+          returnValue += replacedFormula ? Roll.safeEval(replacedFormula) : 0;
+        } catch (error) {
+          console.log ('Invalid formula', error);
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidFormula") + this.name);
+        }
+      }
+    }
+    return returnValue;
   }
 }
 
@@ -1233,31 +1270,31 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
 
 /**
  * Handle clickable damage rolls.
- * @param {Event} event   The originating click event
+ * @param {Event} ev   The originating click event
+ * @param {HTMLElement} target The clicked html element
  * @private
  */
-export async function onRollDamage(event:Event):Promise<void> {
-  event.preventDefault();
-  event.stopPropagation();
-  const itemId = $(event.currentTarget).parents('.item').data('item-id');
+export async function onRollDamage(ev:Event, target:HTMLElement):Promise<void> {
+  ev.preventDefault();
+  ev.stopPropagation();
+  const itemId = target.closest('.item').dataset.itemId;
   const item = this.actor.items.get(itemId) as TwodsixItem;
 
-  const element = $(event.currentTarget);
-  let bonusDamageFormula = String(element.data('bonus-damage') || 0);
+  let bonusDamageFormula = String(target.dataset.bonusDamage || 0);
   if (game.settings.get('twodsix', 'addEffectToManualDamage') && game.settings.get('twodsix', 'addEffectToDamage')) {
     const lastMessage = <ChatMessage>(game.messages?.contents.pop());
     if (lastMessage?.getFlag("twodsix", "effect")) {
-      const effectString = String(lastMessage.getFlag("twodsix", "effect"));
+      const effectDM = String(lastMessage.getFlag("twodsix", "effect"));
       if (bonusDamageFormula === "0") {
-        bonusDamageFormula = effectString;
+        bonusDamageFormula = effectDM;
       } else {
-        bonusDamageFormula += `+` + effectString;
+        bonusDamageFormula += `+` + effectDM;
       }
     }
   }
 
   const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-  const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
+  const showFormulaDialog = useInvertedShiftClick ? ev["shiftKey"] : !ev["shiftKey"];
 
   await item.rollDamage(item.type === 'psiAbility' ? "gmroll" : game.settings.get('core', 'rollMode'), bonusDamageFormula, true, showFormulaDialog);
 
@@ -1286,124 +1323,123 @@ export function getDiceResults(inputRoll:Roll) {
 export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): number {
   let returnValue = 0;
   if (Roll.validate(rollFormula)) {
-    returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData())) ?? 0;
+    try {
+      returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData(), {missing: "0", warn: true})) ?? 0;
+    } catch (error) {
+      console.log ('Invalid formula', error);
+      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidFormula") + item.name);
+    }
   }
   return returnValue;
 }
 
 async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
   if (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')) {
-    return new Promise((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-        content: "",
-        buttons: {
-          single: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('single');
-            }
-          },
-          doubleTap: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFDoubleTap"), callback: () => {
-              resolve('double-tap');
-            }
-          }
+    return await foundry.applications.api.DialogV2.wait({
+      window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+      content: "",
+      buttons: [
+        {
+          action: "single",
+          label: "TWODSIX.Dialogs.ROFSingle",
+          default: true
         },
-        default: 'single',
-      }).render(true);
+        {
+          action: "double-tap",
+          label: "TWODSIX.Dialogs.ROFDoubleTap",
+        }
+      ],
+      rejectClose: false
     });
   } else {
-    return new Promise((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-        content: "",
-        buttons: {
-          single: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('single');
-            }
-          },
-          burst: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFBurst"), callback: () => {
-              resolve('auto-burst');
-            }
-          },
-          full: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
-              resolve('auto-full');
-            }
-          }
+    return await foundry.applications.api.DialogV2.wait({
+      window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+      content: "",
+      buttons: [
+        {
+          action: "single",
+          label: "TWODSIX.Dialogs.ROFSingle",
+          default: true
         },
-        default: 'single',
-      }).render(true);
+        {
+          action: "auto-burst",
+          label: "TWODSIX.Dialogs.ROFBurst"
+        },
+        {
+          action: "auto-full",
+          label: "TWODSIX.Dialogs.ROFFull"
+        }
+      ],
+      rejectClose: false
     });
   }
 }
 
 async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
-  const buttons = {};
+  const buttons = [];
 
   for ( const mode of modes) {
     const number = Number(mode);
     const attackDM = TwodsixItem.burstAttackDM(number);
-    const bonusDamage =TwodsixItem.burstBonusDamage(number);
+    const bonusDamage = TwodsixItem.burstBonusDamage(number);
 
     if (number === 1) {
-      buttons["single"] = {
-        "label": game.i18n.localize("TWODSIX.Dialogs.ROFSingle"),
-        "callback": () => {
+      buttons.push({
+        action: "single",
+        label: "TWODSIX.Dialogs.ROFSingle",
+        default: true,
+        callback: () => {
           item.performAttack("single", true, 1);
         }
-      };
+      });
     } else if (number > 1){
       let key = game.i18n.localize("TWODSIX.Rolls.AttackDM")+ ' +' + attackDM;
-      buttons[key] = {
-        "label": key,
-        "callback": () => {
+      buttons.push({
+        action: `burst${number}`,
+        label: key,
+        callback: () => {
           item.performAttack('burst-attack-dm', true, number);
         }
-      };
+      });
 
       key = game.i18n.localize("TWODSIX.Rolls.BonusDamage") + ' +' + bonusDamage;
-      buttons[key] = {
-        "label": key,
-        "callback": () => {
+      buttons.push({
+        action: `bonus${number}`,
+        label: key,
+        callback: () => {
           item.performAttack('burst-bonus-damage', true, number);
         }
-      };
+      });
     }
   }
 
-  await new Dialog({
-    title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
+  await foundry.applications.api.DialogV2.wait({
+    window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
     content: "",
     buttons: buttons,
-    default: "single"
-  }).render(true);
+    rejectClose: false
+  });
 }
 
 async function promptForCTROF(modes: string[]): Promise<string> {
   if (parseInt(modes[0]) === 0) {
     return 'auto-full';
   } else {
-    return new Promise((resolve) => {
-      new Dialog({
-        title: game.i18n.localize("TWODSIX.Dialogs.ROFPickerTitle"),
-        content: "",
-        buttons: {
-          single: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFSingle"), callback: () => {
-              resolve('single');
-            }
-          },
-          full: {
-            label: game.i18n.localize("TWODSIX.Dialogs.ROFFull"), callback: () => {
-              resolve('auto-full');
-            }
-          }
+    return await foundry.applications.api.DialogV2.wait({
+      window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+      content: "",
+      buttons: [
+        {
+          action: "single",
+          label: "TWODSIX.Dialogs.ROFSingle",
+          default: true
         },
-        default: 'single',
-      }).render(true);
+        {
+          action: "auto-full",
+          label: "TWODSIX.Dialogs.ROFFull"
+        }
+      ],
+      rejectClose: false
     });
   }
 }

@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { makeResourceField, makeValueField, migrateStringToNumber} from "./commonSchemaUtils";
+import { makeResourceField, makeValueField, migrateNumberToString, migrateStringToNumber} from "./commonSchemaUtils";
 import { GearData, makeTargetTemplate, TwodsixItemBaseData } from "./item-base";
 
 const fields = foundry.data.fields;
@@ -25,7 +25,7 @@ export class WeaponData extends GearData {
     schema.doubleTap = new fields.BooleanField({ required: true, initial: false});
     schema.recoil = new fields.BooleanField({ required: true, initial: false});
     schema.features = new fields.StringField({...requiredBlankString});
-    schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.armorPiercing = new fields.StringField({required: true, blank: false, initial: "0" });
     schema.parryAV = new fields.NumberField({...requiredInteger, initial: 0});
     schema.isShield = new fields.BooleanField({ required: true, initial: false});
     schema.handlingModifiers = new fields.StringField({...requiredBlankString});
@@ -59,6 +59,11 @@ export class WeaponData extends GearData {
       }
       if (source.ammo < 0) {
         source.ammo = 0;
+      }
+    }
+    if ("armorPiercing" in source) {
+      if (typeof source.armorPiercing !== 'string') {
+        migrateNumberToString(source, 'armorPiercing');
       }
     }
     return super.migrateData(source);
@@ -153,7 +158,7 @@ export class ConsumableData extends GearData {
     schema.currentCount = new fields.NumberField({...requiredInteger, initial: 1});
     schema.max = new fields.NumberField({...requiredInteger, initial: 0});
     schema.subtype = new fields.StringField({required: true, blank: false, initial: "other" });
-    schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.armorPiercing = new fields.StringField({required: true, blank: false, initial: "0" });
     schema.bonusDamage = new fields.StringField({...requiredBlankString});
     schema.ammoRangeModifier = new fields.StringField({required: true, blank: false, initial: "0" });
     schema.isAttachment = new fields.BooleanField({ required: true, initial: false});
@@ -169,6 +174,11 @@ export class ConsumableData extends GearData {
     if ("ammoRangeModifier" in source) {
       if (source.ammoRangeModifier === "") {
         source.ammoRangeModifier = "0";
+      }
+    }
+    if ("armorPiercing" in source) {
+      if (typeof source.armorPiercing !== 'string') {
+        migrateNumberToString(source, 'armorPiercing');
       }
     }
     return super.migrateData(source);
@@ -199,7 +209,7 @@ export class ComponentData extends GearData {
     schema.isBaseHull = new fields.BooleanField({ required: true, initial: false});
     schema.rollModifier = new fields.StringField({...requiredBlankString});
     schema.rateOfFire = new fields.StringField({...requiredBlankString});
-    schema.armorPiercing = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.armorPiercing = new fields.StringField({required: true, blank: false, initial: "0" });
     schema.actorLink = new fields.StringField({...requiredBlankString});
     schema.hardened = new fields.BooleanField({ required: true, initial: false});
     schema.ammunition = makeResourceField(0, 0);
@@ -211,6 +221,11 @@ export class ComponentData extends GearData {
   static migrateData(source:any) {
     if ("purchasePrice" in source) {
       migrateStringToNumber(source, "purchasePrice");
+    }
+    if ("armorPiercing" in source) {
+      if (typeof source.armorPiercing !== 'string') {
+        migrateNumberToString(source, 'armorPiercing');
+      }
     }
     return super.migrateData(source);
   }

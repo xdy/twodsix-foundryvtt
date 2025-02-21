@@ -53,7 +53,12 @@ export class TwodsixShipActions {
       if (Roll.validate(rollText)) {
         const rollData = extra.actor.getRollData() ?? {};
         Object.assign(rollData, {ship: extra.ship.getRollData()});
-        const msg =  await new Roll(rollText, rollData).toMessage({speaker: speakerData, flavor: flavorText, type: CONST.CHAT_MESSAGE_TYPES.OTHER});
+        const msg =  await new Roll(rollText, rollData).toMessage({
+          title: game.i18n.localize("TWODSIX.Chat.Roll.Types.ShipAction"),
+          speaker: speakerData,
+          flavor: flavorText,
+          type: CONST.CHAT_MESSAGE_TYPES.OTHER
+        });
         return msg;
       }
     }
@@ -93,7 +98,7 @@ export class TwodsixShipActions {
         }
       }
     } else {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Ship.CannotParseArgument"));
+      ui.notifications.error("TWODSIX.Ship.CannotParseArgument", {localize: true});
       return false;
     }
   }
@@ -131,7 +136,7 @@ export class TwodsixShipActions {
         const scope = {actor: <TwodsixActor>extra.actor, ship: extra.ship, component: extra.component};
         foundMacros.execute(scope);
       } else {
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PlayerDoesNotHavePermission"));
+        ui.notifications.warn("TWODSIX.Warnings.PlayerDoesNotHavePermission", {localize: true});
       }
     }
   }

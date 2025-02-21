@@ -70,7 +70,7 @@ export default function registerHandlebarsHelpers(): void {
       return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
       if (!showedError) {
-        ui.notifications.error(game.i18n.localize("TWODSIX.Handlebars.CantShowCharacteristic"));
+        ui.notifications.error("TWODSIX.Handlebars.CantShowCharacteristic", {localize: true});
         showedError = true;
       }
       return "XXX";
@@ -264,43 +264,6 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('twodsix_getSettingIcon', (componentType: string) => {
-    switch (componentType) {
-      case 'general':
-        return "fa-solid fa-gear";
-      case 'roll':
-        return "fa-solid fa-dice-six";
-      case 'characteristics':
-        return "fa-solid fa-clipboard-user";
-      case 'formulas':
-        return "fa-solid fa-calculator";
-      case 'damage':
-        return "fa-solid fa-burst";
-      case 'movement':
-        return "fa-solid fa-person-walking";
-      case 'encumbrance':
-        return "fa-solid fa-weight-scale";
-      case 'wounds':
-        return "fa-solid fa-user-injured";
-      case 'ship':
-        return "fa-solid fa-rocket";
-      case 'animals_robots':
-        return "fa-solid fa-ghost";
-      case 'weapon':
-        return "fa-solid fa-gun";
-      case 'token':
-        return "fa-solid fa-chess-pawn";
-      case 'actor':
-        return "fa-regular fa-person";
-      case "dragDrop":
-        return "fa-solid fa-square-caret-down";
-      case "style":
-        return "fa-solid fa-file-code";
-      default:
-        return "fa-solid fa-circle-question";
-    }
-  });
-
   Handlebars.registerHelper('twodsix_showTimeframe', () => {
     return game.settings.get('twodsix', 'showTimeframe');
   });
@@ -382,8 +345,9 @@ export default function registerHandlebarsHelpers(): void {
     return style;
   });
 
-  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed? In FVTT baseline
-
+  Handlebars.registerHelper("concat", (...args) => args.slice(0, args.length - 1).join(''));  //Needed -YES. FVTT baseline concat works differently
+  /*** No longer needed ****/
+  /*
   Handlebars.registerHelper('each_sort_by_property', (property:string, array:TwodsixItem[], options) => {
     let sortedArray: TwodsixItem[] = [];
     const slice = array?.slice(0);
@@ -431,7 +395,7 @@ export default function registerHandlebarsHelpers(): void {
     }
     return Handlebars.helpers.each(sortedArray, options);
   });
-
+*/
   Handlebars.registerHelper('getComponentCost', (item: TwodsixItem) => {
     if (item.system.installedCost) {
       const maxDigits = item.system.installedCost < 0.1 ? 2 : 1;
