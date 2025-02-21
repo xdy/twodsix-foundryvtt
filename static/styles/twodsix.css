@@ -2168,11 +2168,17 @@ span.total-output {
 }
 
 /*----------- Ship Sheet ---------*/
+.ship {
+  --color-scrollbar: var(--s2d6-default-color);
+  --color-scrollbar-track: var(--s2d6-nav-background);
+  scrollbar-width: thin;
+  overflow-y: auto;
+}
 
 .ship-container {
   display: grid;
   grid-template-columns: 50% 48%;
-  grid-template-rows: 5% 5% 17% 19% 7% 47%;
+  grid-template-rows: 5% 5% 17% 19% 7% 46%;
   gap: 1px;
   grid-template-areas:
     ". ."
@@ -2637,12 +2643,14 @@ input.power-current, input.power-total  {
 /*----------- Ship Tabs ----------*/
 
 .ship-tabs {
-  width: 100%;
+  width: 120%;
   width: -webkit-fill-available;
   margin-left: -25%;
   margin-right: 7%;
   height: 100%;
   grid-area: ship-tabs;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
@@ -4512,9 +4520,27 @@ table.ship-action-table, table.vehicle-stats-table {
 
 .overlap-header {
   position: absolute;
-  width: 100%
+  width: 100%;
+  container-type: inline-size;
+  container-name: overlap-header;
 }
-
+@container overlap-header (width < 900px) {
+  .ship-container {
+    font-size: smaller;
+  }
+  .ship-name input[type="text"] {
+    height: 2ch;
+    font-size: smaller;
+    top: 2px;
+  }
+  .power-title {
+    font-size: 2ch;
+  }
+  .ship-armor-name textarea {
+    height: 6ch;
+    min-height: 3ch;
+  }
+}
 .transparent-header {
   margin: 0.5% 4% 0 5%;
   --button-size: 3ch;
@@ -4527,13 +4553,24 @@ table.ship-action-table, table.vehicle-stats-table {
   --button-size: 3ch;
   border: none;
   background-color: var(--s2d6-background-transparent);
+  container-type: inline-size;
+  container-name: transparent-header-ship;
+}
+@container transparent-header-ship (width < 750px) {
+  .transparent-header-ship button.header-control, .transparent-header-ship button, .transparent-header.window-icon {
+    font-size: smaller;
+  }
+}
+@container transparent-header-ship (width >= 750px) {
+  .transparent-header-ship button.header-control, .transparent-header-ship button, .transparent-header.window-icon {
+    font-size: larger;
+  }
 }
 
 .transparent-header button.header-control, .transparent-header-ship button.header-control {
   border: none;
   background: none;
   flex: 0 0 2ch;
-  font-size: larger;
 }
 
 .tl-label {

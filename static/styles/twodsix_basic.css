@@ -1065,13 +1065,15 @@ svg:hover {
 
 .sheet nav.actor-sheet-tabs{
   /*height: auto !important;*/
-  line-height: normal;
+  line-height: 3ch;
   text-align: center;
   /* position: static; */
   grid-area: top-row;
   /* margin: unset; */
   align-items: center;
   /* overflow: hidden; */
+  border-top: none;
+  min-height: 4ch;
 }
 
 .sheet nav.actor-sheet-tabs .item {
@@ -1658,7 +1660,7 @@ span.total-output {
 /*----------- Ship Sheet ---------*/
 
 .ship-container {
-  height: 100%;
+  height: 90%;
   display: grid;
   grid-template-columns:  51% 49%;
   grid-template-rows: 5ch 20% 14% 8% 51%;
@@ -3393,6 +3395,9 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 /*  Battle Sheet */
+.battle, .ship {
+  overflow-y: auto;
+}
 .battle-content {
   container-type: inline-size;
   container-name: battle-content;
@@ -3652,6 +3657,29 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 
 .overlap-header {
   overflow-y: auto;
+  container-type: inline-size;
+  container-name: overlap-header;
+}
+
+@container overlap-header (width < 800px) {
+  .ship-container {
+    font-size: smaller;
+  }
+  .ship-name input[type="text"] {
+    height: 2ch;
+    font-size: smaller;
+    top: 2px;
+  }
+  .power-title {
+    font-size: 2ch;
+  }
+  .ship-armor-name textarea {
+    height: 6ch;
+    min-height: 3ch;
+  }
+  .ship-state-grid {
+    font-size: 1.5ch;
+  }
 }
 
 .traveller-sheet {
