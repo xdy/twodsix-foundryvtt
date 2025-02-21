@@ -61,13 +61,13 @@ function addItemListTransfer(enrichedContent:HTMLElement):void {
  * @returns {Promise<HTMLDivElement>} The displayed html element for the enriched RollTable reference
  */
 async function enrichDisplayTable (match: any, options: any): Promise<HTMLDivElement> {
-  const table = findTable(match[1], options);
+  const table: RollTableData = findTable(match[1], options);
   const tableName = match[2] ?? table?.name;
   const a = document.createElement("div");
   if (table) {
     a.classList.add("display-table");
     const html = displayTable(match[1], table, tableName);
-    a.innerHTML = await TextEditor.enrichHTML(html);
+    a.innerHTML = await TextEditor.enrichHTML(html, {secrets: table.isOwner});
   } else {
     a.dataset.tableId = match[1];
     if (match[2]) {

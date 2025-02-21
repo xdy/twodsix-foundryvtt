@@ -42,8 +42,8 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
     if (game.settings.get('twodsix', 'useProseMirror')) {
       context.richText = {
-        description: await TextEditor.enrichHTML(context.system.description),
-        notes: await TextEditor.enrichHTML(context.system.notes)
+        description: await TextEditor.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+        notes: await TextEditor.enrichHTML(context.system.notes, {secrets: this.document.isOwner})
       };
     }
 

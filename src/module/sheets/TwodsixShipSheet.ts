@@ -113,9 +113,9 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
     if (context.settings.useProseMirror) {
       context.richText = {
-        cargo: await TextEditor.enrichHTML(this.actor.system.cargo),
-        finances: await TextEditor.enrichHTML(this.actor.system.finances),
-        notes: await TextEditor.enrichHTML(this.actor.system.notes)
+        cargo: await TextEditor.enrichHTML(this.actor.system.cargo, {secrets: this.document.isOwner}),
+        finances: await TextEditor.enrichHTML(this.actor.system.finances, {secrets: this.document.isOwner}),
+        notes: await TextEditor.enrichHTML(this.actor.system.notes, {secrets: this.document.isOwner})
       };
     }
 
