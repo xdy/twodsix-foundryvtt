@@ -4619,3 +4619,8 @@ h1.divider::before,
   h1, h2 {
     color: var(--s2d6-form-light);
   }
+
+  section.secret {
+    --color-secret-bg: rgba(53, 0, 121, 0.6);
+    --color-revealed-bg: rgba(0, 53, 0, 0.6);
+  }
