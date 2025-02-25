@@ -43,8 +43,8 @@ export class TwodsixSpaceObjectSheet extends foundry.applications.api.Handlebars
     const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
       context.richText = {
-        description: await TextEditor.enrichHTML(context.system.description),
-        notes: await TextEditor.enrichHTML(context.system.notes)
+        description: await TextEditor.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+        notes: await TextEditor.enrichHTML(context.system.notes, {secrets: this.document.isOwner})
       };
     }
     return context;

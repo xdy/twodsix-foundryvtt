@@ -43,24 +43,30 @@ export default class TwodsixActor extends Actor {
       case "traveller":
       case "animal":
       case "robot": {
-        Object.assign(changeData, {
-          "system.movement.walk": this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
-          "system.movement.units": this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
+        foundry.utils.mergeObject(changeData, {
+          system: {
+            movement: {
+              walk: this.system.movement.walk || game.settings.get("twodsix", "defaultMovement"),
+              units: this.system.movement.units || game.settings.get("twodsix", "defaultMovementUnits")
+            }
+          }
         });
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON ) {
           isDefaultImg = true;
           if (game.settings.get("twodsix", "defaultTokenSettings") && this.type === "traveller") {
-            Object.assign(changeData, {
-              "prototypeToken.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "prototypeToken.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER,
-              "prototypeToken.sight": {
-                "enabled": true,
-                "visonMode": "basic",
-                "brightness": 1
-              },
-              "prototypeToken.disposition": CONST.TOKEN_DISPOSITIONS.FRIENDLY,
-              "prototypeToken.bar1": {
-                attribute: "hits"
+            foundry.utils.mergeObject(changeData, {
+              prototypeToken: {
+                displayName: CONST.TOKEN_DISPLAY_MODES.OWNER,
+                displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER,
+                sight: {
+                  enabled: true,
+                  visonMode: "basic",
+                  brightness: 1
+                },
+                disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY,
+                bar1: {
+                  attribute: "hits"
+                }
               }
             });
           }
@@ -76,24 +82,30 @@ export default class TwodsixActor extends Actor {
             newImage = foundry.documents.BaseActor.DEFAULT_ICON;
           }
 
-          Object.assign(changeData, {
-            'img': newImage
+          foundry.utils.mergeObject(changeData, {
+            img: newImage
           });
         }
 
         //Setup Hits
         const newHits = this.getCurrentHits(this.system.characteristics);
-        Object.assign(changeData, {
-          'system.hits.value': newHits.value,
-          'system.hits.max': newHits.max
+        foundry.utils.mergeObject(changeData, {
+          system: {
+            hits: {
+              value: newHits.value,
+              max: newHits.max
+            }
+          }
         });
 
         if (this.type === "animal") {
-          Object.assign(changeData, {
-            'system.characteristics.education.label': 'Instinct',
-            'system.characteristics.education.displayShortLabel': 'INS',
-            'system.characteristics.socialStanding.label': 'Pack',
-            'system.characteristics.socialStanding.displayShortLabel': 'PAK'
+          foundry.utils.mergeObject(changeData, {
+            system: {
+              characteristics: {
+                education: {label: 'Instinct', displayShortLabel: 'INS'},
+                socialStanding: {label: 'Pack', displayShortLabel: 'PAK'}
+              }
+            }
           });
         }
 
@@ -105,7 +117,7 @@ export default class TwodsixActor extends Actor {
           const item = new CONFIG.Item.documentClass(untrainedSkillData);
           items.push(item.toObject());
           isUpdated = true;
-          Object.assign(changeData, {"system.untrainedSkill": untrainedSkillData._id});
+          foundry.utils.mergeObject(changeData, {system: {untrainedSkill: untrainedSkillData._id}});
         }
         if (game.settings.get("twodsix", "autoAddUnarmed")) {
           const unarmedData = this.createUnarmedData();
@@ -125,8 +137,8 @@ export default class TwodsixActor extends Actor {
       case "ship": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
-          Object.assign(changeData, {
-            'img': 'systems/twodsix/assets/icons/default_ship.png'
+          foundry.utils.mergeObject(changeData, {
+            img: 'systems/twodsix/assets/icons/default_ship.png'
           });
         }
         break;
@@ -134,8 +146,8 @@ export default class TwodsixActor extends Actor {
       case "vehicle": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
-          Object.assign(changeData, {
-            'img': 'systems/twodsix/assets/icons/default_vehicle.png'
+          foundry.utils.mergeObject(changeData, {
+            img: 'systems/twodsix/assets/icons/default_vehicle.png'
           });
         }
         break;
@@ -143,18 +155,18 @@ export default class TwodsixActor extends Actor {
       case "space-object": {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
-          Object.assign(changeData, {
-            'img': 'systems/twodsix/assets/icons/default_space-object.png'
+          foundry.utils.mergeObject(changeData, {
+            img: 'systems/twodsix/assets/icons/default_space-object.png'
           });
         }
         break;
       }
     }
-    await this.updateSource(changeData);
+    this.updateSource(changeData);
 
     if (game.settings.get("twodsix", "useSystemDefaultTokenIcon") && isDefaultImg) {
-      await this.updateSource({
-        'prototypeToken.texture.src': foundry.documents.BaseActor.DEFAULT_ICON //'icons/svg/mystery-man.svg'
+      this.prototypeToken.updateSource({
+        texture: {src: foundry.documents.BaseActor.DEFAULT_ICON} //'icons/svg/mystery-man.svg'
       });
     }
 
@@ -1058,6 +1070,12 @@ export default class TwodsixActor extends Actor {
     itemCopy.system.consumables = [];
     itemCopy.system.useConsumableForAttack = '';
 
+    //Remove consumable references
+    if (itemCopy.type === "consumable") {
+      itemCopy.system.parentName = "";
+      itemCopy.system.parentType = "";
+    }
+
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemCopy]))[0];
     if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !TWODSIX.WeightlessItems.includes(addedItem.type)) {
@@ -1147,6 +1165,26 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
+   * Handle a dropped list of items (names or uuid's) onto the Actor.
+   * @param {string} list         Comma separated list of item names or uuid's
+   * @returns {Promise<void>}
+   * @async
+   */
+  public async handleDroppedList(list:string): Promise<void> {
+    const itemReferences = list.split(",").map(str => str.trim());
+    for (const itemRef of itemReferences) {
+      //Look for item could be an item name or UUID
+      const newItem = foundry.utils.parseUuid(itemRef)?.id ? (await fromUuid(itemRef)) : game.items.getName(itemRef);
+
+      if (newItem?.name) {
+        await this.handleDroppedItem(newItem);
+      } else {
+        ui.notifications.warn(`${game.i18n.localize("TWODSIX.Warnings.CantFindItem")}: ${itemRef}`);
+      }
+    }
+  }
+
+  /**
    * Method to handle a dropped damage payload
    * @param {any} damagePayload The damage paylod being dropped (includes damage amount, AP value and damage type & label)
    * @param {boolean} showDamageDialog Whethter to show apply damage dialog
@@ -1194,13 +1232,13 @@ export default class TwodsixActor extends Actor {
     //Define derived data keys that can have active effects
     const overrides = {};
 
-    // Organize non-disabled effect changes using derived data list or CUSTOM by their application priority
+    // Organize non-disabled effect changes using derived data list by their application priority
     const changes = [];
     for ( const effect of this.appliedEffects ) {
-      changes.push(...effect.changes.filter( change => (change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM || derivedData.includes(change.key))).map(change => {
+      changes.push(...effect.changes.filter( change => (derivedData.includes(change.key))).map(change => {
         const c = foundry.utils.deepClone(change);
         c.effect = effect;
-        c.priority = c.priority ?? (c.mode * 10);
+        c.priority = c.priority ?? (c.mode * 10 - 100); //Add -100 to force pritority of derived data earlier
         return c;
       }));
       for ( const statusId of effect.statuses ) {
@@ -1253,13 +1291,40 @@ export default class TwodsixActor extends Actor {
   public getSkillNameList(): any {
     const returnObject = {};
     const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
-    for (const skill of skillsArray) {
-      if ((skill.system.value >= 0 || !game.settings.get('twodsix', 'hideUntrainedSkills') || this.system.skills[simplifySkillName(skill.name)] >= 0)
-         || (skill.getFlag("twodsix", "untrainedSkill") === game.settings.get('twodsix', 'hideUntrainedSkills'))) {
-        Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
+    if (!skillsArray) {
+      console.log("TWODSIX - No skills to list!");
+    } else {
+      if (skillsArray.length > Object.keys(this.system.skills)?.length) {
+        ui.notifications.warn("TWODSIX.Warnings.SkillsWithDuplicateNames", {localize: true});
+      }
+      for (const skill of skillsArray) {
+        if (!game.settings.get('twodsix', 'hideUntrainedSkills')
+          || (skill.system.value >= 0 || this.system.skills[simplifySkillName(skill.name)] >= 0)
+          || (skill.getFlag("twodsix", "untrainedSkill"))
+          || (skill._id === this.system.untrainedSkill)) {
+          Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
+        }
       }
     }
     return returnObject;
+  }
+
+  /**
+   * Generate a unique skill name for actor based on input name by adding numbers to end of string
+   * @param {string} skillName   Input Itme Name
+   * @returns {string} Unique skill name based on skillName
+   * @static
+   */
+  generateUniqueSkillName(skillName: string): string {
+    while (simplifySkillName(skillName + "_") in this.system.skills) {
+      const lastChar = skillName.slice(-1);
+      if (!isNaN(lastChar)) {
+        skillName = skillName.slice(0, -1) + (parseInt(lastChar) + 1).toString();
+      } else {
+        skillName = skillName + " 2";
+      }
+    }
+    return(skillName);
   }
 
   /**
@@ -1480,6 +1545,9 @@ export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise
           await actor.update({"system.untrainedSkill": untrainedSkillData['_id']});
         }
       }
+    } else if (!untrainedSkill.getFlag("twodsix", "untrainedSkill")) {
+      console.log(`TWODSIX: Fixing missing untrained flag in ${actor.id} (${actor.name}).`);
+      await untrainedSkill.setFlag("twodsix", "untrainedSkill", true);
     }
   }
 }

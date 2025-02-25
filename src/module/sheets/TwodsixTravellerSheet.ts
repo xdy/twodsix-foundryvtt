@@ -76,11 +76,11 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
     const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
       context.richText = {
-        description: await TextEditor.enrichHTML(context.system.description),
-        contacts: await TextEditor.enrichHTML(context.system.contacts),
-        bio: await TextEditor.enrichHTML(context.system.bio),
-        notes: await TextEditor.enrichHTML(context.system.notes),
-        xpNotes: await TextEditor.enrichHTML(context.system.xpNotes)
+        description: await TextEditor.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+        contacts: await TextEditor.enrichHTML(context.system.contacts, {secrets: this.document.isOwner}),
+        bio: await TextEditor.enrichHTML(context.system.bio, {secrets: this.document.isOwner}),
+        notes: await TextEditor.enrichHTML(context.system.notes, {secrets: this.document.isOwner}),
+        xpNotes: await TextEditor.enrichHTML(context.system.xpNotes, {secrets: this.document.isOwner})
       };
     }
 

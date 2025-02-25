@@ -411,7 +411,7 @@ export class TwodsixDiceRoll {
         style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [this.roll],
         flavor: flavor,
-        rollMode: this.rollSettings.rollMode,
+        //rollMode: this.rollSettings.rollMode,
         flags: {
           "core.canPopout": true,
           "twodsix.crit": this.getCrit(),

@@ -11,10 +11,15 @@ Hooks.on("getSceneControlButtons", (controls) => {
   if (game.user.isGM) {
     controls.tokens.tools.requestRoll = {
       name: "requestRoll",
-      title: "TWODSIX.Chat.Roll.RequestRoll" + (game.settings.get("core", "showToolclips") ? "Clip" : ""),
+      title: "TWODSIX.Chat.Roll.RequestRoll",
       icon: "fa-solid fa-dice",
       button: true,
       visible: game.user.isGM,
+      toolclip: {
+        src: "systems/twodsix/assets/toolclips/requestRollToolClip.webm",
+        heading: "TWODSIX.Chat.Roll.RequestRoll",
+        items: foundry.applications.ui.SceneControls.buildToolclipItems([{paragraph: "TWODSIX.Chat.Roll.RequestRollDescription"}, "selectAlt", "selectMultiple"])
+      },
       onChange: async (event, active) => {
         if (active) {
           await requestRoll();

@@ -36,7 +36,7 @@
 {{else}}
   <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:
     {{#unless settings.useCUData}}
-      <input style="text-align: right;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') (twodsix_getTooltip actor 'system.primaryArmor.value')}}"/>
+      <input style="text-align: right; padding-left: 0;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') (twodsix_getTooltip actor 'system.primaryArmor.value')}}"/>
       {{#unless settings.showTotalArmor}}
         +<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
             placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.SecondaryArmor') system.protectionTypes}}"/>

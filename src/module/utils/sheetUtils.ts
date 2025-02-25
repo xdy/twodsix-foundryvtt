@@ -262,7 +262,8 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
   }
 }
 
-export function openPDFReference(sourceString:string): void {
+export function openPDFReference(): void {
+  const sourceString = this.document.system.docReference;
   if (sourceString) {
     const [code, page] = sourceString.split(' ');
     const selectedPage = parseInt(page);
@@ -277,7 +278,7 @@ export function openPDFReference(sourceString:string): void {
   }
 }
 
-export async function openJournalEntry():void {
+export async function openJournalEntry():Promise<void> {
   if (this.document.system.pdfReference.type === 'JournalEntry') {
     const journalToOpen = await fromUuid(this.document.system.pdfReference.href);
     if (journalToOpen) {
@@ -288,8 +289,8 @@ export async function openJournalEntry():void {
   }
 }
 
-export async function deletePDFReference(event): Promise<void> {
-  event.preventDefault();
+export async function deletePDFReference(ev: PointerEvent): Promise<void> {
+  ev.preventDefault();
   if (this.document.system.pdfReference.href !== "") {
     await this.document.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
   } else {

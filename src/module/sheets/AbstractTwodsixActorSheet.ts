@@ -290,12 +290,18 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     // Initialize a default name, handle bad naming of 'skills' item type, which should be singular.
     const itemType = (type === "skills" ? "skill" : type);
+
     let itemName = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
 
-    if (itemType === "component") {
+    if (type === "component") {
       itemName += game.i18n.localize("TWODSIX.Items.Component." + (subtype || "otherInternal"));
     } else {
       itemName += game.i18n.localize("TWODSIX.itemTypes." + itemType);
+    }
+
+    //Skill Names should be unique
+    if (type === "skills") {
+      itemName = (<TwodsixActor>this.actor).generateUniqueSkillName(itemName);
     }
     // Prepare the item object.
     const itemData = {
@@ -389,6 +395,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     } else if (dropData.type === 'Folder') {
       const droppedFolder = await fromUuid(dropData.uuid);
       await (<TwodsixActor>this.actor).handleDroppedFolder(droppedFolder);
+    } else if (dropData.type === 'ItemList') {
+      await (<TwodsixActor>this.actor).handleDroppedList(dropData.parseString);
     } else {
       console.log(`Unknown Drop Type ${dropData.type}`);
       return false;
@@ -805,13 +813,13 @@ export function setCharacteristicDisplay(context: object): void {
   context.system.characteristics.alternative3.displayChar = ['all'].includes(charMode) &&
         (context.system.characteristics.alternative3.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.dexterity.displayChar = true;
-  context.system.characteristics.education.displayChar = true;
+  context.system.characteristics.education.displayChar = (context.system.characteristics.education.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.endurance.displayChar = true;
-  context.system.characteristics.intelligence.displayChar = true;
+  context.system.characteristics.intelligence.displayChar = (context.system.characteristics.intelligence.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.lifeblood.displayChar = false;
   context.system.characteristics.psionicStrength.displayChar = ['base', 'all'].includes(charMode) &&
         (context.system.characteristics.psionicStrength.value !== 0 || !game.settings.get('twodsix', 'omitPSIifZero'));
-  context.system.characteristics.socialStanding.displayChar = true;
+  context.system.characteristics.socialStanding.displayChar = (context.system.characteristics.socialStanding.value !== 0 || !game.settings.get('twodsix', 'omitALTifZero'));
   context.system.characteristics.stamina.displayChar = false;
   context.system.characteristics.strength.displayChar = true;
 }

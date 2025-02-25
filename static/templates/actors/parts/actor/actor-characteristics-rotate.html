@@ -2,6 +2,7 @@
   {{#each system.characteristics.displayOrder as |key|}}
     {{#with ../actor as |actor|}}
     {{#with (lookup actor.system.characteristics key) as |char|}}
+    {{#if char.displayChar}}
     <div  class="special {{key}}" data-characteristic="{{key}}">
       {{#if ../system.characteristicEdit}}
         <input type = "text" name= "system.characteristics.{{key}}.displayShortLabel" data-label = "system.characteristics.{{key}}.displayShortLabel"
@@ -21,6 +22,7 @@
                                       name="system.characteristics.{{key}}.damage" value="{{char.damage}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
     </div>
+    {{/if}}
     {{/with}}
     {{/with}}
   {{/each}}
