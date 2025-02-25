@@ -60,6 +60,7 @@
       "Melee": "Melé",
       "Plasma": "Plasma",
       "Poison": "Veneno",
+      "Psionic": "Psiónica",
       "Stun": "Aturdir"
     },
     "Dialogs": {
@@ -182,7 +183,8 @@
         "Value": "Precio",
         "WEAPONS": "ARMAS",
         "Weapons": "Armas",
-        "Weight": "Masa"
+        "Weight": "Masa",
+        "PSIONIC_ABILITIES": "HABILIDADES PSIONICAS"
       },
       "Notes": {
         "NOTES": "NOTAS DEL PERSONAJE",
@@ -325,6 +327,7 @@
         "RollModifiers": "Modificador Tirada",
         "SkillModifier": "Nivel Habilidad",
         "ItemModifier": "Bono Equipo",
+        "AbilityModifier": "Nivel Habilidad",
         "Rof": "Cadencia de Tiro",
         "Wounds": "Heridas",
         "Encumbered": "Sobrecargado",
@@ -623,7 +626,9 @@
         "MoveStorage": "Mover Carga",
         "New": "Nuevo",
         "Storage": "Carga",
-        "Junk": "Chatarra"
+        "Junk": "Chatarra",
+        "AssignPsiAbility": "Asignar Habilidad Psiónica",
+        "AssignSpell": "Asignar Conjuro"
       },
       "Skills": {
         "DEX": "DES",
@@ -682,6 +687,7 @@
         "Count": "Cant.",
         "Bandwidth": "Ancho de Banda",
         "ArmorPiercing": "Valor Penetración Armadura",
+        "AmmoRangeModifier": "Modificandor Rango (% cambio base)",
         "DropConsumablesHere": "Aquí puedes arrastrar consumibles.",
         "DropAttachmentsHere": "Aquí puedes añadir accesorios.",
         "RemoveConsumable": "Eliminar consumible",
@@ -734,6 +740,13 @@
       },
       "Computer": {
         "ProcessingPower": "Poder Procesamiento"
+      },
+      "Psionics": {
+        "PsiCost": "Coste Puntos Psiónica",
+        "UsePoints": "Utilizar Puntos Psiónica",
+        "Used": "Gastado",
+        "Pts": "Pts.",
+        "Level": "Nivel"
       }
     },
     "Target": {
@@ -1033,8 +1046,8 @@
         "name": "Variante disparo automático"
       },
       "automateDamageRollOnHit": {
-        "hint": "Marcado=Tirar daño modificado por el efecto; SinMarcar=No tirar daño.",
-        "name": "¿Automáticamente tirar el daño en tiradas de habilidad que impacten (ejemplo: Efecto>0) en objetos que puedan generarlo?"
+        "hint": "Cuando efecto>0 y el objeto causa daño: marcado=tira daño, modificado por efecto. sin marcar=no tira daño (aparece botón en tarjeta chat).",
+        "name": "Automáticamente lanzar daño para tiradas que impactan."
       },
       "criticalNaturalAffectsEffect": {
         "hint": "Marcado=Sin importar éxito considerar doble 1s como Efecto -1 y el doble 6s como Efecto 0, SinMarcar=Utilizar reglas normales",
@@ -1133,7 +1146,7 @@
       },
       "ShowDamageType": {
         "hint": "Marcado=Mostrar Tipo Daño; SinMarcar=Ocultar.",
-        "name": "Mostrar 'Tipo Daño' en armas"
+        "name": "Mostrar 'Tipo Daño' en hoja de armas (y conjuros)"
       },
       "showHeroPoints": {
         "hint": "Mostrar un contador de Puntos de Heroe en la hoja de personaje.",
@@ -1259,7 +1272,7 @@
       },
       "allowDropOnIcon": {
         "hint": "Tirar objetos encima de un token para añadir cosas a los actores directamente sin abrir la hoja del personaje. Los objetos duplicados incrementan la cantidad. Arrastrar mensajes del chat con daño de un ataque aplican el daño.",
-        "name": "Permitir dejar objetos encima de los tokens"
+        "name": "Permitir tirar objetos encima iconos"
       },
       "defaultMovement": {
         "hint": "El movimiento por defecto al andar/moverse en nuevos actores (normalmente una acción menor), ejemplo: 10 para 10m",
@@ -1286,7 +1299,7 @@
         "name": "Fórmula Daño Desarmado"
       },
       "showTimeframe": {
-        "hint": "Añadir plazo de tiempo en tirada de habilidad o atributo",
+        "hint": "Añadir rango de tiempo en tiradas de habilidad/atributo.",
         "name": "Mostrar Plazo de Tiempo en la Tirada"
       },
       "showStatusIcons": {
@@ -1570,6 +1583,14 @@
       "componentsIgnored": {
         "hint": "Una lista de componentes no de carga a omitir de la sección 'Daño' de la Hoja Batalla",
         "name": "Componentes Ignorados en Gestión Daño"
+      },
+      "psiTalentsRequireRoll": {
+        "hint": "Utilizar talento de psiónica requiere de tirada exitosa",
+        "name": "Psiónica Requiere Tirada"
+      },
+      "autoIncrementTime": {
+        "hint": "Avanzar tiempo de juego si se selecciona un rango de tiempo en la tirada (integración opcional con Simple Calendar).",
+        "name": "Avanzar automáticamente Tiempo de Juego"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1592,7 +1613,8 @@
       "component": "componente",
       "computer": "computadora",
       "unknown": "desconocido",
-      "ship_position": "posición"
+      "ship_position": "posición",
+      "psiAbility": "habilidad psiónica"
     },
     "speeds": {
       "walk": "Andar",
@@ -1664,7 +1686,9 @@
       "NoJournalFound": "No se encuentra la entrada conectada al diario",
       "CantFindMeleeSkill": "No encuentro habilidad de Combate Melé",
       "CantFindMeleeWeapon": "No encuentro arma melé equipada para la parada",
-      "CantFindShield": "No encuentro escudo equipado para bloqueo"
+      "CantFindShield": "No encuentro escudo equipado para bloqueo",
+      "NoPsiPoints": "Debes disponer al menos de un punto en psiónica para utilizar la habilidad",
+      "PsiUsageGTZero": "Los puntos PSI utilizados deben ser más de cero"
     }
   },
   "TYPES": {
@@ -1685,6 +1709,7 @@
       "junk": "Chatarra",
       "skills": "Habilidad",
       "trait": "Rasgo",
+      "psiAbility": "Habilidad Psiónica",
       "ship_position": "Posición Nave",
       "backpackPl": "Mochilas",
       "containerPl": "Contenedores",
@@ -1702,7 +1727,8 @@
       "junkPl": "Chatarra",
       "skillsPl": "Habilidades",
       "traitPl": "Rasgos",
-      "ship_positionPl": "Posiciones Nave"
+      "ship_positionPl": "Posiciones Nave",
+      "psiAbilityPl": "Habilidades Psiónicas"
     },
     "Actor": {
       "traveller": "Viajero",
