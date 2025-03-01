@@ -9,7 +9,7 @@ Hooks.on('renderChatMessageHTML', (app, htmlElement:HTMLElement) => {
     damageMessage.setAttribute("draggable", "true");
 
     damageMessage.addEventListener('dragstart', ev => {
-      return ev.dataTransfer?.setData("text/plain", <string>app.flags.twodsix.transfer);
+      return ev.dataTransfer?.setData("text/plain", <string>app.getFlag('twodsix', 'transfer'));
     });
   }
 
