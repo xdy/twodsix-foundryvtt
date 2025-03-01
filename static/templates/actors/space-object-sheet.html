@@ -1,8 +1,8 @@
-<form class="{{cssClass}} flexcol" autocomplete="off">
+<section class="{{cssClass}} flexcol" autocomplete="off">
   <div class="space-object-content-container">
     <div class="space-object-name-photo">
       <div class="space-object-photo">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' data-action="editImage"/>
       </div>
       <div class="space-object-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
       </div>
@@ -51,29 +51,10 @@
         </div>
         <!--Damage-->
         <div class="flexrow space-object-data">
-          <span class="roll-damage orange flexlabel object-damage">{{localize "TWODSIX.SpaceObject.Damage"}}</span><input type="text" name="system.damage" value="{{system.damage}}"/>
+          <span class="roll-damage orange flexlabel object-damage" data-action="rollSODamage">{{localize "TWODSIX.SpaceObject.Damage"}}</span><input type="text" name="system.damage" value="{{system.damage}}"/>
         </div>
         <!--Reference-->
-        {{#if settings.usePDFPager}}
-          <div class="item-reference">
-            <a class="open-link flexlabel">{{localize "TWODSIX.Items.DocumentReference"}}</a>
-            <input class="form-input" type="text" name="system.docReference" value="{{system.docReference}}"/>
-          </div>
-        {{else}}
-          {{#if system.pdfReference.href}}
-            <div class="item-link flexlabel">
-              {{localize "TWODSIX.Items.Link"}}:
-              <a href="{{actor.system.pdfReference.href}}">
-                {{#iff system.pdfReference.type "===" 'pdf'}}
-                  <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
-                {{else}}
-                  <i class="fa-solid fa-link" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
-                {{/iff}}
-                {{system.pdfReference.label}}</a>
-              <a class="delete-link" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
-            </div>
-          {{/if}}
-        {{/if}}
+        {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
       </div>
     </div>
     <!--Notes-->
@@ -86,4 +67,4 @@
       </div>
     </div>
   </div>
-</form>
+</section>
