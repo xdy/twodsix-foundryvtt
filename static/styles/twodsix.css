@@ -2090,6 +2090,10 @@ span.total-output {
   width: 98%;
 }
 
+.tab.info {
+  margin-top: 2ch;
+}
+
 .info-container .editor {
   border: 1px solid;
   border-radius: 2px;
@@ -3876,11 +3880,15 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 /* EDITOR */
 
 .editor {
-  height: 95%;
+  /*height: 95%;*/
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-light-color);
   margin-top: 0;
   border: 1px solid var(--s2d6-default-color);
+}
+.actor-editor.editor {
+  height: 95%;
+  min-height: 5ch;
 }
 
 .tox .tox-tbtn svg {
