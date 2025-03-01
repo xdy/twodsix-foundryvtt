@@ -3601,11 +3601,11 @@ table {
   border-radius: 0;
   margin: 0;
 }
-
+/*
 .standard-form .form-group {
   flex: 2 1 0%;
 }
-
+*/
 table.ship-action-table {
   margin: 0.5rem 0;
 }
