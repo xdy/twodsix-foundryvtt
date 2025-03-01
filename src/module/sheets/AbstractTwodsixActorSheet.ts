@@ -370,7 +370,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     if (dropData.type === 'damageItem') {
       const useInvertedShiftClick:boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
       const showDamageDialog = useInvertedShiftClick ? ev["shiftKey"] : !ev["shiftKey"];
-      return actor.handleDamageData(dropData.payload, showDamageDialog);
+      return actor.handleDamageData(JSON.parse(dropData.payload), showDamageDialog);
     } else if (dropData.type === "Scene") {
       // Handle dropped scene on ship sheet
       if (actor.type === 'ship') {
