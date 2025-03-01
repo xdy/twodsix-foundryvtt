@@ -25,7 +25,7 @@ async function catchDrop(canvasObject: Canvas, dropData): Promise<any> {
     if (targetActor?.isOwner) {
       switch (dropData.type) {
         case 'damageItem':
-          return targetActor.handleDamageData(JSON.parse(dropData.payload), <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+          return targetActor.handleDamageData(dropData.payload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         case 'Item': {
           const droppedItem = await getDocFromDropData(dropData);
           return await targetActor.handleDroppedItem(droppedItem);
