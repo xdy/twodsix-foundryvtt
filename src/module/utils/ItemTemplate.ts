@@ -7,7 +7,7 @@ import { TWODSIX } from "../config";
 /**
  * A helper class for building MeasuredTemplates for item AOE.  Adapted from D5e system
  */
-export default class ItemTemplate extends MeasuredTemplate {
+export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemplate {
 
   /**
    * Track the timestamp when the last mouse move event was captured.

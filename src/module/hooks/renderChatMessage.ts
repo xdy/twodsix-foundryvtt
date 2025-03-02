@@ -3,42 +3,43 @@
 
 import Crit from "../utils/crit";
 
-Hooks.on('renderChatMessage', (app, html) => {
-  const damageMessage = html.find(".damage-message")[0];
+Hooks.on('renderChatMessageHTML', (app, htmlElement:HTMLElement) => {
+  const damageMessage = htmlElement.querySelector(".damage-message");
   if (damageMessage) {
     damageMessage.setAttribute("draggable", "true");
 
     damageMessage.addEventListener('dragstart', ev => {
-      return ev.dataTransfer?.setData("text/plain", <string>app.flags.transfer);
+      return ev.dataTransfer?.setData("text/plain", <string>app.getFlag('twodsix', 'transfer'));
     });
   }
 
-  const diceTotal = html.find(".dice-total");
-  if (!damageMessage && diceTotal.length > 0 && app.isContentVisible) {
+  const diceTotal:string = htmlElement.querySelector(".dice-total");
+  if (!damageMessage && diceTotal?.textContent.length > 0 && app.isContentVisible) {
     const effect:string = <string>app.getFlag("twodsix", "effect");
     if (!isNaN(Number(effect))) {
       const sumString = game.i18n.localize('TWODSIX.Rolls.sum').capitalize();
       const effectString = game.i18n.localize('TWODSIX.Rolls.Effect');
-      let diceTotalText = `<section>${sumString}: ${diceTotal.text()} ${effectString}: ${effect}</section>`;
+      let diceTotalText = `${sumString}: ${diceTotal.textContent} ${effectString}: ${effect}\n`;
+
+      if (game.settings.get("twodsix", "useDegreesOfSuccess") !== 'none' && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
+        diceTotalText += `${app.getFlag("twodsix", "degreeOfSuccess")}\n`;
+      }
 
       if (game.settings.get("twodsix", "showTimeframe") && <string>app.getFlag("twodsix", "timeframe") !== '' && <string>app.getFlag("twodsix", "timeframe")) {
         const timeframe = <string>app.getFlag("twodsix", "timeframe");
         const timeString = game.i18n.localize('TWODSIX.Rolls.Timeframe');
-        diceTotalText += `<section class="roll-detail">${timeString}: ${timeframe}</section>`;
+        diceTotalText += `${timeString}: ${timeframe}\n`;
       }
 
-      if (game.settings.get("twodsix", "useDegreesOfSuccess") !== 'none' && <string>app.getFlag("twodsix", "degreeOfSuccess") !== '' && <string>app.getFlag("twodsix", "degreeOfSuccess")) {
-        diceTotalText += `<section class="roll-detail">${app.getFlag("twodsix", "degreeOfSuccess")}</section>`;
-      }
-      diceTotal.html(diceTotalText);
+      diceTotal.textContent = diceTotalText;
     }
 
     // Color crits
     const crit = app.getFlag("twodsix", "crit");
     if (crit && crit == Crit.success) {
-      diceTotal.addClass("crit-success-roll");
+      diceTotal.classList.add("crit-success-roll");
     } else if (crit && crit == Crit.fail) {
-      diceTotal.addClass("crit-fail-roll");
+      diceTotal.classList.add("crit-fail-roll");
     }
   }
 });
