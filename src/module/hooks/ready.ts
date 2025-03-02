@@ -92,7 +92,9 @@ Hooks.once("ready", async function () {
 
   //Force colorScheme setting
   const uiSettings = foundry.utils.duplicate(game.settings.get("core", "uiConfig"));
-  uiSettings.colorScheme = game.settings.get('twodsix', 'useFoundryStandardStyle') ? 'light' : 'dark';
+  const useStandardStyle = game.settings.get('twodsix', 'useFoundryStandardStyle');
+  uiSettings.colorScheme.applications = useStandardStyle ? 'light' : 'dark';
+  uiSettings.colorScheme.interface = useStandardStyle ? 'light' : 'dark';
   await game.settings.set("core", "uiConfig", uiSettings);
 
   //Add index

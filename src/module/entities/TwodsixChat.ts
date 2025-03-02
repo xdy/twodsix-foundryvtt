@@ -193,8 +193,8 @@ export async function onChatCardAction(event: Event, target:HTMLElement): Promis
  */
 function applyChatCardDamage(li:HTMLElement, multiplier:number): Promise<any>|undefined {
   const message = game.messages.get(li.dataset?.messageId);
-  const transfer = message.flags.transfer ? JSON.parse(message.flags.transfer) : undefined;
-  const effect = transfer?.payload.damageValue ?? message.flags.twodsix?.effect ?? message.rolls[0].total;
+  const transfer = message.getFlag('twodsix', 'transfer') ? JSON.parse(message.getFlag('twodsix', 'transfer')) : undefined;
+  const effect = transfer?.payload.damageValue ?? message.getFlag('twodsix', 'effect') ?? message.rolls[0].total;
   if (effect > 0) {
     return Promise.all(canvas.tokens.controlled.map(t => {
       if (["traveller", "robot", "animal"].includes(t.actor.type)) {

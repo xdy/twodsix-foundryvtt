@@ -886,7 +886,7 @@ export default class TwodsixItem extends Item {
           style: CONST.CHAT_MESSAGE_STYLES.OTHER,
           flags: {
             "core.canPopout": true,
-            "transfer": transfer,
+            "twodsix.transfer": transfer,
             "twodsix.itemUUID": this.uuid,
             "twodsix.rollClass": "Damage",
             "twodsix.tokenUUID": (<Actor>this.actor)?.getActiveTokens()[0]?.document.uuid ?? "",

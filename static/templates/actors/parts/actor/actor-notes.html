@@ -1,7 +1,7 @@
 <div class="notes-container">
   <span class="item-title">{{localize "TWODSIX.Actor.Notes.NOTES"}}</span>
   {{#if settings.useProseMirror}}
-  <prose-mirror name="system.notes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.notes}}" collaborate="true" toggled="true">
+  <prose-mirror class="actor-editor" name="system.notes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.notes}}" collaborate="true" toggled="false">
     {{{richText.notes}}}
   </prose-mirror>
   {{else}}

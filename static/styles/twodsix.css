@@ -470,7 +470,7 @@ h2 {
   display: grid;
   height: 100%;
   grid-template-columns: 15em 21em 18em;
-  grid-template-rows: 18em 1fr 1fr;
+  grid-template-rows: 19em 1fr 1fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -2090,6 +2090,10 @@ span.total-output {
   width: 98%;
 }
 
+.tab.info {
+  margin-top: 2ch;
+}
+
 .info-container .editor {
   border: 1px solid;
   border-radius: 2px;
@@ -2932,8 +2936,9 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-notes-container, .ship-notes-container-short {
   margin-left: 3%;
-  padding-top: 3%;
+  padding-top: 1%;
   height: 45ch;
+  height: -webkit-fill-available;
   /* width: 90%; */
   overflow-x: hidden;
   overflow-y: auto;
@@ -3875,11 +3880,15 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 /* EDITOR */
 
 .editor {
-  height: 95%;
+  /*height: 95%;*/
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-light-color);
   margin-top: 0;
   border: 1px solid var(--s2d6-default-color);
+}
+.actor-editor.editor {
+  height: 95%;
+  min-height: 5ch;
 }
 
 .tox .tox-tbtn svg {
@@ -3916,8 +3925,11 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
 }
 
 .editor-content {
-  /*height: 95%;*/
+  height: 95%;
+  height: -webkit-fill-available;
   padding-left: 4px;
+  overflow-y: auto;
+  word-break: break-word;
 }
 
 .tox .tox-editor-container {
