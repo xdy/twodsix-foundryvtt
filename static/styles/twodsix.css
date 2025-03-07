@@ -93,6 +93,11 @@ p span, p {
   height: 3ch;
 }
 
+.application input {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 *[contenteditable] * {
   -webkit-user-select: text;
   -moz-user-select: text;
@@ -1793,7 +1798,7 @@ a:hover, a.active {
 }
 
 input.item-value-edit, input.joat-skill-input {
-  padding: initial;
+  /*padding: initial;*/
   text-align: center;
   height: auto;
 }
