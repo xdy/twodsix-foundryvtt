@@ -5,9 +5,15 @@
 {{/if}}
   <span class="item-title">{{localize "TWODSIX.Ship.SHIPNOTES"}}</span>
     {{#if settings.useProseMirror}}
-      {{editor richText.notes target="system.notes" button=true owner=owner editable=editable async=true engine="prosemirror" collaborate=true}}
+    <prose-mirror name="system.notes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.notes}}" collaborate="true" toggled="true">
+      {{{richText.notes}}}
+    </prose-mirror>
     {{else}}
         <div contenteditable="true" data-edit="system.notes">{{#if actor.system.notes}}{{{actor.system.notes}}}{{/if}}</div>
     {{/if}}
-  {{> "systems/twodsix/templates/actors/parts/actor/actor-reference.html"}}
+    {{#if settings.showActorReferences}}
+      <div class = "centre">
+      {{> "systems/twodsix/templates/items/parts/reference-footer.html"}}
+      </div>
+    {{/if}}
 </div>
