@@ -93,6 +93,11 @@ p span, p {
   height: 3ch;
 }
 
+.application input {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 *[contenteditable] * {
   -webkit-user-select: text;
   -moz-user-select: text;
@@ -1270,12 +1275,14 @@ span.bgi-charEdit {
 
 .stat-table-small {
   grid-area: character-characteristics;
-  background-color: var(--s2d6-nav-background);
   font-size: 1.5ch;
   margin-left: 8%;
   margin-top: 4px;
   height: 84%;
   overflow: auto;
+}
+.stat-table-small table {
+  background-color: var(--s2d6-background-nearly-opaque);
 }
 
 .table-header-row {
@@ -1793,7 +1800,7 @@ a:hover, a.active {
 }
 
 input.item-value-edit, input.joat-skill-input {
-  padding: initial;
+  /*padding: initial;*/
   text-align: center;
   height: auto;
 }

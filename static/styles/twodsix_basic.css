@@ -2051,7 +2051,7 @@ img.ship-mask-bg {
   overflow: hidden;
 }
 
-.ship-stat input {
+.ship-stat input, .ship-stat-finance input {
   text-align: center;
 }
 
@@ -3529,7 +3529,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 input.battle-input {
-  width:  5ch;
+  width:  6ch;
   text-align: right;
 }
 
@@ -3652,7 +3652,7 @@ table.ship-action-table, table.vehicle-stats-table {
 
 input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], input[type="file"], select {
   max-height: 3ch;
-  padding: 0 4px;
+  padding: 0 2px;
 }
 
 .overlap-header {

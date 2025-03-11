@@ -56,7 +56,7 @@ export function migrateStringToNumber(source:any, field:string):void {
 export function migrateNumberToString(source:any, field:string):void {
   if ( Object.hasOwn(source, field)) {
     if ( typeof source[field] !== 'string') {
-      source[field] = source[field].toString() || "0";
+      source[field] = source[field]?.toString() || "0";
     }
   }
 }
