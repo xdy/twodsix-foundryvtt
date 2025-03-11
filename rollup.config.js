@@ -11,7 +11,8 @@ const plugins = [
   esbuild.default({
     include: /\.[jt]sx?$/, // TODO Might have to include d.ts here
     sourceMap: true,
-    minify: process.env.NODE_ENV === 'production',
+    keepNames: true,
+    minify: process.env.NODE_ENV === 'production'
   }),
   dynamicImportVars.default({}),
 ];

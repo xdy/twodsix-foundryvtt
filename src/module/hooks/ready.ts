@@ -113,6 +113,8 @@ Hooks.once("ready", async function () {
     const rulesetChainBonus = TWODSIX.RULESETS[ruleset]?.settings.chainBonus;
     game.settings.set('twodsix', 'chainBonus', rulesetChainBonus ?? "");
   }
+
+  checkDefaultSheetTypes();
 });
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize
@@ -138,5 +140,34 @@ async function toggleFirstActiveEffect(actor:TwodsixActor, isToken: boolean): Pr
       await actorEffects[0].update({'disabled': !actorEffects[0].disabled});
       await actorEffects[0].update({'disabled': !actorEffects[0].disabled});
     }
+  }
+}
+
+/**
+ * Check that the default sheet type exists
+ * @function
+ */
+async function checkDefaultSheetTypes(): Promise<void> {
+  const defaultSheets = foundry.utils.duplicate(game.settings.get("core", "sheetClasses"));
+  const defaultActorSheets = defaultSheets?.Actor;
+  let changed = false;
+  for (const key in defaultActorSheets) {
+    const sheetClassName = defaultActorSheets[key].substring(8); //"prefixed with twodsix."
+    if (!Actors.registeredSheets.find(sheet => sheet.name === sheetClassName)) {
+      if ((Actors.registeredSheets.find(sheet => sheet.name === '_' + sheetClassName))) {
+        defaultActorSheets[key] = `twodsix._${sheetClassName}`;
+        changed = true;
+      } else if (key === 'traveller' && Actors.registeredSheets.find(sheet => sheet.name === '_TwodsixTravellerSheet')) {
+        defaultActorSheets[key] = `twodsix._TwodsixTravellerSheet`;
+        changed = true;
+      } else if (key === 'traveller' && Actors.registeredSheets.find(sheet => sheet.name === 'TwodsixTravellerSheet')) {
+        defaultActorSheets[key] = `twodsix.TwodsixTravellerSheet`;
+        changed = true;
+      }
+    }
+  }
+  if (changed) {
+    const newSettings = foundry.utils.mergeObject(defaultSheets, {Actor: defaultActorSheets});
+    await game.settings.set('core', 'sheetClasses', newSettings);
   }
 }
