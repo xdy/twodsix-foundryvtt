@@ -402,3 +402,25 @@ div.pdf-app section.window-content {
 #smalltime-app {
   padding: 0;
 }
+
+
+/******* FQL ******/
+/* Custom CSS */
+
+#forien-quest-log .editor,
+.window-app.forien-quest-preview .editor,
+#forien-quest-log nav.tabs,
+.window-app.forien-quest-preview nav.tabs,
+.window-app.forien-quest-preview .quest-body .details-header .quest-setup .quest-details,
+#forien-quest-log .actions,
+#forien-quest-log .window-content,
+.window-app.forien-quest-preview .window-content,
+.quest-body,
+#forien-quest-log .quest-log .table ul li.drag-quest
+{
+	background: var(--s2d6-background-nearly-opaque);
+}
+
+#forien-quest-log .actions i, .window-app.forien-quest-preview .actions i {
+	color: 	var(--s2d6-default-color);
+}
