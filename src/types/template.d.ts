@@ -646,7 +646,7 @@ export interface Templates {
 }
 
 export interface LinkTemplate {
-  docReference:string;
+  docReference:string[];
   pdfReference:PDFLink;
 }
 

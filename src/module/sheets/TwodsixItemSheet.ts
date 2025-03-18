@@ -4,7 +4,7 @@
 import { AbstractTwodsixItemSheet, onPasteStripFormatting } from "./AbstractTwodsixItemSheet";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
-import { openPDFReference, deletePDFReference, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes } from "../utils/sheetUtils";
+import { openPDFLink, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes, deleteReference, deletePDFLink, addPDFLink, changeReference } from "../utils/sheetUtils";
 import { Component} from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
@@ -42,9 +42,11 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       editActiveEffect: this._onEditEffect,
       createActiveEffect: this._onCreateEffect,
       deleteActiveEffect: this._onDeleteEffect,
-      openLink: openPDFReference,
+      openPDFLink: openPDFLink,
+      deletePDFLink: deletePDFLink,
+      addPDFLink: addPDFLink,
       openJournalEntry: openJournalEntry,
-      deleteLink: deletePDFReference
+      deleteReference: deleteReference
     },
     tag: "form"
   };
@@ -190,6 +192,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     this.element.querySelector(`[name="item.type"]`)?.addEventListener('change', this._changeType.bind(this));
     this.element.querySelector(`[name="system.nonstackable"]`)?.addEventListener('change', this._changeNonstackable.bind(this));
     this.element.querySelector(`[name="name"]`)?.addEventListener('change', this._changeName.bind(this));
+    this.element.querySelectorAll(`[name="reference"]`)?.forEach( el => el.addEventListener('change', changeReference.bind(this)));
   }
 
   private async _changeName(ev: Event):Promise<void> {

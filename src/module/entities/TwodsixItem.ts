@@ -559,10 +559,10 @@ export default class TwodsixItem extends Item {
           return !(['bodyPistol', 'autoPistol', 'revolver', 'carbine', 'rifle', 'autoRifle', 'shotgun', 'submachinegun', 'laserCarbine', 'laserRifle', 'custom', 'none'].includes(this.system.rangeBand));
         case 'singleBand':
         case 'doubleBand':
-          if (this.system.range === 0) {
+          if (parseInt(this.system.range) === 0 || this.system.range === "") {
             return false;
           } else {
-            const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
+            const rangeValues = this.system.range.split('/', 2).map((s:string) => parseFloat(s));
             const upperValue = rangeModifierType === 'singleBand' ? rangeValues[0] : rangeValues[1] ?? rangeValues[0];
             return (upperValue > 0 && upperValue <= game.settings.get('twodsix', 'meleeRange'));
           }
