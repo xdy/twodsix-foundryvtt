@@ -264,7 +264,7 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
 
 export function openPDFLink(ev: Event, target:HTMLElement): void {
   const sourceString = target.closest(".item-reference")?.dataset?.link;
-  if (sourceString && sourceString !== "") {
+  if (sourceString) {
     const [code, page] = sourceString.split(' ');
     const selectedPage = parseInt(page);
     if (ui["pdfpager"]) {
