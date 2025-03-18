@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFReference, deletePDFReference, getDamageTypes, getRangeTypes, openJournalEntry } from "../utils/sheetUtils";
+import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFLink, getDamageTypes, getRangeTypes, openJournalEntry, deleteReference, changeReference } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
@@ -32,8 +32,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       itemEdit: this._onItemEdit,
       itemDelete: this._onItemDelete,
       editConsumable: this._onEditConsumable,
-      openLink: openPDFReference,
-      deleteLink: deletePDFReference,
+      openPDFLink: openPDFLink,
+      deleteReference: deleteReference,
       adjustCounter: this._onAdjustCounter,
       showChat: this._onShowInChat,
       performAttack: this._onPerformAttack,
@@ -72,7 +72,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
-      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
+      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") || game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       damageTypes: getDamageTypes(false),
       Infinity: Infinity,
@@ -135,6 +135,9 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         el.addEventListener('click', this._modifyEffect.bind(this));
       });
     }
+
+    //Handle update of doc reference
+    this.element.querySelectorAll(`[name="reference"]`)?.forEach( el => el.addEventListener('change', changeReference.bind(this)));
 
     /****************
      *

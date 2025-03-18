@@ -3125,6 +3125,10 @@ a:hover {
   gap: 1ch;
 }
 
+.link-controls {
+  align-self: center;
+}
+
 .item-link {
   display: inline-flex;
   gap: 2ch;

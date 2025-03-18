@@ -24,7 +24,8 @@ const DIFFICULTY_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
   "AC": "AC",
-  "CU": "CU"
+  "CU": "CU",
+  "Nomad": "Nomad"
 });
 
 /**
@@ -95,7 +96,8 @@ const RULESETS = Object.freeze({
       addEffectToManualDamage: false,
       weightModifierForWornArmor: "0",
       chainBonus: "0, 0, 0, 0, 0, 0",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   CE: {
@@ -148,7 +150,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "-2, -1, -1, 1, 1, 2",
-      psiTalentsRequireRoll: true
+      psiTalentsRequireRoll: true,
+      xd6RollStyle: false
     }
   },
   CEL: {
@@ -168,6 +171,7 @@ const RULESETS = Object.freeze({
       absoluteCriticalEffectValue: 99,
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
+      rangeModifierType: "doubleBand",
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
@@ -195,7 +199,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   CEFTL: {
@@ -241,7 +246,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     },
   },
   CEATOM: {
@@ -287,7 +293,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   BARBARIC: {
@@ -332,7 +339,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     },
   },
   CEQ: {
@@ -378,7 +386,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       chainBonus: "0, 0, 0, 0, 0, 0",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   CD: {
@@ -433,7 +442,8 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 1, 1, 1",
       reverseHealingOrder: true,
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   CDEE: {
@@ -488,7 +498,8 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 1, 1, 1",
       reverseHealingOrder: true,
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   CLU: {
@@ -543,7 +554,8 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 1, 1, 1",
       reverseHealingOrder: true,
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   SOC: {
@@ -596,7 +608,8 @@ const RULESETS = Object.freeze({
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
-      chainBonus: "0, 0, 0, 0, 0, 0"
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      xd6RollStyle: false
     }
   },
   AC: {
@@ -616,6 +629,7 @@ const RULESETS = Object.freeze({
       absoluteCriticalEffectValue: 99,
       showLifebloodStamina: false,
       lifebloodInsteadOfCharacteristics: false,
+      rangeModifierType: "doubleBand",
       minorWoundsRollModifier: 0,
       seriousWoundsRollModifier: 0,
       mortgagePayment: 240,
@@ -643,7 +657,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   CU: {
@@ -696,7 +711,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
       chainBonus: "-2, -1, -1, 1, 1, 2",
-      psiTalentsRequireRoll: false
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
     }
   },
   OTHER: {
@@ -706,7 +722,8 @@ const RULESETS = Object.freeze({
       useDegreesOfSuccess: 'other',
       rangeModifierType: "singleBand",
       armorDamageFormula: "@damage - @effectiveArmor",
-      chainBonus: "-3, -2, -1, 1, 2, 3"
+      chainBonus: "-3, -2, -1, 1, 2, 3",
+      xd6RollStyle: false
     },
   }
 })
@@ -736,8 +753,9 @@ const CONSUMABLES = Object.freeze({
 export type CE_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }; Impossible:{ mod:number; target:number }; Simple:{ mod:number; target:number } };
 export type CU_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number }};
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
-export type AC_DIFFICULTIES = { Impossible:{ mod:number; target:number }; Formidable:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number };  Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Simple:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
-const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES, CU:CU_DIFFICULTIES }> = Object.freeze({
+export type AC_DIFFICULTIES = { Impossible:{ mod:number; target:number }; Formidable:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number };  Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Simple:{ mod:number; target:number }; Routine:{ mod:number; target:number }};
+export type Nomad_DIFFICULTIES = {Easy: {mod: number, target: number}; Average: {mod: number, target: number}; Difficult: {mod: number, target: number}; Formidable: {mod: number, target: number}; Impossible: {mod: number, target: number}};
+const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES, CU:CU_DIFFICULTIES, Nomad:Nomad_DIFFICULTIES }> = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
     Easy: {mod: 4, target: 4},
@@ -771,6 +789,13 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_D
     Difficult: {mod: -2, target: 10},
     VeryDifficult: {mod: -4, target: 12},
     Formidable: {mod: -6, target: 14}
+  },
+  Nomad: {
+    Easy: {mod: 1, target: 7},
+    Average: {mod: 0, target: 8},
+    Difficult: {mod: -1, target: 9},
+    Formidable: {mod: -2, target: 10},
+    Impossible: {mod: -4, target: 12}
   }
 });
 

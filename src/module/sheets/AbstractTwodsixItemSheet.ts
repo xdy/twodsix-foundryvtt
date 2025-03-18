@@ -96,6 +96,9 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
    * @param {DragEvent} ev The originating DragEvent
    */
   async _onDrop(ev: DragEvent): Promise<boolean | any> {
+    if (ev.target.classList.contains('ProseMirror') || ev.target.parentElement.className.includes('ProseMirror')) {
+      return;
+    }
     ev.preventDefault();
     try {
       const dropData = getDataFromDropEvent(ev);

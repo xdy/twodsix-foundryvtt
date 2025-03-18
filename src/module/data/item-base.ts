@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { migrateStringToNumber } from "./commonSchemaUtils";
+import { migrateStringToNumber, migrateStringToStringArray } from "./commonSchemaUtils";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
@@ -14,7 +14,7 @@ export class TwodsixItemBaseData extends foundry.abstract.TypeDataModel {
     schema.description = new fields.StringField({...requiredBlankString});
     schema.type = new fields.StringField({...requiredBlankString}); //updated onCreate
     /* References */
-    schema.docReference = new fields.StringField({...requiredBlankString});
+    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}));
     schema.pdfReference = new fields.SchemaField({
       type: new fields.StringField({...requiredBlankString}),
       href: new fields.StringField({...requiredBlankString}),
@@ -22,6 +22,12 @@ export class TwodsixItemBaseData extends foundry.abstract.TypeDataModel {
     });
     schema.priorType = new fields.StringField({required: true, blank: false, initial: "unknown"});
     return schema;
+  }
+  static migrateData(source:any) {
+    if ("docReference" in source) {
+      migrateStringToStringArray(source, "docReference");
+    }
+    return super.migrateData(source);
   }
 }
 

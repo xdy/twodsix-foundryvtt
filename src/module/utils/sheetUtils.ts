@@ -262,8 +262,8 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
   }
 }
 
-export function openPDFReference(): void {
-  const sourceString = this.document.system.docReference;
+export function openPDFLink(ev: Event, target:HTMLElement): void {
+  const sourceString = target.closest(".item-reference")?.dataset?.link;
   if (sourceString) {
     const [code, page] = sourceString.split(' ');
     const selectedPage = parseInt(page);
@@ -278,6 +278,35 @@ export function openPDFReference(): void {
   }
 }
 
+export async function deletePDFLink(ev: Event, target:HTMLElement): void {
+  const index = parseInt(target.dataset.index);
+  if (index > -1) {
+    const newRefArray = foundry.utils.duplicate(this.document.system.docReference);
+    newRefArray.splice(index, 1);
+    await this.document.update({"system.docReference": newRefArray});
+  }
+}
+
+export async function addPDFLink(/*ev: Event, target:HTMLElement*/): void {
+  const newRefArray = foundry.utils.duplicate(this.document.system.docReference);
+  newRefArray.push("");
+  await this.document.update({"system.docReference": newRefArray});
+}
+
+export async function changeReference(ev: Event):Promise<void> {
+  ev.preventDefault();
+  //ev.stopImmediatePropagation();
+  const newValue:string = ev.target.value;
+  const index:number = ev.target.dataset.index;
+  if(index) {
+    const newRefArray = foundry.utils.duplicate(this.document.system.docReference);
+    newRefArray[index] = newValue;
+    await this.document.update({'system.docReference': newRefArray});
+  } else {
+    console.log("No update index");
+  }
+}
+
 export async function openJournalEntry():Promise<void> {
   if (this.document.system.pdfReference.type === 'JournalEntry') {
     const journalToOpen = await fromUuid(this.document.system.pdfReference.href);
@@ -289,7 +318,7 @@ export async function openJournalEntry():Promise<void> {
   }
 }
 
-export async function deletePDFReference(ev: PointerEvent): Promise<void> {
+export async function deleteReference(ev: PointerEvent): Promise<void> {
   ev.preventDefault();
   if (this.document.system.pdfReference.href !== "") {
     await this.document.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});

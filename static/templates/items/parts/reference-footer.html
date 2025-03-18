@@ -1,8 +1,20 @@
 {{#if settings.usePDFPager}}
-  <div class="item-reference">
-    <a class="open-link" data-action="openLink">{{localize "TWODSIX.Items.DocumentReference"}}</a>
-    <input class="form-input" type="text" name="system.docReference" value="{{system.docReference}}"/>
-  </div>
+  {{#each system.docReference as |reference id|}}
+    <div class="item-reference" data-link="{{reference}}">
+      <div class="link-controls">
+        <a class="open-link" data-action="openPDFLink" >{{localize "TWODSIX.Items.DocumentReference"}}</a>
+        {{#iff ../document.documentName "===" "Item"}}
+          {{#unless @first}}
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteLink"}}' data-action="deletePDFLink" data-index="{{id}}"><i class="fa-solid fa-trash"></i></a>
+          {{/unless}}
+          {{#if @last}}
+            <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateLink"}}' data-action="addPDFLink"><i class="fa-solid fa-plus"></i></a>
+          {{/if}}
+        {{/iff}}
+      </div>
+      <input class="form-input" type="text" name="reference" value="{{reference}}" data-index="{{id}}"/>
+    </div>
+  {{/each}}
 {{else}}
   {{#if system.pdfReference.href}}
       <div class="item-link">
@@ -21,7 +33,7 @@
             {{system.pdfReference.label}}
           </a>
         {{/iff}}
-        <a class="delete-link" data-action="deleteLink" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
+        <a class="delete-link" data-action="deleteReference" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
       </div>
   {{/if}}
 {{/if}}

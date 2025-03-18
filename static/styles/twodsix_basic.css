@@ -2611,6 +2611,10 @@ button.flexrow.flex-group-center.toggle-skills {
   gap: 1ch;
 }
 
+.link-controls {
+  align-self: center;
+}
+
 .item-link {
   display: inline-flex;
   text-align: center;

@@ -114,7 +114,8 @@ Hooks.once("ready", async function () {
     game.settings.set('twodsix', 'chainBonus', rulesetChainBonus ?? "");
   }
 
-  checkDefaultSheetTypes();
+  //Check default actor sheet types
+  checkDefaultActorSheetTypes();
 });
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize
@@ -144,10 +145,12 @@ async function toggleFirstActiveEffect(actor:TwodsixActor, isToken: boolean): Pr
 }
 
 /**
- * Check that the default sheet type exists
+ * Check that the default actor sheet type exists in Actors.registeredSheets. If not,
+ * try to find a match in registered sheets.  Also, make migration from TwodsixActorSheet to TwodsixTravellerSheet
  * @function
+ * @async
  */
-async function checkDefaultSheetTypes(): Promise<void> {
+async function checkDefaultActorSheetTypes(): Promise<void> {
   const defaultSheets = foundry.utils.duplicate(game.settings.get("core", "sheetClasses"));
   const defaultActorSheets = defaultSheets?.Actor;
   let changed = false;

@@ -46,10 +46,12 @@ export class TwodsixDiceRoll {
     const formulaData = {};
 
     let formula = rollType;
+    let totalModifier = 0;
     // Add difficulty modifier or set target
     if (!difficultiesAsTargetNumber) {
       formula += `${getOperatorString(this.rollSettings.difficulty.mod)} @difficultyMod`;
       formulaData.difficultyMod = Math.abs(this.rollSettings.difficulty.mod);
+      totalModifier += this.rollSettings.difficulty.mod;
     }
 
     // Add skill modifier
@@ -61,6 +63,7 @@ export class TwodsixDiceRoll {
       formula += `${getOperatorString(skillValue)} @skillValue`;
       formulaData.skillValue = Math.abs(skillValue);
       formulaData.actualSkillValue = skillValue; //needed to enforce clamp value in description
+      totalModifier += skillValue;
     }
     // Process rollModifiers
     this.modifierList = this.getRollModifierList();
@@ -78,9 +81,15 @@ export class TwodsixDiceRoll {
       }
       formula += `${getOperatorString(modifierValue)} @${modifierName}`;
       formulaData[modifierName] = Math.abs(modifierValue);
+      totalModifier += modifierValue;
     }
 
-    this.roll = await (new Roll(formula, formulaData).evaluate());
+    if (game.settings.get('twodsix', 'xd6RollStyle')) {
+      this.roll = await (new Roll(`${2+Math.abs(totalModifier)}d6k${totalModifier<0 ? 'l' : 'h'}2`, formulaData).evaluate());
+    } else {
+      this.roll = await (new Roll(formula, formulaData).evaluate());
+    }
+
   }
 
   public getCrit():Crit {

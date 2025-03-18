@@ -199,3 +199,17 @@ export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):str
   //TODO This assumes I always find the value. Bad form really.
   return <string>Object.keys(object).find(key => JSON.stringify(object[key]) === JSON.stringify(value));
 }
+
+/**
+ * Remove string value from string array.  Removes first instance.
+ * @param {[string]} arr the intial array of strings
+ * @param {string} value the string value to remove
+ * @returns {[string]} the revised string array without value
+ */
+export function removeStringElement(arr:[string], value:string):[string] {
+  const index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+}

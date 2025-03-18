@@ -498,6 +498,7 @@ export default class TwodsixItem extends Item {
     }
     return {rangeModifier: rangeModifier, rollType: rollType};
   }
+
   /**
    * A method to return ammo range modifier.
    * @param {string} rangeModifierType  The type of range modifier (setting)
@@ -533,6 +534,42 @@ export default class TwodsixItem extends Item {
       dodgeParryModifier = -targetMatchingSkill?.system.value || 0;
     }
     return {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName};
+  }
+
+  /**
+   * A method to determine whether weapon is a melee weapon.
+   * @returns {boolean} Whether item is a melee weapon
+   */
+  public isMeleeWeapon(): boolean {
+    if (this.type !== 'weapon') {
+      return false;
+    } else if (this.system.weaponType.toLowerCase()=== 'melee' || this.system.range.toLowerCase() === 'melee') {
+      //explicit override
+      return true;
+    } else {
+      const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
+      switch (rangeModifierType) {
+        case 'none':
+          return false;
+        case 'CE_Bands':
+          return ['closeQuarters', 'extendedReach'].includes(this.system.rangeBand);
+        case 'CU_Bands':
+          return ['close', 'personal'].includes(this.system.rangeBand);
+        case 'CT_Bands':
+          return !(['bodyPistol', 'autoPistol', 'revolver', 'carbine', 'rifle', 'autoRifle', 'shotgun', 'submachinegun', 'laserCarbine', 'laserRifle', 'custom', 'none'].includes(this.system.rangeBand));
+        case 'singleBand':
+        case 'doubleBand':
+          if (parseInt(this.system.range) === 0 || this.system.range === "") {
+            return false;
+          } else {
+            const rangeValues = this.system.range.split('/', 2).map((s:string) => parseFloat(s));
+            const upperValue = rangeModifierType === 'singleBand' ? rangeValues[0] : rangeValues[1] ?? rangeValues[0];
+            return (upperValue > 0 && upperValue <= game.settings.get('twodsix', 'meleeRange'));
+          }
+        default:
+          return false;
+      }
+    }
   }
 
   /**
