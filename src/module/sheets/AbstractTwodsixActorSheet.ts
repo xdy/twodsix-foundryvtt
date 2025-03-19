@@ -148,7 +148,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     //need to augment DragDrop listener as only GM and droppable class is allowed in core ActorSheetV2
     if (game.user.isOwner && this.options.dragDrop) {
       (<object[]>this.options.dragDrop).forEach( (selector:{dragSelector: string, dropSelector:string}) => {
-        new DragDrop({
+        new foundry.applications.ux.DragDrop({
           dragSelector: selector.dragSelector,
           dropSelector: selector.dropSelector,
           callbacks: {
@@ -638,7 +638,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       },
     ];
 
-    const html = await renderTemplate(template, dialogData);
+    const html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
     return new Promise<void>((resolve) => {
       new foundry.applications.api.DialogV2({
         window: {title: "TWODSIX.Rolls.RollInitiative", icon: "fa-solid fa-dice"},

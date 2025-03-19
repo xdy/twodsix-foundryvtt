@@ -16,7 +16,7 @@ export abstract class AbstractTwodsixItemSheet extends foundry.applications.api.
     //need to create DragDrop listener as none in core
     if (game.user.isOwner && this.options.dragDrop) {
       (<object[]>this.options.dragDrop).forEach( (selector:{dragSelector: string, dropSelector:string}) => {
-        new DragDrop({
+        new foundry.applications.ux.DragDrop({
           dragSelector: selector.dragSelector,
           dropSelector: selector.dropSelector,
           callbacks: {

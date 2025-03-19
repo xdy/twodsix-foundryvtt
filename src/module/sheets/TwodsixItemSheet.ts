@@ -422,7 +422,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       delete consumablesList["processor"];
       delete consumablesList["suite"];
     }
-    const html = await renderTemplate(template, {
+    const html = await foundry.applications.handlebars.renderTemplate(template, {
       consumables: consumablesList
     });
     new foundry.applications.api.DialogV2({

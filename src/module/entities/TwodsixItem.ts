@@ -909,7 +909,7 @@ export default class TwodsixItem extends Item {
         });
       }
       if (showInChat) {
-        const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
+        const html = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
         const transfer = JSON.stringify(
           {
             type: 'damageItem',

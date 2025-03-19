@@ -18,3 +18,4 @@ dist/
 foundryconfig.json
 foundry.js
 *.json
+client.mjs

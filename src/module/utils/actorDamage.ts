@@ -339,7 +339,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
   const parryArmor = canBeParried || canBeBlocked ? await getParryValue(actor, canOnlyBeBlocked) : 0;
   const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor, canOnlyBeBlocked);
   const damageDialogHandler = new DamageDialogHandler(stats);
-  const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
+  const renderedHtml = await foundry.applications.handlebars.renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
 
   await foundry.applications.api.DialogV2.wait({

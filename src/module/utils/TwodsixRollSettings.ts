@@ -290,7 +290,7 @@ export class TwodsixRollSettings {
       },
     ];
 
-    const html = await renderTemplate(template, dialogData);
+    const html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
     await foundry.applications.api.DialogV2.wait({
       window: {title: title, icon: "fa-solid fa-dice"},
       content: html,
