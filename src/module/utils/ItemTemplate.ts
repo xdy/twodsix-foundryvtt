@@ -76,7 +76,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
 
     // Return the template constructed from the item data
     const cls = CONFIG.MeasuredTemplate.documentClass;
-    const template = new cls(templateData, {parent: canvas.scene});
+    const template = new cls(foundry.utils.deepClone(templateData), {parent: canvas.scene});
     const object = new this(template);
     object.item = item;
     object.actorSheet = item.actor?.sheet || null;
@@ -162,8 +162,8 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
       return;
     }
     const center = event.data.getLocalPosition(this.layer);
-    const snapped = canvas.grid.getSnappedPoint(center, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
-    this.document.updateSource({x: snapped.x, y: snapped.y});
+    const snapped = this.getSnappedPosition(center);
+    this.document.updateSource(snapped);
     this.refresh();
     this.#moveTime = now;
   }
@@ -194,7 +194,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
    */
   async _onConfirmPlacement(event) {
     await this._finishPlacement(event);
-    const destination = canvas.grid.getSnappedPoint(this.document, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
+    const destination = this.getSnappedPosition(this.document);
     this.document.updateSource(destination);
     this.#events.resolve(canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]));
   }
