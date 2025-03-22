@@ -1,0 +1,113 @@
+<section class="{{cssClass}} flexcol traveller-sheet" autocomplete="off">
+  {{#unless settings.useFoundryStandardStyle}}
+    {{> "systems/twodsix/templates/actors/parts/actor/actor-interface-bg.hbs"}}
+    {{> "systems/twodsix/templates/actors/parts/actor/actor-overlay-1.hbs"}}
+  {{/unless}}
+  <div class="content-container">
+    <div class="character-photo">
+      <img class="profile-img" src="{{actor.img}}" {{#unless limited}}data-edit="img"{{/unless}} data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' data-action="editImage" data-edit="img"/>
+      {{#if settings.showStatusIcons}}
+      <span class="actor-status-icons">
+          {{#each effects as |anEffect|}}
+          <!--{{actor.effects}}-->
+            {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint}} !important;"/>{{/unless}}
+          {{/each}}
+      {{/if}}
+      </span>
+    </div>
+    <div class="character-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
+                                          onClick="this.select();"/></div>
+
+    {{#if settings.showLifebloodStamina }}
+      <div class="character-bgi">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.hbs"}}
+      </div>
+    {{else if settings.showIcons}}
+      <div class="character-bgi">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-cd.hbs"}}
+      </div>
+    {{else}}
+      <div class="character-bgi-std">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-bgi-std.hbs"}}
+      </div>
+    {{/if}}
+
+    {{#unless limited}}
+      {{#if settings.lifebloodInsteadOfCharacteristics}}
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.hbs"}}
+      {{else}}
+        {{#if settings.useFoundryStandardStyle}}
+        <div class="stat-table">
+          <table>
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.hbs"}}
+          </table>
+        </div>
+        {{else}}
+          {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.hbs"}}
+          {{/iff}}
+          {{#iff settings.showAlternativeCharacteristics "===" "all"}}
+            {{#if settings.showAllCharWithTable}}
+              <div class="stat-table-small">
+                <table>
+                {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.hbs"}}
+                </table>
+              </div>
+            {{else}}
+              {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-rotate.hbs"}}
+            {{/if}}
+          {{/iff}}
+        {{/if}}
+      {{/if}}
+    {{/unless}}
+
+    {{#unless limited}}
+    {{!-- Sheet Tab Navigation --}}
+      <div class="character-tabs">
+        <nav class="actor-sheet-tabs tabs" data-group="primary">
+          <a class="skill-tab {{tabs.skills.cssClass}}" data-tab="skills" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.SkillsTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-dice"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Skills"}}</a>
+          <a class="item-tab {{tabs.inventory.cssClass}}" data-tab="inventory" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.InventoryTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-suitcase"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Inventory"}}</a>
+          <a class="finances-tab {{tabs.finances.cssClass}}" data-tab="finances" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.FinancesTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-money-bill"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Finances"}}</a>
+          <a class="info-tab {{tabs.info.cssClass}}" data-tab="info" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.InfoTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-circle-info"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Info"}}</a>
+          <a class="effects-tab {{tabs.effects.cssClass}}" data-tab="effects" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.EffectsTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-person-rays"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Effects"}}</a>
+          <a class="actor-notes-tab {{tabs.actorNotes.cssClass}}" data-tab="actorNotes" data-group="primary" data-action="tab" data-tooltip="{{localize 'TWODSIX.Actor.Tabs.NotesTabTooltip'}}">{{#if settings.useFoundryStandardStyle}}<i class="fa-solid fa-book"></i> {{/if}}{{localize "TWODSIX.Actor.Tabs.Notes"}}</a>
+        </nav>
+      </div>
+
+    {{!-- Sheet Body --}}
+    <div class="character-tabs-info sheet-body">
+
+      {{!-- Skills Tab --}}
+      <div class="tab skills {{tabs.skills.cssClass}}" data-group="primary" data-tab="skills">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-skills.hbs"}}
+      </div>
+
+      {{!-- Owned Items Tab --}}
+      <div class="tab inventory {{tabs.inventory.cssClass}}" data-group="primary" data-tab="inventory">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-items.hbs"}}
+      </div>
+
+      {{!-- Finances Tab --}}
+      <div class="tab finances {{tabs.finances.cssClass}}" data-group="primary" data-tab="finances">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-finances.hbs"}}
+      </div>
+
+      {{!-- Info Tab --}}
+      <div class="tab info {{tabs.info.cssClass}}" data-group="primary" data-tab="info">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-info.hbs"}}
+      </div>
+
+      {{!-- Effects Tab --}}
+      <div class="tab effects {{tabs.effects.cssClass}}" data-group="primary" data-tab="effects">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-effects.hbs"}}
+      </div>
+
+      {{!-- Notes Tab --}}
+      <div class="tab actor-notes {{tabs.actorNotes.cssClass}}" data-group="primary" data-tab="actorNotes">
+        {{> "systems/twodsix/templates/actors/parts/actor/actor-notes.hbs"}}
+      </div>
+
+    </div>
+    {{/unless}}
+  </div>
+</section>

@@ -1,0 +1,66 @@
+<section class="{{cssClass}} item-class" autocomplete="off">
+  {{> "systems/twodsix/templates/items/parts/common-parts.hbs"}}
+  {{#if settings.useCTData}}
+    <div class="item-armor">
+      <label for="system.armorType" class="resource-label">{{localize "TWODSIX.Items.Armor.ArmorType"}}</label>
+      <select name="system.armorType">{{selectOptions config.CT_ARMOR_TYPES selected=system.armorType localize=true inverted=false}}</select>
+    </div>
+    <div class="item-armor">
+      <label for="system.armorDM" class="resource-label">{{localize "TWODSIX.Items.Armor.ArmorModifier"}}</label>
+      <input name="system.armorDM" type="number" value="{{system.armorDM}}" placeholder='0' step="1"/>
+    </div>
+  {{else}}
+    {{#unless settings.useCUData}}
+    <div class="item-armor">
+      <label for="system.armor" class="resource-label">{{localize "TWODSIX.Items.Armor.Armor"}}</label>
+      <input class="form-input"  type="text" name="system.armor" value="{{system.armor}}" data-dtype="Number"/>
+    </div>
+    {{/unless}}
+
+    <!-- This is to handle armors like reflec with 0/14. I.e. put the 14 here. -->
+    <div class="item-secondaryArmor">
+      <label for="system.secondaryArmor.value" class="resource-label">{{#if settings.useCUData}}{{localize "TWODSIX.Items.Armor.Armor"}}{{else}}{{localize "TWODSIX.Items.Armor.SecondaryArmor"}}{{/if}}</label>
+      <input class="form-input" type="text" name="system.secondaryArmor.value" value="{{system.secondaryArmor.value}}" data-dtype="Number"/>
+    </div>
+
+    <div class="item-secondaryArmor">
+      <label for="system.secondaryArmor.protectionTypes" class="resource-label">{{#if settings.useCUData}}{{localize "TWODSIX.Items.Armor.ArmorProtectionTypes"}}{{else}}{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}{{/if}}</label>
+      <multi-select name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes localize=true}}</multi-select>
+    </div>
+
+    <div class="item-radiationProtection">
+      <label for="system.radiationProtection.value" class="resource-label">{{localize "TWODSIX.Items.Armor.RadProt"}}</label>
+      <input class="form-input" type="text" name="system.radiationProtection.value" value="{{system.radiationProtection.value}}" data-dtype="Number"/>
+    </div>
+  {{/if}}
+  <div class="item-qty">
+    <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
+    <input class="form-input" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-weight">
+    <label for="system.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
+    <input class="form-input" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-powered">
+    <span class="resource-label">{{localize "TWODSIX.Items.Armor.IsPowered"}}</span>
+    <input type="checkbox" class="checkbox" name="system.isPowered" {{checked system.isPowered}} data-dtype="Boolean" />
+  </div>
+
+  <div class="item-nonstackable">
+    <span class="resource-label">{{localize "TWODSIX.Items.Armor.Nonstackable"}}</span>
+    <input type="checkbox" class="checkbox" name="system.nonstackable" {{checked system.nonstackable}} data-dtype="Boolean" />
+  </div>
+
+  <div class="item-descr">
+    <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+    <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+      {{{enrichedDescription}}}
+    </prose-mirror>
+  </div>
+  {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+  {{> "systems/twodsix/templates/items/parts/consumables-part.hbs"}}
+  {{> "systems/twodsix/templates/items/parts/useConsumableForRoll.hbs"}}
+  {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.hbs"}}{{/if}}
+</section>

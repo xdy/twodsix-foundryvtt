@@ -1,0 +1,52 @@
+<div class="storage-wrapper">
+  <div class="grid-columns-double storage-header">
+    <div class="components-stored-double ">
+      <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.Quantity"}}'>{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.techLevel"}}'>{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.opStatus"}}'>{{localize "TWODSIX.Items.Component.status"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = "{{@key}}" data-action="itemCreate"> <i class="fa-solid fa-plus"></i></a></span>
+    </div>
+    <div class="components-stored-double">
+      <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.Quantity"}}'>{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.techLevel"}}'>{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.rating"}}</span>
+      <span class="item-name centre" data-tooltip='{{localize "TWODSIX.Items.Component.opStatus"}}'>{{localize "TWODSIX.Items.Component.status"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = "{{@key}}" data-action="itemCreate"> <i class="fa-solid fa-plus"></i></a></span>
+    </div>
+  </div>
+
+  <div class="grid-columns-single">
+    {{#if settings.allowDragDropOfListsShip}}
+    <div class="item-list grid-columns-double">
+      {{#each container.nonCargo as |item id|}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-component-double-item.hbs" item = item settings = ../settings}}
+      {{/each}}
+      {{#if (twodsix_isOdd container.nonCargo.length)}}
+        <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
+      {{/if}}
+    </div>
+    {{else}}
+      {{#each componentObject}}
+        {{#iff @key "!==" "cargo"}}
+          <div class="grid-columns-double-row">
+            <ol class="ol-no-indent header-row"><i class= '{{twodsix_getComponentIcon @key}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i> {{twodsix_titleCase (localize (concat "TWODSIX.Items.Component." @key))}}
+              <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype = "{{@key}}" data-action="itemCreate"> <i class="fa-solid fa-plus"></i></a>
+            </ol>
+          </div>
+
+          <div class="item-list grid-columns-double">
+            {{#each this as |item id|}}
+              {{> "systems/twodsix/templates/actors/parts/ship/ship-component-double-item.hbs" item = item settings = ../../settings}}
+            {{/each}}
+            {{#if (twodsix_isOdd this.length)}}
+              <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
+            {{/if}}
+          </div>
+        {{/iff}}
+      {{/each}}
+    {{/if}}
+  </div>
+</div>

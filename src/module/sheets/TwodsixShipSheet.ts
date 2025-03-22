@@ -46,7 +46,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/ship-sheet.html",
+      template: "systems/twodsix/templates/actors/ship-sheet.hbs",
       scrollable: ["", ".ship-tabs-info", ".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes", ".overlap-header"]
     }
   };

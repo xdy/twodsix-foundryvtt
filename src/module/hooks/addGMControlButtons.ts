@@ -94,7 +94,7 @@ function getAllSkills(): Promise<object> {
 }
 
 async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
-  const template = 'systems/twodsix/templates/chat/request-roll-dialog.html';
+  const template = 'systems/twodsix/templates/chat/request-roll-dialog.hbs';
   const tokenNames = {};
   for (const tokenId in tokenData) {
     tokenNames[tokenId] = tokenData[tokenId].token.name ?? tokenData[tokenId].token.actor.name;

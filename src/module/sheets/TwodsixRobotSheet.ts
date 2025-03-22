@@ -30,7 +30,7 @@ export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/robot-sheet.html",
+      template: "systems/twodsix/templates/actors/robot-sheet.hbs",
       //scrollable: ['']
     }
   };

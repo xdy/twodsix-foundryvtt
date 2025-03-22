@@ -41,7 +41,7 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/misc/advanced-settings.html",
+      template: "systems/twodsix/templates/misc/advanced-settings.hbs",
       scrollable: ['']
     }
   };

@@ -34,7 +34,7 @@ export class TwodsixSpaceObjectSheet extends foundry.applications.api.Handlebars
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/space-object-sheet.html",
+      template: "systems/twodsix/templates/actors/space-object-sheet.hbs",
       //scrollable: ['']
     }
   };
@@ -79,7 +79,7 @@ export class TwodsixSpaceObjectSheet extends foundry.applications.api.Handlebars
       damageLabel: damageLabels[damageType] ?? ""
     });
 
-    const html = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
+    const html = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/damage-message.hbs', contentData);
     const transfer = JSON.stringify(
       {
         type: 'damageItem',

@@ -612,7 +612,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   }
 
   protected async initiativeDialog(dialogData):Promise<any> {
-    const template = 'systems/twodsix/templates/chat/initiative-dialog.html';
+    const template = 'systems/twodsix/templates/chat/initiative-dialog.hbs';
     const buttons = [
       {
         action: "ok",

@@ -1,0 +1,26 @@
+<section class="{{cssClass}} item-class" autocomplete="off">
+  <div class="skill-container-small">
+    {{> "systems/twodsix/templates/items/parts/image-name.hbs"}}
+    <div class="item-lvl">
+      <label for="system.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
+      <input class="form-input" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
+    </div>
+    <div class="item-prereq">
+      <label for="system.prereq" class="resource-label">{{localize "TWODSIX.Items.Traits.Prerequisite"}}</label>
+      <input class="form-input" type="text" name="system.prereq" value="{{system.prereq}}"/>
+    </div>
+    <div class="item-short">
+      <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+      <input class="form-input" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
+    </div>
+
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+        {{{enrichedDescription}}}
+      </prose-mirror>
+    </div>
+    {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+    {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.hbs"}}{{/if}}
+  </div>
+</section>

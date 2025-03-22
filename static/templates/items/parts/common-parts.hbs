@@ -1,0 +1,47 @@
+{{> "systems/twodsix/templates/items/parts/image-name.hbs"}}
+{{> "systems/twodsix/templates/items/parts/item-type.hbs"}}
+
+{{#if owner}}
+  {{#iff owner.type "!==" "ship"}}
+    <div class="item-skill">
+      <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
+        <select class="form-input" name="system.skill">
+          {{selectOptions skillsList selected=system.skill valueAttr="id" labelAttr="name"}}
+        </select>
+    </div>
+    {{#if (twodsix_canBeEquipped this)}}
+      <div class="item-type">
+        <label for="system.equipped" class="resource-label">{{localize "TWODSIX.Actor.Items.EquippedLocation"}}:</label>
+          <select class="form-input" name="system.equipped">
+            {{selectOptions config.EQUIPPED_STATES selected=system.equipped localize=true inverted=false}}
+          </select>
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="item-skill">
+      <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+      <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+    </div>
+  {{/iff}}
+{{else}}
+  <div class="item-skill">
+    <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+    <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+  </div>
+{{/if}}
+
+<div class="item-skillModifier">
+  <label for="system.skillModifier"  class="resource-label">{{localize "TWODSIX.Items.Equipment.SkillModifier"}}</label>
+  <input class="form-input" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
+          data-dtype="Number"/>
+</div>
+
+<div class="item-tl">
+  <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
+  <input class="form-input" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
+</div>
+
+<div class="item-price">
+  <label for="system.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}</label>
+  <input class="form-input" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
+</div>

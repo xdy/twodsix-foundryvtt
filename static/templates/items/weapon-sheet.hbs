@@ -1,0 +1,10 @@
+<section class="{{cssClass}} item-class" autocomplete="off"
+      data-item-id="{{_id}}"
+      data-has-owner="{{hasOwner}}"
+      data-actor-id="{{actor._id}}">
+  {{#if settings.useTabbedViews}}
+    {{> "systems/twodsix/templates/items/parts/weapon-sheet-tabbed.hbs"}}
+  {{else}}
+    {{> "systems/twodsix/templates/items/parts/weapon-sheet-flat.hbs"}}
+  {{/if}}
+</section>

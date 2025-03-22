@@ -1,0 +1,33 @@
+<div class="standard-form">
+  {{#if intro}}{{{intro}}}{{/if}}
+  {{#if useTabbedViews}}
+    {{!-- Item Sheet Navigation --}}
+    {{> "systems/twodsix/templates/misc/navigation-tabs.hbs"}}
+    <section class="sheet-body auto-height">
+      {{#each tabs as |tab|}}
+        <div class="tab {{tab.cssClass}}" data-group="primary" data-tab="{{tab.id}}">
+          {{#with (lookup ../settings @key) as |subgroup|}}
+          {{> "systems/twodsix/templates/misc/setting-partial.hbs"}}
+          {{/with}}
+        </div>
+      {{/each}}
+    </section>
+  {{else}}
+    {{#each settings as |group|}}
+      <fieldset>
+        <legend>{{localize (concat "TWODSIX.Settings.menuLabels." @key)}}</legend>
+        {{> "systems/twodsix/templates/misc/setting-partial.hbs"}}
+      </fieldset>
+    {{/each}}
+  {{/if}}
+
+  <footer class="form-footer">
+    {{#each buttons as |button|}}
+    <button type="{{button.type}}" {{#if button.name}}name="{{button.name}}"{{/if}} class="{{button.cssClass}}"
+            {{#if button.action}}data-action="{{button.action}}"{{/if}} {{#if button.disabled}}disabled{{/if}}>
+        {{#if button.icon}}<i class="{{button.icon}}" inert></i>{{/if}}
+        {{#if button.label}}<label>{{localize button.label}}</label>{{/if}}
+    </button>
+    {{/each}}
+  </footer>
+</div>

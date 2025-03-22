@@ -203,7 +203,7 @@ export class TwodsixRollSettings {
   }
 
   private async _throwDialog(title:string, skill?: TwodsixItem):Promise<void> {
-    const template = 'systems/twodsix/templates/chat/throw-dialog.html';
+    const template = 'systems/twodsix/templates/chat/throw-dialog.hbs';
     const dialogData = {
       rollType: this.rollType,
       rollTypes: getRollTypeSelectObject(),

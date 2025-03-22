@@ -31,7 +31,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/animal-sheet.html",
+      template: "systems/twodsix/templates/actors/animal-sheet.hbs",
       //scrollable: ['']
     }
   };

@@ -20,7 +20,7 @@ const plugins = [
 module.exports = function() {
   const migrations = JSON.stringify(fs.readdirSync("src/migrations").filter(name => name.slice(0, 1) !== "." ).map(name => name.slice(0, -3)));
   const hooks = JSON.stringify(fs.readdirSync('src/module/hooks').filter(name => name.slice(0, 1) !== "." ).map(name => name.slice(0, -3)));
-  const templates = JSON.stringify(glob.sync('static/templates/**/*.html').filter(name => name.slice(0, 1) !== "." ).map(file => file.replace("static", "systems/twodsix")));
+  const templates = JSON.stringify(glob.sync('static/templates/**/*.hbs').filter(name => name.slice(0, 1) !== "." ).map(file => file.replace("static", "systems/twodsix")));
 
   return {
     input: 'src/twodsix.ts',

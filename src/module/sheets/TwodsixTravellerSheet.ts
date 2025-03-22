@@ -39,7 +39,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/traveller-sheet.html",
+      template: "systems/twodsix/templates/actors/traveller-sheet.hbs",
       scrollable: [".skills", ".character-inventory", ".inventory", ".finances", ".info", ".effects", ".actor-notes"]
     }
   };
@@ -336,7 +336,7 @@ export class TwodsixNPCSheet extends foundry.applications.api.HandlebarsApplicat
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/npc-sheet.html",
+      template: "systems/twodsix/templates/actors/npc-sheet.hbs",
     }
   };
 }

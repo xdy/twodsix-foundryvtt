@@ -40,7 +40,7 @@ export default class DebugSettings extends foundry.applications.api.HandlebarsAp
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/misc/advanced-settings.html",
+      template: "systems/twodsix/templates/misc/advanced-settings.hbs",
       scrollable: ['']
     }
   };

@@ -53,7 +53,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
   static PARTS = {
     main: {
-      template: "", //systems/twodsix/templates/items/item-sheet.html
+      template: "", //systems/twodsix/templates/items/item-sheet.hbs
       scrollable: ['']
     }
   };
@@ -78,7 +78,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   _configureRenderParts(options) {
     let parts = super._configureRenderParts(options);
     const path = "systems/twodsix/templates/items";
-    parts = foundry.utils.mergeObject(parts, {"main.template": `${path}/${this.item.type}-sheet.html`});
+    parts = foundry.utils.mergeObject(parts, {"main.template": `${path}/${this.item.type}-sheet.hbs`});
     return parts;
   }
 
@@ -416,7 +416,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       console.error(`Twodsix | Consumables can only be created for owned items`);
       return;
     }
-    const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
+    const template = 'systems/twodsix/templates/items/dialogs/create-consumable.hbs';
     const consumablesList = foundry.utils.duplicate(TWODSIX.CONSUMABLES);
     if (this.item.type === "computer" || (this.item.type === "consumable" && ["processor", "suite"].includes(this.item.system.subtype))) {
       delete consumablesList["processor"];

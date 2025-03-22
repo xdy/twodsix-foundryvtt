@@ -334,7 +334,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
     return;
   }
 
-  const template = 'systems/twodsix/templates/actors/damage-dialog.html';
+  const template = 'systems/twodsix/templates/actors/damage-dialog.hbs';
   const canOnlyBeBlocked = canBeBlocked && !canBeParried;
   const parryArmor = canBeParried || canBeBlocked ? await getParryValue(actor, canOnlyBeBlocked) : 0;
   const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor, canOnlyBeBlocked);

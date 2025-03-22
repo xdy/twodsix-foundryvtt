@@ -37,7 +37,7 @@ export default class ItemSettings extends foundry.applications.api.HandlebarsApp
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/misc/advanced-settings.html",
+      template: "systems/twodsix/templates/misc/advanced-settings.hbs",
       scrollable: ['']
     }
   };

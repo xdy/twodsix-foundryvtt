@@ -34,7 +34,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/vehicle-sheet.html",
+      template: "systems/twodsix/templates/actors/vehicle-sheet.hbs",
       //scrollable: ['']
     }
   };

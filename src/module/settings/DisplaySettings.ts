@@ -38,7 +38,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/misc/advanced-settings.html",
+      template: "systems/twodsix/templates/misc/advanced-settings.hbs",
       scrollable: ['']
     }
   };
@@ -156,8 +156,8 @@ export const updateStatusIcons = function () {
 
 export const setDocumentPartials = function () {
   if (game.settings.get('twodsix', 'showTLonItemsTab')) {
-    foundry.applications.sidebar.tabs.ItemDirectory._entryPartial = 'systems/twodsix/templates/misc/revised-document-partial.html';
-    foundry.applications.sidebar.apps.Compendium._entryPartial = 'systems/twodsix/templates/misc/revised-compendium-index-partial.html';
+    foundry.applications.sidebar.tabs.ItemDirectory._entryPartial = 'systems/twodsix/templates/misc/revised-document-partial.hbs';
+    foundry.applications.sidebar.apps.Compendium._entryPartial = 'systems/twodsix/templates/misc/revised-compendium-index-partial.hbs';
   } else {
     foundry.applications.sidebar.tabs.ItemDirectory._entryPartial = game.settings.get('twodsix', 'defaultItemPartial');
     foundry.applications.sidebar.apps.Compendium._entryPartial = game.settings.get('twodsix', 'defaultCompendiumPartial');
