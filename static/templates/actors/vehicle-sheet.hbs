@@ -65,19 +65,20 @@
     <div class="vehicle-systems">
       <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.SystemStatus"}}</span>
       <div style="margin: 3px;">
-          {{#each actor.system.systemStatus as |system|}}
-          <span>{{localize (concat "TWODSIX.Vehicle.systems." @key)}}
-            <span class="item-name centre component-toggle" data-key="{{@key}}" data-action="toggleComponent">
-              {{#iff system "===" 'operational'}}<i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>{{#unless @last}}, {{/unless}}
-              {{else}}
-                {{#iff system "===" 'damaged'}}<i class="fa-solid fa-circle-exclamation" style="color: yellow;" data-tooltip='{{localize "TWODSIX.Items.Component.damaged"}}'></i>{{#unless @last}}, {{/unless}}
-              {{else}}
-                {{#iff system "===" 'destroyed'}}<i class="fa-solid fa-circle-x" style="color: red;" data-tooltip='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>{{#unless @last}}, {{/unless}}
-              {{else}}
-                {{#iff system "===" 'off'}}<i class="fa-solid fa-power-off" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.off"}}'></i>{{#unless @last}}, {{/unless}}
-              {{/iff}} {{/iff}} {{/iff}} {{/iff}}
+          {{#each actor.system.systemStatus as |sysstat|}}
+            <span>{{localize (concat "TWODSIX.Vehicle.systems." @key)}}
+              <span class="item-name centre component-toggle" data-key="{{@key}}" data-action="toggleComponent">
+                {{#if (eq sysstat 'operational')}}
+                  <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
+                {{else if (eq sysstat 'damaged')}}
+                  <i class="fa-solid fa-circle-exclamation" style="color: yellow;" data-tooltip='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
+                {{else if (eq sysstat 'destroyed')}}
+                 <i class="fa-solid fa-circle-x" style="color: red;" data-tooltip='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
+                {{else if (eq sysstat 'off')}}
+                  <i class="fa-solid fa-power-off" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.off"}}'></i>
+                {{/if}}{{#unless @last}}, {{/unless}}
+              </span>
             </span>
-          </span>
           {{/each}}
     </div>
     </div>
