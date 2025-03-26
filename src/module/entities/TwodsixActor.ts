@@ -578,6 +578,13 @@ export default class TwodsixActor extends Actor {
 
     calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * ( 1 + calcShipStats.cost.percentHull / 100 );
 
+    //Update Characteristics
+    for (const cha of Object.keys(this.system.characteristics)) {
+      const characteristic: Characteristic = this.system.characteristics[cha];
+      characteristic.current = characteristic.value - characteristic.damage;
+      characteristic.mod = calcModFor(characteristic.current);
+    }
+
     /*Push values to ship actor*/
     updateShipData(this);
 
@@ -797,7 +804,7 @@ export default class TwodsixActor extends Actor {
   public getCharacteristicModifier(characteristic: string): number {
     if (characteristic === 'NONE') {
       return 0;
-    } else if (['ship', 'vehicle', 'space-object'].includes(this.type)) {
+    } else if (['vehicle', 'space-object'].includes(this.type)) {
       return 0;
     } else {
       const keyByValue = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);

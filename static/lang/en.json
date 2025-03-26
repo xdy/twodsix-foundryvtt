@@ -848,6 +848,7 @@
       "MANIFEST": "MANIFEST",
       "MAX": "MAX",
       "MDrive": "M-Drive",
+      "Morale": "Morale",
       "Name": "Name",
       "NewAction": "New Action",
       "NoActorsForAction": "No actor available for action",
@@ -1722,7 +1723,8 @@
       "AddMultipleItems": "Add Multiple Items",
       "CantDropFolder": "Cannot drop this folder onto actor.",
       "SkillsWithDuplicateNames": "Duplicate skill names.  Skill list not accurate.",
-      "CantFindItem": "Cannot find item with name"
+      "CantFindItem": "Cannot find item with name",
+      "NotUsingPsiStrength": "Charactersitics settings do not include Psionic Strength.  Cannot use Psionic Abilitiy."
     }
   },
   "TYPES": {
