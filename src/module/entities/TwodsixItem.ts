@@ -706,11 +706,10 @@ export default class TwodsixItem extends Item {
    * @returns {number|undefined} The number of psi points used or undefined if selection cancelled
    */
   async processPsiPoints(diceRollEffect:number): Promise<number|undefined> {
+    let psiCost:number;
     if(diceRollEffect < 0) {
-      await (<TwodsixActor>this.actor).removePsiPoints(1);
-      return 1;
+      psiCost = Math.min(1, this.system.psiCost);
     } else {
-      let psiCost:number;
       try {
         psiCost = await foundry.applications.api.DialogV2.prompt({
           window: { title: "TWODSIX.Items.Psionics.PsiCost" },
@@ -729,10 +728,9 @@ export default class TwodsixItem extends Item {
         ui.notifications.warn("TWODSIX.Warnings.PsiUsageGTZero", {localize: true});
         return;
       }
-
-      await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
-      return psiCost;
     }
+    await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
+    return psiCost;
   }
 
   /**
