@@ -791,7 +791,11 @@ export default class TwodsixItem extends Item {
    */
   public async doSkillTalentRoll(showThrowDiag: boolean): Promise<void> {
     if (this.type === "psiAbility") {
-      this.doPsiAction(showThrowDiag);
+      if (['core', 'alternate'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
+        ui.notifications.warn("TWODSIX.Warnings.NotUsingPsiStrength", {localize: true});
+      } else {
+        this.doPsiAction(showThrowDiag);
+      }
     } else {
       await this.skillRoll(showThrowDiag);
     }
@@ -810,7 +814,6 @@ export default class TwodsixItem extends Item {
       ui.notifications.warn("TWODSIX.Warnings.NoPsiPoints", {localize: true});
     } else {
       await this.drawItemTemplate();
-
       if (!game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
         psiCost = await this.processPsiPoints(0);
       } else {
