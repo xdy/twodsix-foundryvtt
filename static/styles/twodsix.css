@@ -1261,6 +1261,17 @@ span.bgi-charEdit {
   /* margin-bottom: 15px; */
 }
 
+.morale {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: auto;
+  margin-top: 2ch;
+  gap: 2ch;
+}
+
 .stat-table {
   font-size: 0.8em;
   margin: 0.5em 0 0;
@@ -1458,6 +1469,19 @@ span.stat-damage-table input {
   padding: 0;
 }
 
+span.stat-damage-ship input, span.stat-ability-ship input, span.stat-modifier-ship input {
+  border: solid;
+  border-width: thin;
+  border-radius: 15%;
+  /*width: 4ch;*/
+  height: 3.5ch;
+  border-color: var(--s2d6-default-color);
+  padding: 0;
+}
+
+span.stat-damage-ship input {
+  color:var(--s2d6-damage-stat-color);
+}
 
 span.stat-damage input, span.special-damage input {
   color: var(--s2d6-damage-stat-color);
@@ -4615,35 +4639,52 @@ header.folder-header i {
 }
 
 h1.divider::before,
-  h2.divider::before,
-  h3.divider::before,
-  h4.divider::before {
+h2.divider::before,
+h3.divider::before,
+h4.divider::before {
     border-top: 2px ridge var(--s2d6-default-color);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 100%);
     mask-image: linear-gradient(90deg, transparent 0%, black 100%);
-  }
-  h1.divider::after,
-  h2.divider::after,
-  h3.divider::after,
-  h4.divider::after {
-    border-top: 2px ridge var(--s2d6-default-color);
-    -webkit-mask-image: linear-gradient(270deg, transparent 0%, black 100%);
-    mask-image: linear-gradient(270deg, transparent 0%, black 100%);
-  }
+}
 
-  .reset-all {
-    background: var(--s2d6-default-color)
-  }
+h1.divider::after,
+h2.divider::after,
+h3.divider::after,
+h4.divider::after {
+  border-top: 2px ridge var(--s2d6-default-color);
+  -webkit-mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+  mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+}
 
-  .select.target-modifier {
-    height: auto;
-  }
+.reset-all {
+  background: var(--s2d6-default-color)
+}
 
-  h1, h2 {
-    color: var(--s2d6-form-light);
-  }
+.select.target-modifier {
+  height: auto;
+}
 
-  section.secret {
-    --color-secret-bg: rgba(53, 0, 121, 0.6);
-    --color-revealed-bg: rgba(0, 53, 0, 0.6);
+h1, h2 {
+  color: var(--s2d6-form-light);
+}
+
+section.secret {
+  --color-secret-bg: rgba(53, 0, 121, 0.6);
+  --color-revealed-bg: rgba(0, 53, 0, 0.6);
+}
+
+.application .controls-dropdown {
+  z-index: 99;
+}
+
+/*.prosemirror {
+  position: relative;
+
+  button.toggle {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 32px;
+    width: 32px;
   }
+}*/

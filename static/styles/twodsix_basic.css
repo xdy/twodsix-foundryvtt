@@ -3707,3 +3707,19 @@ textarea {
 .standard-form .form-footer > button {
   min-width: 100px;
 }
+
+.application .controls-dropdown {
+  z-index: 99;
+}
+
+/*.prosemirror {
+  position: relative;
+
+  button.toggle {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 32px;
+    width: 32px;
+  }
+}*/
