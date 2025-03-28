@@ -180,7 +180,7 @@ export class TwodsixRollSettings {
         twodsixRollSettings.itemName = item.name ?? "Unknown Item";
       } else if (skill) {
         title = twodsixRollSettings.skillName || "";
-        //check for characterisitc not on actor characteristic list
+        //check for characteristic not on actor characteristic list
         if ( _getTranslatedCharacteristicList(<TwodsixActor>skill.actor)[(<string>twodsixRollSettings.rollModifiers.characteristic)] === undefined) {
           twodsixRollSettings.rollModifiers.characteristic = "NONE";
         }
@@ -271,11 +271,11 @@ export class TwodsixRollSettings {
           this.rollModifiers.armorModifier  = (dialogData.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value, 10) : 0;
 
           if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
-            //either dont show modifier or not a physical characterisitc
+            //either dont show modifier or not a physical characteristic
             this.rollModifiers.encumbered = 0;
           } else {
             const dialogEncValue = parseInt(formElements["rollModifiers.encumbered"]?.value, 10);
-            if (dialogData.initialChoice === this.rollModifiers.characterisitc || dialogEncValue !== dialogData.rollModifiers.encumbered) {
+            if (dialogData.initialChoice === this.rollModifiers.characteristic || dialogEncValue !== dialogData.rollModifiers.encumbered) {
               //characteristic didn't change or encumbrance modifer changed
               this.rollModifiers.encumbered = isNaN(dialogEncValue) ? 0 : dialogEncValue;
             } else {
@@ -360,10 +360,10 @@ export function _getTranslatedCharacteristicList(actor:TwodsixActor):object {
   return returnValue;
 }
 
-export function getCharacteristicLabelWithMod(actor: TwodsixActor, characterisitc: string) : string {
-  return actor.system.characteristics[characterisitc].displayShortLabel + '(' +
-  (actor.system.characteristics[characterisitc].mod >= 0 ? '+' : '') +
-  actor.system.characteristics[characterisitc].mod + ')';
+export function getCharacteristicLabelWithMod(actor: TwodsixActor, characteristic: string) : string {
+  return actor.system.characteristics[characteristic].displayShortLabel + '(' +
+  (actor.system.characteristics[characteristic].mod >= 0 ? '+' : '') +
+  actor.system.characteristics[characteristic].mod + ')';
 }
 
 export function _genUntranslatedCharacteristicList(): object {
