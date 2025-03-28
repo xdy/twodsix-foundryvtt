@@ -1279,7 +1279,7 @@ export default class TwodsixActor extends Actor {
     const tokens = this.isToken ? [this.token?.object] : this.getActiveTokens(true);
     for ( const t of tokens ) {
       const pct = Math.clamp(Math.abs(damageApplied) / this.system.hits.max, 0, 1);
-      canvas.interface.createScrollingText(t.center, -damageApplied.signedString(), {
+      canvas.interface.createScrollingText(t.center, (-damageApplied).signedString(), {
         anchor: CONST.TEXT_ANCHOR_POINTS.TOP,
         fontSize: 22 + (32 * pct), // Range between [22, 54]
         fill: -damageApplied < 0 ? 16711680 : 65280,
