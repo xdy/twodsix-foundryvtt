@@ -246,8 +246,12 @@ class DamageDialogHandler {
         chrHtml.querySelector(`.original-current`).innerHTML = stat.original.current.toString();
         chrHtml.querySelector(`.result-value`).innerHTML = stat.current().toString();
         //chrHtml.querySelector(`.total-damage`).innerHTML = stat.totalDamage().toString();
-        chrHtml.querySelector(`.current-mod`).innerHTML = stat.original.mod.toString();
-        chrHtml.querySelector(`.mod`).innerHTML = stat.mod().toString();
+        if (chrHtml.querySelector(`.current-mod`)) {
+          chrHtml.querySelector(`.current-mod`).innerHTML = stat.original.mod.toString();
+        }
+        if (chrHtml.querySelector(`.mod`)) {
+          chrHtml.querySelector(`.mod`).innerHTML = stat.mod().toString();
+        }
       }
     }
 
