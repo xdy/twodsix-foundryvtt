@@ -4589,8 +4589,8 @@ table.ship-action-table, table.vehicle-stats-table {
   }
 }
 .transparent-header {
-  margin: 0.5% 4% 0 5%;
-  --button-size: 3ch;
+  margin: 0.7% 6% 0 5%;
+  --button-size: 5ch;
   border: none;
   background-color: var(--s2d6-background-transparent);
 }
