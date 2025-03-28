@@ -105,6 +105,8 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
         return;
       }
       await skill?.skillRoll(showThrowDiag, settings);
+    } else {
+      ui.notifications.warn( "TWODSIX.Warnings.NoActorSelected", {localize: true});
     }
   }
 }
