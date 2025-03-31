@@ -48,9 +48,13 @@ function getMoveColorType(token: TokenData, distance:number): Color {
   let movementSpeed = 0;
 
   if (actorType === "ship") {
-    movementSpeed = token.actor.system.shipStats.drives.jDrive.rating;
-    if (token.scene.grid.units === "pc") {
-      return colors["jump"];
+    movementSpeed = token.actor.system.shipStats.drives.jDrive?.rating;
+    if (token.scene.grid.units === "pc" && movementSpeed) {
+      if (distance <= movementSpeed) {
+        return colors["jump"];
+      } else {
+        return colors["not"];
+      }
     } else {
       return;
     }
