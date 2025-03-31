@@ -109,6 +109,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     const nonCargoTypes = foundry.utils.duplicate(TWODSIX.ComponentTypes);
     delete nonCargoTypes.cargo;
     settings.ship.push(arrayChoiceSetting('componentsIgnored', [], true, nonCargoTypes));
+    settings.token.push(booleanSetting('showMovementColors', false));
     return settings;
   }
 }
