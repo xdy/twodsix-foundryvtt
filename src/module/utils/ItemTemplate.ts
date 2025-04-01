@@ -39,7 +39,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
    * @param {object} [options={}]       Options to modify the created template.
    * @returns {ItemTemplate|null}    The template object, or null if the item does not produce a template
    */
-  static fromItem(item: TwodsixItem, options={}): Promise<ItemTemplate> {
+  static fromItem(item: TwodsixItem, options: object={}): Promise<ItemTemplate> {
     const target = item.system.target ?? {};
     const templateShape = TWODSIX.areaTargetTypes[target.type]?.template;
     if ( !templateShape ) {
@@ -196,7 +196,8 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
     await this._finishPlacement(event);
     const destination = this.getSnappedPosition(this.document);
     this.document.updateSource(destination);
-    this.#events.resolve(canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]));
+    const newTemplates = await canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]);
+    this.#events.resolve(newTemplates[0]);
   }
 
   /* -------------------------------------------- */
@@ -226,6 +227,7 @@ function checkTokenInTemplate (token:Token, template:MeasuredTemplate):boolean {
     for (let y = startY; y < token.document.width; y++) {
       const curr = { x: token.document.x + x * grid.size - tempx, y: token.document.y + y * grid.size - tempy };
       const contains = template.object.shape?.contains(curr.x, curr.y);
+      //const contains = template.object.testPoint({x: curr.x, y: curr.y});
       if (contains) {
         return true;
       }
@@ -239,13 +241,14 @@ function checkTokenInTemplate (token:Token, template:MeasuredTemplate):boolean {
  */
 export function targetTokensInTemplate(template:MeasuredTemplate):void {
   const tokens = canvas.tokens?.placeables;
+  template.object._refreshShape();
   const arrayOfTokenIds:string[] = [];
   if (tokens?.length > 0) {
     for (const tok of tokens) {
       if (checkTokenInTemplate(tok, template)) {
         arrayOfTokenIds.push(tok.id);
       }
-      game.user?.updateTokenTargets(arrayOfTokenIds);
     }
+    game.user?._onUpdateTokenTargets(arrayOfTokenIds);
   }
 }

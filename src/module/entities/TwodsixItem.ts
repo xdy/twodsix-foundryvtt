@@ -8,7 +8,7 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/utils";
-import ItemTemplate from "../utils/ItemTemplate";
+import ItemTemplate, { targetTokensInTemplate } from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
@@ -210,7 +210,7 @@ export default class TwodsixItem extends Item {
     }
 
     /*Apply measured template if valid AOE*/
-    await this.drawItemTemplate();
+    const isAOE = await this.drawItemTemplate();
 
     // Initialize settings
     const tmpSettings = {
@@ -233,6 +233,9 @@ export default class TwodsixItem extends Item {
 
     // Get fire mode parameters
     const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings);
+    if (isAOE) {
+      numberOfAttacks = 1; // Special case of AOE attack
+    }
     const useCTBands: boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
 
     // Define Targets
@@ -244,7 +247,7 @@ export default class TwodsixItem extends Item {
       Object.assign(tmpSettings.rollModifiers, {armorModifier: 0, armorLabel: game.i18n.localize('TWODSIX.Ship.Unknown')});
     } else if (targetTokens.length === 1) {
       // Get Single Target Dodge Parry information
-      const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
+      const dodgeParryInfo = isAOE ?  0 : this.getDodgeParryValues(targetTokens[0]);
       Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
 
       //Get single target weapon-armor modifier
@@ -311,7 +314,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    if (targetTokens.length > numberOfAttacks) {
+    if (targetTokens.length > numberOfAttacks && !isAOE) {
       ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
     }
 
@@ -320,7 +323,7 @@ export default class TwodsixItem extends Item {
     for (let i = 0; i < numberOfAttacks; i++) {
       if (targetTokens.length > 1) {
         //need to update dodgeParry and weapons range modifiers for each target
-        const dodgeParryInfo = this.getDodgeParryValues(targetTokens[i%targetTokens.length]);
+        const dodgeParryInfo = isAOE ?  0 : this.getDodgeParryValues(targetTokens[i%targetTokens.length]);
         Object.assign(settings.rollModifiers, dodgeParryInfo);
 
         // Get armor modifier, if necessary
@@ -351,7 +354,13 @@ export default class TwodsixItem extends Item {
         }
         const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
         if (targetTokens.length >= 1 && damagePayload) {
-          targetTokens[i%targetTokens.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+          if (isAOE) {
+            for (const target of targetTokens) {
+              target.actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+            }
+          } else {
+            targetTokens[i%targetTokens.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+          }
         }
       }
     }
@@ -1250,20 +1259,23 @@ export default class TwodsixItem extends Item {
    * A method for drawing a measured template for an item action - accounting for consumables
    * having attachements with AOE's
    */
-  private async drawItemTemplate():Promise<void> {
+  private async drawItemTemplate():Promise<boolean> {
+    let returnValue = false;
     const magazine:TwodsixItem | undefined = this.system.useConsumableForAttack ? this.actor?.items.get(this.system.useConsumableForAttack) : undefined;
     const itemForAOE:TwodsixItem = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
     if ( itemForAOE.system.target?.type !== "none" ) {
+      returnValue = true;
       try {
-        await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
+        const template:ItemTemplate = await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
         //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
-        //if (templates?.length > 0) {
-        //  ItemTemplate.targetTokensInTemplate(templates[0]);
-        //}
+        if (template) {
+          targetTokensInTemplate(template);
+        }
       } catch /*(err)*/ {
         ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
       }
     }
+    return returnValue;
   }
 
   /**
