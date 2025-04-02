@@ -232,10 +232,7 @@ export default class TwodsixItem extends Item {
     tmpSettings.rollType = skill.system.rolltype || "Normal";
 
     // Get fire mode parameters
-    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings);
-    if (isAOE) {
-      numberOfAttacks = 1; // Special case of AOE attack
-    }
+    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
     const useCTBands: boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
 
     // Define Targets
@@ -373,7 +370,7 @@ export default class TwodsixItem extends Item {
    * @param {object} tmpSettings the temporary settings object for the roll
    * @returns {object} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
-  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object): object {
+  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object, isAOE:boolean): object {
     const ruleSet = game.settings.get('twodsix', 'ruleset');
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
@@ -402,7 +399,7 @@ export default class TwodsixItem extends Item {
         }
         break;
       case "auto-full":
-        numberOfAttacks = getNumberOfAttacks(autoFireRules, rateOfFire);
+        numberOfAttacks = isAOE ? 1 : getNumberOfAttacks(autoFireRules, rateOfFire);
         if (autoFireRules === 'CEL') {
           usedAmmo = 3 * rateOfFire;
         }
