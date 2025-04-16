@@ -13,6 +13,7 @@ import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
 import { getTargetDMSelectObject } from "./targetModifiers";
 
 export class TwodsixRollSettings {
+  bonusDamage:string;
   difficulty:{ mod:number, target:number };
   //diceModifier:number;
   shouldRoll:boolean;
@@ -48,7 +49,7 @@ export class TwodsixRollSettings {
     const tokenUUID:string = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
     const actorUUID:string = settings?.flags?.actorUUID ?? (<Actor>sourceActor)?.uuid ?? "";
     let rollClass = "";
-    const bonusDamage:string = settings?.bonusDamage ?? "";
+    this.bonusDamage = settings?.bonusDamage ?? "";
 
     let woundsValue = 0;
     let encumberedValue = 0;
@@ -163,7 +164,7 @@ export class TwodsixRollSettings {
       tokenUUID: tokenUUID,
       itemUUID: itemUUID,
       actorUUID: actorUUID,
-      bonusDamage: bonusDamage
+      bonusDamage: this.bonusDamage
     };
     //console.log("Modifiers: ", this.rollModifiers);
   }
