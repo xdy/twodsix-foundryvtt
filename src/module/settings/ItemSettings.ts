@@ -67,6 +67,7 @@ export default class ItemSettings extends foundry.applications.api.HandlebarsApp
     settings.weapon.push(booleanSetting('ShowRecoil', false));
     settings.weapon.push(booleanSetting('ShowDoubleTap', false));
     settings.weapon.push(stringSetting('defaultWeaponDamage', "1d6", false));
+    settings.weapon.push(booleanSetting('autoTargetAOE', false));
     settings.ship.push(booleanSetting('showComponentRating', true));
     settings.ship.push(booleanSetting('showComponentDM', true));
     return settings;

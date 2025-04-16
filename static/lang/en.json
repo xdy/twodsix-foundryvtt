@@ -1624,6 +1624,10 @@
       "showMovementColors": {
         "hint": "Have token movement ruler highlight grid colors for walk (green), dash (yellow), run (orange), and outside movement range (red) for a combat round.",
         "name": "Display Token Movement Grid Colors"
+      },
+      "autoTargetAOE": {
+        "hint": "Automatically target all tokens within an area-of-effect (AOE). If a sucessful attack, a single damage roll is applied to all targeted tokens.",
+        "name": "Auto select targets for AOE attack"
       }
     },
     "CloseAndCreateNew": "Close and create new",
