@@ -146,7 +146,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
 
-    context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {secrets: this.document.isOwner});
+    context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, {secrets: this.document.isOwner});
 
     context.tabs = this.getApplicableTabs(context.tabs);
 

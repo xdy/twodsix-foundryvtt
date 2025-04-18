@@ -40,9 +40,10 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
   async _prepareContext(options):any {
     const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
+      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
       context.richText = {
-        description: await TextEditor.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
-        notes: await TextEditor.enrichHTML(context.system.notes, {secrets: this.document.isOwner})
+        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+        notes: await TextEditorImp.enrichHTML(context.system.notes, {secrets: this.document.isOwner})
       };
     }
 

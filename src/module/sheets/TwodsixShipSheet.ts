@@ -112,10 +112,11 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     });
 
     if (context.settings.useProseMirror) {
+      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
       context.richText = {
-        cargo: await TextEditor.enrichHTML(this.actor.system.cargo, {secrets: this.document.isOwner}),
-        finances: await TextEditor.enrichHTML(this.actor.system.finances, {secrets: this.document.isOwner}),
-        notes: await TextEditor.enrichHTML(this.actor.system.notes, {secrets: this.document.isOwner})
+        cargo: await TextEditorImp.enrichHTML(this.actor.system.cargo, {secrets: this.document.isOwner}),
+        finances: await TextEditorImp.enrichHTML(this.actor.system.finances, {secrets: this.document.isOwner}),
+        notes: await TextEditorImp.enrichHTML(this.actor.system.notes, {secrets: this.document.isOwner})
       };
     }
 
