@@ -521,9 +521,10 @@ export default class TwodsixItem extends Item {
 
   /**
    * A method to get the weapons range modifer based on the weapon type and measured range (distance).
-   * Valid for Classic Traveller and Cepheus Engine band types as well as other rule sets with range values.
+   * Valid for Classic Traveller, Cepheus Engine, and Cepheus Universal band types as well as other rule sets with range values.
    * @param {number} range  The measured distance to the target
    * @param {string} weaponBand The type of weapon used - as key string
+   * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
    * @returns {object} {rangeModifier: rangeModifier, rollType: rollType}
    */
   public getRangeModifier(range:number, weaponBand: string, isAutoFull:boolean): object {
@@ -531,14 +532,15 @@ export default class TwodsixItem extends Item {
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const ammoModifier = this.getAmmoRangeModifier(rangeModifierType);
-    // Return immediately with default if bad migration
-    if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
-      console.log("Bad weapon system.range value - should be string");
-      return {rangeModifier: rangeModifier, rollType: rollType};
-    }
 
+    // Validate weapon range
     if (typeof this.system.range !== 'string') {
-      console.error("Invalid weapon system.range value:", this.system.range);
+      // check for bad migration
+      if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
+        console.warn("Bad weapon system.range value - should be string");
+      } else {
+        console.warn("Invalid weapon system.range value:", this.system.range);
+      }
       return { rangeModifier: 0, rollType: 'Normal' };
     }
 
@@ -550,7 +552,7 @@ export default class TwodsixItem extends Item {
       if (targetBand !== "unknown") {
         rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull, range);
       }
-    } else if (this.system.range?.toLowerCase().includes('melee')) {
+    } else if (this.isMeleeWeapon()) { // replaced this.system.range?.toLowerCase().includes('melee')
       // Handle special case of melee weapon
       if (range > game.settings.get('twodsix', 'meleeRange')) {
         rangeModifier = INFEASIBLE;
@@ -1415,7 +1417,7 @@ export default class TwodsixItem extends Item {
           .split("/")
           .map((str) => (parseFloat(str) * ammoMultiplier).toLocaleString(game.i18n.lang, { maximumFractionDigits: 1 }))
           .join('/')
-          .replace('NaN', game.i18n.localize("TWODSIX.Ship.Unknown"));
+          .replace('NaN', game.i18n.localize((this.isMeleeWeapon() ? "TWODSIX.DamageType.Melee": "TWODSIX.Ship.Unknown")));
         rangeLabel = `${effectiveRange} @ ${targetRange.toLocaleString(game.i18n.lang, { maximumFractionDigits: 1 })}${canvas.scene.grid.units}`;
       }
     } else if (targetTokens.length === 0) {
