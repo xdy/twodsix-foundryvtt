@@ -2694,6 +2694,7 @@ a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: var(--s2d6-default-color);
 }
 
 a.ship-crew-tab:hover, a.ship-positions-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-component-tab:hover, a.ship-notes-tab:hover {
@@ -3226,6 +3227,7 @@ select.form-input, input.form-input, span.form-input {
 .consumable-row .refill-button {
   width: 10ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   border-radius: 1ch;
   line-height: normal;
   cursor: pointer;
@@ -3249,6 +3251,7 @@ select.form-input, input.form-input, span.form-input {
 .combined-buttons button {
   width: 2ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   margin: 0;
   padding: 0;
   line-height: normal;
