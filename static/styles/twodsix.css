@@ -4691,3 +4691,8 @@ section.secret {
     width: 32px;
   }
 }*/
+
+.category-browser aside nav.tabs > button {
+  border-radius: 4px;
+  padding: 4px 2px;
+}
