@@ -2695,6 +2695,7 @@ img.item-img {
 .consumable-row .refill-button {
   width: 10ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   border-radius: 10px;
   line-height: normal;
   cursor: pointer;
@@ -2718,6 +2719,7 @@ img.item-img {
 .combined-buttons button {
   width: 2ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   margin: 0px;
   padding: 0;
   line-height: normal;
