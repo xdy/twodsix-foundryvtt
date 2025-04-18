@@ -1520,7 +1520,7 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
           label: "TWODSIX.Actor.Items.Transfer",
           default: true,
           callback: (event, button, dialog) => {
-            resolve(dialog.querySelector('[name="amount"]').value);
+            resolve(dialog.element.querySelector('[name="amount"]').value);
           }
         }
       ]
