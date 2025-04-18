@@ -4696,3 +4696,7 @@ section.secret {
   border-radius: 4px;
   padding: 4px 2px;
 }
+
+.hotbar-page-control {
+  color: var(--control-icon-color);
+}
