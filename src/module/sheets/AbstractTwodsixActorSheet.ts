@@ -620,7 +620,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         icon: "fa-solid fa-dice",
         default: true,
         callback: (event, button, dialog) => {
-          const formElements = dialog.querySelector(".standard-form").elements;
+          const formElements = dialog.element.querySelector(".standard-form").elements;
           dialogData.shouldRoll = true;
           dialogData.rollType = formElements["rollType"]?.value;
           dialogData.diceModifier = formElements["diceModifier"]?.value;

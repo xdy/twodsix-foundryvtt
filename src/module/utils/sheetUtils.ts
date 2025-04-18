@@ -352,7 +352,7 @@ export async function confirmRollFormula(initFormula:string, title:string):Promi
           label: "TWODSIX.Rolls.Roll",
           default: true,
           callback: (event, button, dialog) => {
-            resolve(dialog.querySelector('[name="outputFormula"]')?.value);
+            resolve(dialog.element.querySelector('[name="outputFormula"]')?.value);
           }
         }
       ],

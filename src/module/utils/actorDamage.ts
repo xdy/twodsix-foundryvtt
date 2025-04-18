@@ -215,7 +215,7 @@ class DamageDialogHandler {
   }
 
   public setHtml(html: HTMLElement): void {
-    this.html = html;
+    this.html = html.element;
     this.registerEventListeners();
     this.refresh();
   }

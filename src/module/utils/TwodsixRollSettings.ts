@@ -252,7 +252,7 @@ export class TwodsixRollSettings {
         icon: "fa-solid fa-dice",
         default: true,
         callback: (event, button, dialog) => {
-          const formElements = dialog.querySelector(".standard-form").elements;
+          const formElements = dialog.element.querySelector(".standard-form").elements;
           this.shouldRoll = true;
           this.difficulty = this.difficulties[formElements["difficulty"]?.value];
           this.rollType = formElements["rollType"]?.value;
@@ -312,19 +312,19 @@ export class TwodsixRollSettings {
   }
 }
 
-function handleRender(ev:Event, htmlRend:HTMLElement) {
-  htmlRend.querySelector(".select-skill")?.addEventListener("change", () => {
-    const characteristicElement = htmlRend.querySelector('[name="rollModifiers.characteristic"]');
+function handleRender(ev:Event, htmlRend:DialogV2) {
+  htmlRend.element.querySelector(".select-skill")?.addEventListener("change", () => {
+    const characteristicElement = htmlRend.element.querySelector('[name="rollModifiers.characteristic"]');
     let newSkill:TwodsixItem;
     if (characteristicElement) {
-      const newSkillUuid = htmlRend.querySelector('[name="rollModifiers.selectedSkill"]')?.value;
+      const newSkillUuid = htmlRend.element.querySelector('[name="rollModifiers.selectedSkill"]')?.value;
       if (newSkillUuid) {
         newSkill = fromUuidSync(newSkillUuid);
         characteristicElement.value = newSkill?.system.characteristic || "NONE";
       }
     }
     let newTitle = "";
-    const titleElement = htmlRend.querySelector('.window-title');
+    const titleElement = htmlRend.element.querySelector('.window-title');
     if (titleElement) {
       const usingWord = ' ' + game.i18n.localize("TWODSIX.Actor.using") + ' ';
       if (titleElement.innerText.includes(usingWord)) {

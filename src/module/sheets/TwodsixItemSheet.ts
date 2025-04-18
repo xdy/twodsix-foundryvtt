@@ -434,21 +434,22 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
           label: "TWODSIX.Create",
           default: true,
           callback: async (event, button, dialog) => {
-            const max = parseInt(dialog.querySelector('.consumable-max')?.value as string, 10) || 0;
+            const dialogElement = dialog.element;
+            const max = parseInt(dialogElement.querySelector('.consumable-max')?.value as string, 10) || 0;
             let equippedState = "";
             if (this.item.type !== "skills" && this.item.type !== "trait" && this.item.type !== "ship_position") {
               equippedState = this.item.system.equipped ?? "backpack";
             }
             const newConsumableData = {
-              name: dialog.querySelector('.consumable-name')?.value || game.i18n.localize("TYPES.Item.consumable"),
+              name: dialogElement.querySelector('.consumable-name')?.value || game.i18n.localize("TYPES.Item.consumable"),
               type: "consumable",
               system: {
-                subtype: dialog.querySelector('.consumable-subtype')?.value,
-                quantity: parseInt(dialog.querySelector('.consumable-quantity')?.value as string, 10) || 0,
+                subtype: dialogElement.querySelector('.consumable-subtype')?.value,
+                quantity: parseInt(dialogElement.querySelector('.consumable-quantity')?.value as string, 10) || 0,
                 currentCount: max,
                 max: max,
                 equipped: equippedState,
-                isAttachment: ["processor", "software", "suite"].includes(dialog.querySelector('.consumable-subtype')?.value) && this.item.type !== "consumable",
+                isAttachment: ["processor", "software", "suite"].includes(dialogElement.querySelector('.consumable-subtype')?.value) && this.item.type !== "consumable",
                 parentName: this.item.name,
                 parentType: this.item.type
               }

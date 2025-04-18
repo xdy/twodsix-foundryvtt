@@ -122,7 +122,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       icon: "fa-solid fa-message",
       default: true,
       callback: (event, button, dialog) => {
-        const formElements = dialog.querySelector(".standard-form").elements;
+        const formElements = dialog.element.querySelector(".standard-form").elements;
         returnValue.selectedTokens = formElements["selectedTokens"] ? Array.from(formElements["selectedTokens"].selectedOptions)?.map((({ value }) => value)) : [];
         returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][formElements["difficulty"]?.value];
         returnValue.rollType = formElements["rollType"]?.value;
