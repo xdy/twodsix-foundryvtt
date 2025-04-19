@@ -4700,3 +4700,11 @@ section.secret {
 .hotbar-page-control {
   color: var(--control-icon-color);
 }
+
+#module-management .package-list .package .package-overview .package-title .title-group .title {
+  color: var(--s2d6-default-color);
+}
+
+section#settings a:hover {
+  color: var(--s2d6-background-opaque);
+}
