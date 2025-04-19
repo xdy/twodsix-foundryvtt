@@ -1,24 +1,8 @@
-2024/11/19-08:51:16.332896 70000f3a4000 Recovering log #19
-2024/11/19-08:51:16.333402 70000f3a4000 Level-0 table #21: started
-2024/11/19-08:51:16.336209 70000f3a4000 Level-0 table #21: 83124 bytes OK
-2024/11/19-08:51:16.338542 70000f3a4000 Delete type=3 #18
-2024/11/19-08:51:16.338873 70000f3a4000 Delete type=0 #19
-2024/11/19-09:21:39.784236 700010c30000 Level-0 table #24: started
-2024/11/19-09:21:39.789451 700010c30000 Level-0 table #24: 143037 bytes OK
-2024/11/19-09:21:39.790227 700010c30000 Delete type=0 #22
-2024/11/19-09:21:39.805037 700010c30000 Manual compaction at level-0 from '!folders!2WUp46bfXDnFdSdF' @ 72057594037927935 : 1 .. '!items!zgrPKz0mSLgtdLw3' @ 0 : 0; will stop at '!items!zgrPKz0mSLgtdLw3' @ 762 : 1
-2024/11/19-09:21:39.805059 700010c30000 Compacting 2@0 + 0@1 files
-2024/11/19-09:21:39.808749 700010c30000 Generated table #25@0: 177 keys, 83525 bytes
-2024/11/19-09:21:39.808783 700010c30000 Compacted 2@0 + 0@1 files => 83525 bytes
-2024/11/19-09:21:39.808980 700010c30000 compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/11/19-09:21:39.809091 700010c30000 Delete type=2 #21
-2024/11/19-09:21:39.809453 700010c30000 Delete type=2 #24
-2024/11/19-09:21:39.812534 700010c30000 Manual compaction at level-0 from '!items!zgrPKz0mSLgtdLw3' @ 762 : 1 .. '!items!zgrPKz0mSLgtdLw3' @ 0 : 0; will stop at (end)
-2024/11/19-09:21:39.830628 700010c30000 Manual compaction at level-1 from '!folders!2WUp46bfXDnFdSdF' @ 72057594037927935 : 1 .. '!items!zgrPKz0mSLgtdLw3' @ 0 : 0; will stop at '!items!zgrPKz0mSLgtdLw3' @ 1116 : 1
-2024/11/19-09:21:39.830654 700010c30000 Compacting 1@1 + 1@2 files
-2024/11/19-09:21:39.833847 700010c30000 Generated table #26@1: 187 keys, 85266 bytes
-2024/11/19-09:21:39.833886 700010c30000 Compacted 1@1 + 1@2 files => 85266 bytes
-2024/11/19-09:21:39.834081 700010c30000 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/11/19-09:21:39.834207 700010c30000 Delete type=2 #15
-2024/11/19-09:21:39.834503 700010c30000 Delete type=2 #25
-2024/11/19-09:21:39.838226 700010c30000 Manual compaction at level-1 from '!items!zgrPKz0mSLgtdLw3' @ 1116 : 1 .. '!items!zgrPKz0mSLgtdLw3' @ 0 : 0; will stop at (end)
+2024/11/19-09:22:06.451289 700010bad000 Recovering log #23
+2024/11/19-09:22:06.452595 700010bad000 Delete type=3 #20
+2024/11/19-09:22:06.452753 700010bad000 Delete type=0 #23
+2024/11/19-09:26:06.446224 700010c30000 Level-0 table #30: started
+2024/11/19-09:26:06.446384 700010c30000 Level-0 table #30: 0 bytes OK
+2024/11/19-09:26:06.446825 700010c30000 Delete type=0 #28
+2024/11/19-09:26:06.448653 700010c30000 Manual compaction at level-0 from '!folders!2WUp46bfXDnFdSdF' @ 72057594037927935 : 1 .. '!items!zgrPKz0mSLgtdLw3' @ 0 : 0; will stop at (end)
+2024/11/19-09:26:06.448701 700010c30000 Manual compaction at level-1 from '!folders!2WUp46bfXDnFdSdF' @ 72057594037927935 : 1 .. '!items!zgrPKz0mSLgtdLw3' @ 0 : 0; will stop at (end)
