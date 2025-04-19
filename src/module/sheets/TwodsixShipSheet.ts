@@ -125,10 +125,6 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
   async _onRender(context:Context, options:any): void {
     await super._onRender(context, options);
-    // Everything below here is only needed if the sheet is editable
-    if (!context.editable) {
-      return;
-    }
 
     //Set special class for FVTT window-content section so that it overlaps with header
     if (this.options.sheetType === 'TwodsixShipSheet') {

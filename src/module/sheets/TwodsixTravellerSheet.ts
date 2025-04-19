@@ -127,17 +127,17 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 
   async _onRender(context:Context, options:any): void {
     await super._onRender(context, options);
+    //Set special class for FVTT window-content section so that it overlaps with header
+    if (this.options.sheetType === 'TwodsixTravellerSheet') {
+      this.element.querySelector(".window-content").classList.add("overlap-header");
+      this.element.querySelector(".window-header").classList.add("transparent-header");
+    }
     // Everything below here is only needed if the sheet is editable
     if (!context.editable) {
       return;
     }
     this.element.querySelector(".joat-skill-input")?.addEventListener('input', this._updateJoatSkill.bind(this));
     this.element.querySelector(".joat-skill-input")?.addEventListener('blur', this._onJoatSkillBlur.bind(this));
-    //Set special class for FVTT window-content section so that it overlaps with header
-    if (this.options.sheetType === 'TwodsixTravellerSheet') {
-      this.element.querySelector(".window-content").classList.add("overlap-header");
-      this.element.querySelector(".window-header").classList.add("transparent-header");
-    }
   }
 
   /**
