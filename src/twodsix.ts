@@ -37,6 +37,7 @@ import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
 import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
 import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
+import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
 
 //import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
@@ -71,52 +72,52 @@ Hooks.once('init', async function () {
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
-  Actors.unregisterSheet('core', ActorSheet);
-  Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
 
-  Actors.registerSheet('twodsix', TwodsixTravellerSheet, {
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixTravellerSheet, {
     types: ["traveller"],
     label: "Traveller Sheet",
     makeDefault: true
   });
 
-  Actors.registerSheet('twodsix', TwodsixNPCSheet, {
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixNPCSheet, {
     types: ["traveller"],
     label: "NPC Sheet",
     makeDefault: false
   });
 
-  Actors.registerSheet('twodsix', TwodsixRobotSheet, {
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixRobotSheet, {
     types: ["robot"],
     label: "Robot Sheet",
     makeDefault: true
   });
 
-  Actors.registerSheet("twodsix", TwodsixShipSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixShipSheet, {
     types: ["ship"],
     label: "Ship Sheet",
     makeDefault: true,
   });
 
-  Actors.registerSheet("twodsix", TwodsixBattleSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixBattleSheet, {
     types: ["ship"],
     label: "Battle Sheet",
     makeDefault: false,
   });
 
-  Actors.registerSheet("twodsix", TwodsixVehicleSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixVehicleSheet, {
     types: ["vehicle"],
     label: "Vehicle Sheet",
     makeDefault: true,
   });
 
-  Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
     types: ["animal"],
     label: "Animal Sheet",
     makeDefault: true,
   });
 
-  Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
     types: ["space-object"],
     label: "Space Object Sheet",
     makeDefault: true,
@@ -135,11 +136,11 @@ Hooks.once('init', async function () {
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
-  Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   //Items.unregisterSheet("core", ItemSheet);
 
-  Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
-  Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
   /* Load Schemas */
   Object.assign(CONFIG.Item.dataModels, {
     "equipment": GearData,
@@ -208,7 +209,7 @@ Hooks.once('init', async function () {
   }
 
   //@ts-ignore
-  await loadTemplates(handlebarsTemplateFiles);
+  await foundry.applications.handlebars.loadTemplates(handlebarsTemplateFiles);
 
   //Add TL to compendium index
   CONFIG.Item.compendiumIndexFields.push('system.techLevel');
@@ -220,6 +221,9 @@ Hooks.once('init', async function () {
   //Add chat context
   CONFIG.ui.chat = TwodsixChatLog;
   CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
+
+  //Add Ruler measurements
+  CONFIG.Token.rulerClass = TwodsixTokenRuler;
 });
 
 Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {

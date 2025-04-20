@@ -67,7 +67,7 @@ async function enrichDisplayTable (match: any, options: any): Promise<HTMLDivEle
   if (table) {
     a.classList.add("display-table");
     const html = displayTable(match[1], table, tableName);
-    a.innerHTML = await TextEditor.enrichHTML(html, {secrets: table.isOwner});
+    a.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(html, {secrets: table.isOwner});
   } else {
     a.dataset.tableId = match[1];
     if (match[2]) {

@@ -8,11 +8,11 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/utils";
-import ItemTemplate from "../utils/ItemTemplate";
+import ItemTemplate, { targetTokensInTemplate } from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
-import { getTargetModifiers } from "../utils/targetModifiers";
+import { getTargetStatusModifiers} from "../utils/targetModifiers";
 
 /**
  * Extend the base Item entity
@@ -210,17 +210,10 @@ export default class TwodsixItem extends Item {
     }
 
     /*Apply measured template if valid AOE*/
-    await this.drawItemTemplate();
+    const isAOE = await this.drawItemTemplate();
 
     // Initialize settings
-    const tmpSettings = {
-      rollType: "Normal",
-      bonusDamage: "0",
-      rollModifiers: {
-        characteristic: "",
-        other: 0
-      }
-    };
+    const tmpSettings = this.initializeAttackSettings();
 
     // Set characteristic from skill
     const skill:TwodsixItem | undefined  = this.actor?.items.get(weapon.skill) ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
@@ -232,7 +225,7 @@ export default class TwodsixItem extends Item {
     tmpSettings.rollType = skill.system.rolltype || "Normal";
 
     // Get fire mode parameters
-    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings);
+    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
     const useCTBands: boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
 
     // Define Targets
@@ -244,7 +237,7 @@ export default class TwodsixItem extends Item {
       Object.assign(tmpSettings.rollModifiers, {armorModifier: 0, armorLabel: game.i18n.localize('TWODSIX.Ship.Unknown')});
     } else if (targetTokens.length === 1) {
       // Get Single Target Dodge Parry information
-      const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0]);
+      const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0], isAOE);
       Object.assign(tmpSettings.rollModifiers, dodgeParryInfo);
 
       //Get single target weapon-armor modifier
@@ -259,33 +252,16 @@ export default class TwodsixItem extends Item {
       Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod(rateOfFireCE)});
     }
 
-    //Get single target weapons range modifier
+    //Get single target weapons range and status modifiers for roll dialog
     if (controlledTokens?.length === 1) {
-      let rangeLabel = "";
-      let rangeModifier = 0;
-      let appliedStatuses = [];
-      const isQualitativeBands = ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
-      const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
-      if (targetTokens.length === 1) {
-        const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
-        const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
-        rangeModifier = rangeData.rangeModifier;
-        if (rangeData.rollType !== tmpSettings.rollType ) {
-          Object.assign(tmpSettings, {rollType: (tmpSettings.rollType === 'Normal' ? rangeData.rollType : 'Normal')});
-        }
-        if (isQualitativeBands) {
-          rangeLabel = this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
-        } else {
-          const ammoMultiplier = this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
-          const effectiveRange = (<string>this.system.range).split("/").map((str) => (parseFloat(str) * ammoMultiplier).toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})).join('/').replace('NaN', game.i18n.localize("TWODSIX.Ship.Unknown"));
-          rangeLabel = `${effectiveRange} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})}${canvas.scene.grid.units}`;
-        }
-        appliedStatuses = getTargetModifiers(targetTokens[0].actor);
-      } else if (targetTokens.length === 0) {
-        rangeLabel = isQualitativeBands && this.system.rangeBand === 'none' ? game.i18n.localize(localizePrefix + "none") : game.i18n.localize("TWODSIX.Ship.Unknown");
-      }
-      //console.log("Actual Range: ", rangeLabel, "Weapon Range: ", isQualitativeBands ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)}` : `${this.system.range} ${canvas.scene.grid.units}`);
-      Object.assign(tmpSettings.rollModifiers, {weaponsRange: rangeModifier, rangeLabel: rangeLabel, targetModifier: appliedStatuses});
+      const { rangeModifier, rangeLabel } = this.calculateRangeAndLabel(controlledTokens, targetTokens, weaponType, isAutoFull, tmpSettings);
+      const appliedStatuses = this.getAppliedStatuses(targetTokens);
+
+      Object.assign(tmpSettings.rollModifiers, {
+        weaponsRange: rangeModifier,
+        rangeLabel: rangeLabel,
+        targetModifier: appliedStatuses,
+      });
     }
     //Flag that targetDM is an override
     Object.assign(tmpSettings.rollModifiers, {targetModifierOverride: targetTokens.length > 1});
@@ -297,62 +273,176 @@ export default class TwodsixItem extends Item {
     }
 
     // Update consumables for use
-    const magazine:TwodsixItem | undefined = weapon.useConsumableForAttack ? this.actor?.items.get(weapon.useConsumableForAttack) : undefined;
+    if (!(await this.consumeAmmo(this, usedAmmo))) {
+      return;
+    }
+
+    if (targetTokens.length > numberOfAttacks && !isAOE) {
+      ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
+    }
+    //Make attack rolls
+    await this.executeAttackRolls(numberOfAttacks, targetTokens, controlledTokens, weaponType, isAutoFull, settings, showInChat, isAOE);
+  }
+
+  /**
+   * Initializes the default settings for an attack roll.
+   * @returns {object} The default attack roll settings.
+   */
+  private initializeAttackSettings(): any {
+    return {
+      rollType: "Normal",
+      bonusDamage: "0",
+      rollModifiers: {
+        characteristic: "NONE",
+        other: 0
+      }
+    };
+  }
+  /**
+   * Consumes ammunition for a weapon attack.
+   * @param {TwodsixItem} itemUsed The item being used system data.
+   * @param {number} usedAmmo The amount of ammunition to consume.
+   * @returns {Promise<boolean>} Whether the ammunition was successfully consumed.
+   */
+  private async consumeAmmo(itemUsed: any, usedAmmo: number): Promise<boolean> {
+    const magazine: TwodsixItem | undefined = itemUsed.system.useConsumableForAttack ? this.actor?.items.get(itemUsed.system.useConsumableForAttack) : undefined;
     if (magazine) {
       try {
         await magazine.consume(usedAmmo);
       } catch (err) {
-        if (err.name == "NoAmmoError") {
-          ui.notifications.error("TWODSIX.Errors.NoAmmo", {localize: true});
-          return;
+        if (err.name === "NoAmmoError") {
+          if (this.type === 'weapon') {
+            ui.notifications.error("TWODSIX.Errors.NoAmmo", { localize: true });
+          } else {
+            ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
+          }
         } else {
+          console.error(`Error consuming ammo for weapon ${this.name}:`, err);
           throw err;
         }
+        return false;
       }
     }
+    return true;
+  }
 
-    if (targetTokens.length > numberOfAttacks) {
-      ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
-    }
-
-    //Make attack rolls
-    const targetModifierOverride = [...settings.rollModifiers.targetModifier];
+  /**
+   * Executes multiple attack rolls for a weapon attack, applying modifiers and handling damage for each roll.
+   * @param {number} numberOfAttacks - The number of attack rolls to execute.
+   * @param {Token[]} targetedTokens - The tokens targeted by the attack.
+   * @param {Token[]} controlledTokens - The tokens controlled by the actor performing the attack.
+   * @param {string} weaponType - The type of weapon being used (e.g., rifle, pistol).
+   * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
+   * @param {TwodsixRollSettings} settings - The settings used for the attack roll.
+   * @param {boolean} showInChat - Whether to display the attack roll results in the chat.
+   * @param {boolean} isAOE - Whether the attack is an area-of-effect attack.
+   * @returns {Promise<void>} A promise that resolves when all attack rolls and damage handling are complete.
+   */
+  private async executeAttackRolls(
+    numberOfAttacks: number,
+    targetedTokens: Token[],
+    controlledTokens: Token[],
+    weaponType: string,
+    isAutoFull: boolean,
+    settings: TwodsixRollSettings,
+    showInChat: boolean,
+    isAOE: boolean
+  ): Promise<void> {
+    const targetModifiers = [...settings.rollModifiers.targetModifier];
     for (let i = 0; i < numberOfAttacks; i++) {
-      if (targetTokens.length > 1) {
-        //need to update dodgeParry and weapons range modifiers for each target
-        const dodgeParryInfo = this.getDodgeParryValues(targetTokens[i%targetTokens.length]);
-        Object.assign(settings.rollModifiers, dodgeParryInfo);
-
-        // Get armor modifier, if necessary
-        if (useCTBands) {
-          const weaponArmorInfo = this.getWeaponArmorValues(targetTokens[i%targetTokens.length], weaponType, isAutoFull);
-          Object.assign(settings.rollModifiers, weaponArmorInfo);
-        }
-        //Set range modifiers if possible
-        if (controlledTokens.length === 1) {
-          const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[i%targetTokens.length]]).distance;
-          const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
-          Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
-          Object.assign(settings, {rollType: rangeData.rollType});
-        }
-        //Assign target modifiers based on statuses, if not overridden
-        if (targetModifierOverride.length > 0 ) {
-          Object.assign(settings.rollModifiers, {targetModifier: targetModifierOverride});
-        } else {
-          Object.assign(settings.rollModifiers, {targetModifier: getTargetModifiers(targetTokens[i%targetTokens.length].actor)});
-        }
+      const targetToken = targetedTokens[i % targetedTokens.length];
+      // Update modifiers for each target if multi attack, otherwise use settings that have bee preselected
+      if (targetedTokens.length > 1) {
+        this.updateRollModifiers(settings, targetToken, controlledTokens, weaponType, isAutoFull, isAOE, targetModifiers);
       }
+
+      // Perform the skill roll
       const roll = await this.skillRoll(false, settings, showInChat);
-      const addEffect:boolean = game.settings.get('twodsix', 'addEffectToDamage');
+
+      // Handle damage if the roll is successful
       if (game.settings.get("twodsix", "automateDamageRollOnHit") && roll?.isSuccess()) {
-        let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
-        if (tmpSettings.bonusDamage !== "0" && tmpSettings.bonusDamage !== "") {
-          totalBonusDamage += (addEffect ? ` + `: ``) + `${tmpSettings.bonusDamage}`;
+        await this.handleDamageRoll(roll, settings, targetedTokens, i, isAOE, showInChat);
+      }
+    }
+  }
+
+  /**
+   * Updates the roll modifiers for a weapon attack based on various factors such as dodge/parry, armor, range, and target statuses.
+   * @param {TwodsixRollSettings} settings - The settings used for the attack roll.
+   * @param {Token} targetToken - The token representing the target of the attack.
+   * @param {Token[]} controlledTokens - The tokens controlled by the actor performing the attack.
+   * @param {string} weaponType - The type of weapon being used (e.g., rifle, pistol).
+   * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
+   * @param {boolean} isAOE - Whether the attack is an area-of-effect attack.
+   * @param {any[]} targetModifiers - A list of target-specific modifiers to apply.
+   */
+  private updateRollModifiers(
+    settings: TwodsixRollSettings,
+    targetToken: Token,
+    controlledTokens: Token[],
+    weaponType: string,
+    isAutoFull: boolean,
+    isAOE: boolean,
+    targetModifiers: any[]
+  ): void {
+    // Update dodge/parry modifiers
+    const dodgeParryInfo = this.getDodgeParryValues(targetToken, isAOE);
+    Object.assign(settings.rollModifiers, dodgeParryInfo);
+
+    // Update armor modifiers if necessary
+    if (game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands') {
+      const weaponArmorInfo = this.getWeaponArmorValues(targetToken, weaponType, isAutoFull);
+      Object.assign(settings.rollModifiers, weaponArmorInfo);
+    }
+
+    // Update range modifiers if controlled tokens exist
+    if (controlledTokens.length === 1 && targetToken) {
+      const targetRange = canvas.grid.measurePath([controlledTokens[0], targetToken]).distance;
+      const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
+      Object.assign(settings.rollModifiers, { weaponsRange: rangeData.rangeModifier });
+      Object.assign(settings, { rollType: rangeData.rollType });
+    }
+
+    // Update target modifiers based on statuses or overrides
+    if (targetModifiers.length > 0) {
+      Object.assign(settings.rollModifiers, { targetModifier: targetModifiers });
+    } else {
+      Object.assign(settings.rollModifiers, { targetModifier: getTargetStatusModifiers(targetToken.actor) });
+    }
+  }
+
+  private getAppliedStatuses(targetTokens: Token[]): any[] {
+    if (targetTokens.length === 1) {
+      return getTargetStatusModifiers(targetTokens[0].actor);
+    }
+    return [];
+  }
+
+  /**
+   * Handles the damage roll for a successful attack.
+   * @param {TwodsixDiceRoll} roll The result of the attack roll.
+   * @param {TwodsixRollSettings} settings The settings used for the attack roll.
+   * @param {Token[]} targetTokens The list of target tokens.
+   * @param {number} attackIndex The index of the current attack in a multi-attack sequence.
+   * @param {boolean} isAOE Whether the attack is an area-of-effect attack.
+   * @param {boolean} showInChat Whehter to show attack in chat
+   * @returns {Promise<void>}
+   */
+  private async handleDamageRoll(roll: TwodsixDiceRoll, settings: TwodsixRollSettings, targetTokens: Token[], attackIndex: number, isAOE: boolean, showInChat:boolean): Promise<void> {
+    const addEffect = game.settings.get('twodsix', 'addEffectToDamage');
+    let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
+    if (settings.bonusDamage !== "0" && settings.bonusDamage !== "") {
+      totalBonusDamage += (addEffect ? ` + `: ``) + `${settings.bonusDamage}`;
+    }
+
+    const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
+    if (targetTokens.length >= 1 && damagePayload) {
+      if (isAOE) {
+        for (const target of targetTokens) {
+          target.actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         }
-        const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
-        if (targetTokens.length >= 1 && damagePayload) {
-          targetTokens[i%targetTokens.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
-        }
+      } else {
+        targetTokens[attackIndex % targetTokens.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
       }
     }
   }
@@ -364,7 +454,7 @@ export default class TwodsixItem extends Item {
    * @param {object} tmpSettings the temporary settings object for the roll
    * @returns {object} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
-  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object): object {
+  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object, isAOE:boolean): object {
     const ruleSet = game.settings.get('twodsix', 'ruleset');
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
@@ -393,7 +483,7 @@ export default class TwodsixItem extends Item {
         }
         break;
       case "auto-full":
-        numberOfAttacks = getNumberOfAttacks(autoFireRules, rateOfFire);
+        numberOfAttacks = isAOE ? 1 : getNumberOfAttacks(autoFireRules, rateOfFire);
         if (autoFireRules === 'CEL') {
           usedAmmo = 3 * rateOfFire;
         }
@@ -431,9 +521,10 @@ export default class TwodsixItem extends Item {
 
   /**
    * A method to get the weapons range modifer based on the weapon type and measured range (distance).
-   * Valid for Classic Traveller and Cepheus Engine band types as well as other rule sets with range values.
+   * Valid for Classic Traveller, Cepheus Engine, and Cepheus Universal band types as well as other rule sets with range values.
    * @param {number} range  The measured distance to the target
    * @param {string} weaponBand The type of weapon used - as key string
+   * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
    * @returns {object} {rangeModifier: rangeModifier, rollType: rollType}
    */
   public getRangeModifier(range:number, weaponBand: string, isAutoFull:boolean): object {
@@ -441,10 +532,16 @@ export default class TwodsixItem extends Item {
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const ammoModifier = this.getAmmoRangeModifier(rangeModifierType);
-    // Return immediately with default if bad migration
-    if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
-      console.log("Bad weapon system.range value - should be string");
-      return {rangeModifier: rangeModifier, rollType: rollType};
+
+    // Validate weapon range
+    if (typeof this.system.range !== 'string') {
+      // check for bad migration
+      if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
+        console.warn("Bad weapon system.range value - should be string");
+      } else {
+        console.warn("Invalid weapon system.range value:", this.system.range);
+      }
+      return { rangeModifier: 0, rollType: 'Normal' };
     }
 
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
@@ -455,7 +552,7 @@ export default class TwodsixItem extends Item {
       if (targetBand !== "unknown") {
         rangeModifier = this.getRangeBandModifier(weaponBand, targetBand, isAutoFull, range);
       }
-    } else if (this.system.range?.toLowerCase().includes('melee')) {
+    } else if (this.isMeleeWeapon()) { // replaced this.system.range?.toLowerCase().includes('melee')
       // Handle special case of melee weapon
       if (range > game.settings.get('twodsix', 'meleeRange')) {
         rangeModifier = INFEASIBLE;
@@ -522,12 +619,13 @@ export default class TwodsixItem extends Item {
   /**
    * A method to get the dodge / parry modifer based on the target's corresponding skill used for attack.
    * @param {Token} target  The target token
+   * @param {boolean} isAOE Is an area-of-effect attack (cannot be dodged)
    * @returns {object} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
    */
-  public getDodgeParryValues(target: Token): object {
+  public getDodgeParryValues(target: Token, isAOE:boolean): object {
     let dodgeParryModifier = 0;
     let skillName = "";
-    if (game.settings.get("twodsix", "useDodgeParry") && target) {
+    if (game.settings.get("twodsix", "useDodgeParry") && target && !isAOE) {
       const weaponSkill = this.actor?.items.get(this.system.skill);
       skillName = weaponSkill?.getFlag("twodsix", "untrainedSkill") ? this.system.associatedSkillName : weaponSkill?.name;
       const targetMatchingSkill = target.actor?.itemTypes.skills?.find(sk => sk.name === skillName);
@@ -670,22 +768,10 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    /* Decrement the item's consumable by one if present and not a weapon (attack role handles separately)*/
-    if (usesConsumable.useConsumableForAttack && item && item.type != "weapon") {
-      const magazine = <TwodsixItem>this.actor?.items.get(usesConsumable.useConsumableForAttack); //this shoould always be this.actor as components on ship, not working actor
-      if (magazine) {
-        try {
-          await magazine.consume(1);
-        } catch (err) {
-          if (err.name == "NoAmmoError") {
-            ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
-            return;
-          } else {
-            throw err;
-          }
-        }
-      } else {
-        ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
+    /* Decrement the item's consumable by one if present and not a weapon (attack role handled separately)*/
+    if (usesConsumable.useConsumableForAttack && item?.type != "weapon") {
+      // Update consumables for use
+      if (!(await this.consumeAmmo(item, 1))) {
         return;
       }
     }
@@ -706,11 +792,10 @@ export default class TwodsixItem extends Item {
    * @returns {number|undefined} The number of psi points used or undefined if selection cancelled
    */
   async processPsiPoints(diceRollEffect:number): Promise<number|undefined> {
+    let psiCost:number;
     if(diceRollEffect < 0) {
-      await (<TwodsixActor>this.actor).removePsiPoints(1);
-      return 1;
+      psiCost = Math.min(1, this.system.psiCost);
     } else {
-      let psiCost:number;
       try {
         psiCost = await foundry.applications.api.DialogV2.prompt({
           window: { title: "TWODSIX.Items.Psionics.PsiCost" },
@@ -729,10 +814,9 @@ export default class TwodsixItem extends Item {
         ui.notifications.warn("TWODSIX.Warnings.PsiUsageGTZero", {localize: true});
         return;
       }
-
-      await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
-      return psiCost;
     }
+    await (<TwodsixActor>this.actor).removePsiPoints(psiCost);
+    return psiCost;
   }
 
   /**
@@ -791,7 +875,11 @@ export default class TwodsixItem extends Item {
    */
   public async doSkillTalentRoll(showThrowDiag: boolean): Promise<void> {
     if (this.type === "psiAbility") {
-      this.doPsiAction(showThrowDiag);
+      if (['core', 'alternate'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
+        ui.notifications.warn("TWODSIX.Warnings.NotUsingPsiStrength", {localize: true});
+      } else {
+        this.doPsiAction(showThrowDiag);
+      }
     } else {
       await this.skillRoll(showThrowDiag);
     }
@@ -810,7 +898,6 @@ export default class TwodsixItem extends Item {
       ui.notifications.warn("TWODSIX.Warnings.NoPsiPoints", {localize: true});
     } else {
       await this.drawItemTemplate();
-
       if (!game.settings.get('twodsix', 'psiTalentsRequireRoll')) {
         psiCost = await this.processPsiPoints(0);
       } else {
@@ -909,7 +996,7 @@ export default class TwodsixItem extends Item {
         });
       }
       if (showInChat) {
-        const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
+        const html = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/damage-message.hbs', contentData);
         const transfer = JSON.stringify(
           {
             type: 'damageItem',
@@ -1249,20 +1336,22 @@ export default class TwodsixItem extends Item {
    * A method for drawing a measured template for an item action - accounting for consumables
    * having attachements with AOE's
    */
-  private async drawItemTemplate():Promise<void> {
+  private async drawItemTemplate():Promise<boolean> {
+    let returnValue = false;
     const magazine:TwodsixItem | undefined = this.system.useConsumableForAttack ? this.actor?.items.get(this.system.useConsumableForAttack) : undefined;
     const itemForAOE:TwodsixItem = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
     if ( itemForAOE.system.target?.type !== "none" ) {
+      returnValue = true;
       try {
-        await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
-        //const templates = await (ItemTemplate.fromItem(this))?.drawPreview();
-        //if (templates?.length > 0) {
-        //  ItemTemplate.targetTokensInTemplate(templates[0]);
-        //}
+        const template:ItemTemplate = await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
+        if (template && game.settings.get('twodsix', 'autoTargetAOE')) {
+          targetTokensInTemplate(template);
+        }
       } catch /*(err)*/ {
         ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
       }
     }
+    return returnValue;
   }
 
   /**
@@ -1284,6 +1373,60 @@ export default class TwodsixItem extends Item {
       }
     }
     return returnValue;
+  }
+
+  /**
+   * Calculates the range modifier and range label for a weapon attack.
+   * @param {Token[]} controlledTokens - The tokens controlled by the actor performing the attack.
+   * @param {Token[]} targetTokens - The tokens targeted by the attack.
+   * @param {string} weaponType - The type of weapon being used (e.g., rifle, pistol).
+   * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
+   * @param {object} tmpSettings - Temporary settings for the attack roll.
+   * @returns {object} An object containing the range modifier and range label.
+   * @property {number} rangeModifier - The calculated range modifier for the attack.
+   * @property {string} rangeLabel - The label describing the range of the attack.
+   */
+  private calculateRangeAndLabel(
+    controlledTokens: Token[],
+    targetTokens: Token[],
+    weaponType: string,
+    isAutoFull: boolean,
+    tmpSettings: any
+  ): { rangeModifier: number; rangeLabel: string } {
+    let rangeLabel = "";
+    let rangeModifier = 0;
+    const isQualitativeBands = ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
+    const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
+
+    if (targetTokens.length === 1) {
+      const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
+      const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
+      rangeModifier = rangeData.rangeModifier;
+
+      if (rangeData.rollType !== tmpSettings.rollType) {
+        Object.assign(tmpSettings, { rollType: tmpSettings.rollType === 'Normal' ? rangeData.rollType : 'Normal' });
+      }
+
+      if (isQualitativeBands) {
+        rangeLabel = this.system.rangeBand === 'none'
+          ? game.i18n.localize(localizePrefix + "none")
+          : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
+      } else {
+        const ammoMultiplier = this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
+        const effectiveRange = (<string>this.system.range)
+          .split("/")
+          .map((str) => (parseFloat(str) * ammoMultiplier).toLocaleString(game.i18n.lang, { maximumFractionDigits: 1 }))
+          .join('/')
+          .replace('NaN', game.i18n.localize((this.isMeleeWeapon() ? "TWODSIX.DamageType.Melee": "TWODSIX.Ship.Unknown")));
+        rangeLabel = `${effectiveRange} @ ${targetRange.toLocaleString(game.i18n.lang, { maximumFractionDigits: 1 })}${canvas.scene.grid.units}`;
+      }
+    } else if (targetTokens.length === 0) {
+      rangeLabel = isQualitativeBands && this.system.rangeBand === 'none'
+        ? game.i18n.localize(localizePrefix + "none")
+        : game.i18n.localize("TWODSIX.Ship.Unknown");
+    }
+
+    return { rangeModifier, rangeLabel };
   }
 }
 

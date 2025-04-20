@@ -215,7 +215,7 @@ class DamageDialogHandler {
   }
 
   public setHtml(html: HTMLElement): void {
-    this.html = html;
+    this.html = html.element;
     this.registerEventListeners();
     this.refresh();
   }
@@ -246,8 +246,12 @@ class DamageDialogHandler {
         chrHtml.querySelector(`.original-current`).innerHTML = stat.original.current.toString();
         chrHtml.querySelector(`.result-value`).innerHTML = stat.current().toString();
         //chrHtml.querySelector(`.total-damage`).innerHTML = stat.totalDamage().toString();
-        chrHtml.querySelector(`.current-mod`).innerHTML = stat.original.mod.toString();
-        chrHtml.querySelector(`.mod`).innerHTML = stat.mod().toString();
+        if (chrHtml.querySelector(`.current-mod`)) {
+          chrHtml.querySelector(`.current-mod`).innerHTML = stat.original.mod.toString();
+        }
+        if (chrHtml.querySelector(`.mod`)) {
+          chrHtml.querySelector(`.mod`).innerHTML = stat.mod().toString();
+        }
       }
     }
 
@@ -334,12 +338,12 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
     return;
   }
 
-  const template = 'systems/twodsix/templates/actors/damage-dialog.html';
+  const template = 'systems/twodsix/templates/actors/damage-dialog.hbs';
   const canOnlyBeBlocked = canBeBlocked && !canBeParried;
   const parryArmor = canBeParried || canBeBlocked ? await getParryValue(actor, canOnlyBeBlocked) : 0;
   const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor, canOnlyBeBlocked);
   const damageDialogHandler = new DamageDialogHandler(stats);
-  const renderedHtml = await renderTemplate(template, {stats: damageDialogHandler.stats});
+  const renderedHtml = await foundry.applications.handlebars.renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);
 
   await foundry.applications.api.DialogV2.wait({

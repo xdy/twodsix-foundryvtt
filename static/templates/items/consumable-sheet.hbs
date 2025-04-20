@@ -1,0 +1,93 @@
+<section class="{{cssClass}} item-class" autocomplete="off">
+  {{> "systems/twodsix/templates/items/parts/common-parts.hbs"}}
+
+  <div class="item-data">
+    <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Subtype"}}</label>
+      <select name="system.subtype">
+        {{selectOptions config.CONSUMABLES selected = system.subtype localize = true}}
+      </select>
+  </div>
+
+  {{#iff system.parentType "!==" "consumable"}}
+  <div class="item-data">
+    <label class="resource-label">{{localize "TWODSIX.Items.Equipment.isAttachment"}}</label>
+    <input type="checkbox" class="checkbox" name="system.isAttachment" {{checked system.isAttachment}} data-dtype="Boolean" />
+  </div>
+  {{/iff}}
+  <div class="item-data">
+    <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
+    <input class="form-input" type="number" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+  </div>
+
+  {{#iff system.subtype "===" "software"}}
+  <div class="item-data">
+    <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
+    <input class="form-input" type="number" name="system.bandwidth" value="{{system.bandwidth}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-data">
+    <label class="resource-label">{{localize "TWODSIX.Items.Consumable.SoftwareActive"}}</label>
+    <input type="checkbox" class="checkbox" name="system.softwareActive" {{checked system.softwareActive}} data-dtype="Boolean" />
+  </div>
+  {{/iff}}
+
+  {{#if system.canProcess}}
+  <div class="item-data">
+    <label class="resource-label">{{localize "TWODSIX.Items.Computer.ProcessingPower"}}</label>
+    <input class="form-input" type="number" name="system.bandwidth" value="{{system.bandwidth}}" data-dtype="Number"/>
+  </div>
+  {{/if}}
+
+  {{#unless system.isAttachment}}
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.ArmorPiercing"}}</label>
+      <input class="form-input" type="text" name="system.armorPiercing" value="{{system.armorPiercing}}" data-dtype="String"/>
+    </div>
+
+    {{#unless settings.ShowRangeBandAndHideRange}}
+      <div class="item-data">
+        <label class="resource-label">{{localize "TWODSIX.Items.Consumable.AmmoRangeModifier"}}</label>
+        <input class="form-input" type="text" name="system.ammoRangeModifier" value="{{numberFormat system.ammoRangeModifier decimals=0 sign=true}}" data-dtype="Number"/>
+      </div>
+    {{/unless}}
+
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Consumable.Count"}}</label>
+        <div>
+          <input class="form-consumable-count" name="system.currentCount" type="number" value="{{system.currentCount}}" data-dtype="Number"/>
+          /
+          <input class="form-consumable-count" name="system.max" type="number" value="{{system.max}}" data-dtype="Number"/>
+        </div>
+    </div>
+  {{/unless}}
+
+  <div class="item-data">
+    <label class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
+    <input class="form-input" type="number" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+  </div>
+
+  {{#unless system.isAttachment}}
+    <div class="item-data">
+      <label class="resource-label">{{localize "TWODSIX.Items.Equipment.BonusDamage"}}</label>
+      <input class="form-input" type="text" name="system.bonusDamage" value="{{system.bonusDamage}}" data-dtype="String"/>
+    </div>
+
+    {{#if settings.ShowDamageType}}
+      <div class="item-damageType">
+        <label class="resource-label">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
+        <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType localize=true}}</select>
+      </div>
+    {{/if}}
+  {{/unless}}
+
+  {{> "systems/twodsix/templates/items/parts/aoe-parts.hbs"}}
+
+  <div class="item-descr">
+    <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+    <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+      {{{enrichedDescription}}}
+    </prose-mirror>
+  </div>
+  {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+  {{> "systems/twodsix/templates/items/parts/consumables-part.hbs"}}
+</section>

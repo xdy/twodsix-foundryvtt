@@ -46,7 +46,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/ship-sheet.html",
+      template: "systems/twodsix/templates/actors/ship-sheet.hbs",
       scrollable: ["", ".ship-tabs-info", ".ship-positions", ".ship-crew", ".ship-component", ".ship-storage", ".storage-wrapper", ".finances", ".ship-notes", ".overlap-header"]
     }
   };
@@ -112,10 +112,11 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     });
 
     if (context.settings.useProseMirror) {
+      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
       context.richText = {
-        cargo: await TextEditor.enrichHTML(this.actor.system.cargo, {secrets: this.document.isOwner}),
-        finances: await TextEditor.enrichHTML(this.actor.system.finances, {secrets: this.document.isOwner}),
-        notes: await TextEditor.enrichHTML(this.actor.system.notes, {secrets: this.document.isOwner})
+        cargo: await TextEditorImp.enrichHTML(this.actor.system.cargo, {secrets: this.document.isOwner}),
+        finances: await TextEditorImp.enrichHTML(this.actor.system.finances, {secrets: this.document.isOwner}),
+        notes: await TextEditorImp.enrichHTML(this.actor.system.notes, {secrets: this.document.isOwner})
       };
     }
 
@@ -124,10 +125,6 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
   async _onRender(context:Context, options:any): void {
     await super._onRender(context, options);
-    // Everything below here is only needed if the sheet is editable
-    if (!context.editable) {
-      return;
-    }
 
     //Set special class for FVTT window-content section so that it overlaps with header
     if (this.options.sheetType === 'TwodsixShipSheet') {

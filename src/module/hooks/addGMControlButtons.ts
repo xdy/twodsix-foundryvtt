@@ -94,7 +94,7 @@ function getAllSkills(): Promise<object> {
 }
 
 async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
-  const template = 'systems/twodsix/templates/chat/request-roll-dialog.html';
+  const template = 'systems/twodsix/templates/chat/request-roll-dialog.hbs';
   const tokenNames = {};
   for (const tokenId in tokenData) {
     tokenNames[tokenId] = tokenData[tokenId].token.name ?? tokenData[tokenId].token.actor.name;
@@ -122,7 +122,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
       icon: "fa-solid fa-message",
       default: true,
       callback: (event, button, dialog) => {
-        const formElements = dialog.querySelector(".standard-form").elements;
+        const formElements = dialog.element.querySelector(".standard-form").elements;
         returnValue.selectedTokens = formElements["selectedTokens"] ? Array.from(formElements["selectedTokens"].selectedOptions)?.map((({ value }) => value)) : [];
         returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][formElements["difficulty"]?.value];
         returnValue.rollType = formElements["rollType"]?.value;
@@ -143,7 +143,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
     }
   ];
 
-  const html = await renderTemplate(template, dialogData);
+  const html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
   return new Promise<void>((resolve) => {
     new foundry.applications.api.DialogV2({
       window: {title: "TWODSIX.Chat.Roll.RequestRoll", icon: "fa-solid fa-dice"},

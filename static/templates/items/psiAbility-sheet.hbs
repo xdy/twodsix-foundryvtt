@@ -1,0 +1,83 @@
+<section class="{{cssClass}} item-class" autocomplete="off">
+  {{> "systems/twodsix/templates/items/parts/image-name.hbs"}}
+  {{> "systems/twodsix/templates/items/parts/item-type.hbs"}}
+  {{#if owner}}
+    {{#if settings.psiTalentsRequireRoll}}
+    <div class="item-skill">
+      <label for="system.skill" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssignSkill"}}:</label>
+        <select class="form-input" name="system.skill">
+          {{selectOptions skillsList selected=system.skill valueAttr="id" labelAttr="name"}}
+        </select>
+    </div>
+    {{/if}}
+  {{else}}
+    <div class="item-skill">
+      <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
+      <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />
+    </div>
+  {{/if}}
+  {{#if settings.psiTalentsRequireRoll}}
+  <div class="item-rollDifficulty">
+    <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
+      <select class="form-input" name="system.difficulty">
+        {{selectOptions settings.difficultyList selected=system.difficulty}}
+      </select>
+  </div>
+
+  <div class="item-skillModifier">
+    <label for="system.skillModifier"  class="resource-label">{{localize "TWODSIX.Items.Psionics.Level"}}</label>
+    <input class="form-input" type="text" name="system.skillModifier" value="{{system.skillModifier}}"
+            data-dtype="Number"/>
+  </div>
+  {{/if}}
+  {{#if settings.ShowRangeBandAndHideRange}}
+    <div class="item-range">
+      <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
+      <select name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
+    </div>
+    {{#iff system.rangeBand '===' 'custom'}}
+      {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-customCTModifier.hbs"}}
+    {{/iff}}
+  {{else}}
+    <div class="item-range">
+      <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
+      <input class="form-input" type="text" name="system.range" value="{{system.range}}">
+    </div>
+  {{/if}}
+
+  <div class="item-duration">
+    <label class="resource-label">{{localize "TWODSIX.Items.Spells.Duration"}}</label>
+    <input class="form-input" type="text" name="system.duration" value="{{system.duration}}">
+  </div>
+
+  <div class="item-lvl">
+    <label for="system.psiCost" class="resource-label">{{localize "TWODSIX.Items.Psionics.PsiCost"}}</label>
+    <input class="form-input" type="number" name="system.psiCost" value="{{system.psiCost}}" min="0" step="1"/>
+  </div>
+
+  <div class="item-damage">
+    <label class="resource-label" for="system.damage">{{localize "TWODSIX.Items.Weapon.Damage"}}</label>
+    <input class="form-input" type="text" name="system.damage" value="{{system.damage}}">
+  </div>
+  {{#if settings.ShowDamageType}}
+    <div class="item-damageType">
+      <label class="resource-label" for="system.damageType">{{localize "TWODSIX.Items.Weapon.damageType"}}</label>
+      <select name="system.damageType">{{selectOptions settings.damageTypes selected=system.damageType localize=true}}</select>
+    </div>
+  {{/if}}
+  {{> "systems/twodsix/templates/items/parts/aoe-parts.hbs"}}
+
+  <div class="item-short">
+    <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+    <input class="form-input" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
+  </div>
+
+  <div class="item-descr">
+    <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+    <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+      {{{enrichedDescription}}}
+    </prose-mirror>
+  </div>
+
+  {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+</section>

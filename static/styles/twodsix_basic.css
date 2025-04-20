@@ -786,6 +786,10 @@ span.bgi-charEdit {
   border: none;
 }
 
+.bgi-armorType select {
+  width: 15ch;
+}
+
 .bgi-armorDM input {
   position: relative;
   margin-bottom: -0.5em;
@@ -2695,6 +2699,7 @@ img.item-img {
 .consumable-row .refill-button {
   width: 10ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   border-radius: 10px;
   line-height: normal;
   cursor: pointer;
@@ -2718,6 +2723,7 @@ img.item-img {
 .combined-buttons button {
   width: 2ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   margin: 0px;
   padding: 0;
   line-height: normal;
@@ -3711,3 +3717,19 @@ textarea {
 .standard-form .form-footer > button {
   min-width: 100px;
 }
+
+.application .controls-dropdown {
+  z-index: 99;
+}
+
+/*.prosemirror {
+  position: relative;
+
+  button.toggle {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 32px;
+    width: 32px;
+  }
+}*/

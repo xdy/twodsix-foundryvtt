@@ -38,7 +38,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/items/ship_position-sheet.html",
+      template: "systems/twodsix/templates/items/ship_position-sheet.hbs",
       scrollable: [".ship-positions-list"]
     }
   };

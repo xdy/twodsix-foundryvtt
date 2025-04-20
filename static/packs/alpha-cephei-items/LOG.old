@@ -1,17 +1,7 @@
-2024/11/19-08:51:16.509812 7000103aa000 Recovering log #61
-2024/11/19-08:51:16.510441 7000103aa000 Level-0 table #63: started
-2024/11/19-08:51:16.513095 7000103aa000 Level-0 table #63: 99694 bytes OK
-2024/11/19-08:51:16.514886 7000103aa000 Delete type=0 #61
-2024/11/19-08:51:16.515192 7000103aa000 Delete type=3 #60
-2024/11/19-09:21:39.952257 700010c30000 Level-0 table #66: started
-2024/11/19-09:21:39.955099 700010c30000 Level-0 table #66: 164425 bytes OK
-2024/11/19-09:21:39.955584 700010c30000 Delete type=0 #64
-2024/11/19-09:21:39.960796 700010c30000 Manual compaction at level-0 from '!folders!3JNYaeiiyV2bfLVW' @ 72057594037927935 : 1 .. '!items.effects!sARNM9jBfsjzkXvr.yh20LV8aj6p0tI1C' @ 0 : 0; will stop at '!items.effects!sARNM9jBfsjzkXvr.yh20LV8aj6p0tI1C' @ 1207 : 1
-2024/11/19-09:21:39.960813 700010c30000 Compacting 2@0 + 1@1 files
-2024/11/19-09:21:39.963597 700010c30000 Generated table #67@0: 150 keys, 101109 bytes
-2024/11/19-09:21:39.963622 700010c30000 Compacted 2@0 + 1@1 files => 101109 bytes
-2024/11/19-09:21:39.963760 700010c30000 compacted to: files[ 0 1 0 0 0 0 0 ]
-2024/11/19-09:21:39.963861 700010c30000 Delete type=2 #63
-2024/11/19-09:21:39.964155 700010c30000 Delete type=2 #66
-2024/11/19-09:21:39.964442 700010c30000 Delete type=2 #53
-2024/11/19-09:21:39.970093 700010c30000 Manual compaction at level-0 from '!items.effects!sARNM9jBfsjzkXvr.yh20LV8aj6p0tI1C' @ 1207 : 1 .. '!items.effects!sARNM9jBfsjzkXvr.yh20LV8aj6p0tI1C' @ 0 : 0; will stop at (end)
+2024/11/19-09:22:06.572699 70000fba7000 Recovering log #65
+2024/11/19-09:22:06.574376 70000fba7000 Delete type=3 #62
+2024/11/19-09:22:06.574649 70000fba7000 Delete type=0 #65
+2024/11/19-09:26:06.460524 700010c30000 Level-0 table #71: started
+2024/11/19-09:26:06.460750 700010c30000 Level-0 table #71: 0 bytes OK
+2024/11/19-09:26:06.461331 700010c30000 Delete type=0 #69
+2024/11/19-09:26:06.464958 700010c30000 Manual compaction at level-0 from '!folders!3JNYaeiiyV2bfLVW' @ 72057594037927935 : 1 .. '!items.effects!sARNM9jBfsjzkXvr.yh20LV8aj6p0tI1C' @ 0 : 0; will stop at (end)

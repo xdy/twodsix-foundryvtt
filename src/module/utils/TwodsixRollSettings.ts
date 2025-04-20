@@ -12,6 +12,7 @@ import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
 import RollDialog, { _getTranslatedCharacteristicList } from "./RollDialog";
 
 export class TwodsixRollSettings {
+  bonusDamage:string;
   difficulty:{ mod:number, target:number };
   //diceModifier:number;
   shouldRoll:boolean;
@@ -47,7 +48,7 @@ export class TwodsixRollSettings {
     const tokenUUID:string = settings?.flags?.tokenUUID ?? (<Actor>sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
     const actorUUID:string = settings?.flags?.actorUUID ?? (<Actor>sourceActor)?.uuid ?? "";
     let rollClass = "";
-    const bonusDamage:string = settings?.bonusDamage ?? "";
+    this.bonusDamage = settings?.bonusDamage ?? "";
 
     let woundsValue = 0;
     let encumberedValue = 0;
@@ -58,35 +59,41 @@ export class TwodsixRollSettings {
     } else if (anItem && !selectedActor) {
       selectedActor = <TwodsixActor>anItem.actor;
     }
+
     if (selectedActor) {
-      //Determine active effects modifiers
-      if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-        woundsValue = (<TwodsixActor>selectedActor).system.conditions.woundedEffect ?? 0;
-      }
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
-        const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-        encumberedValue = ["strength", "dexterity", "endurance"].includes(fullCharLabel) ? (<TwodsixActor>selectedActor).system.conditions.encumberedEffect ?? 0 : 0;
-      }
-      //Check for active effect override of skill
-      if (aSkill) {
-        skillValue = selectedActor.system.skills[simplifySkillName(aSkill.name)] ?? aSkill.system.value; //also need to ?? default? CONFIG.Item.dataModels.skills.schema.getInitialValue().value
+      if (selectedActor.type === 'ship') {
+        displayLabel = characteristic;
+      } else {
+        //Determine active effects modifiers
+        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+          woundsValue = (<TwodsixActor>selectedActor).system.conditions.woundedEffect ?? 0;
+        }
+        if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+          const fullCharLabel = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+          encumberedValue = ["strength", "dexterity", "endurance"].includes(fullCharLabel) ? (<TwodsixActor>selectedActor).system.conditions.encumberedEffect ?? 0 : 0;
+        }
+        //Check for active effect override of skill
+        if (aSkill) {
+          skillValue = selectedActor.system.skills[simplifySkillName(aSkill.name)] ?? aSkill.system.value; //also need to ?? default? CONFIG.Item.dataModels.skills.schema.getInitialValue().value
+        }
+
+        //Check for "Untrained" value and use if better to account for JOAT
+        const joat = (selectedActor.getUntrainedSkill()?.system)?.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+        if (joat > skillValue) {
+          skillValue = joat;
+          this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
+          //aSkill = selectedActor.getUntrainedSkill();
+        } else {
+          //skillValue = skill?.value;
+          this.skillName = aSkill?.name ?? "?";
+        }
+        // check for missing display label
+        if (!settings?.displayLabel) {
+          const fullCharLabel:string = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+          displayLabel = selectedActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
+        }
       }
 
-      //Check for "Untrained" value and use if better to account for JOAT
-      const joat = (selectedActor.getUntrainedSkill()?.system)?.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
-      if (joat > skillValue) {
-        skillValue = joat;
-        this.skillName = game.i18n.localize("TWODSIX.Actor.Skills.JOAT");
-        //aSkill = selectedActor.getUntrainedSkill();
-      } else {
-        //skillValue = skill?.value;
-        this.skillName = aSkill?.name ?? "?";
-      }
-      // check for missing display label
-      if (!settings?.displayLabel) {
-        const fullCharLabel:string = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
-        displayLabel = selectedActor.system["characteristics"][fullCharLabel]?.displayShortLabel ?? "";
-      }
       //set Active Animation rollClass flag
       if (anItem) {
         if (anItem.type === "weapon") {
@@ -112,6 +119,7 @@ export class TwodsixRollSettings {
         rollClass = "Unknown";
       }
     }
+
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
     this.rollType = settings?.rollType ?? (aSkill?.system)?.rolltype ??  "Normal";
@@ -155,7 +163,7 @@ export class TwodsixRollSettings {
       tokenUUID: tokenUUID,
       itemUUID: itemUUID,
       actorUUID: actorUUID,
-      bonusDamage: bonusDamage
+      bonusDamage: this.bonusDamage
     };
     //console.log("Modifiers: ", this.rollModifiers);
   }
@@ -172,7 +180,7 @@ export class TwodsixRollSettings {
         twodsixRollSettings.itemName = item.name ?? "Unknown Item";
       } else if (skill) {
         title = twodsixRollSettings.skillName || "";
-        //check for characterisitc not on actor characteristic list
+        //check for characteristic not on actor characteristic list
         if ( _getTranslatedCharacteristicList(<TwodsixActor>skill.actor)[(<string>twodsixRollSettings.rollModifiers.characteristic)] === undefined) {
           twodsixRollSettings.rollModifiers.characteristic = "NONE";
         }

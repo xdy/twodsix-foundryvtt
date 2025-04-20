@@ -115,7 +115,7 @@ Hooks.once("ready", async function () {
   }
 
   //Check default actor sheet types
-  checkDefaultActorSheetTypes();
+  //checkDefaultActorSheetTypes();
 });
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize
@@ -150,7 +150,7 @@ async function toggleFirstActiveEffect(actor:TwodsixActor, isToken: boolean): Pr
  * @function
  * @async
  */
-async function checkDefaultActorSheetTypes(): Promise<void> {
+/*async function checkDefaultActorSheetTypes(): Promise<void> {
   const defaultSheets = foundry.utils.duplicate(game.settings.get("core", "sheetClasses"));
   const defaultActorSheets = defaultSheets?.Actor;
   let changed = false;
@@ -173,4 +173,4 @@ async function checkDefaultActorSheetTypes(): Promise<void> {
     const newSettings = foundry.utils.mergeObject(defaultSheets, {Actor: defaultActorSheets});
     await game.settings.set('core', 'sheetClasses', newSettings);
   }
-}
+}*/

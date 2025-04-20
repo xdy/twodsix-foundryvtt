@@ -1,24 +1,8 @@
-2024/11/19-08:51:16.222110 700010bad000 Recovering log #14
-2024/11/19-08:51:16.222367 700010bad000 Level-0 table #16: started
-2024/11/19-08:51:16.248827 700010bad000 Level-0 table #16: 36492 bytes OK
-2024/11/19-08:51:16.250973 700010bad000 Delete type=0 #14
-2024/11/19-08:51:16.251286 700010bad000 Delete type=3 #13
-2024/11/19-09:21:39.727156 700010c30000 Level-0 table #19: started
-2024/11/19-09:21:39.728979 700010c30000 Level-0 table #19: 67124 bytes OK
-2024/11/19-09:21:39.729497 700010c30000 Delete type=0 #17
-2024/11/19-09:21:39.729855 700010c30000 Manual compaction at level-0 from '!actors!3Zg60Rn8t0uKH3n1' @ 72057594037927935 : 1 .. '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 0 : 0; will stop at '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 129 : 1
-2024/11/19-09:21:39.729867 700010c30000 Compacting 2@0 + 0@1 files
-2024/11/19-09:21:39.731417 700010c30000 Generated table #20@0: 44 keys, 36492 bytes
-2024/11/19-09:21:39.731439 700010c30000 Compacted 2@0 + 0@1 files => 36492 bytes
-2024/11/19-09:21:39.731563 700010c30000 compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/11/19-09:21:39.731657 700010c30000 Delete type=2 #16
-2024/11/19-09:21:39.731909 700010c30000 Delete type=2 #19
-2024/11/19-09:21:39.742668 700010c30000 Manual compaction at level-0 from '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 129 : 1 .. '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 0 : 0; will stop at (end)
-2024/11/19-09:21:39.749978 700010c30000 Manual compaction at level-1 from '!actors!3Zg60Rn8t0uKH3n1' @ 72057594037927935 : 1 .. '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 0 : 0; will stop at '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 217 : 1
-2024/11/19-09:21:39.749996 700010c30000 Compacting 1@1 + 1@2 files
-2024/11/19-09:21:39.751358 700010c30000 Generated table #21@1: 44 keys, 36492 bytes
-2024/11/19-09:21:39.751376 700010c30000 Compacted 1@1 + 1@2 files => 36492 bytes
-2024/11/19-09:21:39.751487 700010c30000 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/11/19-09:21:39.751587 700010c30000 Delete type=2 #10
-2024/11/19-09:21:39.751820 700010c30000 Delete type=2 #20
-2024/11/19-09:21:39.752053 700010c30000 Manual compaction at level-1 from '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 217 : 1 .. '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 0 : 0; will stop at (end)
+2024/11/19-09:22:06.400877 70000f3a4000 Recovering log #18
+2024/11/19-09:22:06.402061 70000f3a4000 Delete type=3 #15
+2024/11/19-09:22:06.402243 70000f3a4000 Delete type=0 #18
+2024/11/19-09:26:06.442176 700010c30000 Level-0 table #25: started
+2024/11/19-09:26:06.442293 700010c30000 Level-0 table #25: 0 bytes OK
+2024/11/19-09:26:06.442649 700010c30000 Delete type=0 #23
+2024/11/19-09:26:06.444967 700010c30000 Manual compaction at level-0 from '!actors!3Zg60Rn8t0uKH3n1' @ 72057594037927935 : 1 .. '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 0 : 0; will stop at (end)
+2024/11/19-09:26:06.445067 700010c30000 Manual compaction at level-1 from '!actors!3Zg60Rn8t0uKH3n1' @ 72057594037927935 : 1 .. '!actors.items!tzFKX3knn9ABZB5P.fQ0cVTnNsETRLqIq' @ 0 : 0; will stop at (end)

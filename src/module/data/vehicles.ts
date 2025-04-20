@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
+import { makeCharacteristicField } from "./character-base";
 import { makeResourceField, migrateStringToStringArray } from "./commonSchemaUtils";
 
 const fields = foundry.data.fields;
@@ -97,6 +98,7 @@ export class ShipData extends TwodsixVehicleBaseData {
       bandwidth: makeResourceField(0, 0)
     });
     schema.combatPosition = new fields.NumberField({ ...requiredInteger, initial: 0 });
+    schema.characteristics = new fields.SchemaField({morale: makeCharacteristicField("morale", "MOR")});
     return schema;
   }
 }

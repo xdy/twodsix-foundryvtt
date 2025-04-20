@@ -1,0 +1,16 @@
+{{#if item.system.attachmentData}}
+  <details class="attachment-list" {{#if item.showAttachmentsList}}open{{/if}} data-action="toggleAttachmentsList" data-item-id="{{item.id}}">
+    <summary>{{localize "TWODSIX.Actor.Items.Attachments"}}</summary>
+    {{#each item.system.attachmentData as |attachmentData|}}
+    {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.hbs" attachmentData consumableId=attachmentData._id parentId= ../item.id parentItem= ../item}}
+    {{/each}}
+  </details>
+{{/if}}
+{{#if item.system.consumableData}}
+  <details class="consumable-list" {{#if item.showConsumablesList}}open{{/if}} data-action="toggleConsumablesList" data-item-id="{{item.id}}">
+    <summary>{{localize "TWODSIX.Items.Weapon.Consumables"}}</summary>
+    {{#each item.system.consumableData as |consumableData|}}
+    {{> "systems/twodsix/templates/actors/parts/actor/actor-consumable.hbs" consumableData consumableId=consumableData._id isSelected=../system.useConsumableForAttack parentId= ../item.id}}
+    {{/each}}
+  </details>
+{{/if}}

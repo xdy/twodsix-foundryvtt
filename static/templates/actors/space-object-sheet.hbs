@@ -1,0 +1,70 @@
+<section class="{{cssClass}} flexcol" autocomplete="off">
+  <div class="space-object-content-container">
+    <div class="space-object-name-photo">
+      <div class="space-object-photo">
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}' data-action="editImage"/>
+      </div>
+      <div class="space-object-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
+      </div>
+    </div>
+    <div class="space-object-stats">
+      <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Information"}}</span>
+      <div class="flexcol" style="padding: 1ch; gap: 1ch;">
+        <!-- TL -->
+        <div class="flexrow space-object-data">
+          <label for="system.techLevel" class="flexlabel">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
+          <input class="form-input object-tl" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
+        </div>
+        <!-- Count -->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.Items.Consumable.Count"}}</span>
+            <div>
+              <input class="object-count-value" style="width: calc(50% - 8px);" name="system.count.value" type="number" value="{{system.count.value}}" data-dtype="Number" step="1" min="0"/>
+              /
+              <input class="object-count-max" style="width: calc(50% - 8px);" name="system.count.max" type="number" value="{{system.count.max}}" data-dtype="Number" step="1" min="0"/>
+            </div>
+        </div>
+        <!--Features-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.Features"}}</span>
+          <input class="form-input object-features" type="text" name="system.features" value="{{system.features}}"/>
+        </div>
+        <!--Thrust-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.Thrust"}}</span>
+          <input class="form-input object-thrust" type="number" name="system.thrust" value="{{system.thrust}}"/>
+          {{localize "TWODSIX.Ship.Gs"}}
+        </div>
+        <!--Rounds Active-->
+        <div class="flexrow space-object-data">
+          <span class="flexlabel">{{localize "TWODSIX.SpaceObject.RoundsActive"}}</span>
+          <input class="form-input object-rounds" type="number" name="system.roundsActive" value="{{system.roundsActive}}" step="1" min="0"/>
+          {{localize "TWODSIX.SpaceObject.rounds"}}
+        </div>
+        <!-- Movement -->
+        <div class="flexrow space-object-data" data-tooltip='{{localize "TWODSIX.Actor.Movement.MovementRate"}}'>
+          <span class="flexlabel"><i class="fa-solid fa-rocket"></i>:</span>
+          <input class="object-movement" type="number" name="system.movement.walk" value="{{system.movement.walk}}"/>
+          <select name="system.movement.units">
+            {{selectOptions config.MovementUnits selected=system.movement.units localize=true inverted=false}}
+          </select>
+        </div>
+        <!--Damage-->
+        <div class="flexrow space-object-data">
+          <span class="roll-damage orange flexlabel object-damage" data-action="rollSODamage">{{localize "TWODSIX.SpaceObject.Damage"}}</span><input type="text" name="system.damage" value="{{system.damage}}"/>
+        </div>
+        <!--Reference-->
+        {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+      </div>
+    </div>
+    <!--Notes-->
+    <div class="space-object-notes">
+      <div class="space-object-notes-container">
+        <span class="item-title-vehicle">{{localize "TWODSIX.SpaceObject.Notes"}}</span>
+        {{#unless limited}}
+         <textarea data-edit="system.notes" name="system.notes" type="text" value="system.notes">{{~system.notes~}}</textarea>
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+</section>

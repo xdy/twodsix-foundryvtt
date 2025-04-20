@@ -12,7 +12,8 @@ const CHARACTERISTICS = Object.freeze({
   "lifeblood": "LFB",
   "alternative1": "ALT1",
   "alternative2": "ALT2",
-  "alternative3": "ALT3"
+  "alternative3": "ALT3",
+  "morale": "MOR"
 });
 
 /**

@@ -1,0 +1,56 @@
+
+{{> "systems/twodsix/templates/items/parts/image-name.hbs"}}
+
+{{!-- Item Sheet Navigation --}}
+{{> "systems/twodsix/templates/misc/navigation-tabs.hbs"}}
+
+{{!-- Item Sheet Body --}}
+<section class="sheet-body auto-height">
+  <section class="tab {{tabs.description.cssClass}}" data-group="primary" data-tab="description">
+    {{> "systems/twodsix/templates/items/parts/item-type.hbs"}}
+    <div class="item-tl">
+      <label for="system.techLevel" class="resource-label">{{localize "TWODSIX.Items.Equipment.TL"}}</label>
+      <input class="form-input" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
+    </div>
+
+    <div class="item-price">
+      <label for="system.price" class="resource-label">{{localize "TWODSIX.Items.Equipment.Price"}}</label>
+      <input class="form-input" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
+    </div>
+    {{#if owner}}
+      {{#iff owner.type "!==" "ship"}}
+      <div class="item-type">
+        <label for="system.equipped" class="resource-label">{{localize "TWODSIX.Actor.Items.EquippedLocation"}}:</label>
+          <select class="form-input" name="system.equipped" >
+            {{selectOptions config.EQUIPPED_STATES selected=system.equipped localize=true inverted=false}}
+          </select>
+      </div>
+      {{/iff}}
+    {{/if}}
+
+    {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-description.hbs"}}
+
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+        {{{enrichedDescription}}}
+      </prose-mirror>
+    </div>
+    {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+  </section>
+
+  <section class="tab {{tabs.modifiers.cssClass}}" data-group="primary" data-tab="modifiers">
+    {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-modifiers.hbs"}}
+    {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.hbs"}}{{/if}}
+  </section>
+
+  <section class="tab {{tabs.attack.cssClass}}" data-group="primary" data-tab="attack">
+    {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-attack.hbs"}}
+  </section>
+
+  <section class="tab {{tabs.magazine.cssClass}}" data-group="primary" data-tab="magazine">
+    {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-magazine.hbs"}}
+    {{> "systems/twodsix/templates/items/parts/consumables-part.hbs"}}
+    {{> "systems/twodsix/templates/items/parts/useConsumableForRoll.hbs"}}
+  </section>
+</section>

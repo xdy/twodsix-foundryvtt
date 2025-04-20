@@ -327,7 +327,7 @@ async function skillDialog(skillList: object): Promise<string|boolean> {
       icon: "fa-solid fa-list",
       default: true,
       callback: (event, button, dialog) => {
-        returnValue = dialog.querySelector("select[name='item-select']").value;
+        returnValue = dialog.element.querySelector("select[name='item-select']").value;
       }
     },
     {

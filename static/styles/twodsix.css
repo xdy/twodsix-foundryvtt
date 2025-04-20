@@ -1170,6 +1170,10 @@ span.bgi-charEdit {
   border: none;
 }
 
+.bgi-armorType select {
+  width: 15ch;
+}
+
 .bgi-armorType input {
   position: relative;
   margin-bottom: -0.5em;
@@ -1259,6 +1263,17 @@ span.bgi-charEdit {
   width: 8ch;
   /* position: relative; */
   /* margin-bottom: 15px; */
+}
+
+.morale {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: auto;
+  margin-top: 2ch;
+  gap: 2ch;
 }
 
 .stat-table {
@@ -1458,6 +1473,19 @@ span.stat-damage-table input {
   padding: 0;
 }
 
+span.stat-damage-ship input, span.stat-ability-ship input, span.stat-modifier-ship input {
+  border: solid;
+  border-width: thin;
+  border-radius: 15%;
+  /*width: 4ch;*/
+  height: 3.5ch;
+  border-color: var(--s2d6-default-color);
+  padding: 0;
+}
+
+span.stat-damage-ship input {
+  color:var(--s2d6-damage-stat-color);
+}
 
 span.stat-damage input, span.special-damage input {
   color: var(--s2d6-damage-stat-color);
@@ -2612,7 +2640,7 @@ span.total-output {
   color: var(--s2d6-damage-red);
 }
 
-.orange {
+.orange, .orange input, input.item-value-edit.orange {
   color: var(--s2d6-damage-orange);
 }
 
@@ -2670,6 +2698,7 @@ a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: var(--s2d6-default-color);
 }
 
 a.ship-crew-tab:hover, a.ship-positions-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-component-tab:hover, a.ship-notes-tab:hover {
@@ -3202,6 +3231,7 @@ select.form-input, input.form-input, span.form-input {
 .consumable-row .refill-button {
   width: 10ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   border-radius: 1ch;
   line-height: normal;
   cursor: pointer;
@@ -3225,6 +3255,7 @@ select.form-input, input.form-input, span.form-input {
 .combined-buttons button {
   width: 2ch;
   height: 2.5ch;
+  min-height: 2.5ch;
   margin: 0;
   padding: 0;
   line-height: normal;
@@ -4565,8 +4596,8 @@ table.ship-action-table, table.vehicle-stats-table {
   }
 }
 .transparent-header {
-  margin: 0.5% 4% 0 5%;
-  --button-size: 3ch;
+  margin: 0.7% 6% 0 5%;
+  --button-size: 5ch;
   border: none;
   background-color: var(--s2d6-background-transparent);
 }
@@ -4615,35 +4646,69 @@ header.folder-header i {
 }
 
 h1.divider::before,
-  h2.divider::before,
-  h3.divider::before,
-  h4.divider::before {
+h2.divider::before,
+h3.divider::before,
+h4.divider::before {
     border-top: 2px ridge var(--s2d6-default-color);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 100%);
     mask-image: linear-gradient(90deg, transparent 0%, black 100%);
-  }
-  h1.divider::after,
-  h2.divider::after,
-  h3.divider::after,
-  h4.divider::after {
-    border-top: 2px ridge var(--s2d6-default-color);
-    -webkit-mask-image: linear-gradient(270deg, transparent 0%, black 100%);
-    mask-image: linear-gradient(270deg, transparent 0%, black 100%);
-  }
+}
 
-  .reset-all {
-    background: var(--s2d6-default-color)
-  }
+h1.divider::after,
+h2.divider::after,
+h3.divider::after,
+h4.divider::after {
+  border-top: 2px ridge var(--s2d6-default-color);
+  -webkit-mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+  mask-image: linear-gradient(270deg, transparent 0%, black 100%);
+}
 
-  .select.target-modifier {
-    height: auto;
-  }
+.reset-all {
+  background: var(--s2d6-default-color)
+}
 
-  h1, h2 {
-    color: var(--s2d6-form-light);
-  }
+.select.target-modifier {
+  height: auto;
+}
 
-  section.secret {
-    --color-secret-bg: rgba(53, 0, 121, 0.6);
-    --color-revealed-bg: rgba(0, 53, 0, 0.6);
+h1, h2 {
+  color: var(--s2d6-form-light);
+}
+
+section.secret {
+  --color-secret-bg: rgba(53, 0, 121, 0.6);
+  --color-revealed-bg: rgba(0, 53, 0, 0.6);
+}
+
+.application .controls-dropdown {
+  z-index: 99;
+}
+
+/*.prosemirror {
+  position: relative;
+
+  button.toggle {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 32px;
+    width: 32px;
   }
+}*/
+
+.category-browser aside nav.tabs > button {
+  border-radius: 4px;
+  padding: 4px 2px;
+}
+
+.hotbar-page-control {
+  color: var(--control-icon-color);
+}
+
+#module-management .package-list .package .package-overview .package-title .title-group .title {
+  color: var(--s2d6-default-color);
+}
+
+section#settings a:hover {
+  color: var(--s2d6-background-opaque);
+}

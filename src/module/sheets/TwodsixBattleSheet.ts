@@ -28,7 +28,7 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/battle-sheet.html",
+      template: "systems/twodsix/templates/actors/battle-sheet.hbs",
       scrollable: ["battle-content-container"]
     }
   };

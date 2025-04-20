@@ -848,6 +848,7 @@
       "MANIFEST": "MANIFEST",
       "MAX": "MAX",
       "MDrive": "M-Drive",
+      "Morale": "Morale",
       "Name": "Name",
       "NewAction": "New Action",
       "NoActorsForAction": "No actor available for action",
@@ -1616,9 +1617,17 @@
         "hint": "The default damage formula for new weapons, e.g. '1d6'.",
         "name": "Default Damage Formula for New Weapons"
       },
-      "xd6RollStyle" : {
+      "xd6RollStyle": {
         "hint": "Use xd6khl roll style (e.g. Faster than Light: Nomad) to make rolls.",
         "name": "Use xd6 roll style (e.g. FTL: Nomad)"
+      },
+      "showMovementColors": {
+        "hint": "Have token movement ruler highlight grid colors for walk (green), dash (yellow), run (orange), and outside movement range (red) for a combat round.",
+        "name": "Display Token Movement Grid Colors"
+      },
+      "autoTargetAOE": {
+        "hint": "Automatically target all tokens within an area-of-effect (AOE). If a sucessful attack, a single damage roll is applied to all targeted tokens.",
+        "name": "Auto select targets for AOE attack"
       }
     },
     "CloseAndCreateNew": "Close and create new",
@@ -1722,7 +1731,8 @@
       "AddMultipleItems": "Add Multiple Items",
       "CantDropFolder": "Cannot drop this folder onto actor.",
       "SkillsWithDuplicateNames": "Duplicate skill names.  Skill list not accurate.",
-      "CantFindItem": "Cannot find item with name"
+      "CantFindItem": "Cannot find item with name",
+      "NotUsingPsiStrength": "Charactersitics settings do not include Psionic Strength.  Cannot use Psionic Abilitiy."
     }
   },
   "TYPES": {

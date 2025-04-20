@@ -39,7 +39,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/traveller-sheet.html",
+      template: "systems/twodsix/templates/actors/traveller-sheet.hbs",
       scrollable: [".skills", ".character-inventory", ".inventory", ".finances", ".info", ".effects", ".actor-notes"]
     }
   };
@@ -75,12 +75,13 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   async _prepareContext(options):any {
     const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
+      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
       context.richText = {
-        description: await TextEditor.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
-        contacts: await TextEditor.enrichHTML(context.system.contacts, {secrets: this.document.isOwner}),
-        bio: await TextEditor.enrichHTML(context.system.bio, {secrets: this.document.isOwner}),
-        notes: await TextEditor.enrichHTML(context.system.notes, {secrets: this.document.isOwner}),
-        xpNotes: await TextEditor.enrichHTML(context.system.xpNotes, {secrets: this.document.isOwner})
+        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+        contacts: await TextEditorImp.enrichHTML(context.system.contacts, {secrets: this.document.isOwner}),
+        bio: await TextEditorImp.enrichHTML(context.system.bio, {secrets: this.document.isOwner}),
+        notes: await TextEditorImp.enrichHTML(context.system.notes, {secrets: this.document.isOwner}),
+        xpNotes: await TextEditorImp.enrichHTML(context.system.xpNotes, {secrets: this.document.isOwner})
       };
     }
 
@@ -126,17 +127,17 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
 
   async _onRender(context:Context, options:any): void {
     await super._onRender(context, options);
+    //Set special class for FVTT window-content section so that it overlaps with header
+    if (this.options.sheetType === 'TwodsixTravellerSheet') {
+      this.element.querySelector(".window-content").classList.add("overlap-header");
+      this.element.querySelector(".window-header").classList.add("transparent-header");
+    }
     // Everything below here is only needed if the sheet is editable
     if (!context.editable) {
       return;
     }
     this.element.querySelector(".joat-skill-input")?.addEventListener('input', this._updateJoatSkill.bind(this));
     this.element.querySelector(".joat-skill-input")?.addEventListener('blur', this._onJoatSkillBlur.bind(this));
-    //Set special class for FVTT window-content section so that it overlaps with header
-    if (this.options.sheetType === 'TwodsixTravellerSheet') {
-      this.element.querySelector(".window-content").classList.add("overlap-header");
-      this.element.querySelector(".window-header").classList.add("transparent-header");
-    }
   }
 
   /**
@@ -336,7 +337,7 @@ export class TwodsixNPCSheet extends foundry.applications.api.HandlebarsApplicat
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/npc-sheet.html",
+      template: "systems/twodsix/templates/actors/npc-sheet.hbs",
     }
   };
 }

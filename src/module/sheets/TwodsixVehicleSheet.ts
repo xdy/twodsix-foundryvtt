@@ -34,7 +34,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
 
   static PARTS = {
     main: {
-      template: "systems/twodsix/templates/actors/vehicle-sheet.html",
+      template: "systems/twodsix/templates/actors/vehicle-sheet.hbs",
       //scrollable: ['']
     }
   };
@@ -105,6 +105,8 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
         return;
       }
       await skill?.skillRoll(showThrowDiag, settings);
+    } else {
+      ui.notifications.warn( "TWODSIX.Warnings.NoActorSelected", {localize: true});
     }
   }
 }

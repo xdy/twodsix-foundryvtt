@@ -53,7 +53,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
   static PARTS = {
     main: {
-      template: "", //systems/twodsix/templates/items/item-sheet.html
+      template: "", //systems/twodsix/templates/items/item-sheet.hbs
       scrollable: ['']
     }
   };
@@ -78,7 +78,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   _configureRenderParts(options) {
     let parts = super._configureRenderParts(options);
     const path = "systems/twodsix/templates/items";
-    parts = foundry.utils.mergeObject(parts, {"main.template": `${path}/${this.item.type}-sheet.html`});
+    parts = foundry.utils.mergeObject(parts, {"main.template": `${path}/${this.item.type}-sheet.hbs`});
     return parts;
   }
 
@@ -146,7 +146,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
 
-    context.enrichedDescription = await TextEditor.enrichHTML(this.item.system.description, {secrets: this.document.isOwner});
+    context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, {secrets: this.document.isOwner});
 
     context.tabs = this.getApplicableTabs(context.tabs);
 
@@ -416,13 +416,13 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       console.error(`Twodsix | Consumables can only be created for owned items`);
       return;
     }
-    const template = 'systems/twodsix/templates/items/dialogs/create-consumable.html';
+    const template = 'systems/twodsix/templates/items/dialogs/create-consumable.hbs';
     const consumablesList = foundry.utils.duplicate(TWODSIX.CONSUMABLES);
     if (this.item.type === "computer" || (this.item.type === "consumable" && ["processor", "suite"].includes(this.item.system.subtype))) {
       delete consumablesList["processor"];
       delete consumablesList["suite"];
     }
-    const html = await renderTemplate(template, {
+    const html = await foundry.applications.handlebars.renderTemplate(template, {
       consumables: consumablesList
     });
     new foundry.applications.api.DialogV2({
@@ -434,21 +434,22 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
           label: "TWODSIX.Create",
           default: true,
           callback: async (event, button, dialog) => {
-            const max = parseInt(dialog.querySelector('.consumable-max')?.value as string, 10) || 0;
+            const dialogElement = dialog.element;
+            const max = parseInt(dialogElement.querySelector('.consumable-max')?.value as string, 10) || 0;
             let equippedState = "";
             if (this.item.type !== "skills" && this.item.type !== "trait" && this.item.type !== "ship_position") {
               equippedState = this.item.system.equipped ?? "backpack";
             }
             const newConsumableData = {
-              name: dialog.querySelector('.consumable-name')?.value || game.i18n.localize("TYPES.Item.consumable"),
+              name: dialogElement.querySelector('.consumable-name')?.value || game.i18n.localize("TYPES.Item.consumable"),
               type: "consumable",
               system: {
-                subtype: dialog.querySelector('.consumable-subtype')?.value,
-                quantity: parseInt(dialog.querySelector('.consumable-quantity')?.value as string, 10) || 0,
+                subtype: dialogElement.querySelector('.consumable-subtype')?.value,
+                quantity: parseInt(dialogElement.querySelector('.consumable-quantity')?.value as string, 10) || 0,
                 currentCount: max,
                 max: max,
                 equipped: equippedState,
-                isAttachment: ["processor", "software", "suite"].includes(dialog.querySelector('.consumable-subtype')?.value) && this.item.type !== "consumable",
+                isAttachment: ["processor", "software", "suite"].includes(dialogElement.querySelector('.consumable-subtype')?.value) && this.item.type !== "consumable",
                 parentName: this.item.name,
                 parentType: this.item.type
               }
