@@ -1170,6 +1170,10 @@ span.bgi-charEdit {
   border: none;
 }
 
+.bgi-armorType select {
+  width: 15ch;
+}
+
 .bgi-armorType input {
   position: relative;
   margin-bottom: -0.5em;

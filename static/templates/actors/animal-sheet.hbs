@@ -10,7 +10,7 @@
         <img class="profile-img" src="{{actor.img}}" {{#unless limited}} data-action="editImage" data-edit="img" {{/unless}}
         data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
         {{#if settings.showStatusIcons}}
-        <span class="actor-status-icons">
+        <span class="actor-status-icons npc">
             {{#each effects as |anEffect|}}
               {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint.css}} !important;"/>{{/unless}}
             {{/each}}
