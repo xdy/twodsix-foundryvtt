@@ -503,41 +503,27 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 }
 
 /**
- * Function to return font awesome icon as string based on item type
- * @param {string} type item type
- * @returns {string} fontawesome icon string reference/id
+ * Function to return a Font Awesome icon string based on the item type.
+ * @param {string} type - The item type.
+ * @returns {string} - Font Awesome icon string reference/id.
  */
-function getItemIcon(type:string): string {
-  switch (type) {
-    case 'spell':
-      return 'fa-solid fa-wand-sparkles';
-    case 'weapon':
-      return 'fa-solid fa-gun';
-    case 'armor':
-      return 'fa-solid fa-shield';
-    case 'consumable':
-      return 'fa-solid fa-battery-full';
-    case 'augment':
-      return 'fa-solid fa-users-rays';
-    case 'ship_position':
-      return 'fa-solid fa-gamepad';
-    case 'computer':
-      return 'fa-solid fa-computer';
-    case 'junk':
-      return 'fa-solid fa-trash-can';
-    case 'component':
-      return 'fa-solid fa-gears';
-    case 'psiAbility':
-      return 'fa-solid fa-head-side-virus';
-    case 'skills':
-      return 'fa-solid fa-person-running';
-    case 'trait':
-      return 'fa-solid fa-image-portrait';
-    case 'equipment':
-      return 'fa-solid fa-toolbox';
-    case 'tool':
-      return 'fa-solid fa-hammer';
-    default:
-      return '';
-  }
+function getItemIcon(type: string): string {
+  const iconMap: Record<string, string> = {
+    spell: 'fa-solid fa-wand-sparkles',
+    weapon: 'fa-solid fa-gun',
+    armor: 'fa-solid fa-shield',
+    consumable: 'fa-solid fa-battery-full',
+    augment: 'fa-solid fa-users-rays',
+    ship_position: 'fa-solid fa-gamepad',
+    computer: 'fa-solid fa-computer',
+    junk: 'fa-solid fa-trash-can',
+    component: 'fa-solid fa-gears',
+    psiAbility: 'fa-solid fa-head-side-virus',
+    skills: 'fa-solid fa-person-running',
+    trait: 'fa-solid fa-image-portrait',
+    equipment: 'fa-solid fa-toolbox',
+    tool: 'fa-solid fa-hammer',
+  };
+
+  return iconMap[type] || '';
 }

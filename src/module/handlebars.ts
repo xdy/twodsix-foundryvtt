@@ -198,70 +198,55 @@ export default function registerHandlebarsHelpers(): void {
     return text.replaceAll(key, value);
   });
 
-  Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string) => {
-    switch (componentType) {
-      case 'accomodations':
-        return "fa-solid fa-bed";
-      case 'armament':
-        return "fa-solid fa-crosshairs";
-      case 'armor':
-        return "fa-solid fa-grip-vertical";
-      case 'bridge':
-        return "fa-solid fa-person-seat";
-      case 'cargo':
-        return "fa-solid fa-boxes-stacked";
-      case 'computer':
-        return "fa-solid fa-computer";
-      case 'dock':
-        return "fa-solid fa-arrow-right-arrow-left";
-      case 'drive':
-        return "fa-solid fa-up-down-left-right";
-      case 'drone':
-        return "fa-solid fa-satellite";
-      case 'electronics':
-        return "fa-solid fa-microchip";
-      case 'fuel':
-        return "fa-solid fa-gas-pump";
-      case 'hull':
-        return "fa-solid fa-rocket";
-      case 'mount':
-        return "fa-regular fa-circle-dot";
-      case "otherExternal":
-        return "fa-solid fa-right-from-bracket";
-      case "otherInternal":
-        return "fa-solid fa-right-to-bracket";
-      case 'power':
-        return "fa-solid fa-atom";
-      case "sensor":
-        return "fa-solid fa-solar-panel";
-      case 'shield':
-        return "fa-solid fa-shield-halved";
-      case 'software':
-        return "fa-solid fa-code";
-      case 'storage':
-        return "fa-solid fa-boxes-stacked";
-      case 'vehicle':
-        return "fa-solid fa-shuttle-space";
-      default:
-        return "fa-solid fa-circle-question";
-    }
+  /**
+   * Handlebars helper to return a Font Awesome icon string based on the component type.
+   * @param {string} componentType - The type of the component.
+   * @returns {string} - Font Awesome icon string reference/id.
+   */
+  Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string): string => {
+    const iconMap: Record<string, string> = {
+      accomodations: "fa-solid fa-bed",
+      armament: "fa-solid fa-crosshairs",
+      armor: "fa-solid fa-grip-vertical",
+      bridge: "fa-solid fa-person-seat",
+      cargo: "fa-solid fa-boxes-stacked",
+      computer: "fa-solid fa-computer",
+      dock: "fa-solid fa-arrow-right-arrow-left",
+      drive: "fa-solid fa-up-down-left-right",
+      drone: "fa-solid fa-satellite",
+      electronics: "fa-solid fa-microchip",
+      fuel: "fa-solid fa-gas-pump",
+      hull: "fa-solid fa-rocket",
+      mount: "fa-regular fa-circle-dot",
+      otherExternal: "fa-solid fa-right-from-bracket",
+      otherInternal: "fa-solid fa-right-to-bracket",
+      power: "fa-solid fa-atom",
+      sensor: "fa-solid fa-solar-panel",
+      shield: "fa-solid fa-shield-halved",
+      software: "fa-solid fa-code",
+      storage: "fa-solid fa-boxes-stacked",
+      vehicle: "fa-solid fa-shuttle-space",
+    };
+
+    return iconMap[componentType] || "fa-solid fa-circle-question";
   });
 
-  Handlebars.registerHelper('twodsix_getEquippedIcon', (equipped: string) => {
-    switch (equipped) {
-      case 'backpack':
-        return "fa-solid fa-person-hiking";
-      case 'equipped':
-        return "fa-solid fa-child-reaching";
-      case 'ship':
-        return "fa-solid fa-shuttle-space";
-      case 'vehicle':
-        return "fa-solid fa-truck-plane";
-      case 'base':
-        return "fa-solid fa-house-user";
-      default:
-        return "fa-solid fa-person-hiking";
-    }
+  /**
+   * Handlebars helper to return a Font Awesome icon string based on the equipped state.
+   * @param {string} equipped - The equipped state.
+   * @returns {string} - Font Awesome icon string reference/id.
+   */
+  Handlebars.registerHelper('twodsix_getEquippedIcon', (equipped: string): string => {
+    const equippedIconMap: Record<string, string> = {
+      backpack: "fa-solid fa-person-hiking",
+      equipped: "fa-solid fa-child-reaching",
+      ship: "fa-solid fa-shuttle-space",
+      vehicle: "fa-solid fa-truck-plane",
+      base: "fa-solid fa-house-user",
+    };
+
+    // Return the corresponding icon or a default icon
+    return equippedIconMap[equipped] || "fa-solid fa-person-hiking";
   });
 
   Handlebars.registerHelper('twodsix_showTimeframe', () => {
