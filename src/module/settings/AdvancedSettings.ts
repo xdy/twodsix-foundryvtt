@@ -48,23 +48,23 @@ export default class AdvancedSettings extends foundry.applications.api.Handlebar
    * @param {FormDataExtended} formData           Processed data for the submitted form
    * @returns {Promise<void>}
    */
-  static async onSubmit(event:SubmitEvent, form:HTMLFormElement, formData:FormDataExtended): Promise<void> {
+  static async onSubmit(event: SubmitEvent, form: HTMLFormElement, formData: FormDataExtended): Promise<void> {
     if (event.type === "submit") {
       const settings = foundry.utils.expandObject(formData.object);
-      Object.entries(settings).forEach(async ([key, value]) => {
-        if (key != "submit" && key != "cancel") {
+      for (const [key, value] of Object.entries(settings)) {
+        if (key !== "submit" && key !== "cancel") {
           await game.settings.set("twodsix", key, value);
         }
-      });
+      }
     }
-    return Promise.resolve();
   }
 
   static registerMenu(cls, menuName, icon, restricted = true): void {
+    const localizationPrefix = "TWODSIX.Settings.settingsInterface";
     game.settings.registerMenu("twodsix", menuName, {
-      name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
-      label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
-      hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.hint`),
+      name: game.i18n.localize(`${localizationPrefix}.${menuName}.name`),
+      label: game.i18n.localize(`${localizationPrefix}.${menuName}.name`),
+      hint: game.i18n.localize(`${localizationPrefix}.${menuName}.hint`),
       icon: `fa-solid fa-${icon}`,
       type: cls,
       restricted: restricted
@@ -74,15 +74,18 @@ export default class AdvancedSettings extends foundry.applications.api.Handlebar
    * Prepare a record of form tabs.
    * @returns {Record<string, Partial<ApplicationTab>>}
    */
-  getTabs(settings: any, initialTab:string): ApplicationTab {
-    const tabs = {};
-    for(const key of Object.keys(settings)){
-      Object.assign(tabs, {[key]: {id: key, group: "primary", icon: getSettingIcon(key), label: `TWODSIX.Settings.menuLabels.${key}`}}) ;
-    }
+  getTabs(settings: Record<string, unknown>, initialTab: string): Record<string, ApplicationTab> {
+    const tabs: Record<string, ApplicationTab> = {};
 
-    for ( const v of Object.values(tabs) ) {
-      v.active = initialTab === v.id;
-      v.cssClass = v.active ? "active" : "";
+    for (const key of Object.keys(settings)) {
+      tabs[key] = {
+        id: key,
+        group: "primary",
+        icon: getSettingIcon(key),
+        label: `TWODSIX.Settings.menuLabels.${key}`,
+        active: initialTab === key,
+        cssClass: initialTab === key ? "active" : ""
+      };
     }
 
     return tabs;
