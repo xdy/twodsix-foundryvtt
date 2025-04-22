@@ -156,19 +156,19 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
     this.settings.difficulty = this.settings.difficulties[formElements["difficulty"]?.value];
     this.settings.rollType = formElements["rollType"]?.value;
     this.settings.rollMode = formElements["rollMode"]?.value;
-    this.settings.rollModifiers.chain = this.settings.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value, 10) : this.settings.rollModifiers.chain;
+    this.settings.rollModifiers.chain = this.settings.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value || 0, 10) : this.settings.rollModifiers.chain;
     this.settings.rollModifiers.characteristic = this.settings.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.settings.rollModifiers.characteristic;
-    this.settings.rollModifiers.item = this.settings.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value, 10) : this.settings.rollModifiers.item;
-    this.settings.rollModifiers.rof = (this.settings.itemRoll && this.settings.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value, 10) : this.settings.rollModifiers.rof;
-    this.settings.rollModifiers.dodgeParry = (this.settings.itemRoll && this.settings.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value, 10) : this.settings.rollModifiers.dodgeParry;
-    this.settings.rollModifiers.weaponsHandling = (this.settings.itemRoll && this.settings.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value, 10) : this.settings.rollModifiers.weaponsHandling;
-    this.settings.rollModifiers.weaponsRange = (this.settings.showRangeModifier) ? parseInt(formElements["rollModifiers.weaponsRange"]?.value, 10) : this.settings.rollModifiers.weaponsRange;
-    this.settings.rollModifiers.attachments = (this.settings.itemRoll && this.settings.rollModifiers.attachments) ? parseInt(formElements["rollModifiers.attachments"]?.value, 10) : this.settings.rollModifiers.attachments;
+    this.settings.rollModifiers.item = this.settings.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value || 0, 10) : this.settings.rollModifiers.item;
+    this.settings.rollModifiers.rof = (this.settings.itemRoll && this.settings.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value || 0, 10) : this.settings.rollModifiers.rof;
+    this.settings.rollModifiers.dodgeParry = (this.settings.itemRoll && this.settings.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value || 0, 10) : this.settings.rollModifiers.dodgeParry;
+    this.settings.rollModifiers.weaponsHandling = (this.settings.itemRoll && this.settings.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value || 0, 10) : this.settings.rollModifiers.weaponsHandling;
+    this.settings.rollModifiers.weaponsRange = (this.settings.showRangeModifier) ? parseInt(formElements["rollModifiers.weaponsRange"]?.value || 0, 10) : this.settings.rollModifiers.weaponsRange;
+    this.settings.rollModifiers.attachments = (this.settings.itemRoll && this.settings.rollModifiers.attachments) ? parseInt(formElements["rollModifiers.attachments"]?.value || 0, 10) : this.settings.rollModifiers.attachments;
     this.settings.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value, 10);
-    this.settings.rollModifiers.wounds = this.settings.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value, 10) : 0;
-    this.settings.rollModifiers.selectedSkill = this.settings.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value: "";
+    this.settings.rollModifiers.wounds = this.settings.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value || 0, 10) : 0;
+    this.settings.rollModifiers.selectedSkill = this.settings.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value : "";
     this.settings.rollModifiers.targetModifier = (this.settings.showTargetModifier && formElements["rollModifiers.targetModifier"]) ? Array.from(formElements["rollModifiers.targetModifier"].selectedOptions).map(({value}) => value) : this.settings.rollModifiers.targetModifier;
-    this.settings.rollModifiers.armorModifier  = (this.settings.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value, 10) : 0;
+    this.settings.rollModifiers.armorModifier  = (this.settings.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value || 0, 10) : 0;
 
     if(!this.settings.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.settings.rollModifiers.characteristic))) {
       //either dont show modifier or not a physical characterisitc
