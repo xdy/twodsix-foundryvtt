@@ -1526,7 +1526,7 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
       ]
     }).render({force: true});
   });
-  return parseInt(returnNumber);
+  return parseInt(returnNumber || 0);
 }
 
 /**

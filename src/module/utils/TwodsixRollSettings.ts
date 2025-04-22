@@ -257,19 +257,19 @@ export class TwodsixRollSettings {
           this.difficulty = this.difficulties[formElements["difficulty"]?.value];
           this.rollType = formElements["rollType"]?.value;
           this.rollMode = formElements["rollMode"]?.value;
-          this.rollModifiers.chain = dialogData.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value, 10) : this.rollModifiers.chain;
+          this.rollModifiers.chain = dialogData.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value || 0, 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.rollModifiers.characteristic;
-          this.rollModifiers.item = dialogData.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value, 10) : this.rollModifiers.item;
-          this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value, 10) : this.rollModifiers.rof;
-          this.rollModifiers.dodgeParry = (dialogData.itemRoll && dialogData.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value, 10) : this.rollModifiers.dodgeParry;
-          this.rollModifiers.weaponsHandling = (dialogData.itemRoll && dialogData.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value, 10) : this.rollModifiers.weaponsHandling;
-          this.rollModifiers.weaponsRange = (dialogData.showRangeModifier) ? parseInt(formElements["rollModifiers.weaponsRange"]?.value, 10) : this.rollModifiers.weaponsRange;
-          this.rollModifiers.attachments = (dialogData.itemRoll && dialogData.rollModifiers.attachments) ? parseInt(formElements["rollModifiers.attachments"]?.value, 10) : this.rollModifiers.attachments;
-          this.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value, 10);
-          this.rollModifiers.wounds = dialogData.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value, 10) : 0;
+          this.rollModifiers.item = dialogData.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value || 0, 10) : this.rollModifiers.item;
+          this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value || 0, 10) : this.rollModifiers.rof;
+          this.rollModifiers.dodgeParry = (dialogData.itemRoll && dialogData.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value || 0, 10) : this.rollModifiers.dodgeParry;
+          this.rollModifiers.weaponsHandling = (dialogData.itemRoll && dialogData.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value || 0, 10) : this.rollModifiers.weaponsHandling;
+          this.rollModifiers.weaponsRange = (dialogData.showRangeModifier) ? parseInt(formElements["rollModifiers.weaponsRange"]?.value || 0, 10) : this.rollModifiers.weaponsRange;
+          this.rollModifiers.attachments = (dialogData.itemRoll && dialogData.rollModifiers.attachments) ? parseInt(formElements["rollModifiers.attachments"]?.value || 0, 10) : this.rollModifiers.attachments;
+          this.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value || 0, 10);
+          this.rollModifiers.wounds = dialogData.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value || 0, 10) : 0;
           this.rollModifiers.selectedSkill = dialogData.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value: "";
           this.rollModifiers.targetModifier = (dialogData.showTargetModifier && formElements["rollModifiers.targetModifier"]) ? formElements["rollModifiers.targetModifier"].value : this.rollModifiers.targetModifier;
-          this.rollModifiers.armorModifier  = (dialogData.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value, 10) : 0;
+          this.rollModifiers.armorModifier  = (dialogData.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value || 0, 10) : 0;
 
           if(!dialogData.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.rollModifiers.characteristic))) {
             //either dont show modifier or not a physical characteristic
