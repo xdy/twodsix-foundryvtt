@@ -2988,6 +2988,10 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   overflow: auto;
 }
 
+.cargo-wrapper .editor {
+  width: 100%;
+}
+
 .ship-notes-container >div[contenteditable], .ship-notes-container-short >div[contenteditable], .ship-finances-container >div[contenteditable] {
   border: 1px solid var(--s2d6-default-color);
   border-radius: 0 3px 3px;

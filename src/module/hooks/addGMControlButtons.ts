@@ -130,7 +130,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
         returnValue.characteristic = formElements["characteristic"]?.value;
         returnValue.skillName = skillsList[formElements["selectedSkill"]?.value];
         returnValue.shouldRoll = returnValue.selectedTokens.length > 0;
-        returnValue.other = parseInt(formElements["other"]?.value);
+        returnValue.other = parseInt(formElements["other"]?.value || 0);
       }
     },
     {

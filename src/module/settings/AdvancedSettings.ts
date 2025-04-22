@@ -48,23 +48,23 @@ export default class AdvancedSettings extends foundry.applications.api.Handlebar
    * @param {FormDataExtended} formData           Processed data for the submitted form
    * @returns {Promise<void>}
    */
-  static async onSubmit(event:SubmitEvent, form:HTMLFormElement, formData:FormDataExtended): Promise<void> {
+  static async onSubmit(event: SubmitEvent, form: HTMLFormElement, formData: FormDataExtended): Promise<void> {
     if (event.type === "submit") {
       const settings = foundry.utils.expandObject(formData.object);
-      Object.entries(settings).forEach(async ([key, value]) => {
-        if (key != "submit" && key != "cancel") {
+      for (const [key, value] of Object.entries(settings)) {
+        if (key !== "submit" && key !== "cancel") {
           await game.settings.set("twodsix", key, value);
         }
-      });
+      }
     }
-    return Promise.resolve();
   }
 
   static registerMenu(cls, menuName, icon, restricted = true): void {
+    const localizationPrefix = "TWODSIX.Settings.settingsInterface";
     game.settings.registerMenu("twodsix", menuName, {
-      name: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
-      label: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.name`),
-      hint: game.i18n.localize(`TWODSIX.Settings.settingsInterface.${menuName}.hint`),
+      name: game.i18n.localize(`${localizationPrefix}.${menuName}.name`),
+      label: game.i18n.localize(`${localizationPrefix}.${menuName}.name`),
+      hint: game.i18n.localize(`${localizationPrefix}.${menuName}.hint`),
       icon: `fa-solid fa-${icon}`,
       type: cls,
       restricted: restricted
@@ -74,54 +74,48 @@ export default class AdvancedSettings extends foundry.applications.api.Handlebar
    * Prepare a record of form tabs.
    * @returns {Record<string, Partial<ApplicationTab>>}
    */
-  getTabs(settings: any, initialTab:string): ApplicationTab {
-    const tabs = {};
-    for(const key of Object.keys(settings)){
-      Object.assign(tabs, {[key]: {id: key, group: "primary", icon: getSettingIcon(key), label: `TWODSIX.Settings.menuLabels.${key}`}}) ;
-    }
+  getTabs(settings: Record<string, unknown>, initialTab: string): Record<string, ApplicationTab> {
+    const tabs: Record<string, ApplicationTab> = {};
 
-    for ( const v of Object.values(tabs) ) {
-      v.active = initialTab === v.id;
-      v.cssClass = v.active ? "active" : "";
+    for (const key of Object.keys(settings)) {
+      tabs[key] = {
+        id: key,
+        group: "primary",
+        icon: getSettingIcon(key),
+        label: `TWODSIX.Settings.menuLabels.${key}`,
+        active: initialTab === key,
+        cssClass: initialTab === key ? "active" : ""
+      };
     }
 
     return tabs;
   }
 }
 
+/**
+ * Get the Font Awesome icon string for a given setting subtype.
+ * @param {string} settingSubtype - The subtype of the setting.
+ * @returns {string} - Font Awesome icon string reference/id.
+ */
 function getSettingIcon(settingSubtype: string): string {
-  switch (settingSubtype) {
-    case 'general':
-      return "fa-solid fa-gear";
-    case 'roll':
-      return "fa-solid fa-dice-six";
-    case 'characteristics':
-      return "fa-solid fa-clipboard-user";
-    case 'formulas':
-      return "fa-solid fa-calculator";
-    case 'damage':
-      return "fa-solid fa-burst";
-    case 'movement':
-      return "fa-solid fa-person-walking";
-    case 'encumbrance':
-      return "fa-solid fa-weight-scale";
-    case 'wounds':
-      return "fa-solid fa-user-injured";
-    case 'ship':
-      return "fa-solid fa-rocket";
-    case 'animals_robots':
-      return "fa-solid fa-ghost";
-    case 'weapon':
-      return "fa-solid fa-gun";
-    case 'token':
-      return "fa-solid fa-chess-pawn";
-    case 'actor':
-      return "fa-regular fa-person";
-    case "dragDrop":
-      return "fa-solid fa-square-caret-down";
-    case "style":
-      return "fa-solid fa-file-code";
-    default:
-      return "fa-solid fa-circle-question";
-  }
+  const iconMap: Record<string, string> = {
+    general: "fa-solid fa-gear",
+    roll: "fa-solid fa-dice-six",
+    characteristics: "fa-solid fa-clipboard-user",
+    formulas: "fa-solid fa-calculator",
+    damage: "fa-solid fa-burst",
+    movement: "fa-solid fa-person-walking",
+    encumbrance: "fa-solid fa-weight-scale",
+    wounds: "fa-solid fa-user-injured",
+    ship: "fa-solid fa-rocket",
+    animals_robots: "fa-solid fa-ghost",
+    weapon: "fa-solid fa-gun",
+    token: "fa-solid fa-chess-pawn",
+    actor: "fa-regular fa-person",
+    dragDrop: "fa-solid fa-square-caret-down",
+    style: "fa-solid fa-file-code"
+  };
+
+  // Return the corresponding icon or a default icon
+  return iconMap[settingSubtype] || "fa-solid fa-circle-question";
 }

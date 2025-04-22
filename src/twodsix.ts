@@ -47,15 +47,16 @@ hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.
 
 Hooks.once('init', async function () {
   console.log(
-    `TWODSIX | Initializing Twodsix system\n${("\n" +
-      "\n" +
-      "___________                 .___     .__        \n" +
-      "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
-      "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___/  \\  \\/  /\n" +
-      "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
-      "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
-      "                             \\/    \\/         \\/\n" +
-      "\n")}`,
+    `%cTWODSIX | Initializing system\n` +
+    `%c
+     _____                   _     _
+    |_   _|_      _____   __| |___(_)_  __
+      | | \\ \\ /\\ / / _ \\ / _\` / __| \\ \\/ /
+      | |  \\ V  V / (_) | (_| \\__ \\ |>  <
+      |_|   \\_/\\_/ \\___/ \\__,_|___/_/_/\\_\\
+    `,
+    "color: #ffffff; font-weight: bold; font-size: 16px;", // Style for the header
+    "color:rgba(41, 170, 225, 1); font-weight: normal; font-size: 12px;" // Style for the ASCII art
   );
 
   game['twodsix'] = {

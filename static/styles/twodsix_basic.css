@@ -847,6 +847,17 @@ span.bgi-charEdit {
   margin-bottom: 1.5em;
 }
 
+.morale {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  flex-wrap: nowrap;
+  height: auto;
+  margin-top: 2ch;
+  gap: 2ch;
+}
+
 .stat-table {
   font-size: 1.5ch;
   margin-left: 1ch;
