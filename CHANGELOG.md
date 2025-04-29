@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.5...v6.0.0) (2025-04-29)
+
+
+### Features
+
+* move to v13 ([#1667](https://github.com/xdy/twodsix-foundryvtt/issues/1667)) ([591a5ce](https://github.com/xdy/twodsix-foundryvtt/commit/591a5ce950df5366482a2c52913df9384eaa859f))
+
+
+### BREAKING CHANGES
+
+* This release moves to the FVTT v13 baseline.  It requires a ONE WAY migration to the new format.  You won't be able to go back to v12 once your world migrates.  Also, chat message buttons won't work for chat cards that are pre v13.  PLEASE MAKE A BACKUP!
+
 ## [5.12.5](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.4...v5.12.5) (2025-01-22)
 
 
