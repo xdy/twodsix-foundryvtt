@@ -1,0 +1,8 @@
+<section class="{{cssClass}} item-class" autocomplete="off">
+  {{> "systems/twodsix/templates/items/parts/image-name.hbs"}}
+  {{#if settings.useTabbedViews}}
+    {{> "systems/twodsix/templates/items/parts/component-sheet-tabbed.hbs"}}
+  {{else}}
+    {{> "systems/twodsix/templates/items/parts/component-sheet-flat.hbs"}}
+  {{/if}}
+</section>

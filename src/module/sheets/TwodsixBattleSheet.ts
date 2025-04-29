@@ -4,10 +4,45 @@
 import { TwodsixShipSheet } from "./TwodsixShipSheet";
 //import { TWODSIX } from "../config";
 
-export class TwodsixBattleSheet extends TwodsixShipSheet {
+export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsApplicationMixin(TwodsixShipSheet) {
+  static DEFAULT_OPTIONS =  {
+    sheetType: "TwodsixBattleSheet",
+    classes: ["twodsix", "battle", "actor"],
+    position: {
+      width: 850,
+      height: 730
+    },
+    window: {
+      resizable: true,
+      icon: "fa-solid fa-rocket"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    actions: {
+      positionClick: this._onPositionClick
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/battle-sheet.hbs",
+      scrollable: ["battle-content-container"]
+    }
+  };
+
+  /** @inheritDoc */
+  _initializeApplicationOptions(options) {
+    const applicationOptions = super._initializeApplicationOptions(options);
+    applicationOptions.dragDrop = [{dragSelector: ".item", dropSelector: null}];
+    return applicationOptions;
+  }
+
   /** @override */
-  async getData() {
-    const context = await super.getData();
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
 
     // Reset autocalc values to _source values
     if (game.settings.get("twodsix", "useShipAutoCalcs"))  {
@@ -50,40 +85,21 @@ export class TwodsixBattleSheet extends TwodsixShipSheet {
     return context;
   }
 
-  static get defaultOptions():ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "battle", "actor"],
-      template: "systems/twodsix/templates/actors/battle-sheet.html",
-      width: 850,
-      height: 730,
-      resizable: true,
-      scrollY: ["battle-content-container"],
-      dragDrop: [
-        {dragSelector: ".item", dropSelector: null}
-      ]
-    });
-  }
-
-  activateListeners(html:JQuery):void {
-    super.activateListeners(html);
-    html.find(".position-name").on("click", this._onPositionClick.bind(this));
-  }
-
-  _onPositionClick(event) {
-    if (event.currentTarget !== null) {
-      const li = $(event.currentTarget).parents(".item");
-      const selectedPositionId = li.data("itemId");
+  static _onPositionClick(ev: Event, target:HTMLElement) {
+    if (target !== null) {
+      const li = target.closest(".item");
+      const selectedPositionId = li?.dataset.itemId;
       let selectedActorId = "";
       let selectedActionId = "";
       if (selectedPositionId) {
-        if ($(event.currentTarget).parent().find("[name='selectedActor']").length > 0) {
-          selectedActorId = $(event.currentTarget).parent().find("[name='selectedActor']")[0]?.value;
+        if (li?.querySelector("[name='selectedActor']").length > 0) {
+          selectedActorId = li.querySelector("[name='selectedActor']")?.value;
         }
-        if ($(event.currentTarget).parent().find("[name='selectedAction']").length > 0) {
-          selectedActionId = $(event.currentTarget).parent().find("[name='selectedAction']")[0]?.value;
+        if (li?.querySelector("[name='selectedAction']").length > 0) {
+          selectedActionId = li.querySelector("[name='selectedAction']")?.value;
         }
       }
-      this.performShipAction(selectedPositionId, selectedActorId, selectedActionId);
+      TwodsixShipSheet.performShipAction(ev, selectedPositionId, selectedActorId, selectedActionId, this.actor);
     }
   }
 }

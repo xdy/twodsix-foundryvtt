@@ -13,7 +13,7 @@
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
-import {TwodsixActorSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixActorSheet";
+import {TwodsixTravellerSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixTravellerSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
@@ -35,21 +35,28 @@ import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, Ju
 import { GearData } from "./module/data/item-base";
 import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
 import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
+import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
+import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
+import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
+
+//import { TWODSIX } from "./module/config";
+//import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
 // @ts-ignore
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
 
 Hooks.once('init', async function () {
   console.log(
-    `TWODSIX | Initializing Twodsix system\n${("\n" +
-      "\n" +
-      "___________                 .___     .__        \n" +
-      "\\__    ___/_  _  ______   __| _/_____|__|__  ___\n" +
-      "  |    |  \\ \\/ \\/ /  _ \\ / __ |/  ___/  \\  \\/  /\n" +
-      "  |    |   \\     (  <_> ) /_/ |\\___ \\|  |>    < \n" +
-      "  |____|    \\/\\_/ \\____/\\____ /____  >__/__/\\_ \\\n" +
-      "                             \\/    \\/         \\/\n" +
-      "\n")}`,
+    `%cTWODSIX | Initializing system\n` +
+    `%c
+     _____                   _     _
+    |_   _|_      _____   __| |___(_)_  __
+      | | \\ \\ /\\ / / _ \\ / _\` / __| \\ \\/ /
+      | |  \\ V  V / (_) | (_| \\__ \\ |>  <
+      |_|   \\_/\\_/ \\___/ \\__,_|___/_/_/\\_\\
+    `,
+    "color: #ffffff; font-weight: bold; font-size: 16px;", // Style for the header
+    "color:rgba(41, 170, 225, 1); font-weight: normal; font-size: 12px;" // Style for the ASCII art
   );
 
   game['twodsix'] = {
@@ -62,54 +69,56 @@ Hooks.once('init', async function () {
   };
 
   CONFIG.ActiveEffect.legacyTransferral = false;
+  CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
-  Actors.unregisterSheet('core', ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
 
-  Actors.registerSheet('twodsix', TwodsixActorSheet, {
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixTravellerSheet, {
     types: ["traveller"],
     label: "Traveller Sheet",
     makeDefault: true
   });
 
-  Actors.registerSheet('twodsix', TwodsixNPCSheet, {
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixNPCSheet, {
     types: ["traveller"],
     label: "NPC Sheet",
     makeDefault: false
   });
 
-  Actors.registerSheet('twodsix', TwodsixRobotSheet, {
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixRobotSheet, {
     types: ["robot"],
     label: "Robot Sheet",
     makeDefault: true
   });
 
-  Actors.registerSheet("twodsix", TwodsixShipSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixShipSheet, {
     types: ["ship"],
     label: "Ship Sheet",
     makeDefault: true,
   });
 
-  Actors.registerSheet("twodsix", TwodsixBattleSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixBattleSheet, {
     types: ["ship"],
     label: "Battle Sheet",
     makeDefault: false,
   });
 
-  Actors.registerSheet("twodsix", TwodsixVehicleSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixVehicleSheet, {
     types: ["vehicle"],
     label: "Vehicle Sheet",
     makeDefault: true,
   });
 
-  Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
     types: ["animal"],
     label: "Animal Sheet",
     makeDefault: true,
   });
 
-  Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
     types: ["space-object"],
     label: "Space Object Sheet",
     makeDefault: true,
@@ -128,10 +137,11 @@ Hooks.once('init', async function () {
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
-  Items.unregisterSheet("core", ItemSheet);
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
+  //Items.unregisterSheet("core", ItemSheet);
 
-  Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
-  Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
   /* Load Schemas */
   Object.assign(CONFIG.Item.dataModels, {
     "equipment": GearData,
@@ -200,13 +210,21 @@ Hooks.once('init', async function () {
   }
 
   //@ts-ignore
-  await loadTemplates(handlebarsTemplateFiles);
+  await foundry.applications.handlebars.loadTemplates(handlebarsTemplateFiles);
 
   //Add TL to compendium index
   CONFIG.Item.compendiumIndexFields.push('system.techLevel');
 
+  //Game pause icon change
+  CONFIG.ui.pause = TwodsixGamePause;
   // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
 
+  //Add chat context
+  CONFIG.ui.chat = TwodsixChatLog;
+  CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
+
+  //Add Ruler measurements
+  CONFIG.Token.rulerClass = TwodsixTokenRuler;
 });
 
 Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {

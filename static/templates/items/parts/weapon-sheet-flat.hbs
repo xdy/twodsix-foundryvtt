@@ -1,0 +1,40 @@
+
+{{> "systems/twodsix/templates/items/parts/common-parts.hbs"}}
+{{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-description.hbs"}}
+<div class="item-handling">
+  <label class="resource-label" for="system.handlingModifiers">{{localize "TWODSIX.Items.Weapon.HandlingModifiers"}}</label>
+  <input class="form-input" type="text" placeholder="{{localize 'TWODSIX.Items.Weapon.HandlingExample'}}" name="system.handlingModifiers" value="{{system.handlingModifiers}}">
+</div>
+{{#if settings.ShowRangeBandAndHideRange}}
+  <div class="item-range">
+    <label class="resource-label" for="system.rangeBand">{{localize "TWODSIX.Items.Weapon.rangeBand"}}</label>
+    <select name="system.rangeBand">{{selectOptions settings.rangeTypes selected=system.rangeBand localize=true}}</select>
+  </div>
+  {{#iff system.rangeBand '===' 'custom'}}
+    {{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-customCTModifier.hbs"}}
+  {{/iff}}
+{{else}}
+  <div class="item-range">
+    <label class="resource-label" for="system.range">{{localize "TWODSIX.Items.Weapon.Range"}}</label>
+    <input class="form-input" type="text" name="system.range" value="{{system.range}}">
+  </div>
+  {{#unless disableMeleeRangeDM}}
+  <div class="item-range">
+    <label class="resource-label" for="system.meleeRangeModifier">{{localize "TWODSIX.Items.Weapon.MeleeRangeModifier"}}</label>
+    <input class="form-input" type="text" name="system.meleeRangeModifier" value="{{system.meleeRangeModifier}}">
+  </div>
+  {{/unless}}
+{{/if}}
+{{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-attack.hbs"}}
+{{> "systems/twodsix/templates/items/parts/weapon-parts/weapon-magazine.hbs"}}
+
+<div class="item-descr">
+  <label class="resource-label" for="system.description">{{localize "TWODSIX.Items.Equipment.Description"}}</label>
+  <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+    {{{enrichedDescription}}}
+  </prose-mirror>
+</div>
+{{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+{{> "systems/twodsix/templates/items/parts/consumables-part.hbs"}}
+{{> "systems/twodsix/templates/items/parts/useConsumableForRoll.hbs"}}
+{{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.hbs"}}{{/if}}

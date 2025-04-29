@@ -46,10 +46,12 @@ export class TwodsixDiceRoll {
     const formulaData = {};
 
     let formula = rollType;
+    let totalModifier = 0;
     // Add difficulty modifier or set target
     if (!difficultiesAsTargetNumber) {
       formula += `${getOperatorString(this.rollSettings.difficulty.mod)} @difficultyMod`;
       formulaData.difficultyMod = Math.abs(this.rollSettings.difficulty.mod);
+      totalModifier += this.rollSettings.difficulty.mod;
     }
 
     // Add skill modifier
@@ -61,6 +63,7 @@ export class TwodsixDiceRoll {
       formula += `${getOperatorString(skillValue)} @skillValue`;
       formulaData.skillValue = Math.abs(skillValue);
       formulaData.actualSkillValue = skillValue; //needed to enforce clamp value in description
+      totalModifier += skillValue;
     }
     // Process rollModifiers
     this.modifierList = this.getRollModifierList();
@@ -78,9 +81,15 @@ export class TwodsixDiceRoll {
       }
       formula += `${getOperatorString(modifierValue)} @${modifierName}`;
       formulaData[modifierName] = Math.abs(modifierValue);
+      totalModifier += modifierValue;
     }
 
-    this.roll = await (new Roll(formula, formulaData).evaluate());
+    if (game.settings.get('twodsix', 'xd6RollStyle')) {
+      this.roll = await (new Roll(`${2+Math.abs(totalModifier)}d6k${totalModifier<0 ? 'l' : 'h'}2`, formulaData).evaluate());
+    } else {
+      this.roll = await (new Roll(formula, formulaData).evaluate());
+    }
+
   }
 
   public getCrit():Crit {
@@ -250,7 +259,7 @@ export class TwodsixDiceRoll {
       }
     }
 
-    let flavorTable = `<table><tr><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Description")}</th><th class="centre">${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
+    let flavorTable = `<table class="flavor-table"><tr><th>${game.i18n.localize("TWODSIX.Chat.Roll.Modifier")}</th><th>${game.i18n.localize("TWODSIX.Chat.Roll.Description")}</th><th class="centre">${game.i18n.localize("TWODSIX.Chat.Roll.DM")}</th></tr>`;
 
     //Add roll data
     if (this.roll?.dice[0]?.values) {
@@ -381,25 +390,37 @@ export class TwodsixDiceRoll {
     }
 
     //Add buttons
-    flavorText += `<section class="card-buttons"><button type="button" data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question" style="margin-left: 3px;"></i></button>`;
+    flavorText += `<section class="card-buttons"><button type="button" data-action="expand" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.ToggleDetails")}"><i class="fa-solid fa-circle-question" ></i></button>`;
     if (this.isSuccess() && !game.settings.get("twodsix", "automateDamageRollOnHit") && (this.item?.type === "weapon" || (this.item?.type === "component" && this.item?.system?.subtype === "armament"))) {
-      flavorText += `<button type="button" data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" style="margin-left: 3px;"></i></button>`;
+      flavorText += `<button type="button" data-action="damage" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollDamage")}"><i class="fa-solid fa-person-burst" ></i></button>`;
     } else if (this.rollSettings.skillRoll && this.item?.type !== "weapon" && !(this.item?.type === "component" && this.item?.system?.subtype === "armament")) {
-      flavorText += `<button type="button" data-action="chain" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollChain")}"><i class="fa-solid fa-link" style="margin-left: 3px;"></i></button>`;
-      flavorText += `<button type="button" data-action="opposed" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollOpposed")}"><i class="fa-solid fa-down-left-and-up-right-to-center" style="margin-left: 3px;"></i></button>`;
+      flavorText += `<button type="button" data-action="chain" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollChain")}"><i class="fa-solid fa-link" ></i></button>`;
+      flavorText += `<button type="button" data-action="opposed" data-tooltip="${game.i18n.localize("TWODSIX.Rolls.RollOpposed")}"><i class="fa-solid fa-down-left-and-up-right-to-center" ></i></button>`;
     }
 
     flavorText +=`</section></section>`;
 
     const flavor = (this.rollSettings.extraFlavor ? `<section>${this.rollSettings.extraFlavor}</section>`: ``) + `<section class="flavor-message"><section class="flavor-line">`+ flavorText + `</section><section class="dice-chattip" style="display: none;">` + flavorTable + `</section></section>`;
 
+    let title = "";
+    if (this.item) {
+      title = "TWODSIX.Chat.Roll.Types.ItemRoll";
+    } else if (this.skill) {
+      title = "TWODSIX.Chat.Roll.Types.SkillRoll";
+    } else if (this.modifierList?.includes("characteristic")) {
+      title = "TWODSIX.Chat.Roll.Types.CharRoll";
+    } else {
+      title = "TWODSIX.Chat.Roll.Types.OtherRoll";
+    }
+
     await this.roll?.toMessage(
       {
+        title: game.i18n.localize(title),
         speaker: ChatMessage.getSpeaker({actor: this.actor}),
         style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [this.roll],
         flavor: flavor,
-        rollMode: this.rollSettings.rollMode,
+        //rollMode: this.rollSettings.rollMode,
         flags: {
           "core.canPopout": true,
           "twodsix.crit": this.getCrit(),

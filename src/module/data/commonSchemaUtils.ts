@@ -46,3 +46,31 @@ export function migrateStringToNumber(source:any, field:string):void {
     }
   }
 }
+
+/**
+ * Convert field from number to string.
+ * @param {any} source data source (document.system)
+ * @param {string} field  system field to convert.
+ * @returns {void}
+ */
+export function migrateNumberToString(source:any, field:string):void {
+  if ( Object.hasOwn(source, field)) {
+    if ( typeof source[field] !== 'string') {
+      source[field] = source[field]?.toString() || "0";
+    }
+  }
+}
+
+/**
+ * Convert field from string to string array.
+ * @param {any} source data source (document.system)
+ * @param {string} field  system field to convert.
+ * @returns {void}
+ */
+export function migrateStringToStringArray(source:any, field:string):void {
+  if ( Object.hasOwn(source, field)) {
+    if ( typeof source[field] !== 'object') {
+      source[field] = [source[field] ?? ""];
+    }
+  }
+}

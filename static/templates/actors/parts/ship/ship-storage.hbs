@@ -1,0 +1,47 @@
+<div class="storage-wrapper">
+  <div class="grid-columns-double storage-header">
+    <div class="storage-stored">
+      <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="storage" data-action="itemCreate"><i
+        class="fa-solid fa-plus"></i></a></span>
+    </div>
+    <div class="storage-stored">
+      <span class="item-name">{{localize "TWODSIX.Actor.Items.Name"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Subtype"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Weight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="storage" data-action="itemCreate"><i
+        class="fa-solid fa-plus"></i></a></span>
+    </div>
+  </div>
+
+  <div class="grid-columns-double item-list">
+    {{#each storage as |item id|}}
+    <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
+      <ol class="ol-no-indent">
+        <li class="storage-stored" >
+          <span class="item-name">{{item.name}}</span>
+          <span class="item-name centre">{{twodsix_capitalize (localize (concat "TWODSIX.itemTypes." item.type))}}</span>
+          <span class="item-name centre">{{item.system.techLevel}}</span>
+          <span class="item-name centre">{{twodsix_product item.system.weight item.system.quantity}}</span>
+          <span class="item-name centre">{{item.system.quantity}}</span>
+          <span class="item-controls centre">
+            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
+              class="fa-solid fa-pen-to-square"></i></a>
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i
+              class="fa-solid fa-trash"></i></a>
+          </span>
+        </li>
+      </ol>
+    </div>
+    {{/each}}
+    {{#if (twodsix_isOdd storage.length)}}
+        <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item storage-stored" ></li></ol></div>
+    {{/if}}
+  </div>
+</div>

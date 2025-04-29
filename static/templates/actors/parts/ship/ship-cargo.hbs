@@ -1,0 +1,69 @@
+<div class = "cargo-all">
+  {{#unless settings.showWeightUsage}}
+  <div class="cargo-weight">
+    <span class="ship-stat centre">{{localize "TWODSIX.Ship.CargoWeight"}}: <input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" /><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></span>
+    {{#iff actor.system.weightStats.available '>=' 0}}
+      <span class="ship-stat centre">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></span>
+    {{else}}
+      <span class="ship-stat centre red">{{localize "TWODSIX.Ship.AvailableCargoWeight"}}: <input class="available-weight red" type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></span>
+    {{/iff}}
+  </div>
+  {{/unless}}
+<div class="cargo-list">
+  <span class="item-title manifest">{{localize "TWODSIX.Ship.MANIFEST"}}</span>
+  <div class="grid-columns-double storage-header">
+    <div class="cargo-stored-double">
+      <span class="item-name">{{localize "TWODSIX.Items.Component.CargoItem"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Equipment.Weight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.Price"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.isIllegal"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype="cargo" data-action="itemCreate"><i
+        class="fa-solid fa-plus"></i></a></span>
+    </div>
+    <div class="cargo-stored-double">
+      <span class="item-name">{{localize "TWODSIX.Items.Component.CargoItem"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Equipment.Weight"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.Price"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.isIllegal"}}</span>
+      <span class="item-name centre"><a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="component" data-subtype="cargo" data-action="itemCreate"><i
+        class="fa-solid fa-plus"></i></a></span>
+    </div>
+  </div>
+  <div class="grid-columns-double item-list">
+    {{#each componentObject.cargo as |item id|}}
+    <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
+      <ol class="ol-no-indent">
+        <li class="cargo-stored-double">
+          <span class="item-name">{{item.name}}</span>
+          <span class="item-name centre">{{getComponentWeight item}}</span>
+          <span class="item-name centre">{{item.system.quantity}}</span>
+          <span class="item-name centre">{{getComponentPrice item}}</span>
+          <span class="item-name centre">{{#if item.system.isIllegal}}<i class="fa-solid fa-skull-crossbones"></i>{{/if}}</span>
+          <span class="item-controls centre">
+            <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
+              class="fa-solid fa-pen-to-square"></i></a>
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="itemDelete"><i
+              class="fa-solid fa-trash"></i></a>
+          </span>
+        </li>
+      </ol>
+    </div>
+    {{/each}}
+    {{#if (twodsix_isOdd componentObject.cargo.length)}}
+        <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
+    {{/if}}
+  </div>
+</div>
+<div class="cargo-wrapper">
+  <span class="item-title">{{localize "TWODSIX.Ship.CARGONOTES"}}</span>
+  {{#if settings.useProseMirror}}
+  <prose-mirror name="system.cargo" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.cargo}}" collaborate="true" toggled="true">
+    {{{richText.cargo}}}
+  </prose-mirror>
+  {{else}}
+    <div contenteditable="true" data-edit="system.cargo">{{#if actor.system.cargo}}{{{actor.system.cargo}}}{{/if}}</div>
+  {{/if}}
+</div>
+</div>

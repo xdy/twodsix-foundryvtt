@@ -1,0 +1,27 @@
+<div class ="item-image-name">
+  <table>
+    <tr>
+      <th>
+        <div class="item-img">
+          <img class="item-img" src="{{item.img}}" data-tooltip="{{item.img}}" alt="{{item.name}}" data-edit="img" width="128"
+               height="128" data-action="editImage"/></div>
+      </th>
+      <th>
+        <div class="item-name">
+          <label for="item.name">
+            {{#iff item.type "===" "spell"}}
+              {{localize "TWODSIX.Items.Spells.SpellName"}}
+            {{else iff item.type "===" "skills"}}
+              {{localize "TWODSIX.Items.Skills.SkillName"}}
+            {{else iff item.type "===" "trait"}}
+              {{localize "TWODSIX.Items.Traits.TraitName"}}
+            {{else}}
+              {{localize "TWODSIX.Items.Equipment.ItemName"}}
+            {{/iff}}
+          </label>
+          <input class="form-input" name="name" type="text" value="{{item.name}}" autocomplete="off"/>
+        </div>
+      </th>
+    </tr>
+  </table>
+</div>

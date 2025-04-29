@@ -1,0 +1,19 @@
+{{#if settings.showActorReferences}}
+<div class="ship-notes-container-short">
+{{else}}
+<div class="ship-notes-container">
+{{/if}}
+  <span class="item-title">{{localize "TWODSIX.Ship.SHIPNOTES"}}</span>
+    {{#if settings.useProseMirror}}
+    <prose-mirror name="system.notes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.notes}}" collaborate="true" toggled="true">
+      {{{richText.notes}}}
+    </prose-mirror>
+    {{else}}
+        <div contenteditable="true" data-edit="system.notes">{{#if actor.system.notes}}{{{actor.system.notes}}}{{/if}}</div>
+    {{/if}}
+    {{#if settings.showActorReferences}}
+      <div>
+      {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+      </div>
+    {{/if}}
+</div>

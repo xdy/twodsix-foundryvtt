@@ -1,17 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-Hooks.on(`renderActiveEffectConfig`, (app, _html, _data) => {
-  app.setPosition({width: 700});
-});
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-
 import TwodsixActor from "../entities/TwodsixActor";
-//This hook applies CUSTOM active effects values as a formula that is evaluated and not a static
-Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any, _delta: any) => {
+//This hook applies CUSTOM active effects values as a formula that is evaluated and not a static value.
+Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, _delta: any*/) => {
   //return if current doesn't exist (probably derived value)
   if (current == undefined) {
     return;

@@ -1,0 +1,28 @@
+{{!-- Component Sheet Navigation --}}
+{{> "systems/twodsix/templates/misc/navigation-tabs.hbs"}}
+
+{{!-- Component Sheet Body --}}
+<section class="sheet-body auto-height">
+  <div class="tab {{tabs.description.cssClass}}" data-group="primary" data-tab="description">
+    {{> "systems/twodsix/templates/items/parts/component-parts/component-general.hbs"}}
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+        {{{enrichedDescription}}}
+      </prose-mirror>
+    </div>
+    {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+  </div>
+  <div class="tab {{tabs.displacement.cssClass}}" data-group="primary" data-tab="displacement">
+    {{> "systems/twodsix/templates/items/parts/component-parts/component-displacement.hbs"}}
+  </div>
+  <div class="tab {{tabs.power.cssClass}}" data-group="primary" data-tab="power">
+    {{> "systems/twodsix/templates/items/parts/component-parts/component-power.hbs"}}
+  </div>
+  <div class="tab {{tabs.attack.cssClass}}" data-group="primary" data-tab="attack">
+    {{> "systems/twodsix/templates/items/parts/component-parts/component-attack.hbs"}}
+  </div>
+  <div class="tab {{tabs.price.cssClass}}" data-group="primary" data-tab="price">
+    {{> "systems/twodsix/templates/items/parts/component-parts/component-price.hbs"}}
+  </div>
+</section>

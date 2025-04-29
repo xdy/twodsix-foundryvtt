@@ -1,63 +1,68 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-//import { SpaceObject } from "src/types/template";
-import {TwodsixSpaceObjectSheetData, TwodsixSpaceObjectSheetSettings } from "src/types/twodsix";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import {confirmRollFormula } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import { TWODSIX } from "../config";
 import { simplifyRollFormula } from "../utils/dice";
 import { getDiceResults } from "../entities/TwodsixItem";
 import { getDamageTypes } from "../utils/sheetUtils";
 
-export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
+export class TwodsixSpaceObjectSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   /** @override */
-  async getData(): TwodsixSpaceObjectSheetData {
-    const context = <any>super.getData();
-    context.system = this.actor.system;
-    context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>this.actor, context);
-    context.settings = <TwodsixSpaceObjectSheetSettings>{
-      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences')
-    };
+  static DEFAULT_OPTIONS =  {
+    sheetType: "TwodsixSpaceObjectSheet",
+    classes: ["twodsix", "space-object", "actor"],
+    dragDrop: [{dragSelector: ".item", dropSelector: null}],
+    position: {
+      width: 'auto',
+      height: 'auto'
+    },
+    window: {
+      resizable: false,
+      icon: "fa-solid fa-satellite"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    actions: {
+      rollSODamage: this._onRollSODamage,
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/space-object-sheet.hbs",
+      //scrollable: ['']
+    }
+  };
+
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
+      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
       context.richText = {
-        description: await TextEditor.enrichHTML(context.system.description),
-        notes: await TextEditor.enrichHTML(context.system.notes)
+        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+        notes: await TextEditorImp.enrichHTML(context.system.notes, {secrets: this.document.isOwner})
       };
     }
-    context.config = TWODSIX;
     return context;
   }
 
-  static get defaultOptions():ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "space-object", "actor"],
-      template: "systems/twodsix/templates/actors/space-object-sheet.html",
-      width: 'auto',
-      height: 'auto',
-      resizable: true,
-    });
-  }
-
-  activateListeners(html:JQuery):void {
-    super.activateListeners(html);
-    html.find('.roll-damage').on('click', this.onRollDamage.bind(this, this.actor));
-  }
-
-  private async onRollDamage(actor:TwodsixActor) {
+  static async _onRollSODamage() {
+    const actor:TwodsixActor = this.actor;
     let rollFormula = await confirmRollFormula(actor.system.damage, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
     rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
     rollFormula = simplifyRollFormula(rollFormula);
     let damage = <Roll>{};
 
     if (Roll.validate(rollFormula)) {
-      damage = new Roll(rollFormula, this.actor?.system);
+      damage = new Roll(rollFormula, actor.system);
       await damage.evaluate(); // async: true will be default in foundry 0.10
     } else {
-      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.InvalidRollFormula"));
+      ui.notifications.error("TWODSIX.Errors.InvalidRollFormula", {localize: true});
       return;
     }
 
@@ -75,7 +80,7 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
       damageLabel: damageLabels[damageType] ?? ""
     });
 
-    const html = await renderTemplate('systems/twodsix/templates/chat/damage-message.html', contentData);
+    const html = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/damage-message.hbs', contentData);
     const transfer = JSON.stringify(
       {
         type: 'damageItem',
@@ -83,7 +88,8 @@ export class TwodsixSpaceObjectSheet extends AbstractTwodsixActorSheet {
       }
     );
     await damage.toMessage({
-      speaker: this.actor ? ChatMessage.getSpeaker({actor: this.actor}) : null,
+      title: game.i18n.localize("TWODSIX.Damage.DamageCard"),
+      speaker: this.actor ? ChatMessage.getSpeaker({actor: actor}) : null,
       content: html,
       style: CONST.CHAT_MESSAGE_STYLES.OTHER,
       rolls: [damage],

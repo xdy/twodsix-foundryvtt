@@ -1,7 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { makeResourceField } from "./commonSchemaUtils";
+import { makeCharacteristicField } from "./character-base";
+import { makeResourceField, migrateStringToStringArray } from "./commonSchemaUtils";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
@@ -13,7 +14,7 @@ class TwodsixVehicleBaseData extends foundry.abstract.TypeDataModel {
     schema.name = new fields.StringField({...requiredBlankString});
     schema.techLevel = new fields.NumberField({ ...requiredInteger, initial: 0 });
     /* References */
-    schema.docReference = new fields.StringField({...requiredBlankString});
+    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}));
     schema.pdfReference = new fields.SchemaField({
       type: new fields.StringField({...requiredBlankString}),
       href: new fields.StringField({...requiredBlankString}),
@@ -25,6 +26,12 @@ class TwodsixVehicleBaseData extends foundry.abstract.TypeDataModel {
     schema.notes = new fields.HTMLField({...requiredBlankString});
 
     return schema;
+  }
+  static migrateData(source:any) {
+    if ("docReference" in source) {
+      migrateStringToStringArray(source, "docReference");
+    }
+    return super.migrateData(source);
   }
 }
 
@@ -91,6 +98,7 @@ export class ShipData extends TwodsixVehicleBaseData {
       bandwidth: makeResourceField(0, 0)
     });
     schema.combatPosition = new fields.NumberField({ ...requiredInteger, initial: 0 });
+    schema.characteristics = new fields.SchemaField({morale: makeCharacteristicField("morale", "MOR")});
     return schema;
   }
 }

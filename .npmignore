@@ -5,3 +5,4 @@
 # Node Modules
 node_modules/
 npm-debug.log
+client.mjs

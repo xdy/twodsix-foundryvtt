@@ -1,0 +1,9 @@
+<li class="directory-item entry document {{ @root.documentCls }} flexrow" data-entry-id="{{ this._id }}" data-document-id="{{this._id}}">
+  {{#if this.img}}
+  <img class="thumbnail" src="{{ this.img }}" alt="{{ this.name }}" loading="lazy">
+  {{/if}}
+  <span class="revised-partial">
+    <a class="entry-name ellipsis" data-action="activateEntry">{{ this.name }}</a>
+    <span class="tl-label">{{twodsix_getTLString this}}</span>
+  </span>
+</li>

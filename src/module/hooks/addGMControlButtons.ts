@@ -9,16 +9,23 @@ import { simplifySkillName, sortObj } from "../utils/utils.ts";
 
 Hooks.on("getSceneControlButtons", (controls) => {
   if (game.user.isGM) {
-    controls.find((c) => c.name === "token").tools.push({
+    controls.tokens.tools.requestRoll = {
       name: "requestRoll",
-      title: "TWODSIX.Chat.Roll.RequestRoll" + (game.settings.get("core", "showToolclips") ? "Clip" : ""),
+      title: "TWODSIX.Chat.Roll.RequestRoll",
       icon: "fa-solid fa-dice",
       button: true,
       visible: game.user.isGM,
-      onClick: async () => {
-        await requestRoll();
+      toolclip: {
+        src: "systems/twodsix/assets/toolclips/requestRollToolClip.webm",
+        heading: "TWODSIX.Chat.Roll.RequestRoll",
+        items: foundry.applications.ui.SceneControls.buildToolclipItems([{paragraph: "TWODSIX.Chat.Roll.RequestRollDescription"}, "selectAlt", "selectMultiple"])
+      },
+      onChange: async (event, active) => {
+        if (active) {
+          await requestRoll();
+        }
       }
-    });
+    };
   }
 });
 
@@ -87,7 +94,7 @@ function getAllSkills(): Promise<object> {
 }
 
 async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
-  const template = 'systems/twodsix/templates/chat/request-roll-dialog.html';
+  const template = 'systems/twodsix/templates/chat/request-roll-dialog.hbs';
   const tokenNames = {};
   for (const tokenId in tokenData) {
     tokenNames[tokenId] = tokenData[tokenId].token.name ?? tokenData[tokenId].token.actor.name;
@@ -108,41 +115,45 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
     other: 0
   };
   const returnValue = {};
-  const buttons = {
-    ok: {
-      label: game.i18n.localize("TWODSIX.Chat.Roll.RequestRoll"),
-      icon: '<i class="fa-solid fa-message"></i>',
-      callback: (buttonHtml) => {
-        returnValue.selectedTokens = buttonHtml.find('[name="selectedTokens"]').val();
-        returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][buttonHtml.find('[name="difficulty"]').val()];
-        returnValue.rollType = buttonHtml.find('[name="rollType"]').val();
-        returnValue.rollMode = buttonHtml.find('[name="rollMode"]').val();
-        returnValue.characteristic = buttonHtml.find('[name="characteristic"]').val();
-        returnValue.skillName = skillsList[buttonHtml.find('[name="selectedSkill"]').val()];
+  const buttons = [
+    {
+      action: "ok",
+      label: "TWODSIX.Chat.Roll.RequestRoll",
+      icon: "fa-solid fa-message",
+      default: true,
+      callback: (event, button, dialog) => {
+        const formElements = dialog.element.querySelector(".standard-form").elements;
+        returnValue.selectedTokens = formElements["selectedTokens"] ? Array.from(formElements["selectedTokens"].selectedOptions)?.map((({ value }) => value)) : [];
+        returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][formElements["difficulty"]?.value];
+        returnValue.rollType = formElements["rollType"]?.value;
+        returnValue.rollMode = formElements["rollMode"]?.value;
+        returnValue.characteristic = formElements["characteristic"]?.value;
+        returnValue.skillName = skillsList[formElements["selectedSkill"]?.value];
         returnValue.shouldRoll = returnValue.selectedTokens.length > 0;
-        returnValue.other = parseInt(buttonHtml.find('[name="other"]').val());
+        returnValue.other = parseInt(formElements["other"]?.value || 0);
       }
     },
-    cancel: {
-      icon: '<i class="fa-solid fa-xmark"></i>',
-      label: game.i18n.localize("Cancel"),
+    {
+      action: "cancel",
+      icon: "fa-solid fa-xmark",
+      label: "Cancel",
       callback: () => {
         returnValue.shouldRoll = false;
       }
-    },
-  };
+    }
+  ];
 
-  const html = await renderTemplate(template, dialogData);
+  const html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
   return new Promise<void>((resolve) => {
-    new Dialog({
-      title: game . i18n.localize("TWODSIX.Chat.Roll.RequestRoll"),
+    new foundry.applications.api.DialogV2({
+      window: {title: "TWODSIX.Chat.Roll.RequestRoll", icon: "fa-solid fa-dice"},
       content: html,
       buttons: buttons,
-      default: 'ok',
-      close: () => {
+      submit: () => {
+        //console.log(returnValue);
         resolve(returnValue);
-      },
-    }).render(true);
+      }
+    }).render({force: true});
   });
 }
 

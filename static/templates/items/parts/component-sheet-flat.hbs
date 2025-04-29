@@ -1,0 +1,13 @@
+{{> "systems/twodsix/templates/items/parts/component-parts/component-general.hbs"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-displacement.hbs"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-power.hbs"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-attack.hbs"}}
+{{> "systems/twodsix/templates/items/parts/component-parts/component-price.hbs"}}
+
+<div class="item-descr">
+  <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+  <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+    {{{enrichedDescription}}}
+  </prose-mirror>
+</div>
+{{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}

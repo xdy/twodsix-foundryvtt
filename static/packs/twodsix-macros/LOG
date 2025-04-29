@@ -1,3 +1,27 @@
-2024/12/26-07:33:23.322992 700012b8d000 Recovering log #160
-2024/12/26-07:33:23.323960 700012b8d000 Delete type=3 #158
-2024/12/26-07:33:23.324062 700012b8d000 Delete type=0 #160
+2025/04/18-10:55:07.706670 7000093cc000 Recovering log #179
+2025/04/18-10:55:07.706744 7000093cc000 Level-0 table #181: started
+2025/04/18-10:55:07.707571 7000093cc000 Level-0 table #181: 8820 bytes OK
+2025/04/18-10:55:07.707775 7000093cc000 Recovering log #197
+2025/04/18-10:55:07.708812 7000093cc000 Delete type=2 #182
+2025/04/18-10:55:07.708974 7000093cc000 Delete type=0 #179
+2025/04/18-10:55:07.709054 7000093cc000 Delete type=0 #197
+2025/04/18-10:55:07.709119 7000093cc000 Delete type=3 #178
+2025/04/19-10:11:58.432737 700009c52000 Level-0 table #200: started
+2025/04/19-10:11:58.435335 700009c52000 Level-0 table #200: 112517 bytes OK
+2025/04/19-10:11:58.436008 700009c52000 Delete type=0 #198
+2025/04/19-10:11:58.443178 700009c52000 Manual compaction at level-0 from '!macros!0zJP7EKqEV3AaAjW' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at '!macros!hJ2nJRTz41VWBILy' @ 223 : 1
+2025/04/19-10:11:58.443201 700009c52000 Compacting 2@0 + 0@1 files
+2025/04/19-10:11:58.449164 700009c52000 Generated table #201@0: 20 keys, 57717 bytes
+2025/04/19-10:11:58.449216 700009c52000 Compacted 2@0 + 0@1 files => 57717 bytes
+2025/04/19-10:11:58.449436 700009c52000 compacted to: files[ 0 1 1 0 0 0 0 ]
+2025/04/19-10:11:58.449590 700009c52000 Delete type=2 #200
+2025/04/19-10:11:58.449843 700009c52000 Delete type=2 #181
+2025/04/19-10:11:58.457971 700009c52000 Manual compaction at level-0 from '!macros!hJ2nJRTz41VWBILy' @ 223 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)
+2025/04/19-10:11:58.466031 700009c52000 Manual compaction at level-1 from '!macros!0zJP7EKqEV3AaAjW' @ 72057594037927935 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at '!macros!xpgbOkPeYsAcjDrm' @ 263 : 1
+2025/04/19-10:11:58.466051 700009c52000 Compacting 1@1 + 1@2 files
+2025/04/19-10:11:58.468421 700009c52000 Generated table #202@1: 20 keys, 57717 bytes
+2025/04/19-10:11:58.468457 700009c52000 Compacted 1@1 + 1@2 files => 57717 bytes
+2025/04/19-10:11:58.468620 700009c52000 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/04/19-10:11:58.468760 700009c52000 Delete type=2 #201
+2025/04/19-10:11:58.468950 700009c52000 Delete type=2 #177
+2025/04/19-10:11:58.475714 700009c52000 Manual compaction at level-1 from '!macros!xpgbOkPeYsAcjDrm' @ 263 : 1 .. '!macros!xpgbOkPeYsAcjDrm' @ 0 : 0; will stop at (end)

@@ -6,7 +6,7 @@ import {booleanSetting, stringSetting} from "./settingsUtils";
 import {refreshWindow} from "./DisplaySettings";
 import { applyToAllActors, applyToAllItems } from "../utils/migration-utils";
 import TwodsixActor from "../entities/TwodsixActor";
-export default class DebugSettings extends AdvancedSettings {
+export default class DebugSettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {
     DebugSettings.settings = DebugSettings.registerSettings();
     return DebugSettings;
@@ -17,10 +17,45 @@ export default class DebugSettings extends AdvancedSettings {
   }
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.debugSettings.intro`)}</h2><br>`;
-    return data;
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix"],
+    position: {
+      width: 675,
+      height: 'auto'
+    },
+    window: {
+      resizable: true,
+      contentClasses: ["standard-form"],
+      title: "TWODSIX.Settings.settingsInterface.debugSettings.name",
+      icon: "fa-solid fa-flask"
+    },
+    form: {
+      handler: AdvancedSettings.onSubmit,
+      closeOnSubmit: true,
+      submitOnChange: false,
+      submitOnClose: false
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/misc/advanced-settings.hbs",
+      scrollable: ['']
+    }
+  };
+
+  /** @override */
+  tabGroups = {
+    primary: "general"  //set default tab
+  };
+
+  /** @override */
+  async _prepareContext(options): any {
+    const context:any = await super._prepareContext(options);
+    //context.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.debugSettings.intro`)}</h2>`;
+    context.tabs = this.getTabs(DebugSettings.settings, this.tabGroups.primary);
+    return context;
   }
 
   static registerSettings(): any {

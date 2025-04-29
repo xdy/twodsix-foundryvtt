@@ -1,7 +1,7 @@
-import RulesetSettings from "../module/settings/RulsetSettings";
+import RulesetSettings from "../module/settings/RulesetSettings";
 import DisplaySettings from "../module/settings/DisplaySettings";
 import ItemSettings from "../module/settings/ItemSettings";
-import { TwodsixActorSheet } from "../module/sheets/TwodsixActorSheet";
+import { TwodsixTravellerSheet } from "../module/sheets/TwodsixTravellerSheet";
 import { TwodsixShipSheet } from "../module/sheets/TwodsixShipSheet";
 import { TwodsixVehicleSheet } from "../module/sheets/TwodsixVehicleSheet";
 import { TwodsixAnimalSheet } from "../module/sheets/TwodsixAnimalSheet";
@@ -249,7 +249,7 @@ declare interface TwodsixShipPositionSheetData {
 declare interface Game {
   twodsix: {
     applications: {
-      TwodsixActorSheet: TwodsixActorSheet;
+      TwodsixTravellerSheet: TwodsixTravellerSheet;
       TwodsixShipSheet: TwodsixShipSheet;
       TwodsixVehicleSheet: TwodsixVehicleSheet;
       TwodsixAnimalSheet: TwodsixAnimalSheet;
@@ -271,10 +271,10 @@ declare interface Game {
       documentClass: TwodsixActor;
       sheetClasses: {
         traveller: {
-          'twodsix.TwodsixActorSheet': {
-            id: 'twodsix.TwodsixActorSheet';
+          'twodsix.TwodsixTravellerSheet': {
+            id: 'twodsix.TwodsixTravellerSheet';
             default: boolean;
-            cls: TwodsixActorSheet;
+            cls: TwodsixTravellerSheet;
             label: string;
           };
         };

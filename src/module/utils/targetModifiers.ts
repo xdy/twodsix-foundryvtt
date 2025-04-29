@@ -56,7 +56,7 @@ export function getTargetDMSelectObject(): object {
  * @param {TwodsixActor} targetActor actor for the target
  * @returns {string[]} An array of keys from TWODSIX.TARGET_DM
  */
-export function getTargetModifiers(targetActor:TwodsixActor): string[] {
+export function getTargetStatusModifiers(targetActor:TwodsixActor): string[] {
   const returnValue = [];
   const targetDMObject = Object.values(TWODSIX.TARGET_DM);
   if (targetActor) {

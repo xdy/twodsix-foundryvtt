@@ -18,8 +18,10 @@ dist/
 foundryconfig.json
 foundry.js
 foundry-esm.js
+foundry.mjs
 foundry/foundryvtt
 foundry/license.json
 foundry/foundry_dev_data
 sample_data/local/*
 !sample_data/local/.gitkeep
+client.mjs

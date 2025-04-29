@@ -190,15 +190,15 @@ export function calcModFor(characteristic:number):number {
 // }
 
 
-export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
+export function getDataFromDropEvent(ev:DragEvent):Record<string, any> {
   try {
-    return JSON.parse(<string>event.dataTransfer?.getData('text/plain'));
+    return JSON.parse(ev.dataTransfer?.getData('text/plain'));
   } catch (err) {
-    const pdfRef = event.dataTransfer?.getData('text/html');
+    const pdfRef = ev.dataTransfer?.getData('text/html');
     if (pdfRef) {
       return getHTMLLink(pdfRef);
     } else {
-      const uriRef = event.dataTransfer?.getData('text/uri-list');
+      const uriRef = ev.dataTransfer?.getData('text/uri-list');
       if (uriRef) {
         return ({
           type: "html",
@@ -211,29 +211,36 @@ export function getDataFromDropEvent(event:DragEvent):Record<string, any> {
   }
 }
 
-export async function getItemDataFromDropData(dropData:Record<string, any>) {
-  let item;
+export async function getDocFromDropData(dropData:Record<string, any>):Promise<TwodsixActor|TwodsixItem> {
+  let doc;
   if (game.modules.get("monks-enhanced-journal")?.active && dropData.itemId && dropData.uuid.includes("JournalEntry")) {
     const journalEntry = await fromUuid(dropData.uuid);
-    const lootItems = await journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
-    item = await lootItems.find((it) => it._id === dropData.itemId);
-    if (item.system.consumables?.length > 0) {
-      item.system.consumables = [];
+    const lootItems = journalEntry.getFlag('monks-enhanced-journal', 'items'); // Note that MEJ items are JSON data and not full item documents
+    doc = lootItems.find((it) => it._id === dropData.itemId);
+    if (doc.system.consumables?.length > 0) {
+      doc.system.consumables = [];
     }
+  } else if (dropData.uuid) {
+    doc = await fromUuid(dropData.uuid); //must use async function to drop from compendiums directly
   } else {
-    item = await fromUuid(dropData.uuid);  //NOTE THIS MAY NEED TO BE CHANGED TO fromUuidSync  ****
+    if (dropData.type === "Item") {
+      doc = game.items.get(dropData._id ?? dropData.data?._id); //not certain why needed for v13
+    } else if (dropData.type === "Actor") {
+      doc = game.actors.get(dropData._id ?? dropData.data?._id); //not certain why needed for v13
+    }
   }
 
-  if (!item) {
+  if (!doc) {
     throw new Error(game.i18n.localize("TWODSIX.Errors.CouldNotFindItem").replace("_ITEM_ID_", dropData.uuid));
   }
   //handle drop from compendium
-  if (item.pack) {
-    const pack = game.packs.get(item.pack);
-    item = await pack?.getDocument(item._id);
+  if (doc.pack) {
+    const pack = game.packs.get(doc.pack);
+    doc = await pack?.getDocument(doc._id);
   }
-  const itemCopy = foundry.utils.duplicate(item);
-  return itemCopy;
+  //const itemCopy = foundry.utils.duplicate(item); ///Should this be copy???
+  //Object.assign(itemCopy, {uuid: item.uuid, id: item._id});
+  return doc;
 }
 
 export function getHTMLLink(dropString:string): Record<string,unknown> {
@@ -255,7 +262,8 @@ export function getHTMLLink(dropString:string): Record<string,unknown> {
   }
 }
 
-export function openPDFReference(sourceString:string): void {
+export function openPDFLink(ev: Event, target:HTMLElement): void {
+  const sourceString = target.closest(".item-reference")?.dataset?.link;
   if (sourceString) {
     const [code, page] = sourceString.split(' ');
     const selectedPage = parseInt(page);
@@ -263,30 +271,59 @@ export function openPDFReference(sourceString:string): void {
       ui["pdfpager"].openPDFByCode(code, {page: selectedPage});
       //byJournalName(code, selectedPage);
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.PDFPagerNotInstalled"));
+      ui.notifications.warn("TWODSIX.Warnings.PDFPagerNotInstalled", {localize: true});
     }
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+    ui.notifications.warn("TWODSIX.Warnings.NoSpecfiedLink", {localize: true});
   }
 }
 
-export async function openJournalEntry():void {
-  if (this.item.system.pdfReference.type === 'JournalEntry') {
-    const journalToOpen = await fromUuid(this.item.system.pdfReference.href);
+export async function deletePDFLink(ev: Event, target:HTMLElement): void {
+  const index = parseInt(target.dataset.index);
+  if (index > -1) {
+    const newRefArray = foundry.utils.duplicate(this.document.system.docReference);
+    newRefArray.splice(index, 1);
+    await this.document.update({"system.docReference": newRefArray});
+  }
+}
+
+export async function addPDFLink(/*ev: Event, target:HTMLElement*/): void {
+  const newRefArray = foundry.utils.duplicate(this.document.system.docReference);
+  newRefArray.push("");
+  await this.document.update({"system.docReference": newRefArray});
+}
+
+export async function changeReference(ev: Event):Promise<void> {
+  ev.preventDefault();
+  //ev.stopImmediatePropagation();
+  const newValue:string = ev.target.value;
+  const index:number = ev.target.dataset.index;
+  if(index) {
+    const newRefArray = foundry.utils.duplicate(this.document.system.docReference);
+    newRefArray[index] = newValue;
+    await this.document.update({'system.docReference': newRefArray});
+  } else {
+    console.log("No update index");
+  }
+}
+
+export async function openJournalEntry():Promise<void> {
+  if (this.document.system.pdfReference.type === 'JournalEntry') {
+    const journalToOpen = await fromUuid(this.document.system.pdfReference.href);
     if (journalToOpen) {
-      journalToOpen.sheet.render(true);
+      journalToOpen.sheet.render({force: true});
     } else {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoJournalFound"));
+      ui.notifications.warn("TWODSIX.Warnings.NoJournalFound", {localize: true});
     }
   }
 }
 
-export async function deletePDFReference(event): Promise<void> {
-  event.preventDefault();
-  if (this.object.system.pdfReference.href !== "") {
-    await this.object.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
+export async function deleteReference(ev: PointerEvent): Promise<void> {
+  ev.preventDefault();
+  if (this.document.system.pdfReference.href !== "") {
+    await this.document.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoSpecfiedLink"));
+    ui.notifications.warn("TWODSIX.Warnings.NoSpecfiedLink", {localize: true});
   }
 }
 
@@ -304,21 +341,22 @@ export function isDisplayableSkill(skill:Skills): boolean {
 
 export async function confirmRollFormula(initFormula:string, title:string):Promise<string> {
   const returnText:string = await new Promise((resolve) => {
-    new Dialog({
-      title: title,
+    new foundry.applications.api.DialogV2({
+      window: {title: title},
       content:
         `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" value="` + initFormula + `"></input>`,
-      buttons: {
-        Roll: {
-          label: `<i class="fa-solid fa-dice" alt="d6" ></i> ` + game.i18n.localize("TWODSIX.Rolls.Roll"),
-          callback:
-            (html:JQuery) => {
-              resolve(html.find('[name="outputFormula"]')[0]["value"]);
-            }
+      buttons: [
+        {
+          action: "roll",
+          icon: "fa-solid fa-dice",
+          label: "TWODSIX.Rolls.Roll",
+          default: true,
+          callback: (event, button, dialog) => {
+            resolve(dialog.element.querySelector('[name="outputFormula"]')?.value);
+          }
         }
-      },
-      default: `Roll`,
-    }).render(true);
+      ],
+    }).render({force: true});
   });
   return (returnText ?? "");
 }

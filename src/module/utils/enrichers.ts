@@ -12,18 +12,46 @@ import { TwodsixRollSettings } from "./TwodsixRollSettings";
 export function addCustomEnrichers() {
   CONFIG.TextEditor.enrichers.push(
     {
+      id: 'displayTable',
       pattern: /@DisplayTable\[(.+?)\](?:{(.+?)})?/gm,
-      enricher: enrichDisplayTable
+      enricher: enrichDisplayTable,
     },
     {
+      id: 'rollTable',
       pattern: /@Table\[(.+?)\](?:{(.+?)})?/gm,
-      enricher: rollTable
+      enricher: rollTable,
+      onRender: addTableRollListener
     },
     {
+      id: 'rollSkill',
       pattern: /@SkillRoll(?:\[(.*?)\])?(?:{(.*?)})?/gm,
-      enricher: rollSkill
+      enricher: rollSkill,
+      onRender: addSkillRollListener
+    },
+    {
+      id: 'itemList',
+      pattern: /@ItemList\s?(.+)/gm,
+      enricher: itemList,
+      onRender: addItemListTransfer
     }
   );
+}
+
+function addTableRollListener(enrichedContent:HTMLElement):void {
+  enrichedContent.querySelector('.table-roll').addEventListener('click', handleTableRoll);
+}
+
+function addSkillRollListener(enrichedContent:HTMLElement):void {
+  enrichedContent.querySelector('.skill-roll').addEventListener('click', handleSkillRoll);
+}
+
+function addItemListTransfer(enrichedContent:HTMLElement):void {
+  const link = enrichedContent.querySelector('.item-list');
+  if (link) {
+    link.addEventListener('dragstart', (ev) => {
+      ev.dataTransfer.setData('text/plain', JSON.stringify(link.dataset));
+    });
+  }
 }
 
 /**
@@ -33,13 +61,13 @@ export function addCustomEnrichers() {
  * @returns {Promise<HTMLDivElement>} The displayed html element for the enriched RollTable reference
  */
 async function enrichDisplayTable (match: any, options: any): Promise<HTMLDivElement> {
-  const table = findTable(match[1], options);
+  const table: RollTableData = findTable(match[1], options);
   const tableName = match[2] ?? table?.name;
   const a = document.createElement("div");
   if (table) {
     a.classList.add("display-table");
     const html = displayTable(match[1], table, tableName);
-    a.innerHTML = await TextEditor.enrichHTML(html);
+    a.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(html, {secrets: table.isOwner});
   } else {
     a.dataset.tableId = match[1];
     if (match[2]) {
@@ -94,6 +122,33 @@ async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement>
   a.classList.add("skill-roll");
   a.dataset.parseString = skillName;
   a.innerHTML = `<i class="fa-solid fa-dice"></i> ${descrip}`;
+  return a;
+}
+
+/**
+ * A list of items.
+ * @param {string} match   An array matching the RegEx expression. Match[0] is the unenriched JE string.  Match[1] is the delimitted list of items.
+ * @param {string} options Options to the roll action
+ * @returns {HTMLAnchorElement} The rolltable in an html format
+ */
+async function itemList (match: any, _options: any): Promise<HTMLAnchorElement> {
+  const itemRef = match[1].split(",").map(str => str.trim());
+  const a = document.createElement("a");
+  a.classList.add("item-list");
+  a.classList.add("content-link");
+  a.setAttribute("draggable", true);
+  a.dataset.parseString = itemRef.join(', ');
+  a.dataset.type = 'ItemList';
+  const list:string[] = [];
+  for (const strRef of itemRef) {
+    if(foundry.utils.parseUuid(strRef)?.id) {
+      const tempName = fromUuidSync(strRef)?.name;
+      list.push(tempName ? tempName : `<i class="fa-solid fa-link-slash"></i>`);
+    } else {
+      list.push(strRef);
+    }
+  }
+  a.innerHTML = `<i class="fa-solid fa-box-open"></i> ${list.join(', ')}`;
   return a;
 }
 
@@ -181,7 +236,7 @@ function findTable(tableName:string, options?:any): RollTable {
 
 function sendWarning(msg, params) {
   if (!params) {
-    return ui.notifications.warn(game.i18n.localize(msg));
+    return ui.notifications.warn(msg, {localize: true});
   } else {
     return ui.notifications.warn(game.i18n.format(game.i18n.localize(msg), params));
   }
@@ -201,7 +256,7 @@ export async function handleTableRoll(event: Event): Promise<void> {
     if (event.type == "click") { // left click
       table.draw();
     } else { // right click
-      table.sheet.render(true);
+      table.sheet.render({force: true});
     }
   }
 }
@@ -230,12 +285,12 @@ export async function handleSkillRoll(event: Event): Promise<void> {
           }
           await skill.skillRoll(false, settings);
         } else { // right click
-          skill.sheet.render(true);
+          skill.sheet.render({force: true});
         }
       }
     }
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
   }
 }
 
@@ -254,6 +309,6 @@ export async function handleSkillRoll(event: Event): Promise<void> {
     }
     return skill;
   } else {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.NoActorSelected"));
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
   }
 }*/

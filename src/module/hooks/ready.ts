@@ -23,7 +23,7 @@ Hooks.once("ready", async function () {
   }
 
   if (!Roll.validate(game.settings.get('twodsix', 'maxEncumbrance'))) {
-    ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.EncumbranceFormulaInvalid"));
+    ui.notifications.warn("TWODSIX.Warnings.EncumbranceFormulaInvalid", {localize: true});
   }
 
   // Determine whether a system migration is required and feasible
@@ -90,14 +90,12 @@ Hooks.once("ready", async function () {
     setDocumentPartials();
   }
 
-  //Force colorScheme setting and disable core setting from config
-  const colorSettings = game.settings.settings.get("core.colorScheme");
-  colorSettings.config = false;
-  if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
-    game.settings.set('core', 'colorScheme', 'dark');
-  } else {
-    game.settings.set('core', 'colorScheme', 'light');
-  }
+  //Force colorScheme setting
+  const uiSettings = foundry.utils.duplicate(game.settings.get("core", "uiConfig"));
+  const useStandardStyle = game.settings.get('twodsix', 'useFoundryStandardStyle');
+  uiSettings.colorScheme.applications = useStandardStyle ? 'light' : 'dark';
+  uiSettings.colorScheme.interface = useStandardStyle ? 'light' : 'dark';
+  await game.settings.set("core", "uiConfig", uiSettings);
 
   //Add index
   for (const pack of game.packs) {
@@ -115,6 +113,9 @@ Hooks.once("ready", async function () {
     const rulesetChainBonus = TWODSIX.RULESETS[ruleset]?.settings.chainBonus;
     game.settings.set('twodsix', 'chainBonus', rulesetChainBonus ?? "");
   }
+
+  //Check default actor sheet types
+  //checkDefaultActorSheetTypes();
 });
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize
@@ -142,3 +143,34 @@ async function toggleFirstActiveEffect(actor:TwodsixActor, isToken: boolean): Pr
     }
   }
 }
+
+/**
+ * Check that the default actor sheet type exists in Actors.registeredSheets. If not,
+ * try to find a match in registered sheets.  Also, make migration from TwodsixActorSheet to TwodsixTravellerSheet
+ * @function
+ * @async
+ */
+/*async function checkDefaultActorSheetTypes(): Promise<void> {
+  const defaultSheets = foundry.utils.duplicate(game.settings.get("core", "sheetClasses"));
+  const defaultActorSheets = defaultSheets?.Actor;
+  let changed = false;
+  for (const key in defaultActorSheets) {
+    const sheetClassName = defaultActorSheets[key].substring(8); //"prefixed with twodsix."
+    if (!Actors.registeredSheets.find(sheet => sheet.name === sheetClassName)) {
+      if ((Actors.registeredSheets.find(sheet => sheet.name === '_' + sheetClassName))) {
+        defaultActorSheets[key] = `twodsix._${sheetClassName}`;
+        changed = true;
+      } else if (key === 'traveller' && Actors.registeredSheets.find(sheet => sheet.name === '_TwodsixTravellerSheet')) {
+        defaultActorSheets[key] = `twodsix._TwodsixTravellerSheet`;
+        changed = true;
+      } else if (key === 'traveller' && Actors.registeredSheets.find(sheet => sheet.name === 'TwodsixTravellerSheet')) {
+        defaultActorSheets[key] = `twodsix.TwodsixTravellerSheet`;
+        changed = true;
+      }
+    }
+  }
+  if (changed) {
+    const newSettings = foundry.utils.mergeObject(defaultSheets, {Actor: defaultActorSheets});
+    await game.settings.set('core', 'sheetClasses', newSettings);
+  }
+}*/

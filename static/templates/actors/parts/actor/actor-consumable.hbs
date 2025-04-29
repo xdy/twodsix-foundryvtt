@@ -1,0 +1,50 @@
+{{#unless system.isAttachment}}
+<div class="consumable-row" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}">
+  <span class="wrapper">
+    {{name}}:
+    {{#with system}}
+    <span class="consumable-count with-buttons">
+      <span>{{currentCount}}/{{max}}</span>
+      <span class="combined-buttons">
+        <button type="button" class="left-button adjust-consumable" data-action="adjustConsumable" {{#iff currentCount "<=" 0}}disabled{{/iff}} data-value="1">-</button>
+        <button type="button" class="right-button adjust-consumable" data-action="adjustConsumable" {{#iff currentCount ">=" max}}disabled{{/iff}} data-value="-1">+</button>
+      </span>
+    </span>
+    <button type="button" {{#iff currentCount '>=' max}}disabled{{/iff}} class="refill-button" data-action="refillConsumable">
+      {{twodsix_refillText subtype quantity}}
+    </button>
+    {{/with}}
+    <span class="item-controls centre">
+      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}" data-action="toggleConsumable"
+        {{#iff isSelected '===' consumableId}}
+          style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.ActiveConsumable'}}"
+        {{else}}
+          data-tooltip="{{localize 'TWODSIX.Items.Consumable.SelectConsumable'}}"
+        {{/iff}}> <i class="fa-solid fa-circle-check"></i>
+      </a>
+      <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="editConsumable"><i class="fa-solid fa-pen-to-square"></i></a>
+    </span>
+  </span>
+</div>
+{{else}}
+<div class="consumable-row" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}">
+  <span class="wrapper">
+    {{name}}
+    {{#if system.canProcess}}
+       - {{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower parentItem}}/{{system.bandwidth}}
+    {{/if}}
+    <span class="item-controls centre">
+      {{#iff system.subtype "===" "software"}}
+      <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}" data-action="toggleConsumable"
+        {{#if system.softwareActive}}
+          style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOn'}}"
+        {{else}}
+          data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOff'}}"
+        {{/if}}> <i class="fa-solid fa-power-off"></i>
+      </a>
+      {{/iff}}
+      <a class="item-control consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="editConsumable"><i class="fa-solid fa-pen-to-square"></i></a>
+    </span>
+  </span>
+</div>
+{{/unless}}

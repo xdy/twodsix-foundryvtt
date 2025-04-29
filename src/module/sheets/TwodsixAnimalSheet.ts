@@ -2,102 +2,63 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
-import { TWODSIX } from "../config";
-import TwodsixActor from "../entities/TwodsixActor";
 import { Animal } from "src/types/template";
-import { getDamageTypes, getRangeTypes } from "../utils/sheetUtils";
-import { setCharacteristicDisplay } from "./TwodsixActorSheet";
-export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
 
-  /**
-   * Return the type of the current Actor
-   * @type {String}
-   */
-  get actorType(): string {
-    return this.actor.type;
-  }
+export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
+
+  static DEFAULT_OPTIONS =  {
+    sheetType: "TwodsixAnimalSheet",
+    classes: ["twodsix", "sheet", "animal-actor"],
+    dragDrop: [{dragSelector: ".item-name", dropSelector: null}],
+    position: {
+      width: 720,
+      height: 470
+    },
+    window: {
+      resizable: true,
+      icon: "fa-solid fa-hippo"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    actions: {
+      rollReaction: this._onRollReaction,
+      rollMorale: this._onRollMorale
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/animal-sheet.hbs",
+      //scrollable: ['']
+    }
+  };
 
   /** @override */
-  async getData(): any {
-    const returnData: any = super.getData();
-    returnData.system = returnData.actor.system;
-    returnData.container = {};
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
     if (game.settings.get('twodsix', 'useProseMirror')) {
-      returnData.richText = {
-        description: await TextEditor.enrichHTML(returnData.system.description),
-        notes: await TextEditor.enrichHTML(returnData.system.notes)
+      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
+      context.richText = {
+        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+        notes: await TextEditorImp.enrichHTML(context.system.notes, {secrets: this.document.isOwner})
       };
     }
 
-    returnData.dtypes = ["String", "Number", "Boolean"];
-
-    // Prepare items.
-    if (this.actor.type == 'animal') {
-      const actor: TwodsixActor = <TwodsixActor>this.actor;
-      const untrainedSkill = actor.getUntrainedSkill();
-      if (untrainedSkill) {
-        returnData.untrainedSkill = untrainedSkill;
-      }
-      AbstractTwodsixActorSheet._prepareItemContainers(actor, returnData);
-      //Prepare characteristic display values
-      setCharacteristicDisplay(returnData);
-    }
-
     // Add relevant data from system settings
-    returnData.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
-      rangeTypes: getRangeTypes('short'),
-      ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
-      autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
-      showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
-      lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
-      showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
-      showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
-      showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
-      showIcons: game.settings.get("twodsix", "showIcons"),
-      showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
-      showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
-      useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
-      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
-      showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showSpells: game.settings.get('twodsix', 'showSpells'),
+    Object.assign(context.settings, {
       useHits: game.settings.get('twodsix', 'animalsUseHits'),
-      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") | game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
       animalsUseLocations: game.settings.get('twodsix', 'animalsUseLocations'),
       displayReactionMorale: game.settings.get('twodsix', 'displayReactionMorale'),
-      hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
-      useAllAnimalTypes: game.settings.get('twodsix', 'animalTypesIndependentofNiche'),
-      damageTypes: getDamageTypes(false),
-      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
-      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
-      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
-    };
-
-    returnData.config = TWODSIX;
-    return returnData;
-  }
-
-
-  /** @override */
-  static get defaultOptions(): ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "sheet", "animal-actor"],
-      template: "systems/twodsix/templates/actors/animal-sheet.html",
-      width: 830,
-      height: 500,
-      resizable: true,
-      dragDrop: [{dragSelector: ".item", dropSelector: null}]
+      useAllAnimalTypes: game.settings.get('twodsix', 'animalTypesIndependentofNiche')
     });
+
+    return context;
   }
 
-  public activateListeners(html: JQuery): void {
-    super.activateListeners(html);
-    html.find('.roll-reaction').on('click', this._onRollReaction.bind(this));
-    html.find('.roll-morale').on('click', this._onRollMorale.bind(this));
-  }
-
-  protected async _onRollReaction(): Promise<void> {
+  static async _onRollReaction(): Promise<void> {
     const reaction = (<Animal>this.actor.system).reaction;
     let rollString = "2d6";
     if (this.actor.system.woundedEffect) {
@@ -108,7 +69,7 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     let flavor = "";
 
     if (isNaN(reaction.flee) || isNaN(reaction.attack) || reaction.flee >= reaction.attack) {
-      ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidReactionInputs"));
+      ui.notifications.warn("TWODSIX.Warnings.InvalidReactionInputs", {localize: true});
     } else {
       if (roll.total >= reaction.attack) {
         flavor = game.i18n.localize("TWODSIX.Animal.AttacksMessage");
@@ -117,17 +78,17 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
       } else {
         flavor = game.i18n.localize("TWODSIX.Animal.NoReactionMessage");
       }
-      await roll.toMessage(
-        { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
-          flavor: flavor,
-          style: CONST.CHAT_MESSAGE_STYLES.OTHER,
-        },
-        {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
+      await roll.toMessage({
+        title: game.i18n.localize("TWODSIX.Animal.Reaction"),
+        speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
+        flavor: flavor,
+        style: CONST.CHAT_MESSAGE_STYLES.OTHER,
+      }, {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
       );
     }
   }
 
-  protected async _onRollMorale(): Promise<void> {
+  static async _onRollMorale(): Promise<void> {
     let rollString = "2d6";
     if (this.actor.system.woundedEffect) {
       rollString += " + @woundedEffect";
@@ -149,13 +110,14 @@ export class TwodsixAnimalSheet extends AbstractTwodsixActorSheet {
     } else {
       flavor = game.i18n.localize("TWODSIX.Animal.FightToTheDeath");
     }
-    await roll.toMessage(
-      { speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
-        flavor: flavor,
-        style: CONST.CHAT_MESSAGE_STYLES.OTHER,
-        rolls: [roll]
-      },
-      {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
+    await roll.toMessage({
+      title: game.i18n.localize("TWODSIX.Animal.MoraleRoll"),
+      speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
+      flavor: flavor,
+      style: CONST.CHAT_MESSAGE_STYLES.OTHER,
+      rolls: [roll]
+    },
+    {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
     );
   }
 }

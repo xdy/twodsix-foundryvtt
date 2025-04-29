@@ -1,0 +1,57 @@
+
+<section class="{{cssClass}} item-class" autocomplete="off">
+  <div class="skill-container-small">
+    <div>
+      {{> "systems/twodsix/templates/items/parts/image-name.hbs"}}
+      <div class="item-simplifiedName">
+        <label class="resource-label" for="item.name">{{localize "TWODSIX.Items.Skills.SimplifiedSkillName"}}:</label>
+        <input class="form-input" type="text" value="{{skillName item.name}}" readonly/>
+      </div>
+        <div class="simplified-skill-description">
+          <span class="resource-label">&nbsp</span>
+          <span class="form-input">{{{replace (localize "TWODSIX.Items.Skills.SimplifiedSkillNameDescription") "_SKILL_NAME_" (skillName item.name)}}}</span>
+        </div>
+    </div>
+    <div class="item-simplifiedName">
+      <label class="resource-label" for="system.groupLabel">{{localize "TWODSIX.Items.Skills.GroupLabel"}}</label>
+      <input class="form-input" name="system.groupLabel" type="text" value="{{system.groupLabel}}"/>
+    </div>
+    <div class="item-lvl">
+      <label for="system.value" class="resource-label">{{localize "TWODSIX.Items.Skills.Level"}}</label>
+      <input class="form-input" type="text" name="system.value" value="{{system.value}}" data-dtype="Number"/>
+    </div>
+
+    <div class="item-simplifiedName">
+      <label class="resource-label" for="system.inTraining">{{localize "TWODSIX.Items.Skills.TrainingNotes"}}</label>
+      <input class="form-input" name="system.trainingNotes" type="text" value="{{system.trainingNotes}}"/>
+    </div>
+
+      <div class="item-type">
+        <label for="system.characteristic" class="resource-label">{{localize "TWODSIX.Items.Skills.Modifier"}}</label>
+        <select class="form-input" name="system.characteristic" value={{characteristic}}>
+          {{selectOptions settings.characteristicsList selected=system.initialCharacteristic }}
+        </select>
+      </div>
+      <div class="item-rollDifficulty">
+        <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
+          <select class="form-input" name="system.difficulty">
+            {{selectOptions settings.difficultyList selected=system.difficulty}}
+          </select>
+      </div>
+
+    <div class="item-rollType">
+      <label class="resource-label">{{localize "TWODSIX.Chat.Roll.Type"}}</label>
+        <select class="form-input" name="system.rolltype">
+          {{selectOptions settings.rollTypes selected=system.rolltype}}
+        </select>
+    </div>
+
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+        {{{enrichedDescription}}}
+      </prose-mirror>
+    </div>
+    {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+  </div>
+</section>

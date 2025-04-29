@@ -1,0 +1,90 @@
+{{#if item.isOwned}}
+<div class="form-section">
+  {{localize "TWODSIX.Actor.Items.CONSUMABLES"}}:
+  <table class="consumable">
+    <thead class="consumable">
+      <tr>
+        <th>{{localize "TWODSIX.Actor.Items.Name"}}</th>
+        <th>{{localize "TWODSIX.Actor.Items.Subtype"}}</th>
+        <th>{{localize "TWODSIX.Actor.Items.Qty"}}</th>
+        <th>{{localize "TWODSIX.Actor.Items.Count"}}</th>
+        <th class="centre">
+          <a class="consumable-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-action="createConsumable">
+            <i class="fa-solid fa-plus"></i>
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each system.consumableData as |consumable|}}
+        <tr class="consumable" data-consumable-id="{{consumable.id}}" draggable="true">
+          <td>{{consumable.name}}</td>
+          <td>{{twodsix_localizeConsumable consumable.system.subtype}}</td>
+          <td>{{consumable.system.quantity}}</td>
+          <td>{{consumable.system.currentCount}}/{{consumable.system.max}}</td>
+          <td class="centre">
+            <a class="consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="editConsumable">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a class="consumable-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="deleteConsumable">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      {{/each}}
+      {{#unless system.consumableData}}
+      <tr>
+        <td colspan="5">
+          {{localize "TWODSIX.Items.Consumable.DropConsumablesHere"}}
+        </td>
+      </tr>
+      {{/unless}}
+    </tbody>
+  </table>
+</div>
+{{#iff type "!==" "consumable"}}
+<div class="form-section">
+  {{localize "TWODSIX.Actor.Items.ATTACHMENTS"}}:
+  <table class="consumable">
+    <thead class="consumable">
+      <tr>
+        <th>{{localize "TWODSIX.Actor.Items.Name"}}</th>
+        <th>{{localize "TWODSIX.Actor.Items.Subtype"}}</th>
+        <th>{{localize "TWODSIX.Actor.Items.Qty"}}</th>
+        <th></th>
+        <th class="centre">
+          <a class="attachment-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-action="createAttachment">
+            <i class="fa-solid fa-plus"></i>
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each system.attachmentData as |attachment|}}
+        <tr class="consumable" data-consumable-id="{{attachment.id}}" draggable="true">
+          <td>{{attachment.name}}</td>
+          <td>{{twodsix_localizeConsumable attachment.system.subtype}}</td>
+          <td>{{attachment.system.quantity}}</td>
+          <td></td>
+          <td class="centre">
+            <a class="consumable-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="editConsumable">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a class="consumable-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}' data-action="deleteConsumable">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      {{/each}}
+      {{#unless system.attachmentData}}
+      <tr>
+        <td colspan="5">
+          {{localize "TWODSIX.Items.Consumable.DropAttachmentsHere"}}
+        </td>
+      </tr>
+      {{/unless}}
+    </tbody>
+  </table>
+</div>
+{{/iff}}
+{{/if}}

@@ -2,65 +2,73 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import {Vehicle, Component } from "src/types/template";
-import {TwodsixVehicleSheetData, TwodsixVehicleSheetSettings } from "src/types/twodsix";
 import TwodsixItem from "../entities/TwodsixItem";
 import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import TwodsixActor from "../entities/TwodsixActor";
 
-export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
+export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
+
+  static DEFAULT_OPTIONS =  {
+    sheetType: "TwodsixVehicleSheet",
+    classes: ["twodsix", "vehicle", "actor"],
+    dragDrop: [{dragSelector: ".item", dropSelector: null}],
+    position: {
+      width: 835,
+      height: 'auto'
+    },
+    window: {
+      resizable: true,
+      icon: "fa-solid fa-truck-plane"
+    },
+    form: {
+      submitOnChange: true,
+      submitOnClose: true
+    },
+    actions: {
+      toggleComponent: this._onToggleComponent,
+      rollSkillVehicle: this._onSkillRollVehicle
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/actors/vehicle-sheet.hbs",
+      //scrollable: ['']
+    }
+  };
 
   /** @override */
-  getData(): TwodsixVehicleSheetData {
-    const context = <TwodsixVehicleSheetData>super.getData();
-    context.dtypes = ["String", "Number", "Boolean"];
-    AbstractTwodsixActorSheet._prepareItemContainers(<TwodsixActor>this.actor, context);
-    context.settings = <TwodsixVehicleSheetSettings>{
+  async _prepareContext(options):any {
+    const context = await super._prepareContext(options);
+
+    // Add relevant data from system settings
+    Object.assign(context.settings, {
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
-      usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
-      showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
-      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
-      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
-    };
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
+    });
 
     return context;
   }
 
-  static get defaultOptions():ActorSheet.Options {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["twodsix", "vehicle", "actor"],
-      template: "systems/twodsix/templates/actors/vehicle-sheet.html",
-      width: 835,
-      height: 'auto',
-      resizable: true,
-    });
-  }
-
-  activateListeners(html:JQuery):void {
-    super.activateListeners(html);
-    html.find(".component-toggle").on("click", this._onToggleComponent.bind(this));
-    //html.find('.roll-damage').on('click', onRollDamage.bind(this));
-    html.find('.rollable').on('click', this._onRollWrapperVehicle(this._onSkillRollVehicle));
-    html.find(".adjust-counter").on("click", this._onAdjustCounter.bind(this));
-  }
-
-  private _onToggleComponent(event:Event):void {
-    if (event.currentTarget) {
-      const vehicleSystem = event.currentTarget["dataset"]["key"];
+  static _onToggleComponent(ev:Event, target:HTMLElement):void {
+    if (target) {
+      const vehicleSystem = target.dataset.key;
       const stateTransitions = {"operational": "damaged", "damaged": "destroyed", "destroyed": "off", "off": "operational"};
       if (vehicleSystem) {
-        const newState = event.shiftKey ? ((<Vehicle>this.actor.system).systemStatus[vehicleSystem] === "off" ? "operational" : "off") : stateTransitions[(<Vehicle>this.actor.system).systemStatus[vehicleSystem]];
+        const newState = ev.shiftKey ? ((<Vehicle>this.actor.system).systemStatus[vehicleSystem] === "off" ? "operational" : "off") : stateTransitions[(<Vehicle>this.actor.system).systemStatus[vehicleSystem]];
         this.actor.update({[`system.systemStatus.${vehicleSystem}`]: newState});
       } else {
-        const li = $(event.currentTarget).parents(".item");
-        const itemSelected:Component = this.actor.items.get(li.data("itemId"));
+        const li = target.closest(".item");
+        const itemSelected:Component = this.actor.items.get(li.dataset.itemId);
         if (!itemSelected) {
           return;
         }
-        const type = $(event.currentTarget).data("type");
+        const type = target.dataset.type;
         if (type === "status") {
-          const newState = event.shiftKey ? (itemSelected.system.status === "off" ? "operational" : "off") : stateTransitions[itemSelected.system.status];
+          const newState = ev.shiftKey ? (itemSelected.system.status === "off" ? "operational" : "off") : stateTransitions[itemSelected.system.status];
           itemSelected.update({"system.status": newState});
         } else if (type === "popup") {
           itemSelected.update({"system.isExtended": !itemSelected.system.isExtended});
@@ -69,26 +77,19 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
     }
   }
 
-  private _onRollWrapperVehicle(func: (event, showTrowDiag: boolean) => Promise<void>): (event) => void {
-    return (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
-      const showTrowDiag = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-
-      func.bind(this)(event, showTrowDiag);
-    };
-  }
   /**
    * Handle clickable skill rolls.
-   * @param {Event} event   The originating click event
-   * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
+   * @param {Event} ev   The originating click event
    * @private
    */
-  private async _onSkillRollVehicle(event, showThrowDiag: boolean): Promise<void> {
+  static async _onSkillRollVehicle(ev:Event, /*target:HTMLElement*/): Promise<void> {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    const useInvertedShiftClick: boolean = (<boolean>game.settings.get('twodsix', 'invertSkillRollShiftClick'));
+    const showThrowDiag: boolean = useInvertedShiftClick ? ev["shiftKey"] : !ev["shiftKey"];
     //Get Controlled actor
-    const selectedActor = getControlledTraveller();
+    const selectedActor:TwodsixActor = getControlledTraveller();
 
     if (selectedActor) {
       let skill = <TwodsixItem>selectedActor.items.getName((<Vehicle>this.actor.system).skillToOperate);
@@ -97,13 +98,15 @@ export class TwodsixVehicleSheet extends AbstractTwodsixActorSheet {
       }
       const tmpSettings = {
         rollModifiers: {other: (<Vehicle>this.actor.system).maneuver.agility ? parseInt((<Vehicle>this.actor.system).maneuver.agility) : 0},
-        event: event
+        event: ev
       };
       const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDiag, tmpSettings, skill, undefined, selectedActor);
       if (!settings.shouldRoll) {
         return;
       }
       await skill?.skillRoll(showThrowDiag, settings);
+    } else {
+      ui.notifications.warn( "TWODSIX.Warnings.NoActorSelected", {localize: true});
     }
   }
 }

@@ -1,0 +1,132 @@
+<div class="standard-form roll-settings">
+  <fieldset>
+  <legend>{{localize "TWODSIX.Chat.Roll.RollDetails"}}</legend>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Difficulty"}}</label>
+      <select name="difficulty">
+        {{selectOptions difficultyList selected=difficulty}}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Type"}}</label>
+      <select name="rollType">
+        {{selectOptions rollTypes selected=rollType}}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>{{localize "TWODSIX.Chat.Roll.Mode"}}</label>
+      <select name="rollMode">
+        {{selectOptions rollModes selected=rollMode localize=true}}
+      </select>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>{{localize "TWODSIX.Chat.Roll.RollModifiers"}}</legend>
+      {{#if skillRoll}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Actor.Skills.SkillName"}} ({{localize "TWODSIX.Items.Skills.Level"}})</label>
+        <select class="select-skill" name="rollModifiers.selectedSkill" value={{rollModifiers.selectedSkill}}>
+          {{selectOptions skillsList selected=initialSkill}}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.Chain"}}</label>
+          <input type="number" name="rollModifiers.chain" value="{{rollModifiers.chain}}" placeholder="0" onClick="this.select();"/>
+
+      </div>
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.CharacteristicModifier"}}</label>
+        <select class="select-mod" name="rollModifiers.characteristic" value={{rollModifiers.characteristic}}>
+          {{selectOptions characteristicList selected=initialChoice}}
+        </select>
+      </div>
+      {{/if}}
+      {{#if itemRoll}}
+        <div class="form-group">
+          <label>{{#if isPsionicAbility}}{{localize "TWODSIX.Items.Psionics.Level"}}{{else}}{{localize "TWODSIX.Chat.Roll.ItemModifier"}}{{/if}}</label>
+          <input type="number" name="rollModifiers.item" value="{{rollModifiers.item}}" placeholder="0" onClick="this.select();" />
+          ({{itemLabel}})
+        </div>
+        {{#iff rollModifiers.rof "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Rof"}}</label>
+            <input type="number" name="rollModifiers.rof" value="{{rollModifiers.rof}}" placeholder="0" onClick="this.select();" />
+          </div>
+        {{/iff}}
+        {{#iff rollModifiers.attachments "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Attachments"}}</label>
+              <input type="number" name="rollModifiers.attachments" value="{{rollModifiers.attachments}}" placeholder="0" onClick="this.select();" />
+          </div>
+        {{/iff}}
+        {{#iff rollModifiers.dodgeParry "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.DodgeParry"}}</label>
+            <input type="number" name="rollModifiers.dodgeParry" value="{{rollModifiers.dodgeParry}}" placeholder="0" onClick="this.select();" />
+            ({{rollModifiers.dodgeParryLabel}})
+          </div>
+        {{/iff}}
+        {{#iff rollModifiers.weaponsHandling "!==" 0}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.WeaponsHandling"}}</label>
+            <input type="number" name="rollModifiers.weaponsHandling" value="{{rollModifiers.weaponsHandling}}" placeholder="0" onClick="this.select();" />
+            ({{itemLabel}})
+          </div>
+        {{/iff}}
+        {{#if showRangeModifier}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.WeaponsRange"}}</label>
+            <input type="number" name="rollModifiers.weaponsRange" value="{{rollModifiers.weaponsRange}}" placeholder="0" onClick="this.select();" />
+            ({{rollModifiers.rangeLabel}})
+          </div>
+        {{/if}}
+        {{#if showArmorWeaponModifier}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.ArmorModifier"}}</label>
+            <input type="number" name="rollModifiers.armorModifier" value="{{rollModifiers.armorModifier}}" placeholder="0" onClick="this.select();" />
+            ({{rollModifiers.armorLabel}})
+          </div>
+        {{/if}}
+        {{#if showTargetModifier}}
+          <div class="form-group">
+            <label>{{#if rollModifiers.targetModifierOverride}}{{localize "TWODSIX.Chat.Roll.OverrideAuto"}} {{/if}}{{localize "TWODSIX.Chat.Roll.TargetModifier"}}</label>
+            <multi-select class="select target-modifier" name="rollModifiers.targetModifier" multiple>{{selectOptions targetDMList selected=targetModifier}}</multi-select>
+          </div>
+        {{/if}}
+      {{/if}}
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.Other"}}</label>
+        <input type="number" name="rollModifiers.other" value="{{rollModifiers.other}}" placeholder="0" onClick="this.select();" />
+      </div>
+  </fieldset>
+  {{#if showConditions}}
+    <fieldset>
+      <legend>{{localize "TWODSIX.Chat.Roll.Conditions"}}</legend>
+        {{#if showWounds}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Wounds"}}</label>
+            <input type="number" name="rollModifiers.wounds" value="{{rollModifiers.wounds}}" placeholder="0" onClick="this.select();" />
+          </div>
+        {{/if}}
+        {{#if showEncumbered}}
+          <div class="form-group">
+            <label>{{localize "TWODSIX.Chat.Roll.Encumbered"}}</label>
+            <input type="number" name="rollModifiers.encumbered" value="{{rollModifiers.encumbered}}" placeholder="0" onClick="this.select();" />
+          </div>
+        {{/if}}
+    </fieldset>
+  {{/if}}
+  {{#if (twodsix_showTimeframe)}}
+    <fieldset>
+      <legend>{{localize "TWODSIX.Chat.Roll.Timeframe"}}</legend>
+      <div class="form-group">
+        <label>{{localize "TWODSIX.Chat.Roll.RollFormula"}} </label>
+        <input type="text" name="timeRollFormula" value="{{timeRollFormula}}" placeholder="1d6" onClick="this.select();"/>
+        <label>{{localize "TWODSIX.Chat.Roll.Units"}}</label>
+        <select class="select-timeUnits" name="timeUnit" value={{selectedTimeUnit}}>
+          {{selectOptions timeUnits selected=selectedTimeUnit localize=true}}
+        </select>
+      </div>
+    </fieldset>
+  {{/if}}
+</div>

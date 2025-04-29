@@ -3,17 +3,17 @@
 
 import { TWODSIX } from "../config";
 
-function createWarningDialog(event, message: string) {
+async function createWarningDialog(event, message: string) {
   event.preventDefault();
   event.stopPropagation();
   const currentTarget = event.currentTarget;
   if (currentTarget) {
-    Dialog.confirm({
-      title: game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warning"),
-      content: message,
-      yes: async () => currentTarget["checked"] = !currentTarget["checked"],
-      defaultYes: true
-    });
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warning")},
+      content: message
+    })) {
+      currentTarget["checked"] = !currentTarget["checked"];
+    }
   }
 }
 
@@ -21,27 +21,28 @@ Hooks.on('updateSetting', async (setting) => {
   const ruleset = game.settings.get('twodsix', 'ruleset');
   if (Object.keys(TWODSIX.RULESETS[ruleset].settings).includes(setting.key.slice(8))) {
     if (game.settings.sheet.rendered) {
-      game.settings.sheet.render(true);
+      game.settings.sheet.render({force: true});
     }
   }
 });
 
-Hooks.on('renderAdvancedSettings', async (app, html) => {
+Hooks.on('renderAdvancedSettings', async (app, htmlElement) => {
   const ruleset = game.settings.get('twodsix', 'ruleset');
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   Object.entries(rulesetSettings).forEach(([settingName, value]) => {
-    const el = html.find(`[name="${settingName}"]`);
-    if (game.settings.get("twodsix", settingName) !== value) {
-      el.filter(`:not([type="checkbox"])`).css("border", "1px solid orange");
-      el.filter(`[type="checkbox"]`).parent().css("border", "1px solid orange");
-    } else {
-      el.filter(`:not([type="checkbox"])`).css("border", "1px solid green");
-      el.filter(`[type="checkbox"]`).parent().css("border", "1px solid green");
+    let el = htmlElement.querySelector(`[name="${settingName}"]`);
+    if (el) {
+      const isChanged = game.settings.get("twodsix", settingName) !== value;
+      if (el.type === "checkbox") {
+        el = el.parentNode;
+      }
+      el.style.border = isChanged ? "1px solid orange" : "1px solid green";
     }
   });
 });
 
-Hooks.on('renderSettingsConfig', async (app, html) => {
+Hooks.on('renderSettingsConfig', async (app, html:JQuery|HTMLElement) => {
+  const htmlElement:HTMLElement = (html instanceof jQuery) ? html.get(0) : html; //Maybe not required when v13 fully Appv2
   const ruleset = game.settings.get('twodsix', 'ruleset');
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
@@ -49,14 +50,19 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
   });
   if (!settings.every(v => v)) {
     const modified = game.i18n.localize("TWODSIX.Settings.settingsInterface.rulesetSettings.modified");
-    html.find(`[name="twodsix.ruleset"] option[value="${ruleset}"]`).text(`${TWODSIX.RULESETS[ruleset].name} (${modified})`).addClass("modified-ruleset");
-    html.find(`[name="twodsix.ruleset"] .modified-ruleset`).after(`<option value="${ruleset}">${TWODSIX.RULESETS[ruleset].name}</option>`);
+    const selectedRuleset = htmlElement.querySelector(`[name="twodsix.ruleset"] option[value="${ruleset}"]`);
+    selectedRuleset.textContent = `${TWODSIX.RULESETS[ruleset].name} (${modified})`;
+    selectedRuleset.classList.add("modified-ruleset");
+    const newOption = document.createElement('option');
+    newOption.value = `${ruleset}`;
+    newOption.text = `${TWODSIX.RULESETS[ruleset].name}`;
+    selectedRuleset.after(newOption);
   }
 
-  html.find('[name="twodsix.ruleset"]').on('change', async ev => {
-    if (await Dialog.confirm({
-      title: "Change ruleset",
-      content: "Do you want to change ruleset? If you have custom options they will be erased. This step cannot be undone."
+  htmlElement.querySelector('[name="twodsix.ruleset"]')?.addEventListener('change', async ev => {
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.Dialogs.rulesetChange.title")},
+      content: game.i18n.localize("TWODSIX.Dialogs.rulesetChange.content")
     })) {
       const newRuleset = ev.target.value;
       const newRulesetSettings = TWODSIX.RULESETS[newRuleset].settings;
@@ -69,17 +75,17 @@ Hooks.on('renderSettingsConfig', async (app, html) => {
     }
   });
 
-  html.find('[name="twodsix.hideUntrainedSkills"]').on('click', async (event) => {
+  htmlElement.querySelector('[name="twodsix.hideUntrainedSkills"]')?.addEventListener('click', async (event) => {
     const continueText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.continue");
 
     const currentTarget = event.currentTarget;
     if (currentTarget) {
       if (game.settings.get('twodsix', 'hideUntrainedSkills') && !currentTarget["checked"]) {
         const warningResetText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningReset");
-        createWarningDialog(event, `${warningResetText}<br><br>${continueText}<br><br>`);
+        createWarningDialog(event, `${warningResetText}<br>${continueText}<br>`);
       } else if (!game.settings.get('twodsix', 'hideUntrainedSkills') && currentTarget["checked"]) {
         const warningUpdateWeaponText = game.i18n.localize("TWODSIX.Settings.hideUntrainedSkills.warningUpdateWeapon");
-        createWarningDialog(event, `${warningUpdateWeaponText}<br><br>${continueText}<br><br>`);
+        createWarningDialog(event, `${warningUpdateWeaponText}<br>${continueText}<br>`);
       }
     }
   });

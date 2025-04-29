@@ -1,0 +1,128 @@
+<section class="{{cssClass}} flexcol" autocomplete="off">
+  {{#unless settings.useFoundryStandardStyle}}
+    {{> "systems/twodsix/templates/actors/parts/ship/interface-overlay-2.hbs"}}
+  {{/unless}}
+  <div class="ship-container">
+    <div class="ship-image">
+      <img class= "profile-img" src="{{actor.img}}" data-edit="img" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.ShipImage"}}'/>
+    </div>
+
+    <div class="ship-deck">
+      {{#if settings.showComponentSummaryIcons}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-status.hbs"}}
+      {{/if}}
+      {{#iff actor.system.deckPlan "!==" ""}}
+        <a class="ship-deck-link" rel="bookmark" data-action="selectDeckplan">{{localize "TWODSIX.Ship.Deckplan"}}</a>
+        <a class="item-control ship-deck-unlink" data-action="deleteDeckplan" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteItem"}}'><i class="fa-solid fa-trash"></i></a>
+      {{/iff}}
+    </div>
+
+    <div class="ship-name">
+      <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
+    </div>
+    {{#unless limited}}
+    <div class="ship-info">
+      {{> "systems/twodsix/templates/actors/parts/ship/ship-state-grid.hbs"}}
+    </div>
+    <div class="ship-power-management">
+      {{#unless settings.useFoundryStandardStyle}}
+        {{> "systems/twodsix/templates/actors/parts/ship/ship-power-management.hbs"}}
+      {{/unless}}
+      <div class="ship-power-subgrid">
+        {{#if settings.showWeightUsage}}
+          <span class ="power-title">{{localize "TWODSIX.Ship.PowerWeightManagement"}}</span>
+          {{else}}
+          <span class ="power-title">{{localize "TWODSIX.Ship.PowerManagement"}}</span>
+        {{/if}}
+        <span class="ship-power-label">{{localize "TWODSIX.Ship.Power"}}</span>
+        <div class="ship-power-used">
+          {{#iff actor.system.shipStats.power.value '>' actor.system.shipStats.power.max}}
+            <input {{#if settings.useShipAutoCalc}}readonly{{/if}} class="power-current red" id="ship-stat-red" type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0"/>
+          {{else}}
+            <input {{#if settings.useShipAutoCalc}}readonly{{/if}} class="power-current" type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0"/>
+          {{/iff}}
+          <span class="power-now">{{localize "TWODSIX.Ship.USED"}}</span>
+        </div>
+        <div class="ship-power-avail">
+          <input {{#if settings.useShipAutoCalc}}readonly{{/if}} class="power-total" type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0"/>
+          <span class="power-max">{{localize "TWODSIX.Ship.MAX"}}</span>
+        </div>
+        <!-- <div class="power-grid"> -->
+          {{#if settings.showWeightUsage}}
+            <div class="ship-stat systems-weight"><label for="system.weightStats.systems">{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.systems}}" name="system.weightStats.systems" id="system.weightStats.systems"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+            <div class="ship-stat cargo-load-weight"><label for="system.weightStats.cargo">{{localize "TWODSIX.Ship.Cargo"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.cargo}}" name="system.weightStats.cargo" id="system.weightStats.cargo"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+            <div class="ship-stat fuel-weight"><label for="system.weightStats.fuel">{{localize "TWODSIX.Ship.Fuel"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.fuel}}" name="system.weightStats.fuel" id="system.weightStats.fuel"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+            <div class="ship-stat vehicle-weight"><label for="system.weightStats.vehicles">{{localize "TWODSIX.Ship.Vehicles"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.weightStats.vehicles}}" name="system.weightStats.vehicles" id="system.weightStats.vehicles"/><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+            {{#iff actor.system.weightStats.available '>=' 0}}
+              <div class="ship-stat available-weight">{{localize "TWODSIX.Ship.Avail"}}<input type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+            {{else}}
+              <div class="ship-stat red available-weight">{{localize "TWODSIX.Ship.Avail"}}<input id="ship-stat-red" type="number" {{#if settings.useShipAutoCalc}}readonly{{/if}} value="{{actor.system.weightStats.available}}" name="system.weightStats.available" ><span class = "small-font">{{localize "TWODSIX.Ship.dtons"}}</span></div>
+            {{/iff}}
+          {{else}}
+            <div class="ship-stat systems-power"><label for="system.reqPower.systems">{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.systems}}" name="system.reqPower.systems" id="system.reqPower.systems"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+            <div class="ship-stat m-drive-power"><label for="system.reqPower.m-drive">{{localize "TWODSIX.Ship.MDrive"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.m-drive}}" name="system.reqPower.m-drive" id="system.reqPower.m-drive"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+            <div class="ship-stat j-drive-power"><label for="system.reqPower.j-drive">{{localize settings.jDriveLabel}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.j-drive}}" name="system.reqPower.j-drive" id="system.reqPower.j-drive"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+            <div class="ship-stat sensors-power"><label for="system.reqPower.sensors">{{localize "TWODSIX.Ship.Sensors"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.sensors}}" name="system.reqPower.sensors" id="system.reqPower.sensors"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+            <div class="ship-stat weapons-power"><label for="system.reqPower.weapons">{{localize "TWODSIX.Ship.Weapons"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.weapons}}" name="system.reqPower.weapons" id="system.reqPower.weapons"><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+          {{/if}}
+        <!-- </div>-->
+      </div>
+    </div>
+    {{/unless}}
+    {{!-- Sheet Tab Navigation --}}
+      <div class="ship-tabs">
+        <nav class="actor-sheet-tabs tabs" data-group="primary">
+          <a class="ship-positions-tab" data-tab="shipPositions" data-group="primary" data-action="tab"><i class="fa-solid fa-street-view"></i>{{localize "TWODSIX.Ship.Tabs.ShipPositions"}}</a>
+          <a class="ship-crew-tab" data-tab="shipCrew" data-group="primary" data-action="tab"><i class="fa-solid fa-users"></i>{{localize "TWODSIX.Ship.Tabs.Crew"}}</a>
+          <a class="ship-component-tab" data-tab="shipComponent" data-group="primary" data-action="tab"><i class="fa-solid fa-gears"></i>{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
+          <a class="ship-storage-tab" data-tab="shipStorage" data-group="primary" data-action="tab"><i class="fa-solid fa-warehouse"></i>{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
+          <a class="ship-cargo-tab" data-tab="shipCargo" data-group="primary" data-action="tab"><i class="fa-solid fa-boxes-stacked"></i>{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
+          <a class="ship-finance-tab" data-tab="shipFinance" data-group="primary" data-action="tab"><i class="fa-solid fa-coins"></i>{{localize "TWODSIX.Ship.Tabs.Finance"}}</a>
+          <a class="ship-notes-tab" data-tab="shipNotes" data-group="primary" data-action="tab"><i class="fa-regular fa-clipboard"></i>{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
+        </nav>
+      </div>
+    {{#unless limited}}
+    {{!-- Sheet Body --}}
+      <div class="ship-tabs-info sheet-body">
+        {{!-- Ship Position Tab --}}
+        <div class="tab ship-positions {{tabs.shipPositions.cssClass}}" data-group="primary" data-tab="shipPositions">
+          {{> "systems/twodsix/templates/actors/parts/ship/ship-positions.hbs"}}
+        </div>
+
+        {{!-- Crew Tab --}}
+        <div class="tab ship-crew {{tabs.shipCrew.cssClass}}" data-group="primary" data-tab="shipCrew">
+          {{> "systems/twodsix/templates/actors/parts/ship/ship-crew.hbs"}}
+        </div>
+
+        {{!-- Component Tab --}}
+        <div class="tab ship-component {{tabs.shipComponent.cssClass}}" data-group="primary" data-tab="shipComponent">
+          {{#if settings.showSingleComponentColumn}}
+            {{> "systems/twodsix/templates/actors/parts/ship/ship-components-single.hbs"}}
+          {{else}}
+            {{> "systems/twodsix/templates/actors/parts/ship/ship-components-double.hbs"}}
+          {{/if}}
+        </div>
+
+        {{!-- Storage Tab --}}
+        <div class="tab ship-storage {{tabs.shipStorage.cssClass}}" data-group="primary" data-tab="shipStorage">
+            {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.hbs"}}
+        </div>
+
+        {{!-- Cargo Tab --}}
+        <div class="tab ship-cargo {{tabs.shipCargo.cssClass}}" data-group="primary" data-tab="shipCargo">
+          {{> "systems/twodsix/templates/actors/parts/ship/ship-cargo.hbs"}}
+        </div>
+
+        {{!-- Finance Tab --}}
+        <div class="tab ship-finance {{tabs.shipFinance.cssClass}}" data-group="primary" data-tab="shipFinance">
+          {{> "systems/twodsix/templates/actors/parts/ship/ship-finance.hbs"}}
+        </div>
+
+        {{!-- Notes Tab --}}
+        <div class="tab ship-notes {{tabs.shipNotes.cssClass}}" data-group="primary" data-tab="shipNotes">
+          {{> "systems/twodsix/templates/actors/parts/ship/ship-notes.hbs"}}
+        </div>
+      </div>
+    {{/unless}}
+    </div>
+  </section>

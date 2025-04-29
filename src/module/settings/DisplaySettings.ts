@@ -4,7 +4,7 @@ import AdvancedSettings from "./AdvancedSettings";
 import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting, numberSetting, arrayChoiceSetting} from "./settingsUtils";
 import {TWODSIX} from "../config";
 
-export default class DisplaySettings extends AdvancedSettings {
+export default class DisplaySettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {
     DisplaySettings.settings = DisplaySettings.registerSettings();
     return DisplaySettings;
@@ -15,10 +15,45 @@ export default class DisplaySettings extends AdvancedSettings {
   }
 
   /** @override */
-  getData() {
-    const data = super.getData();
-    data.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.intro`)}</h2><br>`;
-    return data;
+  static DEFAULT_OPTIONS =  {
+    classes: ["twodsix"],
+    position: {
+      width: 675,
+      height: 'auto'
+    },
+    window: {
+      resizable: true,
+      contentClasses: ["standard-form"],
+      title: "TWODSIX.Settings.settingsInterface.displaySettings.name",
+      icon: "fa-solid fa-tv"
+    },
+    form: {
+      handler: AdvancedSettings.onSubmit,
+      closeOnSubmit: true,
+      submitOnChange: false,
+      submitOnClose: false
+    },
+    tag: "form"
+  };
+
+  static PARTS = {
+    main: {
+      template: "systems/twodsix/templates/misc/advanced-settings.hbs",
+      scrollable: ['']
+    }
+  };
+
+  /** @override */
+  tabGroups = {
+    primary: "general"  //set default tab
+  };
+
+  /** @override */
+  async _prepareContext(options): any {
+    const context: any = await super._prepareContext(options);
+    //context.intro = `<h2>${game.i18n.localize(`TWODSIX.Settings.settingsInterface.displaySettings.intro`)}</h2>`;
+    context.tabs = this.getTabs(DisplaySettings.settings, this.tabGroups.primary);
+    return context;
   }
 
   static registerSettings(): any {
@@ -66,14 +101,15 @@ export default class DisplaySettings extends AdvancedSettings {
     settings.ship.push(booleanSetting('showCost', false));
     settings.actor.push(booleanSetting('showTotalArmor', false));
     settings.general.push(booleanSetting('showItemIconsInChat', true));
-    settings.actor.push(numberSetting('defaultActorSheetWidth', 900, false, 'world', refreshWindow));
-    settings.actor.push(numberSetting('defaultActorSheetHeight', 780, false, 'world', refreshWindow));
-    settings.actor.push(booleanSetting('showAttachmentsList', false));
-    settings.actor.push(booleanSetting('showConsumablesList', false));
+    settings.actor.push(numberSetting('defaultActorSheetWidth', 915, false, 'world', refreshWindow));
+    settings.actor.push(numberSetting('defaultActorSheetHeight', 718, false, 'world', refreshWindow));
+    /*settings.actor.push(booleanSetting('showAttachmentsList', false));
+    settings.actor.push(booleanSetting('showConsumablesList', false));*/
     settings.ship.push(booleanSetting('showCombatPosition', false));
     const nonCargoTypes = foundry.utils.duplicate(TWODSIX.ComponentTypes);
     delete nonCargoTypes.cargo;
     settings.ship.push(arrayChoiceSetting('componentsIgnored', [], true, nonCargoTypes));
+    settings.token.push(booleanSetting('showMovementColors', false));
     return settings;
   }
 }
@@ -121,11 +157,11 @@ export const updateStatusIcons = function () {
 
 export const setDocumentPartials = function () {
   if (game.settings.get('twodsix', 'showTLonItemsTab')) {
-    ItemDirectory.entryPartial = 'systems/twodsix/templates/misc/revised-document-partial.html';
-    Compendium.entryPartial = 'systems/twodsix/templates/misc/revised-compendium-index-partial.html';
+    foundry.applications.sidebar.tabs.ItemDirectory._entryPartial = 'systems/twodsix/templates/misc/revised-document-partial.hbs';
+    foundry.applications.sidebar.apps.Compendium._entryPartial = 'systems/twodsix/templates/misc/revised-compendium-index-partial.hbs';
   } else {
-    ItemDirectory.entryPartial = game.settings.get('twodsix', 'defaultItemPartial');
-    Compendium.entryPartial = game.settings.get('twodsix', 'defaultCompendiumPartial');
+    foundry.applications.sidebar.tabs.ItemDirectory._entryPartial = game.settings.get('twodsix', 'defaultItemPartial');
+    foundry.applications.sidebar.apps.Compendium._entryPartial = game.settings.get('twodsix', 'defaultCompendiumPartial');
   }
   ui.items.render();
 };

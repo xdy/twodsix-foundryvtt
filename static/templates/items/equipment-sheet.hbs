@@ -1,0 +1,29 @@
+<section class="{{cssClass}} item-class" autocomplete="off">
+  {{> "systems/twodsix/templates/items/parts/common-parts.hbs"}}
+
+  <div class="item-qty">
+    <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>
+    <input class="form-input" type="text" name="system.quantity" value="{{system.quantity}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-weight">
+    <label for="system.weight" class="resource-label">{{localize "TWODSIX.Items.Equipment.Weight"}}</label>
+    <input class="form-input" type="text" name="system.weight" value="{{system.weight}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-short">
+    <label for="system.shortdescr" class="resource-label">{{localize "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+    <input class="form-input" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
+  </div>
+
+  <div class="item-descr">
+    <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+    <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}" value="{{system.description}}" collaborate="true" toggled="true">
+      {{{enrichedDescription}}}
+    </prose-mirror>
+  </div>
+  {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+  {{> "systems/twodsix/templates/items/parts/consumables-part.hbs"}}
+  {{> "systems/twodsix/templates/items/parts/useConsumableForRoll.hbs"}}
+  {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.hbs"}}{{/if}}
+</section>

@@ -7,7 +7,7 @@ import { TWODSIX } from "../config";
 /**
  * A helper class for building MeasuredTemplates for item AOE.  Adapted from D5e system
  */
-export default class ItemTemplate extends MeasuredTemplate {
+export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemplate {
 
   /**
    * Track the timestamp when the last mouse move event was captured.
@@ -39,7 +39,7 @@ export default class ItemTemplate extends MeasuredTemplate {
    * @param {object} [options={}]       Options to modify the created template.
    * @returns {ItemTemplate|null}    The template object, or null if the item does not produce a template
    */
-  static fromItem(item: TwodsixItem, options={}): Promise<ItemTemplate> {
+  static fromItem(item: TwodsixItem, options: object={}): Promise<ItemTemplate> {
     const target = item.system.target ?? {};
     const templateShape = TWODSIX.areaTargetTypes[target.type]?.template;
     if ( !templateShape ) {
@@ -76,7 +76,7 @@ export default class ItemTemplate extends MeasuredTemplate {
 
     // Return the template constructed from the item data
     const cls = CONFIG.MeasuredTemplate.documentClass;
-    const template = new cls(templateData, {parent: canvas.scene});
+    const template = new cls(foundry.utils.deepClone(templateData), {parent: canvas.scene});
     const object = new this(template);
     object.item = item;
     object.actorSheet = item.actor?.sheet || null;
@@ -162,8 +162,8 @@ export default class ItemTemplate extends MeasuredTemplate {
       return;
     }
     const center = event.data.getLocalPosition(this.layer);
-    const snapped = canvas.grid.getSnappedPoint(center, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
-    this.document.updateSource({x: snapped.x, y: snapped.y});
+    const snapped = this.getSnappedPosition(center);
+    this.document.updateSource(snapped);
     this.refresh();
     this.#moveTime = now;
   }
@@ -194,9 +194,10 @@ export default class ItemTemplate extends MeasuredTemplate {
    */
   async _onConfirmPlacement(event) {
     await this._finishPlacement(event);
-    const destination = canvas.grid.getSnappedPoint(this.document, {mode: CONST.GRID_SNAPPING_MODES.CENTER});
+    const destination = this.getSnappedPosition(this.document);
     this.document.updateSource(destination);
-    this.#events.resolve(canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]));
+    const newTemplates = await canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]);
+    this.#events.resolve(newTemplates[0]);
   }
 
   /* -------------------------------------------- */
@@ -226,6 +227,7 @@ function checkTokenInTemplate (token:Token, template:MeasuredTemplate):boolean {
     for (let y = startY; y < token.document.width; y++) {
       const curr = { x: token.document.x + x * grid.size - tempx, y: token.document.y + y * grid.size - tempy };
       const contains = template.object.shape?.contains(curr.x, curr.y);
+      //const contains = template.object.testPoint({x: curr.x, y: curr.y});
       if (contains) {
         return true;
       }
@@ -239,13 +241,14 @@ function checkTokenInTemplate (token:Token, template:MeasuredTemplate):boolean {
  */
 export function targetTokensInTemplate(template:MeasuredTemplate):void {
   const tokens = canvas.tokens?.placeables;
+  template.object._refreshShape();
   const arrayOfTokenIds:string[] = [];
   if (tokens?.length > 0) {
     for (const tok of tokens) {
       if (checkTokenInTemplate(tok, template)) {
         arrayOfTokenIds.push(tok.id);
       }
-      game.user?.updateTokenTargets(arrayOfTokenIds);
     }
+    game.user?._onUpdateTokenTargets(arrayOfTokenIds);
   }
 }

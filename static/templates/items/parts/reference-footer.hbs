@@ -1,0 +1,39 @@
+{{#if settings.usePDFPager}}
+  {{#each system.docReference as |reference id|}}
+    <div class="item-reference" data-link="{{reference}}">
+      <div class="link-controls">
+        <a class="open-link" data-action="openPDFLink" >{{localize "TWODSIX.Items.DocumentReference"}}</a>
+        {{#iff ../document.documentName "===" "Item"}}
+          {{#unless @first}}
+            <a class="item-control item-delete" data-tooltip='{{localize "TWODSIX.Actor.Items.DeleteLink"}}' data-action="deletePDFLink" data-index="{{id}}"><i class="fa-solid fa-trash"></i></a>
+          {{/unless}}
+          {{#if @last}}
+            <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateLink"}}' data-action="addPDFLink"><i class="fa-solid fa-plus"></i></a>
+          {{/if}}
+        {{/iff}}
+      </div>
+      <input class="form-input" type="text" name="reference" value="{{reference}}" data-index="{{id}}"/>
+    </div>
+  {{/each}}
+{{else}}
+  {{#if system.pdfReference.href}}
+      <div class="item-link">
+        {{localize "TWODSIX.Items.Link"}}:
+        {{#iff system.pdfReference.type "===" 'JournalEntry'}}
+            <a class= "open-journal-entry orange" data-action="openJournalEntry">
+              <i class="fa-solid fa-book" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i> {{system.pdfReference.label}}
+            </a>
+        {{else}}
+          <a class="orange" href="{{system.pdfReference.href}}">
+            {{#iff system.pdfReference.type "===" 'pdf'}}
+              <i class="fa-solid fa-file-pdf" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+            {{else}}
+              <i class="fa-solid fa-link" data-tooltip='{{localize "TWODSIX.Items.Link"}}'></i>
+            {{/iff}}
+            {{system.pdfReference.label}}
+          </a>
+        {{/iff}}
+        <a class="delete-link" data-action="deleteReference" data-tooltip='{{localize "TWODSIX.Items.DeleteReference"}}'><i class="fa-solid fa-trash"></i></a>
+      </div>
+  {{/if}}
+{{/if}}

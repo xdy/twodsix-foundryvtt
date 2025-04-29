@@ -587,7 +587,7 @@ export interface Component extends GearTemplate, LinkTemplate {
   isBaseHull:boolean;
   rollModifier:string;
   rateOfFire: string;
-  armorPiercing: number;
+  armorPiercing: string;
   actorLink: string;
   hardened: boolean;
   associatedSkillName:string;
@@ -603,7 +603,7 @@ export interface Consumable extends GearTemplate, LinkTemplate {
   max:number;
   type:string;
   subtype:string;
-  armorPiercing:number;
+  armorPiercing:string;
   bonusDamage:string;
   isAttachment:boolean;
   bandwidth:number;
@@ -646,7 +646,7 @@ export interface Templates {
 }
 
 export interface LinkTemplate {
-  docReference:string;
+  docReference:string[];
   pdfReference:PDFLink;
 }
 
@@ -740,7 +740,7 @@ export interface Weapon extends GearTemplate, LinkTemplate, TargetTemplate {
   rateOfFire:string;
   recoil:boolean;
   features:string;
-  armorPiercing:number;
+  armorPiercing:string;
   doubleTap:boolean;
   handlingModifier:string;
   meleeRangeModifier:string;

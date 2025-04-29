@@ -1,0 +1,40 @@
+<div class="items-list effects-list">
+  <li class="effects-container gear-header">
+      <div></div>
+      <div class="item-name effect-name">{{localize "TWODSIX.ActiveEffects.EffectLabel"}}</div>
+      <div class="effect-source">{{localize "TWODSIX.ActiveEffects.Source"}}</div>
+      <div class="effect-source">{{localize "TWODSIX.ActiveEffects.Duration"}}</div>
+      <div class="item-controls effect-controls flexrow centre">
+          {{#if @root.editable}}
+            <a class="effect-control" data-controlaction="create" title="{{localize 'TWODSIX.ActiveEffects.CreateEffect'}}">
+              <i class="fa-solid fa-circle-plus"></i> {{localize "TWODSIX.ActiveEffects.Add"}}
+            </a>
+          {{/if}}
+      </div>
+  </li>
+
+  {{#each effects as |effect|}}
+      <li class="effect effects-container" data-uuid="{{effect.uuid}}">
+          <div class="item-name">
+              <img class="effect-image" src="{{effect.img}}" style="border-color: {{effect.tint.css}} !important;"/>
+          </div>
+          <div class="effect-name">{{effect.name}}</div>
+          <div class="effect-source">{{effect.sourceLabel}}</div>
+          <div class="effect-duration">{{effect.duration.label}}</div>
+          <div class="item-controls effect-controls flexrow">
+              {{#if @root.editable}}
+              <a class="effect-control" data-controlaction="toggle" data-uuid="{{effect.uuid}}"
+                  data-tooltip="{{#if effect.disabled}}{{localize 'TWODSIX.ActiveEffects.EffectEnable'}}{{else}}{{localize 'TWODSIX.ActiveEffects.EffectDisable'}}{{/if}}">
+                  <i class="fa-solid {{#if effect.disabled}}fa-circle-check{{else}}fa-circle-xmark{{/if}}"></i>
+              </a>
+              <a class="effect-control" data-controlaction="edit" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.EditItem'}}">
+                  <i class="fa-solid fa-edit"></i>
+              </a>
+              <a class="effect-control" data-controlaction="delete" data-uuid="{{effect.uuid}}" data-tooltip="{{localize 'TWODSIX.Actor.Skills.DeleteItem'}}">
+                  <i class="fa-solid fa-trash"></i>
+              </a>
+              {{/if}}
+          </div>
+      </li>
+  {{/each}}
+</div>

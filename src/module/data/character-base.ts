@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { Characteristic } from "src/types/template";
-import { makeResourceField, makeValueField } from "./commonSchemaUtils";
+import { makeResourceField, makeValueField, migrateStringToStringArray } from "./commonSchemaUtils";
 import { TWODSIX } from "../config";
 
 const fields = foundry.data.fields;
@@ -55,7 +55,7 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
     });
 
     /* References */
-    schema.docReference = new fields.StringField({...requiredBlankString});
+    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}));
     schema.pdfReference = new fields.SchemaField({
       type: new fields.StringField({...requiredBlankString}),
       href: new fields.StringField({...requiredBlankString}),
@@ -89,6 +89,12 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
     schema.bio = new fields.HTMLField({...requiredBlankString});
 
     return schema;
+  }
+  static migrateData(source:any) {
+    if ("docReference" in source) {
+      migrateStringToStringArray(source, "docReference");
+    }
+    return super.migrateData(source);
   }
 }
 

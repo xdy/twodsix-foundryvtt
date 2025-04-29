@@ -60,16 +60,12 @@ async function addItemMacro(dropData:object, slot:number): Promise<void> {
         }, { renderSheet: false }) as Macro;
       } else {
         if (macro.command !== command) {
-          await Dialog.confirm({
-            title: game.i18n.localize("TWODSIX.Dialogs.ReplaceMacroCommand"),
-            content: game.i18n.localize("TWODSIX.Warnings.MacroNameExists"),
-            yes: async () => {
-              await macro.update({command: command});
-            },
-            no: () => {
-              //Nothing
-            },
-          });
+          if (await foundry.applications.api.DialogV2.confirm({
+            window: {title: game.i18n.localize("TWODSIX.Dialogs.ReplaceMacroCommand")},
+            content: game.i18n.localize("TWODSIX.Warnings.MacroNameExists")
+          })) {
+            await macro.update({command: command});
+          }
         }
         if (Object.values(game.user.hotbar).includes(macro.id) && game.settings.get('twodsix', 'NoDuplicatesOnHotbar')) {
           return;
