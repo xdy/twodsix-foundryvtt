@@ -439,10 +439,10 @@ export default class TwodsixItem extends Item {
     if (targetTokens.length >= 1 && damagePayload) {
       if (isAOE) {
         for (const target of targetTokens) {
-          target.actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+          (<TwodsixActor>target.actor).handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
         }
       } else {
-        targetTokens[attackIndex % targetTokens.length].actor.handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
+        (<TwodsixActor>targetTokens[attackIndex % targetTokens.length].actor).handleDamageData(damagePayload, <boolean>!game.settings.get('twodsix', 'autoDamageTarget'));
       }
     }
   }

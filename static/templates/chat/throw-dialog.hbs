@@ -90,7 +90,7 @@
         {{#if showTargetModifier}}
           <div class="form-group">
             <label>{{#if rollModifiers.targetModifierOverride}}{{localize "TWODSIX.Chat.Roll.OverrideAuto"}} {{/if}}{{localize "TWODSIX.Chat.Roll.TargetModifier"}}</label>
-            <multi-select class="select target-modifier" name="rollModifiers.targetModifier" >{{selectOptions targetDMList selected=targetModifier}}</multi-select>
+            <multi-select class="select target-modifier" name="rollModifiers.targetModifier" multiple>{{selectOptions targetDMList selected=targetModifier}}</multi-select>
           </div>
         {{/if}}
       {{/if}}
@@ -129,14 +129,4 @@
       </div>
     </fieldset>
   {{/if}}
-
-  <footer class="form-footer">
-    {{#each buttons as |button|}}
-    <button type="{{button.type}}" {{#if button.name}}name="{{button.name}}"{{/if}} class="{{button.cssClass}}"
-            {{#if button.action}}data-action="{{button.action}}"{{/if}} {{#if button.disabled}}disabled{{/if}}>
-        {{#if button.icon}}<i class="{{button.icon}}" inert></i>{{/if}}
-        {{#if button.label}}<label>{{localize button.label}}</label>{{/if}}
-    </button>
-    {{/each}}
-  </footer>
 </div>

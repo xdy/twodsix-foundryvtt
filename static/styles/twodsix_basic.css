@@ -3721,10 +3721,6 @@ textarea {
   height: auto;
 }
 
-.tags.input-element-tags .tag {
-  border: 1px solid;
-}
-
 .standard-form .form-footer > button {
   min-width: 100px;
 }

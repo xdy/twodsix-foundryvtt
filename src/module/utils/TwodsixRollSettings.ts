@@ -216,6 +216,11 @@ export class TwodsixRollSettings {
 }
 
 
+export function getCharacteristicLabelWithMod(actor: TwodsixActor, characteristic: string) : string {
+  return actor.system.characteristics[characteristic].displayShortLabel + '(' +
+  (actor.system.characteristics[characteristic].mod >= 0 ? '+' : '') +
+  actor.system.characteristics[characteristic].mod + ')';
+}
 
 export function _genUntranslatedCharacteristicList(): object {
   const returnValue = {};
