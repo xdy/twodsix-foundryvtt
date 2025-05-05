@@ -7,7 +7,7 @@
 
 /* fix for dice-tray input box shift for default mode*/
 input.dice-tray__input {
-    margin-top: 4px;
+    text-align: center;
 }
 
 .dice-tray .dice-tray__stacked {
