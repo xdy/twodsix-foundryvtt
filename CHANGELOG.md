@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.0...v6.0.1) (2025-05-05)
+
+
+### Bug Fixes
+
+* Adding ship components not working ([#1760](https://github.com/xdy/twodsix-foundryvtt/issues/1760)) ([c2a9885](https://github.com/xdy/twodsix-foundryvtt/commit/c2a98851f76eb4d64c913a4ccba687df1d45b4c1))
+
 # [6.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v5.12.5...v6.0.0) (2025-04-29)
 
 
