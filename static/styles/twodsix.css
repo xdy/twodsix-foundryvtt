@@ -386,7 +386,7 @@ form .form-group span.units {
   text-align: left;
 }
 
-.centre {
+.centre, .centre input {
   text-align: center;
   align-self: center;
 }
@@ -2675,6 +2675,7 @@ input.power-current, input.power-total  {
   font-size: 2ch;
   border: none;
   background-color: transparent;
+  text-align: center;
 }
 
 /*------------------*/
@@ -4715,4 +4716,18 @@ section.secret {
 
 section#settings a:hover {
   color: var(--s2d6-background-opaque);
+}
+
+.chat-input, .title, input.title {
+  text-align: center;
+  font-size: revert-layer;
+}
+
+.chat-input:focus {
+  text-align: start;
+}
+
+.sheet-header input {
+  /*line-height: 2rem;*/
+  font-size: revert-layer;
 }
