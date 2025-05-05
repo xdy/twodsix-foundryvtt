@@ -7,7 +7,7 @@
         <a class="item-link orange" data-action="itemLink" data-uuid="{{item.system.actorLink}}">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</a>
       {{/iff}}
       {{#iff item.system.subtype "===" "armament"}}
-        {{> "systems/twodsix/templates/actors/parts/common/armament-qty.hbs}}
+        {{> "systems/twodsix/templates/actors/parts/common/armament-qty.hbs"}}
       {{else}}
         <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
       {{/iff}}
