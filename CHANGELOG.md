@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.1...v6.0.2) (2025-05-08)
+
+
+### Bug Fixes
+
+* style issues and cant edit ship image ([#1762](https://github.com/xdy/twodsix-foundryvtt/issues/1762)) ([0392a96](https://github.com/xdy/twodsix-foundryvtt/commit/0392a969242e3d2eff797398105e1598345c9ce7))
+
 ## [6.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.0...v6.0.1) (2025-05-05)
 
 
