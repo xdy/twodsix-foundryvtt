@@ -858,6 +858,11 @@ span.bgi-charEdit {
   gap: 2ch;
 }
 
+.morale .rollable-characteristic {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .stat-table {
   font-size: 1.5ch;
   margin-left: 1ch;
@@ -3613,10 +3618,10 @@ input.red {
 
 /************ v13 Changes *******/
 
-.standard-form {
+/*.standard-form {
   overflow-y: auto;
   overflow-x: hidden;
-}
+}*/
 
 table {
   border-radius: 0;
@@ -3740,3 +3745,7 @@ textarea {
     width: 32px;
   }
 }*/
+
+.stat-ability-ship input, .stat-modifier-ship input, .stat-damage-ship input {
+  min-width: 5ch;
+}
