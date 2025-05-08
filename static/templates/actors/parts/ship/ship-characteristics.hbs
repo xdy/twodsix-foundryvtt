@@ -2,7 +2,7 @@
   {{#each this.system.characteristics as |char key|}}
   {{#with ../actor as |actor|}}
     <div class="stat {{key}}" data-characteristic="{{key}}">
-    <span class="stat-name rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}" data-action="rollChar">
+    <span class="rollable-characteristic" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-roll="2d6+{{char.mod}}" data-label="{{char.shortLabel}}" data-action="rollChar">
       <i class="fa-solid fa-dice" alt="d6"></i> {{localize "TWODSIX.Ship.Morale"}}</span>
     <span class="stat-ability-ship" >
       {{localize "TWODSIX.Damage.Max"}}:

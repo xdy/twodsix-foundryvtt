@@ -1276,6 +1276,11 @@ span.bgi-charEdit {
   gap: 2ch;
 }
 
+.morale .rollable-characteristic {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .stat-table {
   font-size: 0.8em;
   margin: 0.5em 0 0;
@@ -1485,6 +1490,10 @@ span.stat-damage-ship input, span.stat-ability-ship input, span.stat-modifier-sh
 
 span.stat-damage-ship input {
   color:var(--s2d6-damage-stat-color);
+}
+
+.stat-ability-ship input, .stat-modifier-ship input, .stat-damage-ship input {
+  min-width: 5ch;
 }
 
 span.stat-damage input, span.special-damage input {
@@ -4236,7 +4245,7 @@ multi-select.actor-sheet select {
   line-height: 2ch;
 }
 
-.standard-form .form-group {
+.standard-form .roll-settings .form-group {
   margin: 0.25rem 0;
 }
 
@@ -4480,10 +4489,10 @@ input.red {
   font-family: Asap, sans-serif;
 }
 
-.standard-form {
+/*.standard-form {
   overflow-y: auto;
   overflow-x: hidden;
-}
+}*/
 
 .standard-form .tab.active {
   padding: 0 1rem;
