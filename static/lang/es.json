@@ -2,6 +2,7 @@
   "Advantage": "Ventaja",
   "Average": "Normal",
   "Cancel": "Cancelar",
+  "Save": "Guardar",
   "Difficult": "Difícil",
   "Disadvantage": "Desventaja",
   "Easy": "Fácil",
@@ -47,7 +48,9 @@
       "DamageFormula": "Fórmula Daño",
       "NoRegularDamage": "Sin Daño Normal",
       "CanBeBlocked": "Puede ser bloqueado",
-      "CanBeParried": "Puede ser parado"
+      "CanBeParried": "Puede ser parado",
+      "DamageCalculation": "Cálculo Daño Aplicado",
+      "DamageCard": "Tarjeta Daño"
     },
     "DamageType": {
       "Acid": "Acido",
@@ -69,7 +72,11 @@
       "ROFBurst": "Ráfaga",
       "ROFFull": "Automático",
       "ROFDoubleTap": "Disparo Doble",
-      "ReplaceMacroCommand": "Actualizar Macro"
+      "ReplaceMacroCommand": "Actualizar Macro",
+      "rulesetChange": {
+        "title": "Cambiar reglamento",
+        "content": "¿Quieres cambiar el reglamento?<br>Si tienes opciones personalizadas se borrarán. Este paso no se puede revertir."
+      }
     },
     "Actor": {
       "Age": "Edad",
@@ -144,8 +151,10 @@
         "CONSUMABLES": "CONSUMIBLES",
         "Count": "Cantidad",
         "CreateItem": "Crear Objeto",
+        "CreateLink": "Crear Enlace",
         "Damage": "Daño",
         "DeleteItem": "Borrar Objeto",
+        "DeleteLink": "Borrar Enlace",
         "DisplayStored": "Mostrar objetos almacenados",
         "HideStored": "Ocultar objetos almacenados",
         "EQUIPMENT": "EQUIPO",
@@ -355,7 +364,7 @@
         "TiedRoll": "Empata tirada disputa / opuesta. Sin vencedor.",
         "GMUtils": "Herramientas DJ",
         "RequestRoll": "Petición Tirada",
-        "RequestRollClip": "<div class='toolclip'><video src='systems/twodsix/assets/toolclips/requestRollToolClip.webm' autoplay muted loop></video><h4>Pedir Tirada</h4><p>Selecciona cualquier Token al que quieras pedir una tirada. Después podrás escoger los detalles de la misma en una ventana emergente.</p><p class='faint'>Deshabilita Ayudas en Configuración</p></div>",
+        "RequestRollDescription": "Selecciona cualquier Token desde el que hacer tirada. Se abre un desplegable donde puedes seleccionar los detalles de la misma.",
         "GMRequestsRoll": "El DJ pide tirada de _TYPE_.",
         "normal": "normal",
         "AbilityCheck": "Prueba de Habilidad / Característica",
@@ -467,7 +476,15 @@
           "ablat": "Ablat",
           "combat": "Combate"
         },
-        "Dice": "Dado"
+        "Dice": "Dado",
+        "Types": {
+          "SkillRoll": "Tarjeta Tirada Habilidad",
+          "ItemRoll": "Tarjeta Tirada Objeto",
+          "OtherRoll": "Tarjeta Otra Tirada",
+          "CharRoll": "Tarjeta Tirada Atributo",
+          "ShipAction": "Tarjeta Acción Nave",
+          "TraitSpell": "Tarjeta Conjuro"
+        }
       }
     },
     "Table": {
@@ -771,7 +788,7 @@
       "ActionRollFormula": "Fórmula Tirada Acciones",
       "Unknown": "desconocido",
       "ActorLacksSkill": "_ACTOR_NAME_ no dispone de habilidad _SKILL_",
-      "ActorMustBeSelectedForAction": "Ya que existen varios actores, uno debe ser seleccionado para realizar la acción.",
+      "ActorMustBeSelectedForAction": "No existe actor seleccionado., uno debe seleccionarse para esta acción",
       "AddShipPosition": "Añadir Puesto Nave",
       "Avail": "Disp.",
       "Available": "Disponible",
@@ -803,6 +820,8 @@
       "Deckplan": "Mapa Planta",
       "Defense": "Defensa",
       "DeleteAction": "Borrar Acción",
+      "DeletePosition": "Borrar Posición",
+      "ConfirmDeletePosition": "¿Estas seguro que quieres borrar esta posición?",
       "Designation": "Denominación",
       "Displacement": "Desplazamiento",
       "Drives": "Motores",
@@ -828,6 +847,7 @@
       "MANIFEST": "MANIFIESTO",
       "MAX": "MAX",
       "MDrive": "MotorM",
+      "Morale": "Moral",
       "Name": "Nombre",
       "NewAction": "Nueva Acción",
       "NoActorsForAction": "Sin actor disponible para la acción",
@@ -1078,7 +1098,7 @@
         "hint": "Marcado=Mostrar habilidad 'Sin Entrenar' global en vez de las habilidades individuales. SinMarcar=Mostrar todas las habilidades",
         "name": "Ocultar las habilidades sin entrenamiento (Nuevas habilidades se añaden a nivel 0).",
         "warning": "¡Aviso!",
-        "warningReset": "Después de guardar la configuración todas las habilidades que utilicen 'Sin Entrenar' serán reiniciadas. Esta acción no se podrá retroceder.",
+        "warningReset": "Después de guardar la configuración del sistema, todas las habilidades utilizando 'Sin Entrenar' <br> serán reiniciadas permanentemente. Este paso no se puede revertir.",
         "warningUpdateWeapon": "Después de guardar la configuración todas las armas que no tienen una habilidad asignada se actualizarán con 'Sin Entrenar'. Esta acción no se podrá retroceder."
       },
       "initiativeFormula": {
@@ -1522,7 +1542,7 @@
       },
       "omitALTifZero": {
         "hint": "Oculta el atributo alternativo si el valor es cero.",
-        "name": "Omitir atributo ALT de la hoja si el valor es cero"
+        "name": "Omitir atributos ALT, INT, EDU, y SOC de la hoja del actor si el valor es cero"
       },
       "rangeModifierType": {
         "hint": "Tipo de modificador a utilizar por armas a distancia. Valor Único (ej. XX, en MGT2E). Valor Doble (ej. XX/YY en CD, CDEE, CQ, etc.). Bandas de Rango por tipo arma (ej. 'Escopeta' en CE y MGT1E).",
@@ -1591,6 +1611,22 @@
       "autoIncrementTime": {
         "hint": "Avanzar tiempo de juego si se selecciona un rango de tiempo en la tirada (integración opcional con Simple Calendar).",
         "name": "Avanzar automáticamente Tiempo de Juego"
+      },
+      "defaultWeaponDamage": {
+        "hint": "Fórmula por defecto para daño nueva arma, ej. '1d6'.",
+        "name": "Fórmula por Defecto para Nuevas Armas"
+      },
+      "xd6RollStyle": {
+        "hint": "Utilizar estilo xd6khl (ej. Faster than Light: Nomad) para realizar tiradas.",
+        "name": "Usar estilo tirada xd6 (ej. FTL: Nomad)"
+      },
+      "showMovementColors": {
+        "hint": "Utilizar regla para medir el movimiento durante una ronda combate por colores: andar (verde), correr (amarillo), esprintar (naranja), y fuera de rango (rojo).",
+        "name": "Mostrar Colores el Movimiento del Token"
+      },
+      "autoTargetAOE": {
+        "hint": "Automáticamente selecciona todos los objetivos dentro del area de efecto de un ataque exitoso. Una sola tirada de daño es aplicada para todos los tokens.",
+        "name": "Objetivos automáticos en ataques de area"
       }
     },
     "CloseAndCreateNew": "Cerrar y crear nuevo",
@@ -1688,7 +1724,14 @@
       "CantFindMeleeWeapon": "No encuentro arma melé equipada para la parada",
       "CantFindShield": "No encuentro escudo equipado para bloqueo",
       "NoPsiPoints": "Debes disponer al menos de un punto en psiónica para utilizar la habilidad",
-      "PsiUsageGTZero": "Los puntos PSI utilizados deben ser más de cero"
+      "PsiUsageGTZero": "Los puntos PSI utilizados deben ser más de cero",
+      "InvalidFormula": "Fórmula no válida para: ",
+      "ConfirmDrop": "¿Añadir todo el contenido de la carpeta al actor?",
+      "AddMultipleItems": "Añadir Múltiples Objetos",
+      "CantDropFolder": "No se puede tirar esta carpeta en el actor.",
+      "SkillsWithDuplicateNames": "Nombre habilidad duplicado. Lista no segura.",
+      "CantFindItem": "No se puede encontrar objeto con el nombre",
+      "NotUsingPsiStrength": "Atributos no incluyen Psiónica. Imposible utilizar habilidad."
     }
   },
   "TYPES": {
