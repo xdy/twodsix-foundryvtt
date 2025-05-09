@@ -1,3 +1,10 @@
+## [6.0.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.2...v6.0.3) (2025-05-09)
+
+
+### Bug Fixes
+
+* scroll not visible on settings windows ([#1763](https://github.com/xdy/twodsix-foundryvtt/issues/1763)) ([5ad7d68](https://github.com/xdy/twodsix-foundryvtt/commit/5ad7d683162e8d983e26925169d0200dfc236123))
+
 ## [6.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.1...v6.0.2) (2025-05-08)
 
 
