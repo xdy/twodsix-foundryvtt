@@ -4740,3 +4740,7 @@ section#settings a:hover {
   /*line-height: 2rem;*/
   font-size: revert-layer;
 }
+
+.scrollable {
+  --scroll-margin: 0.2rem;
+}
