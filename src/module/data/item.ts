@@ -12,7 +12,7 @@ export class WeaponData extends GearData {
     const schema = super.defineSchema();
     schema.target = makeTargetTemplate();
     schema.range = new fields.StringField({...requiredBlankString});
-    schema.damage = new fields.StringField({required: true, blank: true, initial: "3d6" });
+    schema.damage = new fields.StringField({required: true, blank: true, initial: "" });
     schema.damageBonus = new fields.NumberField({required: true, nullable: true, integer: true, initial: 0});
     schema.magazineSize = new fields.NumberField({...requiredInteger, initial: 0});
     schema.ammo = new fields.NumberField({...requiredInteger, initial: 0}); //;new fields.StringField({...requiredBlankString});

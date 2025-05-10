@@ -74,7 +74,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    if (this.type === 'weapon') {
+    if (this.type === 'weapon'  && !Object.hasOwn(data, "system")) {
       Object.assign(updates, {"system.damage": game.settings.get('twodsix', 'defaultWeaponDamage')});
     }
 
