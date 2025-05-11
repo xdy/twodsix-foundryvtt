@@ -424,3 +424,8 @@ div.pdf-app section.window-content {
 #forien-quest-log .actions i, .window-app.forien-quest-preview .actions i {
 	color: 	var(--s2d6-default-color);
 }
+
+/******* Token Action HUD ********/
+.tah-groups {
+  flex-direction: row;
+}

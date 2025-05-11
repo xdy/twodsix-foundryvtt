@@ -61,13 +61,13 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   static TABS = {
     primary: {
       tabs: [
-        {id: "description", group: "primary", icon: "fa-solid fa-book", label: "TWODSIX.Items.Equipment.Description"},
-        {id: "modifiers", group: "primary", icon: "fa-solid fa-dice", label: "TWODSIX.Items.Weapon.Modifiers"},
-        {id: "attack", group: "primary", icon: "fa-solid fa-burst", label: "TWODSIX.Items.Weapon.Attack"},
-        {id: "magazine", group: "primary", icon: "fa-solid fa-battery-full", label: "TWODSIX.Items.Weapon.Consumables"},
-        {id: "displacement", group: "primary", icon: "fa-solid fa-weight-hanging", label: "TWODSIX.Items.Component.Displacement"},
-        {id: "power", group: "primary", icon: "fa-solid fa-bolt", label: "TWODSIX.Items.Component.Power"},
-        {id: "price", group: "primary", icon: "fa-solid fa-coins", label: "TWODSIX.Items.Component.Price"}
+        {id: "description", icon: "fa-solid fa-book", label: "TWODSIX.Items.Equipment.Description"},
+        {id: "modifiers", icon: "fa-solid fa-dice", label: "TWODSIX.Items.Weapon.Modifiers"},
+        {id: "attack", icon: "fa-solid fa-burst", label: "TWODSIX.Items.Weapon.Attack"},
+        {id: "magazine", icon: "fa-solid fa-battery-full", label: "TWODSIX.Items.Weapon.Consumables"},
+        {id: "displacement", icon: "fa-solid fa-weight-hanging", label: "TWODSIX.Items.Component.Displacement"},
+        {id: "power", icon: "fa-solid fa-bolt", label: "TWODSIX.Items.Component.Power"},
+        {id: "price", icon: "fa-solid fa-coins", label: "TWODSIX.Items.Component.Price"}
       ],
       initial: "description"
     }

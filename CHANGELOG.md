@@ -1,3 +1,10 @@
+## [6.0.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.3...v6.0.4) (2025-05-10)
+
+
+### Bug Fixes
+
+* default item damage formula ([#1764](https://github.com/xdy/twodsix-foundryvtt/issues/1764)) ([d3cd125](https://github.com/xdy/twodsix-foundryvtt/commit/d3cd1255d7924b0c5b12416119e5f8410670f151))
+
 ## [6.0.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.2...v6.0.3) (2025-05-09)
 
 
