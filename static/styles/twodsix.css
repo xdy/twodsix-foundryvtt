@@ -4744,3 +4744,7 @@ section#settings a:hover {
 .scrollable {
   --scroll-margin: 0.2rem;
 }
+
+.package-title .title {
+  text-align: -webkit-match-parent;
+}

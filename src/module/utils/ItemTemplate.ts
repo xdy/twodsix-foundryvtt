@@ -100,7 +100,9 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
     this.layer.preview?.addChild(this);
 
     // Hide the sheet that originated the preview
-    this.actorSheet?.minimize();
+    if (this.actorSheet?.state > 0) {
+      this.actorSheet?.minimize();
+    }
 
     // Activate interactivity
     return this.activatePreviewListeners(initialLayer);
@@ -146,7 +148,9 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
     canvas.app.view.oncontextmenu = null;
     canvas.app.view.onwheel = null;
     this.#initialLayer.activate();
-    await this.actorSheet?.maximize();
+    if (this.actorSheet?.state > 0) {
+      await this.actorSheet.maximize();
+    }
   }
 
   /* -------------------------------------------- */
