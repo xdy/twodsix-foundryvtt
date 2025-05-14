@@ -139,8 +139,8 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClass = TwodsixItem;
   foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   //Items.unregisterSheet("core", ItemSheet);
-  const baseItems = ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "computer", "psiAbility"];
-  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {types: baseItems, makeDefault: true, label: "TWODSIX.SheetTypes.ItemSheet"});
+  const baseItemTypes = ["equipment", "weapon", "armor", "augment", "storage", "tool", "junk", "skills", "spell", "trait", "consumable", "component", "computer", "psiAbility"];
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {types: baseItemTypes, makeDefault: true, label: "TWODSIX.SheetTypes.ItemSheet"});
   foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "TWODSIX.SheetTypes.ShipPositionSheet"});
   /* Load Schemas */
   Object.assign(CONFIG.Item.dataModels, {
