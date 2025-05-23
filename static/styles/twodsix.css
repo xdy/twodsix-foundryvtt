@@ -4748,3 +4748,11 @@ section#settings a:hover {
 .package-title .title {
   text-align: -webkit-match-parent;
 }
+
+.attribute input[type="text"] {
+    font-size: var(--font-size-24);
+}
+
+.placeable-hud button.control-icon {
+    --control-size: 40px;
+}
