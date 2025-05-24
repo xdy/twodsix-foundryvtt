@@ -1653,6 +1653,18 @@
       "ship_position": "position",
       "psiAbility": "psionic ability"
     },
+    "SheetTypes" : {
+      "TravellerSheet": "Traveller Sheet",
+      "NPCSheet": "NPC Sheet",
+      "RobotSheet": "Robot Sheet",
+      "ShipSheet": "Ship Sheet",
+      "BattleSheet": "Battle Sheet",
+      "VehicleSheet": "Vehicle Sheet",
+      "AnimalSheet": "Animal Sheet",
+      "SpaceObjectSheet": "Space Object Sheet",
+      "ItemSheet": "Item Sheet",
+      "ShipPositionSheet": "Ship Position Sheet"
+    },
     "speeds": {
       "walk": "walk",
       "dash": "dash",

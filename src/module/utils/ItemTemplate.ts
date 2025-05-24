@@ -34,7 +34,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemp
   /* -------------------------------------------- */
 
   /**
-   * A factory method to create an AbilityTemplate instance using provided data from an Item5e instance
+   * A factory method to create an AbilityTemplate instance using provided data from an TwodsixItem instance
    * @param {TwodsixItem} item               The Item object for which to construct the template
    * @param {object} [options={}]       Options to modify the created template.
    * @returns {ItemTemplate|null}    The template object, or null if the item does not produce a template

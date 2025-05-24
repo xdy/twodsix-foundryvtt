@@ -2139,7 +2139,7 @@ span.total-output {
 }
 
 .info-container .editor {
-  border: 1px solid;
+  border: 1px solid var(--s2d6-default-color);
   border-radius: 2px;
 }
 
@@ -4747,4 +4747,12 @@ section#settings a:hover {
 
 .package-title .title {
   text-align: -webkit-match-parent;
+}
+
+.attribute input[type="text"] {
+    font-size: var(--font-size-24);
+}
+
+.placeable-hud button.control-icon {
+    --control-size: 40px;
 }
