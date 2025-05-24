@@ -314,6 +314,13 @@ div.pdf-app section.window-content {
   background-color: revert;
 }
 
+div.svelte-ip-m19fn7 {
+  font-size: unset;
+}
+
+.item-piles-flexrow input, .item-piles-flexrow select {
+  height: revert;
+}
 /******** Monk's Active Tile Trigggers********/
 
 .action-sheet .display-value, .multiple-dropdown {
