@@ -37,6 +37,33 @@
     "units": "m"
   },
   "initiative": "2d6 + @characteristics.dexterity.mod",
+  "documentTypes": {
+    "Actor" : {
+      "traveller": {"htmlFields": ["description", "notes", "bio", "contacts", "xpNotes"]},
+      "ship": {"htmlFields": ["cargo", "finances", "notes"]},
+      "vehicle": {},
+      "animal": {"htmlFields": ["description", "notes"]},
+      "robot": {"htmlFields": ["description", "notes"]},
+      "space-object": {"htmlFields": ["description", "notes"]}
+    },
+    "Item": {
+      "equipment": {"htmlFields": ["description"]},
+      "weapon": {"htmlFields": ["description"]},
+      "armor": {"htmlFields": ["description"]},
+      "augment": {"htmlFields": ["description"]},
+      "storage": {"htmlFields": ["description"]},
+      "tool": {"htmlFields": ["description"]},
+      "junk": {"htmlFields": ["description"]},
+      "skills": {"htmlFields": ["description"]},
+      "spell": {"htmlFields": ["description"]},
+      "trait": {"htmlFields": ["description"]},
+      "consumable": {"htmlFields": ["description"]},
+      "component": {"htmlFields": ["description"]},
+      "ship_position": {"htmlFields": ["description"]},
+      "computer": {"htmlFields": ["description"]},
+      "psiAbility": {"htmlFields": ["description"]}
+    }
+  },
   "languages": [
     {
       "lang": "de",
