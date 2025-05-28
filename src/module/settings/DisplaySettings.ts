@@ -106,6 +106,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     /*settings.actor.push(booleanSetting('showAttachmentsList', false));
     settings.actor.push(booleanSetting('showConsumablesList', false));*/
     settings.ship.push(booleanSetting('showCombatPosition', false));
+    settings.ship.push(booleanSetting('showCommonFundsMCr', true));
     const nonCargoTypes = foundry.utils.duplicate(TWODSIX.ComponentTypes);
     delete nonCargoTypes.cargo;
     settings.ship.push(arrayChoiceSetting('componentsIgnored', [], true, nonCargoTypes));

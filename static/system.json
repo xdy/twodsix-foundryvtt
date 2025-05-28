@@ -40,7 +40,7 @@
   "documentTypes": {
     "Actor" : {
       "traveller": {"htmlFields": ["description", "notes", "bio", "contacts", "xpNotes"]},
-      "ship": {"htmlFields": ["cargo", "finances", "notes"]},
+      "ship": {"htmlFields": ["cargo", "financeNotes", "notes"]},
       "vehicle": {},
       "animal": {"htmlFields": ["description", "notes"]},
       "robot": {"htmlFields": ["description", "notes"]},

@@ -1628,6 +1628,10 @@
       "autoTargetAOE": {
         "hint": "Automatically target all tokens within an area-of-effect (AOE). If a sucessful attack, a single damage roll is applied to all targeted tokens.",
         "name": "Auto select targets for AOE attack"
+      },
+      "showCommonFundsMCr": {
+        "hint": "Use MCr units to display ship common funds",
+        "name": "Display ship common funds as MCr"
       }
     },
     "CloseAndCreateNew": "Close and create new",
