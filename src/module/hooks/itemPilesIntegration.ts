@@ -3,7 +3,7 @@
 Hooks.once("item-piles-ready", async function() {
   /// Called once Item Piles is ready to be used
   game.itempiles.API.addSystemIntegration({
-    "VERSION": "3.1.6",
+    "VERSION": "4.1.2",
 
     // The actor class type is the type of actor that will be used for the default item pile actor that is created on first item drop.
     "ACTOR_CLASS_TYPE": "traveller",
@@ -44,7 +44,7 @@ Hooks.once("item-piles-ready", async function() {
     "CURRENCIES": [
       {
         type: "attribute",
-        name: "Credits",
+        name: "TWODSIX.Credits",
         img: "systems/twodsix/assets/icons/id-card.svg",
         abbreviation: "Cr {#}",
         data: {

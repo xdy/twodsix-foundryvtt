@@ -1628,12 +1628,17 @@
       "autoTargetAOE": {
         "hint": "Automatically target all tokens within an area-of-effect (AOE). If a sucessful attack, a single damage roll is applied to all targeted tokens.",
         "name": "Auto select targets for AOE attack"
+      },
+      "showCommonFundsMCr": {
+        "hint": "Use MCr units to display ship common funds",
+        "name": "Display ship common funds as MCr"
       }
     },
     "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",
     "Yes": "Yes",
     "Name": "Name",
+    "Credits": "Credits",
     "itemTypes": {
       "equipment": "equipment",
       "weapon": "weapon",
@@ -1652,6 +1657,18 @@
       "unknown": "unknown",
       "ship_position": "position",
       "psiAbility": "psionic ability"
+    },
+    "SheetTypes" : {
+      "TravellerSheet": "Traveller Sheet",
+      "NPCSheet": "NPC Sheet",
+      "RobotSheet": "Robot Sheet",
+      "ShipSheet": "Ship Sheet",
+      "BattleSheet": "Battle Sheet",
+      "VehicleSheet": "Vehicle Sheet",
+      "AnimalSheet": "Animal Sheet",
+      "SpaceObjectSheet": "Space Object Sheet",
+      "ItemSheet": "Item Sheet",
+      "ShipPositionSheet": "Ship Position Sheet"
     },
     "speeds": {
       "walk": "walk",

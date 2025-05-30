@@ -11,7 +11,7 @@ export class TwodsixItemBaseData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const schema = {};
     schema.name = new fields.StringField({ required: false, blank: true, nullable: true, initial: "" });
-    schema.description = new fields.StringField({...requiredBlankString});
+    schema.description = new fields.HTMLField({...requiredBlankString});
     schema.type = new fields.StringField({...requiredBlankString}); //updated onCreate
     /* References */
     schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}));

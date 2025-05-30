@@ -1,3 +1,17 @@
+## [6.0.6](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.5...v6.0.6) (2025-05-30)
+
+
+### Bug Fixes
+
+* fixes and update dependencies ([#1772](https://github.com/xdy/twodsix-foundryvtt/issues/1772)) ([49f1315](https://github.com/xdy/twodsix-foundryvtt/commit/49f1315535d64b266821956a064f8ad153c91641))
+
+## [6.0.5](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.4...v6.0.5) (2025-05-11)
+
+
+### Bug Fixes
+
+* Allow Token Action HUD to work better in Twodsix under v13 ([#1765](https://github.com/xdy/twodsix-foundryvtt/issues/1765)) ([8a4fede](https://github.com/xdy/twodsix-foundryvtt/commit/8a4fededf2dae48a21752af2ef84142feb5ecc40))
+
 ## [6.0.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.3...v6.0.4) (2025-05-10)
 
 
