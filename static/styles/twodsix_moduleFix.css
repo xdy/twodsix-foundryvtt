@@ -302,6 +302,25 @@ div.pdf-app section.window-content {
   background-color: var(--s2d6-light-background-transparent);
 }
 
+.item.item-piles-flexrow.item-piles-clickable-link {
+  color: var(--color-light-3);
+}
+
+.item-piles-config-container p {
+  color: var(--s2d6-form-light);
+}
+
+.item-piles-disabled {
+  background-color: revert;
+}
+
+div.svelte-ip-m19fn7 {
+  font-size: unset;
+}
+
+.item-piles-flexrow input, .item-piles-flexrow select {
+  height: revert;
+}
 /******** Monk's Active Tile Trigggers********/
 
 .action-sheet .display-value, .multiple-dropdown {

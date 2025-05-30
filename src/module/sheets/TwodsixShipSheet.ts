@@ -108,14 +108,15 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       singleComponentClass: (`components-stored-single` +
                                 (game.settings.get('twodsix', 'showComponentRating') ? ` rating` : ` no-rating`) +
                                 (game.settings.get('twodsix', 'showComponentDM') ? ` dm`:` no-dm`) +
-                                (game.settings.get('twodsix', 'showCost') ? ` cost`:` no-cost`))
+                                (game.settings.get('twodsix', 'showCost') ? ` cost`:` no-cost`)),
+      useMCr: game.settings.get('twodsix', 'showCommonFundsMCr')
     });
 
     if (context.settings.useProseMirror) {
       const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
       context.richText = {
         cargo: await TextEditorImp.enrichHTML(this.actor.system.cargo, {secrets: this.document.isOwner}),
-        finances: await TextEditorImp.enrichHTML(this.actor.system.finances, {secrets: this.document.isOwner}),
+        financeNotes: await TextEditorImp.enrichHTML(this.actor.system.financeNotes, {secrets: this.document.isOwner}),
         notes: await TextEditorImp.enrichHTML(this.actor.system.notes, {secrets: this.document.isOwner})
       };
     }

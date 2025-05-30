@@ -78,49 +78,49 @@ Hooks.once('init', async function () {
 
   foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixTravellerSheet, {
     types: ["traveller"],
-    label: "Traveller Sheet",
+    label: "TWODSIX.SheetTypes.TravellerSheet",
     makeDefault: true
   });
 
   foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixNPCSheet, {
     types: ["traveller"],
-    label: "NPC Sheet",
+    label: "TWODSIX.SheetTypes.NPCSheet",
     makeDefault: false
   });
 
   foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixRobotSheet, {
     types: ["robot"],
-    label: "Robot Sheet",
+    label: "TWODSIX.SheetTypes.RobotSheet",
     makeDefault: true
   });
 
   foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixShipSheet, {
     types: ["ship"],
-    label: "Ship Sheet",
+    label: "TWODSIX.SheetTypes.ShipSheet",
     makeDefault: true,
   });
 
   foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixBattleSheet, {
     types: ["ship"],
-    label: "Battle Sheet",
+    label: "TWODSIX.SheetTypes.BattleSheet",
     makeDefault: false,
   });
 
   foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixVehicleSheet, {
     types: ["vehicle"],
-    label: "Vehicle Sheet",
+    label: "TWODSIX.SheetTypes.VehicleSheet",
     makeDefault: true,
   });
 
   foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
     types: ["animal"],
-    label: "Animal Sheet",
+    label: "TWODSIX.SheetTypes.AnimalSheet",
     makeDefault: true,
   });
 
   foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
     types: ["space-object"],
-    label: "Space Object Sheet",
+    label: "TWODSIX.SheetTypes.SpaceObjectSheet",
     makeDefault: true,
   });
 
@@ -137,11 +137,6 @@ Hooks.once('init', async function () {
 
   // Items
   CONFIG.Item.documentClass = TwodsixItem;
-  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
-  //Items.unregisterSheet("core", ItemSheet);
-
-  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {makeDefault: true, label: "Item Sheet"});
-  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "Ship Position Sheet"});
   /* Load Schemas */
   Object.assign(CONFIG.Item.dataModels, {
     "equipment": GearData,
@@ -160,6 +155,13 @@ Hooks.once('init', async function () {
     "computer": ComputerData,
     "psiAbility": PsiAbilityData
   });
+
+  //Assign Sheets
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
+  //Items.unregisterSheet("core", ItemSheet);
+  const baseItemTypes = Object.keys(CONFIG.Item.dataModels).filter(ot => ot !== 'ship_position');
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {types: baseItemTypes, makeDefault: true, label: "TWODSIX.SheetTypes.ItemSheet"});
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "TWODSIX.SheetTypes.ShipPositionSheet"});
 
   //Extend ActiveEffects class with custom overrides
   CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;

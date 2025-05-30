@@ -42,12 +42,15 @@ export class ShipData extends TwodsixVehicleBaseData {
     schema.crew = makeCrewField();
     schema.crewLabel = makeCrewField();
     schema.cargo = new fields.HTMLField({...requiredBlankString});
-    schema.finances = new fields.StringField({...requiredBlankString}); //really should be HTML, but conflicts with traveller finances
+    schema.financeNotes = new fields.HTMLField({...requiredBlankString});
     schema.maintenanceCost = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.mortgageCost = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.shipValue = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.isMassProduced = new fields.BooleanField({required: true, initial: false});
     schema.commonFunds = new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 });
+    schema.financeValues = new fields.SchemaField({
+      cash: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0})
+    });
     schema.reqPower = new fields.SchemaField({
       systems: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       "m-drive": new fields.NumberField({ ...requiredInteger, initial: 0 }),
@@ -100,6 +103,15 @@ export class ShipData extends TwodsixVehicleBaseData {
     schema.combatPosition = new fields.NumberField({ ...requiredInteger, initial: 0 });
     schema.characteristics = new fields.SchemaField({morale: makeCharacteristicField("morale", "MOR")});
     return schema;
+  }
+
+  static migrateData(source:any) {
+    if ("finances" in source) {
+      if (typeof source.finances === 'string' && source.financeNotes === "") {
+        source.financeNotes = source.finances;
+      }
+    }
+    return super.migrateData(source);
   }
 }
 

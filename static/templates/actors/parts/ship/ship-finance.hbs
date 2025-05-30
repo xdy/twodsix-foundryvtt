@@ -3,16 +3,20 @@
     <div class="ship-financial-notes">
       <span class="item-title">{{localize "TWODSIX.Ship.FINANCENOTES"}}</span>
       {{#if settings.useProseMirror}}
-      <prose-mirror name="system.finances" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.finances}}" collaborate="true" toggled="true">
-        {{{richText.finances}}}
+      <prose-mirror name="system.financeNotes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.financeNotes}}" collaborate="true" toggled="true">
+        {{{richText.financeNotes}}}
       </prose-mirror>
       {{else}}
-        <div contenteditable="true" data-edit="system.finances">{{#if actor.system.finances}}{{{actor.system.finances}}}{{/if}}</div>
+        <div contenteditable="true" data-edit="system.financeNotes">{{#if actor.system.financeNotes}}{{{actor.system.financeNotes}}}{{/if}}</div>
       {{/if}}
     </div>
     <div class="ship-common-funds">
       <span class="item-title">{{localize "TWODSIX.Ship.COMMONFUNDS"}}</span>
-      <span class="ship-commonFunds"><input type="number" value="{{actor.system.commonFunds}}" name="system.commonFunds" /> {{localize "TWODSIX.Ship.MCr"}}</span>
+      {{#if settings.useMCr}}
+        <span class="ship-commonFunds"><input type="number" value="{{actor.system.commonFunds}}" name="system.commonFunds" /> {{localize "TWODSIX.Ship.MCr"}}</span>
+      {{else}}
+        <span class="ship-commonFunds"><input type="number" value="{{actor.system.financeValues.cash}}" name="system.financeValues.cash" /></span>
+      {{/if}}
     </div>
   </div>
   <div class="financial-calcs">

@@ -65,7 +65,7 @@ export default class DebugSettings extends foundry.applications.api.HandlebarsAp
       dragDrop: []
     };
     settings.general.push(booleanSetting('ExperimentalFeatures', false));
-    settings.general.push(stringSetting('systemMigrationVersion', game.system.version));
+    settings.general.push(stringSetting('systemMigrationVersion', ""));
     settings.style.push(booleanSetting('useModuleFixStyle', false, false, 'world', refreshWindow));
     settings.general.push(booleanSetting('useShipAutoCalcs', false, false, 'world', refreshWindow));
     settings.style.push(booleanSetting('useProseMirror', false));

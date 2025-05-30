@@ -13,7 +13,7 @@ import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../ty
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
-import { updateFinances } from "../hooks/updateFinances";
+import { updateFinances, updateShipFinances } from "../hooks/updateFinances";
 import { applyEncumberedEffect, applyWoundedEffect } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "./TwodsixActiveEffect";
 
@@ -214,6 +214,20 @@ export default class TwodsixActor extends Actor {
       if (Object.keys(financeDiff.finances).length > 0 || Object.keys(financeDiff.financeValues).length > 0) {
         updateFinances(this, data, financeDiff);
       }
+    } else if (this.type === 'ship') {
+      const financeDiff = {
+        financesCash:
+          data?.system?.financeValues?.cash !== this.system._source.financeValues?.cash
+            ? data.system?.financeValues?.cash
+            : undefined,
+        commonFunds:
+          data?.system?.commonFunds !== this.system._source.commonFunds
+            ? data.system?.commonFunds
+            : undefined,
+      };
+      if (financeDiff.financesCash !== undefined || financeDiff.commonFunds !== undefined) {
+        updateShipFinances(this, data, financeDiff);
+      }
     }
 
     return allowed;
@@ -279,6 +293,7 @@ export default class TwodsixActor extends Actor {
           this._prepareShipDerivedData();
         }
         this._checkCrewTitles();
+        this._updateCharacteristics();
         break;
       case 'vehicle':
       case 'space-object':
@@ -296,6 +311,17 @@ export default class TwodsixActor extends Actor {
       if (this.system.crewLabel[pos] === "") {
         this.system.crewLabel[pos] = game.i18n.localize("TWODSIX.Ship.Crew." + pos.toUpperCase());
       }
+    }
+  }
+
+  /**
+  * Update Ship characteristics - used for morale
+  */
+  _updateCharacteristics(): void {
+    for (const cha of Object.keys(this.system.characteristics)) {
+      const characteristic: Characteristic = this.system.characteristics[cha];
+      characteristic.current = characteristic.value - characteristic.damage;
+      characteristic.mod = calcModFor(characteristic.current);
     }
   }
 
@@ -577,13 +603,6 @@ export default class TwodsixActor extends Actor {
       - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
 
     calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * ( 1 + calcShipStats.cost.percentHull / 100 );
-
-    //Update Characteristics
-    for (const cha of Object.keys(this.system.characteristics)) {
-      const characteristic: Characteristic = this.system.characteristics[cha];
-      characteristic.current = characteristic.value - characteristic.damage;
-      characteristic.mod = calcModFor(characteristic.current);
-    }
 
     /*Push values to ship actor*/
     updateShipData(this);
