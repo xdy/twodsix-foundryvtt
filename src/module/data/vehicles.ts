@@ -107,7 +107,7 @@ export class ShipData extends TwodsixVehicleBaseData {
 
   static migrateData(source:any) {
     if ("finances" in source) {
-      if (typeof source.finances === 'string') {
+      if (typeof source.finances === 'string' && source.financeNotes === "") {
         source.financeNotes = source.finances;
       }
     }
