@@ -13,9 +13,18 @@
         </span>
       {{/if}}
       {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-psi.hbs"}}
-      <span class="special-ability" ><input type="number" min="0" name="system.characteristics.{{key}}.value" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
-                                        data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
-                                        placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+      <span class="special-ability">
+        <input type="number" min="0" placeholder="0" data-dtype="Number"
+          data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
+          {{#if (twodsix_getTooltip actor (concat 'system.characteristics.' key '.value'))}}
+            data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+            readonly
+          {{else}}
+            name="system.characteristics.{{key}}.value"
+            onClick="this.select();"
+          {{/if}}
+        />
+      </span>
       <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
                                         value="{{numberFormat char.mod decimals=0 sign=true}}"/></span>
       <span class="special-damage"><input type="number" max="{{char.value}}" min="0"
