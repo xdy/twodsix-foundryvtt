@@ -532,10 +532,19 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const sortLabel = game.settings.get('twodsix', sortSetting) ? "sort" : "name";
     for (const key of Object.keys(context.container)) {
       if (key !== "skillGroups") {
-        if (sortLabel === "sort") {
-          context.container[key].sort((a,b) => a[sortLabel] - b[sortLabel]);
-        } else {
-          context.container[key].sort((a,b) => a[sortLabel].localeCompare(b[sortLabel]));
+        context.container[key].sort((a, b) =>
+          sortLabel === "sort"
+            ? a[sortLabel] - b[sortLabel]
+            : a[sortLabel].localeCompare(b[sortLabel])
+        );
+      } else {
+        for (const groupKey of Object.keys(context.container.skillGroups)) {
+          const group = context.container.skillGroups[groupKey];
+          group.sort((a, b) =>
+            sortLabel === "sort"
+              ? a[sortLabel] - b[sortLabel]
+              : a[sortLabel].localeCompare(b[sortLabel])
+          );
         }
       }
     }
