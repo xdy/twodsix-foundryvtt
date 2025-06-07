@@ -1,3 +1,10 @@
+## [6.0.8](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.7...v6.0.8) (2025-06-07)
+
+
+### Bug Fixes
+
+* Update test-release.yml to set the right manifest version ([44745b4](https://github.com/xdy/twodsix-foundryvtt/commit/44745b4c06f205a039ab47e0262f0cd4887b901b))
+
 ## [6.0.7](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.6...v6.0.7) (2025-06-07)
 
 
