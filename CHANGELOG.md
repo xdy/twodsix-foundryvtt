@@ -1,3 +1,10 @@
+## [6.0.7](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.6...v6.0.7) (2025-06-07)
+
+
+### Bug Fixes
+
+* fixing AE that apply with each update and skill sorting ([#1792](https://github.com/xdy/twodsix-foundryvtt/issues/1792)) ([379e44d](https://github.com/xdy/twodsix-foundryvtt/commit/379e44d68eeea47ab3ef074591651659b9bf3f73))
+
 ## [6.0.6](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.5...v6.0.6) (2025-05-30)
 
 
