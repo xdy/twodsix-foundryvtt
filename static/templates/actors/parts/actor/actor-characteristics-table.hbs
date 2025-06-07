@@ -19,9 +19,20 @@
         <td {{#iff this.actor.type "===" "traveller"}} style="font-size: smaller;"{{/iff}}>{{localize "TWODSIX.Damage.Max"}}</td>
         {{#each system.characteristics as |char key|}}
           {{#if char.displayChar}}
-            <td><span class="stat-ability-table"><input type="number" min="0" name="system.characteristics.{{key}}.value"
-              data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
-              data-tooltip="{{twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.value')}}" placeholder="0" data-dtype="Number" onClick="this.select();"/></span></td>
+            <td>
+              <span class="stat-ability-table">
+                <input type="number" min="0" placeholder="0" data-dtype="Number"
+                  data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
+                  {{#if (twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.value'))}}
+                    data-tooltip="{{twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.value')}}"
+                    readonly
+                  {{else}}
+                    name="system.characteristics.{{key}}.value"
+                    onClick="this.select();"
+                  {{/if}}
+               />
+              </span>
+            </td>
           {{/if}}
         {{/each}}
       </tr>

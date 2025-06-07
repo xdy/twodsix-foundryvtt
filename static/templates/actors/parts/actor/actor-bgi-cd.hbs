@@ -31,17 +31,17 @@
       placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorType'}}"/>
       {{#if system.reflectOn}}<i class="fa-solid fa-arrow-trend-up" data-tooltip="{{localize 'TWODSIX.Items.Armor.WearingReflec'}}"></i>{{/if}}
     </span>
-    <span class="bgi-armorDM">{{localize "TWODSIX.Items.Armor.armorDM"}}:<input name="system.armorDM" type="number" value="{{system.armorDM}}"
+    <span class="bgi-armorDM">{{localize "TWODSIX.Items.Armor.armorDM"}}:<input type="number" value="{{system.armorDM}}"
       placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorDM'}}"/></span><br>
 {{else}}
   <span class="bgi-armor" data-tooltip='{{localize "TWODSIX.Items.Armor.Armor"}}'><i class="fa-solid fa-user-shield"></i>:
     {{#unless settings.useCUData}}
-      <input style="text-align: right; padding-left: 0;" name="system.primaryArmor.value" type="number" value="{{system.primaryArmor.value}}" placeholder='0'readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') (twodsix_getTooltip actor 'system.primaryArmor.value')}}"/>
+      <input style="text-align: right; padding-left: 0;" type="number" value="{{system.primaryArmor.value}}" placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') (twodsix_getTooltip actor 'system.primaryArmor.value')}}"/>
       {{#unless settings.showTotalArmor}}
-        +<input name="system.secondaryArmor.value" type="number" value="{{system.secondaryArmor.value}}"
+        +<input type="number" value="{{system.secondaryArmor.value}}"
             placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.SecondaryArmor') system.protectionTypes}}"/>
       {{else}}
-        /<input name="system.totalArmor" type="number" value="{{system.totalArmor}}"
+        /<input type="number" value="{{system.totalArmor}}"
             placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.TotalArmor') system.protectionTypes}}"/>
       {{/unless}}
     {{else}}
@@ -50,7 +50,7 @@
     {{/unless}}
   </span>
   <span class="bgi-armor bgi-radProtect" data-tooltip='{{localize "TWODSIX.Items.Armor.RadProt"}}'><i class="fa-solid fa-circle-radiation"></i>:<input
-          name="system.radiationProtection.value" type="number" value="{{system.radiationProtection.value}}" placeholder='0' min="0" readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
+          type="number" value="{{system.radiationProtection.value}}" placeholder='0' min="0" readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span>
 {{/if}}
 <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip='{{localize "TWODSIX.Items.Encumbrance"}}'>
   {{#iff system.encumbrance.value ">" system.encumbrance.max}}
@@ -61,9 +61,10 @@
   {{/iff}}
   {{else}}
   <i class="fa-solid fa-weight-hanging"></i>
-  {{/iff}}:<input name="system.encumbrance.value" style="text-align: right;" type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>
-      /{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/>{{/if}}</span>
-  {{#unless settings.useCTData}}<br>{{/unless}}
+  {{/iff}}:<input style="text-align: right;" type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>
+      /{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input type="number" value="{{system.encumbrance.max}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/>{{/if}}
+</span>
+{{#unless settings.useCTData}}<br>{{/unless}}
 
 <!-- Damage Stats Information-->
 {{#if settings.showLifebloodStamina}}
@@ -72,11 +73,27 @@
     <i class="fa-solid fa-battery-half"></i>
     {{else}}
         <i class="fa-solid fa-battery-empty" style="color:brown;"></i>
-    {{/iff}}:<input type="number" name="system.characteristics.stamina.value" value="{{system.characteristics.stamina.value}}" min="0" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.stamina.value'}}"/>-</span>
+    {{/iff}}:<input type="number" value="{{system.characteristics.stamina.value}}" min="0"
+      {{#if (twodsix_getTooltip actor 'system.characteristics.stamina.value')}}
+        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.stamina.value'}}"
+        readonly
+      {{else}}
+        name="system.characteristics.stamina.value"
+      {{/if}}
+    />-
+  </span>
 <span class="bgi-char-wide bgi-stamina-damage" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
         name="system.characteristics.stamina.damage" value="{{system.characteristics.stamina.damage}}" min="0" max="{{system.characteristics.stamina.value}}"/></span>
-<span class="bgi-char-narrow bgi-lifeblood-value" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:<input
-        type="number" name="system.characteristics.lifeblood.value" value="{{system.characteristics.lifeblood.value}}" min="0" data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.lifeblood.value'}}"/>-</span>
+<span class="bgi-char-narrow bgi-lifeblood-value" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
+  <i class="fa-solid fa-heart-pulse"></i>:<input type="number" value="{{system.characteristics.lifeblood.value}}" min="0"
+    {{#if (twodsix_getTooltip actor 'system.characteristics.lifeblood.value')}}
+      data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.lifeblood.value'}}"
+      readonly
+    {{else}}
+      name="system.characteristics.lifeblood.value"
+    {{/if}}
+  />-
+</span>
 <span class="bgi-char-wide bgi-lifeblood-damage" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
     <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
 {{/if}}
