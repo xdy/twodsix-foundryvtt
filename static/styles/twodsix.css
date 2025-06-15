@@ -174,18 +174,22 @@ a.inline-roll,
 a.content-link {
   background: var(--s2d6-background-transparent);
   color: var(--s2d6-default-color);
+  border-radius: 6px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 2px;
 }
 a.entity-link i,
 a.inline-roll i,
 a.content-link i {
   color: var(--s2d6-default-color);
 }
-a.content-link {
+/*a.content-link {
   border-radius: 6px;
   border-style: solid;
   border-width: 1px;
   padding: 2px;
-}
+}*/
 a.content-link > i {
   padding-right: 4px;
 }
