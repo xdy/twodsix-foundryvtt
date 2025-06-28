@@ -73,6 +73,9 @@ jobs:
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
 
+      - name: Get tag
+        run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
       - name: Submit package to FoundryVTT Package Release API
         run: |
           curl -X POST "https://api.foundryvtt.com/_api/packages/release_version/" \
@@ -83,7 +86,7 @@ jobs:
               "dry-run": false,
               "release": {
                 "version": "${{ steps.package-version.outputs.current-version}}",
-                "manifest": "https://github.com/${{ github.repository }}/releases/latest/download/system.json",
+                "manifest": "https://github.com/${{ github.repository }}/releases/download/${{ env.TWODSIX_VERSION }}/system.json",
                 "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
                 "compatibility": {
                   "minimum": "${{ steps.minimum.outputs.prop }}",
