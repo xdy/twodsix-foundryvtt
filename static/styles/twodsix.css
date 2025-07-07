@@ -4760,3 +4760,7 @@ section#settings a:hover {
 .placeable-hud button.control-icon {
     --control-size: 40px;
 }
+
+.tab.changes.active {
+  padding: 0 0.5rem;
+}
