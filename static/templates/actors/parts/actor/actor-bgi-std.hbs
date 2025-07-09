@@ -1,5 +1,11 @@
-<span class="bgi-age">{{localize "TWODSIX.Actor.Age"}}:<input type="number" name="system.age.value"
-    value="{{system.age.value}}" placeholder="0" data-dtype="Number"/></span>
+<span class="bgi-age">
+  {{localize "TWODSIX.Actor.Age"}}:
+  <input type="number" value="{{system.age.value}}" min="0"
+    {{disabled (twodsix_getTooltip actor 'system.age.value')}}
+    data-tooltip="{{twodsix_getTooltip actor 'system.age.value'}}"
+    name="system.age.value"
+    placeholder="0" data-dtype="Number" />
+</span>
 <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="system.gender" type="text"
     value="{{system.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
 {{#if settings.showHeroPoints}}

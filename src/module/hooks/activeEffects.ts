@@ -3,7 +3,7 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 //This hook applies CUSTOM active effects values as a formula that is evaluated and not a static value.
-Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, _delta: any*/) => {
+Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, delta: any, changes:object*/) => {
   //return if current doesn't exist (probably derived value)
   if (current == undefined) {
     return;
@@ -23,15 +23,16 @@ Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, _
     changeFormula = changeFormula.slice(1);
   }
   const formula = Roll.replaceFormulaData(changeFormula, actor, {missing: "0", warn: false});
+  const ct = foundry.utils.getType(current);
   if (Roll.validate(formula)) {
     const r = Roll.safeEval(formula);
-    const ct = foundry.utils.getType(current);
     switch ( ct ) {
       case "string": {
-        if (Number.isInteger(Number.parseFloat(current))) {
+        const currentAsFloat = Number.parseFloat(current);
+        if (Number.isInteger(currentAsFloat)) {
           update = calculateUpdate(parseInt(current), parseInt(r), operator);
         } else {
-          update = calculateUpdate(Number.parseFloat(current), r, operator);
+          update = calculateUpdate(currentAsFloat, r, operator);
         }
         break;
       }
@@ -41,6 +42,8 @@ Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, _
         break;
       }
     }
+  } else if (ct === 'string') {
+    update = operator === '+' ? current + changeFormula : changeFormula;
   }
   foundry.utils.setProperty(actor, change.key, update);
 });
