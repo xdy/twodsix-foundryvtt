@@ -200,6 +200,9 @@ export class TwodsixDiceRoll {
     // Add item related modifiers
     if (this.rollSettings.itemRoll) {
       returnValue.push("item");
+      if (this.rollSettings.rollModifiers.componentDamage) {
+        returnValue.push("componentDamage");
+      }
       if (this.rollSettings.rollModifiers.rof) {
         returnValue.push("rof");
       }
@@ -329,6 +332,7 @@ export class TwodsixDiceRoll {
           case "weaponsRange":
           case "dodgeParry":
           case "armorModifier":
+          case "componentDamage":
             flavorText += ` + ${description}`;
             flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${description}</td>`;
             break;

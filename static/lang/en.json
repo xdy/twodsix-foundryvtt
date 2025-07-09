@@ -336,6 +336,7 @@
         "RollModifiers": "Roll Modifiers",
         "SkillModifier": "Skill Level",
         "ItemModifier": "Item Bonus",
+        "ComponentDamage": "Component Damage",
         "AbilityModifier": "Ability Level",
         "Rof": "Rate-of-Fire",
         "Wounds": "Wounds",
@@ -1632,6 +1633,10 @@
       "showCommonFundsMCr": {
         "hint": "Use MCr units to display ship common funds",
         "name": "Display ship common funds as MCr"
+      },
+      "componentDamageDM": {
+        "hint": "The roll DM that is applied for each hit to a component.",
+        "name": "Component Damage DM"
       }
     },
     "CloseAndCreateNew": "Close and create new",
