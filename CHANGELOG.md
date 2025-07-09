@@ -1,3 +1,10 @@
+## [6.0.10](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.9...v6.0.10) (2025-07-09)
+
+
+### Bug Fixes
+
+* Allow CUSTOM Active Effect calculations to use derived data ([#1815](https://github.com/xdy/twodsix-foundryvtt/issues/1815)) ([b700b69](https://github.com/xdy/twodsix-foundryvtt/commit/b700b6960cd354342487de1599d0307b4514b40a))
+
 ## [6.0.9](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.8...v6.0.9) (2025-06-28)
 
 
