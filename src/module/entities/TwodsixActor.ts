@@ -383,12 +383,12 @@ export default class TwodsixActor extends Actor {
       system.totalArmor = armorValues.totalArmor;
       const baseArmor = system.primaryArmor.value;
 
-      this.applyActiveEffectsCustom();
+      this.applyActiveEffects({ custom: true });
       if (this.overrides.system?.primaryArmor?.value) {
         system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
       }
     } else {
-      this.applyActiveEffectsCustom();
+      this.applyActiveEffects({ custom: true });
     }
   }
   /**
@@ -1230,59 +1230,106 @@ export default class TwodsixActor extends Actor {
     }
   }
 
+
   /**
-   * Apply any transformations to the Actor data which are caused by ActiveEffects - post prepare data.
+   * Apply transformations to the Actor data caused by ActiveEffects.
+   * If `custom` is true, applies only derived data and CUSTOM effects (post-prepare data).
+   * Otherwise, applies standard effects and strips out CUSTOM.
+   * @param {boolean} custom - Whether to apply only derived/custom effects (default: false)
+   * @override This overrides the core FVTT method to account for modifying derived data
    */
-  applyActiveEffectsCustom() {
-    //Fix for item-piles module
-    if (game.modules.get("item-piles")?.active) {
-      if (this.getFlag("item-piles", "data.enabled")) {
-        return;
-      }
-    }
-    const derivedData = [];
-
-    //Add characteristics mods
-    for (const char of Object.keys(this.system.characteristics)) {
-      derivedData.push(`system.characteristics.${char}.mod`);
-    }
-    //Add skills
-    for (const skill of this.itemTypes.skills) {
-      derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
-    }
-    //Add specials
-    if (this.type === 'traveller') {
-      derivedData.push("system.encumbrance.max", "system.encumbrance.value", "system.primaryArmor.value", "system.secondaryArmor.value", "system.radiationProtection.value");
+  applyActiveEffects({ custom = false }: boolean = {}) {
+    // Fix for item-piles module (only for custom)
+    if (
+      custom &&
+      game.modules.get("item-piles")?.active &&
+      this.getFlag("item-piles", "data.enabled")
+    ) {
+      return;
     }
 
-    //Define derived data keys that can have active effects
     const overrides = {};
+    if (!custom) this.statuses.clear();
 
-    // Organize non-disabled effect changes using derived data list by their application priority
+    const derivedData = this._getDerivedDataKeys();
+
+    // Choose effects and filter logic
+    const effects = custom ? this.appliedEffects : this.allApplicableEffects();
     const changes = [];
-    for ( const effect of this.appliedEffects ) {
-      changes.push(...effect.changes.filter( change => (derivedData.includes(change.key))).map(change => {
-        const c = foundry.utils.deepClone(change);
-        c.effect = effect;
-        c.priority = c.priority ?? (c.mode * 10 - 100); //Add -100 to force pritority of derived data earlier
-        return c;
-      }));
-      for ( const statusId of effect.statuses ) {
-        this.statuses.add(statusId);
-      }
+    for (const effect of effects) {
+      if (!custom && !effect.active) continue;
+      changes.push(
+        ...effect.changes
+          .filter((change) =>
+            custom
+              ? derivedData.includes(change.key) ||
+                change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM
+              : !derivedData.includes(change.key) &&
+                change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM
+          )
+          .map((change) => {
+            const c = foundry.utils.deepClone(change);
+            c.effect = effect;
+            c.priority =
+              c.priority ?? (change.mode * 10 + (custom ? -100 : 0));
+            return c;
+          })
+      );
+      for (const statusId of effect.statuses) this.statuses.add(statusId);
     }
     changes.sort((a, b) => a.priority - b.priority);
 
-    // Apply derived data changes
-    for ( const change of changes ) {
-      const newChanges = change.effect.apply(this, change);
-      Object.assign(overrides, newChanges);
+    // Apply changes
+    for (const change of changes) {
+      if (!change.key) continue;
+      const result = change.effect.apply(this, change);
+      Object.assign(overrides, result);
     }
 
-    // Expand the set of final overrides
-    if (Object.keys(overrides).length > 0) {
-      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
+    // Set overrides
+    if (custom) {
+      if (Object.keys(overrides).length > 0) {
+        this.overrides = foundry.utils.mergeObject(
+          this.overrides,
+          foundry.utils.expandObject(overrides)
+        );
+      }
+    } else {
+      this.overrides = foundry.utils.expandObject(overrides);
     }
+  }
+
+  /**
+   * Build a list of system data keys that are considered "derived data" for this actor.
+   * These keys are used to determine which properties can be affected by derived or custom active effects.
+   * The list includes characteristic modifiers, skill keys, and (for travellers) special system values.
+   *
+   * @returns {string[]} An array of string keys representing derived data paths for this actor.
+   * @private
+   */
+  private _getDerivedDataKeys(): string[] {
+    const derivedData: string[] = [];
+    if (["traveller", "robot", "animal"].includes(this.type)) {
+      // Add characteristics mods
+      for (const char of Object.keys(this.system.characteristics)) {
+        derivedData.push(`system.characteristics.${char}.mod`);
+      }
+      // Add skills
+      for (const skill of this.itemTypes.skills) {
+        derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
+      }
+      // Add specials
+      if (this.type === 'traveller') {
+        derivedData.push(
+          "system.encumbrance.max",
+          "system.encumbrance.value",
+          "system.primaryArmor.value",
+          "system.secondaryArmor.value",
+          "system.radiationProtection.value"
+        );
+      }
+    }
+    return derivedData;
   }
 
   /**

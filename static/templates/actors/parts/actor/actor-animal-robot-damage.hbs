@@ -1,12 +1,9 @@
 {{#if settings.useHits}}
     <span class="bgi-char-narrow bgi-hits-value" ><i class="fa-solid fa-heart-pulse" data-tooltip='{{localize "TWODSIX.Actor.Hits"}}'></i>:
       <input type="number" value="{{system.characteristics.lifeblood.value}}" min="0"
-        {{#if (twodsix_getTooltip actor 'system.characteristics.lifeblood.value')}}
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.lifeblood.value'}}"
-          readonly
-        {{else}}
-          name="system.characteristics.lifeblood.value"
-        {{/if}}
+        {{disabled (twodsix_getTooltip actor 'system.characteristics.lifeblood.value')}}
+        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.lifeblood.value'}}"
+        name="system.characteristics.lifeblood.value"
       />-
     </span>
     <span class="bgi-char-wide bgi-hits-damage" data-tooltip='{{localize "TWODSIX.Actor.Hits"}}'>
@@ -23,24 +20,18 @@
         <i class="fa-solid fa-battery-half"></i>
       {{/iff}}:
       <input type="number" value="{{system.characteristics.endurance.value}}" min="0"
-        {{#if (twodsix_getTooltip actor 'system.characteristics.endurance.value')}}
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.value'}}"
-          readonly
-        {{else}}
-          name="system.characteristics.endurance.value"
-        {{/if}}
+        {{disabled (twodsix_getTooltip actor 'system.characteristics.endurance.value')}}
+        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.value'}}"
+        name="system.characteristics.endurance.value"
       />-
     </span>
     <span class="bgi-char-wide bgi-endurance-damage" data-tooltip='{{localize "TWODSIX.Actor.Endurance"}}'><input type="number"
             name="system.characteristics.endurance.damage" value="{{system.characteristics.endurance.damage}}" min="0" max="{{system.characteristics.endurance.value}}"/></span>
     <span class="bgi-char-narrow bgi-lifeblood-value"><i class="fa-solid fa-heart-pulse" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'></i>:
       <input type="number" value="{{system.characteristics.strength.value}}" min="0"
-        {{#if (twodsix_getTooltip actor 'system.characteristics.strength.value')}}
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.value'}}"
-          readonly
-        {{else}}
-          name="system.characteristics.strength.value"
-        {{/if}}
+        {{disabled (twodsix_getTooltip actor 'system.characteristics.strength.value')}}
+        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.value'}}"
+        name="system.characteristics.strength.value"
       />-
     </span>
     <span class="bgi-char-wide bgi-lifeblood-damage" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
@@ -61,24 +52,18 @@
         <i class="fa-solid fa-battery-half" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'></i>
       {{/iff}}:
       <input type="number" value="{{system.characteristics.stamina.value}}" min="0"
-        {{#if (twodsix_getTooltip actor 'system.characteristics.stamina.value')}}
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.stamina.value'}}"
-          readonly
-        {{else}}
-          name="system.characteristics.stamina.value"
-        {{/if}}
+        {{disabled (twodsix_getTooltip actor 'system.characteristics.stamina.value')}}
+        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.stamina.value'}}"
+        name="system.characteristics.stamina.value"
       />-
     </span>
     <span class="bgi-char-wide bgi-stamina-damage" data-tooltip='{{localize "TWODSIX.Actor.Stamina"}}'><input type="number"
             name="system.characteristics.stamina.damage" value="{{system.characteristics.stamina.damage}}" min="0" max="{{system.characteristics.stamina.value}}"/></span>
     <span class="bgi-char-narrow bgi-lifeblood-value" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'><i class="fa-solid fa-heart-pulse"></i>:
       <input type="number" value="{{system.characteristics.lifeblood.value}}" min="0"
-        {{#if (twodsix_getTooltip actor 'system.characteristics.lifeblood.value')}}
-          data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.lifeblood.value'}}"
-          readonly
-        {{else}}
-          name="system.characteristics.lifeblood.value"
-        {{/if}}
+        {{disabled (twodsix_getTooltip actor 'system.characteristics.lifeblood.value')}}
+        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.lifeblood.value'}}"
+        name="system.characteristics.lifeblood.value"
       />-
     </span>
     <span class="bgi-char-wide bgi-lifeblood-damage" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
