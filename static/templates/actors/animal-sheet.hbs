@@ -54,13 +54,11 @@
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">{{item.name}}</span>
                 <input style="width: 4ch;"  type="number"
-                {{#if (twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name)))}}
+                  {{disabled (twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name)))}}
                   value="{{twodsix_skillTotal ../actor item}}"
                   data-tooltip="{{twodsix_getTooltip actor (concat 'system.skills.' (skillName item.name))}}"
-                  disabled
-                {{else}}
                   class= "item-value-edit" value="{{item.system.value}}" data-action="selectItem"
-                {{/if}} />
+                />
                 <span class="item-controls centre">
                   <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
                       class="fa-solid fa-pen-to-square"></i></a>

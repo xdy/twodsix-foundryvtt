@@ -16,13 +16,10 @@
       <span class="special-ability">
         <input type="number" min="0" placeholder="0" data-dtype="Number"
           data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
-          {{#if (twodsix_getTooltip actor (concat 'system.characteristics.' key '.value'))}}
-            data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
-            readonly
-          {{else}}
-            name="system.characteristics.{{key}}.value"
-            onClick="this.select();"
-          {{/if}}
+          {{disabled (twodsix_getTooltip actor (concat 'system.characteristics.' key '.value'))}}
+          data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+          name="system.characteristics.{{key}}.value"
+          onClick="this.select();"
         />
       </span>
       <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"

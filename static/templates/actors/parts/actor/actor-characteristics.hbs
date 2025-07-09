@@ -15,13 +15,10 @@
       {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.hbs"}}
       <span class="stat-ability" >
         <input type="number" min="0" value="{{char.value}}" data-label="system.characteristics.{{key}}.value"
-          {{#if (twodsix_getTooltip actor (concat 'system.characteristics.' key '.value'))}}
-            data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
-            readonly
-          {{else}}
-            name="system.characteristics.{{key}}.value"
-            placeholder="0" data-dtype="Number" onClick="this.select();"
-          {{/if}}
+          {{disabled (twodsix_getTooltip actor (concat 'system.characteristics.' key '.value'))}}
+          data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+          name="system.characteristics.{{key}}.value"
+          placeholder="0" data-dtype="Number" onClick="this.select();"
         />
       </span>
       <span class="stat-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
