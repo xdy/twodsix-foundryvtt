@@ -6,13 +6,13 @@
       <i class="fa-solid fa-dice" alt="d6"></i> {{localize "TWODSIX.Ship.Morale"}}</span>
     <span class="stat-ability-ship" >
       {{localize "TWODSIX.Damage.Max"}}:
-      <input type="number" min="0" name="system.characteristics.{{key}}.value" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+      <input type="number" min="0" name="system.characteristics.{{key}}.value"
                                       data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
                                       placeholder="0" data-dtype="Number" onClick="this.select();"/>
     </span>
     <span class="stat-modifier-ship">
       {{localize "TWODSIX.Damage.Mod"}}:
-      <input readonly type="text" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
+      <input readonly type="text"
                                       value="{{numberFormat char.mod decimals=0 sign=true}}"/>
     </span>
     <span class="stat-damage-ship">

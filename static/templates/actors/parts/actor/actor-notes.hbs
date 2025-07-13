@@ -1,7 +1,8 @@
 <div class="notes-container">
   <span class="item-title">{{localize "TWODSIX.Actor.Notes.NOTES"}}</span>
   {{#if settings.useProseMirror}}
-  <prose-mirror class="actor-editor" name="system.notes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.notes}}" collaborate="true" toggled="false" {{disabled (twodsix_getTooltip actor 'system.notes')}}>
+  <prose-mirror class="actor-editor" name="system.notes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.notes}}" collaborate="true" toggled="false"
+  {{disabled tooltips.notes}}>
     {{{richText.notes}}}
   </prose-mirror>
   {{else}}
