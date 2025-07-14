@@ -141,6 +141,7 @@ export class TwodsixRollSettings {
       wounds: woundsValue,
       skillValue: skillValue ?? 0,
       item: anItem?.type === "component" ? (parseInt(gear?.rollModifier, 10) || 0) : gear?.skillModifier ?? 0 ,  //need to check for component that uses rollModifier (needs a refactor)
+      componentDamage: anItem?.type === "component" ? (gear?.hits * game.settings.get('twodsix', 'componentDamageDM') || 0) : 0 ,
       attachments: anItem?.system?.consumables?.length > 0 ? anItem?.getConsumableBonus("skillModifier") ?? 0 : 0,
       other: settings?.rollModifiers?.other ?? 0,
       encumbered: encumberedValue,

@@ -1,8 +1,8 @@
 <span class="bgi-age">
   {{localize "TWODSIX.Actor.Age"}}:
   <input type="number" value="{{system.age.value}}" min="0"
-    {{disabled (twodsix_getTooltip actor 'system.age.value')}}
-    data-tooltip="{{twodsix_getTooltip actor 'system.age.value'}}"
+    {{disabled tooltips.age.value}}
+    data-tooltip="{{tooltips.age.value}}"
     name="system.age.value"
     placeholder="0" data-dtype="Number" />
 </span>
@@ -28,16 +28,16 @@
 {{#unless limited}}
   {{#if settings.useCTData}}
     <span class="bgi-armorType">{{localize "TWODSIX.Items.Armor.Armor"}}:<input type="text" value="{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' system.armorType)}}"
-      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorType'}}"/>
+      placeholder='0' diasbled data-tooltip="{{tooltips.armorType}}"/>
       {{#if system.reflectOn}}<i class="fa-solid fa-arrow-trend-up" data-tooltip="{{localize 'TWODSIX.Items.Armor.WearingReflec'}}"></i>{{/if}}
     </span>
     <span class="bgi-armorDM">{{localize "TWODSIX.Items.Armor.armorDM"}}:<input type="number" value="{{system.armorDM}}"
-      placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.armorDM'}}"/></span><br>
+      placeholder='0' disabled data-tooltip="{{tooltips.armorDM}}"/></span><br>
   {{else}}
     <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:
       {{#unless settings.useCUData}}
         <input style="text-align: right; padding-left: 0;" type="number" value="{{system.primaryArmor.value}}"
-        placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') (twodsix_getTooltip actor 'system.primaryArmor.value')}}"/>
+        placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') tooltips.primaryArmor.value}}"/>
         {{#unless settings.showTotalArmor}}
           +<input type="number" value="{{system.secondaryArmor.value}}"
           placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.SecondaryArmor') system.protectionTypes}}"/>
@@ -49,13 +49,20 @@
         placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.ArmorProtectionTypes') system.protectionTypes}}"/>
       {{/unless}}
     </span>
-    <span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input type="number" value="{{system.radiationProtection.value}}"
-          placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.radiationProtection.value'}}"/></span><br>
+    <span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input type="number"
+      value="{{system.radiationProtection.value}}"
+      placeholder='0' disabled data-tooltip="{{tooltips.radiationProtection.value}}"/>
+    </span><br>
   {{/if}}
   <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input style="text-align: right;"
-      type="number" value="{{system.encumbrance.value}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.value'}}"/>/{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' readonly data-tooltip="{{twodsix_getTooltip actor 'system.encumbrance.max'}}"/>{{/if}}</span>
+    type="number" value="{{system.encumbrance.value}}" placeholder='0' disabled
+    data-tooltip="{{tooltips.encumbrance.value}}"/>/{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' disabled
+    data-tooltip="{{tooltips.encumbrance.max}}"/>{{/if}}</span>
   <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">{{localize 'TWODSIX.Actor.Rads'}}:<input name="system.radiationDose.value" style="text-align: right;"
-        type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();" data-tooltip="{{twodsix_getTooltip actor 'system.radiationDose.value'}}"/></span><br>
+    {{disabled tooltips.radiationDose.value}}
+    type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();"
+    data-tooltip="{{tooltips.radiationDose.value}}"/>
+  </span><br>
 
   <!-- Movement -->
   {{> "systems/twodsix/templates/actors/parts/actor/actor-movement.hbs"}}

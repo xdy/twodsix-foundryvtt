@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.10...v6.1.0) (2025-07-14)
+
+
+### Features
+
+* add basic DM modifier for component damage ([#1817](https://github.com/xdy/twodsix-foundryvtt/issues/1817)) ([d04a287](https://github.com/xdy/twodsix-foundryvtt/commit/d04a28731eb5c15387bac45a97585efe95c5a6e9))
+
 ## [6.0.10](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.9...v6.0.10) (2025-07-09)
 
 
