@@ -23,8 +23,8 @@
               <span class="stat-ability-table">
                 <input type="number" min="0" placeholder="0" data-dtype="Number"
                   data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
-                  {{disabled (twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.value'))}}
-                  data-tooltip="{{twodsix_getTooltip ../actor (concat 'system.characteristics.' key '.value')}}"
+                  {{disabled (lookup (lookup @root.tooltips.characteristics key) "value")}}
+                  data-tooltip="{{lookup (lookup @root.tooltips.characteristics key) 'value'}}"
                   name="system.characteristics.{{key}}.value"
                   onClick="this.select();"
                 />
@@ -44,7 +44,7 @@
                 {{#if @root.settings.useCTData}}
                   value= &mdash;
                 {{else}}
-                  data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
+                  data-tooltip="{{lookup (lookup @root.tooltips.characteristics key) 'mod'}}"
                   value="{{numberFormat char.mod decimals=0 sign=true}}"
                 {{/if}}
               />

@@ -5,8 +5,8 @@
     {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.hbs"}}
     <span class="stat-ability">
       <input type="number" min="0" value="{{system.characteristics.endurance.value}}" placeholder="0"
-        {{disabled (twodsix_getTooltip actor 'system.characteristics.endurance.value')}}
-        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.endurance.value'}}"
+        {{disabled tooltips.characteristics.endurance.value}}
+        data-tooltip="{{tooltips.characteristics.endurance.value}}"
         name="system.characteristics.endurance.value" data-dtype="Number" onClick="this.select();"/>
   </span>
     <span class="stat-modifier"><input readonly type="text" value="-"/></span>
@@ -21,8 +21,8 @@
     {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.hbs"}}
     <span class="stat-ability">
       <input type="number" min="0" value="{{system.characteristics.strength.value}}" placeholder="0"
-        {{disabled (twodsix_getTooltip actor 'system.characteristics.strength.value')}}
-        data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.strength.value'}}"
+        {{disabled tooltips.characteristics.strength.value}}
+        data-tooltip="{{tooltips.characteristics.strength.value}}"
         name="system.characteristics.strength.value" data-dtype="Number" onClick="this.select();"/>
     </span>
     <span class="stat-modifier"><input readonly type="text" value="-"/></span>
@@ -38,8 +38,8 @@
       {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.hbs"}}
       <span class="stat-ability">
         <input type="number" min="0" value="{{system.characteristics.psionicStrength.value}}" placeholder="0"
-          {{disabled (twodsix_getTooltip actor 'system.characteristics.psionicStrength.value')}}
-            data-tooltip="{{twodsix_getTooltip actor 'system.characteristics.psionicStrength.value'}}"
+          {{disabled tooltips.characteristics.psionicStrength.value}}
+            data-tooltip="{{tooltips.characteristics.psionicStrength.value}}"
             name="system.characteristics.psionicStrength.value" data-dtype="Number" onClick="this.select();"
         />
       </span>

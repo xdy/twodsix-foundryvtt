@@ -15,8 +15,8 @@
       {{>"systems/twodsix/templates/actors/parts/actor/actor-stat-1.hbs"}}
       <span class="stat-ability" >
         <input type="number" min="0" value="{{char.value}}" data-label="system.characteristics.{{key}}.value"
-          {{disabled (twodsix_getTooltip actor (concat 'system.characteristics.' key '.value'))}}
-          data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+          {{disabled (lookup (lookup @root.tooltips.characteristics key) 'value')}}
+          data-tooltip="{{lookup (lookup @root.tooltips.characteristics key) 'value'}}"
           name="system.characteristics.{{key}}.value"
           placeholder="0" data-dtype="Number" onClick="this.select();"
         />
@@ -26,7 +26,7 @@
           {{#if @root.settings.useCTData}}
             value= &mdash;
           {{else}}
-            data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
+            data-tooltip="{{lookup (lookup @root.tooltips.characteristics key) 'mod'}}"
             value="{{numberFormat char.mod decimals=0 sign=true}}"
           {{/if}}
         />
