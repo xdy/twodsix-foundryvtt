@@ -127,6 +127,7 @@ export class TwodsixRollSettings {
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
     this.isPsionicAbility = this.itemRoll ? anItem.type === "psiAbility" : false;
+    this.isComponent = anItem?.type === "component";
     this.itemName = settings?.itemName ?? itemName;
     this.showRangeModifier =  (game.settings.get('twodsix', 'rangeModifierType') !== 'none' && anItem?.type === "weapon"  && settings?.rollModifiers?.rangeLabel) ?? false;
     this.showTargetModifier = Object.keys(TWODSIX.TARGET_DM).length > 1;
@@ -166,7 +167,7 @@ export class TwodsixRollSettings {
       actorUUID: actorUUID,
       bonusDamage: this.bonusDamage
     };
-    //console.log("Modifiers: ", this.rollModifiers);
+    console.log("Flags: ", this.flags);
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {

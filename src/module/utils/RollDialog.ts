@@ -50,8 +50,11 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
 
   static PARTS = {
     main: {
-      template: 'systems/twodsix/templates/chat/throw-dialog.html',
+      template: 'systems/twodsix/templates/chat/throw-dialog.hbs',
       scrollable: ['']
+    },
+    footer: {
+      template: "templates/generic/form-footer.hbs",
     }
   };
 
@@ -92,7 +95,8 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
       showConditions: (game.settings.get('twodsix', 'useWoundedStatusIndicators') || game.settings.get('twodsix', 'useEncumbranceStatusIndicators')),
       showWounds: game.settings.get('twodsix', 'useWoundedStatusIndicators'),
       showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
-      isPsionicAbility: this.settings.isPsionicAbility
+      isPsionicAbility: this.settings.isPsionicAbility,
+      isComponent: this.settings.isComponent
     });
     context.skillsList = (<TwodsixActor>this.skill?.actor)?.getSkillNameList();
     context.buttons = [
