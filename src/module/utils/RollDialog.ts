@@ -24,7 +24,7 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
   static DEFAULT_OPTIONS =  {
     classes: ["twodsix"],
     position: {
-      width: 675,
+      width: 'auto',
       height: 'auto'
     },
     window: {
@@ -171,8 +171,12 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
     this.settings.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value, 10);
     this.settings.rollModifiers.wounds = this.settings.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value || 0, 10) : 0;
     this.settings.rollModifiers.selectedSkill = this.settings.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value : "";
-    this.settings.rollModifiers.targetModifier = (this.settings.showTargetModifier && formElements["rollModifiers.targetModifier"]) ? Array.from(formElements["rollModifiers.targetModifier"].selectedOptions).map(({value}) => value) : this.settings.rollModifiers.targetModifier;
+    const targetModifierElement = formElements["rollModifiers.targetModifier"];
+    this.settings.rollModifiers.targetModifier = (this.settings.showTargetModifier && targetModifierElement?.value)
+      ? targetModifierElement.value
+      : this.settings.rollModifiers.targetModifier;
     this.settings.rollModifiers.armorModifier  = (this.settings.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value || 0, 10) : 0;
+    this.settings.rollModifiers.componentDamage = this.settings.isComponent ? parseInt(formElements["rollModifiers.componentDamage"]?.value || 0, 10) : this.settings.rollModifiers.componentDamage;
 
     if(!this.settings.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.settings.rollModifiers.characteristic))) {
       //either dont show modifier or not a physical characterisitc
