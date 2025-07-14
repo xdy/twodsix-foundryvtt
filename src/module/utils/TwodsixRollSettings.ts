@@ -142,6 +142,7 @@ export class TwodsixRollSettings {
       wounds: woundsValue,
       skillValue: skillValue ?? 0,
       item: anItem?.type === "component" ? (parseInt(gear?.rollModifier, 10) || 0) : gear?.skillModifier ?? 0 ,  //need to check for component that uses rollModifier (needs a refactor)
+      componentDamage: anItem?.type === "component" ? (gear?.hits * game.settings.get('twodsix', 'componentDamageDM') || 0) : 0 ,
       attachments: anItem?.system?.consumables?.length > 0 ? anItem?.getConsumableBonus("skillModifier") ?? 0 : 0,
       other: settings?.rollModifiers?.other ?? 0,
       encumbered: encumberedValue,
@@ -242,7 +243,8 @@ export class TwodsixRollSettings {
       showConditions: (game.settings.get('twodsix', 'useWoundedStatusIndicators') || game.settings.get('twodsix', 'useEncumbranceStatusIndicators')),
       showWounds: game.settings.get('twodsix', 'useWoundedStatusIndicators'),
       showEncumbered: game.settings.get('twodsix', 'useEncumbranceStatusIndicators'),
-      isPsionicAbility: this.isPsionicAbility
+      isPsionicAbility: this.isPsionicAbility,
+      isComponent: ["ShipAction", "ShipWeapon"].includes(this.flags.rollClass)
     };
 
     const buttons = [
@@ -260,6 +262,7 @@ export class TwodsixRollSettings {
           this.rollModifiers.chain = dialogData.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value || 0, 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value || 0, 10) : this.rollModifiers.item;
+          this.rollModifiers.componentDamage = dialogData.isComponent ? parseInt(formElements["rollModifiers.componentDamage"]?.value || 0, 10) : this.rollModifiers.componentDamage;
           this.rollModifiers.rof = (dialogData.itemRoll && dialogData.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value || 0, 10) : this.rollModifiers.rof;
           this.rollModifiers.dodgeParry = (dialogData.itemRoll && dialogData.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value || 0, 10) : this.rollModifiers.dodgeParry;
           this.rollModifiers.weaponsHandling = (dialogData.itemRoll && dialogData.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value || 0, 10) : this.rollModifiers.weaponsHandling;

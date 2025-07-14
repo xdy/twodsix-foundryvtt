@@ -152,6 +152,7 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
     settings.roll.push(stringSetting('chainBonus', "", false, 'world'));
     settings.roll.push(booleanSetting("psiTalentsRequireRoll", false));
     settings.roll.push(booleanSetting("xd6RollStyle", false));
+    settings.ship.push(numberSetting('componentDamageDM', 0, false));
     return settings;
   }
 }

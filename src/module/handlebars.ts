@@ -8,7 +8,6 @@ import TwodsixItem from "./entities/TwodsixItem";
 import TwodsixActor, { getPower, getWeight } from "./entities/TwodsixActor";
 import { getCharacteristicList } from "./utils/TwodsixRollSettings";
 import { simplifySkillName } from "./utils/utils";
-import { calcModFor } from "./utils/sheetUtils";
 
 export default function registerHandlebarsHelpers(): void {
 
@@ -251,50 +250,6 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('twodsix_showTimeframe', () => {
     return game.settings.get('twodsix', 'showTimeframe');
-  });
-
-  Handlebars.registerHelper('twodsix_getTooltip', (actor:TwodsixActor, field:string) => {
-    let returnValue = ``;
-    if (actor) {
-      const modes = [`<i class="fa-regular fa-circle-question"></i>`, `<i class="fa-regular fa-circle-xmark"></i>`, `<i class="fa-solid fa-circle-plus"></i>`, `<i class="fa-regular fa-circle-down"></i>`, `<i class="fa-regular fa-circle-up"></i>`, `<i class="fa-solid fa-shuffle"></i>`];
-      if (foundry.utils.getProperty(actor.overrides, field) !== undefined) {
-        returnValue += field.includes('Armor') ? `- ` : ``;
-        const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
-        const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
-        let baseValue = 0;
-        if (field.includes('skills')) {
-          const simplifiedName = field.replace('system.skills.', '');
-          if (simplifiedName) {
-            const coreSkill = actor.itemTypes.skills.find(sk => simplifySkillName(sk.name) === simplifiedName);
-            baseValue = coreSkill?.system.value;
-          }
-        } else if (field.includes('encumbrance.max')) {
-          baseValue = actor.getMaxEncumbrance();
-        } else if (field.includes('mod')) {
-          baseValue =  calcModFor(foundry.utils.getProperty(actor._source, field.replace('mod', 'value')));
-        } else {
-          baseValue = foundry.utils.getProperty(actor._source, field);
-        }
-
-        if (baseValue === foundry.utils.getProperty(actor, field)) {
-          baseValue = undefined;
-        }
-
-        returnValue += `${baseText}: ${isNaN(baseValue) ? "?" : baseValue}. ${modifierText}: `;
-        const workingEffects = actor.appliedEffects;
-        for (const effect of workingEffects) {
-          const realChanges = effect.changes.filter(ch => ch.key === field);
-          if (realChanges.length > 0) {
-            returnValue += `${effect.name}: `;
-            for (const change of realChanges) {
-              returnValue += `${modes[change.mode]}(${change.value}), `;
-            }
-          }
-        }
-        returnValue = returnValue.slice(0, -2);
-      }
-    }
-    return returnValue;
   });
 
   Handlebars.registerHelper('twodsix_hideItem', (display:boolean, itemLocation:string) => {

@@ -16,17 +16,26 @@
       <span class="special-ability">
         <input type="number" min="0" placeholder="0" data-dtype="Number"
           data-label="system.characteristics.{{key}}.value" value="{{char.value}}"
-          {{disabled (twodsix_getTooltip actor (concat 'system.characteristics.' key '.value'))}}
-          data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.value')}}"
+          {{disabled (lookup (lookup @root.tooltips.characteristics key) 'value')}}
+          data-tooltip="{{lookup (lookup @root.tooltips.characteristics key) 'value'}}"
           name="system.characteristics.{{key}}.value"
           onClick="this.select();"
         />
       </span>
-      <span class="special-modifier"><input readonly type="text" data-tooltip="{{twodsix_getTooltip actor (concat 'system.characteristics.' key '.mod')}}"
-                                        value="{{numberFormat char.mod decimals=0 sign=true}}"/></span>
+      <span class="special-modifier">
+        <input readonly type="text"
+          {{#if @root.settings.useCTData}}
+            value= &mdash;
+          {{else}}
+            data-tooltip="{{lookup (lookup @root.tooltips.characteristics key) 'mod'}}"
+            value="{{numberFormat char.mod decimals=0 sign=true}}"
+          {{/if}}
+        />
+      </span>
       <span class="special-damage"><input type="number" max="{{char.value}}" min="0"
-                                      name="system.characteristics.{{key}}.damage" value="{{char.damage}}"
-                                      placeholder="0" data-dtype="Number" onClick="this.select();"/></span>
+        name="system.characteristics.{{key}}.damage" value="{{char.damage}}"
+        placeholder="0" data-dtype="Number" onClick="this.select();"/>
+      </span>
     </div>
     {{/if}}
     {{/with}}

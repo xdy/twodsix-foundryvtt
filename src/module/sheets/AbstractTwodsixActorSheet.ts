@@ -2,12 +2,12 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
-import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFLink, getDamageTypes, getRangeTypes, openJournalEntry, deleteReference, changeReference } from "../utils/sheetUtils";
+import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFLink, getDamageTypes, getRangeTypes, openJournalEntry, deleteReference, changeReference, calcModFor } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
 import {Skills, UsesConsumables, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
-import { sortObj } from "../utils/utils";
+import { simplifySkillName, sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 import { TWODSIX } from "../config";
 
@@ -82,6 +82,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
     };
 
+    this._prepareItemContainers(context);
+
     if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
       context.untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       if (!context.untrainedSkill) {
@@ -99,8 +101,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       if (this.actor.type === 'traveller') {
         context.system.characteristics.displayOrder = getDisplayOrder(context);
       }
+
+      this._prepareTooltips(context);
     }
-    this._prepareItemContainers(context);
+
     context.config = TWODSIX;
     return context;
   }
@@ -438,7 +442,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     (<TwodsixActor>this.actor).handleDroppedActiveEffect(effect);
   }
 
-  _prepareItemContainers(context:any):void {
+  _prepareItemContainers(context:object):void {
     // Initialize containers.
     const actor:TwodsixActor = this.actor;
     context.container = actor.itemTypes;
@@ -546,6 +550,64 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
               : a[sortLabel].localeCompare(b[sortLabel])
           );
         }
+      }
+    }
+  }
+
+  /**
+   * Precompute all tooltips for characteristics, skills, encumbrance, armor, and info fields,
+   * and store them under context.tooltips for use in Handlebars templates.
+   * @param {object} context - The sheet context object to augment with tooltips.
+   */
+  _prepareTooltips(context: object): void {
+    context.tooltips = {};
+
+    // Characteristics
+    for (const [key, char] of Object.entries(context.system.characteristics)) {
+      if (!char.displayChar) {
+        continue;
+      }
+      foundry.utils.mergeObject(context.tooltips, {
+        [`characteristics.${key}`]: {
+          value: computeTwodsixTooltip(this.actor, `system.characteristics.${key}.value`),
+          mod: computeTwodsixTooltip(this.actor, `system.characteristics.${key}.mod`)
+        }
+      });
+    }
+
+    // Skills
+    if (context.container?.skillsList) {
+      for (const skill of context.container.skillsList) {
+        foundry.utils.mergeObject(context.tooltips, {
+          [`skills.${simplifySkillName(skill.name)}`]: computeTwodsixTooltip(this.actor, `system.skills.${simplifySkillName(skill.name)}`)
+        });
+      }
+    }
+
+    //Misc
+    const fieldsToProcess = [
+      "age.value",
+      "radiationDose.value",
+      "movement.walk",
+      "encumbrance.max",
+      "encumbrance.value",
+      "primaryArmor.value",
+      "secondaryArmor.value",
+      "radiationProtection.value",
+      "armorDM",
+      "armorType",
+      "reaction.attack",
+      "reaction.flee",
+      "moraleDM",
+      "xpNotes",
+      "description",
+      "contacts",
+      "bio"
+    ];
+
+    for (const field of fieldsToProcess) {
+      if (foundry.utils.hasProperty(context.system, field)) {
+        foundry.utils.mergeObject(context.tooltips, {[field]: computeTwodsixTooltip(this.actor, `system.${field}`)});
       }
     }
   }
@@ -930,4 +992,70 @@ function updateWithItemSpecificValues(itemData:Record<string, any>, type:string,
 function getItemFromTarget(target:HTMLElement, actor:TwodsixActor): TwodsixItem {
   const itemId = target.closest('.item').dataset.itemId;
   return <TwodsixItem>actor.items.get(itemId);
+}
+
+/**
+ * Generate a tooltip string for a given actor and data field, summarizing base value and active effects.
+ * Used for precomputing tooltips for display in the sheet.
+ * @param {TwodsixActor} actor - The actor instance for which to compute the tooltip.
+ * @param {string} field - The data path (e.g., "system.skills.gunCombat") to compute the tooltip for.
+ * @returns {string} The formatted tooltip string for the field.
+ */
+function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
+  if (!actor) {
+    return "";
+  }
+
+  const modes = [
+    `<i class="fa-regular fa-circle-question"></i>`,
+    `<i class="fa-regular fa-circle-xmark"></i>`,
+    `<i class="fa-solid fa-circle-plus"></i>`,
+    `<i class="fa-regular fa-circle-down"></i>`,
+    `<i class="fa-regular fa-circle-up"></i>`,
+    `<i class="fa-solid fa-shuffle"></i>`
+  ];
+
+  if (foundry.utils.getProperty(actor.overrides, field) === undefined) {
+    return "";
+  }
+
+  let tooltip = field.includes('Armor') ? `- ` : ``;
+  const baseText = game.i18n.localize("TWODSIX.ActiveEffects.BaseValue");
+  const modifierText = game.i18n.localize("TWODSIX.ActiveEffects.Modifiers");
+  let baseValue: any;
+
+  if (field.startsWith('system.skills.')) {
+    const simplifiedName = field.slice(14);
+    const coreSkill = actor.itemTypes.skills.find(sk => simplifySkillName(sk.name) === simplifiedName);
+    baseValue = coreSkill?.system.value;
+  } else if (field === 'system.encumbrance.max') {
+    baseValue = actor.getMaxEncumbrance();
+  } else if (field.endsWith('.mod')) {
+    baseValue = calcModFor(foundry.utils.getProperty(actor._source, field.replace('mod', 'value')));
+  } else {
+    baseValue = foundry.utils.getProperty(actor._source, field);
+  }
+
+  if (baseValue === foundry.utils.getProperty(actor, field)) {
+    baseValue = undefined;
+  }
+
+  tooltip += `${baseText}: ${isNaN(baseValue) ? "?" : baseValue}. ${modifierText}: `;
+
+  const effectStrings: string[] = [];
+  for (const effect of actor.appliedEffects) {
+    const realChanges = effect.changes.filter(ch => ch.key === field);
+    if (realChanges.length > 0) {
+      const changesStr = realChanges.map(change =>
+        `${modes[change.mode] || ""}(${change.value})`
+      ).join(", ");
+      effectStrings.push(`${effect.name}: ${changesStr}`);
+    }
+  }
+
+  tooltip += effectStrings.length > 0
+    ? effectStrings.join("; ")
+    : game.i18n.localize("TWODSIX.ActiveEffects.None");
+
+  return tooltip;
 }
