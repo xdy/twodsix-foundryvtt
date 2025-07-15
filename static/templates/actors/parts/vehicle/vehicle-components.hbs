@@ -5,6 +5,7 @@
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.DM"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.FireArc"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.hits"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
@@ -22,12 +23,18 @@
           <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
           {{#iff item.system.subtype "===" "armament"}}
             {{> "systems/twodsix/templates/actors/parts/common/armament-qty.hbs" item=item}}
+            {{#iff item.system.fireArc "===" ""}}
+              <span class="item-name centre">&mdash;</span>
+            {{else}}
+              <span class="item-name centre">{{item.system.fireArc}}</span>
+            {{/iff}}
           {{else}}
             <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+            <span class="item-name centre">&mdash;</span>
           {{/iff}}
 
           <span class="item-name centre">
-              {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
+            {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
           </span>
           <span class="item-name centre with-buttons">
             {{item.system.hits}}

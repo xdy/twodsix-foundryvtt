@@ -611,7 +611,8 @@
         "Quantity": "Quantity",
         "AttackDamage": "Attack Damage",
         "numberHits": "Number of Hits",
-        "opStatus": "Operational Status"
+        "opStatus": "Operational Status",
+        "FireArc": "Fire Arc"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
