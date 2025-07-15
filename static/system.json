@@ -41,7 +41,7 @@
     "Actor" : {
       "traveller": {"htmlFields": ["description", "notes", "bio", "contacts", "xpNotes"]},
       "ship": {"htmlFields": ["cargo", "financeNotes", "notes"]},
-      "vehicle": {},
+      "vehicle": {"htmlFields": ["description"]},
       "animal": {"htmlFields": ["description", "notes"]},
       "robot": {"htmlFields": ["description", "notes"]},
       "space-object": {"htmlFields": ["description", "notes"]}
