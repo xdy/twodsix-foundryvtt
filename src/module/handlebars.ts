@@ -385,10 +385,9 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('makeFireArc', (startAngle: number = 0, endAngle: number = 0) => {
-    // If endAngle is provided, use it directly; otherwise, calculate from inputPercentage
     let wedgeDegrees = (endAngle - startAngle + 360) % 360;
     const minAngle = 10;
-    if (wedgeDegrees < minAngle) {
+    if (wedgeDegrees < minAngle && (startAngle || endAngle)) {
       wedgeDegrees = minAngle;
       startAngle = startAngle < minAngle/2 ? 0 : startAngle - minAngle/2;
     }
