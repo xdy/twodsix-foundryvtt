@@ -23,11 +23,7 @@
           <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
           {{#iff item.system.subtype "===" "armament"}}
             {{> "systems/twodsix/templates/actors/parts/common/armament-qty.hbs" item=item}}
-            {{#iff item.system.fireArc "===" ""}}
-              <span class="item-name centre">&mdash;</span>
-            {{else}}
-              <span class="item-name centre">{{item.system.fireArc}}</span>
-            {{/iff}}
+            <span class="item-name centre"><input disabled style="{{makeFireArc item.system.fireArc.startAngle item.system.fireArc.endAngle}}"/></span>
           {{else}}
             <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
             <span class="item-name centre">&mdash;</span>

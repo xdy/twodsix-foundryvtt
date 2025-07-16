@@ -662,8 +662,8 @@ h2 {
 .vehicle-content-container {
   display: grid;
   height: 100%;
-  grid-template-columns: 30% 35% 30%;
-  grid-template-rows: auto;
+  grid-template-columns: 30% 36% 30%;
+  grid-template-rows: 81% 19%;
   gap: 2%;
   /*position: relative;*/
   grid-template-areas:
@@ -746,6 +746,7 @@ h2 {
 
 .vehicle-components {
   grid-area: vehicle-components;
+  overflow: hidden;
   height: 74%;
 }
 

@@ -612,7 +612,8 @@
         "AttackDamage": "Attack Damage",
         "numberHits": "Number of Hits",
         "opStatus": "Operational Status",
-        "FireArc": "Fire Arc"
+        "FireArc": "Fire Arc",
+        "Degrees": "Degrees (0 to 360)"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

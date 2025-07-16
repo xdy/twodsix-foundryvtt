@@ -15,7 +15,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
     dragDrop: [{dragSelector: ".item", dropSelector: null}],
     position: {
       width: 835,
-      height: 'auto'
+      height: 600
     },
     window: {
       resizable: true,
