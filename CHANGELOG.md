@@ -1,3 +1,10 @@
+# [6.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.1.0...v6.2.0) (2025-07-17)
+
+
+### Features
+
+* initial implementation of tabbed vehicle sheets ([#1824](https://github.com/xdy/twodsix-foundryvtt/issues/1824)) ([563a275](https://github.com/xdy/twodsix-foundryvtt/commit/563a27556900203271d64456e0eb7bef632b574b))
+
 # [6.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.0.10...v6.1.0) (2025-07-14)
 
 
