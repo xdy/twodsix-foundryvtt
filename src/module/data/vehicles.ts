@@ -14,7 +14,7 @@ class TwodsixVehicleBaseData extends foundry.abstract.TypeDataModel {
     schema.name = new fields.StringField({...requiredBlankString});
     schema.techLevel = new fields.NumberField({ ...requiredInteger, initial: 0 });
     /* References */
-    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}));
+    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}), {initial: [""]});
     schema.pdfReference = new fields.SchemaField({
       type: new fields.StringField({...requiredBlankString}),
       href: new fields.StringField({...requiredBlankString}),
@@ -30,6 +30,9 @@ class TwodsixVehicleBaseData extends foundry.abstract.TypeDataModel {
   static migrateData(source:any) {
     if ("docReference" in source) {
       migrateStringToStringArray(source, "docReference");
+      if (source.docReference.length === 0) {
+        source.docReference = [""];
+      }
     }
     return super.migrateData(source);
   }
