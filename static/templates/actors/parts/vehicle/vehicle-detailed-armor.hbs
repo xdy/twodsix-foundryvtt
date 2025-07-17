@@ -1,0 +1,31 @@
+  <table class="vehicle-stats-table">
+    <thead>
+      <tr class="table-header-row vehicle">
+          <th></th>
+          <th class="vehicle-cell">{{localize "TWODSIX.Damage.Current"}}</th>
+          <th class="vehicle-cell">{{localize "TWODSIX.Damage.Max"}}</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>{{localize "TWODSIX.Vehicle.Front"}}</td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.detailedArmor.front.value}}" name="system.damageStats.detailedArmor.front.value" placeholder="0" max = "{{actor.system.damageStats.detailedArmor.front.max}}" min = "{{actor.system.damageStats.detailedArmor.front.min}}"/></td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.detailedArmor.front.max}}" name="system.damageStats.detailedArmor.front.max" placeholder="0"/></td>
+        </tr>
+        <tr>
+          <td>{{localize "TWODSIX.Vehicle.Rear"}}</td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.detailedArmor.rear.value}}" name="system.damageStats.detailedArmor.rear.value" placeholder="0" max = "{{actor.system.damageStats.detailedArmor.rear.max}}" min = "{{actor.system.damageStats.detailedArmor.rear.min}}"/></td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.detailedArmor.rear.max}}" name="system.damageStats.detailedArmor.rear.max" placeholder="0"/></td>
+        </tr>
+        <tr>
+          <td>{{localize "TWODSIX.Vehicle.Sides"}}</td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.detailedArmor.sides.value}}" name="system.damageStats.detailedArmor.sides.value" placeholder="0" max = "{{actor.system.damageStats.detailedArmor.sides.max}}" min = "{{actor.system.damageStats.detailedArmor.sides.min}}"/></td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.detailedArmor.sides.max}}" name="system.damageStats.detailedArmor.sides.max" placeholder="0"/></td>
+        </tr>
+        <tr>
+          <td>{{localize "TWODSIX.Vehicle.Hull"}}</td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.hull.value}}" name="system.damageStats.hull.value" placeholder="0" max = "{{actor.system.damageStats.hull.max}}" min = "{{actor.system.damageStats.hull.min}}"/></td>
+          <td class="vehicle-cell"><input type="number" value="{{actor.system.damageStats.hull.max}}" name="system.damageStats.hull.max" placeholder="0"/></td>
+        </tr>
+    </tbody>
+  </table>

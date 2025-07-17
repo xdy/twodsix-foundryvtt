@@ -151,6 +151,11 @@ export class VehicleData extends TwodsixVehicleBaseData {
       threshold: new fields.SchemaField({
         regular: new fields.NumberField({ ...requiredInteger, initial: 0 }),
         critical: new fields.NumberField({ ...requiredInteger, initial: 0 })
+      }),
+      detailedArmor: new fields.SchemaField({
+        front: makeResourceField(0, 0),
+        rear: makeResourceField(0, 0),
+        sides: makeResourceField(0, 0)
       })
     });
     schema.features = new fields.StringField({...requiredBlankString});

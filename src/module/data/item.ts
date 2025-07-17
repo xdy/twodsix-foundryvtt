@@ -216,6 +216,10 @@ export class ComponentData extends GearData {
     schema.isPopup = new fields.BooleanField({ required: true, initial: false});
     schema.isExtended = new fields.BooleanField({ required: true, initial: false});
     schema.bandwidth = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.fireArc = new fields.SchemaField({
+      startAngle: new fields.NumberField({...requiredInteger, initial: 0}),
+      endAngle: new fields.NumberField({...requiredInteger, initial: 0})
+    });
     return schema;
   }
   static migrateData(source:any) {

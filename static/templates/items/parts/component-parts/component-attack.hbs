@@ -8,6 +8,15 @@
     <input class="form-input" type="text" name="system.radDamage" value="{{system.radDamage}}"/>
   </div>
   <div class="item-features">
+    <span class="resource-label">{{localize "TWODSIX.Items.Component.FireArc"}}</span>
+    <div>
+        <input class="form-consumable-count" name="system.fireArc.startAngle" type="number" value="{{system.fireArc.startAngle}}" data-dtype="Number" max="360" min="0"/>
+        /
+        <input class="form-consumable-count" name="system.fireArc.endAngle" type="number" value="{{system.fireArc.endAngle}}" data-dtype="Number" max="360" min="0"/>
+         {{localize "TWODSIX.Items.Component.Degrees"}}
+    </div>
+  </div>
+  <div class="item-features">
     <span class="resource-label">{{localize "TWODSIX.Items.Component.Range"}}</span>
     <input class="form-input" type="text" name="system.range" value="{{system.range}}"/>
   </div>

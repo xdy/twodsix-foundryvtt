@@ -972,7 +972,8 @@ export const TimeUnits = {
 export const VehicleProtection = {
   armorOnly: "TWODSIX.Vehicle.ProtectionType.ArmorOnly",
   threshold: "TWODSIX.Vehicle.ProtectionType.Threshold",
-  armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc"
+  armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc",
+  detailedArmor: "TWODSIX.Vehicle.ProtectionType.DetailedArmor"
 };
 
 /**

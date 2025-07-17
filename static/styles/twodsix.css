@@ -642,6 +642,10 @@ h2 {
   font-size: smaller;
 }
 
+.vehicle-tabs {
+  margin-bottom: 2ch;
+}
+
 .vehicle-photo, .space-object-photo {
   text-align: center;
   z-index: 0;
@@ -658,15 +662,13 @@ h2 {
 .vehicle-content-container {
   display: grid;
   height: 100%;
-  grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 15em 14em 5em 9fr;
-  gap: 16px;
-  position: relative;
+  grid-template-columns: 30% 36% 30%;
+  grid-template-rows: 81% 19%;
+  gap: 2%;
+  /*position: relative;*/
   grid-template-areas:
     "vehicle-name-photo vehicle-stats vehicle-armor"
-    "vehicle-name-photo vehicle-stats vehicle-traits"
-    "vehicle-systems vehicle-systems vehicle-notes"
-    "vehicle-components vehicle-components vehicle-notes";
+    "vehicle-systems vehicle-systems vehicle-traits"
 }
 
 .space-object-content-container {
@@ -744,12 +746,14 @@ h2 {
 
 .vehicle-components {
   grid-area: vehicle-components;
-  overflow-y: hidden;
+  overflow: hidden;
+  height: 74%;
 }
 
 .vehicle-traits {
   grid-area: vehicle-traits;
   background-color: var(--s2d6-background-nearly-opaque);
+  height: min-content;
 }
 
 .vehicle-armor {
@@ -831,10 +835,10 @@ h2 {
 
 .components-stored {
   display: grid;
-  grid-template-columns: 11.5em 3em 3em 4em 4.5em 4.5em 4em 3em;
+  grid-template-columns: 11.5em 3em 3em 4em 5em 4.5em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . .";
+  grid-template-areas: ". . . . . . . . .";
 }
 
 .grid-columns-component {

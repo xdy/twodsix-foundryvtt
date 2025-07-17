@@ -1,120 +1,196 @@
-<section class="{{cssClass}} untabbed-sheet" autocomplete="off" style="overflow-x: auto">
-  <div class="vehicle-content-container">
-    <div class="vehicle-name-photo">
-      <div class="vehicle-photo">
-        <img class="profile-img" src="{{actor.img}}" data-edit="img" data-action="editImage" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
-      </div>
-      <div class="vehicle-name"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
-      </div>
-      {{#if settings.showActorReferences}}
-        <div class = "centre">
-        {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+<section class="{{cssClass}}" autocomplete="off">
+  {{!-- Component Sheet Navigation --}}
+  <section class = "vehicle-tabs">
+    {{> "systems/twodsix/templates/misc/navigation-tabs.hbs"}}
+  </section>
+
+  {{!-- Stats Tab --}}
+  <section class="tab {{tabs.stats.cssClass}}" data-group="primary" data-tab="stats">
+    <div class="vehicle-content-container">
+      <div class="vehicle-name-photo">
+        <div class="vehicle-photo">
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" data-action="editImage" data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
         </div>
-      {{/if}}
-    </div>
-    <div class="vehicle-stats">
-      <span class="item-title-vehicle">Stats</span>
-        <span class="single-line vehicle-inset vehicle-tl">{{localize "TWODSIX.Vehicle.techLevel"}}:<input type="text" value="{{actor.system.techLevel}}" name="system.techLevel"/></span>
-        <span class="single-line vehicle-inset vehicle-weight">{{localize "TWODSIX.Vehicle.Weight"}}: <input type="text" value="{{actor.system.weight}}" name="system.weight"/></span>
-        <span class="single-line vehicle-inset vehcile-shippingSize">{{localize "TWODSIX.Vehicle.ShippingSize"}}: <input type="text" value="{{actor.system.shippingSize}}" name="system.shippingSize"/></span>
-        <span class="single-line vehicle-inset vehicle-cost">{{localize "TWODSIX.Vehicle.Cost"}}:<input type="text" value="{{actor.system.cost}}" name="system.cost"/></span>
-      <fieldset class="vehicle-inset">
-        <legend>{{localize "TWODSIX.Vehicle.Movement"}}</legend>
-        <span class="single-line vehicle-speed">{{localize "TWODSIX.Vehicle.Speed"}}:<input type="text" value="{{actor.system.maneuver.speed}}" name="system.maneuver.speed"/>{{#unless settings.showRangeSpeedNoUnits}}<input type="text" value="{{actor.system.maneuver.speedUnits}}" name="system.maneuver.speedUnits"/>{{/unless}}</span>
-        <span class="single-line vehicle-range">{{localize "TWODSIX.Vehicle.Range"}}:<input type="text" value="{{actor.system.maneuver.range}}" name="system.maneuver.range"/>{{#unless settings.showRangeSpeedNoUnits}}<input  type="text" value="{{actor.system.maneuver.rangeUnits}}" name="system.maneuver.rangeUnits"/>{{/unless}}</span>
-        <span class="single-line vehicle-agility">{{localize "TWODSIX.Vehicle.Agility"}}:<input type="text" value="{{actor.system.maneuver.agility}}" name="system.maneuver.agility"/></span>
-      </fieldset>
-      {{#if settings.useCUData}}
+        <div class="vehicle-name">
+          <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
+        </div>
+        {{#if settings.showActorReferences}}
+          <div class="centre">
+            {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+          </div>
+        {{/if}}
+      </div>
+      <div class="vehicle-stats">
+        <span class="item-title-vehicle">Stats</span>
+        <span class="single-line vehicle-inset vehicle-tl">
+          {{localize "TWODSIX.Vehicle.techLevel"}}: <input type="text" value="{{actor.system.techLevel}}" name="system.techLevel"/>
+        </span>
+        <span class="single-line vehicle-inset vehicle-weight">
+          {{localize "TWODSIX.Vehicle.Weight"}}: <input type="text" value="{{actor.system.weight}}" name="system.weight"/>
+        </span>
+        <span class="single-line vehicle-inset vehicle-shippingSize">
+          {{localize "TWODSIX.Vehicle.ShippingSize"}}: <input type="text" value="{{actor.system.shippingSize}}" name="system.shippingSize"/>
+        </span>
+        <span class="single-line vehicle-inset vehicle-cost">
+          {{localize "TWODSIX.Vehicle.Cost"}}: <input type="text" value="{{actor.system.cost}}" name="system.cost"/>
+        </span>
         <fieldset class="vehicle-inset">
-          <legend>{{localize "TWODSIX.Vehicle.Spaces"}}</legend>
-          <table class="vehicle-stats-table">
-            <thead>
-              <tr class="table-header-row vehicle">
+          <legend>{{localize "TWODSIX.Vehicle.Movement"}}</legend>
+          <span class="single-line vehicle-speed">
+            {{localize "TWODSIX.Vehicle.Speed"}}: <input type="text" value="{{actor.system.maneuver.speed}}" name="system.maneuver.speed"/>
+            {{#unless settings.showRangeSpeedNoUnits}}
+              <input type="text" value="{{actor.system.maneuver.speedUnits}}" name="system.maneuver.speedUnits"/>
+            {{/unless}}
+          </span>
+          <span class="single-line vehicle-range">
+            {{localize "TWODSIX.Vehicle.Range"}}: <input type="text" value="{{actor.system.maneuver.range}}" name="system.maneuver.range"/>
+            {{#unless settings.showRangeSpeedNoUnits}}
+              <input type="text" value="{{actor.system.maneuver.rangeUnits}}" name="system.maneuver.rangeUnits"/>
+            {{/unless}}
+          </span>
+          <span class="single-line vehicle-agility">
+            {{localize "TWODSIX.Vehicle.Agility"}}: <input type="text" value="{{actor.system.maneuver.agility}}" name="system.maneuver.agility"/>
+          </span>
+        </fieldset>
+        {{#if settings.useCUData}}
+          <fieldset class="vehicle-inset">
+            <legend>{{localize "TWODSIX.Vehicle.Spaces"}}</legend>
+            <table class="vehicle-stats-table">
+              <thead>
+                <tr class="table-header-row vehicle">
                   <th class="vehicle-cell">{{localize "TWODSIX.Damage.Current"}}</th>
                   <th class="vehicle-cell">{{localize "TWODSIX.Damage.Max"}}</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td class="vehicle-cell"><input type="number" value="{{actor.system.spaces.value}}" name="system.spaces.value" placeholder="0" max = "{{actor.system.spaces.max}}" min = "0"/></td>
-                  <td class="vehicle-cell"><input type="number" value="{{actor.system.spaces.max}}" name="system.spaces.max" placeholder="0"/></td>
                 </tr>
-            </tbody>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="vehicle-cell">
+                    <input type="number" value="{{actor.system.spaces.value}}" name="system.spaces.value" placeholder="0" max="{{actor.system.spaces.max}}" min="0"/>
+                  </td>
+                  <td class="vehicle-cell">
+                    <input type="number" value="{{actor.system.spaces.max}}" name="system.spaces.max" placeholder="0"/>
+                  </td>
+                </tr>
+              </tbody>
             </table>
-        </fieldset>
-      {{else}}
-        <fieldset class="vehicle-inset">
-          <legend>{{localize "TWODSIX.Vehicle.Crew"}}</legend>
-          <span class="single-line vehicle-operator">{{localize "TWODSIX.Vehicle.crew.operators"}}: <input type="text" value="{{actor.system.crew.operators}}" name="system.crew.operators"/></span>
-          <span class="single-line vehcicle-passengers">{{localize "TWODSIX.Vehicle.crew.passengers"}}: <input type="text" value="{{actor.system.crew.passengers}}" name="system.crew.passengers"/></span>
-        </fieldset>
-      {{/if}}
-      <span class="single-line vehicle-inset vehicle-opSkill" data-label="{{actor.system.skillToOperate}}"><label class="rollable orange" for="system.skillToOperate" data-action="rollSkillVehicle">{{localize "TWODSIX.Vehicle.skillToOperate"}}:</label><input type="text" value="{{actor.system.skillToOperate}}" name="system.skillToOperate"/></span>
-    </div>
-    <div class="vehicle-notes">
-      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Cargo"}}</span>
-      <span class="single-line vehicle-inset vehicle-cargo-capacity">{{localize "TWODSIX.Vehicle.CargoCapacity"}}: <input type="text" value="{{actor.system.cargoCapacity}}" name="system.cargoCapacity"/></span>
-      <div class="vehicle-inset">
-        <span>{{localize "TWODSIX.Vehicle.CargoNotes"}}</span>
-        <span class="vehicle-cargo-list">
-          <textarea type="text" name="system.cargoList" value="{{actor.system.cargoList}}">{{~actor.system.cargoList~}}</textarea>
+          </fieldset>
+        {{else}}
+          <fieldset class="vehicle-inset">
+            <legend>{{localize "TWODSIX.Vehicle.Crew"}}</legend>
+            <span class="single-line vehicle-operator">
+              {{localize "TWODSIX.Vehicle.crew.operators"}}: <input type="text" value="{{actor.system.crew.operators}}" name="system.crew.operators"/>
+            </span>
+            <span class="single-line vehicle-passengers">
+              {{localize "TWODSIX.Vehicle.crew.passengers"}}: <input type="text" value="{{actor.system.crew.passengers}}" name="system.crew.passengers"/>
+            </span>
+          </fieldset>
+        {{/if}}
+        <span class="single-line vehicle-inset vehicle-opSkill" data-label="{{actor.system.skillToOperate}}">
+          <label class="rollable orange" for="system.skillToOperate" data-action="rollSkillVehicle" style="width: 23ch;">
+            {{localize "TWODSIX.Vehicle.skillToOperate"}}:
+          </label>
+          <input type="text" value="{{actor.system.skillToOperate}}" name="system.skillToOperate"/>
         </span>
-        <!-- <div contenteditable="true" data-edit="system.cargoList">{{{actor.system.cargoList}}}</div> -->
       </div>
-    </div>
-    <div class="vehicle-systems">
-      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.SystemStatus"}}</span>
-      <div style="margin: 3px;">
+      <div class="vehicle-systems">
+        <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.SystemStatus"}}</span>
+        <div style="margin: 3px;">
           {{#each actor.system.systemStatus as |sysstat|}}
-            <span>{{localize (concat "TWODSIX.Vehicle.systems." @key)}}
+            <span>
+              {{localize (concat "TWODSIX.Vehicle.systems." @key)}}
               <span class="item-name centre component-toggle" data-key="{{@key}}" data-action="toggleComponent">
                 {{#if (eq sysstat 'operational')}}
                   <i class="fa-solid fa-circle-check" style="color: green;" data-tooltip='{{localize "TWODSIX.Items.Component.operational"}}'></i>
                 {{else if (eq sysstat 'damaged')}}
                   <i class="fa-solid fa-circle-exclamation" style="color: yellow;" data-tooltip='{{localize "TWODSIX.Items.Component.damaged"}}'></i>
                 {{else if (eq sysstat 'destroyed')}}
-                 <i class="fa-solid fa-circle-x" style="color: red;" data-tooltip='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
+                  <i class="fa-solid fa-circle-x" style="color: red;" data-tooltip='{{localize "TWODSIX.Items.Component.destroyed"}}'></i>
                 {{else if (eq sysstat 'off')}}
                   <i class="fa-solid fa-power-off" style="color: grey;" data-tooltip='{{localize "TWODSIX.Items.Component.off"}}'></i>
-                {{/if}}{{#unless @last}}, {{/unless}}
+                {{/if}}
+                {{#unless @last}}, {{/unless}}
               </span>
             </span>
           {{/each}}
-    </div>
-    </div>
-    <div class="vehicle-armor">
-      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Protection"}}</span>
-      <div class="vehicle-inset">
-        <span>
-          {{#iff settings.showHullAndArmor "===" 'armorHullStruc'}}
-            {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-integrity-table.hbs"}}
-          {{else iff settings.showHullAndArmor "===" 'armorOnly'}}
-            <span>{{localize "TWODSIX.Vehicle.ArmorHull"}}</span>
-            <span class="vehicle-armor-name">
-            <textarea type="text" name="system.damageStats.armorLabel" value="{{actor.system.damageStats.armorLabel}}">{{~actor.system.damageStats.armorLabel~}}</textarea>
-            </span>
-          {{else}}
-            <fieldset>
-              <legend>{{localize "TWODSIX.Vehicle.Thresholds"}}</legend>
-              <span class="single-line vehicle-regularDamage">{{localize "TWODSIX.Vehicle.Regular"}}: <input type="number" value="{{actor.system.damageStats.threshold.regular}}" name="system.damageStats.threshold.regular"/></span>
-              <span class="single-line vehicle-criticalDamage">{{localize "TWODSIX.Vehicle.Critical"}}: <input type="number" value="{{actor.system.damageStats.threshold.critical}}" name="system.damageStats.threshold.critical"/></span>
-            </fieldset>
-          {{/iff}}
-          <span class="openVehicle" data-tooltip='{{localize "TWODSIX.Vehicle.OpenVehicle"}}'>{{localize "TWODSIX.Vehicle.OpenVehicle"}}:
-            <input type="checkbox" class="checkbox" name="system.openVehicle" {{checked actor.system.openVehicle}} data-dtype="Boolean" />
-          </span>
-        </span>
+        </div>
       </div>
-    </div>
-    <div class="vehicle-components">
-      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Components"}}</span>
-     {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-components.hbs"}}
-    </div>
-    <div class="vehicle-traits">
-      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Traits"}}</span>
+      <div class="vehicle-armor">
+        <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Protection"}}</span>
+        <div class="vehicle-inset">
+          <span>
+            {{#iff settings.showHullAndArmor "===" 'armorHullStruc'}}
+              {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-integrity-table.hbs"}}
+            {{else iff settings.showHullAndArmor "===" 'detailedArmor'}}
+              {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-detailed-armor.hbs"}}
+            {{else iff settings.showHullAndArmor "===" 'armorOnly'}}
+              <span>{{localize "TWODSIX.Vehicle.ArmorHull"}}</span>
+              <span class="vehicle-armor-name">
+                <textarea type="text" name="system.damageStats.armorLabel" value="{{actor.system.damageStats.armorLabel}}">{{~actor.system.damageStats.armorLabel~}}</textarea>
+              </span>
+            {{else}}
+              <fieldset>
+                <legend>{{localize "TWODSIX.Vehicle.Thresholds"}}</legend>
+                <span class="single-line vehicle-regularDamage">
+                  {{localize "TWODSIX.Vehicle.Regular"}}: <input type="number" value="{{actor.system.damageStats.threshold.regular}}" name="system.damageStats.threshold.regular"/>
+                </span>
+                <span class="single-line vehicle-criticalDamage">
+                  {{localize "TWODSIX.Vehicle.Critical"}}: <input type="number" value="{{actor.system.damageStats.threshold.critical}}" name="system.damageStats.threshold.critical"/>
+                </span>
+              </fieldset>
+            {{/iff}}
+            <span class="openVehicle" data-tooltip='{{localize "TWODSIX.Vehicle.OpenVehicle"}}'>
+              {{localize "TWODSIX.Vehicle.OpenVehicle"}}:
+              <input type="checkbox" class="checkbox" name="system.openVehicle" {{checked actor.system.openVehicle}} data-dtype="Boolean" />
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="vehicle-traits">
+        <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Traits"}}</span>
         <span class="vehicle-traits-details">
           <textarea type="text" name="system.traits" value="{{actor.system.traits}}">{{~actor.system.traits~}}</textarea>
         </span>
+      </div>
     </div>
-
   </section>
+
+  {{!-- Cargo Tab --}}
+  <section class="tab {{tabs.cargo.cssClass}}" data-group="primary" data-tab="cargo">
+    <div class="vehicle-notes">
+      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Cargo"}}</span>
+      <span class="single-line vehicle-inset vehicle-cargo-capacity">
+        {{localize "TWODSIX.Vehicle.CargoCapacity"}}: <input type="text" value="{{actor.system.cargoCapacity}}" name="system.cargoCapacity"/>
+      </span>
+      <div class="vehicle-inset">
+        <span>{{localize "TWODSIX.Vehicle.CargoNotes"}}</span>
+        <span class="vehicle-cargo-list">
+          <textarea type="text" name="system.cargoList" value="{{actor.system.cargoList}}">{{~actor.system.cargoList~}}</textarea>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  {{!-- Component Tab --}}
+  <section class="tab {{tabs.components.cssClass}}" data-group="primary" data-tab="components" style="height: 100%;">
+    <div class="vehicle-components">
+      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Components"}}</span>
+      {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-components.hbs"}}
+    </div>
+  </section>
+
+  {{!-- Description Tab --}}
+  <section class="tab {{tabs.description.cssClass}}" data-group="primary" data-tab="description">
+    <div class="vehicle-notes">
+      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Tabs.Description"}}</span>
+      {{#if settings.useProseMirror}}
+        <prose-mirror class="actor-editor" name="system.description" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.description}}" collaborate="true" toggled="false"
+          style="min-height: 40ch;"
+          {{disabled tooltips.description}}>
+          {{{richText.description}}}
+        </prose-mirror>
+      {{else}}
+        <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
+      {{/if}}
+    </div>
+  </section>
+</section>
