@@ -14,7 +14,7 @@ export class TwodsixItemBaseData extends foundry.abstract.TypeDataModel {
     schema.description = new fields.HTMLField({...requiredBlankString});
     schema.type = new fields.StringField({...requiredBlankString}); //updated onCreate
     /* References */
-    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}));
+    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}), {initial: [""]});
     schema.pdfReference = new fields.SchemaField({
       type: new fields.StringField({...requiredBlankString}),
       href: new fields.StringField({...requiredBlankString}),
@@ -26,6 +26,9 @@ export class TwodsixItemBaseData extends foundry.abstract.TypeDataModel {
   static migrateData(source:any) {
     if ("docReference" in source) {
       migrateStringToStringArray(source, "docReference");
+      if (source.docReference.length === 0) {
+        source.docReference = [""];
+      }
     }
     return super.migrateData(source);
   }

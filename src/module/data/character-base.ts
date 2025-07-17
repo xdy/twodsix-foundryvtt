@@ -55,7 +55,7 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
     });
 
     /* References */
-    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}));
+    schema.docReference = new fields.ArrayField(new fields.StringField({...requiredBlankString}), {initial: [""]});
     schema.pdfReference = new fields.SchemaField({
       type: new fields.StringField({...requiredBlankString}),
       href: new fields.StringField({...requiredBlankString}),
@@ -93,6 +93,9 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
   static migrateData(source:any) {
     if ("docReference" in source) {
       migrateStringToStringArray(source, "docReference");
+      if (source.docReference.length === 0) {
+        source.docReference = [""];
+      }
     }
     return super.migrateData(source);
   }
