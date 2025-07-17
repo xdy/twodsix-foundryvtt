@@ -1,10 +1,11 @@
-<div class="storage-wrapper-auto">
+<div class="storage-wrapper-auto" style="height: 90%;">
   <div class="grid-columns-component components-header">
     <div class="components-stored">
       <span class="item-name">{{localize "TWODSIX.Items.Component.componentName"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.TL"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.DM"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Actor.Items.Qty"}}</span>
+      <span class="item-name centre">{{localize "TWODSIX.Items.Component.FireArc"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.damage"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.hits"}}</span>
       <span class="item-name centre">{{localize "TWODSIX.Items.Component.status"}}</span>
@@ -12,7 +13,7 @@
     </div>
   </div>
 
-  <div class="item-list grid-columns-component">
+  <div class="item-list grid-columns-component" style="overflow-y: scroll; height: 100%">
     {{#each container.component as |item id|}}
     <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
@@ -22,12 +23,14 @@
           <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
           {{#iff item.system.subtype "===" "armament"}}
             {{> "systems/twodsix/templates/actors/parts/common/armament-qty.hbs" item=item}}
+            <span class="item-name centre"><input disabled style="{{makeFireArc item.system.fireArc.startAngle item.system.fireArc.endAngle}}"/></span>
           {{else}}
             <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
+            <span class="item-name centre">&mdash;</span>
           {{/iff}}
 
           <span class="item-name centre">
-              {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
+            {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
           </span>
           <span class="item-name centre with-buttons">
             {{item.system.hits}}

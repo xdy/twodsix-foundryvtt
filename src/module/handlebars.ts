@@ -384,6 +384,16 @@ export default function registerHandlebarsHelpers(): void {
     return `background-image: conic-gradient(var(--s2d6-pie-color) ${degrees}deg, var(--s2d6-pie-background-color) ${degrees}deg); border-radius: 50%; border: 1px solid;`;
   });
 
+  Handlebars.registerHelper('makeFireArc', (startAngle: number = 0, endAngle: number = 0) => {
+    let wedgeDegrees = (endAngle - startAngle + 360) % 360;
+    const minAngle = 10;
+    if (wedgeDegrees < minAngle && (startAngle || endAngle)) {
+      wedgeDegrees = minAngle;
+      startAngle = startAngle < minAngle/2 ? 0 : startAngle - minAngle/2;
+    }
+    return `background-image: conic-gradient(from ${startAngle}deg, var(--s2d6-pie-color) ${wedgeDegrees}deg, var(--s2d6-pie-background-color) ${wedgeDegrees}deg); border-radius: 50%; border: 1px solid; height: 3ch; width: 3ch;`;
+  });
+
   Handlebars.registerHelper('twodsix_canBePopup', (item: TwodsixItem) => {
     return ["armament", "mount"].includes(item.system.subtype);
   });

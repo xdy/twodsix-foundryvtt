@@ -611,7 +611,9 @@
         "Quantity": "Quantity",
         "AttackDamage": "Attack Damage",
         "numberHits": "Number of Hits",
-        "opStatus": "Operational Status"
+        "opStatus": "Operational Status",
+        "FireArc": "Fire Arc",
+        "Degrees": "Degrees (0 to 360)"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -933,6 +935,9 @@
       "Crew": "Crew",
       "Weight": "Weight",
       "Armor": "Armor",
+      "Front": "Front",
+      "Sides": "Sides",
+      "Rear": "Rear",
       "Hull": "Hull",
       "Structure": "Structure",
       "Protection": "Protection",
@@ -950,9 +955,16 @@
       "ProtectionType": {
         "ArmorOnly": "Armor Only",
         "Threshold": "Threshold",
-        "ArmorHullStruc": "Armor, Hull and Structure"
+        "ArmorHullStruc": "Armor, Hull and Structure",
+        "DetailedArmor": "Detailed Armor and Hull"
       },
-      "ShippingSize": "Shipping Size"
+      "ShippingSize": "Shipping Size",
+      "Tabs": {
+        "Stats": "Stats",
+        "Cargo": "Cargo",
+        "Description": "Description",
+        "Components": "Components"
+      }
     },
     "SpaceObject": {
       "Notes": "Notes",
@@ -1329,7 +1341,7 @@
         "name": "Show condition icons on traveller sheets"
       },
       "showHullAndArmor": {
-        "hint": "option to choose information in protection area of vehicle sheets.  Options are armor only (a plain text box), thresholds (roll values for regular and critical hits) and armor, hull, structre (table of three damage fields).",
+        "hint": "Option to choose information in protection area of vehicle sheets.  Options are armor only (a plain text box); thresholds (roll values for regular and critical hits);  Armor, Hull, Structre (table of three damage fields); and Detailed Armor and Hull (facing armor and hull).",
         "name": "Protection values on vehicle sheets"
       },
       "addEffectToDamage": {

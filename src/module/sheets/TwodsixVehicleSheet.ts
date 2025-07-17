@@ -15,7 +15,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
     dragDrop: [{dragSelector: ".item", dropSelector: null}],
     position: {
       width: 835,
-      height: 'auto'
+      height: 600
     },
     window: {
       resizable: true,
@@ -39,6 +39,18 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
     }
   };
 
+  static TABS = {
+    primary: {
+      tabs: [
+        {id: "stats", icon: "fa-solid fa-chart-bar", label: "TWODSIX.Vehicle.Tabs.Stats"},
+        {id: "components", icon: "fa-solid fa-gears", label: "TWODSIX.Vehicle.Tabs.Components"},
+        {id: "cargo", icon: "fa-solid fa-boxes-stacked", label: "TWODSIX.Vehicle.Tabs.Cargo"},
+        {id: "description", icon: "fa-solid fa-book", label: "TWODSIX.Vehicle.Tabs.Description"}
+      ],
+      initial: "stats"
+    }
+  };
+
   /** @override */
   async _prepareContext(options):any {
     const context = await super._prepareContext(options);
@@ -49,6 +61,13 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
       showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     });
+
+    if (game.settings.get('twodsix', 'useProseMirror')) {
+      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
+      context.richText = {
+        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
+      };
+    }
 
     return context;
   }

@@ -278,6 +278,10 @@ label.checkbox > input[type="checkbox"] {
   font-size: smaller;
 }
 
+.vehicle-tabs {
+  margin-bottom: 2ch;
+}
+
 .vehicle-photo, .space-object-photo {
   text-align: center;
   z-index: 0;
@@ -293,15 +297,13 @@ label.checkbox > input[type="checkbox"] {
 .vehicle-content-container {
   display: grid;
   height: 100%;
-  grid-template-columns: 19em 19em 17em;
-  grid-template-rows: 17em 17em 5em 9fr;
-  gap: 12px;
-  position: relative;
+  grid-template-columns: 30% 35% 30%;
+  grid-template-rows: 82% 18%;
+  gap: 2%;
+  /*position: relative;*/
   grid-template-areas:
     "vehicle-name-photo vehicle-stats vehicle-armor"
-    "vehicle-name-photo vehicle-stats vehicle-traits"
-    "vehicle-systems vehicle-systems vehicle-notes"
-    "vehicle-components vehicle-components vehicle-notes";
+    "vehicle-systems vehicle-systems vehicle-traits"
 }
 
 .space-object-content-container {
@@ -375,7 +377,7 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-components {
   grid-area: vehicle-components;
-  overflow-y: hidden;
+  height: 74%;
 }
 
 .vehicle-armor {
@@ -384,6 +386,7 @@ label.checkbox > input[type="checkbox"] {
 
 .vehicle-traits {
   grid-area: vehicle-traits;
+  height: min-content;
 }
 
 .vehicle-name, .space-object-name {
@@ -436,15 +439,18 @@ label.checkbox > input[type="checkbox"] {
   resize: none;
   scrollbar-width: thin;
   /*scrollbar-color: var(--s2d6-default-color);*/
-  height: 88%;
   width: 100%;
   padding: 0 1ch;
   font-family: inherit;
   border-radius: 0 0  2ch 2ch;
   border: none;
   color: var(--s2d6-item-active);
+  display: block;
 }
 
+.space-object-notes textarea {
+  height: 88%;
+}
 .space-object-notes {
   grid-area: space-object-notes;
   border: solid 2px;
@@ -462,10 +468,10 @@ label.checkbox > input[type="checkbox"] {
 
 .components-stored {
   display: grid;
-  grid-template-columns: 11.5em 3em 3em 4em 4.5em 4.5em 4em 3em;
+  grid-template-columns: 11.5em 3em 3em 4em 5em 4.5em 4.5em 4em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
-  grid-template-areas: ". . . . . . . .";
+  grid-template-areas: ". . . . . . . . .";
 }
 
 .grid-columns-component {
