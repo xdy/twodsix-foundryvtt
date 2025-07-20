@@ -82,8 +82,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
     };
 
-    this._prepareItemContainers(context);
-
     if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
       context.untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       if (!context.untrainedSkill) {
@@ -102,6 +100,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         context.system.characteristics.displayOrder = getDisplayOrder(context);
       }
 
+    }
+
+    this._prepareItemContainers(context);
+
+    if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
       this._prepareTooltips(context);
     }
 

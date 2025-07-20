@@ -1,3 +1,10 @@
+## [6.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.0...v6.2.1) (2025-07-17)
+
+
+### Bug Fixes
+
+* pdfDocument array missing initial empty entry ([#1826](https://github.com/xdy/twodsix-foundryvtt/issues/1826)) ([e55b71a](https://github.com/xdy/twodsix-foundryvtt/commit/e55b71a18de587e8f2f8f5e7f19d4e7b2e43456e))
+
 # [6.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.1.0...v6.2.0) (2025-07-17)
 
 
