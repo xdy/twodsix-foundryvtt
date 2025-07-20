@@ -716,8 +716,9 @@ h2 {
   max-height: 100%;
 }
 
-.vehicle-notes {
-  grid-area: vehicle-notes;
+.vehicle-notes div[contenteditable] {
+  height: 35ch;
+  overflow-y: scroll;
 }
 
 .space-object-notes {
@@ -4768,3 +4769,4 @@ section#settings a:hover {
 .tab.changes.active {
   padding: 0 0.5rem;
 }
+

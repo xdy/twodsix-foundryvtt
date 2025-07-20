@@ -353,17 +353,14 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .vehicle-notes {
-  grid-area: vehicle-notes;
   border: 2px solid;
   border-radius: 2ch;
   max-height: 100%;
 }
 
 .vehicle-notes div[contenteditable] {
-  height: 86%;
-  border-radius: 0 0 2ch 2ch !important;
-  overflow-y: auto;
-  padding-left: 1ch;
+  height: 35ch;
+  overflow-y: scroll;
 }
 
 .vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
