@@ -1,3 +1,10 @@
+## [6.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.1...v6.2.2) (2025-07-20)
+
+
+### Bug Fixes
+
+*  JOAT value not changing on edit ([#1827](https://github.com/xdy/twodsix-foundryvtt/issues/1827)) ([6d3fd42](https://github.com/xdy/twodsix-foundryvtt/commit/6d3fd42365d32618c88c58950ce8d0bfe2fd3d12))
+
 ## [6.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.0...v6.2.1) (2025-07-17)
 
 
