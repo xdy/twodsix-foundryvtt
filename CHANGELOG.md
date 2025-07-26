@@ -1,3 +1,10 @@
+## [6.2.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.2...v6.2.3) (2025-07-26)
+
+
+### Bug Fixes
+
+* importing folder from compendium doesn't copy all data ([#1830](https://github.com/xdy/twodsix-foundryvtt/issues/1830)) ([c12cc6c](https://github.com/xdy/twodsix-foundryvtt/commit/c12cc6c677a2b7f7271a6692a810558264250156))
+
 ## [6.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.1...v6.2.2) (2025-07-20)
 
 
