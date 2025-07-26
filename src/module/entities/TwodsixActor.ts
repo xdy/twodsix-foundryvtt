@@ -1182,7 +1182,8 @@ export default class TwodsixActor extends Actor {
       });
       if (confirmed) {
         for (const it of folder.contents) {
-          await this.handleDroppedItem(it);
+          const itemToDrop = it.uuid.startsWith("Compendium") ? await fromUuid(it.uuid) : it;
+          await this.handleDroppedItem(itemToDrop);
         }
       }
     } else {
