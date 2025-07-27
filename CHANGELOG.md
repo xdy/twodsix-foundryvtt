@@ -1,3 +1,10 @@
+# [6.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.3...v6.3.0) (2025-07-27)
+
+
+### Features
+
+* add chat buttons to items ([#1831](https://github.com/xdy/twodsix-foundryvtt/issues/1831)) ([14885a0](https://github.com/xdy/twodsix-foundryvtt/commit/14885a0806bf75a2ffd7c46090a272a4c218c1f1))
+
 ## [6.2.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.2...v6.2.3) (2025-07-26)
 
 
