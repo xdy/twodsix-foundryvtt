@@ -1681,7 +1681,7 @@ a.actor-notes-tab:hover {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 5% 33% 6% 6% 11% 12% 13% 14%;
+  grid-template-columns: 5% 33% 6% 6% 11% 12% 11% 16%;
   grid-template-areas:
     '. . . . . . . .';
 }

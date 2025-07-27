@@ -78,7 +78,7 @@ jobs:
 
       - name: Submit package to FoundryVTT Package Release API
         run: |
-          curl -X POST "https://api.foundryvtt.com/_api/packages/release_version/" \
+          curl -X POST "https://foundryvtt.com/_api/packages/release_version/" \
             -H "Content-Type: application/json" \
             -H "Authorization: ${{ secrets.FOUNDRYVTT_RELEASE_TOKEN }}" \
             -d '{
