@@ -4771,7 +4771,7 @@ section#settings a:hover {
 }
 
 code {
-  color: var(--s2d6-select-light);
-  background: var(--color-cool-4);
-  border-color: var(--color-cool-3);
+  --color-text-primary: var(--s2d6-select-light);
+  --color-code-bg: var(--color-cool-4);
+  --color-code-border: var(--color-cool-3);
 }
