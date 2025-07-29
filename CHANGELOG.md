@@ -1,3 +1,10 @@
+## [6.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.3.0...v6.3.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* code block in chat not following dark mode and Theater module styles ([#1833](https://github.com/xdy/twodsix-foundryvtt/issues/1833)) ([9dd42e6](https://github.com/xdy/twodsix-foundryvtt/commit/9dd42e6d22a325b1587a54015a09de792d06da68))
+
 # [6.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.3...v6.3.0) (2025-07-27)
 
 
