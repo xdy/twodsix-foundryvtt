@@ -456,7 +456,7 @@ div.svelte-ip-m19fn7 {
     display: flex;
 }
 
-.theatre-narrator-content, .theatre-control-group, .theatre-control-nav-bar {
+.theatre-narrator-content, .theatre-control-group, .theatre-control-nav-bar, .no-scrollbar {
   /*--color-scrollbar: transparent;*/
   --color-scrollbar-track: transparent;
 }
