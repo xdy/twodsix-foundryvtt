@@ -4770,3 +4770,8 @@ section#settings a:hover {
   padding: 0 0.5rem;
 }
 
+code {
+  --color-text-primary: var(--s2d6-select-light);
+  --color-code-bg: var(--color-cool-4);
+  --color-code-border: var(--color-cool-3);
+}
