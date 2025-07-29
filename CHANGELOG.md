@@ -1,3 +1,31 @@
+## [6.3.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.3.0...v6.3.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* code block in chat not following dark mode and Theater module styles ([#1833](https://github.com/xdy/twodsix-foundryvtt/issues/1833)) ([9dd42e6](https://github.com/xdy/twodsix-foundryvtt/commit/9dd42e6d22a325b1587a54015a09de792d06da68))
+
+# [6.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.3...v6.3.0) (2025-07-27)
+
+
+### Features
+
+* add chat buttons to items ([#1831](https://github.com/xdy/twodsix-foundryvtt/issues/1831)) ([14885a0](https://github.com/xdy/twodsix-foundryvtt/commit/14885a0806bf75a2ffd7c46090a272a4c218c1f1))
+
+## [6.2.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.2...v6.2.3) (2025-07-26)
+
+
+### Bug Fixes
+
+* importing folder from compendium doesn't copy all data ([#1830](https://github.com/xdy/twodsix-foundryvtt/issues/1830)) ([c12cc6c](https://github.com/xdy/twodsix-foundryvtt/commit/c12cc6c677a2b7f7271a6692a810558264250156))
+
+## [6.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.1...v6.2.2) (2025-07-20)
+
+
+### Bug Fixes
+
+*  JOAT value not changing on edit ([#1827](https://github.com/xdy/twodsix-foundryvtt/issues/1827)) ([6d3fd42](https://github.com/xdy/twodsix-foundryvtt/commit/6d3fd42365d32618c88c58950ce8d0bfe2fd3d12))
+
 ## [6.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.2.0...v6.2.1) (2025-07-17)
 
 

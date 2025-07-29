@@ -1681,7 +1681,7 @@ a.actor-notes-tab:hover {
 
 .items-weapons {
   display: grid;
-  grid-template-columns: 5% 33% 6% 6% 11% 12% 13% 14%;
+  grid-template-columns: 5% 33% 6% 6% 11% 12% 11% 16%;
   grid-template-areas:
     '. . . . . . . .';
 }
@@ -4770,3 +4770,8 @@ section#settings a:hover {
   padding: 0 0.5rem;
 }
 
+code {
+  --color-text-primary: var(--s2d6-select-light);
+  --color-code-bg: var(--color-cool-4);
+  --color-code-border: var(--color-cool-3);
+}

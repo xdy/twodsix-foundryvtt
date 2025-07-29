@@ -183,6 +183,7 @@
           "default": "Default (backpack, equipped and ship)",
           "all": "All"
         },
+        "SendToChat": "Send description to chat",
         "Subtype": "Type",
         "TRAITS": "TRAITS",
         "Traits": "Traits",
