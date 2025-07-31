@@ -451,8 +451,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     context.container = actor.itemTypes;
     const items = actor.items;
     const component = {};
-    let numberOfSkills = 0;
-    let skillRanks = 0;
+    const counters = { numberOfSkills: 0, skillRanks: 0 };
     const summaryStatus = {};
     const skillsList = [];
     const skillGroups = {};
@@ -466,26 +465,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       }
       if (["traveller", "animal", "robot"].includes(actor.type)) {
         if (item.type === "skills") {
-          if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
-            numberOfSkills += 1;
-            skillRanks += Number(item.system.value);
-          }
-          if (isDisplayableSkill(<Skills>item)) {
-            if (actor.type === 'traveller') {
-              // Create and Organize by Group Labels
-              const groupLabel:string = item.system.groupLabel || game.i18n.localize('TWODSIX.Actor.Skills.NoGroup');
-              if(!Object.hasOwn(skillGroups, groupLabel)) {
-                skillGroups[groupLabel] = [];
-              }
-              skillGroups[groupLabel].push(item);
-
-              // Create toggle states
-              if (!Object.hasOwn(actor.system.displaySkillGroup, groupLabel)) {
-                Object.assign(actor.system.displaySkillGroup, {[groupLabel]: false});
-              }
-            }
-            skillsList.push(item);
-          }
+          this._processSkillItem(item, actor, skillGroups, skillsList, counters);
         }
       }
       //Add consumable labels
@@ -523,9 +503,9 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     if (["traveller"].includes(actor.type)) {
       //Assign JOAT Value
       context.jackOfAllTrades = context.untrainedSkill ? AbstractTwodsixActorSheet.untrainedToJoat(context.untrainedSkill.system.value) : 0;
-      context.numberOfSkills = numberOfSkills + (context.jackOfAllTrades > 0 ? 1 : 0);
-      context.numberListedSkills = numberOfSkills;
-      context.skillRanks = skillRanks + context.jackOfAllTrades;
+      context.numberOfSkills = counters.numberOfSkills + (context.jackOfAllTrades > 0 ? 1 : 0);
+      context.numberListedSkills = counters.numberOfSkills;
+      context.skillRanks = counters.skillRanks + context.jackOfAllTrades;
     } else if (["ship", "vehicle"].includes(actor.type)) {
       context.componentObject = sortObj(component);
       context.summaryStatus = sortObj(summaryStatus);
@@ -877,6 +857,44 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
           this.actor.update({[target]: newValue});
         }
       }
+    }
+  }
+
+  /**
+   * Processes a skill item for an actor, updating skill counters and organizing skills into groups.
+   *
+   * - Increments the number of skills and total skill ranks if the skill is trained.
+   * - Adds displayable skills to the skills list.
+   * - For traveller actors, organizes skills into groups and ensures displaySkillGroup is initialized.
+   *
+   * @param item - The skill item to process.
+   * @param actor - The actor owning the skill.
+   * @param skillGroups - An object mapping skill group labels to arrays of skill items.
+   * @param skillsList - The array to which displayable skills are added.
+   * @param counters - An object containing skill counters: numberOfSkills and skillRanks.
+   */
+  private _processSkillItem(
+    item: TwodsixItem,
+    actor: TwodsixActor,
+    skillGroups: Record<string, TwodsixItem[]>,
+    skillsList: TwodsixItem[],
+    counters: { numberOfSkills: number, skillRanks: number }
+  ): void {
+    // Increment counters if skill is trained
+    if (item.system.value >= 0 && !item.getFlag("twodsix", "untrainedSkill")) {
+      counters.numberOfSkills++;
+      counters.skillRanks += Number(item.system.value);
+    }
+    // Add to skills list and group if displayable
+    if (isDisplayableSkill(<Skills>item)) {
+      if (actor.type === 'traveller') {
+        const groupLabel: string = item.system.groupLabel || game.i18n.localize('TWODSIX.Actor.Skills.NoGroup');
+        skillGroups[groupLabel] ??= [];
+        skillGroups[groupLabel].push(item);
+
+        actor.system.displaySkillGroup[groupLabel] ??= false;
+      }
+      skillsList.push(item);
     }
   }
 }
