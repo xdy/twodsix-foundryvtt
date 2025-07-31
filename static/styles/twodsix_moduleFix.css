@@ -460,4 +460,5 @@ div.svelte-ip-m19fn7 {
   --color-scrollbar: transparent;
   --color-scrollbar-track: transparent;
   scrollbar-color: transparent transparent;
+  scrollbar-width: none;
 }
