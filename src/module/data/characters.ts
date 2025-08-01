@@ -112,6 +112,7 @@ export class RobotData extends TwodsixActorBaseData {
       value: new fields.NumberField({required: true, integer: true, initial: 0}),
       protectionTypes: new fields.ArrayField(new fields.StringField({blank: false}))
     });
+    schema.maxBuildPoints = new fields.NumberField({...requiredInteger, initial: 0});
     return schema;
   }
 }

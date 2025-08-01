@@ -40,7 +40,7 @@
       {{/unless}}{{/unless}}
     </div>
     <div class="npc-notes-container">
-      <span class="item-title-npc">{{localize "TWODSIX.Animal.RobotNotes"}}</span>
+      <span class="item-title-npc">{{localize "TWODSIX.Robot.RobotNotes"}}</span>
       {{#unless limited}}
       <div contenteditable="true" data-edit="system.notes" style="height: 85%; border-radius: 0 0 2ch 2ch !important; overflow-y: auto; padding-left: 2px;">{{{system.notes}}}</div>
      {{/unless}}
@@ -133,6 +133,13 @@
               </span>{{#unless @last}}{{#if ../settings.dontShowStatBlock}}, {{else}}<br>{{/if}}{{/unless}}
             </span>
          {{/each}}
+        </span>
+        <span>
+          <div class="augment-buildPoints">
+            <span>{{localize "TWODSIX.Robot.BuildPoints.BuildPoints"}}-</span>
+            <span>{{localize "TWODSIX.Robot.BuildPoints.Used"}}: {{buildPoints}}</span>
+            <span>{{localize "TWODSIX.Robot.BuildPoints.Max"}}: <input type="number" name= "system.maxBuildPoints" value= "{{system.maxBuildPoints}}" onClick="this.select();"/></span>
+          </div>
         </span>
       </div>
       {{/unless}}

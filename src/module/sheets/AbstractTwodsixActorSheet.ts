@@ -451,14 +451,14 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     context.container = actor.itemTypes;
     const items = actor.items;
     const component = {};
-    const counters = { numberOfSkills: 0, skillRanks: 0 };
+    const counters = { numberOfSkills: 0, skillRanks: 0, buildPoints: 0 };
     const summaryStatus = {};
     const skillsList = [];
     const skillGroups = {};
     const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
     // Iterate through items, calculating derived data
-    items.forEach((item:TwodsixItem) => {
+    for (const item of items) {
       // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
       if (![...TWODSIX.WeightlessItems, "ship_position"].includes(item.type)) {
         item.prepareConsumable();
@@ -475,6 +475,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
           item.system.parentName = parentItem.name;
           item.system.parentType = parentItem.type;
         }
+      }
+
+      //Calulate BuildPoints
+      if (["robot"].includes(actor.type)  && item.type === "augment") {
+        counters.buildPoints += item.system.buildPoints ?? 0;
       }
       //prepare ship summary status
       if (item.type === "component") {
@@ -493,7 +498,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
           };
         }
       }
-    });
+    }
 
     // Prepare Containers for sheetData
     context.container.equipmentAndTools = actor.itemTypes.equipment.concat(actor.itemTypes.tool).concat(actor.itemTypes.computer);
@@ -511,6 +516,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.summaryStatus = sortObj(summaryStatus);
       context.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
       context.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
+    } else if (["robot"].includes(actor.type)) {
+      context.buildPoints = counters.buildPoints;
     }
     context.effects = Array.from(actor.allApplicableEffects());
 
