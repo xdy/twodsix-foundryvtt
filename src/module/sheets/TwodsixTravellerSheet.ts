@@ -96,7 +96,8 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       useCTAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CT.key,
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCUAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CU.key,
-      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor')
+      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
+      showTraitAE: game.settings.get('twodsix', 'showTraitAE')
     });
 
     context.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {

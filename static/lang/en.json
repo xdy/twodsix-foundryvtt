@@ -1658,6 +1658,10 @@
       "componentDamageDM": {
         "hint": "The roll DM that is applied for each hit to a component.",
         "name": "Component Damage DM"
+      },
+      "showTraitAE": {
+        "hint": "List active effect formulas as part of trait short description (true) on Traveller Info tab.  Otherwise, show only the short description for the trait (false).",
+        "name": "Show Active Effects for Traits"
       }
     },
     "CloseAndCreateNew": "Close and create new",
