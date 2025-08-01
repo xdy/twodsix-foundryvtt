@@ -825,7 +825,10 @@ export default class TwodsixItem extends Item {
   public sendDescriptionToChat():Promise<void> {
     const picture = this.img;
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
-    const msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${this.name}</strong></span></div><div>${this.system["description"]}</div>`;
+    let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="align-self: center; text-align: center; padding-left: 1ch;"><strong>${capType}: ${this.name}</strong></span></div><div>${this.system["description"]}</div>`;
+    if (this.system.features) {
+      msg += `<div>${game.i18n.localize("TWODSIX.Items.Component.Features")}: ${this.system.features}</div>`;
+    }
     ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
   }
 

@@ -307,7 +307,6 @@
       },
       "Location": "Location",
       "AnimalNotes": "Animal Notes",
-      "RobotNotes": "Robot Notes",
       "AttackWeapons": "Attacks / Weapons",
       "Reaction": "Reaction Roll",
       "Attack": "Attack",
@@ -322,6 +321,14 @@
       "KeepFighting": "Keep Fighting",
       "Advance": "Advance",
       "FightToTheDeath": "Fight to The Death!"
+    },
+    "Robot": {
+      "RobotNotes": "Robot Notes",
+      "BuildPoints": {
+        "BuildPoints": "Build Points/Slots",
+        "Used": "Used",
+        "Max": "Max"
+      }
     },
     "Chat": {
       "Roll": {
@@ -526,7 +533,8 @@
         "Legs": "Legs",
         "Torso": "Torso",
         "None": "None",
-        "ValueCr": "Value in Cr"
+        "ValueCr": "Value in Cr",
+        "BuildPoints": "Build Points / Slots"
       },
       "Component": {
         "Ammunition":"Ammunition",
@@ -1650,6 +1658,10 @@
       "componentDamageDM": {
         "hint": "The roll DM that is applied for each hit to a component.",
         "name": "Component Damage DM"
+      },
+      "showTraitAE": {
+        "hint": "List active effect formulas as part of trait short description (true) on Traveller Info tab.  Otherwise, show only the short description for the trait (false).",
+        "name": "Show Active Effects for Traits"
       }
     },
     "CloseAndCreateNew": "Close and create new",
