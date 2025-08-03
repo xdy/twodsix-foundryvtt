@@ -24,11 +24,13 @@
           <span class="item-name showChat" data-action="showChat">{{item.name}}</span>
           <span class="item-name centre">{{item.system.value}}</span>
           <span class="item-name centre">{{item.system.shortdescr}}
+            {{#if @root/settings.showTraitAE}}
             <ul>
               {{#each item.effects.contents.[0].changes as |change|}}
               <li>{{change.key}} {{lookup @root.ACTIVE_EFFECT_MODES change.mode}} {{change.value}}</li>
               {{/each}}
             </ul>
+            {{/if}}
           </span>
           <span class="item-controls centre">
             <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i

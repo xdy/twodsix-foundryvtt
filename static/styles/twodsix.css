@@ -4775,3 +4775,17 @@ code {
   --color-code-bg: var(--color-cool-4);
   --color-code-border: var(--color-cool-3);
 }
+
+.augment-buildPoints {
+  border-top: inset;
+  text-align: center;
+  padding-top: 8px;
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.augment-buildPoints input {
+  width: 4ch;
+}

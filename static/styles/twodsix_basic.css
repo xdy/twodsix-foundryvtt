@@ -3752,3 +3752,17 @@ textarea {
 .stat-ability-ship input, .stat-modifier-ship input, .stat-damage-ship input {
   min-width: 5ch;
 }
+
+.augment-buildPoints {
+  border-top: inset;
+  text-align: center;
+  padding-top: 8px;
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.augment-buildPoints input {
+  width: 4ch;
+}
