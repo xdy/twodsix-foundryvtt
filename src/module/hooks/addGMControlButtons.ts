@@ -32,12 +32,15 @@ Hooks.on("getSceneControlButtons", (controls) => {
 async function requestRoll(): Promise<void> {
   const tokenData = getSelectedTokenData();
   const skillsList = getAllSkills();
+  const itemsList = getAllRollableItems();
   if (Object.keys(tokenData).length > 0) {
-    const selections = await throwDialog(skillsList, tokenData);
+    const selections = await throwDialog(skillsList, itemsList, tokenData);
     if (selections.shouldRoll) {
       selections.userActorList = getUserActorList(selections, tokenData);
       let flavor = `<section>${game.i18n.localize("TWODSIX.Chat.Roll.GMRequestsRoll")}<section>`;
-      if (selections.skillName !== "---") {
+      if (selections.itemId && selections.itemId !== "NONE") {
+        flavor = flavor.replace("_TYPE_", itemsList[selections.itemId]);
+      } else if (selections.skillName !== "---") {
         flavor = flavor.replace("_TYPE_", selections.skillName);
       } else if (selections.characteristic !== "NONE") {
         flavor = flavor.replace("_TYPE_", selections.characteristic);
@@ -93,7 +96,27 @@ function getAllSkills(): Promise<object> {
   return {"NONE": "---", ...sortedSkills};
 }
 
-async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
+function getAllRollableItems(): object {
+  const itemList = {};
+  let selectedActors = canvas.tokens.controlled.map((t) => t.actor);
+  if (selectedActors.length === 0) {
+    selectedActors = game.users.filter(user => !user.isGM && user.active).map((u) => u.character);
+  }
+  for (const actor of selectedActors) {
+    for (const item of actor.items) {
+      // Adjust this filter as needed for your system's rollable items
+      if (["weapon", "tool", "equipment"].includes(item.type)) {
+        if (!(item.name in itemList)) {
+          itemList[item.id] = item.name;
+        }
+      }
+    }
+  }
+  // Optionally sort
+  return { "NONE": "---", ...sortObj(itemList) };
+}
+
+async function throwDialog(skillsList:string[], itemsList:string[], tokenData:any):Promise<any> {
   const template = 'systems/twodsix/templates/chat/request-roll-dialog.hbs';
   const tokenNames = {};
   for (const tokenId in tokenData) {
@@ -107,11 +130,13 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
     difficulty: "Average",
     difficultyList: getDifficultiesSelectObject(),
     skillsList: skillsList,
+    itemsList: itemsList,
     rollMode: game.settings.get('core', 'rollMode'),
     rollModes: CONFIG.Dice.rollModes,
     characteristicList: _genUntranslatedCharacteristicList(),
     initialChoice: "NONE",
     initialSkill: "NONE",
+    initialItem: "NONE",
     other: 0
   };
   const returnValue = {};
@@ -129,6 +154,7 @@ async function throwDialog(skillsList:string[], tokenData:any):Promise<any> {
         returnValue.rollMode = formElements["rollMode"]?.value;
         returnValue.characteristic = formElements["characteristic"]?.value;
         returnValue.skillName = skillsList[formElements["selectedSkill"]?.value];
+        returnValue.itemId = formElements["selectedItem"]?.value;
         returnValue.shouldRoll = returnValue.selectedTokens.length > 0;
         returnValue.other = parseInt(formElements["other"]?.value || 0);
       }

@@ -387,7 +387,8 @@ async function makeRequestedRoll(message: ChatMessage): void {
     difficulty: messageSettings.difficulty,
     rollType: messageSettings.rollType,
     rollMode: messageSettings.rollMode,
-    skillRoll: messageSettings.skillName !== "---",
+    itemRoll: messageSettings.itemId !== "NONE",
+    skillRoll: messageSettings.skillName !== "---" && !messageSettings.itemId !== "NONE",
     rollModifiers: {
       characteristic: "NONE",
       other: messageSettings.other
@@ -397,6 +398,18 @@ async function makeRequestedRoll(message: ChatMessage): void {
   if (rollingActorsUuids?.length > 0) {
     for (const actorUuid of rollingActorsUuids) {
       const actor = <TwodsixActor>fromUuidSync(actorUuid);
+      if (messageSettings.itemId && messageSettings.itemId !== "NONE") {
+        const item:TwodsixItem = actor.items.get(messageSettings.itemId);
+        if (item) {
+          if (item.type === "weapon") {
+            await item.resolveUnknownAutoMode(false, tmpSettings);
+          } else {
+            await item.doSkillTalentRoll(false, tmpSettings);
+          }
+        }
+        continue; // Skip to next actor if item roll was performed
+      }
+
       const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills") ?? actor.items.get(actor.system.untrainedSkill) : undefined;
       let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
       if (selectedSkill && selectedCharacteristic === "NONE") {
