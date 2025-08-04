@@ -131,6 +131,7 @@ async function throwDialog(skillsList:string[], itemsList:string[], tokenData:an
     difficultyList: getDifficultiesSelectObject(),
     skillsList: skillsList,
     itemsList: itemsList,
+    showItemList: Object.keys(tokenData).length === 1,
     rollMode: game.settings.get('core', 'rollMode'),
     rollModes: CONFIG.Dice.rollModes,
     characteristicList: _genUntranslatedCharacteristicList(),
@@ -154,7 +155,10 @@ async function throwDialog(skillsList:string[], itemsList:string[], tokenData:an
         returnValue.rollMode = formElements["rollMode"]?.value;
         returnValue.characteristic = formElements["characteristic"]?.value;
         returnValue.skillName = skillsList[formElements["selectedSkill"]?.value];
-        returnValue.itemId = formElements["selectedItem"]?.value;
+        if (dialogData.showItemList) {
+          returnValue.itemId = formElements["selectedItem"]?.value;
+          returnValue.itemName = itemsList[returnValue.itemId];
+        }
         returnValue.shouldRoll = returnValue.selectedTokens.length > 0;
         returnValue.other = parseInt(formElements["other"]?.value || 0);
       }
