@@ -1140,7 +1140,7 @@ export default class TwodsixItem extends Item {
           rof = (attackType === 'single') ? 1 : Number(modes[1]);
           await this.performAttack(attackType, showThrowDialog, rof, true, tmpSettings);
         } else {
-          await this.performAttack(attackType, showThrowDialog, Number(modes[0], true, tmpSettings));
+          await this.performAttack(attackType, showThrowDialog, Number(modes[0]), true, tmpSettings);
         }
         break;
       case TWODSIX.RULESETS.CE.key:
