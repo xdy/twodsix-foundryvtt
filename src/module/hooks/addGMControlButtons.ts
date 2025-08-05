@@ -154,6 +154,7 @@ async function throwDialog(skillsList:string[], itemsList:string[], tokenData:an
         returnValue.rollType = formElements["rollType"]?.value;
         returnValue.rollMode = formElements["rollMode"]?.value;
         returnValue.characteristic = formElements["characteristic"]?.value;
+        returnValue.selectedSkill = formElements["selectedSkill"]?.value;
         returnValue.skillName = skillsList[formElements["selectedSkill"]?.value];
         if (dialogData.showItemList) {
           returnValue.itemId = formElements["selectedItem"]?.value;

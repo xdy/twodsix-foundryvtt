@@ -204,7 +204,7 @@ export default class TwodsixItem extends Item {
       return;
     }
     const weapon:Weapon = <Weapon>this.system;
-    if (!weapon.skill) {
+    if (!weapon.skill && !overrideSettings?.skillName) {
       ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
@@ -218,14 +218,27 @@ export default class TwodsixItem extends Item {
       foundry.utils.mergeObject(tmpSettings, overrideSettings);
     }
 
-    // Set characteristic from skill
-    const skill:TwodsixItem | undefined  = this.actor?.items.get(weapon.skill) ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
+    // Set skill
+    let skill:TwodsixItem | undefined = undefined;
+    if (overrideSettings?.skillName && overrideSettings?.skillName !== "---") {
+      skill = this.actor?.items.getName(overrideSettings?.skillName);
+    } else {
+      skill = this.actor?.items.get(weapon.skill);
+    }
+    skill = skill ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
+
     if (!skill) {
       ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
-    tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
-    tmpSettings.rollType = skill.system.rolltype || "Normal";
+
+    // Always ensure characteristic and rollType are set from skill, but allow overrideSettings to take precedence
+    if (!overrideSettings?.rollModifiers?.characteristic ||
+      (overrideSettings?.skillName === "---" && overrideSettings?.rollModifiers?.characteristic === "NONE")) {
+      tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || "NONE";
+    }
+
+    tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
 
     // Get fire mode parameters
     const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);

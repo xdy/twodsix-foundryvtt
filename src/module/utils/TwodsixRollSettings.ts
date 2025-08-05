@@ -155,7 +155,7 @@ export class TwodsixRollSettings {
       targetModifierOverride: settings?.rollModifiers?.targetModifierOverride ?? false,
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
-      selectedSkill: aSkill?.uuid,
+      selectedSkill: aSkill?.uuid || settings?.rollModifiers?.selectedSkill,
       skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined,
       armorModifier: settings?.rollModifiers?.armorModifier ?? 0,
       armorLabel: settings?.rollModifiers?.armorLabel ?? ""

@@ -388,29 +388,34 @@ async function makeRequestedRoll(message: ChatMessage): void {
     rollType: messageSettings.rollType,
     rollMode: messageSettings.rollMode,
     itemRoll: messageSettings.itemId !== "NONE",
-    skillRoll: messageSettings.skillName !== "---" && messageSettings.itemId === "NONE",
+    skillName: messageSettings.skillName,
+    skillRoll: messageSettings.skillName !== "---" || messageSettings.itemId !== "NONE",
     rollModifiers: {
-      characteristic: "NONE",
+      characteristic: messageSettings.characteristic || "NONE",
       other: messageSettings.other
     }
   };
   const rollingActorsUuids = messageSettings.userActorList[game.user.id];
   if (rollingActorsUuids?.length > 0) {
     for (const actorUuid of rollingActorsUuids) {
-      const actor = <TwodsixActor>fromUuidSync(actorUuid);
+      const actor:TwodsixActor = fromUuidSync(actorUuid);
+      const selectedSkill:TwodsixItem = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills") ?? actor.items.get(actor.system.untrainedSkill) : undefined;
       if (messageSettings.itemId && messageSettings.itemId !== "NONE") {
         //Item Rolls
         const item:TwodsixItem = actor.items.get(messageSettings.itemId) ?? actor.items.getName(messageSettings.itemName);
         if (item) {
           if (item.type === "weapon") {
-            await item.resolveUnknownAutoMode(false, tmpSettings);
+            // Set skill uuid if one is selected
+            if (selectedSkill) {
+              tmpSettings.rollModifiers.selectedSkill = selectedSkill.uuid;
+            }
+            await item.resolveUnknownAutoMode(true, tmpSettings);
           } else {
             await item.doSkillTalentRoll(false, tmpSettings);
           }
         }
       } else {
         // Handle skill/characteristic rolls
-        const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills") ?? actor.items.get(actor.system.untrainedSkill) : undefined;
         let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
         if (selectedSkill && selectedCharacteristic === "NONE") {
           selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
