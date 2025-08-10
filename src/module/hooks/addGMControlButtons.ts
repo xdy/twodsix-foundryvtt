@@ -188,50 +188,88 @@ async function throwDialog(skillsList:string[], itemsList:string[], tokenData:an
   return returnValue;
 }
 
-function handleRender(ev:Event, htmlRend:DialogV2):void {
-  htmlRend.element.querySelector(".select-skill")?.addEventListener("change", () => {
-    const formElements = htmlRend.element.querySelector(".standard-form").elements;
-    const simplifiedSkillName = formElements["selectedSkill"]?.value;
-    if (simplifiedSkillName && simplifiedSkillName !== "NONE") {
-      const tokenId = formElements["selectedTokens"].selectedOptions[0]?.value;
-      if (tokenId) {
-        const selectedActor:TwodsixActor = game.canvas.tokens.get(tokenId)?.actor;
-        const newSkill:TwodsixItem = selectedActor?.itemTypes.skills.find( (sk) => simplifySkillName(sk.name) === simplifiedSkillName);
-        if (newSkill) {
-          formElements["characteristic"].value = newSkill.system.characteristic || "NONE";
-          formElements["difficulty"].value = newSkill.system.difficulty || "Average";
-          formElements["rollType"].value = newSkill.system.rolltype || "Normal";
-          return;
-        }
-      }
+/**
+ * Initializes form event handlers for skill and item selection in the DialogV2 UI.
+ * Dynamically updates form fields (characteristic, difficulty, rollType, selectedSkill)
+ * based on the selected skill or item, and the currently selected actor.
+ *
+ * @param ev - The original render event (unused here but provided by Foundry).
+ * @param htmlRend - The rendered DialogV2 object containing the form elements.
+ */
+function handleRender(ev: Event, htmlRend: DialogV2): void {
+  /**
+   * Retrieves the form elements from the standard form within the dialog.
+   *
+   * @returns The collection of form controls.
+   */
+  const getFormElements = (): HTMLFormControlsCollection =>
+    htmlRend.element.querySelector(".standard-form")?.elements;
+
+  /**
+   * Gets the currently selected actor based on the selected token in the form.
+   *
+   * @param form - The form elements collection.
+   * @returns The selected TwodsixActor, or undefined if not found.
+   */
+  const getSelectedActor = (form: HTMLFormControlsCollection): TwodsixActor | undefined => {
+    const tokenId = form["selectedTokens"].selectedOptions[0]?.value;
+    return tokenId ? game.canvas.tokens.get(tokenId)?.actor : undefined;
+  };
+
+  /**
+   * Updates the characteristic, difficulty, roll type, and selectedSkill fields in the form
+   * based on the provided skill. If no skill is provided, defaults are used.
+   *
+   * @param form - The form elements collection.
+   * @param skill - The skill to populate the fields with (optional).
+   */
+  const updateFormFields = (form: HTMLFormControlsCollection, skill?: TwodsixItem): void => {
+    form["characteristic"].value = skill?.system.characteristic || "NONE";
+    form["difficulty"].value = skill?.system.difficulty || "Average";
+    form["rollType"].value = skill?.system.rolltype || "Normal";
+    if (skill) {
+      form["selectedSkill"].value = simplifySkillName(skill.name) || "NONE";
     }
-    formElements["characteristic"].value = "NONE";
-    formElements["difficulty"].value =  "Average";
-    formElements["rollType"].value = "Normal";
-  });
-  htmlRend.element.querySelector(".select-item")?.addEventListener("change", () => {
-    const formElements = htmlRend.element.querySelector(".standard-form").elements;
-    const itemId = formElements["selectedItem"]?.value;
+  };
+
+  /**
+   * Event handler for when a skill is selected. Looks up the matching skill
+   * on the selected actor and updates the form fields accordingly.
+   */
+  const onSkillChange = (): void => {
+    const form = getFormElements();
+    const skillName = form["selectedSkill"]?.value;
+    if (skillName && skillName !== "NONE") {
+      const actor = getSelectedActor(form);
+      const skill = actor?.itemTypes.skills.find(sk => simplifySkillName(sk.name) === skillName);
+      updateFormFields(form, skill);
+    } else {
+      updateFormFields(form);
+    }
+  };
+
+  /**
+   * Event handler for when an item is selected. Finds the associated skill for
+   * the selected item on the selected actor and updates the form fields.
+   */
+  const onItemChange = (): void => {
+    const form = getFormElements();
+    const itemId = form["selectedItem"]?.value;
     if (itemId && itemId !== "NONE") {
-      const tokenId = formElements["selectedTokens"].selectedOptions[0]?.value;
-      if (tokenId) {
-        const selectedActor:TwodsixActor = game.canvas.tokens.get(tokenId)?.actor;
-        const selectedItem:TwodsixItem = selectedActor?.items.get(itemId);
-        const newSkill:TwodsixItem = selectedActor?.items.get(selectedItem?.system.skill);
-        if (newSkill) {
-          formElements["characteristic"].value = newSkill.system.characteristic || "NONE";
-          formElements["difficulty"].value = newSkill.system.difficulty || "Average";
-          formElements["rollType"].value = newSkill.system.rolltype || "Normal";
-          formElements["selectedSkill"].value = simplifySkillName(newSkill.name) || "NONE";
-          return;
-        }
-      }
+      const actor = getSelectedActor(form);
+      const item = actor?.items.get(itemId);
+      const skill = actor?.items.get(item?.system.skill);
+      updateFormFields(form, skill);
+    } else {
+      updateFormFields(form);
     }
-    formElements["characteristic"].value = "NONE";
-    formElements["difficulty"].value =  "Average";
-    formElements["rollType"].value = "Normal";
-  });
+  };
+
+  // Attach event listeners for form interaction
+  htmlRend.element.querySelector(".select-skill")?.addEventListener("change", onSkillChange);
+  htmlRend.element.querySelector(".select-item")?.addEventListener("change", onItemChange);
 }
+
 
 function getSelectedTokenData(): any {
   const returnValue = {};
