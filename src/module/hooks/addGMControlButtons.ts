@@ -175,16 +175,61 @@ async function throwDialog(skillsList:string[], itemsList:string[], tokenData:an
   ];
 
   const html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
-  return new Promise<void>((resolve) => {
-    new foundry.applications.api.DialogV2({
-      window: {title: "TWODSIX.Chat.Roll.RequestRoll", icon: "fa-solid fa-dice"},
-      content: html,
-      buttons: buttons,
-      submit: () => {
-        //console.log(returnValue);
-        resolve(returnValue);
+  await foundry.applications.api.DialogV2.wait({
+    window: {title: "TWODSIX.Chat.Roll.RequestRoll", icon: "fa-solid fa-dice"},
+    content: html,
+    buttons: buttons,
+    render: handleRender,
+    submit: () => {
+      Promise.resolve();
+    },
+    rejectClose: false
+  });
+  return returnValue;
+}
+
+function handleRender(ev:Event, htmlRend:DialogV2):void {
+  htmlRend.element.querySelector(".select-skill")?.addEventListener("change", () => {
+    const formElements = htmlRend.element.querySelector(".standard-form").elements;
+    const simplifiedSkillName = formElements["selectedSkill"]?.value;
+    if (simplifiedSkillName && simplifiedSkillName !== "NONE") {
+      const tokenId = formElements["selectedTokens"].selectedOptions[0]?.value;
+      if (tokenId) {
+        const selectedActor:TwodsixActor = game.canvas.tokens.get(tokenId)?.actor;
+        const newSkill:TwodsixItem = selectedActor?.itemTypes.skills.find( (sk) => simplifySkillName(sk.name) === simplifiedSkillName);
+        if (newSkill) {
+          formElements["characteristic"].value = newSkill.system.characteristic || "NONE";
+          formElements["difficulty"].value = newSkill.system.difficulty || "Average";
+          formElements["rollType"].value = newSkill.system.rolltype || "Normal";
+          return;
+        }
       }
-    }).render({force: true});
+    }
+    formElements["characteristic"].value = "NONE";
+    formElements["difficulty"].value =  "Average";
+    formElements["rollType"].value = "Normal";
+  });
+  htmlRend.element.querySelector(".select-item")?.addEventListener("change", () => {
+    const formElements = htmlRend.element.querySelector(".standard-form").elements;
+    const itemId = formElements["selectedItem"]?.value;
+    if (itemId && itemId !== "NONE") {
+      const tokenId = formElements["selectedTokens"].selectedOptions[0]?.value;
+      if (tokenId) {
+        const selectedActor:TwodsixActor = game.canvas.tokens.get(tokenId)?.actor;
+        const selectedItem:TwodsixItem = selectedActor?.items.get(itemId);
+        const newSkill:TwodsixItem = selectedActor?.items.get(selectedItem?.system.skill);
+        if (newSkill) {
+          formElements["characteristic"].value = newSkill.system.characteristic || "NONE";
+          formElements["difficulty"].value = newSkill.system.difficulty || "Average";
+          formElements["rollType"].value = newSkill.system.rolltype || "Normal";
+          formElements["selectedSkill"].value = simplifySkillName(newSkill.name) || "NONE";
+          return;
+        }
+      }
+    }
+    formElements["characteristic"].value = "NONE";
+    formElements["difficulty"].value =  "Average";
+    formElements["rollType"].value = "Normal";
   });
 }
 

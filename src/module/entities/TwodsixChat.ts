@@ -411,7 +411,8 @@ async function makeRequestedRoll(message: ChatMessage): void {
             }
             await item.resolveUnknownAutoMode(true, tmpSettings);
           } else {
-            await item.doSkillTalentRoll(false, tmpSettings);
+            const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, item, actor);
+            await item.doSkillTalentRoll(false, rollSettings);
           }
         }
       } else {
