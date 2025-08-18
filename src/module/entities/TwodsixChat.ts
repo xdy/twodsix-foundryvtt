@@ -387,27 +387,47 @@ async function makeRequestedRoll(message: ChatMessage): void {
     difficulty: messageSettings.difficulty,
     rollType: messageSettings.rollType,
     rollMode: messageSettings.rollMode,
-    skillRoll: messageSettings.skillName !== "---",
+    itemRoll: messageSettings.itemId !== "NONE",
+    skillName: messageSettings.skillName,
+    skillRoll: messageSettings.skillName !== "---" || messageSettings.itemId !== "NONE",
     rollModifiers: {
-      characteristic: "NONE",
+      characteristic: messageSettings.characteristic || "NONE",
       other: messageSettings.other
     }
   };
   const rollingActorsUuids = messageSettings.userActorList[game.user.id];
   if (rollingActorsUuids?.length > 0) {
     for (const actorUuid of rollingActorsUuids) {
-      const actor = <TwodsixActor>fromUuidSync(actorUuid);
-      const selectedSkill = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills") ?? actor.items.get(actor.system.untrainedSkill) : undefined;
-      let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
-      if (selectedSkill && selectedCharacteristic === "NONE") {
-        selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
-      }
-      tmpSettings.rollModifiers.characteristic = selectedCharacteristic;
-      const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, actor);
-      if (rollSettings.shouldRoll) {
-        const diceRoll = new TwodsixDiceRoll(rollSettings, actor);
-        await diceRoll.evaluateRoll();
-        diceRoll.sendToChat(TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')]);
+      const actor:TwodsixActor = fromUuidSync(actorUuid);
+      const selectedSkill:TwodsixItem = messageSettings.skillName !== "---" ? await actor.items.find((it) => it.name === messageSettings.skillName && it.type === "skills") ?? actor.items.get(actor.system.untrainedSkill) : undefined;
+      if (messageSettings.itemId && messageSettings.itemId !== "NONE") {
+        //Item Rolls
+        const item:TwodsixItem = actor.items.get(messageSettings.itemId) ?? actor.items.getName(messageSettings.itemName);
+        if (item) {
+          if (item.type === "weapon") {
+            // Set skill uuid if one is selected
+            if (selectedSkill) {
+              tmpSettings.rollModifiers.selectedSkill = selectedSkill.uuid;
+            }
+            await item.resolveUnknownAutoMode(true, tmpSettings);
+          } else {
+            const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, item, actor);
+            await item.doSkillTalentRoll(false, rollSettings);
+          }
+        }
+      } else {
+        // Handle skill/characteristic rolls
+        let selectedCharacteristic = messageSettings.characteristic !== "---" ? messageSettings.characteristic : "NONE";
+        if (selectedSkill && selectedCharacteristic === "NONE") {
+          selectedCharacteristic = selectedSkill.system.characteristic ?? "NONE";
+        }
+        tmpSettings.rollModifiers.characteristic = selectedCharacteristic;
+        const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, undefined, actor);
+        if (rollSettings.shouldRoll) {
+          const diceRoll = new TwodsixDiceRoll(rollSettings, actor);
+          await diceRoll.evaluateRoll();
+          diceRoll.sendToChat(TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')]);
+        }
       }
     }
   }

@@ -199,30 +199,43 @@ export default class TwodsixItem extends Item {
    * @param rateOfFireCE {number} Fire rate / consumables used
    * @param showInChat Whehter to show attack in chat
    */
-  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true):Promise<void> {
+  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true, overrideSettings?: any ):Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
     const weapon:Weapon = <Weapon>this.system;
-    if (!weapon.skill) {
-      ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
-      return;
+
+    // Set skill
+    let skill:TwodsixItem | undefined = undefined;
+    if(weapon.skill || overrideSettings?.skillName) {
+      if (overrideSettings?.skillName && overrideSettings?.skillName !== "---") {
+        skill = this.actor?.items.getName(overrideSettings?.skillName);
+      } else {
+        skill = this.actor?.items.get(weapon.skill);
+      }
+      skill ??= game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined;
     }
-
-    /*Apply measured template if valid AOE*/
-    const isAOE = await this.drawItemTemplate();
-
-    // Initialize settings
-    const tmpSettings = this.initializeAttackSettings();
-
-    // Set characteristic from skill
-    const skill:TwodsixItem | undefined  = this.actor?.items.get(weapon.skill) ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
     if (!skill) {
       ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
-    tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || 'NONE';
-    tmpSettings.rollType = skill.system.rolltype || "Normal";
+
+    // Initialize settings
+    const tmpSettings = this.initializeAttackSettings();
+    if (overrideSettings) {
+      foundry.utils.mergeObject(tmpSettings, overrideSettings);
+    }
+
+    // Always ensure characteristic and rollType are set from skill, but allow overrideSettings to take precedence
+    if (!overrideSettings?.rollModifiers?.characteristic ||
+      (overrideSettings?.skillName === "---" && overrideSettings?.rollModifiers?.characteristic === "NONE")) {
+      tmpSettings.rollModifiers.characteristic = (<Skills>skill.system).characteristic || "NONE";
+    }
+
+    tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
+
+    /*Apply measured template if valid AOE*/
+    const isAOE = await this.drawItemTemplate();
 
     // Get fire mode parameters
     const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
@@ -263,9 +276,11 @@ export default class TwodsixItem extends Item {
         targetModifier: appliedStatuses,
       });
     }
+
     //Flag that targetDM is an override
     Object.assign(tmpSettings.rollModifiers, {targetModifierOverride: targetTokens.length > 1});
 
+    // Create roll settings
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
 
     if (!settings.shouldRoll) {
@@ -277,6 +292,7 @@ export default class TwodsixItem extends Item {
       return;
     }
 
+    // Warn if too many targets
     if (targetTokens.length > numberOfAttacks && !isAOE) {
       ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
     }
@@ -876,7 +892,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  public async doSkillTalentRoll(showThrowDiag: boolean): Promise<void> {
+  public async doSkillTalentRoll(showThrowDiag: boolean, tmpSettings?:TwodsixRollSettings): Promise<void> {
     if (this.type === "psiAbility") {
       if (['core', 'alternate'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
         ui.notifications.warn("TWODSIX.Warnings.NotUsingPsiStrength", {localize: true});
@@ -884,7 +900,7 @@ export default class TwodsixItem extends Item {
         this.doPsiAction(showThrowDiag);
       }
     } else {
-      await this.skillRoll(showThrowDiag);
+      await this.skillRoll(showThrowDiag, tmpSettings);
     }
   }
 
@@ -1119,7 +1135,7 @@ export default class TwodsixItem extends Item {
    * A function to resolve autofire mode when a weapon is fired without selecting mode.
    * Through an NPC sheet or macro, typically.
    */
-  public async resolveUnknownAutoMode() {
+  public async resolveUnknownAutoMode(showThrowDialog:boolean=true, tmpSettings?:any) {
     let attackType = 'single';
     let rof:number;
     const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);
@@ -1129,35 +1145,35 @@ export default class TwodsixItem extends Item {
           attackType = await promptForCELROF(this);
         }
         rof = (attackType === 'single') ? 1 : Number(modes[0]);
-        await this.performAttack(attackType, true, rof);
+        await this.performAttack(attackType, showThrowDialog, rof, true, tmpSettings);
         break;
       case TWODSIX.RULESETS.CT.key:
         if (modes.length > 1) {
           attackType = await promptForCTROF(modes);
           rof = (attackType === 'single') ? 1 : Number(modes[1]);
-          await this.performAttack(attackType, true, rof);
+          await this.performAttack(attackType, showThrowDialog, rof, true, tmpSettings);
         } else {
-          await this.performAttack(attackType, true, Number(modes[0]));
+          await this.performAttack(attackType, showThrowDialog, Number(modes[0]), true, tmpSettings);
         }
         break;
       case TWODSIX.RULESETS.CE.key:
         if (modes.length > 1) {
           await promptAndAttackForCE(modes, this);
         } else {
-          await this.performAttack(attackType, true, Number(modes[0]));
+          await this.performAttack(attackType, showThrowDialog, Number(modes[0]), true, tmpSettings);
         }
         break;
       case TWODSIX.RULESETS.CU.key:
         if (modes[0] > 1) {
           attackType = await promptForCTROF(modes);
           rof = (attackType === 'single') ? 1 : Number(modes[0]);
-          await this.performAttack(attackType, true, rof);
+          await this.performAttack(attackType, showThrowDialog, rof, true, tmpSettings);
         } else {
-          await this.performAttack(attackType, true, 1);
+          await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
         }
         break;
       default:
-        await this.performAttack(attackType, true, 1);
+        await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
         break;
     }
   }

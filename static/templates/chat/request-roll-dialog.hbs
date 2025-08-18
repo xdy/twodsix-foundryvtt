@@ -37,6 +37,14 @@
           {{selectOptions skillsList selected=initialSkill}}
         </select>
       </div>
+      {{#if showItemList}}
+        <div class="form-group">
+          <label>{{localize "TWODSIX.Items.Equipment.ItemName"}}</label>
+          <select class="select-item" name="selectedItem">
+            {{selectOptions itemsList selected=initialItem}}
+          </select>
+        </div>
+      {{/if}}
       <div class="form-group">
         <label>{{localize "TWODSIX.Chat.Roll.CharacteristicModifier"}}</label>
         <select class="select-mod" name="characteristic">

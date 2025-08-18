@@ -1,3 +1,10 @@
+# [6.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.4.0...v6.5.0) (2025-08-18)
+
+
+### Features
+
+* add item rolls to request roll ([#1835](https://github.com/xdy/twodsix-foundryvtt/issues/1835)) ([807ac3d](https://github.com/xdy/twodsix-foundryvtt/commit/807ac3d099cac080e8eb914495839c92af372c2a))
+
 # [6.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.3.1...v6.4.0) (2025-08-01)
 
 
