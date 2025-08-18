@@ -30,7 +30,7 @@ export async function rollItemMacro(itemId: string, itemName?:string): Promise<v
     if (item.type != "weapon") {
       await item.skillRoll(!game.settings.get("twodsix", "invertSkillRollShiftClick"));
     } else {
-      await item.resolveUnknownAutoMode();
+      await item.resolveUnknownAutoMode(true);
     }
   }
 }

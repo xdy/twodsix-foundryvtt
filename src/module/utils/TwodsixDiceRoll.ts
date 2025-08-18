@@ -206,22 +206,22 @@ export class TwodsixDiceRoll {
       if (this.rollSettings.rollModifiers.rof) {
         returnValue.push("rof");
       }
-      if (this.rollSettings.rollModifiers.dodgeParry !== 0) {
+      if (this.rollSettings.rollModifiers.dodgeParry) {
         returnValue.push("dodgeParry");
       }
-      if(this.rollSettings.rollModifiers.weaponsHandling !== 0) {
+      if(this.rollSettings.rollModifiers.weaponsHandling) {
         returnValue.push("weaponsHandling");
       }
-      if(this.rollSettings.rollModifiers.weaponsRange !== 0) {
+      if(this.rollSettings.rollModifiers.weaponsRange) {
         returnValue.push("weaponsRange");
       }
-      if(this.rollSettings.rollModifiers.armorModifier !== 0) {
+      if(this.rollSettings.rollModifiers.armorModifier) {
         returnValue.push("armorModifier");
       }
-      if(this.rollSettings.rollModifiers.targetModifier.length > 0) {
+      if(this.rollSettings.rollModifiers.targetModifier?.length > 0) {
         returnValue.push("targetModifier");
       }
-      if(this.rollSettings.rollModifiers.attachments !== 0) {
+      if(this.rollSettings.rollModifiers.attachments) {
         returnValue.push("attachments");
       }
     }
