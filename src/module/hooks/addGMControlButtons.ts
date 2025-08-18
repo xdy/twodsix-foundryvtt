@@ -105,7 +105,7 @@ function getAllRollableItems(): object {
   for (const actor of selectedActors) {
     for (const item of actor.items) {
       // Adjust this filter as needed for your system's rollable items
-      if (["weapon", "tool", "equipment"].includes(item.type)) {
+      if (["weapon", "tool", "equipment", "computer", "augment"].includes(item.type)) {
         if (!(item.name in itemList)) {
           itemList[item.id] = item.name;
         }
