@@ -204,32 +204,26 @@ export default class TwodsixItem extends Item {
       return;
     }
     const weapon:Weapon = <Weapon>this.system;
-    if (!weapon.skill && !overrideSettings?.skillName) {
+
+    // Set skill
+    let skill:TwodsixItem | undefined = undefined;
+    if(weapon.skill || overrideSettings?.skillName) {
+      if (overrideSettings?.skillName && overrideSettings?.skillName !== "---") {
+        skill = this.actor?.items.getName(overrideSettings?.skillName);
+      } else {
+        skill = this.actor?.items.get(weapon.skill);
+      }
+      skill ??= game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined;
+    }
+    if (!skill) {
       ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
       return;
     }
-
-    /*Apply measured template if valid AOE*/
-    const isAOE = await this.drawItemTemplate();
 
     // Initialize settings
     const tmpSettings = this.initializeAttackSettings();
     if (overrideSettings) {
       foundry.utils.mergeObject(tmpSettings, overrideSettings);
-    }
-
-    // Set skill
-    let skill:TwodsixItem | undefined = undefined;
-    if (overrideSettings?.skillName && overrideSettings?.skillName !== "---") {
-      skill = this.actor?.items.getName(overrideSettings?.skillName);
-    } else {
-      skill = this.actor?.items.get(weapon.skill);
-    }
-    skill = skill ?? (game.settings.get("twodsix", "hideUntrainedSkills") ? this.actor?.getUntrainedSkill() : undefined);
-
-    if (!skill) {
-      ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
-      return;
     }
 
     // Always ensure characteristic and rollType are set from skill, but allow overrideSettings to take precedence
@@ -239,6 +233,9 @@ export default class TwodsixItem extends Item {
     }
 
     tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
+
+    /*Apply measured template if valid AOE*/
+    const isAOE = await this.drawItemTemplate();
 
     // Get fire mode parameters
     const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
@@ -279,9 +276,11 @@ export default class TwodsixItem extends Item {
         targetModifier: appliedStatuses,
       });
     }
+
     //Flag that targetDM is an override
     Object.assign(tmpSettings.rollModifiers, {targetModifierOverride: targetTokens.length > 1});
 
+    // Create roll settings
     const settings:TwodsixRollSettings = await TwodsixRollSettings.create(showThrowDialog, tmpSettings, skill, this, <TwodsixActor>this.actor);
 
     if (!settings.shouldRoll) {
@@ -293,6 +292,7 @@ export default class TwodsixItem extends Item {
       return;
     }
 
+    // Warn if too many targets
     if (targetTokens.length > numberOfAttacks && !isAOE) {
       ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
     }
