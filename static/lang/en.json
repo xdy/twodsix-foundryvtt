@@ -803,6 +803,8 @@
       "ActorLacksSkill": "_ACTOR_NAME_ lacks the skill _SKILL_",
       "ActorMustBeSelectedForAction": "No actor selected, one must be selected to perform the action",
       "AddShipPosition": "Add Ship Position",
+      "AddActorToPosition": "Add actor to position.",
+      "SelectActor": "Select Actor",
       "Avail": "Avail.",
       "Available": "Available",
       "AvailableCargoWeight": "Available Cargo Weight",
@@ -1779,7 +1781,9 @@
       "CantDropFolder": "Cannot drop this folder onto actor.",
       "SkillsWithDuplicateNames": "Duplicate skill names.  Skill list not accurate.",
       "CantFindItem": "Cannot find item with name",
-      "NotUsingPsiStrength": "Charactersitics settings do not include Psionic Strength.  Cannot use Psionic Abilitiy."
+      "NotUsingPsiStrength": "Charactersitics settings do not include Psionic Strength.  Cannot use Psionic Abilitiy.",
+      "CantFindItemOnActor": "Cannot find selected item on Actor.",
+      "NoAvailableActors": "No available Travellers or Robots to select"
     }
   },
   "TYPES": {
