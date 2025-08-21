@@ -159,8 +159,10 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
     }
   }
 
-  static async _onAddActor() {
-    if (!this.actor?.isOwner) return;
+  static async _onAddActor(): Promise<boolean> {
+    if (!this.actor?.isOwner) {
+      return false;
+    }
 
     // Build options for the select field
     const actorOptions = game.actors
@@ -168,7 +170,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
       .map(a => ({ value: a.id, label: a.name }));
     if (!actorOptions || actorOptions.length === 0) {
       ui.notifications.warn("TWODSIX.Warnings.NoAvailableActors", { localize: true });
-      return;
+      return false;
     }
 
     // Create the select field HTML
@@ -193,10 +195,14 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
         icon: "fa-solid fa-folder",
       },
     });
-    if (!actorId) return;
+    if (!actorId) {
+      return false;
+    }
 
     const actor = game.actors.get(actorId);
-    if (!actor) return;
+    if (!actor) {
+      return false;
+    }
 
     return await TwodsixShipPositionSheet.assignActorToPosition(this, actorId);
   }
