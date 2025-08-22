@@ -367,7 +367,7 @@ export default class TwodsixItem extends Item {
     const targetModifiers = [...settings.rollModifiers.targetModifier];
     for (let i = 0; i < numberOfAttacks; i++) {
       const targetToken = targetedTokens[i % targetedTokens.length];
-      // Update modifiers for each target if multi attack, otherwise use settings that have bee preselected
+      // Update modifiers for each target if multi attack, otherwise use settings that have been preselected
       if (targetedTokens.length > 1) {
         this.updateRollModifiers(settings, targetToken, controlledTokens, weaponType, isAutoFull, isAOE, targetModifiers);
       }
