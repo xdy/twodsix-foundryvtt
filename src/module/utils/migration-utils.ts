@@ -35,17 +35,25 @@ export async function applyToAllItems(fn: ((item:TwodsixItem) => Promise<void>))
 
 }
 
-async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise<void>), packs:Compendium[]): Promise<void> {
+async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise<void>), packs:CompendiumCollection[]): Promise<void> {
   for (const pack of packs) {
     const wasLocked = pack.locked;
-    if (pack.locked) {
-      await pack.configure({locked: false});
-    }
-    for (const doc of await pack.getDocuments()) {
-      await fn(doc);
-    }
-    if (wasLocked) {
-      await pack.configure({locked: true});
+    try {
+      if (pack.locked) {
+        await pack.configure({locked: false});
+      }
+      for (const doc of await pack.getDocuments()) {
+        try {
+          await fn(doc);
+        } catch (docError) {
+          console.warn(`Error applying function to document in pack ${pack.collection}:`, docError);
+        }
+      }
+      if (wasLocked) {
+        await pack.configure({locked: true});
+      }
+    } catch (packError) {
+      console.warn(`Error processing pack ${pack.collection}:`, packError);
     }
   }
 }
