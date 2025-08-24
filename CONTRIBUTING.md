@@ -87,14 +87,16 @@ mklink /d C:\Users\your-username\AppData\Local\FoundryVTT\Data\systems\twodsix C
 Building the twodsix system is very easy. The following command will package the system into the `dist`.
 
 ```shell
-cd <your-twodsix-foundryvtt-working-copy>
+cd /path-to/your-twodsix-foundryvtt-working-copy
+npm install
 npm build
 ```
 
 Each time you make a change to the source files, you will need to rebuild twodsix and reload Foundry. You can automate the rebuild step using this instead.
 
 ```shell
-cd <your-twodsix-foundryvtt-working-copy>
+cd /path-to/your-twodsix-foundryvtt-working-copy
+npm install
 npm build:watch
 ```
 
