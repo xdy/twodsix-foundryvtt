@@ -19,9 +19,11 @@ foundryconfig.json
 foundry.js
 foundry-esm.js
 foundry.mjs
-foundry/foundryvtt
 foundry/license.json
-foundry/foundry_dev_data
+foundry/foundry*vtt*
+foundry/foundry*app*
+foundry/foundry*data*
+foundry/FoundryVTT-Node-*
 sample_data/local/*
 !sample_data/local/.gitkeep
 client.mjs
