@@ -352,6 +352,10 @@ label.checkbox > input[type="checkbox"] {
   flex-direction: column;
 }
 
+.position-data {
+  margin-top: 2ch;
+}
+
 .vehicle-notes {
   border: 2px solid;
   border-radius: 2ch;
@@ -363,7 +367,7 @@ label.checkbox > input[type="checkbox"] {
   overflow-y: scroll;
 }
 
-.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data {
   border: 2px solid;
   border-radius: 2ch;
 }

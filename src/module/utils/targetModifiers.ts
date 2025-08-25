@@ -58,6 +58,10 @@ export function getTargetDMSelectObject(): object {
  */
 export function getTargetStatusModifiers(targetActor:TwodsixActor): string[] {
   const returnValue = [];
+  /* Check that TARGET_DM const isn't undefined */
+  if (!TWODSIX.TARGET_DM && game.settings.get('twodsix', 'targetDMList') !== "") {
+    generateTargetDMObject();
+  }
   const targetDMObject = Object.values(TWODSIX.TARGET_DM);
   if (targetActor) {
     //link statuses

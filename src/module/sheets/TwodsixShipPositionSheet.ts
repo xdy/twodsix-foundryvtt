@@ -31,7 +31,8 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
       deleteAction: this._onDeleteAction,
       createAction: this._onCreateAction,
       deleteActor: this._onDeleteActor,
-      showActor: this._onShowActor
+      showActor: this._onShowActor,
+      addActor: this._onAddActor
     },
     tag: "form"
   };
@@ -114,17 +115,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
     if (droppedObject.type === "skills") {
       await TwodsixShipPositionSheet.createActionFromSkill(this.item, droppedObject);
     } else if (["traveller", "robot"].includes(droppedObject.type)) {
-      if (this.actor) {
-        const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[droppedObject._id];
-        await this.actor.update({[`system.shipPositionActorIds.${droppedObject._id}`]: this.item.id});
-        this.render();
-        if (currentShipPositionId){
-          this.actor.items.get(currentShipPositionId)?.sheet?.render();
-        }
-      } else {
-        ui.notifications.error("TWODSIX.Ship.CantDropActorIfPositionIsNotOnShip", {localize: true});
-        return false;
-      }
+      return await TwodsixShipPositionSheet.assignActorToPosition(this, actorId);
     } else {
       ui.notifications.error("TWODSIX.Ship.InvalidDocumentForShipPosition", {localize: true});
       return false;
@@ -167,4 +158,73 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
       targetActor.sheet.render({force: true});
     }
   }
+
+  static async _onAddActor(): Promise<boolean> {
+    if (!this.actor?.isOwner) {
+      return false;
+    }
+
+    // Build options for the select field
+    const actorOptions = game.actors
+      .filter(a => a.isOwner && ["traveller", "robot"].includes(a.type))
+      .map(a => ({ value: a.id, label: a.name }));
+    if (!actorOptions || actorOptions.length === 0) {
+      ui.notifications.warn("TWODSIX.Warnings.NoAvailableActors", { localize: true });
+      return false;
+    }
+
+    // Create the select field HTML
+    const html = new foundry.data.fields.StringField({
+      label: game.i18n.localize("TWODSIX.Ship.Travellers"),
+      required: true,
+    }).toFormGroup({}, {
+      options: actorOptions,
+      name: "actorId",
+      value: "",
+    }).outerHTML;
+
+    // Prompt user to select an actor
+    const actorId = await foundry.applications.api.DialogV2.prompt({
+      content: html,
+      ok: {
+        callback: (event, button) => button.form.elements.actorId.value,
+        label: "Select",
+      },
+      window: {
+        title: "TWODSIX.Ship.SelectActor",
+        icon: "fa-solid fa-folder",
+      },
+    });
+    if (!actorId) {
+      return false;
+    }
+
+    const actor = game.actors.get(actorId);
+    if (!actor) {
+      return false;
+    }
+
+    return await TwodsixShipPositionSheet.assignActorToPosition(this, actorId);
+  }
+  static async assignActorToPosition(sheet: TwodsixShipPositionSheet, actorId:string): Promise<boolean> {
+    if (sheet.actor) {
+      const shipPositionActorIds = sheet.actor.system.shipPositionActorIds;
+      const currentShipPositionId = shipPositionActorIds[actorId];
+
+      // Assign actor to this ship position
+      await sheet.actor.update({ [`system.shipPositionActorIds.${actorId}`]: sheet.item.id });
+      sheet.render();
+
+      // If actor was previously assigned to a different position, re-render that position's sheet
+      if (currentShipPositionId) {
+        const prevItem = sheet.actor.items.get(currentShipPositionId);
+        prevItem?.sheet?.render();
+      }
+      return true;
+    } else {
+      ui.notifications.error("TWODSIX.Ship.CantDropActorIfPositionIsNotOnShip", { localize: true });
+      return false;
+    }
+  }
 }
+

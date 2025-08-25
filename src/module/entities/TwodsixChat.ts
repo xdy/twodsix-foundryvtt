@@ -414,6 +414,9 @@ async function makeRequestedRoll(message: ChatMessage): void {
             const rollSettings = await TwodsixRollSettings.create(false, tmpSettings, selectedSkill, item, actor);
             await item.doSkillTalentRoll(false, rollSettings);
           }
+        } else {
+          //Cannot find item on actor
+          ui.notifications.warn("TWODSIX.Warnings.CantFindItemOnActor", {localize: true});
         }
       } else {
         // Handle skill/characteristic rolls
