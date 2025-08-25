@@ -169,8 +169,9 @@ In order to keep to sane coding standards - aka the ones I prefer :) - please us
 
 ## When it's time to do your Pull Request
 
+* Ensure that you sync your fork with the upstream repository before commencing work.
 * Name the Pull Request beginning with WIP until you think it is in a good shape to be merged.
-* Make sure eslint has been run with no complaints on your code.
+* Make sure eslint (`npm run lint`) has been run with no complaints on your code.
 * Squash any merge commits and other cruft. Aim for one commit per feature or issue that your Pull Request tackles.
 * If any of the checks on the Pull Request fails, try to fix them, or ask for help if you can't figure out what's wrong.
 * When you're done, note in the Pull Request and/or on the Discord that there is a Pull Request that you consider ready to be merged, and remove the WIP from the beginning of the Pull Request name.
