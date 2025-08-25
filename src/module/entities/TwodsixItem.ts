@@ -276,7 +276,7 @@ export default class TwodsixItem extends Item {
     // Assign applied statuses if exactly one target token
     const appliedStatuses = targetTokens.length === 1 ? getTargetStatusModifiers(targetTokens[0].actor) : [];
     Object.assign(tmpSettings.rollModifiers, {
-      targetModifier: appliedStatuses,
+      targetModifier: appliedStatuses
     });
 
     //Flag that targetDM is an override
