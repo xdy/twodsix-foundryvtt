@@ -733,7 +733,7 @@ h2 {
   padding-left: 1ch;
 }*/
 
-.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats {
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -769,6 +769,10 @@ h2 {
   grid-area: space-object-stats;
   display: flex;
   flex-direction: column;
+}
+
+.position-data {
+  margin-top: 2ch;
 }
 
 .vehicle-name, .space-object-name {

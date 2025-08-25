@@ -1,3 +1,10 @@
+## [6.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.5.0...v6.5.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* allow players to add actors to position sheets and fix compendium migrations ([#1840](https://github.com/xdy/twodsix-foundryvtt/issues/1840)) ([f1bfdbe](https://github.com/xdy/twodsix-foundryvtt/commit/f1bfdbe5256ba3b82d8956c4b67f9effd43bf3a1))
+
 # [6.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.4.0...v6.5.0) (2025-08-18)
 
 

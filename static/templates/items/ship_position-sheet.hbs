@@ -7,15 +7,20 @@
     <label for="system.order" class="resource-label">{{localize "TWODSIX.Ship.Order"}}</label>
     <input class="form-input" type="number" name="system.order" value="{{system.order}}" data-dtype="Number" />
   </div>
+
   {{#if hasShipActor}}
-  <div class="form-section">
-    {{localize "TWODSIX.Ship.Travellers"}}: <br>
+  <div class="position-data">
+    <span class="item-title-npc">{{localize "TWODSIX.Ship.Travellers"}}</span>
     <table class="ship-action-table">
       <thead>
         <tr>
           <th></th>
           <th>{{localize "TWODSIX.Actor.Items.Name"}}</th>
-          <th></th>
+          <th class="centre">
+            <a class="ship-position-details-action-addActor" data-tooltip='{{localize "TWODSIX.Ship.AddActorToPosition"}}' data-action="addActor">
+              <i class="fa-solid fa-plus"></i>
+            </a>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -34,8 +39,9 @@
     </table>
   </div>
   {{/if}}
-  <div class="form-section">
-    {{localize "TWODSIX.Ship.Actions"}}: <br>
+
+  <div class="position-data">
+    <span class="item-title-npc">{{localize "TWODSIX.Ship.Actions"}}</span>
     <table class="ship-action-table">
       <thead>
         <tr>

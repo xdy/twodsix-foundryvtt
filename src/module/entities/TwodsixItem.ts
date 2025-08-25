@@ -265,17 +265,19 @@ export default class TwodsixItem extends Item {
       Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod(rateOfFireCE)});
     }
 
-    //Get single target weapons range and status modifiers for roll dialog
+    //Get weapons range modifier for roll dialog - note, values only apply if single target, otherwise empty or undefined returned.
     if (controlledTokens?.length === 1) {
       const { rangeModifier, rangeLabel } = this.calculateRangeAndLabel(controlledTokens, targetTokens, weaponType, isAutoFull, tmpSettings);
-      const appliedStatuses = this.getAppliedStatuses(targetTokens);
-
       Object.assign(tmpSettings.rollModifiers, {
         weaponsRange: rangeModifier,
-        rangeLabel: rangeLabel,
-        targetModifier: appliedStatuses,
+        rangeLabel: rangeLabel
       });
     }
+    // Assign applied statuses if exactly one target token
+    const appliedStatuses = targetTokens.length === 1 ? getTargetStatusModifiers(targetTokens[0].actor) : [];
+    Object.assign(tmpSettings.rollModifiers, {
+      targetModifier: appliedStatuses
+    });
 
     //Flag that targetDM is an override
     Object.assign(tmpSettings.rollModifiers, {targetModifierOverride: targetTokens.length > 1});
@@ -367,7 +369,7 @@ export default class TwodsixItem extends Item {
     const targetModifiers = [...settings.rollModifiers.targetModifier];
     for (let i = 0; i < numberOfAttacks; i++) {
       const targetToken = targetedTokens[i % targetedTokens.length];
-      // Update modifiers for each target if multi attack, otherwise use settings that have bee preselected
+      // Update modifiers for each target if multi attack, otherwise use settings that have been preselected
       if (targetedTokens.length > 1) {
         this.updateRollModifiers(settings, targetToken, controlledTokens, weaponType, isAutoFull, isAOE, targetModifiers);
       }
