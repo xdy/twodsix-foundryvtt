@@ -367,7 +367,7 @@ label.checkbox > input[type="checkbox"] {
   overflow-y: scroll;
 }
 
-.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data {
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage {
   border: 2px solid;
   border-radius: 2ch;
 }
@@ -376,9 +376,10 @@ label.checkbox > input[type="checkbox"] {
   grid-area: vehicle-systems;
 }
 
-.vehicle-components {
-  grid-area: vehicle-components;
-  height: 74%;
+.vehicle-components, .vehicle-storage {
+  height: 45vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .vehicle-armor {

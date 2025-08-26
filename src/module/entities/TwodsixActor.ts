@@ -1144,7 +1144,7 @@ export default class TwodsixActor extends Actor {
         }
         break;
       case 'vehicle':
-        if (droppedItem.type === "component") {
+        if (![...TWODSIX.WeightlessItems, "cargo"].includes(droppedItem.type)) {
           return await this._addDroppedEquipment(droppedItem);
         }
         break;
