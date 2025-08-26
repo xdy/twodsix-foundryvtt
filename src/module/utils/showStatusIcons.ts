@@ -231,7 +231,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
   const isAlreadySet = targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
   let currentEffectId = "";
   //Clean up effects
-  if (isAlreadySet.length > 0) {
+  if (isAlreadySet?.length > 0) {
     const idList = isAlreadySet.map(i => i.id);
     if (state) {
       currentEffectId = idList.pop();
