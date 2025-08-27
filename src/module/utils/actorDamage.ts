@@ -48,6 +48,7 @@ export class Stats {
   damageValue: number;
   damageType: string;
   damageLabel: string;
+  dice: any[];
   armorPiercingValue: number;
   effectiveArmor: number;
   primaryArmor:number;
@@ -62,7 +63,7 @@ export class Stats {
   useLifebloodOnly = false;
   damageFormula: string;
 
-  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string, damageLabel:string, parryArmor:number = 0, canOnlyBeBlocked:boolean = false) {
+  constructor(actor: TwodsixActor, damageValue: number, armorPiercingValue: number, damageType:string, damageLabel:string, parryArmor:number = 0, canOnlyBeBlocked:boolean = false, dice:any[] = []) {
     this.strength = new Attribute("strength", actor);
     this.dexterity = new Attribute("dexterity", actor);
     this.endurance = new Attribute("endurance", actor);
@@ -73,6 +74,7 @@ export class Stats {
     this.damageType = damageType;
     const damageLabels = getDamageTypes(true);
     this.damageLabel = damageLabels[damageType] || damageLabel;
+    this.dice = dice;
     this.armorPiercingValue = armorPiercingValue;
     if (actor.type !== "ship") {
       this.primaryArmor = this.damageType === 'psionic' ? 0 : (<Traveller>actor.system).primaryArmor.value; //primary armor does not stop psionic damage
@@ -327,7 +329,7 @@ class DamageDialogHandler {
 }
 
 export async function renderDamageDialog(damageData: Record<string, any>): Promise<void> {
-  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, canBeParried, canBeBlocked} = damageData;
+  const {damageId, damageValue, armorPiercingValue, damageType, damageLabel, canBeParried, canBeBlocked, dice} = damageData;
   let actor:TwodsixActor = damageData.actor;
   if (!actor.uuid) {
     actor = await fromUuid(damageData.targetUuid);
@@ -341,7 +343,7 @@ export async function renderDamageDialog(damageData: Record<string, any>): Promi
   const template = 'systems/twodsix/templates/actors/damage-dialog.hbs';
   const canOnlyBeBlocked = canBeBlocked && !canBeParried;
   const parryArmor = canBeParried || canBeBlocked ? await getParryValue(actor, canOnlyBeBlocked) : 0;
-  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor, canOnlyBeBlocked);
+  const stats = new Stats(actor, damageValue, armorPiercingValue, damageType, damageLabel, parryArmor, canOnlyBeBlocked, dice);
   const damageDialogHandler = new DamageDialogHandler(stats);
   const renderedHtml = await foundry.applications.handlebars.renderTemplate(template, {stats: damageDialogHandler.stats});
   const title = game.i18n.localize("TWODSIX.Damage.DealDamageTo").replace("_ACTOR_NAME_", actor.name);

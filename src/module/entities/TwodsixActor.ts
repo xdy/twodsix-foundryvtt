@@ -764,7 +764,7 @@ export default class TwodsixActor extends Actor {
     } else {
       const canOnlyBeBlocked = damagePayload.canBeBlocked && !damagePayload.canBeParried;
       const parryArmor = damagePayload.canBeParried || damagePayload.canBeBlocked ? await getParryValue(this, canOnlyBeBlocked) : 0;
-      const stats = new Stats(this, damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, damagePayload.damageLabel, parryArmor, canOnlyBeBlocked);
+      const stats = new Stats(this, damagePayload.damageValue, damagePayload.armorPiercingValue, damagePayload.damageType, damagePayload.damageLabel, parryArmor, canOnlyBeBlocked, damagePayload.dice);
       await stats.applyDamage();
     }
   }
