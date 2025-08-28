@@ -4,8 +4,17 @@
 import { TWODSIX } from "../config";
 
 /**
- * A function that parses the string setting 'targetDMList' into an object and saves the object to TWODSIX.TARGET_DM.
- * The format is {key#: {label: string, value: integer, key: string, statusKey: string}}
+ * Parses the string setting 'targetDMList' into an object and saves the object to TWODSIX.TARGET_DM.
+ * The resulting object has the format:
+ * {
+ *   key#: {
+ *     label: string,
+ *     value: number,
+ *     key: string,
+ *     statusKey: string,
+ *     linkString: string
+ *   }
+ * }
  * @returns {void}
  */
 export function generateTargetDMObject():void {
@@ -38,8 +47,12 @@ export function generateTargetDMObject():void {
 }
 
 /**
- * A function that takes the string setting 'targetDMList' parses it into an object and saves it to TWODSIX.TARGET_DM
- * @returns {object} A select object with format {key# : 'Target DM Label (DM Val)'} useable for selectObject handlebar helper
+ * Returns a select object for Handlebars helpers, built from TWODSIX.TARGET_DM.
+ * The returned object has the format:
+ * {
+ *   key#: 'Target DM Label (DM Val)'
+ * }
+ * @returns {object} Select object for Handlebars select helper.
  */
 export function getTargetDMSelectObject(): object {
   const returnValue = {};
@@ -52,7 +65,8 @@ export function getTargetDMSelectObject(): object {
 }
 
 /**
- * A function that takes a target actor parses its statuses and traits into an array of keys from TWODSIX.TARGET_DM
+ * Returns an array of keys from TWODSIX.TARGET_DM that match the target actor's statuses and traits.
+ * Statuses are matched by statusKey, traits by linkString.
  * @param {TwodsixActor} targetActor actor for the target
  * @returns {string[]} An array of keys from TWODSIX.TARGET_DM
  */
