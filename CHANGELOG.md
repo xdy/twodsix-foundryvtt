@@ -1,3 +1,10 @@
+# [6.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.5.1...v6.6.0) (2025-08-29)
+
+
+### Features
+
+* add locker to vehicles and show damage dice ([#1845](https://github.com/xdy/twodsix-foundryvtt/issues/1845)) ([1e2dcf1](https://github.com/xdy/twodsix-foundryvtt/commit/1e2dcf18242c23b4f670705fa9171bc265dffb02))
+
 ## [6.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.5.0...v6.5.1) (2025-08-25)
 
 
