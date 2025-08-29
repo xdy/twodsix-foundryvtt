@@ -1,4 +1,3 @@
-
 <div class="standard-form damage-dialog">
   {{#with stats}}
   <div class = "">
@@ -121,5 +120,21 @@
   <div class = "">
     <span class="character-dead red">{{localize "TWODSIX.Damage.CharacterIsDead"}}</span>
   </div>
+  {{#if dice}}
+    <div class="dice-tooltip">
+      <div class ="wrapper">
+        <label>{{localize "TWODSIX.Damage.DamageDice"}}</label>
+        <section class="tooltip-part">
+          <div class="dice">
+            <ol class="dice-rolls">
+            {{#each dice as |die|}}
+              <li class="{{twodsix_die_style die}}">{{die.result}}</li>
+            {{/each}}
+            </ol>
+          </div>
+        </section>
+      </div>
+    </div>
+  {{/if}}
   {{/with}}
 </div>

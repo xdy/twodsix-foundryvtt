@@ -48,7 +48,7 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
       if (oldWoundState) {
         await setWoundedState(selectedActor, false, tintToApply);
       }
-      setConditionState('unconscious', selectedActor, false);
+      await setConditionState('unconscious', selectedActor, false);
     } else {
       if (isCurrentlyDead) {
         await setConditionState('dead', selectedActor, false);
@@ -69,7 +69,7 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
  * @public
  */
 export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  const isCurrentlyEncumbered = await selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
+  const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
   let state = false;
   let ratio = 0;
   let aeToKeep: TwodsixActiveEffect | undefined = undefined;
@@ -156,8 +156,8 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
  * @param {string} tintToApply The wounded state tint to be applied (the updated tint)
  */
 async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: TwodsixActiveEffect | undefined, tintToApply: string): Promise<void> {
-  const isAlreadyUnconscious = selectedActor.effects.find(eff => eff.statuses.has('unconscious'));
-  const isAlreadyDead = selectedActor.effects.find(eff => eff.statuses.has('dead'));
+  const isAlreadyUnconscious = selectedActor.effects.some(eff => eff.statuses.has('unconscious'));
+  const isAlreadyDead = selectedActor.effects.some(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset'); //toString shouldn't be needed
   if (!isAlreadyUnconscious && !isAlreadyDead) {
     if (['CE', 'AC', 'CU', 'OTHER'].includes(rulesSet)) {
@@ -228,10 +228,10 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
  * @param {string} tint The wounded tint color (as a hex code string).  Color indicates the severity of wounds. TWODSIX.DAMAGECOLORS.minorWoundTint and TWODSIX.DAMAGECOLORS.seriousWoundTint
  */
 async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = await targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
+  const isAlreadySet = targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
   let currentEffectId = "";
   //Clean up effects
-  if (isAlreadySet.length > 0) {
+  if (isAlreadySet?.length > 0) {
     const idList = isAlreadySet.map(i => i.id);
     if (state) {
       currentEffectId = idList.pop();

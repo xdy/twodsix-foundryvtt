@@ -50,7 +50,8 @@
       "CanBeBlocked": "Can be blocked",
       "CanBeParried": "Can be parried",
       "DamageCalculation": "Applied Damage Calculation",
-      "DamageCard": "Damage Card"
+      "DamageCard": "Damage Card",
+      "DamageDice": "Damage Dice"
     },
     "DamageType": {
       "Acid": "Acid",
@@ -974,7 +975,8 @@
         "Stats": "Stats",
         "Cargo": "Cargo",
         "Description": "Description",
-        "Components": "Components"
+        "Components": "Components",
+        "Storage": "Storage"
       }
     },
     "SpaceObject": {
