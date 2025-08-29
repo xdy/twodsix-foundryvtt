@@ -633,8 +633,6 @@
         "hint": "Visa Hjältepoängräknare på karaktärsblad.",
         "name": "Visa Hjältepoäng"
       },
-      "showItemReferences": {
-      },
       "ShowLawLevel": {
         "hint": "ikryssat=Visa 'Lagnivå' fältet, urkryssat=Göm det",
         "name": "Visa 'Lagnivå' fältet på vapenblad"
@@ -667,8 +665,6 @@
         "hint": "ikryssat=Visa 'Vapentyp' fältet, urkryssat=Göm det",
         "name": "Visa 'Vapentyp' fältet på vapenblad"
       },
-      "showWeightUsage": {
-      },
       "systemMigrationVersion": {
         "hint": "Innehåller schemaversionen för Twodsix systemet. (Modifiera inte denna om du inte vet vad du håller på med.)",
         "name": "System Schema Version"
@@ -691,8 +687,6 @@
         "hint": "Ändrar CSS-stil för att korrigera identifierade stilproblem för vissa moduler när du använder Twodsix-stilen. Det fungerar inte när du använder Foundrys standardstil.",
         "name": "Korrigera några css-stilproblem på grund av moduler och standard Twodsix-stil."
       },
-      "useShipAutoCalcs": {
-      },
       "useSystemDefaultTokenIcon": {
         "hint": "Använd Foundry VTTs default-ikon 'Mystery Man' istf Twodsix motsvarighet när ny karaktär skapas. Välj detta om du använder egna ikoner så att systemet automatiskt sätter spelfigursbilden till samma som aktörens bild.",
         "name": "Använd Foundry VTTs default-ikon 'Mystery Man' istf Twodsix motsvarighet när ny karaktär skapas."
@@ -701,19 +695,9 @@
         "hint": "Använder statusindikatorer för att indikera skadad status och automatiskt rulla för att vakna från medvetslös vid allvarliga sår.",
         "name": "Visa indikatorer för skadad status"
       },
-      "minorWoundsRollModifier": {
-      },
-      "seriousWoundsRollModifier": {
-      },
       "weightModifierForWornArmor": {
         "hint": "Faktor att multiplicera viktvärdet för en rustning om den för närvarande är utrustad.",
         "name": "Faktor att multiplicera viktvärdet för en utrustad rustning."
-      },
-      "useTinyMCEditor": {
-      },
-      "showIcons": {
-      },
-      "maxComponentHits": {
       },
       "mortgagePayment": {
         "name": "Betalningsvillkor för skeppslån."
@@ -722,39 +706,15 @@
         "hint": "Kostnadsbesparingarna för skeppskonstruktion på grund av att de massproduceras. Ett värde på 0,1 innebär att 10 % dras av från fartygets baspris.",
         "name": "Rabatt för skepp som masstillverkas"
       },
-      "reverseHealingOrder": {
-      },
-      "maxEncumbrance": {
-      },
       "allowDropOnIcon": {
         "name": "Tillåt att saker släpps på ikoner"
-      },
-      "defaultMovement": {
-      },
-      "defaultMovementUnits": {
-      },
-      "useEncumbrance": {
-      },
-      "addEffectForShipDamage": {
-      },
-      "autoAddUnarmed": {
-      },
-      "unarmedDamage": {
-      },
-      "showTimeframe": {
-      },
-      "showStatusIcons": {
       },
       "showHullAndArmor": {
         "name": "Skyddsvärden på fordonsformulär"
       },
-      "addEffectToManualDamage": {
-      },
       "showRangeSpeedNoUnits": {
         "hint": "Utelämna räckvidds- och hastighetsenheterna (t.ex. km/h) på fordonsbladet.",
         "name": "Visa inte räckvidds- och hastighetsenheter"
-      },
-      "showInitiativeButton": {
       }
     },
     "CloseAndCreateNew": "Stäng och skapa ny",
@@ -774,8 +734,6 @@
       "consumable": "förbrukningsvara",
       "trait": "egenskap",
       "component": "komponent"
-    },
-    "speeds": {
     },
     "Errors": {
       "NoSkillForSkillRoll": "Du försökte göra ett färdighetsslag utan att välja en färdighet",
