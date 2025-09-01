@@ -35,7 +35,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
   static PARTS = {
     main: {
       template: "systems/twodsix/templates/actors/vehicle-sheet.hbs",
-      //scrollable: ['']
+      scrollable: ["", ".vehicle-storage", ".vehicle-components"]
     }
   };
 
@@ -45,6 +45,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
         {id: "stats", icon: "fa-solid fa-chart-bar", label: "TWODSIX.Vehicle.Tabs.Stats"},
         {id: "components", icon: "fa-solid fa-gears", label: "TWODSIX.Vehicle.Tabs.Components"},
         {id: "cargo", icon: "fa-solid fa-boxes-stacked", label: "TWODSIX.Vehicle.Tabs.Cargo"},
+        {id: "storage", icon: "fa-solid fa-vault", label: "TWODSIX.Vehicle.Tabs.Storage"},
         {id: "description", icon: "fa-solid fa-book", label: "TWODSIX.Vehicle.Tabs.Description"}
       ],
       initial: "stats"

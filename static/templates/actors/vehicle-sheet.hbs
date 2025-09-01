@@ -170,6 +170,14 @@
     </div>
   </section>
 
+  {{!-- Storage Tab --}}
+  <section class="tab {{tabs.storage.cssClass}}" data-group="primary" data-tab="storage" style="height: 100%;">
+    <div class="vehicle-storage">
+      <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Tabs.Storage"}}</span>
+      {{> "systems/twodsix/templates/actors/parts/common/item-storage.hbs"}}
+    </div>
+  </section>
+
   {{!-- Component Tab --}}
   <section class="tab {{tabs.components.cssClass}}" data-group="primary" data-tab="components" style="height: 100%;">
     <div class="vehicle-components">

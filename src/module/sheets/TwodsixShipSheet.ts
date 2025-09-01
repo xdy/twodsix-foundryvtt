@@ -331,7 +331,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions", {localize: true});
         return false;
       } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable", "computer", "junk"].includes(droppedObject.type)) {
-        this.processDroppedItem(ev, droppedObject);
+        await this.processDroppedItem(ev, droppedObject);
         return true;
       } else if (ev.currentTarget.className === 'ship-position-box ship-position-add-box' && droppedObject.type === 'ship_position') {
         return false; //avoid double add

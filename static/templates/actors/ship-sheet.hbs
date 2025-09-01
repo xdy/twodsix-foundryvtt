@@ -75,7 +75,7 @@
           <a class="ship-positions-tab" data-tab="shipPositions" data-group="primary" data-action="tab"><i class="fa-solid fa-street-view"></i>{{localize "TWODSIX.Ship.Tabs.ShipPositions"}}</a>
           <a class="ship-crew-tab" data-tab="shipCrew" data-group="primary" data-action="tab"><i class="fa-solid fa-users"></i>{{localize "TWODSIX.Ship.Tabs.Crew"}}</a>
           <a class="ship-component-tab" data-tab="shipComponent" data-group="primary" data-action="tab"><i class="fa-solid fa-gears"></i>{{localize "TWODSIX.Ship.Tabs.Components"}}</a>
-          <a class="ship-storage-tab" data-tab="shipStorage" data-group="primary" data-action="tab"><i class="fa-solid fa-warehouse"></i>{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
+          <a class="ship-storage-tab" data-tab="shipStorage" data-group="primary" data-action="tab"><i class="fa-solid fa-vault"></i>{{localize "TWODSIX.Ship.Tabs.Locker"}}</a>
           <a class="ship-cargo-tab" data-tab="shipCargo" data-group="primary" data-action="tab"><i class="fa-solid fa-boxes-stacked"></i>{{localize "TWODSIX.Ship.Tabs.Cargo"}}</a>
           <a class="ship-finance-tab" data-tab="shipFinance" data-group="primary" data-action="tab"><i class="fa-solid fa-coins"></i>{{localize "TWODSIX.Ship.Tabs.Finance"}}</a>
           <a class="ship-notes-tab" data-tab="shipNotes" data-group="primary" data-action="tab"><i class="fa-regular fa-clipboard"></i>{{localize "TWODSIX.Ship.Tabs.Notes"}}</a>
@@ -105,7 +105,7 @@
 
         {{!-- Storage Tab --}}
         <div class="tab ship-storage {{tabs.shipStorage.cssClass}}" data-group="primary" data-tab="shipStorage">
-            {{> "systems/twodsix/templates/actors/parts/ship/ship-storage.hbs"}}
+            {{> "systems/twodsix/templates/actors/parts/common/item-storage.hbs"}}
         </div>
 
         {{!-- Cargo Tab --}}

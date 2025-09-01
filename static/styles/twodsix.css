@@ -733,7 +733,7 @@ h2 {
   padding-left: 1ch;
 }*/
 
-.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data {
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage {
   border: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
@@ -745,10 +745,10 @@ h2 {
   grid-area: vehicle-systems;
 }
 
-.vehicle-components {
-  grid-area: vehicle-components;
-  overflow: hidden;
-  height: 74%;
+.vehicle-components, .vehicle-storage {
+  height: 45vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .vehicle-traits {
