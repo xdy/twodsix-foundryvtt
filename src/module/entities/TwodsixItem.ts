@@ -299,7 +299,7 @@ export default class TwodsixItem extends Item {
       ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
     }
     //Make attack rolls
-    await this.executeAttackRolls(numberOfAttacks, targetTokens, controlledTokens, weaponType, isAutoFull, settings, showInChat, isAOE);
+    await this.executeAttackRolls(numberOfAttacks, targetTokens, controlledTokens, weaponType, isAutoFull, settings, showInChat, isAOE, attackType);
   }
 
   /**
@@ -364,9 +364,11 @@ export default class TwodsixItem extends Item {
     isAutoFull: boolean,
     settings: TwodsixRollSettings,
     showInChat: boolean,
-    isAOE: boolean
+    isAOE: boolean,
+    attackType: string
   ): Promise<void> {
     const targetModifiers = [...settings.rollModifiers.targetModifier];
+    Object.assign(settings.flags, {attackType: attackType ?? ""});
     for (let i = 0; i < numberOfAttacks; i++) {
       const targetToken = targetedTokens[i % targetedTokens.length];
       // Update modifiers for each target if multi attack, otherwise use settings that have been preselected

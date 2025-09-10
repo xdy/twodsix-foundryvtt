@@ -71,11 +71,8 @@ export const registerSettings = function ():void {
 
 export function switchCss(fileName:string) {
   const head = document.getElementsByTagName("head")[0];
-  const mainCss = document.createElement("link");
+  const mainCss = document.createElement("style");
 
-  mainCss.setAttribute("rel", "stylesheet");
-  mainCss.setAttribute("type", "text/css");
-  mainCss.setAttribute("href", fileName);
-  mainCss.setAttribute("media", "all");
+  mainCss.textContent = ` @import "${fileName}" layer(system); `;
   head.insertBefore(mainCss, head.lastChild);
 }
