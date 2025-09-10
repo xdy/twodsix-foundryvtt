@@ -1,3 +1,10 @@
+## [6.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.0...v6.6.1) (2025-09-10)
+
+
+### Bug Fixes
+
+* load styles using layer system to respect foundry css specificity ([#1848](https://github.com/xdy/twodsix-foundryvtt/issues/1848)) ([31305af](https://github.com/xdy/twodsix-foundryvtt/commit/31305af4502bd1f64b09507010415090ebd1dd0f))
+
 # [6.6.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.5.1...v6.6.0) (2025-08-29)
 
 
