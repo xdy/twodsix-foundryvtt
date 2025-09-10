@@ -436,6 +436,7 @@ export class TwodsixDiceRoll {
           "twodsix.rollClass": this.rollSettings.flags.rollClass ?? "",
           "twodsix.actorUUID": this.rollSettings.flags.actorUUID ?? "",
           "twodsix.bonusDamage": this.rollSettings.flags.bonusDamage ?? "",
+          "twodsix.attackType": this.rollSettings.flags.attackType ?? ""
         }
       },
       {rollMode: this.rollSettings.rollMode}
