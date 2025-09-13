@@ -4139,6 +4139,12 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   color: var(--s2d6-form-light);
 }
 
+.prosemirror .tableWrapper th,
+.prosemirror .tableWrapper td,
+.journal-entry-page table td {
+    border: 1px solid var(--s2d6-color-border-light-tertiary);
+}
+
 input[type="text"].color {
   width: fit-content;
 }
