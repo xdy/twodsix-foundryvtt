@@ -26,4 +26,6 @@ foundry/foundry*data*
 foundry/FoundryVTT-Node-*
 sample_data/local/*
 !sample_data/local/.gitkeep
+foundry/client.mjs
+foundry/config.mjs
 client.mjs
