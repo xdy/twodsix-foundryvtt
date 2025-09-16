@@ -2770,7 +2770,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   overflow: auto;
 }
 
-.ship-position-delete, .ship-position-edit {
+.ship-position-delete, .ship-position-edit, .ship-position-copy {
   float: right;
   margin-top: 4px;
   margin-right: 4px;

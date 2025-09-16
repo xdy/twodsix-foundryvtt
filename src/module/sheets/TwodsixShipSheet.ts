@@ -7,6 +7,7 @@ import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
+import TwodsixItem from "../entities/TwodsixItem";
 
 export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS =  {
@@ -32,6 +33,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     actions: {
       editPosition: this._onShipPositionEdit,
       deletePosition: this._onShipPositionDelete,
+      copyPosition: this._onShipPositionCopy,
       selectShipActor: this._onShipActorClick,
       executeAction: this._onExecuteAction,
       createPosition: this._onShipPositionCreate,
@@ -216,6 +218,15 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         }
       });
       await this.actor.deleteEmbeddedDocuments("Item", [shipPositionId]);
+    }
+  }
+
+  static async _onShipPositionCopy(ev:Event, target:HTMLElement): Promise<void> {
+    if (target !== null) {
+      const shipPositionId:string = target.closest(".ship-position").dataset.id;
+      const positionItem:TwodsixItem = this.actor?.items?.get(shipPositionId);
+      const posData = foundry.utils.duplicate(positionItem);
+      await TwodsixItem.create(posData, {});
     }
   }
 
