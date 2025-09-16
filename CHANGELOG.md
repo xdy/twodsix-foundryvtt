@@ -1,3 +1,10 @@
+## [6.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.2...v6.6.3) (2025-09-16)
+
+
+### Bug Fixes
+
+* add duplicate position button ([#1853](https://github.com/xdy/twodsix-foundryvtt/issues/1853)) ([b9351d6](https://github.com/xdy/twodsix-foundryvtt/commit/b9351d6e3ae6addb9bbdc63cacf00d5cd88e806b))
+
 ## [6.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.1...v6.6.2) (2025-09-13)
 
 
