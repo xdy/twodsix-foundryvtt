@@ -7,6 +7,7 @@ import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
+import TwodsixItem from "../entities/TwodsixItem";
 
 export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS =  {
@@ -220,12 +221,12 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  static async _onShipPositionDelete(ev:Event, target:HTMLElement): Promise<void> {
+  static async _onShipPositionCopy(ev:Event, target:HTMLElement): Promise<void> {
     if (target !== null) {
       const shipPositionId:string = target.closest(".ship-position").dataset.id;
       const positionItem:TwodsixItem = this.actor?.items?.get(shipPositionId);
       const posData = foundry.utils.duplicate(positionItem);
-      await TwodsixItem.create(posData);
+      await TwodsixItem.create(posData, {});
     }
   }
 
