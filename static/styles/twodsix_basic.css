@@ -2223,7 +2223,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   min-height: 12ch;
 }
 
-.ship-position-delete, .ship-position-edit {
+.ship-position-delete, .ship-position-edit, .ship-position-copy {
   float: right;
   margin-top: 4px;
   margin-right: 4px;

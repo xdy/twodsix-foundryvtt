@@ -837,6 +837,8 @@
       "Defense": "Defense",
       "DeleteAction": "Delete Action",
       "DeletePosition": "Delete Position",
+      "CopyPosition": "Copy Ship Position to Sidebar",
+      "EditPosition": "Edit Position",
       "ConfirmDeletePosition": "Are you sure you want to delete this position?",
       "Designation": "Designation",
       "Displacement": "Displacement",
