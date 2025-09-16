@@ -1,3 +1,10 @@
+## [6.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.1...v6.6.2) (2025-09-13)
+
+
+### Bug Fixes
+
+* add prosemirror cell borders for journal entry tables ([#1850](https://github.com/xdy/twodsix-foundryvtt/issues/1850)) ([2f3fad9](https://github.com/xdy/twodsix-foundryvtt/commit/2f3fad9c8d69fd08577427376b8f912c409b6fde))
+
 ## [6.6.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.0...v6.6.1) (2025-09-10)
 
 
