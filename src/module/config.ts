@@ -98,7 +98,8 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "0",
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      shipWeaponType: "CT"
     }
   },
   CE: {
@@ -152,7 +153,9 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "-2, -1, -1, 1, 1, 2",
       psiTalentsRequireRoll: true,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      shipWeaponType: "CE",
+      shipDamageType: "component"
     }
   },
   CEL: {
@@ -444,7 +447,9 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 1, 1, 1",
       reverseHealingOrder: true,
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal"
     }
   },
   CDEE: {
@@ -500,7 +505,9 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 1, 1, 1",
       reverseHealingOrder: true,
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal"
     }
   },
   CLU: {
@@ -556,7 +563,9 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 1, 1, 1",
       reverseHealingOrder: true,
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal"
     }
   },
   SOC: {
@@ -713,7 +722,8 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "-2, -1, -1, 1, 1, 2",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      shipWeaponType: "CE"
     }
   },
   OTHER: {
@@ -950,6 +960,48 @@ export const ComponentTypes = {
   software: "TWODSIX.Items.Component.software",
   storage: "TWODSIX.Items.Component.storage",
   vehicle: "TWODSIX.Items.Component.vehicle"
+};
+
+export const ShipWeaponTypes = {
+  CT: {
+    pulseLaser: "TWODSIX.Items.Component.PulseLaser",
+    beamLaser: "TWODSIX.Items.Component.BeamLaser",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    other: "TWODSIX.Items.Component.Other"
+  },
+  CD: {
+    light: "TWODSIX.Items.Component.Light",
+    intermediate: "TWODSIX.Items.Component.Intermediate",
+    heavy: "TWODSIX.Items.Component.Heavy",
+    main: "TWODSIX.Items.Component.Main",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
+    torpedoes: "TWODSIX.Items.Component.Torpedoes",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    special: "TWODSIX.Items.Component.Special",
+    other: "TWODSIX.Items.Component.Other"
+  },
+  CE: {
+    pulseLaser: "TWODSIX.Items.Component.PulseLaser",
+    beamLaser: "TWODSIX.Items.Component.BeamLaser",
+    particleBeam: "TWODSIX.Items.Component.ParticleBeam",
+    fusionGun: "TWODSIX.Items.Component.FusionGun",
+    mesonGun: "TWODSIX.Items.Component.MesonGun",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
+    torpedoes: "TWODSIX.Items.Component.Torpedoes",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    special: "TWODSIX.Items.Component.Special",
+    other: "TWODSIX.Items.Component.Other"
+  }
+};
+
+export const ShipDamageRules = {
+  component: "TWODSIX.Ship.DamageStyle.Component",
+  hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
+  hullOnly: "TWODSIX.Ship.DamageStyle.HullOnly",
+  surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal"
 };
 
 /**
@@ -1276,7 +1328,9 @@ export type TWODSIX = {
   CU_DAMAGE_TYPES: typeof CU_DAMAGE_TYPES,
   effectType: typeof effectType,
   DAMAGECOLORS: typeof DAMAGECOLORS,
-  WeightlessItems: typeof WeightlessItems
+  WeightlessItems: typeof WeightlessItems,
+  ShipWeaponTypes: typeof ShipWeaponTypes,
+  ShipDamageRules: typeof ShipDamageRules
 };
 
 export const TWODSIX = {
@@ -1320,5 +1374,7 @@ export const TWODSIX = {
   CU_DAMAGE_TYPES: CU_DAMAGE_TYPES,
   effectType: effectType,
   DAMAGECOLORS: DAMAGECOLORS,
-  WeightlessItems: WeightlessItems
+  WeightlessItems: WeightlessItems,
+  ShipWeaponTypes: ShipWeaponTypes,
+  ShipDamageRules: ShipDamageRules
 };

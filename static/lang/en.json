@@ -495,7 +495,8 @@
           "ShipAction": "Ship Action Card",
           "TraitSpell": "Trait/Spell Card"
         }
-      }
+      },
+      "DamageReport": "Damage Report"
     },
     "Table": {
       "TableResults": "Table Results"
@@ -623,7 +624,22 @@
         "numberHits": "Number of Hits",
         "opStatus": "Operational Status",
         "FireArc": "Fire Arc",
-        "Degrees": "Degrees (0 to 360)"
+        "Degrees": "Degrees (0 to 360)",
+        "WeaponType": "Weapon Type",
+        "Light": "Light",
+        "Intermediate": "Intermediate",
+        "Heavy": "Heavy",
+        "Main": "Main",
+        "Special": "Special",
+        "PulseLaser": "Pulse Laser",
+        "BeamLaser": "Beam Laser",
+        "ParticleBeam": "Particle Beam",
+        "FusionGun": "Fusion Gun",
+        "MesonGun": "MesonGun",
+        "Missiles": "Missiles",
+        "Torpedoes": "Torpedoes",
+        "Sandcaster": "Sandcaster",
+        "Other": "Other"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -805,6 +821,11 @@
       "ActorMustBeSelectedForAction": "No actor selected, one must be selected to perform the action",
       "AddShipPosition": "Add Ship Position",
       "AddActorToPosition": "Add actor to position.",
+      "ArmorCD": {
+        "Light": "Light",
+        "Heavy": "Heavy",
+        "Massive": "Massive"
+      },
       "SelectActor": "Select Actor",
       "Avail": "Avail.",
       "Available": "Available",
@@ -833,6 +854,12 @@
         "STEWARD": "STEWARD"
       },
       "Damage": "Damage",
+      "DamageStyle": {
+        "Component": "Components damaged",
+        "HullWithCrit": "Hull damage with criticals",
+        "HullOnly": "Hull damage only",
+        "SurfaceOrInternal": "Surface or Internal"
+      },
       "Deckplan": "Deck Plan",
       "Defense": "Defense",
       "DeleteAction": "Delete Action",
@@ -1668,6 +1695,14 @@
       "showTraitAE": {
         "hint": "List active effect formulas as part of trait short description (true) on Traveller Info tab.  Otherwise, show only the short description for the trait (false).",
         "name": "Show Active Effects for Traits"
+      },
+      "shipWeaponType": {
+        "hint": "CD: Cepheus Deluxe types (e.g. Light, Intermediate, Heavy, Main, Missiles, or Special); CE: Cepheus Engine Type (e.g. Pulse Laser, Beam Laser, Particle Beam, Fusion Gun, Meson Gun, Missiles, or Sandcaster); CT: Classic Traveller type (e.g. Pulse Laser, Beam Laser, Missiles, or Sandcaster)",
+        "name": "Ship Weapon Types"
+      },
+      "shipDamageType": {
+        "hint": "Determines how ship damage is generated in damage report.  Component style determines damage to components directly (e.g. Cepheus Engine).  Hull with Criticals determines damage primarily to the ship hull with a critical every 10% of total hull damage (e.g. MgT2e).  Hull only determines damage only to hull.  Surface or Internal determines damage based on weapon penetration (e.g. Cepheus Deluxe).",
+        "name": "Rules for handling ship damage"
       }
     },
     "CloseAndCreateNew": "Close and create new",

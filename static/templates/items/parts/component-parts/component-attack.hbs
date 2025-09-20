@@ -44,6 +44,12 @@
         <input class="form-consumable-count" name="system.ammunition.max" type="number" value="{{system.ammunition.max}}" data-dtype="Number"/>
       </div>
   </div>
+  <div class="item-features">
+    <label for="system.shipWeaponType" class="resource-label">{{localize "TWODSIX.Items.Component.WeaponType"}}</label>
+    <select name="system.shipWeaponType" >
+      {{selectOptions settings.ShipWeaponTypes selected=system.shipWeaponType localize=true inverted=false}}
+    </select>
+  </div>
 {{/iff}}
 {{#if (twodsix_canBePopup this)}}
   <div class="item-data">

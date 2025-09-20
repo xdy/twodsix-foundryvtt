@@ -117,7 +117,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       augLocations: TWODSIX.AUG_LOCATIONS,
       consumableOptions: getConsumableOptions(this.item),
       itemTypes: TWODSIX.ITEM_TYPE_SELECT,
-      psiTalentsRequireRoll: game.settings.get('twodsix', 'psiTalentsRequireRoll')
+      psiTalentsRequireRoll: game.settings.get('twodsix', 'psiTalentsRequireRoll'),
+      ShipWeaponTypes: TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')] ?? {},
     };
 
     if (this.item.type === 'skills') {

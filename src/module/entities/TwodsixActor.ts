@@ -16,6 +16,7 @@ import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances, updateShipFinances } from "../hooks/updateFinances";
 import { applyEncumberedEffect, applyWoundedEffect } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "./TwodsixActiveEffect";
+import { generateShipDamageReport } from "../utils/shipDamage";
 
 /**
  * Extend the base Actor entity by defining a custom roll data structure which is ideal for the Simple system.
@@ -1219,12 +1220,15 @@ export default class TwodsixActor extends Actor {
    * @private
    */
   public async handleDamageData(damagePayload:any, showDamageDialog:boolean): Promise<boolean> {
+    if (!this.isOwner && !showDamageDialog) {
+      console.log("TWODSIX.Warnings.LackPermissionToDamage", {localize: true});
+      return false;
+    }
     if (["traveller", "animal", "robot"].includes(this.type)) {
-      if (!this.isOwner && !showDamageDialog) {
-        console.log("TWODSIX.Warnings.LackPermissionToDamage", {localize: true});
-      }
       await this.damageActor(damagePayload, (this.isOwner ? showDamageDialog : true));
       return true;
+    } else if (["ship"].includes(this.type)) {
+      generateShipDamageReport(this, damagePayload);
     } else {
       ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
       return false;

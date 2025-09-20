@@ -989,12 +989,22 @@ export default class TwodsixItem extends Item {
         }
       }
 
-      //Deterime Damage type
+      //Determine Damage type
       let damageType:string = this.getConsumableDamageType();
       if (damageType === '' || damageType === "NONE") {
         damageType = this.system.damageType ?? "NONE"; //component doesn't have a specified damage type
       }
       const damageLabels = getDamageTypes(true);
+
+      //Determine Ship Weapon Label
+      let shipWeaponType = "";
+      let shipWeaponLabel = "";
+      const isArmament = (this.type === 'component' && this.system?.subtype === 'armament');
+      if ( isArmament) {
+        shipWeaponType = this.system.shipWeaponType || "";
+        shipWeaponLabel = TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')][this.system.shipWeaponType]|| "unknown";
+      }
+
       const contentData = {};
       const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
       const canBeBlocked = game.settings.get('twodsix', 'ruleset') === 'CU'  && damageType === 'melee';
@@ -1008,7 +1018,10 @@ export default class TwodsixItem extends Item {
         damageType: damageType,
         damageLabel: damageLabels[damageType] || "",
         canBeParried: canBeParried,
-        canBeBlocked: canBeBlocked
+        canBeBlocked: canBeBlocked,
+        shipWeaponType: shipWeaponType,
+        shipWeaponTypeLabel: shipWeaponLabel,
+        isArmament: isArmament
       });
 
       if (radDamage.total) {
