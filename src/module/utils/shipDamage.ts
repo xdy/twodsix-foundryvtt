@@ -76,11 +76,11 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
  * Sends the ship damage report to chat, including system damage and radiation exposure.
  *
  * @param {any[]} damageList - Array of damage objects with location and hits.
- * @param {string} radReport - Radiation damage report (can include inline rolls).
+ * @param {string | any[]} radReport - Radiation damage report (can include inline rolls).
  * @param {TwodsixActor} ship - The ship actor being damaged.
  * @returns {Promise<void>}
  */
-async function sendReportToMessage(damageList: any[], radReport: string, ship: TwodsixActor): Promise<void> {
+async function sendReportToMessage(damageList: any[], radReport: string | any[], ship: TwodsixActor): Promise<void> {
   // Build system damage table
   let systemDamageHtml = "";
   if (damageList.length > 0) {
