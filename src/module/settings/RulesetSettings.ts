@@ -154,6 +154,7 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
     settings.roll.push(booleanSetting("xd6RollStyle", false));
     settings.ship.push(numberSetting('componentDamageDM', 0, false));
     settings.ship.push(stringChoiceSetting('shipWeaponType', "CE", false, {CE: "CE", CD: "CD", CT: "CT"}));
+    settings.ship.push(stringChoiceSetting('shipDamageType', "component", true, TWODSIX.ShipDamageRules));
     return settings;
   }
 }

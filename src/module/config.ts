@@ -154,7 +154,8 @@ const RULESETS = Object.freeze({
       chainBonus: "-2, -1, -1, 1, 1, 2",
       psiTalentsRequireRoll: true,
       xd6RollStyle: false,
-      shipWeaponType: "CE"
+      shipWeaponType: "CE",
+      shipDamageType: "component"
     }
   },
   CEL: {
@@ -447,7 +448,8 @@ const RULESETS = Object.freeze({
       reverseHealingOrder: true,
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      shipWeaponType: "CD"
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal"
     }
   },
   CDEE: {
@@ -504,7 +506,8 @@ const RULESETS = Object.freeze({
       reverseHealingOrder: true,
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      shipWeaponType: "CD"
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal"
     }
   },
   CLU: {
@@ -561,7 +564,8 @@ const RULESETS = Object.freeze({
       reverseHealingOrder: true,
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      shipWeaponType: "CD"
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal"
     }
   },
   SOC: {
@@ -993,6 +997,13 @@ export const ShipWeaponTypes = {
   }
 };
 
+export const ShipDamageRules = {
+  component: "TWODSIX.Ship.DamageStyle.Component",
+  hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
+  hullOnly: "TWODSIX.Ship.DamageStyle.HullOnly",
+  surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal"
+};
+
 /**
  * The valid time units.
  */
@@ -1318,7 +1329,8 @@ export type TWODSIX = {
   effectType: typeof effectType,
   DAMAGECOLORS: typeof DAMAGECOLORS,
   WeightlessItems: typeof WeightlessItems,
-  ShipWeaponTypes: typeof ShipWeaponTypes
+  ShipWeaponTypes: typeof ShipWeaponTypes,
+  ShipDamageRules: typeof ShipDamageRules
 };
 
 export const TWODSIX = {
@@ -1363,5 +1375,6 @@ export const TWODSIX = {
   effectType: effectType,
   DAMAGECOLORS: DAMAGECOLORS,
   WeightlessItems: WeightlessItems,
-  ShipWeaponTypes: ShipWeaponTypes
+  ShipWeaponTypes: ShipWeaponTypes,
+  ShipDamageRules: ShipDamageRules
 };
