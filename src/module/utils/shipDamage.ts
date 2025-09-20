@@ -19,54 +19,121 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
     return;
   }
   const damageList: any[] = [];
+  let radReport:string = game.i18n.localize("TWODSIX.Ship.None");
   const damage = damagePayload.damageValue ?? 0;
   const currentArmor = ship.system.shipStats.armor.value ?? 0;
   const currentHull = ship.system.shipStats.hull.value ?? 0;
   const weaponType = damagePayload.shipWeaponType;
   const netDamage = damage - (weaponType === "mesonGun" ? 0 : currentArmor);
+  const damageRules = game.settings.get('twodsix', 'shipDamageType');
   if (netDamage <= 0) {
     ui.notifications.warn("No regular ship damage to assess", { localize: true });
   } else {
-    const hitArray: any = getCEDamageEffects(netDamage);
-    damageList.push(...getCEDamageLocationObject(hitArray, currentHull, currentArmor, weaponType));
+    switch (damageRules) {
+      case 'component': {
+        const hitArray: any = getCEDamageEffects(netDamage);
+        damageList.push(...getCEDamageLocationObject(hitArray, currentHull, currentArmor, weaponType));
+        break;
+      }
+      case 'hullOnly': {
+        break;
+      }
+      case 'hullWCrit': {
+        break;
+      }
+      case 'surfaceInternal':{
+        break;
+      }
+      default:
+        break;
+    }
   }
 
-  let radReport:string = game.i18n.localize("TWODSIX.Ship.None");
   if (damagePayload.radDamage > 0) {
-    radReport = getCERadDamage(weaponType, currentArmor);
+    switch (damageRules) {
+      case 'component': {
+        radReport = getCERadDamage(weaponType, currentArmor);
+        break;
+      }
+      case 'hullOnly':
+      case 'hullWCrit': {
+        radReport = "All crew suffer [[/r 2D6*20]] rads";
+        break;
+      }
+      case 'surfaceInternal':{
+        radReport = getCDRadDamage(damagePayload.radDamage, ship);
+        break;
+      }
+      default:
+        break;
+    }
   }
   //console.log(damageList, radReport);
   sendReportToMessage(damageList, radReport, ship);
 };
 
-async function sendReportToMessage(damageList:any[], radReport: string, ship:TwodsixActor) {
-  //Initialize flavor strings
-  let flavorText = `<section class="flavor-message"><section class="flavor-line">${game.i18n.localize("TWODSIX.Chat.DamageReport")}</section>`;
-
-  //System damage
-  flavorText += `<section><fieldset><legend>${game.i18n.localize("TWODSIX.Chat.Roll.ComponentDamage")}</legend>`;
+/**
+ * Sends the ship damage report to chat, including system damage and radiation exposure.
+ *
+ * @param {any[]} damageList - Array of damage objects with location and hits.
+ * @param {string} radReport - Radiation damage report (can include inline rolls).
+ * @param {TwodsixActor} ship - The ship actor being damaged.
+ * @returns {Promise<void>}
+ */
+async function sendReportToMessage(damageList: any[], radReport: string, ship: TwodsixActor): Promise<void> {
+  // Build system damage table
+  let systemDamageHtml = "";
   if (damageList.length > 0) {
-    flavorText += `<table class="flavor-table"><tr><th>${game.i18n.localize("TWODSIX.Ship.Systems")}</th><th class="centre">${game.i18n.localize("TWODSIX.Items.Component.hits")}</th></tr>`;
-    for (const row of damageList) {
-      let componentName = game.i18n.localize(`TWODSIX.Items.component.${row.location}`);
-      if (componentName.includes("TWODSIX")) {
-        componentName = row.location;
-      }
-      flavorText += `<tr><td>${componentName}</td><td class="centre">${row.hits}</td></tr>`;
-    }
-    flavorText += `</table>`;
+    systemDamageHtml = generateDamageTable(damageList);
   } else {
-    flavorText += `${game.i18n.localize("TWODSIX.Ship.None")}`;
+    systemDamageHtml = `<span>${game.i18n.localize("TWODSIX.Ship.None")}</span>`;
   }
-  flavorText += `</fieldset></section>`;
 
-  //Rad damage
-  flavorText += `<section><fieldset><legend>${game.i18n.localize("TWODSIX.Actor.RadiationExposure")}</legend>`;
-  const enrichedRadReport = await foundry.applications.ux.TextEditor.implementation.enrichHTML(radReport, {secrets: ship.isOwner});
-  flavorText += `${enrichedRadReport}`;
-  flavorText += `</fieldset></section>`;
+  // Enrich radiation report for inline rolls and secrets
+  let enrichedRadReport = "";
+  if (Array.isArray(radReport)) {
+    enrichedRadReport = generateDamageTable(radReport);
+  } else {
+    enrichedRadReport = await foundry.applications.ux.TextEditor.implementation.enrichHTML(radReport, { secrets: ship.isOwner });
+  }
 
-  await ChatMessage.create({flavor: flavorText, speaker: ChatMessage.getSpeaker({ actor: ship })});
+  // Compose the full flavor message
+  const flavorText = `
+    <section class="flavor-message">
+      <section class="flavor-line">${game.i18n.localize("TWODSIX.Chat.DamageReport")}</section>
+      <section>
+        <fieldset>
+          <legend>${game.i18n.localize("TWODSIX.Chat.Roll.ComponentDamage")}</legend>
+          ${systemDamageHtml}
+        </fieldset>
+      </section>
+      <section>
+        <fieldset>
+          <legend>${game.i18n.localize("TWODSIX.Actor.RadiationExposure")}</legend>
+          ${enrichedRadReport}
+        </fieldset>
+      </section>
+    </section>
+  `;
+
+  // Send to chat
+  await ChatMessage.create({
+    flavor: flavorText,
+    speaker: ChatMessage.getSpeaker({ actor: ship })
+  });
+}
+
+function generateDamageTable(damageList: any[]): string {
+  let systemDamageHtml = `<table class="flavor-table"><tr><th>${game.i18n.localize("TWODSIX.Ship.Systems")}</th><th class="centre">${game.i18n.localize("TWODSIX.Items.Component.hits")}</th></tr>`;
+  for (const row of damageList) {
+    let componentName = game.i18n.localize(`TWODSIX.Items.component.${row.location}`);
+    if (componentName.includes("TWODSIX")) {
+      componentName = row.location;
+    }
+    systemDamageHtml += `<tr><td>${componentName}</td><td class="centre">${row.hits}</td></tr>`;
+  }
+  systemDamageHtml += `</table>`;
+  return systemDamageHtml;
 }
 
 /**
@@ -215,6 +282,43 @@ function getCERadDamage(weaponType: string, currentArmor: number): string {
     }
   }
   return "Unknown";
+}
+
+function getCDRadDamage(rads: number, ship: TwodsixActor):any[] {
+  const returnValue = [];
+
+  // Define hit location lookup arrays
+  const radsCD = ["none", "none", "none", "none", "sensor", "sensor", "electronics", "electronics", "crew", "crew", "critical"];
+  const armorDM = getCDArmorDM(ship.system.shipStats.armor.name);
+  const radDM = Math.max(rads-1, 0) - armorDM;
+  for (let i=0; i < rads; i++) {
+    const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) + radDM - 2, 0, 10);
+    let newLocation = radsCD[locationRoll];
+    if (newLocation === "armor" && currentArmor <= 0) {
+      newLocation = "hull";
+    }
+    returnValue.push({ location: newLocation, hits: 1 });
+  }
+  return returnValue;
+}
+
+function getCDArmorDM(armor: string): number {
+  if (!armor) return 0;
+  // Use localized armor names for matching
+  const armorTypes = [
+    { key: "TWODSIX.ArmorCD.Light", dm: -1 },
+    { key: "TWODSIX.ArmorCD.Heavy", dm: -2 },
+    { key: "TWODSIX.ArmorCD.Massive", dm: -4 }
+  ];
+
+  const armorLower = armor.toLowerCase();
+  for (const { key, dm } of armorTypes) {
+    const localized = game.i18n.localize(key).toLowerCase();
+    if (armorLower.includes(localized)) {
+      return dm;
+    }
+  }
+  return 0;
 }
 
 /**
