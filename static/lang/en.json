@@ -495,7 +495,8 @@
           "ShipAction": "Ship Action Card",
           "TraitSpell": "Trait/Spell Card"
         }
-      }
+      },
+      "DamageReport": "Damage Report"
     },
     "Table": {
       "TableResults": "Table Results"
