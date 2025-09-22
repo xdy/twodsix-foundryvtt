@@ -860,6 +860,11 @@
         "HullOnly": "Hull damage only",
         "SurfaceOrInternal": "Surface or Internal"
       },
+      "DamageMessages": {
+        "NoRad": "Lucky escape - no radiation",
+        "SingleCrew": "One random crew member suffers {dose} rads",
+        "AllCrew":  "All crew suffer {dose} rads"
+      },
       "Deckplan": "Deck Plan",
       "Defense": "Defense",
       "DeleteAction": "Delete Action",

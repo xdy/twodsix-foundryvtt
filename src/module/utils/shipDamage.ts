@@ -27,6 +27,8 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
   const effect = damagePayload.effect;
   const netDamage = damage - (weaponType === "mesonGun" ? 0 : currentArmor);
   const damageRules = game.settings.get('twodsix', 'shipDamageType');
+
+  // Damage calculation
   if (netDamage <= 0) {
     ui.notifications.warn("No regular ship damage to assess", { localize: true });
   } else {
@@ -55,6 +57,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
     }
   }
 
+  // Radiation calculation
   if (damagePayload.radDamage > 0) {
     switch (damageRules) {
       case 'component': {
@@ -248,27 +251,27 @@ const crewDamageTableCE = [
   {
     min: -Infinity,
     max: 4,
-    radiation: "Lucky escape - no radiation"
+    radiation: game.i18n.localize("TWODSIX.Ship.DamageMessages.NoRad")
   },
   {
     min: 5,
     max: 8,
-    radiation: `One random crew member suffers [[/r 2D6*10]] rads`
+    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.SingleCrew", {dose: "[[/r 2D6*10]]"})
   },
   {
     min: 9,
     max: 10,
-    radiation: "One random crew member suffers [[/r 4D6*10]] rads"
+    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.SingleCrew", {dose: "[[/r 4D6*10]]"})
   },
   {
     min: 11,
     max: 11,
-    radiation: "All crew suffer [[/r 2D6*10]] rads"
+    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.AllCrew", {dose: "[[/r 2D6*10]]"})
   },
   {
     min: 12,
     max: 12,
-    radiation: "All crew suffer [[/r 4D6*10]] rads"
+    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.AllCrew", {dose: "[[/r 4D6*10]]"})
   }
 ];
 
@@ -340,17 +343,17 @@ function getCDArmorDM(armor: string): number {
  * @returns {Array<{location: string, hits: number}>} Array of critical hit objects.
  */
 function get10PctCriticals(currentHull: number, futureHull: number, maxHull: number, effect: number): Array<{location: string, hits: number}> {
-  // Calculate hull percentage in tenths, clamp to 0-9
-  const pctCurrent: number = Math.max(Math.floor(currentHull / maxHull * 10), 0);
-  const pctFuture: number = Math.max(Math.floor(futureHull / maxHull * 10), 0);
-  const numCrits = Math.max(0, pctCurrent - pctFuture);
-
   const results: Array<{location: string, hits: number}> = [];
 
-  // Add a high critical if effect is high (effect >= 6)
+  // Add a severe critical if effect is high (effect >= 6)
   if (effect >= 6) {
     results.push({ location: getCritLocation(), hits: effect });
   }
+
+  // Calculate hull percentage in tenths, clamp to 0-9
+  const pctCurrent: number = Math.clamp(Math.floor(currentHull / maxHull * 10), 0, 9);
+  const pctFuture: number = Math.clamp(Math.floor(futureHull / maxHull * 10), 0, 9);
+  const numCrits = Math.max(0, pctCurrent - pctFuture);
 
   // Add one critical per 10% hull lost
   for (let i = 0; i < numCrits; i++) {
