@@ -24,6 +24,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
   const currentArmor = ship.system.shipStats.armor.value ?? 0;
   const currentHull = ship.system.shipStats.hull.value ?? 0;
   const weaponType = damagePayload.shipWeaponType;
+  const effect = damagePayload.effect;
   const netDamage = damage - (weaponType === "mesonGun" ? 0 : currentArmor);
   const damageRules = game.settings.get('twodsix', 'shipDamageType');
   if (netDamage <= 0) {
@@ -36,9 +37,14 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         break;
       }
       case 'hullOnly': {
+        damageList.push({location: 'hull', hits: Math.clamp( damage , 0, currentHull)});
         break;
       }
       case 'hullWCrit': {
+        const maxHull:number = ship.system.shipStats.hull.max ?? 0;
+        const appliedHits = Math.clamp(netDamage, 0, currentHull);
+        damageList.push({location: 'hull', hits: appliedHits});
+        damageList.push(...get10PctCriticals(currentHull, currentHull - appliedHits, maxHull, effect));
         break;
       }
       case 'surfaceInternal':{
@@ -303,7 +309,9 @@ function getCDRadDamage(rads: number, ship: TwodsixActor):any[] {
 }
 
 function getCDArmorDM(armor: string): number {
-  if (!armor) return 0;
+  if (!armor) {
+    return 0;
+  }
   // Use localized armor names for matching
   const armorTypes = [
     { key: "TWODSIX.ArmorCD.Light", dm: -1 },
@@ -322,13 +330,61 @@ function getCDArmorDM(armor: string): number {
 }
 
 /**
+ * Calculates critical hits based on hull percentage drop and effect for ship combat.
+ * This implementation is for MgT2e rules.
+ *
+ * @param {number} currentHull - The ship's current hull value before damage.
+ * @param {number} futureHull - The ship's hull value after damage is applied.
+ * @param {number} maxHull - The ship's maximum hull value.
+ * @param {number} effect - The effect value from the attack roll.
+ * @returns {Array<{location: string, hits: number}>} Array of critical hit objects.
+ */
+function get10PctCriticals(currentHull: number, futureHull: number, maxHull: number, effect: number): Array<{location: string, hits: number}> {
+  // Calculate hull percentage in tenths, clamp to 0-9
+  const pctCurrent: number = Math.max(Math.floor(currentHull / maxHull * 10), 0);
+  const pctFuture: number = Math.max(Math.floor(futureHull / maxHull * 10), 0);
+  const numCrits = Math.max(0, pctCurrent - pctFuture);
+
+  const results: Array<{location: string, hits: number}> = [];
+
+  // Add a high critical if effect is high (effect >= 6)
+  if (effect >= 6) {
+    results.push({ location: getCritLocation(), hits: effect });
+  }
+
+  // Add one critical per 10% hull lost
+  for (let i = 0; i < numCrits; i++) {
+    results.push({ location: getCritLocation(), hits: 1 });
+  }
+
+  return results;
+}
+
+/**
+ * Randomly selects a critical hit location for ship combat.
+ * This implementation is for MgT2e rules.
+ *
+ * @returns {string} The component subtype name of the critical hit location.
+ */
+function getCritLocation(): string {
+  // Define critical hit locations by component type
+  const critTable = [
+    "sensor", "power", "fuel", "armament", "armor",
+    "hull", "m-drive", "cargo", "j-drive", "crew", "bridge"
+  ];
+  // Roll 2d6 and clamp to valid index
+  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, critTable.length - 1);
+  return critTable[locationRoll];
+}
+
+/**
  * Generates a random integer between min and max (inclusive).
  *
  * @param {number} min - The minimum integer value.
  * @param {number} max - The maximum integer value.
  * @returns {number} A random integer between min and max.
  */
-function getRandomInteger(min:number, max:number): number {
+function getRandomInteger(min: number, max: number): number {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
