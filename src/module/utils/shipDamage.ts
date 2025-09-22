@@ -66,7 +66,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
       }
       case 'hullOnly':
       case 'hullWCrit': {
-        radReport = "All crew suffer [[/r 2D6*20]] rads";
+        radReport = game.i18n.format("TWODSIX.Ship.DamageMessages.AllCrew", {dose: "[[/r 2D6*20]]"});
         break;
       }
       case 'surfaceInternal':{
@@ -251,27 +251,32 @@ const crewDamageTableCE = [
   {
     min: -Infinity,
     max: 4,
-    radiation: game.i18n.localize("TWODSIX.Ship.DamageMessages.NoRad")
+    radiation: "TWODSIX.Ship.DamageMessages.NoRad",
+    dose: "0"
   },
   {
     min: 5,
     max: 8,
-    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.SingleCrew", {dose: "[[/r 2D6*10]]"})
+    radiation: "TWODSIX.Ship.DamageMessages.SingleCrew",
+    dose: "[[/r 2D6*10]]"
   },
   {
     min: 9,
     max: 10,
-    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.SingleCrew", {dose: "[[/r 4D6*10]]"})
+    radiation: "TWODSIX.Ship.DamageMessages.SingleCrew",
+    dose: "[[/r 4D6*10]]"
   },
   {
     min: 11,
     max: 11,
-    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.AllCrew", {dose: "[[/r 2D6*10]]"})
+    radiation: "TWODSIX.Ship.DamageMessages.AllCrew",
+    dose: "[[/r 2D6*10]]"
   },
   {
     min: 12,
-    max: 12,
-    radiation: game.i18n.format("TWODSIX.Ship.DamageMessages.AllCrew", {dose: "[[/r 4D6*10]]"})
+    max: Infinity,
+    radiation: "TWODSIX.Ship.DamageMessages.AllCrew",
+    dose: "[[/r 4D6*10]]"
   }
 ];
 
@@ -287,7 +292,7 @@ function getCERadDamage(weaponType: string, currentArmor: number): string {
   const damageRoll = getRandomInteger(1, 6) + getRandomInteger(1, 6) + rollDM;
   for (const row of crewDamageTableCE) {
     if (damageRoll >= row.min && damageRoll <= row.max) {
-      return row.radiation;
+      return game.i18n.format(row.radiation, {dose: row.dose});
     }
   }
   return "Unknown";
