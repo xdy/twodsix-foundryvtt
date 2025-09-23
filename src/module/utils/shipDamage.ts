@@ -15,7 +15,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
     return;
   }
   if (!damagePayload.isArmament) {
-    ui.notifications.warn("Not a ship weapon", { localize: true });
+    ui.notifications.warn("TWODSIX.Ship.NotShipWeapon", { localize: true });
     return;
   }
   const damageList: any[] = [];
@@ -30,7 +30,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
 
   // Damage calculation
   if (netDamage <= 0) {
-    ui.notifications.warn("No regular ship damage to assess", { localize: true });
+    ui.notifications.warn("TWODSIX.Ship.NoDamage", { localize: true });
   } else {
     switch (damageRules) {
       case 'component': {
