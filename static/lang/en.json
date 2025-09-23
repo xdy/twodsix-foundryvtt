@@ -822,6 +822,7 @@
       "AddShipPosition": "Add Ship Position",
       "AddActorToPosition": "Add actor to position.",
       "ArmorCD": {
+        "Unarmored": "Unarmored",
         "Light": "Light",
         "Heavy": "Heavy",
         "Massive": "Massive"

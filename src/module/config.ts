@@ -997,6 +997,13 @@ export const ShipWeaponTypes = {
   }
 };
 
+export const ShipArmorTypesCD = {
+  unarmored: "TWODSIX.Ship.ArmorCD.Unarmored",
+  light: "TWODSIX.Ship.ArmorCD.Light",
+  heavy: "TWODSIX.Ship.ArmorCD.Heavy",
+  massive: "TWODSIX.Ship.ArmorCD.Massive"
+};
+
 export const ShipDamageRules = {
   component: "TWODSIX.Ship.DamageStyle.Component",
   hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
@@ -1330,7 +1337,8 @@ export type TWODSIX = {
   DAMAGECOLORS: typeof DAMAGECOLORS,
   WeightlessItems: typeof WeightlessItems,
   ShipWeaponTypes: typeof ShipWeaponTypes,
-  ShipDamageRules: typeof ShipDamageRules
+  ShipDamageRules: typeof ShipDamageRules,
+  ShipArmorTypesCD: typeof ShipArmorTypesCD
 };
 
 export const TWODSIX = {
@@ -1376,5 +1384,6 @@ export const TWODSIX = {
   DAMAGECOLORS: DAMAGECOLORS,
   WeightlessItems: WeightlessItems,
   ShipWeaponTypes: ShipWeaponTypes,
-  ShipDamageRules: ShipDamageRules
+  ShipDamageRules: ShipDamageRules,
+  ShipArmorTypesCD: ShipArmorTypesCD
 };

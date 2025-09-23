@@ -1,6 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
+import { TWODSIX } from "../config";
+
 /**
  * Generates a ship damage report based on the damage payload and ship stats.
  * Calculates net damage, applies damage effects, and determines radiation report.
@@ -91,12 +93,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
  */
 async function sendReportToMessage(damageList: any[], radReport: string | any[], ship: TwodsixActor): Promise<void> {
   // Build system damage table
-  let systemDamageHtml = "";
-  if (damageList.length > 0) {
-    systemDamageHtml = generateDamageTable(damageList);
-  } else {
-    systemDamageHtml = `<span>${game.i18n.localize("TWODSIX.Ship.None")}</span>`;
-  }
+  const systemDamageHtml = generateDamageTable(damageList);
 
   // Enrich radiation report for inline rolls and secrets
   let enrichedRadReport = "";
@@ -133,6 +130,10 @@ async function sendReportToMessage(damageList: any[], radReport: string | any[],
 }
 
 function generateDamageTable(damageList: any[]): string {
+  if (damageList.length === 0) {
+    return `<span>${game.i18n.localize("TWODSIX.Ship.None")}</span>`;
+  }
+
   let systemDamageHtml = `<table class="flavor-table"><tr><th>${game.i18n.localize("TWODSIX.Ship.Systems")}</th><th class="centre">${game.i18n.localize("TWODSIX.Items.Component.hits")}</th></tr>`;
   for (const row of damageList) {
     let componentName = game.i18n.localize(`TWODSIX.Items.component.${row.location}`);
@@ -301,40 +302,43 @@ function getCERadDamage(weaponType: string, currentArmor: number): string {
 function getCDRadDamage(rads: number, ship: TwodsixActor):any[] {
   const returnValue = [];
 
-  // Define hit location lookup arrays
+  // Define rad hit location lookup array
   const radsCD = ["none", "none", "none", "none", "sensor", "sensor", "electronics", "electronics", "crew", "crew", "critical"];
-  const armorDM = getCDArmorDM(ship.system.shipStats.armor.name);
-  const radDM = Math.max(rads-1, 0) - armorDM;
+  const armorType = getCDArmorType(ship.system.shipStats.armor.name);
+  const armorDM = getCDArmorDM(armorType);
+  const radDM = Math.max(rads-1, 0) + armorDM;
   for (let i=0; i < rads; i++) {
     const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) + radDM - 2, 0, 10);
     let newLocation = radsCD[locationRoll];
-    if (newLocation === "armor" && currentArmor <= 0) {
-      newLocation = "hull";
+    if (newLocation !== "none") {
+      if (newLocation === "armor" && currentArmor <= 0) {
+        newLocation = "hull";
+      }
+      returnValue.push({ location: newLocation, hits: 1 });
     }
-    returnValue.push({ location: newLocation, hits: 1 });
   }
   return returnValue;
 }
 
-function getCDArmorDM(armor: string): number {
-  if (!armor) {
+function getCDArmorDM(armorKey: string): number {
+  if (!armorKey) {
     return 0;
   }
-  // Use localized armor names for matching
-  const armorTypes = [
-    { key: "TWODSIX.ArmorCD.Light", dm: -1 },
-    { key: "TWODSIX.ArmorCD.Heavy", dm: -2 },
-    { key: "TWODSIX.ArmorCD.Massive", dm: -4 }
-  ];
 
-  const armorLower = armor.toLowerCase();
-  for (const { key, dm } of armorTypes) {
-    const localized = game.i18n.localize(key).toLowerCase();
+  const armorTypesDM = {unarmored: 0, light: -1, heavy: -2, massive: -4};
+  return Object.hasOwn(armorTypesDM, armorKey) ? armorTypesDM[armorKey] : 0;
+}
+
+function getCDArmorType(armorDescription: string): string {
+  const armorLower = armorDescription.toLowerCase();
+  // Use localized armor names for matching
+  for (const key of Object.keys(TWODSIX.ShipArmorTypesCD)) {
+    const localized = game.i18n.localize(TWODSIX.ShipArmorTypesCD[key]).toLowerCase();
     if (armorLower.includes(localized)) {
-      return dm;
+      return key;
     }
   }
-  return 0;
+  return "";
 }
 
 /**
