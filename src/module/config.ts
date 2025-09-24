@@ -975,6 +975,8 @@ export const ShipWeaponTypes = {
     intermediate: "TWODSIX.Items.Component.Intermediate",
     heavy: "TWODSIX.Items.Component.Heavy",
     main: "TWODSIX.Items.Component.Main",
+    //mesonGun: "TWODSIX.Items.Component.MesonGun",
+    //graviticDisruptor: "TWODSIX.Items.Component.GraviticDisruptor",
     missiles: "TWODSIX.Items.Component.Missiles",
     nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
     torpedoes: "TWODSIX.Items.Component.Torpedoes",

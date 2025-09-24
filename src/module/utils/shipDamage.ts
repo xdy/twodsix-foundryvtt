@@ -41,7 +41,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         break;
       }
       case 'hullOnly': {
-        damageList.push({location: 'hull', hits: Math.clamp( damage , 0, currentHull)});
+        damageList.push({location: 'hull', hits: Math.clamp(netDamage, 0, currentHull)});
         break;
       }
       case 'hullWCrit': {
@@ -52,6 +52,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         break;
       }
       case 'surfaceInternal':{
+        damageList.push(...getCDDamageList(damage, weaponType, ship, effect));
         break;
       }
       default:
@@ -136,6 +137,9 @@ function generateDamageTable(damageList: any[]): string {
 
   let systemDamageHtml = `<table class="flavor-table"><tr><th>${game.i18n.localize("TWODSIX.Ship.Systems")}</th><th class="centre">${game.i18n.localize("TWODSIX.Items.Component.hits")}</th></tr>`;
   for (const row of damageList) {
+    if (row.location === "destroyed") {
+      return `<span>${game.i18n.localize("TWODSIX.Ship.DamageMessages.ShipDestroyed")}</span>`;
+    }
     let componentName = game.i18n.localize(`TWODSIX.Items.component.${row.location}`);
     if (componentName.includes("TWODSIX")) {
       componentName = row.location;
@@ -299,7 +303,146 @@ function getCERadDamage(weaponType: string, currentArmor: number): string {
   return "Unknown";
 }
 
-function getCDRadDamage(rads: number, ship: TwodsixActor):any[] {
+/**
+ * Determines the hit locations and hit values for ship damage (Cepheus Deluxe rules).
+ *
+ * @param {number} damage - The amount of damage dealt.
+ * @param {string} weaponType - The type of weapon used.
+ * @param {TwodsixActor} ship - The ship actor being damaged.
+ * @param {number} effect - The effect value from the attack roll.
+ * @returns {Array<{ location: string; hits: number }>} Array of hit objects.
+ */
+function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, effect:number):Array<{ location: string; hits: number }> {
+  const returnValue: Array<{ location: string; hits: number }> = [];
+  if (["sandcaster", "special", "other"].includes(weaponType)) {
+    console.log("Calculation of damage not possible for this weapon");
+    return returnValue;
+  }
+
+  let adjWeaponType = weaponType;
+
+  let armorType = getCDArmorType(ship.system.shipStats.armor.name);
+  //shift armor type one class weaker for critical
+  const critArmorList = {unarmored: "unarmored", light: "unarmored", heavy: "light", massive: "heavy"};
+  if (effect >= 6 && Object.hasOwn(criticalArmorList, armorType)){
+    armorType = critArmorList[armorType];
+  }
+  //Does Not yet shift armor type one class weaker for meson weapon
+
+
+  //Penetration Matrix - note missile and torpedo rows added per rules notes missile = light and others are intermediate
+  const penetrationMatrix = {
+    light: {unarmored: "internal", light: "surface", heavy: "none", massive: "none"},
+    intermediate: {unarmored: "critical", light: "internal", heavy: "surface", massive: "none"},
+    heavy: {unarmored: "destroyed", light: "critical", heavy: "internal", massive: "surface"},
+    main: {unarmored: "destroyed", light: "destroyed", heavy: "critical", massive: "internal"}
+  };
+
+  //adjust for missiles
+  switch (weaponType) {
+    case "missile":
+      adjWeaponType = "light";
+      break;
+    case "torpedoes":
+    case "nuclearMissile":
+      adjWeaponType = "intermediate";
+      break;
+    default:
+      break;
+  }
+
+  //NOTE: do not understand how to "avoid armor" for meson gun or gravitic disruptor - RAW it would be instant kill
+
+  // Defensive: check for valid weaponType and armorType
+  if (!penetrationMatrix[adjWeaponType] || !penetrationMatrix[adjWeaponType][armorType]) {
+    console.warn(`Unknown weaponType (${weaponType}) or armorType (${armorType}) in getCDDamageList`);
+    return [];
+  }
+
+  const hitType = penetrationMatrix[adjWeaponType][armorType];
+
+  //handle bounding cases
+  if (hitType === "destroyed") {
+    return [{location: "destroyed", hits: Infinity}];
+  } else if (hitType === "none") {
+    return [];
+  }
+
+  // Add one hit per damage
+  for (let i = 0; i < damage; i++) {
+    let newDamage = {};
+    switch (hitType) {
+      case "internal":
+        newDamage = getInternalHitCD();
+        break;
+      case "surface":
+        newDamage = getSurfaceHitCD();
+        break;
+      case "critical":
+        newDamage = getCriticalHitCD();
+        break;
+      default:
+        newDamage = {location: "unknown", hits: 0};
+        break;
+    }
+    //Again, need to check for destroyed ship
+    if (newDamage.location === "destroyed") {
+      return [{location: "destroyed", hits: Infinity}];
+    } else if (newDamage.location !== "none") {
+      returnValue.push({location: newDamage.location, hits: newDamage.hits});
+    }
+    // If "none", skip adding
+  }
+  return returnValue;
+}
+
+/**
+ * Rolls for an internal hit location in Cepheus Deluxe ship combat.
+ * If a critical is rolled, delegates to getCriticalHitCD().
+ * @returns {{location: string, hits: number}} The hit location and number of hits.
+ */
+function getInternalHitCD(): {location: string, hits: number} {
+  const hitTable =  ["breach", "power", "j-drive", "armament", "m-drive", "breach", "cargo", "crew", "sensor", "bridge", "critical"];
+  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
+  let hitLocation: string = hitTable[locationRoll];
+  let hits = 1;
+  if (hitLocation === "critical") {
+    const crit  = getCriticalHitCD();
+    hitLocation = crit.location;
+    hits = crit.hits;
+  }
+  return {location: hitLocation, hits};
+}
+
+/**
+ * Rolls for a surface hit location in Cepheus Deluxe ship combat.
+ * If "internal" is rolled, delegates to getInternalHitCD().
+ * @returns {{location: string, hits: number}} The hit location and number of hits.
+ */
+function getSurfaceHitCD(): {location: string, hits: number} {
+  const hitTable =  ["none", "none", "none", "none", "none", "breach", "breach", "armament", "armament", "electronics", "internal"];
+  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
+  let hitLocation: string = hitTable[locationRoll];
+  let hits = 1;
+  if (hitLocation === "internal") {
+    const internal  = getInternalHitCD();
+    hitLocation = internal.location;
+    hits = internal.hits;
+  }
+  return {location: hitLocation, hits: hits};
+}
+
+/**
+ * Rolls for a critical hit location in Cepheus Deluxe ship combat.
+ * @returns {{location: string, hits: number}} The critical hit location and number of hits.
+ */
+function getCriticalHitCD():{location: string, hits: number} {
+  const hitTable = ["power", "m-drive", "j-drive", "crew", "destroyed"];
+  const locationRoll = getRandomInteger(1, 6) - 1;
+  return {location: hitTable[locationRoll], hits: game.settings.get('twodsix', 'maxComponentHits')};
+}
+
+function getCDRadDamage(rads: number, ship: TwodsixActor):{location: string, hits: number} {
   const returnValue = [];
 
   // Define rad hit location lookup array
@@ -324,7 +467,6 @@ function getCDArmorDM(armorKey: string): number {
   if (!armorKey) {
     return 0;
   }
-
   const armorTypesDM = {unarmored: 0, light: -1, heavy: -2, massive: -4};
   return Object.hasOwn(armorTypesDM, armorKey) ? armorTypesDM[armorKey] : 0;
 }

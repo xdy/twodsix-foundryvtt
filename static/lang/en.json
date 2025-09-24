@@ -629,14 +629,16 @@
         "Light": "Light",
         "Intermediate": "Intermediate",
         "Heavy": "Heavy",
-        "Main": "Main",
+        "Main": "Main Gun",
         "Special": "Special",
         "PulseLaser": "Pulse Laser",
         "BeamLaser": "Beam Laser",
         "ParticleBeam": "Particle Beam",
         "FusionGun": "Fusion Gun",
-        "MesonGun": "MesonGun",
+        "MesonGun": "Meson Gun",
+        "GraviticDisruptor": "Gravitic Disruptor",
         "Missiles": "Missiles",
+        "NuclearMissiles": "Nuclear Missiles",
         "Torpedoes": "Torpedoes",
         "Sandcaster": "Sandcaster",
         "Other": "Other"
@@ -864,7 +866,8 @@
       "DamageMessages": {
         "NoRad": "Lucky escape - no radiation",
         "SingleCrew": "One random crew member suffers {dose} rads",
-        "AllCrew":  "All crew suffer {dose} rads"
+        "AllCrew":  "All crew suffer {dose} rads",
+        "ShipDestroyed": "SHIP IS DESTROYED"
       },
       "Deckplan": "Deck Plan",
       "Defense": "Defense",
