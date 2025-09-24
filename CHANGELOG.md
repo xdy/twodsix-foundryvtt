@@ -1,3 +1,10 @@
+## [6.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.3...v6.6.4) (2025-09-24)
+
+
+### Bug Fixes
+
+* Consumable location state can't be changed on actor sheet ([#1859](https://github.com/xdy/twodsix-foundryvtt/issues/1859)) ([bba7028](https://github.com/xdy/twodsix-foundryvtt/commit/bba7028ac970a5d641bca43a1b9349ef62d35d07))
+
 ## [6.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.2...v6.6.3) (2025-09-16)
 
 
