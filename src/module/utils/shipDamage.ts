@@ -27,8 +27,9 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
   const currentHull = ship.system.shipStats.hull.value ?? 0;
   const weaponType = damagePayload.shipWeaponType;
   const effect = damagePayload.effect;
-  const netDamage = damage - (weaponType === "mesonGun" ? 0 : currentArmor);
+
   const damageRules = game.settings.get('twodsix', 'shipDamageType');
+  const netDamage = damage - ((weaponType === "mesonGun"|| damageRules === "classic") ? 0 : currentArmor);
 
   // Damage calculation
   if (netDamage <= 0) {
@@ -53,6 +54,10 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
       }
       case 'surfaceInternal':{
         damageList.push(...getCDDamageList(damage, weaponType, ship, effect));
+        break;
+      }
+      case 'classic': {
+        damageList.push(...getCTDamageList(damage));
         break;
       }
       default:
@@ -437,7 +442,7 @@ function getSurfaceHitCD(): {location: string, hits: number} {
  * @returns {{location: string, hits: number}} The critical hit location and number of hits.
  */
 function getCriticalHitCD():{location: string, hits: number} {
-  const hitTable = ["power", "m-drive", "j-drive", "crew", "destroyed"];
+  const hitTable = ["power", "m-drive", "j-drive", "crew", "electronics", "destroyed"];
   const locationRoll = getRandomInteger(1, 6) - 1;
   return {location: hitTable[locationRoll], hits: game.settings.get('twodsix', 'maxComponentHits')};
 }
@@ -529,6 +534,49 @@ function getCritLocation(): string {
   // Roll 2d6 and clamp to valid index
   const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, critTable.length - 1);
   return critTable[locationRoll];
+}
+
+function getCTDamageList(damage:number) {
+  const returnValue = [];
+  for (let i = 0; i < damage; i++) {
+    const newDamage = getHitCT();
+    //Again, need to check for destroyed ship
+    if (newDamage.location === "destroyed") {
+      return [{location: "destroyed", hits: Infinity}];
+    } else if (newDamage.location !== "none") {
+      returnValue.push({location: newDamage.location, hits: newDamage.hits});
+    }
+    // If "none", skip adding
+  }
+  return returnValue;
+}
+
+/**
+ * Rolls for a surface hit location in Classic Traveller ship combat.
+ * If "critical" is rolled, delegates to getCriticalHitCT().
+ * @returns {{location: string, hits: number}} The hit location and number of hits.
+ */
+function getHitCT(): {location: string, hits: number} {
+  const hitTable =  ["power", "m-drive", "j-drive", "fuel", "hull", "hull", "cargo", "computer", "armament", "armament", "critical"];
+  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
+  let hitLocation: string = hitTable[locationRoll];
+  let hits = 1;
+  if (hitLocation === "critical") {
+    const critical  = getCriticalHitCT();
+    hitLocation = critical.location;
+    hits = critical.hits;
+  }
+  return {location: hitLocation, hits: hits};
+}
+
+/**
+ * Rolls for a critical hit location in Classic Traveller ship combat.
+ * @returns {{location: string, hits: number}} The critical hit location and number of hits.
+ */
+function getCriticalHitCT():{location: string, hits: number} {
+  const hitTable = ["power", "m-drive", "j-drive", "crew", "computer", "destroyed"];
+  const locationRoll = getRandomInteger(1, 6) - 1;
+  return {location: hitTable[locationRoll], hits: game.settings.get('twodsix', 'maxComponentHits')};
 }
 
 /**

@@ -99,7 +99,8 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      shipWeaponType: "CT"
+      shipWeaponType: "CT",
+      shipDamageType: "classic"
     }
   },
   CE: {
@@ -1010,7 +1011,8 @@ export const ShipDamageRules = {
   component: "TWODSIX.Ship.DamageStyle.Component",
   hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
   hullOnly: "TWODSIX.Ship.DamageStyle.HullOnly",
-  surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal"
+  surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal",
+  classic: "TWODSIX.Ship.DamageStyle.Classic"
 };
 
 /**

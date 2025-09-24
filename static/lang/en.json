@@ -861,7 +861,8 @@
         "Component": "Components damaged",
         "HullWithCrit": "Hull damage with criticals",
         "HullOnly": "Hull damage only",
-        "SurfaceOrInternal": "Surface or Internal"
+        "SurfaceOrInternal": "Surface or Internal",
+        "Classic": "Classic Traveller"
       },
       "DamageMessages": {
         "NoRad": "Lucky escape - no radiation",
