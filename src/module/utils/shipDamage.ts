@@ -62,7 +62,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         break;
       }
       case 'alphaC': {
-        damageList.push(...getACDamageList(damage, ship));
+        damageList.push(...getACDamageList(damage, weaponType, ship));
         break;
       }
       default:
@@ -82,8 +82,12 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         radReport = game.i18n.format("TWODSIX.Ship.DamageMessages.AllCrew", {dose: "[[/r 2D6*20]]"});
         break;
       }
-      case 'surfaceInternal':{
+      case 'surfaceInternal': {
         radReport = getCDRadDamage(damagePayload.radDamage, ship);
+        break;
+      }
+      case "alphaC": {
+        radReport = getACRadDamage(damagePayload.radDamage, ship);
         break;
       }
       default:
@@ -530,8 +534,9 @@ function getCriticalHitCT():DamageResult {
   return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
 }
 
-function getACDamageList(damage:number, ship:TwodsixActor): DamageResult[] {
-  if (damage > (ship.system.shipStats.armor.value ?? 0)) {
+function getACDamageList(damage:number, weaponType: string, ship:TwodsixActor): DamageResult[] {
+  //Alpha Cephei uses armor as a gate and not damage reduction
+  if (damage > (ship.system.shipStats.armor.value ?? 0) || weaponType === "mesonGun") {
     return generateDamageList(damage, getHitAC);
   } else {
     return [];
@@ -569,6 +574,10 @@ function getRadHitAC():DamageResult {
   } else {
     return result;
   }
+}
+
+function getACRadDamage(radDamage: number, ship:TwodsixActor): DamageResult[] {
+
 }
 
 /**

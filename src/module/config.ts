@@ -669,7 +669,9 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      shipWeaponType: "AC",
+      shipDamageType: "alphaC"
     }
   },
   CU: {
@@ -994,6 +996,22 @@ export const ShipWeaponTypes = {
     missiles: "TWODSIX.Items.Component.Missiles",
     nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
     torpedoes: "TWODSIX.Items.Component.Torpedoes",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    special: "TWODSIX.Items.Component.Special",
+    other: "TWODSIX.Items.Component.Other"
+  },
+  AC: {
+    pulseLaser: "TWODSIX.Items.Component.PulseLaser",
+    beamLaser: "TWODSIX.Items.Component.BeamLaser",
+    particleBeam: "TWODSIX.Items.Component.ParticleBeam",
+    particleCluster: "TWODSIX.Items.Component.ParticleCluster",
+    fusionGun: "TWODSIX.Items.Component.FusionGun",
+    fusionBeam: "TWODSIX.Items.Component.FusionBeam",
+    garviticLance: "TWODSIX.Items.Component.GraviticLance",
+    mesonGun: "TWODSIX.Items.Component.MesonGun",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    plasmaBeam: "TWODSIX.Items.Component.PlasmaBeam",
+    nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
     sandcaster: "TWODSIX.Items.Component.Sandcaster",
     special: "TWODSIX.Items.Component.Special",
     other: "TWODSIX.Items.Component.Other"
