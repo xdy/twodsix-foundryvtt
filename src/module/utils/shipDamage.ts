@@ -2,6 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { TWODSIX } from "../config";
+type DamageResult = { location: string; hits: number };
 
 /**
  * Generates a ship damage report based on the damage payload and ship stats.
@@ -20,8 +21,8 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
     ui.notifications.warn("TWODSIX.Ship.NotShipWeapon", { localize: true });
     return;
   }
-  const damageList: any[] = [];
-  let radReport:string = game.i18n.localize("TWODSIX.Ship.None");
+  const damageList: DamageResult[] = [];
+  let radReport:string|DamageResult[] = game.i18n.localize("TWODSIX.Ship.None");
   const damage = damagePayload.damageValue ?? 0;
   const currentArmor = ship.system.shipStats.armor.value ?? 0;
   const currentHull = ship.system.shipStats.hull.value ?? 0;
@@ -37,7 +38,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
   } else {
     switch (damageRules) {
       case 'component': {
-        const hitArray: any = getCEDamageEffects(netDamage);
+        const hitArray: number[] = getCEDamageEffects(netDamage);
         damageList.push(...getCEDamageLocationObject(hitArray, currentHull, currentArmor, weaponType));
         break;
       }
@@ -92,12 +93,12 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
 /**
  * Sends the ship damage report to chat, including system damage and radiation exposure.
  *
- * @param {any[]} damageList - Array of damage objects with location and hits.
- * @param {string | any[]} radReport - Radiation damage report (can include inline rolls).
+ * @param {DamageResult[]} damageList - Array of damage objects with location and hits.
+ * @param {string | DamageResult[]} radReport - Radiation damage report (can include inline rolls).
  * @param {TwodsixActor} ship - The ship actor being damaged.
  * @returns {Promise<void>}
  */
-async function sendReportToMessage(damageList: any[], radReport: string | any[], ship: TwodsixActor): Promise<void> {
+async function sendReportToMessage(damageList: DamageResult[], radReport: string | DamageResult[], ship: TwodsixActor): Promise<void> {
   // Build system damage table
   const systemDamageHtml = generateDamageTable(damageList);
 
@@ -135,7 +136,7 @@ async function sendReportToMessage(damageList: any[], radReport: string | any[],
   });
 }
 
-function generateDamageTable(damageList: any[]): string {
+function generateDamageTable(damageList: DamageResult[]): string {
   if (damageList.length === 0) {
     return `<span>${game.i18n.localize("TWODSIX.Ship.None")}</span>`;
   }
@@ -232,9 +233,9 @@ function getCEDamageEffects(damage: number): number[] {
  * @param {number} currentHull - Current hull value of the ship.
  * @param {number} currentArmor - Current armor value of the ship.
  * @param {string} weaponType - Type of weapon used.
- * @returns {any[]} Array of objects with location and hits.
+ * @returns {DamageResult[]} Array of objects with location and hits.
  */
-function getCEDamageLocationObject(hitArray: number[], currentHull: number, currentArmor: number, weaponType: string): any[] {
+function getCEDamageLocationObject(hitArray: number[], currentHull: number, currentArmor: number, weaponType: string): DamageResult[] {
   const returnValue = [];
 
   // Define hit location lookup arrays
@@ -242,13 +243,12 @@ function getCEDamageLocationObject(hitArray: number[], currentHull: number, curr
   const internalHitCE = ["structure", "power", "j-drive", "bay", "structure", "crew", "structure", "hold", "j-drive", "power", "structure"];
 
   for (const value of hitArray) {
-    const locationRoll = getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2;
     const internalHit = (currentHull <= 0) || (weaponType === "mesonGun");
-    let newLocation = internalHit ? internalHitCE[locationRoll] : externalHitCE[locationRoll];
-    if (newLocation === "armor" && currentArmor <= 0) {
-      newLocation = "hull";
+    const newLocation = rollHitTable(internalHit ? internalHitCE : externalHitCE, value);
+    if (newLocation.location === "armor" && currentArmor <= 0) {
+      newLocation.location = "hull";
     }
-    returnValue.push({ location: newLocation, hits: value });
+    returnValue.push({ location: newLocation.location, hits: newLocation.hits });
   }
   return returnValue;
 }
@@ -317,8 +317,8 @@ function getCERadDamage(weaponType: string, currentArmor: number): string {
  * @param {number} effect - The effect value from the attack roll.
  * @returns {Array<{ location: string; hits: number }>} Array of hit objects.
  */
-function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, effect:number):Array<{ location: string; hits: number }> {
-  const returnValue: Array<{ location: string; hits: number }> = [];
+function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, effect:number):DamageResult[] {
+  const returnValue: DamageResult[] = [];
   if (["sandcaster", "special", "other"].includes(weaponType)) {
     console.log("Calculation of damage not possible for this weapon");
     return returnValue;
@@ -373,50 +373,26 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
     return [];
   }
 
-  // Add one hit per damage
-  for (let i = 0; i < damage; i++) {
-    let newDamage = {};
-    switch (hitType) {
-      case "internal":
-        newDamage = getInternalHitCD();
-        break;
-      case "surface":
-        newDamage = getSurfaceHitCD();
-        break;
-      case "critical":
-        newDamage = getCriticalHitCD();
-        break;
-      default:
-        newDamage = {location: "unknown", hits: 0};
-        break;
-    }
-    //Again, need to check for destroyed ship
-    if (newDamage.location === "destroyed") {
-      return [{location: "destroyed", hits: Infinity}];
-    } else if (newDamage.location !== "none") {
-      returnValue.push({location: newDamage.location, hits: newDamage.hits});
-    }
-    // If "none", skip adding
+  // Use generateDamageList for all hit types
+  const hitTypeMap: Record<string, () => DamageResult> = {
+    internal: getInternalHitCD,
+    surface: getSurfaceHitCD,
+    critical: getCriticalHitCD
+  };
+
+  if (hitTypeMap[hitType]) {
+    return generateDamageList(damage, hitTypeMap[hitType]);
   }
-  return returnValue;
 }
 
 /**
  * Rolls for an internal hit location in Cepheus Deluxe ship combat.
  * If a critical is rolled, delegates to getCriticalHitCD().
- * @returns {{location: string, hits: number}} The hit location and number of hits.
+ * @returns {DamageResult} The hit location and number of hits.
  */
 function getInternalHitCD(): {location: string, hits: number} {
-  const hitTable =  ["breach", "power", "j-drive", "armament", "m-drive", "breach", "cargo", "crew", "sensor", "bridge", "critical"];
-  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
-  let hitLocation: string = hitTable[locationRoll];
-  let hits = 1;
-  if (hitLocation === "critical") {
-    const crit  = getCriticalHitCD();
-    hitLocation = crit.location;
-    hits = crit.hits;
-  }
-  return {location: hitLocation, hits};
+  const hitTable =  ["breach", "power", "j-drive", "armament", "m-drive", "breach", "cargo", "crew", "sensor", "bridge", "special"];
+  return rollHitTable(hitTable, 1, getCriticalHitCD);
 }
 
 /**
@@ -425,16 +401,8 @@ function getInternalHitCD(): {location: string, hits: number} {
  * @returns {{location: string, hits: number}} The hit location and number of hits.
  */
 function getSurfaceHitCD(): {location: string, hits: number} {
-  const hitTable =  ["none", "none", "none", "none", "none", "breach", "breach", "armament", "armament", "electronics", "internal"];
-  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
-  let hitLocation: string = hitTable[locationRoll];
-  let hits = 1;
-  if (hitLocation === "internal") {
-    const internal  = getInternalHitCD();
-    hitLocation = internal.location;
-    hits = internal.hits;
-  }
-  return {location: hitLocation, hits: hits};
+  const hitTable =  ["none", "none", "none", "none", "none", "breach", "breach", "armament", "armament", "electronics", "special"];
+  return rollHitTable(hitTable, 1, getInternalHitCD);
 }
 
 /**
@@ -443,11 +411,10 @@ function getSurfaceHitCD(): {location: string, hits: number} {
  */
 function getCriticalHitCD():{location: string, hits: number} {
   const hitTable = ["power", "m-drive", "j-drive", "crew", "electronics", "destroyed"];
-  const locationRoll = getRandomInteger(1, 6) - 1;
-  return {location: hitTable[locationRoll], hits: game.settings.get('twodsix', 'maxComponentHits')};
+  return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
 }
 
-function getCDRadDamage(rads: number, ship: TwodsixActor):{location: string, hits: number} {
+function getCDRadDamage(rads: number, ship: TwodsixActor): DamageResult {
   const returnValue = [];
 
   // Define rad hit location lookup array
@@ -498,12 +465,15 @@ function getCDArmorType(armorDescription: string): string {
  * @param {number} effect - The effect value from the attack roll.
  * @returns {Array<{location: string, hits: number}>} Array of critical hit objects.
  */
-function get10PctCriticals(currentHull: number, futureHull: number, maxHull: number, effect: number): Array<{location: string, hits: number}> {
-  const results: Array<{location: string, hits: number}> = [];
-
+function get10PctCriticals(currentHull: number, futureHull: number, maxHull: number, effect: number): DamageResult[] {
+  const results: DamageResult[] = [];
+  const critTable = [
+    "sensor", "power", "fuel", "armament", "armor",
+    "hull", "m-drive", "cargo", "j-drive", "crew", "bridge"
+  ];
   // Add a severe critical if effect is high (effect >= 6)
   if (effect >= 6) {
-    results.push({ location: getCritLocation(), hits: effect });
+    results.push(rollHitTable(critTable, effect));
   }
 
   // Calculate hull percentage in tenths, clamp to 0-9
@@ -513,33 +483,61 @@ function get10PctCriticals(currentHull: number, futureHull: number, maxHull: num
 
   // Add one critical per 10% hull lost
   for (let i = 0; i < numCrits; i++) {
-    results.push({ location: getCritLocation(), hits: 1 });
+    results.push(rollHitTable(critTable, 1));
   }
 
   return results;
 }
 
-/**
- * Randomly selects a critical hit location for ship combat.
- * This implementation is for MgT2e rules.
- *
- * @returns {string} The component subtype name of the critical hit location.
- */
-function getCritLocation(): string {
-  // Define critical hit locations by component type
-  const critTable = [
-    "sensor", "power", "fuel", "armament", "armor",
-    "hull", "m-drive", "cargo", "j-drive", "crew", "bridge"
-  ];
-  // Roll 2d6 and clamp to valid index
-  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, critTable.length - 1);
-  return critTable[locationRoll];
+function getCTDamageList(damage:number):[] {
+  return generateDamageList(damage, getHitCT);
 }
 
-function getCTDamageList(damage:number) {
+/**
+ * Rolls for a surface hit location in Classic Traveller ship combat.
+ * If "critical" is rolled, delegates to getCriticalHitCT().
+ * @returns {DmageResult} The hit location and number of hits.
+ */
+function getHitCT(): DamageResult {
+  const hitTable =  ["power", "m-drive", "j-drive", "fuel", "hull", "hull", "cargo", "computer", "armament", "armament", "special"];
+  return rollHitTable(hitTable, 1, getCriticalHitCT);
+}
+
+/**
+ * Rolls for a critical hit location in Classic Traveller ship combat.
+ * @returns {DamageResult} The critical hit location and number of hits.
+ */
+function getCriticalHitCT():DamageResult {
+  const hitTable = ["power", "m-drive", "j-drive", "crew", "computer", "destroyed"];
+  return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
+}
+
+/**
+ * Rolls on a hit table and handles delegation for special results.
+ * @param {string[]} table - The hit location table.
+ * @param {() => DamageResult} [cascadeRoll] - Delegate function for special results.
+ * @returns {DamageResult}
+ */
+function rollHitTable(table: string[], defaultHits:number = 1, cascadeRoll?: () => DamageResult): DamageResult {
+  let tableRoll = 0;
+  for (let i=0; i < Math.floor((table.length+1)/6); i++) {
+    tableRoll += getRandomInteger(1, 6) - 1;
+  }
+  tableRoll = Math.clamp(tableRoll, 0, table.length - 1);
+  let hitLocation = table[tableRoll];
+  let hits = defaultHits;
+  if (cascadeRoll && hitLocation === "special") {
+    const special = cascadeRoll();
+    hitLocation = special.location;
+    hits = special.hits;
+  }
+  return { location: hitLocation, hits: hits };
+}
+
+function generateDamageList(damage:number, hitGenerator: () => DamageResult): DamageResult[] {
   const returnValue = [];
   for (let i = 0; i < damage; i++) {
-    const newDamage = getHitCT();
+    const newDamage = hitGenerator();
     //Again, need to check for destroyed ship
     if (newDamage.location === "destroyed") {
       return [{location: "destroyed", hits: Infinity}];
@@ -549,34 +547,6 @@ function getCTDamageList(damage:number) {
     // If "none", skip adding
   }
   return returnValue;
-}
-
-/**
- * Rolls for a surface hit location in Classic Traveller ship combat.
- * If "critical" is rolled, delegates to getCriticalHitCT().
- * @returns {{location: string, hits: number}} The hit location and number of hits.
- */
-function getHitCT(): {location: string, hits: number} {
-  const hitTable =  ["power", "m-drive", "j-drive", "fuel", "hull", "hull", "cargo", "computer", "armament", "armament", "critical"];
-  const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
-  let hitLocation: string = hitTable[locationRoll];
-  let hits = 1;
-  if (hitLocation === "critical") {
-    const critical  = getCriticalHitCT();
-    hitLocation = critical.location;
-    hits = critical.hits;
-  }
-  return {location: hitLocation, hits: hits};
-}
-
-/**
- * Rolls for a critical hit location in Classic Traveller ship combat.
- * @returns {{location: string, hits: number}} The critical hit location and number of hits.
- */
-function getCriticalHitCT():{location: string, hits: number} {
-  const hitTable = ["power", "m-drive", "j-drive", "crew", "computer", "destroyed"];
-  const locationRoll = getRandomInteger(1, 6) - 1;
-  return {location: hitTable[locationRoll], hits: game.settings.get('twodsix', 'maxComponentHits')};
 }
 
 /**
