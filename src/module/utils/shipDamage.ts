@@ -65,6 +65,12 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         damageList.push(...getACDamageList(damage, weaponType, ship));
         break;
       }
+      case 'cepheusUni': {
+        const {hull, component} = getCUDamageEffects(netDamage);
+        damageList.push({location: 'hull', hits: hull});
+        damageList.push(...getCUDamageList(component));
+        break;
+      }
       default:
         break;
     }
@@ -578,6 +584,61 @@ function getRadHitAC():DamageResult {
 
 function getACRadDamage(radDamage: number): DamageResult[] {
   return generateDamageList(radDamage, getRadHitAC);
+}
+
+/**
+ * Calculates the space combat damage effects based on the input damage value.
+ *
+ * @param {number} damage - The numeric damage value inflicted during space combat.
+ * @returns {{hull:number, component:number}} An object of hit damage.
+ */
+function getCUDamageEffects(damage: number): {hull:number, component:number} {
+  // Define base damage effects according to the damage table
+  const baseTable: any[] = [
+    { min: -Infinity, max: 0, hull: 0, component: 0},
+    { min: 1, max: 4, hull: 1, component: 0},
+    { min: 5, max: 6, hull: 2, component: 1},
+    { min: 7, max: 8, hull: 3, component: 2},
+    { min: 9, max: 16, hull: 6, component: 2},
+    { min: 17, max: 24, hull: 16, component: 3},
+    { min: 25, max: 32, hull: 18, component: 3},
+    { min: 33, max: 40, hull: 30, component: 4},
+    { min: 41, max: 60, hull: 42, component: 4},
+    { min: 61, max: 80, hull: 80, component: 5},
+    { min: 81, max: 100, hull: 160, component: 5},
+    { min: 101, max: Infinity, hull: 360, component: 6},
+  ];
+  // Match damage within predefined ranges
+  for (const row of baseTable) {
+    if (damage >= row.min && damage <= row.max) {
+      return {hull: row.hull, component: row.component};
+    }
+  }
+  console.log ("Unknown lookup for CU damage table.");
+  return {hull: 0, component: 0};
+}
+
+function getCUDamageList(hits:number):DamageResult[] {
+  return generateDamageList(hits, getHitCU);
+}
+
+/**
+ * Rolls for a surface hit location in Cepheus Universal ship combat.
+ * If "critical" is rolled, delegates to getCriticalHitCT().
+ * @returns {DmageResult} The hit location and number of hits.
+ */
+function getHitCU(): DamageResult {
+  const hitTable =  ["sensors", "sensors", "power", "ftl-drive", "armor", "armament", "screens", "m-drive", "crew", "special", "special"];
+  return rollHitTable(hitTable, 1, getIncidentalHitCU);
+}
+
+/**
+ * Rolls for a incidental hit location in Cepheus Universal ship combat.
+ * @returns {DamageResult} The critical hit location and number of hits.
+ */
+function getIncidentalHitCU():DamageResult {
+  const hitTable = ["fire", "fire", "fire", "cargo", "cargo", "fuel", "accomodations", "hanger", "tractor-beam", "life-support", "life-support"];
+  return rollHitTable(hitTable, 1);
 }
 
 /**

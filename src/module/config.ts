@@ -726,7 +726,8 @@ const RULESETS = Object.freeze({
       chainBonus: "-2, -1, -1, 1, 1, 2",
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      shipWeaponType: "CE"
+      shipWeaponType: "CE",
+      shipDamageType: "cepheusUni"
     }
   },
   OTHER: {
@@ -1030,8 +1031,9 @@ export const ShipDamageRules = {
   hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
   hullOnly: "TWODSIX.Ship.DamageStyle.HullOnly",
   surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal",
-  classic: "TWODSIX.Ship.DamageStyle.Classic",
-  alphaC: "TWODSIX.Ship.DamageStyle.AlphaCephei"
+  classic: "TWODSIX.Ship.DamageStyle.ClassicTraveller",
+  alphaC: "TWODSIX.Ship.DamageStyle.AlphaCephei",
+  cepheusUni: "TWODSIX.Ship.DamageStyle.CepheusUniversal"
 };
 
 /**
