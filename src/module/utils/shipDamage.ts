@@ -61,6 +61,10 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         damageList.push(...getCTDamageList(damage));
         break;
       }
+      case 'alphaC': {
+        damageList.push(...getACDamageList(damage, ship));
+        break;
+      }
       default:
         break;
     }
@@ -428,7 +432,7 @@ function getCriticalHitCD(): DamageResult {
  * @returns {DamageResult} The critical hit location and number of hits.
  */
 function getCDRadDamage(rads: number, ship: TwodsixActor): DamageResult[] {
-  const returnValue = [];
+  const returnValue:DamageResult[] = [];
 
   // Define rad hit location lookup array
   const radsCD = ["none", "none", "none", "none", "sensor", "sensor", "electronics", "electronics", "crew", "crew", "critical"];
@@ -526,6 +530,47 @@ function getCriticalHitCT():DamageResult {
   return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
 }
 
+function getACDamageList(damage:number, ship:TwodsixActor): DamageResult[] {
+  if (damage > (ship.system.shipStats.armor.value ?? 0)) {
+    return generateDamageList(damage, getHitAC);
+  } else {
+    return [];
+  }
+}
+
+/**
+ * Rolls for a surface hit location in Alpha Cephei ship combat.
+ * If "critical" is rolled, delegates to getCriticalHitAC().
+ * @returns {DmageResult} The hit location and number of hits.
+ */
+function getHitAC(): DamageResult {
+  const hitTable =  ["breach", "power", "j-drive", "armament", "m-drive", "armor", "cargo", "crew", "computer", "bridge", "special"];
+  return rollHitTable(hitTable, 1, getCriticalHitAC);
+}
+
+/**
+ * Rolls for a critical hit location in Alpha Cephi ship combat.
+ * @returns {DamageResult} The critical hit location and number of hits.
+ */
+function getCriticalHitAC():DamageResult {
+  const hitTable = ["power", "m-drive", "j-drive", "crew", "computer", "destroyed"];
+  return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
+}
+
+/**
+ * Rolls for a critical hit location in Alpha Cephi ship combat.
+ * @returns {DamageResult} The critical hit location and number of hits.
+ */
+function getRadHitAC():DamageResult {
+  const hitTable = ["none", "crew", "crew", "computer", "computer", "critical"];
+  const result:DamageResult = rollHitTable(hitTable, 1);
+  if (result.location === "critical") {
+    return {location: "crew", hits: game.settings.get('twodsix', 'maxComponentHits')};
+  } else {
+    return result;
+  }
+}
+
 /**
  * Rolls on a hit table and handles delegation for special results.
  * @param {string[]} table - The hit location table.
@@ -533,9 +578,12 @@ function getCriticalHitCT():DamageResult {
  * @returns {DamageResult}
  */
 function rollHitTable(table: string[], defaultHits:number = 1, cascadeRoll?: () => DamageResult): DamageResult {
-  let tableRoll = 0;
-  for (let i=0; i < Math.floor((table.length+1)/6); i++) {
-    tableRoll += getRandomInteger(1, 6) - 1;
+  // Standard 2d6-2 for 11-entry tables, fallback to flat distribution for others
+  let tableRoll: number;
+  if (table.length === 11) {
+    tableRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
+  } else {
+    tableRoll = Math.clamp(getRandomInteger(0, table.length - 1), 0, table.length - 1);
   }
   tableRoll = Math.clamp(tableRoll, 0, table.length - 1);
   let hitLocation = table[tableRoll];
@@ -549,7 +597,7 @@ function rollHitTable(table: string[], defaultHits:number = 1, cascadeRoll?: () 
 }
 
 function generateDamageList(damage:number, hitGenerator: () => DamageResult): DamageResult[] {
-  const returnValue = [];
+  const returnValue: DamageResult[] = [];
   for (let i = 0; i < damage; i++) {
     const newDamage = hitGenerator();
     //Again, need to check for destroyed ship

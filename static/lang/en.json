@@ -858,11 +858,12 @@
       },
       "Damage": "Damage",
       "DamageStyle": {
-        "Component": "Components damaged",
-        "HullWithCrit": "Hull damage with criticals",
+        "Component": "Components damaged (e.g. CE)",
+        "HullWithCrit": "Hull damage with criticals (e.g. MgT2e)",
         "HullOnly": "Hull damage only",
-        "SurfaceOrInternal": "Surface or Internal",
-        "Classic": "Classic Traveller"
+        "SurfaceOrInternal": "Surface or Internal (e.g. Cepheus Deluxe)",
+        "Classic": "Classic Traveller (CT)",
+        "AlphaCephei": "Alpha Cephei"
       },
       "DamageMessages": {
         "NoRad": "Lucky escape - no radiation",

@@ -1012,7 +1012,8 @@ export const ShipDamageRules = {
   hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
   hullOnly: "TWODSIX.Ship.DamageStyle.HullOnly",
   surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal",
-  classic: "TWODSIX.Ship.DamageStyle.Classic"
+  classic: "TWODSIX.Ship.DamageStyle.Classic",
+  alphaC: "TWODSIX.Ship.DamageStyle.AlphaCephei"
 };
 
 /**
