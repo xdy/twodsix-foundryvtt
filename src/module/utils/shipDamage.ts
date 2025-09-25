@@ -87,7 +87,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         break;
       }
       case "alphaC": {
-        radReport = getACRadDamage(damagePayload.radDamage, ship);
+        radReport = getACRadDamage(damagePayload.radDamage);
         break;
       }
       default:
@@ -576,8 +576,8 @@ function getRadHitAC():DamageResult {
   }
 }
 
-function getACRadDamage(radDamage: number, ship:TwodsixActor): DamageResult[] {
-
+function getACRadDamage(radDamage: number): DamageResult[] {
+  return generateDamageList(radDamage, getRadHitAC);
 }
 
 /**
