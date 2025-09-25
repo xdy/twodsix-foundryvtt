@@ -635,6 +635,7 @@
         "BeamLaser": "Beam Laser",
         "ParticleBeam": "Particle Beam",
         "ParticleGun": "Particle Gun",
+        "ParticleCluster": "Particle Cluster",
         "FusionGun": "Fusion Gun",
         "FusionBeam": "Fusion Beam",
         "MesonGun": "Meson Gun",
