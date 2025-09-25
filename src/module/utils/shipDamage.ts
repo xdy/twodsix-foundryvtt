@@ -136,6 +136,12 @@ async function sendReportToMessage(damageList: DamageResult[], radReport: string
   });
 }
 
+/**
+ * Generates an HTML table from an array of DamageResults. The columns are location and hits.
+ *
+ * @param {DamageResult[]} damageList - The damage (location and number of hits) inflicted during space combat.
+ * @returns {string} A string for HTML table .
+ */
 function generateDamageTable(damageList: DamageResult[]): string {
   if (damageList.length === 0) {
     return `<span>${game.i18n.localize("TWODSIX.Ship.None")}</span>`;
@@ -383,6 +389,7 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
   if (hitTypeMap[hitType]) {
     return generateDamageList(damage, hitTypeMap[hitType]);
   }
+  return [];
 }
 
 /**
@@ -414,12 +421,19 @@ function getCriticalHitCD(): DamageResult {
   return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
 }
 
-function getCDRadDamage(rads: number, ship: TwodsixActor): DamageResult {
+/**
+ * Rolls for a radiation hit location in Cepheus Deluxe ship combat.
+ * @param {number} rads The number of radiation hits.
+ * @param {TwodsixActor} ship The ship actor hit.
+ * @returns {DamageResult} The critical hit location and number of hits.
+ */
+function getCDRadDamage(rads: number, ship: TwodsixActor): DamageResult[] {
   const returnValue = [];
 
   // Define rad hit location lookup array
   const radsCD = ["none", "none", "none", "none", "sensor", "sensor", "electronics", "electronics", "crew", "crew", "critical"];
   const armorType = getCDArmorType(ship.system.shipStats.armor.name);
+  const currentArmor = ship.system.shipStats.armor.value ?? 0;
   const armorDM = getCDArmorDM(armorType);
   const radDM = Math.max(rads-1, 0) + armorDM;
   for (let i=0; i < rads; i++) {
@@ -489,7 +503,7 @@ function get10PctCriticals(currentHull: number, futureHull: number, maxHull: num
   return results;
 }
 
-function getCTDamageList(damage:number):[] {
+function getCTDamageList(damage:number): DamageResult[] {
   return generateDamageList(damage, getHitCT);
 }
 
