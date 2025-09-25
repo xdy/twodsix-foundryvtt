@@ -315,7 +315,7 @@ function getCERadDamage(weaponType: string, currentArmor: number): string {
  * @param {string} weaponType - The type of weapon used.
  * @param {TwodsixActor} ship - The ship actor being damaged.
  * @param {number} effect - The effect value from the attack roll.
- * @returns {Array<{ location: string; hits: number }>} Array of hit objects.
+ * @returns {DamageResult[]} Array of hit objects.
  */
 function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, effect:number):DamageResult[] {
   const returnValue: DamageResult[] = [];
@@ -390,7 +390,7 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
  * If a critical is rolled, delegates to getCriticalHitCD().
  * @returns {DamageResult} The hit location and number of hits.
  */
-function getInternalHitCD(): {location: string, hits: number} {
+function getInternalHitCD(): DamageResult {
   const hitTable =  ["breach", "power", "j-drive", "armament", "m-drive", "breach", "cargo", "crew", "sensor", "bridge", "special"];
   return rollHitTable(hitTable, 1, getCriticalHitCD);
 }
@@ -400,16 +400,16 @@ function getInternalHitCD(): {location: string, hits: number} {
  * If "internal" is rolled, delegates to getInternalHitCD().
  * @returns {{location: string, hits: number}} The hit location and number of hits.
  */
-function getSurfaceHitCD(): {location: string, hits: number} {
+function getSurfaceHitCD(): DamageResult {
   const hitTable =  ["none", "none", "none", "none", "none", "breach", "breach", "armament", "armament", "electronics", "special"];
   return rollHitTable(hitTable, 1, getInternalHitCD);
 }
 
 /**
  * Rolls for a critical hit location in Cepheus Deluxe ship combat.
- * @returns {{location: string, hits: number}} The critical hit location and number of hits.
+ * @returns {DamageResult} The critical hit location and number of hits.
  */
-function getCriticalHitCD():{location: string, hits: number} {
+function getCriticalHitCD(): DamageResult {
   const hitTable = ["power", "m-drive", "j-drive", "crew", "electronics", "destroyed"];
   return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
 }
