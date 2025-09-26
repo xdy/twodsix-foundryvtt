@@ -319,7 +319,7 @@ const crewDamageTableCE = [
  */
 function getCERadDamage(weaponType: string, currentArmor: number): string {
   const rollDM = (weaponType === "mesonGun" || currentArmor < 0) ? 0 : -currentArmor;
-  const damageRoll = getRandomInteger(1, 6) + getRandomInteger(1, 6) + rollDM;
+  const damageRoll = getMultipleRolls(1, 6, 2) + rollDM;
   for (const row of crewDamageTableCE) {
     if (damageRoll >= row.min && damageRoll <= row.max) {
       return game.i18n.format(row.radiation, {dose: row.dose});
@@ -451,7 +451,7 @@ function getCDRadDamage(rads: number, ship: TwodsixActor): DamageResult[] {
   const armorDM = getCDArmorDM(armorType);
   const radDM = Math.max(rads-1, 0) + armorDM;
   for (let i=0; i < rads; i++) {
-    const locationRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) + radDM - 2, 0, 10);
+    const locationRoll = Math.clamp(getMultipleRolls(1, 6, 2) + radDM - 2, 0, 10);
     let newLocation = radsCD[locationRoll];
     if (newLocation !== "none") {
       if (newLocation === "armor" && currentArmor <= 0) {
@@ -556,7 +556,11 @@ function getACDamageList(damage:number, weaponType: string, ship:TwodsixActor): 
  */
 function getHitAC(): DamageResult {
   const hitTable =  ["breach", "power", "j-drive", "armament", "m-drive", "armor", "cargo", "crew", "computer", "bridge", "special"];
-  return rollHitTable(hitTable, 1, getCriticalHitAC);
+  const result:DamageResult = rollHitTable(hitTable, 1, getCriticalHitAC);
+  if (result.location === "crew") {
+    result.hits = getMultipleRolls(1, 6, 2);
+  }
+  return result;
 }
 
 /**
@@ -565,7 +569,11 @@ function getHitAC(): DamageResult {
  */
 function getCriticalHitAC():DamageResult {
   const hitTable = ["power", "m-drive", "j-drive", "crew", "computer", "destroyed"];
-  return rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
+  let result:DamageResult = rollHitTable(hitTable, game.settings.get('twodsix', 'maxComponentHits'));
+  if (result.location === "crew") {
+    result = {location: "crew - critical", hits: getMultipleRolls(1, 6, 4)};
+  }
+  return result;
 }
 
 /**
@@ -574,12 +582,13 @@ function getCriticalHitAC():DamageResult {
  */
 function getRadHitAC():DamageResult {
   const hitTable = ["none", "crew", "crew", "computer", "computer", "critical"];
-  const result:DamageResult = rollHitTable(hitTable, 1);
+  let result:DamageResult = rollHitTable(hitTable, 1);
   if (result.location === "critical") {
-    return {location: "crew", hits: game.settings.get('twodsix', 'maxComponentHits')};
-  } else {
-    return result;
+    result = {location: "crew - critical", hits: getMultipleRolls(1, 6, 4)};
+  } else if (result.location === "crew") {
+    result.hits = getMultipleRolls(1, 6, 2);
   }
+  return result;
 }
 
 function getACRadDamage(radDamage: number): DamageResult[] {
@@ -643,15 +652,16 @@ function getIncidentalHitCU():DamageResult {
 
 /**
  * Rolls on a hit table and handles delegation for special results.
- * @param {string[]} table - The hit location table.
- * @param {() => DamageResult} [cascadeRoll] - Delegate function for special results.
- * @returns {DamageResult}
+ * @param {string[]} table The hit location table.
+ * @param {number} defaultHits The number of hits sustained
+ * @param {() => DamageResult} cascadeRoll - Delegate function for special results.
+ * @returns {DamageResult} Returns the damage result as a {location, hits} object
  */
 function rollHitTable(table: string[], defaultHits:number = 1, cascadeRoll?: () => DamageResult): DamageResult {
   // Standard 2d6-2 for 11-entry tables, fallback to flat distribution for others
   let tableRoll: number;
   if (table.length === 11) {
-    tableRoll = Math.clamp(getRandomInteger(1, 6) + getRandomInteger(1, 6) - 2, 0, 10);
+    tableRoll = Math.clamp(getMultipleRolls(1, 6, 2) - 2, 0, 10);
   } else {
     tableRoll = Math.clamp(getRandomInteger(0, table.length - 1), 0, table.length - 1);
   }
@@ -692,4 +702,20 @@ function getRandomInteger(min: number, max: number): number {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Generates multiple integer rolls.
+ *
+ * @param {number} min - The minimum integer value.
+ * @param {number} max - The maximum integer value.
+ * @param {number} repeats - The number of times to roll
+ * @returns {number} The sum of multiple random integers between min and max.
+ */
+function getMultipleRolls(min: number, max: number, repeats:number): number {
+  let returnValue = 0;
+  for (let i = 0; i<repeats; i++ ) {
+    returnValue += getRandomInteger(min, max);
+  }
+  return returnValue;
 }
