@@ -166,7 +166,7 @@ function generateDamageTable(damageList: DamageResult[]): string {
     if (row.location === "destroyed") {
       return `<span>${game.i18n.localize("TWODSIX.Ship.DamageMessages.ShipDestroyed")}</span>`;
     }
-    let componentName = game.i18n.localize(`TWODSIX.Items.component.${row.location}`);
+    let componentName = game.i18n.localize(row.location === "j-drive" ? game.settings.get('twodsix', 'jDriveLabel') : `TWODSIX.Items.component.${row.location}`);
     if (componentName.includes("TWODSIX")) {
       componentName = row.location;
     }
@@ -637,7 +637,7 @@ function getCUDamageList(hits:number):DamageResult[] {
  * @returns {DmageResult} The hit location and number of hits.
  */
 function getHitCU(): DamageResult {
-  const hitTable =  ["sensors", "sensors", "power", "ftl-drive", "armor", "armament", "screens", "m-drive", "crew", "special", "special"];
+  const hitTable =  ["sensor", "sensor", "power", "ftl-drive", "armor", "armament", "screen", "m-drive", "crew", "special", "special"];
   return rollHitTable(hitTable, 1, getIncidentalHitCU);
 }
 
