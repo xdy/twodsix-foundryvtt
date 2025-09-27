@@ -21,9 +21,11 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
     ui.notifications.warn("TWODSIX.Ship.NotShipWeapon", { localize: true });
     return;
   }
+
   const damageList: DamageResult[] = [];
   let radReport:string|DamageResult[] = game.i18n.localize("TWODSIX.Ship.None");
   const damage = damagePayload.damageValue ?? 0;
+  const radDamage = damagePayload.radDamage ?? 0;
   const currentArmor = ship.system.shipStats.armor.value ?? 0;
   const currentHull = ship.system.shipStats.hull.value ?? 0;
   const weaponType = damagePayload.shipWeaponType;
@@ -32,10 +34,13 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
   const damageRules = game.settings.get('twodsix', 'shipDamageType');
   const netDamage = damage - ((weaponType === "mesonGun"|| damageRules === "classic") ? 0 : currentArmor);
 
-  // Damage calculation
-  if (netDamage <= 0) {
+  if ( netDamage <= 0 && radDamage <= 0) {
     ui.notifications.warn("TWODSIX.Ship.NoDamage", { localize: true });
-  } else {
+    return;
+  }
+
+  // Damage calculation
+  if (netDamage > 0) {
     switch (damageRules) {
       case 'component': {
         const hitArray: number[] = getCEDamageEffects(netDamage);
@@ -77,7 +82,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
   }
 
   // Radiation calculation
-  if (damagePayload.radDamage > 0) {
+  if (radDamage > 0) {
     switch (damageRules) {
       case 'component': {
         radReport = getCERadDamage(weaponType, currentArmor);
@@ -89,11 +94,11 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         break;
       }
       case 'surfaceInternal': {
-        radReport = getCDRadDamage(damagePayload.radDamage, ship);
+        radReport = getCDRadDamage(radDamage, ship);
         break;
       }
       case "alphaC": {
-        radReport = getACRadDamage(damagePayload.radDamage);
+        radReport = getACRadDamage(radDamage);
         break;
       }
       default:
