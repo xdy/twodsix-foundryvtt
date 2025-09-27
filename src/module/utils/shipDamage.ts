@@ -166,7 +166,7 @@ function generateDamageTable(damageList: DamageResult[]): string {
     if (row.location === "destroyed") {
       return `<span>${game.i18n.localize("TWODSIX.Ship.DamageMessages.ShipDestroyed")}</span>`;
     }
-    let componentName = game.i18n.localize(row.location === "j-drive" ? game.settings.get('twodsix', 'jDriveLabel') : `TWODSIX.Items.component.${row.location}`);
+    let componentName = game.i18n.localize(row.location === "j-drive" ? game.settings.get('twodsix', 'jDriveLabel') : `TWODSIX.Items.Component.${row.location}`);
     if (componentName.includes("TWODSIX")) {
       componentName = row.location;
     }
@@ -311,7 +311,7 @@ const crewDamageTableCE = [
 ];
 
 /**
- * Determines the crew radiation damage effect based on weapon type and armor.
+ * Determines the crew radiation damage effect based on weapon type and armor for Cepheus Engine rules.
  *
  * @param {string} weaponType - The type of weapon used.
  * @param {number} currentArmor - The current armor value of the ship.
@@ -355,7 +355,7 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
   //Does Not yet shift armor type one class weaker for meson weapon
 
 
-  //Penetration Matrix - note missile and torpedo rows added per rules notes missile = light and others are intermediate
+  //Penetration Matrix - note missile and torpedo are: missile = light and others are intermediate
   const penetrationMatrix = {
     light: {unarmored: "internal", light: "surface", heavy: "none", massive: "none"},
     intermediate: {unarmored: "critical", light: "internal", heavy: "surface", massive: "none"},
@@ -363,7 +363,7 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
     main: {unarmored: "destroyed", light: "destroyed", heavy: "critical", massive: "internal"}
   };
 
-  //adjust for missiles
+  //adjust for missiles type as not on table
   switch (weaponType) {
     case "missile":
       adjWeaponType = "light";
@@ -453,7 +453,9 @@ function getCDRadDamage(rads: number, ship: TwodsixActor): DamageResult[] {
   for (let i=0; i < rads; i++) {
     const locationRoll = Math.clamp(getMultipleRolls(1, 6, 2) + radDM - 2, 0, 10);
     let newLocation = radsCD[locationRoll];
-    if (newLocation !== "none") {
+    if (newLocation === "critical") {
+      returnValue.push(getCriticalHitCD());
+    } else if (newLocation !== "none") {
       if (newLocation === "armor" && currentArmor <= 0) {
         newLocation = "hull";
       }
@@ -665,7 +667,6 @@ function rollHitTable(table: string[], defaultHits:number = 1, cascadeRoll?: () 
   } else {
     tableRoll = Math.clamp(getRandomInteger(0, table.length - 1), 0, table.length - 1);
   }
-  tableRoll = Math.clamp(tableRoll, 0, table.length - 1);
   let hitLocation = table[tableRoll];
   let hits = defaultHits;
   if (cascadeRoll && hitLocation === "special") {
