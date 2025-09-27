@@ -221,6 +221,7 @@ export class ComponentData extends GearData {
       startAngle: new fields.NumberField({...requiredInteger, initial: 0}),
       endAngle: new fields.NumberField({...requiredInteger, initial: 0})
     });
+    schema.shipWeaponType = new fields.StringField({...requiredBlankString});
     return schema;
   }
   static migrateData(source:any) {
@@ -230,6 +231,11 @@ export class ComponentData extends GearData {
     if ("armorPiercing" in source) {
       if (typeof source.armorPiercing !== 'string') {
         migrateNumberToString(source, 'armorPiercing');
+      }
+    }
+    if ("shipWeaponType" in source) {
+      if (source.shipWeaponType=== "") {
+        source.shipWeaponType = "other";
       }
     }
     return super.migrateData(source);
