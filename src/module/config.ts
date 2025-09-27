@@ -100,7 +100,7 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CT",
-      shipDamageType: "classic"
+      shipDamageType: "CT"
     }
   },
   CE: {
@@ -671,7 +671,7 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "AC",
-      shipDamageType: "alphaC"
+      shipDamageType: "AC"
     }
   },
   CU: {
@@ -727,7 +727,7 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CE",
-      shipDamageType: "cepheusUni"
+      shipDamageType: "CU"
     }
   },
   OTHER: {
@@ -1031,9 +1031,9 @@ export const ShipDamageRules = {
   hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
   hullOnly: "TWODSIX.Ship.DamageStyle.HullOnly",
   surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal",
-  classic: "TWODSIX.Ship.DamageStyle.ClassicTraveller",
-  alphaC: "TWODSIX.Ship.DamageStyle.AlphaCephei",
-  cepheusUni: "TWODSIX.Ship.DamageStyle.CepheusUniversal"
+  CT: "TWODSIX.Ship.DamageStyle.ClassicTraveller",
+  AC: "TWODSIX.Ship.DamageStyle.AlphaCephei",
+  CU: "TWODSIX.Ship.DamageStyle.CepheusUniversal"
 };
 
 /**

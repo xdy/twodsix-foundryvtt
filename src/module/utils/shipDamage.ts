@@ -32,7 +32,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
   const effect = damagePayload.effect;
 
   const damageRules = game.settings.get('twodsix', 'shipDamageType');
-  const netDamage = damage - ((weaponType === "mesonGun"|| damageRules === "classic") ? 0 : currentArmor);
+  const netDamage = damage - ((weaponType === "mesonGun"|| damageRules === "CT") ? 0 : currentArmor);
 
   if ( netDamage <= 0 && radDamage <= 0) {
     ui.notifications.warn("TWODSIX.Ship.NoDamage", { localize: true });
@@ -62,15 +62,15 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         damageList.push(...getCDDamageList(damage, weaponType, ship, effect));
         break;
       }
-      case 'classic': {
+      case 'CT': {
         damageList.push(...getCTDamageList(damage));
         break;
       }
-      case 'alphaC': {
+      case 'AC': {
         damageList.push(...getACDamageList(damage, weaponType, ship));
         break;
       }
-      case 'cepheusUni': {
+      case 'CU': {
         const {hull, component} = getCUDamageEffects(netDamage);
         damageList.push({location: 'hull', hits: hull});
         damageList.push(...getCUDamageList(component));
@@ -97,7 +97,7 @@ export function generateShipDamageReport(ship: TwodsixActor, damagePayload: any)
         radReport = getCDRadDamage(radDamage, ship);
         break;
       }
-      case "alphaC": {
+      case "AC": {
         radReport = getACRadDamage(radDamage);
         break;
       }
