@@ -215,19 +215,15 @@ function getCEDamageEffects(damage: number): number[] {
     { min: 41, max: 44, hits: [3, 3] },
   ];
 
-  let matchedBase = false;
-
-  // Match damage within predefined ranges
-  for (const row of baseTable) {
-    if (damage >= row.min && damage <= row.max) {
-      effects.push(...row.hits);
-      matchedBase = true;
-      break;
+  if (damage <= 44) {
+    // Match damage within predefined ranges
+    for (const row of baseTable) {
+      if (damage >= row.min && damage <= row.max) {
+        effects.push(...row.hits);
+        break;
+      }
     }
-  }
-
-  // Handle overflow damage beyond 44
-  if (!matchedBase && damage > 44) {
+  } else if (damage > 44) {
     // Base effect at 44 is "Two Triple Hits"
     effects.push(3, 3);
 
