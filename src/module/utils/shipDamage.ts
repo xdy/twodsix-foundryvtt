@@ -228,24 +228,25 @@ function getCEDamageEffects(damage: number): number[] {
     effects.push(3, 3);
 
     const extra = damage - 44;
+    if (extra > 0) {
+      // Add one Single Hit for every additional 3 points
+      const singleHits = Math.floor(extra / 3);
 
-    // Add one Single Hit for every additional 3 points
-    const singleHits = Math.floor(extra / 3);
+      for (let i = 0; i < singleHits; i++) {
+        effects.push(1);
+      }
 
-    // Add one Double Hit for every additional 6 points
-    const doubleHits = Math.floor(extra / 6);
+      // Add one Double Hit for every additional 6 points
+      const doubleHits = Math.floor(extra / 6);
 
-    for (let i = 0; i < singleHits; i++) {
-      effects.push(1);
-    }
-
-    for (let i = 0; i < doubleHits; i++) {
-      effects.push(2);
+      for (let i = 0; i < doubleHits; i++) {
+        effects.push(2);
+      }
     }
   }
 
   return effects.length > 0 ? effects : [];
-};
+}
 
 /**
  * Determines the hit locations and hit values for ship damage.
