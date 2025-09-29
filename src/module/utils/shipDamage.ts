@@ -350,9 +350,9 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
 
   let armorType = getCDArmorType(ship.system.shipStats.armor.name);
   //shift armor type one class weaker for critical
-  const critArmorList = {unarmored: "unarmored", light: "unarmored", heavy: "light", massive: "heavy"};
+  const criticalArmorList = {unarmored: "unarmored", light: "unarmored", heavy: "light", massive: "heavy"};
   if (effect >= 6 && Object.hasOwn(criticalArmorList, armorType)){
-    armorType = critArmorList[armorType];
+    armorType = criticalArmorList[armorType];
   }
   //Does Not yet shift armor type one class weaker for meson weapon
 
