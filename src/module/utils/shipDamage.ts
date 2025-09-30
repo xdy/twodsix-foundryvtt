@@ -171,11 +171,20 @@ function generateDamageTable(damageList: DamageResult[]): string {
     if (row.location === "destroyed") {
       return `<span>${game.i18n.localize("TWODSIX.Ship.DamageMessages.ShipDestroyed")}</span>`;
     }
+    //Allow for custom j-drive label and localize
     let componentName = game.i18n.localize(row.location === "j-drive" ? game.settings.get('twodsix', 'jDriveLabel') : `TWODSIX.Items.Component.${row.location}`);
     if (componentName.includes("TWODSIX")) {
       componentName = row.location;
     }
-    systemDamageHtml += `<tr><td>${componentName}</td><td class="centre">${row.hits}</td></tr>`;
+
+    //Check for explicitly destroyed components
+    let numberOfHits:string = row.hits.toString();
+    if(["CT", "surfaceInternal", "AC"].includes(game.settings.get('twodsix', 'shipDamageType'))) {
+      if(row.hits >= game.settings.get('twodsix', 'maxComponentHits') && !["hull", "armor"].includes(row.location)) {
+        numberOfHits = game.i18n.localize("TWODSIX.Items.Component.destroyed");
+      }
+    }
+    systemDamageHtml += `<tr><td>${componentName}</td><td class="centre">${numberOfHits}</td></tr>`;
   }
   systemDamageHtml += `</table>`;
   return systemDamageHtml;
