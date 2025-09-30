@@ -7,6 +7,7 @@ import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import TwodsixActor from "../entities/TwodsixActor";
 import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
+import TwodsixItem from "../entities/TwodsixItem";
 
 export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS =  {
@@ -32,6 +33,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     actions: {
       editPosition: this._onShipPositionEdit,
       deletePosition: this._onShipPositionDelete,
+      copyPosition: this._onShipPositionCopy,
       selectShipActor: this._onShipActorClick,
       executeAction: this._onExecuteAction,
       createPosition: this._onShipPositionCreate,
@@ -219,6 +221,15 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
+  static async _onShipPositionCopy(ev:Event, target:HTMLElement): Promise<void> {
+    if (target !== null) {
+      const shipPositionId:string = target.closest(".ship-position").dataset.id;
+      const positionItem:TwodsixItem = this.actor?.items?.get(shipPositionId);
+      const posData = foundry.utils.duplicate(positionItem);
+      await TwodsixItem.create(posData, {});
+    }
+  }
+
   static _onShipActorClick(ev:Event, target:HTMLElement) {
     if (target) {
       const hasClass = target.classList.contains("force-border");
@@ -297,8 +308,8 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         await super._onDrop(ev);
         return true;
       } else if (dropData.type === 'damageItem') {
-        ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
-        return false;
+        //ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
+        return (<TwodsixActor>this.actor).handleDamageData(dropData.payload, false);
       }
       const droppedObject:any = await getDocFromDropData(dropData);
 

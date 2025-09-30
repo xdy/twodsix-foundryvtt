@@ -9,8 +9,9 @@
           {{#each shipPosition.system.actors as |actor|}}
             <img src="{{actor.img}}" draggable="true" class="ship-position-actor-token" data-drag="actor" data-id="{{actor.id}}" width="40" height="40" alt="{{actor.name}}" data-tooltip="{{actor.name}}" data-action="selectShipActor">
           {{/each}}
-          <span class="fa fa-trash ship-position-delete" data-action="deletePosition"></span>
-          <span class="fa fa-wrench ship-position-edit" data-action="editPosition"></span>
+          <span class="fa-solid fa-copy ship-position-copy" data-action="copyPosition" data-tooltip='{{localize "TWODSIX.Ship.CopyPosition"}}'></span>
+          <span class="fa-solid fa-trash ship-position-delete" data-action="deletePosition" data-tooltip='{{localize "TWODSIX.Ship.DeletePosition"}}'></span>
+          <span class="fa-solid fa-wrench ship-position-edit" data-action="editPosition" data-tooltip='{{localize "TWODSIX.Ship.EditPosition"}}'></span>
 
         </div>
         <div class="ship-position-box">

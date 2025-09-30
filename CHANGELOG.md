@@ -1,3 +1,24 @@
+# [6.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.4...v6.7.0) (2025-09-30)
+
+
+### Features
+
+* add ship damage reports ([#1856](https://github.com/xdy/twodsix-foundryvtt/issues/1856)) ([7679e9f](https://github.com/xdy/twodsix-foundryvtt/commit/7679e9ff4f154797ff5f550a98a4f94c103edb96))
+
+## [6.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.3...v6.6.4) (2025-09-24)
+
+
+### Bug Fixes
+
+* Consumable location state can't be changed on actor sheet ([#1859](https://github.com/xdy/twodsix-foundryvtt/issues/1859)) ([bba7028](https://github.com/xdy/twodsix-foundryvtt/commit/bba7028ac970a5d641bca43a1b9349ef62d35d07))
+
+## [6.6.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.2...v6.6.3) (2025-09-16)
+
+
+### Bug Fixes
+
+* add duplicate position button ([#1853](https://github.com/xdy/twodsix-foundryvtt/issues/1853)) ([b9351d6](https://github.com/xdy/twodsix-foundryvtt/commit/b9351d6e3ae6addb9bbdc63cacf00d5cd88e806b))
+
 ## [6.6.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.1...v6.6.2) (2025-09-13)
 
 

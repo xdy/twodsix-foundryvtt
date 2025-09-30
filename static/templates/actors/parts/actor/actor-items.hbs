@@ -1,6 +1,6 @@
 {{!-- Sheet Body --}}
 <div class="character-tabs-info character-inventory">
-   <!---- WEAPONS ---->
+   <!-- WEAPONS -->
   <div><span class="pusher"></span>
     <span class="item-title">{{localize "TWODSIX.Actor.Items.WEAPONS"}}</span>
     <div class="items-weapons gear-header">
@@ -335,7 +335,7 @@
                       <span class="item-name centre">{{twodsix_localizeConsumable item.system.subtype}}</span>
                       <input class= "item-value-edit" type="number" min="0" step="1" value="{{item.system.quantity}}" data-action="selectItem"/>
                       <span class="item-name centre">{{item.system.currentCount}}/{{item.system.max}}</span>
-                      {{> "systems/twodsix/templates/actors/parts/actor/actor-core-buttons.hbs"}}
+                      {{> "systems/twodsix/templates/actors/parts/actor/actor-core-buttons.hbs" item= item settings= ../settings}}
                     </span>
                 </li>
               </ol>
