@@ -1,3 +1,10 @@
+# [6.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.4...v6.7.0) (2025-09-30)
+
+
+### Features
+
+* add ship damage reports ([#1856](https://github.com/xdy/twodsix-foundryvtt/issues/1856)) ([7679e9f](https://github.com/xdy/twodsix-foundryvtt/commit/7679e9ff4f154797ff5f550a98a4f94c103edb96))
+
 ## [6.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.3...v6.6.4) (2025-09-24)
 
 
