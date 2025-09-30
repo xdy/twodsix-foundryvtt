@@ -308,8 +308,8 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         await super._onDrop(ev);
         return true;
       } else if (dropData.type === 'damageItem') {
-        ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
-        return false;
+        //ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
+        return (<TwodsixActor>this.actor).handleDamageData(dropData.payload, false);
       }
       const droppedObject:any = await getDocFromDropData(dropData);
 

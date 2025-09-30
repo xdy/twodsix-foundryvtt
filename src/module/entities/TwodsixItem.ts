@@ -455,7 +455,7 @@ export default class TwodsixItem extends Item {
       totalBonusDamage += (addEffect ? ` + `: ``) + `${settings.bonusDamage}`;
     }
 
-    const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false) || null;
+    const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false, roll.effect) || null;
     if (targetTokens.length >= 1 && damagePayload) {
       if (isAOE) {
         for (const target of targetTokens) {
@@ -940,7 +940,7 @@ export default class TwodsixItem extends Item {
         // Roll damage and post, if necessary
         if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit") && rollEffect >=0 ) {
           const bonusDamage:string = game.settings.get("twodsix", "addEffectToDamage") && rollEffect !== 0 ?  ` ${rollEffect}` : ``;
-          const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), bonusDamage, true, showThrowDiag);
+          const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'rollMode'), bonusDamage, true, showThrowDiag, rollEffect);
           if (damagePayload?.damageValue > 0) {
             const targetTokens = Array.from(game.user.targets);
             if (targetTokens.length > 0) {
@@ -952,7 +952,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false):Promise<object | void> {
+  public async rollDamage(rollMode:DICE_ROLL_MODES, bonusDamage = "", showInChat = true, confirmFormula = false, effect = 0):Promise<object | void> {
     const consumableDamage = this.getConsumableBonusDamage();
     if (!this.system.damage && !consumableDamage) {
       ui.notifications.warn("TWODSIX.Warnings.NoDamageForWeapon", {localize: true});
@@ -989,12 +989,22 @@ export default class TwodsixItem extends Item {
         }
       }
 
-      //Deterime Damage type
+      //Determine Damage type
       let damageType:string = this.getConsumableDamageType();
       if (damageType === '' || damageType === "NONE") {
         damageType = this.system.damageType ?? "NONE"; //component doesn't have a specified damage type
       }
       const damageLabels = getDamageTypes(true);
+
+      //Determine Ship Weapon Label
+      let shipWeaponType = "";
+      let shipWeaponLabel = "";
+      const isArmament = (this.type === 'component' && this.system?.subtype === 'armament');
+      if ( isArmament) {
+        shipWeaponType = this.system.shipWeaponType || "";
+        shipWeaponLabel = TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')][this.system.shipWeaponType]|| "unknown";
+      }
+
       const contentData = {};
       const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
       const canBeBlocked = game.settings.get('twodsix', 'ruleset') === 'CU'  && damageType === 'melee';
@@ -1008,7 +1018,11 @@ export default class TwodsixItem extends Item {
         damageType: damageType,
         damageLabel: damageLabels[damageType] || "",
         canBeParried: canBeParried,
-        canBeBlocked: canBeBlocked
+        canBeBlocked: canBeBlocked,
+        shipWeaponType: shipWeaponType,
+        shipWeaponTypeLabel: shipWeaponLabel,
+        isArmament: isArmament,
+        effect: effect
       });
 
       if (radDamage.total) {

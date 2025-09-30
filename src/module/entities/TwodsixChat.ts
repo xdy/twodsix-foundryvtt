@@ -168,7 +168,7 @@ export async function onChatCardAction(event: Event, target:HTMLElement): Promis
     }
     switch (action) {
       case "damage":
-        await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog);
+        await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog, effect);
         break;
       case "opposed":
         //opposed roll

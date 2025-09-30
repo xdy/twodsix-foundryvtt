@@ -495,7 +495,8 @@
           "ShipAction": "Ship Action Card",
           "TraitSpell": "Trait/Spell Card"
         }
-      }
+      },
+      "DamageReport": "Damage Report"
     },
     "Table": {
       "TableResults": "Table Results"
@@ -543,17 +544,26 @@
         "accomodations": "accommodations",
         "armament": "armament",
         "armor": "armor",
+        "breach": "breach",
         "bridge": "bridge",
         "cargo": "cargo",
         "computer": "computer",
+        "crew": "crew",
+        "crew-critical": "crew-critical",
         "dock": "dock",
         "drive": "drive",
         "drone": "drone",
         "electronics": "electronics",
         "fuel": "fuel",
+        "hangar": "hangar",
         "hull": "hull",
+        "ftl-drive": "ftl-drive",
+        "j-drive": "j-drive",
+        "life-support": "life-support",
+        "m-drive": "m-drive",
         "mount": "mount",
         "power": "power",
+        "screen": "screen",
         "sensor": "sensor",
         "shield": "shield",
         "software": "software",
@@ -562,6 +572,7 @@
         "other": "other",
         "otherExternal": "other - external",
         "otherInternal": "other - internal",
+        "tractor-beam": "tractor-beam",
         "operational": "operational",
         "damaged": "damaged",
         "destroyed": "destroyed",
@@ -623,7 +634,29 @@
         "numberHits": "Number of Hits",
         "opStatus": "Operational Status",
         "FireArc": "Fire Arc",
-        "Degrees": "Degrees (0 to 360)"
+        "Degrees": "Degrees (0 to 360)",
+        "WeaponType": "Weapon Type",
+        "Light": "Light",
+        "Intermediate": "Intermediate",
+        "Heavy": "Heavy",
+        "Main": "Main Gun",
+        "Special": "Special",
+        "PulseLaser": "Pulse Laser",
+        "BeamLaser": "Beam Laser",
+        "ParticleBeam": "Particle Beam",
+        "ParticleGun": "Particle Gun",
+        "ParticleCluster": "Particle Cluster",
+        "FusionGun": "Fusion Gun",
+        "FusionBeam": "Fusion Beam",
+        "MesonGun": "Meson Gun",
+        "GraviticDisruptor": "Gravitic Disruptor",
+        "GraviticLance": "Gravitic Lance",
+        "Missiles": "Missiles",
+        "PlasmaBeam": "Plasma Beam",
+        "NuclearMissiles": "Nuclear Missiles",
+        "Torpedoes": "Torpedoes",
+        "Sandcaster": "Sandcaster",
+        "Other": "Other"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -805,6 +838,12 @@
       "ActorMustBeSelectedForAction": "No actor selected, one must be selected to perform the action",
       "AddShipPosition": "Add Ship Position",
       "AddActorToPosition": "Add actor to position.",
+      "ArmorCD": {
+        "Unarmored": "Unarmored",
+        "Light": "Light",
+        "Heavy": "Heavy",
+        "Massive": "Massive"
+      },
       "SelectActor": "Select Actor",
       "Avail": "Avail.",
       "Available": "Available",
@@ -833,6 +872,21 @@
         "STEWARD": "STEWARD"
       },
       "Damage": "Damage",
+      "DamageStyle": {
+        "Component": "Components damaged (e.g. CE)",
+        "HullWithCrit": "Hull damage with criticals (e.g. MgT2e)",
+        "HullOnly": "Hull damage only",
+        "SurfaceOrInternal": "Surface or Internal (e.g. Cepheus Deluxe)",
+        "ClassicTraveller": "Classic Traveller (CT)",
+        "AlphaCephei": "Alpha Cephei (AC)",
+        "CepheusUniversal": "Cepheus Universal (CU)"
+      },
+      "DamageMessages": {
+        "NoRad": "Lucky escape - no radiation",
+        "SingleCrew": "One random crew member suffers {dose} rads",
+        "AllCrew":  "All crew suffer {dose} rads",
+        "ShipDestroyed": "SHIP IS DESTROYED"
+      },
       "Deckplan": "Deck Plan",
       "Defense": "Defense",
       "DeleteAction": "Delete Action",
@@ -869,6 +923,8 @@
       "Name": "Name",
       "NewAction": "New Action",
       "NoActorsForAction": "No actor available for action",
+      "NotShipWeapon": "Not a ship weapon - damage not calculated.",
+      "NoDamage": "No regular ship damage to assess",
       "Operations": "Operations",
       "Order": "Order",
       "Overdrive": "Overdrive",
@@ -1668,6 +1724,14 @@
       "showTraitAE": {
         "hint": "List active effect formulas as part of trait short description (true) on Traveller Info tab.  Otherwise, show only the short description for the trait (false).",
         "name": "Show Active Effects for Traits"
+      },
+      "shipWeaponType": {
+        "hint": "CD: Cepheus Deluxe types (e.g. Light, Intermediate, Heavy, Main, Missiles, or Special); CE: Cepheus Engine Type (e.g. Pulse Laser, Beam Laser, Particle Beam, Fusion Gun, Meson Gun, Missiles, or Sandcaster); CT: Classic Traveller type (e.g. Pulse Laser, Beam Laser, Missiles, or Sandcaster), or AC - Alpha Cephei weapons",
+        "name": "Ship Weapon Types"
+      },
+      "shipDamageType": {
+        "hint": "Determines how ship damage is generated in damage report.  Component style determines damage to components directly (e.g. Cepheus Engine).  Hull with Criticals determines damage primarily to the ship hull with a critical every 10% of total hull damage (e.g. MgT2e).  Hull only determines damage only to hull.  Surface or Internal determines damage based on weapon penetration (e.g. Cepheus Deluxe). Classic Traveller looks up hits on Hit Locations table. Alpha Cephei uses its specific component lookup table and armor gates hits (not reduces).  Cepheus Univeral uses its damage to hull and component hits table.",
+        "name": "Rules for handling ship damage"
       }
     },
     "CloseAndCreateNew": "Close and create new",

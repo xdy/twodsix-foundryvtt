@@ -153,6 +153,12 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
     settings.roll.push(booleanSetting("psiTalentsRequireRoll", false));
     settings.roll.push(booleanSetting("xd6RollStyle", false));
     settings.ship.push(numberSetting('componentDamageDM', 0, false));
+    const weaponTypeLookup = Object.keys(TWODSIX.ShipWeaponTypes).reduce((acc, key) => {
+      acc[key] = key;
+      return acc;
+    }, {});
+    settings.ship.push(stringChoiceSetting('shipWeaponType', "CE", false, weaponTypeLookup));
+    settings.ship.push(stringChoiceSetting('shipDamageType', "component", true, TWODSIX.ShipDamageRules));
     return settings;
   }
 }
