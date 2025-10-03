@@ -148,6 +148,9 @@ export class Stats {
       charArray[charName] = Math.clamp(this[characteristic].original.damage - this[characteristic].healing, 0, this[characteristic].original.value);
     }
     await this.actor.update(charArray);
+    if (this.actor.sheet?.rendered) {
+      this.actor.sheet.render({force: false});
+    }
   }
 }
 
