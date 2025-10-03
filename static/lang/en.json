@@ -53,6 +53,25 @@
       "DamageCard": "Damage Card",
       "DamageDice": "Damage Dice"
     },
+    "Healing": {
+      "ApplyHealing": "Apply Healing",
+      "Healing": "Healing",
+      "AP": "AP",
+      "TotalHealing": "Total healing",
+      "Characteristics": "Characteristics",
+      "Max": "Max",
+      "Mod": "Mod",
+      "Dmg": "Dmg",
+      "Current": "Current",
+      "ResultingStat": "Resulting stat",
+      "UnallocatedHealing": "Unallocated Healing",
+      "ApplyHealingTo": "Apply healing to {actorName}",
+      "NoRegularHealing": "No Regular Healing",
+      "HealingCalculation": "Applied Healing Calculation",
+      "HealingCard": "Damage Card",
+      "DamageDice": "Healing Dice"
+    },
+
     "DamageType": {
       "Acid": "Acid",
       "Ballistic": "Ballistic",

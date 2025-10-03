@@ -770,30 +770,42 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async healActor(healing: number): Promise<void> {
+  public async healActor(healing: number, showHealingDialog = true): Promise<void> {
     if (["traveller", "animal", "robot"].includes(this.type)) {
-      let damageCharacteristics: string[] = [];
-      if (game.settings.get('twodsix', 'reverseHealingOrder')) {
-        damageCharacteristics = getDamageCharacteristics(this.type).reverse();
+      if (showHealingDialog) {
+        const healingData = {};
+        Object.assign(healingData, {
+          healingId: "healing-" + foundry.utils.randomID(),
+          actor: this,
+          targetUuid: this.uuid,
+          healingValue: healing
+        });
+        game.socket?.emit("system.twodsix", ["createHealingDialog", healingData]);
+        Hooks.call('createHealingDialog', healingData);
       } else {
-        damageCharacteristics = getDamageCharacteristics(this.type);
-      }
-      const charArray = {};
-      for (const characteristic of damageCharacteristics) {
-        const cur_damage = this.system.characteristics[characteristic].damage;
-
-        if (cur_damage > 0) {
-          const new_damage = Math.max(0, cur_damage - healing);
-          const char_id = 'system.characteristics.' + characteristic + '.damage';
-          charArray[char_id] = new_damage;
-          healing -= cur_damage - new_damage;
+        let damageCharacteristics: string[] = [];
+        if (game.settings.get('twodsix', 'reverseHealingOrder')) {
+          damageCharacteristics = getDamageCharacteristics(this.type).reverse();
+        } else {
+          damageCharacteristics = getDamageCharacteristics(this.type);
         }
+        const charArray = {};
+        for (const characteristic of damageCharacteristics) {
+          const cur_damage = this.system.characteristics[characteristic].damage;
 
-        if (healing < 1) {
-          break;
+          if (cur_damage > 0) {
+            const new_damage = Math.max(0, cur_damage - healing);
+            const char_id = 'system.characteristics.' + characteristic + '.damage';
+            charArray[char_id] = new_damage;
+            healing -= cur_damage - new_damage;
+          }
+
+          if (healing < 1) {
+            break;
+          }
         }
+        await this.update(charArray); /*update only once*/
       }
-      await this.update(charArray); /*update only once*/
     }
   }
 

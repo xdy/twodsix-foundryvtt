@@ -3218,32 +3218,33 @@ form .form-group > label {
 }
 */
 /* ------ Damage Dialog ------ */
-.damage-dialog {
+.damage-dialog, .healing-dialog {
   font-size: revert;
 }
-.damage-table {
+.damage-table, .healing-table {
   max-width: 30ch;
 }
 
-.damage-dialog .red {
+.damage-dialog .red,  .healing-dialog .red {
   color: var(--s2d6-damage-red);
 }
 
-.damage-dialog .orange {
+.damage-dialog .orange, .healing-dialog .orange {
   color: var(--s2d6-damage-orange);
 }
 
-.damage-dialog .orange-border {
+.damage-dialog .orange-border, .healing-dialog .orange-border {
   border: 1px solid var(--s2d6-damage-orange);
 }
 
-.damage-dialog .mod, .damage-dialog .current-mod {
+.damage-dialog .mod, .damage-dialog .current-mod,
+.healing-dialog .mod, .healing-dialog .current-mod {
   font-size: 12px;
   color: var(--s2d6-stat-input);
   margin-left: 10px;
 }
 
-.damage-dialog .damage-input {
+.damage-dialog .damage-input, .healing-dialog .healing-input {
   width: 30px;
 }
 
@@ -3251,11 +3252,12 @@ form .form-group > label {
   width: 50px;
 }*/
 
-.damage-dialog .center-table-text {
+.damage-dialog .center-table-text, .healing-dialog .center-table-text {
   text-align: center;
 }
 
-.damage-dialog .attribute-name-column {
+.damage-dialog .attribute-name-column,
+.healing-dialog .attribute-name-column {
   text-align: left;
 }
 
