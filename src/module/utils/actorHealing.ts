@@ -189,7 +189,7 @@ class HealingDialogHandler {
           chrHtml.querySelector(`.healing-input`).value = stat.healing;
         }
 
-        /*if (characteristic === this.stats.damageCharacteristics[0] && stat.newCurrent() !== 0 && this.stats.healingValue - stat.healing > 0) {
+        if (characteristic === this.stats.damageCharacteristics[0] && stat.newCurrent() !== stat.original.value && this.stats.healingValue - stat.healing > 0) {
           if (!chrHtml.querySelector(`.healing-input`)?.classList.contains("orange-border")) {
             chrHtml.querySelector(`.healing-input`)?.classList.add("orange-border");
             if (stat.original.damage === 0) {
@@ -198,7 +198,7 @@ class HealingDialogHandler {
           }
         } else {
           chrHtml.querySelector(`.healing-input`)?.classList.remove("orange-border");
-        }*/
+        }
 
         chrHtml.querySelector(`.original-value`).innerHTML = stat.original.value.toString();
         chrHtml.querySelector(`.original-current`).innerHTML = stat.original.current.toString();
