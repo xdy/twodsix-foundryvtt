@@ -44,7 +44,7 @@
       "ResultingStat": "Resulting stat",
       "UnallocatedDamage": "Unallocated damage",
       "CharacterIsDead": "Character is dead",
-      "DealDamageTo": "Deal damage to _ACTOR_NAME_",
+      "DealDamageTo": "Deal Damage to _ACTOR_NAME_",
       "DamageFormula": "Damage Formula",
       "NoRegularDamage": "No Regular Damage",
       "CanBeBlocked": "Can be blocked",
@@ -53,6 +53,25 @@
       "DamageCard": "Damage Card",
       "DamageDice": "Damage Dice"
     },
+    "Healing": {
+      "ApplyHealing": "Apply Healing",
+      "Healing": "Healing",
+      "AP": "AP",
+      "TotalHealing": "Total healing",
+      "Characteristics": "Characteristics",
+      "Max": "Max",
+      "Mod": "Mod",
+      "Dmg": "Dmg",
+      "Current": "Current",
+      "ResultingStat": "Resulting stat",
+      "UnallocatedHealing": "Unallocated Healing",
+      "ApplyHealingTo": "Apply Healing to {actorName}",
+      "NoRegularHealing": "No Regular Healing",
+      "HealingCalculation": "Applied Healing Calculation",
+      "HealingCard": "Damage Card",
+      "HealingDice": "Healing Dice"
+    },
+
     "DamageType": {
       "Acid": "Acid",
       "Ballistic": "Ballistic",
@@ -1564,8 +1583,8 @@
         "name": "Override automatic damage rolls for clients to GM setting."
       },
       "autoDamageTarget": {
-        "hint": "Automatically damage a targeted actor without showing the damage pop-up on a sucessful attack roll.",
-        "name": "Auto Damage Targets"
+        "hint": "Automatically damage or heal a targeted actor without showing a pop-up on a sucessful attack roll or appling damage/healing.",
+        "name": "Auto Damage and Heal Targets"
       },
       "useDegreesOfSuccess": {
         "hint": "Show degrees of success.  The 'Other' setting uses exceptional, marginal, and average descriptions for success & failure. The 'Cepheus Engine' setting does not use the marginal descriptor (per rules).  The 'None' setting omits all success or failure descriptions.",
