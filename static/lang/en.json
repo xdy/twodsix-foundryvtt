@@ -69,7 +69,7 @@
       "NoRegularHealing": "No Regular Healing",
       "HealingCalculation": "Applied Healing Calculation",
       "HealingCard": "Damage Card",
-      "DamageDice": "Healing Dice"
+      "HealingDice": "Healing Dice"
     },
 
     "DamageType": {
@@ -1583,8 +1583,8 @@
         "name": "Override automatic damage rolls for clients to GM setting."
       },
       "autoDamageTarget": {
-        "hint": "Automatically damage a targeted actor without showing the damage pop-up on a sucessful attack roll.",
-        "name": "Auto Damage Targets"
+        "hint": "Automatically damage or heal a targeted actor without showing a pop-up on a sucessful attack roll or appling damage/healing.",
+        "name": "Auto Damage and Heal Targets"
       },
       "useDegreesOfSuccess": {
         "hint": "Show degrees of success.  The 'Other' setting uses exceptional, marginal, and average descriptions for success & failure. The 'Cepheus Engine' setting does not use the marginal descriptor (per rules).  The 'None' setting omits all success or failure descriptions.",

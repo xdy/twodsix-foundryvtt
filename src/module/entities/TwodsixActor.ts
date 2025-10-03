@@ -770,15 +770,16 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-  public async healActor(healing: number, showHealingDialog = true): Promise<void> {
+  public async healActor(healing: number, dice?:any[]): Promise<void> {
     if (["traveller", "animal", "robot"].includes(this.type)) {
-      if (showHealingDialog) {
+      if (!game.settings.get('twodsix', 'autoDamageTarget')) {
         const healingData = {};
         Object.assign(healingData, {
           healingId: "healing-" + foundry.utils.randomID(),
           actor: this,
           targetUuid: this.uuid,
-          healingValue: healing
+          healingValue: healing,
+          dice: dice
         });
         game.socket?.emit("system.twodsix", ["createHealingDialog", healingData]);
         Hooks.call('createHealingDialog', healingData);
