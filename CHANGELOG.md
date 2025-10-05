@@ -1,3 +1,10 @@
+# [6.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.7.0...v6.8.0) (2025-10-05)
+
+
+### Features
+
+* Add optional healing dialog to chat context menu ([#1864](https://github.com/xdy/twodsix-foundryvtt/issues/1864)) ([46cea84](https://github.com/xdy/twodsix-foundryvtt/commit/46cea84b2f6ed7858594caee26f360f741abc05c))
+
 # [6.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.6.4...v6.7.0) (2025-09-30)
 
 
