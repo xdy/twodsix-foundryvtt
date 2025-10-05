@@ -202,7 +202,7 @@ function applyChatCardDamage(li:HTMLElement, multiplier:number): Promise<any>|un
         if (damage > 0) {
           (<TwodsixActor>t.actor).damageActor({damageValue: damage, armorPiercingValue: transfer?.payload.armorPiercingValue ?? 0, damageType: transfer?.payload.damageType ?? "", dice: transfer?.payload.dice }, true);
         } else if (multiplier < 0) {
-          t.actor.healActor(effect);
+          t.actor.healActor(effect, transfer?.payload.dice);
         }
       } else {
         ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});

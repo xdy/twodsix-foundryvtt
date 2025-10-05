@@ -1,0 +1,91 @@
+<div class="standard-form healing-dialog">
+  {{#with stats}}
+  <div class = "">
+    <label>{{localize "TWODSIX.Healing.Characteristics"}}</label>
+    <table class="center-table-text">
+      <thead class="centre">
+        <tr>
+          <th class="attribute-name-column"></th>
+          <th>{{localize "TWODSIX.Healing.Max"}}</th>
+          <th>{{localize "TWODSIX.Healing.Current"}}</th>
+          <th>{{localize "TWODSIX.Healing.Healing"}}</th>
+          <th>{{localize "TWODSIX.Healing.ResultingStat"}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if useLifebloodStamina}}
+          <tr class="stamina">
+            <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.STA"}}</td>
+            <td class="original-value">{{originalCharacteristics.stamina.value}}</td>
+            <td><span class="original-current">{{originalCharacteristics.stamina.current}}</span></td>
+            <td><input class="healing-input" data-stat="stamina" type="number" value="{{stamina.healing}}"></td>
+            <td><span class="result-value"></span></td>
+          </tr>
+          <tr class="lifeblood">
+            <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.LFB"}}</td>
+            <td class="original-value">{{originalCharacteristics.lifeblood.value}}</td>
+            <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span></td>
+            <td><input class="healing-input" data-stat="lifeblood" type="number" value="{{lifeblood.healing}}"></td>
+            <td><span class="result-value"></span></td>
+          </tr>
+        {{else if useLifebloodOnly}}
+          <tr class="lifeblood">
+            <td class="attribute-name-column">{{localize "TWODSIX.Actor.Hits"}}</td>
+            <td class="original-value">{{originalCharacteristics.lifeblood.value}}</td>
+            <td><span class="original-current">{{originalCharacteristics.lifeblood.current}}</span></td>
+            <td><input class="healing-input" data-stat="lifeblood" type="number" value="{{lifeblood.healing}}"></td>
+            <td><span class="result-value"></span></td>
+          </tr>
+        {{else}}
+          <tr class="strength">
+            {{#if useLifebloodEndurance}}
+              <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.LFB"}}</td>
+            {{else}}
+              <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.STR"}}</td>
+            {{/if}}
+            <td class="original-value">{{originalCharacteristics.strength.value}}</td>
+            <td><span class="original-current">{{originalCharacteristics.strength.current}}</span>{{#unless useLifebloodEndurance}} <span class="current-mod"></span>{{/unless}}</td>
+            <td><input class="healing-input" data-stat="strength" type="number" value="{{strength.healing}}"></td>
+            <td><span class="result-value"></span>{{#unless useLifebloodEndurance}} <span class="mod"></span>{{/unless}}</td>
+          </tr>
+          {{#unless useLifebloodEndurance}}
+          <tr class="dexterity">
+            <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.DEX"}}</td>
+            <td class="original-value">{{originalCharacteristics.dexterity.value}}</td>
+            <td><span class="original-current">{{originalCharacteristics.dexterity.current}}</span>{{#unless useLifebloodEndurance}} <span class="current-mod"></span>{{/unless}}</td>
+            <td><input class="healing-input" data-stat="dexterity" type="number" value="{{dexterity.healing}}"></td>
+            <td><span class="result-value"></span> <span class="mod"></span></td>
+          </tr>
+          {{/unless}}
+          <tr class="endurance">
+            <td class="attribute-name-column">{{localize "TWODSIX.Items.Skills.END"}}</td>
+            <td class="original-value">{{originalCharacteristics.endurance.value}}</td>
+            <td><span class="original-current">{{originalCharacteristics.endurance.current}}</span>{{#unless useLifebloodEndurance}} <span class="current-mod"></span>{{/unless}}</td>
+            <td><input class="healing-input" data-stat="endurance" type="number" value="{{endurance.healing}}"></td>
+            <td><span class="result-value"></span>{{#unless useLifebloodEndurance}} <span class="mod"></span>{{/unless}}</td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+  <div class = "">
+    <span class="unalocated-healing-text">{{localize "TWODSIX.Healing.UnallocatedHealing"}}: <span class="unalocated-healing"></span></span>
+  </div>
+  {{#if dice}}
+    <div class="dice-tooltip">
+      <div class ="wrapper">
+        <label>{{localize "TWODSIX.Healing.HealingDice"}}</label>
+        <section class="tooltip-part">
+          <div class="dice">
+            <ol class="dice-rolls">
+            {{#each dice as |die|}}
+              <li class="{{twodsix_die_style die}}">{{die.result}}</li>
+            {{/each}}
+            </ol>
+          </div>
+        </section>
+      </div>
+    </div>
+  {{/if}}
+  {{/with}}
+</div>
