@@ -1,3 +1,10 @@
+## [6.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.8.0...v6.8.1) (2025-10-07)
+
+
+### Bug Fixes
+
+* get rid of warning to decrease endurance first when using heal ([#1865](https://github.com/xdy/twodsix-foundryvtt/issues/1865)) ([2353eec](https://github.com/xdy/twodsix-foundryvtt/commit/2353eec75bceb2f5cf973adb602b4cb74d3764c6))
+
 # [6.8.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.7.0...v6.8.0) (2025-10-05)
 
 

@@ -195,9 +195,6 @@ class HealingDialogHandler {
         if (characteristic === this.stats.damageCharacteristics[0] && stat.newCurrent() !== stat.original.value && this.stats.healingValue - stat.healing > 0) {
           if (!chrHtml.querySelector(`.healing-input`)?.classList.contains("orange-border")) {
             chrHtml.querySelector(`.healing-input`)?.classList.add("orange-border");
-            if (stat.original.damage === 0) {
-              ui.notifications.warn("TWODSIX.Warnings.DecreaseEnduranceFirst", {localize: true});
-            }
           }
         } else {
           chrHtml.querySelector(`.healing-input`)?.classList.remove("orange-border");
