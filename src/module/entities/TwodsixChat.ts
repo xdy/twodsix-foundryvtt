@@ -192,17 +192,22 @@ export async function onChatCardAction(event: Event, target:HTMLElement): Promis
  * @returns {Promise|undefined}
  */
 function applyChatCardDamage(li:HTMLElement, multiplier:number): Promise<any>|undefined {
-  const message = game.messages.get(li.dataset?.messageId);
-  const transfer = message.getFlag('twodsix', 'transfer') ? JSON.parse(message.getFlag('twodsix', 'transfer')) : undefined;
-  const effect = transfer?.payload.damageValue ?? message.getFlag('twodsix', 'effect') ?? message.rolls[0].total;
+  const message:ChatMessageData = game.messages.get(li.dataset?.messageId);
+  const transfer:any = message.getFlag('twodsix', 'transfer') ? JSON.parse(message.getFlag('twodsix', 'transfer')) : undefined;
+  const effect:number = transfer?.payload.damageValue ?? message.getFlag('twodsix', 'effect') ?? message.rolls[0]?.total;
   if (effect > 0) {
     return Promise.all(canvas.tokens.controlled.map(t => {
-      if (["traveller", "robot", "animal"].includes(t.actor.type)) {
+      const targetActor:TwodsixActor = t.actor;
+      if (["traveller", "robot", "animal", "ship"].includes(targetActor.type)) {
         const damage = Math.floor(effect * multiplier);
         if (damage > 0) {
-          (<TwodsixActor>t.actor).damageActor({damageValue: damage, armorPiercingValue: transfer?.payload.armorPiercingValue ?? 0, damageType: transfer?.payload.damageType ?? "", dice: transfer?.payload.dice }, true);
-        } else if (multiplier < 0) {
-          t.actor.healActor(effect, transfer?.payload.dice);
+          const damagePayload = transfer?.payload ?? {armorPiercingValue: 0, damageLabel: "", damageType: "", dice: message.rolls[0]?.dice[0]?.results};
+          Object.assign(damagePayload, {damageValue: damage});
+          targetActor.handleDamageData(damagePayload, true);
+        } else if (multiplier < 0 && !["ship"].includes(targetActor.type)) {
+          targetActor.healActor(effect, transfer?.payload.dice ?? message.rolls[0]?.dice[0]?.results);
+        } else {
+          ui.notifications.warn("TWODSIX.Warnings.CantAutoRepair", {localize: true});
         }
       } else {
         ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
