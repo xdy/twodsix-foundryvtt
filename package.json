@@ -44,7 +44,7 @@
     "@semantic-release/release-notes-generator": "^14.0.1",
     "@types/fs-extra": "^11.0.4",
     "@types/jquery": "^3.5.31",
-    "@types/node": "^20.16.11",
+    "@types/node": "^24.7.2",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
