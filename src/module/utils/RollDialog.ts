@@ -183,7 +183,7 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
       this.settings.rollModifiers.encumbered = 0;
     } else {
       const dialogEncValue = parseInt(formElements["rollModifiers.encumbered"]?.value, 10);
-      if (this.settings.initialChoice === this.settings.rollModifiers.characterisitc || dialogEncValue !== this.settings.rollModifiers.encumbered) {
+      if (this.settings.initialChoice === this.settings.rollModifiers.characteristic || dialogEncValue !== this.settings.rollModifiers.encumbered) {
         //characteristic didn't change or encumbrance modifer changed
         this.settings.rollModifiers.encumbered = isNaN(dialogEncValue) ? 0 : dialogEncValue;
       } else {
