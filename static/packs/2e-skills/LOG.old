@@ -1,8 +1,18 @@
-2024/11/19-09:22:06.386766 700010bad000 Recovering log #23
-2024/11/19-09:22:06.388168 700010bad000 Delete type=3 #20
-2024/11/19-09:22:06.388344 700010bad000 Delete type=0 #23
-2024/11/19-09:26:06.439613 700010c30000 Level-0 table #30: started
-2024/11/19-09:26:06.439822 700010c30000 Level-0 table #30: 0 bytes OK
-2024/11/19-09:26:06.440186 700010c30000 Delete type=0 #28
-2024/11/19-09:26:06.441897 700010c30000 Manual compaction at level-0 from '!items!09eUMj6Vo70lepy0' @ 72057594037927935 : 1 .. '!items!zbPBT52hlNRDeayr' @ 0 : 0; will stop at (end)
-2024/11/19-09:26:06.441936 700010c30000 Manual compaction at level-1 from '!items!09eUMj6Vo70lepy0' @ 72057594037927935 : 1 .. '!items!zbPBT52hlNRDeayr' @ 0 : 0; will stop at (end)
+2025/04/18-10:55:07.607441 7000083c6000 Recovering log #29
+2025/04/18-10:55:07.607639 7000083c6000 Recovering log #47
+2025/04/18-10:55:07.608643 7000083c6000 Delete type=0 #29
+2025/04/18-10:55:07.608725 7000083c6000 Delete type=0 #47
+2025/04/18-10:55:07.608793 7000083c6000 Delete type=2 #32
+2025/04/18-10:55:07.608949 7000083c6000 Delete type=3 #27
+2025/04/19-10:11:58.274325 700009c52000 Level-0 table #50: started
+2025/04/19-10:11:58.275867 700009c52000 Level-0 table #50: 35848 bytes OK
+2025/04/19-10:11:58.276436 700009c52000 Delete type=0 #48
+2025/04/19-10:11:58.277152 700009c52000 Manual compaction at level-0 from '!items!09eUMj6Vo70lepy0' @ 72057594037927935 : 1 .. '!items!zbPBT52hlNRDeayr' @ 0 : 0; will stop at (end)
+2025/04/19-10:11:58.288692 700009c52000 Manual compaction at level-1 from '!items!09eUMj6Vo70lepy0' @ 72057594037927935 : 1 .. '!items!zbPBT52hlNRDeayr' @ 0 : 0; will stop at '!items!zbPBT52hlNRDeayr' @ 629 : 1
+2025/04/19-10:11:58.288714 700009c52000 Compacting 1@1 + 1@2 files
+2025/04/19-10:11:58.290022 700009c52000 Generated table #51@1: 103 keys, 20449 bytes
+2025/04/19-10:11:58.290048 700009c52000 Compacted 1@1 + 1@2 files => 20449 bytes
+2025/04/19-10:11:58.290163 700009c52000 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/04/19-10:11:58.290235 700009c52000 Delete type=2 #26
+2025/04/19-10:11:58.290534 700009c52000 Delete type=2 #50
+2025/04/19-10:11:58.290709 700009c52000 Manual compaction at level-1 from '!items!zbPBT52hlNRDeayr' @ 629 : 1 .. '!items!zbPBT52hlNRDeayr' @ 0 : 0; will stop at (end)

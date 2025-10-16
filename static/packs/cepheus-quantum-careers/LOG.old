@@ -1,8 +1,18 @@
-2024/11/19-09:22:06.494867 7000103aa000 Recovering log #22
-2024/11/19-09:22:06.496588 7000103aa000 Delete type=3 #19
-2024/11/19-09:22:06.496804 7000103aa000 Delete type=0 #22
-2024/11/19-09:26:06.449835 700010c30000 Level-0 table #29: started
-2024/11/19-09:26:06.449997 700010c30000 Level-0 table #29: 0 bytes OK
-2024/11/19-09:26:06.450397 700010c30000 Delete type=0 #27
-2024/11/19-09:26:06.451901 700010c30000 Manual compaction at level-0 from '!actors!0hNkKdngW3olMpev' @ 72057594037927935 : 1 .. '!actors.items!u9ydhquEUk7ubaId.sr4T9aZFMd5CcgB9' @ 0 : 0; will stop at (end)
-2024/11/19-09:26:06.451982 700010c30000 Manual compaction at level-1 from '!actors!0hNkKdngW3olMpev' @ 72057594037927935 : 1 .. '!actors.items!u9ydhquEUk7ubaId.sr4T9aZFMd5CcgB9' @ 0 : 0; will stop at (end)
+2025/04/18-10:55:07.675989 7000093cc000 Recovering log #28
+2025/04/18-10:55:07.676188 7000093cc000 Recovering log #46
+2025/04/18-10:55:07.677058 7000093cc000 Delete type=0 #28
+2025/04/18-10:55:07.677118 7000093cc000 Delete type=0 #46
+2025/04/18-10:55:07.677174 7000093cc000 Delete type=2 #31
+2025/04/18-10:55:07.677294 7000093cc000 Delete type=3 #26
+2025/04/19-10:11:58.368760 700009c52000 Level-0 table #49: started
+2025/04/19-10:11:58.370585 700009c52000 Level-0 table #49: 42296 bytes OK
+2025/04/19-10:11:58.371279 700009c52000 Delete type=0 #47
+2025/04/19-10:11:58.373966 700009c52000 Manual compaction at level-0 from '!actors!0hNkKdngW3olMpev' @ 72057594037927935 : 1 .. '!actors.items!u9ydhquEUk7ubaId.sr4T9aZFMd5CcgB9' @ 0 : 0; will stop at (end)
+2025/04/19-10:11:58.378458 700009c52000 Manual compaction at level-1 from '!actors!0hNkKdngW3olMpev' @ 72057594037927935 : 1 .. '!actors.items!u9ydhquEUk7ubaId.sr4T9aZFMd5CcgB9' @ 0 : 0; will stop at '!actors.items!u9ydhquEUk7ubaId.sr4T9aZFMd5CcgB9' @ 338 : 1
+2025/04/19-10:11:58.378481 700009c52000 Compacting 1@1 + 1@2 files
+2025/04/19-10:11:58.380510 700009c52000 Generated table #50@1: 57 keys, 24464 bytes
+2025/04/19-10:11:58.380547 700009c52000 Compacted 1@1 + 1@2 files => 24464 bytes
+2025/04/19-10:11:58.380737 700009c52000 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/04/19-10:11:58.380892 700009c52000 Delete type=2 #49
+2025/04/19-10:11:58.381126 700009c52000 Delete type=2 #25
+2025/04/19-10:11:58.383660 700009c52000 Manual compaction at level-1 from '!actors.items!u9ydhquEUk7ubaId.sr4T9aZFMd5CcgB9' @ 338 : 1 .. '!actors.items!u9ydhquEUk7ubaId.sr4T9aZFMd5CcgB9' @ 0 : 0; will stop at (end)

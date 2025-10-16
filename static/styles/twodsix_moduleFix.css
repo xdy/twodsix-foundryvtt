@@ -435,14 +435,28 @@ div.svelte-ip-m19fn7 {
 #forien-quest-log .window-content,
 .window-app.forien-quest-preview .window-content,
 .quest-body,
-#forien-quest-log .quest-log .table ul li.drag-quest
-{
+#forien-quest-log .quest-log .table ul li.drag-quest {
 	background: var(--s2d6-background-nearly-opaque);
 }
 
-#forien-quest-log .actions i, .window-app.forien-quest-preview .actions i {
-	color: 	var(--s2d6-default-color);
+#forien-quest-log .editor, .window-app.forien-quest-preview .editor,
+#forien-quest-log .editor .editor-content, .window-app.forien-quest-preview .editor .editor-content {
+  background: var(--s2d6-background-nearly-opaque) !important;
 }
+
+#forien-quest-log .actions i, .window-app.forien-quest-preview .actions i,
+#forien-quest-log nav.tabs .item, .window-app.forien-quest-preview nav.tabs .item,
+#forien-quest-log .actions i, .window-app.forien-quest-preview .actions i  {
+	color: 	var(--s2d6-default-color) !important;
+}
+#forien-quest-log .actions i.fa-trash, .window-app.forien-quest-preview .actions i.fa-trash {
+    color: #f009 !important;
+}
+
+#forien-quest-log h2, .window-app.forien-quest-preview h2 {
+  border-bottom: 1px solid var(--color-underline-header);
+}
+
 
 /******* Token Action HUD ********/
 .tah-groups {
