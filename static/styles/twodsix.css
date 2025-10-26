@@ -2369,13 +2369,6 @@ span.total-output {
   text-align: center;
 }
 
-.overdrive-mode input[type="checkbox"] {
-  width: 13px;
-  height: 13px;
-  text-align: center;
-  /* vertical-align: middle; */
-}
-
 .fuel-bar {
   width: 95%;
   max-width: 17ch;
@@ -2504,11 +2497,19 @@ span.total-output {
   grid-area: ship-fuel;
   display: flex;
   flex-direction: column;
-  /* grid-template-rows: 15px 25px 47px 20px; */
-  /* text-align: center; */
-  /* margin-top: 0.5em; */
   justify-content: space-evenly;
-  /* vertical-align: middle; */
+}
+
+.ship-overdrive {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ship-overdrive input {
+  border: none;
+  width: 4ch;
 }
 
 .ship-mass {
