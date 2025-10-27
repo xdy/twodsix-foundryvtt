@@ -131,9 +131,9 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       }
     }
 
-    //prevent processor/suite attachements to computers(?)
     context.config = foundry.utils.duplicate(TWODSIX);
 
+    //prevent processor/suite attachements to computers(?)
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
       if(onComputer) {
@@ -145,6 +145,17 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     // Disable Melee Range DM if designated as Melee weapon
     if (this.item.type === 'weapon') {
       context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
+    }
+
+    context.isStoredInCargo = ["cargo", "ammo"].includes(this.item.system.subtype);
+    context.isWeapon = ["armament", "ammo"].includes(this.item.system.subtype);
+
+    //Disable invalid pricing options for ammo
+    if(["ammo"].includes(this.item.system.subtype)) {
+      delete context.config.PricingOptions.perHullTon;
+      delete context.config.PricingOptions.per100HullTon;
+      delete context.config.PricingOptions.pctHull;
+      delete context.config.PricingOptions.pctHullPerUnit;
     }
 
     context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, {secrets: this.document.isOwner});
@@ -166,10 +177,10 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     } else if (this.item.type === "component") {
       delete tabs.magazine;
       delete tabs.modifiers;
-      if (this.item.system.subtype === "cargo") {
+      if (["cargo", "ammo"].includes(this.item.system.subtype)) {
         delete tabs.power;
       }
-      if (!["armament", "mount"].includes(this.item.system.subtype)) {
+      if (!["armament", "mount", "ammo"].includes(this.item.system.subtype)) {
         delete tabs.attack;
       }
     }
@@ -221,18 +232,23 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       if (this.item.img.includes(componentImagePath)) {
         Object.assign(updates, {"img": componentImagePath + chosenSubtype + ".svg"});
       }
-      /*Prevent cargo from using %hull weight*/
+      /*Prevent cargo or ammo from using %hull weight*/
       const anComponent = <Component> this.item.system;
-      if (anComponent.weightIsPct && chosenSubtype === "cargo") {
+      if (anComponent.weightIsPct && ["cargo", "ammo"].includes(chosenSubtype)) {
         Object.assign(updates, {"system.weightIsPct": false});
       }
       /*Unset isBaseHull if not hull component*/
       if (chosenSubtype !== "hull" && anComponent.isBaseHull) {
         Object.assign(updates, {"system.isBaseHull": false});
       }
-      /*Unset hardened if fuel, cargo, storage, vehicle*/
-      if (["fuel", "cargo", "storage", "vehicle"].includes(chosenSubtype)) {
+      /*Unset hardened if fuel, cargo, ammo, storage, vehicle*/
+      if (["fuel", "cargo", "ammo", "storage", "vehicle"].includes(chosenSubtype)) {
         Object.assign(updates, {"system.hardened": false});
+      }
+
+      //Reset pricing basis for ammo if necessary
+      if (["ammo"].includes(chosenSubtype) && !["perUnit", "perCompTon"].includes(anComponent.pricingBasis)) {
+        Object.assign(updates, {"system.pricingBasis": "perUnit"});
       }
 
       if (Object.keys(updates).length !== 0) {

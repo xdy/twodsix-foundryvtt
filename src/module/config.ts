@@ -943,6 +943,7 @@ export const ComponentStates = {
  */
 export const ComponentTypes = {
   accomodations: "TWODSIX.Items.Component.accomodations",
+  ammo: "TWODSIX.Items.Component.ammo",
   armament: "TWODSIX.Items.Component.armament",
   armor: "TWODSIX.Items.Component.armor",
   bridge: "TWODSIX.Items.Component.bridge",

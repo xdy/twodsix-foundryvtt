@@ -513,9 +513,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.skillRanks = counters.skillRanks + context.jackOfAllTrades;
     } else if (["ship", "vehicle"].includes(actor.type)) {
       context.componentObject = sortObj(component);
+      context.componentObject.allCargo = [...component.cargo??[], ...component.ammo??[]];
       context.summaryStatus = sortObj(summaryStatus);
       context.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
-      context.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
+      context.container.nonCargo = actor.itemTypes.component.filter( i => !["cargo", "ammo"].includes(i.system.subtype));
     } else if (["robot"].includes(actor.type)) {
       context.buildPoints = counters.buildPoints;
     }

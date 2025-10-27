@@ -617,7 +617,7 @@ export default class TwodsixActor extends Actor {
     }
 
     function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor:TwodsixActor, multiplier:number): void {
-      if (!["fuel", "cargo", "vehicle"].includes(anComponent.subtype)) {
+      if (!["fuel", "cargo", "ammo", "vehicle"].includes(anComponent.subtype)) {
         if (anComponent.subtype === "hull" && anComponent.isBaseHull) {
           switch (anComponent.pricingBasis) {
             case "perUnit":
@@ -678,6 +678,7 @@ export default class TwodsixActor extends Actor {
           calcShipStats.weight.vehicles += weightForItem;
           break;
         case "cargo":
+        case "ammo":
           calcShipStats.weight.cargo += weightForItem;
           break;
         case "fuel":

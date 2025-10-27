@@ -46,7 +46,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
 
   async _prepareContext(options): TwodsixShipPositionSheetData {
     const context = await super._prepareContext(options);
-    context.nonCargoComponents = this.item.actor?.itemTypes.component.filter( i => i.system.subtype !== "cargo") ?? [];
+    context.nonCargoComponents = this.item.actor?.itemTypes.component.filter( i => ["cargo", "ammo"].includes(i.system.subtype)) ?? [];
     context.availableActions = TwodsixShipActions.availableMethods;
     const actions = (<ShipPosition>this.item.system).actions ?? [];
     context.sortedActions = Object.entries(actions).map(([id, ret]) => {

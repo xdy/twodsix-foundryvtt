@@ -205,6 +205,7 @@ export default function registerHandlebarsHelpers(): void {
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string): string => {
     const iconMap: Record<string, string> = {
       accomodations: "fa-solid fa-bed",
+      ammo: "fa-solid fa-bomb",
       armament: "fa-solid fa-crosshairs",
       armor: "fa-solid fa-grip-vertical",
       bridge: "fa-solid fa-person-seat",
@@ -350,7 +351,11 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('getComponentPrice', (item: TwodsixItem) => {
-    return Number(item.system.purchasePrice).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2}) ;
+    if (item.system.subtype === "cargo") {
+      return Number(item.system.purchasePrice).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2});
+    } else {
+      return Number(item.system.price).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2}) ;
+    }
   });
 
   Handlebars.registerHelper('getComponentPower', (item: TwodsixItem) => {

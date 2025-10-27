@@ -561,6 +561,7 @@
         "Ammunition":"Ammunition",
         "componentName": "Component",
         "accomodations": "accommodations",
+        "ammo": "ammo",
         "armament": "armament",
         "armor": "armor",
         "breach": "breach",
