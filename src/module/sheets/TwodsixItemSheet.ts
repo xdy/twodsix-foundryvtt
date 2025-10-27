@@ -150,6 +150,14 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     context.isStoredInCargo = ["cargo", "ammo"].includes(this.item.system.subtype);
     context.isWeapon = ["armament", "ammo"].includes(this.item.system.subtype);
 
+    //Add ammo list for selectObject
+    context.ammoList = {none: game.i18n.localize("TWODSIX.Ship.None")};
+    if (this.item.system.subtype === "armament" && this.item.actor){
+      (<TwodsixActor>this.item.actor).itemTypes.component
+        ?.filter(i => i.system.subtype === "ammo")
+        ?.forEach( a => context.ammoList[a.id] = a.name);
+    }
+
     //Disable invalid pricing options for ammo
     if(["ammo"].includes(this.item.system.subtype)) {
       delete context.config.PricingOptions.perHullTon;

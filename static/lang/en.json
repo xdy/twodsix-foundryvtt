@@ -676,7 +676,9 @@
         "NuclearMissiles": "Nuclear Missiles",
         "Torpedoes": "Torpedoes",
         "Sandcaster": "Sandcaster",
-        "Other": "Other"
+        "Other": "Other",
+        "StoredAmmunition": "Stored Ammunition",
+        "reload": "reload"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -1872,7 +1874,10 @@
       "CantFindItem": "Cannot find item with name",
       "NotUsingPsiStrength": "Charactersitics settings do not include Psionic Strength.  Cannot use Psionic Abilitiy.",
       "CantFindItemOnActor": "Cannot find selected item on Actor.",
-      "NoAvailableActors": "No available Travellers or Robots to select"
+      "NoAvailableActors": "No available Travellers or Robots to select",
+      "NoLinkedAmmo": "No ammunition linked",
+      "AmmoNotFound": "Can't find ammunition",
+      "NoAmmoToReload": "No ammunition remains to reload"
     }
   },
   "TYPES": {

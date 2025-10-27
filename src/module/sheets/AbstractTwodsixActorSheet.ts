@@ -35,6 +35,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       openPDFLink: openPDFLink,
       deleteReference: deleteReference,
       adjustCounter: this._onAdjustCounter,
+      reloadMagazine: this._onReloadMagazine,
       showChat: this._onShowInChat,
       performAttack: this._onPerformAttack,
       skillTalentRoll: this._onSkillTalentRoll,
@@ -203,6 +204,16 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
               }
             }
           });
+        } else if (ownedItem.system.subtype === "ammo" ) {
+          //reset ammoLink to "none" if armament is linked
+          const linkedArmaments:TwodsixItem[] = this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === ownedItem.id);
+          if (linkedArmaments?.length > 0) {
+            const toReset = [];
+            for (const arm of linkedArmaments) {
+              toReset.push({_id: arm.id, "system.ammoLink": "none"});
+            }
+            await selectedActor.updateEmbeddedDocuments('Item', toReset);
+          }
         }
       }
     }
@@ -840,6 +851,30 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         }
       }
     }
+  }
+
+  static async _onReloadMagazine(ev:Event, target:HTMLElement): Promise<void> {
+    const li = target.closest(".item");
+    const itemSelected = this.actor.items.get(li.dataset.itemId);
+    if (itemSelected.system.ammoLink === "none") {
+      ui.notifications.warn("TWODSIX.Warnings.NoLinkedAmmo", {localize: true});
+      return;
+    }
+    const sourceAmmo = this.actor.items.get(itemSelected.system.ammoLink);
+    if(!sourceAmmo) {
+      ui.notifications.warn("TWODSIX.Warnings.AmmoNotFound", {localize: true});
+      await itemSelected.update({"system.ammoLink": "none"});
+      return;
+    }
+    if(sourceAmmo.system.quantity <= 0) {
+      ui.notifications.warn("TWODSIX.Warnings.NoAmmoToReload", {localize: true});
+      return;
+    }
+    const reloadAmount = Math.max(0, Math.min(itemSelected.system.ammunition.max - itemSelected.system.ammunition.value, sourceAmmo.system.quantity));
+    await this.actor.updateEmbeddedDocuments('Item', [
+      {_id: itemSelected.id, "system.ammunition.value": itemSelected.system.ammunition.value + reloadAmount},
+      {_id: sourceAmmo.id, "system.quantity": sourceAmmo.system.quantity - reloadAmount}
+    ]);
   }
 
   //These aren't necessary with change to prosemirror

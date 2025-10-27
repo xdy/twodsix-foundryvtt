@@ -49,6 +49,12 @@
           <input class="form-consumable-count" name="system.ammunition.max" type="number" value="{{system.ammunition.max}}" data-dtype="Number"/>
         </div>
     </div>
+    <div class="item-features">
+      <label class="resource-label">{{localize "TWODSIX.Items.Component.StoredAmmunition"}}</label>
+      <select name="system.ammoLink">
+        {{selectOptions ammoList selected=system.ammoLink localize=false inverted=false}}
+      </select>
+    </div>
   {{/iff}}
   <div class="item-features">
     <label for="system.shipWeaponType" class="resource-label">{{localize "TWODSIX.Items.Component.WeaponType"}}</label>

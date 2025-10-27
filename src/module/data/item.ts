@@ -222,6 +222,7 @@ export class ComponentData extends GearData {
       endAngle: new fields.NumberField({...requiredInteger, initial: 0})
     });
     schema.shipWeaponType = new fields.StringField({...requiredBlankString});
+    schema.ammoLink = new fields.StringField({required: true, blank: false, initial: "none"});
     return schema;
   }
   static migrateData(source:any) {
