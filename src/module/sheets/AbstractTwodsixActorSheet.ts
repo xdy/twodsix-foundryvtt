@@ -4,7 +4,7 @@
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFLink, getDamageTypes, getRangeTypes, openJournalEntry, deleteReference, changeReference, calcModFor } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Skills, UsesConsumables, Component} from "../../types/template";
+import {Skills, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { simplifySkillName, sortObj } from "../utils/utils";
@@ -175,46 +175,49 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
     const li = target.closest('.item');
-    const ownedItem = this.actor.items.get(li.dataset.itemId) || null;
+    const ownedItem:TwodsixItem = this.actor.items.get(li.dataset.itemId) || null;
 
     if (ownedItem) {
       if (await foundry.applications.api.DialogV2.confirm({
         window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
         content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${ownedItem?.name}</strong>`,
       })) {
-        const selectedActor = this.actor ?? this.token?.actor;
-        await ownedItem.update({ 'system.equipped': 'ship' }); /*Needed to keep enc calc correct*/
-        await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
-        // somehow on hooks isn't working when a consumable is deleted  - force the issue
-        if (ownedItem.type === "consumable") {
-          selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async (i) => {
-            const consumablesList = (<UsesConsumables>i.system).consumables;
-            let usedForAttack = (<UsesConsumables>i.system).useConsumableForAttack;
+        const selectedActor:TwodsixActor = this.actor ?? this.token?.actor;
+        if (!selectedActor) {
+          console.log("Invalid Actor");
+          return;
+        }
+
+        if (foundry.utils.hasProperty(ownedItem, "system.equipped")) {
+          await ownedItem.update({ 'system.equipped': 'ship' }); /*Needed? to keep encumbrance calc correct*/
+        }
+
+        if (ownedItem.type === "consumable" && !["ship", "vehicle", "space_object"].includes(selectedActor.type)) {
+          selectedActor.items.filter((i:TwodsixItem) => !["skills", "trait"].includes(i.type)).forEach(async (i:TwodsixItem) => {
+            //delete references for removed item from consumables list and useConsumableForAttack
+            const consumablesList: string[] = i.system.consumables;
             if (consumablesList != undefined) {
-              if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
-                //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
-                const index = consumablesList.indexOf(ownedItem.id);
-                if (index > -1) {
-                  consumablesList.splice(index, 1); // 2nd parameter means remove one item only
-                }
-                if (usedForAttack === ownedItem.id) {
-                  usedForAttack = "";
-                }
-                selectedActor.updateEmbeddedDocuments('Item', [{ _id: i.id, 'system.consumables': consumablesList, 'system.useConsumableForAttack': usedForAttack }]);
+              const index = consumablesList.indexOf(ownedItem.id);
+              if (index > -1) {
+                consumablesList.splice(index, 1);
+                await i.update({'system.consumables': consumablesList});
               }
+            }
+
+            if (i.system.useConsumableForAttack === ownedItem.id) {
+              await i.update({'system.useConsumableForAttack': "" });
             }
           });
         } else if (ownedItem.system.subtype === "ammo" ) {
           //reset ammoLink to "none" if armament is linked
           const linkedArmaments:TwodsixItem[] = this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === ownedItem.id);
           if (linkedArmaments?.length > 0) {
-            const toReset = [];
             for (const arm of linkedArmaments) {
-              toReset.push({_id: arm.id, "system.ammoLink": "none"});
+              await arm.update({ "system.ammoLink": "none"});
             }
-            await selectedActor.updateEmbeddedDocuments('Item', toReset);
           }
         }
+        await ownedItem.delete();
       }
     }
   }

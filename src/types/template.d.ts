@@ -137,6 +137,9 @@ export type UsesConsumables = Armor
   | Tool
   | Weapon
   | Computer
+  | Spell
+  | Augment
+  | Consumable
   ;
 
 // If/when template.json is edited, this file needs to be edited to match.

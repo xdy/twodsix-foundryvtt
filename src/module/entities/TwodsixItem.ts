@@ -120,7 +120,6 @@ export default class TwodsixItem extends Item {
         ui.items.render();
       }
     }
-
   }
 
   public static async create(data, options?):Promise<TwodsixItem> {
