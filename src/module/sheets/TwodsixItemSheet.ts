@@ -93,7 +93,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   async _prepareContext(options): ItemSheet {
     const context = await super._prepareContext(options);
 
-    (<TwodsixItem>this.item).prepareConsumable();
     // Add relevant data from system settings
     context.settings = {
       ShowLawLevel: game.settings.get('twodsix', 'ShowLawLevel'),

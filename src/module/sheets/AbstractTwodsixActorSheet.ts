@@ -191,21 +191,23 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         if (foundry.utils.hasProperty(ownedItem, "system.equipped")) {
           await ownedItem.update({ 'system.equipped': 'ship' }); /*Needed? to keep encumbrance calc correct*/
         }
+        await selectedActor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
 
+        const updates:object[] = [];
         if (ownedItem.type === "consumable" && !["ship", "vehicle", "space_object"].includes(selectedActor.type)) {
-          selectedActor.items.filter((i:TwodsixItem) => !["skills", "trait"].includes(i.type)).forEach(async (i:TwodsixItem) => {
+          selectedActor.items.filter((i:TwodsixItem) => !["skills", "trait"].includes(i.type)).forEach((i:TwodsixItem) => {
             //delete references for removed item from consumables list and useConsumableForAttack
             const consumablesList: string[] = i.system.consumables;
             if (consumablesList != undefined) {
               const index = consumablesList.indexOf(ownedItem.id);
               if (index > -1) {
-                consumablesList.splice(index, 1);
-                await i.update({'system.consumables': consumablesList});
+                consumablesList.splice(index, 1); // 2nd parameter means remove one item only
+                updates.push({ _id: i.id, 'system.consumables': consumablesList});
               }
             }
 
             if (i.system.useConsumableForAttack === ownedItem.id) {
-              await i.update({'system.useConsumableForAttack': "" });
+              updates.push({ _id: i.id, 'system.useConsumableForAttack': "" });
             }
           });
         } else if (ownedItem.system.subtype === "ammo" ) {
@@ -213,11 +215,15 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
           const linkedArmaments:TwodsixItem[] = this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === ownedItem.id);
           if (linkedArmaments?.length > 0) {
             for (const arm of linkedArmaments) {
-              await arm.update({ "system.ammoLink": "none"});
+              updates.push({_id: arm.id, "system.ammoLink": "none"});
             }
           }
         }
-        await ownedItem.delete();
+
+        //Make any need updates
+        if (updates.length > 0) {
+          await selectedActor.updateEmbeddedDocuments('Item', updates, {diff: false});
+        }
       }
     }
   }
@@ -473,10 +479,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     // Iterate through items, calculating derived data
     for (const item of items) {
-      // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
-      if (![...TWODSIX.WeightlessItems, "ship_position"].includes(item.type)) {
-        item.prepareConsumable();
-      }
       if (["traveller", "animal", "robot"].includes(actor.type)) {
         if (item.type === "skills") {
           this._processSkillItem(item, actor, skillGroups, skillsList, counters);

@@ -143,27 +143,44 @@ export default class TwodsixItem extends Item {
   prepareDerivedData(): void {
     super.prepareDerivedData();
     this.system.canProcess = (this.type === "consumable" && ["processor", "suite"].includes(this.system.subtype));
+    if (![...TWODSIX.WeightlessItems, "ship_position"].includes(this.type)) {
+      this.prepareConsumableData();
+    }
   }
 
-  prepareConsumable(gear:Gear = <Gear>this.system):void {
-    if (gear.consumables !== undefined && gear.consumables.length > 0 && this.actor != null) {
+  private sortByName(a: TwodsixItem, b: TwodsixItem): number {
+    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+  }
 
-      //TODO What is consumableData? Where does it come from? Not in template.json
-      const allConsumables = gear.consumables.map((consumableId:string) => {
-        return this.actor?.items.find((item) => item.id === consumableId);
-      });
+  /**
+   * Prepares consumable and attachment item data linked to gear items.
+   *
+   * This method processes the consumables array associated with an item,
+   * retrieving the actual item instances from the parent actor and separating
+   * them into consumables and attachments based on their isAttachment flag.
+   * Both arrays are sorted alphabetically by name.
+   *
+   * @function prepareConsumableData
+   * @memberof TwodsixItem
+   * @returns {void}
+   */
+  prepareConsumableData():void {
+    const gear:Gear = this.system;
+    if (gear.consumables?.length > 0 && this.actor) {
+      const allConsumables = gear.consumables
+        .map(id => this.actor.items.get(id))
+        .filter((item): item is TwodsixItem => item != null);
       gear.consumableData = allConsumables.filter((item) => !item?.system.isAttachment) ?? [];
       if (gear.consumableData.length > 0) {
-        gear.consumableData.sort((a, b) => {
-          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-        });
+        gear.consumableData.sort(this.sortByName);
       }
       gear.attachmentData = allConsumables.filter((item) => item?.system.isAttachment) ?? [];
       if (gear.attachmentData.length > 0) {
-        gear.attachmentData.sort((a, b) => {
-          return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-        });
+        gear.attachmentData.sort(this.sortByName);
       }
+    } else {
+      gear.consumableData = [];
+      gear.attachmentData = [];
     }
   }
 
