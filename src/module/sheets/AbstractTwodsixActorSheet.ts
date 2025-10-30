@@ -175,12 +175,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
     const li = target.closest('.item');
-    const ownedItem:TwodsixItem = this.actor.items.get(li.dataset.itemId) || null;
+    const toDeleteItem:TwodsixItem = this.actor.items.get(li.dataset.itemId) || null;
 
-    if (ownedItem) {
+    if (toDeleteItem) {
       if (await foundry.applications.api.DialogV2.confirm({
         window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
-        content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${ownedItem?.name}</strong>`,
+        content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${toDeleteItem?.name}</strong>`,
       })) {
         const selectedActor:TwodsixActor = this.actor ?? this.token?.actor;
         if (!selectedActor) {
@@ -188,42 +188,36 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
           return;
         }
 
-        if (foundry.utils.hasProperty(ownedItem, "system.equipped")) {
-          await ownedItem.update({ 'system.equipped': 'ship' }); /*Needed? to keep encumbrance calc correct*/
+        if (foundry.utils.hasProperty(toDeleteItem, "system.equipped")) {
+          await toDeleteItem.update({ 'system.equipped': 'ship' }); /*Needed? to keep encumbrance calc correct*/
         }
-        await selectedActor.deleteEmbeddedDocuments("Item", [ownedItem.id]);
 
-        const updates:object[] = [];
-        if (ownedItem.type === "consumable" && !["ship", "vehicle", "space_object"].includes(selectedActor.type)) {
-          selectedActor.items.filter((i:TwodsixItem) => !["skills", "trait"].includes(i.type)).forEach((i:TwodsixItem) => {
+        if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space_object"].includes(selectedActor.type)) {
+          selectedActor.items.filter((i:TwodsixItem) => !TWODSIX.WeightlessItems.includes(i.type)).forEach(async (i:TwodsixItem) => {
             //delete references for removed item from consumables list and useConsumableForAttack
-            const consumablesList: string[] = i.system.consumables;
+            const consumablesList: string[] = i.system.consumables ? foundry.utils.duplicate(i.system.consumables) : undefined;
             if (consumablesList != undefined) {
-              const index = consumablesList.indexOf(ownedItem.id);
+              const index = consumablesList.indexOf(toDeleteItem.id);
               if (index > -1) {
                 consumablesList.splice(index, 1); // 2nd parameter means remove one item only
-                updates.push({ _id: i.id, 'system.consumables': consumablesList});
+                await i.update({'system.consumables': consumablesList}); //for some reason, updateEmbeddedDocuments does not work for this
               }
             }
 
-            if (i.system.useConsumableForAttack === ownedItem.id) {
-              updates.push({ _id: i.id, 'system.useConsumableForAttack': "" });
+            if (i.system.useConsumableForAttack === toDeleteItem.id) {
+              await i.update({'system.useConsumableForAttack': "" });
             }
           });
-        } else if (ownedItem.system.subtype === "ammo" ) {
+        } else if (toDeleteItem.system.subtype === "ammo" ) {
           //reset ammoLink to "none" if armament is linked
-          const linkedArmaments:TwodsixItem[] = this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === ownedItem.id);
+          const linkedArmaments:TwodsixItem[] = this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === toDeleteItem.id);
           if (linkedArmaments?.length > 0) {
             for (const arm of linkedArmaments) {
-              updates.push({_id: arm.id, "system.ammoLink": "none"});
+              await arm.update({"system.ammoLink": "none"});
             }
           }
         }
-
-        //Make any need updates
-        if (updates.length > 0) {
-          await selectedActor.updateEmbeddedDocuments('Item', updates, {diff: false});
-        }
+        await toDeleteItem.delete();
       }
     }
   }
