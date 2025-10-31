@@ -177,49 +177,73 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const li = target.closest('.item');
     const toDeleteItem:TwodsixItem = this.actor.items.get(li.dataset.itemId) || null;
 
-    if (toDeleteItem) {
-      if (await foundry.applications.api.DialogV2.confirm({
-        window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
-        content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${toDeleteItem?.name}</strong>`,
-      })) {
-        const selectedActor:TwodsixActor = this.actor ?? this.token?.actor;
-        if (!selectedActor) {
-          console.log("Invalid Actor");
-          return;
+    if (!toDeleteItem) {
+      return;
+    }
+
+    const confirmed = await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
+      content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${toDeleteItem?.name}</strong>`,
+    });
+    if (!confirmed) {
+      return;
+    }
+
+    const selectedActor:TwodsixActor = this.actor ?? this.token?.actor;
+    if (!selectedActor) {
+      console.log("Invalid Actor");
+      return;
+    }
+
+    // Keep encumbrance updated
+    if (foundry.utils.hasProperty(toDeleteItem, "system.equipped")) {
+      await toDeleteItem.update({ 'system.equipped': 'ship' });
+    }
+
+    // 1) Build all updates that must happen before delete
+    const updates: Record<string, any>[] = [];
+
+    // Only run this for non-vehicle/non-ship/non-space-object actors
+    if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space-object"].includes(selectedActor.type)) {
+      for (const i of selectedActor.items.filter((it:TwodsixItem) => !TWODSIX.WeightlessItems.includes(it.type))) {
+        const current = Array.isArray(i.system.consumables) ? foundry.utils.duplicate(i.system.consumables) : [];
+        const filtered = current.filter((id: string) => id !== toDeleteItem.id);
+
+        const update: Record<string, any> = { _id: i.id };
+        let changed = false;
+
+        // Remove from consumables array
+        if (filtered.length !== current.length) {
+          update["system.consumables"] = filtered;
+          changed = true;
         }
 
-        if (foundry.utils.hasProperty(toDeleteItem, "system.equipped")) {
-          await toDeleteItem.update({ 'system.equipped': 'ship' }); /*Needed? to keep encumbrance calc correct*/
+        // Clear useConsumableForAttack if pointing to the deleted item
+        if (i.system.useConsumableForAttack === toDeleteItem.id) {
+          update["system.useConsumableForAttack"] = "";
+          changed = true;
         }
 
-        if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space-object"].includes(selectedActor.type)) {
-          selectedActor.items.filter((i:TwodsixItem) => !TWODSIX.WeightlessItems.includes(i.type)).forEach(async (i:TwodsixItem) => {
-            //delete references for removed item from consumables list and useConsumableForAttack
-            const consumablesList: string[] = i.system.consumables ? foundry.utils.duplicate(i.system.consumables) : undefined;
-            if (consumablesList != undefined) {
-              const index = consumablesList.indexOf(toDeleteItem.id);
-              if (index > -1) {
-                consumablesList.splice(index, 1); // 2nd parameter means remove one item only
-                await i.update({'system.consumables': consumablesList}); //for some reason, updateEmbeddedDocuments does not work for this
-              }
-            }
-
-            if (i.system.useConsumableForAttack === toDeleteItem.id) {
-              await i.update({'system.useConsumableForAttack': "" });
-            }
-          });
-        } else if (toDeleteItem.system.subtype === "ammo" ) {
-          //reset ammoLink to "none" if armament is linked
-          const linkedArmaments:TwodsixItem[] = this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === toDeleteItem.id);
-          if (linkedArmaments?.length > 0) {
-            for (const arm of linkedArmaments) {
-              await arm.update({"system.ammoLink": "none"});
-            }
-          }
+        if (changed) {
+          updates.push(update);
         }
-        await toDeleteItem.delete();
+      }
+    } else if (toDeleteItem.system?.subtype === "ammo") {
+      // Reset ammoLink on linked armaments
+      const linkedArmaments:TwodsixItem[] =
+        this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === toDeleteItem.id) ?? [];
+      for (const arm of linkedArmaments) {
+        updates.push({ _id: arm.id, "system.ammoLink": "none" });
       }
     }
+
+    // 2) Apply updates in a single, awaited batch (no racing with delete)
+    if (updates.length) {
+      await selectedActor.updateEmbeddedDocuments("Item", updates, { render: false });
+    }
+
+    // 3) Now delete the item
+    await selectedActor.deleteEmbeddedDocuments("Item", [toDeleteItem.id]);
   }
 
   /**
