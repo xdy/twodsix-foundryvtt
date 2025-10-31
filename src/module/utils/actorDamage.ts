@@ -81,7 +81,7 @@ export class Stats {
       this.secondaryArmor = actor.getSecondaryProtectionValue(damageType);
       this.parryArmor = parryArmor;
       this.canOnlyBeBlocked = canOnlyBeBlocked;
-      this.effectiveArmor = game.settings.get('twodsix', 'ruleset') === 'CU' ? Math.max(this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0) :  Math.max(this.primaryArmor + this.secondaryArmor - this.armorPiercingValue, 0);
+      this.effectiveArmor = this.calcEffectiveArmor();
     }
     this.damageCharacteristics = getDamageCharacteristics(this.actor.type);
     this.damageFormula = game.settings.get("twodsix", "armorDamageFormula");
@@ -102,6 +102,16 @@ export class Stats {
     }
 
     this.reduceStats();
+  }
+
+  calcEffectiveArmor(): number {
+    if (game.settings.get('twodsix', 'ruleset') === 'CU') {
+      return Math.max(this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0);
+    } else if (this.primaryArmor < 1 && this.primaryArmor > 0 ) {
+      return Math.max(Math.round(this.primaryArmor * this.damageValue) + this.secondaryArmor - this.armorPiercingValue, 0);
+    } else {
+      return Math.max(Math.floor(this.primaryArmor) + this.secondaryArmor - this.armorPiercingValue, 0);
+    }
   }
 
   currentDamage(): number {

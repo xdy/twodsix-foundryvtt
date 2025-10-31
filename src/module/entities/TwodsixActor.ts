@@ -434,7 +434,15 @@ export default class TwodsixActor extends Actor {
           }
           returnValue.radiationProtection = Math.max(armor.system.radiationProtection.value, returnValue.radiationProtection);
         } else {
-          returnValue.primaryArmor += armor.system.armor;
+          // Combine primaryArmor with current armor; multiply fractional reductions (percentaged blocked), otherwise primaryArmor is the sum of armor values
+          const pa = returnValue.primaryArmor;
+          const add = armor.system.armor;
+          const bothFractional = pa > 0 && pa < 1 && add > 0 && add < 1;
+
+          returnValue.primaryArmor = bothFractional
+            ? Math.clamp(1 - (1 - pa) * (1 - add), 0, 1)
+            : pa + add;
+
           returnValue.secondaryArmor += armor.system.secondaryArmor.value;
           returnValue.totalArmor += totalArmor;
           returnValue.radiationProtection += armor.system.radiationProtection.value;
