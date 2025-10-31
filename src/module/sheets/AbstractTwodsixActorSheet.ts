@@ -192,7 +192,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
           await toDeleteItem.update({ 'system.equipped': 'ship' }); /*Needed? to keep encumbrance calc correct*/
         }
 
-        if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space_object"].includes(selectedActor.type)) {
+        if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space-object"].includes(selectedActor.type)) {
           selectedActor.items.filter((i:TwodsixItem) => !TWODSIX.WeightlessItems.includes(i.type)).forEach(async (i:TwodsixItem) => {
             //delete references for removed item from consumables list and useConsumableForAttack
             const consumablesList: string[] = i.system.consumables ? foundry.utils.duplicate(i.system.consumables) : undefined;
