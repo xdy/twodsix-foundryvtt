@@ -115,7 +115,7 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
     if (droppedObject.type === "skills") {
       await TwodsixShipPositionSheet.createActionFromSkill(this.item, droppedObject);
     } else if (["traveller", "robot"].includes(droppedObject.type)) {
-      return await TwodsixShipPositionSheet.assignActorToPosition(this, actorId);
+      return await TwodsixShipPositionSheet.assignActorToPosition(this, droppedObject.id);
     } else {
       ui.notifications.error("TWODSIX.Ship.InvalidDocumentForShipPosition", {localize: true});
       return false;

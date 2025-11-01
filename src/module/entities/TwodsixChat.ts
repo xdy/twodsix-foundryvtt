@@ -153,7 +153,7 @@ export async function onChatCardAction(event: Event, target:HTMLElement): Promis
     const storedData = message.getFlag("twodsix", "itemUUID");
     const item: TwodsixItem = storedData ? await fromUuid(storedData) : {};
     if (!item) {
-      const err = game.i18n.format("DND5E.ActionWarningNoItem", { item: card.dataset.itemId, name: actor.name });
+      const err = game.i18n.format("TWODSIX.Errors.ActionWarningNoItem", { item: storedData, name: actor.name });
       return ui.notifications.error(err);
     }
 

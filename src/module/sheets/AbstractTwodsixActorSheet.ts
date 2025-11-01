@@ -87,7 +87,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       if (!context.untrainedSkill) {
         //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
-        const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
+        const existingSkill:Skills = this.actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
         if (existingSkill) {
           context.untrainedSkill = existingSkill;
         } else {
