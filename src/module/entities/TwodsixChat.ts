@@ -243,11 +243,12 @@ async function getChatCardActor(message: ChatMessage): Actor | null {
   */
 async function onExpandClick(message: ChatMessage) {
   // Toggle the message flag
-
-  if (message.flavor?.includes('class="dice-chattip" style="display:none"')) {
-    message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"') });
-  } else {
-    message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"') });
+  if (message.flavor) {
+    if (message.flavor.includes('class="dice-chattip" style="display:none"')) {
+      message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"') });
+    } else {
+      message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"') });
+    }
   }
 }
 /**
