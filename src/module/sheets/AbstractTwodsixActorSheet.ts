@@ -487,7 +487,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     // Initialize containers.
     const actor:TwodsixActor = this.actor;
     context.container = actor.itemTypes;
-    const items = actor.items;
+    const items:TwodsixItems[] = actor.items;
     const component = {};
     const counters = { numberOfSkills: 0, skillRanks: 0, buildPoints: 0 };
     const summaryStatus = {};
@@ -496,39 +496,46 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
     // Iterate through items, calculating derived data
-    for (const item of items) {
+    for (const it of items) {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
-        if (item.type === "skills") {
-          this._processSkillItem(item, actor, skillGroups, skillsList, counters);
+        if (it.type === "skills") {
+          this._processSkillItem(it, actor, skillGroups, skillsList, counters);
         }
       }
       //Add consumable labels
-      if (["traveller"].includes(actor.type)  && item.type === "consumable") {
-        const parentItem = actor.items.find((i) => i.system.consumables?.includes(item.id));
+      if (["traveller"].includes(actor.type)  && it.type === "consumable") {
+        const parentItem = actor.items.find((i) => i.system.consumables?.includes(it.id));
         if (parentItem) {
-          item.system.parentName = parentItem.name;
-          item.system.parentType = parentItem.type;
+          it.system.parentName = parentItem.name;
+          it.system.parentType = parentItem.type;
         }
       }
 
       //Calulate BuildPoints
-      if (["robot"].includes(actor.type)  && item.type === "augment") {
-        counters.buildPoints += item.system.buildPoints ?? 0;
+      if (["robot"].includes(actor.type)  && it.type === "augment") {
+        counters.buildPoints += it.system.buildPoints ?? 0;
       }
       //prepare ship summary status
-      if (item.type === "component") {
-        if(component[(<Component>item.system).subtype] === undefined) {
-          component[(<Component>item.system).subtype] = [];
-          summaryStatus[(<Component>item.system).subtype] = {
-            status: item.system.status,
-            uuid: item.uuid
+      if (it.type === "component") {
+        if(component[(<Component>it.system).subtype] === undefined) {
+          component[(<Component>it.system).subtype] = [];
+          summaryStatus[(<Component>it.system).subtype] = {
+            status: it.system.status,
+            uuid: it.uuid
           };
         }
-        component[(<Component>item.system).subtype].push(item);
-        if (statusOrder[summaryStatus[(<Component>item.system).subtype].status] < statusOrder[item.system.status]) {
-          summaryStatus[(<Component>item.system).subtype] = {
-            status: item.system.status,
-            uuid: item.uuid
+        //replace item damage with linked ammo damage for display
+        if (it.system.subtype === "armament" && it.system.ammoLink !== "none") {
+          const linkedAmmo = actor.items.get(it.system.ammoLink);
+          if (linkedAmmo) {
+            it.system.ammoDamage = linkedAmmo.system.damage;
+          }
+        }
+        component[(<Component>it.system).subtype].push(it);
+        if (statusOrder[summaryStatus[(<Component>it.system).subtype].status] < statusOrder[it.system.status]) {
+          summaryStatus[(<Component>it.system).subtype] = {
+            status: it.system.status,
+            uuid: it.uuid
           };
         }
       }

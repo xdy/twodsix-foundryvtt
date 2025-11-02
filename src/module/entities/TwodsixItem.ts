@@ -1015,7 +1015,7 @@ export default class TwodsixItem extends Item {
       //Determine Ship Weapon Label
       let shipWeaponType = "";
       let shipWeaponLabel = "";
-      const isArmament = (this.type === 'component' && this.system?.subtype === 'armament');
+      const isArmament = (this.type === 'component' && ['armament', 'ammo'].includes(this.system?.subtype));
       if ( isArmament) {
         shipWeaponType = this.system.shipWeaponType || "";
         shipWeaponLabel = TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')][this.system.shipWeaponType]|| "unknown";
@@ -1511,7 +1511,15 @@ export async function onRollDamage(ev:Event, target:HTMLElement):Promise<void> {
   ev.preventDefault();
   ev.stopPropagation();
   const itemId = target.closest('.item').dataset.itemId;
-  const item = this.actor.items.get(itemId) as TwodsixItem;
+  let item = this.actor.items.get(itemId) as TwodsixItem;
+
+  //Replace damage item for linked ammo on a ship component
+  if (item.system.subtype === "armament" && item.system.ammoLink && item.system.ammoLink !== "none") {
+    const linkedAmmo = this.actor.items.get(item.system.ammoLink) as TwodsixItem;
+    if (linkedAmmo) {
+      item = linkedAmmo;
+    }
+  }
 
   let bonusDamageFormula = String(target.dataset.bonusDamage || 0);
   if (game.settings.get('twodsix', 'addEffectToManualDamage') && game.settings.get('twodsix', 'addEffectToDamage')) {
