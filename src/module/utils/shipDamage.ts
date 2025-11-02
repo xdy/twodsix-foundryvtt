@@ -391,8 +391,8 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
 
   // Defensive: check for valid weaponType and armorType
   if (!penetrationMatrix[adjWeaponType] || !penetrationMatrix[adjWeaponType][armorType]) {
-    console.warn(`Unknown weaponType (${weaponType}) or armorType (${armorType}) in getCDDamageList`);
-    return [];
+    console.warn(`Unknown weaponType (${weaponType}) or armorType (${armorType || ship.system.shipStats.armor.name}) in getCDDamageList`);
+    return [{location: "Unknown Armor or Weapon Type", hits: 0}];
   }
 
   const hitType = penetrationMatrix[adjWeaponType][armorType];
