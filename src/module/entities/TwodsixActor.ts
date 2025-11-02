@@ -1276,7 +1276,9 @@ export default class TwodsixActor extends Actor {
     }
 
     const overrides = {};
-    if (!custom) this.statuses.clear();
+    if (!custom) {
+      this.statuses.clear();
+    }
 
     const derivedData = this._getDerivedDataKeys();
 
@@ -1284,7 +1286,9 @@ export default class TwodsixActor extends Actor {
     const effects = custom ? this.appliedEffects : this.allApplicableEffects();
     const changes = [];
     for (const effect of effects) {
-      if (!custom && !effect.active) continue;
+      if (!custom && !effect.active) {
+        continue;
+      }
       changes.push(
         ...effect.changes
           .filter((change) =>
@@ -1302,13 +1306,17 @@ export default class TwodsixActor extends Actor {
             return c;
           })
       );
-      for (const statusId of effect.statuses) this.statuses.add(statusId);
+      for (const statusId of effect.statuses) {
+        this.statuses.add(statusId);
+      }
     }
     changes.sort((a, b) => a.priority - b.priority);
 
     // Apply changes
     for (const change of changes) {
-      if (!change.key) continue;
+      if (!change.key) {
+        continue;
+      }
       const result = change.effect.apply(this, change);
       Object.assign(overrides, result);
     }
