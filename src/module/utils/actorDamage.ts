@@ -108,7 +108,7 @@ export class Stats {
     if (game.settings.get('twodsix', 'ruleset') === 'CU') {
       return Math.max(this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0);
     } else if (this.primaryArmor < 1 && this.primaryArmor > 0 ) {
-      return Math.max(Math.round(this.primaryArmor * this.damageValue) + this.secondaryArmor - this.armorPiercingValue, 0);
+      return Math.max(Math.floor(this.primaryArmor * this.damageValue) + this.secondaryArmor - this.armorPiercingValue, 0);
     } else {
       return Math.max(Math.floor(this.primaryArmor) + this.secondaryArmor - this.armorPiercingValue, 0);
     }
