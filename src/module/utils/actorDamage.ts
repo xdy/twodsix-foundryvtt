@@ -2,6 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixActor from "../entities/TwodsixActor";
+import TwodsixItem from "../entities/TwodsixItem";
 import { calcModFor } from "./sheetUtils";
 import {Traveller} from "../../types/template";
 import { getDamageTypes } from "./sheetUtils";
@@ -106,12 +107,32 @@ export class Stats {
 
   calcEffectiveArmor(): number {
     if (game.settings.get('twodsix', 'ruleset') === 'CU') {
-      return Math.max(this.secondaryArmor + this.parryArmor - this.armorPiercingValue, 0);
-    } else if (this.primaryArmor < 1 && this.primaryArmor > 0 ) {
-      return Math.max(Math.floor(this.primaryArmor * this.damageValue) + this.secondaryArmor - this.armorPiercingValue, 0);
-    } else {
-      return Math.max(Math.floor(this.primaryArmor) + this.secondaryArmor - this.armorPiercingValue, 0);
+      // CU ruleset: only secondary + parry, minus AP
+      const totalBlocked = blockedByArmor(this.damageValue, this.secondaryArmor) + this.parryArmor;
+      return Math.max(totalBlocked - this.armorPiercingValue, 0);
     }
+
+    // Determine if armor values are fractional
+    const primaryFractional = this.primaryArmor > 0 && this.primaryArmor < 1;
+    const secondaryFractional = this.secondaryArmor > 0 && this.secondaryArmor < 1;
+
+    let effectiveArmorValue = 0;
+
+    if (primaryFractional && secondaryFractional) {
+      // Both fractional: stack multiplicatively, then convert to blocked damage
+      const combinedArmor = stackArmorValues(this.primaryArmor, this.secondaryArmor);
+      effectiveArmorValue = blockedByArmor(this.damageValue, combinedArmor);
+    } else if (primaryFractional || secondaryFractional) {
+      // Mixed: convert each independently and add
+      effectiveArmorValue =
+        blockedByArmor(this.damageValue, this.primaryArmor) +
+        blockedByArmor(this.damageValue, this.secondaryArmor);
+    } else {
+      // Both flat: simple addition
+      effectiveArmorValue = Math.floor(this.primaryArmor) + Math.floor(this.secondaryArmor);
+    }
+
+    return Math.max(effectiveArmorValue - this.armorPiercingValue, 0);
   }
 
   currentDamage(): number {
@@ -468,3 +489,36 @@ function itemCanBlock(weapon:TwodsixItem, canBeBlocked: boolean):boolean {
   }
   return returnValue;
 }
+
+/**
+ * Convert a single armor value into "blocked" damage for a given incoming damage.
+ * - Fractional (0..1): percentage block of incoming damage
+ * - Flat (>=1): flat amount (floored)
+ */
+function blockedByArmor(damage: number, armor: number): number {
+  if (armor > 0 && armor < 1) {
+    // Fractional: percentage of damage
+    return Math.floor(damage * armor);
+  }
+  if (armor <= 0) {
+    return 0;
+  }
+  // Flat: integer armor value
+  return Math.floor(armor);
+}
+
+/**
+ * Stack two armor values.
+ * - If both are fractional (0..1), combine multiplicatively: 1 - (1-a)*(1-b)
+ * - Otherwise, add as flat values.
+ */
+
+export function stackArmorValues(base: number, add: number): number {
+  const isFrac = (v: number) => v > 0 && v < 1;
+  if (isFrac(base) && isFrac(add)) {
+    const combined = 1 - (1 - base) * (1 - add);
+    return Math.max(0, Math.min(1, combined)); // clamp to [0,1]
+  }
+  return base + add;
+}
+

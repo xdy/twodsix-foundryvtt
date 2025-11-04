@@ -8,7 +8,7 @@ import { TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { roundToMaxDecimals, simplifySkillName, sortByItemName } from "../utils/utils";
 import TwodsixItem from "./TwodsixItem";
-import { getDamageCharacteristics, getParryValue, Stats } from "../utils/actorDamage";
+import { getDamageCharacteristics, getParryValue, stackArmorValues, Stats } from "../utils/actorDamage";
 import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
@@ -397,7 +397,7 @@ export default class TwodsixActor extends Actor {
    * @returns {object} An object of the total for primaryArmor, secondaryArmor, and radiationProteciton
    * @public
    */
-  getArmorValues():object {
+  getArmorValues(): object {
     const returnValue = {
       primaryArmor: 0,
       secondaryArmor: 0,
@@ -413,6 +413,7 @@ export default class TwodsixActor extends Actor {
     const armorItems = this.itemTypes.armor;
     const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
     const damageTypes = getDamageTypes(false);
+    const ruleset = game.settings.get('twodsix', 'ruleset');
     let reflectDM = 0;
 
     for (const armor of armorItems) {
@@ -424,8 +425,28 @@ export default class TwodsixActor extends Actor {
           returnValue.CTLabel = armor.system.armorType;
           returnValue.armorDM = armor.system.armorDM;
         }
-        const totalArmor:number = armor.system.secondaryArmor.value + armor.system.armor;
-        const protectionDetails:string[] = armor.system.secondaryArmor.protectionTypes.map((type:string) => `${damageTypes[type]}`);
+
+        returnValue.layersWorn += 1;
+        if (armor.system.nonstackable) {
+          returnValue.wearingNonstackable = true;
+        }
+
+        // Skip armor value calculations for CT ruleset
+        if (ruleset === "CT") {
+          continue;
+        }
+
+        // For non-CT rulesets, calculate armor values
+        const protectionDetails: string[] = armor.system.secondaryArmor.protectionTypes.map((type: string) => `${damageTypes[type]}`);
+
+        protectionDetails.forEach((type: string) => {
+          if (!returnValue.protectionTypes.includes(type)) {
+            returnValue.protectionTypes.push(type);
+          }
+        });
+
+        const totalArmor: number = stackArmorValues(armor.system.secondaryArmor.value, armor.system.armor);
+
         if (useMaxArmorValue) {
           returnValue.primaryArmor = Math.max(armor.system.armor, returnValue.primaryArmor);
           if (totalArmor > returnValue.totalArmor) {
@@ -434,35 +455,20 @@ export default class TwodsixActor extends Actor {
           }
           returnValue.radiationProtection = Math.max(armor.system.radiationProtection.value, returnValue.radiationProtection);
         } else {
-          // Combine primaryArmor with current armor; multiply fractional reductions (percentaged blocked), otherwise primaryArmor is the sum of armor values
-          const pa = returnValue.primaryArmor;
-          const add = armor.system.armor;
-          const bothFractional = pa > 0 && pa < 1 && add > 0 && add < 1;
-
-          returnValue.primaryArmor = bothFractional
-            ? Math.clamp(1 - (1 - pa) * (1 - add), 0, 1)
-            : pa + add;
-
-          returnValue.secondaryArmor += armor.system.secondaryArmor.value;
-          returnValue.totalArmor += totalArmor;
+          returnValue.primaryArmor = stackArmorValues(returnValue.primaryArmor, armor.system.armor);
+          returnValue.secondaryArmor = stackArmorValues(returnValue.secondaryArmor, armor.system.secondaryArmor.value);
+          returnValue.totalArmor = stackArmorValues(returnValue.totalArmor, totalArmor);
           returnValue.radiationProtection += armor.system.radiationProtection.value;
-        }
-        protectionDetails.forEach((type:string) => {
-          if (!returnValue.protectionTypes.includes(type)) {
-            returnValue.protectionTypes.push(type);
-          }
-        });
-        returnValue.layersWorn += 1;
-        if (armor.system.nonstackable) {
-          returnValue.wearingNonstackable = true;
         }
       }
     }
+
     // Case where only wearing reflec
     if (returnValue.reflectOn && returnValue.CTLabel === 'nothing') {
       returnValue.CTLabel = 'reflec';
       returnValue.armorDM = reflectDM;
     }
+
     return returnValue;
   }
   /**
@@ -472,18 +478,20 @@ export default class TwodsixActor extends Actor {
    * @returns {number} The value added to effective armor due to secondary armor
    * @public
    */
-  getSecondaryProtectionValue(damageType:string): number {
+  getSecondaryProtectionValue(damageType: string): number {
     let returnValue = 0;
-    if (damageType !== "NONE"  && damageType !== ""  && damageType) {
+    if (damageType !== "NONE" && damageType !== "" && damageType) {
       if (['traveller'].includes(this.type)) {
         const armorItems = this.itemTypes.armor;
         const useMaxArmorValue = game.settings.get('twodsix', 'useMaxArmorValue');
+
         for (const armor of armorItems) {
           if (armor.system.equipped === "equipped" && armor.system.secondaryArmor.protectionTypes.includes(damageType)) {
             if (useMaxArmorValue) {
               returnValue = Math.max(armor.system.secondaryArmor.value, returnValue);
             } else {
-              returnValue += armor.system.secondaryArmor.value;
+              // Reuse stacking helper
+              returnValue = stackArmorValues(returnValue, armor.system.secondaryArmor.value);
             }
           }
         }
