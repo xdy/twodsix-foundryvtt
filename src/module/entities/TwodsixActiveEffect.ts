@@ -2,6 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { applyEncumberedEffect } from "../utils/showStatusIcons";
+import TwodsixActor from "./TwodsixActor";
 
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
@@ -25,6 +26,33 @@ export class TwodsixActiveEffect extends ActiveEffect {
       }
     }
     return false;
+  }
+
+  /**
+   * Apply this ActiveEffect to a provided Actor.
+   * This override filters changes based on whether we're in the standard or custom (derived data) pass.
+   * @param {TwodsixActor} actor                   The Actor to whom this effect should be applied
+   * @param {EffectChangeData} change       The change data being applied
+   * @returns {*}                           The resulting applied value
+   * @override
+   */
+  apply(actor: TwodsixActor, change: EffectChangeData): any {
+    // Check if this is a custom (derived data) pass by looking at the actor's internal state
+    // During custom pass, only apply derived data and CUSTOM mode changes
+    // During standard pass, skip derived data and CUSTOM mode changes
+    if (actor._applyingCustomEffects) {
+      const derivedData = actor._getDerivedDataKeys?.() || [];
+      if (!derivedData.includes(change.key) && change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM) {
+        return {}; // Skip non-derived, non-CUSTOM changes during custom pass
+      }
+    } else {
+      const derivedData = actor._getDerivedDataKeys?.() || [];
+      if (derivedData.includes(change.key) || change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM) {
+        return {}; // Skip derived data and CUSTOM mode during standard pass
+      }
+    }
+
+    return super.apply(actor, change);
   }
   /**
    * Perform follow-up operations after a Document of this type is created.

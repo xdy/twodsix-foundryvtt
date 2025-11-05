@@ -1252,9 +1252,9 @@ export default class TwodsixActor extends Actor {
   /**
    * Apply transformations to the Actor data caused by ActiveEffects.
    * If `custom` is true, applies only derived data and CUSTOM effects (post-prepare data).
-   * Otherwise, applies standard effects and strips out CUSTOM.
+   * Otherwise, delegates to Foundry's core implementation for standard effects.
    * @param {boolean} custom - Whether to apply only derived/custom effects (default: false)
-   * @override This overrides the core FVTT method to account for modifying derived data
+   * @override This extends the core FVTT method to support modifying derived data
    */
   applyActiveEffects({ custom = false }: boolean = {}) {
     // Fix for item-piles module (only for custom)
@@ -1266,54 +1266,51 @@ export default class TwodsixActor extends Actor {
       return;
     }
 
-    const overrides = {};
-    if (!custom) this.statuses.clear();
+    // Set internal flag so TwodsixActiveEffect.apply() knows which pass we're in
+    this._applyingCustomEffects = custom;
 
-    const derivedData = this._getDerivedDataKeys();
+    try {
+      if (!custom) {
+        // Standard pass: Let Foundry handle everything, TwodsixActiveEffect.apply() filters appropriately
+        super.applyActiveEffects();
+      } else {
+        // Custom pass: Apply only derived data and CUSTOM mode changes
+        const overrides = {};
+        const changes = [];
 
-    // Choose effects and filter logic
-    const effects = custom ? this.appliedEffects : this.allApplicableEffects();
-    const changes = [];
-    for (const effect of effects) {
-      if (!custom && !effect.active) continue;
-      changes.push(
-        ...effect.changes
-          .filter((change) =>
-            custom
-              ? derivedData.includes(change.key) ||
-                change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM
-              : !derivedData.includes(change.key) &&
-                change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM
-          )
-          .map((change) => {
-            const c = foundry.utils.deepClone(change);
-            c.effect = effect;
-            c.priority =
-              c.priority ?? (change.mode * 10 + (custom ? -100 : 0));
-            return c;
-          })
-      );
-      for (const statusId of effect.statuses) this.statuses.add(statusId);
-    }
-    changes.sort((a, b) => a.priority - b.priority);
+        for (const effect of this.appliedEffects) {
+          changes.push(
+            ...effect.changes.map((change) => {
+              const c = foundry.utils.deepClone(change);
+              c.effect = effect;
+              c.priority = c.priority ?? (change.mode * 10 - 100);
+              return c;
+            })
+          );
+        }
 
-    // Apply changes
-    for (const change of changes) {
-      if (!change.key) continue;
-      const result = change.effect.apply(this, change);
-      Object.assign(overrides, result);
-    }
+        changes.sort((a, b) => a.priority - b.priority);
 
-    // Set overrides
-    if (custom) {
-      if (Object.keys(overrides).length > 0) {
-        this.overrides = foundry.utils.mergeObject(
-          this.overrides,
-          foundry.utils.expandObject(overrides)
-        );
+        // Apply changes (TwodsixActiveEffect.apply() will filter to derived data + CUSTOM)
+        for (const change of changes) {
+          if (!change.key) {
+            continue;
+          }
+          const result = change.effect.apply(this, change);
+          Object.assign(overrides, result);
+        }
+
+        // Merge with existing overrides from standard effects
+        if (Object.keys(overrides).length > 0) {
+          this.overrides = foundry.utils.mergeObject(
+            this.overrides,
+            foundry.utils.expandObject(overrides)
+          );
+        }
       }
-    } else {
-      this.overrides = foundry.utils.expandObject(overrides);
+    } finally {
+      // Always clean up the flag
+      delete this._applyingCustomEffects;
     }
   }
 
@@ -1323,9 +1320,8 @@ export default class TwodsixActor extends Actor {
    * The list includes characteristic modifiers, skill keys, and (for travellers) special system values.
    *
    * @returns {string[]} An array of string keys representing derived data paths for this actor.
-   * @private
    */
-  private _getDerivedDataKeys(): string[] {
+  _getDerivedDataKeys(): string[] {
     const derivedData: string[] = [];
     if (["traveller", "robot", "animal"].includes(this.type)) {
       // Add characteristics mods
