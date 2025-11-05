@@ -1323,12 +1323,26 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Apply transformations to the Actor data caused by ActiveEffects.
-   * If `custom` is true, applies only derived data and CUSTOM effects (post-prepare data).
-   * Otherwise, delegates to Foundry's core implementation for standard effects.
-   * @param {boolean} custom - Whether to apply only derived/custom effects (default: false)
+   *
+   * This method implements a two-pass system for active effects:
+   *
+   * **Standard Pass (custom = false):**
+   * - Called automatically by Foundry during `prepareDerivedData()` via `super.prepareDerivedData()`
+   * - Applies effects to source data (characteristics.value, etc.)
+   * - Skips derived data and CUSTOM mode effects (handled in custom pass)
+   * - Uses Foundry's core implementation via `super.applyActiveEffects()`
+   *
+   * **Custom Pass (custom = true):**
+   * - Called explicitly in `_prepareActorDerivedData()` after base derived data is calculated
+   * - Applies effects to derived data (characteristic.mod, skills, encumbrance, armor, etc.)
+   * - Applies CUSTOM mode effects with formula evaluation
+   * - Results are stored in `this.overrides` and merged into `system` data
+   *
+   * @param {object} options - Options object
+   * @param {boolean} options.custom - Whether to apply only derived/custom effects (default: false)
    * @override This extends the core FVTT method to support modifying derived data
    */
-  applyActiveEffects({ custom = false }: boolean = {}) {
+  applyActiveEffects({ custom = false }: { custom?: boolean } = {}) {
     // Fix for item-piles module (only for custom)
     if (
       custom &&
