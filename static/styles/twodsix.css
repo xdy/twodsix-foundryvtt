@@ -3797,7 +3797,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-bottom: 1px solid var(--s2d6-default-color);
   box-shadow: 0 0 10px var(--s2d6-light-color);
   background-color: var(--s2d6-background-opaque);
-  padding: 8px;
+  padding: 8px 16px 8px 8px;
 }
 
 #sidebar-tabs > .item {
@@ -3826,6 +3826,10 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border: 1px solid var(--s2d6-light-color);
   border-bottom: none;
   box-shadow: 0 0 6px inset var(--s2d6-default-color);
+}
+
+textarea#chat-message {
+    min-height: 8ch;
 }
 
 /*#sidebar {
