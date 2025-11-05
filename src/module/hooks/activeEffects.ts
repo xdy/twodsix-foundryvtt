@@ -20,7 +20,7 @@ Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, d
     changeFormula = changeFormula.trim();
   }
   // Process operator
-  if (['+', '/', '*', '='].includes(changeFormula[0])) {
+  if (['+', '/', '-', '*', '='].includes(changeFormula[0])) {
     operator = changeFormula[0];
     changeFormula = changeFormula.slice(1);
   }
@@ -74,6 +74,8 @@ function calculateUpdate(current:number, effectChange:number, operator:string, k
   switch (operator) {
     case '+':
       return current + effectChange;
+    case '-':
+      return current - effectChange;
     case '=':
       return effectChange;
     case '*':
