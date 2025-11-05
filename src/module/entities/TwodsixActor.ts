@@ -367,8 +367,6 @@ export default class TwodsixActor extends Actor {
     };
 
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
-    system.encumbrance.max = this.getMaxEncumbrance();
-    system.encumbrance.value = this.getActorEncumbrance();
 
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
@@ -384,13 +382,83 @@ export default class TwodsixActor extends Actor {
       system.totalArmor = armorValues.totalArmor;
       const baseArmor = system.primaryArmor.value;
 
+      // Apply custom effects (modifies derived data via this.overrides)
       this.applyActiveEffects({ custom: true });
-      if (this.overrides.system?.primaryArmor?.value) {
-        system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
+
+      // Apply all overrides to derived data at once
+      if (this.overrides.system) {
+        foundry.utils.mergeObject(system, this.overrides.system);
+      }
+
+      // Special handling for totalArmor which depends on primaryArmor override
+      if (this.overrides.system?.primaryArmor?.value !== undefined) {
+        system.totalArmor = armorValues.totalArmor + (this.overrides.system.primaryArmor.value - baseArmor);
       }
     } else {
+      // Apply custom effects (modifies derived data via this.overrides)
       this.applyActiveEffects({ custom: true });
+
+      // Apply all overrides to derived data at once
+      if (this.overrides.system) {
+        foundry.utils.mergeObject(system, this.overrides.system);
+      }
     }
+
+    // Calculate encumbrance using modified values, then apply direct ADD/MULTIPLY effects
+    const formulaEncumbrance = this.getMaxEncumbrance();
+    const calculatedEncumbranceValue = this.getActorEncumbrance();
+
+    // Apply ADD/MULTIPLY effects on top of calculated values
+    this._applyDerivedDataEffects('system.encumbrance.max', formulaEncumbrance, system.encumbrance, 'max');
+    this._applyDerivedDataEffects('system.encumbrance.value', calculatedEncumbranceValue, system.encumbrance, 'value');
+  }
+
+  /**
+   * Apply ADD/MULTIPLY/OVERRIDE/UPGRADE/DOWNGRADE active effects on top of a calculated derived data value.
+   * This allows both formula-based calculations and direct active effects to work together.
+   * CUSTOM mode effects are ignored here as they're handled separately via hooks.
+   * @param {string} key - The full path key for the derived data (e.g., 'system.encumbrance.max')
+   * @param {number} calculatedValue - The base calculated value
+   * @param {object} target - The object to assign the final value to
+   * @param {string} property - The property name on the target object
+   * @private
+   */
+  _applyDerivedDataEffects(key: string, calculatedValue: number, target: any, property: string): void {
+    let value = calculatedValue;
+    let delta = 0;
+    let multiplier = 1;
+    const modes = CONST.ACTIVE_EFFECT_MODES;
+
+    for (const effect of this.appliedEffects) {
+      for (const change of effect.changes) {
+        if (change.key === key) {
+          const changeValue = Number(change.value) || 0;
+
+          switch (change.mode) {
+            case modes.ADD:
+              delta += changeValue;
+              break;
+            case modes.MULTIPLY:
+              multiplier *= changeValue;
+              break;
+            case modes.OVERRIDE:
+              value = changeValue;
+              delta = 0;
+              multiplier = 1;
+              break;
+            case modes.UPGRADE:
+              value = Math.max(value, changeValue);
+              break;
+            case modes.DOWNGRADE:
+              value = Math.min(value, changeValue);
+              break;
+            // CUSTOM mode is handled separately via hooks, ignore it here
+          }
+        }
+      }
+    }
+
+    target[property] = (value * multiplier) + delta;
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
@@ -501,7 +569,7 @@ export default class TwodsixActor extends Actor {
     if (Roll.validate(encumbFormula)) {
       let rollData:object;
       if (game.settings.get('twodsix', 'ruleset') === 'CT') {
-        rollData = foundry.utils.duplicate(this.getRollData()); //Not celar why deepClone doesn't work here
+        rollData = foundry.utils.duplicate(this.system);
         const encumberedEffect:TwodsixActiveEffect = this.effects.find(eff  => eff.statuses.has('encumbered'));
         if (encumberedEffect) {
           for (const change of encumberedEffect.changes) {
@@ -510,7 +578,11 @@ export default class TwodsixActor extends Actor {
           }
         }
       } else {
-        rollData = this.getRollData();
+        rollData = foundry.utils.duplicate(this.system);
+        // Merge in active effect overrides so formula uses modified characteristic mods
+        if (this.overrides.system) {
+          rollData = foundry.utils.mergeObject(rollData, this.overrides.system);
+        }
       }
       maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, rollData, {missing: "0", warn: false}));
     }
@@ -1341,6 +1413,8 @@ export default class TwodsixActor extends Actor {
           "system.secondaryArmor.value",
           "system.radiationProtection.value"
         );
+        // Note: encumbrance is recalculated after custom effects to pick up
+        // changes to characteristic modifiers, then active effect overrides are applied
       }
     }
     return derivedData;
