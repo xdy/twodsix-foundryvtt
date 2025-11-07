@@ -1352,7 +1352,8 @@ export default class TwodsixActor extends Actor {
           "system.primaryArmor.value",
           "system.secondaryArmor.value",
           "system.radiationProtection.value",
-          "system.encumbrance.value"
+          "system.encumbrance.value",
+          "system.encumbrance.max" //keep for legacy purposes?
         );
         // Note: encumbrance.max is calculated as formula + bonus
       }
