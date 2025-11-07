@@ -371,8 +371,10 @@ export default class TwodsixActor extends Actor {
     // Calculate base encumbrance value (max is finalized at the end after effects/bonuses)
     system.encumbrance.value = this.getActorEncumbrance();
 
+    let baseArmor = 0;
+    let armorValues: any = null;
     if (this.type === 'traveller') {
-      const armorValues = this.getArmorValues();
+      armorValues = this.getArmorValues();
       system.primaryArmor.value = armorValues.primaryArmor;
       system.secondaryArmor.value = armorValues.secondaryArmor;
       system.radiationProtection.value = armorValues.radiationProtection;
@@ -381,30 +383,22 @@ export default class TwodsixActor extends Actor {
       system.armorType = armorValues.CTLabel;
       system.armorDM = armorValues.armorDM || 0;
       system.reflectOn = armorValues.reflectOn;
-      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map( x => game.i18n.localize(x)).join(', ') : "";
+      system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map(x => game.i18n.localize(x)).join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
-      const baseArmor = system.primaryArmor.value;
+      baseArmor = system.primaryArmor.value; // capture pre-effect primaryArmor for totalArmor delta
+    }
 
-      // Apply derived pass active effects (affecting derived data via overrides)
-      this.applyActiveEffects({ derivedPass: true });
+    // Single derived pass for all actor types (filters internally by derived keys)
+    this.applyActiveEffects({ derivedPass: true });
 
-      // Apply all overrides to derived data at once
-      if (this.overrides.system) {
-        foundry.utils.mergeObject(system, this.overrides.system);
-      }
+    // Merge overrides into system
+    if (this.overrides.system) {
+      foundry.utils.mergeObject(system, this.overrides.system);
+    }
 
-      // Special handling for totalArmor which depends on primaryArmor override
-      if (this.overrides.system?.primaryArmor?.value !== undefined) {
-        system.totalArmor = armorValues.totalArmor + (this.overrides.system.primaryArmor.value - baseArmor);
-      }
-    } else {
-      // Apply derived pass active effects (affecting derived data via overrides)
-      this.applyActiveEffects({ derivedPass: true });
-
-      // Apply all overrides to derived data at once
-      if (this.overrides.system) {
-        foundry.utils.mergeObject(system, this.overrides.system);
-      }
+    // Reconcile totalArmor if primaryArmor was overridden (traveller only)
+    if (armorValues && this.overrides.system?.primaryArmor?.value !== undefined) {
+      system.totalArmor = armorValues.totalArmor + (this.overrides.system.primaryArmor.value - baseArmor);
     }
 
     // Recalculate encumbrance.max after overrides using final characteristic.mod and including bonus.
@@ -1291,13 +1285,13 @@ export default class TwodsixActor extends Actor {
    * Twodsix performs two passes so derived values are computed from already-modified base data before
    * applying effects that target derived paths or use CUSTOM formulas.
    *
-   * PASS TYPES
-   * ----------
-   * Standard Pass (custom = false): occurs automatically in the core `prepareDerivedData()` flow.
-   *   - Filters OUT derived keys and CUSTOM mode changes.
-   * Custom Pass (custom = true): invoked in `_prepareActorDerivedData()` after computing derived values.
-   *   - Filters IN only derived keys and CUSTOM mode changes.
-   * Filtering is handled by `TwodsixActiveEffect.apply()` using a transient `_applyingCustomEffects` flag
+  * PASS TYPES
+  * ----------
+  * Standard Pass (derivedPass = false): occurs automatically in the core `prepareDerivedData()` flow.
+  *   - Filters OUT derived keys and CUSTOM mode changes.
+  * Derived Pass (derivedPass = true): invoked in `_prepareActorDerivedData()` after computing derived values.
+  *   - Filters IN only derived keys and CUSTOM mode changes.
+  * Filtering is handled by `TwodsixActiveEffect.apply()` using a transient `_applyingCustomEffects` flag
    * and `_getDerivedDataKeys()`. We delegate to `super.applyActiveEffects()` in both passes to stay aligned
    * with core behavior.
    *
@@ -1305,7 +1299,7 @@ export default class TwodsixActor extends Actor {
    * ------------
    * Merchant actors (Item Piles) skip the custom pass.
    *
-   * @param {object} options                   Invocation options.
+  * @param {object} options                        Invocation options.
   * @param {boolean} [options.derivedPass=false]   When true, perform the derived/CUSTOM pass.
    * @returns {void}
    *
