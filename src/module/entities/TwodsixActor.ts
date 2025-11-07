@@ -368,6 +368,9 @@ export default class TwodsixActor extends Actor {
 
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
 
+    // Calculate base encumbrance value (max is finalized at the end after effects/bonuses)
+    system.encumbrance.value = this.getActorEncumbrance();
+
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
       system.primaryArmor.value = armorValues.primaryArmor;
@@ -382,8 +385,8 @@ export default class TwodsixActor extends Actor {
       system.totalArmor = armorValues.totalArmor;
       const baseArmor = system.primaryArmor.value;
 
-      // Apply custom effects (modifies derived data via this.overrides)
-      this.applyActiveEffects({ custom: true });
+      // Apply derived pass active effects (affecting derived data via overrides)
+      this.applyActiveEffects({ derivedPass: true });
 
       // Apply all overrides to derived data at once
       if (this.overrides.system) {
@@ -395,8 +398,8 @@ export default class TwodsixActor extends Actor {
         system.totalArmor = armorValues.totalArmor + (this.overrides.system.primaryArmor.value - baseArmor);
       }
     } else {
-      // Apply custom effects (modifies derived data via this.overrides)
-      this.applyActiveEffects({ custom: true });
+      // Apply derived pass active effects (affecting derived data via overrides)
+      this.applyActiveEffects({ derivedPass: true });
 
       // Apply all overrides to derived data at once
       if (this.overrides.system) {
@@ -404,62 +407,11 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    // Calculate encumbrance using modified values, then apply direct ADD/MULTIPLY effects
-    const formulaEncumbrance = this.getMaxEncumbrance();
-    const calculatedEncumbranceValue = this.getActorEncumbrance();
-
-    // Apply ADD/MULTIPLY effects on top of calculated values
-    this._applyDerivedDataEffects('system.encumbrance.max', formulaEncumbrance, system.encumbrance, 'max');
-    this._applyDerivedDataEffects('system.encumbrance.value', calculatedEncumbranceValue, system.encumbrance, 'value');
+    // Recalculate encumbrance.max after overrides using final characteristic.mod and including bonus.
+    // The includeBonus flag centralizes the addition so other call sites can opt into base vs final.
+    system.encumbrance.max = this.getMaxEncumbrance(true);
   }
 
-  /**
-   * Apply ADD/MULTIPLY/OVERRIDE/UPGRADE/DOWNGRADE active effects on top of a calculated derived data value.
-   * This allows both formula-based calculations and direct active effects to work together.
-   * CUSTOM mode effects are ignored here as they're handled separately via hooks.
-   * @param {string} key - The full path key for the derived data (e.g., 'system.encumbrance.max')
-   * @param {number} calculatedValue - The base calculated value
-   * @param {object} target - The object to assign the final value to
-   * @param {string} property - The property name on the target object
-   * @private
-   */
-  _applyDerivedDataEffects(key: string, calculatedValue: number, target: any, property: string): void {
-    let value = calculatedValue;
-    let delta = 0;
-    let multiplier = 1;
-    const modes = CONST.ACTIVE_EFFECT_MODES;
-
-    for (const effect of this.appliedEffects) {
-      for (const change of effect.changes) {
-        if (change.key === key) {
-          const changeValue = Number(change.value) || 0;
-
-          switch (change.mode) {
-            case modes.ADD:
-              delta += changeValue;
-              break;
-            case modes.MULTIPLY:
-              multiplier *= changeValue;
-              break;
-            case modes.OVERRIDE:
-              value = changeValue;
-              delta = 0;
-              multiplier = 1;
-              break;
-            case modes.UPGRADE:
-              value = Math.max(value, changeValue);
-              break;
-            case modes.DOWNGRADE:
-              value = Math.min(value, changeValue);
-              break;
-            // CUSTOM mode is handled separately via hooks, ignore it here
-          }
-        }
-      }
-    }
-
-    target[property] = (value * multiplier) + delta;
-  }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
    * @returns {object} An object of the total for primaryArmor, secondaryArmor, and radiationProteciton
@@ -556,7 +508,15 @@ export default class TwodsixActor extends Actor {
     return returnValue;
   }
 
-  getMaxEncumbrance():number {
+  /**
+   * Method to compute the actor's maximum encumbrance from a settings formula ('twodsix.maxEncumbrance') and current (override-merged) data.
+   * - When includeBonus=false (default), returns the base value from the formula only.
+   * - When includeBonus=true, returns base + system.encumbrance.bonus.
+   * - Always clamped to >= 0.
+   * @param {boolean} includeBonus Whether or not to include system.encumbrance.bonus in the calculation
+   * @returns {number} The base or max encumbrance value
+   */
+  getMaxEncumbrance(includeBonus: boolean = false):number {
     //Ignore encumbrance if an active ItemPiles Shop
     if (game.modules.get("item-piles")?.active) {
       if (this.getFlag("item-piles", "data.enabled") && this.getFlag("item-piles", "data.type") === "merchant") {
@@ -578,15 +538,16 @@ export default class TwodsixActor extends Actor {
           }
         }
       } else {
+        // Use this.system directly - it already has overrides merged in when called from _prepareActorDerivedData
         rollData = foundry.utils.duplicate(this.system);
-        // Merge in active effect overrides so formula uses modified characteristic mods
-        if (this.overrides.system) {
-          rollData = foundry.utils.mergeObject(rollData, this.overrides.system);
-        }
       }
       maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, rollData, {missing: "0", warn: false}));
     }
-    return Math.max(maxEncumbrance, 0);
+    // Clamp base to non-negative
+    maxEncumbrance = Math.max(maxEncumbrance, 0);
+    // Optionally include bonus and clamp again to guard against large negative bonuses
+    const final = includeBonus ? (maxEncumbrance + (this.system.encumbrance.bonus || 0)) : maxEncumbrance;
+    return Math.max(final, 0);
   }
 
   getActorEncumbrance():number {
@@ -1322,30 +1283,38 @@ export default class TwodsixActor extends Actor {
 
 
   /**
-   * Apply transformations to the Actor data caused by ActiveEffects.
+   * Apply Active Effects to this Actor, using a two-pass approach.
    *
-   * This method implements a two-pass system for active effects:
+   * DESIGN OVERVIEW
+   * ----------------
+   * Foundry's core implementation iterates effects and writes change results into `this.overrides`.
+   * Twodsix performs two passes so derived values are computed from already-modified base data before
+   * applying effects that target derived paths or use CUSTOM formulas.
    *
-   * **Standard Pass (custom = false):**
-   * - Called automatically by Foundry during `prepareDerivedData()` via `super.prepareDerivedData()`
-   * - Applies effects to source data (characteristics.value, etc.)
-   * - Skips derived data and CUSTOM mode effects (handled in custom pass)
-   * - Uses Foundry's core implementation via `super.applyActiveEffects()`
+   * PASS TYPES
+   * ----------
+   * Standard Pass (custom = false): occurs automatically in the core `prepareDerivedData()` flow.
+   *   - Filters OUT derived keys and CUSTOM mode changes.
+   * Custom Pass (custom = true): invoked in `_prepareActorDerivedData()` after computing derived values.
+   *   - Filters IN only derived keys and CUSTOM mode changes.
+   * Filtering is handled by `TwodsixActiveEffect.apply()` using a transient `_applyingCustomEffects` flag
+   * and `_getDerivedDataKeys()`. We delegate to `super.applyActiveEffects()` in both passes to stay aligned
+   * with core behavior.
    *
-   * **Custom Pass (custom = true):**
-   * - Called explicitly in `_prepareActorDerivedData()` after base derived data is calculated
-   * - Applies effects to derived data (characteristic.mod, skills, encumbrance, armor, etc.)
-   * - Applies CUSTOM mode effects with formula evaluation
-   * - Results are stored in `this.overrides` and merged into `system` data
+   * SPECIAL CASES
+   * ------------
+   * Merchant actors (Item Piles) skip the custom pass.
    *
-   * @param {object} options - Options object
-   * @param {boolean} options.custom - Whether to apply only derived/custom effects (default: false)
-   * @override This extends the core FVTT method to support modifying derived data
+   * @param {object} options                   Invocation options.
+  * @param {boolean} [options.derivedPass=false]   When true, perform the derived/CUSTOM pass.
+   * @returns {void}
+   *
+   * @override Extends core FVTT method with pass-aware filtering.
    */
-  applyActiveEffects({ custom = false }: { custom?: boolean } = {}) {
+  applyActiveEffects({ derivedPass = false }: { derivedPass?: boolean } = {}): void {
     // Fix for item-piles module (only for custom)
     if (
-      custom &&
+      derivedPass &&
       game.modules.get("item-piles")?.active &&
       this.getFlag("item-piles", "data.enabled")
     ) {
@@ -1353,47 +1322,12 @@ export default class TwodsixActor extends Actor {
     }
 
     // Set internal flag so TwodsixActiveEffect.apply() knows which pass we're in
-    this._applyingCustomEffects = custom;
+    this._applyingCustomEffects = derivedPass;
 
     try {
-      if (!custom) {
-        // Standard pass: Let Foundry handle everything, TwodsixActiveEffect.apply() filters appropriately
-        super.applyActiveEffects();
-      } else {
-        // Custom pass: Apply only derived data and CUSTOM mode changes
-        const overrides = {};
-        const changes = [];
-
-        for (const effect of this.appliedEffects) {
-          changes.push(
-            ...effect.changes.map((change) => {
-              const c = foundry.utils.deepClone(change);
-              c.effect = effect;
-              c.priority = c.priority ?? (change.mode * 10 - 100);
-              return c;
-            })
-          );
-        }
-
-        changes.sort((a, b) => a.priority - b.priority);
-
-        // Apply changes (TwodsixActiveEffect.apply() will filter to derived data + CUSTOM)
-        for (const change of changes) {
-          if (!change.key) {
-            continue;
-          }
-          const result = change.effect.apply(this, change);
-          Object.assign(overrides, result);
-        }
-
-        // Merge with existing overrides from standard effects
-        if (Object.keys(overrides).length > 0) {
-          this.overrides = foundry.utils.mergeObject(
-            this.overrides,
-            foundry.utils.expandObject(overrides)
-          );
-        }
-      }
+      // Delegate to core in both passes; TwodsixActiveEffect.apply() filters using this._applyingCustomEffects
+      // so behavior differs without needing conditional branches here.
+      super.applyActiveEffects();
     } finally {
       // Always clean up the flag
       delete this._applyingCustomEffects;
@@ -1421,14 +1355,12 @@ export default class TwodsixActor extends Actor {
       // Add specials
       if (this.type === 'traveller') {
         derivedData.push(
-          "system.encumbrance.max",
-          "system.encumbrance.value",
           "system.primaryArmor.value",
           "system.secondaryArmor.value",
-          "system.radiationProtection.value"
+          "system.radiationProtection.value",
+          "system.encumbrance.value"
         );
-        // Note: encumbrance is recalculated after custom effects to pick up
-        // changes to characteristic modifiers, then active effect overrides are applied
+        // Note: encumbrance.max is calculated as formula + bonus
       }
     }
     return derivedData;
