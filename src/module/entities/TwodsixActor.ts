@@ -401,9 +401,14 @@ export default class TwodsixActor extends Actor {
       system.totalArmor = armorValues.totalArmor + (this.overrides.system.primaryArmor.value - baseArmor);
     }
 
-    // Recalculate encumbrance.max after overrides using final characteristic.mod and including bonus.
-    // The includeBonus flag centralizes the addition so other call sites can opt into base vs final.
-    system.encumbrance.max = this.getMaxEncumbrance(true);
+    // If an override for encumbrance.max exists, use it; otherwise, recalculate from formula
+    if (this.overrides.system?.encumbrance?.max !== undefined) {
+      system.encumbrance.max = this.overrides.system.encumbrance.max;
+    } else {
+      // Recalculate encumbrance.max after overrides using final characteristic.mod and including bonus.
+      // The includeBonus flag centralizes the addition so other call sites can opt into base vs final.
+      system.encumbrance.max = this.getMaxEncumbrance(true);
+    }
   }
 
   /**
