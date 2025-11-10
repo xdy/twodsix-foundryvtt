@@ -347,7 +347,7 @@ export default class TwodsixActor extends Actor {
     this.system.hits.value = newHitsValue.value;
     this.system.hits.max = newHitsValue.max;
 
-    /// update skills formula reference
+    //Update skills formula reference
     const actorSkills = this.itemTypes.skills.map(
       (skill:TwodsixItem) => [simplifySkillName(skill.name ?? ""), Math.max(skill.system.value, this.getUntrainedSkill()?.system.value ?? CONFIG.Item.dataModels.skills.schema.getInitialValue().value)]
     );
@@ -367,8 +367,6 @@ export default class TwodsixActor extends Actor {
     };
 
     system.skills = new Proxy(Object.fromEntries(actorSkills), handler);
-    system.encumbrance.max = this.getMaxEncumbrance();
-    system.encumbrance.value = this.getActorEncumbrance();
 
     if (this.type === 'traveller') {
       const armorValues = this.getArmorValues();
@@ -383,14 +381,22 @@ export default class TwodsixActor extends Actor {
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map( x => game.i18n.localize(x)).join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
       const baseArmor = system.primaryArmor.value;
-
-      this.applyActiveEffects({ custom: true });
       if (this.overrides.system?.primaryArmor?.value) {
         system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
       }
-    } else {
-      this.applyActiveEffects({ custom: true });
     }
+
+    // Second pass: apply derived/custom AEs to all derived fields
+    const derivedKeys = this._getDerivedDataKeys();
+    this.applyActiveEffects({ onlyKeys: derivedKeys });
+
+    //Calculate encumbrance values
+    system.encumbrance.max = this.getMaxEncumbrance(true);
+    system.encumbrance.value = this.getActorEncumbrance();
+
+    // Third pass: apply only AEs that target system.encumbrance.max as a final override
+    this.applyActiveEffects({ onlyKeys: ["system.encumbrance.max"] });
+
   }
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
@@ -504,7 +510,16 @@ export default class TwodsixActor extends Actor {
     return returnValue;
   }
 
-  getMaxEncumbrance():number {
+  /**
+   * Calculate the maximum encumbrance for this actor, using the configured formula and optionally excluding the encumbrance bonus.
+   *
+   * The formula is defined in system settings ('maxEncumbrance') and may reference any actor data (e.g., STR mod, skills).
+   * If the Item Piles module is active and the actor is a merchant, returns Infinity.
+   *
+   * @param {boolean} [includeOffset=true]  Whether to include system.encumbrance.bonus in the calculation.
+   * @returns {number} The calculated maximum encumbrance (clamped to zero or above).
+   */
+  getMaxEncumbrance(includeOffset: boolean = true):number {
     //Ignore encumbrance if an active ItemPiles Shop
     if (game.modules.get("item-piles")?.active) {
       if (this.getFlag("item-piles", "data.enabled") && this.getFlag("item-piles", "data.type") === "merchant") {
@@ -515,9 +530,8 @@ export default class TwodsixActor extends Actor {
     let maxEncumbrance = 0;
     const encumbFormula = game.settings.get('twodsix', 'maxEncumbrance');
     if (Roll.validate(encumbFormula)) {
-      let rollData:object;
+      const rollData:object = foundry.utils.deepClone(this.system);
       if (game.settings.get('twodsix', 'ruleset') === 'CT') {
-        rollData = foundry.utils.duplicate(this.getRollData()); //Not celar why deepClone doesn't work here
         const encumberedEffect:TwodsixActiveEffect = this.effects.find(eff  => eff.statuses.has('encumbered'));
         if (encumberedEffect) {
           for (const change of encumberedEffect.changes) {
@@ -525,12 +539,13 @@ export default class TwodsixActor extends Actor {
             foundry.utils.mergeObject(rollData, {[rollKey]: foundry.utils.getProperty(this, change.key) - parseInt(change.value)});
           }
         }
-      } else {
-        rollData = this.getRollData();
       }
       maxEncumbrance = Roll.safeEval(Roll.replaceFormulaData(encumbFormula, rollData, {missing: "0", warn: false}));
     }
-    return Math.max(maxEncumbrance, 0);
+    if (includeOffset) {
+      maxEncumbrance += this.system.encumbrance.offset || 0;
+    }
+    return Math.max( maxEncumbrance, 0);
   }
 
   getActorEncumbrance():number {
@@ -1273,10 +1288,16 @@ export default class TwodsixActor extends Actor {
    * @param {boolean} custom - Whether to apply only derived/custom effects (default: false)
    * @override This overrides the core FVTT method to account for modifying derived data
    */
-  applyActiveEffects({ custom = false }: boolean = {}) {
-    // Fix for item-piles module (only for custom)
+  /**
+   * Apply transformations to the Actor data caused by ActiveEffects.
+   * If `onlyKeys` is provided, applies only AEs that target those keys.
+   * Otherwise, applies standard (non-derived) effects.
+   * @param {object} options - { onlyKeys?: string[] }
+   */
+  applyActiveEffects({ onlyKeys = undefined }: { onlyKeys?: string[] } = {}) {
+    // Fix for item-piles module (only when applying to derived keys)
     if (
-      custom &&
+      onlyKeys &&
       game.modules.get("item-piles")?.active &&
       this.getFlag("item-piles", "data.enabled")
     ) {
@@ -1284,35 +1305,39 @@ export default class TwodsixActor extends Actor {
     }
 
     const overrides = {};
-    if (!custom) {
+    if (!onlyKeys) {
       this.statuses.clear();
     }
 
     const derivedData = this._getDerivedDataKeys();
 
     // Choose effects and filter logic
-    const effects = custom ? this.appliedEffects : this.allApplicableEffects();
+    const effects = onlyKeys ? this.appliedEffects : this.allApplicableEffects();
     const changes = [];
     for (const effect of effects) {
-      if (!custom && !effect.active) {
+      if (!onlyKeys && !effect.active) {
         continue;
       }
+      let filtered = effect.changes;
+      if (onlyKeys) {
+        // Only apply effects that target the specified keys
+        filtered = filtered.filter((change) =>
+          onlyKeys.includes(change.key)
+        );
+      } else {
+        // Base pass: apply effects that target non-derived keys (include CUSTOM here)
+        filtered = filtered.filter((change) =>
+          !derivedData.includes(change.key)
+        );
+      }
       changes.push(
-        ...effect.changes
-          .filter((change) =>
-            custom
-              ? derivedData.includes(change.key) ||
-                change.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM
-              : !derivedData.includes(change.key) &&
-                change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM
-          )
-          .map((change) => {
-            const c = foundry.utils.deepClone(change);
-            c.effect = effect;
-            c.priority =
-              c.priority ?? (change.mode * 10 + (custom ? -100 : 0));
-            return c;
-          })
+        ...filtered.map((change) => {
+          const c = foundry.utils.deepClone(change);
+          c.effect = effect;
+          c.priority =
+            c.priority ?? (change.mode * 10 + (onlyKeys ? -100 : 0));
+          return c;
+        })
       );
       for (const statusId of effect.statuses) {
         this.statuses.add(statusId);
@@ -1330,7 +1355,7 @@ export default class TwodsixActor extends Actor {
     }
 
     // Set overrides
-    if (custom) {
+    if (onlyKeys) {
       if (Object.keys(overrides).length > 0) {
         this.overrides = foundry.utils.mergeObject(
           this.overrides,
@@ -1341,6 +1366,7 @@ export default class TwodsixActor extends Actor {
       this.overrides = foundry.utils.expandObject(overrides);
     }
   }
+
 
   /**
    * Build a list of system data keys that are considered "derived data" for this actor.

@@ -622,6 +622,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       "radiationDose.value",
       "movement.walk",
       "encumbrance.max",
+      "encumbrance.offset",
       "encumbrance.value",
       "primaryArmor.value",
       "secondaryArmor.value",
@@ -639,7 +640,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     for (const field of fieldsToProcess) {
       if (foundry.utils.hasProperty(context.system, field)) {
-        foundry.utils.mergeObject(context.tooltips, {[field]: computeTwodsixTooltip(this.actor, `system.${field}`)});
+        if (field === "encumbrance.offset") {
+          foundry.utils.setProperty(context.tooltips, "encumbrance.max", [context.tooltips.encumbrance.max ?? "", computeTwodsixTooltip(this.actor, `system.${field}`)].join(" "));
+        } else {
+          foundry.utils.setProperty(context.tooltips, field, computeTwodsixTooltip(this.actor, `system.${field}`));
+        }
       }
     }
   }
@@ -826,7 +831,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
     })) {
       await selectedEffect.delete();
-      await this.render(false); //needed because can right-click on icon over image instead of toggle icons
+      //await this.render(false); //needed because can right-click on icon over image instead of toggle icons
     }
   }
   //THIS NEEDS TO BE CHECKED LATER
@@ -853,7 +858,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     } else {
       console.log("Unknown Action");
     }
-    await this.render(false);
+    //await this.render(false);
   }
 
   static async _onAdjustCounter(ev:Event, target:HTMLElement): Promise<void> {
@@ -1122,8 +1127,8 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     const simplifiedName = field.slice(14);
     const coreSkill = actor.itemTypes.skills.find(sk => simplifySkillName(sk.name) === simplifiedName);
     baseValue = coreSkill?.system.value;
-  } else if (field === 'system.encumbrance.max') {
-    baseValue = actor.getMaxEncumbrance();
+  } else if (['system.encumbrance.max', 'system.encumbrance.offset'].includes(field)) {
+    baseValue = actor.getMaxEncumbrance(false);
   } else if (field.endsWith('.mod')) {
     baseValue = calcModFor(foundry.utils.getProperty(actor._source, field.replace('mod', 'value')));
   } else {
