@@ -328,6 +328,7 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Prepare Character type specific data
+   * Note that first pass at Active Effects already applied during  ActiveEffects.applyActiveEffects call prior to calculating prepare derived data
    */
   async _prepareActorDerivedData(): void {
     const {system} = this;
@@ -380,22 +381,21 @@ export default class TwodsixActor extends Actor {
       system.reflectOn = armorValues.reflectOn;
       system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map( x => game.i18n.localize(x)).join(', ') : "";
       system.totalArmor = armorValues.totalArmor;
-      const baseArmor = system.primaryArmor.value;
+      system.primaryArmor.base = system.primaryArmor.value;
       if (this.overrides.system?.primaryArmor?.value) {
-        system.totalArmor += this.overrides.system.primaryArmor.value - baseArmor;
+        system.totalArmor += this.overrides.system.primaryArmor.value - system.primaryArmor.base;
       }
     }
-
-    // Second pass: apply derived/custom AEs to all derived fields
-    const derivedKeys = this._getDerivedDataKeys();
-    this.applyActiveEffects({ onlyKeys: derivedKeys });
+    // Second pass: apply derived/custom AEs to derived fields, excluding encumbrance.max
+    const derivedKeys = this._getDerivedDataKeys().filter(k => k !== "system.encumbrance.max");
+    this.applyActiveEffects(derivedKeys);
 
     //Calculate encumbrance values
     system.encumbrance.max = this.getMaxEncumbrance(true);
     system.encumbrance.value = this.getActorEncumbrance();
 
     // Third pass: apply only AEs that target system.encumbrance.max as a final override
-    this.applyActiveEffects({ onlyKeys: ["system.encumbrance.max"] });
+    this.applyActiveEffects(["system.encumbrance.max"]);
 
   }
   /**
@@ -1280,21 +1280,32 @@ export default class TwodsixActor extends Actor {
     }
   }
 
-
   /**
-   * Apply transformations to the Actor data caused by ActiveEffects.
-   * If `custom` is true, applies only derived data and CUSTOM effects (post-prepare data).
-   * Otherwise, applies standard effects and strips out CUSTOM.
-   * @param {boolean} custom - Whether to apply only derived/custom effects (default: false)
-   * @override This overrides the core FVTT method to account for modifying derived data
+   * Apply transformations to this Actor's data caused by Active Effects.
+   *
+   * Behavior is controlled by the optional `onlyKeys` list:
+   * - When `onlyKeys` is omitted, this is the "base pass": apply effects that target
+   *   non-derived keys (including CUSTOM mode) and update statuses. Derived keys are not touched.
+   * - When `onlyKeys` is provided, apply only those changes whose key is explicitly listed.
+   *   This is used for selective "second" and "third" passes on derived properties to avoid
+   *   double application (for example: apply all derived keys except `system.encumbrance.max`,
+   *   then finally apply only `system.encumbrance.max`).
+   *
+   * Notes:
+   * - Status icons are cleared only in the base pass (when `onlyKeys` is not provided).
+   * - If the Item Piles module marks this actor as a merchant, derived-key passes are skipped.
+   *
+   * Typical usage pattern (3 passes):
+   * 1) Base pass: `applyActiveEffects()` (invoked automatically during Actor.prepareData before `prepareDerivedData()`)
+   * 2) Derived pass: `applyActiveEffects(this._getDerivedDataKeys().filter(k => k !== "system.encumbrance.max"))`
+   * 3) Targeted override: `applyActiveEffects(["system.encumbrance.max"])`
+   *
+   * @param {string[]} [onlyKeys] Restrict application to these data paths; when omitted, applies only to
+   *                              non-derived keys (base pass).
+   * @returns {void}
+   * @override This overrides the core FVTT method to account for modifying derived data in multiple passes
    */
-  /**
-   * Apply transformations to the Actor data caused by ActiveEffects.
-   * If `onlyKeys` is provided, applies only AEs that target those keys.
-   * Otherwise, applies standard (non-derived) effects.
-   * @param {object} options - { onlyKeys?: string[] }
-   */
-  applyActiveEffects({ onlyKeys = undefined }: { onlyKeys?: string[] } = {}) {
+  applyActiveEffects(onlyKeys?: string[]): void {
     // Fix for item-piles module (only when applying to derived keys)
     if (
       onlyKeys &&

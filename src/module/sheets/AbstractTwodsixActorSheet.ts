@@ -1131,6 +1131,8 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     baseValue = actor.getMaxEncumbrance(false);
   } else if (field.endsWith('.mod')) {
     baseValue = calcModFor(foundry.utils.getProperty(actor._source, field.replace('mod', 'value')));
+  } else if (['system.primaryArmor.value'].includes(field) && actor.type === 'traveller') {
+    baseValue = actor.system.primaryArmor.base;
   } else {
     baseValue = foundry.utils.getProperty(actor._source, field);
   }
