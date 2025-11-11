@@ -6,6 +6,11 @@ import { stackArmorValues } from "../utils/actorDamage";
 
 //This hook applies CUSTOM active effects values as a formula that is evaluated and not a static value.
 Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, delta: any, changes:object*/) => {
+  // Only handle CUSTOM mode (mode 0) effects
+  if (change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM) {
+    return;
+  }
+
   //return if current doesn't exist (probably derived value)
   if (current == undefined) {
     return;
@@ -47,6 +52,8 @@ Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, d
   } else if (ct === 'string') {
     update = operator === '+' ? current + changeFormula : changeFormula;
   }
+
+  // For CUSTOM mode, we've computed the value ourselves
   foundry.utils.setProperty(actor, change.key, update);
 });
 

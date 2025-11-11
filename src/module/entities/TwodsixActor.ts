@@ -386,15 +386,37 @@ export default class TwodsixActor extends Actor {
         system.totalArmor += this.overrides.system.primaryArmor.value - system.primaryArmor.base;
       }
     }
-    // Second pass: apply derived/custom AEs to derived fields, excluding encumbrance.max
-    const derivedKeys = this._getDerivedDataKeys().filter(k => k !== "system.encumbrance.max");
-    this.applyActiveEffects(derivedKeys);
 
-    //Calculate encumbrance values
-    system.encumbrance.max = this.getMaxEncumbrance(true);
+    // Calculate encumbrance.value before AE passes (so AEs can modify it)
     system.encumbrance.value = this.getActorEncumbrance();
 
-    // Third pass: apply only AEs that target system.encumbrance.max as a final override
+    // Apply active effects in multiple passes (base pass already done by core FVTT)
+
+    // Collect all keys that have CUSTOM mode effects (excluding encumbrance.max)
+    const allCustomKeys = this.appliedEffects
+      .flatMap(e => e.changes.filter(c => c.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM).map(c => c.key))
+      .filter(k => k); //Make certain keys are valid
+    const customKeys = [...new Set(allCustomKeys)].filter(k => k !== "system.encumbrance.max"); //Deduplicate and get rid of encumbrance.max
+
+    // Second pass: apply non-CUSTOM effects to derived fields (excluding encumbrance.max and CUSTOM keys)
+    const derivedKeys = this._getDerivedDataKeys()
+      .filter(k => k !== "system.encumbrance.max" && !customKeys.includes(k));
+    this.applyActiveEffects(derivedKeys);
+
+    // Third pass: apply all CUSTOM mode effects (now that derived data is stable)
+    // Explicitly exclude encumbrance.max from this pass (it has its own pass after calculation)
+    if (customKeys.length > 0) {
+      this.applyActiveEffects(customKeys);
+    }
+
+    // Clear any override for encumbrance.max from previous passes before recalculating
+    if (this.overrides.system?.encumbrance?.max !== undefined) {
+      delete this.overrides.system.encumbrance.max;
+    }
+    // Calculate encumbrance max
+    system.encumbrance.max = this.getMaxEncumbrance(true);
+
+    // Fourth pass: final override for encumbrance.max
     this.applyActiveEffects(["system.encumbrance.max"]);
 
   }
@@ -1285,20 +1307,24 @@ export default class TwodsixActor extends Actor {
    *
    * Behavior is controlled by the optional `onlyKeys` list:
    * - When `onlyKeys` is omitted, this is the "base pass": apply effects that target
-   *   non-derived keys (including CUSTOM mode) and update statuses. Derived keys are not touched.
+   *   non-derived keys, excluding CUSTOM mode. Statuses are updated.
    * - When `onlyKeys` is provided, apply only those changes whose key is explicitly listed.
-   *   This is used for selective "second" and "third" passes on derived properties to avoid
-   *   double application (for example: apply all derived keys except `system.encumbrance.max`,
-   *   then finally apply only `system.encumbrance.max`).
+   *   This is used for selective passes on derived properties and CUSTOM mode effects.
    *
    * Notes:
    * - Status icons are cleared only in the base pass (when `onlyKeys` is not provided).
    * - If the Item Piles module marks this actor as a merchant, derived-key passes are skipped.
+   * - CUSTOM mode effects are deferred to later passes when all derived data is stable.
    *
-   * Typical usage pattern (3 passes):
+   * Typical usage pattern (4 passes):
    * 1) Base pass: `applyActiveEffects()` (invoked automatically during Actor.prepareData before `prepareDerivedData()`)
+   *    - Applies non-derived keys, non-CUSTOM modes only
    * 2) Derived pass: `applyActiveEffects(this._getDerivedDataKeys().filter(k => k !== "system.encumbrance.max"))`
-   * 3) Targeted override: `applyActiveEffects(["system.encumbrance.max"])`
+   *    - Applies characteristic mods, skills, armor values (non-CUSTOM modes)
+   * 3) CUSTOM pass: `applyActiveEffects(customKeys)` where customKeys are all CUSTOM mode effect keys
+   *    - Applies CUSTOM formulas that may reference derived data
+   * 4) Targeted override: `applyActiveEffects(["system.encumbrance.max"])`
+   *    - Final override for encumbrance max after calculation
    *
    * @param {string[]} [onlyKeys] Restrict application to these data paths; when omitted, applies only to
    *                              non-derived keys (base pass).
@@ -1306,57 +1332,57 @@ export default class TwodsixActor extends Actor {
    * @override This overrides the core FVTT method to account for modifying derived data in multiple passes
    */
   applyActiveEffects(onlyKeys?: string[]): void {
-    // Fix for item-piles module (only when applying to derived keys)
-    if (
-      onlyKeys &&
-      game.modules.get("item-piles")?.active &&
-      this.getFlag("item-piles", "data.enabled")
-    ) {
+    // Skip derived-key passes for Item Piles merchants
+    if (onlyKeys && game.modules.get("item-piles")?.active && this.getFlag("item-piles", "data.enabled")) {
       return;
     }
 
     const overrides = {};
+
+    // Clear statuses only in base pass
     if (!onlyKeys) {
       this.statuses.clear();
     }
 
-    const derivedData = this._getDerivedDataKeys();
-
-    // Choose effects and filter logic
+    // Choose effects: all applicable for base pass, already-applied for targeted passes
     const effects = onlyKeys ? this.appliedEffects : this.allApplicableEffects();
     const changes = [];
+
     for (const effect of effects) {
+      // Skip inactive effects in base pass
       if (!onlyKeys && !effect.active) {
         continue;
       }
+
+      // Filter changes based on pass type
       let filtered = effect.changes;
       if (onlyKeys) {
-        // Only apply effects that target the specified keys
-        filtered = filtered.filter((change) =>
-          onlyKeys.includes(change.key)
-        );
+        // Targeted pass: only apply changes for specified keys
+        filtered = filtered.filter(change => onlyKeys.includes(change.key));
       } else {
-        // Base pass: apply effects that target non-derived keys (include CUSTOM here)
-        filtered = filtered.filter((change) =>
-          !derivedData.includes(change.key)
+        // Base pass: non-derived, non-CUSTOM only
+        const derivedData = this._getDerivedDataKeys();
+        filtered = filtered.filter(change =>
+          !derivedData.includes(change.key) && change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM
         );
       }
-      changes.push(
-        ...filtered.map((change) => {
-          const c = foundry.utils.deepClone(change);
-          c.effect = effect;
-          c.priority =
-            c.priority ?? (change.mode * 10 + (onlyKeys ? -100 : 0));
-          return c;
-        })
-      );
+
+      // Add filtered changes with priority
+      changes.push(...filtered.map(change => {
+        const c = foundry.utils.deepClone(change);
+        c.effect = effect;
+        c.priority = c.priority ?? (change.mode * 10 + (onlyKeys ? -100 : 0));
+        return c;
+      }));
+
+      // Collect status effects
       for (const statusId of effect.statuses) {
         this.statuses.add(statusId);
       }
     }
-    changes.sort((a, b) => a.priority - b.priority);
 
-    // Apply changes
+    // Sort by priority and apply
+    changes.sort((a, b) => a.priority - b.priority);
     for (const change of changes) {
       if (!change.key) {
         continue;
@@ -1365,14 +1391,9 @@ export default class TwodsixActor extends Actor {
       Object.assign(overrides, result);
     }
 
-    // Set overrides
+    // Merge or replace overrides
     if (onlyKeys) {
-      if (Object.keys(overrides).length > 0) {
-        this.overrides = foundry.utils.mergeObject(
-          this.overrides,
-          foundry.utils.expandObject(overrides)
-        );
-      }
+      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
     } else {
       this.overrides = foundry.utils.expandObject(overrides);
     }
