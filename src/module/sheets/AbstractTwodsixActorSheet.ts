@@ -810,7 +810,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   protected async _onEditEffect(ev:Event): Promise<void> {
-    const effectUuid:string = ev.currentTarget.dataset.uuid;
+    const target = ev.currentTarget as HTMLElement;
+    const effectUuid = target.dataset.uuid;
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
@@ -824,7 +825,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   async _onDeleteEffect(ev:Event): Promise<void> {
-    const effectUuid = ev.currentTarget.dataset.uuid;
+    const target = ev.currentTarget as HTMLElement;
+    const effectUuid = target.dataset.uuid;
     const selectedEffect = await fromUuid(effectUuid);
     if (await foundry.applications.api.DialogV2.confirm({
       window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
@@ -837,7 +839,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   //THIS NEEDS TO BE CHECKED LATER
   async _modifyEffect(ev:Event): Promise<void> {
     ev.preventDefault();
-    const target:HTMLElement = ev.currentTarget;
+    const target = ev.currentTarget as HTMLElement;
     const action = target.dataset.controlaction;
     if (action === "delete") {
       await this._onDeleteEffect(ev);
