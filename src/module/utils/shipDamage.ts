@@ -391,8 +391,8 @@ function getCDDamageList(damage:number, weaponType:string, ship:TwodsixActor, ef
 
   // Defensive: check for valid weaponType and armorType
   if (!penetrationMatrix[adjWeaponType] || !penetrationMatrix[adjWeaponType][armorType]) {
-    console.warn(`Unknown weaponType (${weaponType}) or armorType (${armorType}) in getCDDamageList`);
-    return [];
+    console.warn(`Unknown weaponType (${weaponType}) or armorType (${armorType || ship.system.shipStats.armor.name}) in getCDDamageList`);
+    return [{location: "Unknown Armor or Weapon Type", hits: 0}];
   }
 
   const hitType = penetrationMatrix[adjWeaponType][armorType];
@@ -537,7 +537,7 @@ function getCTDamageList(damage:number): DamageResult[] {
 /**
  * Rolls for a surface hit location in Classic Traveller ship combat.
  * If "critical" is rolled, delegates to getCriticalHitCT().
- * @returns {DmageResult} The hit location and number of hits.
+ * @returns {DamageResult} The hit location and number of hits.
  */
 function getHitCT(): DamageResult {
   const hitTable =  ["power", "m-drive", "j-drive", "fuel", "hull", "hull", "cargo", "computer", "armament", "armament", "special"];
@@ -565,7 +565,7 @@ function getACDamageList(damage:number, weaponType: string, ship:TwodsixActor): 
 /**
  * Rolls for a surface hit location in Alpha Cephei ship combat.
  * If "critical" is rolled, delegates to getCriticalHitAC().
- * @returns {DmageResult} The hit location and number of hits.
+ * @returns {DamageResult} The hit location and number of hits.
  */
 function getHitAC(): DamageResult {
   const hitTable =  ["breach", "power", "j-drive", "armament", "m-drive", "armor", "cargo", "crew", "computer", "bridge", "special"];
@@ -647,7 +647,7 @@ function getCUDamageList(hits:number):DamageResult[] {
 /**
  * Rolls for a surface hit location in Cepheus Universal ship combat.
  * If "critical" is rolled, delegates to getCriticalHitCT().
- * @returns {DmageResult} The hit location and number of hits.
+ * @returns {DamageResult} The hit location and number of hits.
  */
 function getHitCU(): DamageResult {
   const hitTable =  ["sensor", "sensor", "power", "ftl-drive", "armor", "armament", "screen", "m-drive", "crew", "special", "special"];

@@ -5,6 +5,7 @@
     {{#iff @key "!==" "mount"}}
     {{#iff @key "!==" "vehicle"}}
     {{#iff @key "!==" "software"}}
+    {{#iff @key "!==" "ammo"}}
       <span class="status-component" data-uuid="{{this.uuid}}" data-action="itemLink">
         <i class= '{{twodsix_getComponentIcon @key}}'
         {{#iff this.status "===" 'operational'}} style="color: green;"
@@ -14,5 +15,5 @@
         {{/iff}}
         data-tooltip='{{localize (concat "TWODSIX.Items.Component." @key)}}'></i>
       </span>
-    {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
+    {{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}{{/iff}}
 {{/each}}

@@ -153,7 +153,7 @@ export async function onChatCardAction(event: Event, target:HTMLElement): Promis
     const storedData = message.getFlag("twodsix", "itemUUID");
     const item: TwodsixItem = storedData ? await fromUuid(storedData) : {};
     if (!item) {
-      const err = game.i18n.format("DND5E.ActionWarningNoItem", { item: card.dataset.itemId, name: actor.name });
+      const err = game.i18n.format("TWODSIX.Errors.ActionWarningNoItem", { item: storedData, name: actor.name });
       return ui.notifications.error(err);
     }
 
@@ -243,11 +243,12 @@ async function getChatCardActor(message: ChatMessage): Actor | null {
   */
 async function onExpandClick(message: ChatMessage) {
   // Toggle the message flag
-
-  if (message.flavor.includes('class="dice-chattip" style="display:none"')) {
-    message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"') });
-  } else {
-    message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"') });
+  if (message.flavor) {
+    if (message.flavor.includes('class="dice-chattip" style="display:none"')) {
+      message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:none"', 'class="dice-chattip" style="display:contents"') });
+    } else {
+      message.update({ flavor: message.flavor.replace('class="dice-chattip" style="display:contents"', 'class="dice-chattip" style="display:none"') });
+    }
   }
 }
 /**

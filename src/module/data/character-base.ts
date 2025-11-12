@@ -69,7 +69,8 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
     schema.encumbrance = new fields.SchemaField({
       value: new fields.NumberField({required: true, integer: false, initial: 0}),
       max: new fields.NumberField({required: true, integer: false, initial: 0}),
-      min: new fields.NumberField({required: true, integer: false, initial: 0})
+      min: new fields.NumberField({required: true, integer: false, initial: 0}),
+      offset: new fields.NumberField({required: true, integer: false, initial: 0})
     });
 
     /* Hits Data */
@@ -104,7 +105,7 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
 /**
  * Produce the schema field for a characteristic
  * @param {string} key  Characteristic key.
- * @param {string} shortName Characterisitc short label
+ * @param {string} shortName Characteristic short label
  * @param {object} schemaOptions  Options passed to the outer schema.
  * @returns {ResourceData}
  */

@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="grid-columns-double item-list">
-    {{#each componentObject.cargo as |item id|}}
+    {{#each componentObject.allCargo as |item id|}}
     <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
         <li class="cargo-stored-double">
@@ -51,7 +51,7 @@
       </ol>
     </div>
     {{/each}}
-    {{#if (twodsix_isOdd componentObject.cargo.length)}}
+    {{#if (twodsix_isOdd componentObject.allCargo.length)}}
         <div class="grid-columns-double-row"><ol class="ol-no-indent">&nbsp;<li class="item components-stored-double" ></li></ol></div>
     {{/if}}
   </div>

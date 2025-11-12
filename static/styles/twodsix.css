@@ -2369,13 +2369,6 @@ span.total-output {
   text-align: center;
 }
 
-.overdrive-mode input[type="checkbox"] {
-  width: 13px;
-  height: 13px;
-  text-align: center;
-  /* vertical-align: middle; */
-}
-
 .fuel-bar {
   width: 95%;
   max-width: 17ch;
@@ -2504,11 +2497,19 @@ span.total-output {
   grid-area: ship-fuel;
   display: flex;
   flex-direction: column;
-  /* grid-template-rows: 15px 25px 47px 20px; */
-  /* text-align: center; */
-  /* margin-top: 0.5em; */
   justify-content: space-evenly;
-  /* vertical-align: middle; */
+}
+
+.ship-overdrive {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ship-overdrive input {
+  border: none;
+  width: 4ch;
 }
 
 .ship-mass {
@@ -3796,7 +3797,7 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border-bottom: 1px solid var(--s2d6-default-color);
   box-shadow: 0 0 10px var(--s2d6-light-color);
   background-color: var(--s2d6-background-opaque);
-  padding: 8px;
+  padding: 8px 16px 8px 8px;
 }
 
 #sidebar-tabs > .item {
@@ -3825,6 +3826,10 @@ div.app.window-app.minimized.twodsix.ship.actor header a.close {
   border: 1px solid var(--s2d6-light-color);
   border-bottom: none;
   box-shadow: 0 0 6px inset var(--s2d6-default-color);
+}
+
+textarea#chat-message {
+    min-height: 8ch;
 }
 
 /*#sidebar {
@@ -4170,7 +4175,7 @@ input[type="text"].color {
   align-items: center;
   min-height: 4ch;
   gap: 1px;
-  width: 99%
+  width: 99%;
 }
 
 .effect:nth-of-type(even) {

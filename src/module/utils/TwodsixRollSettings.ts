@@ -276,7 +276,17 @@ export function getCharacteristicList(actor?:TwodsixActor|undefined): any {
   return returnValue;
 }
 
-export function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): any {
+/**
+ * Retrieves custom roll modifiers for the selected actor, characteristic, and skill.
+ * Filters out effects with 'encumbered' or 'wounded' statuses, then collects relevant changes
+ * that modify the specified characteristic or skill. Returns an array of modifier objects.
+ *
+ * @param {TwodsixActor} selectedActor - The actor whose effects are being checked.
+ * @param {string} characteristic - The characteristic to match for modifiers.
+ * @param {Skills} [skill] - Optional skill to match for modifiers.
+ * @returns {Array<{name: string, stat: string, value: string}>} Array of modifier objects.
+ */
+export function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): Array<{name: string, stat:string, value:string}> {
   const characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;
   const returnObject = [];
