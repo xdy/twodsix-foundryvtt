@@ -21,6 +21,8 @@ export class TwodsixRollSettings {
   //characteristic:string;
   skillRoll:boolean;
   itemRoll:boolean;
+  isPsionicAbility:boolean;
+  isComponent:boolean;
   itemName: string;
   showRangeModifier: boolean;
   showTargetModifier: boolean;
@@ -40,7 +42,6 @@ export class TwodsixRollSettings {
     const skill = <Skills>aSkill?.system;
     let skillValue = 0;
     const difficulty = skill?.difficulty ? this.difficulties[skill.difficulty] : this.difficulties.Average;
-    const gear = <Gear>anItem?.system;
     const itemName = anItem?.name ?? "";
     const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill && game.settings.get('twodsix', 'ruleset') !== 'CT' ? skill.characteristic : "NONE");
     //Create Flag data for Automated Automations Module
@@ -141,8 +142,8 @@ export class TwodsixRollSettings {
       characteristic: characteristic,
       wounds: woundsValue,
       skillValue: skillValue ?? 0,
-      item: anItem?.type === "component" ? (parseInt(gear?.rollModifier, 10) || 0) : gear?.skillModifier ?? 0 ,  //need to check for component that uses rollModifier (needs a refactor)
-      componentDamage: anItem?.type === "component" ? (gear?.hits * game.settings.get('twodsix', 'componentDamageDM') || 0) : 0 ,
+      item: this.getItemModifier(anItem),
+      componentDamage: this.getComponentDamage(anItem),
       attachments: anItem?.system?.consumables?.length > 0 ? anItem?.getConsumableBonus("skillModifier") ?? 0 : 0,
       other: settings?.rollModifiers?.other ?? 0,
       encumbered: encumberedValue,
@@ -167,7 +168,6 @@ export class TwodsixRollSettings {
       actorUUID: actorUUID,
       bonusDamage: this.bonusDamage
     };
-    console.log("Flags: ", this.flags);
   }
 
   public static async create(showThrowDialog:boolean, settings?:Record<string,any>, skill?:TwodsixItem, item?:TwodsixItem, sourceActor?:TwodsixActor):Promise<TwodsixRollSettings> {
@@ -215,6 +215,26 @@ export class TwodsixRollSettings {
     await RollDialog.prompt({title: title, skill: skill, 'settings': twodsixRollSettings});
     return(twodsixRollSettings);
   }
+
+  private getItemModifier(anItem?: TwodsixItem): number {
+    if (!anItem) {
+      return 0;
+    }
+
+    const gear = anItem.system as Gear;
+    return anItem.type === "component"
+      ? (parseInt(gear?.rollModifier, 10) || 0)
+      : (gear?.skillModifier ?? 0);
+  }
+
+  private getComponentDamage(anItem?: TwodsixItem): number {
+    if (anItem?.type !== "component") {
+      return 0;
+    }
+
+    const gear = anItem.system as Gear;
+    return gear?.hits * (game.settings.get('twodsix', 'componentDamageDM') as number) || 0;
+  }
 }
 
 
@@ -256,7 +276,7 @@ export function getCharacteristicList(actor?:TwodsixActor|undefined): any {
   return returnValue;
 }
 
-export function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): Promise<any> {
+export function getCustomModifiers(selectedActor:TwodsixActor, characteristic:string, skill?:Skills): any {
   const characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;
   const returnObject = [];
