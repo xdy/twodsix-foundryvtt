@@ -29,3 +29,6 @@ sample_data/local/*
 foundry/client.mjs
 foundry/config.mjs
 client.mjs
+
+# AI instructions
+.github/copilot-instructions.md
