@@ -1,8 +1,18 @@
-2024/11/19-09:22:06.519609 70000f3a4000 Recovering log #23
-2024/11/19-09:22:06.521572 70000f3a4000 Delete type=3 #20
-2024/11/19-09:22:06.521926 70000f3a4000 Delete type=0 #23
-2024/11/19-09:26:06.455002 700010c30000 Level-0 table #30: started
-2024/11/19-09:26:06.455174 700010c30000 Level-0 table #30: 0 bytes OK
-2024/11/19-09:26:06.455580 700010c30000 Delete type=0 #28
-2024/11/19-09:26:06.455828 700010c30000 Manual compaction at level-0 from '!actors!428NdsC8HyEQ2b9u' @ 72057594037927935 : 1 .. '!folders!Ldiz3ipAJjnPYpfc' @ 0 : 0; will stop at (end)
-2024/11/19-09:26:06.455949 700010c30000 Manual compaction at level-1 from '!actors!428NdsC8HyEQ2b9u' @ 72057594037927935 : 1 .. '!folders!Ldiz3ipAJjnPYpfc' @ 0 : 0; will stop at (end)
+2025/04/18-10:55:07.691252 700008bc9000 Recovering log #29
+2025/04/18-10:55:07.691453 700008bc9000 Recovering log #47
+2025/04/18-10:55:07.692309 700008bc9000 Delete type=0 #29
+2025/04/18-10:55:07.692371 700008bc9000 Delete type=0 #47
+2025/04/18-10:55:07.692421 700008bc9000 Delete type=2 #32
+2025/04/18-10:55:07.692544 700008bc9000 Delete type=3 #27
+2025/04/19-10:11:58.393511 700009c52000 Level-0 table #50: started
+2025/04/19-10:11:58.401085 700009c52000 Level-0 table #50: 303751 bytes OK
+2025/04/19-10:11:58.402544 700009c52000 Delete type=0 #48
+2025/04/19-10:11:58.410299 700009c52000 Manual compaction at level-0 from '!actors!428NdsC8HyEQ2b9u' @ 72057594037927935 : 1 .. '!folders!Ldiz3ipAJjnPYpfc' @ 0 : 0; will stop at (end)
+2025/04/19-10:11:58.420482 700009c52000 Manual compaction at level-1 from '!actors!428NdsC8HyEQ2b9u' @ 72057594037927935 : 1 .. '!folders!Ldiz3ipAJjnPYpfc' @ 0 : 0; will stop at '!actors.items.effects!W0BCLkuEq22c4ADU.3A2KhScjhlNfxb6q.hBe0JpXSNRpmwR3f' @ 1281 : 1
+2025/04/19-10:11:58.420499 700009c52000 Compacting 1@1 + 1@2 files
+2025/04/19-10:11:58.425890 700009c52000 Generated table #51@1: 232 keys, 177253 bytes
+2025/04/19-10:11:58.425921 700009c52000 Compacted 1@1 + 1@2 files => 177253 bytes
+2025/04/19-10:11:58.426060 700009c52000 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/04/19-10:11:58.426173 700009c52000 Delete type=2 #26
+2025/04/19-10:11:58.426318 700009c52000 Delete type=2 #50
+2025/04/19-10:11:58.432686 700009c52000 Manual compaction at level-1 from '!actors.items.effects!W0BCLkuEq22c4ADU.3A2KhScjhlNfxb6q.hBe0JpXSNRpmwR3f' @ 1281 : 1 .. '!folders!Ldiz3ipAJjnPYpfc' @ 0 : 0; will stop at (end)

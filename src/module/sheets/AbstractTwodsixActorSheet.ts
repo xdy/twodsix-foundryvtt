@@ -4,7 +4,7 @@
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFLink, getDamageTypes, getRangeTypes, openJournalEntry, deleteReference, changeReference, calcModFor } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Skills, UsesConsumables, Component} from "../../types/template";
+import {Skills, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { simplifySkillName, sortObj } from "../utils/utils";
@@ -35,6 +35,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       openPDFLink: openPDFLink,
       deleteReference: deleteReference,
       adjustCounter: this._onAdjustCounter,
+      reloadMagazine: this._onReloadMagazine,
       showChat: this._onShowInChat,
       performAttack: this._onPerformAttack,
       skillTalentRoll: this._onSkillTalentRoll,
@@ -86,7 +87,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       if (!context.untrainedSkill) {
         //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
-        const existingSkill:Skills = actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
+        const existingSkill:Skills = this.actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
         if (existingSkill) {
           context.untrainedSkill = existingSkill;
         } else {
@@ -174,38 +175,75 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
     const li = target.closest('.item');
-    const ownedItem = this.actor.items.get(li.dataset.itemId) || null;
+    const toDeleteItem:TwodsixItem = this.actor.items.get(li.dataset.itemId) || null;
 
-    if (ownedItem) {
-      if (await foundry.applications.api.DialogV2.confirm({
-        window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
-        content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${ownedItem?.name}</strong>`,
-      })) {
-        const selectedActor = this.actor ?? this.token?.actor;
-        await ownedItem.update({ 'system.equipped': 'ship' }); /*Needed to keep enc calc correct*/
-        await selectedActor?.deleteEmbeddedDocuments("Item", [ownedItem.id]);
-        // somehow on hooks isn't working when a consumable is deleted  - force the issue
-        if (ownedItem.type === "consumable") {
-          selectedActor?.items.filter(i => i.type !== "skills" && i.type !== "trait").forEach(async (i) => {
-            const consumablesList = (<UsesConsumables>i.system).consumables;
-            let usedForAttack = (<UsesConsumables>i.system).useConsumableForAttack;
-            if (consumablesList != undefined) {
-              if (consumablesList.includes(ownedItem.id) || usedForAttack === ownedItem.id) {
-                //await (<TwodsixItem>i).removeConsumable(<string>ownedItem.id);
-                const index = consumablesList.indexOf(ownedItem.id);
-                if (index > -1) {
-                  consumablesList.splice(index, 1); // 2nd parameter means remove one item only
-                }
-                if (usedForAttack === ownedItem.id) {
-                  usedForAttack = "";
-                }
-                selectedActor.updateEmbeddedDocuments('Item', [{ _id: i.id, 'system.consumables': consumablesList, 'system.useConsumableForAttack': usedForAttack }]);
-              }
-            }
-          });
+    if (!toDeleteItem) {
+      return;
+    }
+
+    const confirmed = await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.Actor.Items.DeleteItem")},
+      content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${toDeleteItem?.name}</strong>`,
+    });
+    if (!confirmed) {
+      return;
+    }
+
+    const selectedActor:TwodsixActor = this.actor ?? this.token?.actor;
+    if (!selectedActor) {
+      console.log("Invalid Actor");
+      return;
+    }
+
+    // Keep encumbrance updated
+    if (foundry.utils.hasProperty(toDeleteItem, "system.equipped")) {
+      await toDeleteItem.update({ 'system.equipped': 'ship' });
+    }
+
+    // 1) Build all updates that must happen before delete
+    const updates: Record<string, any>[] = [];
+
+    // Only run this for non-vehicle/non-ship/non-space-object actors
+    if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space-object"].includes(selectedActor.type)) {
+      for (const i of selectedActor.items.filter((it:TwodsixItem) => !TWODSIX.WeightlessItems.includes(it.type))) {
+        const current = Array.isArray(i.system.consumables) ? foundry.utils.duplicate(i.system.consumables) : [];
+        const filtered = current.filter((id: string) => id !== toDeleteItem.id);
+
+        const update: Record<string, any> = { _id: i.id };
+        let changed = false;
+
+        // Remove from consumables array
+        if (filtered.length !== current.length) {
+          update["system.consumables"] = filtered;
+          changed = true;
+        }
+
+        // Clear useConsumableForAttack if pointing to the deleted item
+        if (i.system.useConsumableForAttack === toDeleteItem.id) {
+          update["system.useConsumableForAttack"] = "";
+          changed = true;
+        }
+
+        if (changed) {
+          updates.push(update);
         }
       }
+    } else if (toDeleteItem.system?.subtype === "ammo") {
+      // Reset ammoLink on linked armaments
+      const linkedArmaments:TwodsixItem[] =
+        this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === toDeleteItem.id) ?? [];
+      for (const arm of linkedArmaments) {
+        updates.push({ _id: arm.id, "system.ammoLink": "none" });
+      }
     }
+
+    // 2) Apply updates in a single, awaited batch (no racing with delete)
+    if (updates.length) {
+      await selectedActor.updateEmbeddedDocuments("Item", updates, { render: false });
+    }
+
+    // 3) Now delete the item
+    await selectedActor.deleteEmbeddedDocuments("Item", [toDeleteItem.id]);
   }
 
   /**
@@ -449,7 +487,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     // Initialize containers.
     const actor:TwodsixActor = this.actor;
     context.container = actor.itemTypes;
-    const items = actor.items;
+    const items:TwodsixItems[] = actor.items;
     const component = {};
     const counters = { numberOfSkills: 0, skillRanks: 0, buildPoints: 0 };
     const summaryStatus = {};
@@ -458,43 +496,46 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const statusOrder = {"operational": 1, "damaged": 2, "destroyed": 3, "off": 0};
 
     // Iterate through items, calculating derived data
-    for (const item of items) {
-      // item.img = item.img || CONST.DEFAULT_TOKEN; // apparent item.img is read-only..
-      if (![...TWODSIX.WeightlessItems, "ship_position"].includes(item.type)) {
-        item.prepareConsumable();
-      }
+    for (const it of items) {
       if (["traveller", "animal", "robot"].includes(actor.type)) {
-        if (item.type === "skills") {
-          this._processSkillItem(item, actor, skillGroups, skillsList, counters);
+        if (it.type === "skills") {
+          this._processSkillItem(it, actor, skillGroups, skillsList, counters);
         }
       }
       //Add consumable labels
-      if (["traveller"].includes(actor.type)  && item.type === "consumable") {
-        const parentItem = actor.items.find((i) => i.system.consumables?.includes(item.id));
+      if (["traveller"].includes(actor.type)  && it.type === "consumable") {
+        const parentItem = actor.items.find((i) => i.system.consumables?.includes(it.id));
         if (parentItem) {
-          item.system.parentName = parentItem.name;
-          item.system.parentType = parentItem.type;
+          it.system.parentName = parentItem.name;
+          it.system.parentType = parentItem.type;
         }
       }
 
       //Calulate BuildPoints
-      if (["robot"].includes(actor.type)  && item.type === "augment") {
-        counters.buildPoints += item.system.buildPoints ?? 0;
+      if (["robot"].includes(actor.type)  && it.type === "augment") {
+        counters.buildPoints += it.system.buildPoints ?? 0;
       }
       //prepare ship summary status
-      if (item.type === "component") {
-        if(component[(<Component>item.system).subtype] === undefined) {
-          component[(<Component>item.system).subtype] = [];
-          summaryStatus[(<Component>item.system).subtype] = {
-            status: item.system.status,
-            uuid: item.uuid
+      if (it.type === "component") {
+        if(component[(<Component>it.system).subtype] === undefined) {
+          component[(<Component>it.system).subtype] = [];
+          summaryStatus[(<Component>it.system).subtype] = {
+            status: it.system.status,
+            uuid: it.uuid
           };
         }
-        component[(<Component>item.system).subtype].push(item);
-        if (statusOrder[summaryStatus[(<Component>item.system).subtype].status] < statusOrder[item.system.status]) {
-          summaryStatus[(<Component>item.system).subtype] = {
-            status: item.system.status,
-            uuid: item.uuid
+        //replace item damage with linked ammo damage for display
+        if (it.system.subtype === "armament" && it.system.ammoLink !== "none") {
+          const linkedAmmo = actor.items.get(it.system.ammoLink);
+          if (linkedAmmo) {
+            it.system.ammoDamage = linkedAmmo.system.damage;
+          }
+        }
+        component[(<Component>it.system).subtype].push(it);
+        if (statusOrder[summaryStatus[(<Component>it.system).subtype].status] < statusOrder[it.system.status]) {
+          summaryStatus[(<Component>it.system).subtype] = {
+            status: it.system.status,
+            uuid: it.uuid
           };
         }
       }
@@ -513,9 +554,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.skillRanks = counters.skillRanks + context.jackOfAllTrades;
     } else if (["ship", "vehicle"].includes(actor.type)) {
       context.componentObject = sortObj(component);
+      context.componentObject.allCargo = [...component.cargo??[], ...component.ammo??[]];
       context.summaryStatus = sortObj(summaryStatus);
       context.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
-      context.container.nonCargo = actor.itemTypes.component.filter( i => i.system.subtype !== "cargo");
+      context.container.nonCargo = actor.itemTypes.component.filter( i => !["cargo", "ammo"].includes(i.system.subtype));
     } else if (["robot"].includes(actor.type)) {
       context.buildPoints = counters.buildPoints;
     }
@@ -580,6 +622,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       "radiationDose.value",
       "movement.walk",
       "encumbrance.max",
+      "encumbrance.offset",
       "encumbrance.value",
       "primaryArmor.value",
       "secondaryArmor.value",
@@ -597,7 +640,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     for (const field of fieldsToProcess) {
       if (foundry.utils.hasProperty(context.system, field)) {
-        foundry.utils.mergeObject(context.tooltips, {[field]: computeTwodsixTooltip(this.actor, `system.${field}`)});
+        if (field === "encumbrance.offset") {
+          foundry.utils.setProperty(context.tooltips, "encumbrance.max", [context.tooltips.encumbrance.max ?? "", computeTwodsixTooltip(this.actor, `system.${field}`)].join(" "));
+        } else {
+          foundry.utils.setProperty(context.tooltips, field, computeTwodsixTooltip(this.actor, `system.${field}`));
+        }
       }
     }
   }
@@ -763,7 +810,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   protected async _onEditEffect(ev:Event): Promise<void> {
-    const effectUuid:string = ev.currentTarget.dataset.uuid;
+    const target = ev.currentTarget as HTMLElement;
+    const effectUuid = target.dataset.uuid;
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
@@ -777,19 +825,21 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   async _onDeleteEffect(ev:Event): Promise<void> {
-    const effectUuid = ev.currentTarget.dataset.uuid;
+    const target = ev.currentTarget as HTMLElement;
+    const effectUuid = target.dataset.uuid;
     const selectedEffect = await fromUuid(effectUuid);
     if (await foundry.applications.api.DialogV2.confirm({
       window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
       content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
     })) {
       await selectedEffect.delete();
-      await this.render(false); //needed because can right-click on icon over image instead of toggle icons
+      //await this.render(false); //needed because can right-click on icon over image instead of toggle icons
     }
   }
   //THIS NEEDS TO BE CHECKED LATER
   async _modifyEffect(ev:Event): Promise<void> {
-    const target:HTMLElement = ev.currentTarget;
+    ev.preventDefault();
+    const target = ev.currentTarget as HTMLElement;
     const action = target.dataset.controlaction;
     if (action === "delete") {
       await this._onDeleteEffect(ev);
@@ -811,7 +861,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     } else {
       console.log("Unknown Action");
     }
-    await this.render(false);
+    //await this.render(false);
   }
 
   static async _onAdjustCounter(ev:Event, target:HTMLElement): Promise<void> {
@@ -839,6 +889,30 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         }
       }
     }
+  }
+
+  static async _onReloadMagazine(ev:Event, target:HTMLElement): Promise<void> {
+    const li = target.closest(".item");
+    const itemSelected = this.actor.items.get(li.dataset.itemId);
+    if (itemSelected.system.ammoLink === "none") {
+      ui.notifications.warn("TWODSIX.Warnings.NoLinkedAmmo", {localize: true});
+      return;
+    }
+    const sourceAmmo = this.actor.items.get(itemSelected.system.ammoLink);
+    if(!sourceAmmo) {
+      ui.notifications.warn("TWODSIX.Warnings.AmmoNotFound", {localize: true});
+      await itemSelected.update({"system.ammoLink": "none"});
+      return;
+    }
+    if(sourceAmmo.system.quantity <= 0) {
+      ui.notifications.warn("TWODSIX.Warnings.NoAmmoToReload", {localize: true});
+      return;
+    }
+    const reloadAmount = Math.max(0, Math.min(itemSelected.system.ammunition.max - itemSelected.system.ammunition.value, sourceAmmo.system.quantity));
+    await this.actor.updateEmbeddedDocuments('Item', [
+      {_id: itemSelected.id, "system.ammunition.value": itemSelected.system.ammunition.value + reloadAmount},
+      {_id: sourceAmmo.id, "system.quantity": sourceAmmo.system.quantity - reloadAmount}
+    ]);
   }
 
   //These aren't necessary with change to prosemirror
@@ -1056,10 +1130,12 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     const simplifiedName = field.slice(14);
     const coreSkill = actor.itemTypes.skills.find(sk => simplifySkillName(sk.name) === simplifiedName);
     baseValue = coreSkill?.system.value;
-  } else if (field === 'system.encumbrance.max') {
-    baseValue = actor.getMaxEncumbrance();
+  } else if (['system.encumbrance.max', 'system.encumbrance.offset'].includes(field)) {
+    baseValue = actor.getMaxEncumbrance(false);
   } else if (field.endsWith('.mod')) {
     baseValue = calcModFor(foundry.utils.getProperty(actor._source, field.replace('mod', 'value')));
+  } else if (['system.primaryArmor.value'].includes(field) && actor.type === 'traveller') {
+    baseValue = actor.system.primaryArmor.base;
   } else {
     baseValue = foundry.utils.getProperty(actor._source, field);
   }

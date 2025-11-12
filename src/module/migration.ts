@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 export default async function migrateWorld(version:string):Promise<void> {
   //@ts-ignore
   await migrationFileNames.sort().reduce(async (prev, migrationName) => {

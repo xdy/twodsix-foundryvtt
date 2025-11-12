@@ -561,6 +561,7 @@
         "Ammunition":"Ammunition",
         "componentName": "Component",
         "accomodations": "accommodations",
+        "ammo": "ammo",
         "armament": "armament",
         "armor": "armor",
         "breach": "breach",
@@ -675,7 +676,9 @@
         "NuclearMissiles": "Nuclear Missiles",
         "Torpedoes": "Torpedoes",
         "Sandcaster": "Sandcaster",
-        "Other": "Other"
+        "Other": "Other",
+        "StoredAmmunition": "Stored Ammunition",
+        "reload": "reload"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -922,7 +925,7 @@
       "RefinedFuel": "Refined Fuel",
       "UnrefinedFuel": "Unrefined Fuel",
       "Gs": "G",
-      "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills can be dropped here.",
+      "InvalidDocumentForShipPosition": "This document type is invalid for ship positions. Only skills or actors can be dropped here.",
       "IsMassProduced": "Ship is Mass Produced",
       "JDrive": "J-Drive",
       "Jump": "Jump",
@@ -1503,7 +1506,7 @@
         "name": "Fraction of maximum encumbrance when encumbrance roll modifier applies"
       },
       "encumbranceModifier": {
-        "hint": "The number to add to the physical (STR, END, DEX) characteristic modifier when encumbered. For example, -1 indicates one should be subtracted for all rolls involving physical characterisitcs.",
+        "hint": "The number to add to the physical (STR, END, DEX) characteristic modifier when encumbered. For example, -1 indicates one should be subtracted for all rolls involving physical characteristics.",
         "name": "Roll modifier using physical characteristics when actor is encumbered"
       },
       "transferDroppedItems": {
@@ -1815,7 +1818,8 @@
       "TraitsandSkillsNoConsumables": "Spells, Traits and Skills can't have consumables.",
       "InvalidRangeBand": "Weapon type and/or range band not allowed for ruleset.",
       "InvalidWeaponArmor": "Weapon type and/or Armor type not allowed for ruleset.",
-      "CantDropAttachOnConsumables": "Can't drop attachements on consumables."
+      "CantDropAttachOnConsumables": "Can't drop attachements on consumables.",
+      "ActionWarningNoItem": "The requested item {item} no longer exists on Actor {name}"
     },
     "Warnings": {
       "ActorMissingItem": "Your controlled Actor does not have an item with id: _ITEM_ID_",
@@ -1844,6 +1848,7 @@
       "ActionWarningNoToken": "No targets selected for action.",
       "CantEditEffect": "Can't edit effect for item that is embedded in non-Actor.",
       "CantCreateEffect": "Can't create an effect for item that is embedded in non-Actor.",
+      "ActiveEffectsLoop": "Active Effects processing detected a potential infinite loop and was terminated.",
       "CantDeleteEffect": "Can't delete an effect for item that is embedded in non-Actor.",
       "PlayerDoesNotHavePermission": "Player does not have permission to execute macro.",
       "MacroNotFound": "Macro with name, _MACRO_NAME_, not found.",
@@ -1871,7 +1876,10 @@
       "CantFindItem": "Cannot find item with name",
       "NotUsingPsiStrength": "Charactersitics settings do not include Psionic Strength.  Cannot use Psionic Abilitiy.",
       "CantFindItemOnActor": "Cannot find selected item on Actor.",
-      "NoAvailableActors": "No available Travellers or Robots to select"
+      "NoAvailableActors": "No available Travellers or Robots to select",
+      "NoLinkedAmmo": "No ammunition linked",
+      "AmmoNotFound": "Can't find ammunition",
+      "NoAmmoToReload": "No ammunition remains to reload"
     }
   },
   "TYPES": {

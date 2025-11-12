@@ -109,6 +109,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.ship.push(booleanSetting('showCommonFundsMCr', true));
     const nonCargoTypes = foundry.utils.duplicate(TWODSIX.ComponentTypes);
     delete nonCargoTypes.cargo;
+    delete nonCargoTypes.ammo;
     settings.ship.push(arrayChoiceSetting('componentsIgnored', [], true, nonCargoTypes));
     settings.token.push(booleanSetting('showMovementColors', false));
     settings.actor.push(booleanSetting('showTraitAE', true));

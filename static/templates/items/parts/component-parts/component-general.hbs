@@ -10,7 +10,7 @@
   <input class="form-input" type="text" name="system.techLevel" value="{{system.techLevel}}" data-dtype="Number"/>
 </div>
 
-{{#iff system.subtype "!==" "cargo" }}
+{{#unless isStoredInCargo}}
   {{#if settings.showComponentRating}}
     <div class="item-tl">
         <label for="system.rating" class="resource-label">{{localize "TWODSIX.Items.Component.rating"}}</label>
@@ -43,7 +43,7 @@
       <input type="checkbox" class="checkbox" name="system.hardened" {{checked system.hardened}} data-dtype="Boolean" />
     </div>
   {{/iff}}{{/iff}}{{/iff}}
-{{/iff}}
+{{/unless}}
 
 {{#iff system.subtype "===" "fuel" }}
   <div class="item-refined">

@@ -26,7 +26,11 @@
       {{/iff}}
       <span class="item-name centre">
         {{#iff item.system.subtype "===" "armament"}}
-          {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
+          {{#if item.system.ammoDamage}}
+            {{#iff item.system.ammoDamage "!==" "0"}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.ammoDamage 3}}{{else}}&mdash;{{/iff}}</span>
+          {{else}}
+            {{#iff item.system.damage "!==" ""}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 3}}{{else}}&mdash;{{/iff}}</span>
+          {{/if}}
         {{else}}
         &mdash;
         {{/iff}}

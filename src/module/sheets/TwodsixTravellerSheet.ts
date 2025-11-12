@@ -96,7 +96,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       useCTAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CT.key,
       useCELAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key,
       useCUAutofireRules: game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CU.key,
-      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor'),
+      showTotalArmor: game.settings.get('twodsix', 'showTotalArmor') && !(this.actor.system.totalArmor > 0 && this.actor.system.totalArmor < 1 ), //total armor doesn't make sense with armor that blocks a percentage
       showTraitAE: game.settings.get('twodsix', 'showTraitAE')
     });
 

@@ -3,6 +3,11 @@
     <span class="combined-buttons" data-field="ammo">
       <button type="button" class="left-button adjust-counter" data-action="adjustCounter" {{#iff item.system.ammunition.value "===" 0}}disabled{{/iff}} data-value="-1" >-</button>
       <button type="button" class="right-button adjust-counter" data-action="adjustCounter" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}} data-value="1" >+</button>
+      {{#iff item.system.ammoLink "!==" "none"}}
+        <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Items.Component.reload"}}' data-action="reloadMagazine" {{#iff item.system.ammunition.value "===" item.system.ammunition.max}}disabled{{/iff}}>
+        <i class="fa-solid fa-rotate-right" ></i>
+        </a>
+      {{/iff}}
     </span>
   </span>
 {{else}}

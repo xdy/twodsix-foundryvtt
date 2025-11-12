@@ -57,7 +57,7 @@ export class TwodsixShipActions {
           title: game.i18n.localize("TWODSIX.Chat.Roll.Types.ShipAction"),
           speaker: speakerData,
           flavor: flavorText,
-          type: CONST.CHAT_MESSAGE_TYPES.OTHER
+          type: CONST.CHAT_MESSAGE_STYLES.OTHER
         });
         return msg;
       }
@@ -119,6 +119,12 @@ export class TwodsixShipActions {
     const usingCompStr = extra.component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + extra.component.name + ` `) : '';
     if (game.settings.get("twodsix", "automateDamageRollOnHit") && (<Component>extra.component?.system)?.subtype === "armament") {
       if (result.effect >= 0 && extra.component) {
+        if (extra.component.system.ammoLink !== "none") {
+          const linkedAmmo = extra.ship?.items.get(extra.component.system.ammoLink);
+          if (linkedAmmo) {
+            extra.component = linkedAmmo;
+          }
+        }
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
         await (<TwodsixItem>extra.component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false, result.effect);
       } else {

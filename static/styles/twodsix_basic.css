@@ -1806,14 +1806,6 @@ img.ship-mask-bg {
   width: 5ch;
 }
 
-.overdrive-mode input[type="checkbox"] {
-  /*width: 13px;
-  height: 13px;
-  text-align: center;
-  vertical-align: middle;*/
-  border: none;
-}
-
 .fuel-bar {
   /* width: 25ch; */
   /* vertical-align: middle; */
@@ -1929,10 +1921,21 @@ img.ship-mask-bg {
   grid-area: ship-fuel;
   display: flex;
   flex-direction: column;
-  /* grid-template-rows: 15px 25px 42px 20px; */
   justify-content: space-evenly;
   text-align: center;
   width: 100%;
+}
+
+.ship-overdrive {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ship-overdrive input {
+  border: none;
+  width: 4ch;
 }
 
 .ship-mass {

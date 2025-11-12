@@ -18,7 +18,7 @@ async function clearBadMessages() {
       const badMessage = game.messages.getInvalid(messageId);
       await badMessage.delete();
     } catch (err) {
-      console.log(`Bad message [${messageId}] cannot be deleted.`);
+      console.log(`Bad message [${messageId}] cannot be deleted. ${err}`);
     }
   }
 }
