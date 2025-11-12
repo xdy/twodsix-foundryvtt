@@ -300,7 +300,8 @@ export default class TwodsixActor extends Actor {
       case 'space-object':
         break;
       default:
-        console.log(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
+        ui.notifications.error(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
+        console.error(`Unknown actor type: ${this.type}`);
     }
   }
 
@@ -391,7 +392,6 @@ export default class TwodsixActor extends Actor {
     system.encumbrance.value = this.getActorEncumbrance();
 
     // Apply active effects in multiple passes (base pass already done by core FVTT)
-
     // Collect all keys that have CUSTOM mode effects (excluding encumbrance.max)
     const allCustomKeys = this.appliedEffects
       .flatMap(e => e.changes.filter(c => c.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM).map(c => c.key))
@@ -401,7 +401,9 @@ export default class TwodsixActor extends Actor {
     // Second pass: apply non-CUSTOM effects to derived fields (excluding encumbrance.max and CUSTOM keys)
     const derivedKeys = this._getDerivedDataKeys()
       .filter(k => k !== "system.encumbrance.max" && !customKeys.includes(k));
-    this.applyActiveEffects(derivedKeys);
+    if (derivedKeys.length > 0) {
+      this.applyActiveEffects(derivedKeys);
+    }
 
     // Third pass: apply all CUSTOM mode effects (now that derived data is stable)
     // Explicitly exclude encumbrance.max from this pass (it has its own pass after calculation)
@@ -420,6 +422,7 @@ export default class TwodsixActor extends Actor {
     this.applyActiveEffects(["system.encumbrance.max"]);
 
   }
+
   /**
    * Method to evaluate the armor and radiation protection values for all armor worn.
    * @returns {object} An object of the total for primaryArmor, secondaryArmor, and radiationProteciton
@@ -1288,7 +1291,7 @@ export default class TwodsixActor extends Actor {
    */
   public async handleDamageData(damagePayload:any, showDamageDialog:boolean): Promise<boolean> {
     if (!this.isOwner && !showDamageDialog) {
-      console.log("TWODSIX.Warnings.LackPermissionToDamage", {localize: true});
+      ui.notifications.error("TWODSIX.Warnings.LackPermissionToDamage", {localize: true});
       return false;
     }
     if (["traveller", "animal", "robot"].includes(this.type)) {
@@ -1335,6 +1338,20 @@ export default class TwodsixActor extends Actor {
     // Skip derived-key passes for Item Piles merchants
     if (onlyKeys && game.modules.get("item-piles")?.active && this.getFlag("item-piles", "data.enabled")) {
       return;
+    }
+
+    // Simple recursion protection for derived data passes
+    if (onlyKeys) {
+      this._aeCallDepth = (this._aeCallDepth || 0) + 1;
+      if (this._aeCallDepth > 10) {
+        console.warn(`Active Effects exceeded maximum depth for keys: ${onlyKeys.join(", ")} - possible circular dependency`);
+        ui.notifications.warn("TWODSIX.Warnings.ActiveEffectsLoop", {localize: true});
+        this._aeCallDepth = 0;
+        return;
+      }
+    } else {
+      // Reset depth counter on base pass
+      this._aeCallDepth = 0;
     }
 
     const overrides = {};
@@ -1394,6 +1411,8 @@ export default class TwodsixActor extends Actor {
     // Merge or replace overrides
     if (onlyKeys) {
       this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
+      // Decrement call depth after successful completion
+      this._aeCallDepth = Math.max(0, (this._aeCallDepth || 0) - 1);
     } else {
       this.overrides = foundry.utils.expandObject(overrides);
     }
@@ -1430,7 +1449,8 @@ export default class TwodsixActor extends Actor {
         );
       }
     }
-    return derivedData;
+    // Remove duplicates
+    return [...new Set(derivedData)];
   }
 
   /**
@@ -1466,7 +1486,8 @@ export default class TwodsixActor extends Actor {
     const returnObject = {};
     const skillsArray:TwodsixItem[] = sortByItemName(this.itemTypes.skills);
     if (!skillsArray) {
-      console.log("TWODSIX - No skills to list!");
+      console.warn("TWODSIX - No skills to list!");
+      return returnObject;
     } else {
       if (skillsArray.length > Object.keys(this.system.skills)?.length) {
         ui.notifications.warn("TWODSIX.Warnings.SkillsWithDuplicateNames", {localize: true});
