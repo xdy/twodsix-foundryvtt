@@ -1699,7 +1699,10 @@ function getEquipmentWeight(item:TwodsixItem):number {
  */
 async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
   const returnNumber:number = await foundry.applications.api.DialogV2.prompt({
-    window: {title: "TWODSIX.Actor.Items.QuantityToTransfer"},
+    window: {
+      title: "TWODSIX.Actor.Items.QuantityToTransfer",
+      icon: "fa-solid fa-clipboard-question"
+    },
     content:
       `<div style="display: flex; align-items: center; gap: 2ch; justify-content: center;"><img src="` + itemData.img + `" data-tooltip = "` + itemData.name +`" width="50" height="50"> ` + itemData.name + `</div>`+
       `<div><label for='amount'>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `</label><input type="number" name="amount" value="` +
