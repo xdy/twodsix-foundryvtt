@@ -1649,7 +1649,7 @@ export function getWeight(item: TwodsixItem): number{
  * @return {void}
  * @function
  */
-async function deleteIdFromShipPositions(actorId: string) {
+async function deleteIdFromShipPositions(actorId: string): void {
   const allShips = (game.actors?.contents.filter(actor => actor.type === "ship") ?? []) as TwodsixActor[];
 
   for (const scene of game.scenes ?? []) {
@@ -1698,25 +1698,21 @@ function getEquipmentWeight(item:TwodsixItem):number {
  * @function
  */
 async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
-  const returnNumber:number = await new Promise((resolve) => {
-    new foundry.applications.api.DialogV2({
-      window: {title: "TWODSIX.Actor.Items.QuantityToTransfer"},
-      content:
-        `<div style="display: flex; align-items: center; gap: 2ch; justify-content: center;"><img src="` + itemData.img + `" data-tooltip = "` + itemData.name +`" width="50" height="50"> ` + itemData.name + `</div>`+
-        `<div><label for='amount'>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `</label><input type="number" name="amount" value="` +
-        itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></div>`,
-      buttons: [
-        {
-          action: "Transfer",
-          icon: "fa-solid fa-arrow-right-arrow-left",
-          label: "TWODSIX.Actor.Items.Transfer",
-          default: true,
-          callback: (event, button, dialog) => {
-            resolve(dialog.element.querySelector('[name="amount"]').value);
-          }
-        }
-      ]
-    }).render({force: true});
+  const returnNumber:number = await foundry.applications.api.DialogV2.wait({
+    window: {title: "TWODSIX.Actor.Items.QuantityToTransfer"},
+    content:
+      `<div style="display: flex; align-items: center; gap: 2ch; justify-content: center;"><img src="` + itemData.img + `" data-tooltip = "` + itemData.name +`" width="50" height="50"> ` + itemData.name + `</div>`+
+      `<div><label for='amount'>` + game.i18n.localize("TWODSIX.Actor.Items.Amount") + `</label><input type="number" name="amount" value="` +
+      itemData.system.quantity + `" max="` + itemData.system.quantity + `" min = "0"></input></div>`,
+    buttons: [
+      {
+        action: "Transfer",
+        icon: "fa-solid fa-arrow-right-arrow-left",
+        label: "TWODSIX.Actor.Items.Transfer",
+        default: true,
+        callback: (event, button/*, dialog*/) => button.form.elements.amount.valueAsNumber
+      }
+    ]
   });
   return parseInt(returnNumber || 0);
 }
