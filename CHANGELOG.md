@@ -1,3 +1,10 @@
+# [6.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.8.1...v6.9.0) (2025-11-12)
+
+
+### Features
+
+* migrate packs, add ship weapon ammo and add improved armor protection calc  ([#1869](https://github.com/xdy/twodsix-foundryvtt/issues/1869)) ([ccfd7c3](https://github.com/xdy/twodsix-foundryvtt/commit/ccfd7c304539a9f80c91a2d00008c3a6fe2397e4))
+
 ## [6.8.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.8.0...v6.8.1) (2025-10-07)
 
 
