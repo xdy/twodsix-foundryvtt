@@ -810,6 +810,10 @@ export default class TwodsixActor extends Actor {
   }
 
   public async damageActor(damagePayload:any, showDamageDialog = true): Promise<void> {
+    if (!damagePayload?.damageValue || damagePayload.damageValue < 0) {
+      console.log("Invalid damage value");
+      return;
+    }
     if (showDamageDialog) {
       const damageData = foundry.utils.duplicate(damagePayload);
       Object.assign(damageData, {
