@@ -14,6 +14,8 @@ const path = require('path');
 const rollupConfig = require('./rollup.config');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const semver = require('semver');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { spawn } = require('child_process');
 
 /********************/
 /*  CONFIGURATION   */
@@ -29,7 +31,7 @@ const stylesDirectory = `${staticDirectory}/styles`;
 const stylesExtension = 'css';
 const sourceFileExtension = 'ts';
 const templateFileExtension = 'html';
-const staticFiles = ['assets', 'fonts', 'lang', 'packs', 'templates', 'system.json', 'template.json'];
+const staticFiles = ['assets', 'fonts', 'lang', 'templates', 'system.json', 'template.json'];
 const buildFiles = [
   `${sourceDirectory}/**/*.${sourceFileExtension}`,
   `${templateDirectory}/**/*.${templateFileExtension}`
@@ -58,14 +60,58 @@ function buildStyles() {
 }
 
 /**
+ * Build packs from JSON source files
+ */
+async function buildPacks() {
+  console.log(chalk.yellow('Building packs from JSON source files...'));
+  
+  return new Promise((resolve, reject) => {
+    const buildProcess = spawn('npm', ['run', 'packs:build'], {
+      stdio: 'inherit',
+      shell: true
+    });
+    
+    buildProcess.on('close', (code) => {
+      if (code === 0) {
+        console.log(chalk.green('✅ Pack building completed successfully'));
+        resolve();
+      } else {
+        console.error(chalk.red('❌ Pack building failed with code:', code));
+        reject(new Error(`Pack building failed with code ${code}`));
+      }
+    });
+    
+    buildProcess.on('error', (err) => {
+      console.error(chalk.red('❌ Failed to start pack building process:', err));
+      reject(err);
+    });
+  });
+}
+
+/**
  * Copy static files
  */
 async function copyStaticFiles() {
   for (const file of staticFiles) {
-    console.log(`${staticDirectory}/${file}` + " to " + `${distDirectory}/${file}`)
+    console.log(`${staticDirectory}/${file}` + " to " + `${distDirectory}/${file}`);
     if (fs.existsSync(`${staticDirectory}/${file}`)) {
       await fs.copy(`${staticDirectory}/${file}`, `${distDirectory}/${file}`);
     }
+  }
+}
+
+/**
+ * Copy built packs to dist
+ */
+async function copyPacks() {
+  const packsSource = `${staticDirectory}/packs`;
+  const packsTarget = `${distDirectory}/packs`;
+  
+  if (fs.existsSync(packsSource)) {
+    console.log(chalk.blue(`Copying built packs from ${packsSource} to ${packsTarget}`));
+    await fs.copy(packsSource, packsTarget);
+  } else {
+    console.log(chalk.yellow(`Warning: No built packs found at ${packsSource}`));
   }
 }
 
@@ -80,6 +126,8 @@ function buildWatch() {
     {ignoreInitial: false},
     copyStaticFiles,
   );
+  // Watch for changes in pack source files and rebuild packs
+  gulp.watch('packs-src/**/*.json', {ignoreInitial: false}, gulp.series(buildPacks, copyPacks));
 }
 
 /********************/
@@ -91,7 +139,7 @@ function buildWatch() {
  * Remove built files from `dist` folder while ignoring source files
  */
 async function clean() {
-  const files = [...staticFiles, 'module'];
+  const files = [...staticFiles, 'module', 'packs'];
 
   if (fs.existsSync(`${stylesDirectory}/${name}.${stylesExtension}`)) {
     files.push('styles');
@@ -234,8 +282,10 @@ function bumpVersion(cb) {
 }
 
 const execBuild = gulp.parallel(buildCode, buildStyles, copyStaticFiles);
+const execBuildWithPacks = gulp.series(buildPacks, gulp.parallel(execBuild, copyPacks));
 
-exports.build = gulp.series(clean, execBuild);
+exports.build = gulp.series(clean, execBuildWithPacks);
+exports.buildPacks = buildPacks;
 exports.watch = buildWatch;
 exports.clean = clean;
 exports.link = linkUserData;
