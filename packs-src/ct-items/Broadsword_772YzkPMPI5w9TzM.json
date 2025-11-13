@@ -1,0 +1,79 @@
+{
+  "name": "Broadsword",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/broadsword.svg",
+  "system": {
+    "name": "Broadsword",
+    "techLevel": 2,
+    "description": "The largest of the sword weapons, also called the two-handed sword because it requires both hands to swing. The blade is extremely heavy, two-edged, and about 1000 to 1200mm in length. The hilt is relatively simple, generally a cross-piece only, with little basketwork or protection.  When carried, the broadsword is worn in a metal scabbard attached to the belt; less frequently, the scabbard is worn on the back, and the broadsword is drawn over the shoulder.",
+    "shortdescr": "Broadsword - melee",
+    "quantity": 1,
+    "weight": 2500,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Blade Combat (Broadsword)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "broadsword",
+    "weaponType": "melee",
+    "damageType": "ballistic",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 7/-4 12/+2",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "mpyM4Cvw0iFsvECX",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696588564,
+    "modifiedTime": 1760016421878,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "772YzkPMPI5w9TzM",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!772YzkPMPI5w9TzM"
+}

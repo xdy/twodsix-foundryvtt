@@ -1,0 +1,60 @@
+{
+  "name": "Binoculars",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 3,
+    "description": "Binoculars: Allows the user to see further. At TL 8 electronic enhancement allows images to be captured; light- intensification allows them to be used in the dark. Cr750. At TL 12 PRIS (Portable Radiation Imaging System) allows the user to observe a large section of the EM-spectrum, from infrared to gamma rays. Cr3,500.",
+    "shortdescr": "Allows the user to see further",
+    "quantity": 1,
+    "weight": 0,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/binoculars.svg",
+  "effects": [],
+  "_id": "fyurESq2OACEcs9T",
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079719,
+    "modifiedTime": 1760016422171,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!fyurESq2OACEcs9T"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "pExaoLrnbiOtlN4O",
+  "name": "Starship Combat",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Starship Combat",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Space Combat Advantage</h1>\n<table style=\"height:121px;width:225px\" border=\"0\">\n<tbody>\n<tr style=\"height:10px\">\n<th style=\"width:39.5px;height:10px;text-align:left\">\n<div>Effect</div>\n</th>\n<th style=\"width:65.5px;height:10px;text-align:left\">\n<div>DM</div>\n</th>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:39.5px;height:10px\">\n<div>0</div>\n</td>\n<td style=\"width:65.5px;height:10px\">\n<div>DM-2</div>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:39.5px;height:10px\">\n<div>1 or 2</div>\n</td>\n<td style=\"width:65.5px;height:10px\">\n<div>DM-1</div>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:39.5px;height:10px\">\n<div>3 or 4</div>\n</td>\n<td style=\"width:65.5px;height:10px\">\n<div>DM+0</div>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:39.5px;height:10px\">\n<div>5+</div>\n</td>\n<td style=\"width:65.5px;height:10px\">\n<div>DM+1</div>\n</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Starship Penetration Location</h1>\n<table style=\"height:280px;width:369px\" border=\"0\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">2D</td>\n<td style=\"height:16px;width:160px\">Starship Penetration</td>\n<td style=\"height:16px;width:190px\">Small Craft Penetration</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">2</td>\n<td style=\"height:16px;width:160px\">Breach</td>\n<td style=\"height:16px;width:190px\">Breach</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">3</td>\n<td style=\"height:16px;width:160px\">Power Plant</td>\n<td style=\"height:16px;width:190px\">Power Plant</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">4</td>\n<td style=\"height:16px;width:160px\">J-Drive</td>\n<td style=\"height:16px;width:190px\">Hold</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">5</td>\n<td style=\"height:16px;width:160px\">Weapons</td>\n<td style=\"height:16px;width:190px\">M-Drive</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">6</td>\n<td style=\"height:16px;width:160px\">M-Drive</td>\n<td style=\"height:16px;width:190px\">Fuel</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">7</td>\n<td style=\"height:16px;width:160px\">Armor</td>\n<td style=\"height:16px;width:190px\">M-Drive</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">8</td>\n<td style=\"height:16px;width:160px\">Hold</td>\n<td style=\"height:16px;width:190px\">Armor</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">9</td>\n<td style=\"height:16px;width:160px\">Crew</td>\n<td style=\"height:16px;width:190px\">Weapons</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">10</td>\n<td style=\"height:16px;width:160px\">Computer</td>\n<td style=\"height:16px;width:190px\">Computer</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:67px\">11</td>\n<td style=\"height:16px;width:160px\">Bridge</td>\n<td style=\"height:16px;width:190px\">Crew</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"height:10px;width:67px\">12</td>\n<td style=\"height:10px;width:160px\">Critical</td>\n<td style=\"height:10px;width:190px\">Critical</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Radiation Penetration</h1>\n<table style=\"height:159px;width:390px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:80px\">1D</td>\n<td style=\"width:308px\">Radiation Penetration</td>\n</tr>\n<tr>\n<td style=\"width:80px\">1</td>\n<td style=\"width:308px\">Lucky escape – no radiation damage</td>\n</tr>\n<tr>\n<td style=\"width:80px\">2</td>\n<td style=\"width:308px\">Crew</td>\n</tr>\n<tr>\n<td style=\"width:80px\">3</td>\n<td style=\"width:308px\">Crew</td>\n</tr>\n<tr>\n<td style=\"width:80px\">4</td>\n<td style=\"width:308px\">Computer</td>\n</tr>\n<tr>\n<td style=\"width:80px\">5</td>\n<td style=\"width:308px\">Computer</td>\n</tr>\n<tr>\n<td style=\"width:80px\">6</td>\n<td style=\"width:308px\">Critical Crew Hit</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Critical Hits</h1>\n<table style=\"height:157px;width:378px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:30px\">1D</td>\n<td style=\"width:205px\">Starship Critical Hit</td>\n<td style=\"width:141px\">Small Craft Critical Hit</td>\n</tr>\n<tr>\n<td style=\"width:30px\">1</td>\n<td style=\"width:205px\">Power Plant Destroyed</td>\n<td style=\"width:141px\">M-Drive Destroyed</td>\n</tr>\n<tr>\n<td style=\"width:30px\">2</td>\n<td style=\"width:205px\">M-Drive Destroyed</td>\n<td style=\"width:141px\">M-Drive Destroyed</td>\n</tr>\n<tr>\n<td style=\"width:30px\">3</td>\n<td style=\"width:205px\">Jump Drive Destroyed</td>\n<td style=\"width:141px\">Power Plant Destroyed</td>\n</tr>\n<tr>\n<td style=\"width:30px\">4</td>\n<td style=\"width:205px\">Critical Crew Hit</td>\n<td style=\"width:141px\">Critical Crew Hit</td>\n</tr>\n<tr>\n<td style=\"width:30px\">5</td>\n<td style=\"width:205px\">Computer Destroyed</td>\n<td style=\"width:141px\">Computer Destroyed</td>\n</tr>\n<tr>\n<td style=\"width:30px\">6</td>\n<td style=\"width:205px\">Ship Destroyed</td>\n<td style=\"width:141px\">Ship Destroyed</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "E1lkN5HHluUtyFqA",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!pExaoLrnbiOtlN4O.E1lkN5HHluUtyFqA"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079920,
+    "modifiedTime": 1760016422380,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!pExaoLrnbiOtlN4O"
+}

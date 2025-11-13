@@ -1,0 +1,61 @@
+{
+  "_id": "yGCUXMjHuXokNj7T",
+  "name": "Omnicomp",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/omnicomp.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Omnicomp – a hand-held, light-weight computer which evolved from both the laptop and the tablet computer. Designed to integrate with whatever telecommunications networks are present on a given world. TL8 batteries for these devices last for a few days; TL9 batteries last for months between recharging.",
+    "shortdescr": "portable computer",
+    "quantity": 1,
+    "weight": 1,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Computers",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    },
+    "twodsix": {},
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737483,
+    "modifiedTime": 1760016422781,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.v1xsRCI32sJScnZY",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!yGCUXMjHuXokNj7T"
+}

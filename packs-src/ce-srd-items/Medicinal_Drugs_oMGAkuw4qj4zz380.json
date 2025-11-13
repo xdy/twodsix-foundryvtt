@@ -1,0 +1,59 @@
+{
+  "_id": "oMGAkuw4qj4zz380",
+  "name": "Medicinal Drugs",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "These medications include vaccines, antitoxins and antibiotics. They range in cost from Cr5 to 1D6x1,000 Credits, depending on the rarity and complexity of the drug. Medicinal drugs require the Medic skill to use properly – using the wrong drug can be worse than doing nothing. With a successful Medic check the correct drug can counteract most poisons or diseases, or at the very least give a positive DM towards resisting them. If the wrong drug is administered, treat it as a Difficult (–2 DM) poison with a damage of 1D6.",
+    "shortdescr": "Medicinal Drugs",
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_fhd8c5c89i",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Drugs",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/medicinal.svg",
+  "effects": [],
+  "folder": "7JNabnKuKR3HpTut",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079880,
+    "modifiedTime": 1760016422341,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!oMGAkuw4qj4zz380"
+}

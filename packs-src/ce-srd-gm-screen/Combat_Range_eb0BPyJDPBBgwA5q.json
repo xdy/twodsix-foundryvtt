@@ -1,0 +1,70 @@
+{
+  "name": "Combat Range",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "eb0BPyJDPBBgwA5q",
+  "pages": [
+    {
+      "name": "Combat Range",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Range Bands</h1>\n<table style=\"height:136px;width:82.7098%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:16px\">Range</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:16px\">Distance to Target</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:16px\">Squares to Target</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:18px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:18px\">Personal</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:18px\">Less than 1.5 meters</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:18px\">0 (combatants are in the same square)</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:18px\">Close</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:18px\">1.5 to 3 meters</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:18px\">1 to 2 squares</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:18px\">Short</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:18px\">3 to 12 meters</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:18px\">3 to 8 squares</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:18px\">Medium</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:18px\">12 to 50 meters</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:18px\">9 to 34 squares</td>\n</tr>\n<tr style=\"height:19px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:19px\">Long</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:19px\">51 meters to 250 meters</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:19px\">35 to 166 squares</td>\n</tr>\n<tr style=\"height:19px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:19px\">Very Long</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:19px\">251 meters to 500 meters</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:19px\">167 to 334 squares</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"text-align:left;vertical-align:middle;width:19.6758%;height:10px\">Distant</td>\n<td style=\"text-align:left;vertical-align:middle;width:37.6203%;height:10px\">501 meters+</td>\n<td style=\"text-align:left;vertical-align:middle;width:42.4132%;height:10px\">334 squares+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Range Difficulties</h1>\n<table>\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Weapon</td>\n<td style=\"text-align:left;vertical-align:middle\">Personal</td>\n<td style=\"text-align:left;vertical-align:middle\">Close</td>\n<td style=\"text-align:left;vertical-align:middle\">Short</td>\n<td style=\"text-align:left;vertical-align:middle\">Medium</td>\n<td style=\"text-align:left;vertical-align:middle\">Long</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Long</td>\n<td style=\"text-align:left;vertical-align:middle\">Distant</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Close Quarters</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Extended Reach</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Thrown</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Pistol</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Rifle</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Difficult</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Shotgun</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n<td style=\"text-align:left;vertical-align:middle\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Assault Weapon</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Formidable</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Rocket</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Average</td>\n<td style=\"text-align:left;vertical-align:middle\">Difficult</td>\n<td style=\"text-align:left;vertical-align:middle\">Very Difficult</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "1gGboDQzBe1XcxVG",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!eb0BPyJDPBBgwA5q.1gGboDQzBe1XcxVG"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079929,
+    "modifiedTime": 1760016422390,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!eb0BPyJDPBBgwA5q"
+}

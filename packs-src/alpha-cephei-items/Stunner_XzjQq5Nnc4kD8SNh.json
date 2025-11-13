@@ -1,0 +1,78 @@
+{
+  "_id": "XzjQq5Nnc4kD8SNh",
+  "name": "Stunner",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "Laser Pistol",
+    "techLevel": 10,
+    "description": "Firing a precise electromagnetic pulse, this non-lethal weapon disrupts the target's neural processes, leading to stun and potentially unconsciousness.<br><br>Stun: These weapons are designed to deal non-lethal damage and will incapacitate a living target instead of killing it. Damage is only deducted from END, considering any armor. If the target’s END is reduced to 0 from stun damage, the target is incapacitated and unable to perform any actions for a number of rounds by which the damage exceeded his END. Damage received from stun weapons is completely healed after one hour of rest.<br><br>Zero-G: does not suffer a penalty for firing a weapon in zero-g conditions.",
+    "shortdescr": "Stunner - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 600,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "10/30",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "10",
+    "useConsumableForAttack": "",
+    "magazineCost": 10,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "10/30",
+    "weaponType": "ranged",
+    "damageType": "stun",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "Stun, Zero-G",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/stunner.svg",
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 1300000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080271,
+    "modifiedTime": 1760016422878,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!XzjQq5Nnc4kD8SNh"
+}

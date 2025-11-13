@@ -1,0 +1,70 @@
+{
+  "_id": "IdfY6ln7Osp2GzcN",
+  "name": "General Gear",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "General Gear",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table border=\"1\">\n<tbody>\n<tr>\n<th>\n<p>Item</p>\n</th>\n<th>\n<p>Cost</p>\n</th>\n</tr>\n<tr>\n<td>\n<p>Breather</p>\n</td>\n<td>\n<p>Cr75</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Comm. Long-Range</p>\n</td>\n<td>\n<p>Cr250</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Field rations, 5 days</p>\n</td>\n<td>\n<p>Cr125</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>LED Flashlight</p>\n</td>\n<td>\n<p>Cr5</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Lockpicks</p>\n</td>\n<td>\n<p>Cr25</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Medkit</p>\n</td>\n<td>\n<p>Cr100</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Multiscanner</p>\n</td>\n<td>\n<p>Cr2000</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Night Visor</p>\n</td>\n<td>\n<p>Cr100</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>OmniComputer</p>\n</td>\n<td>\n<p>Cr250</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Oxygen Tank, 6-hours</p>\n</td>\n<td>\n<p>Cr250</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Rope, 70m</p>\n</td>\n<td>\n<p>Cr50</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Tech Toolkit</p>\n</td>\n<td>\n<p>Cr300</p>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "heOTKffYdYZOzKgB",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!IdfY6ln7Osp2GzcN.heOTKffYdYZOzKgB"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079969,
+    "modifiedTime": 1760016422450,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!IdfY6ln7Osp2GzcN"
+}

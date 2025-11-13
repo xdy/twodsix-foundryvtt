@@ -1,0 +1,59 @@
+{
+  "_id": "ravfZUwXAjifpngf",
+  "name": "Omnicomp",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "Omnicomp – a hand-held, light-weight computer which evolved from both the laptop and the tablet computer. TL9 batteries last for months between recharging.",
+    "shortdescr": "portable computer",
+    "quantity": 1,
+    "weight": 1,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_0q89iy6g1yup",
+      "path": "ce ftl equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/omnicomp.svg",
+  "effects": [],
+  "folder": "daBobb1QIL60H67e",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079650,
+    "modifiedTime": 1760016422105,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ravfZUwXAjifpngf"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "TPQIcbS6gFUJUNKM",
+  "name": "Trade Price Tables",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Trade Price Tables",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<h2>Modified Price Table</h2>\n<table style=\"width:383px;height:358px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:124px\">2D</td>\n<td style=\"width:68px\">Purchase</td>\n<td style=\"width:189px\">Sale</td>\n</tr>\n<tr>\n<td style=\"width:124px\">2-</td>\n<td style=\"width:68px\">200%</td>\n<td style=\"width:189px\">40%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">3</td>\n<td style=\"width:68px\">180%</td>\n<td style=\"width:189px\">50%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">4</td>\n<td style=\"width:68px\">160%</td>\n<td style=\"width:189px\">60%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">5</td>\n<td style=\"width:68px\">140%</td>\n<td style=\"width:189px\">70%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">6</td>\n<td style=\"width:68px\">120%</td>\n<td style=\"width:189px\">80%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">7</td>\n<td style=\"width:68px\">110%</td>\n<td style=\"width:189px\">90%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">8</td>\n<td style=\"width:68px\">100%</td>\n<td style=\"width:189px\">100%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">9</td>\n<td style=\"width:68px\">90%</td>\n<td style=\"width:189px\">110%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">10</td>\n<td style=\"width:68px\">80%</td>\n<td style=\"width:189px\">120%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">11</td>\n<td style=\"width:68px\">70%</td>\n<td style=\"width:189px\">130%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">12</td>\n<td style=\"width:68px\">60%</td>\n<td style=\"width:189px\">140%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">13</td>\n<td style=\"width:68px\">50%</td>\n<td style=\"width:189px\">150%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">14</td>\n<td style=\"width:68px\">40%</td>\n<td style=\"width:189px\">160%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">15</td>\n<td style=\"width:68px\">30%</td>\n<td style=\"width:189px\">180%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">16+</td>\n<td style=\"width:68px\">20%</td>\n<td style=\"width:189px\">200%</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<h2>Local Broker Charges</h2>\n<table class=\"TableGrid\" style=\"width:424px;margin-left:-2.25pt;margin-right:-2.25pt;height:114px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:112px\">Broker DM</td>\n<td style=\"width:91px\">Commission</td>\n<td style=\"width:215px\">Minimum starport class</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM+1</td>\n<td style=\"width:91px\">5%</td>\n<td style=\"width:215px\">E</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM+2</td>\n<td style=\"width:91px\">10%</td>\n<td style=\"width:215px\">C</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM+3</td>\n<td style=\"width:91px\">15%</td>\n<td style=\"width:215px\">B</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM +4</td>\n<td style=\"width:91px\">20%</td>\n<td style=\"width:215px\">A</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "eqkdrwBr2lTcnuya",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!TPQIcbS6gFUJUNKM.eqkdrwBr2lTcnuya"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079919,
+    "modifiedTime": 1760016422379,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!TPQIcbS6gFUJUNKM"
+}

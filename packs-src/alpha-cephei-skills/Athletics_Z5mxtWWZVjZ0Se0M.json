@@ -1,0 +1,52 @@
+{
+  "_id": "Z5mxtWWZVjZ0Se0M",
+  "name": "Athletics",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "A measure of abilities in advanced physical feats, including climbing,<div>swimming, sprinting and sports in general. Because its uses tend to be</div><div>rather broad, this is a skill that many times do not get a penalty to roll</div><div>for simple tasks unskilled (see p. 14).</div><div>At the Referee’s discretion, you may add the Athletics skill to</div><div>appropriate physical characteristic rolls (for dangerous jumps or</div><div>dodges, for example).</div><div>• Climb a high tree quickly: roll Athletics (DEX or STR) 6+. If the tree has low</div><div>branches to get an initial boost, don’t apply a penalty if the character doesn’t</div><div>have a level in Athletics.</div><div>• Climb a steep cliff: roll Athletics (DEX or STR) 8+, or 6+ with basic climbing</div><div>equipment.</div><div>• Swim in a stormy ocean: roll Athletics (STR) 8+. Failure might mean the</div><div>character starts sinking, specially if they’re trying to bring along substantial</div><div>gear on their back.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/athletics-dexterity.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 5600000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080084,
+    "modifiedTime": 1760016422624,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Z5mxtWWZVjZ0Se0M"
+}

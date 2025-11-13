@@ -1,0 +1,64 @@
+{
+  "_id": "3KEl1LNJ94uqpJyf",
+  "name": "False Sensory Input*",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "trait",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "Cause a target to hallucinate. The mutant must concentrate to maintain the illusion.",
+    "prereq": "",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "name": "",
+    "techLevel": 0,
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "equipped": "equipped",
+    "skillModifier": 0,
+    "skill": "",
+    "auglocation": "Head",
+    "bonus": "major beneficial",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_w34pcq0hfyl",
+      "path": "cepheus atom#/CF_SEP/CA - Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/emotion.svg",
+  "effects": [],
+  "folder": "eBj0Cljzsr0Tr6rv",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079772,
+    "modifiedTime": 1760016422253,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!3KEl1LNJ94uqpJyf"
+}

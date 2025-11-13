@@ -1,0 +1,51 @@
+{
+  "_id": "Ivc9wU3L8mFObSBW",
+  "name": "Carouse",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The art of mingling in social settings to achieve your goals. Also covers gambling.",
+    "shortdescr": "The art of mingling in social settings to achieve your goals",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zjco251t0w",
+      "path": "ce light-skills",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/carousing.svg",
+  "effects": [],
+  "folder": "nIXJisBXpvXMn3Tn",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079707,
+    "modifiedTime": 1760016422149,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Ivc9wU3L8mFObSBW"
+}

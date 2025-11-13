@@ -1,0 +1,61 @@
+{
+  "_id": "CB8d3krAkicSB50a",
+  "name": "Panacea",
+  "type": "equipment",
+  "img": "./systems/twodsix/assets/icons/panacea.svg",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "The Medicinal drug represents a wide variety of vaccines, antitoxins, antibiotics, and other pharmaceuticals. Panacea allows a character with at least Medicine 1 to neutralize a disease or poison on a throw of Medicine/EDU 8+. The cost of any drug is at the Referee’s discretion. Advanced TL11+ medications cost ten times as much but grant Advantage on the Medicine throw.",
+    "shortdescr": "neutralize diseases or poisons",
+    "quantity": 1,
+    "weight": 0,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Medicine",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SU8WH6nukL6X3EkG",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_l5fai9j7gxh",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Pharmaceuticals",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737423,
+    "modifiedTime": 1760016422733,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.7QtZoxjDhNAe4B8B",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!CB8d3krAkicSB50a"
+}

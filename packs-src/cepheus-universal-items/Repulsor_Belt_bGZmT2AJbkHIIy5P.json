@@ -1,0 +1,69 @@
+{
+  "folder": "9eBBH01N7i6zYXgF",
+  "name": "Repulsor Belt",
+  "type": "armor",
+  "_id": "bGZmT2AJbkHIIy5P",
+  "img": "systems/twodsix/assets/icons/belt-armor.svg",
+  "system": {
+    "name": "",
+    "description": "Some settings may feature the repulsor belt, which, when&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">activated creates a repulsor field around the wearer (out to about 40cm). This stops all&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">ballistic or missile weapons, bends light enough to reduce the accuracy of lasers, and&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">makes it more difficult for melee attacks to reach the user. A society using these will&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">focus almost exclusively on melee combat and dart-firing thud guns. The belt has power&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">for 6 hours of continuous use and must then be recharged, which requires 30 minutes.&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">The repulsor field uses the body’s own electrical field to centre itself,&nbsp; touching another&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">person or a large object does not mean the field will grow to envelop that other person&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">or object, it maintains its volume and centres on the wearer’s belt unit. The repulsor&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">belt provides an Armour Rating of 3 against incoming melee attacks, and forces an&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">attacker using a laser weapon to take a -3 penalty. Weight 0.5 kg, Cost Cr1200.</span>",
+    "type": "armor",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 16,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0.5,
+    "price": 1200,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "armor": 0,
+    "armorDM": 0,
+    "secondaryArmor": {
+      "value": 3,
+      "protectionTypes": [
+        "ballistic",
+        "laser",
+        "melee",
+        "plasma"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "isPowered": false,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016422997,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 147657,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!bGZmT2AJbkHIIy5P"
+}

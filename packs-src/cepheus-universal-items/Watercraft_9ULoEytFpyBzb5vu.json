@@ -1,0 +1,56 @@
+{
+  "name": "Watercraft",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/watercraft.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Operation and control of ocean or water-going craft including motorboats,&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">hydrofoils, hovercraft, submarines and large commercial ships.</span>",
+    "shortdescr": "Controlling and using watercraft, including submarines",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "",
+    "priorType": "unknown",
+    "prereq": "",
+    "groupLabel": "Vehicle"
+  },
+  "effects": [],
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.P0vG0h8wKI0MNpdS",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422986,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "9ULoEytFpyBzb5vu",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!9ULoEytFpyBzb5vu"
+}

@@ -1,0 +1,64 @@
+{
+  "_id": "M7cCCn54TbuqQVJS",
+  "name": "Psychic Beacon",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "trait",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "Constantly transmit a psionic signal. DM-2 to resist Psionics; can never surprise opponents; DM+1 to random encounter chances.",
+    "prereq": "",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "name": "",
+    "techLevel": 0,
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "equipped": "equipped",
+    "skillModifier": 0,
+    "skill": "",
+    "auglocation": "Full-Body",
+    "bonus": "major detrimental",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_w34pcq0hfyl",
+      "path": "cepheus atom#/CF_SEP/CA - Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/sense.svg",
+  "effects": [],
+  "folder": "eBj0Cljzsr0Tr6rv",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079781,
+    "modifiedTime": 1760016422273,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!M7cCCn54TbuqQVJS"
+}

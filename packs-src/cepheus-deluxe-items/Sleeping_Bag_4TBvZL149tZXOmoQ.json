@@ -1,0 +1,60 @@
+{
+  "name": "Sleeping Bag",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/sleeping-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "A Sleeping Bag is a cloth or synthetic padded bag for one person, to provide insulation/ cover while sleeping. At TL 7, cold weather bags are available. Regular bags are effective to zero degrees centigrade, while cold weather bags, costing Cr150, are insulate to negative 30 degrees centigrade.",
+    "shortdescr": "cloth or synthetic padded bag for one person",
+    "quantity": 1,
+    "weight": 1,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "4TBvZL149tZXOmoQ",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737413,
+    "modifiedTime": 1760016422727,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4TBvZL149tZXOmoQ"
+}

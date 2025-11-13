@@ -1,0 +1,74 @@
+{
+  "_id": "E8o2kUrN32AqYBEX",
+  "name": "Advanced Vacc Suit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "Armor: 6/14 vs. lasers<br><br>The final evolution of the space suit. An advanced vacc suit does not count as an item for encumbrance, is easy enough to use even without a Zero-G skill and provides life support for 12 hours. Offers the same environmental protection as a regular vacc suit.",
+    "shortdescr": "The final evolution of the space suit",
+    "quantity": 1,
+    "weight": 40,
+    "price": 15000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 6,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1vxyhjhgcfw",
+      "path": "ce light-armor",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/advanced-vacc-suit.svg",
+  "effects": [],
+  "folder": "nycPK2btpYrXRFf2",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079704,
+    "modifiedTime": 1760016422145,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!E8o2kUrN32AqYBEX"
+}

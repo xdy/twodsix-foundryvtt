@@ -1,0 +1,70 @@
+{
+  "_id": "xaeFKf28loLcFOHV",
+  "name": "Armor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Armor",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"float:left;height:154px;width:92.3035%\">\n<thead>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Armor</th>\n<th style=\"height:16px;width:8.02743%;text-align:left\">TL</th>\n<th style=\"height:16px;width:10.6322%;text-align:left\">AR</th>\n<th style=\"height:16px;width:16.2689%;text-align:left\">Cost</th>\n<th style=\"height:16px;width:11.6548%;text-align:left\">Wgt</th>\n<th style=\"height:16px;width:29.9904%;text-align:left\">Skill Required</th>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Ablat</th>\n<td style=\"height:16px;width:8.02743%\">9</td>\n<td style=\"height:16px;width:10.6322%\">3/8*</td>\n<td style=\"height:16px;width:16.2689%\">Cr75</td>\n<td style=\"height:16px;width:11.6548%\">2kg</td>\n<td style=\"height:16px;width:29.9904%\">—</td>\n</tr>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Battle Dress</th>\n<td style=\"height:16px;width:8.02743%\">13</td>\n<td style=\"height:16px;width:10.6322%\">18</td>\n<td style=\"height:16px;width:16.2689%\">Cr200,000</td>\n<td style=\"height:16px;width:11.6548%\">60kg</td>\n<td style=\"height:16px;width:29.9904%\"><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#battle-dress\">Battle Dress</a></td>\n</tr>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Cloth</th>\n<td style=\"height:16px;width:8.02743%\">7</td>\n<td style=\"height:16px;width:10.6322%\">9</td>\n<td style=\"height:16px;width:16.2689%\">Cr250</td>\n<td style=\"height:16px;width:11.6548%\">2kg</td>\n<td style=\"height:16px;width:29.9904%\">—</td>\n</tr>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Combat Armor</th>\n<td style=\"height:16px;width:8.02743%\">11</td>\n<td style=\"height:16px;width:10.6322%\">11</td>\n<td style=\"height:16px;width:16.2689%\">Cr20,000</td>\n<td style=\"height:16px;width:11.6548%\">18kg</td>\n<td style=\"height:16px;width:29.9904%\"><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#zero-g\">Zero-G</a></td>\n</tr>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Hostile Env Vacc Suit</th>\n<td style=\"height:16px;width:8.02743%\">8</td>\n<td style=\"height:16px;width:10.6322%\">8</td>\n<td style=\"height:16px;width:16.2689%\">Cr18,000</td>\n<td style=\"height:16px;width:11.6548%\">40kg</td>\n<td style=\"height:16px;width:29.9904%\"><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#zero-g\">Zero-G</a></td>\n</tr>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Jack</th>\n<td style=\"height:16px;width:8.02743%\">1</td>\n<td style=\"height:16px;width:10.6322%\">3</td>\n<td style=\"height:16px;width:16.2689%\">Cr50</td>\n<td style=\"height:16px;width:11.6548%\">1kg</td>\n<td style=\"height:16px;width:29.9904%\">—</td>\n</tr>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Mesh</th>\n<td style=\"height:16px;width:8.02743%\">6</td>\n<td style=\"height:16px;width:10.6322%\">5</td>\n<td style=\"height:16px;width:16.2689%\">Cr150</td>\n<td style=\"height:16px;width:11.6548%\">2kg</td>\n<td style=\"height:16px;width:29.9904%\">—</td>\n</tr>\n<tr style=\"height:16px\">\n<th style=\"height:16px;width:22.4089%;text-align:left\">Reflec</th>\n<td style=\"height:16px;width:8.02743%\">10</td>\n<td style=\"height:16px;width:10.6322%\">0/14</td>\n<td style=\"height:16px;width:16.2689%\">Cr1500</td>\n<td style=\"height:16px;width:11.6548%\">1kg</td>\n<td style=\"height:16px;width:29.9904%\">—</td>\n</tr>\n<tr style=\"height:33px\">\n<td style=\"height:10px;width:22.4089%;text-align:left;vertical-align:middle\">Vacc Suit</td>\n<td style=\"height:10px;width:8.02743%;vertical-align:middle\">8</td>\n<td style=\"height:10px;width:10.6322%;vertical-align:middle\">6</td>\n<td style=\"height:10px;width:16.2689%;vertical-align:middle\">Cr9,000</td>\n<td style=\"height:10px;width:11.6548%;vertical-align:middle\">8kg</td>\n<td style=\"height:10px;width:29.9904%;vertical-align:middle\"><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#zero-g\">Zero-G</a></td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "xfTArRjbc02vys4W",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!xaeFKf28loLcFOHV.xfTArRjbc02vys4W"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079930,
+    "modifiedTime": 1760016422391,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!xaeFKf28loLcFOHV"
+}

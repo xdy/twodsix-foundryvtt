@@ -1,0 +1,42 @@
+{
+  "name": "2e Character Parser for Traveller Tools v13",
+  "type": "script",
+  "author": "g35c71Hsyv7w1Lw4",
+  "img": "icons/svg/wall-direction.svg",
+  "scope": "global",
+  "command": "// Take text block from https://travellertools.azurewebsites.net and\n// translate into a character\n// updated for FVTT v13\n\ngetInputText();\n\n// Get text block and process\nasync function getInputText () {\n  // Get Input\n  const rawText = await new Promise((resolve) => {\n    new foundry.applications.api.DialogV2({\n      modal: true,\n      window: {\n        title: 'Copy and paste text for a single character',\n        icon: 'fa-solid fa-file-import'\n      },\n      content:\n        `<label>Don't include menu bar (include all text with white background)</label><textarea type=\"text\" name=\"input\" cols=\"40\" rows=\"5\"></textarea>`,\n      buttons: [\n        {\n          action: \"ok\",\n          label: `Process`,\n          default: true,\n          callback:\n            (_event, target) => {\n              resolve(target.form.elements.input.value);\n            }\n        }\n      ]\n    }).render(true);\n  });\n\n  // Abort if no text entered\n  if (rawText.length === 0) {\n    return;\n  }\n\n  // split input into lines of text\n  const processedText = rawText.split('\\n');\n\n  let line = 0;\n\n  if (processedText[line] === '') {\n    ++line;\n  }\n\n  // Process first line which is of the generic format \"honortific name\n  // permalink\" locate name on first line\n  const fullName = processedText[line].slice(0, processedText[line].indexOf('permalink') - 1);\n\n  // create new actor\n  const actor = await Actor.create({ name: fullName, type: 'traveller' });\n  const usingTT2 = processedText[1].includes(\"Species\") || processedText[1].includes(\"species\");\n\n  line += 2; // skip to species, age, gender, stat line\n\n  // break up third line\n  const ageGenStats = processedText[line].split('\\t');\n\n  const species = usingTT2 ? ageGenStats[0] : \"\";\n  const age = usingTT2 ? parseInt(ageGenStats[1]): parseInt(ageGenStats[0]);\n  const gender = usingTT2 ?  ageGenStats[2] : ageGenStats[1];\n\n  // Enter basic character data\n  await actor.update({\n    'system.name': fullName,\n    'name': fullName,\n    'system.age.value': age,\n    'system.gender': gender,\n    'system.species': species\n  });\n\n  // define characteristic order for UPP\n  const uppOrder = ['strength', 'dexterity', 'endurance', 'intelligence', 'education', 'socialStanding'];\n\n  let charId = '';\n  // enter characteristic values\n  const offset = usingTT2 ? 3 : 2;\n  for (let i = 0; i < Math.min(ageGenStats.length - 2, uppOrder.length); ++i) {\n    charId = 'system.characteristics.' + uppOrder[i] + '.value';\n    const statVal = ageGenStats[i + offset].slice(0, ageGenStats[i + offset].indexOf('(') - 1);\n    await actor.update({ [charId]: parseInt(statVal) });\n  }\n  ++line;\n\n  // add description\n  await actor.update({ 'system.description': processedText[line] });\n\n  // Skip to start of skills list\n  do {\n    ++line;\n  } while (processedText[line].indexOf('Skills') < 0);\n  ++line;\n\n  // Process and add skills\n  const skillsPack = await game.packs.get('twodsix.twoe-skills').getDocuments();\n\n  while (processedText[line].indexOf('Career') < 0 && line < processedText.length) {\n    const skillLevel =\n\t\tparseInt(processedText[line][processedText[line].length - 1]);\n    const skillName =\n\t\tprocessedText[line].slice(0, processedText[line].length - 2);\n\n    if (skillName !== '') {\n\t  // Convert skill name to 2e compendium format\n\t  let adjName = '';\n\t  if (skillName.indexOf('(') >= 0) {\n        adjName = skillName.replace(' (', ': ');\n        adjName = adjName.slice(0, -1);\n\t  } else {\n        adjName = skillName;\n\t  }\n\n\t  // look for skill in compendium\n\t  const skillItem = await skillsPack.find(s => s.name === adjName && s.type === 'skills');\n\n\t  if (skillItem == null) {\n        const skillData = { name: adjName, type: 'skills' };\n        await actor.createEmbeddedDocuments('Item', [skillData]);\n\t  } else {\n        await actor.createEmbeddedDocuments('Item', [skillItem]);\n\t  }\n\n\t  // find added skill item on actor\n\t  const newItem = await actor.items.find(item => item.name === adjName);\n\n\t  // update level\n\t  await newItem.update(\n        { 'system.value': skillLevel, 'system.characteristic': 'NONE' });\n    }\n    ++line;\n  }\n\n  // process career table\n  let bio = `<p>Careers:</p><table style=\"width:100%;\">`;\n  let contacts = ``;\n\n  while (processedText[line].indexOf('History') < 0 &&\n\t\t processedText[line].indexOf('Education') < 0 && processedText[line].indexOf('Enmity') < 0) {\n    bio += genTableRowHTML(processedText[line], 'Career');\n    ++line;\n  }\n\n  // process education if exists\n  if (processedText[line].indexOf('Education') >= 0) {\n    bio += `</table><br><p>Education:</p><table style=\"width:100%;\">`;\n    while (processedText[line].indexOf('History') < 0 && processedText[line].indexOf('Enmity') < 0) {\n\t  bio += genTableRowHTML(processedText[line], 'Education');\n\t  ++line;\n    }\n  }\n\n  // process contacts if exists\n  if (processedText[line].indexOf('Enmity') >= 0) {\n    contacts += `<table style=\"width:100%;\">`;\n    while (processedText[line].indexOf('History') < 0) {\n\t  contacts += genTableRowHTML(processedText[line], 'Name');\n\t  ++line;\n    }\n    contacts += `</table>`;\n  }\n\n\n  // Add character event log to bio\n  bio += `</table><br><p>Career History:</p><table style=\"width:100%\">`;\n\n  while (processedText[line].indexOf('\\t') >= 0) {\n    bio += genTableRowHTML(processedText[line], 'Term');\n    ++line;\n    if (processedText[line] === undefined) {\n\t  break;\n    }\n  }\n  bio += `</table><br>`;\n\n  await actor.update({ 'system.bio': bio, 'system.contacts': contacts });\n\n  // Show new actor\n  actor.sheet.render(true);\n}\n\nfunction genTableRowHTML (rowText, headerText) {\n  if (rowText.indexOf('\\t') < 0) {\n    return ('');\n  }\n\n  const parsedLine = rowText.split('\\t');\n  let returnText = '<tr>';\n  for (let i = 0; i < parsedLine.length; ++i) {\n    if (parsedLine[0].indexOf(headerText) >= 0) {\n\t  returnText +=\n\t\t\t'<th style=\"text-align:center; min-column-width: 4ch;\">' + parsedLine[i].trim() + '</th>';\n    } else {\n\t  returnText +=\n\t\t\t'<td style=\"text-align:center\">' + parsedLine[i].trim() + '</td>';\n    }\n  }\n  returnText += '</tr>';\n  return (returnText);\n}",
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_f2ldg9aw4y"
+    }
+  },
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3,
+    "GOmBKof9PfoHZ54T": 3,
+    "OIomk1IgyRly5ocC": 3,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "_stats": {
+    "compendiumSource": "Macro.4ux6vp9OsP9RqBBl",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1738176301593,
+    "modifiedTime": 1760016422559,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": {
+      "worldId": "clean-v13-world",
+      "uuid": null,
+      "coreVersion": "12.331",
+      "systemId": "twodsix",
+      "systemVersion": "5.10.0"
+    }
+  },
+  "folder": null,
+  "_id": "0zJP7EKqEV3AaAjW",
+  "sort": 700000,
+  "_key": "!macros!0zJP7EKqEV3AaAjW"
+}

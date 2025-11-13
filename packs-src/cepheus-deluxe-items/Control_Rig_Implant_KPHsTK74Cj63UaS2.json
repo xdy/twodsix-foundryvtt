@@ -1,0 +1,61 @@
+{
+  "name": "Control Rig Implant",
+  "type": "augment",
+  "img": "systems/twodsix/assets/icons/jack-plug.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "This is a specialized implant designed to give elite vehicle pilots even more of an edge. The control rig allows the operator to fully interface their minds with vehicles. The control rig gives the character Advantage on Vehicle skill throws with suitably modified vehicles. This does require the operator to be in the vehicle, and “plugged in.” Modifying a vehicle to work with control rig increases its cost by 10%. If the vehicle takes damage, roll END 6+ to avoid taking 1D damage from electrical feedback.",
+    "shortdescr": "Fully interface their minds with vehicles",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Advantage on Vehicle skill throws",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "KPHsTK74Cj63UaS2",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737432,
+    "modifiedTime": 1760016422739,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KPHsTK74Cj63UaS2"
+}

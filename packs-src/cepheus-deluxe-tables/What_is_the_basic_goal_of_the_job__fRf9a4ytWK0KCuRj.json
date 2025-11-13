@@ -1,0 +1,348 @@
+{
+  "name": "What is the basic goal of the job?",
+  "img": "systems/twodsix/assets/icons/flag-objective.svg",
+  "results": [
+    {
+      "_id": "mJvuf7Aq8zFg1bfR",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Assassinate a target",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.mJvuf7Aq8zFg1bfR"
+    },
+    {
+      "_id": "juOGOndYNHObkaan",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Steal from a target",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.juOGOndYNHObkaan"
+    },
+    {
+      "_id": "a67uU0jlO3cg1Tyv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Retrieve data from a secure location",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.a67uU0jlO3cg1Tyv"
+    },
+    {
+      "_id": "i0zHGtCQ1EgZjJJw",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Discredit a target",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.i0zHGtCQ1EgZjJJw"
+    },
+    {
+      "_id": "EzdPEkJ5TtNjR3zs",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Retrieve plunder",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.EzdPEkJ5TtNjR3zs"
+    },
+    {
+      "_id": "6RK0rzKGh8u8HiBH",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Establish a base of operations",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.6RK0rzKGh8u8HiBH"
+    },
+    {
+      "_id": "nsumRj30pzzbdJVU",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sabotage a target",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.nsumRj30pzzbdJVU"
+    },
+    {
+      "_id": "JVSieoRygIzfUIXq",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Transport goods or a person: quickly, secretly, or securely, pick two.",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.JVSieoRygIzfUIXq"
+    },
+    {
+      "_id": "IILC8GyPZT1EFkgQ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Depose a local authority",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.IILC8GyPZT1EFkgQ"
+    },
+    {
+      "_id": "Gzxb9CzSajwqfdSG",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Investigate a crime",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.Gzxb9CzSajwqfdSG"
+    },
+    {
+      "_id": "j2AtXjsPVIOhrI6T",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Investigate a target",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.j2AtXjsPVIOhrI6T"
+    },
+    {
+      "_id": "0pEW8i9bqYyiy4sY",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Explore a location",
+      "name": "",
+      "_key": "!tables.results!fRf9a4ytWK0KCuRj.0pEW8i9bqYyiy4sY"
+    }
+  ],
+  "formula": "1d12",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z26th3l36c9",
+      "path": "Social Encounters#/CF_SEP/Patrons",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "fRf9a4ytWK0KCuRj",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080313,
+    "modifiedTime": 1760016422922,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!fRf9a4ytWK0KCuRj"
+}

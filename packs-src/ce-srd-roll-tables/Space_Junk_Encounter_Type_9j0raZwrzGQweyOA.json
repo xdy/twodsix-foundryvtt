@@ -1,0 +1,193 @@
+{
+  "name": "Space Junk Encounter Type",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_040l4lztq682",
+      "path": "CE Tables#/CF_SEP/Starship Encounters Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Space Junk Encounter Type Sub table",
+  "results": [
+    {
+      "_id": "ztlFVDZFB1rUYNg3",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Astrogational buoy or beacon",
+      "name": "",
+      "_key": "!tables.results!9j0raZwrzGQweyOA.ztlFVDZFB1rUYNg3"
+    },
+    {
+      "_id": "xJal3ctSkdzASOMJ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Communications satellite",
+      "name": "",
+      "_key": "!tables.results!9j0raZwrzGQweyOA.xJal3ctSkdzASOMJ"
+    },
+    {
+      "_id": "4j4pyA88Srk2fLzh",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Debris from collision or attack",
+      "name": "",
+      "_key": "!tables.results!9j0raZwrzGQweyOA.4j4pyA88Srk2fLzh"
+    },
+    {
+      "_id": "mq61TupZ9UjXm55J",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Defense satellite",
+      "name": "",
+      "_key": "!tables.results!9j0raZwrzGQweyOA.mq61TupZ9UjXm55J"
+    },
+    {
+      "_id": "2TyyMkD4qRQCW0aS",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Jettisoned cargo pod",
+      "name": "",
+      "_key": "!tables.results!9j0raZwrzGQweyOA.2TyyMkD4qRQCW0aS"
+    },
+    {
+      "_id": "er2mUPeu0d1UCflD",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Lost or abandoned equipment or garbage",
+      "name": "",
+      "_key": "!tables.results!9j0raZwrzGQweyOA.er2mUPeu0d1UCflD"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "9j0raZwrzGQweyOA",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079742,
+    "modifiedTime": 1760016422210,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "RollTable.fBQdRcdNu88RTFsS",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!9j0raZwrzGQweyOA"
+}

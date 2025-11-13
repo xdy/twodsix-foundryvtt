@@ -1,0 +1,456 @@
+{
+  "_id": "wrsgj0fPrzsx3V6r",
+  "name": "Government",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Light and Cepheus Engine SRD",
+  "results": [
+    {
+      "_id": "OmLs49UErk1seKZe",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "None",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.OmLs49UErk1seKZe"
+    },
+    {
+      "_id": "Ja3jbhg0WHdhXquh",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Company/Corporation",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.Ja3jbhg0WHdhXquh"
+    },
+    {
+      "_id": "KdMRHpmyNox1xIQy",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Participating Democracy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.KdMRHpmyNox1xIQy"
+    },
+    {
+      "_id": "TgLqocU1VFciZCsj",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Self-Perpetuating Oligarchy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.TgLqocU1VFciZCsj"
+    },
+    {
+      "_id": "KCicTNmoZT8OYApr",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Representative Democracy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.KCicTNmoZT8OYApr"
+    },
+    {
+      "_id": "4DLenxS9dlDDULNP",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Feudal Technocracy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.4DLenxS9dlDDULNP"
+    },
+    {
+      "_id": "xyokoZDCMb30F7yQ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Captive Government",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.xyokoZDCMb30F7yQ"
+    },
+    {
+      "_id": "d540eTxWzW3brKv9",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Balkanization",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.d540eTxWzW3brKv9"
+    },
+    {
+      "_id": "kjdiU9AV3DiJr8ZJ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Civil Service Bureaucracy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.kjdiU9AV3DiJr8ZJ"
+    },
+    {
+      "_id": "4glfGOFYhsRQd20L",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Impersonal Bureaucracy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.4glfGOFYhsRQd20L"
+    },
+    {
+      "_id": "CHsEcYBnmUcPONzD",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Charismatic Dictator",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.CHsEcYBnmUcPONzD"
+    },
+    {
+      "_id": "9m3Qav2CBnKN38tm",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Non-Charismatic Leader",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.9m3Qav2CBnKN38tm"
+    },
+    {
+      "_id": "ey3MLTXHwE0SoR47",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Charismatic Oligarchy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.ey3MLTXHwE0SoR47"
+    },
+    {
+      "_id": "enBRRQ4m5SKoPJzd",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Religious Dictatorship",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.enBRRQ4m5SKoPJzd"
+    },
+    {
+      "_id": "7txZw4A2mu0AEU30",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Religious Autocracy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.7txZw4A2mu0AEU30"
+    },
+    {
+      "_id": "ZtcrASgm9y1YPuFH",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Totalitarian Oligarchy",
+      "name": "",
+      "_key": "!tables.results!wrsgj0fPrzsx3V6r.ZtcrASgm9y1YPuFH"
+    }
+  ],
+  "formula": "1d16-1",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080300,
+    "modifiedTime": 1760016422902,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "_key": "!tables!wrsgj0fPrzsx3V6r"
+}

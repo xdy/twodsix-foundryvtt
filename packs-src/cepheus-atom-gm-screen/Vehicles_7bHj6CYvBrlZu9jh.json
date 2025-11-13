@@ -1,0 +1,70 @@
+{
+  "_id": "7bHj6CYvBrlZu9jh",
+  "name": "Vehicles",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Vehicles",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<table style=\"width:468px;height:254px\" border=\"0\">\n<tbody>\n<tr style=\"height:32px\">\n<th style=\"width:156.75px;height:32px\">\n<p>Vehicle</p>\n</th>\n<th style=\"width:81.75px;height:32px\">\n<p>Cost (TU)</p>\n</th>\n<th style=\"width:66.75px;height:32px\">\n<p>Agility</p>\n</th>\n<th style=\"width:154.75px;height:32px\">\n<p>Armor</p>\n</th>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:156.75px;height:32px\">\n<p>Car</p>\n</td>\n<td style=\"width:81.75px;height:32px\">\n<p>500</p>\n</td>\n<td style=\"width:66.75px;height:32px\">\n<p>+0</p>\n</td>\n<td style=\"width:154.75px;height:32px\">\n<p>3/6</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:156.75px;height:32px\">\n<p>Monster truck</p>\n</td>\n<td style=\"width:81.75px;height:32px\">\n<p>2000</p>\n</td>\n<td style=\"width:66.75px;height:32px\">\n<p>+0</p>\n</td>\n<td style=\"width:154.75px;height:32px\">\n<p>9/12</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:156.75px;height:32px\">\n<p>Motorboat</p>\n</td>\n<td style=\"width:81.75px;height:32px\">\n<p>1000</p>\n</td>\n<td style=\"width:66.75px;height:32px\">\n<p>+1</p>\n</td>\n<td style=\"width:154.75px;height:32px\">\n<p>6/12</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:156.75px;height:32px\">\n<p>Motorcycle</p>\n</td>\n<td style=\"width:81.75px;height:32px\">\n<p>300</p>\n</td>\n<td style=\"width:66.75px;height:32px\">\n<p>+2</p>\n</td>\n<td style=\"width:154.75px;height:32px\">\n<p>3/6</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:156.75px;height:10px\">\n<p>Railcar or subway car</p>\n</td>\n<td style=\"width:81.75px;height:10px\">\n<p>2500</p>\n</td>\n<td style=\"width:66.75px;height:10px\">\n<p>-2</p>\n</td>\n<td style=\"width:154.75px;height:10px\">\n<p>9/16</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:156.75px;height:32px\">\n<p>Rowboat</p>\n</td>\n<td style=\"width:81.75px;height:32px\">\n<p>50</p>\n</td>\n<td style=\"width:66.75px;height:32px\">\n<p>-2</p>\n</td>\n<td style=\"width:154.75px;height:32px\">\n<p>3/6</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:156.75px;height:32px\">\n<p>Sailboat</p>\n</td>\n<td style=\"width:81.75px;height:32px\">\n<p>500</p>\n</td>\n<td style=\"width:66.75px;height:32px\">\n<p>-1</p>\n</td>\n<td style=\"width:154.75px;height:32px\">\n<p>3/6</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:156.75px;height:10px\">\n<p>Truck</p>\n</td>\n<td style=\"width:81.75px;height:10px\">\n<p>1500</p>\n</td>\n<td style=\"width:66.75px;height:10px\">\n<p>-1</p>\n</td>\n<td style=\"width:154.75px;height:10px\">\n<p>6/12</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:156.75px;height:10px\">\n<p>Water jet ski</p>\n</td>\n<td style=\"width:81.75px;height:10px\">\n<p>2000</p>\n</td>\n<td style=\"width:66.75px;height:10px\">\n<p>+2</p>\n</td>\n<td style=\"width:154.75px;height:10px\">\n<p>3/6</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "Soc8A2AEW4UPR3rr",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!7bHj6CYvBrlZu9jh.Soc8A2AEW4UPR3rr"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079944,
+    "modifiedTime": 1760016422408,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!7bHj6CYvBrlZu9jh"
+}

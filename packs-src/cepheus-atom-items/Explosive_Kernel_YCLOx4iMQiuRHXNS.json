@@ -1,0 +1,80 @@
+{
+  "_id": "YCLOx4iMQiuRHXNS",
+  "name": "Explosive Kernel",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "New weapon",
+    "techLevel": 0,
+    "description": "Explosive Kernel (1D damage, can affect up to 3 adjacent targets).",
+    "shortdescr": "blast",
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": 0,
+    "rangeBand": "",
+    "weaponType": "",
+    "damageType": "NONE",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_fejx6xaa2rp",
+      "path": "cepheus atom#/CF_SEP/CA - Monster Attacks",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/bright-explosion.svg",
+  "effects": [],
+  "folder": "xZlPegpMzevXwEpQ",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079785,
+    "modifiedTime": 1760016422279,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!YCLOx4iMQiuRHXNS"
+}

@@ -1,0 +1,71 @@
+{
+  "_id": "TV5Kf4MeHnYvdo6n",
+  "name": "Characteristics and Bonuses",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1bc6vo06far",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Characteristics and Bonuses",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:31.6884%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:58.6488%\">Characteristic</td>\n<td style=\"width:40.6245%\">Bonus</td>\n</tr>\n<tr>\n<td style=\"width:58.6488%\">0-2</td>\n<td style=\"width:40.6245%\">DM-2</td>\n</tr>\n<tr>\n<td style=\"width:58.6488%\">3-5</td>\n<td style=\"width:40.6245%\">DM-1</td>\n</tr>\n<tr>\n<td style=\"width:58.6488%\">6-8</td>\n<td style=\"width:40.6245%\">DM+0</td>\n</tr>\n<tr>\n<td style=\"width:58.6488%\">9-11</td>\n<td style=\"width:40.6245%\">DM+1</td>\n</tr>\n<tr>\n<td style=\"width:58.6488%\">12-14</td>\n<td style=\"width:40.6245%\">DM+2</td>\n</tr>\n<tr>\n<td style=\"width:58.6488%\">15-17</td>\n<td style=\"width:40.6245%\">DM+3</td>\n</tr>\n<tr>\n<td style=\"width:58.6488%\">18-20</td>\n<td style=\"width:40.6245%\">DM+4</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "sDqbJ9yddL0Uq6z4",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!TV5Kf4MeHnYvdo6n.sDqbJ9yddL0Uq6z4"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080326,
+    "modifiedTime": 1760016422940,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.kRNFdbUG2B8f9tDX",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!TV5Kf4MeHnYvdo6n"
+}

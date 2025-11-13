@@ -1,0 +1,81 @@
+{
+  "name": "Revolver",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/revolver.svg",
+  "system": {
+    "name": "Revolver",
+    "techLevel": 4,
+    "description": "An early handgun, the revolver fires 9mm bullets with characteristics similar to those used by the automatic pistol but not interchangeable with them. No magazine is used: six cartridges are inserted into the revolver individually. Reloading takes two combat rounds, or one combat round if the individual foregoes the benefit of evasion.",
+    "shortdescr": "Revolver - ranged",
+    "quantity": 1,
+    "weight": 900,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Revolver)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "10/50",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 6,
+    "useConsumableForAttack": "",
+    "magazineCost": 5,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "revolver",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX 6/-2 9/+1",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_sk461konhrd",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680894776446,
+    "modifiedTime": 1760016421892,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "h73Guw6QVfRg4oeZ",
+  "sort": 900000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!h73Guw6QVfRg4oeZ"
+}

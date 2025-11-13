@@ -1,0 +1,71 @@
+{
+  "_id": "lxQdP5rjExWe3X3A",
+  "name": "Interstellar Jump Procedures",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_n6q9yayby2",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Interstellar Jump Procedures",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<ol start=\"1\">\n<li>Calculate Plot: A jump requires a course calculation called a “jump plot”. Starports rated D or better sell up-to-date jump plots to nearby populated worlds for Cr1,000 per parsec. A skilled pilot can also calculate their own jump plot. Throw Piloting/EDU 6+ to calculate a jump plot, apply a negative DM equal to the number of parsecs the jump will travel; this takes 1Dx6 minutes (i.e., 1D ship combat turns). It is possible to rush this calculation, to guarantee that it will only take one ship combat turn, but the throw is Piloting/EDU 10+. A failed check requires another attempt, or the ship will misjump (see below). It is possible to calculate a jump plot in advance, but it will become obsolete within 1D days. </li>\n<li>Engage Drive: Once the jump plot is ready, the ship’s engineer must throw Engineering/EDU 8+ to engage the Jump Drive. This procedure takes a second and can be done in the same round as the jump throw itself.</li>\n<li>Jump!: To jump, throw 2D with the following DMs. A throw of 0 or less causes a misjump. A bad jump plot causes an automatic misjump.</li>\n</ol>\n<div>             DM+the Effect of the Engineering throw to Engage the Drive</div>\n<div>             DM-1 per day the jump plot is out of date</div>\n<div>             DM-2 if the Jump Drive is damaged.</div>\n<div>             DM-2 if using Unrefined fuel.</div>\n<div>             DM-8 if within a hundred-diameter limit of the nearest planet or star (Not at a jump point)</div>\n<ol start=\"4\">\n<li>\n<div>In Case of a Misjump: A misjump causes a Critical Hit on the ship (see the space combat rules) and may destroy it. Furthermore, the ship travels 1D x 1D parsecs in a random direction. If this leads to an empty hex on the map, the ship emerges from the misjump at the closest star system to that empty hex. In case there are multiple adjacent systems, choose one randomly.</div>\n</li>\n</ol>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "RrSLvJn8QCd23ysz",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!lxQdP5rjExWe3X3A.RrSLvJn8QCd23ysz"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080327,
+    "modifiedTime": 1760016422941,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.VpxS6Gij5UXsDpkN",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!lxQdP5rjExWe3X3A"
+}

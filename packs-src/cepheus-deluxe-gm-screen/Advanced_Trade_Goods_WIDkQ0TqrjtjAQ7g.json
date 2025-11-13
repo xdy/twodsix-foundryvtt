@@ -1,0 +1,71 @@
+{
+  "_id": "WIDkQ0TqrjtjAQ7g",
+  "name": "Advanced Trade Goods",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_pi9a9t8oz4d",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Advanced Trade Goods",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:44px\">D66</td>\n<td style=\"width:181px\">Trade Goods</td>\n<td style=\"width:150px\">Base Price per Ton</td>\n<td style=\"width:74px\">Tons</td>\n<td style=\"width:113px\">Purchase DMs</td>\n<td style=\"width:111px\">Sale DMs</td>\n</tr>\n<tr>\n<td style=\"width:44px\">11</td>\n<td style=\"width:181px\">Advanced Electronics</td>\n<td style=\"width:150px\">Cr100000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ht+2, In+4</td>\n<td style=\"width:111px\">Ni+2, Po+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">12</td>\n<td style=\"width:181px\">Advanced Manufactured Goods</td>\n<td style=\"width:150px\">Cr200000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">In+3, Ri+2</td>\n<td style=\"width:111px\">Lo+1, Ni+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">13</td>\n<td style=\"width:181px\">Agricultural Equipment</td>\n<td style=\"width:150px\">Cr150000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">In+3. Ri+2</td>\n<td style=\"width:111px\">Ag+2, Ga+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">14</td>\n<td style=\"width:181px\">Animal Products</td>\n<td style=\"width:150px\">Cr1500</td>\n<td style=\"width:74px\">4Dx5</td>\n<td style=\"width:113px\">Ag+2, Ga+3</td>\n<td style=\"width:111px\">Hi+2, Ri+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">15</td>\n<td style=\"width:181px\">Collectibles</td>\n<td style=\"width:150px\">Cr50000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">In+2, Hi+3</td>\n<td style=\"width:111px\">Hi+2,Ni+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">16</td>\n<td style=\"width:181px\">Computers</td>\n<td style=\"width:150px\">Cr150000</td>\n<td style=\"width:74px\">2D</td>\n<td style=\"width:113px\">Ht+3, In+2</td>\n<td style=\"width:111px\">Na+1, Ni+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">21</td>\n<td style=\"width:181px\">Crystals and Gems</td>\n<td style=\"width:150px\">Cr20000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ni+3, Ic+2</td>\n<td style=\"width:111px\">In+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">22</td>\n<td style=\"width:181px\">Cybernetic Parts</td>\n<td style=\"width:150px\">Cr250000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Bt+3, Ri+2</td>\n<td style=\"width:111px\">Na+1, Ni+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">23</td>\n<td style=\"width:181px\">Food service equipment</td>\n<td style=\"width:150px\">Cr4000</td>\n<td style=\"width:74px\">2D</td>\n<td style=\"width:113px\">In+3, Na+2</td>\n<td style=\"width:111px\">Ag+1, Ni+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">24</td>\n<td style=\"width:181px\">Furniture</td>\n<td style=\"width:150px\">Cr5000</td>\n<td style=\"width:74px\">4D</td>\n<td style=\"width:113px\">Ag+2, Ga+3</td>\n<td style=\"width:111px\">Hu+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">25</td>\n<td style=\"width:181px\">Gambling Devices &amp; Equipment</td>\n<td style=\"width:150px\">Cr4000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">Hi+2, Ri+3</td>\n<td style=\"width:111px\">Na+2, Ni+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">26</td>\n<td style=\"width:181px\">Grav Vehicles</td>\n<td style=\"width:150px\">Cr160000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">Ht+3, Ri+2</td>\n<td style=\"width:111px\">Ni+2, Po+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">31</td>\n<td style=\"width:181px\">Grocery Products</td>\n<td style=\"width:150px\">Cr6000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ag+3. Ga+2</td>\n<td style=\"width:111px\">Lo+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">32</td>\n<td style=\"width:181px\">Household Appliances</td>\n<td style=\"width:150px\">Cr12000</td>\n<td style=\"width:74px\">4D</td>\n<td style=\"width:113px\">Hi+2, In+3</td>\n<td style=\"width:111px\">Na+1, Ni+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">33</td>\n<td style=\"width:181px\">Industrial Supplies</td>\n<td style=\"width:150px\">Cr75000</td>\n<td style=\"width:74px\">2D</td>\n<td style=\"width:113px\">In+3, Ri+2</td>\n<td style=\"width:111px\">Na+1, Ni+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">34</td>\n<td style=\"width:181px\">Liquor</td>\n<td style=\"width:150px\">Cr15000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ag+3, Ga+2</td>\n<td style=\"width:111px\">In+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">35</td>\n<td style=\"width:181px\">Luxury foodstuffs and fabrics</td>\n<td style=\"width:150px\">Cr150000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">Ag+2. Ga+3</td>\n<td style=\"width:111px\">In+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">36</td>\n<td style=\"width:181px\">Manufacturing Equipment</td>\n<td style=\"width:150px\">Cr750000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">In+3, Ri+2</td>\n<td style=\"width:111px\">Na+1, Ni+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">41</td>\n<td style=\"width:181px\">Medical Equipment</td>\n<td style=\"width:150px\">Cr50000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ht+2, Ri+3</td>\n<td style=\"width:111px\">Hi+1, In+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">42</td>\n<td style=\"width:181px\">Petrochemicals</td>\n<td style=\"width:150px\">Cr10000</td>\n<td style=\"width:74px\">2Dx5</td>\n<td style=\"width:113px\">Na+2, Fl+3</td>\n<td style=\"width:111px\">Ag+1, In+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">43</td>\n<td style=\"width:181px\">Pharmaceuticals</td>\n<td style=\"width:150px\">Cr100000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">Ht+3, Wa+2</td>\n<td style=\"width:111px\">Lo+1, Ri+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">44</td>\n<td style=\"width:181px\">Complex chemical compounds</td>\n<td style=\"width:150px\">Cr7000</td>\n<td style=\"width:74px\">4Dx5</td>\n<td style=\"width:113px\">In+2, Ri+3</td>\n<td style=\"width:111px\">Ni+2, Va+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">45</td>\n<td style=\"width:181px\">Precious Metals</td>\n<td style=\"width:150px\">Cr50000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">As+3, Ic+2</td>\n<td style=\"width:111px\">In+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">46</td>\n<td style=\"width:181px\">Radioactives</td>\n<td style=\"width:150px\">Cr1000000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">As+2, Ni+3</td>\n<td style=\"width:111px\">In+2, Ht+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">51</td>\n<td style=\"width:181px\">Robots and Drones</td>\n<td style=\"width:150px\">Cr500000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ht+3, Ri+2</td>\n<td style=\"width:111px\">Ni+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">52</td>\n<td style=\"width:181px\">Scientific Equipment</td>\n<td style=\"width:150px\">Cr50000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ht+3, Ri+2</td>\n<td style=\"width:111px\">Hi+2, Ni+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">53</td>\n<td style=\"width:181px\">Survival Gear</td>\n<td style=\"width:150px\">Cr4000</td>\n<td style=\"width:74px\">2D</td>\n<td style=\"width:113px\">Ga+1, Ri+2</td>\n<td style=\"width:111px\">Fl+2, Va+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">54</td>\n<td style=\"width:181px\">Textiles</td>\n<td style=\"width:150px\">Cr3000</td>\n<td style=\"width:74px\">3Dx5</td>\n<td style=\"width:113px\">Ag+3, Ni+2</td>\n<td style=\"width:111px\">Na+1, Ri+2</td>\n</tr>\n<tr>\n<td style=\"width:44px\">55</td>\n<td style=\"width:181px\">Uncommon Raw Materials</td>\n<td style=\"width:150px\">Cr50000</td>\n<td style=\"width:74px\">2Dx5</td>\n<td style=\"width:113px\">Ag+3, Ni+2</td>\n<td style=\"width:111px\">In+2, Na+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">56</td>\n<td style=\"width:181px\">Uncommon Unrefined Ores</td>\n<td style=\"width:150px\">Cr20000</td>\n<td style=\"width:74px\">2Dx5</td>\n<td style=\"width:113px\">As+2, Va+1</td>\n<td style=\"width:111px\">In+2, Na+1</td>\n</tr>\n<tr>\n<td style=\"width:44px\">61</td>\n<td style=\"width:181px\">Illicit Luxury Goods</td>\n<td style=\"width:150px\">Cr150000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">Ag+2, Ga+3</td>\n<td style=\"width:111px\">In+4, Ri+6</td>\n</tr>\n<tr>\n<td style=\"width:44px\">62</td>\n<td style=\"width:181px\">Illicit Pharmaceuticals</td>\n<td style=\"width:150px\">Cr100000</td>\n<td style=\"width:74px\">1D</td>\n<td style=\"width:113px\">Ht+3, Wa+2</td>\n<td style=\"width:111px\">In+6, Ri+4</td>\n</tr>\n<tr>\n<td style=\"width:44px\">63</td>\n<td style=\"width:181px\">Medical Research Material</td>\n<td style=\"width:150px\">Cr50000</td>\n<td style=\"width:74px\">1Dx5</td>\n<td style=\"width:113px\">Ht+2, Ri+3</td>\n<td style=\"width:111px\">In+6, Na+4</td>\n</tr>\n<tr>\n<td style=\"width:44px\">64</td>\n<td style=\"width:181px\">Illegal Military Equipment*</td>\n<td style=\"width:150px\">Cr150000</td>\n<td style=\"width:74px\">2D</td>\n<td style=\"width:113px\">Ht+3, In+2</td>\n<td style=\"width:111px\">Hi+6, Ni+4</td>\n</tr>\n<tr>\n<td style=\"width:44px\">65</td>\n<td style=\"width:181px\">Illegal Weapons and Armor*</td>\n<td style=\"width:150px\">Cr30000</td>\n<td style=\"width:74px\">2D</td>\n<td style=\"width:113px\">In+3, Ri+2</td>\n<td style=\"width:111px\">Ni+6, Po+4</td>\n</tr>\n<tr>\n<td style=\"width:44px\">66</td>\n<td style=\"width:181px\">Unusual Cargo</td>\n<td style=\"width:150px\">**</td>\n<td style=\"width:74px\">**</td>\n<td style=\"width:113px\">**</td>\n<td style=\"width:111px\">**</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "mHSzdq5f7MrZPGhW",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!WIDkQ0TqrjtjAQ7g.mHSzdq5f7MrZPGhW"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080326,
+    "modifiedTime": 1760016422940,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.RKN9MnuZxdcsSkNa",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!WIDkQ0TqrjtjAQ7g"
+}

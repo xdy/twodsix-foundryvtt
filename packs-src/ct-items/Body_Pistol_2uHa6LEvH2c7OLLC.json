@@ -1,0 +1,79 @@
+{
+  "name": "Body Pistol",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/body-pistol.svg",
+  "system": {
+    "name": "Body Pistol",
+    "techLevel": 7,
+    "description": "A small, non-metallic semiautomatic pistol designed to evade detection by most weapon detectors. One cartridge is fired for each pull of the trigger. Pre-loaded magazines may be inserted into the pistol when it is empty, requiring a reload action to do so. Body pistol ammunition is not interchangeable with the ammunition for any other types of guns.",
+    "shortdescr": "Body Pistol - ranged",
+    "quantity": 1,
+    "weight": 250,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Body Pistol)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 6,
+    "ammo": 6,
+    "useConsumableForAttack": "",
+    "magazineCost": 20,
+    "type": "weapon",
+    "lawLevel": "1",
+    "rangeBand": "bodyPistol",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX 7/-3 11/+1",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696588368,
+    "modifiedTime": 1760016421876,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "2uHa6LEvH2c7OLLC",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!2uHa6LEvH2c7OLLC"
+}

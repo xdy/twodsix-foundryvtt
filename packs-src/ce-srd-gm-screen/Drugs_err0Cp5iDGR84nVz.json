@@ -1,0 +1,70 @@
+{
+  "_id": "err0Cp5iDGR84nVz",
+  "name": "Drugs",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Drugs",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:221px;width:67.0109%\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Description</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cost</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Medicinal Drugs</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr5+</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Anti-Radiation Drugs</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr1,000</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Panaceas</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr200</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Stim Drugs</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr50</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Combat Drug</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr1,000</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Fast Drug</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr200</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Metabolic Accelerator</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr500</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Medicinal Slow Drug</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">11</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr500</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:46.033%\">Anagathics</td>\n<td style=\"text-align:left;vertical-align:middle;width:29.1124%\">11</td>\n<td style=\"text-align:left;vertical-align:middle;width:24.564%\">Cr2,000</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "lhPk43DfAy8OtAld",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!err0Cp5iDGR84nVz.lhPk43DfAy8OtAld"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079929,
+    "modifiedTime": 1760016422390,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!err0Cp5iDGR84nVz"
+}

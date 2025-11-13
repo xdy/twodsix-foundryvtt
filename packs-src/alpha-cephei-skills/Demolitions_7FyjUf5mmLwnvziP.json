@@ -1,0 +1,52 @@
+{
+  "_id": "7FyjUf5mmLwnvziP",
+  "name": "Demolitions",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Working with explosives to blow stuff up. This skill also covers&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">defusing said explosives before they blow up.</span><div>• Set up an explosive charge: roll Demolitions (EDU) 6+, or more for complex&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">jobs, such as setting a directional shaped charge explosive.</span></div><div>• Defuse an explosive charge: this could be as simple as pressing a single&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">button on a remote control, if the bomb was set by the same character. In&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">most cases, roll Demolitions (EDU) 8+ to defuse explosives set by someone&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">else, or more if it was deliberately made to be tricky to work with (i.e. a bomb&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">custom built by a terrorist trying to cause a disaster could be harder than an&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">off-the-shelf equipment activated by regular instructions).</span></div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/demolition_explosives.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 1500000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080081,
+    "modifiedTime": 1760016422622,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!7FyjUf5mmLwnvziP"
+}

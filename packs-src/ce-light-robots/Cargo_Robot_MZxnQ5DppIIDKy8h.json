@@ -1,0 +1,477 @@
+{
+  "_id": "MZxnQ5DppIIDKy8h",
+  "name": "Cargo Robot",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "robot",
+  "system": {
+    "name": "",
+    "size": "",
+    "hits": {
+      "value": 39,
+      "min": 0,
+      "max": 39,
+      "lastDelta": -39
+    },
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": 8
+    },
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "untrainedSkill": "SlvTM6f1eFXJEiDu",
+    "description": "<br>",
+    "notes": "<div>Cargo Robot (TL9, Cr75000): a simple, and dumb, heavy-duty lifting and transport bot.</div><div>K4F220 (with K being 20), Melee Combat-0</div><div>Huge size (4 meters tall), Armor 8, Crushing Strength (3D damage).</div>",
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 20,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": "",
+        "current": 20,
+        "mod": 4
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 4,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": "",
+        "current": 4,
+        "mod": -1
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 15,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": "",
+        "current": 15,
+        "mod": 3
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 2,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": "",
+        "current": 2,
+        "mod": -2
+      },
+      "education": {
+        "key": "education",
+        "value": 2,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": "",
+        "current": 2,
+        "mod": -2
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 0,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 5,
+      "units": "m",
+      "hover": false
+    },
+    "locomotionType": "",
+    "price": "75000 Cr",
+    "chassis": "",
+    "techLevel": "9",
+    "operationalTime": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "Robot",
+    "age": {
+      "value": "18",
+      "min": 0
+    },
+    "gender": "none",
+    "heroPoints": 2,
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "bio": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "sort": 100001,
+  "flags": {
+    "core": {
+      "sheetClass": ""
+    }
+  },
+  "img": "systems/twodsix/assets/icons/default_robot.svg",
+  "items": [
+    {
+      "_id": "PsWYcYPy4oBBzvdZ",
+      "flags": {},
+      "name": "Melee",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/melee.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "characteristic": "STR",
+        "type": "skills",
+        "description": "Fighting hand-to-hand, either with a weapon or unarmed",
+        "shortdescr": "Fighting hand-to-hand, either with a weapon or unarmed",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "reference": ""
+      },
+      "sort": 100000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!MZxnQ5DppIIDKy8h.PsWYcYPy4oBBzvdZ"
+    },
+    {
+      "_id": "lOiojABNI5kPi4KG",
+      "flags": {},
+      "name": "Unarmed",
+      "type": "weapon",
+      "img": "./systems/twodsix/assets/icons/unarmed.svg",
+      "system": {
+        "name": "Unarmed",
+        "techLevel": 0,
+        "description": "Unarmed",
+        "shortdescr": "Unarmed - melee",
+        "quantity": 1,
+        "weight": 0,
+        "price": 0,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "PsWYcYPy4oBBzvdZ",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "3d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": "0",
+        "rangeBand": "close",
+        "weaponType": "melee",
+        "damageType": "bludgeoning",
+        "rateOfFire": "",
+        "recoil": true,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": ""
+      },
+      "sort": 200000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680701209788,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!MZxnQ5DppIIDKy8h.lOiojABNI5kPi4KG"
+    },
+    {
+      "name": "Untrained",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": ""
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg",
+      "_id": "SlvTM6f1eFXJEiDu",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1680633016187,
+        "modifiedTime": 1680633016187,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!MZxnQ5DppIIDKy8h.SlvTM6f1eFXJEiDu"
+    }
+  ],
+  "prototypeToken": {
+    "flags": {},
+    "name": "Cargo Robot",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": true,
+    "disposition": 1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_robot.svg",
+      "tint": "#ffffff",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "alpha": 1,
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680633016134,
+    "modifiedTime": 1760016422071,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-robots.MZxnQ5DppIIDKy8h",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!MZxnQ5DppIIDKy8h"
+}

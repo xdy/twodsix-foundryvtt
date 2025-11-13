@@ -1,0 +1,73 @@
+{
+  "folder": "KNu7KtXRzTmX5GfP",
+  "name": "Grenade Launcher",
+  "type": "weapon",
+  "_id": "vcdLpkU30o2Q3cIM",
+  "img": "systems/twodsix/assets/icons/grenade-launcher.svg",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "Grenade launchers are used to fire grenades over long distances. Grenades for a grenade launcher are not interchangeable with handheld grenades.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 400,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "shotgun",
+    "damage": "by Grenade",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "shotgun",
+    "weaponType": "",
+    "damageType": "NONE",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "12WfDpqePx1TrVeA": 3
+  },
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680961840956,
+    "modifiedTime": 1760016422344,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!vcdLpkU30o2Q3cIM"
+}

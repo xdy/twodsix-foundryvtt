@@ -1,0 +1,80 @@
+{
+  "_id": "r4aWSKCCPFDC5k8X",
+  "name": "Rocket Launcher",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/rocket-launcher.svg",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Rocket Launcher (TL6): Man-portable rocket launcher utilizing unguided munitions. Rocket launchers are unsafe to use in enclosed spaces. Rocket payloads are considered high explosive and are not particularly effective against armored vehicles. Armor piercing rockets cost Cr500 per rocket: trade Blast 6 for AV 5D, Blast 1. An anti-aircraft homing missile costs Cr10000 and does not suffer a penalty when firing at fast-moving air vehicles.",
+    "shortdescr": "Man-portable rocket launcher utilizing unguided munitions",
+    "quantity": 1,
+    "weight": 2,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 6,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "50/200",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "TID7XHQIHysAG8fK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079724,
+    "modifiedTime": 1760016422177,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!r4aWSKCCPFDC5k8X"
+}

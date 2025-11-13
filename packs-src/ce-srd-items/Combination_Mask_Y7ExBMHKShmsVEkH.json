@@ -1,0 +1,59 @@
+{
+  "_id": "Y7ExBMHKShmsVEkH",
+  "name": "Combination Mask",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "A combination of both filter mask and respirator, which allows breathing of very thin, tainted atmospheres (type 2), plus all atmospheres listed under filter and respirator masks.",
+    "shortdescr": "Combination Mask",
+    "quantity": 1,
+    "weight": 0,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_io8or4a2knc",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Survival Equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/robot-helmet.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079868,
+    "modifiedTime": 1760016422334,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Y7ExBMHKShmsVEkH"
+}

@@ -1,0 +1,60 @@
+{
+  "_id": "q5f4CyVS5a01KVXa",
+  "name": "Welder, laser",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/laserburn.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "The handheld Laser Welder uses a focused laser beam to perform cutting and welding operations. It can cut through a reinforced bulkhead in 1D starship combat rounds (6-36 minutes). Roll Repair/DEX 10+ to reduce the time to one starship combat round (6 minutes) As a weapon, the laser welder is inaccurate and clumsy, but extremely dangerous: it does 4D damage with a range of 1/5 and has energy for 5 “shots.” As a weapon, the welder also has the Fire aspect.",
+    "shortdescr": "Handheld laser to perform cutting and welding operations",
+    "quantity": 1,
+    "weight": 1,
+    "price": 6000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Repair",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737475,
+    "modifiedTime": 1760016422775,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!q5f4CyVS5a01KVXa"
+}

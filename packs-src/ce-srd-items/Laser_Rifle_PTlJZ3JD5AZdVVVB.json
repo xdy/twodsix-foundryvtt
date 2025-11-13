@@ -1,0 +1,77 @@
+{
+  "_id": "PTlJZ3JD5AZdVVVB",
+  "name": "Laser Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/laser-rifle.svg",
+  "system": {
+    "name": "Laser Rifle",
+    "techLevel": 9,
+    "description": "The standard high energy weapon, firing energy bolts in the same manner as the laser carbine. Heavier, the laser rifle is also capable of longer sustained action, and is somewhat sturdier. The power pack can provide 100 shots before recharging. As in the laser carbine, the laser rifle is connected to the power pack by a heavy-duty cable. Power packs are not interchangeable between the two weapons, however.",
+    "shortdescr": "Laser Rifle - ranged",
+    "quantity": 1,
+    "weight": 6,
+    "price": 3500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Energy Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 100,
+    "ammo": "100",
+    "useConsumableForAttack": "",
+    "magazineCost": 300,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "laser",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589765,
+    "modifiedTime": 1760016422329,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.PTlJZ3JD5AZdVVVB",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!PTlJZ3JD5AZdVVVB"
+}

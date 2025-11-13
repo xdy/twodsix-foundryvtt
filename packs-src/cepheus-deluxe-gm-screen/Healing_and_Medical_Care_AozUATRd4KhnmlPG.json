@@ -1,0 +1,70 @@
+{
+  "_id": "AozUATRd4KhnmlPG",
+  "name": "Healing and Medical Care",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_juhnhp6ng6",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Healing and Medical Care",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Damage Effects and Recovery</h1>\n<table style=\"width:99.1354%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:23.2586%\">Damage Suffered is...</td>\n<td style=\"width:20.841%\">Wound Status</td>\n<td style=\"width:21.4275%\">Wound Effect</td>\n<td style=\"width:37.755%\">Recovery</td>\n</tr>\n<tr>\n<td style=\"width:23.2586%\">Stamina only</td>\n<td style=\"width:20.841%\">Scratched</td>\n<td style=\"width:21.4275%\">None</td>\n<td style=\"width:37.755%\">10 minutes after combat</td>\n</tr>\n<tr>\n<td style=\"width:23.2586%\">Less than half Lifeblood</td>\n<td style=\"width:20.841%\">Minor Wounds</td>\n<td style=\"width:21.4275%\">DM-1 to actions</td>\n<td style=\"width:37.755%\">Medicine 1 or medkit, and 30 minutes</td>\n</tr>\n<tr>\n<td style=\"width:23.2586%\">More than half Lifeblood</td>\n<td style=\"width:20.841%\">Seriously Wounded</td>\n<td style=\"width:21.4275%\">Roll END 8+ to stay conscious; <br />DM -2 to all actions</td>\n<td style=\"width:37.755%\">Medbay, 1 day/point of Lifeblood below half.</td>\n</tr>\n<tr>\n<td style=\"width:23.2586%\">Lifeblood = 0</td>\n<td style=\"width:20.841%\">Mortal Wounds</td>\n<td style=\"width:21.4275%\">Die in one hour</td>\n<td style=\"width:37.755%\">Trauma Surgery!</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Trama Surgery</h1>\n<table style=\"width:39.1018%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:29.2385%\">2D</td>\n<td style=\"width:70.0347%\">Result</td>\n</tr>\n<tr>\n<td style=\"width:29.2385%\">5-</td>\n<td style=\"width:70.0347%\">Death</td>\n</tr>\n<tr>\n<td style=\"width:29.2385%\">6-7</td>\n<td style=\"width:70.0347%\">Significant internal damage</td>\n</tr>\n<tr>\n<td style=\"width:29.2385%\">8-10</td>\n<td style=\"width:70.0347%\">Radical measures required</td>\n</tr>\n<tr>\n<td style=\"width:29.2385%\">11+</td>\n<td style=\"width:70.0347%\">Normal Recovery</td>\n</tr>\n</tbody>\n</table>\n<ul>Modifiers:</ul>\n<ul>\n<li>DM-2 if no first aid provided within 10 minutes of the injury.</li>\n<li>DM-2 if operating in a ship’s med bay, and not a proper hospital.</li>\n<li>DM-4 if operating under unsuitable field conditions.</li>\n<li>DM-2 if treated with TL6 equipment-; DM+2 if treated with TL12+ equipment.</li>\n<li>DM-2 if Mortally Wounded by an explosion.</li>\n<li>DM-2 if patient has END 5-, DM+2 if patient has END 9+.</li>\n</ul>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "gjGPerjtfvodOknt",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!AozUATRd4KhnmlPG.gjGPerjtfvodOknt"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080324,
+    "modifiedTime": 1760016422939,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!AozUATRd4KhnmlPG"
+}

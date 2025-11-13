@@ -1,0 +1,61 @@
+{
+  "name": "Slow Motion",
+  "type": "equipment",
+  "img": "./systems/twodsix/assets/icons/medicinal-slow.svg",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "This drug accelerates metabolism by a ratio of 1 to 60 – a subjective hour to the user is 60 hours of real time. Note that this drug accelerates healing accordingly. Using this drug is dangerous without Medicine 1 or better care.",
+    "shortdescr": "accelerates metabolism and healing by a ratio of 1 to 60",
+    "quantity": 1,
+    "weight": 0,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SU8WH6nukL6X3EkG",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_l5fai9j7gxh",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Pharmaceuticals",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "2eizXoiJbMKALhUo",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737412,
+    "modifiedTime": 1760016422726,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.40oAUGFAtQs4AJT0",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!2eizXoiJbMKALhUo"
+}

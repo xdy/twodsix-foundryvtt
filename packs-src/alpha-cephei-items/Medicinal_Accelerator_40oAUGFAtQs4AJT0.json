@@ -1,0 +1,59 @@
+{
+  "_id": "40oAUGFAtQs4AJT0",
+  "name": "Medicinal Accelerator",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "Greatly accelerates the user’s metabolic rate, thus facilitating healing. When properly administered, it will completely heal all serious wounds within a single day. Only a trained physician (Medicine-3 or better) may administer this drug, and this requires a medical facility—at least a ship’s medbay. If administered improperly, it is almost certainly fatal in a matter of minutes, as the inner organs suffer an abrupt, extensive and painful aging mutation.",
+    "shortdescr": "Greatly accelerates healing.",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_qapyp8i1gtk",
+      "path": "ce light-pharma",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/medicinal-slow.svg",
+  "effects": [],
+  "folder": "Uk8Y83D6H1ui1Kwx",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080262,
+    "modifiedTime": 1760016422860,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!40oAUGFAtQs4AJT0"
+}

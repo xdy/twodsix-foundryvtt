@@ -1,0 +1,59 @@
+{
+  "_id": "6fMqGuwyJ6c3eOqR",
+  "name": "Tarpaulin",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 1,
+    "description": "A heavy hard-wearing waterproof fabric made of canvas or similar, for outdoor use as a temporary shelter or protective covering against moisture. Measures 4 meters long by 2 meters wide.",
+    "shortdescr": "Tarp",
+    "quantity": 1,
+    "weight": 2,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_9sigdpo13em",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Shelters",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079838,
+    "modifiedTime": 1760016422320,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!6fMqGuwyJ6c3eOqR"
+}

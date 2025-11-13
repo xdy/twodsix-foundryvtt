@@ -1,0 +1,49 @@
+{
+  "name": "Surgeon",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/doctor-face.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is a specialized surgeon. When treating a seriously wounded character, the surgeon may throw Medicine 6+ to reduce recovery time from 5D days to 2D days. If using the Trauma Surgery rules, the surgeon throws with Advantage when throwing for such a surgery.",
+    "prereq": "Medicine 1",
+    "shortdescr": "Reduce recovery time",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 200000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "0XCYuunG578cSKzo",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737401,
+    "modifiedTime": 1760016422724,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!0XCYuunG578cSKzo"
+}

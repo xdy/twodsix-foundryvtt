@@ -1,0 +1,99 @@
+{
+  "name": "Broad Spear (2H)",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/broadhead-arrow.svg",
+  "system": {
+    "name": "Pike",
+    "techLevel": 1,
+    "description": "A heavy, wide-bladed 2.5m-long spear. Also known as: partisan,&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">spontoon, ox-tongue, gintak, bohemian earspoon.</span>",
+    "shortdescr": "Pike - melee",
+    "quantity": 1,
+    "weight": 2.5,
+    "price": 60,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "3d6+2",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "close",
+    "weaponType": "melee",
+    "damageType": "melee",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "priorType": "unknown",
+    "parryAV": 14,
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    },
+    "isShield": false
+  },
+  "effects": [],
+  "folder": "crzJd4BeivxkkYsO",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.snzqG8jfTrfqzkdw",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727109554969,
+    "modifiedTime": 1760016423004,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "xAYht9JRJbBKc8eo",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!xAYht9JRJbBKc8eo"
+}

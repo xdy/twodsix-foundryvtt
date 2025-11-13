@@ -1,0 +1,60 @@
+{
+  "_id": "b1ht4yAEAl61A8nS",
+  "name": "Hacking Module",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "An upgraded form of internal omnicomp, with assisted computing technology integrated into neural interface, which grants a +1 bonus to the character’s Computers skill. This technology makes it very capable of circumventing electronic security, potentially allowing for hacking and controlling simple wireless devices in close proximity. TL9+ computers and advanced devices are mostly safe against remote tampering in this fashion, but the hacking module still can help in hacking them over a wired interface.",
+    "shortdescr": "Computers skill +1 and allows remote hacking of simple electronics nearby",
+    "quantity": 1,
+    "weight": 0,
+    "price": 50000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 1,
+    "skill": "",
+    "associatedSkillName": "Computers",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Computers +1, remote hacking",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/hacker.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080272,
+    "modifiedTime": 1760016422878,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!b1ht4yAEAl61A8nS"
+}

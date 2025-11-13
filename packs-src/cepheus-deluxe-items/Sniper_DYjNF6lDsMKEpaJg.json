@@ -1,0 +1,49 @@
+{
+  "name": "Sniper",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/headshot.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to kill unsuspecting victims from a distance. When attacking an unaware target at range, using an aimed shot, add 1D to the attack's damage. This bonus can only be applied outside of active combat.",
+    "prereq": "Gun Combat 1",
+    "shortdescr": "Knows how to kill unsuspecting victims from a distance",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 1600000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "DYjNF6lDsMKEpaJg",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737424,
+    "modifiedTime": 1760016422734,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!DYjNF6lDsMKEpaJg"
+}

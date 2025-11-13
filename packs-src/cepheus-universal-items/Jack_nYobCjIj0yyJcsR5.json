@@ -1,0 +1,71 @@
+{
+  "_id": "nYobCjIj0yyJcsR5",
+  "name": "Jack",
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "A tunic of thick leather armour. It may also include leather&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">greaves and forearm protection. Weight 3 kg. Cr250</span>",
+    "shortdescr": "Jack (TL 1)",
+    "quantity": 1,
+    "weight": 3,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 3,
+    "secondaryArmor": {
+      "value": 3,
+      "protectionTypes": [
+        "melee"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "priorType": "unknown",
+    "armorDM": 0,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/jack.svg",
+  "effects": [],
+  "folder": "9eBBH01N7i6zYXgF",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016423001,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 143750,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!nYobCjIj0yyJcsR5"
+}

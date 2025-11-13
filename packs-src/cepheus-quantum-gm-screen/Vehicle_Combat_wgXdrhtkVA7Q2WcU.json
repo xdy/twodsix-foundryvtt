@@ -1,0 +1,70 @@
+{
+  "_id": "wgXdrhtkVA7Q2WcU",
+  "name": "Vehicle Combat",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Vehicle Combat",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<h1>Penetration by Weapons</h1>\n<table border=\"1\">\n<tbody>\n<tr>\n<td>\n<p>Weapon</p>\n</td>\n<td>\n<p>AV Dice</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Small Arms</p>\n</td>\n<td>\n<p>1D</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Blasters and Laser Rifles</p>\n</td>\n<td>\n<p>2D</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Regular Vehicle Weapons</p>\n</td>\n<td>\n<p>4D</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Heavy Vehicle Weapons</p>\n</td>\n<td>\n<p>6D</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p>Upon a successful hit, throw the weapon's AV dice. If the throw is greater than the first armor number, throw on the Regular Damage table. If the throw is greater than the second armor number, throw on the Critical Damage table. A hit component is disabled or destroyed (Referee's discretion). Knocked Out is out of combat; a Crew hit causes 4D damage to all crew and passengers; destroyed is destroyed and causes 5D damage to all crew and passengers unless they throw Physical 8+ to bail out.</p>\n<h1>Vehicle Damage</h1>\n<table border=\"1\">\n<tbody>\n<tr>\n<td>\n<p>2D</p>\n</td>\n<td>\n<p>Regular</p>\n</td>\n<td>\n<p>Critical</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>4-</p>\n</td>\n<td>\n<p>Breach</p>\n</td>\n<td>\n<p>Knocked Out</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>5</p>\n</td>\n<td>\n<p>Cargo</p>\n</td>\n<td>\n<p>Knocked Out</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>6</p>\n</td>\n<td>\n<p>Crew</p>\n</td>\n<td>\n<p>Knocked Out</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>7</p>\n</td>\n<td>\n<p>Weapon</p>\n</td>\n<td>\n<p>Crew</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>8-9</p>\n</td>\n<td>\n<p>Locomotion</p>\n</td>\n<td>\n<p>Crew</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>10</p>\n</td>\n<td>\n<p>Electronics</p>\n</td>\n<td>\n<p>Destroyed</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>11</p>\n</td>\n<td>\n<p>Power Plant</p>\n</td>\n<td>\n<p>Destroyed</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>12</p>\n</td>\n<td>\n<p>Critical</p>\n</td>\n<td>\n<p>Destroyed</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p></p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "wWBe7YP5mhU5SboC",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!wgXdrhtkVA7Q2WcU.wWBe7YP5mhU5SboC"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079970,
+    "modifiedTime": 1760016422451,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!wgXdrhtkVA7Q2WcU"
+}

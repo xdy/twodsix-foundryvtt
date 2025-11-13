@@ -1,0 +1,279 @@
+{
+  "name": "Major Detrimental Mutations",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_euiamf65fq",
+      "path": "CA Tables#/CF_SEP/Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "Qt6ls7ZLq87bwBed",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/Unstable%20Genetics.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Unstable Genetics",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.tjA72JfmrjUECEoT",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.Qt6ls7ZLq87bwBed"
+    },
+    {
+      "_id": "XXLTzwHC27bTpCjc",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/tumor.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Tumorization",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.UX9McQCGR9ScF7Ja",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.XXLTzwHC27bTpCjc"
+    },
+    {
+      "_id": "JNH5geDNZiHSYNph",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/arm.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Missing Arm",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.ENVSvmtrWmvXt60w",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.JNH5geDNZiHSYNph"
+    },
+    {
+      "_id": "IWQ5HXZCtwa4k3ot",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/slow%20mutant.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Slow Mutant",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.4sU9dK2OBduSNgfw",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.IWQ5HXZCtwa4k3ot"
+    },
+    {
+      "_id": "9tBH62cRozHanR1O",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/dread.svg",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Fear Response",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.re2xsrNGSx3b1dwE",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.9tBH62cRozHanR1O"
+    },
+    {
+      "_id": "Q2ZbQnPPm3sftDKp",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/bleeding-wound.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Bleeder",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.i5KPkIROtuBV0Yxu",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.Q2ZbQnPPm3sftDKp"
+    },
+    {
+      "_id": "o4Y2w2bhS50bTlP8",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/frankenstein-creature.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Hideously Mutated",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.4aTGW9fW0rZf9NTl",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.o4Y2w2bhS50bTlP8"
+    },
+    {
+      "_id": "uaPp45ji8zLkqwkj",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Thin-Skinned",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Ym57pThgAcOCbF8P",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.uaPp45ji8zLkqwkj"
+    },
+    {
+      "_id": "h5JocDoMWBJhdqe7",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/sense.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Psychic Beacon",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.M7cCCn54TbuqQVJS",
+      "description": "",
+      "_key": "!tables.results!M9XsRqh3w0aW0xGx.h5JocDoMWBJhdqe7"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "M9XsRqh3w0aW0xGx",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080063,
+    "modifiedTime": 1760016422591,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!M9XsRqh3w0aW0xGx"
+}

@@ -1,0 +1,190 @@
+{
+  "_id": "mG4L75zTdZCXFVVk",
+  "name": "Critical - Starship",
+  "img": "icons/svg/explosion.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "TpzMwEMxmwKmRkeV",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/drive.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Maneuver Drive Destroyed",
+      "name": "",
+      "_key": "!tables.results!mG4L75zTdZCXFVVk.TpzMwEMxmwKmRkeV"
+    },
+    {
+      "_id": "dAieGQccE53r9TCu",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/drive.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Jump Drive Destroyed",
+      "name": "",
+      "_key": "!tables.results!mG4L75zTdZCXFVVk.dAieGQccE53r9TCu"
+    },
+    {
+      "_id": "BH7H4hmLsEJVE1Rh",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/power.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Power Plant Destroyed",
+      "name": "",
+      "_key": "!tables.results!mG4L75zTdZCXFVVk.BH7H4hmLsEJVE1Rh"
+    },
+    {
+      "_id": "m2dPx0dYaoJxp4dC",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/default_actor.png",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Critical Crew Hit",
+      "name": "",
+      "_key": "!tables.results!mG4L75zTdZCXFVVk.m2dPx0dYaoJxp4dC"
+    },
+    {
+      "_id": "LHfvcO6vCmDH312l",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/electronics.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Electronics Destroyed",
+      "name": "",
+      "_key": "!tables.results!mG4L75zTdZCXFVVk.LHfvcO6vCmDH312l"
+    },
+    {
+      "_id": "995LPKvCMrT0ZhYJ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/default_ship.png",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Ship Destroyed",
+      "name": "",
+      "_key": "!tables.results!mG4L75zTdZCXFVVk.995LPKvCMrT0ZhYJ"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_9qkr5tod12b"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080313,
+    "modifiedTime": 1760016422923,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!tables!mG4L75zTdZCXFVVk"
+}

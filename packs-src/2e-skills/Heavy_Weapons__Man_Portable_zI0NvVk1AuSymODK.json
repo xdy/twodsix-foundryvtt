@@ -1,0 +1,45 @@
+{
+  "_id": "zI0NvVk1AuSymODK",
+  "name": "Heavy Weapons: Man-Portable",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "name": "Skill Name",
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "",
+    "shortdescr": "",
+    "subtype": "",
+    "reference": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal"
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/heavy-weapons-man-portable.svg",
+  "effects": [],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079516,
+    "modifiedTime": 1760016422046,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!zI0NvVk1AuSymODK"
+}

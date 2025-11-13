@@ -1,0 +1,68 @@
+{
+  "_id": "etFadfEOdq5UzA4M",
+  "name": "Hostile Env Vacc Suit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "<div>Hostile environment suits are designed for conditions where a normal vacc suit would be insufficient, such as deep underwater, worlds shrouded in toxic or corrosive gases, extremes of radiation or temperature, or other locales that offer serious physical danger as well as the lack of a breathable atmosphere. HEV suits provide all the life support offered by a normal vacc suit (for six hours) but are also impervious to flames, intense radiation such as that found at nuclear blast sites (decreasing radiation exposure by 180 rads), and high pressure environments like undersea trenches.</div><div><br></div><div>Requires Zero G skill.<br></div>",
+    "shortdescr": "Hostile Environment Vacc Suit (TL 8)",
+    "quantity": 1,
+    "weight": 40,
+    "price": 18000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero-G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 8,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 180
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/hostile-environment-vacc-suit.svg",
+  "effects": [],
+  "folder": "9gTQdzmIuMRlmswr",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079873,
+    "modifiedTime": 1760016422337,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!etFadfEOdq5UzA4M"
+}

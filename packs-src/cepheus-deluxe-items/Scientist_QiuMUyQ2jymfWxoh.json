@@ -1,0 +1,49 @@
+{
+  "name": "Scientist",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/lab-coat.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is an expert in a specific field of science. Pick one field of science: Life Sciences, Physical Sciences, Social Sciences, or Space Sciences. When making a throw related to that science, the scientist throws with Advantage. You may choose this Trait multiple times, each time gaining expertise in a different field of science.",
+    "prereq": "Science 1",
+    "shortdescr": "Advantage when making a throw related to science specialization",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 3700000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "QiuMUyQ2jymfWxoh",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737439,
+    "modifiedTime": 1760016422745,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!QiuMUyQ2jymfWxoh"
+}

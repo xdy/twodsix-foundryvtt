@@ -1,0 +1,70 @@
+{
+  "_id": "QSnISFxAvc0Vz3RV",
+  "name": "Computers",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Computers",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:210px;width:50.8759%\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Optimum TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Computer Power</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">Mass (kg)</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">Cost (Cr)</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 7</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 0</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">50</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 8</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 1</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">100</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 9</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 1</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">250</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 10</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 2</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">1</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">350</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 11</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 2</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">1</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">500</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 12</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 3</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">1,000</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 13</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 4</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">1,500</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">TL 14</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.7384%\">Model 5</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3488%\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.6047%\">5,000</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "ZAVhLbtXcipaL3bL",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!QSnISFxAvc0Vz3RV.ZAVhLbtXcipaL3bL"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079927,
+    "modifiedTime": 1760016422389,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!QSnISFxAvc0Vz3RV"
+}

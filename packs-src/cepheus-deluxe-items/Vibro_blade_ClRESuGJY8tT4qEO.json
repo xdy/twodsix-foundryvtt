@@ -1,0 +1,82 @@
+{
+  "_id": "ClRESuGJY8tT4qEO",
+  "name": "Vibro-blade",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/vibro-blade.svg",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "An intermediate-sized bladed weapon using hypersonic micro-vibrations of the blade to create a potent cutting force.",
+    "shortdescr": "High-tech Blade",
+    "quantity": 1,
+    "weight": 1,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "5",
+    "rangeBand": "melee",
+    "weaponType": "melee",
+    "damageType": "slashing",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "Wu8PbhMDUEvbhVsu",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_d5gavafmlx",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Melee Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737424,
+    "modifiedTime": 1760016422734,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.LXJxCn5N3WA1dQOT",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ClRESuGJY8tT4qEO"
+}

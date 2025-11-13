@@ -1,0 +1,66 @@
+{
+  "folder": "9eBBH01N7i6zYXgF",
+  "name": "Plate Armour",
+  "type": "armor",
+  "_id": "piYJcJ7f2t5agg89",
+  "img": "systems/twodsix/assets/icons/breastplate.svg",
+  "system": {
+    "name": "",
+    "description": "Fully-articulated plate armour, providing total coverage for 8&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">point melee protection. Includes a metal helmet. Weight 25 kg. Cr5600.</span>",
+    "type": "armor",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 2,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 25,
+    "price": 5600,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "armor": 0,
+    "armorDM": 0,
+    "secondaryArmor": {
+      "value": 8,
+      "protectionTypes": [
+        "melee"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "isPowered": false,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016423002,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 135938,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!piYJcJ7f2t5agg89"
+}

@@ -1,0 +1,35 @@
+{
+  "name": "CD Animal Reaction v13",
+  "type": "script",
+  "author": "g35c71Hsyv7w1Lw4",
+  "img": "icons/creatures/mammals/dog-husky-white-blue.webp",
+  "scope": "global",
+  "command": "//Updated for FVTT v13\n\nconst reactionTable = {\n  Chaser: {\n    attack: ' it outnumbers characters. ',\n    flee: '5'\n  },\n  Killer: {\n    attack: '6',\n    flee: '3'\n  },\n  Pouncer: {\n    attack: ' it has surprise. ',\n    flee: ' surprised. '\n  },\n  Siren: {\n    attack: ' it has surprise. ',\n    flee: ' it is surprised. '\n  },\n  Trapper: {\n    attack: ' it has surprise. ',\n    flee: '5'\n  },\n  Filter: {\n    attack: '10',\n    flee: '5'\n  },\n  Grazer: {\n    attack: '8',\n    flee: '6'\n  },\n  Intermittent: {\n    attack: '10',\n    flee: '4'\n  },\n  Eater: {\n    attack: '5',\n    flee: '4'\n  },\n  Gatherer: {\n    attack: '9',\n    flee: '7'\n  },\n  Hunter: {\n    attack: ' 6+ when larger, Otherwise 10+ ',\n    flee: '5'\n  },\n  CarrionEater: {\n    attack: '11',\n    flee: '7'\n  },\n  Hijacker: {\n    attack: '7',\n    flee: '6'\n  },\n  Intimidator: {\n    attack: '8',\n    flee: '7'\n  },\n  Reducer: {\n    attack: '10',\n    flee: '7'\n  }\n};\n\nconst animalType = await getAnimalType();\nconst roll = new Roll(\"2d6\");\nawait roll.evaluate();\nchatReaction(animalType, roll);\n\nasync function getAnimalType () {\n  let html = `<label>Animal Type</label>`;\n  html += `<select name =\"chosenType\" value=\"Chaser\">`;\n  for (const animal in reactionTable) {\n    html += `<option value = \"${animal}\">${animal}</option>`;\n  }\n  html += `</select>`;\n\n  // Get Input\n  const type = await new Promise((resolve) => {\n    new foundry.applications.api.DialogV2({\n      modal: true,\n      window: {\n        title: 'Animal Reaction',\n        icon: 'fa-solid fa-paw'\n      },\n      content: html,\n      buttons: [\n        {\n          action: 'OK',\n          label: 'Roll',\n          callback:\n            (_event, target) => {\n              resolve(target.form.elements.chosenType.value);\n            }\n        }\n      ]\n    }).render(true);\n  });\n  return type;\n}\n\nasync function chatReaction (type, inRoll) {\n  let animalFlees = false;\n  let animalAttacks = false;\n  let specialFlee = \"\";\n  let specialAttack = \"\";\n  let flavor = \"\";\n\n  if (isNaN(reactionTable[type].flee)) {\n    specialFlee = reactionTable[type].flee;\n  } else if (inRoll.total <= parseInt(reactionTable[type].flee)) {\n    animalFlees = true;\n  }\n\n  if (isNaN(reactionTable[type].attack)) {\n    specialAttack = reactionTable[type].attack;\n  } else if (inRoll.total >= parseInt(reactionTable[type].attack)) {\n    animalAttacks = true;\n  }\n\n  if (animalAttacks) {\n    flavor = \"Animal attacks party!\";\n  } else if (animalFlees) {\n    flavor = \"Animal flees from party!\";\n  } else if (specialAttack || specialFlee) {\n    if (specialAttack) {\n      flavor += \"Animal may attack if \" + specialAttack;\n    }\n    if (specialFlee) {\n      flavor += \"Animal may flee if \" + specialFlee;\n    }\n  } else {\n    flavor = \"Animal does not react\";\n  }\n\n  await inRoll.toMessage({\n    speaker: ChatMessage.getSpeaker({ alias: type }),\n    flavor: flavor\n  });\n}",
+  "folder": null,
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_f505ax12at"
+    }
+  },
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3,
+    "B4JSPh84Wx3wBFTK": 3,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "_stats": {
+    "compendiumSource": "Macro.11dCNq3kMAp96Ztk",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1738176306723,
+    "modifiedTime": 1760016422572,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "skVl3fQUjvKs53ZV",
+  "sort": 800000,
+  "_key": "!macros!skVl3fQUjvKs53ZV"
+}

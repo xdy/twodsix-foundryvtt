@@ -1,0 +1,61 @@
+{
+  "name": "LED Flashlight",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/led-flashlight.svg",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "An LED Flashlight is a hand-held, rubberized, sturdy light source with a variable light aperture. The 2m cone of light has a range of 50m, but it can be adjusted to illuminate a 5m radius. Smaller, more expensive (Cr20) versions can be mounted on weapons or clipped to armor. A TL7 LED Flashlight’s battery will last for 24 hours. By TL11, the battery will last for a decade of continual use.<br>",
+    "shortdescr": "Hand-held light source",
+    "quantity": 1,
+    "weight": 1,
+    "price": 5,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    },
+    "twodsix": {},
+    "core": {}
+  },
+  "_id": "xrncJxlen2C2h4ei",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737483,
+    "modifiedTime": 1760016422781,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.O5zHjOgTdF4Fewz7",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!xrncJxlen2C2h4ei"
+}

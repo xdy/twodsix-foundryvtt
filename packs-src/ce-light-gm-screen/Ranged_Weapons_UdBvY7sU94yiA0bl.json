@@ -1,0 +1,70 @@
+{
+  "_id": "UdBvY7sU94yiA0bl",
+  "name": "Ranged Weapons",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Ranged Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table style=\"height:250px\" border=\"0\">\n<tbody>\n<tr style=\"height:30px\">\n<th style=\"height:10px;text-align:left\">Weapon</th>\n<th style=\"height:10px;text-align:left\">TL</th>\n<th style=\"height:10px;text-align:left\">Cost</th>\n<th style=\"height:10px;text-align:left\">Range</th>\n<th style=\"height:10px;text-align:left\">Dmg</th>\n<th style=\"height:10px;text-align:left\">Mag</th>\n<th style=\"height:10px;text-align:left\">Ammo</th>\n<th style=\"height:10px;text-align:left\">Aspects</th>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.kG7U29U1DNnQUb4b]{Bow}</td>\n<td style=\"height:10px\">0</td>\n<td style=\"height:10px\">Cr60</td>\n<td style=\"height:10px\">300/600</td>\n<td style=\"height:10px\">2D</td>\n<td style=\"height:10px\">-</td>\n<td style=\"height:10px\">Cr10</td>\n<td style=\"height:10px\"> </td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.5GbNIduHLEvk5bXS]{Crossbow}</td>\n<td style=\"height:10px\">2</td>\n<td style=\"height:10px\">Cr75</td>\n<td style=\"height:10px\">300/600</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">1</td>\n<td style=\"height:10px\">Cr1</td>\n<td style=\"height:10px\"> </td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.lbSLwSEovpkj0QJU]{Revolver}</td>\n<td style=\"height:10px\">4</td>\n<td style=\"height:10px\">Cr150</td>\n<td style=\"height:10px\">10/50</td>\n<td style=\"height:10px\">2D</td>\n<td style=\"height:10px\">6</td>\n<td style=\"height:10px\">Cr5</td>\n<td style=\"height:10px\"> </td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.sxjG4cZ46rC7xG60]{Shotgun}</td>\n<td style=\"height:10px\">4</td>\n<td style=\"height:10px\">Cr200</td>\n<td style=\"height:10px\">20/40</td>\n<td style=\"height:10px\">4D</td>\n<td style=\"height:10px\">6</td>\n<td style=\"height:10px\">Cr10</td>\n<td style=\"height:10px\">Scattergun</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.ka178VXLZdprdQyk]{Auto Pistol}</td>\n<td style=\"height:10px\">5</td>\n<td style=\"height:10px\">Cr150</td>\n<td style=\"height:10px\">10/50</td>\n<td style=\"height:10px\">2D</td>\n<td style=\"height:10px\">16</td>\n<td style=\"height:10px\">Cr7</td>\n<td style=\"height:10px\">Double Tap</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.0EGhjLSkfBy6XPj3]{Carbine}</td>\n<td style=\"height:10px\">5</td>\n<td style=\"height:10px\">Cr250</td>\n<td style=\"height:10px\">50/200</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr12</td>\n<td style=\"height:10px\">Double Tap</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.p9JVoLfM6QCYmtUr]{Rifle}</td>\n<td style=\"height:10px\">5</td>\n<td style=\"height:10px\">Cr500</td>\n<td style=\"height:10px\">200/400</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr15</td>\n<td style=\"height:10px\">AV 1D, Double Tap</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.yPfshCnZSmuBucvA]{Submachinegun}</td>\n<td style=\"height:10px\">5</td>\n<td style=\"height:10px\">Cr500</td>\n<td style=\"height:10px\">30/100</td>\n<td style=\"height:10px\">2D</td>\n<td style=\"height:10px\">30</td>\n<td style=\"height:10px\">Cr20</td>\n<td style=\"height:10px\">Auto 3</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.VnurxWz8igRovZsK]{Auto Rifle}</td>\n<td style=\"height:10px\">6</td>\n<td style=\"height:10px\">Cr1000</td>\n<td style=\"height:10px\">200/400</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">20</td>\n<td style=\"height:10px\">Cr10</td>\n<td style=\"height:10px\">AV 1D, Auto 2</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.mjUQf7zQxlTxoKhG]{Assault Rifle}</td>\n<td style=\"height:10px\">7</td>\n<td style=\"height:10px\">Cr300</td>\n<td style=\"height:10px\">50/200</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">30</td>\n<td style=\"height:10px\">Cr15</td>\n<td style=\"height:10px\">AV 1D, Auto 2</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.BRCUPEa1SV8KzNxW]{Light Machinegun}</td>\n<td style=\"height:10px\">7</td>\n<td style=\"height:10px\">Cr1200</td>\n<td style=\"height:10px\">100/300</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">100</td>\n<td style=\"height:10px\">Cr125</td>\n<td style=\"height:10px\">AV 1D, Auto 3, Bulky</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.nGvTh4NNnhelRaRy]{Body Pistol}</td>\n<td style=\"height:10px\">8</td>\n<td style=\"height:10px\">Cr500</td>\n<td style=\"height:10px\">5/20</td>\n<td style=\"height:10px\">2D</td>\n<td style=\"height:10px\">6</td>\n<td style=\"height:10px\">Cr20</td>\n<td style=\"height:10px\">Double Tap</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.MTJ4XMnMdAHPBtWQ]{Laser Carbine}</td>\n<td style=\"height:10px\">8</td>\n<td style=\"height:10px\">Cr2500</td>\n<td style=\"height:10px\">100/400</td>\n<td style=\"height:10px\">4D</td>\n<td style=\"height:10px\">15</td>\n<td style=\"height:10px\">Cr1000</td>\n<td style=\"height:10px\">AV 1D, Double Tap, Laser</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.Qcdp3F1AIalpAUW5]{Snub Revolver}</td>\n<td style=\"height:10px\">8</td>\n<td style=\"height:10px\">Cr150</td>\n<td style=\"height:10px\">5/20</td>\n<td style=\"height:10px\">2D</td>\n<td style=\"height:10px\">6</td>\n<td style=\"height:10px\">Cr6</td>\n<td style=\"height:10px\">Zero-G</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.nJq9EP0VhkmyK6Ob]{Accelerator Rifle}</td>\n<td style=\"height:10px\">9</td>\n<td style=\"height:10px\">Cr900</td>\n<td style=\"height:10px\">100/400</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">20</td>\n<td style=\"height:10px\">Cr15</td>\n<td style=\"height:10px\">AV 1D, Auto 2, Zero-G</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.zVqWalHXjv9pPEH8]{Laser Rifle}</td>\n<td style=\"height:10px\">9</td>\n<td style=\"height:10px\">Cr3500</td>\n<td style=\"height:10px\">300/500</td>\n<td style=\"height:10px\">5D</td>\n<td style=\"height:10px\">30</td>\n<td style=\"height:10px\">Cr1500</td>\n<td style=\"height:10px\">AV 2D, Double Tap, Laser</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.rRxnfteMMrtsTz4W]{Advanced Combat Rifle}</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr1000</td>\n<td style=\"height:10px\">200/400</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">40</td>\n<td style=\"height:10px\">Cr30</td>\n<td style=\"height:10px\">AV 1D, Auto 3, Scope</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.R4jbdkXmKgr7z8OQ]{Laser Pistol}</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr1500</td>\n<td style=\"height:10px\">50/200</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr500</td>\n<td style=\"height:10px\">Double Tap, Laser</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.XzjQq5Nnc4kD8SNh]{Stunner}</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr600</td>\n<td style=\"height:10px\">10/30</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr10</td>\n<td style=\"height:10px\">Stun, Zero-G</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.796fjj1h1cJWoI9L]{Gauss Pistol}</td>\n<td style=\"height:10px\">12</td>\n<td style=\"height:10px\">Cr1000</td>\n<td style=\"height:10px\">20/100</td>\n<td style=\"height:10px\">3D</td>\n<td style=\"height:10px\">30</td>\n<td style=\"height:10px\">Cr30</td>\n<td style=\"height:10px\">AV 1D, Auto 2</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.K2y5h4zoXA02jvG4]{Gauss Rifle}</td>\n<td style=\"height:10px\">12</td>\n<td style=\"height:10px\">Cr1500</td>\n<td style=\"height:10px\">300/600</td>\n<td style=\"height:10px\">4D</td>\n<td style=\"height:10px\">100</td>\n<td style=\"height:10px\">Cr40</td>\n<td style=\"height:10px\">AV 1D, Auto 4</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.IQYs2CatPRTc2jBh]{Blaster}</td>\n<td style=\"height:10px\">13</td>\n<td style=\"height:10px\">Cr5000</td>\n<td style=\"height:10px\">50/200</td>\n<td style=\"height:10px\">4D</td>\n<td style=\"height:10px\">20</td>\n<td style=\"height:10px\">Cr100</td>\n<td style=\"height:10px\">AV 1D, Laser</td>\n</tr>\n<tr style=\"height:30px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.458NDWgxvMqoXmgN]{Heavy Blaster}</td>\n<td style=\"height:10px\">13</td>\n<td style=\"height:10px\">Cr10000</td>\n<td style=\"height:10px\">200/400</td>\n<td style=\"height:10px\">5D</td>\n<td style=\"height:10px\">50</td>\n<td style=\"height:10px\">Cr500</td>\n<td style=\"height:10px\">AV 2D, Auto 3, Laser</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"height:10px\">@Compendium[twodsix.cepheus-light-items.dFedg7XGNMTIfGek]{Plasma Rifle}</td>\n<td style=\"height:10px\">16</td>\n<td style=\"height:10px\">Cr15000</td>\n<td style=\"height:10px\">150/300</td>\n<td style=\"height:10px\">6D</td>\n<td style=\"height:10px\">10</td>\n<td style=\"height:10px\">Cr500</td>\n<td style=\"height:10px\">AV 2D</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "GFhSYYd02rawesZF",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!UdBvY7sU94yiA0bl.GFhSYYd02rawesZF"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079919,
+    "modifiedTime": 1760016422379,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!UdBvY7sU94yiA0bl"
+}

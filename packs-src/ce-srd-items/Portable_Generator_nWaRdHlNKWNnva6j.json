@@ -1,0 +1,59 @@
+{
+  "_id": "nWaRdHlNKWNnva6j",
+  "name": "Portable Generator",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "This is a heavy-duty portable fusion generator, capable of recharging weapons and other equipment for up to one month of use.",
+    "shortdescr": "Portable Generator",
+    "quantity": 1,
+    "weight": 15,
+    "price": 500000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_io8or4a2knc",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Survival Equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/portable-fusion-generator.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079879,
+    "modifiedTime": 1760016422341,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!nWaRdHlNKWNnva6j"
+}

@@ -1,0 +1,77 @@
+{
+  "_id": "eoEYCvRULI6rcdFi",
+  "name": "Pulse Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/laser-carbine.svg",
+  "system": {
+    "name": "Laser Carbine",
+    "techLevel": 10,
+    "description": "Pulse Rifle (TL10): Early directed-energy weapon firing a laser beam.<br><br>Auto 3: A weapon with the Auto aspect can make attacks in three fire modes: single, burst, and full auto, as described in the Combat chapter.",
+    "shortdescr": "Pulse Rifle - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "100/400",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "40",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "200/400",
+    "weaponType": "ranged",
+    "damageType": "laser",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "kg9z5G1EDXprJ7Mz",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_q4e3naht7b",
+      "path": "ce ftl weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079636,
+    "modifiedTime": 1760016422101,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!eoEYCvRULI6rcdFi"
+}

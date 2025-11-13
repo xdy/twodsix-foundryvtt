@@ -1,0 +1,60 @@
+{
+  "name": "Water Saw",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "A Water Saw requires a separate power supply and a large volume of available water. Pumps create extreme water pressure (600 Mega Pascals or more) which is directed through a tiny nozzle. The stream is powerful enough to cut through concrete, stone, and even light metals. Weighs 1000kg and is usually mounted on an exoskeleton or small vehicle.",
+    "shortdescr": "extreme water pressure cutting tool",
+    "quantity": 1,
+    "weight": 1,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "WVXgIyQgIVSrAqRf",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737445,
+    "modifiedTime": 1760016422749,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!WVXgIyQgIVSrAqRf"
+}

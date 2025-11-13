@@ -1,0 +1,70 @@
+{
+  "_id": "mxKyXAheSW8gATxw",
+  "name": "Ship Encounters",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Ship Encounters",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table style=\"height:288px;width:585px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:39px\">2D</td>\n<td style=\"width:180px\">Core</td>\n<td style=\"width:180px\">Frontier</td>\n<td style=\"width:179px\">Contested</td>\n</tr>\n<tr>\n<td style=\"width:39px\">8-</td>\n<td style=\"width:180px\">No encounter</td>\n<td style=\"width:180px\">No encounter</td>\n<td style=\"width:179px\">No encounter</td>\n</tr>\n<tr>\n<td style=\"width:39px\">9</td>\n<td style=\"width:180px\">Free Trader (Pirate)</td>\n<td style=\"width:180px\">Free Trader</td>\n<td style=\"width:179px\">Free Trader</td>\n</tr>\n<tr>\n<td style=\"width:39px\">10</td>\n<td style=\"width:180px\">Scout</td>\n<td style=\"width:180px\">Corsair (Pirate)</td>\n<td style=\"width:179px\">Scout</td>\n</tr>\n<tr>\n<td style=\"width:39px\">11</td>\n<td style=\"width:180px\">Free Trader</td>\n<td style=\"width:180px\">Scout</td>\n<td style=\"width:179px\">Frigate (Patrol)</td>\n</tr>\n<tr>\n<td style=\"width:39px\">12</td>\n<td style=\"width:180px\">Frigate (Patrol)</td>\n<td style=\"width:180px\">Subsidized Merchant</td>\n<td style=\"width:179px\">Frigate (Hostile)</td>\n</tr>\n<tr>\n<td style=\"width:39px\">13</td>\n<td style=\"width:180px\">Subsidized Merchant</td>\n<td style=\"width:180px\">Subsidized Merchant</td>\n<td style=\"width:179px\">Corsair (Pirate)</td>\n</tr>\n<tr>\n<td style=\"width:39px\">14</td>\n<td style=\"width:180px\">Freighter</td>\n<td style=\"width:180px\">Frigate (Patrol)</td>\n<td style=\"width:179px\">Subsidized Merchant</td>\n</tr>\n<tr>\n<td style=\"width:39px\">15</td>\n<td style=\"width:180px\">Frigate (Patrol)</td>\n<td style=\"width:180px\">Explorer</td>\n<td style=\"width:179px\">Cruiser (Friendly)</td>\n</tr>\n<tr>\n<td style=\"width:39px\">16</td>\n<td style=\"width:180px\">Yacht</td>\n<td style=\"width:180px\">Freighter</td>\n<td style=\"width:179px\">Cruiser (Hostile)</td>\n</tr>\n<tr>\n<td style=\"width:39px\">17</td>\n<td style=\"width:180px\">Cruiser (Patrol)</td>\n<td style=\"width:180px\">Frigate (Patrol)</td>\n<td style=\"width:179px\">Frigate (Friendly)</td>\n</tr>\n<tr>\n<td style=\"width:39px\">18</td>\n<td style=\"width:180px\">Roll Twice</td>\n<td style=\"width:180px\">Roll Twice</td>\n<td style=\"width:179px\">Roll Twice</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "ZQwhUfaAmVm0K6V2",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!mxKyXAheSW8gATxw.ZQwhUfaAmVm0K6V2"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079920,
+    "modifiedTime": 1760016422380,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!mxKyXAheSW8gATxw"
+}

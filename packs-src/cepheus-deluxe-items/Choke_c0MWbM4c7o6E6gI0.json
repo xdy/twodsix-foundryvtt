@@ -1,0 +1,70 @@
+{
+  "_id": "c0MWbM4c7o6E6gI0",
+  "name": "Choke",
+  "type": "psiAbility",
+  "img": "systems/twodsix/assets/icons/extra-lucid.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 8,
+    "type": "psiAbility",
+    "description": "Choke (PSI 8, 10m): grab a single humanoid by its throat, or equivalent, at a distance, and suffocate them for 1D damage per round, for a maximum number of rounds equal to the psion’s full PSI score. The target may throw STR 10+ to break this chokehold; one attempt is permitted per combat round.",
+    "shortdescr": "Choke (PSI 8, 10m)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "1d6",
+    "damageType": "psionic",
+    "psiCost": 8,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 2200000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.lzPM0aZpghv0fKEe",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569377982,
+    "modifiedTime": 1760016422753,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!c0MWbM4c7o6E6gI0"
+}

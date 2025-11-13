@@ -1,0 +1,53 @@
+{
+  "name": "Steward",
+  "type": "skills",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Steward: the care and serving of passengers and other guests. Steward skill adds to the throw for locating High Passage passengers. See the Starship Operations chapter.<br>Examples: throw Steward/INT 6+ to impress an upper-class passenger and gain a valuable bit of information. Throw Steward/EDU 8+ to know some basic information about the cultural mores of a given passenger to make them more comfortable. Throw Steward/DEX 6+ to mend clothing and groom the crew to a presentable level. Throw Steward/INT 8+ to cook a sumptuous meal.",
+    "shortdescr": "The care and serving of passengers and other guests",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "wkWR8mdJKHmbwZs0",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737482,
+    "modifiedTime": 1760016422780,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.hx0yLuLoh8LjqECN",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!wkWR8mdJKHmbwZs0"
+}

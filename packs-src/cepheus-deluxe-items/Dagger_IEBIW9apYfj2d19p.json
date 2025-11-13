@@ -1,0 +1,79 @@
+{
+  "_id": "IEBIW9apYfj2d19p",
+  "name": "Dagger",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/dagger.svg",
+  "system": {
+    "name": "Dagger",
+    "techLevel": 0,
+    "description": "A straight, short knife. When wielding a Dagger, a character may use both actions in a combat round to attack.",
+    "shortdescr": "Dagger - melee",
+    "quantity": 1,
+    "weight": 1,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "5",
+    "rangeBand": "reach or thrown",
+    "weaponType": "melee",
+    "damageType": "piercing",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "Wu8PbhMDUEvbhVsu",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_d5gavafmlx",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Melee Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737429,
+    "modifiedTime": 1760016422737,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.ogRMoXu3bVTg6dXY",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IEBIW9apYfj2d19p"
+}

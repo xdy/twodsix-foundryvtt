@@ -1,0 +1,125 @@
+{
+  "folder": "9eBBH01N7i6zYXgF",
+  "name": "Power Armor",
+  "type": "armor",
+  "_id": "wLWX8XY5tqJQ6agT",
+  "img": "systems/twodsix/assets/icons/battle-dress.svg",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "A 2.3m-tall powered armour suit, also known as ‘battle&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">dress’. In combat, treat Power Armour as a robot, with AV and Durability Points. Its&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">internal motors provide great strength, it also acts as a vacc suit providing life support&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">in vacuum and even in hostile environments, for 6 hours. It provides the wearer with&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Strength 18 as well as night-vision and infra-red sensors, long-range radio and inertial&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">locator. Weight (for the wearer) 6 kg; actual weight 100 kg.<br>Durability: 36, Speed: 6, Endurance 2 days, Strength 18.</span>",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 100,
+    "price": 3000000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 18,
+    "secondaryArmor": {
+      "value": 12,
+      "protectionTypes": [
+        "ballistic",
+        "disintegrate",
+        "laser",
+        "melee",
+        "plasma"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": true,
+    "nonstackable": false,
+    "armorType": "nothing",
+    "armorDM": 0,
+    "priorType": "unknown"
+  },
+  "effects": [
+    {
+      "origin": "Compendium.twodsix.ce-srd-items.Item.PWnobwS6H67tMyVF",
+      "tint": "#ffffff",
+      "transfer": true,
+      "disabled": true,
+      "_id": "rGFRveaZoUElSjXq",
+      "flags": {
+        "twodsix": {
+          "sourceId": "rGFRveaZoUElSjXq"
+        }
+      },
+      "name": "Battle Dress",
+      "changes": [
+        {
+          "key": "system.characteristics.strength.value",
+          "mode": 5,
+          "value": "18",
+          "priority": null
+        },
+        {
+          "key": "system.encumbrance.value",
+          "mode": 2,
+          "value": "6",
+          "priority": null
+        }
+      ],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "statuses": [],
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.350",
+        "systemId": "twodsix",
+        "systemVersion": "5.8.1",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "exportSource": null
+      },
+      "img": "systems/twodsix/assets/icons/battle-dress.svg",
+      "type": "base",
+      "system": {},
+      "sort": 0,
+      "_key": "!items.effects!wLWX8XY5tqJQ6agT.rGFRveaZoUElSjXq"
+    }
+  ],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016423003,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 148438,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!wLWX8XY5tqJQ6agT"
+}

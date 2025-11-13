@@ -1,0 +1,79 @@
+{
+  "_id": "snzqG8jfTrfqzkdw",
+  "name": "Pike",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/pike.svg",
+  "system": {
+    "name": "Pike",
+    "techLevel": 1,
+    "description": "A two-handed weapon with a pointed steel or iron head on a long wooden shaft. Length: 3000 to 4000mm.",
+    "shortdescr": "Pike - melee",
+    "quantity": 1,
+    "weight": 8,
+    "price": 40,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat (Piercing Weapons)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "extendedReach",
+    "weaponType": "melee",
+    "damageType": "piercing",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "RZyQz33plmQirMxo",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589940,
+    "modifiedTime": 1760016422343,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.snzqG8jfTrfqzkdw",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!snzqG8jfTrfqzkdw"
+}

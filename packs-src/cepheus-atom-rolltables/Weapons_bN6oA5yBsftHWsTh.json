@@ -1,0 +1,333 @@
+{
+  "name": "Weapons",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_t425pvce42",
+      "path": "CA Tables#/CF_SEP/Relics#/CF_SEP/Relic Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "630bcG9m7nnvxBxM",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/light-sabers.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Laser Rapier",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.I6s7UKIAyRQoe42o",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.630bcG9m7nnvxBxM"
+    },
+    {
+      "_id": "9w2iOyiNH1TDWHFh",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/laser-rifle.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Lasgun",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Miz4gWZA7XkECaUW",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.9w2iOyiNH1TDWHFh"
+    },
+    {
+      "_id": "5y1fZvuW8dthi9LV",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/vibro-blade.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Vibro-Blade",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.cW8eZO3TUISxK4eJ",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.5y1fZvuW8dthi9LV"
+    },
+    {
+      "_id": "Ms1173nnYHvDXpgn",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/laser-carbine.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Pulse Rifle",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.W6mv9nHF2b8NBvUm",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.Ms1173nnYHvDXpgn"
+    },
+    {
+      "_id": "WbyFLseIuYbAj4dy",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/crossbow.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Pre-Collapse Crossbow",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.UBppqSxsGmdLHF6v",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.WbyFLseIuYbAj4dy"
+    },
+    {
+      "_id": "z6tR4UvPWbsu6J0I",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/machete.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Pre-Collapse Machete",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.RbOmLhU2cxmr9tNp",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.z6tR4UvPWbsu6J0I"
+    },
+    {
+      "_id": "uKvCYCLtgUgioHpU",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/auto-pistol.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Handgun",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.mrAYuaiWHnpk9psN",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.uKvCYCLtgUgioHpU"
+    },
+    {
+      "_id": "KophWATRfsQP0ui9",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/grenade.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Grenade",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.rrd3kG1vzhY3LL5P",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.KophWATRfsQP0ui9"
+    },
+    {
+      "_id": "vfdtPPh8s91pIMiW",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/chainsaw.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Chainsaw",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.tOHBhNbA6oJXqsrs",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.vfdtPPh8s91pIMiW"
+    },
+    {
+      "_id": "NnDIba0BezU1sNit",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/cudgel.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Riot Baton",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.ZggwgdUnoo4RUnzX",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.NnDIba0BezU1sNit"
+    },
+    {
+      "_id": "6Sj8vZ8rWVkFpvXb",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/plasma-rifle.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Sonic Rifle",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.AcKiBAnKwTZs5mmH",
+      "description": "",
+      "_key": "!tables.results!bN6oA5yBsftHWsTh.6Sj8vZ8rWVkFpvXb"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "bN6oA5yBsftHWsTh",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080064,
+    "modifiedTime": 1760016422594,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!bN6oA5yBsftHWsTh"
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Signature Weapon",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/golden-revolver.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "he character is particularly proficient in using a specific weapon. Choose one specific weapon, such as your service revolver, the family hunting rifle, the laser pistol you pried from that alien’s cold, dead hands, etc.; when attacking with that specific weapon, the character gains a DM+1 to hit. You may choose this Trait multiple times, each applied to a different weapon. Note that this trait does not apply to a class of weapons (pistols), nor to a model of weapon (Colt .45s), but to a specific weapon the character owns (the custom pearl handled Colt .45 the character’s grandfather gave to him upon entering the Space Marines). If the weapon is lost or destroyed, you can adapt to a new weapon of the same type by training with it for a month. You can have only one signature weapon at a time.",
+    "prereq": "Gun Combat 1",
+    "shortdescr": "Proficient in using a specific weapon",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 7100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "nyWEJ4dCXfPvQx6r",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737473,
+    "modifiedTime": 1760016422773,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!nyWEJ4dCXfPvQx6r"
+}

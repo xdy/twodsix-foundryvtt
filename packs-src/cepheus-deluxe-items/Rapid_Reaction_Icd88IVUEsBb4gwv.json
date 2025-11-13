@@ -1,0 +1,49 @@
+{
+  "name": "Rapid Reaction",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/smoking-finger.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character has a quick finger on the trigger and reacts quickly to enemy movement. If an Overwatch shot fired by the character hits its target, the character remains in Overwatch and may react one more time in that round to enemy movement. This can be done only once per round (that is, up to two Overwatch shots per round). The Overwatch ends after the second attack.",
+    "prereq": "Gun Combat 1",
+    "shortdescr": "Quick trigger finger",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 2900000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "Icd88IVUEsBb4gwv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737430,
+    "modifiedTime": 1760016422738,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Icd88IVUEsBb4gwv"
+}

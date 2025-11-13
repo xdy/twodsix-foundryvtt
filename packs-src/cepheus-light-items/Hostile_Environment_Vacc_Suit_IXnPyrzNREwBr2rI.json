@@ -1,0 +1,74 @@
+{
+  "_id": "IXnPyrzNREwBr2rI",
+  "name": "Hostile Environment Vacc Suit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "A heavy-duty vacc suit designed for extreme conditions, such as Corrosive and Invasive atmospheres. Counts as three items for encumbrance. Protects against Vaccum, Tained, Exotic, and Corrosive atmospheres (as well as airborne pathogens) and provides 2D hours of protection from Insidious atmospheres. Carries life support supplies for 6 hours. Reduces radiation by 150 rads.<br><br>Skill Required: Zero-G 1",
+    "shortdescr": "A heavy-duty Vacc Suit",
+    "quantity": 1,
+    "weight": 3,
+    "price": 18000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero-G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 10,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 150
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1vxyhjhgcfw",
+      "path": "ce light-armor",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/hostile-environment-vacc-suit.svg",
+  "effects": [],
+  "folder": "nycPK2btpYrXRFf2",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079707,
+    "modifiedTime": 1760016422148,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!IXnPyrzNREwBr2rI"
+}

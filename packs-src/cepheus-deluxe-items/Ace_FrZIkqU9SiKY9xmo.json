@@ -1,0 +1,49 @@
+{
+  "name": "Ace",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/plane-pilot.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is a gifted expert at maneuvering with a specific vehicle and can easily outmaneuver others to gain great advantage over them in combat. When throwing for a Position in a vehicle chase or battle using the vehicle skill to which the Ace trait applies , throw with 2D and take the higher result. Note that an Ace in the Pilot skill would not be an Ace Driver, or Ace Grav Pilot. Each Vehicle skill and the Pilot skill has a separate Ace trait. Being an ace in multiple vehicles requires taking this trait multiple times. In starships (or other large, crewed vehicles) either the Pilot or Captain’s Ace trait may apply. In small craft, the Pilot must have the Ace trait to gain any benefit.",
+    "prereq": "Relevant Vehicle Skill 1, or Piloting 1",
+    "shortdescr": "Advantage for position throws",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 2200000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "FrZIkqU9SiKY9xmo",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737427,
+    "modifiedTime": 1760016422736,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!FrZIkqU9SiKY9xmo"
+}

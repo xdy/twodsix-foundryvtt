@@ -1,0 +1,60 @@
+{
+  "_id": "IfnYPzszfVq52GDO",
+  "name": "Bionic Legs",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "A character with bionic legs can jump 9m horizontally or 3m upwards, and in case of falls, they reduce falling damage by 1D. The legs also provide STR +4 for purposes of calculating encumbrance limits. Finally, they double the character's movement speed to 12m per action (up to 24m per round if the character uses both actions for movement). This augment counts as two for the purpose of implant limits, as it replaces both legs.",
+    "shortdescr": "2x movement, jump 9m horizontally or 3m upwards, STR +4 for encumbrance",
+    "quantity": 1,
+    "weight": 0,
+    "price": 100000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Legs",
+    "type": "augment",
+    "bonus": "2x movement, jump 9m horizontally or 3m upwards, STR +4 for encumbrance",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/bionic-legs.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080267,
+    "modifiedTime": 1760016422873,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IfnYPzszfVq52GDO"
+}

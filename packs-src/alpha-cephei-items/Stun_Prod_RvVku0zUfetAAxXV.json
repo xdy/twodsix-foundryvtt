@@ -1,0 +1,81 @@
+{
+  "_id": "RvVku0zUfetAAxXV",
+  "name": "Stun Prod",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/stun-prod.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "A high-tech riot weapon augmenting the baton's blunt force with an electric charge capable of stunning opponents.<div><br></div><div>Stun: These weapons are designed to deal non-lethal damage and will incapacitate a living target instead of killing it. Damage is only deducted from END, considering any armor. If the target’s END is reduced to 0 from stun damage, the target is incapacitated and unable to perform any actions for a number of rounds by which the damage exceeded his END. Damage received from stun weapons is completely healed after one hour of rest.</div>",
+    "shortdescr": "high-tech riot weapon - stun",
+    "quantity": 1,
+    "weight": 1,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "melee",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "",
+    "useConsumableForAttack": "",
+    "magazineCost": null,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "melee",
+    "weaponType": "melee",
+    "damageType": "stun",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "Stun",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "Ucr4s7Z4eH8GXD5Z",
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080270,
+    "modifiedTime": 1760016422876,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!RvVku0zUfetAAxXV"
+}

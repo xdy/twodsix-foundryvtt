@@ -1,0 +1,82 @@
+{
+  "_id": "4ihs3dQItsCd4l3h",
+  "name": "Fusion Gun",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "techLevel": 14,
+    "description": "The advanced development of the plasma gun. This weapon fires plasma bolts undergoing microfusion for massive damage. It uses a back-mounted micro-fusion reactor and thus, for game purposes, has unlimited ammunition. The ammo cost in this case represents purchasing such a backpack. Note that the backpack and gun constitute 4 items in total for encumbrance.",
+    "shortdescr": "Advanced development of the plasma gun, firing bolts undergoing microfusion for massive damage.",
+    "quantity": 1,
+    "weight": 4,
+    "price": 100000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "300/600",
+    "damage": "12d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "",
+    "useConsumableForAttack": "",
+    "magazineCost": 65000,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "300/600",
+    "weaponType": "Ranged",
+    "damageType": "plasma",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_i181bqkw8n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Heavy Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737414,
+    "modifiedTime": 1760016422727,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.Q36RrAny7S2DTO8m",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4ihs3dQItsCd4l3h"
+}

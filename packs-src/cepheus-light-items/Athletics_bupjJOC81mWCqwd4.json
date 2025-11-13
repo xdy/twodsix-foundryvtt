@@ -1,0 +1,51 @@
+{
+  "_id": "bupjJOC81mWCqwd4",
+  "name": "Athletics",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The ability to exert oneself physically. You may add the Athletics skill to appropriate physical characteristic rolls. This skill is never rolled unskilled.",
+    "shortdescr": "The ability to exert oneself physically",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zjco251t0w",
+      "path": "ce light-skills",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/athletics-dexterity.svg",
+  "effects": [],
+  "folder": "nIXJisBXpvXMn3Tn",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079717,
+    "modifiedTime": 1760016422159,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!bupjJOC81mWCqwd4"
+}

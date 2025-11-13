@@ -1,0 +1,58 @@
+{
+  "name": "Navigation",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character is trained in the science of normal and Jump space navigation. The Navigator on a starship plots the course and ensures that the astrogational information required by the pilot and other crewmembers is available when it is needed. This skill includes the ability to determine a ship's new location after a Jump ends, plotting a standard course through normal space, and plotting a Jump route through Jump space. A starship cannot make a Jump safely without a Jump route.",
+    "shortdescr": "The character is trained in the science of normal and Jump space navigation.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Basic Skills",
+    "name": "Navigation",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/navigation.svg",
+  "effects": [],
+  "folder": "m6tGZ1EpvUcP9rMv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709132925630,
+    "modifiedTime": 1760016421885,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "MWBvQexdgVjkbzak",
+  "sort": 600000,
+  "_key": "!items!MWBvQexdgVjkbzak"
+}

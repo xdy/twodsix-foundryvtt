@@ -1,0 +1,70 @@
+{
+  "_id": "0kRLhrOGyFZDeyXW",
+  "name": "Vehicle Combat",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Vehicle Combat",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h2>VEHICLE COMBAT</h2>\n<table style=\"width:42.6287%;height:162px\" border=\"1\">\n<tbody>\n<tr style=\"height:18px\">\n<th style=\"width:17.5482%;height:18px;text-align:left\">2D</th>\n<th style=\"width:39.5534%;height:18px;text-align:left\">Regular</th>\n<th style=\"width:42.1389%;height:18px;text-align:left\">Critical</th>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">4-</td>\n<td style=\"width:39.5534%;height:18px\">Breach</td>\n<td style=\"width:42.1389%;height:18px\">Knocked out</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">5</td>\n<td style=\"width:39.5534%;height:18px\">Cargo</td>\n<td style=\"width:42.1389%;height:18px\">Knocked out</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">6</td>\n<td style=\"width:39.5534%;height:18px\">Crew</td>\n<td style=\"width:42.1389%;height:18px\">Knocked out</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">7</td>\n<td style=\"width:39.5534%;height:18px\">Weapon</td>\n<td style=\"width:42.1389%;height:18px\">Crew</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">8-9</td>\n<td style=\"width:39.5534%;height:18px\">Locomotion</td>\n<td style=\"width:42.1389%;height:18px\">Crew</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">10</td>\n<td style=\"width:39.5534%;height:18px\">Electronics</td>\n<td style=\"width:42.1389%;height:18px\">Destroyed</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">11</td>\n<td style=\"width:39.5534%;height:18px\">Power plant</td>\n<td style=\"width:42.1389%;height:18px\">Destroyed</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:17.5482%;height:18px\">12</td>\n<td style=\"width:39.5534%;height:18px\">Critical</td>\n<td style=\"width:42.1389%;height:18px\">Destroyed</td>\n</tr>\n</tbody>\n</table>\n<p>Breach: the vehicle’s seal compromised. NBC protection fails; a small watercraft will sink within 1D rounds unless repaired.</p>\n<p>Cargo: whole or part of the vehicle’s cargo is destroyed (Referee’s choice).</p>\n<p>Crew: apply 2D damage to all crew and passengers.<br />Weapon: one weapon is destroyed or disabled (Referee’s choice). Locomotion: the vehicle cannot move.</p>\n<p>Electronics: the vehicle’s electronics are fried.</p>\n<p>Power Plant: the vehicle cannot move or use energy-dependent systems.</p>\n<p>Critical: roll on the Critical Damage column instead.</p>\n<p>Knocked Out: the vehicle is rendered inoperable and is completely out of combat. The crew take no damage.</p>\n<p>Destroyed: the vehicle is destroyed. Apply 5D damage to all crew and passengers unless they throw Physical 8+ to bail out in time.</p>\n<h2>REPAIRING VEHICLES</h2>\n<p>Once combat is over, throw Technical 8+ to return a damaged or disabled system back to functionality. This consumes 1D units of mechanical or electronic parts (as relevant). The Referee may decide that certain repairs require a workshop or unique parts. Knocked Out vehicles can be salvaged or possibly towed for repair in a workshop. Destroyed vehicles are unsalvageable.</p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "h2s7oWeZeq50q6xV",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!0kRLhrOGyFZDeyXW.h2s7oWeZeq50q6xV"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079944,
+    "modifiedTime": 1760016422408,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!0kRLhrOGyFZDeyXW"
+}

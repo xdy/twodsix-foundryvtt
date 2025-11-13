@@ -1,0 +1,70 @@
+{
+  "_id": "vZCIzm7DyaWb7Z7q",
+  "name": "Common Weapons",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Common Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<div class=\"page\" title=\"Page 13\">\n<div class=\"layoutArea\">\n<div class=\"column\">\n<table style=\"width:99.1354%;height:180px\" border=\"1\">\n<tbody>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Weapon</td>\n<td style=\"width:9.03564%;height:18px\">Cost (TU)</td>\n<td style=\"width:12.8455%;height:18px\">Range</td>\n<td style=\"width:8.44902%;height:18px\">DMG</td>\n<td style=\"width:45.1037%;height:18px\">Notes</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Dagger or Knife</td>\n<td style=\"width:9.03564%;height:18px\">10</td>\n<td style=\"width:12.8455%;height:18px\">5/10</td>\n<td style=\"width:8.44902%;height:18px\">1D</td>\n<td style=\"width:45.1037%;height:18px\">May be thrown</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Club or Staff</td>\n<td style=\"width:9.03564%;height:18px\">5</td>\n<td style=\"width:12.8455%;height:18px\">-</td>\n<td style=\"width:8.44902%;height:18px\">2D</td>\n<td style=\"width:45.1037%;height:18px\">Two-handed</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Spear</td>\n<td style=\"width:9.03564%;height:18px\">10</td>\n<td style=\"width:12.8455%;height:18px\">5/2-</td>\n<td style=\"width:8.44902%;height:18px\">2D</td>\n<td style=\"width:45.1037%;height:18px\">May be thrown</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Axe or Machete</td>\n<td style=\"width:9.03564%;height:18px\">10</td>\n<td style=\"width:12.8455%;height:18px\">-</td>\n<td style=\"width:8.44902%;height:18px\">2D</td>\n<td style=\"width:45.1037%;height:18px\">May serve as tool</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Sword or Cutlass</td>\n<td style=\"width:9.03564%;height:18px\">20</td>\n<td style=\"width:12.8455%;height:18px\">-</td>\n<td style=\"width:8.44902%;height:18px\">3D</td>\n<td style=\"width:45.1037%;height:18px\"> </td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Battleaxe or Broadsword</td>\n<td style=\"width:9.03564%;height:18px\">25</td>\n<td style=\"width:12.8455%;height:18px\">-</td>\n<td style=\"width:8.44902%;height:18px\">4D</td>\n<td style=\"width:45.1037%;height:18px\">Two-handed</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Hand Crosbow or Zip Gun</td>\n<td style=\"width:9.03564%;height:18px\">20</td>\n<td style=\"width:12.8455%;height:18px\">10/50</td>\n<td style=\"width:8.44902%;height:18px\">2D </td>\n<td style=\"width:45.1037%;height:18px\">1 combat round to reload</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Shotgun</td>\n<td style=\"width:9.03564%;height:18px\">75</td>\n<td style=\"width:12.8455%;height:18px\">20/40</td>\n<td style=\"width:8.44902%;height:18px\">4D</td>\n<td style=\"width:45.1037%;height:18px\">Scattergun, 1 combat round to reload; two- handed</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:23.5414%;height:18px\">Improvised SMG</td>\n<td style=\"width:9.03564%;height:18px\">100</td>\n<td style=\"width:12.8455%;height:18px\">30/60</td>\n<td style=\"width:8.44902%;height:18px\">2D</td>\n<td style=\"width:45.1037%;height:18px\">Automatic, 1 combat round to reload</td>\n</tr>\n<tr>\n<td style=\"width:23.5414%\">Pipe Rifle, Crossbow, or<br />Bow</td>\n<td style=\"width:9.03564%\">50</td>\n<td style=\"width:12.8455%\">50/150</td>\n<td style=\"width:8.44902%\">2D</td>\n<td style=\"width:45.1037%\">1 combat round to reload; two-handed</td>\n</tr>\n<tr>\n<td style=\"width:23.5414%\">Pipe Bomb</td>\n<td style=\"width:9.03564%\">20</td>\n<td style=\"width:12.8455%\">10/20</td>\n<td style=\"width:8.44902%\">4D</td>\n<td style=\"width:45.1037%\">Blast, AV 3D</td>\n</tr>\n<tr>\n<td style=\"width:23.5414%\">Molotov Cocktail</td>\n<td style=\"width:9.03564%\">5</td>\n<td style=\"width:12.8455%\">10/20</td>\n<td style=\"width:8.44902%\">2D</td>\n<td style=\"width:45.1037%\">Blast, Fire, AV 2D</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<ul>\n<li><strong>Small-arm ammunition</strong> costs 40 TU per 20 rounds or bolts.</li>\n<li><strong>Two-handed</strong>: uses for the character’s hands; the character may not use a shield together with a two-handed weapon.</li>\n<li><strong>Scattergun</strong>: DM+2 vs. flying targets; DM+1 vs. targets in Effective range; may hit up to 2 adjacent targets.</li>\n<li><strong>Blast</strong>: causes damage to up to 3 adjacent targets.</li>\n<li><strong>Fire</strong>: target catches fire on 6+; burning targets suffer 2D damage per round for 1D rounds, or until put out.</li>\n<li><strong>AV</strong>: Anti-Vehicular dice (see Combat and Vehicles).</li>\n<li><strong>Automatic</strong>: May attack twice per combat round (any target); both attacks together spend 3 rounds of ammunition.</li>\n</ul>\n<p>Note that unless stated otherwise, firearms have AV 1D; melee or mechanical- ranged weapons can rarely damage vehicles in combat.</p>\n</div>\n</div>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "grsGS3a0YpxyCWd6",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!vZCIzm7DyaWb7Z7q.grsGS3a0YpxyCWd6"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079949,
+    "modifiedTime": 1760016422420,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!vZCIzm7DyaWb7Z7q"
+}

@@ -1,0 +1,77 @@
+{
+  "_id": "sxjG4cZ46rC7xG60",
+  "name": "Shotgun",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/shotgun.svg",
+  "system": {
+    "name": "Shotgun",
+    "techLevel": 4,
+    "description": "Shotgun (TL4): Scattergun firing a \"shot\" palette capable of hitting multiple targets at once. These particulate stats represent a pump-action weapon with an internal magazine.<br>br&gt;Scattergun: Each attack fills the air with a hail of small projectiles, either flechettes or shot. Scatterguns cause 4D damage at Effective range or closer and attacks with scatterguns are DM+1. Anyone within 1.5m of the main target is also attacked by the scattergun effect. Scatterguns enjoy DM+2 to hit flying targets within Effective range. Beyond Effective range, scatterguns only inflict 2D damage and have no bonus to hit.",
+    "shortdescr": "Shotgun - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 1.5,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "20/40",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "6",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "7",
+    "rangeBand": "20/40",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079726,
+    "modifiedTime": 1760016422179,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!sxjG4cZ46rC7xG60"
+}

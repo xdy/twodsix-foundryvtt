@@ -1,0 +1,78 @@
+{
+  "_id": "ogRMoXu3bVTg6dXY",
+  "name": "Dagger",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/dagger.svg",
+  "system": {
+    "name": "Dagger",
+    "techLevel": 0,
+    "description": "A straight, short knife.",
+    "shortdescr": "Dagger - melee",
+    "quantity": 1,
+    "weight": 1,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0 or 5/10 (thrown)",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "5",
+    "rangeBand": "reach or thrown",
+    "weaponType": "melee",
+    "damageType": "piercing",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "Ucr4s7Z4eH8GXD5Z",
+  "sort": 1400000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080276,
+    "modifiedTime": 1760016422882,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ogRMoXu3bVTg6dXY"
+}

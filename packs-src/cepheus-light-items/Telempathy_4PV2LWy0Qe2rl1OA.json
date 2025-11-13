@@ -1,0 +1,70 @@
+{
+  "name": "Telempathy",
+  "type": "psiAbility",
+  "img": "systems/twodsix/assets/icons/extra-lucid.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 2,
+    "type": "psiAbility",
+    "description": "Telempathy (PSI 2, 20m): the telepath can read and communicate basic emotions; they may also attempt to influence the behavior of sentient beings and aliens, subject to Referee discretion.",
+    "shortdescr": "Telempathy (PSI 2, 20m)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 2,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_id": "4PV2LWy0Qe2rl1OA",
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.JqNsof4jmSBmopuA",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569429079,
+    "modifiedTime": 1760016422139,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!4PV2LWy0Qe2rl1OA"
+}

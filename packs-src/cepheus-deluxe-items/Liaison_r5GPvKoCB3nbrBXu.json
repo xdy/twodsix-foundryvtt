@@ -1,0 +1,53 @@
+{
+  "_id": "r5GPvKoCB3nbrBXu",
+  "name": "Liaison",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/liaison.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "SOC",
+    "type": "skills",
+    "description": "Liaison: negotiation and diplomacy in a myriad of social situations. This skill covers diplomatic meetings, haggling in interstellar trading negotiations, or at the shouq, and talking down a gunman who is holding hostages.<br><br>Examples: throw Liaison/SOC 8+ to strike a deal with a reluctant alien merchant. Throw Liaison/INT 8+ to read a room and negotiate with the person who really makes the decisions. Throw Liaison/EDU 10+ to understand proper etiquette when dealing with an honor-based culture. Throw Liaison/INT opposed by Liaison/INT to haggle over a price.",
+    "shortdescr": "Negotiation and diplomacy in a myriad of social situations",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737477,
+    "modifiedTime": 1760016422776,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.WGIiT2CCuzxPJd1x",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!r5GPvKoCB3nbrBXu"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Psionics",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "3tvDUg0aKiHbJ8Du",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "twodsix",
+    "systemVersion": "5.10.1",
+    "createdTime": 1730569429053,
+    "modifiedTime": 1730569429053,
+    "lastModifiedBy": "B4JSPh84Wx3wBFTK"
+  },
+  "description": "",
+  "_key": "!folders!3tvDUg0aKiHbJ8Du"
+}

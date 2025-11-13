@@ -1,0 +1,69 @@
+{
+  "_id": "3spXEoAhJ5HzPgeg",
+  "name": "Ship Penetration Matrix - Starship",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_n6q9yayby2"
+    }
+  },
+  "pages": [
+    {
+      "name": "Ship Penetration Matrix - Starship",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:100%\" border=\"1\">\n<tbody>\n<tr>\n<th style=\"width:9.05466%\">Weapon / Armor</th>\n<th style=\"width:23.2014%\">Unarmored</th>\n<th style=\"width:22.185%\">Light</th>\n<th style=\"width:22.863%\">Heavy</th>\n<th style=\"width:22.863%\">Massive</th>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.05466%\">Light</td>\n<td style=\"text-align:center;vertical-align:middle;width:23.2014%\">@Compendium[twodsix.twodsix-macros.DYW2X8dLR1uIHdqt]{Internal}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.185%\">@Compendium[twodsix.twodsix-macros.Qe55Wd3Tv24Qg5b0]{Surface Hit}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.863%\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">Undamaged</span></td>\n<td style=\"text-align:center;vertical-align:middle;width:22.863%\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">Undamaged</span></td>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.05466%\">Intermediate</td>\n<td style=\"text-align:center;width:23.2014%\">@Compendium[twodsix.twodsix-macros.HWU3NBJ6EypWuAJg]{Critical}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.185%\">@Compendium[twodsix.twodsix-macros.DYW2X8dLR1uIHdqt]{Internal}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.863%\">@Compendium[twodsix.twodsix-macros.Qe55Wd3Tv24Qg5b0]{Surface Hit}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.863%\">Undamaged</td>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.05466%\">Heavy</td>\n<td style=\"text-align:center;width:23.2014%\">Destroyed</td>\n<td style=\"text-align:center;width:22.185%\">@Compendium[twodsix.twodsix-macros.HWU3NBJ6EypWuAJg]{Critical}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.863%\">@Compendium[twodsix.twodsix-macros.DYW2X8dLR1uIHdqt]{Internal}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.863%\">@Compendium[twodsix.twodsix-macros.Qe55Wd3Tv24Qg5b0]{Surface Hit}</td>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.05466%\">Main Gun</td>\n<td style=\"text-align:center;width:23.2014%\">Destroyed</td>\n<td style=\"text-align:center;width:22.185%\">Destroyed</td>\n<td style=\"text-align:center;width:22.863%\">@Compendium[twodsix.twodsix-macros.HWU3NBJ6EypWuAJg]{Critical}</td>\n<td style=\"vertical-align:middle;text-align:center;width:22.863%\">@Compendium[twodsix.twodsix-macros.DYW2X8dLR1uIHdqt]{Internal}</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "F4SpdsxHRtNerlQN",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!3spXEoAhJ5HzPgeg.F4SpdsxHRtNerlQN"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080324,
+    "modifiedTime": 1760016422939,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "JournalEntry.hzmkDRusx8Lj457M",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!3spXEoAhJ5HzPgeg"
+}

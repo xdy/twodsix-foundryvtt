@@ -1,0 +1,166 @@
+{
+  "_id": "6X7meekNttl4CisQ",
+  "name": "Reactions",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CA Tables",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/meeple-group.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "rxX5c70zJlpDimNs",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hostile; attacks",
+      "name": "",
+      "_key": "!tables.results!6X7meekNttl4CisQ.rxX5c70zJlpDimNs"
+    },
+    {
+      "_id": "TPSN2Kf0zU4Hxp7h",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unfriendly; may attack",
+      "name": "",
+      "_key": "!tables.results!6X7meekNttl4CisQ.TPSN2Kf0zU4Hxp7h"
+    },
+    {
+      "_id": "SzWXCkJB0jWv58Jb",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Neutral; suspicious",
+      "name": "",
+      "_key": "!tables.results!6X7meekNttl4CisQ.SzWXCkJB0jWv58Jb"
+    },
+    {
+      "_id": "DrBveBUZJpSZ6x40",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "indifferent; uninterested",
+      "name": "",
+      "_key": "!tables.results!6X7meekNttl4CisQ.DrBveBUZJpSZ6x40"
+    },
+    {
+      "_id": "bIgeX5f0JZTJMICT",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Friendly; helpful",
+      "name": "",
+      "_key": "!tables.results!6X7meekNttl4CisQ.bIgeX5f0JZTJMICT"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080061,
+    "modifiedTime": 1760016422589,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!6X7meekNttl4CisQ"
+}

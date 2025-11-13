@@ -1,0 +1,53 @@
+{
+  "name": "Repair",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/mechanic.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "Repair: the ability to maintain, repair and build mechanical and electronic devices of all sorts. This skill also covers lockpicking, both mechanical and electronic. Ship-specific systems are handled by the Engineering skill, and Computers covers the use of electronic devices.<br><br>Examples: throw Repair/INT 6+ to repair a damaged vehicle at a workshop. Throw Repair/END 8+ to do the same repairs, but in one night. Throw Repair/EDU 8+ to restore a vehicle that is no longer functioning. For all these tasks, the character will need an ample supply of parts.",
+    "shortdescr": "Maintain, repair and build mechanical and electronic devices",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "EXNdfNMEbS71h6dq",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737426,
+    "modifiedTime": 1760016422735,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.yHSxJVMUhz2U22Sr",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!EXNdfNMEbS71h6dq"
+}

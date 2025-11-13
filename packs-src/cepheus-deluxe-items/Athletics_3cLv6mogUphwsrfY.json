@@ -1,0 +1,53 @@
+{
+  "name": "Athletics",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/athletics-dexterity.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "END",
+    "type": "skills",
+    "description": "Athletics: the ability to exert oneself physically. You may add the Athletics skill to appropriate physical characteristic rolls. This skill is never rolled unskilled.<br><br>Examples: throw Athletics/END 6+ to swim against a powerful current. To move past obstacles while running, using Parkour-style moves, throw Athletics/DEX 8+. To climb a rope quickly, throw Athletics/STR 8+.",
+    "shortdescr": "The ability to exert oneself physically",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "3cLv6mogUphwsrfY",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737412,
+    "modifiedTime": 1760016422727,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.bupjJOC81mWCqwd4",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!3cLv6mogUphwsrfY"
+}

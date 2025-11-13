@@ -1,0 +1,192 @@
+{
+  "_id": "yjp9Pyb8naxKGPw0",
+  "name": "Unusual Weather Table",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CA Tables",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/thermometer-hot.svg",
+  "description": "Characters exploring post-Collapse wastelands risk exposure to extreme and unusual weather.  Shelter allows the party to avoid the unusual weather event’s effects.",
+  "results": [
+    {
+      "_id": "Du3K9iibLKkRCnpg",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/whirlwind.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tornado: Movement rate is halved; structures the characters are in may collapse at the Referee’s discretion.",
+      "name": "",
+      "_key": "!tables.results!yjp9Pyb8naxKGPw0.Du3K9iibLKkRCnpg"
+    },
+    {
+      "_id": "FTNq76BFgR08m01l",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/snowing.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Blizzard: Movement rate is halved; characters may only see to a range of 3m and suffer DM-1 to ranged attack throws.",
+      "name": "",
+      "_key": "!tables.results!yjp9Pyb8naxKGPw0.FTNq76BFgR08m01l"
+    },
+    {
+      "_id": "ERthgPyIKe3qks8h",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/fog.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Thick fog or Dust Storm: Movement rate is halved; travelers must throw Survival 8+ to avoid getting lost.",
+      "name": "",
+      "_key": "!tables.results!yjp9Pyb8naxKGPw0.ERthgPyIKe3qks8h"
+    },
+    {
+      "_id": "e7KKgYjKwwmahRpT",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/heavy-rain.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sandstorm or Acid Rain: As dust storm, and unprotected creatures suffer 1 point of damage per turn (10 minutes) or exposure.",
+      "name": "",
+      "_key": "!tables.results!yjp9Pyb8naxKGPw0.e7KKgYjKwwmahRpT"
+    },
+    {
+      "_id": "AuUrVBhePPpe6u2X",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/lightning-tree.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Superlightning Storm: Throw 10+ once for the storm for a random unprotected character to be hit by lightning for 4D damage if outdoors.",
+      "name": "",
+      "_key": "!tables.results!yjp9Pyb8naxKGPw0.AuUrVBhePPpe6u2X"
+    },
+    {
+      "_id": "89A0U9PMHYZqdPUZ",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/radioactive.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Radioactive Blowout!: As dust storm, and unprotected creatures must throw Survival 6+ or gain a level of Contamination.",
+      "name": "",
+      "_key": "!tables.results!yjp9Pyb8naxKGPw0.89A0U9PMHYZqdPUZ"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080066,
+    "modifiedTime": 1760016422596,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!yjp9Pyb8naxKGPw0"
+}

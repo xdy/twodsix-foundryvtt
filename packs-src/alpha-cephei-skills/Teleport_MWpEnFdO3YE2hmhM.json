@@ -1,0 +1,55 @@
+{
+  "name": "Teleport",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "PSI",
+    "type": "skills",
+    "description": "Teleportation allows instant travel between locations. The psion may only teleport their body, clothes, and personal equipment.<div><br><div>Characters cannot teleport to solid locations (for example, teleporting into solid rock). Unknowingly trying that expends one Psionics point before the power fails.\n</div><div><br></div><div>Blink (1 PSI, personal): teleport 5m in any direction while carrying up to a Light Load encumbrance.\n</div><div><br></div><div>Teleport Self (PSI 7, personal): teleport up to 5000km with a Light Load encumbrance.\n</div><div><br></div><div>Heavy Teleport (PSI 11, personal): as Teleport Self above, but allows up the teleporter to teleport while carrying up to a Heavy Load encumbrance, including carrying another living being.</div></div>",
+    "shortdescr": "Blink (1 PSI, 5m)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ok68zut371",
+      "path": "ce light-psionics",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/blink.svg",
+  "effects": [],
+  "folder": "HvZvDaB5SC7wC3gv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700428404954,
+    "modifiedTime": 1760016422623,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "MWpEnFdO3YE2hmhM",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!MWpEnFdO3YE2hmhM"
+}

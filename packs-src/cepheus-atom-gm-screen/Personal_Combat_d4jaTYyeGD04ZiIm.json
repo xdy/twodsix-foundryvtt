@@ -1,0 +1,70 @@
+{
+  "_id": "d4jaTYyeGD04ZiIm",
+  "name": "Personal Combat",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Personal Combat",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p><strong>Surprise</strong>: When two potentially hostile parties encounter one another, there is a chance that either group will be surprised. Each party throws Physical 6+. If one party succeeds and the other fails, the successful side surprises the other and enjoys one free round of action. If both parties succeed or fail, there is no surprise. Apply DM+3 to the throw for any party setting up an ambush, and DM-1 to the throw for any party that has vehicles or that consists of groups of over 10 creatures.</p>\n<p><strong>Initiative:</strong> at the beginning of combat, each character throws 2D and adds their Combat skill for their Initiative score. Characters act in order from the highest to the lowest Initiative.</p>\n<p><strong>Time and movement</strong>: A combat round represents 6 seconds of in-game time. During which, characters may move up to 10m and attack or move 20m without attacking.</p>\n<p><strong>Attacking</strong>: throw Combat 8+ to hit a target in melee or within Effective range; this throw becomes Combat 10+ to hit targets beyond Effective range. Apply half the target's Combat skill as a -DM to hit in melee and in ranged attacks.</p>\n<p><strong>Shotguns</strong> can hit two adjacent targets at once. Throw to-hit for each. Anyone wielding an automatic weapon can attack twice each round and may switch between targets when doing so.</p>\n<p><strong>Damage</strong>: upon a hit, throw the weapon's damage dice, subtract the target's armor Protection rating (if any), and subtract the result to the target's Endurance. If the target's Endurance reaches zero, the target suffers a Minor Wound: DM-1 to all actions. After a character’s Endurance is depleted, any further damage is subtracted from Lifeblood. If the target loses more than half of their Lifeblood, they suffer a Severe Wound and are out of combat. If Lifeblood reach zero, the target dies.</p>\n<p><strong>Healing:</strong> characters recover all Endurance after a 10-minute break. Lifeblood lost in Severe Wounds requires 5D days of rest to heal.</p>\n<p><strong>Morale</strong>: monsters and NPCs rarely fight to the death. After suffering their first death, if surprised, after having sustained more than 50% casualties, or whenever NPCs suffer unduly in combat, Referees should consider rolling a Morale check. Both sides throw 2D and add their leader’s Social skill; DM-2 if the leader has been killed. If one side’s result is two times greater than the other side’s, the losing side of the Morale check will flee. Combatants get a free attack against fleeing opponents. PCs do not roll for Morale; NPCs in their service however, do.</p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "Q1KvGCtzUuaQWa6l",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!d4jaTYyeGD04ZiIm.Q1KvGCtzUuaQWa6l"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079945,
+    "modifiedTime": 1760016422409,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!d4jaTYyeGD04ZiIm"
+}

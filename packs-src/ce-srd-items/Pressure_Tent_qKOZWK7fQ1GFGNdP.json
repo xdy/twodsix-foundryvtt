@@ -1,0 +1,59 @@
+{
+  "_id": "qKOZWK7fQ1GFGNdP",
+  "name": "Pressure Tent",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "Basic pressurized shelter for two persons, providing standard atmosphere and conditions, along with protection from precipitation, storms, and up to strong winds. There is no airlock: the tent must be depressurized to enter or leave it.",
+    "shortdescr": "Pressure Tent",
+    "quantity": 1,
+    "weight": 25,
+    "price": 2000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_9sigdpo13em",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Shelters",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079881,
+    "modifiedTime": 1760016422342,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!qKOZWK7fQ1GFGNdP"
+}

@@ -1,0 +1,78 @@
+{
+  "_id": "rHGoaFkDBwDqXowN",
+  "name": "Submachinegun",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/submachinegun.svg",
+  "system": {
+    "name": "Submachinegun",
+    "techLevel": 5,
+    "description": "A small automatic weapon designed to fire pistol ammunition. Magazines holding 30 cartridges are inserted into the weapon forward of the trigger guard or in the pistol grip, depending on the design. The gun fires a burst of four rounds per pull of the trigger. Replacement of an empty magazine requires one combat round. Submachinegun ammunition (but not magazines) is interchangeable with autopistol ammunition. Most submachineguns are equipped with slings for ease of carrying. Some are small enough to be carried in a shoulder or hip holster.",
+    "shortdescr": "Submachinegun - ranged",
+    "quantity": 1,
+    "weight": 2.5,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Slug Pistol)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 30,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 20,
+    "type": "weapon",
+    "lawLevel": "4",
+    "rangeBand": "assaultWeapon",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "0/4",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696590467,
+    "modifiedTime": 1760016422342,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.rHGoaFkDBwDqXowN",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!rHGoaFkDBwDqXowN"
+}

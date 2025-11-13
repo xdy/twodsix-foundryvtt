@@ -1,0 +1,45 @@
+{
+  "_id": "giRXRaFHVqAmxERm",
+  "name": "Melee: Natural",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "name": "Skill Name",
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "",
+    "shortdescr": "",
+    "subtype": "",
+    "reference": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal"
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079512,
+    "modifiedTime": 1760016422036,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!items!giRXRaFHVqAmxERm"
+}

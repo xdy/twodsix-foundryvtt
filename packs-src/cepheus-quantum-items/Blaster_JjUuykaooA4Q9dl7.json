@@ -1,0 +1,78 @@
+{
+  "_id": "JjUuykaooA4Q9dl7",
+  "name": "Blaster",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/blaster.svg",
+  "system": {
+    "name": "Laser Pistol",
+    "techLevel": 13,
+    "description": "Advanced laser weapons with a compact, internal battery, which is also removable and rechargeable.",
+    "shortdescr": "Blaster - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "50/200",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "20",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "50/200",
+    "weaponType": "ranged",
+    "damageType": "laser",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "GPBSNXRjYCvOMJl6",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_dakj2vd78j8",
+      "path": "cepheus quantum#/CF_SEP/CQ - Weapons",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079910,
+    "modifiedTime": 1760016422356,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!JjUuykaooA4Q9dl7"
+}

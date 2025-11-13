@@ -1,0 +1,252 @@
+{
+  "name": "Minor Detrimental Mutations",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_euiamf65fq",
+      "path": "CA Tables#/CF_SEP/Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "qoTukm8XGBsG9n9b",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/snail.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Mobility Impaired",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.YKWaDIq7GQZrCUvi",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.qoTukm8XGBsG9n9b"
+    },
+    {
+      "_id": "EJksZHYp1WRfGH3J",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/assault.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Frequent Migraines",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.YPDNG64Z08rySyB4",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.EJksZHYp1WRfGH3J"
+    },
+    {
+      "_id": "iaIfsfwVQneIvvwh",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/heart-minus.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Environmental Sensitivity",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.ZNb1QK02XrPk1t4k",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.iaIfsfwVQneIvvwh"
+    },
+    {
+      "_id": "7El04NYPXSPxTGY7",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/octoman.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Aberrant Deformity",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.BeZqmERfsUWviU9Z",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.7El04NYPXSPxTGY7"
+    },
+    {
+      "_id": "nOjcNNxpdOZB5oZd",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/shambling-zombie.svg",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Bizarre Appearance",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.hYXsiOEBT5Ig9P05",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.nOjcNNxpdOZB5oZd"
+    },
+    {
+      "_id": "6dxzwI1Gwrtjlhqm",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/chronic-asthma.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Chronic Asthma",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Ef55QoH4tMtDQkHg",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.6dxzwI1Gwrtjlhqm"
+    },
+    {
+      "_id": "LFiZ0pwlzyOhA1CI",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/hearing-disabled.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Poor Hearing",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.vTN5PByNJKptTEVi",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.LFiZ0pwlzyOhA1CI"
+    },
+    {
+      "_id": "mibBHzI8w2R1xqD9",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        11,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Nervous Spasms",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.R27B4WzHA0JWXnjI",
+      "description": "",
+      "_key": "!tables.results!41IqZiwo1hivuBa8.mibBHzI8w2R1xqD9"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "41IqZiwo1hivuBa8",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080061,
+    "modifiedTime": 1760016422588,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!41IqZiwo1hivuBa8"
+}

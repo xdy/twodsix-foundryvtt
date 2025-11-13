@@ -1,0 +1,82 @@
+{
+  "name": "Baton",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/stun-prod.svg",
+  "system": {
+    "name": "Cudgel",
+    "techLevel": 5,
+    "description": "Expandable metal shaft, commonly equipped by more primitive law enforcement personnel as a non-lethal melee option. Can be collapsed into 20 cm (approx. 8 inches) rod for convenient safekeeping or concealment.",
+    "shortdescr": "Cudgel - melee",
+    "quantity": 1,
+    "weight": 1,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "9",
+    "rangeBand": "close or thrown",
+    "weaponType": "melee",
+    "damageType": "bludgeoning",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "Ucr4s7Z4eH8GXD5Z",
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700429119165,
+    "modifiedTime": 1760016422877,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "XYXEeYP60Q0XaIz6",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!XYXEeYP60Q0XaIz6"
+}

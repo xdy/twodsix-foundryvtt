@@ -1,0 +1,19 @@
+{
+  "name": "Equipment",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "XHTDs7UPCc2TSjX5",
+  "sort": 300000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "2.27.2",
+    "coreVersion": "11.294",
+    "createdTime": null,
+    "modifiedTime": 1680881022125,
+    "lastModifiedBy": "12WfDpqePx1TrVeA"
+  },
+  "_key": "!folders!XHTDs7UPCc2TSjX5"
+}

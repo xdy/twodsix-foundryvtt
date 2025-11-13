@@ -1,0 +1,882 @@
+{
+  "name": "Journalist",
+  "type": "traveller",
+  "img": "systems/twodsix/assets/icons/default_actor.png",
+  "system": {
+    "name": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "hits": {
+      "value": 21,
+      "min": 0,
+      "max": 21,
+      "lastDelta": 0
+    },
+    "gender": "",
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 2,
+      "max": 18
+    },
+    "primaryArmor": {
+      "value": "0"
+    },
+    "secondaryArmor": {
+      "value": "0"
+    },
+    "heroPoints": 2,
+    "radiationProtection": {
+      "value": "0"
+    },
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "untrainedSkill": "804k8iEQECfTXM6i",
+    "description": "",
+    "bio": "",
+    "notes": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 6,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": ""
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 8,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": ""
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 7,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": ""
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 9,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": ""
+      },
+      "education": {
+        "key": "education",
+        "value": 9,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": ""
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 8,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": ""
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 7,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": ""
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 6,
+      "units": "m",
+      "hover": false
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "items": [
+    {
+      "_id": "804k8iEQECfTXM6i",
+      "name": "Untrained",
+      "type": "skills",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.804k8iEQECfTXM6i"
+    },
+    {
+      "_id": "V9VLjmmeHyS9xT9C",
+      "name": "Omnicomm",
+      "type": "equipment",
+      "img": "systems/twodsix/assets/icons/omnicomm.svg",
+      "system": {
+        "name": "",
+        "techLevel": 8,
+        "description": "Today’s smartphones will eventually evolve into an Omnicomm, a combination of all your telecom needs in one place, with holographic augmented reality capability. Designed to integrate with whatever telecommunications networks are present on a given world. TL8 batteries for these devices last for a few days; TL9 batteries last for months between recharging.",
+        "shortdescr": "smart communicator",
+        "quantity": 1,
+        "weight": 1,
+        "price": 50,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "NiSPVxxX068jatuI",
+        "associatedSkillName": "Computers",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "type": "equipment",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_bpg3uct3zcp",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1723859809314,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.MlLa4SgNWAZAdwQk",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.V9VLjmmeHyS9xT9C"
+    },
+    {
+      "_id": "9wIEUusPenaBQMXK",
+      "name": "Streetwise",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/streetwise.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 2,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Streetwise: familiarity with underworld society and the ways of working with it. The Streetwise skill adds to the throw for finding Low Passage passengers (see the Starship Operations chapter for more details).<br>Examples: throw Streetwise/STR 8+ to intimidate gang members. Throw Streetwise/EDU 6+ to understand criminal slang. Throw Streetwise/INT 8+ to locate a fence or fixer. Throw Streetwise/INT 8+ to shadow someone in an urban environment. Throw Opposed Streetwise/INT to lose a shadow. Throw Streetwise/SOC 10+ to arrange a meet with important criminals.",
+        "shortdescr": "Familiarity with underworld society and the ways of working with it",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.4bNjvdm8HXRuDYa4",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.9wIEUusPenaBQMXK"
+    },
+    {
+      "_id": "nHTKvbhA7A5kozYL",
+      "name": "Investigation",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/investigate.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 2,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Investigation: keen observation, forensics, research, and detailed analysis.<br><br>>Examples: throw Investigation/INT 6+ to locate and extract fingerprints from a crime scene. Throw Investigation/EDU 10+ (or opposed by someone’s Admin/EDU) to uncover evidence of fraud or other irregularities in a business’ accounting practices. Throw Investigation/INT 10+ to find hidden levers, or to notice that a crime scene was disturbed before being discovered. Throw Investigation/INT 8+ to perform surveillance on a target.",
+        "shortdescr": "This skill combines keen observation, forensics, research, and detailed analysis",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1723859418405,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.isLeYQ7qxqaouJOW",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.nHTKvbhA7A5kozYL"
+    },
+    {
+      "_id": "V1gPvXVXWXHD2i0p",
+      "name": "Stealth",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/stealth.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "DEX",
+        "type": "skills",
+        "description": "Stealth: the ability to be unseen and unheard, both while stationary and moving.<br><br>Examples: sneaking past a guard is an Opposed throw where the interloper throws Stealth/DEX while the guard throws Recon/INT, or Stealth/INT, whichever is better. Throw Stealth/DEX 8+ to hide from searchlights. Throw Stealth/END 8+ if the character has to hide and stay motionless for long periods. Bypassing more advanced sensors and security systems require specialized equipment and impose higher Target Numbers. Characters without Stealth or Recon roll to spot interlopers unskilled.",
+        "shortdescr": "Training in being unseen and unheard",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.Vhk7ymYo5sn4HVYZ",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.V1gPvXVXWXHD2i0p"
+    },
+    {
+      "_id": "N3YNFizRRkzLj4UY",
+      "name": "Recon",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/recon.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Recon: scouting for danger and spotting threats, including traps. Recon also covers performing forward observation for artillery.<br><br>Examples: throw Recon/INT 8+ to correctly identify the composition of a concealed enemy force. Throw Recon/INT 10+ to identify a likely ambush kill zone. Throw Recon/INT 10+ to call down an airstrike on a large stationary target, such as a building. Throw Recon/INT 8+ to track a target in the wilderness. Throw Recon/INT 12+ to locate a devilishly hidden trap.",
+        "shortdescr": "Scouting for danger and spotting threats, including traps",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.hKNf0aBpr4jX4I1w",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.N3YNFizRRkzLj4UY"
+    },
+    {
+      "_id": "oa34ezK6BQlQKNXZ",
+      "name": "Deception",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/deception.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "SOC",
+        "type": "skills",
+        "description": "Deception: convincingly avoiding the truth and misleading other people. This skill covers sleight-of-hand and disguise as well.<br><br>Examples: throw Deception/SOC 10+ to lie your way past a corporate sentry while posing as a visiting executive. Throw Deception/INT opposed by Investigation/INT to lie during a police interrogation and not be found out. Throw Deception/END 12+ to fool a polygraph lie detector test. Throw Deception/DEX 10+ to palm a small item (can be opposed by Recon or Investigation).",
+        "shortdescr": "Convincingly avoiding the truth and misleading other people",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1723860223670,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.iQIhVdEsFHhdELN0",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.oa34ezK6BQlQKNXZ"
+    },
+    {
+      "name": "Administration",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "EDU",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
+      },
+      "flags": {
+        "cf": {
+          "id": null,
+          "path": "2e Skills",
+          "color": "#000000"
+        },
+        "core": {},
+        "twodsix": {
+          "newItem": true
+        }
+      },
+      "img": "systems/twodsix/assets/icons/admin.svg",
+      "effects": [],
+      "folder": null,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.350",
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "createdTime": 1723859199771,
+        "modifiedTime": 1723859285020,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "exportSource": null
+      },
+      "_id": "NiSPVxxX068jatuI",
+      "sort": 9100000,
+      "ownership": {
+        "default": 0,
+        "wKDpARCmanYPD5xr": 3
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.NiSPVxxX068jatuI"
+    },
+    {
+      "_id": "1s1t0BkGG96WJN4u",
+      "name": "Diplomacy",
+      "ownership": {
+        "default": 0,
+        "KrOiJLcZ94d4ZOL3": 3,
+        "wKDpARCmanYPD5xr": 3
+      },
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "SOC",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
+      },
+      "flags": {
+        "cf": {
+          "id": null,
+          "path": "2e Skills",
+          "color": "#000000"
+        },
+        "twodsix": {
+          "newItem": true
+        }
+      },
+      "img": "systems/twodsix/assets/icons/shaking-hands.svg",
+      "effects": [],
+      "folder": null,
+      "sort": 3800000,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.350",
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "createdTime": 1723859430322,
+        "modifiedTime": 1723859501509,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "exportSource": null
+      },
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.1s1t0BkGG96WJN4u"
+    },
+    {
+      "name": "Body Pistol",
+      "type": "weapon",
+      "img": "./systems/twodsix/assets/icons/body-pistol.svg",
+      "system": {
+        "name": "Body Pistol",
+        "techLevel": 8,
+        "description": "This is a specially light, discreet, and concealable weapon made from advanced polymers. A concealed body pistol can also be disguised as a number of more innocuous items, like comms, digital recorders, and so on.<br><br>Double Tap: May fire 2 shots in one attack to gain +1 to damage.",
+        "shortdescr": "Body Pistol - ranged",
+        "quantity": 1,
+        "weight": 1,
+        "price": 500,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "NiSPVxxX068jatuI",
+        "associatedSkillName": "Gun Combat",
+        "equipped": "backpack",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "5/20",
+        "damage": "2d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": 6,
+        "useConsumableForAttack": "",
+        "magazineCost": 3,
+        "type": "weapon",
+        "lawLevel": "1",
+        "rangeBand": "5/20",
+        "weaponType": "ranged",
+        "damageType": "ballistic",
+        "rateOfFire": "",
+        "doubleTap": true,
+        "recoil": false,
+        "features": "Double Tap",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "priorType": "unknown",
+        "meleeRangeModifier": "0",
+        "customCT": {
+          "armor": {
+            "nothing": "0",
+            "jack": "0",
+            "mesh": "0",
+            "cloth": "0",
+            "reflec": "0",
+            "ablat": "0",
+            "combat": "0"
+          },
+          "range": {
+            "close": "0",
+            "short": "0",
+            "medium": "0",
+            "long": "0",
+            "veryLong": "0"
+          }
+        }
+      },
+      "effects": [],
+      "folder": "8nkkiG1HAMrRLsrb",
+      "sort": 1900000,
+      "ownership": {
+        "default": 0,
+        "KrOiJLcZ94d4ZOL3": 3,
+        "wKDpARCmanYPD5xr": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_zxe7vegdsle",
+          "path": "ce light-weapons",
+          "color": "#000000"
+        },
+        "twodsix": {
+          "newItem": true
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.350",
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "createdTime": 1723859563977,
+        "modifiedTime": 1723859710815,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "exportSource": null
+      },
+      "_id": "D89UOnjqolBqBqaM",
+      "_key": "!actors.items!qKW0dP5jmWR1DWf3.D89UOnjqolBqBqaM"
+    }
+  ],
+  "effects": [],
+  "folder": "GnzimFQ7GDJKVbRi",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_rxguv8nhfha",
+      "path": "Sample NPCs",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "qKW0dP5jmWR1DWf3",
+  "prototypeToken": {
+    "name": "Journalist",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": 0,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 0.25,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_actor.png",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 0,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080405,
+    "modifiedTime": 1760016423044,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!qKW0dP5jmWR1DWf3"
+}

@@ -1,0 +1,51 @@
+{
+  "folder": "rLvsCUV36tYzFBWl",
+  "name": "Grav Belt",
+  "type": "equipment",
+  "_id": "JsLX81ii7QDhpE8T",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "Personal, wearable means of anti-gravity mobility. Its fusion battery can last for a week. For the purposes of vehicle combat and chases, this counts as an Agility +2 vehicle, with top speed of 300kph.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1,
+    "price": 100000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700423121897,
+    "modifiedTime": 1760016422874,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!JsLX81ii7QDhpE8T"
+}

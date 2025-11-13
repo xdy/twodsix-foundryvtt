@@ -1,0 +1,70 @@
+{
+  "_id": "6mlbErBcewNbq28K",
+  "name": "Personal Devices",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Personal Devices",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:300px;width:65.4119%\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Description</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cost</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">Wgt</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Magnetic Compass</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr10</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Wrist Watch</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">4</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr100</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Radiation Counter</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr250</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Metal Detector</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">6</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr300</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Hand Calculator</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">7</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr10</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">0.1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Inertial Locator</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr1,200</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">1.5</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Electromagnetic Probe</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Hand Computer</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">11</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">0.5</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Holographic Projector</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">11</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Densitometer</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">14</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr20,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">5</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Bioscanner</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">15</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr350,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">3.5</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:38.6445%\">Neural Activity Sensor</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.0183%\">15</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.661%\">Cr35,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:18.3855%\">10</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "u53EoaHEgrvdMoXU",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!6mlbErBcewNbq28K.u53EoaHEgrvdMoXU"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079926,
+    "modifiedTime": 1760016422387,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!6mlbErBcewNbq28K"
+}

@@ -1,0 +1,62 @@
+{
+  "name": "Cybernetic Eye",
+  "type": "augment",
+  "img": "./systems/twodsix/assets/icons/cybernetic-eye.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A baseline cybernetic eye replacement, providing perfect 20/20 vision. This cyber-eye looks indistinguishable from a normal eye. However, many opt to add cosmetic changes to the eye, or even exposed chrome to the eye housing.",
+    "shortdescr": "Provides perfect 20/20 vision",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "llvSmV9ytcy54Jgj",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737470,
+    "modifiedTime": 1760016422771,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.uSIFZbSd8DmOUPgN",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!llvSmV9ytcy54Jgj"
+}

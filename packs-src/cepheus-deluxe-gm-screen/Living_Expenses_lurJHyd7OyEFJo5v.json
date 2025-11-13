@@ -1,0 +1,71 @@
+{
+  "_id": "lurJHyd7OyEFJo5v",
+  "name": "Living Expenses",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_juhnhp6ng6",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Living Expenses",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:147px;width:60.0337%\" border=\"1\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:42.2076%\">Quality of Living</td>\n<td style=\"height:16px;width:29.3551%\">Mothly Cost</td>\n<td style=\"height:16px;width:34.8576%\">Daily Cost</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:42.2076%\">Starvation (SOC 0-2)</td>\n<td style=\"height:16px;width:29.3551%\">Cr200</td>\n<td style=\"height:16px;width:34.8576%\">Cr8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:42.2076%\">Subsistence (SOC 3-5)</td>\n<td style=\"height:16px;width:29.3551%\">Cr500</td>\n<td style=\"height:16px;width:34.8576%\">Cr25</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:42.2076%\">Ordinary (SOC 6-8)</td>\n<td style=\"height:16px;width:29.3551%\">Cr1,000</td>\n<td style=\"height:16px;width:34.8576%\">Cr50</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:42.2076%\">High (SOC 9-B)</td>\n<td style=\"height:16px;width:29.3551%\">Cr5,000</td>\n<td style=\"height:16px;width:34.8576%\">Cr300</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:42.2076%\">Elite (SOC C-F)</td>\n<td style=\"height:16px;width:29.3551%\">Cr15,000</td>\n<td style=\"height:16px;width:34.8576%\">Cr1,000</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "E8P6fzATPJehBVNE",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!lurJHyd7OyEFJo5v.E8P6fzATPJehBVNE"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080326,
+    "modifiedTime": 1760016422941,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.1r7Q4Y66bls0wOCm",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!lurJHyd7OyEFJo5v"
+}

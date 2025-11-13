@@ -1,0 +1,74 @@
+{
+  "folder": "mpyM4Cvw0iFsvECX",
+  "name": "Claws",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/wolverine-claws.svg",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 0,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat (Claws)",
+    "equipped": "backpack",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "ft",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": null,
+    "useConsumableForAttack": "",
+    "magazineCost": null,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "claws",
+    "weaponType": "melee",
+    "damageType": "NONE",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": null,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0"
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1708792576154,
+    "modifiedTime": 1760016421877,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "3AH2GlwhRB8fFEa4",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!3AH2GlwhRB8fFEa4"
+}

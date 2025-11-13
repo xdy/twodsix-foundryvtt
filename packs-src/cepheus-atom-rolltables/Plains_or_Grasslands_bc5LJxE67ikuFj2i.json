@@ -1,0 +1,197 @@
+{
+  "name": "Plains or Grasslands",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_83vpuw46p6n",
+      "path": "CA Tables#/CF_SEP/Encounters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/grass.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "5T5DtAO6suSBO8It",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/alien-bug.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Rad Grass",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.jPWKinBlVibKDGTh",
+      "description": "",
+      "_key": "!tables.results!bc5LJxE67ikuFj2i.5T5DtAO6suSBO8It"
+    },
+    {
+      "_id": "XhSkJXDDiOvz86oD",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/alien-bug.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Grenade Plant",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.nH69pTI8WX7l6Ift",
+      "description": "",
+      "_key": "!tables.results!bc5LJxE67ikuFj2i.XhSkJXDDiOvz86oD"
+    },
+    {
+      "_id": "NalXk1cGzLqRCDzM",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/DireWolf.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Coydogs",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.DA15e6RqozptjHD0",
+      "description": "",
+      "_key": "!tables.results!bc5LJxE67ikuFj2i.NalXk1cGzLqRCDzM"
+    },
+    {
+      "_id": "hOsEu97v9Fv7nGcd",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/Vulture.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Vulchling",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.QLAFrGpVuPbBKafc",
+      "description": "",
+      "_key": "!tables.results!bc5LJxE67ikuFj2i.hOsEu97v9Fv7nGcd"
+    },
+    {
+      "_id": "1L6IayvdSxz032KY",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/SaberToothedTiger.webp",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Tentacat",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.mBFG1d6seOdxk9R1",
+      "description": "",
+      "_key": "!tables.results!bc5LJxE67ikuFj2i.1L6IayvdSxz032KY"
+    },
+    {
+      "_id": "JV5ybOrB8KVPazc9",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Humanoids",
+      "name": "",
+      "_key": "!tables.results!bc5LJxE67ikuFj2i.JV5ybOrB8KVPazc9"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "bc5LJxE67ikuFj2i",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080065,
+    "modifiedTime": 1760016422594,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!bc5LJxE67ikuFj2i"
+}

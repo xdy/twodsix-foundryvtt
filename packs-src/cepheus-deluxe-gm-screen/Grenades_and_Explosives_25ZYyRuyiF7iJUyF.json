@@ -1,0 +1,70 @@
+{
+  "_id": "25ZYyRuyiF7iJUyF",
+  "name": "Grenades and Explosives",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_os49e6s7ia",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Grenades and Explosives",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Grenade or Explosive</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>TL</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cost</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>Dmg</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Aspects</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Dynamite</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>4</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr75</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>3D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 1D</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>EMP</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>8</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr50</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>4D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 5, Stun (Machines), Heavy: 2 AV hits</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Flashbang</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>7</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr30</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>3D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 10, Stun</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Fragmentation</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>5</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr30</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>3D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 5</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>HEAP</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>7</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr50</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>5D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 1, Heavy: 1 AV hit.</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Incendiary</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>6</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr30</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>3D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 3, Fire</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Molotov Cocktail</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>4</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr5</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>2D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 2, Fire</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Plasma</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>13</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr250</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>5D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 5, Fire, Heavy: 2 AV hits</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Plastique</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>6</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr200</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>6D</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 10</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:25.5171%\">\n<div>Smoke</div>\n</td>\n<td style=\"width:5.21966%\">\n<div>6</div>\n</td>\n<td style=\"width:7.91469%\">\n<div>Cr15</div>\n</td>\n<td style=\"width:6.10692%\">\n<div>-</div>\n</td>\n<td style=\"width:54.0788%\">\n<div>Blast 10 (smoke)</div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "fN0lfdP8ncaTyJ6Q",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!25ZYyRuyiF7iJUyF.fN0lfdP8ncaTyJ6Q"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080324,
+    "modifiedTime": 1760016422938,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!25ZYyRuyiF7iJUyF"
+}

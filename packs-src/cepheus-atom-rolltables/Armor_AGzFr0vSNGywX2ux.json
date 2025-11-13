@@ -1,0 +1,333 @@
+{
+  "name": "Armor",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_t425pvce42",
+      "path": "CA Tables#/CF_SEP/Relics#/CF_SEP/Relic Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "NsDoQxpPvy1xy0JH",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/powered-armor.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Powered Armor",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.t1bLyiAX6NuBxHvE",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.NsDoQxpPvy1xy0JH"
+    },
+    {
+      "_id": "lSK4n2oSmWkzPJDs",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/plastron.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Plastex Suit",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Q5lqTQ9lSItFurf2",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.lSK4n2oSmWkzPJDs"
+    },
+    {
+      "_id": "0eNfexpF0vFLjuRG",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/surrounded-shield.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Force Field",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.eV2WXTq0BzAS99xP",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.0eNfexpF0vFLjuRG"
+    },
+    {
+      "_id": "riC847xu7AKN1mXZ",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/environmental-protection-suit.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Rad Suit",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.OEgxlRpryIn64ZIu",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.riC847xu7AKN1mXZ"
+    },
+    {
+      "_id": "oy7UL9iaVXtnZLV9",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/cloth.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Flak Jacket",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.MDIrhMOUhd3ALIQG",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.oy7UL9iaVXtnZLV9"
+    },
+    {
+      "_id": "r13xG9vRTFK2p0Gs",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/ninja-armor.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Plasteel Jumpsuit",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.kHbr3NGFVGFErmM5",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.r13xG9vRTFK2p0Gs"
+    },
+    {
+      "_id": "MZnATgLUsAwsJ3Bh",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/mesh.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Concealed Vest",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.v3BN3FtZouBhdXHW",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.MZnATgLUsAwsJ3Bh"
+    },
+    {
+      "_id": "Ekz9bciuQQpIKF2j",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/shield.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Riot Shield",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.YqNr4GEmEKYBhTSP",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.Ekz9bciuQQpIKF2j"
+    },
+    {
+      "_id": "s14MPtFvIy1AkuYo",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Riot Armor",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.fhJ2puz5JY340S70",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.s14MPtFvIy1AkuYo"
+    },
+    {
+      "_id": "PZSC9Y2RxnC8ytLV",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/Combat-armor.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Combat Armor",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.O9HdUIZn8u9ZnJ4j",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.PZSC9Y2RxnC8ytLV"
+    },
+    {
+      "_id": "1QpsBM5P7kmFTUeT",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/combat-environment-suit.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Combat Environment Suit",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.lWV6DxeQG8V7XEQH",
+      "description": "",
+      "_key": "!tables.results!AGzFr0vSNGywX2ux.1QpsBM5P7kmFTUeT"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "AGzFr0vSNGywX2ux",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080061,
+    "modifiedTime": 1760016422589,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!AGzFr0vSNGywX2ux"
+}

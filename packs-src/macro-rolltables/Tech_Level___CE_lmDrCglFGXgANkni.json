@@ -1,0 +1,456 @@
+{
+  "_id": "lmDrCglFGXgANkni",
+  "name": "Tech Level - CE",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Engine SRD",
+  "results": [
+    {
+      "_id": "9EyY1jLu4l2DsZ93",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Primitive - No technology.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.9EyY1jLu4l2DsZ93"
+    },
+    {
+      "_id": "cdcxq8w4ahIwJ2H2",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Primitive - Roughly on a par with Bronze or Iron age technology.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.cdcxq8w4ahIwJ2H2"
+    },
+    {
+      "_id": "QhDzODFBMoFKFiOu",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Primitive - Renaissance technology.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.QhDzODFBMoFKFiOu"
+    },
+    {
+      "_id": "AZX32Qa3K6PFwsC3",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Primitive - Mass production allows for product standardization, bringing the germ of industrial revolution and steam power.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.AZX32Qa3K6PFwsC3"
+    },
+    {
+      "_id": "h3lu4GBIJD3pwOpI",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Industrial - Transition to industrial revolution is complete, bringing plastics, radio and other such inventions.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.h3lu4GBIJD3pwOpI"
+    },
+    {
+      "_id": "SvSn4mbozZU78Nhx",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Industrial - Widespread electrification, tele-communications and internal combustion.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.SvSn4mbozZU78Nhx"
+    },
+    {
+      "_id": "sNrj2J8NZt4rAJ5Z",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Industrial - Development of fission power and more advanced computing.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.sNrj2J8NZt4rAJ5Z"
+    },
+    {
+      "_id": "cQbD8LJ4pPOQ9akp",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pre-Stellar - Can reach orbit reliably and has telecommunications satellites.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.cQbD8LJ4pPOQ9akp"
+    },
+    {
+      "_id": "6b8WMdnfX589YNxb",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pre-Stellar - Possible to reach other worlds in the same system, although terraforming or full colonization is not within the culture's capacity.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.6b8WMdnfX589YNxb"
+    },
+    {
+      "_id": "0Bm0N06Kw3E5qMNg",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pre-Stellar - Development of gravity manipulation, which makes space travel vastly safer and faster; first steps into Jump Drive technology.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.0Bm0N06Kw3E5qMNg"
+    },
+    {
+      "_id": "U6avKsyDMBb0R3Xh",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Early Stellar - With the advent of Jump, nearby systems are opened up.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.U6avKsyDMBb0R3Xh"
+    },
+    {
+      "_id": "U73vcrEksjOfHXqu",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Early Stellar - The first primitive (non-creative) artificial intelligences become possible in the form of \"low autonomous\" interfaces, as computers begin to model synaptic networks.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.U73vcrEksjOfHXqu"
+    },
+    {
+      "_id": "jhpM35dPpuPYLdPl",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Average Stellar - Weather control revolutionizes terraforming and agriculture.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.jhpM35dPpuPYLdPl"
+    },
+    {
+      "_id": "0NiF3TObb5fGLbVr",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Average Stellar - The battle dress appears on the battlefield in response to the new weapons. \"High autonomous\" interfaces allow computers to become self-actuating and self-teaching.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.0NiF3TObb5fGLbVr"
+    },
+    {
+      "_id": "f406BJ4EofYs80GK",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Average Stellar - Fusion weapons become man-portable.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.f406BJ4EofYs80GK"
+    },
+    {
+      "_id": "k6HxLwlt7B3PLmGD",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "High Stellar - Black globe generators suggest a new direction for defensive technologies, while the development of synthetic anagathics means that the human lifespan is now vastly increased.",
+      "name": "",
+      "_key": "!tables.results!lmDrCglFGXgANkni.k6HxLwlt7B3PLmGD"
+    }
+  ],
+  "formula": "1d17-1",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080288,
+    "modifiedTime": 1760016422900,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "_key": "!tables!lmDrCglFGXgANkni"
+}

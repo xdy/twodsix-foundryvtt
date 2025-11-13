@@ -1,0 +1,70 @@
+{
+  "_id": "kHZk6dChVZpgo1ZH",
+  "name": "Spaceships",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Spaceships",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<table border=\"0\">\n<tbody>\n<tr>\n<th style=\"width:31%;text-align:left\">\n<p>Spaceship</p>\n</th>\n<th style=\"text-align:left\">\n<p>Acc</p>\n</th>\n<th style=\"text-align:left\">\n<p>Armor</p>\n</th>\n<th style=\"text-align:left\">\n<p>Weapons</p>\n</th>\n</tr>\n<tr>\n<td>\n<p>Fighter</p>\n</td>\n<td style=\"text-align:left\">\n<p>6</p>\n</td>\n<td style=\"text-align:left\">\n<p>N/A</p>\n</td>\n<td style=\"text-align:left\">\n<p>1x Pulse Laser (1D)</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Corsair</p>\n</td>\n<td style=\"text-align:left\">\n<p>4</p>\n</td>\n<td style=\"text-align:left\">\n<p>4</p>\n</td>\n<td style=\"text-align:left\">\n<p>2x Missiles (2D, 2 hits)</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Frigate</p>\n</td>\n<td style=\"text-align:left\">\n<p>4</p>\n</td>\n<td style=\"text-align:left\">\n<p>10</p>\n</td>\n<td style=\"text-align:left\">\n<p>2x Particle Beams (2D, 2 hits)</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Merchant or Scout</p>\n</td>\n<td style=\"text-align:left\">\n<p>2</p>\n</td>\n<td style=\"text-align:left\">\n<p>N/A</p>\n</td>\n<td style=\"text-align:left\">\n<p>2x Pulse Lasers (1D)</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "QZ7MsnoGKwb7pHlj",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!kHZk6dChVZpgo1ZH.QZ7MsnoGKwb7pHlj"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079970,
+    "modifiedTime": 1760016422450,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!kHZk6dChVZpgo1ZH"
+}

@@ -1,0 +1,62 @@
+{
+  "name": "Neural Booster",
+  "type": "augment",
+  "img": "./systems/twodsix/assets/icons/neural-booster.svg",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "This invasive augmentation to the character’s nervous system and adrenal glands greatly boosts reaction times and suppresses the fight-or-flight response. The Booster grants an additional action per combat round for a total of three. Characters with the Neural booster implant also roll to avoid Surprise with Advantage. As well, the character never suffers the unskilled penalty (DM-3) when rolling to avoid Surprise.",
+    "shortdescr": "Grants additional action per round",
+    "quantity": 1,
+    "weight": 0,
+    "price": 2000000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Full-Body",
+    "type": "equipment",
+    "bonus": "+1 Action/Round, avoid Surprise with Advantage",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "T4Rdz0U1m2hGYAmA",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737440,
+    "modifiedTime": 1760016422746,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.meu49lNsSAmPmJLY",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!T4Rdz0U1m2hGYAmA"
+}

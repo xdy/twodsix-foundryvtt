@@ -1,0 +1,70 @@
+{
+  "_id": "eMg7Au8YNzp7V1TZ",
+  "name": "Armor",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Armor",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<table style=\"height:148px\" border=\"1\">\n<tbody>\n<tr style=\"height:32px\">\n<th style=\"height:32px\">\n<p>Armor</p>\n</th>\n<th style=\"height:32px\">\n<p>Cost</p>\n</th>\n<th style=\"height:32px\">\n<p>Protection</p>\n</th>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"height:32px\">\n<p>Jack</p>\n</td>\n<td style=\"height:32px\">\n<p>Cr50</p>\n</td>\n<td style=\"height:32px\">\n<p>2</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"height:32px\">\n<p>Mesh</p>\n</td>\n<td style=\"height:32px\">\n<p>Cr150</p>\n</td>\n<td style=\"height:32px\">\n<p>3</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"height:32px\">\n<p>Cloth</p>\n</td>\n<td style=\"height:32px\">\n<p>Cr250</p>\n</td>\n<td style=\"height:32px\">\n<p>6</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"height:10px\">\n<p>Vacc Suit</p>\n</td>\n<td style=\"height:10px\">\n<p>Cr9000</p>\n</td>\n<td style=\"height:10px\">\n<p>6</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"height:10px\">\n<p>Combat Armor</p>\n</td>\n<td style=\"height:10px\">\n<p>Cr20,000</p>\n</td>\n<td style=\"height:10px\">\n<p>11</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "MjU1VdtzeNsv5zIS",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!eMg7Au8YNzp7V1TZ.MjU1VdtzeNsv5zIS"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079969,
+    "modifiedTime": 1760016422450,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!eMg7Au8YNzp7V1TZ"
+}

@@ -1,0 +1,59 @@
+{
+  "_id": "ioqodDhPSWqInIxP",
+  "name": "Lockpick Set",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "Picking a lock without Lockpicks invokes a DM-2 penalty to the attempt. Allows picking of ordinary mechanical locks. Lock pick sets are illegal on worlds of law level 8+; on such worlds the cost rises to Cr100 or more.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 25,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_0q89iy6g1yup",
+      "path": "ce ftl equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/lockpicks.svg",
+  "effects": [],
+  "folder": "daBobb1QIL60H67e",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079637,
+    "modifiedTime": 1760016422103,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ioqodDhPSWqInIxP"
+}

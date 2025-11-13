@@ -1,0 +1,59 @@
+{
+  "_id": "NKB8eIWD3tIEOIAS",
+  "name": "Holographic Projector",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "A holographic projector is a toaster-sized box that, when activated, creates a three- dimensional image in the space around it or nearby – the range is approximately three meters in all directions. The image can be given pre-programmed animations within a limited range and the projector includes speakers for making sound. The projected holograms are obviously not real so this device is mostly used for communication. The TL 12 version can produce holograms real enough to fool anyone who fails an Intelligence check (made upon first seeing the hologram), at double the cost, and the TL 13 version can produce holograms that are true-to-life images, at ten times the cost.",
+    "shortdescr": "Holographic Projector",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ob9f8dmqkqq",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Personal Devices",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079860,
+    "modifiedTime": 1760016422328,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!NKB8eIWD3tIEOIAS"
+}

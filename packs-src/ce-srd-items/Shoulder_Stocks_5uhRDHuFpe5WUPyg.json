@@ -1,0 +1,68 @@
+{
+  "name": "Shoulder Stocks",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "consumable",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "It is possible to produce a shoulder stock which may be attached temporarily to a pistol or revolver, resulting in a crude carbine arrangement and some greater accuracy at longer ranges. When firing a pistol or revolver equipped with such a stock, treat the weapon as ranged (shotgun). The overall length of the pistol is increased by the length of the stock, and the pistol cannot be holstered. Attaching the stock (or detaching it) requires five combat rounds.",
+    "shortdescr": "Shoulder Stocks",
+    "quantity": 1,
+    "weight": 1,
+    "price": 75,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "currentCount": null,
+    "max": null,
+    "type": "equipment",
+    "subtype": "other",
+    "armorPiercing": null,
+    "bonusDamage": "",
+    "isAttachment": true,
+    "bandwidth": 0,
+    "softwareActive": true,
+    "damageType": "NONE",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "useConsumableForAttack": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_kat06tm0tin",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Ranged Weapon Accessories",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/gun-stock.svg",
+  "effects": [],
+  "_id": "5uhRDHuFpe5WUPyg",
+  "folder": "Yyb7WpTe1epwPU4P",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079838,
+    "modifiedTime": 1760016422319,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!5uhRDHuFpe5WUPyg"
+}

@@ -1,0 +1,82 @@
+{
+  "_id": "R6EfoKEdLbaGQP5w",
+  "name": "Disposable Anti-Vehicle Rocket",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/disposable-anti-vehicle-rocket.svg",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "A cheap, one-use, portable rocket launcher. Functions as an armor-piercing rocket, with 2 AV hits against vehicles.<br><br>Bulky: A Bulky weapon has powerful recoil or is simply extremely heavy. This makes it difficult to use effectively in combat by someone of a weak physical stature. Characters with STR 8 or less suffer DM-2 when using such weapons. Bipod and Tripod accessories (see below) remove the Bulky aspect, as long as the weapon is stationary and mounted on the bipod or tripod.<br><br>Blast 1: This weapon has an explosive component or is otherwise effective against all targets in its blast radius. The number given is the blast radius in meters. It is possible to avoid or minimize blast damage, see Diving for Cover in the Combat chapter.",
+    "shortdescr": "Cheap one-use man-portable rocket",
+    "quantity": 1,
+    "weight": 3,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "50/200",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "50/200",
+    "weaponType": "Ranged",
+    "damageType": "NONE",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_i181bqkw8n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Heavy Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737439,
+    "modifiedTime": 1760016422745,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.CeT5wowt8AoWzA8a",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!R6EfoKEdLbaGQP5w"
+}

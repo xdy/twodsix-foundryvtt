@@ -1,0 +1,81 @@
+{
+  "_id": "LXJxCn5N3WA1dQOT",
+  "name": "Vibro-blade",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/vibro-blade.svg",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "An intermediate-sized bladed weapon using hypersonic micro-vibrations of the blade to create a potent cutting force.",
+    "shortdescr": "High-tech Blade",
+    "quantity": 1,
+    "weight": 1,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "",
+    "useConsumableForAttack": "",
+    "magazineCost": null,
+    "type": "weapon",
+    "lawLevel": "5",
+    "rangeBand": "melee",
+    "weaponType": "melee",
+    "damageType": "slashing",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "Ucr4s7Z4eH8GXD5Z",
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080268,
+    "modifiedTime": 1760016422874,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LXJxCn5N3WA1dQOT"
+}

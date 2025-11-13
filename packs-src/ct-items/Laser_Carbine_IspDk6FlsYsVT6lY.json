@@ -1,0 +1,79 @@
+{
+  "name": "Laser Carbine",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/laser-carbine.svg",
+  "system": {
+    "name": "Laser Carbine",
+    "techLevel": 8,
+    "description": "A lightweight version of the laser rifle, firing high energy bolts using current from a backpack battery/power pack. The laser carbine fires a 2mm beam of energy, aimed by integrated optic sights. The power pack is capable of producing 50 shots before it requires recharging. Recharging requires at least eight hours connected to a high-energy source. The laser carbine is connected to the power pack by a heavy-duty cable.",
+    "shortdescr": "Laser Carbine - ranged",
+    "quantity": 1,
+    "weight": 5000,
+    "price": 2500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Laser Carbine)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 50,
+    "ammo": 50,
+    "useConsumableForAttack": "",
+    "magazineCost": 200,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "laserCarbine",
+    "weaponType": "ranged",
+    "damageType": "laser",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX 5/-3 10/+2",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589532,
+    "modifiedTime": 1760016421883,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "IspDk6FlsYsVT6lY",
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!IspDk6FlsYsVT6lY"
+}

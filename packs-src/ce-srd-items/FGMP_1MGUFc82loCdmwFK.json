@@ -1,0 +1,77 @@
+{
+  "_id": "1MGUFc82loCdmwFK",
+  "name": "FGMP",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/FGMP.svg",
+  "system": {
+    "name": "FGMP",
+    "techLevel": 14,
+    "description": "It includes a gravity suspension system to reduce its inertia, making it easier to use than the PGMP (minimum Strength 9) and fires what amounts to a directed nuclear explosion. Those without radiation protection who are nearby when a FGMP is fired will suffer a lethal dose of radiation – each firing of an FGMP emits 2D6 x 20 rads, which will affect everyone within the immediate vicinity.",
+    "shortdescr": "FGMP - ranged",
+    "quantity": 1,
+    "weight": 12,
+    "price": 100000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gunnery (Heavy Weapons)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "16d6",
+    "damageBonus": 0,
+    "magazineSize": 40,
+    "ammo": "40",
+    "useConsumableForAttack": "",
+    "magazineCost": 65000,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "rad",
+    "rateOfFire": "1/4",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "KNu7KtXRzTmX5GfP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589143,
+    "modifiedTime": 1760016422312,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.1MGUFc82loCdmwFK",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!1MGUFc82loCdmwFK"
+}

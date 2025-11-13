@@ -1,0 +1,75 @@
+{
+  "name": "Assault",
+  "type": "psiAbility",
+  "img": "./systems/twodsix/assets/icons/assault.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 10,
+    "type": "psiAbility",
+    "description": "Assault (PSI 10, 250m): a brute-force telepathic assault, causing 4D damage to the target. Apply damage first to the target’s PSI, then their Stamina, and finally their Lifeblood. If all three characteristics are reduced to zero, the target dies from a brain hemorrhage. Damage from a telepathic assault regenerates as per the regular healing rules.",
+    "shortdescr": "Assault (PSI 10, 250m)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "unknown",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "4d6",
+    "damageType": "psionic",
+    "psiCost": 10,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.7AHI813ypIHThdY5",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569377982,
+    "modifiedTime": 1760016422778,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": {
+      "worldId": "blank-world-2",
+      "uuid": null,
+      "coreVersion": "12.331",
+      "systemId": "twodsix",
+      "systemVersion": "5.10.1"
+    }
+  },
+  "_id": "tZ2ePxOU5UlZGWnR",
+  "sort": 100000,
+  "_key": "!items!tZ2ePxOU5UlZGWnR"
+}

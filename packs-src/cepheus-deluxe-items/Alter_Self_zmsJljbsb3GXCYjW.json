@@ -1,0 +1,52 @@
+{
+  "name": "Alter Self",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/balaclava.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 6,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Alter Self (PSI 6, Personal): the psion can change their appearance, including their fingerprints and other biometric markers, as desired, within the limits of their species or similar subspecies (including choosing a different gender). If the psion studies a target for 10 minutes (even covertly), they can imitate this target and its biometric markers. The disguise lasts for 8 hours.",
+    "shortdescr": "change their appearance",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "zmsJljbsb3GXCYjW",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737485,
+    "modifiedTime": 1760016422782,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!zmsJljbsb3GXCYjW"
+}

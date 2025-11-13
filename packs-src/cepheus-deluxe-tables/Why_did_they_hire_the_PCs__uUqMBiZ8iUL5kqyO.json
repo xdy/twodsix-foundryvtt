@@ -1,0 +1,192 @@
+{
+  "name": "Why did they hire the PCs?",
+  "img": "systems/twodsix/assets/icons/bugle-call.svg",
+  "results": [
+    {
+      "_id": "2zJJVue7iJS2bjEP",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They needed an outside third party to avoid local political complications.",
+      "name": "",
+      "_key": "!tables.results!uUqMBiZ8iUL5kqyO.2zJJVue7iJS2bjEP"
+    },
+    {
+      "_id": "qSYoJyBjPJUrvxsK",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The PCs’ reputation preceded them.",
+      "name": "",
+      "_key": "!tables.results!uUqMBiZ8iUL5kqyO.qSYoJyBjPJUrvxsK"
+    },
+    {
+      "_id": "GGAiNFyve5ugtZ95",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The patron has an unsavory reputation and no one else will work for them.",
+      "name": "",
+      "_key": "!tables.results!uUqMBiZ8iUL5kqyO.GGAiNFyve5ugtZ95"
+    },
+    {
+      "_id": "ibrBLuUnWWj8CJTP",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The patron is pressed for time and the PCs were available.",
+      "name": "",
+      "_key": "!tables.results!uUqMBiZ8iUL5kqyO.ibrBLuUnWWj8CJTP"
+    },
+    {
+      "_id": "FrPnP34phlLr2EaT",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The patron needed anyone—the job is a diversion.",
+      "name": "",
+      "_key": "!tables.results!uUqMBiZ8iUL5kqyO.FrPnP34phlLr2EaT"
+    },
+    {
+      "_id": "fhgqfXrwWDbKll4I",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The patron has a particular interest in this group...",
+      "name": "",
+      "_key": "!tables.results!uUqMBiZ8iUL5kqyO.fhgqfXrwWDbKll4I"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z26th3l36c9",
+      "path": "Social Encounters#/CF_SEP/Patrons",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "uUqMBiZ8iUL5kqyO",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080315,
+    "modifiedTime": 1760016422925,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!uUqMBiZ8iUL5kqyO"
+}

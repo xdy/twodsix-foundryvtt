@@ -1,0 +1,53 @@
+{
+  "name": "Jack of All Trades",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Jack of All Trades: this special skill reduces the unskilled penalty (DM-3, noted above) by its level. For example, a character with Jack of All Trades at level 2 would only suffer DM-1 to all unskilled rolls. You may not gain more than 3 levels in this skill and cannot improve it after character generation.",
+    "shortdescr": "Reduces the unskilled penalty for not having the appropriate skill",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "MimpWywRazlMZnoS",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737435,
+    "modifiedTime": 1760016422741,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.XHFEYY3hSrafYANu",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!MimpWywRazlMZnoS"
+}

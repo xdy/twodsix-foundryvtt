@@ -1,0 +1,53 @@
+{
+  "name": "Carousing",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/carousing.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "SOC",
+    "type": "skills",
+    "description": "Carousing: the art of mingling in social settings to achieve your goals. Also covers gambling.<br><br>Examples: throw Carousing/SOC 6+ to gather useful rumors at a party. Throw opposed Carousing/END to drink someone under the table.",
+    "shortdescr": "The art of mingling in social settings to achieve your goals",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "vEjqQU0elc4SnrVu",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737481,
+    "modifiedTime": 1760016422779,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.Ivc9wU3L8mFObSBW",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!vEjqQU0elc4SnrVu"
+}

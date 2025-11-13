@@ -1,0 +1,73 @@
+{
+  "folder": "WM0MvR08jIVlUsUq",
+  "name": "Tangler",
+  "type": "weapon",
+  "_id": "vYz6QCX5AIFZI4B6",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "A stubby, tube-like weapon using a graviic launch system to deliver a capsule to its target. On a hit, the capsule erupts into a mass of adhesive tentacle-like strands, entangling the target creature and any other creature within a 5m radius. Any creature caught in the strands must roll STR 12+ to break out. The Tangler Gun creates enough strands to entangle a creature up to 500kg in weight; larger creatures are unaffected. On a failed roll, the target is immobilized and cannot act; they may attempt to free themselves each minute (10 combat rounds). Other characters can also cut entangled targets free using edged weapons. The Tangler comes with solvent capsules – which the weapon itself can launch as projectiles – which dissolve the tangling strands holding captives. Tangler strands hit with a solvent capsule will dissolve in one minute.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1,
+    "price": 70,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "backpack",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "30/90",
+    "damage": "0",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 100,
+    "type": "weapon",
+    "lawLevel": 0,
+    "rangeBand": "",
+    "weaponType": "ranged",
+    "damageType": "NONE",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "special attack",
+    "armorPiercing": 0,
+    "handlingModifiers": ""
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1690220374817,
+    "modifiedTime": 1760016422779,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!vYz6QCX5AIFZI4B6"
+}

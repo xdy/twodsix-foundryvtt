@@ -1,0 +1,72 @@
+{
+  "_id": "iC2Nfjdouv8002Q5",
+  "name": "Concealed Vest",
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "A jacket or body suit lined with a flexible metal or plastic mesh that gives it added protection against bullets.",
+    "shortdescr": "Mesh (TL 6)",
+    "quantity": 1,
+    "weight": 3,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 5,
+    "secondaryArmor": {
+      "value": 6,
+      "protectionTypes": [
+        "ballistic",
+        "melee"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "priorType": "unknown",
+    "armorDM": 0,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/mesh.svg",
+  "effects": [],
+  "folder": "9eBBH01N7i6zYXgF",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016423000,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 125000,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!iC2Nfjdouv8002Q5"
+}

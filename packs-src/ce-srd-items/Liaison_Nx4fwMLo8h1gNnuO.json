@@ -1,0 +1,53 @@
+{
+  "name": "Liaison",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character is trained in the art of dealing with others, including knowledge of proper protocols, manners of address, codes of conduct and other information needed when dealing with a wide range of societal types. Such a character is quite useful when attempting to negotiate a particularly edgy deal, to convince the Duke's secretary to admit the party into the Duke's presence, help settle a dispute between two opposing groups, or other acts of negotiation and diplomacy.   Influencing Others: The character can change others' attitudes with a successful check. In negotiations, participants roll opposed Liaison checks to see who gains the advantage. Opposed checks also resolve cases when two diplomats are engaged in negotiations.",
+    "shortdescr": "The character is trained in the art of dealing with others, including knowledge of proper protocols, manners of address, codes of conduct and other information needed when dealing with a wide range of societal types.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Liaison",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/liaison.svg",
+  "effects": [],
+  "_id": "Nx4fwMLo8h1gNnuO",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079861,
+    "modifiedTime": 1760016422329,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Nx4fwMLo8h1gNnuO"
+}

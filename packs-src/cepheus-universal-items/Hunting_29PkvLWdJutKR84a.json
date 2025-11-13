@@ -1,0 +1,50 @@
+{
+  "folder": "BlSeGUy0FIP77oas",
+  "name": "Hunting",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/deer-track.svg",
+  "system": {
+    "name": "",
+    "description": "Tracking in the wilderness, hunting beasts, preparing hides and meat. This&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">was previously part of the Survival skill.</span>",
+    "type": "skills",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "value": 0,
+    "shortdescr": "",
+    "subtype": "",
+    "prereq": "",
+    "key": "key",
+    "characteristic": "NONE",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": ""
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422983,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "29PkvLWdJutKR84a",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!29PkvLWdJutKR84a"
+}

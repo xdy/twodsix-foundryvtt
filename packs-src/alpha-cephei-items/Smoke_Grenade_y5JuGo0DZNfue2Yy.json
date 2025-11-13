@@ -1,0 +1,81 @@
+{
+  "_id": "y5JuGo0DZNfue2Yy",
+  "name": "Smoke Grenade",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Deploys a cloud of thick smoke upon impact. Apply -2 to all attack rolls passing through its blast radius. They also apply an additional -1 to laser weapons attacks. The smoke stays in the air for 2D combat rounds.<div><br></div><div>Blast 10: This weapon has an explosive component or is otherwise effective against targets in its blast radius. The number given is the blast radius in meters.&nbsp;</div>",
+    "shortdescr": "Deploys a cloud of thick smoke upon impact",
+    "quantity": 1,
+    "weight": 1,
+    "price": 15,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 10,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "STRx2/STRx4 (thrown)",
+    "damage": "0",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "",
+    "useConsumableForAttack": "",
+    "magazineCost": null,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown str/2*str",
+    "weaponType": "Thrown",
+    "damageType": "smoke",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "Blast 10 (smoke)",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_xjmcjdzi8ro",
+      "path": "ce light-grenades",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/smoke.svg",
+  "effects": [],
+  "folder": "wz7crqkoJIkuXViG",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080280,
+    "modifiedTime": 1760016422887,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!y5JuGo0DZNfue2Yy"
+}

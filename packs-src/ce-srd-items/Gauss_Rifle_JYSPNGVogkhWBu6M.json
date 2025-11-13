@@ -1,0 +1,77 @@
+{
+  "_id": "JYSPNGVogkhWBu6M",
+  "name": "Gauss Rifle",
+  "type": "weapon",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "name": "Gauss Rifle",
+    "techLevel": 12,
+    "description": "The ultimate development of the slug thrower, the gauss rifle generates an electromagnetic field along the length of the barrel which accelerates a bullet to high velocities. The round itself consists of a dense armor piercing core surrounded by a softer metal covering, ending in a hollow point, giving the round excellent stopping power and good armor penetration.",
+    "shortdescr": "Gauss Rifle - ranged",
+    "quantity": 1,
+    "weight": 3.5,
+    "price": 1500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Energy Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 40,
+    "ammo": "40",
+    "useConsumableForAttack": "",
+    "magazineCost": 30,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1/4/10",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589343,
+    "modifiedTime": 1760016422326,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.JYSPNGVogkhWBu6M",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!JYSPNGVogkhWBu6M"
+}

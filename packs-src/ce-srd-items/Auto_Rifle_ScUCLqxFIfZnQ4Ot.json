@@ -1,0 +1,77 @@
+{
+  "_id": "ScUCLqxFIfZnQ4Ot",
+  "name": "Auto Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/auto-rifle.svg",
+  "system": {
+    "name": "Auto Rifle",
+    "techLevel": 6,
+    "description": "A highly refined and tuned version of the rifle, capable of full automatic fire as well as semiautomatic shots. Normally, the automatic rifle fires bursts of four bullets for each pull of the trigger. It may be switched to semi-automatic fire at the end of a combat round, after all firing, in which case it is treated as a rifle until switched back to burst mode. Ammunition and magazines are identical to those used for the rifle.",
+    "shortdescr": "Auto Rifle - ranged",
+    "quantity": 1,
+    "weight": 5,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Slug Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 20,
+    "ammo": "20",
+    "useConsumableForAttack": "",
+    "magazineCost": 20,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1/4",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696588088,
+    "modifiedTime": 1760016422331,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.ScUCLqxFIfZnQ4Ot",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ScUCLqxFIfZnQ4Ot"
+}

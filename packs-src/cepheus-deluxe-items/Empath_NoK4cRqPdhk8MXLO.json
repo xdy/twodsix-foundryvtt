@@ -1,0 +1,49 @@
+{
+  "name": "Empath",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character, while not being a \"true\" psion (unless otherwise trained) possesses \"passive\" empathy allowing them to easily read another person's emotions. Whenever trying to determine an NPC's emotional state, or find out if an NPC is lying, the empath has Advantage. This also applies to games of chance and bluffing, such as poker, where reading an opponent is a central aspect to the game.",
+    "prereq": "None",
+    "shortdescr": "Advantage to determine an NPC's emotional state whether lying",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 3600000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "NoK4cRqPdhk8MXLO",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737437,
+    "modifiedTime": 1760016422742,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!NoK4cRqPdhk8MXLO"
+}

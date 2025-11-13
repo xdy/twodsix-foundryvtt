@@ -1,0 +1,81 @@
+{
+  "_id": "43nRbPqXUJPrkKz4",
+  "name": "Dynamite",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "",
+    "techLevel": 4,
+    "description": "Low-tech explosive made out of nitroglycerin, sorbents (such as powdered shells or clay) and stabilizers. Mainly used for demolition, but can also be thrown with a lit fuse as a \"grenade\". Lighting the fuse takes an action, and needs a flame.<div><br></div><div>Blast 3D: This weapon has an explosive component or is otherwise effective against targets in its blast radius. The number given is the blast radius in meters.&nbsp;</div>",
+    "shortdescr": "Crude Explosive",
+    "quantity": 1,
+    "weight": 1,
+    "price": 75,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "STRx2/STRx4 (thrown)",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown",
+    "weaponType": "Ranged",
+    "damageType": "NONE",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "Blast 3D",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_xjmcjdzi8ro",
+      "path": "ce light-grenades",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/dynamite.svg",
+  "effects": [],
+  "folder": "wz7crqkoJIkuXViG",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080262,
+    "modifiedTime": 1760016422860,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!43nRbPqXUJPrkKz4"
+}

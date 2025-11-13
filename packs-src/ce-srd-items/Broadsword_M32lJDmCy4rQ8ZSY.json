@@ -1,0 +1,79 @@
+{
+  "_id": "M32lJDmCy4rQ8ZSY",
+  "name": "Broadsword",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/broadsword.svg",
+  "system": {
+    "name": "Broadsword",
+    "techLevel": 2,
+    "description": "The largest of the sword weapons, also called the two-handed sword because it requires both hands to swing. The blade is extremely heavy, two-edged, and about 1000 to 1200mm in length. The hilt is relatively simple, generally a cross-piece only, with little basketwork or protection.  When carried, the broadsword is worn in a metal scabbard attached to the belt; less frequently, the scabbard is worn on the back, and the broadsword is drawn over the shoulder.",
+    "shortdescr": "Broadsword - melee",
+    "quantity": 1,
+    "weight": 3,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat (Slashing Weapons)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "extendedReach",
+    "weaponType": "melee",
+    "damageType": "ballistic",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "RZyQz33plmQirMxo",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696588564,
+    "modifiedTime": 1760016422328,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.M32lJDmCy4rQ8ZSY",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!M32lJDmCy4rQ8ZSY"
+}

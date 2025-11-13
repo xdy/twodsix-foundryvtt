@@ -1,0 +1,76 @@
+{
+  "_id": "Hr8C3f5MnbZ645Xu",
+  "name": "Reflec",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Armor: 0/14 vs. lasers<br><br>Reflec is highly effective against lasers but is ineffective against anything else. Reflec be worn over another suit of armor for additional anti-laser protection. Reflec armor does not count towards encumbrance.",
+    "shortdescr": "anti-laser reflective armor",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 0,
+    "secondaryArmor": {
+      "value": 14,
+      "protectionTypes": [
+        "laser"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1vxyhjhgcfw",
+      "path": "ce light-armor",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/reflec.svg",
+  "effects": [],
+  "folder": "nycPK2btpYrXRFf2",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079706,
+    "modifiedTime": 1760016422147,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!Hr8C3f5MnbZ645Xu"
+}

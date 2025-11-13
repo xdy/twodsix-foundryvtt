@@ -1,0 +1,70 @@
+{
+  "_id": "f6jcdMItYs0T7zUD",
+  "name": "Pharmaceuticals",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Pharmaceuticals",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:213px;width:485px\" border=\"0\">\n<tbody>\n<tr style=\"height:16px\">\n<th style=\"width:285px;height:16px;text-align:left\">\n<div>Pharmaceutical</div>\n</th>\n<th style=\"width:49px;height:16px;text-align:left\">\n<div>TL</div>\n</th>\n<th style=\"width:141px;height:16px;text-align:left\">\n<div>Cost</div>\n</th>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:285px;height:16px\">\n<div>@Compendium[twodsix.cepheus-light-items.rZiMsV7HGWleI9qD]{Medicinal}</div>\n</td>\n<td style=\"width:49px;height:16px\">\n<div>5+</div>\n</td>\n<td style=\"width:141px;height:16px\">\n<div>Cr5+</div>\n</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:285px;height:16px\">\n<div>@Compendium[twodsix.cepheus-light-items.Z3Pylax4aQaTkVpF]{Anti-radiation}</div>\n</td>\n<td style=\"width:49px;height:16px\">\n<div>8</div>\n</td>\n<td style=\"width:141px;height:16px\">\n<div>Cr1000</div>\n</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:285px;height:16px\">\n<div>@Item[7QtZoxjDhNAe4B8B]{Panacea}</div>\n</td>\n<td style=\"width:49px;height:16px\">\n<div>8</div>\n</td>\n<td style=\"width:141px;height:16px\">\n<div>Cr200</div>\n</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:285px;height:16px\">\n<div>@Compendium[twodsix.cepheus-light-items.rcQ0HQxa2g6fOejj]{Stim}</div>\n</td>\n<td style=\"width:49px;height:16px\">\n<div>8</div>\n</td>\n<td style=\"width:141px;height:16px\">\n<div>Cr50</div>\n</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:285px;height:16px\">\n<div>@Item[tPQ4H4frv4Rnu5hz]{Fast Forward}</div>\n</td>\n<td style=\"width:49px;height:16px\">\n<div>10</div>\n</td>\n<td style=\"width:141px;height:16px\">\n<div>Cr200</div>\n</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:285px;height:16px\">\n<div>@Item[lHCqXTymlmz2IjxJ]{Metabolic Accelerator}</div>\n</td>\n<td style=\"width:49px;height:16px\">\n<div>10</div>\n</td>\n<td style=\"width:141px;height:16px\">\n<div>Cr500</div>\n</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:285px;height:16px\">\n<div>@Compendium[twodsix.cepheus-light-items.40oAUGFAtQs4AJT0]{Medicinal Metabolic Accelerator}</div>\n</td>\n<td style=\"width:49px;height:16px\">\n<div>11</div>\n</td>\n<td style=\"width:141px;height:16px\">\n<div>Cr1000</div>\n</td>\n</tr>\n<tr style=\"height:15px\">\n<td style=\"width:285px;height:15px\">\n<div>@Compendium[twodsix.cepheus-light-items.49GCUIMSIi9CdjTJ]{Anagathic}</div>\n</td>\n<td style=\"width:49px;height:15px\">\n<div>15</div>\n</td>\n<td style=\"width:141px;height:15px\">\n<div>Cr2000</div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "xk0jLrFgd2YlqZCi",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!f6jcdMItYs0T7zUD.xk0jLrFgd2YlqZCi"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079920,
+    "modifiedTime": 1760016422380,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!f6jcdMItYs0T7zUD"
+}

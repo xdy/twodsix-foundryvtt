@@ -1,0 +1,78 @@
+{
+  "_id": "nGvTh4NNnhelRaRy",
+  "name": "Body Pistol",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/body-pistol.svg",
+  "system": {
+    "name": "Body Pistol",
+    "techLevel": 8,
+    "description": "This is a specially light, discreet, and concealable weapon made from advanced polymers. A concealed body pistol can also be disguised as a number of more innocuous items, like comms, digital recorders, and so on.<br><br>Double Tap: May fire 2 shots in one attack to gain +1 to damage.",
+    "shortdescr": "Body Pistol - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "5/20",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "6",
+    "useConsumableForAttack": "",
+    "magazineCost": 3,
+    "type": "weapon",
+    "lawLevel": "1",
+    "rangeBand": "5/20",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "",
+    "doubleTap": true,
+    "recoil": false,
+    "features": "Double Tap",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 1900000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080275,
+    "modifiedTime": 1760016422881,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!nGvTh4NNnhelRaRy"
+}

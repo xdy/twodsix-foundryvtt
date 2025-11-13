@@ -1,0 +1,70 @@
+{
+  "name": "Technology Levels",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "cpoGhFC2vX8Pn21I",
+  "pages": [
+    {
+      "name": "Technology Levels",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%\">\n<thead>\n<tr>\n<th style=\"width:9.57814%;text-align:left;vertical-align:middle\">TL</th>\n<th style=\"text-align:left;vertical-align:middle\">Descriptor</th>\n<th style=\"width:74.0154%;text-align:left;vertical-align:middle\">Notable Characteristics</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">0</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Primitive</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">No technology.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">1</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Primitive</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Roughly on a par with Bronze or Iron age technology.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">2</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Primitive</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Renaissance technology.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">3</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Primitive</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Mass production allows for product standardization, bringing the germ of industrial revolution and steam power.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">4</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Industrial</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Transition to industrial revolution is complete, bringing plastics, radio and other such inventions.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">5</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Industrial</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Widespread electrification, tele-communications and internal combustion.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">6</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Industrial</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Development of fission power and more advanced computing.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">7</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Pre-Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Can reach orbit reliably and has telecommunications satellites.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">8</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Pre-Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Possible to reach other worlds in the same system, although terraforming or full colonization is not within the culture's capacity.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">9</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Pre-Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Development of gravity manipulation, which makes space travel vastly safer and faster; first steps into Jump Drive technology.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">10 (A)</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Early Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">With the advent of Jump, nearby systems are opened up.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">11 (B)</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Early Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">The first primitive (non-creative) artificial intelligences become possible in the form of \"low autonomous\" interfaces, as computers begin to model synaptic networks.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">12 (C)</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Average Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Weather control revolutionizes terraforming and agriculture.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">13 (D)</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Average Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">The battle dress appears on the battlefield in response to the new weapons. \"High autonomous\" interfaces allow computers to become self-actuating and self-teaching.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">14 (E)</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">Average Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Fusion weapons become man-portable.</td>\n</tr>\n<tr>\n<td style=\"width:9.57814%;text-align:left;vertical-align:middle\">15 (F)</td>\n<td style=\"width:15.8251%;text-align:left;vertical-align:middle\">High Stellar</td>\n<td style=\"width:74.0154%;text-align:left;vertical-align:middle\">Black globe generators suggest a new direction for defensive technologies, while the development of synthetic anagathics means that the human lifespan is now vastly increased.</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "u8nocxq64Y1LknXp",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!cpoGhFC2vX8Pn21I.u8nocxq64Y1LknXp"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079928,
+    "modifiedTime": 1760016422390,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!cpoGhFC2vX8Pn21I"
+}

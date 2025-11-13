@@ -1,0 +1,70 @@
+{
+  "_id": "57IX7NaBKG6YAKdV",
+  "name": "Explosives",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Explosives",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:95px;width:65.5572%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:27.6163%;text-align:left;vertical-align:middle\">Weapon</td>\n<td style=\"height:16px;width:10.1231%;text-align:left;vertical-align:middle\">TL</td>\n<td style=\"height:16px;width:21.3557%;text-align:left;vertical-align:middle\">Damage</td>\n<td style=\"height:16px;width:20.7014%;text-align:left;vertical-align:middle\">Radius</td>\n<td style=\"height:16px;width:20.2035%;text-align:left;vertical-align:middle\">Cost (Cr)</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:27.6163%;text-align:left;vertical-align:middle\">Plastic</td>\n<td style=\"height:16px;width:10.1231%;text-align:left;vertical-align:middle\">6</td>\n<td style=\"height:16px;width:21.3557%;text-align:left;vertical-align:middle\">3D6</td>\n<td style=\"height:16px;width:20.7014%;text-align:left;vertical-align:middle\">2D6 meters</td>\n<td style=\"height:16px;width:20.2035%;text-align:left;vertical-align:middle\">200</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:27.6163%;text-align:left;vertical-align:middle\">Pocket Nuke</td>\n<td style=\"height:16px;width:10.1231%;text-align:left;vertical-align:middle\">12</td>\n<td style=\"height:16px;width:21.3557%;text-align:left;vertical-align:middle\">2D6 x 20</td>\n<td style=\"height:16px;width:20.7014%;text-align:left;vertical-align:middle\">15D6 meters</td>\n<td style=\"height:16px;width:20.2035%;text-align:left;vertical-align:middle\">20,000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:27.6163%;text-align:left;vertical-align:middle\">TDX</td>\n<td style=\"height:16px;width:10.1231%;text-align:left;vertical-align:middle\">12</td>\n<td style=\"height:16px;width:21.3557%;text-align:left;vertical-align:middle\">4D6</td>\n<td style=\"height:16px;width:20.7014%;text-align:left;vertical-align:middle\">4D6 meters</td>\n<td style=\"height:16px;width:20.2035%;text-align:left;vertical-align:middle\">1,000</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "igwJp136wAuyjww4",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!57IX7NaBKG6YAKdV.igwJp136wAuyjww4"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079925,
+    "modifiedTime": 1760016422387,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!57IX7NaBKG6YAKdV"
+}

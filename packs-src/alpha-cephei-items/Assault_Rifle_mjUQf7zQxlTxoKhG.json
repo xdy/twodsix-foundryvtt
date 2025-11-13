@@ -1,0 +1,78 @@
+{
+  "_id": "mjUQf7zQxlTxoKhG",
+  "name": "Assault Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/assault-rifle.svg",
+  "system": {
+    "name": "Assault Rifle",
+    "techLevel": 7,
+    "description": "Standard automatic military arm on mid-tech worlds.&nbsp;<div><br></div><div>Auto 2: These weapons fire multiple rounds with every pull of the trigger, filling the air with a hail of fire. A weapon with the Auto aspect can make attacks in three fire modes: single, burst, and full auto, as described in the Combat chapter.</div>",
+    "shortdescr": "Assault Rifle - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "50/200",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 15,
+    "type": "weapon",
+    "lawLevel": "4",
+    "rangeBand": "50/200",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "Auto 2",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 1800000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080275,
+    "modifiedTime": 1760016422881,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!mjUQf7zQxlTxoKhG"
+}

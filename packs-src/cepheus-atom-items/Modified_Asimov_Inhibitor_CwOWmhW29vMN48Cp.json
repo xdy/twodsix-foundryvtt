@@ -1,0 +1,58 @@
+{
+  "_id": "CwOWmhW29vMN48Cp",
+  "name": "Modified Asimov Inhibitor",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "Robots with modified Asimov inhibitors will will prefer to use non-lethal force but will resort to lethal force if cornered; however, they will attack animals and mutants. Robots whose Asimov inhibitors are missing or malfunctioning may attack any target.",
+    "shortdescr": "inhibit attacks on humans",
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/mod-asimov-inhibitor.svg",
+  "effects": [],
+  "folder": "XHTDs7UPCc2TSjX5",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079776,
+    "modifiedTime": 1760016422258,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!CwOWmhW29vMN48Cp"
+}

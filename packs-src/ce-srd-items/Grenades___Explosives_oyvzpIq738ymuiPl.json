@@ -1,0 +1,19 @@
+{
+  "name": "Grenades - Explosives",
+  "sorting": "a",
+  "folder": "fKANSj4FTbAHcZr2",
+  "type": "Item",
+  "_id": "oyvzpIq738ymuiPl",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "2.27.2",
+    "coreVersion": "11.294",
+    "createdTime": null,
+    "modifiedTime": 1680880715488,
+    "lastModifiedBy": "12WfDpqePx1TrVeA"
+  },
+  "_key": "!folders!oyvzpIq738ymuiPl"
+}

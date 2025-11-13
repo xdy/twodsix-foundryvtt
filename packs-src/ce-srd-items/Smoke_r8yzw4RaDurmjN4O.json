@@ -1,0 +1,81 @@
+{
+  "_id": "r8yzw4RaDurmjN4O",
+  "name": "Smoke",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/smoke.svg",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Smoke grenades create a thick cloud of smoke six meters in radius, centered on the location of the grenade. This smoke imposes a –2 DM on all attacks within or through the cloud (doubled for laser weapons). Smoke dissipates in 1D6x3 rounds, although high winds and other extreme weather can sharply reduce this time.",
+    "shortdescr": "Smoke - special",
+    "quantity": 6,
+    "weight": 0.5,
+    "price": 90,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Demolitions",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 6,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "thrown",
+    "weaponType": "",
+    "damageType": "smoke",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "oyvzpIq738ymuiPl",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5ujlm40ozw3",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Grenades and Explosives",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079881,
+    "modifiedTime": 1760016422342,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!r8yzw4RaDurmjN4O"
+}

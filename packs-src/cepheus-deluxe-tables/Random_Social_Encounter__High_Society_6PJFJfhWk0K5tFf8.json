@@ -1,0 +1,972 @@
+{
+  "name": "Random Social Encounter: High Society",
+  "img": "systems/twodsix/assets/icons/martini.svg",
+  "results": [
+    {
+      "_id": "vsInY5lYfulUBQtw",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diplomat",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.vsInY5lYfulUBQtw"
+    },
+    {
+      "_id": "bWbITPWO0oAGQvmO",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Judge",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.bWbITPWO0oAGQvmO"
+    },
+    {
+      "_id": "khuDiUcNEIZoJiVN",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Noble",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.khuDiUcNEIZoJiVN"
+    },
+    {
+      "_id": "OxZIPeWWODTobNxC",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Government Minister",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.OxZIPeWWODTobNxC"
+    },
+    {
+      "_id": "Wg1GgVsAvt0Eswpy",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Civil Service Operator",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.Wg1GgVsAvt0Eswpy"
+    },
+    {
+      "_id": "hWp1J7ZHwjAnCHnx",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Political Leadership",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.hWp1J7ZHwjAnCHnx"
+    },
+    {
+      "_id": "yH44u6VbEbupghWY",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Senior Military Officer",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.yH44u6VbEbupghWY"
+    },
+    {
+      "_id": "4CKQohUeYAcH0NmI",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Middle/Junior Rank Military Officer",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.4CKQohUeYAcH0NmI"
+    },
+    {
+      "_id": "VzINOeKtO3VClhmQ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Intelligence Agency Administrator",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.VzINOeKtO3VClhmQ"
+    },
+    {
+      "_id": "xLUcr5v8ujWsko8j",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Defense Industry Magnate",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.xLUcr5v8ujWsko8j"
+    },
+    {
+      "_id": "UinkxOTBZoexSxhT",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Police Chief or Commissar",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.UinkxOTBZoexSxhT"
+    },
+    {
+      "_id": "pGLAhgGZ513AnEKl",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Military Scientist",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.pGLAhgGZ513AnEKl"
+    },
+    {
+      "_id": "ILamPaDH6DHjZYwU",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Local Business Magnate",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.ILamPaDH6DHjZYwU"
+    },
+    {
+      "_id": "i65uguzBtvKhaElA",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corporate Financier",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.i65uguzBtvKhaElA"
+    },
+    {
+      "_id": "R58TQlaH8mBwNBEY",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Shipping Magnate",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.R58TQlaH8mBwNBEY"
+    },
+    {
+      "_id": "ogGZl16D0rYq75XB",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Important Trade Broker",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.ogGZl16D0rYq75XB"
+    },
+    {
+      "_id": "huMNbSshF42dJ8S3",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Senior Law Firm Partner",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.huMNbSshF42dJ8S3"
+    },
+    {
+      "_id": "GowsPUaGWyVtcCIc",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Industrial Researcher",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.GowsPUaGWyVtcCIc"
+    },
+    {
+      "_id": "iUEHVa10r5ubC2fx",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Celebrity Entertainer or Artist",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.iUEHVa10r5ubC2fx"
+    },
+    {
+      "_id": "v2UzwyAd5fgDMVPX",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Senior Entertainment Agent",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.v2UzwyAd5fgDMVPX"
+    },
+    {
+      "_id": "Q68m9CebNvc4UQHn",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Entertainment Critic",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.Q68m9CebNvc4UQHn"
+    },
+    {
+      "_id": "U2YnRvD9jTFQOnD1",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Venue Owner",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.U2YnRvD9jTFQOnD1"
+    },
+    {
+      "_id": "QxdueD34BLNpHyA6",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Film Producer or other Patron of the Arts",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.QxdueD34BLNpHyA6"
+    },
+    {
+      "_id": "ZXOBkfQy8KMRfe7Z",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Notorious Mistress",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.ZXOBkfQy8KMRfe7Z"
+    },
+    {
+      "_id": "iYd2DtlNg0TiXbZ8",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "University Administrator",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.iYd2DtlNg0TiXbZ8"
+    },
+    {
+      "_id": "06VsWZbvSWAr5uEi",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Senior Faculty",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.06VsWZbvSWAr5uEi"
+    },
+    {
+      "_id": "qmCMkSmbwSn5rvka",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Visiting Foreign Academic",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.qmCMkSmbwSn5rvka"
+    },
+    {
+      "_id": "ytmpvPyLjaIeQ1xt",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Revered Academic Genius",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.ytmpvPyLjaIeQ1xt"
+    },
+    {
+      "_id": "uqOoSA4ts708KFhT",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Grant and Funding Administrator",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.uqOoSA4ts708KFhT"
+    },
+    {
+      "_id": "F1Tf3W5jiVQp1wqc",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Famous Journalist",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.F1Tf3W5jiVQp1wqc"
+    },
+    {
+      "_id": "gd2G0WsPrYnAyeHU",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Rakish Dilettante",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.gd2G0WsPrYnAyeHU"
+    },
+    {
+      "_id": "tQiTu42WB2TJQmEP",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Spymaster",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.tQiTu42WB2TJQmEP"
+    },
+    {
+      "_id": "zkvmVlKe0hulD43K",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Exiled Noble/Pretender to a Throne",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.zkvmVlKe0hulD43K"
+    },
+    {
+      "_id": "h6LuvD6MEo8fgAnl",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Psychic Academy Headmaster",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.h6LuvD6MEo8fgAnl"
+    },
+    {
+      "_id": "tdttL4ocTVRkpKYt",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "High Priest or Other Religious Leader",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.tdttL4ocTVRkpKYt"
+    },
+    {
+      "_id": "hRxXKEIwKkTxfgpc",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Head of State",
+      "name": "",
+      "_key": "!tables.results!6PJFJfhWk0K5tFf8.hRxXKEIwKkTxfgpc"
+    }
+  ],
+  "formula": "1d36",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_wg4urws51a",
+      "path": "Social Encounters#/CF_SEP/Random Encounters",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "6PJFJfhWk0K5tFf8",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080310,
+    "modifiedTime": 1760016422913,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!6PJFJfhWk0K5tFf8"
+}

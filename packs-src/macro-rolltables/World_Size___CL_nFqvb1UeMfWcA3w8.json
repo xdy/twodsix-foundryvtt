@@ -1,0 +1,326 @@
+{
+  "_id": "nFqvb1UeMfWcA3w8",
+  "name": "World Size - CL",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Light",
+  "results": [
+    {
+      "_id": "fhzPtwJfJNUiFaHu",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Asteroid Belt; Grav = negligible",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.fhzPtwJfJNUiFaHu"
+    },
+    {
+      "_id": "MKF5IJ7rmpUgNkUP",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 1,600km; Grav = 0.05G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.MKF5IJ7rmpUgNkUP"
+    },
+    {
+      "_id": "vKeI0pdzZDfB3oOa",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 3,200km; Grav = 0.15G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.vKeI0pdzZDfB3oOa"
+    },
+    {
+      "_id": "nt9TvoWRmMhgVOVj",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 4,800km; Grav = 0.25G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.nt9TvoWRmMhgVOVj"
+    },
+    {
+      "_id": "yNOE6K7N4nEli7Hm",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 6,400km; Grav = 0.35G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.yNOE6K7N4nEli7Hm"
+    },
+    {
+      "_id": "3M1ubfBLrRrDp1aW",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 8,000km; Grav = 0.45G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.3M1ubfBLrRrDp1aW"
+    },
+    {
+      "_id": "A77fr9Zxi18zBl6W",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 9,600km; Grav = 0.70G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.A77fr9Zxi18zBl6W"
+    },
+    {
+      "_id": "ZCzpJncWpl77DGH3",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 11,200km; Grav= 0.90G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.ZCzpJncWpl77DGH3"
+    },
+    {
+      "_id": "So4wt9mP1NDaJDCS",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 12,800km; Grav = 1.00G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.So4wt9mP1NDaJDCS"
+    },
+    {
+      "_id": "S0mq8KdIxbqHfymj",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 14,400km; Grav = 1.25G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.S0mq8KdIxbqHfymj"
+    },
+    {
+      "_id": "g9o9FmtI7Iwd6EmU",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diam = 16,000km; Grav = 1.40G",
+      "name": "",
+      "_key": "!tables.results!nFqvb1UeMfWcA3w8.g9o9FmtI7Iwd6EmU"
+    }
+  ],
+  "formula": "1d15",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080288,
+    "modifiedTime": 1760016422900,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "_key": "!tables!nFqvb1UeMfWcA3w8"
+}
