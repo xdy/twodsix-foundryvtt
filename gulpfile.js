@@ -64,13 +64,13 @@ function buildStyles() {
  */
 async function buildPacks() {
   console.log(chalk.yellow('Building packs from JSON source files...'));
-  
+
   return new Promise((resolve, reject) => {
     const buildProcess = spawn('npm', ['run', 'packs:build'], {
       stdio: 'inherit',
       shell: true
     });
-    
+
     buildProcess.on('close', (code) => {
       if (code === 0) {
         console.log(chalk.green('✅ Pack building completed successfully'));
@@ -80,7 +80,7 @@ async function buildPacks() {
         reject(new Error(`Pack building failed with code ${code}`));
       }
     });
-    
+
     buildProcess.on('error', (err) => {
       console.error(chalk.red('❌ Failed to start pack building process:', err));
       reject(err);
@@ -106,7 +106,7 @@ async function copyStaticFiles() {
 async function copyPacks() {
   const packsSource = `${staticDirectory}/packs`;
   const packsTarget = `${distDirectory}/packs`;
-  
+
   if (fs.existsSync(packsSource)) {
     console.log(chalk.blue(`Copying built packs from ${packsSource} to ${packsTarget}`));
     await fs.copy(packsSource, packsTarget);
