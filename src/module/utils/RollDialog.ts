@@ -9,14 +9,24 @@ import { getTargetDMSelectObject } from "./targetModifiers";
 import { getKeyByValue } from "./utils";
 
 export default class RollDialog extends foundry.applications.api.HandlebarsApplicationMixin(foundry.applications.api.ApplicationV2) {
-  title2: string;
   skill: TwodsixItem;
   settings: any;
+  private _dialogTitle: string;
 
   constructor(object, options?) {
-    super(object, options);
+    // Merge the title into options before calling super
+    const titleToUse = (object.title && object.title.trim()) ? object.title : "TWODSIX.Rolls.RollDialog";
+    const mergedOptions = foundry.utils.mergeObject(options || {}, {
+      window: {
+        title: titleToUse
+      }
+    });
+
+    super(object, mergedOptions);
+
+    // Store the title for use in _onRender (after super call)
+    this._dialogTitle = object.title;
     this.settings = object.settings;
-    this.title2 = object.title;
     this.skill = object.skill;
   }
 
@@ -30,8 +40,7 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
     window: {
       resizable: true,
       contentClasses: ["standard-form"],
-      title: "TWODSIX.Settings.settingsInterface.displaySettings.name",
-      icon: "fa-solid fa-tv"
+      icon: "fa-solid fa-dice"
     },
     form: {
       /*handler: () => {
@@ -43,8 +52,8 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
     },
     tag: "form",
     actions: {
-      ok: this._onSubmitRoll,
-      cancel: this._onCancelRoll
+      ok: RollDialog._onSubmitRoll,
+      cancel: RollDialog._onCancelRoll
     }
   };
 
@@ -115,8 +124,16 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
     return context;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _onRender(_context, _options) {
     const htmlRend = this.element;
+
+    // Set the initial title when first rendered - force it with DOM manipulation
+    const titleElement = htmlRend.querySelector('.window-title');
+    if (titleElement && this._dialogTitle) {
+      titleElement.innerText = this._dialogTitle;
+    }
+
     htmlRend.querySelector(".select-skill")?.addEventListener("change", () => {
       const characteristicElement = htmlRend.querySelector('[name="rollModifiers.characteristic"]');
       let newSkill:TwodsixItem;
@@ -128,15 +145,15 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
         }
       }
       let newTitle = "";
-      const titleElement = htmlRend.querySelector('.window-title');
-      if (titleElement) {
+      const titleElementUpdate = htmlRend.querySelector('.window-title');
+      if (titleElementUpdate) {
         const usingWord = ' ' + game.i18n.localize("TWODSIX.Actor.using") + ' ';
-        if (titleElement.innerText.includes(usingWord)) {
-          newTitle = `${titleElement.innerText.substring(0, titleElement.innerText.indexOf(usingWord))}${usingWord}${newSkill?.name}`;
+        if (titleElementUpdate.innerText.includes(usingWord)) {
+          newTitle = `${titleElementUpdate.innerText.substring(0, titleElementUpdate.innerText.indexOf(usingWord))}${usingWord}${newSkill?.name}`;
         } else {
           newTitle = newSkill?.name || "";
         }
-        titleElement.innerText = newTitle;
+        titleElementUpdate.innerText = newTitle;
       }
     });
   }
@@ -146,60 +163,85 @@ export default class RollDialog extends foundry.applications.api.HandlebarsAppli
    * @returns {Promise<string | null>}      Resolves to the actor uuid of the actor imposing the condition or null
    */
   static async prompt(object, options) {
-    return new Promise((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    return new Promise((resolve, _reject) => {
       const dialog = new this(object, options);
-      dialog.addEventListener("close", event => resolve(this.settings), {once: true});
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      dialog.addEventListener("close", _event => resolve(this.settings), {once: true});
 
       dialog.render({force: true});
     });
   }
 
   static _onSubmitRoll(ev, target) {
-    const formElements = target.form.elements;
-    this.settings.shouldRoll = true;
-    this.settings.difficulty = this.settings.difficulties[formElements["difficulty"]?.value];
-    this.settings.rollType = formElements["rollType"]?.value;
-    this.settings.rollMode = formElements["rollMode"]?.value;
-    this.settings.rollModifiers.chain = this.settings.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value || 0, 10) : this.settings.rollModifiers.chain;
-    this.settings.rollModifiers.characteristic = this.settings.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.settings.rollModifiers.characteristic;
-    this.settings.rollModifiers.item = this.settings.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value || 0, 10) : this.settings.rollModifiers.item;
-    this.settings.rollModifiers.rof = (this.settings.itemRoll && this.settings.rollModifiers.rof) ? parseInt(formElements["rollModifiers.rof"]?.value || 0, 10) : this.settings.rollModifiers.rof;
-    this.settings.rollModifiers.dodgeParry = (this.settings.itemRoll && this.settings.rollModifiers.dodgeParry) ? parseInt(formElements["rollModifiers.dodgeParry"]?.value || 0, 10) : this.settings.rollModifiers.dodgeParry;
-    this.settings.rollModifiers.weaponsHandling = (this.settings.itemRoll && this.settings.rollModifiers.weaponsHandling) ? parseInt(formElements["rollModifiers.weaponsHandling"]?.value || 0, 10) : this.settings.rollModifiers.weaponsHandling;
-    this.settings.rollModifiers.weaponsRange = (this.settings.showRangeModifier) ? parseInt(formElements["rollModifiers.weaponsRange"]?.value || 0, 10) : this.settings.rollModifiers.weaponsRange;
-    this.settings.rollModifiers.attachments = (this.settings.itemRoll && this.settings.rollModifiers.attachments) ? parseInt(formElements["rollModifiers.attachments"]?.value || 0, 10) : this.settings.rollModifiers.attachments;
-    this.settings.rollModifiers.other = parseInt(formElements["rollModifiers.other"].value, 10);
-    this.settings.rollModifiers.wounds = this.settings.showWounds ? parseInt(formElements["rollModifiers.wounds"]?.value || 0, 10) : 0;
-    this.settings.rollModifiers.selectedSkill = this.settings.skillRoll ? formElements["rollModifiers.selectedSkill"]?.value : "";
-    const targetModifierElement = formElements["rollModifiers.targetModifier"];
-    this.settings.rollModifiers.targetModifier = (this.settings.showTargetModifier && targetModifierElement?.value)
-      ? targetModifierElement.value
-      : this.settings.rollModifiers.targetModifier;
-    this.settings.rollModifiers.armorModifier  = (this.settings.showArmorWeaponModifier) ? parseInt(formElements["rollModifiers.armorModifier"]?.value || 0, 10) : 0;
-    this.settings.rollModifiers.componentDamage = this.settings.isComponent ? parseInt(formElements["rollModifiers.componentDamage"]?.value || 0, 10) : this.settings.rollModifiers.componentDamage;
+    ev.preventDefault();
+    const formData = new foundry.applications.ux.FormDataExtended(target.form);
+    const data = formData.object;
 
-    if(!this.settings.showEncumbered || !["strength", "dexterity", "endurance"].includes(getKeyByValue(TWODSIX.CHARACTERISTICS, this.settings.rollModifiers.characteristic))) {
-      //either dont show modifier or not a physical characterisitc
-      this.settings.rollModifiers.encumbered = 0;
+    // Helper function for safe integer parsing
+    const parseIntSafe = (value, defaultValue = 0) => {
+      const parsed = Number.parseInt(value || defaultValue, 10);
+      return Number.isNaN(parsed) ? defaultValue : parsed;
+    };
+
+    // Helper function for conditional assignment
+    const assignIf = (condition, getValue, fallback) => condition ? getValue() : fallback;
+
+    this.settings.shouldRoll = true;
+    this.settings.difficulty = this.settings.difficulties[data.difficulty];
+    this.settings.rollType = data.rollType;
+    this.settings.rollMode = data.rollMode;
+
+    // Roll modifiers with simplified conditional logic
+    const rm = this.settings.rollModifiers;
+    rm.chain = assignIf(this.settings.skillRoll, () => parseIntSafe(data["rollModifiers.chain"]), rm.chain);
+    rm.characteristic = assignIf(this.settings.skillRoll, () => data["rollModifiers.characteristic"], rm.characteristic);
+    rm.item = assignIf(this.settings.itemRoll, () => parseIntSafe(data["rollModifiers.item"]), rm.item);
+    rm.rof = assignIf(this.settings.itemRoll && rm.rof, () => parseIntSafe(data["rollModifiers.rof"]), rm.rof);
+    rm.dodgeParry = assignIf(this.settings.itemRoll && rm.dodgeParry, () => parseIntSafe(data["rollModifiers.dodgeParry"]), rm.dodgeParry);
+    rm.weaponsHandling = assignIf(this.settings.itemRoll && rm.weaponsHandling, () => parseIntSafe(data["rollModifiers.weaponsHandling"]), rm.weaponsHandling);
+    rm.weaponsRange = assignIf(this.settings.showRangeModifier, () => parseIntSafe(data["rollModifiers.weaponsRange"]), rm.weaponsRange);
+    rm.attachments = assignIf(this.settings.itemRoll && rm.attachments, () => parseIntSafe(data["rollModifiers.attachments"]), rm.attachments);
+    rm.other = parseIntSafe(data["rollModifiers.other"]);
+    rm.wounds = assignIf(this.settings.showWounds, () => parseIntSafe(data["rollModifiers.wounds"]), 0);
+    rm.selectedSkill = assignIf(this.settings.skillRoll, () => data["rollModifiers.selectedSkill"], "");
+    rm.targetModifier = assignIf(this.settings.showTargetModifier && data["rollModifiers.targetModifier"],
+      () => data["rollModifiers.targetModifier"], rm.targetModifier);
+    rm.armorModifier = assignIf(this.settings.showArmorWeaponModifier, () => parseIntSafe(data["rollModifiers.armorModifier"]), 0);
+    rm.componentDamage = assignIf(this.settings.isComponent, () => parseIntSafe(data["rollModifiers.componentDamage"]), rm.componentDamage);
+
+    // Handle encumbrance logic
+    const isPhysicalChar = ["strength", "dexterity", "endurance"].includes(
+      getKeyByValue(TWODSIX.CHARACTERISTICS, rm.characteristic)
+    );
+
+    if (!this.settings.showEncumbered || !isPhysicalChar) {
+      rm.encumbered = 0;
     } else {
-      const dialogEncValue = parseInt(formElements["rollModifiers.encumbered"]?.value, 10);
-      if (this.settings.initialChoice === this.settings.rollModifiers.characteristic || dialogEncValue !== this.settings.rollModifiers.encumbered) {
-        //characteristic didn't change or encumbrance modifer changed
-        this.settings.rollModifiers.encumbered = isNaN(dialogEncValue) ? 0 : dialogEncValue;
+      const dialogEncValue = Number.parseInt(data["rollModifiers.encumbered"] || 0, 10);
+      const encValueChanged = dialogEncValue !== rm.encumbered;
+      const charUnchanged = this.settings.initialChoice === rm.characteristic;
+
+      if (charUnchanged || encValueChanged) {
+        rm.encumbered = Number.isNaN(dialogEncValue) ? 0 : dialogEncValue;
       } else {
-        this.settings.rollModifiers.encumbered = (<TwodsixActor>this.skill?.actor)?.system.conditions.encumberedEffect ?? (isNaN(dialogEncValue) ? 0 : dialogEncValue);
+        const actorEncValue = this.skill?.actor?.system.conditions.encumberedEffect;
+        rm.encumbered = actorEncValue ?? (Number.isNaN(dialogEncValue) ? 0 : dialogEncValue);
       }
     }
 
-    this.settings.selectedTimeUnit = formElements["timeUnit"]?.value;
-    this.settings.timeRollFormula = formElements["timeRollFormula"]?.value;
+    this.settings.selectedTimeUnit = data.timeUnit;
+    this.settings.timeRollFormula = data.timeRollFormula;
 
-    Promise.resolve(this.settings);
+    // Close the dialog to trigger the promise resolution
+    this.close();
   }
 
-  static _onCancelRoll(ev, target) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static _onCancelRoll(_ev, _target) {
     this.settings.shouldRoll = false;
-    Promise.resolve(this.settings);
+    // Close the dialog to trigger the promise resolution
+    this.close();
   }
 }
 
