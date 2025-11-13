@@ -53,6 +53,26 @@ for (const packDir of packDirs) {
       fs.rmSync(outputPath, { recursive: true, force: true });
     }
 
+    // Validate filenames in the source directory
+    const files = fs.readdirSync(sourcePath).filter(f => f.endsWith('.json'));
+    for (const file of files) {
+      const match = file.match(/^([a-zA-Z0-9]+)_(.+)_([a-zA-Z0-9]+)\.json$/);
+      if (!match) {
+        console.warn(`  ⚠️  File does not match naming convention: ${file}`);
+        continue;
+      }
+      const [, type, safeName, id] = match;
+      const filePath = path.join(sourcePath, file);
+      try {
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        if (data._id !== id) {
+          console.warn(`  ⚠️  ID mismatch in file: ${file} (filename: ${id}, _id: ${data._id})`);
+        }
+      } catch (e) {
+        console.warn(`  ⚠️  Could not parse JSON in file: ${file}`);
+      }
+    }
+
     await compilePack(sourcePath, outputPath);
     console.log(`  ✅ Successfully compiled ${packDir}`);
     successCount++;

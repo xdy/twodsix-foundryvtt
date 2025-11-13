@@ -28,6 +28,14 @@ const packDirs = fs.readdirSync(PACKS_DIR)
 
 console.log(`Found ${packDirs.length} pack directories:`, packDirs);
 
+
+// Better file naming: prefix with type and safe name
+function transformName(doc, context) {
+  const safeFileName = doc.name.replace(/[^a-zA-Z0-9А-я]/g, "_");
+  const prefix = ["Actor", "Item"].includes(context.documentType) ? doc.type : context.documentType;
+  return `${prefix}_${safeFileName}_${doc._id}.json`;
+}
+
 let successCount = 0;
 let errorCount = 0;
 
@@ -40,7 +48,7 @@ for (const packDir of packDirs) {
     console.log(`  From: ${packPath}`);
     console.log(`  To: ${outputPath}`);
 
-    await extractPack(packPath, outputPath);
+    await extractPack(packPath, outputPath, { transformName });
     console.log(`  ✅ Successfully extracted ${packDir}`);
     successCount++;
   } catch (error) {
