@@ -41,3 +41,11 @@ rules:
 #  - files: ['./*.js]
 #    rules:
 #      '@typescript-eslint/no-var-requires': 'off'
+
+overrides:
+  - files: ["gulpfile.js"]
+    env:
+      node: true
+    rules:
+      '@typescript-eslint/no-var-requires': off
+      no-undef: off

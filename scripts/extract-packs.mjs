@@ -48,6 +48,15 @@ for (const packDir of packDirs) {
     console.log(`  From: ${packPath}`);
     console.log(`  To: ${outputPath}`);
 
+    // Clean output directory before extraction
+    if (fs.existsSync(outputPath)) {
+      for (const file of fs.readdirSync(outputPath)) {
+        fs.unlinkSync(path.join(outputPath, file));
+      }
+    } else {
+      fs.mkdirSync(outputPath, { recursive: true });
+    }
+
     await extractPack(packPath, outputPath, { transformName });
     console.log(`  ✅ Successfully extracted ${packDir}`);
     successCount++;
