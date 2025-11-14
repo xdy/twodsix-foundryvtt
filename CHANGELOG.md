@@ -1,3 +1,10 @@
+## [6.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.0...v6.9.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* missing ammo from battle sheet cargo list ([#1885](https://github.com/xdy/twodsix-foundryvtt/issues/1885)) ([9060b97](https://github.com/xdy/twodsix-foundryvtt/commit/9060b97f0b9536c76de64ecb4b00fdcc2631a21a))
+
 # [6.9.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.8.1...v6.9.0) (2025-11-12)
 
 
