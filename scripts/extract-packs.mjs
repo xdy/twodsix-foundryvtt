@@ -57,7 +57,12 @@ for (const packDir of packDirs) {
       fs.mkdirSync(outputPath, { recursive: true });
     }
 
-    await extractPack(packPath, outputPath, { transformName });
+    await extractPack(packPath, outputPath, {
+      transformName,
+      folders: true,
+      omitVolatile: true,
+      jsonOptions: { space: 2 }
+    });
     console.log(`  ✅ Successfully extracted ${packDir}`);
     successCount++;
   } catch (error) {

@@ -73,7 +73,7 @@ for (const packDir of packDirs) {
       }
     }
 
-    await compilePack(sourcePath, outputPath);
+    await compilePack(sourcePath, outputPath, {recursive: true});
     console.log(`  ✅ Successfully compiled ${packDir}`);
     successCount++;
   } catch (err) {
