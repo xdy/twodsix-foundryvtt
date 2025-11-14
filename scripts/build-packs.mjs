@@ -68,16 +68,16 @@ for (const packDir of packDirs) {
         if (data._id !== id) {
           console.warn(`  ⚠️  ID mismatch in file: ${file} (filename: ${id}, _id: ${data._id})`);
         }
-      } catch (e) {
-        console.warn(`  ⚠️  Could not parse JSON in file: ${file}`);
+      } catch (err) {
+        console.warn(`  ⚠️  Could not parse JSON in file: ${file}`, err.message);
       }
     }
 
     await compilePack(sourcePath, outputPath);
     console.log(`  ✅ Successfully compiled ${packDir}`);
     successCount++;
-  } catch (error) {
-    console.error(`  ❌ Failed to compile ${packDir}:`, error.message);
+  } catch (err) {
+    console.error(`  ❌ Failed to compile ${packDir}:`, err.message);
     errorCount++;
   }
 }

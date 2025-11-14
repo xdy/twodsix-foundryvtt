@@ -43,9 +43,11 @@ rules:
 #      '@typescript-eslint/no-var-requires': 'off'
 
 overrides:
-  - files: ["gulpfile.js"]
+  - files: ["gulpfile.js", "rollup.config.js"]
     env:
       node: true
     rules:
       '@typescript-eslint/no-var-requires': off
       no-undef: off
+      import/no-commonjs: off
+      no-global-assign: off
