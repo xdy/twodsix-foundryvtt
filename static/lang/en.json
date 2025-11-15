@@ -1542,11 +1542,11 @@
         "name": "Set Characteristic Damage Color"
       },
       "battleColor": {
-        "hint": "Change the theme color for the shi battle sheet. Delete value to reset.",
+        "hint": "Change the theme color for the ship battle sheet. Delete value to reset.",
         "name": "Set Battle Sheet Color"
       },
       "useItemActiveEffects": {
-        "hint": "Use Item Active Effects.  WARNING: may result is odd system behavior.",
+        "hint": "Use Item Active Effects.  WARNING: may result in odd system behavior.",
         "name": "Use Item Active Effects"
       },
       "showFeaturesInChat": {

@@ -46,7 +46,6 @@ declare global {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace ClientSettings {
     interface Values {
       'twodsix.ExperimentalFeatures': boolean;
