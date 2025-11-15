@@ -21,7 +21,14 @@ const plugins = [
 module.exports = function() {
   const migrations = JSON.stringify(fs.readdirSync("src/migrations").filter(nm => nm.slice(0, 1) !== "." ).map(nm => nm.slice(0, -3)));
   const hooks = JSON.stringify(fs.readdirSync('src/module/hooks').filter(nm => nm.slice(0, 1) !== "." ).map(nm => nm.slice(0, -3)));
-  const templates = JSON.stringify(glob.sync('static/templates/**/*.hbs').filter(nm => nm.slice(0, 1) !== "." ).map(file => file.replace("static", "systems/twodsix")));
+  // Ensure forward slashes in template paths so Foundry can resolve them cross-platform
+  const templates = JSON.stringify(
+    glob
+      .sync('static/templates/**/*.hbs')
+      .filter(nm => nm.slice(0, 1) !== ".")
+      .map(file => file.replace(/\\/g, "/"))
+      .map(file => file.replace("static", "systems/twodsix"))
+  );
 
   return {
     input: 'src/twodsix.ts',

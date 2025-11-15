@@ -1,19 +1,25 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {rollup} = require('rollup');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const argv = require('yargs').argv;
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const chalk = require('chalk');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
+const yargs = require('yargs/yargs');
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
+const {hideBin} = require('yargs/helpers');
+const argv = yargs(hideBin(process.argv)).argv;
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
+const chalkModule = require('chalk');
+// Support both ESM (chalk@5+) and CommonJS (chalk@4) imports
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+const chalk = chalkModule.default || chalkModule;
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
 const fs = require('fs-extra');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
 const gulp = require('gulp');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
 const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
 const rollupConfig = require('./rollup.config');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports
 const semver = require('semver');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { spawn } = require('child_process');
@@ -23,7 +29,9 @@ const { spawn } = require('child_process');
 /********************/
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
-const systemName = "twodsix*";
+const systemName = "twodsix";
+// Used to match all style files for this system (e.g., twodsix.css, twodsix-dark.css)
+const stylesBaseName = 'twodsix*';
 const sourceDirectory = './src';
 const staticDirectory = './static';
 const templateDirectory = `${staticDirectory}/templates`;
@@ -81,7 +89,8 @@ async function buildCode() {
  */
 function buildStyles() {
   try {
-    return gulp.src(`${stylesDirectory}/${systemName}.${stylesExtension}`)
+    return gulp
+      .src(`${stylesDirectory}/${stylesBaseName}.${stylesExtension}`)
       .pipe(gulp.dest(`${distDirectory}/styles`))
       .on('end', async () => {
         // Count CSS files in dist/styles
@@ -266,7 +275,9 @@ async function linkUserData() {
   } else if (!fs.existsSync(linkDirectory)) {
     console.log(chalk.green(`Linking dist to ${chalk.blueBright(linkDirectory)}.`));
     await fs.ensureDir(path.resolve(linkDirectory, '..'));
-    await fs.symlink(path.resolve(distDirectory), linkDirectory);
+    // Use 'junction' on Windows to avoid admin/Developer Mode requirements for directory symlinks
+    const symlinkType = process.platform === 'win32' ? 'junction' : 'dir';
+    await fs.symlink(path.resolve(distDirectory), linkDirectory, symlinkType);
   }
 }
 
