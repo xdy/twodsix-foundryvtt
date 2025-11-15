@@ -5,8 +5,8 @@ import process from 'node:process';
 
 const migrationName = process.argv[2];
 if (!migrationName) {
-	console.log('You need to supply a name for the migration');
-	process.exit(1);
+  console.log('You need to supply a name for the migration');
+  process.exit(1);
 }
 
 const temporaryDate = new Date();

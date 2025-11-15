@@ -273,7 +273,7 @@ async function generateWikiJournal() {
         fs.rmSync(outputPath, { recursive: true, force: true });
       }
 
-      await compilePack(sourcePath, outputPath, { recursive: true, log: true });
+      await compilePack(sourcePath, outputPath, { recursive: true, log: false });
       console.log(`  ✅ Successfully compiled ${packDir}`);
       successCount++;
     } catch (err) {

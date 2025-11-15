@@ -1,0 +1,6 @@
+minimumReleaseAge: 1440
+auto-install-peers = true
+public-hoist-pattern[] = *eslint*
+public-hoist-pattern[] = *rollup*
+public-hoist-pattern[] = *typescript*
+public-hoist-pattern[] = *jest*

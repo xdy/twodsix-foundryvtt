@@ -47,9 +47,21 @@ You can purchase a Foundry VTT license on the [Foundry VTT purchase page].
 
 Fork the [twodsix-foundryvtt] repository in GitHub and clone your fork to your working directory.
 
-### Node.js
+### Node.js and pnpm
 
-If you don't already have it installed, you can download and install Node.js from the [Node.js download page]. You will need to install npm as well.
+If you don't already have it installed, you can download and install Node.js from the [Node.js download page].
+
+This repository uses pnpm, managed via Corepack (bundled with Node.js). After installing Node.js, enable Corepack and activate the pinned pnpm version:
+
+```shell
+corepack enable
+corepack prepare pnpm@10.22.0 --activate
+```
+
+If corepack is not available you can instead install it using 
+```shell
+npm install -g pnpm@latest-10
+```
 
 ### Foundry VTT
 
@@ -88,16 +100,16 @@ Building the twodsix system is very easy. The following command will package the
 
 ```shell
 cd /path-to/your-twodsix-foundryvtt-working-copy
-npm install
-npm build
+pnpm install
+pnpm run build
 ```
 
 Each time you make a change to the source files, you will need to rebuild twodsix and reload Foundry. You can automate the rebuild step using this instead.
 
 ```shell
 cd /path-to/your-twodsix-foundryvtt-working-copy
-npm install
-npm build:watch
+pnpm install
+pnpm run build:watch
 ```
 
 This will continuously monitor the twodsix source files and rebuild the system when it detects a change.
@@ -171,7 +183,16 @@ In order to keep to sane coding standards - aka the ones I prefer :) - please us
 
 * Ensure that you sync your fork with the upstream repository before commencing work.
 * Name the Pull Request beginning with WIP until you think it is in a good shape to be merged.
-* Make sure eslint (`npm run lint`) has been run with no complaints on your code.
+* Make sure eslint (`pnpm run lint`) has been run with no complaints on your code.
+
+#### Tips
+
+* If `pnpm install` indicates some postinstall builds were skipped, you can approve them and reinstall IF you trust those scripts, otherwise reconsider that dependency:
+  ```shell
+  pnpm approve-builds
+  pnpm install
+  ```
+* For one-off commands you might previously run with `npx`, use `pnpm dlx <package>`.
 * Squash any merge commits and other cruft. Aim for one commit per feature or issue that your Pull Request tackles.
 * If any of the checks on the Pull Request fails, try to fix them, or ask for help if you can't figure out what's wrong.
 * When you're done, note in the Pull Request and/or on the Discord that there is a Pull Request that you consider ready to be merged, and remove the WIP from the beginning of the Pull Request name.
