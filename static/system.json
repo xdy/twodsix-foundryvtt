@@ -331,6 +331,14 @@
       "path": "./packs/cepheus-universal-items",
       "entity": "Item",
       "type": "Item"
+    },
+    {
+      "name": "wiki-journal",
+      "label": "Wiki Journal",
+      "path": "./packs/wiki-journal",
+      "type": "JournalEntry",
+      "system": "twodsix",
+      "entity": "JournalEntry"
     }
   ],
   "packFolders": [
@@ -417,6 +425,13 @@
       "packs": [
         "twodsix-macros",
         "twodsix-macros-rolltables"
+      ]
+    },
+    {
+      "name": "Twodsix Wiki",
+      "sorting": "m",
+      "packs": [
+        "twodsix-wiki"
       ]
     }
   ],
