@@ -163,3 +163,4 @@ This project migrated from binary pack tracking to JSON-first workflow:
 - Git history was preserved using automated transition scripts
 - Binary packs are now built during the build process
 - `.gitignore` was updated to reflect the new workflow
+
