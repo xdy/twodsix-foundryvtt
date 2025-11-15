@@ -131,10 +131,10 @@ This will create individual JSON files for each entity in the appropriate `packs
 
 JSON source files are named using the format:
 ```
-{EntityName}_{EntityId}.json
+{ItemType}__{EntityName}__{EntityId}.json
 ```
 
-Example: `Plasma_Rifle_kzwxCbA8CXifoeRG.json`
+Example: `weapon__Plasma_Rifle__kzwxCbA8CXifoeRG.json`
 
 ## Troubleshooting
 
