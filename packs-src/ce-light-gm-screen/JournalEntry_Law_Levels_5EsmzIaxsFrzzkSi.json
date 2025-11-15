@@ -1,0 +1,70 @@
+{
+  "_id": "5EsmzIaxsFrzzkSi",
+  "name": "Law Levels",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Law Levels",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:87.0705%;height:186px\" border=\"1\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">Rating</td>\n<td style=\"width:89.6594%;height:16px\">Commonly Forbidden Weapons</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">0</td>\n<td style=\"width:89.6594%;height:16px\">Lawless. All weapons allowed. Candidate for Amber Zone status.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">1</td>\n<td style=\"width:89.6594%;height:16px\">Poison gas, explosives, undetectable weapons, weapons of mass destruction</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">2</td>\n<td style=\"width:89.6594%;height:16px\">Portable energy weapons (unless mounted on ships)</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">3</td>\n<td style=\"width:89.6594%;height:16px\">Heavy Weapons</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">4</td>\n<td style=\"width:89.6594%;height:16px\">All automatic weapons</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">5</td>\n<td style=\"width:89.6594%;height:16px\">Personal concealed weapons</td>\n</tr>\n<tr>\n<td style=\"width:9.61386%\">6</td>\n<td style=\"width:89.6594%\">All firearms except for shotguns and stunners. Carrying weapons is discouraged</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">7</td>\n<td style=\"width:89.6594%;height:16px\">Shotguns</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">8</td>\n<td style=\"width:89.6594%;height:16px\">All bladed weapons, stunners.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">9</td>\n<td style=\"width:89.6594%;height:16px\">Any weapons outside one’s residence. Candidate for Amber Zone status.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:9.61386%;height:16px\">A (10)</td>\n<td style=\"width:89.6594%;height:16px\">Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "rF2bAlElGvRvgwGx",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!5EsmzIaxsFrzzkSi.rF2bAlElGvRvgwGx"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079918,
+    "modifiedTime": 1760016422378,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!5EsmzIaxsFrzzkSi"
+}

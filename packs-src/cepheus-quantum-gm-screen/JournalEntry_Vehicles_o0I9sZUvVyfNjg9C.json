@@ -1,0 +1,70 @@
+{
+  "_id": "o0I9sZUvVyfNjg9C",
+  "name": "Vehicles",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Vehicles",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<table border=\"0\">\n<tbody>\n<tr>\n<th>\n<p>Vehicle</p>\n</th>\n<th>\n<p>Cost</p>\n</th>\n<th>\n<p>Agility</p>\n</th>\n<th>\n<p>Armor</p>\n</th>\n</tr>\n<tr>\n<td>\n<p>Ground Car</p>\n</td>\n<td>\n<p>Cr6000</p>\n</td>\n<td>\n<p>+0</p>\n</td>\n<td>\n<p>3/6</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>APC</p>\n</td>\n<td>\n<p>Cr65000</p>\n</td>\n<td>\n<p>-1</p>\n</td>\n<td>\n<p>12/15</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Helicopter</p>\n</td>\n<td>\n<p>Cr250000</p>\n</td>\n<td>\n<p>+1</p>\n</td>\n<td>\n<p>3/6</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>ATV</p>\n</td>\n<td>\n<p>Cr50000</p>\n</td>\n<td>\n<p>-1</p>\n</td>\n<td>\n<p>12/15</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Air/Raft</p>\n</td>\n<td>\n<p>Cr275000</p>\n</td>\n<td>\n<p>+0</p>\n</td>\n<td>\n<p>3/6</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>G/Carrier</p>\n</td>\n<td>\n<p>Cr1000000</p>\n</td>\n<td>\n<p>+0</p>\n</td>\n<td>\n<p>16/20</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p></p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "nl85rf8RKUxZU1Aq",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!o0I9sZUvVyfNjg9C.nl85rf8RKUxZU1Aq"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079970,
+    "modifiedTime": 1760016422451,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!o0I9sZUvVyfNjg9C"
+}

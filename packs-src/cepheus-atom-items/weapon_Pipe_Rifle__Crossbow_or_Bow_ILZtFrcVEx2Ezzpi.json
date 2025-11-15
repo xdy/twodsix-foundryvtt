@@ -1,0 +1,78 @@
+{
+  "_id": "ILZtFrcVEx2Ezzpi",
+  "name": "Pipe Rifle, Crossbow or Bow",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/bow.svg",
+  "system": {
+    "name": "Bow",
+    "techLevel": null,
+    "description": "One combat round to reload; two-handed<br><br>Small-arm ammunition costs 40 TU per 20 rounds or bolts.<br><br>Two-handed: uses for the character’s hands; the character may not use a shield together with a two-handed weapon.",
+    "shortdescr": "Ranged weapon",
+    "quantity": 1,
+    "weight": null,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "50/150",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "20",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "300/600",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "VaoWfK5i88LiiKfj",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_a1oz7op7s0j",
+      "path": "cepheus atom#/CF_SEP/CA - Common Weapons",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079779,
+    "modifiedTime": 1760016422272,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ILZtFrcVEx2Ezzpi"
+}

@@ -1,0 +1,972 @@
+{
+  "name": "Random Criminal Encounters",
+  "img": "systems/twodsix/assets/icons/mug-shot.svg",
+  "results": [
+    {
+      "_id": "AguksB9i2pdBArxs",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Drug Dealer",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.AguksB9i2pdBArxs"
+    },
+    {
+      "_id": "eOv9eF9EdnVZpm7C",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Gang Lookout",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.eOv9eF9EdnVZpm7C"
+    },
+    {
+      "_id": "yBdavPw9L1kD4hh9",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Gang Members",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.yBdavPw9L1kD4hh9"
+    },
+    {
+      "_id": "EKEj5OrgcMYTYYFM",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Prostitute (if prostitution is illegal)",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.EKEj5OrgcMYTYYFM"
+    },
+    {
+      "_id": "HUphKshoSYTF1HT9",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pimp or Madame",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.HUphKshoSYTF1HT9"
+    },
+    {
+      "_id": "g114zSv55zdbwmyg",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Thug",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.g114zSv55zdbwmyg"
+    },
+    {
+      "_id": "9KFgpZk9nGlnOpH8",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Operator",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.9KFgpZk9nGlnOpH8"
+    },
+    {
+      "_id": "vDci4EzTBCNiY7Ig",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Fence",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.vDci4EzTBCNiY7Ig"
+    },
+    {
+      "_id": "52khoanNRR92dH97",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hitman",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.52khoanNRR92dH97"
+    },
+    {
+      "_id": "HtmYWyOLV0brbWJQ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Scout",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.HtmYWyOLV0brbWJQ"
+    },
+    {
+      "_id": "cY76PH5H89lvhww0",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Courier",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.cY76PH5H89lvhww0"
+    },
+    {
+      "_id": "cUL86w45MkGnChH8",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Slave Merchant",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.cUL86w45MkGnChH8"
+    },
+    {
+      "_id": "LGZqgLLFbPLpb4JJ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Human Trafficker",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.LGZqgLLFbPLpb4JJ"
+    },
+    {
+      "_id": "6LLSiu0eiDvLqlqF",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Smuggler",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.6LLSiu0eiDvLqlqF"
+    },
+    {
+      "_id": "bsVhxaPH8ZYIU0Us",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Black Market Merchant",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.bsVhxaPH8ZYIU0Us"
+    },
+    {
+      "_id": "VpnTQ3c2eM79Ewl1",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pirate Crew",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.VpnTQ3c2eM79Ewl1"
+    },
+    {
+      "_id": "BL2yVTLeNXO8OStA",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Shakedown/Extortion Crew",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.BL2yVTLeNXO8OStA"
+    },
+    {
+      "_id": "brywdO8220NLriNm",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Drifter",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.brywdO8220NLriNm"
+    },
+    {
+      "_id": "UjrN2956vmH4e26v",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corrupt Cop",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.UjrN2956vmH4e26v"
+    },
+    {
+      "_id": "UQHiSCtSeFeoEsgo",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Bounty Hunter",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.UQHiSCtSeFeoEsgo"
+    },
+    {
+      "_id": "dQFjcuebnyv5JzQa",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Crime Syndicate Rep",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.dQFjcuebnyv5JzQa"
+    },
+    {
+      "_id": "LB51SoM64kPZtvUl",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Petty Thief",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.LB51SoM64kPZtvUl"
+    },
+    {
+      "_id": "5PCW4u1zXD1iYoEZ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Terrorist Operative",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.5PCW4u1zXD1iYoEZ"
+    },
+    {
+      "_id": "Sp9y2VjWuAJZnVFm",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Organ Harvester",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.Sp9y2VjWuAJZnVFm"
+    },
+    {
+      "_id": "wDEWNVR7rAwLWwA6",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Black Market Broker",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.wDEWNVR7rAwLWwA6"
+    },
+    {
+      "_id": "hzNsMPfkMxAZEYr9",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Syndicate Accountant",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.hzNsMPfkMxAZEYr9"
+    },
+    {
+      "_id": "f48CJc9w4SgFcEPv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Drug Trafficker",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.f48CJc9w4SgFcEPv"
+    },
+    {
+      "_id": "FxNrX0qzXP4WnN8G",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Drug Manufacturer",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.FxNrX0qzXP4WnN8G"
+    },
+    {
+      "_id": "lkjW2FyYoxS2kr5u",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Con Artist",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.lkjW2FyYoxS2kr5u"
+    },
+    {
+      "_id": "M6eWBQz8p6hhmjty",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Burglar",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.M6eWBQz8p6hhmjty"
+    },
+    {
+      "_id": "GTOHnJDQronPqOBL",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hacker",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.GTOHnJDQronPqOBL"
+    },
+    {
+      "_id": "dnuxzDGnqZuwZDlH",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Forger",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.dnuxzDGnqZuwZDlH"
+    },
+    {
+      "_id": "IZEfAoXGVJmxdbGr",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unscrupulous Defense Attorney",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.IZEfAoXGVJmxdbGr"
+    },
+    {
+      "_id": "N2wiBuIg6MEkukaq",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "White Collar Criminal",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.N2wiBuIg6MEkukaq"
+    },
+    {
+      "_id": "1LGdfDb181U3iN3l",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Rogue Spy",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.1LGdfDb181U3iN3l"
+    },
+    {
+      "_id": "Wj0LGKh5qJz1iSMR",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Serial Killer",
+      "name": "",
+      "_key": "!tables.results!twWzMjhgXBf2uuIY.Wj0LGKh5qJz1iSMR"
+    }
+  ],
+  "formula": "1d36",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_wg4urws51a",
+      "path": "Social Encounters#/CF_SEP/Random Encounters",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "twWzMjhgXBf2uuIY",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080314,
+    "modifiedTime": 1760016422925,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!twWzMjhgXBf2uuIY"
+}

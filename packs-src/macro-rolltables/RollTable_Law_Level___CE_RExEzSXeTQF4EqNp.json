@@ -1,0 +1,456 @@
+{
+  "_id": "RExEzSXeTQF4EqNp",
+  "name": "Law Level - CE",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "https://travellermap.com/doc/secondsurvey#uwp",
+  "results": [
+    {
+      "_id": "EANEMLmp7Tiw4iFg",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "No prohibitions.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.EANEMLmp7Tiw4iFg"
+    },
+    {
+      "_id": "NsgQ7oQMeb3pIZR7",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Body pistols, explosives, and poison gas prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.NsgQ7oQMeb3pIZR7"
+    },
+    {
+      "_id": "f0lncsQiyUe5aoe6",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Portable energy weapons prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.f0lncsQiyUe5aoe6"
+    },
+    {
+      "_id": "TVQm3ZPMqQaMciOM",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Machine guns, automatic rifles prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.TVQm3ZPMqQaMciOM"
+    },
+    {
+      "_id": "kb9hIXH8L8br5560",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Light assault weapons prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.kb9hIXH8L8br5560"
+    },
+    {
+      "_id": "KEjP3rlWF1g9C5xR",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Personal concealable weapons prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.KEjP3rlWF1g9C5xR"
+    },
+    {
+      "_id": "nwK6mul2nu9dG7OF",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "All firearms except shotguns prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.nwK6mul2nu9dG7OF"
+    },
+    {
+      "_id": "315op0CyaiNWOpdF",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Shotguns prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.315op0CyaiNWOpdF"
+    },
+    {
+      "_id": "6mZ8pyIWCt8oi5WI",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Long bladed weapons controlled; open possession prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.6mZ8pyIWCt8oi5WI"
+    },
+    {
+      "_id": "m7PnTYnyY7ijwhMy",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Possession of weapons outside the home prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.m7PnTYnyY7ijwhMy"
+    },
+    {
+      "_id": "KbyYUBTMVocD6t7k",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Weapon possession prohibited.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.KbyYUBTMVocD6t7k"
+    },
+    {
+      "_id": "gR8WxNjrWO9Wxmpb",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Rigid control of civilian movement.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.gR8WxNjrWO9Wxmpb"
+    },
+    {
+      "_id": "CFTqMkHznKn23Ioi",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unrestricted invasion of privacy.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.CFTqMkHznKn23Ioi"
+    },
+    {
+      "_id": "pIBHziB9ispJq9te",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Paramilitary law enforcement.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.pIBHziB9ispJq9te"
+    },
+    {
+      "_id": "xNo1NGldFpJEgnSA",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Full-fledged police state.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.xNo1NGldFpJEgnSA"
+    },
+    {
+      "_id": "7eFP2GwVbD5KLs2i",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "All facets of daily life regularly legislated and controlled.",
+      "name": "",
+      "_key": "!tables.results!RExEzSXeTQF4EqNp.7eFP2GwVbD5KLs2i"
+    }
+  ],
+  "formula": "1d16-1",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080287,
+    "modifiedTime": 1760016422898,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "_key": "!tables!RExEzSXeTQF4EqNp"
+}

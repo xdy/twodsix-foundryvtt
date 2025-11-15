@@ -1,0 +1,60 @@
+{
+  "name": "Hooligan Tool",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "The Hooligan Tool is a 0.8-meter, 4 kg tool is designed to breach common door/hatch types. There is forked spade end (for getting doors open), a horn (for getting that initial grab into opening an iris valve or busting padlocks), and a wedge (for those pesky hatches). The tool is designed to maximize leverage. Made of special alloys and composites, the tool is non- sparking, a feature that prevents accidents in explosive atmospheres such as a ship with a liquid hydrogen leak. Complete with fiberglass shaft and hand grips made from non-conducting material.",
+    "shortdescr": "tool is designed to breach common door/hatch types",
+    "quantity": 1,
+    "weight": 1,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "fJil3Y5MrJRTjNMe",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737466,
+    "modifiedTime": 1760016422757,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!fJil3Y5MrJRTjNMe"
+}

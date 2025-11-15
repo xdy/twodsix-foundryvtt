@@ -1,0 +1,899 @@
+{
+  "name": "Spacer Crew",
+  "type": "traveller",
+  "img": "systems/twodsix/assets/icons/default_actor.png",
+  "system": {
+    "name": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "hits": {
+      "value": 21,
+      "min": 0,
+      "max": 21,
+      "lastDelta": 0
+    },
+    "gender": "",
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 2,
+      "max": 21
+    },
+    "primaryArmor": {
+      "value": 0
+    },
+    "secondaryArmor": {
+      "value": "0"
+    },
+    "heroPoints": 2,
+    "radiationProtection": {
+      "value": "0"
+    },
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "untrainedSkill": "bIy5XXfXLEvfxRdk",
+    "description": "",
+    "bio": "",
+    "notes": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 7,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": ""
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 7,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": ""
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 7,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": ""
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 7,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": ""
+      },
+      "education": {
+        "key": "education",
+        "value": 7,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": ""
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 7,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": ""
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": ""
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 6,
+      "units": "m",
+      "hover": false
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "items": [
+    {
+      "_id": "bIy5XXfXLEvfxRdk",
+      "name": "Untrained",
+      "type": "skills",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.bIy5XXfXLEvfxRdk"
+    },
+    {
+      "_id": "2WMzCRmoPz1jMt3f",
+      "name": "Piloting",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/piloting.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "DEX",
+        "type": "skills",
+        "description": "Piloting: operating, controlling, and navigating interplanetary and interstellar spacecraft, both in real space and in jump space.<br><br>Examples: throw Piloting/EDU 8+ to plot a jump course. Throw Pilot/DEX 10+ to land on a hostile planetary surface with no landing pad. See the Starship Operations and Space Combat chapters for more details on the Pilot skill.",
+        "shortdescr": "Operating, controlling, and navigating interplanetary and interstellar spacecraft",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.Y7rxMH2leT0LgnhM",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.2WMzCRmoPz1jMt3f"
+    },
+    {
+      "_id": "y68N59nuJbYOrLkR",
+      "name": "Computers",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/computers.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "EDU",
+        "type": "skills",
+        "description": "Computer: programming, working with computer hardware, and hacking. This skill also covers the use of sensors and communications gear.<br><br>Examples: throw Computer/EDU 8+ to purge malware from a computer. Throw Computer/EDU 12+ to hack a government server and download a database. Throw Opposed Computer/EDU to avoid detection and tracing while doing so.",
+        "shortdescr": "Programming, working with and hacking computer hardware; comms and sensors operation",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.3dz34XdGUGhAu0wc",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.y68N59nuJbYOrLkR"
+    },
+    {
+      "_id": "ElFOqzokuvI2ZZqo",
+      "name": "Engineering",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/engineering.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "EDU",
+        "type": "skills",
+        "description": "Engineering: using and maintaining of starship drives, powerplants, and other systems specific to starships. Engineering is the required skill for Jump drive operation. This skill is not a substitute for the Repair skill (below).<br><br>Examples: throw Engineering/EDU 8+ to estimate a ship’s performance and tonnage. throw Engineering/INT 10+ to jury-rig a damaged power plant. More Engineering skill actions are presented in the Space Combat and Starship Operations chapters.",
+        "shortdescr": "Using and maintaining of starship drives, powerplants, and other systems specific to starships",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.YF2fNwTR9Qo64DGz",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.ElFOqzokuvI2ZZqo"
+    },
+    {
+      "_id": "J1VVqeholOEMREn2",
+      "name": "Repair",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/mechanic.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Repair: the ability to maintain, repair and build mechanical and electronic devices of all sorts. This skill also covers lockpicking, both mechanical and electronic. Ship-specific systems are handled by the Engineering skill, and Computers covers the use of electronic devices.<br><br>Examples: throw Repair/INT 6+ to repair a damaged vehicle at a workshop. Throw Repair/END 8+ to do the same repairs, but in one night. Throw Repair/EDU 8+ to restore a vehicle that is no longer functioning. For all these tasks, the character will need an ample supply of parts.",
+        "shortdescr": "Maintain, repair and build mechanical and electronic devices",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1723863019713,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.yHSxJVMUhz2U22Sr",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.J1VVqeholOEMREn2"
+    },
+    {
+      "_id": "qpGpWLxBw0d9CYix",
+      "name": "Gunnery",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/gunnery.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Gunnery: using vehicle-mounted or spaceship-mounted weapons.<br><br>Examples: throw Gunnery/INT 8+ to hit a target in space combat. See the Combat and Space combat chapters for more information.",
+        "shortdescr": "Using vehicle-mounted or spaceship-mounted weapons",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.Wj6rDX5GJNRh2cRa",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.qpGpWLxBw0d9CYix"
+    },
+    {
+      "_id": "P9EPRVleEkPZpiqr",
+      "name": "Space Suit",
+      "type": "armor",
+      "img": "./systems/twodsix/assets/icons/vacc-suit.svg",
+      "system": {
+        "name": "",
+        "techLevel": 7,
+        "description": "A a standard, futuristic space suit, lighter and cheaper than a 20th Century Terran space suit. A space suit carries life support supplies for up to 6 hours. It protects against Vacuum, Tainted, and Exotic atmospheres, as well as airborne pathogens. Offers 2D hours of protection against Corrosive atmospheres, and 1Dx10 minutes protection against Insidious atmospheres. Reduces radiation by 60 rads. Counts as 2 items for Encumbrance purposes.<br><br>Skill Required: Zero-G 0",
+        "shortdescr": "A standard, futuristic space suit",
+        "quantity": 1,
+        "weight": 2,
+        "price": 2000,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "",
+        "equipped": "ship",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "armor": 6,
+        "secondaryArmor": {
+          "value": 0,
+          "protectionTypes": []
+        },
+        "radiationProtection": {
+          "value": 60
+        },
+        "type": "armor",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ],
+        "isPowered": false
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3odrbwitf0c",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680634169737,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.su7KIgXbV3spdyJ1",
+        "duplicateSource": null,
+        "exportSource": {
+          "worldId": "on_the_run",
+          "uuid": null,
+          "coreVersion": "0.6.6",
+          "systemId": "twodsix",
+          "systemVersion": "0.6.27"
+        }
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.P9EPRVleEkPZpiqr"
+    },
+    {
+      "_id": "yCUwfxSTJzLCRY55",
+      "name": "Zero G",
+      "ownership": {
+        "default": 0,
+        "KrOiJLcZ94d4ZOL3": 3,
+        "wKDpARCmanYPD5xr": 3
+      },
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "DEX",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
+      },
+      "flags": {
+        "cf": {
+          "id": null,
+          "path": "2e Skills",
+          "color": "#000000"
+        },
+        "twodsix": {
+          "newItem": true
+        }
+      },
+      "img": "systems/twodsix/assets/icons/vacc-suit.svg",
+      "effects": [],
+      "folder": null,
+      "sort": 5300000,
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.350",
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "createdTime": 1723863004290,
+        "modifiedTime": 1723863016369,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "exportSource": null
+      },
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.yCUwfxSTJzLCRY55"
+    },
+    {
+      "name": "Tech Toolkit",
+      "type": "equipment",
+      "img": "systems/twodsix/assets/icons/tech-toolkit.svg",
+      "system": {
+        "name": "",
+        "techLevel": 5,
+        "description": "Required for general repairs and construction. At its most basic TL5, contains mostly only mechanical hand tools and spare parts, but more advanced options can contain miniature power tools, diagnostic sensors and computer analysis programs.",
+        "shortdescr": "Required for general repairs and construction.",
+        "quantity": 1,
+        "weight": 1,
+        "price": 300,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "J1VVqeholOEMREn2",
+        "associatedSkillName": "Repair",
+        "equipped": "backpack",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "type": "equipment",
+        "useConsumableForAttack": "",
+        "priorType": "unknown"
+      },
+      "effects": [],
+      "folder": "rLvsCUV36tYzFBWl",
+      "sort": 100000,
+      "ownership": {
+        "default": 0,
+        "KrOiJLcZ94d4ZOL3": 3,
+        "wKDpARCmanYPD5xr": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_la7nqd19f18",
+          "path": "ce light-equipment",
+          "color": "#000000"
+        },
+        "twodsix": {
+          "newItem": true
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.350",
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "createdTime": 1723863050723,
+        "modifiedTime": 1723863050723,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "exportSource": null
+      },
+      "_id": "E5F6Mc9eRo2SDIbi",
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.E5F6Mc9eRo2SDIbi"
+    },
+    {
+      "name": "Pistol",
+      "type": "weapon",
+      "img": "./systems/twodsix/assets/icons/auto-pistol.svg",
+      "system": {
+        "name": "Auto Pistol",
+        "techLevel": 5,
+        "description": "Semi-automatic handgun fed from a magazine.<br><br>Double Tap: may fire 2 bullets in one attack to gain +1 to damage.",
+        "shortdescr": "Auto Pistol - ranged",
+        "quantity": 1,
+        "weight": 1,
+        "price": 200,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "bIy5XXfXLEvfxRdk",
+        "associatedSkillName": "Gun Combat",
+        "equipped": "backpack",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "10/50",
+        "damage": "2d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": 16,
+        "useConsumableForAttack": "",
+        "magazineCost": 7,
+        "type": "weapon",
+        "lawLevel": "6",
+        "rangeBand": "10/50",
+        "weaponType": "ranged",
+        "damageType": "ballistic",
+        "rateOfFire": "",
+        "doubleTap": true,
+        "recoil": false,
+        "features": "Double Tap",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "priorType": "unknown",
+        "meleeRangeModifier": "0",
+        "customCT": {
+          "armor": {
+            "nothing": "0",
+            "jack": "0",
+            "mesh": "0",
+            "cloth": "0",
+            "reflec": "0",
+            "ablat": "0",
+            "combat": "0"
+          },
+          "range": {
+            "close": "0",
+            "short": "0",
+            "medium": "0",
+            "long": "0",
+            "veryLong": "0"
+          }
+        }
+      },
+      "effects": [],
+      "folder": "8nkkiG1HAMrRLsrb",
+      "sort": 1600000,
+      "ownership": {
+        "default": 0,
+        "KrOiJLcZ94d4ZOL3": 3,
+        "wKDpARCmanYPD5xr": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_zxe7vegdsle",
+          "path": "ce light-weapons",
+          "color": "#000000"
+        },
+        "twodsix": {
+          "newItem": true
+        }
+      },
+      "_stats": {
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "coreVersion": "13.350",
+        "systemId": "twodsix",
+        "systemVersion": "5.5.2",
+        "createdTime": 1723934155550,
+        "modifiedTime": 1723934155550,
+        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "exportSource": null
+      },
+      "_id": "ouotWZPBo5Ebox6s",
+      "_key": "!actors.items!GOeX0kMkQwDJtOmD.ouotWZPBo5Ebox6s"
+    }
+  ],
+  "effects": [],
+  "folder": "GnzimFQ7GDJKVbRi",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_rxguv8nhfha",
+      "path": "Sample NPCs",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "GOeX0kMkQwDJtOmD",
+  "prototypeToken": {
+    "name": "Spacer Crew",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": 0,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 0.25,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_actor.png",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 0,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080392,
+    "modifiedTime": 1760016423036,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!GOeX0kMkQwDJtOmD"
+}

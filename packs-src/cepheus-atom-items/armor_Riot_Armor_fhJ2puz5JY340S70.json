@@ -1,0 +1,69 @@
+{
+  "_id": "fhJ2puz5JY340S70",
+  "name": "Riot Armor",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "Stealth impossible; halve movement rate.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 350,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 10,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "tNJfsW50f5AVlVMg",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079787,
+    "modifiedTime": 1760016422282,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!fhJ2puz5JY340S70"
+}

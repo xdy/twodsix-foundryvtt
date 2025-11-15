@@ -1,0 +1,97 @@
+{
+  "folder": "jReNSrucYfg0XOAO",
+  "name": "Long Bow",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/bow.svg",
+  "system": {
+    "name": "",
+    "description": "A long bow (typically 1.8 – 2m in length) that is also usually a ‘self&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">bow’, i.e. it is a bow made of a single piece of wood. The archer is able to draw the&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">string back much further than with a short bow, providing greater range and power.&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Cannot be used from horseback. Also known as: Japanese higo-yumi, flatbow.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 0,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1.5,
+    "price": 75,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6+1",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "magazineCost": 0,
+    "lawLevel": "",
+    "rangeBand": "medium",
+    "weaponType": "",
+    "damageType": "melee",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727616930945,
+    "modifiedTime": 1760016422999,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "guATtYOKd0rwJJbv",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!guATtYOKd0rwJJbv"
+}

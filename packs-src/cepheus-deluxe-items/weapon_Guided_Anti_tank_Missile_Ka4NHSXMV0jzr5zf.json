@@ -1,0 +1,81 @@
+{
+  "_id": "Ka4NHSXMV0jzr5zf",
+  "name": "Guided Anti-tank Missile",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "This is a portable guided missile system, like the AT-3 Sagger, or present-day Javelin or Eryx. These weapons must be fired from a fixed stationary position. However, the gunner need not be adjacent to the missile’s firing position.<br><br>Blast 1: This weapon has an explosive component or is otherwise effective against all targets in its blast radius. The number given is the blast radius in meters. It is possible to avoid or minimize blast damage, see Diving for Cover in the Combat chapter.",
+    "shortdescr": "Portable guided missile system",
+    "quantity": 1,
+    "weight": 3,
+    "price": 4000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "200/600",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 200,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "200/600",
+    "weaponType": "Heavy",
+    "damageType": "NONE",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_i181bqkw8n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Heavy Weapons",
+      "color": "#00aaaa"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737432,
+    "modifiedTime": 1760016422739,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Ka4NHSXMV0jzr5zf"
+}

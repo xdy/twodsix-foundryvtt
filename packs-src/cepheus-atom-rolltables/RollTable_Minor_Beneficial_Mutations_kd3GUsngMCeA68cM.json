@@ -1,0 +1,252 @@
+{
+  "name": "Minor Beneficial Mutations",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_euiamf65fq",
+      "path": "CA Tables#/CF_SEP/Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "3eNAez6MOxFzVyWn",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/six-eyes.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Additional Eyes",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.hLfjljmDXMoXUTmP",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.3eNAez6MOxFzVyWn"
+    },
+    {
+      "_id": "kJyIaLDj5HqA39FD",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/lift-1-kg.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Far Hand*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.O3XIY4Aoqkedv59S",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.kJyIaLDj5HqA39FD"
+    },
+    {
+      "_id": "9h5bJMNkA6sHpO8g",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/regeneration.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Fast Healing",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.GI4gHK04zdr6I2jc",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.9h5bJMNkA6sHpO8g"
+    },
+    {
+      "_id": "ijPe4VBshfCgk7VH",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/night-vision.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Infravision",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.psb02KLQQDBe8Lpv",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.ijPe4VBshfCgk7VH"
+    },
+    {
+      "_id": "naEqEGjx8Dm4ojRn",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/heart-plus.svg",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Accumulated Resistance",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Nu62NFjvATjXwAMf",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.naEqEGjx8Dm4ojRn"
+    },
+    {
+      "_id": "K6XygRZPtwZcAiNJ",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/metabolic-accelerator.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Fleet Feet",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.oWu0sYB80HrDnDHv",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.K6XygRZPtwZcAiNJ"
+    },
+    {
+      "_id": "o4hJK0FPDqS5N5E4",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/Thick%20Hide.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Thick Hide",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.EW6F5SyBrsxykDgC",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.o4hJK0FPDqS5N5E4"
+    },
+    {
+      "_id": "7PYRxSi2KqwH2LZv",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/clairsentience.svg",
+      "weight": 1,
+      "range": [
+        11,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Empathy*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.xcDnIxxcCR1OKGG3",
+      "description": "",
+      "_key": "!tables.results!kd3GUsngMCeA68cM.7PYRxSi2KqwH2LZv"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "kd3GUsngMCeA68cM",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080065,
+    "modifiedTime": 1760016422595,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!kd3GUsngMCeA68cM"
+}

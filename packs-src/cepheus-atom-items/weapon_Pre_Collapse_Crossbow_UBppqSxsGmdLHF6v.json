@@ -1,0 +1,78 @@
+{
+  "_id": "UBppqSxsGmdLHF6v",
+  "name": "Pre-Collapse Crossbow",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/crossbow.svg",
+  "system": {
+    "name": "Crossbow",
+    "techLevel": null,
+    "description": "+1 to-hit; requires ammo",
+    "shortdescr": "Crossbow - ranged",
+    "quantity": 1,
+    "weight": null,
+    "price": 60,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "100/300",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "300/600",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "VaoWfK5i88LiiKfj",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079784,
+    "modifiedTime": 1760016422278,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!UBppqSxsGmdLHF6v"
+}

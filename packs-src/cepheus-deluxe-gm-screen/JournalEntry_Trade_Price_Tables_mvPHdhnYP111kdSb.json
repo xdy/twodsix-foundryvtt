@@ -1,0 +1,71 @@
+{
+  "_id": "mvPHdhnYP111kdSb",
+  "name": "Trade Price Tables",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_pi9a9t8oz4d",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Trade Price Tables",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Modified Price Table</h1>\n<table style=\"width:383px;height:358px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:124px\">2D</td>\n<td style=\"width:68px\">Purchase</td>\n<td style=\"width:189px\">Sale</td>\n</tr>\n<tr>\n<td style=\"width:124px\">2-</td>\n<td style=\"width:68px\">200%</td>\n<td style=\"width:189px\">40%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">3</td>\n<td style=\"width:68px\">180%</td>\n<td style=\"width:189px\">50%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">4</td>\n<td style=\"width:68px\">160%</td>\n<td style=\"width:189px\">60%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">5</td>\n<td style=\"width:68px\">140%</td>\n<td style=\"width:189px\">70%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">6</td>\n<td style=\"width:68px\">120%</td>\n<td style=\"width:189px\">80%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">7</td>\n<td style=\"width:68px\">110%</td>\n<td style=\"width:189px\">90%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">8</td>\n<td style=\"width:68px\">100%</td>\n<td style=\"width:189px\">100%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">9</td>\n<td style=\"width:68px\">90%</td>\n<td style=\"width:189px\">110%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">10</td>\n<td style=\"width:68px\">80%</td>\n<td style=\"width:189px\">120%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">11</td>\n<td style=\"width:68px\">70%</td>\n<td style=\"width:189px\">130%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">12</td>\n<td style=\"width:68px\">60%</td>\n<td style=\"width:189px\">140%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">13</td>\n<td style=\"width:68px\">50%</td>\n<td style=\"width:189px\">150%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">14</td>\n<td style=\"width:68px\">40%</td>\n<td style=\"width:189px\">160%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">15</td>\n<td style=\"width:68px\">30%</td>\n<td style=\"width:189px\">180%</td>\n</tr>\n<tr>\n<td style=\"width:124px\">16+</td>\n<td style=\"width:68px\">20%</td>\n<td style=\"width:189px\">200%</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Local Broker Charges</h1>\n<table class=\"TableGrid\" style=\"width:424px;margin-left:-2.25pt;margin-right:-2.25pt;height:114px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:112px\">Broker DM</td>\n<td style=\"width:91px\">Commission</td>\n<td style=\"width:215px\">Minimum starport class</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM+1</td>\n<td style=\"width:91px\">5%</td>\n<td style=\"width:215px\">E</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM+2</td>\n<td style=\"width:91px\">10%</td>\n<td style=\"width:215px\">C</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM+3</td>\n<td style=\"width:91px\">15%</td>\n<td style=\"width:215px\">B</td>\n</tr>\n<tr>\n<td style=\"width:112px\">DM +4</td>\n<td style=\"width:91px\">20%</td>\n<td style=\"width:215px\">\n<p>A</p>\n<p> </p>\n</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Traffic, Safety, and Legality Price Modifiers</h1>\n<table border=\"1\">\n<tbody>\n<tr>\n<td>Starport Code</td>\n<td>Traffic Rating</td>\n<td>Purchase DM</td>\n<td> </td>\n<td>Starport Code</td>\n<td>Traffic Rating</td>\n<td>Sale DM</td>\n</tr>\n<tr>\n<td>A</td>\n<td>High</td>\n<td>+2</td>\n<td> </td>\n<td>A</td>\n<td>High</td>\n<td>-3</td>\n</tr>\n<tr>\n<td>B</td>\n<td> </td>\n<td>+1</td>\n<td> </td>\n<td>B</td>\n<td> </td>\n<td>-2</td>\n</tr>\n<tr>\n<td>C</td>\n<td>Medium</td>\n<td>0</td>\n<td> </td>\n<td>C</td>\n<td>Medium</td>\n<td>-1</td>\n</tr>\n<tr>\n<td>D</td>\n<td> </td>\n<td>-1</td>\n<td> </td>\n<td>D</td>\n<td> </td>\n<td>0</td>\n</tr>\n<tr>\n<td>E</td>\n<td>Low</td>\n<td>-2</td>\n<td> </td>\n<td>E</td>\n<td>Low</td>\n<td>0</td>\n</tr>\n<tr>\n<td>X</td>\n<td> </td>\n<td>-2</td>\n<td> </td>\n<td>X</td>\n<td> </td>\n<td>+1</td>\n</tr>\n<tr>\n<td> </td>\n<td> </td>\n<td> </td>\n<td> </td>\n<td> </td>\n<td> </td>\n<td> </td>\n</tr>\n<tr>\n<td>System Color</td>\n<td>Safety Rating</td>\n<td> </td>\n<td> </td>\n<td>System Color</td>\n<td>Safety Rating</td>\n<td> </td>\n</tr>\n<tr>\n<td>Normal</td>\n<td>Secure</td>\n<td>0</td>\n<td> </td>\n<td>Normal</td>\n<td>Secure</td>\n<td>0</td>\n</tr>\n<tr>\n<td>Amber</td>\n<td>Independent</td>\n<td>+1</td>\n<td> </td>\n<td>Amber</td>\n<td>Independent</td>\n<td>0</td>\n</tr>\n<tr>\n<td>Red</td>\n<td>Dangerous</td>\n<td>+3</td>\n<td> </td>\n<td>Red</td>\n<td>Dangerous</td>\n<td>+2</td>\n</tr>\n<tr>\n<td colspan=\"7\"> </td>\n</tr>\n<tr>\n<td colspan=\"3\"> </td>\n<td> </td>\n<td colspan=\"3\">Legality (relative to Law Level)</td>\n</tr>\n<tr>\n<td colspan=\"2\"> </td>\n<td> </td>\n<td> </td>\n<td colspan=\"2\">Slightly Illegal</td>\n<td>+1</td>\n</tr>\n<tr>\n<td colspan=\"2\"> </td>\n<td> </td>\n<td> </td>\n<td colspan=\"2\">Highly Illegal</td>\n<td>+2</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "6oQC6uXVe6Apb8sS",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!mvPHdhnYP111kdSb.6oQC6uXVe6Apb8sS"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080327,
+    "modifiedTime": 1760016422942,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.TPQIcbS6gFUJUNKM",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!mvPHdhnYP111kdSb"
+}

@@ -1,0 +1,60 @@
+{
+  "name": "Sonar Window",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "A Sonar Window is flat-screen device that attaches to a wall/partition. It uses sonar to display what is on the other side of the wall. Image quality depends on Tech Level. The TL11 version displays basic outlines, the TL 12 version costs Cr2000 and improves image quality and 3-D effect. At Cr7000, the TL14 version’s display is virtually indistinguishable from that of an actual window.",
+    "shortdescr": "sonar window displays what is on the other side of a wall",
+    "quantity": 1,
+    "weight": 1,
+    "price": 900,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "IQGxUbrJSMPYmcuk",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737429,
+    "modifiedTime": 1760016422738,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IQGxUbrJSMPYmcuk"
+}

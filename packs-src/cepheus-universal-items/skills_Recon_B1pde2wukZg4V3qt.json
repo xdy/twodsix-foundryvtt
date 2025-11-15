@@ -1,0 +1,55 @@
+{
+  "name": "Recon",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Scouting out dangers and spotting&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">threats, ambushes, booby traps, unusual&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">objects or out of place people. Characters are&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">also adept at silent movement and in&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">camouflage techniques.</span>",
+    "shortdescr": "This skill represents the ability to scout out dangers and spot threats, unusual objects or out of place people.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Recon",
+    "priorType": "unknown",
+    "prereq": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/recon.svg",
+  "effects": [],
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422987,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "B1pde2wukZg4V3qt",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!B1pde2wukZg4V3qt"
+}

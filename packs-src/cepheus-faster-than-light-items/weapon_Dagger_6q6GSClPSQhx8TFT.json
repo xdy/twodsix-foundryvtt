@@ -1,0 +1,77 @@
+{
+  "_id": "6q6GSClPSQhx8TFT",
+  "name": "Dagger",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/dagger.svg",
+  "system": {
+    "name": "Dagger",
+    "techLevel": 0,
+    "description": "Dagger (TL0): a straight, short knife. When wielding a Dagger, a character may use both actions in a combat round to attack.",
+    "shortdescr": "Dagger - melee",
+    "quantity": 1,
+    "weight": 1,
+    "price": 5,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "5",
+    "rangeBand": "reach or thrown",
+    "weaponType": "melee",
+    "damageType": "piercing",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "EVonyMdL7ZagHhbM",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_q4e3naht7b",
+      "path": "ce ftl weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079627,
+    "modifiedTime": 1760016422091,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!6q6GSClPSQhx8TFT"
+}

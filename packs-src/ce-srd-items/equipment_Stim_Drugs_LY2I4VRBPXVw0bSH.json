@@ -1,0 +1,59 @@
+{
+  "_id": "LY2I4VRBPXVw0bSH",
+  "name": "Stim Drugs",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Removes fatigue, at a cost. A character who uses stim may remove the effects of fatigue but suffers one point of damage. If stims are used to remove fatigue again without an intervening period of sleep, the character suffers two points of damage the second time, three points the third time, and so on.",
+    "shortdescr": "Stim Drugs",
+    "quantity": 1,
+    "weight": 0,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_fhd8c5c89i",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Drugs",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/stim.svg",
+  "effects": [],
+  "folder": "7JNabnKuKR3HpTut",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079858,
+    "modifiedTime": 1760016422327,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LY2I4VRBPXVw0bSH"
+}

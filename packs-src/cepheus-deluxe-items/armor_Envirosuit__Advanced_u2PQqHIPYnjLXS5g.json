@@ -1,0 +1,76 @@
+{
+  "_id": "u2PQqHIPYnjLXS5g",
+  "name": "Envirosuit, Advanced",
+  "type": "armor",
+  "img": "systems/twodsix/assets/icons/enviro-suit-advanced.svg",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "An Envirosuit, but ultra-light. A full body sealed suit with attached filters and an option to attach oxygen tanks as well. Fully protects against airborne toxins and pathogens. Reduces radiation by 20 rads. It does not count as an item for encumbrance purposes.<br>",
+    "shortdescr": "An ultra-light Envirosuit",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 5,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 20
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "a7XuMzMB1lUiBYWm",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3odrbwitf0c",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737480,
+    "modifiedTime": 1760016422778,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.t2YWFcvk2S8rV8Ns",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!u2PQqHIPYnjLXS5g"
+}

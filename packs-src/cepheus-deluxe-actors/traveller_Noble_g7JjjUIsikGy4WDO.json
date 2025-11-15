@@ -1,0 +1,766 @@
+{
+  "name": "Noble",
+  "type": "traveller",
+  "img": "systems/twodsix/assets/icons/default_actor.png",
+  "system": {
+    "name": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "hits": {
+      "value": 21,
+      "min": 0,
+      "max": 21,
+      "lastDelta": 0
+    },
+    "gender": "",
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": "6"
+    },
+    "secondaryArmor": {
+      "value": "0"
+    },
+    "heroPoints": 2,
+    "radiationProtection": {
+      "value": "0"
+    },
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "untrainedSkill": "zpPhnpWqHvY9Klde",
+    "description": "",
+    "bio": "",
+    "notes": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 6,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": ""
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 7,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": ""
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 7,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": ""
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 7,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": ""
+      },
+      "education": {
+        "key": "education",
+        "value": 9,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": ""
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 13,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": ""
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 7,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": ""
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 0,
+      "units": "ft",
+      "hover": false
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "items": [
+    {
+      "_id": "zpPhnpWqHvY9Klde",
+      "name": "Untrained",
+      "type": "skills",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.zpPhnpWqHvY9Klde"
+    },
+    {
+      "_id": "vW9MvocI65zLptqC",
+      "name": "Carousing",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/carousing.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 2,
+        "characteristic": "SOC",
+        "type": "skills",
+        "description": "Carousing: the art of mingling in social settings to achieve your goals. Also covers gambling.<br><br>Examples: throw Carousing/SOC 6+ to gather useful rumors at a party. Throw opposed Carousing/END to drink someone under the table.",
+        "shortdescr": "The art of mingling in social settings to achieve your goals",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.Ivc9wU3L8mFObSBW",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.vW9MvocI65zLptqC"
+    },
+    {
+      "_id": "X3emk62DJahUS2lo",
+      "name": "Liaison",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/liaison.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "SOC",
+        "type": "skills",
+        "description": "Liaison: negotiation and diplomacy in a myriad of social situations. This skill covers diplomatic meetings, haggling in interstellar trading negotiations, or at the shouq, and talking down a gunman who is holding hostages.<br><br>Examples: throw Liaison/SOC 8+ to strike a deal with a reluctant alien merchant. Throw Liaison/INT 8+ to read a room and negotiate with the person who really makes the decisions. Throw Liaison/EDU 10+ to understand proper etiquette when dealing with an honor-based culture. Throw Liaison/INT opposed by Liaison/INT to haggle over a price.",
+        "shortdescr": "Negotiation and diplomacy in a myriad of social situations",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.WGIiT2CCuzxPJd1x",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.X3emk62DJahUS2lo"
+    },
+    {
+      "_id": "qZcwvPmdwH1nFZ7R",
+      "name": "Admin",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/admin.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "EDU",
+        "type": "skills",
+        "description": "Administration: understanding and dealing with bureaucracies, businesses, and the law. Also covers forgery.<br><br>Examples: throw Admin/EDU 10+ to deal with a complex government bureaucracy and get permits. Throw Admin/INT opposed by Investigate/INT to pass off forged documents as authentic. Throw Admin/INT or Admin/SOC 10+ to bluff your way past a routine customs inspection.",
+        "shortdescr": "understanding and dealing with bureaucracies, businesses, and the law",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.YS1V8gReRrBqKIiu",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.qZcwvPmdwH1nFZ7R"
+    },
+    {
+      "_id": "y1RkR3nO51GXYMzs",
+      "name": "Melee Combat",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/melee.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "STR",
+        "type": "skills",
+        "description": "Melee Combat: fighting hand-to-hand, either with a weapon or unarmed.<br><br>Examples: throw Melee Combat/STR 8+ to hit a target with a sword. The Combat chapter has more detailed examples of how to use the Melee Combat skill.",
+        "shortdescr": "Fighting hand-to-hand, either with a weapon or unarmed",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.eVVFG5oHgsBycy1K",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.y1RkR3nO51GXYMzs"
+    },
+    {
+      "_id": "pz5GoH6yMqsIPd1p",
+      "name": "Heavy Ballistic Cloth",
+      "type": "armor",
+      "img": "./systems/twodsix/assets/icons/cloth.svg",
+      "system": {
+        "name": "",
+        "techLevel": 7,
+        "description": "A modern heavy-duty ballistic- cloth armor. Commonly worn by soldiers, well-equipped security, and TL7 mercenaries. Counts as two Items for encumbrance purposes and is not concealable.",
+        "shortdescr": "modern heavy-duty ballistic-cloth armor",
+        "quantity": 1,
+        "weight": 2,
+        "price": 250,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "y1RkR3nO51GXYMzs",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "armor": 6,
+        "secondaryArmor": {
+          "value": 0,
+          "protectionTypes": []
+        },
+        "radiationProtection": {
+          "value": 0
+        },
+        "type": "armor",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ],
+        "isPowered": false
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3odrbwitf0c",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680633996820,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.EKKJ33cnnnmKvcHo",
+        "duplicateSource": null,
+        "exportSource": {
+          "worldId": "on_the_run",
+          "uuid": null,
+          "coreVersion": "0.6.6",
+          "systemId": "twodsix",
+          "systemVersion": "0.6.27"
+        }
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.pz5GoH6yMqsIPd1p"
+    },
+    {
+      "_id": "Rqpfs9nQRwFbXl4L",
+      "name": "Omnicomm",
+      "type": "equipment",
+      "img": "systems/twodsix/assets/icons/omnicomm.svg",
+      "system": {
+        "name": "",
+        "techLevel": 8,
+        "description": "Today’s smartphones will eventually evolve into an Omnicomm, a combination of all your telecom needs in one place, with holographic augmented reality capability. Designed to integrate with whatever telecommunications networks are present on a given world. TL8 batteries for these devices last for a few days; TL9 batteries last for months between recharging.",
+        "shortdescr": "smart communicator",
+        "quantity": 1,
+        "weight": 1,
+        "price": 50,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "Computers",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "type": "equipment",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_bpg3uct3zcp",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680633999988,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.MlLa4SgNWAZAdwQk",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.Rqpfs9nQRwFbXl4L"
+    },
+    {
+      "_id": "2MAGF7cAFJMlZc1A",
+      "name": "Sword",
+      "type": "weapon",
+      "img": "./systems/twodsix/assets/icons/sword.svg",
+      "system": {
+        "name": "Sword",
+        "techLevel": 1,
+        "description": "One of any variety of medium-sized one-handed swords, from gladius (shortsword) to longsword and rapier.",
+        "shortdescr": "Sword - melee",
+        "quantity": 1,
+        "weight": 1,
+        "price": 150,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "y1RkR3nO51GXYMzs",
+        "associatedSkillName": "Melee Combat",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "3d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "location": "",
+        "lawLevel": "8",
+        "rangeBand": "reach",
+        "weaponType": "melee",
+        "damageType": "slashing",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_d5gavafmlx",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Melee Weapons",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680703832227,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.isMChFZ3d57bfGu2",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!g7JjjUIsikGy4WDO.2MAGF7cAFJMlZc1A"
+    }
+  ],
+  "effects": [],
+  "folder": "GnzimFQ7GDJKVbRi",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_rxguv8nhfha",
+      "path": "Sample NPCs",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "g7JjjUIsikGy4WDO",
+  "prototypeToken": {
+    "name": "Noble",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 0.25,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_actor.png",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080230,
+    "modifiedTime": 1760016422821,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!g7JjjUIsikGy4WDO"
+}

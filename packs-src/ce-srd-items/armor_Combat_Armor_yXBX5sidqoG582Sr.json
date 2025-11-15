@@ -1,0 +1,68 @@
+{
+  "_id": "yXBX5sidqoG582Sr",
+  "name": "Combat Armor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "<div>This full-body suit is used by the military and not generally available on the open market, although those with military or criminal contacts can obtain it without much difficulty. It is issued to troop units and mercenary battalions. Combat armor protects from hard vacuum in the same way as a vacc suit and provides life support for six hours.</div><div><br></div><div>Requires Zero G skill.<br></div>",
+    "shortdescr": "Combat Armor (TL 11)",
+    "quantity": 1,
+    "weight": 18,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero-G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 11,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/Combat-armor.svg",
+  "effects": [],
+  "folder": "9gTQdzmIuMRlmswr",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079901,
+    "modifiedTime": 1760016422345,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!yXBX5sidqoG582Sr"
+}

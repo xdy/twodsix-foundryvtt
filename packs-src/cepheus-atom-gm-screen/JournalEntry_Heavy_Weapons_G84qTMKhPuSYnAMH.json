@@ -1,0 +1,70 @@
+{
+  "_id": "G84qTMKhPuSYnAMH",
+  "name": "Heavy Weapons",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Heavy Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:92.0128%;height:74px\" border=\"1\">\n<tbody>\n<tr style=\"height:18px\">\n<td style=\"width:28.0868%;height:18px\">Weapon</td>\n<td style=\"width:19.4462%;height:18px\">Cost (TU)</td>\n<td style=\"width:12.6989%;height:18px\">Range</td>\n<td style=\"width:7.56943%;height:18px\">DMG</td>\n<td style=\"width:31.174%;height:18px\">Notes</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:28.0868%;height:18px\">Flamethrower</td>\n<td style=\"width:19.4462%;height:18px\">300</td>\n<td style=\"width:12.6989%;height:18px\">10/20</td>\n<td style=\"width:7.56943%;height:18px\">3D</td>\n<td style=\"width:31.174%;height:18px\">AV 2D, Automatic, Fire</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:28.0868%;height:18px\">Gatlin Gun (improvised)</td>\n<td style=\"width:19.4462%;height:18px\">500</td>\n<td style=\"width:12.6989%;height:18px\">30/90</td>\n<td style=\"width:7.56943%;height:18px\">3D</td>\n<td style=\"width:31.174%;height:18px\">AV 3D, Automatic</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:28.0868%;height:10px\">Pipe Bomb Thrower</td>\n<td style=\"width:19.4462%;height:10px\">400</td>\n<td style=\"width:12.6989%;height:10px\">20/60</td>\n<td style=\"width:7.56943%;height:10px\">4D</td>\n<td style=\"width:31.174%;height:10px\">AV 3D, Blast</td>\n</tr>\n<tr>\n<td style=\"width:28.0868%\">RPG</td>\n<td style=\"width:19.4462%\">100</td>\n<td style=\"width:12.6989%\">50/150</td>\n<td style=\"width:7.56943%\">4D</td>\n<td style=\"width:31.174%\">AV 5D, Blast, one use only</td>\n</tr>\n</tbody>\n</table>\n<p>Flamethrower and gatling gun ammunition costs 100 TU per 20 fuel units or rounds.</p>\n<ul>\n<li><strong>Blast</strong>: causes damage to up to 3 adjacent targets.</li>\n<li><strong>Fire</strong>: target catches fire on 6+; burning targets suffer 2D damage per round for 1D rounds, or until put out.</li>\n<li><strong>AV</strong>: Anti-Vehicular dice (see Combat and Vehicles).</li>\n<li><strong>Automatic</strong>: May attack twice per combat round (any target); both attacks together spend 3 rounds of ammunition.</li>\n</ul>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "Z4UXG1YRyb1bO0fW",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!G84qTMKhPuSYnAMH.Z4UXG1YRyb1bO0fW"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079944,
+    "modifiedTime": 1760016422408,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!G84qTMKhPuSYnAMH"
+}

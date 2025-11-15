@@ -1,0 +1,252 @@
+{
+  "name": "Major Beneficial Mutations",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_euiamf65fq",
+      "path": "CA Tables#/CF_SEP/Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "KcuRuBiRDskT6x7z",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/psionic-shield-helmet.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Mind Block",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.K4CkpB2fqWcNuL6o",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.KcuRuBiRDskT6x7z"
+    },
+    {
+      "_id": "FpjzyDPQ4kG0GNIj",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/lightning-tear.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Optical Emissions",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.gqXNmDmW77IoTdKg",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.FpjzyDPQ4kG0GNIj"
+    },
+    {
+      "_id": "3XtBDrkqv4VwXQob",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/psychic-waves.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Psionic Blast*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.6Nzb8A6kW6Is4hDL",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.3XtBDrkqv4VwXQob"
+    },
+    {
+      "_id": "88KqcQcOqi7dUVg1",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/brain-freeze.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Brain Lock*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.rDyUe3uYzhYXzpiQ",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.88KqcQcOqi7dUVg1"
+    },
+    {
+      "_id": "K9QEVb9ydNX7pSMM",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/giant.svg",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Gigantism",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.oVTTxhD6s7dujGxi",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.K9QEVb9ydNX7pSMM"
+    },
+    {
+      "_id": "WR2YYFiFkvGNc1qk",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/steel-skin.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Steel Skin",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.VPAPTgZxSETbBpOZ",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.WR2YYFiFkvGNc1qk"
+    },
+    {
+      "_id": "8PSTbTtouCHNnErM",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Telekinesis*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.4p22gDkPcWzzsW5B",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.8PSTbTtouCHNnErM"
+    },
+    {
+      "_id": "iwyCO3RNt00b5fsX",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/emotion.svg",
+      "weight": 1,
+      "range": [
+        11,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "False Sensory Input*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.3KEl1LNJ94uqpJyf",
+      "description": "",
+      "_key": "!tables.results!jszbU0ol0GqHpaRM.iwyCO3RNt00b5fsX"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "jszbU0ol0GqHpaRM",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080065,
+    "modifiedTime": 1760016422594,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!jszbU0ol0GqHpaRM"
+}

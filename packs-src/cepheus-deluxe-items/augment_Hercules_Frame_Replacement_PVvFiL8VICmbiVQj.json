@@ -1,0 +1,61 @@
+{
+  "name": "Hercules Frame Replacement",
+  "type": "augment",
+  "img": "systems/twodsix/assets/icons/strong-man.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A radical reconstruction of the entire organic body grants superhuman endurance and might. The Hercules Frame doubles the character’s STR and END (to a maximum of 20), affecting Stamina, Lifeblood, and unarmed combat damage. It also gives Advantage on all Athletics throws requiring brute strength, and Grapple checks in Melee Combat. The Hercules frame upgrade is incompatible with the Bastet Frame Upgrade.",
+    "shortdescr": "Grants superhuman endurance and might",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Full-Body",
+    "type": "augment",
+    "bonus": "Doubles STR and END, Advantage STR, Athletics and Grapple checks",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "PVvFiL8VICmbiVQj",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737437,
+    "modifiedTime": 1760016422744,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!PVvFiL8VICmbiVQj"
+}

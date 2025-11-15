@@ -1,0 +1,64 @@
+{
+  "_id": "oVTTxhD6s7dujGxi",
+  "name": "Gigantism",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "trait",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "Gain the Aberrant Deformity detrimental mutation. You do 1D more damage per hit with all melee attacks. This also applies to muscle-powered weapons such as bows and thrown knives.",
+    "prereq": "",
+    "shortdescr": "larger size",
+    "subtype": "",
+    "key": "key",
+    "name": "",
+    "techLevel": 0,
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "equipped": "equipped",
+    "skillModifier": 0,
+    "skill": "",
+    "auglocation": "Full-Body",
+    "bonus": "major beneficial",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_w34pcq0hfyl",
+      "path": "cepheus atom#/CF_SEP/CA - Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/giant.svg",
+  "effects": [],
+  "folder": "eBj0Cljzsr0Tr6rv",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079802,
+    "modifiedTime": 1760016422285,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!oVTTxhD6s7dujGxi"
+}

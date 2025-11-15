@@ -1,0 +1,70 @@
+{
+  "_id": "VpxS6Gij5UXsDpkN",
+  "name": "Interstellar Jump Procedures",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Interstellar Jump Procedures",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<ol>\n<li><strong>Calculate Plot</strong>: A jump requires a “jump plot”. Starports rated D or better sell up-to-date jump plots to nearby populated worlds and vessels for Cr1000 per parsec. A skilled pilot can also calculate their own jump plot. Throw Piloting 4+ to calculate a jump plot; this takes 1Dx6 minutes (i.e. 1D ship combat turns). It is possible to rush this calculation, to guarantee that it will only take one ship combat turn, but the Piloting throw is 8+. A failed check requires repeated calculation, or the ship will misjump (see below). It is possible to calculate a jump plot in advance, but it will become obsolete within 1D days.</li>\n<li><strong>Engage Drive</strong>: Once the jump plot is ready, the ship’s engineer must throw Engineering 6+ to power the Jump Drive. This procedure takes a second and can be done in the same round as the jump throw itself.</li>\n<li><strong>Jump!</strong>: To jump, throw 2D with the following DMs. A throw of 0 or less causes a misjump. A bad jump plot causes an automatic misjump. DM+ the Effect of the Engineering throw. DM-1 per day the jump plot is out of date DM-2 if the Jump Drive is damaged. DM-2 if using Unrefined fuel. DM-8 if within a hundred-diameter limit of the nearest planet or star? (not at jump point).</li>\n<li><strong>In Case of a Misjump</strong>: A misjump causes a Critical Hit on the ship (see the space combat rules) and may destroy it. Furthermore, the ship travels 1D x 1D parsecs in a random direction. If this leads to an empty hex on the map, the ship emerges from the misjump at the closest star system to that empty hex. In case there are multiple adjacent systems, choose one randomly.</li>\n</ol>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "B8sepNhWH04hCntj",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!VpxS6Gij5UXsDpkN.B8sepNhWH04hCntj"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079919,
+    "modifiedTime": 1760016422379,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!VpxS6Gij5UXsDpkN"
+}

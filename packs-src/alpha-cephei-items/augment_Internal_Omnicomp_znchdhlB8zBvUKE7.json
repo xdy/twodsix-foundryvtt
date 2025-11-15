@@ -1,0 +1,60 @@
+{
+  "_id": "znchdhlB8zBvUKE7",
+  "name": "Internal Omnicomp",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "As an omnicomp device but with a neural interface. The user can use their minds to operate the computer without any gestures or speech, and it can interface with smart weapons and other devices. Combined with cybernetic eyes, the computer can feed images directly into the character’s perceived vision in the most convenient way possible; otherwise, the computer can still send images to a HUD or screen or relay audio information. Alternatively, thanks to the neural interface, the user can enable cyberspace mode, in which all his senses are replaced by the computer-generated input, even without cybereyes. While doing this, the user should remain comfortably seated or laid down for safety. This is so small it does not count as an implant for the purpose of implant limits.",
+    "shortdescr": "Internal computer.",
+    "quantity": 1,
+    "weight": 0,
+    "price": 3000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Internal computer",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/internal-omnicomp.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080281,
+    "modifiedTime": 1760016422888,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!znchdhlB8zBvUKE7"
+}

@@ -1,0 +1,71 @@
+{
+  "_id": "lwvyvlG0OFXl1JyQ",
+  "name": "Worlds",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_458frav988h",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Worlds",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Size and Gravity</h1>\n<table style=\"height:275px;width:376px\" border=\"0\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">Rating</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">Diameter</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">Surface gravity</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">0</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">Asteroid belt</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">Negligible</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">1</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">1600km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">0.05g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">2</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">3200km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">0.15g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">3</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">4800km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">0.25g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">4</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">6400km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">0.35g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">5</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">8000km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">0.45g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">6</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">9600km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">0.7g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">7</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">11200km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">0.9g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">8</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">12800km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">1.0g</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:78px\">9</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:166px\">14400km</td>\n<td style=\"height:16px;text-align:left;vertical-align:middle;width:130px\">1.25g</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"height:10px;text-align:left;vertical-align:middle;width:78px\">10 (A)</td>\n<td style=\"height:10px;text-align:left;vertical-align:middle;width:166px\">16000km</td>\n<td style=\"height:10px;text-align:left;vertical-align:middle;width:130px\">1.4g</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Atmosphere</h1>\n<table style=\"height:306px;width:594px\" border=\"0\">\n<tbody>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">Rating</td>\n<td style=\"width:145px;height:17px\">Atmosphere</td>\n<td style=\"width:301px;height:17px\">Survival Gear Required</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">0</td>\n<td style=\"width:145px;height:17px\">Vacuum</td>\n<td style=\"width:301px;height:17px\">Space Suit</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">1</td>\n<td style=\"width:145px;height:17px\">Trace</td>\n<td style=\"width:301px;height:17px\">Space Suit</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">2</td>\n<td style=\"width:145px;height:17px\">Very Thin - Tainted</td>\n<td style=\"width:301px;height:17px\">Breather with air supply</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">3</td>\n<td style=\"width:145px;height:17px\">Very Thin</td>\n<td style=\"width:301px;height:17px\">Breather with air supply</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">4</td>\n<td style=\"width:145px;height:17px\">Thin - Tainted</td>\n<td style=\"width:301px;height:17px\">Breather</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">5</td>\n<td style=\"width:145px;height:17px\">Thin</td>\n<td style=\"width:301px;height:17px\"> </td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">6</td>\n<td style=\"width:145px;height:17px\">Standard</td>\n<td style=\"width:301px;height:17px\"> </td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">7</td>\n<td style=\"width:145px;height:17px\">Standard - Tainted</td>\n<td style=\"width:301px;height:17px\">Breather</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">8</td>\n<td style=\"width:145px;height:17px\">Dense</td>\n<td style=\"width:301px;height:17px\"> </td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">9</td>\n<td style=\"width:145px;height:17px\">Dense - Tainted</td>\n<td style=\"width:301px;height:17px\">Breather</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">10 (A)</td>\n<td style=\"width:145px;height:17px\">Exotic</td>\n<td style=\"width:301px;height:17px\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">Breather with air supply</span></td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">11 (B)</td>\n<td style=\"width:145px;height:17px\">Corrosive</td>\n<td style=\"width:301px;height:17px\">Space Suit</td>\n</tr>\n<tr style=\"height:34px\">\n<td style=\"width:144px;height:34px\">12 (C)</td>\n<td style=\"width:145px;height:34px\">Insidious</td>\n<td style=\"width:301px;height:34px\">Space Suit, Hostile Environment</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">13 (D)</td>\n<td style=\"width:145px;height:17px\">Dense - High</td>\n<td style=\"width:301px;height:17px\">Space suit in low altitudes</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">14 (E)</td>\n<td style=\"width:145px;height:17px\">Thin - Low</td>\n<td style=\"width:301px;height:17px\">Breather with air supplies at high altitudes; no protective equipment necessary at low altitudes</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:144px;height:17px\">15 (F)</td>\n<td style=\"width:145px;height:17px\">Unusual</td>\n<td style=\"width:301px;height:17px\">Varies</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Governement</h1>\n<table style=\"height:388px;width:391px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:167.5px\">Rating</td>\n<td style=\"width:221.5px\">Government</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">0</td>\n<td style=\"width:221.5px\">None</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">1</td>\n<td style=\"width:221.5px\">Corporation</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">2</td>\n<td style=\"width:221.5px\">Participatory Democracy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">3</td>\n<td style=\"width:221.5px\">Self-Perpetuating Oligarchy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">4</td>\n<td style=\"width:221.5px\">Representative Democracy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">5</td>\n<td style=\"width:221.5px\">Technocracy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">6</td>\n<td style=\"width:221.5px\">Captive Government</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">7</td>\n<td style=\"width:221.5px\">Balkanized</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">8</td>\n<td style=\"width:221.5px\">Civil Service Bureaucracy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">9</td>\n<td style=\"width:221.5px\">Impersonal Bureaucracy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">10 (A)</td>\n<td style=\"width:221.5px\">Charismatic Dictator</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">11 (B)</td>\n<td style=\"width:221.5px\">Non-Charismatic Dictator</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">12 (C)</td>\n<td style=\"width:221.5px\">Charismatic Oligarchy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">13 (D)</td>\n<td style=\"width:221.5px\">Religious Dictatorship</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">14 (E)</td>\n<td style=\"width:221.5px\">Religious Autocracy</td>\n</tr>\n<tr>\n<td style=\"width:167.5px\">15 (F)</td>\n<td style=\"width:221.5px\">Totalitarian Oligarchy</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Law Levels</h1>\n<table style=\"height:280px;width:636px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:85px\">Rating</td>\n<td style=\"width:549px\">Commonly Forbidden Weapons</td>\n</tr>\n<tr>\n<td style=\"width:85px\">0</td>\n<td style=\"width:549px\">Lawless. All weapons allowed. Candidate for Amber Zone status.</td>\n</tr>\n<tr>\n<td style=\"width:85px\">1</td>\n<td style=\"width:549px\">Poison gas, explosives, undetectable weapons, weapons of mass destruction</td>\n</tr>\n<tr>\n<td style=\"width:85px\">2</td>\n<td style=\"width:549px\">Portable energy weapons (unless mounted on ships)</td>\n</tr>\n<tr>\n<td style=\"width:85px\">3</td>\n<td style=\"width:549px\">Heavy Weapons</td>\n</tr>\n<tr>\n<td style=\"width:85px\">4</td>\n<td style=\"width:549px\">All automatic weapons</td>\n</tr>\n<tr>\n<td style=\"width:85px\">5</td>\n<td style=\"width:549px\">Personal concealed weapons</td>\n</tr>\n<tr>\n<td style=\"width:85px\">6</td>\n<td style=\"width:549px\">All firearms except for shotguns and stunners. Carrying weapons is discouraged.</td>\n</tr>\n<tr>\n<td style=\"width:85px\">7</td>\n<td style=\"width:549px\">Shotguns.</td>\n</tr>\n<tr>\n<td style=\"width:85px\">8</td>\n<td style=\"width:549px\">All bladed weapons, stunners.</td>\n</tr>\n<tr>\n<td style=\"width:85px\">9</td>\n<td style=\"width:549px\">Any weapons outside one’s residence. Candidate for Amber Zone status.</td>\n</tr>\n<tr>\n<td style=\"width:85px\">A (10)</td>\n<td style=\"width:549px\">Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Starports</h1>\n<table border=\"1\">\n<tbody>\n<tr>\n<td>\n<div>Roll</div>\n</td>\n<td>\n<div>Class</div>\n</td>\n<td>\n<div>Description</div>\n</td>\n<td>\n<div>Best Fuel</div>\n</td>\n<td>\n<div>Annual Maint.</div>\n</td>\n<td>\n<div>Shipyard</div>\n</td>\n<td>\n<div>Possible Bases</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>2-</div>\n</td>\n<td>\n<div>X</div>\n</td>\n<td>\n<div>No Starport</div>\n</td>\n<td>\n<div>None</div>\n</td>\n<td>\n<div>No</div>\n</td>\n<td>\n<div>None</div>\n</td>\n<td>\n<div>None</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>3-4</div>\n</td>\n<td>\n<div>E</div>\n</td>\n<td>\n<div>Frontier</div>\n</td>\n<td>\n<div>None</div>\n</td>\n<td>\n<div>No</div>\n</td>\n<td>\n<div>None</div>\n</td>\n<td>\n<div>None</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>5-6</div>\n</td>\n<td>\n<div>D</div>\n</td>\n<td>\n<div>Poor</div>\n</td>\n<td>\n<div>Unrefined</div>\n</td>\n<td>\n<div>No</div>\n</td>\n<td>\n<div>None</div>\n</td>\n<td>\n<div>Scout</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>7-8</div>\n</td>\n<td>\n<div>C</div>\n</td>\n<td>\n<div>Routine</div>\n</td>\n<td>\n<div>Unrefined</div>\n</td>\n<td>\n<div>No</div>\n</td>\n<td>\n<div>Can perform reasonable repairs</div>\n</td>\n<td>\n<div>Scout</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>9-10</div>\n</td>\n<td>\n<div>B</div>\n</td>\n<td>\n<div>Good</div>\n</td>\n<td>\n<div>Refined</div>\n</td>\n<td>\n<div>Yes</div>\n</td>\n<td>\n<div>Can construct non-jump-capable craft</div>\n</td>\n<td>\n<div>Naval, Scout</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>11+</div>\n</td>\n<td>\n<div>A</div>\n</td>\n<td>\n<div>Excellent</div>\n</td>\n<td>\n<div>Refined</div>\n</td>\n<td>\n<div>Yes</div>\n</td>\n<td>\n<div>Can construct starships</div>\n</td>\n<td>\n<div>Naval, Scout</div>\n</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "AoI22O4xit1Mzsmr",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!lwvyvlG0OFXl1JyQ.AoI22O4xit1Mzsmr"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080326,
+    "modifiedTime": 1760016422941,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.kBLjH583gFTH1q4w",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!lwvyvlG0OFXl1JyQ"
+}

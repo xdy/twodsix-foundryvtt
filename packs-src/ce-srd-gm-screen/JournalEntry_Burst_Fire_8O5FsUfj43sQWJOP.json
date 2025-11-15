@@ -1,0 +1,70 @@
+{
+  "name": "Burst Fire",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "8O5FsUfj43sQWJOP",
+  "pages": [
+    {
+      "name": "Burst Fire",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:162px;width:70.7903%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:34.8837%\">Burst Size</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:22.8198%\">Attack DM</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:42.0058%\">Extra Damage</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:34.8837%\">1 round</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:22.8198%\">+0</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:42.0058%\">+0 damage</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:34.8837%\">3 round burst</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:22.8198%\">+1</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:42.0058%\">+1 point of damage</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:34.8837%\">4 round burst</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:22.8198%\">+1</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:42.0058%\">+1D6 damage</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:34.8837%\">10 round burst</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:22.8198%\">+2</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:42.0058%\">+2D6 damage</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:34.8837%\">20 round burst</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:22.8198%\">+3</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:42.0058%\">+3D6 damage</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:34.8837%\">100 round burst</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:22.8198%\">+4</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:42.0058%\">+4D6 damage</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "aMwKuQqdQ0kVAcAb",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!8O5FsUfj43sQWJOP.aMwKuQqdQ0kVAcAb"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079926,
+    "modifiedTime": 1760016422387,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!8O5FsUfj43sQWJOP"
+}

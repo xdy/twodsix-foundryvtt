@@ -1,0 +1,49 @@
+{
+  "name": "Explorer's Society",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/wireframe-globe.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character receives membership in the exclusive Explorer's Society. Membership grants a free high-passage ticket for one parsec every two months and free stay at Society hostels in most starports.",
+    "prereq": "None",
+    "shortdescr": "Membership in the exclusive Explorer's Society",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 1900000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "EF0wQRm1BSEzjwRJ",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737425,
+    "modifiedTime": 1760016422735,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!EF0wQRm1BSEzjwRJ"
+}

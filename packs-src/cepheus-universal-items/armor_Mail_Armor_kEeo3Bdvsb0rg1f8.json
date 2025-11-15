@@ -1,0 +1,66 @@
+{
+  "folder": "9eBBH01N7i6zYXgF",
+  "name": "Mail Armor",
+  "type": "armor",
+  "_id": "kEeo3Bdvsb0rg1f8",
+  "img": "systems/twodsix/assets/icons/weave.svg",
+  "system": {
+    "name": "",
+    "description": "A shirt of metal rings, or scales backed by a padded lining to&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">protect against hand-held weapons. Includes a metal helmet for the head. Damage&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">reduction 6 points from melee damage Weight 12 kg. Cr1000.</span>",
+    "type": "armor",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 1,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 12,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "armor": 0,
+    "armorDM": 0,
+    "secondaryArmor": {
+      "value": 5,
+      "protectionTypes": [
+        "melee"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "isPowered": false,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016423000,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 146875,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!kEeo3Bdvsb0rg1f8"
+}

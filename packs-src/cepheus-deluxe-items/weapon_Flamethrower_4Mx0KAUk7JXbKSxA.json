@@ -1,0 +1,82 @@
+{
+  "_id": "4Mx0KAUk7JXbKSxA",
+  "name": "Flamethrower",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/flamethrower.svg",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Spews a stream of fire 3m wide at its far end. All targets within this cone suffer damage and catch fire. The tank for the flamethrower holds enough fuel for five full attacks and counts as two items for encumbrance (included in weapon weight).<br><br>Bulky: A Bulky weapon has powerful recoil or is simply extremely heavy. This makes it difficult to use effectively in combat by someone of a weak physical stature. Characters with STR 8 or less suffer DM-2 when using such weapons. Bipod and Tripod accessories (see below) remove the Bulky aspect, as long as the weapon is stationary and mounted on the bipod or tripod.<br><br>Fire: On a successful hit, throw 6+ for the target to catch fire. A burning target takes 2D damage per combat round for 1D rounds, or until put out. See the Environmental Hazard Chapter for Fire effects.",
+    "shortdescr": "Flamethrower",
+    "quantity": 1,
+    "weight": 5,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "5/20",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "5",
+    "useConsumableForAttack": "",
+    "magazineCost": 25,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "5/20",
+    "weaponType": "support",
+    "damageType": "fire",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_i181bqkw8n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Heavy Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737413,
+    "modifiedTime": 1760016422727,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.jeH6OhJxsvj8rBco",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4Mx0KAUk7JXbKSxA"
+}

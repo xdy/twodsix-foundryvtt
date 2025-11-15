@@ -1,0 +1,81 @@
+{
+  "_id": "YlTIXuhcb4zAu2dS",
+  "name": "RPG",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/disposable-anti-vehicle-rocket.svg",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "AV 5D, Blast, one use only<br><br>AV: 5 Anti-Vehicular dice<br><br>Blast: causes damage to up to 3 adjacent targets",
+    "shortdescr": "Heavy weapon",
+    "quantity": 1,
+    "weight": null,
+    "price": 100,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 3,
+      "width": null,
+      "units": "m",
+      "type": "square"
+    },
+    "range": "50/150",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "50/200",
+    "weaponType": "Ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "VaoWfK5i88LiiKfj",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_tzmsj0m8fz",
+      "path": "cepheus atom#/CF_SEP/CA - Heavy Weapons",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079785,
+    "modifiedTime": 1760016422280,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!YlTIXuhcb4zAu2dS"
+}

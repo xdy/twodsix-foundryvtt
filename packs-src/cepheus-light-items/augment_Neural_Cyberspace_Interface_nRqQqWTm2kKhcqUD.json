@@ -1,0 +1,60 @@
+{
+  "_id": "nRqQqWTm2kKhcqUD",
+  "name": "Neural Cyberspace Interface",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "Neural Cyberspace Interface (TL11, Cr5000): character can mentally input text or sound to external computers via neural command and receive visual and audial output from external computers.",
+    "shortdescr": "Can mentally input text or sound to external computers via neural command and receive visual and audial output from external computers",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "computer interface",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079723,
+    "modifiedTime": 1760016422175,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!nRqQqWTm2kKhcqUD"
+}

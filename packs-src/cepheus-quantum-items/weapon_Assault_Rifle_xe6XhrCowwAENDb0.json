@@ -1,0 +1,78 @@
+{
+  "_id": "xe6XhrCowwAENDb0",
+  "name": "Assault Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/assault-rifle.svg",
+  "system": {
+    "name": "Assault Rifle",
+    "techLevel": 7,
+    "description": "A lighter and less expensive version of the automatic rifle.<br><br>Automatic weapons can attack twice a round (any target).",
+    "shortdescr": "Assault Rifle - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "50/200",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "4",
+    "rangeBand": "50/200",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "GPBSNXRjYCvOMJl6",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_dakj2vd78j8",
+      "path": "cepheus quantum#/CF_SEP/CQ - Weapons",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079913,
+    "modifiedTime": 1760016422370,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!xe6XhrCowwAENDb0"
+}

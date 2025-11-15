@@ -1,0 +1,198 @@
+{
+  "name": "Desert or Badlands",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_83vpuw46p6n",
+      "path": "CA Tables#/CF_SEP/Encounters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/desert.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "t17yQUU3wlU5A92I",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/plant/Shrieker.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Screech Bush",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.qoAuGzExj2AUEq7K",
+      "description": "",
+      "_key": "!tables.results!Pm3FQiTXrVRL0tia.t17yQUU3wlU5A92I"
+    },
+    {
+      "_id": "wP0UGovvYgaGil34",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantFireBeetle.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Giant Beetle",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.zWjBF0iXNv4DhrcH",
+      "description": "",
+      "_key": "!tables.results!Pm3FQiTXrVRL0tia.wP0UGovvYgaGil34"
+    },
+    {
+      "_id": "Rk7P6frkGAssCMyE",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantScorpion.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Gamma Scorpion",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.M0Si8gsi7K9pJQnh",
+      "description": "",
+      "_key": "!tables.results!Pm3FQiTXrVRL0tia.Rk7P6frkGAssCMyE"
+    },
+    {
+      "_id": "ZfHCM0sJsnkr8AjL",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/monstrosity/Bulette.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Landshark",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.V5yrLsZ4fWKWMwrK",
+      "description": "",
+      "_key": "!tables.results!Pm3FQiTXrVRL0tia.ZfHCM0sJsnkr8AjL"
+    },
+    {
+      "_id": "YkHIkQek55MZUzCB",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/monstrosity/Grick.webp",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Sandworm",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.61ehIPlTyQpsrwBU",
+      "description": "",
+      "_key": "!tables.results!Pm3FQiTXrVRL0tia.YkHIkQek55MZUzCB"
+    },
+    {
+      "_id": "WAOt3PzZw84HUs9T",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!Pm3FQiTXrVRL0tia.WAOt3PzZw84HUs9T"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "Pm3FQiTXrVRL0tia",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080063,
+    "modifiedTime": 1760016422592,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!Pm3FQiTXrVRL0tia"
+}

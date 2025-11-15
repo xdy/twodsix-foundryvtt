@@ -1,0 +1,70 @@
+{
+  "name": "Attack Modifiers",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "Cr9nBe3Vz9BDpCGY",
+  "pages": [
+    {
+      "name": "Attack Modifiers",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:264px;width:93.6118%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Action</td>\n<td style=\"height:16px;width:59.8837%\">Modifier</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Aiming</td>\n<td style=\"height:16px;width:59.8837%\">+1 per Aim action</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Cover</td>\n<td style=\"height:16px;width:59.8837%\">–0 to –6</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Environmental Effects</td>\n<td style=\"height:16px;width:59.8837%\">–1 to –2</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Intelligent Weapon</td>\n<td style=\"height:16px;width:59.8837%\">+1 if total DM is within the program's tolerance</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Laser Sight</td>\n<td style=\"height:16px;width:59.8837%\">+1 if aiming</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Movement</td>\n<td style=\"height:16px;width:59.8837%\">–1 for every 10 full meters of target movement</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Target Dodges (Reaction)</td>\n<td style=\"height:16px;width:59.8837%\">–1</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:39.3895%\">Target Parries (Reaction)</td>\n<td style=\"height:16px;width:59.8837%\">–Defender's appropriate melee skill</td>\n</tr>\n<tr style=\"height:27px\">\n<td style=\"height:27px;width:39.3895%\">Target Stance</td>\n<td style=\"height:27px;width:59.8837%\">\n<p>–2 if attacking a prone target at Medium or greater range</p>\n<p>+2 if attacking a prone target at Personal range</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"text-align:left;vertical-align:middle;height:10px;width:39.3895%\">Weapons with Recoil (in Zero Gravity)</td>\n<td style=\"text-align:left;vertical-align:middle;height:10px;width:59.8837%\">–2</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "WHlILESQCPCzSPOf",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!Cr9nBe3Vz9BDpCGY.WHlILESQCPCzSPOf"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079927,
+    "modifiedTime": 1760016422388,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!Cr9nBe3Vz9BDpCGY"
+}

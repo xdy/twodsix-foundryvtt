@@ -1,0 +1,252 @@
+{
+  "name": "Medium Beneficial Mutations",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_euiamf65fq",
+      "path": "CA Tables#/CF_SEP/Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "n84zgK34No6avboO",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/dominate.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Domination*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.4Y2upXtCM24gWJbj",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.n84zgK34No6avboO"
+    },
+    {
+      "_id": "xyrVvTY4yKLqoYNb",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/athletics-endurance.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Robust",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.WhinhYi9IyUTC2tt",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.xyrVvTY4yKLqoYNb"
+    },
+    {
+      "_id": "wdNyrZEuNI3GiSrM",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/wolverine-claws.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Natural Weapon",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.U44EaNwzy6QzS8or",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.wdNyrZEuNI3GiSrM"
+    },
+    {
+      "_id": "mlPyXIAGOi43Avy7",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/Scaly%20Armor.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Scaly Armor",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.CxCmMaBPJruKpIQi",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.mlPyXIAGOi43Avy7"
+    },
+    {
+      "_id": "Q6qgEdiEb7yT5jSB",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/resist-contamination.svg",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Contamination Tolerance",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Bhulov6hJCxlt1nb",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.Q6qgEdiEb7yT5jSB"
+    },
+    {
+      "_id": "1D5TzPJlUg8uZGFm",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/clairvoyance.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Clairvoyance*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.nGeu90OTn8Z2VrV8",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.1D5TzPJlUg8uZGFm"
+    },
+    {
+      "_id": "S9MyG2VyuJ346Dwz",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/microkinesis.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Kinetic Blast*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.nx1FbENHMoL9BcQI",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.S9MyG2VyuJ346Dwz"
+    },
+    {
+      "_id": "OPU42g5NKDoVAicQ",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/clairsentience.svg",
+      "weight": 1,
+      "range": [
+        11,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Read Thoughts*",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.JJRNz6P8NSIOuoGJ",
+      "description": "",
+      "_key": "!tables.results!RSiWuDcwASggZTe4.OPU42g5NKDoVAicQ"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "RSiWuDcwASggZTe4",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080063,
+    "modifiedTime": 1760016422592,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!RSiWuDcwASggZTe4"
+}

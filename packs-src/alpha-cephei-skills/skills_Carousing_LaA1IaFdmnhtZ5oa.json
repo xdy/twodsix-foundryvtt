@@ -1,0 +1,52 @@
+{
+  "_id": "LaA1IaFdmnhtZ5oa",
+  "name": "Carousing",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The art of mingling and charming in social settings to achieve your<div>goals. Also covers gambling.</div><div>• Blend in with locals at the bar: roll Carousing (SOC) 6+.</div><div>• Blend in with locals and learn current affairs gossip at the bar: roll Carousing</div><div>(SOC) 8+.</div><div>• Win a hand at cards: opposed Carousing (INT) check between all characters</div><div>involved.</div><div>• Win a drinking contest: opposed Carousing (END) check between all</div><div>characters involved.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/carousing.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 3500000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080082,
+    "modifiedTime": 1760016422623,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LaA1IaFdmnhtZ5oa"
+}

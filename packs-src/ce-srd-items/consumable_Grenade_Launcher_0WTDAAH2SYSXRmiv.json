@@ -1,0 +1,68 @@
+{
+  "name": "Grenade Launcher",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "consumable",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "An underslung RAM grenade launcher can be added to any rifle. This grenade launcher has a magazine of one grenade, cannot fire on automatic and takes four minor actions to reload.",
+    "shortdescr": "Grenade Launcher",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "currentCount": null,
+    "max": null,
+    "type": "equipment",
+    "subtype": "other",
+    "armorPiercing": null,
+    "bonusDamage": "",
+    "isAttachment": true,
+    "bandwidth": 0,
+    "softwareActive": true,
+    "damageType": "NONE",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "useConsumableForAttack": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_kat06tm0tin",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Ranged Weapon Accessories",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "_id": "0WTDAAH2SYSXRmiv",
+  "folder": "Yyb7WpTe1epwPU4P",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079835,
+    "modifiedTime": 1760016422312,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!0WTDAAH2SYSXRmiv"
+}

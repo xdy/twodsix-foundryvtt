@@ -1,0 +1,75 @@
+{
+  "_id": "t1bLyiAX6NuBxHvE",
+  "name": "Powered Armor",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "DM+4 to all Physical throws, DM+1 to-hit in melee, power cell charger,<br>accessories as per Combat Armor (Integrated gas mask, communicator, and night-vision goggles; No heavy armor penalty)",
+    "shortdescr": "motorized combat armor",
+    "quantity": 1,
+    "weight": 0,
+    "price": 2500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 14,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "./systems/twodsix/assets/icons/powered-armor.svg",
+  "effects": [],
+  "folder": "tNJfsW50f5AVlVMg",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079804,
+    "modifiedTime": 1760016422288,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!t1bLyiAX6NuBxHvE"
+}

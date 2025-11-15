@@ -1,0 +1,59 @@
+{
+  "name": "Torch",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 1,
+    "description": "Primitive fire-based light source that provides illumination in a 6 meter radius and shadowy illumination out to a 12 meter radius, for an hour after lit. Needs an atmosphere with enough oxygen to stay lit. A bundle of five counts as an item for encumbrance purposes.",
+    "shortdescr": "Fire-based light source.",
+    "quantity": 5,
+    "weight": 1,
+    "price": 5,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/torch.svg",
+  "effects": [],
+  "_id": "ltpCnm4CZlSx4orU",
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080274,
+    "modifiedTime": 1760016422881,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ltpCnm4CZlSx4orU"
+}

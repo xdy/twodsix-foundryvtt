@@ -1,0 +1,58 @@
+{
+  "name": "Jack of All Trades",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The Jack of All Trades skill works differently to other skills. It reduces the unskilled penalty a character receives for not having the appropriate skill by one for every level of Jack of All Trades. Jack of All Trades cannot grant a skill bonus at higher levels.",
+    "shortdescr": "The Jack of All Trades skill works differently to other skills.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Basic Skills",
+    "name": "Jack of All Trades",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/jack-of-all-trades.svg",
+  "effects": [],
+  "folder": "m6tGZ1EpvUcP9rMv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709132748752,
+    "modifiedTime": 1760016421883,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "JQYZC79I5gs25ISG",
+  "sort": 200000,
+  "_key": "!items!JQYZC79I5gs25ISG"
+}

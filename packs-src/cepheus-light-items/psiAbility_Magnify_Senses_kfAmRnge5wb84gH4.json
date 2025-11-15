@@ -1,0 +1,69 @@
+{
+  "name": "Magnify Senses",
+  "type": "psiAbility",
+  "img": "systems/twodsix/assets/icons/extra-lucid.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 4,
+    "type": "psiAbility",
+    "description": "Magnify Senses (PSI 4, Personal): choose one sense; the psion magnifies it to a superhuman level for 10 minutes. Magnifying sight removes the penalty for firing a weapon beyond its effective range. Magnifying hearing grants DM+2 to Surprise throws. Magnifying smell grants the character with the olfactory senses of a bloodhound. Magnifying taste permits the character to detect toxins in minute samples of substance. Magnifying touch permits detecting microscopic features in the touched surface, such as microscopic cracks.",
+    "shortdescr": "Magnifies one sense to a superhuman level for 10 minutes.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 4,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    },
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "kfAmRnge5wb84gH4",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569429079,
+    "modifiedTime": 1760016422173,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!kfAmRnge5wb84gH4"
+}

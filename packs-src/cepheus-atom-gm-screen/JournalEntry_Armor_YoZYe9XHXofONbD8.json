@@ -1,0 +1,70 @@
+{
+  "_id": "YoZYe9XHXofONbD8",
+  "name": "Armor",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Armor",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:18.5655%\">Armor</td>\n<td style=\"width:10.0619%\">Cost (TU)</td>\n<td style=\"width:12.1122%\">Protection</td>\n<td style=\"width:34.1087%\">Notes</td>\n<td style=\"width:23.9889%\">Examples</td>\n</tr>\n<tr>\n<td style=\"width:18.5655%\">Light</td>\n<td style=\"width:10.0619%\">20</td>\n<td style=\"width:12.1122%\">2</td>\n<td style=\"width:34.1087%\"> </td>\n<td style=\"width:23.9889%\">Cloth, hide, or leather.</td>\n</tr>\n<tr>\n<td style=\"width:18.5655%\">Medium</td>\n<td style=\"width:10.0619%\">40</td>\n<td style=\"width:12.1122%\">4</td>\n<td style=\"width:34.1087%\">DM-2 to stealth-related throws</td>\n<td style=\"width:23.9889%\">Chitin, tire tread, or chain.</td>\n</tr>\n<tr>\n<td style=\"width:18.5655%\">Heavy</td>\n<td style=\"width:10.0619%\">60</td>\n<td style=\"width:12.1122%\">8</td>\n<td style=\"width:34.1087%\">Stealth impossible; halve movement speed</td>\n<td style=\"width:23.9889%\">Carapace or plate metal.</td>\n</tr>\n<tr>\n<td style=\"width:18.5655%\">Shield</td>\n<td style=\"width:10.0619%\">20</td>\n<td style=\"width:12.1122%\"> </td>\n<td style=\"width:34.1087%\">DM-1 to be hit. May not be used with any two- handed weapon.</td>\n<td style=\"width:23.9889%\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "Lj8DRX03Qwjl1PRa",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!YoZYe9XHXofONbD8.Lj8DRX03Qwjl1PRa"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079945,
+    "modifiedTime": 1760016422409,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!YoZYe9XHXofONbD8"
+}

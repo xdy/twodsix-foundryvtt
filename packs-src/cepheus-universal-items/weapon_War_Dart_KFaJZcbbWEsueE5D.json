@@ -1,0 +1,97 @@
+{
+  "folder": "jReNSrucYfg0XOAO",
+  "name": "War Dart",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/dart.svg",
+  "system": {
+    "name": "",
+    "description": "The sling and war dart were once brought together in ancient&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Greece to create the kestros, allowing a metre-long heavy war dart to be slung out to&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">much greater distances. Each war dart uses a leather sling to produce added&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">momentum and distance to the throw. Also known as: kestrosphendon , Swiss arrow,&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Yorkshire arrow.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 0,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 6,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6+2",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "magazineCost": 0,
+    "lawLevel": "",
+    "rangeBand": "short",
+    "weaponType": "",
+    "damageType": "melee",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727616930945,
+    "modifiedTime": 1760016422990,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "KFaJZcbbWEsueE5D",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!KFaJZcbbWEsueE5D"
+}

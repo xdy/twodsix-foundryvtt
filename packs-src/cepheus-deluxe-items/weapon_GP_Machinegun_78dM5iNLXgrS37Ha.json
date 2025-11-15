@@ -1,0 +1,82 @@
+{
+  "_id": "78dM5iNLXgrS37Ha",
+  "name": "GP Machinegun",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/gp-machinegun.svg",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "A “General Purpose\" belt-fed medium machinegun. Often carried on vehicles as a heavy weapon but is also man portable.",
+    "shortdescr": "\"General Purpose\" belt-fed medium machinegun.",
+    "quantity": 1,
+    "weight": 3,
+    "price": 1500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "200/400",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "100",
+    "useConsumableForAttack": "",
+    "magazineCost": 150,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "300/600",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "4",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_i181bqkw8n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Heavy Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737417,
+    "modifiedTime": 1760016422729,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.A95cjZAMW5kF2Z6U",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!78dM5iNLXgrS37Ha"
+}

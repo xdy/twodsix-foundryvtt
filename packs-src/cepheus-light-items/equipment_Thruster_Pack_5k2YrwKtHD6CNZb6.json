@@ -1,0 +1,60 @@
+{
+  "_id": "5k2YrwKtHD6CNZb6",
+  "name": "Thruster Pack",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/thruster-pack.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "A Thruster Pack allows maneuvering in zero-G conditions.",
+    "shortdescr": "pack for maneuvering in zero-g",
+    "quantity": 1,
+    "weight": 1,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero-G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079701,
+    "modifiedTime": 1760016422140,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!5k2YrwKtHD6CNZb6"
+}

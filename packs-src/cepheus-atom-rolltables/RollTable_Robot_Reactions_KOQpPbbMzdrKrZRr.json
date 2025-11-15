@@ -1,0 +1,140 @@
+{
+  "_id": "KOQpPbbMzdrKrZRr",
+  "name": "Robot Reactions",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CA Tables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "When the PCs encounter a robot, the Referee should roll on the following table to determine the robot’s behavior:",
+  "results": [
+    {
+      "_id": "ZnuEhmCZC32Da0oS",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 2,
+      "range": [
+        1,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Programmed. This robot has been programmed to perform specific task. These often date from before the Collapse. The robot will act as programmed unless overridden by authorized personnel.",
+      "name": "",
+      "_key": "!tables.results!KOQpPbbMzdrKrZRr.ZnuEhmCZC32Da0oS"
+    },
+    {
+      "_id": "78UCd39GABpjF3jE",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Controlled. The robot is under the direct command of a specific individual, often remotely. The robot’s master may be around. May still be overridden by persons possessing enough technical ability.",
+      "name": "",
+      "_key": "!tables.results!KOQpPbbMzdrKrZRr.78UCd39GABpjF3jE"
+    },
+    {
+      "_id": "temDGYqOdk3GNXEk",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 2,
+      "range": [
+        4,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Wild. This robot is entirely free-willed and not necessarily hostile. Roll Reaction as per any NPC. May still be overridden.",
+      "name": "",
+      "_key": "!tables.results!KOQpPbbMzdrKrZRr.temDGYqOdk3GNXEk"
+    },
+    {
+      "_id": "zvH3vBt4IsrtrB4K",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Berserk. Danger! The robot does not recognize any human authority. Always hostile to all organic life.",
+      "name": "",
+      "_key": "!tables.results!KOQpPbbMzdrKrZRr.zvH3vBt4IsrtrB4K"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080062,
+    "modifiedTime": 1760016422591,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!KOQpPbbMzdrKrZRr"
+}

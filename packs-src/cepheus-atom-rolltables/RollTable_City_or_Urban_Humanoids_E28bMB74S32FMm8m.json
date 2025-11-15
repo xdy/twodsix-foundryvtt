@@ -1,0 +1,197 @@
+{
+  "name": "City or Urban Humanoids",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_oepu6t7x3f9",
+      "path": "CA Tables#/CF_SEP/Encounters#/CF_SEP/Humanoids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/ancient-ruins.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "vK6j3kOTmlIBN6Zx",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Grimlock.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Mole-People",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.Fs63J8e5uJfJ7MRG",
+      "description": "",
+      "_key": "!tables.results!E28bMB74S32FMm8m.vK6j3kOTmlIBN6Zx"
+    },
+    {
+      "_id": "vHfmH2n2cMhOHLRB",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Goblin.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Morlock",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.sOQHfcP07rcsp2Cc",
+      "description": "",
+      "_key": "!tables.results!E28bMB74S32FMm8m.vHfmH2n2cMhOHLRB"
+    },
+    {
+      "_id": "wHrX47W13npE5g5n",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/heroes/SorcererHuman.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Archivist",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.sfTk2UNt6Wlpw3d0",
+      "description": "",
+      "_key": "!tables.results!E28bMB74S32FMm8m.wHrX47W13npE5g5n"
+    },
+    {
+      "_id": "ifRQkcFOarNNL6UC",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/undead/Ghoul.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Ghoul",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.kWoGh4hsiDovhNBf",
+      "description": "",
+      "_key": "!tables.results!E28bMB74S32FMm8m.ifRQkcFOarNNL6UC"
+    },
+    {
+      "_id": "fOv6CCnbLccJSlV6",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/uncertainty.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Special! Referee's choice",
+      "name": "",
+      "_key": "!tables.results!E28bMB74S32FMm8m.fOv6CCnbLccJSlV6"
+    },
+    {
+      "_id": "dFYbZ31CstM0KgUl",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!E28bMB74S32FMm8m.dFYbZ31CstM0KgUl"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "E28bMB74S32FMm8m",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080062,
+    "modifiedTime": 1760016422590,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!E28bMB74S32FMm8m"
+}

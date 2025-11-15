@@ -1,0 +1,60 @@
+{
+  "_id": "R1hdW8Br3tv9jwRo",
+  "name": "Pole, 3m",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "Standard issue for adventurers in the Wastes",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_kbcz4jd0357",
+      "path": "cepheus atom#/CF_SEP/CA - General Equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "XHTDs7UPCc2TSjX5",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079783,
+    "modifiedTime": 1760016422276,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!R1hdW8Br3tv9jwRo"
+}

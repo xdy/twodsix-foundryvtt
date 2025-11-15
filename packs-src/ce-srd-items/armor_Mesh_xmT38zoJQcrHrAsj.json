@@ -1,0 +1,68 @@
+{
+  "_id": "xmT38zoJQcrHrAsj",
+  "name": "Mesh",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "A jacket or body suit lined with a flexible metal or plastic mesh that gives it added protection against bullets.",
+    "shortdescr": "Mesh (TL 6)",
+    "quantity": 1,
+    "weight": 2,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 5,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/mesh.svg",
+  "effects": [],
+  "folder": "9gTQdzmIuMRlmswr",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079901,
+    "modifiedTime": 1760016422345,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!xmT38zoJQcrHrAsj"
+}

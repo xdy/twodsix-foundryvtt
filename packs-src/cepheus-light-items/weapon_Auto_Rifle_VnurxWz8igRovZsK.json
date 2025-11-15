@@ -1,0 +1,78 @@
+{
+  "_id": "VnurxWz8igRovZsK",
+  "name": "Auto Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/auto-rifle.svg",
+  "system": {
+    "name": "Auto Rifle",
+    "techLevel": 6,
+    "description": "Autorifle (TL6): Fine-tuned rifle converted for automatic fire. Enjoys longer range than both the Assault Rifle and the Light Machinegun but is supplanted by them at TL7.<br><br>Auto 2: These weapons fire multiple rounds with every pull of the trigger, filling the air with a hail of fire. A weapon with the Auto aspect can make attacks in three fire modes: single, burst, and full auto, as described in the Combat chapter.",
+    "shortdescr": "Auto Rifle - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "200/400",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "20",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "closeQuarters",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "doubleTap": true,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079713,
+    "modifiedTime": 1760016422155,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!VnurxWz8igRovZsK"
+}

@@ -1,0 +1,81 @@
+{
+  "_id": "RjPzm1eztmNUIwnQ",
+  "name": "Pocket Nuke",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/FGMP.svg",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "Hideously illegal on many worlds, the pocket nuke is actually the size of a briefcase and so is too large to fit into a grenade launcher. Radius: 15d6 meters<br>",
+    "shortdescr": "Pocket Nuke: Damage: 12 2D6 x 20, Radius: 15D6 m",
+    "quantity": 1,
+    "weight": 0,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Demolitions",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "2D6*20",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "rocket",
+    "weaponType": "explosive",
+    "damageType": "NONE",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "oyvzpIq738ymuiPl",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5ujlm40ozw3",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Grenades and Explosives",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079863,
+    "modifiedTime": 1760016422330,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!RjPzm1eztmNUIwnQ"
+}

@@ -1,0 +1,97 @@
+{
+  "folder": "jReNSrucYfg0XOAO",
+  "name": "Throwing Club",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/juggling-clubs.svg",
+  "system": {
+    "name": "",
+    "description": "A hardwood baton, usually slightly curved with a slight weight&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">at one end that can be thrown to bring down small game such as rabbits, birds and so&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">on. Early cultures, including the Egyptians, carried throwing clubs with them on to the&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">battlefield. Also known as: boomerang, rabbit stick, throw stick.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 0,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0.5,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "1d6+2",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "magazineCost": 0,
+    "lawLevel": "",
+    "rangeBand": "thrown",
+    "weaponType": "",
+    "damageType": "melee",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727616930945,
+    "modifiedTime": 1760016422989,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "IooAnN64sPVd1fH9",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!IooAnN64sPVd1fH9"
+}

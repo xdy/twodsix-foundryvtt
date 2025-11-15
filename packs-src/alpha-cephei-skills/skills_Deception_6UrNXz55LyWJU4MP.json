@@ -1,0 +1,52 @@
+{
+  "_id": "6UrNXz55LyWJU4MP",
+  "name": "Deception",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Convincingly avoiding the truth and misleading other people. Also&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">covers disguising, and cheating in general.</span><div>• Palm a small item: roll Deception (DEX) 8+.</div><div>• Convince a guard to let you pass: roll Deception (INT) 10+, or more, depending&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">on how tight is security.</span></div><div>• Disguise as a wealthy trader: roll Deception (SOC) 10+ for the general&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">reaction of people. You might need to roll an opposed Deception (SOC) vs&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Deception or Recon (INT) to fool someone with reason to doubt.</span></div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/deception.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 1100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080081,
+    "modifiedTime": 1760016422622,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!6UrNXz55LyWJU4MP"
+}

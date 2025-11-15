@@ -1,0 +1,81 @@
+{
+  "name": "Stealth Pistol",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/body-pistol.svg",
+  "system": {
+    "name": "Body Pistol",
+    "techLevel": 8,
+    "description": "Body Pistol (TL8): This is an especially light, discreet, and concealable weapon made from advanced polymers. A concealed body pistol can also be disguised as a number of more innocuous items, like comms, digital recorders, and so on.<br><br>Double Tap: may fire 2 bullets in one attack to gain DM+1 to damage.",
+    "shortdescr": "Body Pistol - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "5/20",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "6",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "1",
+    "rangeBand": "5/20",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": true,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "WM0MvR08jIVlUsUq",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1690220137802,
+    "modifiedTime": 1760016422755,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "e09Z1aati6RGUKKO",
+  "sort": 400000,
+  "_key": "!items!e09Z1aati6RGUKKO"
+}

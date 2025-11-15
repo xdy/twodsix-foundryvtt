@@ -1,0 +1,70 @@
+{
+  "_id": "N8t9Yjv0k6DrGJIB",
+  "name": "Common Interplanetary Travel Times",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Common Interplanetary Travel Times",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:80.6747%;height:152px\" border=\"1\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Destination</td>\n<td style=\"width:10.3519%;height:16px\">1-G</td>\n<td style=\"width:8.55018%;height:16px\">2-G</td>\n<td style=\"width:7.46921%;height:16px\">3-G</td>\n<td style=\"width:8.73037%;height:16px\">4-G</td>\n<td style=\"width:8.77955%;height:16px\">5-G</td>\n<td style=\"width:8.9598%;height:16px\">6-G</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:45.8508%;height:10px\">Planetoid Jump Point</td>\n<td style=\"width:10.3519%;height:10px\">10m</td>\n<td style=\"width:8.55018%;height:10px\">7m</td>\n<td style=\"width:7.46921%;height:10px\">6m</td>\n<td style=\"width:8.73037%;height:10px\">5m</td>\n<td style=\"width:8.77955%;height:10px\">5m</td>\n<td style=\"width:8.9598%;height:10px\">4m</td>\n</tr>\n<tr style=\"height:14px\">\n<td style=\"width:45.8508%;height:14px\">Ground to Planetary Orbit</td>\n<td style=\"width:10.3519%;height:14px\">33m</td>\n<td style=\"width:8.55018%;height:14px\">23m</td>\n<td style=\"width:7.46921%;height:14px\">19m</td>\n<td style=\"width:8.73037%;height:14px\">16m</td>\n<td style=\"width:8.77955%;height:14px\">14m</td>\n<td style=\"width:8.9598%;height:14px\">13m</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Ground to Typical Planetary jump Point</td>\n<td style=\"width:10.3519%;height:16px\">5.5h</td>\n<td style=\"width:8.55018%;height:16px\">4h</td>\n<td style=\"width:7.46921%;height:16px\">3h</td>\n<td style=\"width:8.73037%;height:16px\">3h</td>\n<td style=\"width:8.77955%;height:16px\">2.5h</td>\n<td style=\"width:8.9598%;height:16px\">2h</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Small Gas Giant to Jump Point</td>\n<td style=\"width:10.3519%;height:16px\">12h</td>\n<td style=\"width:8.55018%;height:16px\">8h</td>\n<td style=\"width:7.46921%;height:16px\">7h</td>\n<td style=\"width:8.73037%;height:16px\">6h</td>\n<td style=\"width:8.77955%;height:16px\">5.5h</td>\n<td style=\"width:8.9598%;height:16px\">5h</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Large Gas Giant to Jump Point</td>\n<td style=\"width:10.3519%;height:16px\">17h</td>\n<td style=\"width:8.55018%;height:16px\">12h</td>\n<td style=\"width:7.46921%;height:16px\">10h</td>\n<td style=\"width:8.73037%;height:16px\">9h</td>\n<td style=\"width:8.77955%;height:16px\">8h</td>\n<td style=\"width:8.9598%;height:16px\">7h</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Planet to Close Neighbor</td>\n<td style=\"width:10.3519%;height:16px\">1d, 13h</td>\n<td style=\"width:8.55018%;height:16px\">1d,2h</td>\n<td style=\"width:7.46921%;height:16px\">22h</td>\n<td style=\"width:8.73037%;height:16px\">19h</td>\n<td style=\"width:8.77955%;height:16px\">17h</td>\n<td style=\"width:8.9598%;height:16px\">15h</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Planet to Far Neighbor</td>\n<td style=\"width:10.3519%;height:16px\">3d, 17h</td>\n<td style=\"width:8.55018%;height:16px\">2d, 15h</td>\n<td style=\"width:7.46921%;height:16px\">2d, 3h</td>\n<td style=\"width:8.73037%;height:16px\">1d, 20h</td>\n<td style=\"width:8.77955%;height:16px\">1d, 16h</td>\n<td style=\"width:8.9598%;height:16px\">1d, 12h</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Mainworld to Close Gas Giant</td>\n<td style=\"width:10.3519%;height:16px\">5d, 16h</td>\n<td style=\"width:8.55018%;height:16px\">4d</td>\n<td style=\"width:7.46921%;height:16px\">3d, 7h</td>\n<td style=\"width:8.73037%;height:16px\">2d, 20h</td>\n<td style=\"width:8.77955%;height:16px\">2d, 13h</td>\n<td style=\"width:8.9598%;height:16px\">2d, 8h</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:45.8508%;height:16px\">Mainworld to Far Gas Giant</td>\n<td style=\"width:10.3519%;height:16px\">6d, 23h</td>\n<td style=\"width:8.55018%;height:16px\">4d, 22h</td>\n<td style=\"width:7.46921%;height:16px\">4d</td>\n<td style=\"width:8.73037%;height:16px\">3d, 11h</td>\n<td style=\"width:8.77955%;height:16px\">3d, 3h</td>\n<td style=\"width:8.9598%;height:16px\">2d, 20h</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "N9UyO3vMVmTb9pGf",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!N8t9Yjv0k6DrGJIB.N9UyO3vMVmTb9pGf"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079918,
+    "modifiedTime": 1760016422378,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!N8t9Yjv0k6DrGJIB"
+}

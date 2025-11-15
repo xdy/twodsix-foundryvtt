@@ -1,0 +1,49 @@
+{
+  "name": "Smuggler",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is an expert in trafficking illicit goods. When throwing below the world's law level to avoid customs harassment, the smuggler gains Advantage. Furthermore, when trading in illegal goods, the smuggler throws with Advantage on the modified price table and picks the most beneficial dice (the lowest two when buying and the highest two when selling).",
+    "prereq": "Streetwise 1",
+    "shortdescr": "Advantage for transactions involving illegal goods",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 8900000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "yKQdKzJTsdBoKAr4",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737483,
+    "modifiedTime": 1760016422781,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!yKQdKzJTsdBoKAr4"
+}

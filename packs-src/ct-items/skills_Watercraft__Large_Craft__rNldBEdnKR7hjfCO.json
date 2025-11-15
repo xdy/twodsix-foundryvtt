@@ -1,0 +1,58 @@
+{
+  "name": "Watercraft (Large Craft)",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "This skill grants the ability to properly maneuver and perform basic, routine maintenance on large motorized sea-going ships.",
+    "shortdescr": "This skill grants the ability to properly maneuver and perform basic, routine maintenance on large motorized sea-going ships.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Transport Skills",
+    "name": "Watercraft (Ocean Ships)",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/watercraft-ocean-ships.svg",
+  "effects": [],
+  "folder": "IAj91oQ7MI3LR1Nj",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709147847223,
+    "modifiedTime": 1760016421896,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "rNldBEdnKR7hjfCO",
+  "sort": 700000,
+  "_key": "!items!rNldBEdnKR7hjfCO"
+}

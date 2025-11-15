@@ -1,0 +1,55 @@
+{
+  "name": "Pilot",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Operation and control of small craft, as&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">well as interplanetary, and interstellar&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">spacecraft. Pilot expertise can also be used as&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Aircraft-0 and Grav Vehicle-0.</span>",
+    "shortdescr": "The individual has training and experience in the operation of interplanetary and interstellar spacecraft.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Piloting",
+    "priorType": "unknown",
+    "prereq": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/piloting.svg",
+  "effects": [],
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016423001,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "nDL7lHNGA1IefmZ7",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!nDL7lHNGA1IefmZ7"
+}

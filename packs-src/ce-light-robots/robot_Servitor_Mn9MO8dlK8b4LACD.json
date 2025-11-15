@@ -1,0 +1,618 @@
+{
+  "_id": "Mn9MO8dlK8b4LACD",
+  "name": "Servitor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "robot",
+  "system": {
+    "name": "",
+    "size": "",
+    "hits": {
+      "value": 23,
+      "min": 0,
+      "max": 23,
+      "lastDelta": -23
+    },
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": 0
+    },
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "untrainedSkill": "rlSwBeHagQmYleiI",
+    "description": "",
+    "notes": "<div>Servitor (TL13, Cr120000): humanoid robot used as a servant or butler for the elite.</div><div>797770, Steward-2, Liaison-1</div><div>Fine manipulators, glossy chrome finish; Robot punch (1D damage).</div>",
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 7,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": "",
+        "current": 7,
+        "mod": 0
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 9,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": "",
+        "current": 9,
+        "mod": 1
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 7,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": "",
+        "current": 7,
+        "mod": 0
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 7,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": "",
+        "current": 7,
+        "mod": 0
+      },
+      "education": {
+        "key": "education",
+        "value": 7,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": "",
+        "current": 7,
+        "mod": 0
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 0,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 10,
+      "units": "m",
+      "hover": false
+    },
+    "locomotionType": "",
+    "price": "120000 Cr",
+    "chassis": "",
+    "techLevel": "13",
+    "operationalTime": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "Robot",
+    "age": {
+      "value": "18",
+      "min": 0
+    },
+    "gender": "none",
+    "heroPoints": 2,
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "bio": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "sort": 100001,
+  "flags": {
+    "core": {}
+  },
+  "img": "systems/twodsix/assets/icons/default_robot.svg",
+  "items": [
+    {
+      "_id": "cejsBFcZpTM60wR2",
+      "flags": {},
+      "name": "Steward",
+      "type": "skills",
+      "img": "icons/svg/mystery-man.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 2,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "<div class=\"page\" title=\"Page 57\">\n\t\t\t<div class=\"layoutArea\">\n\t\t\t\t<div class=\"column\">\n\t\t\t\t\t<p><span style=\"font-size: 14.6667px;\">The care and serving of passengers and other guests.</span><br></p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>",
+        "shortdescr": "The care and serving of passengers and other guests",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "reference": ""
+      },
+      "sort": 100000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!Mn9MO8dlK8b4LACD.cejsBFcZpTM60wR2"
+    },
+    {
+      "_id": "Vr1fjemeb8aPJKiO",
+      "flags": {},
+      "name": "Liaison",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/liaison.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "The art and practice of negotiation and diplomacy in a myriad of social situations. This skill covers diplomatic meetings, haggling in interstellar trading negotiations, or at the shouq.",
+        "shortdescr": "Negotiation and diplomacy in social situations",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "reference": ""
+      },
+      "sort": 200000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!Mn9MO8dlK8b4LACD.Vr1fjemeb8aPJKiO"
+    },
+    {
+      "_id": "hMcxGw9b3TAXThRl",
+      "flags": {},
+      "name": "Melee",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/melee.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "characteristic": "STR",
+        "type": "skills",
+        "description": "Fighting hand-to-hand, either with a weapon or unarmed",
+        "shortdescr": "Fighting hand-to-hand, either with a weapon or unarmed",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "reference": ""
+      },
+      "sort": 300000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!Mn9MO8dlK8b4LACD.hMcxGw9b3TAXThRl"
+    },
+    {
+      "_id": "yvEv4wDjxRqBFsin",
+      "flags": {},
+      "name": "Robot Punch",
+      "type": "weapon",
+      "img": "./systems/twodsix/assets/icons/unarmed.svg",
+      "system": {
+        "name": "Unarmed",
+        "techLevel": 0,
+        "description": "Unarmed",
+        "shortdescr": "Unarmed - melee",
+        "quantity": 1,
+        "weight": 0,
+        "price": 0,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "hMcxGw9b3TAXThRl",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "1d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": "0",
+        "rangeBand": "close",
+        "weaponType": "melee",
+        "damageType": "bludgeoning",
+        "rateOfFire": "",
+        "recoil": true,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": ""
+      },
+      "sort": 400000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680701277624,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!Mn9MO8dlK8b4LACD.yvEv4wDjxRqBFsin"
+    },
+    {
+      "_id": "I1sTfWPdILPVaqGI",
+      "flags": {},
+      "name": "Augmented Joints",
+      "type": "augment",
+      "img": "./systems/twodsix/assets/icons/augmented-joints.svg",
+      "system": {
+        "name": "",
+        "techLevel": 12,
+        "description": "<div>Augmented Joints (TL12, Cr50000): This replaces the character's joints with synthetics, granting inhuman precision. The Grants DM+2 to any task requiring fine manipulation.</div>",
+        "shortdescr": "This replaces the character's joints with synthetics, granting inhuman precision",
+        "quantity": 1,
+        "weight": 0,
+        "price": 50000,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "Vr1fjemeb8aPJKiO",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "auglocation": "Full-Body",
+        "type": "augment",
+        "bonus": "DM+2 to fine manipulation tasks",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 500000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.3",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1681568048212,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!Mn9MO8dlK8b4LACD.I1sTfWPdILPVaqGI"
+    },
+    {
+      "name": "Untrained",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": ""
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg",
+      "_id": "rlSwBeHagQmYleiI",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1680633016190,
+        "modifiedTime": 1680633016190,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!Mn9MO8dlK8b4LACD.rlSwBeHagQmYleiI"
+    }
+  ],
+  "prototypeToken": {
+    "flags": {},
+    "name": "Servitor",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": true,
+    "disposition": 1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_robot.svg",
+      "tint": "#ffffff",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "alpha": 1,
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680633016136,
+    "modifiedTime": 1760016422072,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-robots.Mn9MO8dlK8b4LACD",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!Mn9MO8dlK8b4LACD"
+}

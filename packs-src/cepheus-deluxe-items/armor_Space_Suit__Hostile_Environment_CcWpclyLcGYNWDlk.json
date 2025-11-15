@@ -1,0 +1,76 @@
+{
+  "name": "Space Suit, Hostile Environment",
+  "type": "armor",
+  "img": "./systems/twodsix/assets/icons/hostile-environment-vacc-suit.svg",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "A heavy-duty space suit designed for extreme conditions, such as Corrosive and Insidious atmospheres. Protects against Vacuum, Tainted, Exotic, and Corrosive atmospheres, as well as airborne pathogens and toxins, and provides 2D hours of protection from Insidious atmospheres. Carries life support supplies for 6 hours. Reduces radiation by 150 rads. Counts as 4 items for Encumbrance purposes.<br><br>Skill Required: Zero-G 1",
+    "shortdescr": "A heavy-duty Vacc Suit",
+    "quantity": 1,
+    "weight": 4,
+    "price": 10000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 10,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 150
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "a7XuMzMB1lUiBYWm",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3odrbwitf0c",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "CcWpclyLcGYNWDlk",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737423,
+    "modifiedTime": 1760016422734,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.IXnPyrzNREwBr2rI",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!CcWpclyLcGYNWDlk"
+}

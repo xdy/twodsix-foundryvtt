@@ -1,0 +1,55 @@
+{
+  "name": "Clairvoyance",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "PSI",
+    "type": "skills",
+    "description": "Clairvoyance allows the character to sense events at a location away from the viewer. Normally it can only be blocked by rare and expensive psionic-shielding technologies and materials.<div><br><div></div><div>Sense (PSI 1, 50m): the character learns the rudimentary characteristics of a nearby location when applying this ability.\n</div><div><br></div><div>Clairvoyance/Clairaudience (PSI 5, 25km): this ability allows the character to view (clairvoyance) or to hear (clairaudience) at a specific point up to up to 25km range for 10 minutes. Pinpointing an unknown location can be tricky, but not impossible, as the character can switch focus to other nearby areas in the vicinity with each action.\n</div><div><br></div><div>Clairsentience (PSI 7, 5km): the psion can both hear and see from any point within 25km range for 10 minutes.</div><div>\n</div><div>\n</div></div>",
+    "shortdescr": "Sense (PSI 1, 50m)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ok68zut371",
+      "path": "ce light-psionics",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/sense.svg",
+  "effects": [],
+  "folder": "HvZvDaB5SC7wC3gv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700428398078,
+    "modifiedTime": 1760016422625,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "iOp8KxC76HtEdZgf",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!iOp8KxC76HtEdZgf"
+}

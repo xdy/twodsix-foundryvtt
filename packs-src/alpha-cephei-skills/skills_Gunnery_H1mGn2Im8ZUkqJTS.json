@@ -1,0 +1,52 @@
+{
+  "_id": "H1mGn2Im8ZUkqJTS",
+  "name": "Gunnery",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "DEX",
+    "type": "skills",
+    "description": "Using weaponry mounted on vehicles or devices such as spaceships,&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">drones, power armors and battle dresses.</span><div>• Fire a vehicle-mounted weapon at a target at Effective range: roll Gunnery&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">(DEX) 8+.</span></div><div>• Fire a vehicle-mounted weapon at a target at over Effective range, up to&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Maximum range: roll Gunnery (DEX) 10+.</span></div><div>• Hit a target in a dogfight with gunnery weapons: roll Gunnery (DEX) 8+.</div><div>• Fire energy weapons in space combat: roll Gunnery (DEX) 8+.</div><div>• Lock missiles on a target in space combat: roll Gunnery (DEX) 5+.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/gunnery.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 3000000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080082,
+    "modifiedTime": 1760016422623,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!H1mGn2Im8ZUkqJTS"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "OSxaweiJxjHD4GVo",
+  "name": "Personal Equipment",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Personal Equipment",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<table style=\"width:57.2833%;height:304px\" border=\"1\">\n<tbody>\n<tr style=\"height:16px\">\n<th style=\"width:57.8914%;height:16px;text-align:left\">Item</th>\n<th style=\"width:14.7415%;height:16px;text-align:left\">TL</th>\n<th style=\"width:26.6405%;height:16px;text-align:left\">Cost (Cr)</th>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.0sOJVPIgAJjzTDnh]{Backpack}</td>\n<td style=\"width:14.7415%;height:16px\">1</td>\n<td style=\"width:26.6405%;height:16px\">50</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.I2oThh9Nqc43yT8H]{Field Rations}</td>\n<td style=\"width:14.7415%;height:16px\">1</td>\n<td style=\"width:26.6405%;height:16px\">125</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.obUqrsczXyUhx2wG]{Rope, 70m}</td>\n<td style=\"width:14.7415%;height:16px\">1</td>\n<td style=\"width:26.6405%;height:16px\">50</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.ltpCnm4CZlSx4orU]{Torch}</td>\n<td style=\"width:14.7415%;height:16px\">1</td>\n<td style=\"width:26.6405%;height:16px\">1</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.n5N4oGUN9m5Ogbc5]{Handcuffs}</td>\n<td style=\"width:14.7415%;height:16px\">2</td>\n<td style=\"width:26.6405%;height:16px\">10</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.lFF1WbbuBYeuOPMP]{Tent}</td>\n<td style=\"width:14.7415%;height:16px\">2</td>\n<td style=\"width:26.6405%;height:16px\">100</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.fyurESq2OACEcs9T]{Binoculars}</td>\n<td style=\"width:14.7415%;height:16px\">3</td>\n<td style=\"width:26.6405%;height:16px\">10</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.EfAfvCGdZ1yCuTMk]{Compass}</td>\n<td style=\"width:14.7415%;height:16px\">3</td>\n<td style=\"width:26.6405%;height:16px\">5</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.t6yPRvz2yLAJXHCe]{Water Canteen}</td>\n<td style=\"width:14.7415%;height:16px\">4</td>\n<td style=\"width:26.6405%;height:16px\">5</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.F4fLmVw8evmNo41v]{Breather}</td>\n<td style=\"width:14.7415%;height:16px\">5</td>\n<td style=\"width:26.6405%;height:16px\">75</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.O5zHjOgTdF4Fewz7]{LED Flashlight}</td>\n<td style=\"width:14.7415%;height:16px\">7</td>\n<td style=\"width:26.6405%;height:16px\">5</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.4TEJT29cUb1Nb47K]{Lockpick Set}</td>\n<td style=\"width:14.7415%;height:16px\">5</td>\n<td style=\"width:26.6405%;height:16px\">25</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.dCa4KYKg9iDNTipi]{Oxygen Tanks}, 6hr duration</td>\n<td style=\"width:14.7415%;height:16px\">5</td>\n<td style=\"width:26.6405%;height:16px\">250</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.l53Gsd5aYsVd5Khy]{Tech Toolkit}</td>\n<td style=\"width:14.7415%;height:16px\">5</td>\n<td style=\"width:26.6405%;height:16px\">300</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.6WeNeEUXF1p2p5iE]{Disguise Kit}</td>\n<td style=\"width:14.7415%;height:16px\">7</td>\n<td style=\"width:26.6405%;height:16px\">300</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.KH8BKCs88HPVNNKR]{Long-Range Communicator} (500km range)</td>\n<td style=\"width:14.7415%;height:16px\">7</td>\n<td style=\"width:26.6405%;height:16px\">250</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.JlAnmUJ4vsv6RfjC]{Medkit}</td>\n<td style=\"width:14.7415%;height:16px\">7</td>\n<td style=\"width:26.6405%;height:16px\">100</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:57.8914%;height:16px\">@Compendium[twodsix.cepheus-light-items.sIbDy8CBwo6pcu9k]{Pressure Tent}</td>\n<td style=\"width:14.7415%;height:16px\">7</td>\n<td style=\"width:26.6405%;height:16px\">2,000</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.RQJnd1rTP7pozzkn]{Advanced Base}</td>\n<td style=\"width:14.7415%\">8</td>\n<td style=\"width:26.6405%\">50,000</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.nQpjIdcJCG7KuJGQ]{Artificial Gill}</td>\n<td style=\"width:14.7415%\">8</td>\n<td style=\"width:26.6405%\">4,000</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.IAeh5fzyTWTJpcM0]{Night Visor}</td>\n<td style=\"width:14.7415%\">8</td>\n<td style=\"width:26.6405%\">100</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.5k2YrwKtHD6CNZb6]{Thruster Pack}</td>\n<td style=\"width:14.7415%\">8</td>\n<td style=\"width:26.6405%\">200</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.MlLa4SgNWAZAdwQk]{Omnicomm}</td>\n<td style=\"width:14.7415%\">9</td>\n<td style=\"width:26.6405%\">50</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.hCnQcA53XjgVj3Uq]{Cold Weather Clothing}</td>\n<td style=\"width:14.7415%\">9</td>\n<td style=\"width:26.6405%\">250</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.6tEEEbwtUZOGDDdd]{Rescue Bubble}</td>\n<td style=\"width:14.7415%\">9</td>\n<td style=\"width:26.6405%\">900</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.hCnQcA53XjgVj3Uq]{Cold Weather Clothing}</td>\n<td style=\"width:14.7415%\">10</td>\n<td style=\"width:26.6405%\">200</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.V8zplDpie0202VAV]{Multiscanner}</td>\n<td style=\"width:14.7415%\">10</td>\n<td style=\"width:26.6405%\">2,000</td>\n</tr>\n<tr>\n<td style=\"width:57.8914%\">@Compendium[twodsix.cepheus-light-items.L3aytNFOjmILx4MT]{Portable Fusion Generator}</td>\n<td style=\"width:14.7415%\">10</td>\n<td style=\"width:26.6405%\">500,000</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "qcBIQtAKDVmuPUOT",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!OSxaweiJxjHD4GVo.qcBIQtAKDVmuPUOT"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079919,
+    "modifiedTime": 1760016422378,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!OSxaweiJxjHD4GVo"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Survival",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Staying alive in the wild, including hunting or trapping animals, avoiding&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">exposure, locating sources of food and fresh water, producing fires, finding shelter,&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">avoiding dangerous flora and fauna and dealing with the dangers of hazardous climates&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">(arctic, desert, etc.).</span>",
+    "shortdescr": "The character is skilled in the art of survival in the wild, including hunting or trapping animals, avoiding exposure, locating sources of food and fresh water (if available), producing fires (where possible), finding shelter, avoiding dangerous flora and fauna, avoiding getting lost, and dealing with the dangers of hazardous climates (arctic, desert, etc.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Survival",
+    "priorType": "unknown",
+    "prereq": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/survival.svg",
+  "effects": [],
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422986,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "8VC05FDi5AgE8fXT",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!8VC05FDi5AgE8fXT"
+}

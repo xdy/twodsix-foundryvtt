@@ -1,0 +1,61 @@
+{
+  "name": "Psionic Shield Helmet",
+  "type": "equipment",
+  "img": "./systems/twodsix/assets/icons/psionic-shield-helmet.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "The Psionic Shield Helmet: fully protects its wearer from telepathic intrusion. However, a character wearing this helmet cannot use psionics themselves. This helmet does not protect its wearer from the effects of other psionic powers, such as telekinetic attacks.",
+    "shortdescr": "Helmet fully protects its wearer from telepathic intrusion",
+    "quantity": 1,
+    "weight": 1,
+    "price": 8000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ek11vvgp4n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "yvEYF1qz7YArSGmv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737483,
+    "modifiedTime": 1760016422781,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.dLDyoAajzGxrKoAz",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!yvEYF1qz7YArSGmv"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "DWBpG6EgABCCCqnI",
+  "name": "Projectile Weapons",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_os49e6s7ia",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Projectile Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Weapon</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>TL</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cost</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>Range</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>Dmg</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>Mag</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Ammo</div>\n<div>Cost</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Aspects</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Gyrojet Rifle</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>9</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr900</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>100/400</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>20</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr15</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Auto 2, Zero-G</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Gyrojet Pistol</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>9</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr400</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>10/20</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>2D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>8</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr10</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Zero-G, Double Tap</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Pulse Rifle</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>9</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr1,000</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>200/400</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>40</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr30</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Auto 3</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Assault Rifle</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>7</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr300</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>50/200</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>30</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr15</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Auto 2</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Autopistol</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>5</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr150</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>10/50</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>2D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>16</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr7</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Double Tap</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Stealth Pistol</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>8</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr500</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>5/20</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>2D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>6</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr20</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Double Tap</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Bow</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>0</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr60</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>300/600</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>2D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>1</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr10</div>\n</td>\n<td style=\"width:26.106%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Carbine</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>5</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr250</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>50/200</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>10</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr12</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Double Tap</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Crossbow</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>2</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr75</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>300/600</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>10</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr1</div>\n</td>\n<td style=\"width:26.106%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Gauss Pistol</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>12</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr1,000</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>20/100</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>30</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr30</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Auto 2</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Gauss Rifle</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>12</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr1,500</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>300/600</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>4D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>100</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr40</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Auto 4</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Light Machinegun</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>7</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr1,200</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>100/300</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>100</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr125</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Auto 4, Bulky</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Revolver</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>4</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr150</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>10/50</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>2D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>6</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr5</div>\n</td>\n<td style=\"width:26.106%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Rifle</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>5</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr500</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>200/400</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>3D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>10</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr15</div>\n</td>\n<td style=\"width:26.106%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Shotgun</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>4</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr200</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>20/40</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>4D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>6</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr10</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Scattergun</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Submachinegun</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>5</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr500</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>30/100</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>2D</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>30</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr20</div>\n</td>\n<td style=\"width:26.106%\">\n<div>Auto 3</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:24.9568%\">\n<div>Tangler</div>\n</td>\n<td style=\"width:4.5193%\">\n<div>12</div>\n</td>\n<td style=\"width:9.87701%\">\n<div>Cr750</div>\n</td>\n<td style=\"width:11.6733%\">\n<div>30/90</div>\n</td>\n<td style=\"width:6.43169%\">\n<div>-</div>\n</td>\n<td style=\"width:5.98656%\">\n<div>1</div>\n</td>\n<td style=\"width:8.85038%\">\n<div>Cr100</div>\n</td>\n<td style=\"width:26.106%\">\n<div> </div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "eXC6Lvyld9QcMMmK",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!DWBpG6EgABCCCqnI.eXC6Lvyld9QcMMmK"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080325,
+    "modifiedTime": 1760016422939,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!DWBpG6EgABCCCqnI"
+}

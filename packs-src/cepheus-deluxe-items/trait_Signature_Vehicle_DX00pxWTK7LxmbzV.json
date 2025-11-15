@@ -1,0 +1,49 @@
+{
+  "name": "Signature Vehicle",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character gains a DM+1 for all vehicle rolls for a specific named vehicle. Note that this trait does not apply to a class of vehicles (for example, “boats” with Watercraft), nor to a specific kind of vehicle (submarines) but to a specific vehicle the character uses (Green November).",
+    "prereq": "Relevant Vehicle Skill 1, or Pilot 1",
+    "shortdescr": "DM+1 for all vehicle rolls for a specific named vehicle",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 1500000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "DX00pxWTK7LxmbzV",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737424,
+    "modifiedTime": 1760016422734,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!DX00pxWTK7LxmbzV"
+}

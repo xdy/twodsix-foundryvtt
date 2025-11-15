@@ -1,0 +1,22 @@
+{
+  "name": "Melee Weapons",
+  "sorting": "a",
+  "folder": "K4OqoQeeBHcinb9z",
+  "type": "Item",
+  "_id": "crzJd4BeivxkkYsO",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "twodsix",
+    "systemVersion": "5.8.3",
+    "createdTime": 1727109554843,
+    "modifiedTime": 1727616930711,
+    "lastModifiedBy": "G0793twHyHfODmAJ"
+  },
+  "_key": "!folders!crzJd4BeivxkkYsO"
+}

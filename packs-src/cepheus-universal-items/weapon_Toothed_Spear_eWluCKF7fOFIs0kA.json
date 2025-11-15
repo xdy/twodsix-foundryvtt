@@ -1,0 +1,99 @@
+{
+  "_id": "eWluCKF7fOFIs0kA",
+  "name": "Toothed Spear",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/spear.svg",
+  "system": {
+    "name": "Spear",
+    "techLevel": 0,
+    "description": "A short 1.8m spear, tipped with a spearhead of flint, obsidian,&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">sharpened bone, antler or the teeth of a local predator. Found in primitive TL 0 or&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">metal-poor societies.</span>",
+    "shortdescr": "Spear - melee",
+    "quantity": 1,
+    "weight": 1.2,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "close",
+    "weaponType": "melee",
+    "damageType": "melee",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "priorType": "unknown",
+    "parryAV": 11,
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    },
+    "isShield": false
+  },
+  "effects": [],
+  "folder": "crzJd4BeivxkkYsO",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.94ewaCYulradqbTs",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727109554969,
+    "modifiedTime": 1760016422998,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!eWluCKF7fOFIs0kA"
+}

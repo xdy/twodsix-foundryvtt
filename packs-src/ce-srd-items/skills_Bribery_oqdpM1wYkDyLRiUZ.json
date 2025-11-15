@@ -1,0 +1,53 @@
+{
+  "name": "Bribery",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character has experience in bribing petty and not-so petty officials in order to circumvent regulations or ignore cumbersome laws. The amount of a bribe is often based on the level of offense, as outlined in the Bribery Checks By Offense table.  If the bribe is less than the minimum bribe required, the attempt will automatically fail. Characters may offer more than the minimum bribe required and receive a +1 DM for each multiple of the bribe offered. If the first offer is refused, a character may make a second attempt at twice the previous value of the bribe. If both attempts are refused (failed), the Referee should have the character make a Social Standing check, with a Difficulty based on Base Difficulty by Law Level table. If this also fails, the character will be brought up on charges of attempted bribery.  For example, a character trying to bribe an official to ignore a minor smuggling infraction would have to offer a minimum bribe of Cr200. If the character offered Cr400 instead the character could gain a +1 DM on the check. If Cr600 were offered, the character could gain a +2 DM, etc.",
+    "shortdescr": "The character has experience in bribing petty and not-so petty officials in order to circumvent regulations or ignore cumbersome laws.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Bribery",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/persuade.svg",
+  "effects": [],
+  "_id": "oqdpM1wYkDyLRiUZ",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079880,
+    "modifiedTime": 1760016422341,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!oqdpM1wYkDyLRiUZ"
+}

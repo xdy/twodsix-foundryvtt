@@ -1,0 +1,114 @@
+{
+  "name": "Critical Vehicle Damage",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_d1db3c6of6o",
+      "path": "CA Tables#/CF_SEP/Vehicle Damage",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "eNISHcGVGFaRpDTe",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Knocked Out",
+      "name": "",
+      "_key": "!tables.results!f2DZIKRltoe4aoV1.eNISHcGVGFaRpDTe"
+    },
+    {
+      "_id": "PhXDMaNKBIE5H6Wy",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Crew",
+      "name": "",
+      "_key": "!tables.results!f2DZIKRltoe4aoV1.PhXDMaNKBIE5H6Wy"
+    },
+    {
+      "_id": "fmRsFLniWSEESWUO",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Destroyed",
+      "name": "",
+      "_key": "!tables.results!f2DZIKRltoe4aoV1.fmRsFLniWSEESWUO"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "f2DZIKRltoe4aoV1",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080065,
+    "modifiedTime": 1760016422594,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!f2DZIKRltoe4aoV1"
+}

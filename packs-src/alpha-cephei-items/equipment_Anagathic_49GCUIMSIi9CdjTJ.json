@@ -1,0 +1,59 @@
+{
+  "_id": "49GCUIMSIi9CdjTJ",
+  "name": "Anagathic",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 15,
+    "description": "Prevents aging. For it to be effective, a character must take one dose each month. If a character misses one month of medication they must immediately roll on the Aging Table (see the Character Generation chapter) using the character’s full chronological age.",
+    "shortdescr": "Prevents aging.",
+    "quantity": 1,
+    "weight": 1,
+    "price": 2000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_qapyp8i1gtk",
+      "path": "ce light-pharma",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/anagathic.svg",
+  "effects": [],
+  "folder": "Uk8Y83D6H1ui1Kwx",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080263,
+    "modifiedTime": 1760016422861,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!49GCUIMSIi9CdjTJ"
+}

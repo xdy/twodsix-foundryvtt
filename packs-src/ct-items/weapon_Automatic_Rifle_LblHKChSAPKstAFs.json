@@ -1,0 +1,79 @@
+{
+  "name": "Automatic Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/advanced-combat-rifle.svg",
+  "system": {
+    "name": "Advanced Combat Rifle",
+    "techLevel": 6,
+    "description": "A progressive development of the assault rifle.",
+    "shortdescr": "Advanced Combat Rifle - ranged",
+    "quantity": 1,
+    "weight": 5000,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Automatic Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 20,
+    "ammo": 20,
+    "useConsumableForAttack": "",
+    "magazineCost": 20,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "autoRifle",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1/4",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX  6/-2 10/+2",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696587771,
+    "modifiedTime": 1760016421884,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "LblHKChSAPKstAFs",
+  "sort": 600000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!LblHKChSAPKstAFs"
+}

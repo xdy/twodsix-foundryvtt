@@ -1,0 +1,81 @@
+{
+  "_id": "KC8gerCularFSGPD",
+  "name": "Grav Launcher",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "Advanced micro-gravitic technology allows this weapon to guide a floating plasma bomb to its target without having to account for ballistic trajectories or inertia. Once launched, the bomb travels 50m per combat round. Its operator can move it in any direction and can also stop it and have it hover in mid-air. Detonation is on command. The bomb's internal battery allows for 10 rounds of gravitic flight.<br><br>Blast 5: This weapon has an explosive component or is otherwise effective against all targets in its blast radius. The number given is the blast radius in meters. It is possible to avoid or minimize blast damage, see Diving for Cover in the Combat chapter.<br>&gt;<br>Bulky: A Bulky weapon has powerful recoil or is simply extremely heavy. This makes it difficult to use effectively in combat by someone of a weak physical stature. Characters with STR 8 or less suffer DM-2 when using such weapons. Bipod and Tripod accessories (see below) remove the Bulky aspect, as long as the weapon is stationary and mounted on the bipod or tripod.<br><br>Fire: On a successful hit, throw 6+ for the target to catch fire. A burning target takes 2D damage per combat round for 1D rounds, or until put out. See the Environmental Hazard Chapter for Fire effects.",
+    "shortdescr": "Guided plasma bomb weapon",
+    "quantity": 1,
+    "weight": 3,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 5,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "500/1000",
+    "damage": "10d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 100,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "500/1000",
+    "weaponType": "Heavy",
+    "damageType": "plasma",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_i181bqkw8n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Heavy Weapons",
+      "color": "#00aaaa"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737432,
+    "modifiedTime": 1760016422739,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KC8gerCularFSGPD"
+}

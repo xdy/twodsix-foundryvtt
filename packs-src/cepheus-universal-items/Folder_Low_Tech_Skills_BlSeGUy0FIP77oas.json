@@ -1,0 +1,22 @@
+{
+  "name": "Low Tech Skills",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "BlSeGUy0FIP77oas",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "twodsix",
+    "systemVersion": "5.8.1",
+    "createdTime": 1726520536192,
+    "modifiedTime": 1727616930711,
+    "lastModifiedBy": "G0793twHyHfODmAJ"
+  },
+  "_key": "!folders!BlSeGUy0FIP77oas"
+}

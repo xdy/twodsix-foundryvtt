@@ -1,0 +1,70 @@
+{
+  "_id": "cFNsrZiDeyQ2kbul",
+  "name": "Grenades and Explosives",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Grenades and Explosives",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table border=\"0\">\n<tbody>\n<tr>\n<th style=\"width:167px;text-align:left\">Grenade or Explosive</th>\n<th style=\"text-align:left\">TL</th>\n<th style=\"text-align:left\">Cost</th>\n<th style=\"text-align:left\">Range</th>\n<th style=\"text-align:left\">Dmg</th>\n<th style=\"text-align:left\">Aspects</th>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.43nRbPqXUJPrkKz4]{Dynamite}</td>\n<td>4</td>\n<td>Cr75</td>\n<td> </td>\n<td>3D</td>\n<td>AV 2D, Blast 1D</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.NGWVD4it5XIl23J4]{Fragmentation}</td>\n<td>5</td>\n<td>Cr30</td>\n<td> </td>\n<td>3D</td>\n<td>AV 2D, Blast 5</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.r1BUjRGxsFATMG1I]{Improvised Explosive Device}</td>\n<td>5</td>\n<td>Cr5</td>\n<td> </td>\n<td>2D</td>\n<td>Blast 2, Fire</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.pNJPDuyNGP8ZqYOU]{Incendiary}</td>\n<td>6</td>\n<td>Cr30</td>\n<td> </td>\n<td>3D</td>\n<td>Blast 3, Fire</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.y5JuGo0DZNfue2Yy]{Smoke}</td>\n<td>6</td>\n<td>Cr15</td>\n<td> </td>\n<td>-</td>\n<td>Blast 10 (smoke)</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.m6N1iQ13q6WnAmio]{Plastique}</td>\n<td>6</td>\n<td>Cr200</td>\n<td>-</td>\n<td>6D</td>\n<td>AV 4D, Blast 10</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.7EqtrBfc8Nf2YNEX]{HEAP}</td>\n<td>7</td>\n<td>Cr50</td>\n<td>Launcher</td>\n<td>5D</td>\n<td>AV 5D, Blast 1.5</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.T7gWpb2HrRoonxbw]{Flashbang}</td>\n<td>7</td>\n<td>Cr30</td>\n<td> </td>\n<td>3D</td>\n<td>Blast 10, Stun</td>\n</tr>\n<tr>\n<td>@Compendium[twodsix.cepheus-light-items.uCipYurblmhAMAHf]{EMP}</td>\n<td>8</td>\n<td>Cr50</td>\n<td> </td>\n<td>4D</td>\n<td>Blast 5, Stun (Machines)</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "LzZPQPMHx3DLZukL",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!cFNsrZiDeyQ2kbul.LzZPQPMHx3DLZukL"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079920,
+    "modifiedTime": 1760016422379,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!cFNsrZiDeyQ2kbul"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Athletics",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "This skill covers physical fitness and training, similar to that of a trained athlete. This includes acts requiring physical coordination, such as climbing, juggling or throwing, acts of endurance, such as long-distance running or hiking, and acts of strength, such as weight-lifting or bodybuilding.   Aliens with Wings: For alien species with wings, this skill is also used to reflect their ability to fly.",
+    "shortdescr": "This skill covers physical fitness and training, similar to that of a trained athlete.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Athletics",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/athletics-dexterity.svg",
+  "effects": [],
+  "_id": "snCFq4z4ccf8v1Yg",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 200000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079889,
+    "modifiedTime": 1760016422343,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!snCFq4z4ccf8v1Yg"
+}

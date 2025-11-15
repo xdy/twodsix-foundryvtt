@@ -1,0 +1,70 @@
+{
+  "_id": "PmL0KrcDewxBpTfG",
+  "name": "Skills",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Skills",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p>There are 6 skills: Combat, Knowledge, Physical, Social, Survival, and Technical.</p>\n<ul>\n<li><strong>Combat</strong>: this skill covers actions that involve committing violence. Anything from spears and guns to artillery and demolitions.</li>\n<li><strong>Knowledge</strong>: this skill covers anything like science, general knowledge, medicine, and art.</li>\n<li><strong>Physical</strong>: any time a character needs to exert themselves, use this skill. This can include feats of athleticism, stealth, acrobatics, and so on.</li>\n<li><strong>Social</strong>: for whenever a character wishes to interact with other human beings in a social manner. Use this skill to bargain, lie, carouse, or conduct negotiations.</li>\n<li><strong>Survival</strong>: this is the skill used for surviving the Wastes, and includes foraging, tracking, scouting, and avoiding Contamination.</li>\n<li><strong>Technical</strong>: a catch-all skill for tasks involving technology. This includes driving, performing repairs, computer programming and hacking, and jury-rigging machines to work when you need them to.</li>\n</ul>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "snKAhz5UCi0mjMn8",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!PmL0KrcDewxBpTfG.snKAhz5UCi0mjMn8"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079945,
+    "modifiedTime": 1760016422409,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!PmL0KrcDewxBpTfG"
+}

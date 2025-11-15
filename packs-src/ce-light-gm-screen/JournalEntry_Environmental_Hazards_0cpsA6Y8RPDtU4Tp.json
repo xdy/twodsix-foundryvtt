@@ -1,0 +1,70 @@
+{
+  "_id": "0cpsA6Y8RPDtU4Tp",
+  "name": "Environmental Hazards",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Environmental Hazards",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Disease and Poison</h1>\n<table style=\"height:152px;width:501px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:126px\">Pathogen</td>\n<td style=\"width:127px\">Virulence    (Endurance Throw)</td>\n<td style=\"width:92px\">Damage</td>\n<td style=\"width:153px\">Interval</td>\n</tr>\n<tr>\n<td style=\"width:126px\">Pneumonia</td>\n<td style=\"width:127px\">6+</td>\n<td style=\"width:92px\">1D</td>\n<td style=\"width:153px\">1D weeks</td>\n</tr>\n<tr>\n<td style=\"width:126px\">Anthrax</td>\n<td style=\"width:127px\">9+</td>\n<td style=\"width:92px\">1D</td>\n<td style=\"width:153px\">1D days</td>\n</tr>\n<tr>\n<td style=\"width:126px\">Biological Weapon</td>\n<td style=\"width:127px\">12+</td>\n<td style=\"width:92px\">3D</td>\n<td style=\"width:153px\">1D hours</td>\n</tr>\n<tr>\n<td style=\"width:126px\">Arsenic</td>\n<td style=\"width:127px\">8+</td>\n<td style=\"width:92px\">2D</td>\n<td style=\"width:153px\">-</td>\n</tr>\n<tr>\n<td style=\"width:126px\">Tranq Gas</td>\n<td style=\"width:127px\">10+</td>\n<td style=\"width:92px\">Unconscious</td>\n<td style=\"width:153px\">-</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<h1>Extreme Temperatures</h1>\n<table style=\"height:186px;width:512px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:101.333px\">Temperature</td>\n<td style=\"width:127.333px\">Damage</td>\n<td style=\"width:277.333px\">Example</td>\n</tr>\n<tr>\n<td style=\"width:101.333px\">-100° or less</td>\n<td style=\"width:127.333px\">1D/round</td>\n<td style=\"width:277.333px\">Deep space</td>\n</tr>\n<tr>\n<td style=\"width:101.333px\">-50°</td>\n<td style=\"width:127.333px\">2D/hour</td>\n<td style=\"width:277.333px\">Mars</td>\n</tr>\n<tr>\n<td style=\"width:101.333px\">-25°</td>\n<td style=\"width:127.333px\">1D/hour</td>\n<td style=\"width:277.333px\">Arctic</td>\n</tr>\n<tr>\n<td style=\"width:101.333px\">-10° to 40°</td>\n<td style=\"width:127.333px\">None</td>\n<td style=\"width:277.333px\">Typical Terra</td>\n</tr>\n<tr>\n<td style=\"width:101.333px\">50°</td>\n<td style=\"width:127.333px\">1D/hour</td>\n<td style=\"width:277.333px\">Searing desert</td>\n</tr>\n<tr>\n<td style=\"width:101.333px\">100°</td>\n<td style=\"width:127.333px\">2D/hour</td>\n<td style=\"width:277.333px\">Boiling point</td>\n</tr>\n<tr>\n<td style=\"width:101.333px\">200° or more</td>\n<td style=\"width:127.333px\">1D/round</td>\n<td style=\"width:277.333px\">Mercury</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<p> </p>\n<h1>Fire</h1>\n<p>When attacked by fire, characters must throw DEX 8+ to avoid catching fire. A burning character takes 2D damage per round. Make another DEX 8+ throw each subsequent round; if successful, the character puts out the fire. If failed, the character suffers another 2D damage. Putting out the fire by other means, such as an extinguisher, also stops this continuous damage.</p>\n<h1>Falling</h1>\n<p>A character suffers 1D damage per 2m fallen, up to 6D at terminal velocity. Multiply this damage by the world’s gravity rating in Gs.</p>\n<p> </p>\n<h1>Radiation</h1>\n<h2>Exposure</h2>\n<table style=\"height:177px;width:571px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:145px\">Source</td>\n<td style=\"width:125px\">Instant (rads)</td>\n<td style=\"width:138px\">Extended (rads)</td>\n<td style=\"width:160px\">Example</td>\n</tr>\n<tr>\n<td style=\"width:145px\">Constant, low</td>\n<td style=\"width:125px\">-</td>\n<td style=\"width:138px\">1D/hour</td>\n<td style=\"width:160px\">Cosmic radiation</td>\n</tr>\n<tr>\n<td style=\"width:145px\">Constant, moderate</td>\n<td style=\"width:125px\">-</td>\n<td style=\"width:138px\">1Dx10/hour</td>\n<td style=\"width:160px\">Nuclear fallout</td>\n</tr>\n<tr>\n<td style=\"width:145px\">Constant, severe</td>\n<td style=\"width:125px\">-</td>\n<td style=\"width:138px\">1Dx100/hour</td>\n<td style=\"width:160px\">Solar flare</td>\n</tr>\n<tr>\n<td style=\"width:145px\">Acute, low</td>\n<td style=\"width:125px\">3D</td>\n<td style=\"width:138px\">-</td>\n<td style=\"width:160px\">Far nuclear blast</td>\n</tr>\n<tr>\n<td style=\"width:145px\">Acute, moderate</td>\n<td style=\"width:125px\">1Dx10</td>\n<td style=\"width:138px\">-</td>\n<td style=\"width:160px\">Particle Weapon</td>\n</tr>\n<tr>\n<td style=\"width:145px\">Acute, severe</td>\n<td style=\"width:125px\">1Dx100</td>\n<td style=\"width:138px\">-</td>\n<td style=\"width:160px\">Near nuclear blast</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h2>Radiation Sickness</h2>\n<table style=\"width:627px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:125px\">Irradiation</td>\n<td style=\"width:124px\">Total rads</td>\n<td style=\"width:56px\">Throw</td>\n<td style=\"width:157px\">Damage</td>\n<td style=\"width:157px\">Interval</td>\n</tr>\n<tr>\n<td style=\"width:125px\">Mild</td>\n<td style=\"width:124px\">99 or less</td>\n<td style=\"width:56px\">None</td>\n<td style=\"width:157px\">None</td>\n<td style=\"width:157px\">None</td>\n</tr>\n<tr>\n<td style=\"width:125px\">Low</td>\n<td style=\"width:124px\">100-199</td>\n<td style=\"width:56px\">5+</td>\n<td style=\"width:157px\">1D</td>\n<td style=\"width:157px\">1D weeks</td>\n</tr>\n<tr>\n<td style=\"width:125px\">Moderate</td>\n<td style=\"width:124px\">200-599</td>\n<td style=\"width:56px\">6+</td>\n<td style=\"width:157px\">1D</td>\n<td style=\"width:157px\">2D days</td>\n</tr>\n<tr>\n<td style=\"width:125px\">High</td>\n<td style=\"width:124px\">600-999</td>\n<td style=\"width:56px\">7+</td>\n<td style=\"width:157px\">2D</td>\n<td style=\"width:157px\">1D days</td>\n</tr>\n<tr>\n<td style=\"width:125px\">Severe</td>\n<td style=\"width:124px\">1000-10000</td>\n<td style=\"width:56px\">8+</td>\n<td style=\"width:157px\">3D</td>\n<td style=\"width:157px\">1D hours</td>\n</tr>\n<tr>\n<td style=\"width:125px\">Extreme</td>\n<td style=\"width:124px\">10000 or more</td>\n<td style=\"width:56px\">12+</td>\n<td style=\"width:157px\">6D</td>\n<td style=\"width:157px\">1 hour</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Starvation and Dehydration</h1>\n<p>A character requires two liters of water and 0.5kg of food per day to stay healthy.</p>\n<p>A character may go without water for 20 hours + twice their END score with no ill effect. After that time has passed, the character must throw END 6+ per hour without water or suffer 1D damage. There is a cumulative DM-1 per each check.</p>\n<p>A character may go without food for 3 days. After that, the character must throw END 6+ per day without food or suffer 1D damage. There is a cumulative DM-1 per each previous check.</p>\n<p>The character can recover this damage only after drinking and eating.</p>\n<p> </p>\n<h1>Suffocation</h1>\n<p>In cases of insufficient oxygen, such as on a ship with failing life support, characters suffer 1D damage per minute. If the character has no access to any oxygen whatsoever, such as when a character is being strangled, or has been sucked out into space, this becomes 1D damage per round instead.</p>\n<p> </p>\n<h1>Vacuum</h1>\n<p>A character exposed to vacuum suffers regular suffocation damage (above). While exposed to space they also suffer 3Dx10 rads of radiation per round. Additionally, beginning from the third round of vacuum exposure, the character must throw END 10+ per round or fall unconscious from aeroembolisms – the formation of air bubbles in their blood stream.</p>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "XFxBp1pj6gCDl4zC",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!0cpsA6Y8RPDtU4Tp.XFxBp1pj6gCDl4zC"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079918,
+    "modifiedTime": 1760016422377,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!0cpsA6Y8RPDtU4Tp"
+}

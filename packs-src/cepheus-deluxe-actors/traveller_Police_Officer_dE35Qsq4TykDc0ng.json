@@ -1,0 +1,844 @@
+{
+  "name": "Police Officer",
+  "type": "traveller",
+  "img": "systems/twodsix/assets/icons/default_actor.png",
+  "system": {
+    "name": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "hits": {
+      "value": 24,
+      "min": 0,
+      "max": 24,
+      "lastDelta": 0
+    },
+    "gender": "",
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": "6"
+    },
+    "secondaryArmor": {
+      "value": "0"
+    },
+    "heroPoints": 2,
+    "radiationProtection": {
+      "value": "0"
+    },
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "untrainedSkill": "zBC0qOIVmYcNFPnH",
+    "description": "",
+    "bio": "",
+    "notes": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 7,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": ""
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 9,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": ""
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 7,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": ""
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 8,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": ""
+      },
+      "education": {
+        "key": "education",
+        "value": 8,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": ""
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 7,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": ""
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 7,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": ""
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 8,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 16,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 0,
+      "units": "ft",
+      "hover": false
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "items": [
+    {
+      "_id": "zBC0qOIVmYcNFPnH",
+      "name": "Untrained",
+      "type": "skills",
+      "img": "icons/svg/item-bag.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.zBC0qOIVmYcNFPnH"
+    },
+    {
+      "_id": "j4b14Yv4fECws4Cv",
+      "name": "Gun Combat",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/gun-combat.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "DEX",
+        "type": "skills",
+        "description": "Gun Combat: using small arms, crossbows, and bows in combat.<br><br>Examples: throw Gun Combat/DEX 8+ to hit a target in Effective range with a handgun. Throw Gun combat/DEX 10+ to hit a target at Maximum range. See the Combat chapter for more information.",
+        "shortdescr": "Using small arms, crossbows, and bows in combat",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.enQOAVdQXndSdf0j",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.j4b14Yv4fECws4Cv"
+    },
+    {
+      "_id": "snBRsZ9OXgzy8PNf",
+      "name": "Recon",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/recon.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Recon: scouting for danger and spotting threats, including traps. Recon also covers performing forward observation for artillery.<br><br>Examples: throw Recon/INT 8+ to correctly identify the composition of a concealed enemy force. Throw Recon/INT 10+ to identify a likely ambush kill zone. Throw Recon/INT 10+ to call down an airstrike on a large stationary target, such as a building. Throw Recon/INT 8+ to track a target in the wilderness. Throw Recon/INT 12+ to locate a devilishly hidden trap.",
+        "shortdescr": "Scouting for danger and spotting threats, including traps",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.hKNf0aBpr4jX4I1w",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.snBRsZ9OXgzy8PNf"
+    },
+    {
+      "_id": "7bCI8xabaOSosBMs",
+      "name": "Investigation",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/investigate.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Investigation: keen observation, forensics, research, and detailed analysis.<br><br>>Examples: throw Investigation/INT 6+ to locate and extract fingerprints from a crime scene. Throw Investigation/EDU 10+ (or opposed by someone’s Admin/EDU) to uncover evidence of fraud or other irregularities in a business’ accounting practices. Throw Investigation/INT 10+ to find hidden levers, or to notice that a crime scene was disturbed before being discovered. Throw Investigation/INT 8+ to perform surveillance on a target.",
+        "shortdescr": "This skill combines keen observation, forensics, research, and detailed analysis",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.isLeYQ7qxqaouJOW",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.7bCI8xabaOSosBMs"
+    },
+    {
+      "_id": "pO90uHWlLgJReArG",
+      "name": "Streetwise",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/streetwise.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "INT",
+        "type": "skills",
+        "description": "Streetwise: familiarity with underworld society and the ways of working with it. The Streetwise skill adds to the throw for finding Low Passage passengers (see the Starship Operations chapter for more details).<br>Examples: throw Streetwise/STR 8+ to intimidate gang members. Throw Streetwise/EDU 6+ to understand criminal slang. Throw Streetwise/INT 8+ to locate a fence or fixer. Throw Streetwise/INT 8+ to shadow someone in an urban environment. Throw Opposed Streetwise/INT to lose a shadow. Throw Streetwise/SOC 10+ to arrange a meet with important criminals.",
+        "shortdescr": "Familiarity with underworld society and the ways of working with it",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3btd7dw9pac",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.4bNjvdm8HXRuDYa4",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.pO90uHWlLgJReArG"
+    },
+    {
+      "_id": "SP8iXMYIFVA4UlCe",
+      "name": "Heavy Ballistic Cloth",
+      "type": "armor",
+      "img": "./systems/twodsix/assets/icons/cloth.svg",
+      "system": {
+        "name": "",
+        "techLevel": 7,
+        "description": "A modern heavy-duty ballistic- cloth armor. Commonly worn by soldiers, well-equipped security, and TL7 mercenaries. Counts as two Items for encumbrance purposes and is not concealable.",
+        "shortdescr": "modern heavy-duty ballistic-cloth armor",
+        "quantity": 1,
+        "weight": 2,
+        "price": 250,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "armor": 6,
+        "secondaryArmor": {
+          "value": 0,
+          "protectionTypes": []
+        },
+        "radiationProtection": {
+          "value": 0
+        },
+        "type": "armor",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ],
+        "isPowered": false
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_3odrbwitf0c",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680634096433,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.EKKJ33cnnnmKvcHo",
+        "duplicateSource": null,
+        "exportSource": {
+          "worldId": "on_the_run",
+          "uuid": null,
+          "coreVersion": "0.6.6",
+          "systemId": "twodsix",
+          "systemVersion": "0.6.27"
+        }
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.SP8iXMYIFVA4UlCe"
+    },
+    {
+      "_id": "Sgf7rZC37NBPi1wP",
+      "name": "Auto Pistol",
+      "type": "weapon",
+      "img": "./systems/twodsix/assets/icons/auto-pistol.svg",
+      "system": {
+        "name": "Auto Pistol",
+        "techLevel": 5,
+        "description": "Autopistol (TL5): Semi-automatic handgun fed from a magazine. Preloaded magazines may be inserted into an empty pistol, but require a reload action to complete.<br><br>Double Tap: may fire 2 bullets in one attack to gain DM+1 to damage.",
+        "shortdescr": "Auto Pistol - ranged",
+        "quantity": 1,
+        "weight": 1,
+        "price": 150,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "j4b14Yv4fECws4Cv",
+        "associatedSkillName": "Gun Combat",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "10/50",
+        "damage": "2d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "16",
+        "useConsumableForAttack": "",
+        "magazineCost": 7,
+        "type": "weapon",
+        "location": "",
+        "lawLevel": "6",
+        "rangeBand": "10/50",
+        "weaponType": "ranged",
+        "damageType": "ballistic",
+        "rateOfFire": "1",
+        "recoil": true,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_sk461konhrd",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680703874487,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.ka178VXLZdprdQyk",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.Sgf7rZC37NBPi1wP"
+    },
+    {
+      "_id": "Cgndk56X84afYV75",
+      "name": "Stunner",
+      "type": "weapon",
+      "img": "./systems/twodsix/assets/icons/stunner.svg",
+      "system": {
+        "name": "Laser Pistol",
+        "techLevel": 10,
+        "description": "Firing a precise electromagnetic pulse, this non-lethal weapon disrupts the target's neural processes, leading to stun and potentially unconsciousness.<br><br>Stun: These weapons deal non-lethal damage and will incapacitate a living target instead of killing it. Damage is only deducted from Stamina, after considering any armor. If the target’s Stamina is reduced to 0, the target is incapacitated and unable to perform any actions for a number of rounds by which the damage exceeded his Stamina. Characters completely recover from Stun damage after one hour of rest.<br><br>Zero-G: the weapon does not suffer a penalty for firing a weapon in zero-g conditions. Lasers automatically have the Zero-G Aspect.",
+        "shortdescr": "Stunner - ranged",
+        "quantity": 1,
+        "weight": 1,
+        "price": 600,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "j4b14Yv4fECws4Cv",
+        "associatedSkillName": "Gun Combat",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "10/30",
+        "damage": "3d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "10",
+        "useConsumableForAttack": "",
+        "magazineCost": 10,
+        "type": "weapon",
+        "location": "",
+        "lawLevel": "2",
+        "rangeBand": "10/30",
+        "weaponType": "ranged",
+        "damageType": "stun",
+        "rateOfFire": "1",
+        "recoil": true,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": ""
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_sk461konhrd",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680634102292,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.XzjQq5Nnc4kD8SNh",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.Cgndk56X84afYV75"
+    },
+    {
+      "_id": "n5VdNy4F2WvJeDDZ",
+      "name": "Omnicomm",
+      "type": "equipment",
+      "img": "systems/twodsix/assets/icons/omnicomm.svg",
+      "system": {
+        "name": "",
+        "techLevel": 8,
+        "description": "Today’s smartphones will eventually evolve into an Omnicomm, a combination of all your telecom needs in one place, with holographic augmented reality capability. Designed to integrate with whatever telecommunications networks are present on a given world. TL8 batteries for these devices last for a few days; TL9 batteries last for months between recharging.",
+        "shortdescr": "smart communicator",
+        "quantity": 1,
+        "weight": 1,
+        "price": 50,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "Computers",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "type": "equipment",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GOmBKof9PfoHZ54T": 3
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_bpg3uct3zcp",
+          "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+          "color": "#00aaaa"
+        },
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680634107036,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": "Compendium.twodsix.cepheus-light-items.MlLa4SgNWAZAdwQk",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!dE35Qsq4TykDc0ng.n5VdNy4F2WvJeDDZ"
+    }
+  ],
+  "effects": [],
+  "folder": "GnzimFQ7GDJKVbRi",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_rxguv8nhfha",
+      "path": "Sample NPCs",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "dE35Qsq4TykDc0ng",
+  "prototypeToken": {
+    "name": "Police Officer",
+    "displayName": 0,
+    "actorLink": false,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "flags": {},
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 0.25,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_actor.png",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": "#ffffff",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": false,
+      "range": 0,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080228,
+    "modifiedTime": 1760016422820,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!dE35Qsq4TykDc0ng"
+}

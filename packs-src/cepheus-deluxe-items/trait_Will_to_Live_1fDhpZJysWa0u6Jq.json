@@ -1,0 +1,49 @@
+{
+  "name": "Will to Live",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/defibrilate.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "When using the Trauma Surgery rules, throw with Advantage when throwing for Trauma Surgery. This trait applies even if the attending physician or autodoc does not have the Surgeon Trait.",
+    "prereq": "END 9+",
+    "shortdescr": "Advantage when throwing for Trauma Surgery",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 300000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "1fDhpZJysWa0u6Jq",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737402,
+    "modifiedTime": 1760016422725,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!1fDhpZJysWa0u6Jq"
+}

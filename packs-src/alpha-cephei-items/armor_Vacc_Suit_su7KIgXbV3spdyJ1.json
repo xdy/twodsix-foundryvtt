@@ -1,0 +1,75 @@
+{
+  "_id": "su7KIgXbV3spdyJ1",
+  "name": "Vacc Suit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "Standard space suit. It is sealed against vaccum, airborne pathogens, Tainted and Exotic atmospheres, with 6 hours of life-support; resists Corrosive atmospheres for 2D hours, resists Insidious atmospheres for 1Dx10 minutes, and blocks 60 rads. It is quite bulky, and counts as 2 items towards encumbrance.<br><br>Skill Required: Zero G-0",
+    "shortdescr": "A standard, futuristic space suit",
+    "quantity": 1,
+    "weight": 2,
+    "price": 9000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 6,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 60
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "nonstackable": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1vxyhjhgcfw",
+      "path": "ce light-armor",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/vacc-suit.svg",
+  "effects": [],
+  "folder": "nycPK2btpYrXRFf2",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080279,
+    "modifiedTime": 1760016422884,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!su7KIgXbV3spdyJ1"
+}

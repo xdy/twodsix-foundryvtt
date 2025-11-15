@@ -1,0 +1,49 @@
+{
+  "name": "High Energy Physics",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/ringed-beam.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is good at putting shots on target with gunnery weapons. Once per battle, roll damage twice and take the best result.",
+    "prereq": "Gunnery 1",
+    "shortdescr": "Good at putting shots on target with gunnery weapons",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 1200000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "8dGsJwhEauh7gGbS",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737418,
+    "modifiedTime": 1760016422730,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!8dGsJwhEauh7gGbS"
+}

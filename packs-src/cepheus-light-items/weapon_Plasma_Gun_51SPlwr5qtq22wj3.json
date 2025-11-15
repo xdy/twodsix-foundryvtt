@@ -1,0 +1,80 @@
+{
+  "_id": "51SPlwr5qtq22wj3",
+  "name": "Plasma Gun",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/plasma-gun.svg",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "Plasma Gun (TL12): High-energy anti-vehicular man-portable weapon firing magnetically-contained plasma bolts. It requires a back-mounted, rechargeable power pack counting as two items for encumbrance purposes.",
+    "shortdescr": "High-energy anti-vehicular man-portable weapon firing magnetically-contained plasma bolts",
+    "quantity": 1,
+    "weight": 3,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "10d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "40",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "200/500",
+    "weaponType": "Ranged",
+    "damageType": "plasma",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "TID7XHQIHysAG8fK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079701,
+    "modifiedTime": 1760016422139,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!51SPlwr5qtq22wj3"
+}

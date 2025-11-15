@@ -1,0 +1,944 @@
+{
+  "name": "Gigant",
+  "type": "animal",
+  "system": {
+    "name": "",
+    "homeWorld": "",
+    "animalType": {
+      "niche": "herbivore",
+      "subtype": "filter"
+    },
+    "location": "hills",
+    "size": "",
+    "numberAppearing": "1d6",
+    "reaction": {
+      "attack": 9,
+      "flee": 6
+    },
+    "moraleDM": "",
+    "hits": {
+      "value": 90,
+      "min": 0,
+      "max": 90
+    },
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": 5
+    },
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "untrainedSkill": "HnTAGNm6XVTSh21J",
+    "description": "30/60, Move 5m, Armor 5, Giant Axe (melee 4D damage) or Giant Javelin (ranged 3D damage). Combat-4, Physical-2, Survival-2. Additional eyes, infravision, gigantism, aberrant deformity. Random trinket. Hates “pure” humans.",
+    "notes": "&nbsp;Random trinket. Hates “pure” humans.",
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 60,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": ""
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 0,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": ""
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 30,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": ""
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 7,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": ""
+      },
+      "education": {
+        "key": "education",
+        "value": 7,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": "INS"
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 7,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": "PAK"
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": ""
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 5,
+      "units": "m",
+      "hover": false
+    },
+    "woundedEffect": 0,
+    "species": "Monster",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "gender": "",
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "bio": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    }
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxpu59c259",
+      "path": "Monsters",
+      "color": "#000000"
+    },
+    "core": {}
+  },
+  "img": "systems/dnd5e/tokens/humanoid/Orc.webp",
+  "items": [
+    {
+      "_id": "HnTAGNm6XVTSh21J",
+      "name": "Untrained",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 100000,
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "effects": [],
+      "img": "icons/svg/item-bag.svg",
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.HnTAGNm6XVTSh21J"
+    },
+    {
+      "_id": "XDbWFTAAqT3vxGj6",
+      "name": "Spear",
+      "type": "weapon",
+      "system": {
+        "name": "Spear",
+        "techLevel": 0,
+        "description": "May be thrown<br>",
+        "shortdescr": "Spear - melee",
+        "quantity": 1,
+        "weight": 1,
+        "price": 10,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "ids5CDddxLQcDFSk",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "5/20",
+        "damage": "2d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": "8",
+        "rangeBand": "reach",
+        "weaponType": "melee",
+        "damageType": "piercing",
+        "rateOfFire": "",
+        "recoil": true,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": ""
+      },
+      "sort": 150000,
+      "flags": {
+        "cf": {
+          "id": "temp_zxe7vegdsle",
+          "path": "ce light-weapons",
+          "color": "#000000"
+        },
+        "twodsix": {}
+      },
+      "img": "./systems/twodsix/assets/icons/spear.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680701651289,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.XDbWFTAAqT3vxGj6"
+    },
+    {
+      "_id": "OBbi5ttu6RaNJ4G8",
+      "name": "Giant Axe",
+      "type": "weapon",
+      "system": {
+        "name": "Sword",
+        "techLevel": null,
+        "description": "<br>",
+        "shortdescr": "Giant Axe",
+        "quantity": 1,
+        "weight": 1,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "ids5CDddxLQcDFSk",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "",
+        "damage": "4d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": "8",
+        "rangeBand": "reach",
+        "weaponType": "melee",
+        "damageType": "slashing",
+        "rateOfFire": "",
+        "recoil": true,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": ""
+      },
+      "sort": 175000,
+      "flags": {
+        "cf": {
+          "id": "temp_zxe7vegdsle",
+          "path": "ce light-weapons",
+          "color": "#000000"
+        },
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/axe.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680701656624,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.OBbi5ttu6RaNJ4G8"
+    },
+    {
+      "_id": "AYCQXW770AAkfKut",
+      "name": "Additional Eyes",
+      "type": "trait",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "type": "trait",
+        "description": "Cannot be surprised. Obviously mutated.",
+        "prereq": "",
+        "shortdescr": "Cannot be surprised",
+        "subtype": "",
+        "key": "key",
+        "reference": "",
+        "name": "",
+        "techLevel": 0,
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": "equipped",
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Head",
+        "bonus": "minor beneficial",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 100001,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/six-eyes.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.AYCQXW770AAkfKut"
+    },
+    {
+      "_id": "ZI44FopzPWpiyoUD",
+      "name": "Infravision",
+      "type": "trait",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "type": "trait",
+        "description": "Can see heat signatures at a range of 5m.",
+        "prereq": "",
+        "shortdescr": "See heat signatures",
+        "subtype": "",
+        "key": "key",
+        "reference": "",
+        "name": "",
+        "techLevel": 0,
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": "equipped",
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Head",
+        "bonus": "minor beneficial",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 400001,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/night-vision.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.ZI44FopzPWpiyoUD"
+    },
+    {
+      "_id": "YDIuRtIshklmFKsX",
+      "name": "Gigantism",
+      "type": "trait",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "type": "trait",
+        "description": "Gain the Aberrant Deformity detrimental mutation. You do 1D more damage per hit with all melee attacks. This also applies to muscle-powered weapons such as bows and thrown knives.",
+        "prereq": "",
+        "shortdescr": "larger size",
+        "subtype": "",
+        "key": "key",
+        "reference": "",
+        "name": "",
+        "techLevel": 0,
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": "equipped",
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "bonus": "major beneficial",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 1800001,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/giant.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.YDIuRtIshklmFKsX"
+    },
+    {
+      "_id": "e7XhUiieVMOZLhiP",
+      "name": "Aberrant Deformity",
+      "type": "trait",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "type": "trait",
+        "description": "Cannot use armor designed for normal humans. Obviously mutated.",
+        "prereq": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "reference": "",
+        "name": "",
+        "techLevel": 0,
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": "equipped",
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "bonus": "minor detrimental",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 2500001,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/octoman.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.e7XhUiieVMOZLhiP"
+    },
+    {
+      "_id": "ids5CDddxLQcDFSk",
+      "name": "Combat",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 4,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Combat: this skill covers actions that involve committing violence. Anything from spears and guns to artillery and demolitions.<br><br>",
+        "shortdescr": "actions that involve committing violence",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Difficult",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 400000,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/melee.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.ids5CDddxLQcDFSk"
+    },
+    {
+      "_id": "OQvHW8ZjgjgyhqqR",
+      "name": "Physical",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 2,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Physical: any time a character needs to exert themselves, use this skill. This can include feats of athleticism, stealth, acrobatics, and so on.",
+        "shortdescr": "athleticism, stealth, and acrobatics",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 600000,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/athletics-endurance.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.OQvHW8ZjgjgyhqqR"
+    },
+    {
+      "_id": "riovfhhtRcrihDoR",
+      "name": "Survival",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 2,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Survival: this is the skill used for surviving the Wastes, and includes foraging, tracking, scouting, and avoiding Contamination.",
+        "shortdescr": "foraging, tracking, scouting, and avoiding contamination",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 300000,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/survival.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.riovfhhtRcrihDoR"
+    },
+    {
+      "name": "Unarmed",
+      "type": "weapon",
+      "img": "systems/twodsix/assets/icons/unarmed.svg",
+      "system": {
+        "name": "",
+        "techLevel": 0,
+        "description": "Unarmed attack",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "ids5CDddxLQcDFSk",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "max(@characteristics.strength.mod, 1)",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "bludgeoning",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "_id": "eCYAT9XtMHK8KK1a",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1663334986322,
+        "modifiedTime": 1680701645592,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!OfBZc2JVWcf0k8QZ.eCYAT9XtMHK8KK1a"
+    }
+  ],
+  "effects": [],
+  "prototypeToken": {
+    "flags": {},
+    "name": "Gigant",
+    "displayName": 40,
+    "width": 2,
+    "height": 2,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "color": null,
+      "alpha": 1,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/dnd5e/tokens/humanoid/Orc.webp",
+      "tint": "#ffffff",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "alpha": 1,
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1663272576825,
+    "modifiedTime": 1760016423078,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-atom-actors.Actor.MzXp1BXM6qETUdZq",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": "s8CAgO04cPoyeGhp",
+  "ownership": {
+    "default": 0,
+    "12WfDpqePx1TrVeA": 3
+  },
+  "_id": "OfBZc2JVWcf0k8QZ",
+  "sort": 200000,
+  "_key": "!actors!OfBZc2JVWcf0k8QZ"
+}

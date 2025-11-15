@@ -1,0 +1,59 @@
+{
+  "_id": "lte3wG3X0DoOXXPa",
+  "name": "Electric Torch",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "The common flashlight. It is battery powered and will last for about 6 hours of continuous use. A torch produces a wide cone of light up to 18 meters long with a radius of 6 meters at the end of the beam. Later TL models have adjustable beams allowing them to also produce a tight beam of light up to 36 meters long, with a 1 meter radius, or be used to illuminate a circle of 10 meter radius.<br>",
+    "shortdescr": "Flashlight",
+    "quantity": 1,
+    "weight": 0.5,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_q959auq6gs",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Sensory Aids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/led-flashlight.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079879,
+    "modifiedTime": 1760016422340,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!lte3wG3X0DoOXXPa"
+}

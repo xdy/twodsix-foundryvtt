@@ -1,0 +1,77 @@
+{
+  "_id": "yzVWHtdQiHDJsCKk",
+  "name": "Stunner",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/stunner.svg",
+  "system": {
+    "name": "Laser Pistol",
+    "techLevel": 10,
+    "description": "Stunner (TL10): Firing a precise electromagnetic pulse, this non-lethal weapon disrupts the target's neural processes, leading to stun and potentially unconsciousness.<br><br>Stun: Damage is only deducted from END, considering any armor. If the target’s END is reduced to 0, the target is incapacitated and unable to perform any actions for a number of rounds by which the damage exceeded his END. Damage received from Stun weapons is completely healed after one hour of rest.<br><br>Zero-G: does not suffer a penalty for firing a weapon in zero-g conditions.",
+    "shortdescr": "Stunner - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 600,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "10/30",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "10",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "10/30",
+    "weaponType": "ranged",
+    "damageType": "stun",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "kg9z5G1EDXprJ7Mz",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_q4e3naht7b",
+      "path": "ce ftl weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079653,
+    "modifiedTime": 1760016422109,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!yzVWHtdQiHDJsCKk"
+}

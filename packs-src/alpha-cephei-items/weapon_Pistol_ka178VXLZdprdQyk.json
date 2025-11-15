@@ -1,0 +1,78 @@
+{
+  "_id": "ka178VXLZdprdQyk",
+  "name": "Pistol",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/auto-pistol.svg",
+  "system": {
+    "name": "Auto Pistol",
+    "techLevel": 5,
+    "description": "Semi-automatic handgun fed from a magazine.<br><br>Double Tap: may fire 2 bullets in one attack to gain +1 to damage.",
+    "shortdescr": "Auto Pistol - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "10/50",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "16",
+    "useConsumableForAttack": "",
+    "magazineCost": 7,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "10/50",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "",
+    "doubleTap": true,
+    "recoil": false,
+    "features": "Double Tap",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 1600000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080274,
+    "modifiedTime": 1760016422880,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ka178VXLZdprdQyk"
+}

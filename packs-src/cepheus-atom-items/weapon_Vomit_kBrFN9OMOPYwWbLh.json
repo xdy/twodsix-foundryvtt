@@ -1,0 +1,81 @@
+{
+  "_id": "kBrFN9OMOPYwWbLh",
+  "name": "Vomit",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "New weapon",
+    "techLevel": 0,
+    "description": "1-in-6 chance to spread Disease.<br><br>Disease: after taking damage from a diseased creature, the victim must save or develop symptoms the next round. A disease may mimic the effects of any detrimental mutation or have another effect the Referee finds appropriate. The victim may throw Physical 6+ each subsequent day to overcome the disease.<br>",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "zSbRkttpusBS3TLK",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "?",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": 0,
+    "rangeBand": "",
+    "weaponType": "",
+    "damageType": "poison",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_fejx6xaa2rp",
+      "path": "cepheus atom#/CF_SEP/CA - Monster Attacks",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/vomiting.svg",
+  "effects": [],
+  "folder": "xZlPegpMzevXwEpQ",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079800,
+    "modifiedTime": 1760016422284,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!kBrFN9OMOPYwWbLh"
+}

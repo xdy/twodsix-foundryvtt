@@ -1,0 +1,49 @@
+{
+  "name": "Easy Rider",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/cavalry.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is well-trained in riding animals, Terran and alien beasts alike. When making a throw related to riding an animal, including when rolling for a Position in a chase, roll with Advantage.",
+    "prereq": "Animals 1",
+    "shortdescr": "Advantage when rolling related to riding animal",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 1800000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "DzD8rAoubydel55G",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737425,
+    "modifiedTime": 1760016422735,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!DzD8rAoubydel55G"
+}

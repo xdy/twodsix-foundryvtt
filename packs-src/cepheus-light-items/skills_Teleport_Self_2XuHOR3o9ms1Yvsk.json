@@ -1,0 +1,59 @@
+{
+  "name": "Teleport Self",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/teleport-self.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 7,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Teleport Self (PSI 7, 5000km): the psion can teleport up to 5000km with light encumbrance load.",
+    "shortdescr": "Teleport Self (PSI 7, 5000km)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "",
+    "priorType": "unknown",
+    "prereq": "",
+    "groupLabel": ""
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_id": "2XuHOR3o9ms1Yvsk",
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.bmuJlrgp0KJVCoWk",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569429079,
+    "modifiedTime": 1760016422137,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!2XuHOR3o9ms1Yvsk"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "p1wNDUHKl8kOXpiO",
+  "name": "Sensory Aids",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Sensory Aids",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:138px;width:55.9635%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Description</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">TL</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cost</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">Wgt</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Torch</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">1</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cr1</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">0.25</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Lamp Oil</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">2</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cr2</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">—</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Oil Lamp</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">2</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cr10</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">0.5</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Binoculars</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">3</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cr75</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">1</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Electric Torch</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">5</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cr10</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">0.5</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Cold Light Lantern</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">6</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cr20</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">0.25</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:41.3456%;text-align:left;vertical-align:middle\">Infrared Goggles</td>\n<td style=\"height:16px;width:19.9533%;text-align:left;vertical-align:middle\">6</td>\n<td style=\"height:16px;width:19.4137%;text-align:left;vertical-align:middle\">Cr500</td>\n<td style=\"height:16px;width:19.2875%;text-align:left;vertical-align:middle\">—</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"height:10px;width:41.3456%;text-align:left;vertical-align:middle\">Light Intensifier Goggles</td>\n<td style=\"height:10px;width:19.9533%;text-align:left;vertical-align:middle\">7</td>\n<td style=\"height:10px;width:19.4137%;text-align:left;vertical-align:middle\">Cr500</td>\n<td style=\"height:10px;width:19.2875%;text-align:left;vertical-align:middle\">—</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "sMyk8ITPokBhHW2l",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!p1wNDUHKl8kOXpiO.sMyk8ITPokBhHW2l"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079930,
+    "modifiedTime": 1760016422391,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!p1wNDUHKl8kOXpiO"
+}

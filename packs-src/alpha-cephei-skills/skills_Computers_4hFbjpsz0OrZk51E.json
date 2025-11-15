@@ -1,0 +1,52 @@
+{
+  "_id": "4hFbjpsz0OrZk51E",
+  "name": "Computers",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Working with computer software, programming,&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">getting access to closed systems, spoofing&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">signals, finding hidden data and hacking in&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">general. This skill also covers the use of sensors&nbsp;</span><span style=\"background-color: ; color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">and communications gear.</span><div>• Convincingly scramble your ship’s transponder and&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">manifest data to make it harder to inspect: roll&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Computers (INT) 10+.</span></div><div>• Make a detailed scan in an unknown world: roll&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Computers (EDU or INT) 10+, and this could take&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">several minutes or hours.</span></div><div>• Locate a particular ship in range: roll Computers&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">(INT) 6+. The scanning character adds its sensor’s&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">modifier to this roll, but has a -4 penalty if the&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">ship being searched has a stealth upgrade turned&nbsp;</span><span style=\"background-color: ; color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">on.</span></div><div>• Hack into a secure computer or network: roll&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Computers (INT or EDU) 12+, or more for better&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">protected systems. Specialized hacking software&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">might provide a bonus. Computer systems might&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">also have software in place to trace hackers and&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">warn authorities automatically.</span></div><div>• Search for particular files in someone else’s&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">computer: roll Computers (INT or EDU) 10+,&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">provided you already hacked in or had acquired&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">access previously.</span></div><div>• Spoof an incoming missile: roll Computers (INT) 8+.</div><div>• Jam enemy comms or sensors: opposed Computers&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">(INT) check against one enemy vessel’s sensor&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">operator. Both can add their sensor’s modifiers to&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">the roll. This works for 30 seconds if the target&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">loses, but can be repeated.</span></div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/computers.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 1000000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080081,
+    "modifiedTime": 1760016422621,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4hFbjpsz0OrZk51E"
+}

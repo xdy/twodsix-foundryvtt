@@ -1,0 +1,61 @@
+{
+  "name": "Anti-radiation",
+  "type": "equipment",
+  "img": "./systems/twodsix/assets/icons/anti-radiation.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Administered before or immediately after radiation exposure, this drug absorbs 100 rads. Taking more than one dose a day causes 1D permanent END damage.",
+    "shortdescr": "drug absorbs 100 rads",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SU8WH6nukL6X3EkG",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_l5fai9j7gxh",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Pharmaceuticals",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "bwjiHCfwS9naDUVy",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737461,
+    "modifiedTime": 1760016422753,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.Z3Pylax4aQaTkVpF",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!bwjiHCfwS9naDUVy"
+}

@@ -1,0 +1,456 @@
+{
+  "_id": "B0sMYUYRbREwVNIB",
+  "name": "Population",
+  "img": "icons/svg/d20-grey.svg",
+  "results": [
+    {
+      "_id": "1dqoWPJ9h7mvoCQh",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Few or no inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.1dqoWPJ9h7mvoCQh"
+    },
+    {
+      "_id": "NRuplx933SavWXxp",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tens of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.NRuplx933SavWXxp"
+    },
+    {
+      "_id": "ifaaRX9BGXye9phk",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hundreds of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.ifaaRX9BGXye9phk"
+    },
+    {
+      "_id": "cFDj5jcJupxjKCDM",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Thousands of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.cFDj5jcJupxjKCDM"
+    },
+    {
+      "_id": "2uIJ5ej44ySuONUo",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tens of thousands of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.2uIJ5ej44ySuONUo"
+    },
+    {
+      "_id": "4jtLqfa5nAiWNTWD",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hundreds of thousands of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.4jtLqfa5nAiWNTWD"
+    },
+    {
+      "_id": "uHVH7ZfJ4LMatvx1",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Millions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.uHVH7ZfJ4LMatvx1"
+    },
+    {
+      "_id": "WGbDHekk4ScfDSak",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tens of millions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.WGbDHekk4ScfDSak"
+    },
+    {
+      "_id": "N0UQcqdkupxrkUT7",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hundreds of millions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.N0UQcqdkupxrkUT7"
+    },
+    {
+      "_id": "HzYiFIc4Zj4ngljU",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Billions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.HzYiFIc4Zj4ngljU"
+    },
+    {
+      "_id": "bLlteHih3hTouJ4y",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tens of billions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.bLlteHih3hTouJ4y"
+    },
+    {
+      "_id": "PwYAZ8PNoauOwEbz",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hundreds of billions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.PwYAZ8PNoauOwEbz"
+    },
+    {
+      "_id": "6kAz49DsogufEw8P",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Trillions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.6kAz49DsogufEw8P"
+    },
+    {
+      "_id": "Ea7sFkQl4KOPiTd2",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tens of trillions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.Ea7sFkQl4KOPiTd2"
+    },
+    {
+      "_id": "CSACxymxafkeLOs2",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hundreds of trillions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.CSACxymxafkeLOs2"
+    },
+    {
+      "_id": "pC3YGRMOx7Xopggp",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Quadrillions of inhabitants.",
+      "name": "",
+      "_key": "!tables.results!B0sMYUYRbREwVNIB.pC3YGRMOx7Xopggp"
+    }
+  ],
+  "formula": "1d16-1",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080286,
+    "modifiedTime": 1760016422896,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "description": "",
+  "_key": "!tables!B0sMYUYRbREwVNIB"
+}

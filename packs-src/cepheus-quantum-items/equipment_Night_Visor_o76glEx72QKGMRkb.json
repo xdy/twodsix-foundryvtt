@@ -1,0 +1,60 @@
+{
+  "name": "Night Visor",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "The Night Visor combines low-light and infra-red vision.",
+    "shortdescr": "low-light vision",
+    "quantity": 1,
+    "weight": 1,
+    "price": 100,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_bc94dj30dqc",
+      "path": "cepheus quantum#/CF_SEP/CQ - General Gear",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/night-visor.svg",
+  "effects": [],
+  "_id": "o76glEx72QKGMRkb",
+  "folder": "gW7EP0NcJYfmNpY6",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079912,
+    "modifiedTime": 1760016422358,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!o76glEx72QKGMRkb"
+}

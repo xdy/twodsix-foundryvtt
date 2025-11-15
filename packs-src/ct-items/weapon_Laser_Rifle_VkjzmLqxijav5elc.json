@@ -1,0 +1,79 @@
+{
+  "name": "Laser Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/laser-rifle.svg",
+  "system": {
+    "name": "Laser Rifle",
+    "techLevel": 9,
+    "description": "The standard high energy weapon, firing energy bolts in the same manner as the laser carbine. Heavier, the laser rifle is also capable of longer sustained action, and is somewhat sturdier. The power pack can provide 100 shots before recharging. As in the laser carbine, the laser rifle is connected to the power pack by a heavy-duty cable. Power packs are not interchangeable between the two weapons, however.",
+    "shortdescr": "Laser Rifle - ranged",
+    "quantity": 1,
+    "weight": 6000,
+    "price": 3500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Laser Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 100,
+    "ammo": 100,
+    "useConsumableForAttack": "",
+    "magazineCost": 300,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "laserRifle",
+    "weaponType": "ranged",
+    "damageType": "laser",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX 6/-3 11/+2",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589765,
+    "modifiedTime": 1760016421888,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "VkjzmLqxijav5elc",
+  "sort": 800000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!VkjzmLqxijav5elc"
+}

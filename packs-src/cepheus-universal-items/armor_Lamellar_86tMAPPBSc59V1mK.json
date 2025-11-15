@@ -1,0 +1,66 @@
+{
+  "folder": "9eBBH01N7i6zYXgF",
+  "name": "Lamellar",
+  "type": "armor",
+  "_id": "86tMAPPBSc59V1mK",
+  "img": "systems/twodsix/assets/icons/lamellar.svg",
+  "system": {
+    "name": "",
+    "description": "This armour consists of thin metal strips or bands that are held on to&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">a leather backing with rivets. The arrangement of strips can vary tremendously from&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">culture to culture. Metal poor societies can manufacture strips of bone or wood. Also&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">known as splint, banded or studded armour. Japanese samurai armour prior to the 16th&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">century would be classed as lamellar. Damage reduction 4 points from melee damage.&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Weight 10 kg. Cr1000.</span>",
+    "type": "armor",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 0,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 10,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "armor": 0,
+    "armorDM": 0,
+    "secondaryArmor": {
+      "value": 4,
+      "protectionTypes": [
+        "melee"
+      ]
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "isPowered": false,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016422986,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 134375,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!86tMAPPBSc59V1mK"
+}

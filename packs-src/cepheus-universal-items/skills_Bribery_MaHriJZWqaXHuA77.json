@@ -1,0 +1,57 @@
+{
+  "name": "Bribery",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Offering bribes to circumvent local law, or to influence someone’s decision.",
+    "shortdescr": "The character has experience in bribing petty and not-so petty officials in order to circumvent regulations or ignore cumbersome laws.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Bribery",
+    "priorType": "unknown",
+    "prereq": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/pay-money.svg",
+  "effects": [],
+  "folder": "BlSeGUy0FIP77oas",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422991,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "MaHriJZWqaXHuA77",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!MaHriJZWqaXHuA77"
+}

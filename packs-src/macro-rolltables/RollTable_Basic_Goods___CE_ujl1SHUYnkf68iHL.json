@@ -1,0 +1,197 @@
+{
+  "_id": "ujl1SHUYnkf68iHL",
+  "name": "Basic Goods - CE",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Engine basic trade goods table.  Items are tab delimited and tons available rolls are converted to Foundry format.",
+  "results": [
+    {
+      "_id": "LaK7gdLr5jsrJhpl",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Basic Consumable Goods\t1000\t2D6*5\tAg+0, Ga+0\tHi+0, Ri+0",
+      "name": "",
+      "_key": "!tables.results!ujl1SHUYnkf68iHL.LaK7gdLr5jsrJhpl"
+    },
+    {
+      "_id": "zNIATOmo8I71ljiR",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Basic Electronics\t25000\t2D6*5\tHt+0, In+0\tNi+0, Po+0",
+      "name": "",
+      "_key": "!tables.results!ujl1SHUYnkf68iHL.zNIATOmo8I71ljiR"
+    },
+    {
+      "_id": "dyYnuJ3VkuaqpIGk",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Basic Machine Parts\t1000\t2D6*5\tIn+0, Ri+0\tNa+0, Ni+0",
+      "name": "",
+      "_key": "!tables.results!ujl1SHUYnkf68iHL.dyYnuJ3VkuaqpIGk"
+    },
+    {
+      "_id": "siOs4tbuijgnDu0V",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Basic Manufactured Goods\t20000\t2D6*5\tIn+0, Ri+0\tAg+0, Ni+0",
+      "name": "",
+      "_key": "!tables.results!ujl1SHUYnkf68iHL.siOs4tbuijgnDu0V"
+    },
+    {
+      "_id": "IBU2nyrBniHmkMua",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Basic Raw Materials\t5000\t2D6*5\tAs+0, Ni+0\tIn+0, Ri+0",
+      "name": "",
+      "_key": "!tables.results!ujl1SHUYnkf68iHL.IBU2nyrBniHmkMua"
+    },
+    {
+      "_id": "ekZRerPase94lHQp",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Common Unrefined Ore\t2000\t2D6*5\tAs+0, Va+0\tIn+0, Na+0",
+      "name": "",
+      "_key": "!tables.results!ujl1SHUYnkf68iHL.ekZRerPase94lHQp"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_wdptii86rg"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080300,
+    "modifiedTime": 1760016422902,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "RollTable.qRCnO3sQWAdkdPNw",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.7.9",
+      "systemId": "twodsix",
+      "systemVersion": "0.7.12"
+    }
+  },
+  "_key": "!tables!ujl1SHUYnkf68iHL"
+}

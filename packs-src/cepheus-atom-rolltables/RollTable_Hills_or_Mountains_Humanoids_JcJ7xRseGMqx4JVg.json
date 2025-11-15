@@ -1,0 +1,197 @@
+{
+  "name": "Hills or Mountains Humanoids",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_oepu6t7x3f9",
+      "path": "CA Tables#/CF_SEP/Encounters#/CF_SEP/Humanoids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/hills.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "v34GNSoYyou8FLhV",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Kobold.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Koboldoid",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.SGrZdVyu1eO83WeP",
+      "description": "",
+      "_key": "!tables.results!JcJ7xRseGMqx4JVg.v34GNSoYyou8FLhV"
+    },
+    {
+      "_id": "bDStNlUn9YAJLCD3",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantBat.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Camazotz",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.GJ4wC2CcxrFr1Fi6",
+      "description": "",
+      "_key": "!tables.results!JcJ7xRseGMqx4JVg.bDStNlUn9YAJLCD3"
+    },
+    {
+      "_id": "VmZgDrd13b4h5yPW",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Bugbear.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Caveman",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.OWYD8rHOj4mBCowe",
+      "description": "",
+      "_key": "!tables.results!JcJ7xRseGMqx4JVg.VmZgDrd13b4h5yPW"
+    },
+    {
+      "_id": "2mOffSKvkD9A39md",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Orc.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Gigant",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.OfBZc2JVWcf0k8QZ",
+      "description": "",
+      "_key": "!tables.results!JcJ7xRseGMqx4JVg.2mOffSKvkD9A39md"
+    },
+    {
+      "_id": "KUVK9b03Qy8DTGZx",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/uncertainty.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Special! Referee's Choice",
+      "name": "",
+      "_key": "!tables.results!JcJ7xRseGMqx4JVg.KUVK9b03Qy8DTGZx"
+    },
+    {
+      "_id": "bXNhr9lAtZ2HgfBP",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!JcJ7xRseGMqx4JVg.bXNhr9lAtZ2HgfBP"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "JcJ7xRseGMqx4JVg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080062,
+    "modifiedTime": 1760016422591,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!JcJ7xRseGMqx4JVg"
+}

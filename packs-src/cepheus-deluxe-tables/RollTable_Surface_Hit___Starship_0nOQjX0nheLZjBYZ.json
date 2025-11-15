@@ -1,0 +1,165 @@
+{
+  "_id": "0nOQjX0nheLZjBYZ",
+  "name": "Surface Hit - Starship",
+  "img": "systems/twodsix/assets/icons/components/hull.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "CnPLUcTQwi0uagHI",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/avoidance.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "No damage - attack bounces off",
+      "name": "",
+      "_key": "!tables.results!0nOQjX0nheLZjBYZ.CnPLUcTQwi0uagHI"
+    },
+    {
+      "_id": "54WbsLuDMpVxa0UN",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Breach",
+      "name": "",
+      "_key": "!tables.results!0nOQjX0nheLZjBYZ.54WbsLuDMpVxa0UN"
+    },
+    {
+      "_id": "vFE5rOOIU1Qh4nJv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/armament.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Weapon",
+      "name": "",
+      "_key": "!tables.results!0nOQjX0nheLZjBYZ.vFE5rOOIU1Qh4nJv"
+    },
+    {
+      "_id": "t15Ec7cymndUIIe4",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/electronics.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Electronics",
+      "name": "",
+      "_key": "!tables.results!0nOQjX0nheLZjBYZ.t15Ec7cymndUIIe4"
+    },
+    {
+      "_id": "6abrpWejiCqXcm5p",
+      "type": "document",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/otherInternal.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Internal - Starship",
+      "documentUuid": "Compendium.twodsix.cepheus-deluxe-tables.RollTable.shwVaA2t4h09EpKf",
+      "description": "",
+      "_key": "!tables.results!0nOQjX0nheLZjBYZ.6abrpWejiCqXcm5p"
+    }
+  ],
+  "formula": "2d6",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_9qkr5tod12b"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080309,
+    "modifiedTime": 1760016422912,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!tables!0nOQjX0nheLZjBYZ"
+}

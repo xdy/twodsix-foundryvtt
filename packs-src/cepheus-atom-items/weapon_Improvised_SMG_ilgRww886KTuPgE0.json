@@ -1,0 +1,78 @@
+{
+  "_id": "ilgRww886KTuPgE0",
+  "name": "Improvised SMG",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/submachinegun.svg",
+  "system": {
+    "name": "Submachinegun",
+    "techLevel": null,
+    "description": "Automatic, one combat round to reload<br><br>Automatic: May attack twice per combat round (any target); both attacks together spend 3 rounds of ammunition.",
+    "shortdescr": "Submachinegun - ranged",
+    "quantity": 1,
+    "weight": null,
+    "price": 100,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "30/60",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "4",
+    "rangeBand": "30/100",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "VaoWfK5i88LiiKfj",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_a1oz7op7s0j",
+      "path": "cepheus atom#/CF_SEP/CA - Common Weapons",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079800,
+    "modifiedTime": 1760016422284,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ilgRww886KTuPgE0"
+}

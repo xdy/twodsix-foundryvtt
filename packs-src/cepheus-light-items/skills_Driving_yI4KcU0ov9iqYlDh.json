@@ -1,0 +1,51 @@
+{
+  "_id": "yI4KcU0ov9iqYlDh",
+  "name": "Driving",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "",
+    "shortdescr": "Controlling and using ground vehicles",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zjco251t0w",
+      "path": "ce light-skills",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/driving.svg",
+  "effects": [],
+  "folder": "nIXJisBXpvXMn3Tn",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079728,
+    "modifiedTime": 1760016422181,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!yI4KcU0ov9iqYlDh"
+}

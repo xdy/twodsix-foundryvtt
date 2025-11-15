@@ -1,0 +1,97 @@
+{
+  "folder": "pSssleJvJZVQGAbD",
+  "name": "Disintegrator Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/disintegrate.svg",
+  "system": {
+    "name": "",
+    "description": "A purely military rifle, designed for the infantryman. It&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">features long range scope, laser range-finding and thermal imaging. It is rugged and&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">designed for prolonged use, with a long duration power cell. Once the cell is depleted it&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">requires recharging for 4 hours. A top-mounted display allows control of the energy&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">output, from 1D6 right up to 10D6.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 16,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 3.5,
+    "price": 10000,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "10d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 400,
+    "magazineCost": 500,
+    "lawLevel": "",
+    "rangeBand": "veryLong",
+    "weaponType": "",
+    "damageType": "disintegrate",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "variable energy, rechargeable",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.cNxHnLs2lc53Kyxc",
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1729015078727,
+    "modifiedTime": 1760016422984,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "3XU1z4zlI7g7Kxpa",
+  "_key": "!items!3XU1z4zlI7g7Kxpa"
+}

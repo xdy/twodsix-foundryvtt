@@ -1,0 +1,62 @@
+{
+  "name": "Advanced Cyberarms",
+  "type": "augment",
+  "img": "systems/twodsix/assets/icons/advanced-cyberarm.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "This implant replaces both arms, as well as reinforces the spine. Advanced cyberarms give Advantage to all arm/ manipulation Athletics throws and DM+4 to unarmed combat damage. Note that this bonus applies to relevant Athletics tests, but not other skill tests. The damage bonus is cumulative with any internal blade damage bonus, and with the powered armor bonus. Advanced cyberarms count as two implants (total 4 cybernetics points), as they replace both arms.",
+    "shortdescr": "Replaces both arms, as well as reinforces the spine",
+    "quantity": 1,
+    "weight": 0,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Arms",
+    "type": "augment",
+    "bonus": "Advantage to all arm or manipulation Athletics throws and DM+4 to unarmed combat damage",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "R0Ow6sI4fuV8ZL0N",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737439,
+    "modifiedTime": 1760016422745,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.UZQN8g5DUT6HQIlq",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!R0Ow6sI4fuV8ZL0N"
+}

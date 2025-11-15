@@ -1,0 +1,62 @@
+{
+  "name": "Internal Omnicomp",
+  "type": "augment",
+  "img": "./systems/twodsix/assets/icons/internal-omnicomp.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "An OmniComp but with a neural interface. The user can use their minds to operate the OmniComp without any gestures or speech. The details and consequences of having a computer implanted in a character’s brain and connecting to planetary computing grid are left to the players and Referee.",
+    "shortdescr": "Internal computer",
+    "quantity": 1,
+    "weight": 0,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Internal computer",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "Ni9Ly0fYIK3RPv6r",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737436,
+    "modifiedTime": 1760016422742,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.znchdhlB8zBvUKE7",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Ni9Ly0fYIK3RPv6r"
+}

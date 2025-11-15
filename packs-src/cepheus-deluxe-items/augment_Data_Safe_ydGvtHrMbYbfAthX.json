@@ -1,0 +1,62 @@
+{
+  "name": "Data Safe",
+  "type": "augment",
+  "img": "./systems/twodsix/assets/icons/data-safe.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "This small implant stores encrypted files in the character’s skull. The data safe cannot be detected by normal sensors; a deep medical scan of the character’s brain is required to detect the safe. The character may or may not have access to the data safe, or the decryption key. On worlds with Law Levels 6+, the Data Safe is a regulated cybernetic.",
+    "shortdescr": "Stows encrypted files in the character’s skull",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "secure storage",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "ydGvtHrMbYbfAthX",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737483,
+    "modifiedTime": 1760016422781,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.PFjNtzVnNGMLZk5P",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ydGvtHrMbYbfAthX"
+}

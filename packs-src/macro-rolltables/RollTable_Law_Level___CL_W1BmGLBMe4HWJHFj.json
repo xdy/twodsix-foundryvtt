@@ -1,0 +1,456 @@
+{
+  "_id": "W1BmGLBMe4HWJHFj",
+  "name": "Law Level - CL",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Light",
+  "results": [
+    {
+      "_id": "hqElHtB23SzkvIOy",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Lawless. All weapons allowed. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.hqElHtB23SzkvIOy"
+    },
+    {
+      "_id": "3TyQSQAaHJkh0ASg",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Poison gas, explosives, undetectable weapons, weapons of mass destruction",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.3TyQSQAaHJkh0ASg"
+    },
+    {
+      "_id": "6waJ5UKjMHuary88",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Portable energy weapons (unless mounted on ships)",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.6waJ5UKjMHuary88"
+    },
+    {
+      "_id": "Asog7NGCBBCe3nNV",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Heavy Weapons",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.Asog7NGCBBCe3nNV"
+    },
+    {
+      "_id": "UdB4b2mEdkKps5Hg",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "All automatic weapons",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.UdB4b2mEdkKps5Hg"
+    },
+    {
+      "_id": "GI6KgJhmJ3SmSKhd",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Personal concealed weapons",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.GI6KgJhmJ3SmSKhd"
+    },
+    {
+      "_id": "vIyVz4m1K1rsX1EB",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "All firearms except for shotguns and stunners. Carrying weapons is discouraged.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.vIyVz4m1K1rsX1EB"
+    },
+    {
+      "_id": "l96PJq1brz8rbVW5",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Shotguns.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.l96PJq1brz8rbVW5"
+    },
+    {
+      "_id": "fPRpc4c8MtE4K03Q",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "All bladed weapons, stunners.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.fPRpc4c8MtE4K03Q"
+    },
+    {
+      "_id": "TJzltj2o4PrBT8yA",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Any weapons outside one’s residence. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.TJzltj2o4PrBT8yA"
+    },
+    {
+      "_id": "E4myxxNXzishmX9u",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.E4myxxNXzishmX9u"
+    },
+    {
+      "_id": "llampczDnE06WYjG",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.llampczDnE06WYjG"
+    },
+    {
+      "_id": "kh9pj2IBjrBWuUP7",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.kh9pj2IBjrBWuUP7"
+    },
+    {
+      "_id": "TcvlnXqaSa34yXCg",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.TcvlnXqaSa34yXCg"
+    },
+    {
+      "_id": "lN4SSasvYCHnAfhF",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.lN4SSasvYCHnAfhF"
+    },
+    {
+      "_id": "rK3i808d2eg9fEIm",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Highly restrictive government. All weapons forbidden. Candidate for Amber Zone status.",
+      "name": "",
+      "_key": "!tables.results!W1BmGLBMe4HWJHFj.rK3i808d2eg9fEIm"
+    }
+  ],
+  "formula": "1d16-1",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080287,
+    "modifiedTime": 1760016422899,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "_key": "!tables!W1BmGLBMe4HWJHFj"
+}

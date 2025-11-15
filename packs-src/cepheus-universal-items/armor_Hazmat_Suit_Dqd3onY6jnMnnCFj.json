@@ -1,0 +1,66 @@
+{
+  "folder": "9eBBH01N7i6zYXgF",
+  "name": "Hazmat Suit",
+  "type": "armor",
+  "_id": "Dqd3onY6jnMnnCFj",
+  "img": "systems/twodsix/assets/icons/environmental-protection-suit.svg",
+  "system": {
+    "name": "",
+    "description": "",
+    "type": "armor",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 6,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 5,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "armor": 0,
+    "armorDM": 0,
+    "secondaryArmor": {
+      "value": 8,
+      "protectionTypes": [
+        "fire"
+      ]
+    },
+    "radiationProtection": {
+      "value": 20
+    },
+    "isPowered": false,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016422988,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 137500,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!Dqd3onY6jnMnnCFj"
+}

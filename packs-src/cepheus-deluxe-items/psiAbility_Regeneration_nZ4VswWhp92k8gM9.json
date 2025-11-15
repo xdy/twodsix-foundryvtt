@@ -1,0 +1,70 @@
+{
+  "name": "Regeneration",
+  "type": "psiAbility",
+  "img": "./systems/twodsix/assets/icons/regeneration.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 9,
+    "type": "psiAbility",
+    "description": "Regeneration (PSI 9 but see below for cost; Personal): the psion can heal their own Lifeblood points lost from combat damage. This requires 2 PSI point per Lifeblood point healed but requires a minimum of PSI 9 to use. The effects of the healing take one combat round: a character who is uses Regeneration in one round will not feel the effects until the start of the next round.",
+    "shortdescr": "Regeneration (PSI 9 - 2 PSI per point; Personal)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 9,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 2600000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_id": "nZ4VswWhp92k8gM9",
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.a0BvDgGRMAVYXKrx",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569377982,
+    "modifiedTime": 1760016422773,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!nZ4VswWhp92k8gM9"
+}

@@ -1,0 +1,59 @@
+{
+  "_id": "CQENjepJACfJYq4l",
+  "name": "Environment Suit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Designed to protect the wearer from extreme cold or heat, the environment suit has a hood, gloves and boots but leaves the face exposed in normal operations.",
+    "shortdescr": "Environment Suit",
+    "quantity": 1,
+    "weight": 0,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_io8or4a2knc",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Survival Equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/robe.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079852,
+    "modifiedTime": 1760016422322,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!CQENjepJACfJYq4l"
+}

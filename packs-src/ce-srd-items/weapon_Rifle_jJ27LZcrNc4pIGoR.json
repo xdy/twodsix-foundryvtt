@@ -1,0 +1,77 @@
+{
+  "_id": "jJ27LZcrNc4pIGoR",
+  "name": "Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/rifle.svg",
+  "system": {
+    "name": "Rifle",
+    "techLevel": 5,
+    "description": "The standard military arm, firing a 7mm, 10 gram bullet at a velocity of approximately 900 meters per second. Longer and heavier than a carbine, it is also more effective. Standard equipment includes provisions for attaching a bayonet and telescopic sights, and a shoulder sling. A twenty-round magazine is attached to the front of the trigger guard, and one round is fired with each pull of the trigger. Replacement of the empty magazine requires a reload action. Rifle ammunition may also be used in automatic rifles; rifle and auto rifle magazines are interchangeable, and weigh the same.",
+    "shortdescr": "Rifle - ranged",
+    "quantity": 1,
+    "weight": 4,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Slug Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 20,
+    "ammo": "20",
+    "useConsumableForAttack": "",
+    "magazineCost": 20,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696590074,
+    "modifiedTime": 1760016422339,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.jJ27LZcrNc4pIGoR",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!jJ27LZcrNc4pIGoR"
+}

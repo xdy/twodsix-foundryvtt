@@ -1,0 +1,58 @@
+{
+  "name": "Gun Combat (Rifle)",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character is skilled at using projectile-based rifle weapons such as the autorifle or gauss rifle.",
+    "shortdescr": "The character is skilled at using projectile-based rifle weapons such as the autorifle or gauss rifle.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Weapon Skills",
+    "name": "Gun Combat (Slug Rifle)",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/rifle.svg",
+  "effects": [],
+  "folder": "6jPxyaweFKh5SIDZ",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709146264771,
+    "modifiedTime": 1760016421891,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "ecsj2Utv0hJjnonT",
+  "sort": 300000,
+  "_key": "!items!ecsj2Utv0hJjnonT"
+}

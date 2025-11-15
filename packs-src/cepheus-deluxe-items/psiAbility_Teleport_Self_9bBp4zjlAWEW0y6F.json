@@ -1,0 +1,59 @@
+{
+  "name": "Teleport Self",
+  "type": "psiAbility",
+  "img": "systems/twodsix/assets/icons/teleport-self.svg",
+  "system": {
+    "name": "",
+    "description": "<p><span style=\"color: rgb(0, 229, 255); font-family: Asap, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgba(0, 0, 0, 0.5); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none\">Teleport Self (PSI 7, 5000km): the psion can teleport up to 5000km with light encumbrance load.</span></p>",
+    "type": "psiAbility",
+    "docReference": [],
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "value": 0,
+    "shortdescr": "Teleport Self (PSI 7, 5000km)",
+    "subtype": "",
+    "prereq": "",
+    "key": "key",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 7,
+    "difficulty": "Average",
+    "skillModifier": 7
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "ownership": {
+    "default": 0,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1751146460639,
+    "modifiedTime": 1760016422731,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+  },
+  "_id": "9bBp4zjlAWEW0y6F",
+  "sort": 2100000,
+  "_key": "!items!9bBp4zjlAWEW0y6F"
+}

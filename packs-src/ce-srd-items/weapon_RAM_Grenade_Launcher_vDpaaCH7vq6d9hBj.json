@@ -1,0 +1,81 @@
+{
+  "_id": "vDpaaCH7vq6d9hBj",
+  "name": "RAM Grenade Launcher",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/RAM-grenade-launcher.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Rocket Assisted Multi-purpose grenade launchers have a longer range and are capable of firing up to three grenades with a single attack. This uses the rules for firing on full auto; unlike other automatic weapons, a RAM grenade launcher cannot fire in burst mode. It takes two minor actions to reload a RAM grenade launcher. Grenades for a RAM grenade launcher are not interchangeable with handheld grenades.",
+    "shortdescr": "RAM Greande Launcher",
+    "quantity": 1,
+    "weight": 6,
+    "price": 800,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gunnery (Heavy Weapons)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "by grenade",
+    "damageBonus": 0,
+    "magazineSize": 6,
+    "ammo": "6",
+    "useConsumableForAttack": "",
+    "magazineCost": 180,
+    "type": "weapon",
+    "lawLevel": "3",
+    "rangeBand": "assaultWeapon",
+    "weaponType": "heavy weapon",
+    "damageType": "NONE",
+    "rateOfFire": "1/3",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "KNu7KtXRzTmX5GfP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_avnh1iczh5",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Heavy Weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079900,
+    "modifiedTime": 1760016422344,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!vDpaaCH7vq6d9hBj"
+}

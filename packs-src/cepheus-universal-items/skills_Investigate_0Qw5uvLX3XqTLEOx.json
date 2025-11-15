@@ -1,0 +1,56 @@
+{
+  "name": "Investigate",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/investigate.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Scientific analysis and the use of complex and accurate scientific tools&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">and equipment to gather clues at a crime scene or scientific location.</span>",
+    "shortdescr": "This skill combines keen observation, forensics, research, and detailed analysis",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "",
+    "priorType": "unknown",
+    "prereq": "",
+    "groupLabel": ""
+  },
+  "effects": [],
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.isLeYQ7qxqaouJOW",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422983,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "0Qw5uvLX3XqTLEOx",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!0Qw5uvLX3XqTLEOx"
+}

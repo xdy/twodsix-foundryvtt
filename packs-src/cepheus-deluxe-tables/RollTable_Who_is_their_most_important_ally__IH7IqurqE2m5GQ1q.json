@@ -1,0 +1,348 @@
+{
+  "name": "Who is their most important ally?",
+  "img": "systems/twodsix/assets/icons/three-friends.svg",
+  "results": [
+    {
+      "_id": "PoOJWI3QgOdxxbp4",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "An old war veteran buddy",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.PoOJWI3QgOdxxbp4"
+    },
+    {
+      "_id": "H5d8UiP4elQ1d1iz",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Local law enforcement agent",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.H5d8UiP4elQ1d1iz"
+    },
+    {
+      "_id": "3HrmflUDZwvfqYeX",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A government bureaucrat who has been thoroughly bribed",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.3HrmflUDZwvfqYeX"
+    },
+    {
+      "_id": "2wZSOmYqiDyUrtcN",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The local shakedown gang",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.2wZSOmYqiDyUrtcN"
+    },
+    {
+      "_id": "6zQUlg6ZlXxLLrBn",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The Planetary Chamber of Commerce",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.6zQUlg6ZlXxLLrBn"
+    },
+    {
+      "_id": "2dNcvrRWsW4yE82n",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A priest known for humility and charity",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.2dNcvrRWsW4yE82n"
+    },
+    {
+      "_id": "eLoIVzxS7iH4vqA2",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A starport customs inspector",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.eLoIVzxS7iH4vqA2"
+    },
+    {
+      "_id": "7iRvkFacJOacfPLg",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A crime boss",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.7iRvkFacJOacfPLg"
+    },
+    {
+      "_id": "Zy7uQVZfSMZ5hMS3",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A union local leader with a large and muscular membership",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.Zy7uQVZfSMZ5hMS3"
+    },
+    {
+      "_id": "gPUShIk221804krM",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A hungry journalist for the local news media outlet",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.gPUShIk221804krM"
+    },
+    {
+      "_id": "zMroBpb186p89RVy",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Their lawyer who is on retainer",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.zMroBpb186p89RVy"
+    },
+    {
+      "_id": "MWc3yqwFrGUkBovD",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The business they purchase most of their stock from",
+      "name": "",
+      "_key": "!tables.results!IH7IqurqE2m5GQ1q.MWc3yqwFrGUkBovD"
+    }
+  ],
+  "formula": "1d12",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zvg1qot7nf",
+      "path": "Social Encounters#/CF_SEP/Business Contact",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "IH7IqurqE2m5GQ1q",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080311,
+    "modifiedTime": 1760016422919,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!IH7IqurqE2m5GQ1q"
+}

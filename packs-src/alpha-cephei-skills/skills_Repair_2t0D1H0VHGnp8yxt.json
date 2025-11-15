@@ -1,0 +1,52 @@
+{
+  "_id": "2t0D1H0VHGnp8yxt",
+  "name": "Repair",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The ability to maintain, repair and tweak mechanical, electric or&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">electronic devices of all sorts. This also covers lock-picking, both&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">mechanical and electronic. Note that building or operating&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">technological systems is covered by Engineering instead, or Computers,&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">depending on the device.</span><div>• Repair equipment or vehicle with a proper workshop, tools and parts: roll Repair&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">(INT or EDU) 6+.</span></div><div>• Jury-rig a damaged or disabled vehicle system back to functioning: roll Repair&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">(INT or EDU) 8+, or more if there’s a lack of spare parts.</span></div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/mechanic.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 800000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080081,
+    "modifiedTime": 1760016422621,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!2t0D1H0VHGnp8yxt"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "AXc5Mmk0TLnuF6IL",
+  "name": "Tech Levels",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Tech Levels",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:74.4044%;height:322px\" border=\"1\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">Tech Level</td>\n<td style=\"width:80.5509%;height:16px\">Notable Characteristics</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">0</td>\n<td style=\"width:80.5509%;height:16px\">No technology, equivalent to the Stone age.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">1</td>\n<td style=\"width:80.5509%;height:16px\">Roughly on a par with Bronze or Iron age technology.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">2</td>\n<td style=\"width:80.5509%;height:16px\">Renaissance technology. Simple black-powder firearms</td>\n</tr>\n<tr style=\"height:50px\">\n<td style=\"width:18.7224%;height:50px\">3</td>\n<td style=\"width:80.5509%;height:50px\">Mass production allows for product standardization, heralding the beginnings of industrial revolution and steam power.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">4</td>\n<td style=\"width:80.5509%;height:16px\">The transition to industrialization is complete, bringing plastics, radio, and other such inventions.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">5</td>\n<td style=\"width:80.5509%;height:16px\">Widespread electrification, telecommunications, and internal combustion engines.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">6</td>\n<td style=\"width:80.5509%;height:16px\">Development of fission power and more advanced computing.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">7</td>\n<td style=\"width:80.5509%;height:16px\">Can reach orbit reliably and has telecommunications satellites.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">8</td>\n<td style=\"width:80.5509%;height:16px\">Possible to reach other worlds in the same system, although terraforming or full colonization is not within the culture’s capacity.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">9</td>\n<td style=\"width:80.5509%;height:16px\">Development of gravity manipulation, which makes space travel vastly safer and faster; first steps into Jump Drive technology.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">10 (A)</td>\n<td style=\"width:80.5509%;height:16px\">With the advent of Jump, nearby systems are opened up.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">11 (B)</td>\n<td style=\"width:80.5509%;height:16px\">The first primitive (non-creative) artificial intelligences become possible in the form of “low autonomous” interfaces, as computers begin to model synaptic networks.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">12 (C)</td>\n<td style=\"width:80.5509%;height:16px\">Weather control revolutionizes terraforming and agriculture.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">13 (D)</td>\n<td style=\"width:80.5509%;height:16px\">Powered Armor appears on the battlefield in response to the new weapons. “High autonomous” interfaces allow computers to become self-actuating and self-teaching.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">14 (E)</td>\n<td style=\"width:80.5509%;height:16px\">Fusion weapons become man-portable.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">15 (F)</td>\n<td style=\"width:80.5509%;height:16px\">The development of synthetic anagathics means that the human lifespan is now vastly increased.</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:18.7224%;height:16px\">16 (G)</td>\n<td style=\"width:80.5509%;height:16px\">Plasma weapons become handheld and no longer require a backpack power pack</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "ojiGSetlNhGdzkwg",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!AXc5Mmk0TLnuF6IL.ojiGSetlNhGdzkwg"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079918,
+    "modifiedTime": 1760016422378,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!AXc5Mmk0TLnuF6IL"
+}

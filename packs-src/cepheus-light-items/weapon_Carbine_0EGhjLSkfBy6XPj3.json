@@ -1,0 +1,78 @@
+{
+  "_id": "0EGhjLSkfBy6XPj3",
+  "name": "Carbine",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/carbine.svg",
+  "system": {
+    "name": "Carbine",
+    "techLevel": 5,
+    "description": "Carbine (TL5): Lighter military longarm using a smaller caliber than a full-scale rifle, and often shorter than it. A common survival \"tool\".<br><br>Double Tap: may fire 2 bullets in one attack to gain DM+1 to damage.",
+    "shortdescr": "Carbine - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "50/200",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "10",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "50/200",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": true,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079687,
+    "modifiedTime": 1760016422136,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!0EGhjLSkfBy6XPj3"
+}

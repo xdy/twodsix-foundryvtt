@@ -1,0 +1,60 @@
+{
+  "_id": "IhqWBhDF8OEfIidO",
+  "name": "Subdermal Armor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "Provides 6 points of armor protection. Subdermal armor is added to the protection rating of any worn armor, and is detectable upon visual inspection. This augment counts as two for the purpose of implant limits.",
+    "shortdescr": "Embedded protection 6 armor.",
+    "quantity": 1,
+    "weight": 0,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Full-Body",
+    "type": "augment",
+    "bonus": "+6 points armor",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/subdermal-armor.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080267,
+    "modifiedTime": 1760016422873,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IhqWBhDF8OEfIidO"
+}

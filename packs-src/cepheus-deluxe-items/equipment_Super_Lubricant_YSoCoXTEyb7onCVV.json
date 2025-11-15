@@ -1,0 +1,60 @@
+{
+  "name": "Super Lubricant",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "The Super Lubricant is composed of near-frictionless space-age synthetics. Each can is good for six applications. The lubricant is a standard part of a maintenance tech’s toolset. In addition to loosening stuck objects and ensuring that the internal workings of any mechanical device are working properly, the Super Lubricant can render any surface near-frictionless. Standing on a surface coated in Super Lubricant requires an Athletics/DEX 10+ throw. Walking or, heaven forbid, running on such a surface is impossible. Crawling can be done at 1m per round.",
+    "shortdescr": "near-frictionless space-age synthetics lubricant",
+    "quantity": 6,
+    "weight": 1,
+    "price": 15,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "YSoCoXTEyb7onCVV",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737446,
+    "modifiedTime": 1760016422751,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!YSoCoXTEyb7onCVV"
+}

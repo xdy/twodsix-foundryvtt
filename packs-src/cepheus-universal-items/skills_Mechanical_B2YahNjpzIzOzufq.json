@@ -1,0 +1,55 @@
+{
+  "name": "Mechanical",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Operating and repairing mechanical devices, from truck engines to airlock&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">doors, hydraulic lifters to life support machinery.</span>",
+    "shortdescr": "The character is practiced in installing, using, maintaining, repairing and/or creating mechanical devices and equipment.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Mechanics",
+    "priorType": "unknown",
+    "prereq": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/mechanic.svg",
+  "effects": [],
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422987,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "B2YahNjpzIzOzufq",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!B2YahNjpzIzOzufq"
+}

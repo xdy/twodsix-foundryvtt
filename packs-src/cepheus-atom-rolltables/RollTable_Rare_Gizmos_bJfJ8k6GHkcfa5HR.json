@@ -1,0 +1,332 @@
+{
+  "name": "Rare Gizmos",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_t425pvce42",
+      "path": "CA Tables#/CF_SEP/Relics#/CF_SEP/Relic Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "MWW5oiERMtkmwzmJ",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/xray-goggles.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "X-ray Goggles",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.e8NwXz0JWn3DdjSd",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.MWW5oiERMtkmwzmJ"
+    },
+    {
+      "_id": "xn7qdvwUgSgf18Wd",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/omnicomp.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Cyberdeck",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.4MThwcWepjwUvpcU",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.xn7qdvwUgSgf18Wd"
+    },
+    {
+      "_id": "vhFZY2pYxuANyyd7",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/omnicomm.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Personal Information Processor",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.bFOoBaYAODX13Q35",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.vhFZY2pYxuANyyd7"
+    },
+    {
+      "_id": "E1baddhjlrqmcF0A",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/technician-card.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Technician Access Card",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.4hS9fjzafZGNKRR5",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.E1baddhjlrqmcF0A"
+    },
+    {
+      "_id": "k4XRE4NkH2ATCISu",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/charging.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Power Cell Charger",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.1SocXmhToLidmtVe",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.k4XRE4NkH2ATCISu"
+    },
+    {
+      "_id": "4q3Ucxdg4YYtS1Ig",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/movement-sensor.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Motion Detector",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.ri5da4unahaplrtc",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.4q3Ucxdg4YYtS1Ig"
+    },
+    {
+      "_id": "s2u0fGDWT3BJcnrE",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Auto Translator",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.LYbRsEkmx1EgV8g9",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.s2u0fGDWT3BJcnrE"
+    },
+    {
+      "_id": "NkC9i4N2Vg9ORSo8",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/ir-goggles.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Night Vision Goggles",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.QU5UlNaEYp8eoR9H",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.NkC9i4N2Vg9ORSo8"
+    },
+    {
+      "_id": "81Lw69gBl5PjV0Ft",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/thruster-pack.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Jetpack",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.aB1P25aub8m23dCt",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.81Lw69gBl5PjV0Ft"
+    },
+    {
+      "_id": "ngGKtMlW7MXMDuWJ",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/security-card.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Security Card",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.rQqZawPCiVU86UwW",
+      "description": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.ngGKtMlW7MXMDuWJ"
+    },
+    {
+      "_id": "HF04TIMET0NJhRKK",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Roll twice on rare gizmos table, ignore this result if it occurs again.",
+      "name": "",
+      "_key": "!tables.results!bJfJ8k6GHkcfa5HR.HF04TIMET0NJhRKK"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "bJfJ8k6GHkcfa5HR",
+  "folder": null,
+  "sort": 0,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080064,
+    "modifiedTime": 1760016422594,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!tables!bJfJ8k6GHkcfa5HR"
+}

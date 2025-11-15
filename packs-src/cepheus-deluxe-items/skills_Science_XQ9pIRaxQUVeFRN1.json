@@ -1,0 +1,53 @@
+{
+  "name": "Science",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/science.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Science: the multi-disciplinary scientific skill, as would be typical for a starship’s science officer.<br><br>Examples: throw Science/EDU 8+ to identify rare minerals in an asteroid using the ship’s sensors. Throw Science/EDU 10+ to predict how a new compound might react with human physiology. Throw Science/EDU 12+ to understand the effects of a jump-space anomaly on the gravitational quantum tachyon sensor array.",
+    "shortdescr": "Multi-disciplinary scientific skill",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "XQ9pIRaxQUVeFRN1",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737446,
+    "modifiedTime": 1760016422750,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.toNyYgvzb83d7YkL",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!XQ9pIRaxQUVeFRN1"
+}

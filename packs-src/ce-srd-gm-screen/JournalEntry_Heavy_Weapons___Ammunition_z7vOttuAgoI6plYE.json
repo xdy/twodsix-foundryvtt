@@ -1,0 +1,70 @@
+{
+  "name": "Heavy Weapons & Ammunition",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "z7vOttuAgoI6plYE",
+  "pages": [
+    {
+      "name": "Heavy Weapons & Ammunition",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Heavy Weapons</h1>\n<table>\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Weapon</td>\n<td style=\"text-align:left;vertical-align:middle\">TL</td>\n<td style=\"text-align:left;vertical-align:middle\">Cost</td>\n<td style=\"text-align:left;vertical-align:middle\">Wgt</td>\n<td style=\"text-align:left;vertical-align:middle\">RoF</td>\n<td style=\"text-align:left;vertical-align:middle\">Range</td>\n<td style=\"text-align:left;vertical-align:middle\">Damage</td>\n<td style=\"text-align:left;vertical-align:middle\">Recoil</td>\n<td style=\"text-align:left;vertical-align:middle\">LL</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Grenade Launcher</td>\n<td style=\"text-align:left;vertical-align:middle\">7</td>\n<td style=\"text-align:left;vertical-align:middle\">400</td>\n<td style=\"text-align:left;vertical-align:middle\">6</td>\n<td style=\"text-align:left;vertical-align:middle\">1</td>\n<td style=\"text-align:left;vertical-align:middle\">ranged (shotgun)</td>\n<td style=\"text-align:left;vertical-align:middle\">By grenade</td>\n<td style=\"text-align:left;vertical-align:middle\">Yes</td>\n<td style=\"text-align:left;vertical-align:middle\">3</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Rocket Launcher</td>\n<td style=\"text-align:left;vertical-align:middle\">7</td>\n<td style=\"text-align:left;vertical-align:middle\">2,000</td>\n<td style=\"text-align:left;vertical-align:middle\">6</td>\n<td style=\"text-align:left;vertical-align:middle\">1</td>\n<td style=\"text-align:left;vertical-align:middle\">ranged (rocket)</td>\n<td style=\"text-align:left;vertical-align:middle\">4D6</td>\n<td style=\"text-align:left;vertical-align:middle\">No</td>\n<td style=\"text-align:left;vertical-align:middle\">3</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">RAM Grenade Launcher</td>\n<td style=\"text-align:left;vertical-align:middle\">8</td>\n<td style=\"text-align:left;vertical-align:middle\">800</td>\n<td style=\"text-align:left;vertical-align:middle\">6</td>\n<td style=\"text-align:left;vertical-align:middle\">1/3</td>\n<td style=\"text-align:left;vertical-align:middle\">ranged (assault weapon)</td>\n<td style=\"text-align:left;vertical-align:middle\">By grenade</td>\n<td style=\"text-align:left;vertical-align:middle\">Yes</td>\n<td style=\"text-align:left;vertical-align:middle\">3</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">PGMP</td>\n<td style=\"text-align:left;vertical-align:middle\">12</td>\n<td style=\"text-align:left;vertical-align:middle\">20,000</td>\n<td style=\"text-align:left;vertical-align:middle\">10</td>\n<td style=\"text-align:left;vertical-align:middle\">1/4</td>\n<td style=\"text-align:left;vertical-align:middle\">ranged (rifle)</td>\n<td style=\"text-align:left;vertical-align:middle\">10D6</td>\n<td style=\"text-align:left;vertical-align:middle\">Yes</td>\n<td style=\"text-align:left;vertical-align:middle\">2</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">FGMP</td>\n<td style=\"text-align:left;vertical-align:middle\">14</td>\n<td style=\"text-align:left;vertical-align:middle\">100,000</td>\n<td style=\"text-align:left;vertical-align:middle\">12</td>\n<td style=\"text-align:left;vertical-align:middle\">1/4</td>\n<td style=\"text-align:left;vertical-align:middle\">ranged (rifle)</td>\n<td style=\"text-align:left;vertical-align:middle\">16D6</td>\n<td style=\"text-align:left;vertical-align:middle\">Yes</td>\n<td style=\"text-align:left;vertical-align:middle\">2</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Heavy Weapons Ammunition</h1>\n<table style=\"width:62.9408%;height:140px\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:44.108%\">Weapon</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.4675%\">TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:15.2616%\">Cost</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.86628%\">Wgt</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.0058%\">Rounds</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:44.108%\">Grenade Launcher</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.4675%\">7</td>\n<td style=\"text-align:left;vertical-align:middle;width:15.2616%\">180</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.86628%\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.0058%\">6</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:44.108%\">Rocket Launcher</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.4675%\">7</td>\n<td style=\"text-align:left;vertical-align:middle;width:15.2616%\">300</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.86628%\">1</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.0058%\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:44.108%\">RAM Grenade Launcher</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.4675%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:15.2616%\">180</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.86628%\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.0058%\">6</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:44.108%\">PGMP</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.4675%\">12</td>\n<td style=\"text-align:left;vertical-align:middle;width:15.2616%\">2,500</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.86628%\">6</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.0058%\">40</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:44.108%\">FGMP</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.4675%\">14</td>\n<td style=\"text-align:left;vertical-align:middle;width:15.2616%\">65,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.86628%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:17.0058%\">40</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "MulvU7Z04o7bmSyT",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!z7vOttuAgoI6plYE.MulvU7Z04o7bmSyT"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079931,
+    "modifiedTime": 1760016422392,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!z7vOttuAgoI6plYE"
+}

@@ -1,0 +1,73 @@
+{
+  "name": "Combat Armor",
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "<div>This full-body suit is used by the military and not generally available on the open market, although those with military or criminal contacts can obtain it without much difficulty. It is issued to troop units and mercenary battalions. Combat armor protects from hard vacuum in the same way as a vacc suit and provides life support for six hours.</div><div><br></div><div>Requires Vacc Suit-1 skill.<br></div>",
+    "shortdescr": "Combat Armor (TL 11)",
+    "quantity": 1,
+    "weight": 6000,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Vacc Suit",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 11,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "nonstackable": false,
+    "armorType": "combat",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "armorDM": null
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/Combat-armor.svg",
+  "effects": [],
+  "folder": "bFJAAVPhSFPeDIOO",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709061494758,
+    "modifiedTime": 1760016421882,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "HtgsAbKbR2RhhTIZ",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!HtgsAbKbR2RhhTIZ"
+}

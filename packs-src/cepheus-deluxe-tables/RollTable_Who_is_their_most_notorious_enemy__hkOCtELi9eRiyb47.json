@@ -1,0 +1,348 @@
+{
+  "name": "Who is their most notorious enemy?",
+  "img": "systems/twodsix/assets/icons/avoidance.svg",
+  "results": [
+    {
+      "_id": "CbAKYnyOYgpsZVAK",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A business rival with deep pockets and many friends",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.CbAKYnyOYgpsZVAK"
+    },
+    {
+      "_id": "mtGOdgSX5RgmxHOu",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A local gang running a protection racket",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.mtGOdgSX5RgmxHOu"
+    },
+    {
+      "_id": "UAFobUgEM0crnYKE",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A crime boss who has a stake in the business!",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.UAFobUgEM0crnYKE"
+    },
+    {
+      "_id": "1WFnT7DKeG8FeaOj",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A corrupt—or incorruptible—starport master",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.1WFnT7DKeG8FeaOj"
+    },
+    {
+      "_id": "eI8CAkr4HnMjskqt",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The starport dockworker or technician union.",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.eI8CAkr4HnMjskqt"
+    },
+    {
+      "_id": "2xOVkhYg7RV7NE2v",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The manufacturer of the good the merchant is trying to sell",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.2xOVkhYg7RV7NE2v"
+    },
+    {
+      "_id": "1Gb0cp5jljv6HjTL",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A local police officer looking into illegal trade networks",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.1Gb0cp5jljv6HjTL"
+    },
+    {
+      "_id": "50s7g3HTarnLXkou",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A government agent investigating tax evasion or other white collar crime",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.50s7g3HTarnLXkou"
+    },
+    {
+      "_id": "yNKXScFDvE6vs3D9",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "An aggressive creditor who has few reservations about getting their money back",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.yNKXScFDvE6vs3D9"
+    },
+    {
+      "_id": "KWskYPWLIjeG0P41",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A jilted lover who knows all about their secret, shady deals",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.KWskYPWLIjeG0P41"
+    },
+    {
+      "_id": "vNcGIJCB4a376ZjL",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A crusading investigative reporter exposing corruption",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.vNcGIJCB4a376ZjL"
+    },
+    {
+      "_id": "Kfc5QhO1uYpReMSP",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A Vocal and forthright politician trying to make a name for themselves",
+      "name": "",
+      "_key": "!tables.results!hkOCtELi9eRiyb47.Kfc5QhO1uYpReMSP"
+    }
+  ],
+  "formula": "1d12",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zvg1qot7nf",
+      "path": "Social Encounters#/CF_SEP/Business Contact",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "hkOCtELi9eRiyb47",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080313,
+    "modifiedTime": 1760016422923,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!hkOCtELi9eRiyb47"
+}

@@ -1,0 +1,97 @@
+{
+  "folder": "ZIRIexWQNhOuZkym",
+  "name": "Gyrojet Pistol",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "description": "A low-velocity, recoilless pistol designed for use in zero-G&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">environments. Fires solid rounds or flechettes.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 8,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 5,
+    "magazineCost": 8,
+    "lawLevel": "",
+    "rangeBand": "short",
+    "weaponType": "",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "STR 1/-1 2/0",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727616930945,
+    "modifiedTime": 1760016422985,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "7Y24TL19Lrwo1hS1",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!7Y24TL19Lrwo1hS1"
+}

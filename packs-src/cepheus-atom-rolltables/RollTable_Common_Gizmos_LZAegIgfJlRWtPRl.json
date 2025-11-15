@@ -1,0 +1,331 @@
+{
+  "name": "Common Gizmos",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_t425pvce42",
+      "path": "CA Tables#/CF_SEP/Relics#/CF_SEP/Relic Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "DRqpk9tKtgQwIpt5",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "",
+      "name": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.DRqpk9tKtgQwIpt5"
+    },
+    {
+      "_id": "3bBlgEd4k2hOWGEV",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/hologram-projector.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Portable Hologram Projector",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.D5Ti0Cmbwx41dqTJ",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.3bBlgEd4k2hOWGEV"
+    },
+    {
+      "_id": "VBpaNxvIWsT5XXPt",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/breather.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Gas Mask (relic)",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Ba5e8xXceDOrKEEc",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.VBpaNxvIWsT5XXPt"
+    },
+    {
+      "_id": "kF1SZdkbM6lHQ9KK",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/led-flashlight.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Pocket Flashlight",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.v6pCgKZcDfh7eHBr",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.kF1SZdkbM6lHQ9KK"
+    },
+    {
+      "_id": "1xECHdYLcwOxVM2K",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/lighter.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Zip Lighter",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.5GoYBBmlMBvT701V",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.1xECHdYLcwOxVM2K"
+    },
+    {
+      "_id": "7AnTvFnPvOsn1KWh",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/pencil.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Astronaut Pen",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.4dQUCjkjnDxFtLC0",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.7AnTvFnPvOsn1KWh"
+    },
+    {
+      "_id": "TLvlB5K28omDMZ7c",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/passport.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Citizenship Card",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.BiMivQBxX23Q7JPP",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.TLvlB5K28omDMZ7c"
+    },
+    {
+      "_id": "3ndK8BoHokAHv2Fr",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/walkie-talkie.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Communicator",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.SNYmyQsVQZVArB5H",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.3ndK8BoHokAHv2Fr"
+    },
+    {
+      "_id": "Hb7ebbzVmvcPAOGZ",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/radiation-counter.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Geiger Counter",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.ttCmn1xgSrROq4Bt",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.Hb7ebbzVmvcPAOGZ"
+    },
+    {
+      "_id": "2119e9aZZF9WtYl1",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/UV-sterilize.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "UV Sterilizer",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Pjc9UaO4uPIEvM1C",
+      "description": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.2119e9aZZF9WtYl1"
+    },
+    {
+      "_id": "AlnXecJk8skr88gq",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Roll twice on common gizmos table, ignore this result if it occurs again.",
+      "name": "",
+      "_key": "!tables.results!LZAegIgfJlRWtPRl.AlnXecJk8skr88gq"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "LZAegIgfJlRWtPRl",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080063,
+    "modifiedTime": 1760016422591,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!LZAegIgfJlRWtPRl"
+}

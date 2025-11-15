@@ -1,0 +1,75 @@
+{
+  "_id": "tFGInnG8fKa2jbvQ",
+  "name": "Hostile Environsuit",
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "<div>A rugged spacesuit with an armoured covering to protect&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">against incredible temperatures, flames, deep-sea pressures, radiation and corrosive or&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">insidious atmospheres. It provides air for 6 hours. Damage reduction is 18 points from&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">ballistic, energy and melee damage. Weight 40kg. At TL 10 it weighs 20 kg. At TL 13 it&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">weighs 12 kg. Cr20,000.</span></div>",
+    "shortdescr": "Hostile Environment Vacc Suit (TL 8)",
+    "quantity": 1,
+    "weight": 40,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero-G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 8,
+    "secondaryArmor": {
+      "value": 18,
+      "protectionTypes": [
+        "ballistic",
+        "disintegrate",
+        "laser",
+        "melee",
+        "plasma"
+      ]
+    },
+    "radiationProtection": {
+      "value": null
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "priorType": "unknown",
+    "armorDM": 0,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/combat-environment-suit.svg",
+  "effects": [],
+  "folder": "9eBBH01N7i6zYXgF",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016423003,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 131250,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!tFGInnG8fKa2jbvQ"
+}

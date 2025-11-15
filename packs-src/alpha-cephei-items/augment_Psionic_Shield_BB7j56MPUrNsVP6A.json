@@ -1,0 +1,52 @@
+{
+  "folder": "akesqPKWL6RlAWqo",
+  "name": "Psionic Shield",
+  "type": "augment",
+  "_id": "BB7j56MPUrNsVP6A",
+  "img": "systems/twodsix/assets/icons/psionic-shield-helmet.svg",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "Fully protects the brain from telepathic intrusion. However, a character with this augment cannot use psionics. This does not protect from the “external” effects of psionics powers, such as having a rock telekinetically hurled at the user.",
+    "shortdescr": "Fully protects the brain from telepathic intrusion.",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "backpack",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Protection from telepathy."
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700425204101,
+    "modifiedTime": 1760016422871,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!BB7j56MPUrNsVP6A"
+}

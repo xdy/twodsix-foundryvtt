@@ -1,0 +1,59 @@
+{
+  "_id": "4z4y8rarDtzHKqdX",
+  "name": "Medium Range Communicator",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "Belt-mounted or sling carried radio set capable of up to 30 km range, and contact with official radio channels. Five separate channels. At tech level 7, reduce the weight to 500 grams.",
+    "shortdescr": "Medium Range Communicator - 30 km",
+    "quantity": 1,
+    "weight": 10,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ahkqp5k1isf",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Communicators",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/medium-range-communicator.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079837,
+    "modifiedTime": 1760016422313,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4z4y8rarDtzHKqdX"
+}

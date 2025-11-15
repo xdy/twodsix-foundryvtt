@@ -1,0 +1,69 @@
+{
+  "_id": "Ilh21SR8jOanvywR",
+  "name": "Smart Weapon",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "consumable",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Connects to a HUD, an implanted omnicomp or neural cyberspace interface. Grants +1 to all attacks. Cumulative with laser sights.",
+    "shortdescr": "Implanted Omnicomp grants DM+1 to all attacks.",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 1,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "currentCount": null,
+    "max": null,
+    "type": "equipment",
+    "subtype": "other",
+    "armorPiercing": null,
+    "bonusDamage": "",
+    "isAttachment": true,
+    "bandwidth": 0,
+    "softwareActive": true,
+    "damageType": "ballistic",
+    "parentName": "",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "useConsumableForAttack": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_jz37yve72ui",
+      "path": "ce light-ranged-weapon-accessories",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/item-generic.svg",
+  "effects": [],
+  "folder": "3JNYaeiiyV2bfLVW",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080267,
+    "modifiedTime": 1760016422873,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Ilh21SR8jOanvywR"
+}

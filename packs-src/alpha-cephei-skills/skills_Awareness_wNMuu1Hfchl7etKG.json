@@ -1,0 +1,55 @@
+{
+  "name": "Awareness",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "PSI",
+    "type": "skills",
+    "description": "Awareness is the psionic talent which allows greater control over one's own body.<div><br><div>Enhanced Characteristic (PSI 1+, personal): the character may add psionic points to their STR, END, or DEX as desired. This costs 1 PSI point per characteristic point added and lasts for 10 minutes.\r</div><div><br></div><div>Suspended Animation (PSI 3, personal): enter a meditative state for 7 continuous days without requiring food or water or a breathable atmosphere. The psion stays mildly conscious of its surroundings, and may terminate this power at will at any point during the 7-days period.\r</div><div><br></div><div>Regeneration (PSI 9 but see cost below, personal): the psion can heal their own STR, DEX, or END points lost due to wounds. This requires 2 PSI point per characteristic point healed but requires a minimum of PSI 9 to use.</div></div>",
+    "shortdescr": "Microkinesis (PSI 10 but see below for cost, Personal)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ok68zut371",
+      "path": "ce light-psionics",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/microkinesis.svg",
+  "effects": [],
+  "folder": "HvZvDaB5SC7wC3gv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700428377019,
+    "modifiedTime": 1760016422626,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "wNMuu1Hfchl7etKG",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!wNMuu1Hfchl7etKG"
+}

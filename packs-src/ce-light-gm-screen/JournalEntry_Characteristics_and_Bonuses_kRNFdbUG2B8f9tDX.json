@@ -1,0 +1,70 @@
+{
+  "_id": "kRNFdbUG2B8f9tDX",
+  "name": "Characteristics and Bonuses",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Characteristics and Bonuses",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:37.0666%;height:410px\" border=\"1\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">Characteristic</td>\n<td style=\"width:20.9602%;height:16px\">Code</td>\n<td style=\"width:42.6105%;height:16px\">Bonus</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">2</td>\n<td style=\"width:20.9602%;height:16px\">2</td>\n<td style=\"width:42.6105%;height:16px\">DM-2</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">3</td>\n<td style=\"width:20.9602%;height:16px\">3</td>\n<td style=\"width:42.6105%;height:16px\">DM-1</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">4</td>\n<td style=\"width:20.9602%;height:16px\">4</td>\n<td style=\"width:42.6105%;height:16px\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">DM-1</span></td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">5</td>\n<td style=\"width:20.9602%;height:16px\">5</td>\n<td style=\"width:42.6105%;height:16px\">DM-1</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">6</td>\n<td style=\"width:20.9602%;height:16px\">6</td>\n<td style=\"width:42.6105%;height:16px\">DM+0</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">7</td>\n<td style=\"width:20.9602%;height:16px\">7</td>\n<td style=\"width:42.6105%;height:16px\"><span style=\"background-color:rgba(255, 255, 255, 0.2)\">DM+0</span></td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">8</td>\n<td style=\"width:20.9602%;height:16px\">8</td>\n<td style=\"width:42.6105%;height:16px\">DM+0</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">9</td>\n<td style=\"width:20.9602%;height:16px\">9</td>\n<td style=\"width:42.6105%;height:16px\">DM+1</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">10</td>\n<td style=\"width:20.9602%;height:16px\">A</td>\n<td style=\"width:42.6105%;height:16px\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">DM+1</span></td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">11</td>\n<td style=\"width:20.9602%;height:16px\">B</td>\n<td style=\"width:42.6105%;height:16px\">DM+1</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">12</td>\n<td style=\"width:20.9602%;height:16px\">C</td>\n<td style=\"width:42.6105%;height:16px\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">DM+2</span></td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">13</td>\n<td style=\"width:20.9602%;height:16px\">D</td>\n<td style=\"width:42.6105%;height:16px\">DM+2</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:35.7025%;height:16px\">14</td>\n<td style=\"width:20.9602%;height:16px\">E</td>\n<td style=\"width:42.6105%;height:16px\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">DM+2</span></td>\n</tr>\n<tr>\n<td style=\"width:35.7025%\">15</td>\n<td style=\"width:20.9602%\">F</td>\n<td style=\"width:42.6105%\">DM+3<span style=\"background-color:rgba(0, 0, 0, 0.05)\"><br /></span></td>\n</tr>\n<tr>\n<td style=\"width:35.7025%\">16</td>\n<td style=\"width:20.9602%\">G</td>\n<td style=\"width:42.6105%\">DM+3<span style=\"background-color:rgba(0, 0, 0, 0.05)\"><br /></span></td>\n</tr>\n<tr>\n<td style=\"width:35.7025%\">17</td>\n<td style=\"width:20.9602%\">H</td>\n<td style=\"width:42.6105%\">DM+3<span style=\"background-color:rgba(0, 0, 0, 0.05)\"><br /></span></td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "IRJjgyp6hDWrcSES",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!kRNFdbUG2B8f9tDX.IRJjgyp6hDWrcSES"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079920,
+    "modifiedTime": 1760016422380,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!kRNFdbUG2B8f9tDX"
+}

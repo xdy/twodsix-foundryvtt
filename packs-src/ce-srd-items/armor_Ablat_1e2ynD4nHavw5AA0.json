@@ -1,0 +1,68 @@
+{
+  "_id": "1e2ynD4nHavw5AA0",
+  "name": "Ablat",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A cheap alternative to Reflec, ablat armor is made from a material that ablates (vaporizes) when hit by laser fire. Each laser hit on ablat reduces its armor value (versus lasers) by one, but the armor is cheap and easily replaceable.",
+    "shortdescr": "Ablat (TL 9)",
+    "quantity": 1,
+    "weight": 2,
+    "price": 75,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 3,
+    "secondaryArmor": {
+      "value": 8,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/ablat.svg",
+  "effects": [],
+  "folder": "9gTQdzmIuMRlmswr",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079836,
+    "modifiedTime": 1760016422313,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!1e2ynD4nHavw5AA0"
+}

@@ -1,0 +1,52 @@
+{
+  "_id": "RI3PxesCUxQ114HA",
+  "name": "Animals",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The care and training of animals. Also covers riding beasts.<div>• Ride a terran horse to full speed: roll Animals (DEX) 6+, or more depending on&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">terrain.</span></div><div>• Treat an animal’s wounds: roll Animals (EDU) 8+. You need at least Animals-1&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">and a medical bay to treat serious wounds.</span></div><div>• Calm a wild unknown alien animal: roll Animals (INT or SOC) 12+. This doesn’t&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">mean the animal becomes tame or friendly, but merely leaves without&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">causing any harm.</span></div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/animals.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 4300000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080083,
+    "modifiedTime": 1760016422624,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!RI3PxesCUxQ114HA"
+}

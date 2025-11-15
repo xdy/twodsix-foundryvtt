@@ -1,0 +1,74 @@
+{
+  "_id": "su7KIgXbV3spdyJ1",
+  "name": "Vacc Suit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A Vacc suit carries life support supplies for up to 6 hours. Counts as two items towards encumbrance. Protects against Vaccum, Tained and Exotic atmospheres, as well as airborne pathogens. Offers 2D hours of protection against Corrosive atmospheres, and 1Dx10 minutes protection against insidious atmospheres. Reduces radiation by 60 rads.<br><br>Skill Required: Zero-G",
+    "shortdescr": "A standard, futuristic space suit",
+    "quantity": 1,
+    "weight": 2,
+    "price": 9000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero-G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 6,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 60
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1vxyhjhgcfw",
+      "path": "ce light-armor",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/vacc-suit.svg",
+  "effects": [],
+  "folder": "nycPK2btpYrXRFf2",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079726,
+    "modifiedTime": 1760016422178,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!su7KIgXbV3spdyJ1"
+}

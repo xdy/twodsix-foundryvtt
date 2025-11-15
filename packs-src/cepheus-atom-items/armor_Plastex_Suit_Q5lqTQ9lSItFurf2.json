@@ -1,0 +1,69 @@
+{
+  "_id": "Q5lqTQ9lSItFurf2",
+  "name": "Plastex Suit",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "No Heavy Armor penalty",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 600,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 10,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/plastron.svg",
+  "effects": [],
+  "folder": "tNJfsW50f5AVlVMg",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079783,
+    "modifiedTime": 1760016422276,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Q5lqTQ9lSItFurf2"
+}

@@ -1,0 +1,59 @@
+{
+  "_id": "uM5vGur9m5dJQ1A1",
+  "name": "Metabolic Accelerator",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Also known as 'Slow Drug', this drug boosts the user’s reaction time to superhuman levels. A character using slow drug in combat adds +8 to his initiative total at the start of combat (or whenever the drug takes effect). He may also dodge up to twice each round with no effect on his initiative score. The drug kicks in 45 seconds (eight rounds) after ingestion or injection and lasts for around ten minutes. When the drug wears off, the user’s system crashes. He suffers 2D6 points of damage and is exhausted.",
+    "shortdescr": "Metabolic Accelerator",
+    "quantity": 1,
+    "weight": 0,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_fhd8c5c89i",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Drugs",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/metabolic-accelerator.svg",
+  "effects": [],
+  "folder": "7JNabnKuKR3HpTut",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079899,
+    "modifiedTime": 1760016422343,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!uM5vGur9m5dJQ1A1"
+}

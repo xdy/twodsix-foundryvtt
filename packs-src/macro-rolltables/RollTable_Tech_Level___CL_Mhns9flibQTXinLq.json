@@ -1,0 +1,482 @@
+{
+  "_id": "Mhns9flibQTXinLq",
+  "name": "Tech Level - CL",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Cepheus Light",
+  "results": [
+    {
+      "_id": "2MYDiPNyDc33wo0V",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "No technology, equivalent to the Stone age.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.2MYDiPNyDc33wo0V"
+    },
+    {
+      "_id": "sDfmz4m4G6CZRNHL",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Roughly on a par with Bronze or Iron age technology.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.sDfmz4m4G6CZRNHL"
+    },
+    {
+      "_id": "BVjsaplgXxCZaueJ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Renaissance technology. Simple black-powder firearms",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.BVjsaplgXxCZaueJ"
+    },
+    {
+      "_id": "BruHKIfju2rWia8o",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mass production allows for product standardization, heralding the beginnings of industrial revolution and steam power.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.BruHKIfju2rWia8o"
+    },
+    {
+      "_id": "BhEENwWYzP80jA2C",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The transition to industrialization is complete, bringing plastics, radio, and other such inventions.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.BhEENwWYzP80jA2C"
+    },
+    {
+      "_id": "ymkueLlCdqqNa0wW",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Widespread electrification, telecommunications, and internal combustion engines.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.ymkueLlCdqqNa0wW"
+    },
+    {
+      "_id": "9a0a9CGHFHnmqJqz",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Development of fission power and more advanced computing.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.9a0a9CGHFHnmqJqz"
+    },
+    {
+      "_id": "aY7TqSy4PrJQcYUU",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Can reach orbit reliably and has telecommunications satellites.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.aY7TqSy4PrJQcYUU"
+    },
+    {
+      "_id": "RfsLLryego3RsGWt",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Possible to reach other worlds in the same system, although terraforming or full colonization is not within the culture’s capacity.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.RfsLLryego3RsGWt"
+    },
+    {
+      "_id": "6boK0Qj3gNo6sBaO",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Development of gravity manipulation, which makes space travel vastly safer and faster; first steps into Jump Drive technology.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.6boK0Qj3gNo6sBaO"
+    },
+    {
+      "_id": "NnsYs5YevxCXDVZT",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "With the advent of Jump, nearby systems are opened up.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.NnsYs5YevxCXDVZT"
+    },
+    {
+      "_id": "wJ8WsHxKzFGLigdG",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The first primitive (non-creative) artificial intelligences become possible in the form of “low autonomous” interfaces, as computers begin to model synaptic networks.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.wJ8WsHxKzFGLigdG"
+    },
+    {
+      "_id": "e5HbauCo7IEwfAKp",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Weather control revolutionizes terraforming and agriculture.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.e5HbauCo7IEwfAKp"
+    },
+    {
+      "_id": "NDqsQRcvhYDrrj0c",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Powered Armor appears on the battlefield in response to the new weapons. “High autonomous” interfaces allow computers to become self-actuating and self-teaching.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.NDqsQRcvhYDrrj0c"
+    },
+    {
+      "_id": "PohuNYormDx0Givi",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Fusion weapons become man-portable.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.PohuNYormDx0Givi"
+    },
+    {
+      "_id": "GyZ1z25yQk3mb3g2",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The development of synthetic anagathics means that the human lifespan is now vastly increased.",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.GyZ1z25yQk3mb3g2"
+    },
+    {
+      "_id": "lC1PepLfXqvWBk8g",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Plasma weapons become handheld and no longer require a backpack power pack",
+      "name": "",
+      "_key": "!tables.results!Mhns9flibQTXinLq.lC1PepLfXqvWBk8g"
+    }
+  ],
+  "formula": "1d17-1",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080286,
+    "modifiedTime": 1760016422897,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "_key": "!tables!Mhns9flibQTXinLq"
+}

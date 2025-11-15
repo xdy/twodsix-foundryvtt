@@ -1,0 +1,60 @@
+{
+  "_id": "GxXKkadMBPqkSfvV",
+  "name": "Internal Omnicomm",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "This implant is highly common on high-tech worlds. Works as an omnicomm device but with a neural interface. Allows communication without audible speech. This is so small it does not count as an implant for the purpose of implant limits.",
+    "shortdescr": "Neural interface that allows communication without audible speech",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "internal comm interface",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/internal-omnicomm.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080266,
+    "modifiedTime": 1760016422873,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!GxXKkadMBPqkSfvV"
+}

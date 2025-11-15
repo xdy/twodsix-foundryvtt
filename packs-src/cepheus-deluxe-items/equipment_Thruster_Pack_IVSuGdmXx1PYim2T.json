@@ -1,0 +1,61 @@
+{
+  "_id": "IVSuGdmXx1PYim2T",
+  "name": "Thruster Pack",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/thruster-pack.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "A Thruster Pack requires Zero-G skill level 0 and allows maneuvering in zero-G conditions at normal movement rates. Note that this is a TL8 device and does not use any anti-gravity technology. Characters and objects moving by thruster pack are still subject to the laws of motion.",
+    "shortdescr": "pack for maneuvering in zero-g",
+    "quantity": 1,
+    "weight": 1,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero-G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    },
+    "twodsix": {},
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737430,
+    "modifiedTime": 1760016422738,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.5k2YrwKtHD6CNZb6",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IVSuGdmXx1PYim2T"
+}

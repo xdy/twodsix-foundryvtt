@@ -1,0 +1,77 @@
+{
+  "_id": "UtONoEkqk0qhlEe8",
+  "name": "Broadsword",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/broadsword.svg",
+  "system": {
+    "name": "Broadsword",
+    "techLevel": 2,
+    "description": "Broadsword (TL2), a large two-handed sword, counts as 2 “Items” for encumbrance purposes. A two- handed Great-Axe uses the same stats.<br><br>Bulky: A Bulky weapon has powerful recoil or is simply extremely heavy – this makes it difficult to use effectively in combat by someone of a weak physical stature. Characters with STR 8 or less suffer DM-2 when using such weapons.",
+    "shortdescr": "Broadsword - melee",
+    "quantity": 1,
+    "weight": 2,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "reach",
+    "weaponType": "melee",
+    "damageType": "slashing",
+    "rateOfFire": "",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "Ucr4s7Z4eH8GXD5Z",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079713,
+    "modifiedTime": 1760016422155,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!UtONoEkqk0qhlEe8"
+}

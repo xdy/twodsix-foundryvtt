@@ -1,0 +1,70 @@
+{
+  "_id": "inHtBrVNMZOS32A3",
+  "name": "Armor",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_os49e6s7ia",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Armor",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:140px;width:99.1279%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:32.7033%;height:8px\">\n<div>Armor</div>\n</td>\n<td>\n<div>Protection</div>\n</td>\n<td>\n<div>Tech Level</div>\n</td>\n<td>\n<div>Cost</div>\n</td>\n<td>\n<div>Encumbrance</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>Skill Required</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:98.6803%;height:8px\" colspan=\"6\">\n<div>Civilian/Paramilitary Protection</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Leather jacket</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>2</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>1</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr50</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>1</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Heavy duster</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>3</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>6</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr75</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>1</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Bulletproof vest</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>4</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>7</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr150</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>1</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Synthsilk armor</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>8</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>12</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr6,000</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>0</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Energy shield</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>Special</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>16</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr20,000</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>1</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:98.6803%;height:10px\" colspan=\"6\">\n<div>Utility Suits</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Envirosuit</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>3</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>7</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr700</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>2</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Space suit</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>6</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>7</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr2,000</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>2</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>Zero-G 0</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Space suit, advanced</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>6</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>9</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr4,000</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>0</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Space suit, hostile environment</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>10</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>12</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr10,000</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>4</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>Zero-G 1</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:10px\">\n<div>Envirosuit, advanced</div>\n</td>\n<td style=\"width:12.7994%;height:10px\">\n<div>5</div>\n</td>\n<td style=\"width:13.0828%;height:10px\">\n<div>12</div>\n</td>\n<td style=\"width:10.4256%;height:10px\">\n<div>Cr5,000</div>\n</td>\n<td style=\"width:14.5299%;height:10px\">\n<div>0</div>\n</td>\n<td style=\"width:15.1393%;height:10px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:98.6803%;height:8px\" colspan=\"6\">\n<div>Combat Armors</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Heavy ballistic cloth</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>6</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>7</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr250</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>2</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>-</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Encased armor suit</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>9</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>8</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr5,000</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>2</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>Zero-G 1</div>\n</td>\n</tr>\n<tr style=\"height:4px\">\n<td style=\"width:32.7033%;height:8px\">\n<div>Powered armor</div>\n</td>\n<td style=\"width:12.7994%;height:8px\">\n<div>18</div>\n</td>\n<td style=\"width:13.0828%;height:8px\">\n<div>13</div>\n</td>\n<td style=\"width:10.4256%;height:8px\">\n<div>Cr200,000</div>\n</td>\n<td style=\"width:14.5299%;height:8px\">\n<div>0 (when worn)</div>\n</td>\n<td style=\"width:15.1393%;height:8px\">\n<div>Zero-G 2</div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "uZVhGtE9Bxqb92ot",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!inHtBrVNMZOS32A3.uZVhGtE9Bxqb92ot"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080326,
+    "modifiedTime": 1760016422941,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!inHtBrVNMZOS32A3"
+}

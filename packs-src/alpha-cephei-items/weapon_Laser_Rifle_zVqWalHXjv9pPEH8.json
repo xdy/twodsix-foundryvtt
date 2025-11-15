@@ -1,0 +1,78 @@
+{
+  "_id": "zVqWalHXjv9pPEH8",
+  "name": "Laser Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/laser-rifle.svg",
+  "system": {
+    "name": "Laser Rifle",
+    "techLevel": 9,
+    "description": "Laser Rifle (TL9): Heavier version of the laser carbine, with better armor penetration, range, and even anti-vehicular capabilities. Requires a rechargeable heavy backpack power unit (which counts as an item).<br><br>Double Tap: May fire 2 shots in one attack to gain +1 to damage.<br><br>Laser: Susceptible to reflec armor. All personal laser weapons, such as the laser carbine, rifle and pistol, get a -1 penalty to hit when used in environments with a great deal of particulates in the air, like sand, ash or thick smoke. In these conditions, their ranges are cut in half as well. At least up to TL 12, ammunition for ordinary laser weapons uses a separate, rechargeable backpack, considered an item itself for the sake of encumbrance (already accounted for in this entry, if applicable), except for the smaller laser pistol. It is rechargeable from any major power source, such as a ship’s power plant. All lasers also have the Zero-G aspect automatically.<div><br><div></div><div>Zero-G: Does not suffer a -2 penalty for firing a weapon in zero-gravity or in hard vacuum conditions. All lasers automatically have the Zero-G aspect, even if not specified.</div></div>",
+    "shortdescr": "Laser Rifle - ranged",
+    "quantity": 1,
+    "weight": 2,
+    "price": 3500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "300/500",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 1500,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "300/500",
+    "weaponType": "ranged",
+    "damageType": "laser",
+    "rateOfFire": "",
+    "doubleTap": true,
+    "recoil": false,
+    "features": "Double Tap, Laser, Zero-G",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 2500000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080281,
+    "modifiedTime": 1760016422888,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!zVqWalHXjv9pPEH8"
+}

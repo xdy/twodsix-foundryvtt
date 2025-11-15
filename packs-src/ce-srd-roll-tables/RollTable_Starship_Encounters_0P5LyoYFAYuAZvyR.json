@@ -1,0 +1,332 @@
+{
+  "name": "Starship Encounters",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_i05svexye9t",
+      "path": "CE Tables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Starship Encounters",
+  "results": [
+    {
+      "_id": "07h2Als4PzZL76CE",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Alien Vessel",
+      "documentUuid": "RollTable.6xSNKDeIlp2GMEg5",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.07h2Als4PzZL76CE"
+    },
+    {
+      "_id": "7sRrT4VgmLjajcc2",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Derelict Encounter Type",
+      "documentUuid": "RollTable.9qZd3Kg6tWL2bt74",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.7sRrT4VgmLjajcc2"
+    },
+    {
+      "_id": "LgVKLi2SkXbqcxKs",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Space Habitat Encounter Type",
+      "documentUuid": "RollTable.Rf7e5FnQp8IYQyrW",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.LgVKLi2SkXbqcxKs"
+    },
+    {
+      "_id": "1ZWENCtvvd4PTrne",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Astrogation Encounter Type",
+      "documentUuid": "RollTable.bIMKrUyjKBbb8awx",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.1ZWENCtvvd4PTrne"
+    },
+    {
+      "_id": "4u27l4vxwUMVc1xY",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Space Junk Encounter Type",
+      "documentUuid": "RollTable.fBQdRcdNu88RTFsS",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.4u27l4vxwUMVc1xY"
+    },
+    {
+      "_id": "kZtdKSzEbJUVF1tA",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Merchant Vessel Encounter Type",
+      "documentUuid": "RollTable.DERKwOuoNbikvRHu",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.kZtdKSzEbJUVF1tA"
+    },
+    {
+      "_id": "jFUMYP73UfeWLhGD",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Personal Vessel Encounter Type",
+      "documentUuid": "RollTable.rYCJVeQAYKhbEGIq",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.jFUMYP73UfeWLhGD"
+    },
+    {
+      "_id": "LmP37N2SjOHCoA46",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Hostile Vessel Encounter Type",
+      "documentUuid": "RollTable.oyCY1WgXVolPfHrn",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.LmP37N2SjOHCoA46"
+    },
+    {
+      "_id": "xiI7Fm6wRSXj22XL",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Military Vessel Encounter Type",
+      "documentUuid": "RollTable.oGXaEMmPDpVvq84z",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.xiI7Fm6wRSXj22XL"
+    },
+    {
+      "_id": "4Ei3kFdHEZxCkK9y",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Spacecraft Encounter Type",
+      "documentUuid": "RollTable.LqlrMH0WbVql6wDo",
+      "description": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.4Ei3kFdHEZxCkK9y"
+    },
+    {
+      "_id": "31JsKIqW1LqlZuF1",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Referee's Choice",
+      "name": "",
+      "_key": "!tables.results!0P5LyoYFAYuAZvyR.31JsKIqW1LqlZuF1"
+    }
+  ],
+  "formula": "2d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "0P5LyoYFAYuAZvyR",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079742,
+    "modifiedTime": 1760016422209,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!0P5LyoYFAYuAZvyR"
+}

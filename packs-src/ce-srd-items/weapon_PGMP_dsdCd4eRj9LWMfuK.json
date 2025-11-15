@@ -1,0 +1,77 @@
+{
+  "_id": "dsdCd4eRj9LWMfuK",
+  "name": "PGMP",
+  "type": "weapon",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "name": "PGMP",
+    "techLevel": 12,
+    "description": "It is so heavy and bulky that it can only be used easily by a trooper with a Strength of 12 or more – usually attained by wearing battle dress. Every point by which a user’s Strength falls short is a –1 DM on any attack rolls made with it.",
+    "shortdescr": "PGMP - ranged",
+    "quantity": 1,
+    "weight": 10,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gunnery (Heavy Weapons)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "10d6",
+    "damageBonus": 0,
+    "magazineSize": 40,
+    "ammo": "40",
+    "useConsumableForAttack": "",
+    "magazineCost": 2500,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "plasma",
+    "rateOfFire": "1/4",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "KNu7KtXRzTmX5GfP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589860,
+    "modifiedTime": 1760016422336,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.wSKaAQ8IRDsph0mE",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!dsdCd4eRj9LWMfuK"
+}

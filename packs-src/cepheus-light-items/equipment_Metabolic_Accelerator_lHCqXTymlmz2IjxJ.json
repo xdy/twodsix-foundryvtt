@@ -1,0 +1,59 @@
+{
+  "_id": "lHCqXTymlmz2IjxJ",
+  "name": "Metabolic Accelerator",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Metabolic Accelerator: provides DM+8 to initiative throws and allows the user to take 3 actions per round rather than the usual 2. Effect begins 8 rounds after application and lasts 10 minutes (60 rounds), after which the user suffers 2D damage and is Fatigued.",
+    "shortdescr": "+1 Action",
+    "quantity": 1,
+    "weight": 0,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_qapyp8i1gtk",
+      "path": "ce light-pharma",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/metabolic-accelerator.svg",
+  "effects": [],
+  "folder": "Uk8Y83D6H1ui1Kwx",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079721,
+    "modifiedTime": 1760016422173,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!lHCqXTymlmz2IjxJ"
+}

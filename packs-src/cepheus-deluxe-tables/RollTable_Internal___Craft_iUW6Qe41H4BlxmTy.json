@@ -1,0 +1,321 @@
+{
+  "_id": "iUW6Qe41H4BlxmTy",
+  "name": "Internal - Craft",
+  "img": "systems/twodsix/assets/icons/components/otherInternal.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "mDFeUMS5zvs5x3Va",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/sensor.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sensors",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.mDFeUMS5zvs5x3Va"
+    },
+    {
+      "_id": "Q9Cv7xe7MQITcXDQ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/power.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Power Plant",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.Q9Cv7xe7MQITcXDQ"
+    },
+    {
+      "_id": "ncC4RaLowHlXpd0k",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/cargo.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hold",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.ncC4RaLowHlXpd0k"
+    },
+    {
+      "_id": "p3zD3bppmOoUCIiT",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/drive.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Maneuver Drive",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.p3zD3bppmOoUCIiT"
+    },
+    {
+      "_id": "izupKWvzlxrcLJJr",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/default_actor.png",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Crew",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.izupKWvzlxrcLJJr"
+    },
+    {
+      "_id": "OGxVWMCkcUdQRASs",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/drive.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Maneuver Drive",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.OGxVWMCkcUdQRASs"
+    },
+    {
+      "_id": "5cWj0CwiYzQHfXCz",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/armor.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Armor",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.5cWj0CwiYzQHfXCz"
+    },
+    {
+      "_id": "XEwrVOS55prrKSsv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/armament.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Weapons",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.XEwrVOS55prrKSsv"
+    },
+    {
+      "_id": "kENoZuaRAN88TyhB",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Breach",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.kENoZuaRAN88TyhB"
+    },
+    {
+      "_id": "hEcoSzLog2TyM5tE",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/bridge.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Cockpit",
+      "name": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.hEcoSzLog2TyM5tE"
+    },
+    {
+      "_id": "UOVc8b8ntnCjs1eS",
+      "type": "document",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/explosion.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Critical - Craft",
+      "documentUuid": "Compendium.twodsix.cepheus-deluxe-tables.RollTable.Da2vQYEA4sdabeNM",
+      "description": "",
+      "_key": "!tables.results!iUW6Qe41H4BlxmTy.UOVc8b8ntnCjs1eS"
+    }
+  ],
+  "formula": "2d6",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_9qkr5tod12b"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080313,
+    "modifiedTime": 1760016422923,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!tables!iUW6Qe41H4BlxmTy"
+}

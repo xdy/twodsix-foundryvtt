@@ -1,0 +1,52 @@
+{
+  "_id": "Gq8ahQlqLnXe3Cli",
+  "name": "Sciences",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "The multi-disciplinary scientific skill, as would be typical for a&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">starship’s science officer, including knowledge of physics, biology and&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">chemistry.</span><div>• Identify an alien life form: roll Sciences (EDU) 10+.</div><div>• Provide survival advice regarding a hostile environment: roll Sciences (EDU) 8+.</div><div>• Theorize over natural phenomena: roll Sciences (EDU) 8+, or more depending&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">on how rare the circumstances.</span></div><div>• Analyze an unknown world’s readings from sensors: roll Sciences (EDU) 8+.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/science.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 2900000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080082,
+    "modifiedTime": 1760016422623,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Gq8ahQlqLnXe3Cli"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "LRzs574oQJxnGmKD",
+  "name": "Gunnery Weapons",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_os49e6s7ia",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Gunnery Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Gunnery Weapon</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>TL</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>Cost</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>Range</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>AV Hits</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>Personal Damage</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Aspects</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Air-to-Air Missile</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>7</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr50/each</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>2,000/4,000</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>3</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>4D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Anti-Tank Missile System</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>7</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr15</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>500/2,000</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>4</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>6D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Blast 3</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Autocannon</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>6</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr50</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>750/1,500</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>1</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>4D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Auto 2, Blast 1</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Cannon, Light</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>5</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr30</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>500/1,000</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>1</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>4D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Blast 2</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Cannon, Heavy</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>6</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr60</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>750/1,500</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>2</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>5D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Blast 5</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Cannon, Advanced</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>8</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr120</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>750/1,500</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>3</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>5D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Blast 5</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Fusion Gun</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>13</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr2,500</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>3,000/6,000</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>6</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>10D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Blast 8, Fire</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Laser Cannon</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>8</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr150</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>1,500/3,000</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>3</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>6D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Laser</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Laser Cannon, Advanced</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>9</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr100</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>1,500/3,000</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>4</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>6D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Laser</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Plasma Cannon</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>11</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr<span dir=\"RTL\">750</span></div>\n</td>\n<td style=\"width:13.2881%\">\n<div>750/1,500</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>5</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>10D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Blast 5, Fire</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:27.1099%\">\n<div>Railgun</div>\n</td>\n<td style=\"width:4.49617%\">\n<div>10</div>\n</td>\n<td style=\"width:11.0085%\">\n<div>KCr75</div>\n</td>\n<td style=\"width:13.2881%\">\n<div>2,000/4,000</div>\n</td>\n<td style=\"width:7.89653%\">\n<div>3</div>\n</td>\n<td style=\"width:18.8999%\">\n<div>8D</div>\n</td>\n<td style=\"width:15.8475%\">\n<div>Blast 3</div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "HhsdKaoN62Fx0Qlu",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!LRzs574oQJxnGmKD.HhsdKaoN62Fx0Qlu"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080325,
+    "modifiedTime": 1760016422940,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!LRzs574oQJxnGmKD"
+}

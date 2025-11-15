@@ -1,0 +1,78 @@
+{
+  "_id": "p9JVoLfM6QCYmtUr",
+  "name": "Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/rifle.svg",
+  "system": {
+    "name": "Rifle",
+    "techLevel": 5,
+    "description": "Rifle (TL5): Standard military arm on low-tech worlds, using a large caliber. At higher TLs, up to and including TL9, such weapons serve as dedicated sniper rifles.<br><br>Double Tap: may fire 2 bullets in one attack to gain DM+1 to damage.",
+    "shortdescr": "Rifle - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "200/400",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "10",
+    "useConsumableForAttack": "",
+    "magazineCost": 15,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "200/400",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079724,
+    "modifiedTime": 1760016422176,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!p9JVoLfM6QCYmtUr"
+}

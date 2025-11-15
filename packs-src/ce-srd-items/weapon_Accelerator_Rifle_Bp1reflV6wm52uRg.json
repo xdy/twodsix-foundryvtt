@@ -1,0 +1,77 @@
+{
+  "_id": "Bp1reflV6wm52uRg",
+  "name": "Accelerator Rifle",
+  "type": "weapon",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "name": "Accelerator Rifle",
+    "techLevel": 9,
+    "description": "Designed specifically for zero-g combat, the accelerator rifle fires a specially designed round which upon leaving the barrel is accelerated by a secondary propelling charge. Normally the rifle fires bursts of three rounds per pull of the trigger, but may be adjusted to fire single rounds.",
+    "shortdescr": "Accelerator Rifle - ranged",
+    "quantity": 1,
+    "weight": 2.5,
+    "price": 900,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Slug Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 15,
+    "ammo": "15",
+    "useConsumableForAttack": "",
+    "magazineCost": 25,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1/3",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696587708,
+    "modifiedTime": 1760016422322,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.Bp1reflV6wm52uRg",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Bp1reflV6wm52uRg"
+}

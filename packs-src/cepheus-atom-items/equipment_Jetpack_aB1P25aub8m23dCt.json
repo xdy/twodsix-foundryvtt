@@ -1,0 +1,60 @@
+{
+  "_id": "aB1P25aub8m23dCt",
+  "name": "Jetpack",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "Jetpack (allows flight at 20m/round even when the character attacks maximum 5 rounds of flight before needing 1 turn cool-down<br>period)*",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": null,
+    "price": 450,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/thruster-pack.svg",
+  "effects": [],
+  "folder": "XHTDs7UPCc2TSjX5",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079786,
+    "modifiedTime": 1760016422280,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!aB1P25aub8m23dCt"
+}

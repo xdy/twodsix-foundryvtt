@@ -1,0 +1,68 @@
+{
+  "name": "Folding Stocks",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "consumable",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Carbines, rifles, and shotguns can be equipped with folding stocks which make it possible to reduce the overall length of the weapon by 300mm.",
+    "shortdescr": "Folding Stocks",
+    "quantity": 1,
+    "weight": 0.5,
+    "price": 100,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "currentCount": null,
+    "max": null,
+    "type": "equipment",
+    "subtype": "other",
+    "armorPiercing": null,
+    "bonusDamage": "",
+    "isAttachment": true,
+    "bandwidth": 0,
+    "softwareActive": true,
+    "damageType": "NONE",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "useConsumableForAttack": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_kat06tm0tin",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Ranged Weapon Accessories",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "_id": "71AvXIT692JLRGSO",
+  "folder": "Yyb7WpTe1epwPU4P",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079839,
+    "modifiedTime": 1760016422320,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!71AvXIT692JLRGSO"
+}

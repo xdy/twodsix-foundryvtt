@@ -1,0 +1,72 @@
+{
+  "_id": "bhtfuf9UHsSpgr4Y",
+  "name": "Vacc Suit (TL 9)",
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "<div>A spacesuit, providing 6 hours of air in unbreathable atmospheres or&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">very hot or cold environments. An insidious atmosphere will breach the seal of a vacc&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">suit in 2D6 hours. Damage reduction is 5 points from ballistic and melee damage.&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Weight 18 kg, Cr9,000. At TL 12, weight is 9 kg, Cr10,000.</span></div>",
+    "shortdescr": "Vacc Suit (TL 8)",
+    "quantity": 1,
+    "weight": 18,
+    "price": 9000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 6,
+    "secondaryArmor": {
+      "value": 5,
+      "protectionTypes": [
+        "ballistic",
+        "melee"
+      ]
+    },
+    "radiationProtection": {
+      "value": null
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "priorType": "unknown",
+    "armorDM": 0,
+    "nonstackable": false,
+    "armorType": "nothing"
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/vacc-suit.svg",
+  "effects": [],
+  "folder": "9eBBH01N7i6zYXgF",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726774323318,
+    "modifiedTime": 1760016422997,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "sort": 149805,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!bhtfuf9UHsSpgr4Y"
+}

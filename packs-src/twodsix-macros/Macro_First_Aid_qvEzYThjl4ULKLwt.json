@@ -1,0 +1,34 @@
+{
+  "_id": "qvEzYThjl4ULKLwt",
+  "name": "First Aid",
+  "type": "script",
+  "author": "GOmBKof9PfoHZ54T",
+  "img": "systems/twodsix/assets/icons/medkit.svg",
+  "scope": "global",
+  "command": "/* eslint-disable semi */\n// Heal a target(s) based on last Medicine skill check\n// for FVTT v0.8\n\nconst MULTIPLIER = 1.0;\nfirstAid();\n\nasync function firstAid() {\n  const patients = await game.user.targets;\n  const pointsToHeal = await getHealAmount();\n\n  if (patients !== null && pointsToHeal > 0) {\n    for (const patient of patients) {\n       patient.actor.healActor(pointsToHeal*MULTIPLIER);\n    }\n  }\n}\n\n\nasync function getHealAmount() {\n  const skillRolls = await game.messages._source.filter(m => m.flavor !== undefined);\n  const healing = await skillRolls.filter(m => m.flavor.includes('Medicine'));\n  let retVal = 0;\n\n  if (healing.length > 0) {\n    retVal = healing[healing.length - 1].flags.twodsix.effect;\n    // console.log(\"Calc Heal\", retVal);\n  }\n  return (retVal);\n}",
+  "folder": null,
+  "sort": 2800000,
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_4phcz5md1kh"
+    }
+  },
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080052,
+    "modifiedTime": 1760016422572,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Macro.IBL2ElLEH0wqgxeK",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!macros!qvEzYThjl4ULKLwt"
+}

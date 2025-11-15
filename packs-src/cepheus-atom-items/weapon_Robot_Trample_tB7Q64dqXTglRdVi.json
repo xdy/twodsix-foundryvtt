@@ -1,0 +1,79 @@
+{
+  "_id": "tB7Q64dqXTglRdVi",
+  "name": "Robot Trample",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/bionic-legs.svg",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "melee 2D damage; victim must throw Physical 6+ or be knocked prone",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "melee",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "",
+    "weaponType": "",
+    "damageType": "bludgeoning",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "xZlPegpMzevXwEpQ",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079804,
+    "modifiedTime": 1760016422288,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!tB7Q64dqXTglRdVi"
+}

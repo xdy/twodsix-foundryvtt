@@ -1,0 +1,61 @@
+{
+  "name": "Rescue Bubble",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "A Rescue Bubble is a 2m-diameter plastic bubble. Piezoelectric layers translate the user’s movement to electricity to recharge the bubble’s battery. It contains supplies for 2 person/hours of operation. The bubble’s skin can self-repair all but the most serious punctures.",
+    "shortdescr": "A two person survival bubble",
+    "quantity": 1,
+    "weight": 1,
+    "price": 900,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    },
+    "twodsix": {},
+    "core": {}
+  },
+  "_id": "ZJn8cWdGcn51J0ms",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737447,
+    "modifiedTime": 1760016422751,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.6tEEEbwtUZOGDDdd",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ZJn8cWdGcn51J0ms"
+}

@@ -1,0 +1,59 @@
+{
+  "_id": "tPQ4H4frv4Rnu5hz",
+  "name": "Fast Forward",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Fast Forward: slows metabolism by a ratio of 60 to 1 – a subjective day to the user is actually 2 months. Note that this drug will greatly reduce life-support consumption.",
+    "shortdescr": "slows metabolism by a ratio of 60 to 1",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_qapyp8i1gtk",
+      "path": "ce light-pharma",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/fast-forward.svg",
+  "effects": [],
+  "folder": "Uk8Y83D6H1ui1Kwx",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079726,
+    "modifiedTime": 1760016422179,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!tPQ4H4frv4Rnu5hz"
+}

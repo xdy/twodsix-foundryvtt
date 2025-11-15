@@ -1,0 +1,60 @@
+{
+  "_id": "PFjNtzVnNGMLZk5P",
+  "name": "Data Safe",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "This stows encrypted files in the character’s skull. The data safe can only be detected by TL12+ sensors.",
+    "shortdescr": "Stows encrypted files in the character’s skull.",
+    "quantity": 1,
+    "weight": 0,
+    "price": 10000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "secure storage",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/data-safe.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080269,
+    "modifiedTime": 1760016422876,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!PFjNtzVnNGMLZk5P"
+}

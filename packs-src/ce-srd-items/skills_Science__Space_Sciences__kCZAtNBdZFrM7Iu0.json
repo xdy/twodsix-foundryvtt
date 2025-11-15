@@ -1,0 +1,53 @@
+{
+  "name": "Science (Space Sciences)",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "This skill represents theoretical and practical knowledge derived from several scientific disciplines that study phenomena occurring in interplanetary and interstellar space, and the celestial bodies that exist within that space. This covers a wide range of related fields, such as astronomy, cosmology, planetology and xenology.",
+    "shortdescr": "This skill represents theoretical and practical knowledge derived from several scientific disciplines that study phenomena occurring in interplanetary and interstellar space, and the celestial bodies that exist within that space.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Science",
+    "name": "Science (Space Sciences)",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/science-space-sciences.svg",
+  "effects": [],
+  "_id": "kCZAtNBdZFrM7Iu0",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079877,
+    "modifiedTime": 1760016422339,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!kCZAtNBdZFrM7Iu0"
+}

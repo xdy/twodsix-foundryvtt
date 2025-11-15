@@ -1,0 +1,129 @@
+{
+  "_id": "doBXs5Di7ZqnM9y0",
+  "name": "Shield",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/shield.svg",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Shield (TL0): A personal shield, which can bash enemies for 1D damage and applies DM-1 to opponents trying to hit its bearer. If a shield is used with the overwatch action in combat, the wielder is treated as having partial cover.",
+    "shortdescr": "A personal shield",
+    "quantity": 1,
+    "weight": 1,
+    "price": 20,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "melee",
+    "weaponType": "melee",
+    "damageType": "bludgeoning",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [
+    {
+      "origin": "Compendium.twodsix.cepheus-light-items.doBXs5Di7ZqnM9y0",
+      "tint": "#ffffff",
+      "transfer": true,
+      "disabled": true,
+      "_id": "AeXntbuCdLW7jVwm",
+      "flags": {
+        "twodsix": {
+          "sourceId": "AeXntbuCdLW7jVwm"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.primaryArmor.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Shield",
+      "img": "./systems/twodsix/assets/icons/shield.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
+      "sort": 0,
+      "_key": "!items.effects!doBXs5Di7ZqnM9y0.AeXntbuCdLW7jVwm"
+    }
+  ],
+  "folder": "Ucr4s7Z4eH8GXD5Z",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079718,
+    "modifiedTime": 1760016422170,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!doBXs5Di7ZqnM9y0"
+}

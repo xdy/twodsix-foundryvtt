@@ -1,0 +1,124 @@
+{
+  "folder": "9gTQdzmIuMRlmswr",
+  "name": "Battle Dress",
+  "type": "armor",
+  "_id": "PWnobwS6H67tMyVF",
+  "img": "systems/twodsix/assets/icons/battle-dress.svg",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "The ultimate personal armor, battle dress is a powered form of combat armor. The servomotors vastly increase the user's speed and strength, boosting his Strength and Dexterity by +4 while wearing the armor. Damage to the wearer's characteristics is calculated as normal, but the values from the armor are used for all other purposes such as hand to hand damage or skill checks. The suit has a built-in Model 2 computer running an Expert Tactics-2 program to give tactical advice and updates and is commonly outfitted with numerous upgrades. The suit is fully enclosed, with a six-hour air supply and gives full protection against environmental hazards – including NBC shielding – as if it was an HEV suit.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Battle Dress",
+    "equipped": "backpack",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 18,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 180
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": true,
+    "nonstackable": false,
+    "armorType": "nothing",
+    "armorDM": null
+  },
+  "effects": [
+    {
+      "origin": "Compendium.twodsix.ce-srd-items.Item.PWnobwS6H67tMyVF",
+      "tint": "#ffffff",
+      "transfer": true,
+      "disabled": true,
+      "_id": "rGFRveaZoUElSjXq",
+      "flags": {
+        "twodsix": {
+          "sourceId": "rGFRveaZoUElSjXq"
+        }
+      },
+      "name": "Battle Dress",
+      "changes": [
+        {
+          "key": "system.characteristics.strength.value",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.characteristics.dexterity.value",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "skills.Tactics",
+          "mode": 5,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "description": "",
+      "statuses": [],
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "img": "systems/twodsix/assets/icons/battle-dress.svg",
+      "type": "base",
+      "system": {},
+      "sort": 0,
+      "_key": "!items.effects!PWnobwS6H67tMyVF.rGFRveaZoUElSjXq"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "kQz7GJJIXGhbhTIS": 3
+  },
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680960745310,
+    "modifiedTime": 1760016422329,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!PWnobwS6H67tMyVF"
+}

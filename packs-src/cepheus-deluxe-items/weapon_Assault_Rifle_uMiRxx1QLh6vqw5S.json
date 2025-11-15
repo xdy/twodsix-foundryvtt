@@ -1,0 +1,80 @@
+{
+  "_id": "uMiRxx1QLh6vqw5S",
+  "name": "Assault Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/assault-rifle.svg",
+  "system": {
+    "name": "Assault Rifle",
+    "techLevel": 7,
+    "description": "Standard military arm on mid-tech worlds. An automatic rifle that fires an intermediate caliber. At the Referee's discretion, its ammunition, or even magazines, may be interchangeable with those of a Carbine.",
+    "shortdescr": "Assault Rifle - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "50/200",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "4",
+    "rangeBand": "50/200",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "WM0MvR08jIVlUsUq",
+  "sort": 1500000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_sk461konhrd",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737480,
+    "modifiedTime": 1760016422778,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.mjUQf7zQxlTxoKhG",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!uMiRxx1QLh6vqw5S"
+}

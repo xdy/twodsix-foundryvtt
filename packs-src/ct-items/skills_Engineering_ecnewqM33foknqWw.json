@@ -1,0 +1,58 @@
+{
+  "name": "Engineering",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character is skilled in the operation and maintenance of starship maneuver drives, Jump drives, and power plants. The character can practice a trade and make a decent living, earning a paycheck for every week of dedicated work. The character knows how to use the tools of the trade, how to perform routine tasks, how to supervise untrained helpers, and how to handle common problems. Engineering is particularly important in diverting power to the Jump Drives for a successful transition into Jump space.",
+    "shortdescr": "The character is skilled in the operation and maintenance of starship maneuver drives, Jump drives, and power plants.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Basic Skills",
+    "name": "Engineering",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/engineering.svg",
+  "effects": [],
+  "folder": "m6tGZ1EpvUcP9rMv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709131486036,
+    "modifiedTime": 1760016421891,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "ecnewqM33foknqWw",
+  "sort": 1400000,
+  "_key": "!items!ecnewqM33foknqWw"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Heavy Weapons",
+  "sorting": "a",
+  "folder": "bI5MbsrfSWWS4XQ7",
+  "type": "Item",
+  "_id": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "2.27.2",
+    "coreVersion": "11.294",
+    "createdTime": null,
+    "modifiedTime": 1680884093045,
+    "lastModifiedBy": "12WfDpqePx1TrVeA"
+  },
+  "_key": "!folders!SYsxz5nx4SirzdvP"
+}

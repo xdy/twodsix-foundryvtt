@@ -1,0 +1,60 @@
+{
+  "_id": "OMaybHh3i5a2LYo1",
+  "name": "Rations (1 day)",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 1,
+    "description": "One day's food and water<br>",
+    "shortdescr": "food and water",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_kbcz4jd0357",
+      "path": "cepheus atom#/CF_SEP/CA - General Equipment",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/field-rations.svg",
+  "effects": [],
+  "folder": "XHTDs7UPCc2TSjX5",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079782,
+    "modifiedTime": 1760016422275,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!OMaybHh3i5a2LYo1"
+}

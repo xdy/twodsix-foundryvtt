@@ -1,0 +1,97 @@
+{
+  "folder": "pSssleJvJZVQGAbD",
+  "name": "Plasma Pistol",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/ringed-beam.svg",
+  "system": {
+    "name": "",
+    "description": "A pistol using plasma technology to fire a bolt of plasma. It&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">does not require recharging, but does include a magazine for replenishing disposable&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">power cells and hydrogen fuel pellets.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 14,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1400,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 20,
+    "magazineCost": 50,
+    "lawLevel": "",
+    "rangeBand": "short",
+    "weaponType": "",
+    "damageType": "plasma",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "STR 4/-1 5/0",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.6w3p5FBZbuK4OUrK",
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1729015078727,
+    "modifiedTime": 1760016422987,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "BEMG01FgpFYR1f70",
+  "_key": "!items!BEMG01FgpFYR1f70"
+}

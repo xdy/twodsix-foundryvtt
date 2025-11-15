@@ -1,0 +1,53 @@
+{
+  "name": "Animals",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/animals.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "DEX",
+    "type": "skills",
+    "description": "Animals: the care and training of animals. Also covers riding and general agriculture.<br><br>Examples: throw Animals/DEX 8+ to avoid falling from a mount when the animal suffers a wound. Throw Animals/EDU 6+ to care for and feed farm animals.",
+    "shortdescr": "The care and training of animals",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "VV4rtoefmm1iaY0t",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737444,
+    "modifiedTime": 1760016422748,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.nGkkgx6GIWVOQQKf",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!VV4rtoefmm1iaY0t"
+}

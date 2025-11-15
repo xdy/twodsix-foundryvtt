@@ -1,0 +1,70 @@
+{
+  "name": "Melee Weapons",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "WxofH9QvyVh3zXY6",
+  "pages": [
+    {
+      "name": "Melee Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:208px;width:99.1354%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Weapon</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cost</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">Wgt</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">Range</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">Damage</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">Type</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">LL</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Unarmed Strike</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">—</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">—</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">—</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (close quarters)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">1D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">B</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">—</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Cudgel</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">0</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr10</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">1kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (close quarters)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">3D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">B</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">9</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Dagger</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">0</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr10</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">250g</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (close quarters) or ranged (thrown)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">1D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">P</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">5</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Spear</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">0</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr10</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">1500g</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach) or ranged (thrown)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">3D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">P</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Pike</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">1</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr40</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">8kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">4D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">P</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Sword</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">1</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr150</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">1kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">3D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">P/S</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Broadsword</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">2</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr300</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">3kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">4D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">S</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Halberd</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">2</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr75</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">3kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">4D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">S</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Bayonet</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr10</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">250g</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (close quarters)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">1D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">P</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">5</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Blade</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr50</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">350g</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">2D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">P</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Cutlass</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr100</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">1250g</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">3D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">S</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;width:17.7326%;height:16px\">Foil</td>\n<td style=\"text-align:left;vertical-align:middle;width:2.76163%;height:16px\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:6.68605%;height:16px\">Cr100</td>\n<td style=\"text-align:left;vertical-align:middle;width:7.12209%;height:16px\">500g</td>\n<td style=\"text-align:left;vertical-align:middle;width:38.7263%;height:16px\">melee (extended reach)</td>\n<td style=\"text-align:left;vertical-align:middle;width:9.74222%;height:16px\">3D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.45965%;height:16px\">P</td>\n<td style=\"text-align:left;vertical-align:middle;width:8.47883%;height:16px\">8</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<p>Type - Type of damage inflicted – (B)ludgeoning, (E)nergy, (P)iercing or (S)lashing.</p>\n<p>LL - The Law Level where the weapon first becomes illegal.</p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "dEyrjiRulCa5SXck",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!WxofH9QvyVh3zXY6.dEyrjiRulCa5SXck"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079927,
+    "modifiedTime": 1760016422389,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!WxofH9QvyVh3zXY6"
+}

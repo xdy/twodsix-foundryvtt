@@ -1,0 +1,59 @@
+{
+  "_id": "JlAnmUJ4vsv6RfjC",
+  "name": "Medkit",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/medkit.svg",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "Contains tools for a medic to help others in the field. Higher technology medkits will include diagnostic devices and scanners, surgical tools and a panoply of drugs and antibiotics. Though not necessarily giving out a bonus to basic treatment, these can help with more exotic problems or when treating augmented individuals. For example, a TL 8 medkit can test blood pressure and temperature, among other things; a TL 14 kit has a medical densitometer to create a three-dimensional view of the patient’s body and can scan brain activity on the quantum level. Double price for each TL increment above 8.",
+    "shortdescr": "Tools for a medic to help others in the field.",
+    "quantity": 1,
+    "weight": 1,
+    "price": 100,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Medicine",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080268,
+    "modifiedTime": 1760016422874,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!JlAnmUJ4vsv6RfjC"
+}

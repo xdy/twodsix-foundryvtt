@@ -1,0 +1,198 @@
+{
+  "name": "Hills or Mountains",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_83vpuw46p6n",
+      "path": "CA Tables#/CF_SEP/Encounters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/hills.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "7WCk0KlA4tGcevVV",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/Bat.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Psibat",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.r3bv9Ub7s2gn3UaH",
+      "description": "",
+      "_key": "!tables.results!QAsGIrrEXzhtUAWE.7WCk0KlA4tGcevVV"
+    },
+    {
+      "_id": "Dq42r82Nf3chGuWv",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/monstrosity/Ankheg.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Giant Ant",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.ICEbSzz2d8jyv65p",
+      "description": "",
+      "_key": "!tables.results!QAsGIrrEXzhtUAWE.Dq42r82Nf3chGuWv"
+    },
+    {
+      "_id": "yJnOaepfv1n6yfoq",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/Goat.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Night Goat",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.ps47U9BFdgtj79QM",
+      "description": "",
+      "_key": "!tables.results!QAsGIrrEXzhtUAWE.yJnOaepfv1n6yfoq"
+    },
+    {
+      "_id": "rCTrZNU2WKYUwybQ",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/BrownBear.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Ursor",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.NYQDWCdV6eDg8spt",
+      "description": "",
+      "_key": "!tables.results!QAsGIrrEXzhtUAWE.rCTrZNU2WKYUwybQ"
+    },
+    {
+      "_id": "P4AhjM4Sh5PcHuTh",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!QAsGIrrEXzhtUAWE.P4AhjM4Sh5PcHuTh"
+    },
+    {
+      "_id": "hJ9sQn1Xw489X04k",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!QAsGIrrEXzhtUAWE.hJ9sQn1Xw489X04k"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "QAsGIrrEXzhtUAWE",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080063,
+    "modifiedTime": 1760016422592,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!QAsGIrrEXzhtUAWE"
+}

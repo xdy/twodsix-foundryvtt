@@ -1,0 +1,78 @@
+{
+  "_id": "Qcdp3F1AIalpAUW5",
+  "name": "Snub Revolver",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "Snub Pistol",
+    "techLevel": 8,
+    "description": "Low-velocity, low-recoil revolver designed for zero-g and hard vacuum use.<br><br>Zero-G: does not suffer a penalty for firing a weapon in zero-g conditions.",
+    "shortdescr": "Snub Revolver - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "5/20",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "6",
+    "useConsumableForAttack": "",
+    "magazineCost": 6,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "5/20",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "Zero-G",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 1000000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080270,
+    "modifiedTime": 1760016422876,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Qcdp3F1AIalpAUW5"
+}

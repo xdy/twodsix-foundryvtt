@@ -1,0 +1,60 @@
+{
+  "_id": "VtaIQmM0dDmUt2Uf",
+  "name": "Internal Blade",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Internal Blade (TL10, Cr2000): the character’s unarmed attacks do 2D damage. Blades are made with ceramic composites in order to avoid detection. Only a TL11+ medical sensor will reveal their presence.",
+    "shortdescr": "Unarmed attacks do 2D damage",
+    "quantity": 1,
+    "weight": 0,
+    "price": 2000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Arms",
+    "type": "augment",
+    "bonus": "unarmed damage 2D6",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/internal-blade.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079715,
+    "modifiedTime": 1760016422155,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!VtaIQmM0dDmUt2Uf"
+}

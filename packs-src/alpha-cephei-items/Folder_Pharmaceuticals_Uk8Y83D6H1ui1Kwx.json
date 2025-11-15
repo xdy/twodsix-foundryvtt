@@ -1,0 +1,19 @@
+{
+  "name": "Pharmaceuticals",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "Uk8Y83D6H1ui1Kwx",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "4.6.0",
+    "coreVersion": "11.315",
+    "createdTime": null,
+    "modifiedTime": 1700422342080,
+    "lastModifiedBy": "wKDpARCmanYPD5xr"
+  },
+  "_key": "!folders!Uk8Y83D6H1ui1Kwx"
+}

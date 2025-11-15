@@ -1,0 +1,70 @@
+{
+  "name": "Enhanced Characteristic",
+  "type": "psiAbility",
+  "img": "./systems/twodsix/assets/icons/enhanced-characteristic.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 1,
+    "type": "psiAbility",
+    "description": "Enhanced Characteristic (PSI 1+, Personal): the character may transfer PSI points to their STR, END, or DEX as desired. This ability costs 1 PSI point per characteristic point added and lasts for 10 minutes. Multiple simultaneous uses of this ability are permitted, as long as the psion has sufficient PSI to spend. Characteristic increases will change that Characteristic’s DM, accordingly.",
+    "shortdescr": "Enhanced Characteristic (PSI 1+, Personal)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 1,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_id": "BZBBtWM5J3Xp16yL",
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.F1VzHIyjVlVsqeAW",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569429079,
+    "modifiedTime": 1760016422143,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!BZBBtWM5J3Xp16yL"
+}

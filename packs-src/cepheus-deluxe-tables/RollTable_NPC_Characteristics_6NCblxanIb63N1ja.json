@@ -1,0 +1,972 @@
+{
+  "name": "NPC Characteristics",
+  "img": "systems/twodsix/assets/icons/jack-of-all-trades.svg",
+  "results": [
+    {
+      "_id": "wI6fRpNQBlUNwjOX",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Cannot sit still",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.wI6fRpNQBlUNwjOX"
+    },
+    {
+      "_id": "o5JenusmCrHdFpv5",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Waxes nihilistic about existence at the drop of a hat",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.o5JenusmCrHdFpv5"
+    },
+    {
+      "_id": "wz65uSwdwVa58EyB",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Terrible taste in clothing",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.wz65uSwdwVa58EyB"
+    },
+    {
+      "_id": "uuu4suQTIHc7iWAE",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Missing limb or physical deformity",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.uuu4suQTIHc7iWAE"
+    },
+    {
+      "_id": "hGqE1RV8FjhxL0S0",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Stutters",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.hGqE1RV8FjhxL0S0"
+    },
+    {
+      "_id": "oUgdjZWebr68304g",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unusual accent",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.oUgdjZWebr68304g"
+    },
+    {
+      "_id": "03I3JP1Q5FRrwWGb",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Very neat and well-kept",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.03I3JP1Q5FRrwWGb"
+    },
+    {
+      "_id": "8xs5d1nZThwQ4K11",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Slovenly dressed",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.8xs5d1nZThwQ4K11"
+    },
+    {
+      "_id": "NneDsTyL2VLCzedt",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Aggressive demeanor",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.NneDsTyL2VLCzedt"
+    },
+    {
+      "_id": "V0r4bpAplYqkzMeB",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mumbles asides to themselves",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.V0r4bpAplYqkzMeB"
+    },
+    {
+      "_id": "1HF4lz2QnBftgJCF",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Carries many religious symbols",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.1HF4lz2QnBftgJCF"
+    },
+    {
+      "_id": "wxdSdAnooX8sNpkV",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Wears thick glasses",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.wxdSdAnooX8sNpkV"
+    },
+    {
+      "_id": "J8JXqj0ifNtFYRp0",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Easily confused or forgetful",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.J8JXqj0ifNtFYRp0"
+    },
+    {
+      "_id": "gfgax5WkfFzj6BfB",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Perpetually distracted by datapads",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.gfgax5WkfFzj6BfB"
+    },
+    {
+      "_id": "reYltHzJ5H3L7w0S",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Chronic and deep cough",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.reYltHzJ5H3L7w0S"
+    },
+    {
+      "_id": "uxhcgg0E6CBXEtOD",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Conspiracy monger",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.uxhcgg0E6CBXEtOD"
+    },
+    {
+      "_id": "0iJiRiOncAw0ef5a",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Carries themselves very stiffly",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.0iJiRiOncAw0ef5a"
+    },
+    {
+      "_id": "uUjyFONxELlIxPmv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Very old or young for their position",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.uUjyFONxELlIxPmv"
+    },
+    {
+      "_id": "x2MJeKNSTrQMX2ej",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Drunkard or drug addict",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.x2MJeKNSTrQMX2ej"
+    },
+    {
+      "_id": "eRX7MbQBIY5Y61Cf",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Profoundly ugly",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.eRX7MbQBIY5Y61Cf"
+    },
+    {
+      "_id": "9kh68LQghub7mERS",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Exceptionally quiet and soft-spoken",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.9kh68LQghub7mERS"
+    },
+    {
+      "_id": "sMTBE1jLoBwcvGZD",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Brave: a good person to have by your side in a fight",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.sMTBE1jLoBwcvGZD"
+    },
+    {
+      "_id": "BrBvs0CEuJ6i4CpW",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Suffers from a chronic illness",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.BrBvs0CEuJ6i4CpW"
+    },
+    {
+      "_id": "c8HXuOmNCPIYLFvw",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Visible scarring",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.c8HXuOmNCPIYLFvw"
+    },
+    {
+      "_id": "5ipF7ugBPji3Qcrh",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Refers to themselves in the third person",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.5ipF7ugBPji3Qcrh"
+    },
+    {
+      "_id": "ZixDLjARsoOwwNm5",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Incredibly attractive",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.ZixDLjARsoOwwNm5"
+    },
+    {
+      "_id": "Tklmcb2vhBbxv5xP",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Missing an eye",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.Tklmcb2vhBbxv5xP"
+    },
+    {
+      "_id": "pIQTksX1ljhjWRaf",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Ill-mannered and brusque",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.pIQTksX1ljhjWRaf"
+    },
+    {
+      "_id": "ecMpvUtwCQmVx5gJ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Has a very quick temper",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.ecMpvUtwCQmVx5gJ"
+    },
+    {
+      "_id": "ZAZoc0PQvzSN4Sv4",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Extremely polite",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.ZAZoc0PQvzSN4Sv4"
+    },
+    {
+      "_id": "FkvS4nkwpMMd3g3D",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Openly racist and bigoted against a minority group on the world",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.FkvS4nkwpMMd3g3D"
+    },
+    {
+      "_id": "jJ6t6EuIOGfhlD1S",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Madly in love with someone who does not reciprocate those feelings",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.jJ6t6EuIOGfhlD1S"
+    },
+    {
+      "_id": "oBxmZ9LRwS2xvH8R",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A craven coward",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.oBxmZ9LRwS2xvH8R"
+    },
+    {
+      "_id": "9CbacxBpf0gyC348",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Even greedier than the average businessman",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.9CbacxBpf0gyC348"
+    },
+    {
+      "_id": "fkLEP437UNAsxTgi",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Devoted to a noble, if doomed, cause",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.fkLEP437UNAsxTgi"
+    },
+    {
+      "_id": "r3f0EhIMFVRqrIYV",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Ends all statements in the form of a question?",
+      "name": "",
+      "_key": "!tables.results!6NCblxanIb63N1ja.r3f0EhIMFVRqrIYV"
+    }
+  ],
+  "formula": "1d36",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_h76wm4atct6",
+      "path": "Social Encounters#/CF_SEP/Detailing NPCs",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "6NCblxanIb63N1ja",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080310,
+    "modifiedTime": 1760016422912,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!6NCblxanIb63N1ja"
+}

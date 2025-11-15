@@ -1,0 +1,97 @@
+{
+  "folder": "pSssleJvJZVQGAbD",
+  "name": "Laser Pistol",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/laser-rifle.svg",
+  "system": {
+    "name": "",
+    "description": "A handy laser pistol with integral power cell in the handgrip.&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Once the cell is depleted it requires recharging for 3 hours.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 11,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1200,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 50,
+    "magazineCost": 200,
+    "lawLevel": "",
+    "rangeBand": "short",
+    "weaponType": "",
+    "damageType": "laser",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "rechargeable",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.mLl9upukDtE4VO7F",
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1729015078727,
+    "modifiedTime": 1760016422985,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "6w3p5FBZbuK4OUrK",
+  "_key": "!items!6w3p5FBZbuK4OUrK"
+}

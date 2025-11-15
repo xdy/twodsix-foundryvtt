@@ -1,0 +1,19 @@
+{
+  "name": "Traits",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "eBj0Cljzsr0Tr6rv",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "2.27.2",
+    "coreVersion": "11.294",
+    "createdTime": null,
+    "modifiedTime": 1680881022125,
+    "lastModifiedBy": "12WfDpqePx1TrVeA"
+  },
+  "_key": "!folders!eBj0Cljzsr0Tr6rv"
+}

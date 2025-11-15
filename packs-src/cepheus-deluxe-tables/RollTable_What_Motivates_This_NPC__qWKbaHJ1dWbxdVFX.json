@@ -1,0 +1,348 @@
+{
+  "name": "What Motivates This NPC?",
+  "img": "systems/twodsix/assets/icons/bugle-call.svg",
+  "results": [
+    {
+      "_id": "PcTAIjyNgX5fGEFu",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Lust or Desire",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.PcTAIjyNgX5fGEFu"
+    },
+    {
+      "_id": "96lO5HhYou2CawX8",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unspeakably evil appetites",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.96lO5HhYou2CawX8"
+    },
+    {
+      "_id": "t0gd5rFfArw4blZz",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Idealism",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.t0gd5rFfArw4blZz"
+    },
+    {
+      "_id": "UzE4YGofIUdtvvWE",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Wishes to please others",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.UzE4YGofIUdtvvWE"
+    },
+    {
+      "_id": "XlYLsoX962o3LIyL",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Religious obligations",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.XlYLsoX962o3LIyL"
+    },
+    {
+      "_id": "EUbklrvr9s6fCOo1",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They need money",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.EUbklrvr9s6fCOo1"
+    },
+    {
+      "_id": "BZ7cEqaxWz5JyxmG",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Fame and glory",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.BZ7cEqaxWz5JyxmG"
+    },
+    {
+      "_id": "GrEuGETlL5Mz6KMJ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Desire to lead others",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.GrEuGETlL5Mz6KMJ"
+    },
+    {
+      "_id": "Xb0k8mBBnY607Iwh",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Murderous Hatred",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.Xb0k8mBBnY607Iwh"
+    },
+    {
+      "_id": "slFGkj0AeBtT35Bw",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Well-defined burning revenge",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.slFGkj0AeBtT35Bw"
+    },
+    {
+      "_id": "hw4825UmXWajD4On",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Help their friends",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.hw4825UmXWajD4On"
+    },
+    {
+      "_id": "c6ZRfx4DPWFhntoq",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They want answers",
+      "name": "",
+      "_key": "!tables.results!qWKbaHJ1dWbxdVFX.c6ZRfx4DPWFhntoq"
+    }
+  ],
+  "formula": "1d12",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_h76wm4atct6",
+      "path": "Social Encounters#/CF_SEP/Detailing NPCs",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "qWKbaHJ1dWbxdVFX",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080314,
+    "modifiedTime": 1760016422924,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!qWKbaHJ1dWbxdVFX"
+}

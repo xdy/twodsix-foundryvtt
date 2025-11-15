@@ -1,0 +1,71 @@
+{
+  "_id": "jqpsGVHMiTwRwO0n",
+  "name": "Armor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Armor",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%;height:290px\" border=\"1\">\n<tbody>\n<tr style=\"height:36px\">\n<th style=\"width:65.7904%;height:36px;text-align:left\">Armor</th>\n<th style=\"width:5.38181%;height:36px;text-align:left\">TL</th>\n<th style=\"width:9.51104%;height:36px;text-align:left\">Protection</th>\n<th style=\"width:7.4564%;height:36px;text-align:left\">Cost (Cr)</th>\n<th style=\"width:10.6977%;height:36px;text-align:left\">Skill Required</th>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:65.7904%;height:18px\">@Compendium[twodsix.cepheus-light-items.MuYXyKinqqU4TrT6]{Jack}</td>\n<td style=\"width:5.38181%;height:18px\">1</td>\n<td style=\"width:9.51104%;height:18px\">2</td>\n<td style=\"width:7.4564%;height:18px\">50</td>\n<td style=\"width:10.6977%;height:18px\">--</td>\n</tr>\n<tr style=\"height:36px\">\n<td style=\"width:65.7904%;height:36px\">@Compendium[twodsix.cepheus-light-items.t2YWFcvk2S8rV8Ns]{Environmental Protection Suit}</td>\n<td style=\"width:5.38181%;height:36px\">5</td>\n<td style=\"width:9.51104%;height:36px\">3</td>\n<td style=\"width:7.4564%;height:36px\">700</td>\n<td style=\"width:10.6977%;height:36px\">--</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:65.7904%;height:18px\">@Compendium[twodsix.cepheus-light-items.BL3G2G6X4baSbvns]{Mesh}</td>\n<td style=\"width:5.38181%;height:18px\">6</td>\n<td style=\"width:9.51104%;height:18px\">3</td>\n<td style=\"width:7.4564%;height:18px\">150</td>\n<td style=\"width:10.6977%;height:18px\">--</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:65.7904%;height:18px\">@Compendium[twodsix.cepheus-light-items.EKKJ33cnnnmKvcHo]{Cloth}</td>\n<td style=\"width:5.38181%;height:18px\">7</td>\n<td style=\"width:9.51104%;height:18px\">6</td>\n<td style=\"width:7.4564%;height:18px\">250</td>\n<td style=\"width:10.6977%;height:18px\">--</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:65.7904%;height:18px\">@Compendium[twodsix.cepheus-light-items.su7KIgXbV3spdyJ1]{Vacc Suit}</td>\n<td style=\"width:5.38181%;height:18px\">9</td>\n<td style=\"width:9.51104%;height:18px\">6</td>\n<td style=\"width:7.4564%;height:18px\">9,000</td>\n<td style=\"width:10.6977%;height:18px\">Zero-G 0</td>\n</tr>\n<tr style=\"height:36px\">\n<td style=\"width:65.7904%;height:36px\">@Compendium[twodsix.cepheus-light-items.IXnPyrzNREwBr2rI]{Hostile Environment Vacc Suit}</td>\n<td style=\"width:5.38181%;height:36px\">10</td>\n<td style=\"width:9.51104%;height:36px\">10</td>\n<td style=\"width:7.4564%;height:36px\">18,000</td>\n<td style=\"width:10.6977%;height:36px\">Zero-G 1</td>\n</tr>\n<tr style=\"height:36px\">\n<td style=\"width:65.7904%;height:36px\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">@Compendium[twodsix.cepheus-light-items.4Omyp63mHCpv5XHJ]{Combat Environment Suit}</span></td>\n<td style=\"width:5.38181%;height:36px\">10</td>\n<td style=\"width:9.51104%;height:36px\">9</td>\n<td style=\"width:7.4564%;height:36px\">1,000</td>\n<td style=\"width:10.6977%;height:36px\">--</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:65.7904%;height:10px\">@Compendium[twodsix.cepheus-light-items.Hr8C3f5MnbZ645Xu]{Reflec}</td>\n<td style=\"width:5.38181%;height:10px\">10</td>\n<td style=\"width:9.51104%;height:10px\">0/14 vs. lasers</td>\n<td style=\"width:7.4564%;height:10px\">1,500</td>\n<td style=\"width:10.6977%;height:10px\">--</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:65.7904%;height:18px\">@Compendium[twodsix.cepheus-light-items.uXyIijU4ItfYwccM]{Combat Armor}</td>\n<td style=\"width:5.38181%;height:18px\">11</td>\n<td style=\"width:9.51104%;height:18px\">11</td>\n<td style=\"width:7.4564%;height:18px\">20,000</td>\n<td style=\"width:10.6977%;height:18px\">Zero-G 1</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:65.7904%;height:18px\">@Compendium[twodsix.cepheus-light-items.sARNM9jBfsjzkXvr]{Powered Armor}</td>\n<td style=\"width:5.38181%;height:18px\">13</td>\n<td style=\"width:9.51104%;height:18px\">18</td>\n<td style=\"width:7.4564%;height:18px\">200,000</td>\n<td style=\"width:10.6977%;height:18px\">Zero-G 2</td>\n</tr>\n<tr style=\"height:33px\">\n<td style=\"width:65.7904%;height:10px\">@Compendium[twodsix.cepheus-light-items.E8o2kUrN32AqYBEX]{Advanced Vacc Suit}</td>\n<td style=\"width:5.38181%;height:10px\">13</td>\n<td style=\"width:9.51104%;height:10px\">6/14 vs. lasers</td>\n<td style=\"width:7.4564%;height:10px\">15,000</td>\n<td style=\"width:10.6977%;height:10px\">--</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:65.7904%;height:18px\">@Compendium[twodsix.cepheus-light-items.ugGiLVXSiMgICzGw]{Weave}</td>\n<td style=\"width:5.38181%;height:18px\">13</td>\n<td style=\"width:9.51104%;height:18px\">8</td>\n<td style=\"width:7.4564%;height:18px\">6,000</td>\n<td style=\"width:10.6977%;height:18px\">--</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "na5tNQg5Tuq5ihPb",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!jqpsGVHMiTwRwO0n.na5tNQg5Tuq5ihPb"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079920,
+    "modifiedTime": 1760016422380,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "JournalEntry.0ns8KRMjb7qSSTg9",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!jqpsGVHMiTwRwO0n"
+}

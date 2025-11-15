@@ -1,0 +1,70 @@
+{
+  "_id": "WpEIMlpeQ20HOSRp",
+  "name": "Ranged Combat DM Table",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Ranged Combat DM Table",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:88.6695%;height:235px\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:50.9346%\">Condition</td>\n<td style=\"width:48.3387%\">Modifier</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target obscured</td>\n<td style=\"width:48.3387%\">DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target behind hard cover</td>\n<td style=\"width:48.3387%\">DM-2</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target in heavy cover</td>\n<td style=\"width:48.3387%\">DM-3</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target running (double move on its previous round)</td>\n<td style=\"width:48.3387%\">DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target behind total cover</td>\n<td style=\"width:48.3387%\">DM-4; direct fire impossible</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target prone</td>\n<td style=\"width:48.3387%\">DM-2</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target prone behind cover</td>\n<td style=\"width:48.3387%\">Cover DM and an additional DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Darkness</td>\n<td style=\"width:48.3387%\">DM-2</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Dim Light</td>\n<td style=\"width:48.3387%\">DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target dodging (optional rule)</td>\n<td style=\"width:48.3387%\">DM-target's Gun Combat skill</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "CKEtDO3zR2H0LI7o",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!WpEIMlpeQ20HOSRp.CKEtDO3zR2H0LI7o"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079919,
+    "modifiedTime": 1760016422379,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!WpEIMlpeQ20HOSRp"
+}

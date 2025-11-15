@@ -1,0 +1,62 @@
+{
+  "name": "Berserker Module",
+  "type": "augment",
+  "img": "./systems/twodsix/assets/icons/berserker-module.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "This dangerous combat augmentation keeps the user going no matter what injury they sustain. The character stays conscious and active as long as they have even one point of Lifeblood left – even when severely injured. They still die if their Lifeblood reaches zero.",
+    "shortdescr": "Stays conscious and active as long as they have any Lifeblood left",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Full-Body",
+    "type": "augment",
+    "bonus": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "9CRgc8te5u3xXrOv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737419,
+    "modifiedTime": 1760016422731,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.sQDaHIycpe0w33Ed",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!9CRgc8te5u3xXrOv"
+}

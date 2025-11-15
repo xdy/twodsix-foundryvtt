@@ -1,0 +1,82 @@
+{
+  "_id": "caVT6KAQ4nE73iqD",
+  "name": "Incendiary Grenade",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/incendiary.svg",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Incendiary Grenade (TL6): Military-grade fire-bomb grenade.<br><br>Blast 3: This weapon has an explosive component or is otherwise effective against all targets in its blast radius. The number given is the blast radius in meters. It is possible to avoid or minimize blast damage, see Diving for Cover in the Combat chapter.<br><br>Fire: On a successful hit, throw 6+ for the target to catch fire. A burning target takes 2D damage per combat round for 1D rounds, or until put out. See the Environmental Hazard Chapter for Fire effects.",
+    "shortdescr": "Military-grade fire-bomb grenade.",
+    "quantity": 1,
+    "weight": null,
+    "price": 30,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Athletics",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 3,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown STR*4/STR*8",
+    "weaponType": "Thrown",
+    "damageType": "fire",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ilJy3l5MJQEdGSU7",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_tibbodv269",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Grenades and Explosives",
+      "color": "#00aaaa"
+    },
+    "twodsix": {},
+    "core": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737462,
+    "modifiedTime": 1760016422754,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.pNJPDuyNGP8ZqYOU",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!caVT6KAQ4nE73iqD"
+}

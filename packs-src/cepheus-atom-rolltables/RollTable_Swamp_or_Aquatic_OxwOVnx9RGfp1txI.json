@@ -1,0 +1,197 @@
+{
+  "name": "Swamp or Aquatic",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_83vpuw46p6n",
+      "path": "CA Tables#/CF_SEP/Encounters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/swamp.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "vf5XNDyiO69EJUMW",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/alien-bug.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Vomit Fly",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.KgAmkUUaoCs0v9MQ",
+      "description": "",
+      "_key": "!tables.results!OxwOVnx9RGfp1txI.vf5XNDyiO69EJUMW"
+    },
+    {
+      "_id": "ORWLm6gIkz5L0P5Z",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantCrab.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Lobstrosity",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.Otx8rML6B4u9kPrv",
+      "description": "",
+      "_key": "!tables.results!OxwOVnx9RGfp1txI.ORWLm6gIkz5L0P5Z"
+    },
+    {
+      "_id": "TPYDgb1hCKoRrUY3",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantPoisonousSnake.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Giant Snake",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.LNufWwwuqF1sCBcn",
+      "description": "",
+      "_key": "!tables.results!OxwOVnx9RGfp1txI.TPYDgb1hCKoRrUY3"
+    },
+    {
+      "_id": "ABxNR6gdQ1wDUFK3",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/ooze/GrayOoze.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Ochre Jelly",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.VPbPzjPhfK5G3YBw",
+      "description": "",
+      "_key": "!tables.results!OxwOVnx9RGfp1txI.ABxNR6gdQ1wDUFK3"
+    },
+    {
+      "_id": "8BY69KHLGItms57i",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantOctopus.webp",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Land Octopus",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.ebdxMfxOxxw98GEb",
+      "description": "",
+      "_key": "!tables.results!OxwOVnx9RGfp1txI.8BY69KHLGItms57i"
+    },
+    {
+      "_id": "YZQ2PpGzVNu9ha67",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Humanoids",
+      "name": "",
+      "_key": "!tables.results!OxwOVnx9RGfp1txI.YZQ2PpGzVNu9ha67"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "OxwOVnx9RGfp1txI",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080063,
+    "modifiedTime": 1760016422592,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!OxwOVnx9RGfp1txI"
+}

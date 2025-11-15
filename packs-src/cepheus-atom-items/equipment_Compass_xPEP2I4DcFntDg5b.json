@@ -1,0 +1,60 @@
+{
+  "_id": "xPEP2I4DcFntDg5b",
+  "name": "Compass",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "DM+1 to Survival throws to avoid getting lost",
+    "shortdescr": "Direction aid",
+    "quantity": 1,
+    "weight": 0,
+    "price": 30,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_kbcz4jd0357",
+      "path": "cepheus atom#/CF_SEP/CA - General Equipment",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/compass.svg",
+  "effects": [],
+  "folder": "XHTDs7UPCc2TSjX5",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079806,
+    "modifiedTime": 1760016422291,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!xPEP2I4DcFntDg5b"
+}

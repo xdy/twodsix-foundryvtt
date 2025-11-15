@@ -1,0 +1,58 @@
+{
+  "name": "Administration",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character has experience with bureaucratic agencies, and understands the requirements of dealing with and managing them. When attempting tasks like avoiding police harassment, ensuring the prompt issuance of licenses, approval of applications, avoidance of close inspection of papers, etc., a successful Admin skill check (with a Difficulty based on Base Difficulty by Law Level table), will provide a positive outcome to the situation.",
+    "shortdescr": "The character has experience with bureaucratic agencies, and understands the requirements of dealing with and managing them.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Basic Skills",
+    "name": "Admin",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/admin.svg",
+  "effects": [],
+  "folder": "m6tGZ1EpvUcP9rMv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709131102703,
+    "modifiedTime": 1760016421894,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "nfaUY5ncIfuGfyEX",
+  "sort": 900000,
+  "_key": "!items!nfaUY5ncIfuGfyEX"
+}

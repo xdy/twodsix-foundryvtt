@@ -1,0 +1,71 @@
+{
+  "_id": "SoAx8fxicTg3dNJm",
+  "name": "Ranged Combat DM Table",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_os49e6s7ia",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Ranged Combat DM Table",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:88.6695%;height:235px\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:50.9346%\">Condition</td>\n<td style=\"width:48.3387%\">Modifier</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target obscured (smoke, foliage)</td>\n<td style=\"width:48.3387%\">DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target behind hard cover</td>\n<td style=\"width:48.3387%\">DM-2</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target in heavy cover</td>\n<td style=\"width:48.3387%\">DM-3</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target running (double move on its previous round)</td>\n<td style=\"width:48.3387%\">DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target behind total cover</td>\n<td style=\"width:48.3387%\">DM-4; direct fire impossible</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target prone</td>\n<td style=\"width:48.3387%\">DM-2</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target prone behind cover</td>\n<td style=\"width:48.3387%\">Cover DM and an additional DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Darkness</td>\n<td style=\"width:48.3387%\">DM-2</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Dim Light</td>\n<td style=\"width:48.3387%\">DM-1</td>\n</tr>\n<tr>\n<td style=\"width:50.9346%\">Target dodging (optional rule)</td>\n<td style=\"width:48.3387%\">DM-target's Gun Combat skill</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "UjyzB22CMuof4ajx",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!SoAx8fxicTg3dNJm.UjyzB22CMuof4ajx"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080325,
+    "modifiedTime": 1760016422940,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.WpEIMlpeQ20HOSRp",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!SoAx8fxicTg3dNJm"
+}

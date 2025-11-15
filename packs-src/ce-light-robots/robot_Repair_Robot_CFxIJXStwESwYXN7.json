@@ -1,0 +1,649 @@
+{
+  "_id": "CFxIJXStwESwYXN7",
+  "name": "Repair Robot",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "robot",
+  "system": {
+    "name": "",
+    "size": "",
+    "hits": {
+      "value": 18,
+      "min": 0,
+      "max": 18,
+      "lastDelta": -18
+    },
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": 0
+    },
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "untrainedSkill": "fCloPPvUX8r32vnG",
+    "description": "",
+    "notes": "<div>Repair Robot (TL12, Cr10000): a utility robot capable of repairs and maintenance.</div><div>585560 Repair-1, Gun Combat-0</div><div>Electronic Toolkit, Mechanical Toolkit, Laser Welder (1D damage).</div>",
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 5,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": "",
+        "current": 5,
+        "mod": -1
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 8,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": "",
+        "current": 8,
+        "mod": 0
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 5,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": "",
+        "current": 5,
+        "mod": -1
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 5,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": "",
+        "current": 5,
+        "mod": -1
+      },
+      "education": {
+        "key": "education",
+        "value": 6,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": "",
+        "current": 6,
+        "mod": 0
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 0,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 10,
+      "units": "m",
+      "hover": false
+    },
+    "locomotionType": "",
+    "price": "10000 Cr",
+    "chassis": "",
+    "techLevel": "12",
+    "operationalTime": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "Robot",
+    "age": {
+      "value": "18",
+      "min": 0
+    },
+    "gender": "none",
+    "heroPoints": 2,
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "bio": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "sort": 100001,
+  "flags": {
+    "core": {}
+  },
+  "img": "systems/twodsix/assets/icons/default_robot.svg",
+  "items": [
+    {
+      "_id": "bvQnjHNNGHAfS7YN",
+      "flags": {},
+      "name": "Gun Combat",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/gun-combat.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "characteristic": "DEX",
+        "type": "skills",
+        "description": "<div class=\"page\" title=\"Page 53\">\n\t\t\t<div class=\"layoutArea\">\n\t\t\t\t<div class=\"column\">\n\t\t\t\t\t<p><span style=\"font-size: 14.6667px;\">Using small arms, crossbows, and bows in combat.</span><br></p>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>",
+        "shortdescr": "Using small arms, crossbows, and bows in combat",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "reference": ""
+      },
+      "sort": 100000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!CFxIJXStwESwYXN7.bvQnjHNNGHAfS7YN"
+    },
+    {
+      "_id": "5WfJr60btbgP0XNa",
+      "flags": {},
+      "name": "Repair",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/repair.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "EDU",
+        "type": "skills",
+        "description": "The ability to maintain, repair and build mechanical and electronic devices of all sorts. Also covers lockpicking, both mechanical and electronic. Ship-specific systems are covered by Engineering, and Computers covers the use of electronic devices",
+        "shortdescr": "Maintain, repair and build mechanical and electronic devices ",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "reference": ""
+      },
+      "sort": 200000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!CFxIJXStwESwYXN7.5WfJr60btbgP0XNa"
+    },
+    {
+      "_id": "QZZDxSk3KvrM8WJl",
+      "flags": {},
+      "name": "Tech Toolkit",
+      "type": "equipment",
+      "img": "./systems/twodsix/assets/icons/tech-toolkit.svg",
+      "system": {
+        "name": "",
+        "techLevel": 5,
+        "description": "",
+        "shortdescr": "Tech Toolkit",
+        "quantity": 1,
+        "weight": 1,
+        "price": 300,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "type": "equipment",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 300000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680633323943,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!CFxIJXStwESwYXN7.QZZDxSk3KvrM8WJl"
+    },
+    {
+      "_id": "GjwHKwAWx1qxYMKv",
+      "flags": {},
+      "name": "Laser Welder",
+      "type": "weapon",
+      "img": "icons/svg/mystery-man.svg",
+      "system": {
+        "name": "New Weapon",
+        "techLevel": 0,
+        "description": "",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "bvQnjHNNGHAfS7YN",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "1d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": "0",
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "laser",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 400000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.3",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1681567948251,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!CFxIJXStwESwYXN7.GjwHKwAWx1qxYMKv"
+    },
+    {
+      "name": "Untrained",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": ""
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg",
+      "_id": "fCloPPvUX8r32vnG",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1680633016181,
+        "modifiedTime": 1680633016181,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!CFxIJXStwESwYXN7.fCloPPvUX8r32vnG"
+    },
+    {
+      "name": "Unarmed",
+      "type": "weapon",
+      "img": "systems/twodsix/assets/icons/unarmed.svg",
+      "system": {
+        "name": "",
+        "techLevel": 0,
+        "description": "Unarmed attack",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "fCloPPvUX8r32vnG",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "max(@characteristics.strength.mod, 1)",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "bludgeoning",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "_id": "19CYS5mGnbKmZjYY",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1680633016246,
+        "modifiedTime": 1680701264555,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!CFxIJXStwESwYXN7.19CYS5mGnbKmZjYY"
+    }
+  ],
+  "prototypeToken": {
+    "flags": {},
+    "name": "Repair Robot",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": true,
+    "disposition": 1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_robot.svg",
+      "tint": "#ffffff",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "alpha": 1,
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680633016130,
+    "modifiedTime": 1760016422069,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-robots.CFxIJXStwESwYXN7",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!CFxIJXStwESwYXN7"
+}

@@ -1,0 +1,52 @@
+{
+  "_id": "rHI7ddpTwPq3uhII",
+  "name": "Medicine",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Training in the medical sciences, from diagnosis and triage to surgery.<div>• Provide first aid to minor wounds: roll Medicine (EDU) 6+.</div><div>• Provide treatment to serious wounds: roll Medicine (EDU) 8+.</div><div>• Administer common drugs, vaccines, or Panacea: roll Medicine (EDU) 5+.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/medic.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 8800000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080085,
+    "modifiedTime": 1760016422625,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!rHI7ddpTwPq3uhII"
+}

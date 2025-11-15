@@ -1,0 +1,53 @@
+{
+  "name": "Gambling",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The individual is well informed on games of chance, and wise in their play. He or she has an advantage over nonexperts, and is generally capable of winning when engaged in such games. Gambling, however, should not be confused with general risk-taking.   Non-Competitive Games: These are games such as Slots, Roulette, Blackjack, Keno, etc. These games are played strictly against the house and the odds are pretty much constant, as are the payoff values. The character chooses a game by its odds of winning (high, average, low, small or remote) and places a bet. The Referee determines if the game is rigged. The character then rolls their Gambling score. On a success, the character receives the payoff amount based on the amount of their initial bet. House always wins on a natural 2.   Competitive Games: If playing against a group of other players, each member of the game will make their Gambling skill check with the highest roll taking the pot. A character may attempt to cheat during a game at any time by stating his or her intent to cheat and making an extra Gambling check. If any other player in the game makes a successful opposing Gambling check against the character's attempt at cheating they are caught redhanded. Otherwise the player has successfully cheated and takes the pot. If more than one person attempts to cheat during the same round of play, the person with the highest roll wins the pot.",
+    "shortdescr": "The individual is well informed on games of chance, and wise in their play.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Gambling",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/gambling.svg",
+  "effects": [],
+  "_id": "JUENTuGxrdJa7iEV",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079856,
+    "modifiedTime": 1760016422326,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!JUENTuGxrdJa7iEV"
+}

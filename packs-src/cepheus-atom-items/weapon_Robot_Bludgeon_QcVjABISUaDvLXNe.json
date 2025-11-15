@@ -1,0 +1,79 @@
+{
+  "_id": "QcVjABISUaDvLXNe",
+  "name": "Robot Bludgeon",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/robot-grab.svg",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "melee",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "",
+    "weaponType": "",
+    "damageType": "bludgeoning",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "xZlPegpMzevXwEpQ",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079783,
+    "modifiedTime": 1760016422276,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!QcVjABISUaDvLXNe"
+}

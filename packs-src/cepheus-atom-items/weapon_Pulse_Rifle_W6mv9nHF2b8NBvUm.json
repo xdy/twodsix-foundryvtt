@@ -1,0 +1,78 @@
+{
+  "_id": "W6mv9nHF2b8NBvUm",
+  "name": "Pulse Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/laser-carbine.svg",
+  "system": {
+    "name": "Laser Carbine",
+    "techLevel": null,
+    "description": "Requires ammo; magazine capacity 40 rounds<br><br>Automatic: May attack twice per combat round (any target); both attacks together spend 3 rounds of ammunition.",
+    "shortdescr": "ranged",
+    "quantity": 1,
+    "weight": 2,
+    "price": 70,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "100/400",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "40",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "100/400",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "VaoWfK5i88LiiKfj",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079784,
+    "modifiedTime": 1760016422279,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!W6mv9nHF2b8NBvUm"
+}

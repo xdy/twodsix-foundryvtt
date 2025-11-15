@@ -1,0 +1,60 @@
+{
+  "_id": "IfnYPzszfVq52GDO",
+  "name": "Bionic Legs",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "description": "Bionic Legs (TL12, Cr100000): as an action, the character may throw Athletics 8+ to jump 9m horizontally in any direction or 3m upwards. Also reduce falling damage by 1D. This counts as two implants as it replaces both legs. STR is considered 4 points higher for purposes of calculating encumbrance limits. This implant also doubles the character's movement speed to 18m per action (up to 36m per round if the character uses both actions for movement).",
+    "shortdescr": "Bionic Legs to increase movement and carry weight",
+    "quantity": 1,
+    "weight": 0,
+    "price": 100000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Legs",
+    "type": "augment",
+    "bonus": "2x movement, Athletics 8+ to jump, Str +4 for encumbrance",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/bionic-legs.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079707,
+    "modifiedTime": 1760016422148,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IfnYPzszfVq52GDO"
+}

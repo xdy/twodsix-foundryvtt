@@ -1,0 +1,71 @@
+{
+  "_id": "B9vCb0bazinyF7dB",
+  "name": "Environmental Hazards",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_458frav988h",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Environmental Hazards",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Disease and Poison</h1><table style=\"height:152px;width:501px\" border=\"0\"><tbody><tr><td style=\"width:126px\"><p>Pathogen</p></td><td style=\"width:127px\"><p>Virulence    (Endurance Throw)</p></td><td style=\"width:92px\"><p>Damage</p></td><td style=\"width:153px\"><p>Interval</p></td></tr><tr><td style=\"width:126px\"><p>Pneumonia</p></td><td style=\"width:127px\"><p>6+</p></td><td style=\"width:92px\"><p>1D</p></td><td style=\"width:153px\"><p>1D weeks</p></td></tr><tr><td style=\"width:126px\"><p>Anthrax</p></td><td style=\"width:127px\"><p>9+</p></td><td style=\"width:92px\"><p>1D</p></td><td style=\"width:153px\"><p>1D days</p></td></tr><tr><td style=\"width:126px\"><p>Biological Weapon</p></td><td style=\"width:127px\"><p>12+</p></td><td style=\"width:92px\"><p>3D</p></td><td style=\"width:153px\"><p>1D hours</p></td></tr><tr><td style=\"width:126px\"><p>Arsenic</p></td><td style=\"width:127px\"><p>8+</p></td><td style=\"width:92px\"><p>2D</p></td><td style=\"width:153px\"><p>-</p></td></tr><tr><td style=\"width:126px\"><p>Tranq Gas</p></td><td style=\"width:127px\"><p>10+</p></td><td style=\"width:92px\"><p>3D Stun</p></td><td style=\"width:153px\"><p>-</p></td></tr></tbody></table><p> </p><h1>Extreme Temperatures</h1><table style=\"height:186px;width:512px\" border=\"0\"><tbody><tr><td style=\"width:101.333px\"><p>Temperature</p></td><td style=\"width:127.333px\"><p>Damage</p></td><td style=\"width:277.333px\"><p>Example</p></td></tr><tr><td style=\"width:101.333px\"><p>-100° or less</p></td><td style=\"width:127.333px\"><p>1D/round</p></td><td style=\"width:277.333px\"><p>Deep space</p></td></tr><tr><td style=\"width:101.333px\"><p>-50°</p></td><td style=\"width:127.333px\"><p>2D/hour</p></td><td style=\"width:277.333px\"><p>Mars</p></td></tr><tr><td style=\"width:101.333px\"><p>-25°</p></td><td style=\"width:127.333px\"><p>1D/hour</p></td><td style=\"width:277.333px\"><p>Arctic</p></td></tr><tr><td style=\"width:101.333px\"><p>-10° to 40°</p></td><td style=\"width:127.333px\"><p>None</p></td><td style=\"width:277.333px\"><p>Typical Terra</p></td></tr><tr><td style=\"width:101.333px\"><p>50°</p></td><td style=\"width:127.333px\"><p>1D/hour</p></td><td style=\"width:277.333px\"><p>Searing desert</p></td></tr><tr><td style=\"width:101.333px\"><p>100°</p></td><td style=\"width:127.333px\"><p>2D/hour</p></td><td style=\"width:277.333px\"><p>Boiling point</p></td></tr><tr><td style=\"width:101.333px\"><p>200° or more</p></td><td style=\"width:127.333px\"><p>1D/round</p></td><td style=\"width:277.333px\"><p>Mercury</p></td></tr></tbody></table><p> </p><h1>Fire</h1><p>When exposed to fire, characters must throw DEX 8+ to avoid catching fire. A burning character takes 1D damage per round. Make another DEX 8+ throw each subsequent round; if successful, the character puts out the fire. If failed, the character suffers another 1D damage. Putting out the fire by other means, such as an extinguisher, also stops this continuous damage. Note that space suits, encased armor, and powered armor render their wearers immune to fire damage.</p><p> </p><h1>Falling</h1><p>A character suffers 1D damage per 2m fallen, up to 6D at terminal velocity. Multiply this damage by the world’s gravity rating in Gs. For example, falling 10 meters on a world with 0.45Gs would inflict 5D damage, which is then multiplied by 0.45 for the actual damage result – 2.5D rounded up to 3D.</p><p> </p><h1>Radiation</h1><h2>Exposure</h2><table style=\"height:177px;width:571px\" border=\"0\"><tbody><tr><td style=\"width:145px\"><p>Source</p></td><td style=\"width:125px\"><p>Instant (rads)</p></td><td style=\"width:138px\"><p>Extended (rads)</p></td><td style=\"width:160px\"><p>Example</p></td></tr><tr><td style=\"width:145px\"><p>Constant, low</p></td><td style=\"width:125px\"><p>-</p></td><td style=\"width:138px\"><p>1D/hour</p></td><td style=\"width:160px\"><p>Cosmic radiation</p></td></tr><tr><td style=\"width:145px\"><p>Constant, moderate</p></td><td style=\"width:125px\"><p>-</p></td><td style=\"width:138px\"><p>1Dx10/hour</p></td><td style=\"width:160px\"><p>Nuclear fallout</p></td></tr><tr><td style=\"width:145px\"><p>Constant, severe</p></td><td style=\"width:125px\"><p>-</p></td><td style=\"width:138px\"><p>1Dx100/hour</p></td><td style=\"width:160px\"><p>Solar flare</p></td></tr><tr><td style=\"width:145px\"><p>Acute, low</p></td><td style=\"width:125px\"><p>3D</p></td><td style=\"width:138px\"><p>-</p></td><td style=\"width:160px\"><p>Far nuclear blast</p></td></tr><tr><td style=\"width:145px\"><p>Acute, moderate</p></td><td style=\"width:125px\"><p>1Dx10</p></td><td style=\"width:138px\"><p>-</p></td><td style=\"width:160px\"><p>Particle Weapon</p></td></tr><tr><td style=\"width:145px\"><p>Acute, severe</p></td><td style=\"width:125px\"><p>1Dx100</p></td><td style=\"width:138px\"><p>-</p></td><td style=\"width:160px\"><p>Near nuclear blast</p></td></tr></tbody></table><p> </p><h2>Radiation Sickness</h2><table style=\"width:627px\" border=\"0\"><tbody><tr><td style=\"width:125px\"><p>Irradiation</p></td><td style=\"width:124px\"><p>Total rads</p></td><td style=\"width:56px\"><p>Throw</p></td><td style=\"width:157px\"><p>Damage</p></td><td style=\"width:157px\"><p>Interval</p></td></tr><tr><td style=\"width:125px\"><p>Mild</p></td><td style=\"width:124px\"><p>99 or less</p></td><td style=\"width:56px\"><p>None</p></td><td style=\"width:157px\"><p>None</p></td><td style=\"width:157px\"><p>None</p></td></tr><tr><td style=\"width:125px\"><p>Low</p></td><td style=\"width:124px\"><p>100-199</p></td><td style=\"width:56px\"><p>5+</p></td><td style=\"width:157px\"><p>1D</p></td><td style=\"width:157px\"><p>1D weeks</p></td></tr><tr><td style=\"width:125px\"><p>Moderate</p></td><td style=\"width:124px\"><p>200-599</p></td><td style=\"width:56px\"><p>6+</p></td><td style=\"width:157px\"><p>1D</p></td><td style=\"width:157px\"><p>2D days</p></td></tr><tr><td style=\"width:125px\"><p>High</p></td><td style=\"width:124px\"><p>600-999</p></td><td style=\"width:56px\"><p>7+</p></td><td style=\"width:157px\"><p>2D</p></td><td style=\"width:157px\"><p>1D days</p></td></tr><tr><td style=\"width:125px\"><p>Severe</p></td><td style=\"width:124px\"><p>1000-10000</p></td><td style=\"width:56px\"><p>8+</p></td><td style=\"width:157px\"><p>3D</p></td><td style=\"width:157px\"><p>1D hours</p></td></tr><tr><td style=\"width:125px\"><p>Extreme</p></td><td style=\"width:124px\"><p>10000 or more</p></td><td style=\"width:56px\"><p>12+</p></td><td style=\"width:157px\"><p>6D</p></td><td style=\"width:157px\"><p>1 hour</p></td></tr></tbody></table><p> </p><h1>Starvation and Dehydration</h1><p>A character requires two liters of water and 0.5kg of food per day to stay healthy. Special high-tech rations (TL8+) are a lightweight, though unappetizing substitute for food.</p><p>A character may go without water for 20 hours + twice their END score with no ill effect. After that time has passed, the character must throw END 6+ per hour without water or suffer 1D damage. There is a cumulative DM-1 with each additional check.</p><p>A character may go without food for 3 days. After that, the character must throw END 6+ per day without food or suffer 1D damage. There is a cumulative DM-1 with each additional check.</p><p>The character can recover this damage only after drinking and eating.</p><p> </p><h1>Suffocation</h1><p>In cases of insufficient oxygen, such as on a ship with failing life support, characters suffer 1D damage per minute. If the character has no access to any oxygen whatsoever, such as when a character is being strangled, or has been sucked out into space, this becomes 1D damage per round instead.</p><p> </p><h1>Vacuum</h1><p>Contrary to popular belief, vacuum does not kill immediately. A character exposed to vacuum suffers regular suffocation damage (above). While exposed to space they also suffer 3Dx10 rads of radiation per round. Additionally, beginning from the third round of vacuum exposure, the character must throw END 10+ per round or fall unconscious from aeroembolisms – the formation of air bubbles in their blood stream.</p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": 1744563562042,
+        "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "tk91xnSWnaiz3L41",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!B9vCb0bazinyF7dB.tk91xnSWnaiz3L41"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080325,
+    "modifiedTime": 1760016422939,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.0cpsA6Y8RPDtU4Tp",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!B9vCb0bazinyF7dB"
+}

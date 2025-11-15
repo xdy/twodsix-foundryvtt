@@ -1,0 +1,80 @@
+{
+  "_id": "IftfoUH7eEqtzMec",
+  "name": "Flashbang",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "Non-lethal stun grenade emitting a powerful flash and deafening noise upon detonation.",
+    "shortdescr": "Non-lethal stun grenade emitting a powerful flash and deafening noise upon detonation",
+    "quantity": 1,
+    "weight": null,
+    "price": 30,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 10,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown str/2*str",
+    "weaponType": "Thrown",
+    "damageType": "stun",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_wf6q1gxor",
+      "path": "ce ftl explosives",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/flashbang.svg",
+  "effects": [],
+  "folder": "eGfvJkv58LvvCRo7",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079630,
+    "modifiedTime": 1760016422095,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IftfoUH7eEqtzMec"
+}

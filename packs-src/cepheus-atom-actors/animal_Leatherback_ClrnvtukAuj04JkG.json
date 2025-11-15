@@ -1,0 +1,835 @@
+{
+  "name": "Leatherback",
+  "type": "animal",
+  "system": {
+    "name": "",
+    "homeWorld": "",
+    "animalType": {
+      "niche": "herbivore",
+      "subtype": "filter"
+    },
+    "location": "swamp",
+    "size": "",
+    "numberAppearing": "1d6",
+    "reaction": {
+      "attack": 9,
+      "flee": 6
+    },
+    "moraleDM": "",
+    "hits": {
+      "value": 29,
+      "min": 0,
+      "max": 29
+    },
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": 3
+    },
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "untrainedSkill": "RauDiqt8Edz5rTCP",
+    "description": "",
+    "notes": "",
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 19,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": ""
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 0,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": ""
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 10,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": ""
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 7,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": ""
+      },
+      "education": {
+        "key": "education",
+        "value": 7,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": "INS"
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 7,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": "PAK"
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": ""
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 10,
+      "units": "m",
+      "hover": false
+    },
+    "woundedEffect": 0,
+    "species": "Monster",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "gender": "",
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "bio": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    }
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxpu59c259",
+      "path": "Monsters",
+      "color": "#000000"
+    },
+    "core": {}
+  },
+  "img": "systems/dnd5e/tokens/humanoid/Gnoll.webp",
+  "items": [
+    {
+      "_id": "RauDiqt8Edz5rTCP",
+      "name": "Untrained",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 100000,
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "effects": [],
+      "img": "icons/svg/item-bag.svg",
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.RauDiqt8Edz5rTCP"
+    },
+    {
+      "_id": "kEVklC2zUx4UWSfY",
+      "name": "Combat",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Combat: this skill covers actions that involve committing violence. Anything from spears and guns to artillery and demolitions.<br><br>",
+        "shortdescr": "actions that involve committing violence",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Difficult",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 200000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_1cfl9wwsnun"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/melee.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.kEVklC2zUx4UWSfY"
+    },
+    {
+      "_id": "QmCEiO4k2olBB43h",
+      "name": "Physical",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Physical: any time a character needs to exert themselves, use this skill. This can include feats of athleticism, stealth, acrobatics, and so on.",
+        "shortdescr": "athleticism, stealth, and acrobatics",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 300000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_1cfl9wwsnun",
+          "path": "cepheus atom#/CF_SEP/CA - Skills",
+          "color": "#000000"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/athletics-endurance.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.QmCEiO4k2olBB43h"
+    },
+    {
+      "_id": "4fx6g7nCJRaXOBUt",
+      "name": "Survival",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Survival: this is the skill used for surviving the Wastes, and includes foraging, tracking, scouting, and avoiding Contamination.",
+        "shortdescr": "foraging, tracking, scouting, and avoiding contamination",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 400000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_1cfl9wwsnun",
+          "path": "cepheus atom#/CF_SEP/CA - Skills",
+          "color": "#000000"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/survival.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.4fx6g7nCJRaXOBUt"
+    },
+    {
+      "_id": "e30BgUJaSr5T3T2m",
+      "name": "Spear",
+      "type": "weapon",
+      "system": {
+        "name": "Spear",
+        "techLevel": 0,
+        "description": "May be thrown<br>",
+        "shortdescr": "Spear - melee",
+        "quantity": 1,
+        "weight": 1,
+        "price": 10,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "kEVklC2zUx4UWSfY",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "5/20",
+        "damage": "2d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": "8",
+        "rangeBand": "reach",
+        "weaponType": "melee",
+        "damageType": "piercing",
+        "rateOfFire": "",
+        "recoil": true,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": ""
+      },
+      "sort": 500000,
+      "flags": {
+        "cf": {
+          "id": "temp_a1oz7op7s0j",
+          "path": "cepheus atom#/CF_SEP/CA - Common Weapons",
+          "color": "#000000"
+        },
+        "twodsix": {}
+      },
+      "img": "./systems/twodsix/assets/icons/spear.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680703307399,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.e30BgUJaSr5T3T2m"
+    },
+    {
+      "_id": "UVncHJZs5WKhS8sa",
+      "name": "Thick Hide",
+      "type": "trait",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "type": "trait",
+        "description": "Natural armor rating of 3. Cumulative with worn armor. Disfiguring.<br>",
+        "prereq": "",
+        "shortdescr": "Natural Armor of 3",
+        "subtype": "",
+        "key": "key",
+        "reference": "",
+        "name": "",
+        "techLevel": 0,
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": "equipped",
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "bonus": "minor beneficial",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 600000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_w34pcq0hfyl",
+          "path": "cepheus atom#/CF_SEP/CA - Mutations",
+          "color": "#000000"
+        }
+      },
+      "img": "systems/twodsix/assets/icons/Thick%20Hide.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.UVncHJZs5WKhS8sa"
+    },
+    {
+      "_id": "ePK5eXVLZHXtz9Zb",
+      "name": "Nervous Spasms",
+      "type": "trait",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "type": "trait",
+        "description": "DM-1 to Combat and Physical throws",
+        "prereq": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "reference": "",
+        "name": "",
+        "techLevel": 0,
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": "equipped",
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "bonus": "minor detrimental",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 700000,
+      "flags": {
+        "twodsix": {},
+        "cf": {
+          "id": "temp_w34pcq0hfyl",
+          "path": "cepheus atom#/CF_SEP/CA - Mutations",
+          "color": "#000000"
+        }
+      },
+      "img": "icons/svg/mystery-man.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.ePK5eXVLZHXtz9Zb"
+    },
+    {
+      "_id": "Z7GEBdmaAz1xjwFu",
+      "name": "Quick Reflexes",
+      "type": "trait",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 0,
+        "type": "trait",
+        "description": "DM-1 to all ranged attack throws against the character.",
+        "prereq": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "reference": "",
+        "name": "New augment",
+        "techLevel": 0,
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "equipped": "equipped",
+        "skillModifier": 0,
+        "skill": "",
+        "auglocation": "Full-Body",
+        "bonus": "minor beneficial",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 800000,
+      "flags": {},
+      "img": "icons/svg/mystery-man.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.Z7GEBdmaAz1xjwFu"
+    },
+    {
+      "name": "Unarmed",
+      "type": "weapon",
+      "img": "systems/twodsix/assets/icons/unarmed.svg",
+      "system": {
+        "name": "",
+        "techLevel": 0,
+        "description": "Unarmed attack",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "kEVklC2zUx4UWSfY",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "max(@characteristics.strength.mod, 1)",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "bludgeoning",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "_id": "aJfTBVNWPCfjvZMN",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1663334986438,
+        "modifiedTime": 1680703302164,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!ClrnvtukAuj04JkG.aJfTBVNWPCfjvZMN"
+    }
+  ],
+  "effects": [],
+  "prototypeToken": {
+    "flags": {},
+    "name": "Leatherback",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "animation": {
+        "speed": 5,
+        "intensity": 5,
+        "type": null,
+        "reverse": false
+      },
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/dnd5e/tokens/humanoid/Gnoll.webp",
+      "tint": "#ffffff",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "alpha": 1,
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1663272577429,
+    "modifiedTime": 1760016423064,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-atom-actors.Actor.vDzYfOtjfgxBHoli",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "test-world",
+      "uuid": null,
+      "coreVersion": "0.7.9",
+      "systemId": "twodsix",
+      "systemVersion": "0.7.23"
+    }
+  },
+  "folder": "s8CAgO04cPoyeGhp",
+  "ownership": {
+    "default": 0,
+    "12WfDpqePx1TrVeA": 3
+  },
+  "_id": "ClrnvtukAuj04JkG",
+  "sort": 1100000,
+  "_key": "!actors!ClrnvtukAuj04JkG"
+}

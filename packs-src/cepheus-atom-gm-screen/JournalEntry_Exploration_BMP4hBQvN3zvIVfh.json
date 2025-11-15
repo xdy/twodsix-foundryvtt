@@ -1,0 +1,70 @@
+{
+  "_id": "BMP4hBQvN3zvIVfh",
+  "name": "Exploration",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Exploration",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Overland Map and Movement</h1>\n<h2>Character Movement</h2>\n<p>The typical old-school wilderness adventure map uses a 10km hexagon grid. A character may travel 30km (3 hexes) a day on foot on open plains, or 15km (1.5 hexes) a day if carrying excess load or wearing heavy armor.</p>\n<table style=\"width:45.8238%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:42.3821%\">Terrain</td>\n<td style=\"width:56.9856%\">Movement Rate Multiplier</td>\n</tr>\n<tr>\n<td style=\"width:42.3821%\">City/Urban</td>\n<td style=\"width:56.9856%\">2/3</td>\n</tr>\n<tr>\n<td style=\"width:42.3821%\">Desert/Badlands</td>\n<td style=\"width:56.9856%\">2/3</td>\n</tr>\n<tr>\n<td style=\"width:42.3821%\">Forest/Jungle</td>\n<td style=\"width:56.9856%\">2/3</td>\n</tr>\n<tr>\n<td style=\"width:42.3821%\">Hills/Mountain</td>\n<td style=\"width:56.9856%\">1/3</td>\n</tr>\n<tr>\n<td style=\"width:42.3821%\">Plains/Grasslands</td>\n<td style=\"width:56.9856%\">Full</td>\n</tr>\n<tr>\n<td style=\"width:42.3821%\">Swamp/Aquatic</td>\n<td style=\"width:56.9856%\">2/3</td>\n</tr>\n</tbody>\n</table>\n<p>A <strong>trail</strong> allows characters on foot (but not vehicles) to move at their full movement speed regardless of terrain. A <strong>road</strong> permits vehicles to travel at full speed. Railcars and subway cars require <strong>rails</strong> to benefit from their full movement speeds.</p>\n<h2>Vehicle Travel</h2>\n<p>On a pristine pre-Collapse road, most land vehicles can cross the typical 400km- sized, 10-km-per-hexagon hexagon-grid map within a few hours. However, very few such roads exist after the Collapse, and the few roads that remain are riddled with potholes and debris, preventing fast travel. Thus, the basic travel speed is 100km a day, modified by terrain as per the above table. Water travel, including the effects of weather, is beyond the scope of these rules and is left to the Referee’s discretion.</p>\n<h2>Forced Marching</h2>\n<p>A character may double their overland travel range by force marching for one day. At the end of that day, they must throw Physical 4+ or be Fatigued. This is subject toa further DM-1 per further day of forced marching. Fatigued characters may not force-march. You may force march with a vehicle. Instead of a Physical roll to avoid being Fatigued, throw Technical 4+ to avoid a vehicle breakdown (requiring a unit of spare parts and a Technical 6+ throw to repair).</p>\n<h2>Becoming Lost</h2>\n<p>It is easy to lose one’s way in a post-apocalyptic wasteland. A party following a trail, road, coast, or waterway will never get lost. In all other instances of travel, make a daily Survival throw with the target numbers given below to avoid getting lost. Remember that a result of 2 on the dice before modifiers is always a failure regardless of skill.</p>\n<table style=\"width:60.5581%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:35.3081%\">Terrain</td>\n<td style=\"width:64.0596%\">Survival throw to avoid becoming lost</td>\n</tr>\n<tr>\n<td style=\"width:35.3081%\">City/Urban</td>\n<td style=\"width:64.0596%\">4+</td>\n</tr>\n<tr>\n<td style=\"width:35.3081%\">Desert/Badlands</td>\n<td style=\"width:64.0596%\">6+</td>\n</tr>\n<tr>\n<td style=\"width:35.3081%\">Forest/Jungle</td>\n<td style=\"width:64.0596%\">4+</td>\n</tr>\n<tr>\n<td style=\"width:35.3081%\">Hills/Mountain</td>\n<td style=\"width:64.0596%\">4+</td>\n</tr>\n<tr>\n<td style=\"width:35.3081%\">Plains/Grasslands</td>\n<td style=\"width:64.0596%\">3+</td>\n</tr>\n<tr>\n<td style=\"width:35.3081%\">Swamp/Aquatic</td>\n<td style=\"width:64.0596%\">5+</td>\n</tr>\n</tbody>\n</table>\n<h1>Unusual Weather</h1>\n<p>Characters exploring post-Collapse wastelands risk exposure to extreme and unusual weather. Throw 1D per day of wilderness travel; on 1, unusual weather occurs per the following table. This weather event can occur at any time during the day or night. The Referee secretly makes a Survival 6+ throw using the highest skill among the party beforehand; if successful, the characters will know ahead of time that a storm is coming and may seek shelter in time. Shelter allows the party to avoid the unusual weather event’s effects.</p>\n<table style=\"width:99.1228%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:7.0978%\">1D</td>\n<td style=\"width:23.8243%\">Weather</td>\n<td style=\"width:68.3183%\">Effect</td>\n</tr>\n<tr>\n<td style=\"width:7.0978%\">1</td>\n<td style=\"width:23.8243%\">Tornado</td>\n<td style=\"width:68.3183%\">Movement rate is halved; structures the characters are in may collapse at the Referee’s discretion.</td>\n</tr>\n<tr>\n<td style=\"width:7.0978%\">2</td>\n<td style=\"width:23.8243%\">Blizzard</td>\n<td style=\"width:68.3183%\">Movement rate is halved; characters may only see to a range of 3m and suffer DM-1 to ranged attack throws.</td>\n</tr>\n<tr>\n<td style=\"width:7.0978%\">3</td>\n<td style=\"width:23.8243%\">Thick fog or Dust Storm</td>\n<td style=\"width:68.3183%\">Movement rate is halved; travelers must throw Survival 8+ to avoid getting lost.</td>\n</tr>\n<tr>\n<td style=\"width:7.0978%\">4</td>\n<td style=\"width:23.8243%\">Sandstorm or Acid Rain</td>\n<td style=\"width:68.3183%\">As dust storm, and unprotected creatures suffer 1 point of damage per turn (10 minutes) or exposure.</td>\n</tr>\n<tr>\n<td style=\"width:7.0978%\">5</td>\n<td style=\"width:23.8243%\">Superlightning Storm</td>\n<td style=\"width:68.3183%\">Throw 10+ once for the storm for a random unprotected character to be hit by lightning for 4D damage if outdoors.</td>\n</tr>\n<tr>\n<td style=\"width:7.0978%\">6</td>\n<td style=\"width:23.8243%\">Radioactive Blowout!</td>\n<td style=\"width:68.3183%\">As dust storm, and unprotected creatures must throw Survival 6+ or gain a level of Contamination.</td>\n</tr>\n</tbody>\n</table>\n<h1>Camping</h1>\n<p>Selecting a good site to camp at night can save lives. When making camp, the Referee may allow the party to choose one skill throw for the party to create a defensible camp and avoid random encounters at the night. This is usually a Survival 6+ throw in wilderness locations. The Referee may allow a Technical 6+ throw in urban areas to represent building barricades, or even a Physical 6+ throw when it is possible to climb to a safe and otherwise inaccessible location.</p>\n<p>Characters should keep watches at night. Only characters on watch will be alert and fully armored if trouble arises; the rest will be asleep in normal clothes. However, each character must sleep at least half a night to enjoy the benefit of rest (such as healing) and to avoid being Fatigued.</p>\n<h1>Urban Scavenging</h1>\n<p>In an urban environment, characters may scavenge for Ancient relics. Each day, a party may make up to 3 scavenging attempts. In each attempt, every party member actively searching the ruins throws Survival 6+. On success, roll for one relic as per the Relics chapter.</p>\n<p>However, such scavenging is dangerous. On an unmodified throw of 4 or less (regardless of skill), a mishap occurs, per the following table.</p>\n<table style=\"width:99.1228%;height:126px\" border=\"1\">\n<tbody>\n<tr style=\"height:18px\">\n<td style=\"width:13.9431%;height:18px\">1D</td>\n<td style=\"width:14.8957%;height:18px\">Result</td>\n<td style=\"width:70.4017%;height:18px\">Effects</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:13.9431%;height:18px\">1-2</td>\n<td style=\"width:14.8957%;height:18px\">Encounter!</td>\n<td style=\"width:70.4017%;height:18px\">Roll on the appropriate Encounter table.</td>\n</tr>\n<tr style=\"height:18px\">\n<td style=\"width:13.9431%;height:18px\">3</td>\n<td style=\"width:14.8957%;height:18px\">Injury!</td>\n<td style=\"width:70.4017%;height:18px\">Throw Physical 6+ or suffer 1D damage.</td>\n</tr>\n<tr style=\"height:36px\">\n<td style=\"width:13.9431%;height:36px\">4-5</td>\n<td style=\"width:14.8957%;height:36px\">Lost!</td>\n<td style=\"width:70.4017%;height:36px\">Character is separated from the party and may get into trouble (Referee’s discretion).</td>\n</tr>\n<tr style=\"height:36px\">\n<td style=\"width:13.9431%;height:36px\">6</td>\n<td style=\"width:14.8957%;height:36px\">Contamination!</td>\n<td style=\"width:70.4017%;height:36px\">Throw Survival 4+ or gain a level of Contamination (see the Contamination and Mutations chapter).</td>\n</tr>\n</tbody>\n</table>\n<h1>Foraging</h1>\n<p>Characters low on food or water must forage to survive. Foraging characters move at 2/3 speed, which is cumulative with terrain effects and may not attempt any forced marches. The character with the highest Survival skill in the party throws Survival 5+ to find enough food and water for the party for that day. DM+1 per two additional foraging group members, to a maximum of DM+3. When finding foraged food and water, the Referee should secretly throw 1D; on 1, the food and water are Contaminated and any creature consuming them must throw Survival 6+ or gain a level of Contamination. Characters may throw Knowledge 6+ or Survival 6+ to check if found food and water are contaminated. This throw should be done by the Referee. Going over 2 days without food causes Fatigue; going over one week without food leads to DM-2 to all actions; beyond 4 weeks without food, the character dies.</p>\n<h1>Contaminated Zones and Other Hazards</h1>\n<p>Some areas, either above or below ground, are contaminated with radiation and other mutagenic hazards. Characters traveling through such zones must throw Survival 6+ per 10km of travel or gain a level of Contamination. Before entering a contaminated zone, however, the Referee should make one Survival throw using the highest Survival skill in the party; if successful, the party notices signs of contamination and can choose to avoid the area before risking Contamination.</p>\n<p>Detecting other hazards like traps, unstable structures, or other environmental hazards like quicksand or a predator’s ambush, requires a successful Knowledge, Survival or Technical throw, at the Referee’s discretion.</p>\n<h1>Underground Movement</h1>\n<p>Often the Referee will use a square grid map to represent a ruin the players are exploring. Especially when the Referee has converted an old school adventure to Cepheus Atom. The scale is typically 3m (or 10ft) per square, but other scales are possible.</p>\n<p>The time unit used while exploring underground ruins is a 10-minute Turn, which is equal to 100 combat rounds. While exploring, characters are moving slowly and carefully, on alert for hazards and hidden features. Thus, an exploring character will usually explore at a rate of 300m (100 squares) per turn.</p>\n<p>Because of the stress inherent to an underground environment, characters will have to rest for 1 turn after every 5 turns of exploration; otherwise, they will be Fatigued.</p>\n<h1>Light and Darkness</h1>\n<p>Subterranean ruins and the Wasteland’s moonless nights rarely contain ambient light. Characters must use their own light sources to be able to see anything. Torches are a staple, flashlights are valuable, and pre-Collapse night vision apparatuses are prized items. In dim light, characters suffer DM-1 to all actions requiring sight, including hitting targets in combat; in full darkness, this penalty increases to DM-2.</p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "9uBibKjhKuWfVjuB",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!BMP4hBQvN3zvIVfh.9uBibKjhKuWfVjuB"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079944,
+    "modifiedTime": 1760016422408,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!BMP4hBQvN3zvIVfh"
+}

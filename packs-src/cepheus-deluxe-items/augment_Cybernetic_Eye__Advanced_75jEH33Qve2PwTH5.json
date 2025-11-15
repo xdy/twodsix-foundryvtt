@@ -1,0 +1,62 @@
+{
+  "_id": "75jEH33Qve2PwTH5",
+  "name": "Cybernetic Eye, Advanced",
+  "type": "augment",
+  "img": "systems/twodsix/assets/icons/cyber-eye-advanced.svg",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "This implant operates as the baseline cybernetic eye, but also adds telescopic vision, infra-red imaging, and low-light optics.",
+    "shortdescr": "Telescopic vision, infra-red imaging, and low-light vision.",
+    "quantity": 1,
+    "weight": 0,
+    "price": 7500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Telescopic and low light vision",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737417,
+    "modifiedTime": 1760016422729,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.uSIFZbSd8DmOUPgN",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!75jEH33Qve2PwTH5"
+}

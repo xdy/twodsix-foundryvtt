@@ -1,0 +1,61 @@
+{
+  "_id": "nazDGPd9saIKBXAd",
+  "name": "Fast Forward",
+  "type": "equipment",
+  "img": "./systems/twodsix/assets/icons/fast-forward.svg",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "The drug slows metabolism by a ratio of 60 to 1 – a subjective day to the user is actually 2 months of real time. Note that this drug will greatly reduce life-support consumption and is often included in emergency survival kits aboard starships.",
+    "shortdescr": "slows metabolism by a ratio of 60 to 1",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SU8WH6nukL6X3EkG",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_l5fai9j7gxh",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Pharmaceuticals",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737473,
+    "modifiedTime": 1760016422773,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.tPQ4H4frv4Rnu5hz",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!nazDGPd9saIKBXAd"
+}

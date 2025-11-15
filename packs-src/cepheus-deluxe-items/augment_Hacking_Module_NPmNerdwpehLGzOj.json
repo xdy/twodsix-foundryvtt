@@ -1,0 +1,62 @@
+{
+  "name": "Hacking Module",
+  "type": "augment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "This implant consists of an upgraded, specialized OmniComp and dedicated enhanced synaptic neural processors for computing. A discreet neural jack line feed allows the character to connect to any computer directly. The Hacking Module grants a flat DM+1 to the character’s Computer skill and allows remote hacking of unprotected electronics at up to 3m. Note that at TL9+, most personal electronics cannot be remotely hacked. The Hacking module is illegal on worlds with Law Levels 4+.",
+    "shortdescr": "Grants DM+1 to the character’s Computer skill and allows remote hacking of electronics at a distance of up to 3m",
+    "quantity": 1,
+    "weight": 0,
+    "price": 50000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Computer DM+1, remote hacking 3m",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "NPmNerdwpehLGzOj",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737436,
+    "modifiedTime": 1760016422741,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.b1ht4yAEAl61A8nS",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!NPmNerdwpehLGzOj"
+}

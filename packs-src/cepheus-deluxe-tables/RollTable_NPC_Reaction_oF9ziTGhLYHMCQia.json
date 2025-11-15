@@ -1,0 +1,166 @@
+{
+  "name": "NPC Reaction",
+  "img": "systems/twodsix/assets/icons/discussion.svg",
+  "description": "Remember to use common sense and interpret the NPC Reaction roll in the context of the specific encounter. The NPC Reaction roll should drive much of the initial interaction between the PCs and the encounter. Referees are encouraged to use the NPC Reaction Roll to differentiate between otherwise similar encounter results and keep the players guessing.",
+  "results": [
+    {
+      "_id": "0C5jiki7OlRc7bNH",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Hostile: The NPC will immediately attack, or actively spoil whatever plans the PCs have.",
+      "name": "",
+      "_key": "!tables.results!oF9ziTGhLYHMCQia.0C5jiki7OlRc7bNH"
+    },
+    {
+      "_id": "dlhXKGusNaJtUyP3",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unfriendly: The NPC will do anything short of outright hostile action. They are unhelpful and untrustworthy.",
+      "name": "",
+      "_key": "!tables.results!oF9ziTGhLYHMCQia.dlhXKGusNaJtUyP3"
+    },
+    {
+      "_id": "UL8vBmPgIRaxFEHl",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Indifferent: The NPC is uninterested in helping or hindering the PCs.",
+      "name": "",
+      "_key": "!tables.results!oF9ziTGhLYHMCQia.UL8vBmPgIRaxFEHl"
+    },
+    {
+      "_id": "Ulg9qYCjnVKgYNHv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Friendly: The NPC is cooperative and friendly.",
+      "name": "",
+      "_key": "!tables.results!oF9ziTGhLYHMCQia.Ulg9qYCjnVKgYNHv"
+    },
+    {
+      "_id": "SJppSEmlIMEycNP5",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Helpful: The NPC is interested in helping or cooperating with the PCs fully.",
+      "name": "",
+      "_key": "!tables.results!oF9ziTGhLYHMCQia.SJppSEmlIMEycNP5"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3wgjn22n4ds",
+      "path": "Social Encounters",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "oF9ziTGhLYHMCQia",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080314,
+    "modifiedTime": 1760016422924,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!tables!oF9ziTGhLYHMCQia"
+}

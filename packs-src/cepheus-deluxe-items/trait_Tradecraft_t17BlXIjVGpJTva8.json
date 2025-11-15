@@ -1,0 +1,49 @@
+{
+  "name": "Tradecraft",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/recon.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is skilled in surveillance and counter-surveillance techniques, tailing targets, seeing up dead drops, and ensuring that they are not being spied upon. When using Investigation or Streetwise in this manner, roll with Advantage.",
+    "prereq": "Investigation 1 or Streetwise 1",
+    "shortdescr": "Advantage when spying",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 8100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "t17BlXIjVGpJTva8",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737479,
+    "modifiedTime": 1760016422777,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!t17BlXIjVGpJTva8"
+}

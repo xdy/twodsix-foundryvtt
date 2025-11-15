@@ -1,0 +1,97 @@
+{
+  "folder": "pSssleJvJZVQGAbD",
+  "name": "Agonizer",
+  "type": "weapon",
+  "_id": "8PV5GOtgONuTNV9l",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "description": "A hand-held pistol that uses microwaves or a high-voltage neural&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">beam to induce pain on a target, rendering them temporarily immobile and senseless&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">with agony.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 9,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1.5,
+    "price": 750,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "0",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 8,
+    "magazineCost": 0,
+    "lawLevel": "",
+    "rangeBand": "short",
+    "weaponType": "",
+    "damageType": "stun",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1729015078727,
+    "modifiedTime": 1760016422986,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!8PV5GOtgONuTNV9l"
+}

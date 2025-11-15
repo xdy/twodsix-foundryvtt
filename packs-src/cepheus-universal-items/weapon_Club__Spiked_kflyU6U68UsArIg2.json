@@ -1,0 +1,95 @@
+{
+  "folder": "crzJd4BeivxkkYsO",
+  "name": "Club, Spiked",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/spiked-mace.svg",
+  "system": {
+    "name": "",
+    "description": "A handy wooden or polymer club, around 80cm long. Also&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">known as: nightstick, baton, kosh, tonfa.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 0,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1,
+    "price": 20,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "magazineCost": 0,
+    "lawLevel": "",
+    "rangeBand": "personal",
+    "weaponType": "",
+    "damageType": "melee",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 6,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    },
+    "isShield": false
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727109554969,
+    "modifiedTime": 1760016423000,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "kflyU6U68UsArIg2",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!kflyU6U68UsArIg2"
+}

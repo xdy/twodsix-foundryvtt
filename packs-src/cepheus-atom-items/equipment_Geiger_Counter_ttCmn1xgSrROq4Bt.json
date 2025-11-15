@@ -1,0 +1,60 @@
+{
+  "_id": "ttCmn1xgSrROq4Bt",
+  "name": "Geiger Counter",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "Geiger Counter (automatically detects Contamination)*",
+    "shortdescr": "detects Contamination",
+    "quantity": 1,
+    "weight": 0,
+    "price": 120,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/radiation-counter.svg",
+  "effects": [],
+  "folder": "XHTDs7UPCc2TSjX5",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079805,
+    "modifiedTime": 1760016422289,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ttCmn1xgSrROq4Bt"
+}
