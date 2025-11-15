@@ -9,9 +9,37 @@ on:
 #TODO Parse out these, for now they're hardcoded.
 env:
   package_type: system
-  node_version: 20
+  node_version: 22
 
 jobs:
+  test:
+    # Run tests on pull requests
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version:  22
+          cache: 'pnpm'
+
+      - name: Install
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build
+
   release:
     # Only release on push to master on xdy/twodsix-foundryvtt
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
@@ -24,23 +52,32 @@ jobs:
         with:
           submodules: 'true'
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          node-version: 20.x
-          cache: 'npm'
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'pnpm'
 
       - name: Install
-        run: npm install
+        run: pnpm install
 
       - name: Build
-        run: npm run build
+        run: pnpm run build
+
+      - name: Audit (non-blocking)
+        run: pnpm audit --prod --audit-level=high
+        continue-on-error: true
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: pnpm dlx semantic-release
 
       - name: Send Webhook Notification
         env:

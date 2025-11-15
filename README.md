@@ -49,6 +49,50 @@ See [CHANGELOG.md](CHANGELOG.md)
 ### Contributing
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [CONTRIBUTORS.md](CONTRIBUTORS.md)
 
+### Development (pnpm)
+This repository uses pnpm as the package manager and pins the version via Corepack.
+
+Prerequisites:
+- Node.js LTS (20.x or newer recommended)
+- Corepack enabled (bundled with Node.js >= 16.9)
+
+One-time setup (Windows PowerShell/macOS/Linux shell):
+```
+corepack enable
+corepack prepare pnpm@10.22.0 --activate
+pnpm install
+```
+
+Common tasks:
+- Build once:
+```
+pnpm run build
+```
+- Watch and rebuild on changes:
+```
+pnpm run build:watch
+```
+- Lint TypeScript source:
+```
+pnpm run lint
+```
+
+Security audit (non-blocking locally):
+```
+pnpm audit
+```
+
+Notes:
+- If the install logs mention that some postinstall builds were skipped, approve them and reinstall IF you trust those scripts, otherwise reconsider that dependency:
+```
+pnpm approve-builds
+pnpm install
+```
+- For one-off CLIs you might previously run with `npx`, use:
+```
+pnpm dlx <package>
+```
+
 ### Licenses
 Project Licensing:
 *  Everything in this project that is not covered by one of the following license exceptions is licensed under the Apache License v2 (see [LICENSE](LICENSE)).

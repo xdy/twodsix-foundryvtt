@@ -1,29 +1,24 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const {rollup} = require('rollup');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const argv = require('yargs').argv;
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const chalk = require('chalk');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const fs = require('fs-extra');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const gulp = require('gulp');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const rollupConfig = require('./rollup.config');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const semver = require('semver');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { spawn } = require('child_process');
+
+import { rollup } from 'rollup';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import chalk from 'chalk';
+import fs from 'fs-extra';
+import gulp from 'gulp';
+import path from 'path';
+import rollupConfig from './rollup.config.js';
+import semver from 'semver';
+import { spawn } from 'child_process';
+
+const argv = yargs(hideBin(process.argv)).argv;
 
 /********************/
 /*  CONFIGURATION   */
 /********************/
 
-// eslint-disable-next-line @typescript-eslint/no-shadow
-const systemName = "twodsix*";
+const systemName = "twodsix";
+// Used to match all style files for this system (e.g., twodsix.css, twodsix-dark.css)
+const stylesBaseName = 'twodsix*';
 const sourceDirectory = './src';
 const staticDirectory = './static';
 const templateDirectory = `${staticDirectory}/templates`;
@@ -58,8 +53,8 @@ let buildStatus = {
 async function buildCode() {
   try {
     const config = rollupConfig();
-    const build = await rollup({input: config.input, plugins: config.plugins});
-    await build.write(config.output);
+    const rollupBuild = await rollup({input: config.input, plugins: config.plugins});
+    await rollupBuild.write(config.output);
     // Count JS files in dist (specifically twodsix.bundle.js)
     let jsFiles = 0;
     if (fs.existsSync(`${distDirectory}/twodsix.bundle.js`)) {
@@ -81,7 +76,8 @@ async function buildCode() {
  */
 function buildStyles() {
   try {
-    return gulp.src(`${stylesDirectory}/${systemName}.${stylesExtension}`)
+    return gulp
+      .src(`${stylesDirectory}/${stylesBaseName}.${stylesExtension}`)
       .pipe(gulp.dest(`${distDirectory}/styles`))
       .on('end', async () => {
         // Count CSS files in dist/styles
@@ -266,7 +262,9 @@ async function linkUserData() {
   } else if (!fs.existsSync(linkDirectory)) {
     console.log(chalk.green(`Linking dist to ${chalk.blueBright(linkDirectory)}.`));
     await fs.ensureDir(path.resolve(linkDirectory, '..'));
-    await fs.symlink(path.resolve(distDirectory), linkDirectory);
+    // Use 'junction' on Windows to avoid admin/Developer Mode requirements for directory symlinks
+    const symlinkType = process.platform === 'win32' ? 'junction' : 'dir';
+    await fs.symlink(path.resolve(distDirectory), linkDirectory, symlinkType);
   }
 }
 
@@ -379,9 +377,5 @@ async function buildSummary() {
 const execBuild = gulp.parallel(buildCode, buildStyles, copyStaticFiles);
 const execBuildWithPacks = gulp.series(buildPacks, gulp.parallel(execBuild, copyPacks), buildSummary);
 
-exports.build = gulp.series(clean, execBuildWithPacks);
-exports.buildPacks = buildPacks;
-exports.watch = buildWatch;
-exports.clean = clean;
-exports.link = linkUserData;
-exports.bumpVersion = bumpVersion;
+const build = gulp.series(clean, execBuildWithPacks);
+export { build, buildPacks, buildWatch, clean, linkUserData as link, bumpVersion };
