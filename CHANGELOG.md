@@ -1,3 +1,10 @@
+## [6.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.1...v6.9.2) (2025-11-16)
+
+
+### Bug Fixes
+
+* add Wiki Journal Entry ([#1887](https://github.com/xdy/twodsix-foundryvtt/issues/1887)) ([e9f9ef2](https://github.com/xdy/twodsix-foundryvtt/commit/e9f9ef2d829d9bafdef8a9c17a00a59c7c96a1e9))
+
 ## [6.9.1](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.0...v6.9.1) (2025-11-14)
 
 
