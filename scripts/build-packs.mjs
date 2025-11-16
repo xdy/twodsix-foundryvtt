@@ -3,16 +3,14 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import process from 'process';
-import axios from 'axios';
-import { execSync } from 'child_process';
-import { v4 as uuidv4 } from 'uuid';
+//import axios from 'axios';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PACKS_SRC_DIR = path.join(__dirname, '..', 'packs-src');
 const PACKS_OUTPUT_DIR = path.join(__dirname, '..', 'static', 'packs');
-const WIKI_URL = 'https://github.com/xdy/twodsix-foundryvtt/wiki';
+//const WIKI_URL = 'https://github.com/xdy/twodsix-foundryvtt/wiki';
 
 console.log('Starting pack compilation...');
 console.log('Source directory:', PACKS_SRC_DIR);
@@ -43,7 +41,8 @@ console.log(`Found ${packDirs.length} pack source directories:`, packDirs);
 let successCount = 0;
 let errorCount = 0;
 
-function sanitizeContent(content) {
+//NOTE THE COMMENTED OUT CODE BLOCK BELOW IS FOR AUTOMATIC GENERATION OF JounralEntry from Twodsix Wiki.  For some reason the building of the pack results in blank JournalEntry
+/*function sanitizeContent(content) {
   // Replace problematic characters with their HTML entity equivalents
   return content
     .replace(/&/g, "&amp;")
@@ -58,20 +57,20 @@ async function fetchWikiPages() {
     console.log('Fetching wiki pages...');
     const response = await axios.get(`${WIKI_URL}/_toc`); // Fetch the table of contents
     const tocHtml = response.data;
-    console.log('Fetched TOC HTML:', tocHtml); // Debugging log
+    //console.log('Fetched TOC HTML:', tocHtml); // Debugging log
 
     // Extract links to individual wiki pages from the TOC, excluding '_history'
     const pageLinks = [...tocHtml.matchAll(/href="(\/xdy\/twodsix-foundryvtt\/wiki\/[^\"]+)/g)]
       .map(match => match[1])
       .filter(link => !link.includes('_history')); // Exclude '_history' page
-    console.log('Filtered page links:', pageLinks); // Debugging log
+    //console.log('Filtered page links:', pageLinks); // Debugging log
 
     const pages = [];
     for (const link of pageLinks) {
       const pageUrl = `https://github.com${link}.md`; // Fetch the raw Markdown file
       console.log(`Fetching raw Markdown: ${pageUrl}`);
       const pageResponse = await axios.get(pageUrl);
-      console.log(`Fetched raw Markdown for ${pageUrl}:`, pageResponse.data); // Debugging log
+      ///console.log(`Fetched raw Markdown for ${pageUrl}:`, pageResponse.data); // Debugging log
 
       const rawMarkdown = pageResponse.data;
       const sanitizedHtml = sanitizeContent(rawMarkdown); // Convert Markdown to sanitized HTML
@@ -105,7 +104,7 @@ async function fetchWikiPages() {
       });
     }
 
-    console.log('Final pages array:', pages); // Debugging log
+    //console.log('Final pages array:', pages); // Debugging log
     return pages;
   } catch (error) {
     console.error('❌ Failed to fetch wiki pages:', error.message);
@@ -114,18 +113,34 @@ async function fetchWikiPages() {
 }
 
 async function generateWikiJournal() {
+  // Helper to generate a random 16-character alphanumeric string
+  function randomId() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 16; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
   try {
     const pages = await fetchWikiPages();
-    console.log('Fetched wiki pages:', pages); // Debugging log
+    //console.log('Fetched wiki pages:', pages); // Debugging log
 
+    // Assign _id to each page if missing or empty
+    const pagesWithIds = pages.map(page => ({
+      ...page,
+      _id: (typeof page._id === 'string' && page._id.length === 16 && /^[A-Za-z0-9]+$/.test(page._id)) ? page._id : randomId()
+    }));
+
+    // Assign _id to the journal entry if missing or empty
     const journalEntry = {
-      _id: "", // Set _id to a blank string for the journal entry
+      _id: randomId(),
       name: "Wiki Information",
       ownership: {
         default: 0
       },
       folder: null,
-      pages: pages.map(page => ({ ...page, _id: "" })), // Ensure all page _id fields are blank strings
+      pages: pagesWithIds,
       _stats: {
         coreVersion: "13.350",
         systemId: "twodsix",
@@ -141,7 +156,7 @@ async function generateWikiJournal() {
       categories: [],
       _key: null
     };
-    console.log('Journal entry object before writing to file:', journalEntry); // Debugging log
+    //console.log('Journal entry object before writing to file:', journalEntry); // Debugging log
 
     const sourceFolder = path.join(PACKS_SRC_DIR, 'wiki-journal');
     if (!fs.existsSync(sourceFolder)) {
@@ -150,11 +165,8 @@ async function generateWikiJournal() {
 
     const journalFilePath = path.join(sourceFolder, 'wiki-journal.json');
 
-    // Wrap the journalEntry in an array
-    const outputData = [journalEntry];
-
-    // Write the array to the JSON file
-    fs.writeFileSync(journalFilePath, JSON.stringify(outputData, null, 2));
+    // Write the journalEntry to the JSON file
+    fs.writeFileSync(journalFilePath, JSON.stringify(journalEntry, null, 2));
     console.log('✅ Wiki journal JSON created at:', journalFilePath);
   } catch (error) {
     console.error('❌ Failed to generate wiki journal entry:', error.message);
@@ -172,25 +184,26 @@ async function buildWikiPackWithCLI() {
       fs.mkdirSync(outputFolder, { recursive: true });
     }
 
-    execSync(`npx @foundryvtt/foundryvtt-cli pack --input ${sourceFolder} --output ${outputFolder} --type JournalEntry --no-db`, {
-      stdio: 'inherit'
-    });
+    //execSync(`npx @foundryvtt/foundryvtt-cli pack --input ${sourceFolder} --output ${outputFolder} --type JournalEntry --no-db`, {
+    //   stdio: 'inherit'
+    //});
+   // await compilePack(sourceFolder, outputFolder, { recursive: true, log: true });
 
     console.log(`✅ Wiki journal metadata built successfully in: ${outputFolder}`);
   } catch (error) {
     console.error('❌ Failed to build wiki journal metadata using Foundry VTT CLI:', error.message);
     throw error;
   }
-}
+}*/
 
 (async () => {
   console.log('Starting pack compilation...');
 
   // Generate the wiki journal entry
-  await generateWikiJournal();
+  //await generateWikiJournal();
 
   // Build the wiki journal pack using the CLI
-  await buildWikiPackWithCLI();
+  //await buildWikiPackWithCLI();
 
   // Proceed with the existing pack compilation logic
   for (const packDir of packDirs) {
@@ -207,7 +220,7 @@ async function buildWikiPackWithCLI() {
         fs.rmSync(outputPath, { recursive: true, force: true });
       }
 
-      await compilePack(sourcePath, outputPath, { recursive: true });
+      await compilePack(sourcePath, outputPath, { recursive: true, log: true });
       console.log(`  ✅ Successfully compiled ${packDir}`);
       successCount++;
     } catch (err) {

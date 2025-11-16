@@ -333,12 +333,16 @@
       "type": "Item"
     },
     {
-      "name": "wiki-journal",
       "label": "Wiki Journal",
-      "path": "./packs/wiki-journal",
       "type": "JournalEntry",
+      "name": "test-import",
+      "path": "packs/test-import",
       "system": "twodsix",
-      "entity": "JournalEntry"
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     }
   ],
   "packFolders": [
@@ -431,7 +435,7 @@
       "name": "Twodsix Wiki",
       "sorting": "m",
       "packs": [
-        "twodsix-wiki"
+        "wiki-journal"
       ]
     }
   ],

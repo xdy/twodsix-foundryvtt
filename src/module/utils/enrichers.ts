@@ -38,11 +38,11 @@ export function addCustomEnrichers() {
 }
 
 function addTableRollListener(enrichedContent:HTMLElement):void {
-  enrichedContent.querySelector('.table-roll').addEventListener('click', handleTableRoll);
+  enrichedContent.querySelector('.table-roll')?.addEventListener('click', handleTableRoll);
 }
 
 function addSkillRollListener(enrichedContent:HTMLElement):void {
-  enrichedContent.querySelector('.skill-roll').addEventListener('click', handleSkillRoll);
+  enrichedContent.querySelector('.skill-roll')?.addEventListener('click', handleSkillRoll);
 }
 
 function addItemListTransfer(enrichedContent:HTMLElement):void {
