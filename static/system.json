@@ -331,6 +331,18 @@
       "path": "./packs/cepheus-universal-items",
       "entity": "Item",
       "type": "Item"
+    },
+    {
+      "label": "Wiki Journal",
+      "type": "JournalEntry",
+      "name": "test-import",
+      "path": "packs/test-import",
+      "system": "twodsix",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "flags": {}
     }
   ],
   "packFolders": [
