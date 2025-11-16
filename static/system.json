@@ -430,13 +430,6 @@
         "twodsix-macros",
         "twodsix-macros-rolltables"
       ]
-    },
-    {
-      "name": "Twodsix Wiki",
-      "sorting": "m",
-      "packs": [
-        "wiki-journal"
-      ]
     }
   ],
   "primaryTokenAttribute": "hits",

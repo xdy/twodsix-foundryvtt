@@ -61,6 +61,9 @@ function addItemListTransfer(enrichedContent:HTMLElement):void {
  * @returns {Promise<HTMLDivElement>} The displayed html element for the enriched RollTable reference
  */
 async function enrichDisplayTable (match: any, options: any): Promise<HTMLDivElement> {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
   const table: RollTableData = findTable(match[1], options);
   const tableName = match[2] ?? table?.name;
   const a = document.createElement("div");
@@ -87,6 +90,9 @@ async function enrichDisplayTable (match: any, options: any): Promise<HTMLDivEle
  * @returns {HTMLAnchorElement} The rolltable in an html format
  */
 async function rollTable (match: any, options: any): Promise<HTMLAnchorElement> {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
   const table = findTable(match[1], options);
   const tableName = match[2] ?? table?.name;
   const a = document.createElement("a");
@@ -114,7 +120,10 @@ async function rollTable (match: any, options: any): Promise<HTMLAnchorElement> 
  * @param {string} options Options to the roll action
  * @returns {HTMLAnchorElement} The rolltable in an html format
  */
-async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement> {
+async function rollSkill (match: any, options: any): Promise<HTMLAnchorElement> {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
   const skillName = match[1] || "";
   const descrip = match[2] || match[1];
   const a = document.createElement("a");
@@ -131,7 +140,10 @@ async function rollSkill (match: any, _options: any): Promise<HTMLAnchorElement>
  * @param {string} options Options to the roll action
  * @returns {HTMLAnchorElement} The rolltable in an html format
  */
-async function itemList (match: any, _options: any): Promise<HTMLAnchorElement> {
+async function itemList (match: any, options: any): Promise<HTMLAnchorElement> {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
   const itemRef = match[1].split(",").map(str => str.trim());
   const a = document.createElement("a");
   a.classList.add("item-list");
