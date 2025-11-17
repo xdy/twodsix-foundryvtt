@@ -1,16 +1,18 @@
 import { compilePack } from '@foundryvtt/foundryvtt-cli';
 import path from 'path';
 import fs from 'fs';
+import { marked } from 'marked';
 import { fileURLToPath } from 'url';
 import process from 'process';
-//import axios from 'axios';
+import axios from 'axios';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PACKS_SRC_DIR = path.join(__dirname, '..', 'packs-src');
 const PACKS_OUTPUT_DIR = path.join(__dirname, '..', 'static', 'packs');
-//const WIKI_URL = 'https://github.com/xdy/twodsix-foundryvtt/wiki';
+const WIKI_URL = 'https://github.com/xdy/twodsix-foundryvtt/wiki';
+const PAGES_TO_NOT_ENRICH = ["Custom Journal Page Enhancers"];
 
 console.log('Starting pack compilation...');
 console.log('Source directory:', PACKS_SRC_DIR);
@@ -50,7 +52,7 @@ let errorCount = 0;
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
-}
+}*/
 
 async function fetchWikiPages() {
   try {
@@ -67,26 +69,24 @@ async function fetchWikiPages() {
 
     const pages = [];
     for (const link of pageLinks) {
-      const pageUrl = `https://github.com${link}.md`; // Fetch the raw Markdown file
-      console.log(`Fetching raw Markdown: ${pageUrl}`);
-      const pageResponse = await axios.get(pageUrl);
-      ///console.log(`Fetched raw Markdown for ${pageUrl}:`, pageResponse.data); // Debugging log
+      // Fetch the raw Markdown only
+      const mdUrl = `https://github.com${link}.md`;
+      console.log(`Fetching raw Markdown: ${mdUrl}`);
+      const mdResponse = await axios.get(mdUrl);
+      const rawMarkdown = mdResponse.data;
 
-      const rawMarkdown = pageResponse.data;
-      const sanitizedHtml = sanitizeContent(rawMarkdown); // Convert Markdown to sanitized HTML
+      const pageName = link.split('/').pop().replace(/-/g, ' '); // Generate a name from the URL
 
       pages.push({
         _id: "", // Ensure _id is a blank string for each page
-        name: link.split('/').pop().replace(/-/g, ' '), // Generate a name from the URL
+        name: pageName,
         type: "text",
         title: {
           show: false,
           level: 1
         },
         text: {
-          format: 2, // Markdown format
-          content: sanitizedHtml, // Use sanitized HTML content
-          markdown: rawMarkdown // Include raw Markdown content
+          markdown: rawMarkdown
         },
         system: {},
         image: {},
@@ -100,7 +100,12 @@ async function fetchWikiPages() {
           default: -1
         },
         category: null,
-        _key: null
+        _key: null,
+        flags: {
+          twodsix: {
+            disableEnrichment: PAGES_TO_NOT_ENRICH.includes(pageName)
+          }
+        }
       });
     }
 
@@ -124,56 +129,96 @@ async function generateWikiJournal() {
   }
   try {
     const pages = await fetchWikiPages();
-    //console.log('Fetched wiki pages:', pages); // Debugging log
-
-    // Assign _id to each page if missing or empty
-    const pagesWithIds = pages.map(page => ({
-      ...page,
-      _id: (typeof page._id === 'string' && page._id.length === 16 && /^[A-Za-z0-9]+$/.test(page._id)) ? page._id : randomId()
-    }));
-
-    // Assign _id to the journal entry if missing or empty
-    const journalEntry = {
-      _id: randomId(),
-      name: "Wiki Information",
-      ownership: {
-        default: 0
-      },
-      folder: null,
-      pages: pagesWithIds,
-      _stats: {
-        coreVersion: "13.350",
-        systemId: "twodsix",
-        systemVersion: "6.8.1",
-        createdTime: Date.now(),
-        modifiedTime: Date.now(),
-        lastModifiedBy: null,
-        compendiumSource: null,
-        duplicateSource: null,
-        exportSource: null
-      },
-      sort: 0,
-      categories: [],
-      _key: null
-    };
-    //console.log('Journal entry object before writing to file:', journalEntry); // Debugging log
-
+    const now = Date.now();
+    const coreVersion = "13.351";
+    const systemId = "twodsix";
+    const systemVersion = "6.9.1";
+    const lastModifiedBy = null;
+    // Generate the root JournalEntry ID first
+    const entryId = randomId();
+    // Compose pages array with correct _key referencing the root JournalEntry _id
+    const pagesWithMeta = pages.map((page, idx) => {
+      const pageId = (typeof page._id === 'string' && page._id.length === 16 && /^[A-Za-z0-9]+$/.test(page._id)) ? page._id : randomId();
+      const markdown = page.text && page.text.markdown ? page.text.markdown : '';
+      const html = marked.parse(markdown);
+      return {
+        _id: pageId,
+        name: page.name,
+        type: "text",
+        title: page.title || { show: false, level: 1 },
+        text: {
+          format: 1,
+          content: html
+        },
+        system: page.system || {},
+        image: page.image || {},
+        video: page.video || { controls: true, volume: 0.5 },
+        src: page.src || null,
+        sort: idx,
+        category: page.category || null,
+        _stats: {
+          compendiumSource: null,
+          duplicateSource: null,
+          exportSource: null,
+          coreVersion,
+          systemId,
+          systemVersion,
+          lastModifiedBy,
+          modifiedTime: now
+        },
+        flags: page.flags || {},
+        ownership: page.ownership || { default: -1 },
+        _key: `!journal.pages!${entryId}.${pageId}`
+      };
+    });
     const sourceFolder = path.join(PACKS_SRC_DIR, 'wiki-journal');
-    if (!fs.existsSync(sourceFolder)) {
+    // Remove all files and subfolders in the wiki-journal source folder
+    if (fs.existsSync(sourceFolder)) {
+      for (const entry of fs.readdirSync(sourceFolder)) {
+        const entryPath = path.join(sourceFolder, entry);
+        if (fs.statSync(entryPath).isDirectory()) {
+          fs.rmSync(entryPath, { recursive: true, force: true });
+        } else {
+          fs.unlinkSync(entryPath);
+        }
+      }
+    } else {
       fs.mkdirSync(sourceFolder, { recursive: true });
     }
-
-    const journalFilePath = path.join(sourceFolder, 'wiki-journal.json');
-
-    // Write the journalEntry to the JSON file
-    fs.writeFileSync(journalFilePath, JSON.stringify(journalEntry, null, 2));
-    console.log('✅ Wiki journal JSON created at:', journalFilePath);
+    // Compose top-level JournalEntry object with required root-level _id, _key, and sort
+    const entry = {
+      name: "Wiki Information",
+      pages: pagesWithMeta,
+      folder: null,
+      categories: [],
+      ownership: { default: 0 },
+      flags: {},
+      _stats: {
+        compendiumSource: null,
+        duplicateSource: null,
+        exportSource: null,
+        coreVersion,
+        systemId,
+        systemVersion,
+        createdTime: now,
+        modifiedTime: now,
+        lastModifiedBy
+      },
+      _id: entryId,
+      sort: 0,
+      _key: `!journal!${entryId}`
+    };
+    const safeName = entry.name.replace(/[^a-zA-Z0-9_\-]/g, '_');
+    const filename = `JournalEntry_${safeName}_${entryId}.json`;
+    const filePath = path.join(sourceFolder, filename);
+    fs.writeFileSync(filePath, JSON.stringify(entry, null, 2));
+    console.log('✅ Wiki JournalEntry JSON created at:', filePath);
   } catch (error) {
     console.error('❌ Failed to generate wiki journal entry:', error.message);
   }
 }
 
-async function buildWikiPackWithCLI() {
+/*async function buildWikiPackWithCLI() {
   try {
     console.log('Building wiki journal pack using Foundry VTT CLI...');
 
@@ -199,8 +244,16 @@ async function buildWikiPackWithCLI() {
 (async () => {
   console.log('Starting pack compilation...');
 
+  // Clean all output folders before compiling packs
+  for (const packDir of packDirs) {
+    const outputPath = path.join(PACKS_OUTPUT_DIR, packDir);
+    if (fs.existsSync(outputPath)) {
+      fs.rmSync(outputPath, { recursive: true, force: true });
+    }
+  }
+
   // Generate the wiki journal entry
-  //await generateWikiJournal();
+  await generateWikiJournal();
 
   // Build the wiki journal pack using the CLI
   //await buildWikiPackWithCLI();
@@ -215,7 +268,7 @@ async function buildWikiPackWithCLI() {
       console.log(`  From: ${sourcePath}`);
       console.log(`  To: ${outputPath}`);
 
-      // Remove existing output directory to ensure clean build
+      // Remove existing output directory to ensure clean build (already done above, but safe to keep)
       if (fs.existsSync(outputPath)) {
         fs.rmSync(outputPath, { recursive: true, force: true });
       }

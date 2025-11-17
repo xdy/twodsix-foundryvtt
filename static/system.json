@@ -335,8 +335,8 @@
     {
       "label": "Wiki Journal",
       "type": "JournalEntry",
-      "name": "test-import",
-      "path": "packs/test-import",
+      "name": "wiki-journal",
+      "path": "packs/wiki-journal",
       "system": "twodsix",
       "ownership": {
         "PLAYER": "OBSERVER",
