@@ -174,17 +174,10 @@ async function generateWikiJournal() {
     const sourceFolder = path.join(PACKS_SRC_DIR, 'wiki-journal');
     // Remove all files and subfolders in the wiki-journal source folder
     if (fs.existsSync(sourceFolder)) {
-      for (const entry of fs.readdirSync(sourceFolder)) {
-        const entryPath = path.join(sourceFolder, entry);
-        if (fs.statSync(entryPath).isDirectory()) {
-          fs.rmSync(entryPath, { recursive: true, force: true });
-        } else {
-          fs.unlinkSync(entryPath);
-        }
-      }
-    } else {
-      fs.mkdirSync(sourceFolder, { recursive: true });
+      fs.rmSync(sourceFolder, { recursive: true, force: true });
     }
+    fs.mkdirSync(sourceFolder, { recursive: true });
+
     // Compose top-level JournalEntry object with required root-level _id, _key, and sort
     const entry = {
       name: "Wiki Information",
@@ -269,9 +262,9 @@ async function generateWikiJournal() {
       console.log(`  To: ${outputPath}`);
 
       // Remove existing output directory to ensure clean build (already done above, but safe to keep)
-      if (fs.existsSync(outputPath)) {
-        fs.rmSync(outputPath, { recursive: true, force: true });
-      }
+      //if (fs.existsSync(outputPath)) {
+      //  fs.rmSync(outputPath, { recursive: true, force: true });
+      //}
 
       await compilePack(sourcePath, outputPath, { recursive: true, log: true });
       console.log(`  ✅ Successfully compiled ${packDir}`);
