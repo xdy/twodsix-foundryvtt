@@ -42,7 +42,7 @@ let successCount = 0;
 let errorCount = 0;
 
 //NOTE THE COMMENTED OUT CODE BLOCK BELOW IS FOR AUTOMATIC GENERATION OF JounralEntry from Twodsix Wiki.  For some reason the building of the pack results in blank JournalEntry
-/*function sanitizeContent(content) {
+function sanitizeContent(content) {
   // Replace problematic characters with their HTML entity equivalents
   return content
     .replace(/&/g, "&amp;")
@@ -74,10 +74,11 @@ async function fetchWikiPages() {
 
       const rawMarkdown = pageResponse.data;
       const sanitizedHtml = sanitizeContent(rawMarkdown); // Convert Markdown to sanitized HTML
+      const pageName = link.split('/').pop().replace(/-/g, ' '); // Generate a name from the URL
 
       pages.push({
         _id: "", // Ensure _id is a blank string for each page
-        name: link.split('/').pop().replace(/-/g, ' '), // Generate a name from the URL
+        name: pageName,
         type: "text",
         title: {
           show: false,
@@ -100,7 +101,12 @@ async function fetchWikiPages() {
           default: -1
         },
         category: null,
-        _key: null
+        _key: null,
+        flags: {
+          twodsix: {
+            disableEnrichment: pageName === "Custom Journal Page Enhancers"
+          }
+        }
       });
     }
 
@@ -124,56 +130,39 @@ async function generateWikiJournal() {
   }
   try {
     const pages = await fetchWikiPages();
-    //console.log('Fetched wiki pages:', pages); // Debugging log
-
     // Assign _id to each page if missing or empty
     const pagesWithIds = pages.map(page => ({
       ...page,
       _id: (typeof page._id === 'string' && page._id.length === 16 && /^[A-Za-z0-9]+$/.test(page._id)) ? page._id : randomId()
     }));
 
-    // Assign _id to the journal entry if missing or empty
-    const journalEntry = {
-      _id: randomId(),
-      name: "Wiki Information",
-      ownership: {
-        default: 0
-      },
-      folder: null,
-      pages: pagesWithIds,
-      _stats: {
-        coreVersion: "13.350",
-        systemId: "twodsix",
-        systemVersion: "6.8.1",
-        createdTime: Date.now(),
-        modifiedTime: Date.now(),
-        lastModifiedBy: null,
-        compendiumSource: null,
-        duplicateSource: null,
-        exportSource: null
-      },
-      sort: 0,
-      categories: [],
-      _key: null
-    };
-    //console.log('Journal entry object before writing to file:', journalEntry); // Debugging log
-
     const sourceFolder = path.join(PACKS_SRC_DIR, 'wiki-journal');
     if (!fs.existsSync(sourceFolder)) {
       fs.mkdirSync(sourceFolder, { recursive: true });
     }
 
-    const journalFilePath = path.join(sourceFolder, 'wiki-journal.json');
-
-    // Write the journalEntry to the JSON file
-    fs.writeFileSync(journalFilePath, JSON.stringify(journalEntry, null, 2));
-    console.log('✅ Wiki journal JSON created at:', journalFilePath);
+    // Write each page as a separate JournalEntry file
+    for (const page of pagesWithIds) {
+      const entry = {
+        _id: randomId(),
+        name: page.name,
+        ownership: { default: 0 },
+        folder: null,
+        pages: [page],
+        sort: 0
+      };
+      const safeName = page.name.replace(/[^a-zA-Z0-9_\-]/g, '_');
+      const filename = `JournalEntry_${safeName}_${entry._id}.json`;
+      const filePath = path.join(sourceFolder, filename);
+      fs.writeFileSync(filePath, JSON.stringify(entry, null, 2));
+      console.log('✅ Wiki JournalEntry JSON created at:', filePath);
+    }
   } catch (error) {
-    console.error('❌ Failed to generate wiki journal entry:', error.message);
+    console.error('❌ Failed to generate wiki journal entries:', error.message);
   }
 }
 
-async function buildWikiPackWithCLI() {
+/*async function buildWikiPackWithCLI() {
   try {
     console.log('Building wiki journal pack using Foundry VTT CLI...');
 
@@ -194,13 +183,13 @@ async function buildWikiPackWithCLI() {
     console.error('❌ Failed to build wiki journal metadata using Foundry VTT CLI:', error.message);
     throw error;
   }
-}*/
+}
 
 (async () => {
   console.log('Starting pack compilation...');
 
   // Generate the wiki journal entry
-  //await generateWikiJournal();
+  await generateWikiJournal();
 
   // Build the wiki journal pack using the CLI
   //await buildWikiPackWithCLI();
@@ -237,4 +226,4 @@ async function buildWikiPackWithCLI() {
   }
   console.log(`📁 Binary pack files are now in: ${PACKS_OUTPUT_DIR}`);
   console.log(`🚀 Ready for distribution!`);
-})();
+})();*/

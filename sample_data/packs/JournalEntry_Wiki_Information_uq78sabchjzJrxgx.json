@@ -30,13 +30,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294784063,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.rgbPNKvpuAyUp2pp"
     },
     {
       "_id": "ZVRfGttKa8qvPGnM",
@@ -48,7 +48,7 @@
       },
       "text": {
         "format": 2,
-        "content": "<h1>Introduction</h1><p>As of version 4.24, Twodsix now allows for custom armor and range modifiers for weapons. Prior to this version, only those weapons defined by the system (per <em>The Traveller Book</em>) could be automated.</p><h1>Custom Format</h1><p>To use a custom weapon modifier, the range band must first be selected as 'Custom'. Two tables should appear below that field. For example, custom data for the submachine gun would look like,</p><img width=\"535\" alt=\"Screenshot 2024-04-05 at 10 27 59 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/4076395f-4ac8-41fb-8371-22dd274f4c19\"><p>If the weapon has both single and automatic fire modes. The modifiers are entered as a pair 'X/Y' where the first value is the single fire modifier and the second value is the auto fire modifier. A '/' must be used to separate the two values (as the original rules source does). For example, the automatic rifle custom data would be entered as,</p><img width=\"537\" alt=\"Screenshot 2024-04-05 at 10 26 10 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/c8bec300-f924-4e38-8469-e39b89862664\"><p>Note that both these examples already exist in the system definition, the examples are meant for illustrative purposes.</p>",
+        "content": "<h1>Introduction</h1><p>As of version 4.24, Twodsix now allows for custom armor and range modifiers for weapons. Prior to this version, only those weapons defined by the system (per <em>The Traveller Book</em>) could be automated.</p><h1>Custom Format</h1><p>To use a custom weapon modifier, the range band must first be selected as 'Custom'. Two tables should appear below that field. For example, custom data for the submachine gun would look like,</p><img width=\"535\" alt=\"Screenshot 2024-04-05 at 10 27 59 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/4076395f-4ac8-41fb-8371-22dd274f4c19\" /><p>If the weapon has both single and automatic fire modes. The modifiers are entered as a pair 'X/Y' where the first value is the single fire modifier and the second value is the auto fire modifier. A '/' must be used to separate the two values (as the original rules source does). For example, the automatic rifle custom data would be entered as,</p><img width=\"537\" alt=\"Screenshot 2024-04-05 at 10 26 10 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/c8bec300-f924-4e38-8469-e39b89862664\" /><p>Note that both these examples already exist in the system definition, the examples are meant for illustrative purposes.</p>",
         "markdown": "# Introduction\nAs of version 4.24, Twodsix now allows for custom armor and range modifiers for weapons.  Prior to this version, only those weapons defined by the system (per _The Traveller Book_) could be automated.\n# Custom Format\nTo use a custom weapon modifier, the range band must first be selected as 'Custom'.  Two tables should appear below that field.  For example, custom data for the submachine gun would look like,\n  \n<img width=\"535\" alt=\"Screenshot 2024-04-05 at 10 27 59 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/4076395f-4ac8-41fb-8371-22dd274f4c19\">\n\nIf the weapon has both single and automatic fire modes.  The modifiers are entered as a pair 'X/Y' where the first value is the single fire modifier and the second value is the auto fire modifier.  A '/' must be used to separate the two values (as the original rules source does).  For example, the automatic rifle custom data would be entered as,\n\n<img width=\"537\" alt=\"Screenshot 2024-04-05 at 10 26 10 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/c8bec300-f924-4e38-8469-e39b89862664\">\n\nNote that both these examples already exist in the system definition, the examples are meant for illustrative purposes."
       },
       "system": {},
@@ -67,13 +67,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294770082,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.ZVRfGttKa8qvPGnM"
     },
     {
       "_id": "t3fzYYOtZ4DBxdzX",
@@ -84,9 +84,9 @@
         "level": 1
       },
       "text": {
-        "format": 2,
-        "content": "<h1>Introduction</h1>\n<p>Enhancers are special elements on a Journal Page that allow for interactivity.  For example, adding the text (while editing) <code>[[/r 2d6\\]]</code> will create a button that makes a roll with two, six-sided dice.  Core foundry has many other enhanced features for Journal entries - such as dragging and dropping a link to other objects, actors and tables.  See this page (https://foundryvtt.com/article/journal/) under \"Dynamic Document Links.\"</p>\n<h1>Custom Enhancers for Twodsix</h1>\n<p>Twodsix currently has three custom enhancers that extend the core FVTT capability.  These enhancers are @DisplayTable, @SkillRoll, and @ItemList.</p>\n<h2>@DisplayTable</h2>\n<p>Normal dragging and dropping of a Roll Table onto a Journal Entry page creates a link that opens that table.  The @DisplayTable option will instead display the table in a html formatted table.  For example, displaying one of the compendium macro tables will look like this,</p>\n<p><img width=\"601\" alt=\"Screenshot 2023-12-08 at 8 42 47 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/d5ba0742-0c20-42cc-8007-4f6d42866f73\" /></p>\n<p>The format for the enhancer is <code>@DisplayTable[UUID or Table Name]{Text Label}</code>.  The easiest way to create this display is to drag and drop the table.  You should see a UUID link something like <code>@UUID[RollTable.u8586ms09wZNqpwN]{Population}</code>.  Change the @UUID prefix to @DisplayTable: <code>@DisplayTable[RollTable.u8586ms09wZNqpwN]{Population}</code>.  Subtables are displayed as the default <code>@UUID[Rolltable.uuid]{optional description}</code> link.</p>\n<h2>@Table</h2>\n<p>This enricher creates a button to directly roll a table result without displaying the table.  It has the format <code>@Table[Rolltable.uuid]{optional description}</code>.  As per @DisplayTable, the easiest way to create is to drag-drop the table into the editor and replace @UUID with @Table.</p>\n<h2>@SkillRoll</h2>\n<p>The @SkillRoll feature creates a clickable skill roll similar to the way skill rolls work for ship positions (https://github.com/xdy/twodsix-foundryvtt/wiki/How-to-use-the-ship-sheet#positions-tab) except that there are no components to link.  The general format is <code>@SkillRoll[skill name | alt skill name / CHR #+]{Custom Text}</code>.  For example, this string <code>@SkillRoll[Zero-G/DEX 10+]{Zero-G Test}</code> creates a button label 'Zero-G Test' and rolls a skill check for the Zero-G skill using dexterity characteristic and a difficulty threshold of 10+ (very difficult or difficult - depending on rules).  Note that the characteristic and difficulty terms are optional.  The skill's default values for characteristic modifier and difficulty are used when nothing is specified in the formula. </p>\n<p>If <code>None</code> is entered for the skill, the click will make a characteristic roll. The CHR string should be the abbreviation shown on the actor sheet.  So if the characteristic label has been customized, use that custom label in the formula.</p>\n<p>For difficulty values that are odd, e.g. 5+, the code chooses the next highest difficulty and adds a custom +1 DM. A player's default character is used for the skill roll actor/context data.  As a GM, the <em>selected</em> character is used for the roll.</p>\n<h2>@ItemList</h2>\n<p>The @ItemList feature creates a drag / droppable list of items that can be added to an actor.  This is a connivence to quickly drop a collection of items (of mixed types) - for example a character package with initial skills and items. The general format is <code>@ItemList itemRef1, itemRef2, ...</code>, where 'itemRef' can be an item name or UUID.  For example, <code>@ItemList Auto Pistol , Cloth, Item.8l6XwFOpHSDCO8tV,Item.pZ8gc26I9shWaAax, Compendium.twodsix.cepheus-deluxe-items.Item.bwjiHCfwS9naDUVy</code>.  UUID's can be easily accessed from an item sheet by clicking on the passport icon in the header. This copies the fill UUID to the clipboard, which can then be pasted into the JournalEntry. Invalid UUID links will be displayed with the broken link symbol.</p>",
-        "markdown": "# Introduction\nEnhancers are special elements on a Journal Page that allow for interactivity.  For example, adding the text (while editing) `[[/r 2d6\\]]` will create a button that makes a roll with two, six-sided dice.  Core foundry has many other enhanced features for Journal entries - such as dragging and dropping a link to other objects, actors and tables.  See this page (https://foundryvtt.com/article/journal/) under \"Dynamic Document Links.\"\n\n# Custom Enhancers for Twodsix\nTwodsix currently has three custom enhancers that extend the core FVTT capability.  These enhancers are @DisplayTable, @SkillRoll, and @ItemList.\n## @DisplayTable\nNormal dragging and dropping of a Roll Table onto a Journal Entry page creates a link that opens that table.  The @DisplayTable option will instead display the table in a html formatted table.  For example, displaying one of the compendium macro tables will look like this,\n\n<img width=\"601\" alt=\"Screenshot 2023-12-08 at 8 42 47 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/d5ba0742-0c20-42cc-8007-4f6d42866f73\">\n\nThe format for the enhancer is `@DisplayTable[UUID or Table Name]{Text Label}`.  The easiest way to create this display is to drag and drop the table.  You should see a UUID link something like `@UUID[RollTable.u8586ms09wZNqpwN]{Population}`.  Change the @UUID prefix to @DisplayTable: `@DisplayTable[RollTable.u8586ms09wZNqpwN]{Population}`.  Subtables are displayed as the default `@UUID[Rolltable.uuid]{optional description}` link.\n\n## @Table\nThis enricher creates a button to directly roll a table result without displaying the table.  It has the format `@Table[Rolltable.uuid]{optional description}`.  As per @DisplayTable, the easiest way to create is to drag-drop the table into the editor and replace @UUID with @Table.\n\n## @SkillRoll\nThe @SkillRoll feature creates a clickable skill roll similar to the way skill rolls work for ship positions (https://github.com/xdy/twodsix-foundryvtt/wiki/How-to-use-the-ship-sheet#positions-tab) except that there are no components to link.  The general format is `@SkillRoll[skill name | alt skill name / CHR #+]{Custom Text}`.  For example, this string `@SkillRoll[Zero-G/DEX 10+]{Zero-G Test}` creates a button label 'Zero-G Test' and rolls a skill check for the Zero-G skill using dexterity characteristic and a difficulty threshold of 10+ (very difficult or difficult - depending on rules).  Note that the characteristic and difficulty terms are optional.  The skill's default values for characteristic modifier and difficulty are used when nothing is specified in the formula. \n\nIf `None` is entered for the skill, the click will make a characteristic roll. The CHR string should be the abbreviation shown on the actor sheet.  So if the characteristic label has been customized, use that custom label in the formula.\n\nFor difficulty values that are odd, e.g. 5+, the code chooses the next highest difficulty and adds a custom +1 DM. A player's default character is used for the skill roll actor/context data.  As a GM, the _selected_ character is used for the roll.\n\n## @ItemList\nThe @ItemList feature creates a drag / droppable list of items that can be added to an actor.  This is a connivence to quickly drop a collection of items (of mixed types) - for example a character package with initial skills and items. The general format is `@ItemList itemRef1, itemRef2, ...`, where 'itemRef' can be an item name or UUID.  For example, `@ItemList Auto Pistol , Cloth, Item.8l6XwFOpHSDCO8tV,Item.pZ8gc26I9shWaAax, Compendium.twodsix.cepheus-deluxe-items.Item.bwjiHCfwS9naDUVy`.  UUID's can be easily accessed from an item sheet by clicking on the passport icon in the header. This copies the fill UUID to the clipboard, which can then be pasted into the JournalEntry. Invalid UUID links will be displayed with the broken link symbol."
+        "format": 1,
+        "content": "<h1>Introduction</h1><p>Enhancers are special elements on a Journal Page that allow for interactivity. For example, adding the text (while editing) [[/r 2d6]] will create a button that makes a roll with two, six-sided dice. Core foundry has many other enhanced features for Journal entries - such as dragging and dropping a link to other objects, actors and tables. See this page ( https://foundryvtt.com/article/journal/ ) under \"Dynamic Document Links.\"</p><h1>Custom Enhancers for Twodsix</h1><p>Twodsix currently has three custom enhancers that extend the core FVTT capability. These enhancers are @DisplayTable,@SkillRoll, and @ItemList.</p><h2>@DisplayTable</h2><p>Normal dragging and dropping of a Roll Table onto a Journal Entry page creates a link that opens that table. The @DisplayTable option will instead display the table in a html formatted table. For example, displaying one of the compendium macro tables will look like this,</p><img width=\"601\" alt=\"Screenshot 2023-12-08 at 8 42 47 AM\" src=\"https://github.com/xdy/twodsix-foundryvtt/assets/72580196/d5ba0742-0c20-42cc-8007-4f6d42866f73\" /><p>The format for the enhancer is <code>@DisplayTable[UUID or Table Name]{Text Label}</code>. The easiest way to create this display is to drag and drop the table. You should see a UUID link something like <code>@UUID[RollTable.u8586ms09wZNqpwN]{Population}</code>. Change the @UUID prefix to @DisplayTable: <code>@DisplayTable[RollTable.u8586ms09wZNqpwN]{Population}</code>. Subtables are displayed as the default <code>@UUID[Rolltable.uuid]{optional description}</code> link.</p><h2>@Table</h2><p>This enricher creates a button to directly roll a table result without displaying the table. It has the format <code>@Table[Rolltable.uuid]{optional description}</code>. As per @DisplayTable, the easiest way to create is to drag-drop the table into the editor and replace @UUID with @Table.</p><h2>@SkillRoll</h2><p>The @SkillRoll feature creates a clickable skill roll similar to the way skill rolls work for ship positions (https://github.com/xdy/twodsix-foundryvtt/wiki/How-to-use-the-ship-sheet#positions-tab) except that there are no components to link. The general format is <code>@SkillRoll[skill name | alt skill name / CHR #+]{Custom Text}</code>. For example, this string <code>@SkillRoll[Zero-G/DEX 10+]{Zero-G Test}</code> creates a button label 'Zero-G Test' and rolls a skill check for the Zero-G skill using dexterity characteristic and a difficulty threshold of 10+ (very difficult or difficult - depending on rules). Note that the characteristic and difficulty terms are optional. The skill's default values for characteristic modifier and difficulty are used when nothing is specified in the formula.</p><p>If <code>None</code> is entered for the skill, the click will make a characteristic roll. The CHR string should be the abbreviation shown on the actor sheet. So if the characteristic label has been customized, use that custom label in the formula.</p><p>For difficulty values that are odd, e.g. 5+, the code chooses the next highest difficulty and adds a custom +1 DM. A player's default character is used for the skill roll actor/context data. As a GM, the <em>selected</em> character is used for the roll.</p><h2>@ItemList</h2><p>The @ItemList feature creates a drag / droppable list of items that can be added to an actor. This is a connivence to quickly drop a collection of items (of mixed types) - for example a character package with initial skills and items. The general format is <code>@ItemList itemRef1, itemRef2, ...</code>, where 'itemRef' can be an item name or UUID. For example, <code>@ItemList Auto Pistol , Cloth, Item.8l6XwFOpHSDCO8tV,Item.pZ8gc26I9shWaAax, Compendium.twodsix.cepheus-deluxe-items.Item.bwjiHCfwS9naDUVy</code>. UUID's can be easily accessed from an item sheet by clicking on the passport icon in the header. This copies the fill UUID to the clipboard, which can then be pasted into the JournalEntry. Invalid UUID links will be displayed with the broken link symbol.</p>",
+        "markdown": ""
       },
       "system": {},
       "image": {},
@@ -104,13 +104,18 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294649839,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+        "modifiedTime": 1763310061885
       },
-      "flags": {},
+      "flags": {
+        "twodsix": {
+          "disableEnrichment": true
+        }
+      },
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.t3fzYYOtZ4DBxdzX"
     },
     {
       "_id": "IcTaqdFWQfnmjsas",
@@ -141,13 +146,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294745735,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.IcTaqdFWQfnmjsas"
     },
     {
       "_id": "ZSomhlxn3toi6F24",
@@ -178,13 +183,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294756662,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.ZSomhlxn3toi6F24"
     },
     {
       "_id": "AaM9N0S9bIqO5dKS",
@@ -215,13 +220,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294797079,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.AaM9N0S9bIqO5dKS"
     },
     {
       "_id": "emme6AanYOtmyqsI",
@@ -252,13 +257,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294813340,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.emme6AanYOtmyqsI"
     },
     {
       "_id": "b468Ko71hp5zN4LV",
@@ -289,13 +294,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294821164,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.b468Ko71hp5zN4LV"
     },
     {
       "_id": "hcHw2D2fWJrfUYlU",
@@ -326,13 +331,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294707155,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.hcHw2D2fWJrfUYlU"
     },
     {
       "_id": "gOqCkzqgrulIHiI4",
@@ -363,13 +368,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294845049,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.gOqCkzqgrulIHiI4"
     },
     {
       "_id": "gK3xt1hWnbAYou9H",
@@ -400,13 +405,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294861925,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.gK3xt1hWnbAYou9H"
     },
     {
       "_id": "XGJ3HOSRXsNwCWRL",
@@ -437,13 +442,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294687693,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.XGJ3HOSRXsNwCWRL"
     },
     {
       "_id": "cXd7MfI3l7kgGekq",
@@ -474,13 +479,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294876448,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.cXd7MfI3l7kgGekq"
     },
     {
       "_id": "LkUYFhHzCbkMoPZe",
@@ -511,13 +516,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294886575,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.LkUYFhHzCbkMoPZe"
     },
     {
       "_id": "nJdkpbVazk5pKyf9",
@@ -548,13 +553,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294902943,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.nJdkpbVazk5pKyf9"
     },
     {
       "_id": "Dh9TB2pHoB1S2swr",
@@ -585,13 +590,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294915302,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.Dh9TB2pHoB1S2swr"
     },
     {
       "_id": "ayKoO1nnMGIPOQaf",
@@ -622,13 +627,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763295108255,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.ayKoO1nnMGIPOQaf"
     },
     {
       "_id": "MqvM8Vt5oMff99kp",
@@ -659,13 +664,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294968956,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.MqvM8Vt5oMff99kp"
     },
     {
       "_id": "slemuSt2J5Y9o1bD",
@@ -696,13 +701,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294977149,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.slemuSt2J5Y9o1bD"
     },
     {
       "_id": "AeCgfxxNLFqVIZ5p",
@@ -733,13 +738,13 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294987162,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.AeCgfxxNLFqVIZ5p"
     },
     {
       "_id": "PXIqaRCh7uDQSZA0",
@@ -770,36 +775,34 @@
         "coreVersion": "13.351",
         "systemId": "twodsix",
         "systemVersion": "6.9.1",
-        "modifiedTime": 1763294995269,
-        "lastModifiedBy": "g35c71Hsyv7w1Lw4"
+        "lastModifiedBy": null
       },
       "flags": {},
       "ownership": {
         "default": -1
-      }
+      },
+      "_key": "!journal.pages!uq78sabchjzJrxgx.PXIqaRCh7uDQSZA0"
     }
   ],
   "folder": null,
   "categories": [],
+  "ownership": {
+    "default": 0,
+    "g35c71Hsyv7w1Lw4": 3
+  },
   "flags": {},
   "_stats": {
     "compendiumSource": null,
     "duplicateSource": null,
-    "exportSource": {
-      "worldId": "clean-v13-world",
-      "uuid": "JournalEntry.ao2uBOJmu8ApuFsx",
-      "coreVersion": "13.351",
-      "systemId": "twodsix",
-      "systemVersion": "6.9.1"
-    },
+    "exportSource": null,
     "coreVersion": "13.351",
     "systemId": "twodsix",
     "systemVersion": "6.9.1",
-    "createdTime": 1763294327225,
-    "modifiedTime": 1763294374721,
+    "createdTime": 1763298035762,
+    "modifiedTime": 1763298035762,
     "lastModifiedBy": "g35c71Hsyv7w1Lw4"
   },
-  "ownership": {
-    "default": 0
-  }
+  "_id": "uq78sabchjzJrxgx",
+  "sort": 0,
+  "_key": "!journal!uq78sabchjzJrxgx"
 }
