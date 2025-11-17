@@ -44,7 +44,7 @@ let successCount = 0;
 let errorCount = 0;
 
 //NOTE THE COMMENTED OUT CODE BLOCK BELOW IS FOR AUTOMATIC GENERATION OF JounralEntry from Twodsix Wiki.  For some reason the building of the pack results in blank JournalEntry
-function sanitizeContent(content) {
+/*function sanitizeContent(content) {
   // Replace problematic characters with their HTML entity equivalents
   return content
     .replace(/&/g, "&amp;")
@@ -52,7 +52,7 @@ function sanitizeContent(content) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
-}
+}*/
 
 async function fetchWikiPages() {
   try {
@@ -172,16 +172,18 @@ async function generateWikiJournal() {
       };
     });
     const sourceFolder = path.join(PACKS_SRC_DIR, 'wiki-journal');
-    if (!fs.existsSync(sourceFolder)) {
-      fs.mkdirSync(sourceFolder, { recursive: true });
-    } else {
-      // Remove all existing files in the wiki-journal folder before generating new ones
-      for (const file of fs.readdirSync(sourceFolder)) {
-        const filePath = path.join(sourceFolder, file);
-        if (fs.statSync(filePath).isFile()) {
-          fs.unlinkSync(filePath);
+    // Remove all files and subfolders in the wiki-journal source folder
+    if (fs.existsSync(sourceFolder)) {
+      for (const entry of fs.readdirSync(sourceFolder)) {
+        const entryPath = path.join(sourceFolder, entry);
+        if (fs.statSync(entryPath).isDirectory()) {
+          fs.rmSync(entryPath, { recursive: true, force: true });
+        } else {
+          fs.unlinkSync(entryPath);
         }
       }
+    } else {
+      fs.mkdirSync(sourceFolder, { recursive: true });
     }
     // Compose top-level JournalEntry object with required root-level _id, _key, and sort
     const entry = {
@@ -242,6 +244,14 @@ async function generateWikiJournal() {
 (async () => {
   console.log('Starting pack compilation...');
 
+  // Clean all output folders before compiling packs
+  for (const packDir of packDirs) {
+    const outputPath = path.join(PACKS_OUTPUT_DIR, packDir);
+    if (fs.existsSync(outputPath)) {
+      fs.rmSync(outputPath, { recursive: true, force: true });
+    }
+  }
+
   // Generate the wiki journal entry
   await generateWikiJournal();
 
@@ -258,7 +268,7 @@ async function generateWikiJournal() {
       console.log(`  From: ${sourcePath}`);
       console.log(`  To: ${outputPath}`);
 
-      // Remove existing output directory to ensure clean build
+      // Remove existing output directory to ensure clean build (already done above, but safe to keep)
       if (fs.existsSync(outputPath)) {
         fs.rmSync(outputPath, { recursive: true, force: true });
       }
