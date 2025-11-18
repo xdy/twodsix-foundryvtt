@@ -85,7 +85,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
     "vinyl-fs": "^4.0.2",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "browserslist": [
     "last 3 versions"
