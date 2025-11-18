@@ -231,11 +231,12 @@ function getDataPath() {
   const config = fs.readJSONSync('foundryconfig.json');
 
   if (config?.dataPath) {
-    if (!fs.existsSync(path.resolve(config.dataPath))) {
+    // Always append '/Data' to the configured dataPath
+    const dataDir = path.resolve(config.dataPath, 'Data');
+    if (!fs.existsSync(dataDir)) {
       throw new Error('User Data path invalid, no Data directory found');
     }
-
-    return path.resolve(config.dataPath);
+    return dataDir;
   } else {
     throw new Error('No User Data path defined in foundryconfig.json');
   }
@@ -255,17 +256,16 @@ async function linkUserData() {
   const linkDirectory = path.resolve(getDataPath(), destinationDirectory, systemName);
   console.log(linkDirectory);
 
-  if (argv.clean || argv.c) {
-    console.log(chalk.yellow(`Removing build in ${chalk.blueBright(linkDirectory)}.`));
-
+  // Always remove the existing directory or symlink before creating the new symlink
+  if (fs.existsSync(linkDirectory)) {
+    console.log(chalk.yellow(`Removing existing build or link at ${chalk.blueBright(linkDirectory)}.`));
     await fs.remove(linkDirectory);
-  } else if (!fs.existsSync(linkDirectory)) {
-    console.log(chalk.green(`Linking dist to ${chalk.blueBright(linkDirectory)}.`));
-    await fs.ensureDir(path.resolve(linkDirectory, '..'));
-    // Use 'junction' on Windows to avoid admin/Developer Mode requirements for directory symlinks
-    const symlinkType = process.platform === 'win32' ? 'junction' : 'dir';
-    await fs.symlink(path.resolve(distDirectory), linkDirectory, symlinkType);
   }
+  console.log(chalk.green(`Linking dist to ${chalk.blueBright(linkDirectory)}.`));
+  await fs.ensureDir(path.resolve(linkDirectory, '..'));
+  // Use 'junction' on Windows to avoid admin/Developer Mode requirements for directory symlinks
+  const symlinkType = process.platform === 'win32' ? 'junction' : 'dir';
+  await fs.symlink(path.resolve(distDirectory), linkDirectory, symlinkType);
 }
 
 /********************/
@@ -370,7 +370,7 @@ async function buildSummary() {
   console.log(`📁 Packs: ${chalk.blueBright(distDirectory + '/packs')}`);
   console.log(chalk.cyan('=======================================================\n'));
   if (buildStatus.errors.length === 0) {
-    console.log(chalk.green('Next: You can now run `npm run link` to symlink to Foundry VTT.'));
+    console.log(chalk.green('Next: You can now run `pnpm run link` to symlink to Foundry VTT.'));
   }
 }
 
