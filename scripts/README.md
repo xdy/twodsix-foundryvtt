@@ -23,19 +23,19 @@ These scripts enable a JSON-first workflow for pack management:
 
 ```bash
 # Extract binary packs to JSON source files
-npm run packs:extract
+pnpm run packs:extract
 
 # Build binary packs from JSON source files  
-npm run packs:build
+pnpm run packs:build
 
 # Full extract + build cycle
-npm run packs:rebuild
+pnpm run packs:rebuild
 
 # One-time migration from binary to JSON tracking
-npm run packs:transition
+pnpm run packs:transition
 
 # Verify the complete workflow is working
-npm run packs:verify
+pnpm run packs:verify
 ```
 
 ### Direct Usage
@@ -56,17 +56,17 @@ node scripts/build-packs.mjs
 
 ### Initial Setup (Done Once)
 
-1. ✅ Install Foundry CLI: `npm install -g @foundryvtt/foundryvtt-cli`
-2. ✅ Extract existing packs: `npm run packs:extract`
+1. ✅ Install Foundry CLI: `pnpm install -g @foundryvtt/foundryvtt-cli`
+2. ✅ Extract existing packs: `pnpm run packs:extract`
 3. ✅ Update `.gitignore` to exclude binary packs
-4. ✅ Transition git tracking: `npm run packs:transition`
+4. ✅ Transition git tracking: `pnpm run packs:transition`
 5. ⏳ Integrate with build process
 
 ### Git Migration
 
 When transitioning an existing repository:
 
-1. **Run transition script**: `npm run packs:transition`
+1. **Run transition script**: `pnpm run packs:transition`
 2. **Review changes**: `git diff --cached`
 3. **Commit the migration**: `git commit -m "feat: migrate to JSON-based pack management"`
 
@@ -80,7 +80,7 @@ The transition script will:
 ### Daily Development
 
 1. **Edit pack data**: Modify JSON files in `packs-src/`
-2. **Build for testing**: `npm run packs:build`
+2. **Build for testing**: `pnpm run packs:build`
 3. **Test in Foundry**: Start development server
 4. **Commit changes**: Only commit `packs-src/` files, not `static/packs/`
 
@@ -88,7 +88,7 @@ The transition script will:
 
 1. **Load in Foundry**: Import/update pack data through the UI
 2. **Export**: Use Foundry's pack export or module tools
-3. **Extract**: `npm run packs:extract` to get latest JSON
+3. **Extract**: `pnpm run packs:extract` to get latest JSON
 4. **Review changes**: Use git diff to see what changed
 5. **Commit**: Commit the updated JSON files
 
@@ -126,4 +126,4 @@ static/packs/                 # Binary pack files (generated, ignored by git)
 - The binary packs in `static/packs/` are automatically regenerated
 - Only the JSON files in `packs-src/` should be committed to version control
 - The build process ensures binary packs are always up to date with JSON source
-- Use `npm run packs:rebuild` if you want to start fresh from JSON source
+- Use `pnpm run packs:rebuild` if you want to start fresh from JSON source

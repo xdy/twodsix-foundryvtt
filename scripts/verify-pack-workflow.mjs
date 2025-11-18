@@ -50,13 +50,13 @@ function main() {
   console.log();
 
   if (!hasSource) {
-    console.log('⚠️  No JSON source files found. Run "npm run packs:extract" first.');
+    console.log('⚠️  No JSON source files found. Run "pnpm run packs:extract" first.');
     return;
   }
 
   // Step 2: Test build process
   console.log('📋 Step 2: Testing pack build process');
-  if (!runCommand('npm run packs:build', 'Building binary packs from JSON source')) {
+  if (!runCommand('pnpm run packs:build', 'Building binary packs from JSON source')) {
     return;
   }
 
@@ -69,7 +69,7 @@ function main() {
 
   // Step 4: Test rebuild process
   console.log('📋 Step 4: Testing full rebuild cycle');
-  if (!runCommand('npm run packs:rebuild', 'Running extract + build cycle')) {
+  if (!runCommand('pnpm run packs:rebuild', 'Running extract + build cycle')) {
     return;
   }
 

@@ -10,7 +10,7 @@ sed -i -r s"~${MANIFEST_SEARCH_PATTERN}~${LATEST_MAIN_REPLACE}~" static/system.j
 sed -i -r s"~${DOWNLOAD_SEARCH_PATTERN}~${VERSION_MAIN_REPLACE}~" static/system.json &&
 cp static/system.json dist &&
 sed -i -e 's|\(.*"version"\): "\(.*\)",.*|\1: '"\"$1\",|" package.json &&
-npm install &&
+pnpm install &&
 cd dist || exit &&
 zip -r twodsix.zip ./* &&
 cd ..
