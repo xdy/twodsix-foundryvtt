@@ -1,0 +1,79 @@
+{
+  "name": "Dagger",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/dagger.svg",
+  "system": {
+    "name": "Dagger",
+    "techLevel": 1,
+    "description": "A small knife weapon with a flat, two-edged blade approximately 200mm in length. Daggers are usually carried in a belt sheath, or less frequently concealed in a boot sheath or strapped to the forearm. Daggers are usually as much a tool as a last-resort weapon of defense, and worn constantly. Each weighs 250 grams; that weight, however, does not count against the weight load of the character as the weapon is worn constantly and comfortably.",
+    "shortdescr": "Dagger - melee",
+    "quantity": 1,
+    "weight": 250,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Blade Combat (Dagger)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "5",
+    "rangeBand": "dagger",
+    "weaponType": "melee",
+    "damageType": "piercing",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 3/-2 8/+2",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "mpyM4Cvw0iFsvECX",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589060,
+    "modifiedTime": 1760016421892,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "hG3eC4SDXAIVR9jP",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!hG3eC4SDXAIVR9jP"
+}

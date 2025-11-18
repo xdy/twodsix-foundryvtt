@@ -1,0 +1,79 @@
+{
+  "name": "Foil",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/fencer.svg",
+  "system": {
+    "name": "Foil",
+    "techLevel": 3,
+    "description": "Also known as the rapier, this weapon is a light, sword-like weapon with a pointed, edged blade 800mm in length, and a basket or cup hilt to protect the hand. Foils are worn in scabbards attached to the belt.",
+    "shortdescr": "Foil - melee",
+    "quantity": 1,
+    "weight": 500,
+    "price": 100,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Blade Combat (Foil)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "foil",
+    "weaponType": "melee",
+    "damageType": "piercing",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 4/-1 10/+1",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "mpyM4Cvw0iFsvECX",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696589228,
+    "modifiedTime": 1760016421887,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "UxJqQaQ8xYDyPy4P",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!UxJqQaQ8xYDyPy4P"
+}

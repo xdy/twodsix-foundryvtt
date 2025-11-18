@@ -1,0 +1,81 @@
+{
+  "_id": "CeT5wowt8AoWzA8a",
+  "name": "Disposable Anti-Vehicle Rocket",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/disposable-anti-vehicle-rocket.svg",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "Cheap one-use man-portable rocket. Functions as an armor-piercing rocket.<div><br></div><div>Blast 2: This weapon has an explosive component or is otherwise effective against targets in its blast radius. The number given is the blast radius in meters.&nbsp;</div><div><br></div><div>Bulky: A weapon that has powerful recoil or is simply extremely heavy—this makes it difficult to use effectively in combat by someone of a weak physical stature. Characters with STR 8 or less get a -2 penalty when using such weapons.&nbsp;</div>",
+    "shortdescr": "Cheap one-use man-portable rocket",
+    "quantity": 1,
+    "weight": 3,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 2,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "50/200",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": null,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "50/200",
+    "weaponType": "Ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "Blast 2, Bulky",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "TID7XHQIHysAG8fK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080265,
+    "modifiedTime": 1760016422872,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!CeT5wowt8AoWzA8a"
+}

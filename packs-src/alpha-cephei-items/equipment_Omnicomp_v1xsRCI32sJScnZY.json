@@ -1,0 +1,60 @@
+{
+  "_id": "v1xsRCI32sJScnZY",
+  "name": "Omnicomp",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/omnicomp.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A hand-held, light-weight computer which evolved from both the laptop and the tablet computer. It can translate speech and written text in all but the most obscure languages on the fly, effectively working as a universal translator for live conversations with aliens if needed. TL9 batteries last for months between recharging.",
+    "shortdescr": "Portable computer.",
+    "quantity": 1,
+    "weight": 1,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Computers",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080280,
+    "modifiedTime": 1760016422887,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!v1xsRCI32sJScnZY"
+}

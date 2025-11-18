@@ -1,0 +1,52 @@
+{
+  "_id": "xy0TYSD8LFY72O4F",
+  "name": "Jack-of-All-Trades",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "This special skill reduces the unskilled penalty (DM-3, noted above) by its level. For example, a character with Jack o’ Trades at level 2 would only suffer DM-1 to unskilled rolls. You may not gain more than 3 levels in this skill and cannot improve it after character generation.",
+    "shortdescr": "Reduces the unskilled penalty for not having the appropriate skill",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_8ihbra3bsbx",
+      "path": "ce ftl skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/jack-of-all-trades.svg",
+  "effects": [],
+  "folder": "dTD1TgwfWWfX38TO",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079652,
+    "modifiedTime": 1760016422107,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!xy0TYSD8LFY72O4F"
+}

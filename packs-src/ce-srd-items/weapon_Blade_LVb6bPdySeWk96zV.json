@@ -1,0 +1,79 @@
+{
+  "_id": "LVb6bPdySeWk96zV",
+  "name": "Blade",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/blade.svg",
+  "system": {
+    "name": "Blade",
+    "techLevel": 3,
+    "description": "A hybrid knife weapon with a heavy, flat two-edged blade nearly 300mm in length, and (often, but not always) a semi-basket handguard. Because of the bulk of the handguard, it is generally carried in a belt scabbard. Blades are as much survival tools as weapons, and are often found in emergency kits, lifeboats etc.",
+    "shortdescr": "Blade - melee",
+    "quantity": 1,
+    "weight": 0.35,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat (Piercing Weapons)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "extendedReach",
+    "weaponType": "melee",
+    "damageType": "slashing",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "RZyQz33plmQirMxo",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696588274,
+    "modifiedTime": 1760016422327,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.LVb6bPdySeWk96zV",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!LVb6bPdySeWk96zV"
+}

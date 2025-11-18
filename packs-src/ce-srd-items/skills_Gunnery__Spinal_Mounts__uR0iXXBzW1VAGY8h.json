@@ -1,0 +1,53 @@
+{
+  "name": "Gunnery (Spinal Mounts)",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character is skilled at operating bay or spinal mount weapons on board a ship. These weapons can be used against other ships or for planetary bombardment or attacks on stationary targets.",
+    "shortdescr": "The character is skilled at operating bay or spinal mount weapons on board a ship.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Gunnery",
+    "name": "Gunnery (Spinal Mounts)",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/gunnery-spinal-mounts.svg",
+  "effects": [],
+  "_id": "uR0iXXBzW1VAGY8h",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079900,
+    "modifiedTime": 1760016422344,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!uR0iXXBzW1VAGY8h"
+}

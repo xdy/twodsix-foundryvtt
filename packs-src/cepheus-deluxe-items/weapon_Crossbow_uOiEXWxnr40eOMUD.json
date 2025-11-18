@@ -1,0 +1,80 @@
+{
+  "_id": "uOiEXWxnr40eOMUD",
+  "name": "Crossbow",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/crossbow.svg",
+  "system": {
+    "name": "Crossbow",
+    "techLevel": 2,
+    "description": "Muscle-powered ranged weapons. A Crossbow requires 2 actions to reload; a quiver holds 20 crossbow quarrels and counts as one encumbrance item (included in weapon weight).",
+    "shortdescr": "Crossbow - ranged",
+    "quantity": 1,
+    "weight": 2,
+    "price": 75,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "300/600",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "20",
+    "useConsumableForAttack": "",
+    "magazineCost": 10,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "300/600",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "WM0MvR08jIVlUsUq",
+  "sort": 1600000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_sk461konhrd",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737480,
+    "modifiedTime": 1760016422778,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.5GbNIduHLEvk5bXS",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!uOiEXWxnr40eOMUD"
+}

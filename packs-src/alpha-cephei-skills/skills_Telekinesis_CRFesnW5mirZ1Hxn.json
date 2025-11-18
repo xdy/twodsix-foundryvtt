@@ -1,0 +1,55 @@
+{
+  "name": "Telekinesis",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "PSI",
+    "type": "skills",
+    "description": "<div><div>Telekinesis allows the psion to manipulate objects without physically touching them.\n</div></div><div><br></div><div>Lift 50 grams (PSI 1, 50m): lift and maneuver up to a 50 grams object for 1 minute (10 combat rounds).\n</div><div><br></div><div>Lift 1kg (PSI 2, 50m): lift and maneuver up to a 1kg object for 1D combat rounds. Can cause 1D damage if hurled at a target.\n</div><div><br></div><div>Lift 100kg (PSI 5, 50m): lift and maneuver up to a 100kg object for 1D combat rounds. This will cause 3D damage if hurled at a target.\n</div><div><br></div><div>Telekinetic Shield (PSI 3 but see cost below, personal): this creates an invisible barrier against fast moving attacks in front of the psion’s hand, covering a 1,5m x 1,5m area. This gives the user 2 points of armor protection for each PSI point spent on activation against attacks from that direction. After activated, it lasts until the beginning of the psion’s next round.\n</div><div><br></div><div>Choke (PSI 8, 10m): grab a single human-sized creature by its throat, or equivalent, and suffocate them for 1D damage per round, for a maximum number of rounds equal to the character's full PSI score.\n</div><div><br></div><div>Microkinesis (PSI 10 but see cost below, personal): manipulate microscopic objects. Microkinesis may be used for subtle, but highly effective attacks on internal organs, causing 1D damage per 2 PSI points spent. Alternatively, this power may aid microsurgery by +1 per 3 PSI points spent. Finally, the psion may assist Engineering and Repair skill checks by +1 per 3 PSI points spent.</div>",
+    "shortdescr": "Clairsentience (PSI 7, 5km)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ok68zut371",
+      "path": "ce light-psionics",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/clairsentience.svg",
+  "effects": [],
+  "folder": "HvZvDaB5SC7wC3gv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700428400159,
+    "modifiedTime": 1760016422622,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "CRFesnW5mirZ1Hxn",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!CRFesnW5mirZ1Hxn"
+}

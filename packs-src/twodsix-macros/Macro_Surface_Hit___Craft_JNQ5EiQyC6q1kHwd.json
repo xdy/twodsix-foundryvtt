@@ -1,0 +1,33 @@
+{
+  "_id": "JNQ5EiQyC6q1kHwd",
+  "name": "Surface Hit - Craft",
+  "type": "script",
+  "author": "msuh6wePTuFs4VOF",
+  "img": "systems/twodsix/assets/icons/components/hull.svg",
+  "scope": "global",
+  "command": "let compendiumTables = await game.packs.get(\"twodsix.cepheus-deluxe-tables\").getDocuments();\nlet table = await compendiumTables.find(o => o.name === \"Surface Hit - Craft\");\nlet result = await table.draw();",
+  "folder": null,
+  "sort": 2000000,
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_yxfg7c9wgej"
+    }
+  },
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080041,
+    "modifiedTime": 1760016422569,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Macro.2wp1RB1XaOIEUgOd",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!macros!JNQ5EiQyC6q1kHwd"
+}

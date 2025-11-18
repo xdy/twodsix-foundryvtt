@@ -1,0 +1,53 @@
+{
+  "name": "Melee Combat (Bludgeoning Weapons)",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character is skilled at using bludgeoning weapons, such as clubs, staffs and really big wrenches, in personal combat.",
+    "shortdescr": "The character is skilled at using bludgeoning weapons, such as clubs, staffs and really big wrenches, in personal combat.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Melee Combat",
+    "name": "Melee Combat (Bludgeoning Weapons)",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/melee-combat-bludgeoning-weapons.svg",
+  "effects": [],
+  "_id": "i0v3U3HdeIh4Nu4Q",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079876,
+    "modifiedTime": 1760016422339,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!i0v3U3HdeIh4Nu4Q"
+}

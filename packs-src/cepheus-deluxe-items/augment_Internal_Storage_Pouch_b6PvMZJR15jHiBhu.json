@@ -1,0 +1,62 @@
+{
+  "name": "Internal Storage Pouch",
+  "type": "augment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "An abdominal pouch accessible via an artificial sphincter. Stows items up to 0.5 kg in weight and 0.5 liters in volume. The Storage Pouch is discreet and can only be discovered by detailed inspection or medical scans.",
+    "shortdescr": "abdominal storage pouch",
+    "quantity": 1,
+    "weight": 0,
+    "price": 800,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Torso",
+    "type": "augment",
+    "bonus": "abdominal pouch",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "b6PvMZJR15jHiBhu",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737461,
+    "modifiedTime": 1760016422753,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.oaJPvxsVbEGp5diH",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!b6PvMZJR15jHiBhu"
+}

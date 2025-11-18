@@ -1,0 +1,70 @@
+{
+  "_id": "MQoNybNV0m7zfi1h",
+  "name": "Spaceship Damage",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Spaceship Damage",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<table style=\"height:362px;width:90.6976%\" border=\"0\">\n<tbody>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>2D</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Damage</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>2</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Hull Breach</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>3</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Power Plant</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>4</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Jump Drive</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>5</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Weapons</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>6</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Maneuver Drive</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>7</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Fuel</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>8</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Cargo Hold</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>9</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Crew</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>10</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Computer</p>\n</td>\n</tr>\n<tr style=\"height:32px\">\n<td style=\"width:20.9721%;height:32px\">\n<p>11</p>\n</td>\n<td style=\"width:78.0279%;height:32px\">\n<p>Bridge</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:20.9721%;height:10px\">\n<p>12</p>\n</td>\n<td style=\"width:78.0279%;height:10px\">\n<p>Ship Destroyed</p>\n</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "NxkgAY2mtfSFAQKj",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!MQoNybNV0m7zfi1h.NxkgAY2mtfSFAQKj"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079969,
+    "modifiedTime": 1760016422450,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!MQoNybNV0m7zfi1h"
+}

@@ -1,0 +1,77 @@
+{
+  "_id": "FDDV7teoxMWUn42Q",
+  "name": "Broadsword",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/broadsword.svg",
+  "system": {
+    "name": "Broadsword",
+    "techLevel": 2,
+    "description": "Broadsword (TL2), a large two-handed sword, counts as 2 “Items” for encumbrance purposes. A two-handed Great-Axe uses the same stats.",
+    "shortdescr": "Broadsword - melee",
+    "quantity": 1,
+    "weight": 2,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "reach",
+    "weaponType": "melee",
+    "damageType": "slashing",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "EVonyMdL7ZagHhbM",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_q4e3naht7b",
+      "path": "ce ftl weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079628,
+    "modifiedTime": 1760016422093,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!FDDV7teoxMWUn42Q"
+}

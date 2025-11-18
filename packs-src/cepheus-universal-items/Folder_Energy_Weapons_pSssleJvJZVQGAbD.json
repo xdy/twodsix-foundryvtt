@@ -1,0 +1,22 @@
+{
+  "name": "Energy Weapons",
+  "sorting": "a",
+  "folder": "K4OqoQeeBHcinb9z",
+  "type": "Item",
+  "_id": "pSssleJvJZVQGAbD",
+  "description": "",
+  "sort": 100000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "twodsix",
+    "systemVersion": "5.8.8",
+    "createdTime": 1729015078705,
+    "modifiedTime": 1729015078755,
+    "lastModifiedBy": "G0793twHyHfODmAJ"
+  },
+  "_key": "!folders!pSssleJvJZVQGAbD"
+}

@@ -1,0 +1,59 @@
+{
+  "_id": "3iw5063p65GI5SR0",
+  "name": "Backpack",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 1,
+    "description": "A Backpack does not count as an item for encumbrance when worn. The items in the backpack still do count towards encumbrance.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 0,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_0q89iy6g1yup",
+      "path": "ce ftl equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/backpack.svg",
+  "effects": [],
+  "folder": "daBobb1QIL60H67e",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079626,
+    "modifiedTime": 1760016422091,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!3iw5063p65GI5SR0"
+}

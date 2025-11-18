@@ -1,0 +1,326 @@
+{
+  "_id": "tFQFTKrkatja8Ea3",
+  "name": "Hydrographics",
+  "img": "icons/svg/d20-grey.svg",
+  "results": [
+    {
+      "_id": "dUxxiajidWkTzRcA",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "No water, desert world.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.dUxxiajidWkTzRcA"
+    },
+    {
+      "_id": "sh76AMDRFYIKmOOr",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "10% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.sh76AMDRFYIKmOOr"
+    },
+    {
+      "_id": "HCBDjzgYXpOzZj77",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "20% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.HCBDjzgYXpOzZj77"
+    },
+    {
+      "_id": "5dGLkdqmYWCU7oYu",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "30% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.5dGLkdqmYWCU7oYu"
+    },
+    {
+      "_id": "vZPjc8R8sz1Z9Ohk",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "40% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.vZPjc8R8sz1Z9Ohk"
+    },
+    {
+      "_id": "yNp4hv8K5jPTdxw4",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "50% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.yNp4hv8K5jPTdxw4"
+    },
+    {
+      "_id": "PALDup3jFQloX1x2",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "60% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.PALDup3jFQloX1x2"
+    },
+    {
+      "_id": "HMRTEHhNukpKXsaJ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "70% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.HMRTEHhNukpKXsaJ"
+    },
+    {
+      "_id": "qiuLEqxpUX2f1WU2",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "80% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.qiuLEqxpUX2f1WU2"
+    },
+    {
+      "_id": "m0g10c8LfgGssUAn",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "90% water.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.m0g10c8LfgGssUAn"
+    },
+    {
+      "_id": "O7muVE1KRohW59MQ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "100% water, water world.",
+      "name": "",
+      "_key": "!tables.results!tFQFTKrkatja8Ea3.O7muVE1KRohW59MQ"
+    }
+  ],
+  "formula": "1d11-1",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080299,
+    "modifiedTime": 1760016422901,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "description": "",
+  "_key": "!tables!tFQFTKrkatja8Ea3"
+}

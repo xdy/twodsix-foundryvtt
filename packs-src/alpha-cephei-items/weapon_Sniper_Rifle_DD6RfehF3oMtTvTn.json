@@ -1,0 +1,82 @@
+{
+  "name": "Sniper Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/aiming.svg",
+  "system": {
+    "name": "Rifle",
+    "techLevel": 5,
+    "description": "Large, high precision, high caliber rifle, intended for long-distance targets. Its range potential is wasted without a scope. At TL9+, slightly lighter (non-bulky) sniper rifles are possible.",
+    "shortdescr": "Rifle - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "200/1000",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "5",
+    "useConsumableForAttack": "",
+    "magazineCost": 10,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "200/400",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700433407681,
+    "modifiedTime": 1760016422872,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "DD6RfehF3oMtTvTn",
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!DD6RfehF3oMtTvTn"
+}

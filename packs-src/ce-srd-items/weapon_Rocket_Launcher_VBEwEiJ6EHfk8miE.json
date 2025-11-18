@@ -1,0 +1,81 @@
+{
+  "_id": "VBEwEiJ6EHfk8miE",
+  "name": "Rocket Launcher",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/rocket-launcher.svg",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "<div>To counteract the recoil of the weapon, a rocket launcher channels exhaust backwards in an explosive back blast. Anyone up to 1.5 meters behind a rocket launcher when it fires takes 3D6 damage from the burning gasses. Vehicle-mounted rocket launchers lose this side-effect as a vehicle is a more stable firing platform than a person. It takes three minor actions to reload a rocket launcher.</div><div><br></div>The rockets presented are high-explosive models. Do not add the Effect of the attack roll to their damage but apply that damage to everything within six meters of the impact point. A rocket that misses has a 50% chance (4+ on 1D6) of detonating upon impact with the ground (6 – Effect meters away in a random direction). Otherwise it will miss completely and leave the battlefield without striking anything or detonating.",
+    "shortdescr": "Rocket Launcher",
+    "quantity": 1,
+    "weight": 6,
+    "price": 2000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gunnery (Heavy Weapons)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 6,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "4D6",
+    "damageBonus": 0,
+    "magazineSize": 1,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 300,
+    "type": "weapon",
+    "lawLevel": "3",
+    "rangeBand": "rocket",
+    "weaponType": "heavy weapon",
+    "damageType": "NONE",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "KNu7KtXRzTmX5GfP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_avnh1iczh5",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Heavy Weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079866,
+    "modifiedTime": 1760016422332,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!VBEwEiJ6EHfk8miE"
+}

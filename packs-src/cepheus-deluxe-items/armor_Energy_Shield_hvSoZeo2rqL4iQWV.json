@@ -1,0 +1,69 @@
+{
+  "name": "Energy Shield",
+  "type": "armor",
+  "img": "systems/twodsix/assets/icons/bell-shield.svg",
+  "system": {
+    "name": "",
+    "techLevel": 16,
+    "description": "A high-energy shield emitter worn on a belt clip, capable of stopping massive amounts of damage. The Energy Shield may be worn with other armor. An energy shield completely negates the first hit it receives in combat but is then depleted. Throw 1D every following combat round; on 4-6, the shield regenerates on your turn, and may negate another hit afterwards.",
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 1,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": null,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "a7XuMzMB1lUiBYWm",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_3odrbwitf0c",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "hvSoZeo2rqL4iQWV",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737468,
+    "modifiedTime": 1760016422758,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!hvSoZeo2rqL4iQWV"
+}

@@ -1,0 +1,79 @@
+{
+  "_id": "nByHVoRHZudhSH8q",
+  "name": "Spear",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/spear.svg",
+  "system": {
+    "name": "Spear",
+    "techLevel": 0,
+    "description": "A sharpened shaft to a metal-tipped spear, this is a basic, yet effective, melee weapon.<br><br>Throwable: these weapons may be thrown; effective range equals to five times the thrower’s STR; maximum range equals STRx10.",
+    "shortdescr": "Spear - melee",
+    "quantity": 1,
+    "weight": 1,
+    "price": 15,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "reach",
+    "weaponType": "melee",
+    "damageType": "piercing",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "Wu8PbhMDUEvbhVsu",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_d5gavafmlx",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Melee Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737471,
+    "modifiedTime": 1760016422772,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.iiw0X95vsjSDY6Pa",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!nByHVoRHZudhSH8q"
+}

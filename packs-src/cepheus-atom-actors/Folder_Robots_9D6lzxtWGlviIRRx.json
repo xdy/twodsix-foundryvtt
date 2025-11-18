@@ -1,0 +1,20 @@
+{
+  "name": "Robots",
+  "sorting": "a",
+  "folder": "wHWS8Wt7xyndsxAD",
+  "type": "Actor",
+  "_id": "9D6lzxtWGlviIRRx",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": null,
+    "systemVersion": null,
+    "coreVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "parent": null,
+  "_key": "!folders!9D6lzxtWGlviIRRx"
+}

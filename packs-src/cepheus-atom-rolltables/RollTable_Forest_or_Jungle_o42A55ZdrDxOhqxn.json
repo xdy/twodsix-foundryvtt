@@ -1,0 +1,197 @@
+{
+  "name": "Forest or Jungle",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_83vpuw46p6n",
+      "path": "CA Tables#/CF_SEP/Encounters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/jungle.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "qd3tPJCEdK2wU1VK",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantCentipede.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Giant Centipede",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.QK0vul3RXDXD0OV2",
+      "description": "",
+      "_key": "!tables.results!o42A55ZdrDxOhqxn.qd3tPJCEdK2wU1VK"
+    },
+    {
+      "_id": "G2aGXlhdY4ymU5Ct",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantGoat.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Spidergoats",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.yy71DWoLEIKKXjmh",
+      "description": "",
+      "_key": "!tables.results!o42A55ZdrDxOhqxn.G2aGXlhdY4ymU5Ct"
+    },
+    {
+      "_id": "xXB5CukdvGGh4Sdx",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/plant/AwakenedShrub.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Hangman Tree",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.pybe1pMMzB0s1xhH",
+      "description": "",
+      "_key": "!tables.results!o42A55ZdrDxOhqxn.xXB5CukdvGGh4Sdx"
+    },
+    {
+      "_id": "X5EQxRg6ZIUyiJIP",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/alien-bug.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Giant Flytrap",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.A2mR2r0ANxd3yEw8",
+      "description": "",
+      "_key": "!tables.results!o42A55ZdrDxOhqxn.X5EQxRg6ZIUyiJIP"
+    },
+    {
+      "_id": "moWN2r21PM0UOJOD",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/plant/VioletFungus.webp",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Fungal Polyp",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.bMbB10BytcaBsyhI",
+      "description": "",
+      "_key": "!tables.results!o42A55ZdrDxOhqxn.moWN2r21PM0UOJOD"
+    },
+    {
+      "_id": "4HydBZD7LL4emNbd",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Humanoids",
+      "name": "",
+      "_key": "!tables.results!o42A55ZdrDxOhqxn.4HydBZD7LL4emNbd"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "o42A55ZdrDxOhqxn",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080065,
+    "modifiedTime": 1760016422595,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!o42A55ZdrDxOhqxn"
+}

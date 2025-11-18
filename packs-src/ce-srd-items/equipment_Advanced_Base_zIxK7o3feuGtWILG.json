@@ -1,0 +1,59 @@
+{
+  "_id": "zIxK7o3feuGtWILG",
+  "name": "Advanced Base",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Modular pressurized quarters for 6 persons and capable of withstanding anything less than hurricane force winds. Offers excellent shelter from precipitation and all but the most extreme of temperature ranges. Requires 12 man-hours to erect or dismantle. There are 16 modules, each, 1.5m wide by 1.5m long by 2m high that can be organized into any layout required. Dismantled and ready for shipment, the advanced base weighs 6 tons. The cost includes life-support for six people for 7 days.",
+    "shortdescr": "Advanced Base",
+    "quantity": 1,
+    "weight": 6000,
+    "price": 50000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_9sigdpo13em",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Shelters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/advanced-base.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079902,
+    "modifiedTime": 1760016422346,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!zIxK7o3feuGtWILG"
+}

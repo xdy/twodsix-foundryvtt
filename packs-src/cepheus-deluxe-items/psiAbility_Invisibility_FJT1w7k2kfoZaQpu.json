@@ -1,0 +1,69 @@
+{
+  "name": "Invisibility",
+  "type": "psiAbility",
+  "img": "systems/twodsix/assets/icons/invisible.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 4,
+    "type": "psiAbility",
+    "description": "Invisibility (PSI 4, see below for range): this ability causes living creatures (but not machines) to ignore the telepath. The psion becomes invisible to all organic creatures within 10m range. It lasts while the psion concentrates on being invisible, which is a free action each round. Attacking any target terminates this power.",
+    "shortdescr": "Causes living creatures (but not machines) to ignore the telepath",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 4,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 1000000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    },
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "FJT1w7k2kfoZaQpu",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569377982,
+    "modifiedTime": 1760016422736,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!FJT1w7k2kfoZaQpu"
+}

@@ -1,0 +1,59 @@
+{
+  "_id": "E7MpJkXfLDVWIbI4",
+  "name": "Oil Lamp",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 2,
+    "description": "A lamp clearly illuminates a 4.5 meter radius, provides shadowy illumination out to a 9 meter radius, and burns for 6 hours on a pint of oil. You can carry a lamp in one hand.",
+    "shortdescr": "Oil Lamp",
+    "quantity": 1,
+    "weight": 0.5,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_q959auq6gs",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Sensory Aids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/oil-lamp.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079852,
+    "modifiedTime": 1760016422322,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!E7MpJkXfLDVWIbI4"
+}

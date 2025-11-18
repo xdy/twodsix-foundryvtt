@@ -1,0 +1,58 @@
+{
+  "name": "Vacc Suit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character is acclimated to working and living in micro-gravity environments and freefall. The character is trained and familiar with the use of weapons and combat in such environments. In addition, the individual has been trained in the wearing, care, and maintenance of all types of Vacuum Suits and Combat Armor commonly used in these conditions.",
+    "shortdescr": "The character is acclimated to working and living in micro-gravity environments and freefall.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "Basic Skills",
+    "name": "Zero-G",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/vacc-suit.svg",
+  "effects": [],
+  "folder": "m6tGZ1EpvUcP9rMv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709132990348,
+    "modifiedTime": 1760016421884,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "M4z5cBbHN56WV2m7",
+  "sort": 0,
+  "_key": "!items!M4z5cBbHN56WV2m7"
+}

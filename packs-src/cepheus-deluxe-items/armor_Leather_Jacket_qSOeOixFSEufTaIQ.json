@@ -1,0 +1,76 @@
+{
+  "name": "Leather Jacket",
+  "type": "armor",
+  "img": "./systems/twodsix/assets/icons/jack.svg",
+  "system": {
+    "name": "",
+    "techLevel": 1,
+    "description": "A heavy leather or synth-leather jacket.",
+    "shortdescr": "Leather jacket",
+    "quantity": 1,
+    "weight": 1,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 2,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "a7XuMzMB1lUiBYWm",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3odrbwitf0c",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "qSOeOixFSEufTaIQ",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737476,
+    "modifiedTime": 1760016422776,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.MuYXyKinqqU4TrT6",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!qSOeOixFSEufTaIQ"
+}

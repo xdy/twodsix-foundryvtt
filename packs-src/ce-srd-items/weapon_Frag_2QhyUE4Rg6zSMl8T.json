@@ -1,0 +1,81 @@
+{
+  "_id": "2QhyUE4Rg6zSMl8T",
+  "name": "Frag",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/grenade.svg",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "The damage from fragmentation grenades decreases with distance from the blast:<br><br><div>3 meters: 5D6</div><div> 6 meters 3D6</div><div> 9 meters 1D6</div>",
+    "shortdescr": "Frag - special",
+    "quantity": 6,
+    "weight": 0.5,
+    "price": 180,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Demolitions",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 9,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "thrown",
+    "weaponType": "",
+    "damageType": "NONE",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "oyvzpIq738ymuiPl",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5ujlm40ozw3",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Grenades and Explosives",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079836,
+    "modifiedTime": 1760016422313,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!2QhyUE4Rg6zSMl8T"
+}

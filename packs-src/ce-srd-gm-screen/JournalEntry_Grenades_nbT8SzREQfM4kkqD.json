@@ -1,0 +1,70 @@
+{
+  "name": "Grenades",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "nbT8SzREQfM4kkqD",
+  "pages": [
+    {
+      "name": "Grenades",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table>\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Weapon</td>\n<td style=\"text-align:left;vertical-align:middle\">TL</td>\n<td style=\"text-align:left;vertical-align:middle\">Cost per Case</td>\n<td style=\"text-align:left;vertical-align:middle\">Wgt</td>\n<td style=\"text-align:left;vertical-align:middle\">Damage</td>\n<td style=\"text-align:left;vertical-align:middle\">LL</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Frag</td>\n<td style=\"text-align:left;vertical-align:middle\">6</td>\n<td style=\"text-align:left;vertical-align:middle\">180</td>\n<td style=\"text-align:left;vertical-align:middle\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle\">5D6/3D6/1D6; see description</td>\n<td style=\"text-align:left;vertical-align:middle\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Smoke</td>\n<td style=\"text-align:left;vertical-align:middle\">6</td>\n<td style=\"text-align:left;vertical-align:middle\">90</td>\n<td style=\"text-align:left;vertical-align:middle\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle\">Special; see description</td>\n<td style=\"text-align:left;vertical-align:middle\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Aerosol</td>\n<td style=\"text-align:left;vertical-align:middle\">9</td>\n<td style=\"text-align:left;vertical-align:middle\">90</td>\n<td style=\"text-align:left;vertical-align:middle\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle\">Special; see description</td>\n<td style=\"text-align:left;vertical-align:middle\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle\">Stun</td>\n<td style=\"text-align:left;vertical-align:middle\">9</td>\n<td style=\"text-align:left;vertical-align:middle\">180</td>\n<td style=\"text-align:left;vertical-align:middle\">0.5</td>\n<td style=\"text-align:left;vertical-align:middle\">3D6 stun; see description</td>\n<td style=\"text-align:left;vertical-align:middle\">1</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<dl style=\"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;caret-color:#212529;color:#212529;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';font-size:16px;text-size-adjust:auto\">\n<dt></dt>\n</dl>\n<h2>Aerosol</h2>\n<p>Aerosol grenades create a fine mist six meters in radius that diffuses lasers but does not block normal vision. Any laser attack made through the mist has its damage reduced by 10. Laser communications through the mist are completely blocked. The mist dissipates in 1D6x3 rounds, although high winds and other extreme weather can sharply reduce this time.</p>\n<h2>Frag</h2>\n<p>The damage from fragmentation grenades decreases with distance from the blast:</p>\n<table style=\"height:91px;width:46.079%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:51.8895%;text-align:left;vertical-align:middle\">Distance</td>\n<td style=\"height:16px;width:48.1105%;text-align:left;vertical-align:middle\">Damage</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:51.8895%;text-align:left;vertical-align:middle\">3 meters</td>\n<td style=\"height:16px;width:48.1105%;text-align:left;vertical-align:middle\">5D6</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:51.8895%;text-align:left;vertical-align:middle\">6 meters</td>\n<td style=\"height:16px;width:48.1105%;text-align:left;vertical-align:middle\">3D6</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"height:16px;width:51.8895%;text-align:left;vertical-align:middle\">9 meters</td>\n<td style=\"height:16px;width:48.1105%;text-align:left;vertical-align:middle\">1D6</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h2>Smoke</h2>\n<p>Smoke grenades create a thick cloud of smoke six meters in radius, centered on the location of the grenade. This smoke imposes a –2 DM on all attacks within or through the cloud (doubled for laser weapons). Smoke dissipates in 1D6x3 rounds, although high winds and other extreme weather can sharply reduce this time.</p>\n<h2>Stun</h2>\n<p>Stun weapons, such as stun grenades, are non-lethal and do not inflict normal damage. A character within six meters of a stun grenade detonation must make an Endurance check with a negative DM equal to the damage (after armor is subtracted). If this Endurance check is failed the character is knocked unconscious. If the Endurance check is successful, the character is unaffected by the weapon and the stun damage is ignored.</p>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "8wqBpazjcrFUbe9i",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!nbT8SzREQfM4kkqD.8wqBpazjcrFUbe9i"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079929,
+    "modifiedTime": 1760016422391,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!nbT8SzREQfM4kkqD"
+}

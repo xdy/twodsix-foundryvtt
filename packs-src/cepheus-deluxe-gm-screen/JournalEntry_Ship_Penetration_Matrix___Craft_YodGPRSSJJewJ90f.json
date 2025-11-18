@@ -1,0 +1,70 @@
+{
+  "_id": "YodGPRSSJJewJ90f",
+  "name": "Ship Penetration Matrix - Craft",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_n6q9yayby2"
+    },
+    "gm-notes": {}
+  },
+  "pages": [
+    {
+      "name": "Ship Penetration Matrix - Craft",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:100%\" border=\"1\">\n<tbody>\n<tr>\n<th style=\"width:9.01837%\">Weapon / Armor</th>\n<th style=\"width:22.7714%\">Unarmored</th>\n<th style=\"width:22.7714%\">Light</th>\n<th style=\"width:22.9966%\">Heavy</th>\n<th style=\"width:22.5462%\">Massive</th>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.01837%\">Light</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.7714%\">@Compendium[twodsix.twodsix-macros.t0zcwm4StWB3gPyJ]{Internal}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.7714%\">@Compendium[twodsix.twodsix-macros.JNQ5EiQyC6q1kHwd]{Surface Hit}</td>\n<td style=\"text-align:center;width:22.9966%\">Undamaged</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.5462%\"><span style=\"background-color:rgba(0, 0, 0, 0.05)\">Undamaged</span></td>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.01837%\">Intermediate</td>\n<td style=\"text-align:center;width:22.7714%\">@Compendium[twodsix.twodsix-macros.IIIorheuGQ9QI3Wa]{Critical}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.7714%\">@Compendium[twodsix.twodsix-macros.t0zcwm4StWB3gPyJ]{Internal}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.9966%\">@Compendium[twodsix.twodsix-macros.JNQ5EiQyC6q1kHwd]{Surface Hit}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.5462%\">Undamaged</td>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.01837%\">Heavy</td>\n<td style=\"text-align:center;width:22.7714%\">Destroyed</td>\n<td style=\"text-align:center;width:22.7714%\">@Compendium[twodsix.twodsix-macros.IIIorheuGQ9QI3Wa]{Critical}</td>\n<td style=\"text-align:center;width:22.9966%\">@Compendium[twodsix.twodsix-macros.t0zcwm4StWB3gPyJ]{Internal}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.5462%\">@Compendium[twodsix.twodsix-macros.JNQ5EiQyC6q1kHwd]{Surface Hit}</td>\n</tr>\n<tr>\n<td style=\"text-align:center;vertical-align:middle;width:9.01837%\">Main Gun</td>\n<td style=\"text-align:center;width:22.7714%\">Destroyed</td>\n<td style=\"text-align:center;width:22.7714%\">Destroyed</td>\n<td style=\"text-align:center;width:22.9966%\">@Compendium[twodsix.twodsix-macros.IIIorheuGQ9QI3Wa]{Critical}</td>\n<td style=\"text-align:center;vertical-align:middle;width:22.5462%\">@Compendium[twodsix.twodsix-macros.t0zcwm4StWB3gPyJ]{Internal}</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "ACJmlcEtvJqaCml2",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!YodGPRSSJJewJ90f.ACJmlcEtvJqaCml2"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080326,
+    "modifiedTime": 1760016422940,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "JournalEntry.hzmkDRusx8Lj457M",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!YodGPRSSJJewJ90f"
+}

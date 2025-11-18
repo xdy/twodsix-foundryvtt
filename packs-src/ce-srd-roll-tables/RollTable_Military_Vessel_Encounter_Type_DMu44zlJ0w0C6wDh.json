@@ -1,0 +1,194 @@
+{
+  "name": "Military Vessel Encounter Type",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_040l4lztq682",
+      "path": "CE Tables#/CF_SEP/Starship Encounters Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Military Vessel Encounter Type",
+  "results": [
+    {
+      "_id": "N3j2RMMb7pziNQcb",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corvette",
+      "name": "",
+      "_key": "!tables.results!DMu44zlJ0w0C6wDh.N3j2RMMb7pziNQcb"
+    },
+    {
+      "_id": "3Ql9tGMQPs96IOZi",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Destroyer",
+      "name": "",
+      "_key": "!tables.results!DMu44zlJ0w0C6wDh.3Ql9tGMQPs96IOZi"
+    },
+    {
+      "_id": "ZusbkmQ4lrUXEywk",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Patrol frigate",
+      "name": "",
+      "_key": "!tables.results!DMu44zlJ0w0C6wDh.ZusbkmQ4lrUXEywk"
+    },
+    {
+      "_id": "MDvNo8pjyzQPo1pT",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "System defense boat",
+      "name": "",
+      "_key": "!tables.results!DMu44zlJ0w0C6wDh.MDvNo8pjyzQPo1pT"
+    },
+    {
+      "_id": "fij4akNRDNEN0HL1",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "System monitor",
+      "name": "",
+      "_key": "!tables.results!DMu44zlJ0w0C6wDh.fij4akNRDNEN0HL1"
+    },
+    {
+      "_id": "lUcVVq1ilz5szHiY",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Warship Type",
+      "documentUuid": "RollTable.tKw5Di1cRj14QbUa",
+      "description": "",
+      "_key": "!tables.results!DMu44zlJ0w0C6wDh.lUcVVq1ilz5szHiY"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "DMu44zlJ0w0C6wDh",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079743,
+    "modifiedTime": 1760016422210,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "RollTable.oGXaEMmPDpVvq84z",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!DMu44zlJ0w0C6wDh"
+}

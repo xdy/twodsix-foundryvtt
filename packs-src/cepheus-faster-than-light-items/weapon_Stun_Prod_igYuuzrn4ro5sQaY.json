@@ -1,0 +1,80 @@
+{
+  "_id": "igYuuzrn4ro5sQaY",
+  "name": "Stun Prod",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/stun-prod.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "A high-tech riot weapon augmenting the baton's blunt force with an electric charge capable of stunning opponents. These weapons are designed to deal non-lethal damage and will incapacitate a living target instead of killing it.<br><br>Stun: Damage is only deducted from END, considering any armor. If the target’s END is reduced to 0, the target is incapacitated and unable to perform any actions for a number of rounds by which the damage exceeded his END. Damage received from Stun weapons is completely healed after one hour of rest.",
+    "shortdescr": "high-tech riot weapon - stun",
+    "quantity": 1,
+    "weight": 1,
+    "price": 300,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "melee",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "0",
+    "rangeBand": "melee",
+    "weaponType": "melee",
+    "damageType": "stun",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "EVonyMdL7ZagHhbM",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_q4e3naht7b",
+      "path": "ce ftl weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079637,
+    "modifiedTime": 1760016422102,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!igYuuzrn4ro5sQaY"
+}

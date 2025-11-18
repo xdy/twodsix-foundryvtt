@@ -1,0 +1,59 @@
+{
+  "_id": "KkTEoiijXHlXEDXs",
+  "name": "Psionic Shield",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "Psionic Shield (TL13, MCr1): as a psionic shield helmet (below) but implanted and invisible to the casual observer.<br><br>The Psionic Shield Helmet fully protects its wearer from telepathic intrusion. However, a character wearing this helmet cannot use psionics. This helmet does not protect its wearer from the effects of other psionic powers, such as telekinetic attacks.",
+    "shortdescr": "Psionic Shield (TL13, MCr1) fully protects its wearer from telepathic intrusion",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1000000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ok68zut371",
+      "path": "ce light-psionics",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/psionic-shield-helmet.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079708,
+    "modifiedTime": 1760016422150,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KkTEoiijXHlXEDXs"
+}

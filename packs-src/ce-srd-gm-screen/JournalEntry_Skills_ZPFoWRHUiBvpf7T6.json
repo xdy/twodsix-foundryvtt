@@ -1,0 +1,70 @@
+{
+  "name": "Skills",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "ZPFoWRHUiBvpf7T6",
+  "pages": [
+    {
+      "name": "Skills",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table>\n<thead>\n<tr>\n<th style=\"text-align:left\">Basic Skills</th>\n<th style=\"text-align:left\">Weapon Skills</th>\n<th style=\"text-align:left\">Transport Skills</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#admin\">Admin</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#gun-combat\">Gun Combat (Cascade Skill)</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#vehicle\">Vehicle (Cascade Skill)</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#advocate\">Advocate</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#archery\">Archery</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#aircraft\">Aircraft (Cascade Skill)</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#animals\">Animals (Cascade Skill)</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#energy-pistol\">Energy Pistol</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#grav-vehicle\">Grav Vehicle</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#farming\">Farming</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#energy-rifle\">Energy Rifle</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#rotor-aircraft\">Rotor Aircraft</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#riding\">Riding</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#shotgun\">Shotgun</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#winged-aircraft\">Winged Aircraft</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#survival\">Survival</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#slug-pistol\">Slug Pistol</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#mole\">Mole</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#veterinary-medicine\">Veterinary Medicine</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#slug-pistol\">Slug Pistol</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#tracked-vehicle\">Tracked Vehicle</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#athletics\">Athletics</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#gunnery\">Gunnery (Cascade Skill)</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#watercraft\">Watercraft (Cascade Skill)</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#battle-dress\">Battle Dress</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#bay-weapons\">Bay Weapons</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#motorboats\">Motorboats</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#bribery\">Bribery</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#heavy-weapons\">Heavy Weapons</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#ocean-ships\">Ocean Ships</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#broker\">Broker</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#screens\">Screens</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#sailing-ships\">Sailing Ships</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#carousing\">Carousing</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#spinal-mounts\">Spinal Mounts</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#submarine\">Submarine</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#comms\">Comms</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#turret-weapons\">Turret Weapons</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#wheeled-vehicle\">Wheeled Vehicle</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#computer\">Computer</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#melee-combat\">Melee Combat (Cascade Skill)</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#demolitions\">Demolitions</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#bludgeoning-weapons\">Bludgeoning Weapons</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#electronics\">Electronics</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#natural-weapons\">Natural Weapons</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#engineering\">Engineering</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#piercing-weapons\">Piercing Weapons</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#gambling\">Gambling</a></td>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#slashing-weapons\">Slashing Weapons</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#gravitics\">Gravitics</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#jack-of-all-trades\">Jack-of-all-Trades (Jack o' Trades)</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#leadership\">Leadership</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#linguistics\">Linguistics</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#liaison\">Liaison</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#mechanics\">Mechanics</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#medicine\">Medicine</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#navigation\">Navigation</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#piloting\">Piloting</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#recon\">Recon</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#sciences\">Sciences (Cascade Skill)</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#life-sciences\">Life Sciences</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#physical-sciences\">Physical Sciences</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#social-sciences\">Social Sciences</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#space-sciences\">Space Sciences</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#steward\">Steward</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#streetwise\">Streetwise</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#tactics\">Tactics</a></td>\n</tr>\n<tr>\n<td><a href=\"https://www.orffenspace.com/cepheus-srd/skills.html#zero-g\">Zero-G</a></td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "ZonxYMlz4VO5rUIE",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!ZPFoWRHUiBvpf7T6.ZonxYMlz4VO5rUIE"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079928,
+    "modifiedTime": 1760016422389,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!ZPFoWRHUiBvpf7T6"
+}

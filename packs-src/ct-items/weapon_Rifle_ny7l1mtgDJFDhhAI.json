@@ -1,0 +1,79 @@
+{
+  "name": "Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/rifle.svg",
+  "system": {
+    "name": "Rifle",
+    "techLevel": 5,
+    "description": "The standard military arm, firing a 7mm, 10 gram bullet at a velocity of approximately 900 meters per second. Longer and heavier than a carbine, it is also more effective. Standard equipment includes provisions for attaching a bayonet and telescopic sights, and a shoulder sling. A twenty-round magazine is attached to the front of the trigger guard, and one round is fired with each pull of the trigger. Replacement of the empty magazine requires a reload action. Rifle ammunition may also be used in automatic rifles; rifle and auto rifle magazines are interchangeable, and weigh the same.",
+    "shortdescr": "Rifle - ranged",
+    "quantity": 1,
+    "weight": 4000,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Rifle)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 20,
+    "ammo": 20,
+    "useConsumableForAttack": "",
+    "magazineCost": 20,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX 5/-2 8/+1",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696590074,
+    "modifiedTime": 1760016421895,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "ny7l1mtgDJFDhhAI",
+  "sort": 1100000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!ny7l1mtgDJFDhhAI"
+}

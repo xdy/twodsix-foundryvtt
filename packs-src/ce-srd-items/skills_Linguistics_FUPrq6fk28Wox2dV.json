@@ -1,0 +1,53 @@
+{
+  "name": "Linguistics",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character can read and write a different language for every level of Linguistics they possess. All characters can speak and read their native language without needing the Linguistics skill, and automated computer translator programs mean that the Linguistics skill are not always needed on other worlds. Having Linguistics-0 implies that the character has a smattering of simple phrases in many languages. In addition, Linguistics can be used to attempt to decipher the general meaning of a preserved specimen of language, such as an inscription or a recorded message.",
+    "shortdescr": "The character can read and write a different language for every level of Linguistics they possess.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Linguistics",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/linguistics.svg",
+  "effects": [],
+  "_id": "FUPrq6fk28Wox2dV",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079853,
+    "modifiedTime": 1760016422324,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!FUPrq6fk28Wox2dV"
+}

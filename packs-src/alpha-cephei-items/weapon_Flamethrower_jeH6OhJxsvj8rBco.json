@@ -1,0 +1,81 @@
+{
+  "_id": "jeH6OhJxsvj8rBco",
+  "name": "Flamethrower",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/flamethrower.svg",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Spews a 5m-long cone of fire which is 3m wide at its far end. All targets within this cone suffer damage and might catch fire.<div><br></div><div>Fire: On a successful hit, causing 6 or more points of damage will likely make the target catch on fire. A burning target takes 2D damage per combat round for 1D rounds, or until put out.</div>",
+    "shortdescr": "Flamethrower",
+    "quantity": 1,
+    "weight": 3,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 5,
+      "width": null,
+      "units": "m",
+      "type": "cone"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "5",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "special",
+    "weaponType": "support",
+    "damageType": "fire",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "Fire",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "TID7XHQIHysAG8fK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080273,
+    "modifiedTime": 1760016422880,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!jeH6OhJxsvj8rBco"
+}

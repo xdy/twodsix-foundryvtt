@@ -1,0 +1,55 @@
+{
+  "name": "Broker",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Locating suppliers and buyers, and facilitating the purchase and resale&nbsp;<span style=\"background-color: ; color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">of&nbsp;</span><span style=\"background-color: ; color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">commercial goods, haggling, bartering and so forth.</span>",
+    "shortdescr": "A broker is skilled in locating suppliers and buyers, and facilitating the purchase and resale of commercial goods, as per the Trade and Commerce rules.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Broker",
+    "priorType": "unknown",
+    "prereq": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/trade.svg",
+  "effects": [],
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422988,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "DF4VAY0zhJ0GmFO8",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!DF4VAY0zhJ0GmFO8"
+}

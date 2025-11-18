@@ -1,0 +1,972 @@
+{
+  "name": "Random Patron Encounters",
+  "img": "systems/twodsix/assets/icons/organigram.svg",
+  "results": [
+    {
+      "_id": "749q7j8PwZaOocNb",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Government Official",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.749q7j8PwZaOocNb"
+    },
+    {
+      "_id": "ZSo2oNStIZp7uiJx",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Financier",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.ZSo2oNStIZp7uiJx"
+    },
+    {
+      "_id": "9adTqijnwMN3vBng",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Well-Connected Broker",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.9adTqijnwMN3vBng"
+    },
+    {
+      "_id": "mgCa7xoKszm0ylbs",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Planetary Bureaucrat",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.mgCa7xoKszm0ylbs"
+    },
+    {
+      "_id": "obNJqujdEs2rW6gs",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Off-world Diplomat",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.obNJqujdEs2rW6gs"
+    },
+    {
+      "_id": "eP4BsN74pm59adg5",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corporate Executive",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.eP4BsN74pm59adg5"
+    },
+    {
+      "_id": "aNEcS5vdmkkqjiRG",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Eccentric Researcher",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.aNEcS5vdmkkqjiRG"
+    },
+    {
+      "_id": "SWnjIKzPStcWJ3a7",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Starship Engineer",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.SWnjIKzPStcWJ3a7"
+    },
+    {
+      "_id": "6M4Zebz1JqjEiETk",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corporate R&amp;D Specialist",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.6M4Zebz1JqjEiETk"
+    },
+    {
+      "_id": "geJiijrXYfMS6sop",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Investigative Journalist",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.geJiijrXYfMS6sop"
+    },
+    {
+      "_id": "92GpOwDt2TuYzJOz",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Medical Doctor",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.92GpOwDt2TuYzJOz"
+    },
+    {
+      "_id": "XHaSWcZ7SQVm8k6P",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "University Professor",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.XHaSWcZ7SQVm8k6P"
+    },
+    {
+      "_id": "oFqGrxgqzou9kUoe",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tough Belter",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.oFqGrxgqzou9kUoe"
+    },
+    {
+      "_id": "KriKdIvVkRUaN7bh",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Free Trader Captain",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.KriKdIvVkRUaN7bh"
+    },
+    {
+      "_id": "HaGxzdo3nkSEGXPk",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Explorer/Surveyor",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.HaGxzdo3nkSEGXPk"
+    },
+    {
+      "_id": "MxtpH4qAWg3RDKNn",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Frontier Colonist",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.MxtpH4qAWg3RDKNn"
+    },
+    {
+      "_id": "rMUaqttYUumjzXVv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Naval Officer",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.rMUaqttYUumjzXVv"
+    },
+    {
+      "_id": "H0efcaYIcugop9DE",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mercenary Captain",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.H0efcaYIcugop9DE"
+    },
+    {
+      "_id": "BCkXfLR51aqZVYp6",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Antiquities Collector",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.BCkXfLR51aqZVYp6"
+    },
+    {
+      "_id": "jyzI5dk67NN5chxg",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Art Thief",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.jyzI5dk67NN5chxg"
+    },
+    {
+      "_id": "hXJiTWwfdQ4uRi3J",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Con Artist",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.hXJiTWwfdQ4uRi3J"
+    },
+    {
+      "_id": "S7hNEChyIpXQTzwS",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Smuggler",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.S7hNEChyIpXQTzwS"
+    },
+    {
+      "_id": "WTYM1IsbruoXSdDP",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Rich Noble",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.WTYM1IsbruoXSdDP"
+    },
+    {
+      "_id": "BEApM5wUx8vZqdcL",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Disgraced Archaeologist",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.BEApM5wUx8vZqdcL"
+    },
+    {
+      "_id": "osMoulGlxlCghuSw",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Espionage Agent",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.osMoulGlxlCghuSw"
+    },
+    {
+      "_id": "2HdskIfe9HiDHIK6",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Information Broker",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.2HdskIfe9HiDHIK6"
+    },
+    {
+      "_id": "zguKPh6rJQ2oqYun",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Black Marketeer",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.zguKPh6rJQ2oqYun"
+    },
+    {
+      "_id": "HwFhicCix5dYJZII",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Crime Syndicate Boss",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.HwFhicCix5dYJZII"
+    },
+    {
+      "_id": "CFRUuhj8PI2vCRlZ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Crusading Moralist",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.CFRUuhj8PI2vCRlZ"
+    },
+    {
+      "_id": "NoU3zfNbXao7P5FA",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Religious Leader",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.NoU3zfNbXao7P5FA"
+    },
+    {
+      "_id": "P7RyrEj5vQ2EukOq",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Scout/Courier",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.P7RyrEj5vQ2EukOq"
+    },
+    {
+      "_id": "wlCP3hbZJx1C5NEL",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Insurance Assessor",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.wlCP3hbZJx1C5NEL"
+    },
+    {
+      "_id": "0UDcaAqN7kKDxyyY",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Disgraced Noble",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.0UDcaAqN7kKDxyyY"
+    },
+    {
+      "_id": "rKqmc8ZNlu8JLlwZ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Conspiracy Member",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.rKqmc8ZNlu8JLlwZ"
+    },
+    {
+      "_id": "aoIZJOgp3q11VXh2",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Bored Dilettante",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.aoIZJOgp3q11VXh2"
+    },
+    {
+      "_id": "5A3kLxbwT7xQZ65C",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Alien Diplomat",
+      "name": "",
+      "_key": "!tables.results!dTM60htzXkuWIl4I.5A3kLxbwT7xQZ65C"
+    }
+  ],
+  "formula": "1d36",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_wg4urws51a",
+      "path": "Social Encounters#/CF_SEP/Random Encounters",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "dTM60htzXkuWIl4I",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080312,
+    "modifiedTime": 1760016422921,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!dTM60htzXkuWIl4I"
+}

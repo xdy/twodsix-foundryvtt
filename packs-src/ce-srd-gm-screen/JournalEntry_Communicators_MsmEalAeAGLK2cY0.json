@@ -1,0 +1,70 @@
+{
+  "_id": "MsmEalAeAGLK2cY0",
+  "name": "Communicators",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Communicators",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:72.2438%;height:111px\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:48.9045%\">Communicator</td>\n<td style=\"text-align:left;vertical-align:middle;width:13.5954%\">TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">Cost</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">Wgt</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2442%\">Range</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:48.9045%\">Long Range Communicator</td>\n<td style=\"text-align:left;vertical-align:middle;width:13.5954%\">6</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">Cr500</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">15 kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2442%\">500 km</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:48.9045%\">Medium Range Communicator</td>\n<td style=\"text-align:left;vertical-align:middle;width:13.5954%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">Cr200</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">10 kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2442%\">30 km</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:48.9045%\">Short Range Communicator</td>\n<td style=\"text-align:left;vertical-align:middle;width:13.5954%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">Cr100</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">5 kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2442%\">10 km</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:48.9045%\">Personal Communicator</td>\n<td style=\"text-align:left;vertical-align:middle;width:13.5954%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">Cr250</td>\n<td style=\"text-align:left;vertical-align:middle;width:11.4826%\">0.3 kg</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2442%\">Special</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "d1gLBEJcKjmzAkEg",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!MsmEalAeAGLK2cY0.d1gLBEJcKjmzAkEg"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079927,
+    "modifiedTime": 1760016422388,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!MsmEalAeAGLK2cY0"
+}

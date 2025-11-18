@@ -1,0 +1,70 @@
+{
+  "_id": "ENVSvmtrWmvXt60w",
+  "name": "Missing Arm",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "trait",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "armor",
+    "description": "No two-handed weapons or shields allowed. DM-1 to Physical.",
+    "prereq": "",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "name": "",
+    "techLevel": 0,
+    "quantity": 1,
+    "weight": 0,
+    "price": null,
+    "traits": [],
+    "consumables": [],
+    "equipped": "equipped",
+    "skillModifier": 0,
+    "skill": "",
+    "auglocation": "Arms",
+    "bonus": "major detrimental",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    }
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_w34pcq0hfyl",
+      "path": "cepheus atom#/CF_SEP/CA - Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/arm.svg",
+  "effects": [],
+  "folder": "eBj0Cljzsr0Tr6rv",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079776,
+    "modifiedTime": 1760016422270,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ENVSvmtrWmvXt60w"
+}

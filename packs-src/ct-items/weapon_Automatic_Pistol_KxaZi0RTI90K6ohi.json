@@ -1,0 +1,79 @@
+{
+  "name": "Automatic Pistol",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/auto-pistol.svg",
+  "system": {
+    "name": "Auto Pistol",
+    "techLevel": 5,
+    "description": "Also referred to as a Semi-Automatic Pistol, Automatic Pistol or just a Pistol, the auto pistol is a basic repeating handgun. One cartridge is fired for each pull of the trigger. Auto pistol ammunition is interchangeable with submachinegun ammunition (although magazines are not). Preloaded magazines may be inserted into an empty pistol, but require a reload action to complete.",
+    "shortdescr": "Auto Pistol - ranged",
+    "quantity": 1,
+    "weight": 750,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Automatic Pistol)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 15,
+    "useConsumableForAttack": "",
+    "magazineCost": 10,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "autoPistol",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX 6/-2 10/+1",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696587994,
+    "modifiedTime": 1760016421884,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "KxaZi0RTI90K6ohi",
+  "sort": 400000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!KxaZi0RTI90K6ohi"
+}

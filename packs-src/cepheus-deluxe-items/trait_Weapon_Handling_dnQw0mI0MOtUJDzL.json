@@ -1,0 +1,49 @@
+{
+  "name": "Weapon Handling",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/field-gun.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character proficiently handles heavy weapons despite their bulk. The character suffers no penalty for using Bulky weapons, regardless of STR.",
+    "prereq": "Heavy Weapons 1",
+    "shortdescr": "Handles heavy weapons ignoring bulk",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 5700000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "dnQw0mI0MOtUJDzL",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737464,
+    "modifiedTime": 1760016422755,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!dnQw0mI0MOtUJDzL"
+}

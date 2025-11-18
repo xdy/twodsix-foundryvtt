@@ -1,0 +1,53 @@
+{
+  "name": "Leadership",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The character possesses the ability to rally, inspire, organize and direct team efforts to ensure the best cooperation and productivity possible.   Coordinating Effort: Whenever a task requires one or more characters to combine their efforts (i.e. Teamwork, each makes a skill or ability check towards a common goal), the character gains a pool of points equal to the Effect of the skill check (minimum of 1), which can be distributed by the leader to individual team members as DMs (grant a +1 DM per point) on skill or ability checks made toward the common goal.   Improving Initiative: The Leadership skill can be used to increase another character's Initiative. The character with Leadership makes a Leadership check, and the target character's Initiative is increased by the Effect of the check. Making a Leadership skill check is a significant action.",
+    "shortdescr": "The character possesses the ability to rally, inspire, organize and direct team efforts to ensure the best cooperation and productivity possible.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Leadership",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/leadership.svg",
+  "effects": [],
+  "_id": "Nu2hQEXjSTTubyX2",
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079861,
+    "modifiedTime": 1760016422329,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Nu2hQEXjSTTubyX2"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "Fzpz1MWSW7hMSa2N",
+  "name": "Melee Weapons",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Melee Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table style=\"height:330px;width:522px\" border=\"0\">\n<tbody>\n<tr>\n<th style=\"width:216px;text-align:left\">Weapon</th>\n<th style=\"width:44px;text-align:left\">TL</th>\n<th style=\"width:65px;text-align:left\">Cost</th>\n<th style=\"width:59px;text-align:left\">Dmg</th>\n<th style=\"width:126px;text-align:left\">Aspects</th>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.bOHQjOq4YWJW2sNq]{Axe}</td>\n<td style=\"width:44px\">0</td>\n<td style=\"width:65px\">Cr25</td>\n<td style=\"width:59px\">2D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.eOtJbbz3xYKrqI7O]{Cudgel}</td>\n<td style=\"width:44px\">0</td>\n<td style=\"width:65px\">Cr10</td>\n<td style=\"width:59px\">3D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.ogRMoXu3bVTg6dXY]{Dagger}</td>\n<td style=\"width:44px\">0</td>\n<td style=\"width:65px\">Cr10</td>\n<td style=\"width:59px\">1D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.doBXs5Di7ZqnM9y0]{Shield}</td>\n<td style=\"width:44px\">0</td>\n<td style=\"width:65px\">Cr20</td>\n<td style=\"width:59px\">1D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.iiw0X95vsjSDY6Pa]{Spear}</td>\n<td style=\"width:44px\">0</td>\n<td style=\"width:65px\">Cr15</td>\n<td style=\"width:59px\">3D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.WYty7yb7qbfmmtmO]{Staff}</td>\n<td style=\"width:44px\">0</td>\n<td style=\"width:65px\">Cr10</td>\n<td style=\"width:59px\">2D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.Aqfz6y9nGz1wQ32Y]{Unarmed}</td>\n<td style=\"width:44px\">--</td>\n<td style=\"width:65px\">--</td>\n<td style=\"width:59px\">STR DM</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.isMChFZ3d57bfGu2]{Sword}</td>\n<td style=\"width:44px\">1</td>\n<td style=\"width:65px\">Cr150</td>\n<td style=\"width:59px\">3D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.UtONoEkqk0qhlEe8]{Broadsword} or Great-Axe</td>\n<td style=\"width:44px\">2</td>\n<td style=\"width:65px\">Cr300</td>\n<td style=\"width:59px\">4D</td>\n<td style=\"width:126px\">Bulky</td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.BJbVSQ03WNdjqcfg]{Cutlass}</td>\n<td style=\"width:44px\">3</td>\n<td style=\"width:65px\">Cr100</td>\n<td style=\"width:59px\">3D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.MLYUZgPOadrKePmI]{Machete}</td>\n<td style=\"width:44px\">3</td>\n<td style=\"width:65px\">Cr50</td>\n<td style=\"width:59px\">2D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.RvVku0zUfetAAxXV]{Stun Prod}</td>\n<td style=\"width:44px\">8</td>\n<td style=\"width:65px\">Cr300</td>\n<td style=\"width:59px\">2D</td>\n<td style=\"width:126px\">Stun</td>\n</tr>\n<tr>\n<td style=\"width:216px\">@Compendium[twodsix.cepheus-light-items.LXJxCn5N3WA1dQOT]{Vibro-blade}</td>\n<td style=\"width:44px\">13</td>\n<td style=\"width:65px\">Cr500</td>\n<td style=\"width:59px\">4D</td>\n<td style=\"width:126px\"> </td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "BeM9Vtv0Oh0ydvaq",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!Fzpz1MWSW7hMSa2N.BeM9Vtv0Oh0ydvaq"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079918,
+    "modifiedTime": 1760016422378,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!Fzpz1MWSW7hMSa2N"
+}

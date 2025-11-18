@@ -1,0 +1,101 @@
+{
+  "name": "Katana",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/katana.svg",
+  "system": {
+    "name": "Sword",
+    "techLevel": 1,
+    "description": "A gently curved two-handed sword with a single-edged blade.",
+    "shortdescr": "Sword - melee",
+    "quantity": 1,
+    "weight": 1.5,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "close",
+    "weaponType": "melee",
+    "damageType": "melee",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "priorType": "unknown",
+    "doubleTap": false,
+    "parryAV": 15,
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    },
+    "isShield": false
+  },
+  "effects": [],
+  "folder": "crzJd4BeivxkkYsO",
+  "flags": {
+    "cf": {
+      "id": "temp_d5gavafmlx",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Melee Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.isMChFZ3d57bfGu2",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1727109554969,
+    "modifiedTime": 1760016422986,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "9PrgsDalP2i3hp5b",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!9PrgsDalP2i3hp5b"
+}

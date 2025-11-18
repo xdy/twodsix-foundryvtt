@@ -32,3 +32,11 @@ client.mjs
 
 # AI instructions
 .github/copilot-instructions.md
+
+# Pack Management
+
+# Exclude binary pack files (generated during build)
+static/packs/
+# Include JSON source files (these should be committed), but ignore dynamically generated wiki-journal
+!packs-src/
+packs-src/wiki-journal/

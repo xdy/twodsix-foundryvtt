@@ -1,0 +1,456 @@
+{
+  "_id": "ar8GmHDiUu1LQSEj",
+  "name": "Atmosphere",
+  "img": "icons/svg/d20-grey.svg",
+  "results": [
+    {
+      "_id": "drqbYAdbc863xLGs",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        0,
+        0
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Vacuum - requires vacc suit.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.drqbYAdbc863xLGs"
+    },
+    {
+      "_id": "LZUuXpKf8A5nKFCe",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Trace - requires vacc suit.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.LZUuXpKf8A5nKFCe"
+    },
+    {
+      "_id": "mjX58SwSZELgHW6h",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Very Thin, Tainted - Requires combination respirator/filter.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.mjX58SwSZELgHW6h"
+    },
+    {
+      "_id": "zxXPqbTcvEJXrHMN",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Very Thin - requires respirator.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.zxXPqbTcvEJXrHMN"
+    },
+    {
+      "_id": "JQk6mFzvemeCF7cs",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Thin, Tainted - requires filter mask.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.JQk6mFzvemeCF7cs"
+    },
+    {
+      "_id": "rISqggLswHUCYfiS",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Thin - breathable.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.rISqggLswHUCYfiS"
+    },
+    {
+      "_id": "71GRcZrrKhSSQGip",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Standard - breathable.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.71GRcZrrKhSSQGip"
+    },
+    {
+      "_id": "jPzIg0Czx5CuJ7eJ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Standard, Tainted - requires filter mask.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.jPzIg0Czx5CuJ7eJ"
+    },
+    {
+      "_id": "LPP6acn15776N8cs",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Dense - breathable.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.LPP6acn15776N8cs"
+    },
+    {
+      "_id": "dfmIq5gmFsrVzcAp",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Dense, Tainted - requires filter mask.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.dfmIq5gmFsrVzcAp"
+    },
+    {
+      "_id": "tuUuNxXfbwlBWW8b",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Exotic - requires special protective equipment.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.tuUuNxXfbwlBWW8b"
+    },
+    {
+      "_id": "zN12zxasuYT2jJYY",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corrosive - requires protective suit.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.zN12zxasuYT2jJYY"
+    },
+    {
+      "_id": "zy5EJPaKC1LQYmWY",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Insidious - requires protective suit.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.zy5EJPaKC1LQYmWY"
+    },
+    {
+      "_id": "WAcJAegD3yJUmzua",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Dense, High -  breathable above a minimum altitude.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.WAcJAegD3yJUmzua"
+    },
+    {
+      "_id": "HpOF3R5lTTmnf6R8",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Thin, Low - breathable below certain altitudes.",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.HpOF3R5lTTmnf6R8"
+    },
+    {
+      "_id": "mgWMlR1DoIvltfbk",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unusual",
+      "name": "",
+      "_key": "!tables.results!ar8GmHDiUu1LQSEj.mgWMlR1DoIvltfbk"
+    }
+  ],
+  "formula": "1d16-1",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z639vpwfis"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080288,
+    "modifiedTime": 1760016422899,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "9.255",
+      "systemId": "twodsix",
+      "systemVersion": "1.31.1"
+    }
+  },
+  "description": "",
+  "_key": "!tables!ar8GmHDiUu1LQSEj"
+}

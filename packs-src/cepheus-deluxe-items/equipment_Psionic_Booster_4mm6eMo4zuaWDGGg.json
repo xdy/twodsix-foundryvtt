@@ -1,0 +1,61 @@
+{
+  "_id": "4mm6eMo4zuaWDGGg",
+  "name": "Psionic Booster",
+  "type": "equipment",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "Psionic Booster: this esoteric drug restores up to 6 points of PSI. If ingested while the psion is at full PSI, it temporarily increases PSI by 4. Whenever taking more than one dose per week, throw END 6+ or suffer 3D damage and permanently lose one point of PSI.",
+    "shortdescr": "Psionic Booster: restores up to 6 points of PSI",
+    "quantity": 1,
+    "weight": 0,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SU8WH6nukL6X3EkG",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ek11vvgp4n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737414,
+    "modifiedTime": 1760016422728,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.a9QJIjVEH7mdzFkb",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4mm6eMo4zuaWDGGg"
+}

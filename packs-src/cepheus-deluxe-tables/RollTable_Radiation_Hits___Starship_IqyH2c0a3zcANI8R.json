@@ -1,0 +1,165 @@
+{
+  "_id": "IqyH2c0a3zcANI8R",
+  "name": "Radiation Hits - Starship",
+  "img": "systems/twodsix/assets/icons/radioactive.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "gubKXripyfEYSVwF",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/avoidance.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "No damage – radiation absorbed by hull",
+      "name": "",
+      "_key": "!tables.results!IqyH2c0a3zcANI8R.gubKXripyfEYSVwF"
+    },
+    {
+      "_id": "e2RNAvegTsXX6wH0",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/sensor.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sensors",
+      "name": "",
+      "_key": "!tables.results!IqyH2c0a3zcANI8R.e2RNAvegTsXX6wH0"
+    },
+    {
+      "_id": "ZfQDd9njn0hwpRZO",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/components/electronics.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Electronics",
+      "name": "",
+      "_key": "!tables.results!IqyH2c0a3zcANI8R.ZfQDd9njn0hwpRZO"
+    },
+    {
+      "_id": "Qv0PV9cbToZR4Wij",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/default_actor.png",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Crew",
+      "name": "",
+      "_key": "!tables.results!IqyH2c0a3zcANI8R.Qv0PV9cbToZR4Wij"
+    },
+    {
+      "_id": "3Kj0EIhK5z1lIgGQ",
+      "type": "document",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/explosion.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Critical - Starship",
+      "documentUuid": "Compendium.twodsix.cepheus-deluxe-tables.RollTable.mG4L75zTdZCXFVVk",
+      "description": "",
+      "_key": "!tables.results!IqyH2c0a3zcANI8R.3Kj0EIhK5z1lIgGQ"
+    }
+  ],
+  "formula": "2d6",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_9qkr5tod12b"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080311,
+    "modifiedTime": 1760016422920,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!tables!IqyH2c0a3zcANI8R"
+}

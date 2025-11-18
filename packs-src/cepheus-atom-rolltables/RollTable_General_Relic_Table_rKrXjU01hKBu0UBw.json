@@ -1,0 +1,250 @@
+{
+  "name": "General Relic Table",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_xqbqwx9o8mc",
+      "path": "CA Tables#/CF_SEP/Relics",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "tYTcmSkqvVbMX0MX",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Rare Gizmos",
+      "documentUuid": "RollTable.wtcK4uF5xBu7L0ay",
+      "description": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.tYTcmSkqvVbMX0MX"
+    },
+    {
+      "_id": "xJ9nVBiQBXT24TYj",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Medicines",
+      "documentUuid": "RollTable.pZO8w3q3UmtWHB9p",
+      "description": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.xJ9nVBiQBXT24TYj"
+    },
+    {
+      "_id": "LhcTBkXNSx0telOL",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mechanical Parts",
+      "name": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.LhcTBkXNSx0telOL"
+    },
+    {
+      "_id": "FrI4zzfFGISPrA1E",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        6,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Consumables",
+      "documentUuid": "RollTable.rdnW9qCLjavekPLX",
+      "description": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.FrI4zzfFGISPrA1E"
+    },
+    {
+      "_id": "l69QEJcMhdj74IID",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Electronic Parts",
+      "name": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.l69QEJcMhdj74IID"
+    },
+    {
+      "_id": "yaznuM584UqL83zB",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Common Gizmos",
+      "documentUuid": "RollTable.IqoiHRI4IWDOCS20",
+      "description": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.yaznuM584UqL83zB"
+    },
+    {
+      "_id": "eclzwUwFTjfZO7Bk",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Weapons",
+      "documentUuid": "RollTable.PerbeIqRrh39sEso",
+      "description": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.eclzwUwFTjfZO7Bk"
+    },
+    {
+      "_id": "0BwuKlM1kw8RlxLJ",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/d20-grey.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Armor",
+      "documentUuid": "RollTable.KhhPhm6qLtRXWA1j",
+      "description": "",
+      "_key": "!tables.results!rKrXjU01hKBu0UBw.0BwuKlM1kw8RlxLJ"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "rKrXjU01hKBu0UBw",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080066,
+    "modifiedTime": 1760016422595,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!rKrXjU01hKBu0UBw"
+}

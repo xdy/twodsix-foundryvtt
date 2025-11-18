@@ -1,0 +1,192 @@
+{
+  "name": "Why did they want to make the deal?",
+  "img": "systems/twodsix/assets/icons/bugle-call.svg",
+  "results": [
+    {
+      "_id": "rRE0SCTqKIH6UpvU",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They need cash to pay off debts/they need the goods - immediately",
+      "name": "",
+      "_key": "!tables.results!vVGsOO7AT8FXsesy.rRE0SCTqKIH6UpvU"
+    },
+    {
+      "_id": "6i34GY4KHmhNVjRc",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They want to corner the market on the good",
+      "name": "",
+      "_key": "!tables.results!vVGsOO7AT8FXsesy.6i34GY4KHmhNVjRc"
+    },
+    {
+      "_id": "CFNg8B9YgIW9YOCG",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They have an inside scoop on supply or demand for the good",
+      "name": "",
+      "_key": "!tables.results!vVGsOO7AT8FXsesy.CFNg8B9YgIW9YOCG"
+    },
+    {
+      "_id": "xHNei4mq8X36Uxbw",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Their creditors insist that they make the transaction",
+      "name": "",
+      "_key": "!tables.results!vVGsOO7AT8FXsesy.xHNei4mq8X36Uxbw"
+    },
+    {
+      "_id": "yZDkOdnKi6irGkRO",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They are under pressure from the government",
+      "name": "",
+      "_key": "!tables.results!vVGsOO7AT8FXsesy.yZDkOdnKi6irGkRO"
+    },
+    {
+      "_id": "uGaaQMcy30I0KmOw",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They have a line on another deal, and need to make some cash",
+      "name": "",
+      "_key": "!tables.results!vVGsOO7AT8FXsesy.uGaaQMcy30I0KmOw"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zvg1qot7nf",
+      "path": "Social Encounters#/CF_SEP/Business Contact",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "vVGsOO7AT8FXsesy",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080315,
+    "modifiedTime": 1760016422925,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!vVGsOO7AT8FXsesy"
+}

@@ -1,0 +1,49 @@
+{
+  "name": "Awareness",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/clairsentience.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character has sharp senses and is difficult to surprise. When rolling the Recon skill to avoid surprise (even unskilled), the character throws with Advantage. Note that this does not work when the character is setting up a deliberate ambush; the Hunter Trait covers that instead.",
+    "prereq": "Int 9+",
+    "shortdescr": "Sharp senses and is difficult to surprise",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 5600000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "dSYMOPyyx471hfqJ",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737464,
+    "modifiedTime": 1760016422755,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!dSYMOPyyx471hfqJ"
+}

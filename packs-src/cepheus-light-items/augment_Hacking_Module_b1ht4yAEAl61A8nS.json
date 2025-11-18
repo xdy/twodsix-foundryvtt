@@ -1,0 +1,60 @@
+{
+  "_id": "b1ht4yAEAl61A8nS",
+  "name": "Hacking Module",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "Hacking Module (TL11, Cr50000): grants DM+1 to the character’s Computer skill and allows remote hacking of electronics at a distance of up to 3m.",
+    "shortdescr": "Grants DM+1 to the character’s Computer skill and allows remote hacking of electronics at a distance of up to 3m",
+    "quantity": 1,
+    "weight": 0,
+    "price": 50000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "Computer DM+1, remote hacking 3m",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079717,
+    "modifiedTime": 1760016422158,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!b1ht4yAEAl61A8nS"
+}

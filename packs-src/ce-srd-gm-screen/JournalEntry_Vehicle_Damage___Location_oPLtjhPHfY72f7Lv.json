@@ -1,0 +1,70 @@
+{
+  "name": "Vehicle Damage & Location",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "oPLtjhPHfY72f7Lv",
+  "pages": [
+    {
+      "name": "Vehicle Damage & Location",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Vehicle Damage </h1>\n<table style=\"height:347px;width:69.1913%\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">Damage</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Effect</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">0 or less</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">No damage</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">1–3</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Single Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">4–6</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Two Single Hits</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">7–9</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Double Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">10–12</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Three Single Hits</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">13–15</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Two Single Hits, Double Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">16–18</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Two Double Hits</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">19–21</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Triple Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">22–24</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Triple Hit, Single Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">25–27</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Triple Hit, Double Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">28–30</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Triple Hit, Double Hit, Single Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">31–33</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">Two Triple Hits</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">For every extra three points</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">+1 Single Hit</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:45.9302%\">For every extra six points</td>\n<td style=\"text-align:left;vertical-align:middle;width:53.7791%\">+1 Double Hit</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Hit Location</h1>\n<table style=\"height:274px;width:69.9468%\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">2D6</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">External Hit (Vehicle)</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Internal Hit (Vehicle)</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Robot or Drone</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">2</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Hull</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Structure</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Hull</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Sensors</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Power Plant</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Power Plant</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">4</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Drive</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Power Plant</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Sensors</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Weapon</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Cargo</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Weapon or Limb</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">6</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Hull</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Structure</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Hull</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">7</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Armor</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Passengers</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Armor</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Hull</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Structure</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Hull</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Weapon</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Cargo</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Weapon or Limb</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Drive</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Computers</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Drive</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">11</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Sensors</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Cockpit</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Sensors</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:6.59824%\">12</td>\n<td style=\"text-align:left;vertical-align:middle;width:34.0176%\">Hull</td>\n<td style=\"text-align:left;vertical-align:middle;width:33.2845%\">Cockpit</td>\n<td style=\"text-align:left;vertical-align:middle;width:25.8065%\">Computer</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "mxq9adrWrWVYtQub",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!oPLtjhPHfY72f7Lv.mxq9adrWrWVYtQub"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079930,
+    "modifiedTime": 1760016422391,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!oPLtjhPHfY72f7Lv"
+}

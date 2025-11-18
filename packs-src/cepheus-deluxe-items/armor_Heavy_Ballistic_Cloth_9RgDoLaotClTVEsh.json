@@ -1,0 +1,76 @@
+{
+  "_id": "9RgDoLaotClTVEsh",
+  "name": "Heavy Ballistic Cloth",
+  "type": "armor",
+  "img": "./systems/twodsix/assets/icons/cloth.svg",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "A modern heavy-duty ballistic- cloth armor. Commonly worn by soldiers, well-equipped security, and TL7 mercenaries. Counts as two Items for encumbrance purposes and is not concealable.",
+    "shortdescr": "modern heavy-duty ballistic-cloth armor",
+    "quantity": 1,
+    "weight": 2,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 6,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "a7XuMzMB1lUiBYWm",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3odrbwitf0c",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737419,
+    "modifiedTime": 1760016422731,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.EKKJ33cnnnmKvcHo",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!9RgDoLaotClTVEsh"
+}

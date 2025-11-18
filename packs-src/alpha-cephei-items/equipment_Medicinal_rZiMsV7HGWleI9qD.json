@@ -1,0 +1,59 @@
+{
+  "_id": "rZiMsV7HGWleI9qD",
+  "name": "Medicinal",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "This represents a wide variety of vaccines, antitoxins, antibiotics, and other pharmaceuticals. Medicinal allows a character with at least Medicine-1 to neutralize a disease or poison on a roll of Medicine (EDU) 5+. Each TL increase provides a +1 bonus to the Medicine check, at double the cost. For very specific or specialized drugs, the cost is at the Referee’s discretion.",
+    "shortdescr": "Wide variety of vaccines, antitoxins, antibiotics, and other pharmaceuticals.",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_qapyp8i1gtk",
+      "path": "ce light-pharma",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/medicinal.svg",
+  "effects": [],
+  "folder": "Uk8Y83D6H1ui1Kwx",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080278,
+    "modifiedTime": 1760016422883,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!rZiMsV7HGWleI9qD"
+}

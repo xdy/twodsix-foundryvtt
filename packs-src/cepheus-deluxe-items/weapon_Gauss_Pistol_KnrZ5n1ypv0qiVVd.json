@@ -1,0 +1,80 @@
+{
+  "_id": "KnrZ5n1ypv0qiVVd",
+  "name": "Gauss Pistol",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/gauss-pistol.svg",
+  "system": {
+    "name": "Gauss Rifle",
+    "techLevel": 12,
+    "description": "These weapons accelerate small metal spikes to supersonic velocities. Though the principles behind their function have been understood since the early industrial age, Gauss weapons are typically beyond the manufacturing capabilities of frontier worlds. They do appear, from time to time, in the hands of well-equipped mercenary forces.<br><br>Auto 2: These weapons fire multiple rounds with every pull of the trigger, filling the air with a hail of fire. A weapon with the Auto aspect can make attacks in three fire modes: single, burst, and full auto, as described in the Combat chapter.",
+    "shortdescr": "Gauss Pistol - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "20/100",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 30,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "20/100",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "WM0MvR08jIVlUsUq",
+  "sort": 1000000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_sk461konhrd",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737433,
+    "modifiedTime": 1760016422740,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.796fjj1h1cJWoI9L",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KnrZ5n1ypv0qiVVd"
+}

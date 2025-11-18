@@ -1,0 +1,77 @@
+{
+  "_id": "458NDWgxvMqoXmgN",
+  "name": "Heavy Blaster",
+  "type": "weapon",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "name": "Laser Rifle",
+    "techLevel": 13,
+    "description": "Advanced laser weapons with a compact, internal battery, which is also removable and rechargeable.",
+    "shortdescr": "Heavy Blaster - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 10000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "200/400",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "50",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "200/400",
+    "weaponType": "ranged",
+    "damageType": "laser",
+    "rateOfFire": "3",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079700,
+    "modifiedTime": 1760016422138,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!458NDWgxvMqoXmgN"
+}

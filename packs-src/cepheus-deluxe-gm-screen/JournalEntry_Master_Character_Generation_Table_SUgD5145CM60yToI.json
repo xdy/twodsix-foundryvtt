@@ -1,0 +1,70 @@
+{
+  "_id": "SUgD5145CM60yToI",
+  "name": "Master Character Generation Table",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1bc6vo06far",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Master Character Generation Table",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:8.338%\">\n<div>Terms</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>Skill Levels Granted</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>Total Skill Levels*</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>Aging?</div>\n</td>\n<td style=\"width:10.1744%\">\n<div>Rank Increase?</div>\n</td>\n<td style=\"width:8.627%\">\n<div>Traits</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>Mustering Out Benefit Rolls</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>Total Events</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>0</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>1 (homeworld)</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>1</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>N</div>\n</td>\n<td style=\"width:10.1744%\"> </td>\n<td style=\"width:8.627%\">\n<div>1</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>1</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>0</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>1</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>2, plus a level 1 service skill</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>4</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>N</div>\n</td>\n<td style=\"width:10.1744%\"> </td>\n<td style=\"width:8.627%\">\n<div>1</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>2</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>1</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>2</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>2</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>6</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>N</div>\n</td>\n<td style=\"width:10.1744%\">\n<div>+1</div>\n</td>\n<td style=\"width:8.627%\">\n<div>1</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>3</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>2</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>3</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>2</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>8</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>N</div>\n</td>\n<td style=\"width:10.1744%\"> </td>\n<td style=\"width:8.627%\">\n<div>2</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>4</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>3</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>4</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>1</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>9</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>Y</div>\n</td>\n<td style=\"width:10.1744%\">\n<div>+1</div>\n</td>\n<td style=\"width:8.627%\">\n<div>2</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>5</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>4</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>5</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>1</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>10</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>Y</div>\n</td>\n<td style=\"width:10.1744%\"> </td>\n<td style=\"width:8.627%\">\n<div>3</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>6</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>5</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>6</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>1</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>11</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>Y</div>\n</td>\n<td style=\"width:10.1744%\">\n<div>+1</div>\n</td>\n<td style=\"width:8.627%\">\n<div>3</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>7</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>6</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:8.338%\">\n<div>7</div>\n</td>\n<td style=\"width:19.5713%\">\n<div>1</div>\n</td>\n<td style=\"width:14.5962%\">\n<div>12</div>\n</td>\n<td style=\"width:8.20087%\">\n<div>Y</div>\n</td>\n<td style=\"width:10.1744%\"> </td>\n<td style=\"width:8.627%\">\n<div>4</div>\n</td>\n<td style=\"width:18.9008%\">\n<div>8</div>\n</td>\n<td style=\"width:9.99273%\">\n<div>7</div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "AFy9hYi8GG5jVJl3",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!SUgD5145CM60yToI.AFy9hYi8GG5jVJl3"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080325,
+    "modifiedTime": 1760016422940,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!SUgD5145CM60yToI"
+}

@@ -1,0 +1,52 @@
+{
+  "_id": "A3PB9wp29IMyp2X8",
+  "name": "Gunnery",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Using vehicle-mounted or spaceship-mounted weapons",
+    "shortdescr": "Using vehicle-mounted or spaceship- mounted weapons",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_8ihbra3bsbx",
+      "path": "ce ftl skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/gunnery.svg",
+  "effects": [],
+  "folder": "dTD1TgwfWWfX38TO",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079628,
+    "modifiedTime": 1760016422093,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!A3PB9wp29IMyp2X8"
+}

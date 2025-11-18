@@ -1,0 +1,52 @@
+{
+  "name": "Social",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Social: for whenever a character wishes to interact with other human beings in a social manner. Use this skill to bargain, lie, carouse, or conduct negotiations.",
+    "shortdescr": "interact with other human beings",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_rsfofjzgbg",
+      "path": "cepheus quantum#/CF_SEP/CQ - Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/linguistics.svg",
+  "effects": [],
+  "_id": "YdllSJ478hjLUSKv",
+  "folder": "ITt5kxlZxG9Vey2A",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079911,
+    "modifiedTime": 1760016422357,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!YdllSJ478hjLUSKv"
+}

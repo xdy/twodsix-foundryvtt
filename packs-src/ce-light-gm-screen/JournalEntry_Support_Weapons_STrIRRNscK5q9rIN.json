@@ -1,0 +1,70 @@
+{
+  "_id": "STrIRRNscK5q9rIN",
+  "name": "Support Weapons",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Support Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table style=\"width:686px\" border=\"0\">\n<tbody>\n<tr>\n<th style=\"width:190px;text-align:left\">Weapon</th>\n<th style=\"width:30px;text-align:left\">TL</th>\n<th style=\"width:88px;text-align:left\">Cost</th>\n<th style=\"width:59px;text-align:left\">Range</th>\n<th style=\"width:83px;text-align:left\">Dmg</th>\n<th style=\"width:48px;text-align:left\">Mag</th>\n<th style=\"width:59px;text-align:left\">Ammo</th>\n<th style=\"width:114px;text-align:left\">Aspects</th>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.jeH6OhJxsvj8rBco]{Flamethrower}</td>\n<td style=\"width:30px\">6</td>\n<td style=\"width:88px\">Cr1000</td>\n<td style=\"width:59px\">Special</td>\n<td style=\"width:83px\">3D</td>\n<td style=\"width:48px\">5</td>\n<td style=\"width:59px\">Cr25</td>\n<td style=\"width:114px\">Fire</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.A95cjZAMW5kF2Z6U]{GP Machinegun}</td>\n<td style=\"width:30px\">6</td>\n<td style=\"width:88px\">Cr1500</td>\n<td style=\"width:59px\">200/400</td>\n<td style=\"width:83px\">3D</td>\n<td style=\"width:48px\">100</td>\n<td style=\"width:59px\">Cr150</td>\n<td style=\"width:114px\">Auto 4, AV 2D, Bulky</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.r4aWSKCCPFDC5k8X]{Rocket Launcher}</td>\n<td style=\"width:30px\">6</td>\n<td style=\"width:88px\">Cr2000</td>\n<td style=\"width:59px\">50/200</td>\n<td style=\"width:83px\">5D</td>\n<td style=\"width:48px\">1</td>\n<td style=\"width:59px\">Cr150</td>\n<td style=\"width:114px\">AV 2D, Blast 6, Bulky</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.51pc5hwPJ3QyPGz9]{Grenade Launcher}</td>\n<td style=\"width:30px\">7</td>\n<td style=\"width:88px\">Cr400</td>\n<td style=\"width:59px\">100/500</td>\n<td style=\"width:83px\">By grenade</td>\n<td style=\"width:48px\">6</td>\n<td style=\"width:59px\">-</td>\n<td style=\"width:114px\">Bulky</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.0Hk5LLZINi3rEYau]{Under-barrel Grenade Launcher}</td>\n<td style=\"width:30px\">7</td>\n<td style=\"width:88px\">Cr1000</td>\n<td style=\"width:59px\">50/200</td>\n<td style=\"width:83px\">By grenade</td>\n<td style=\"width:48px\"> </td>\n<td style=\"width:59px\">-</td>\n<td style=\"width:114px\">-</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.CeT5wowt8AoWzA8a]{Disposable Anti-Vehicle Rocket}</td>\n<td style=\"width:30px\">7</td>\n<td style=\"width:88px\">Cr200</td>\n<td style=\"width:59px\">50/200</td>\n<td style=\"width:83px\">5D</td>\n<td style=\"width:48px\">1</td>\n<td style=\"width:59px\">-</td>\n<td style=\"width:114px\">AV 5D</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.Mqp2WSQqY6S7Calj]{Light Assault Gun}</td>\n<td style=\"width:30px\">8</td>\n<td style=\"width:88px\">Cr600</td>\n<td style=\"width:59px\">100/300</td>\n<td style=\"width:83px\">5D</td>\n<td style=\"width:48px\">5</td>\n<td style=\"width:59px\">Cr30</td>\n<td style=\"width:114px\">AV 4D, Bulky</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.JBBAob9uDWOJVMQe]{RAM Grenade Launcher}</td>\n<td style=\"width:30px\">8</td>\n<td style=\"width:88px\">Cr800</td>\n<td style=\"width:59px\">50/200</td>\n<td style=\"width:83px\">-</td>\n<td style=\"width:48px\">10</td>\n<td style=\"width:59px\">Cr800</td>\n<td style=\"width:114px\">Auto 3, Bulky</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.ttCF3JfSgdTmq9vV]{Support Laser}</td>\n<td style=\"width:30px\">8</td>\n<td style=\"width:88px\">Cr5000</td>\n<td style=\"width:59px\">100/400</td>\n<td style=\"width:83px\">6D</td>\n<td style=\"width:48px\">100</td>\n<td style=\"width:59px\">Cr2000</td>\n<td style=\"width:114px\">AV 3D, Bulky</td>\n</tr>\n<tr>\n<td style=\"width:190px\">@Compendium[twodsix.cepheus-light-items.51SPlwr5qtq22wj3]{Plasma Gun}</td>\n<td style=\"width:30px\">12</td>\n<td style=\"width:88px\">Cr20000</td>\n<td style=\"width:59px\">200/500</td>\n<td style=\"width:83px\">10D</td>\n<td style=\"width:48px\">40</td>\n<td style=\"width:59px\">Cr2500</td>\n<td style=\"width:114px\">AV 5D, Bulky</td>\n</tr>\n<tr>\n<td style=\"vertical-align:top;width:190px\">@Compendium[twodsix.cepheus-light-items.Q36RrAny7S2DTO8m]{Fusion Gun}</td>\n<td style=\"vertical-align:top;width:30px\">14</td>\n<td style=\"vertical-align:top;width:88px\">Cr100000 </td>\n<td style=\"vertical-align:top;width:59px\">300/6</td>\n<td style=\"vertical-align:top;width:83px\">16D</td>\n<td style=\"vertical-align:top;width:48px\">-</td>\n<td style=\"vertical-align:top;width:59px\">Cr65000</td>\n<td style=\"vertical-align:top;width:114px\">AV 6D, Bulky</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "EBLSF1Tzmjf0i9HP",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!STrIRRNscK5q9rIN.EBLSF1Tzmjf0i9HP"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079919,
+    "modifiedTime": 1760016422379,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!STrIRRNscK5q9rIN"
+}

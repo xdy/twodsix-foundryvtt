@@ -1,0 +1,192 @@
+{
+  "name": "Consumables",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_t425pvce42",
+      "path": "CA Tables#/CF_SEP/Relics#/CF_SEP/Relic Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "wg8OlQBj11W98Sae",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "1D days of edible food; contaminated on a roll of 5+ on 1D",
+      "name": "",
+      "_key": "!tables.results!TMyAexpiQzTRcYYQ.wg8OlQBj11W98Sae"
+    },
+    {
+      "_id": "UTAesOoaEzLlet8v",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "1D days of potable drinks; contaminated on a roll of 5+ on 1D",
+      "name": "",
+      "_key": "!tables.results!TMyAexpiQzTRcYYQ.UTAesOoaEzLlet8v"
+    },
+    {
+      "_id": "TfwUa9xQXlLssXd5",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "1D power cells",
+      "name": "",
+      "_key": "!tables.results!TMyAexpiQzTRcYYQ.TfwUa9xQXlLssXd5"
+    },
+    {
+      "_id": "hSn3Fnnwgs48Ru9k",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "1D Gas mask filters",
+      "name": "",
+      "_key": "!tables.results!TMyAexpiQzTRcYYQ.hSn3Fnnwgs48Ru9k"
+    },
+    {
+      "_id": "jqYzOMHN3sjqIqpz",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "1D units of vehicle fuel",
+      "name": "",
+      "_key": "!tables.results!TMyAexpiQzTRcYYQ.jqYzOMHN3sjqIqpz"
+    },
+    {
+      "_id": "E25lKWOw8kOh3TtF",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "1Dx20 units of ammunition",
+      "name": "",
+      "_key": "!tables.results!TMyAexpiQzTRcYYQ.E25lKWOw8kOh3TtF"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "TMyAexpiQzTRcYYQ",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080064,
+    "modifiedTime": 1760016422593,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!TMyAexpiQzTRcYYQ"
+}

@@ -1,0 +1,60 @@
+{
+  "name": "Rescue Bubble",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A Rescue Bubble is a 2m-diameter plastic bubble. Piezoelectric layers translate the user’s movement to electricity to recharge the bubble’s battery. It contains supplies for 2 person/hours of operation. The bubble’s skin can self-repair all but the most serious punctures.",
+    "shortdescr": "A two person survival bubble",
+    "quantity": 1,
+    "weight": 1,
+    "price": 900,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "_id": "6tEEEbwtUZOGDDdd",
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079702,
+    "modifiedTime": 1760016422140,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!6tEEEbwtUZOGDDdd"
+}

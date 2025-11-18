@@ -1,0 +1,81 @@
+{
+  "_id": "w37isQfuvLi85PXH",
+  "name": "Molotov Cocktail",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/improvised-explosive-device.svg",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "Blast, Fire, AV 2D<br><br>Blast: causes damage to up to 3 adjacent targets.<br><br>Fire: target catches fire on 6+; burning targets suffer 2D damage per round for 1D rounds, or until put out.",
+    "shortdescr": "Home-made incendiary bomb",
+    "quantity": 1,
+    "weight": null,
+    "price": 5,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 3,
+      "width": null,
+      "units": "m",
+      "type": "square"
+    },
+    "range": "10/20",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown str/2*str",
+    "weaponType": "Ranged",
+    "damageType": "fire",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "2WUp46bfXDnFdSdF",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_a1oz7op7s0j",
+      "path": "cepheus atom#/CF_SEP/CA - Common Weapons",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079806,
+    "modifiedTime": 1760016422290,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!w37isQfuvLi85PXH"
+}

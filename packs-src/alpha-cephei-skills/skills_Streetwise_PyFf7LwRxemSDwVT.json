@@ -1,0 +1,52 @@
+{
+  "_id": "PyFf7LwRxemSDwVT",
+  "name": "Streetwise",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Familiarity with underworld society and the ways of working with it.<div>• Find a black-market supplier for illegal goods: roll Streetwise (INT) 6+.</div><div>• Avoid enemy gang territory: roll Streetwise (INT) 6+.</div><div>• Recognize illegal activity in the street: roll Streetwise (INT or EDU) 8+.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/streetwise.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 4000000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080083,
+    "modifiedTime": 1760016422623,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!PyFf7LwRxemSDwVT"
+}

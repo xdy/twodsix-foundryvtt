@@ -1,0 +1,77 @@
+{
+  "_id": "6YjfsBkn3m30lEQx",
+  "name": "Crossbow",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/crossbow.svg",
+  "system": {
+    "name": "Crossbow",
+    "techLevel": 2,
+    "description": "A horizontal bow set into a mechanical firing mechanism and stronger-than-normal pull, crossbows are very powerful weapons that are very time consuming to reload. At higher technology levels, crossbows are built with crank and pulley systems that make the weapons easier to reload, even self-loading at TL9. Reloading a TL2 crossbow takes 6 minor actions, at TL4 this is reduced to 3 minor actions.",
+    "shortdescr": "Crossbow - ranged",
+    "quantity": 1,
+    "weight": 3,
+    "price": 75,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Archery)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 1,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 2,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "rifle",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696588768,
+    "modifiedTime": 1760016422320,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.6YjfsBkn3m30lEQx",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!6YjfsBkn3m30lEQx"
+}

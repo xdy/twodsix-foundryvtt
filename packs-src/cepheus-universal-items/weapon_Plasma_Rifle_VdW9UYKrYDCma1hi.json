@@ -1,0 +1,97 @@
+{
+  "folder": "pSssleJvJZVQGAbD",
+  "name": "Plasma Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/ringed-beam.svg",
+  "system": {
+    "name": "",
+    "description": "A rugged military rifle used for devastating single shot attacks&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">out to long range. The rifle includes a scope for use in long distance combat. It does not&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">require recharging, but does include a magazine for replenishing disposable power cells&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">and hydrogen fuel pellets.</span>",
+    "type": "weapon",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "techLevel": 14,
+    "shortdescr": "",
+    "quantity": 1,
+    "weight": 4,
+    "price": 4000,
+    "traits": [],
+    "consumables": [],
+    "useConsumableForAttack": "",
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "backpack",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 40,
+    "magazineCost": 150,
+    "lawLevel": "",
+    "rangeBand": "veryLong",
+    "weaponType": "",
+    "damageType": "plasma",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "parryAV": 0,
+    "isShield": false,
+    "handlingModifiers": "STR 6/-1 7/0",
+    "meleeRangeModifier": "0",
+    "customCT": {
+      "armor": {
+        "nothing": "0",
+        "jack": "0",
+        "mesh": "0",
+        "cloth": "0",
+        "reflec": "0",
+        "ablat": "0",
+        "combat": "0"
+      },
+      "range": {
+        "close": "0",
+        "short": "0",
+        "medium": "0",
+        "long": "0",
+        "veryLong": "0"
+      }
+    }
+  },
+  "effects": [],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": "Item.Qlkk32oPf7EAVJ3g",
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1729015078727,
+    "modifiedTime": 1760016422994,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "VdW9UYKrYDCma1hi",
+  "_key": "!items!VdW9UYKrYDCma1hi"
+}

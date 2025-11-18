@@ -1,0 +1,70 @@
+{
+  "_id": "gNFgNPSxA3Y6grTY",
+  "name": "Weapons",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Weapons",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<p> </p>\n<div>\n<table border=\"1\">\n<tbody>\n<tr>\n<th>\n<p>Weapon</p>\n</th>\n<th>\n<p>Cost</p>\n</th>\n<th>\n<p>DMG</p>\n</th>\n<th>\n<p>Range</p>\n</th>\n</tr>\n<tr>\n<td>\n<p>Dagger</p>\n</td>\n<td>\n<p>Cr10</p>\n</td>\n<td>\n<p>1D</p>\n</td>\n<td>\n<p>-</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Axe or Machete</p>\n</td>\n<td>\n<p>Cr50</p>\n</td>\n<td>\n<p>2D</p>\n</td>\n<td>\n<p>-</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Sword or Cutlass</p>\n</td>\n<td>\n<p>Cr100</p>\n</td>\n<td>\n<p>3D</p>\n</td>\n<td>\n<p>-</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Autopistol</p>\n</td>\n<td>\n<p>Cr150</p>\n</td>\n<td>\n<p>2D</p>\n</td>\n<td>\n<p>10/50</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Shotgun</p>\n</td>\n<td>\n<p>Cr200</p>\n</td>\n<td>\n<p>4D</p>\n</td>\n<td>\n<p>20/40</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>SMG (Auto)</p>\n</td>\n<td>\n<p>Cr500</p>\n</td>\n<td>\n<p>2D</p>\n</td>\n<td>\n<p>30/100</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Assault Rifle (Auto)</p>\n</td>\n<td>\n<p>Cr300</p>\n</td>\n<td>\n<p>3D</p>\n</td>\n<td>\n<p>50/200</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Laser Rifle</p>\n</td>\n<td>\n<p>Cr3500</p>\n</td>\n<td>\n<p>5D</p>\n</td>\n<td>\n<p>300/500</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Gauss Rifle (Auto)</p>\n</td>\n<td>\n<p>Cr1500</p>\n</td>\n<td>\n<p>4D</p>\n</td>\n<td>\n<p>300/600</p>\n</td>\n</tr>\n<tr>\n<td>\n<p>Blaster</p>\n</td>\n<td>\n<p>Cr5000</p>\n</td>\n<td>\n<p>4D</p>\n</td>\n<td>\n<p>50/200q</p>\n</td>\n</tr>\n</tbody>\n</table>\n</div>\n<p>Throw Combat 8+ to hit a target in melee or in ranged Effective range; Combat 10+ to hit beyond Effective range. Apply the target's Combat skill as a -DM to hit.</p>\n<p>Shotguns can hit two adjacent targets at once (throw to-hit for each).</p>\n<p>Automatic weapons can attack twice a round (any target).</p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "LnfpLxSGwfhFHyBM",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!gNFgNPSxA3Y6grTY.LnfpLxSGwfhFHyBM"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079970,
+    "modifiedTime": 1760016422450,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!gNFgNPSxA3Y6grTY"
+}

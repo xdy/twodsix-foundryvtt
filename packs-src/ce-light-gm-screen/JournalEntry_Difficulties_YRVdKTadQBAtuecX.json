@@ -1,0 +1,70 @@
+{
+  "_id": "YRVdKTadQBAtuecX",
+  "name": "Difficulties",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Difficulties",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:113px;width:86.5046%;border-color:#3598db;border-style:ridge\" border=\"1\"><caption> </caption>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"width:16.1139%;height:16px\">Difficulty</td>\n<td style=\"width:17.9238%;height:16px\">Target Number</td>\n<td style=\"width:65.0902%;height:16px\">Examples</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:16.1139%;height:16px\">Routine</td>\n<td style=\"width:17.9238%;height:16px\">4+</td>\n<td style=\"width:65.0902%;height:16px\">Landing a ship at a starport under normal circumstances</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:16.1139%;height:16px\">Average</td>\n<td style=\"width:17.9238%;height:16px\">6+</td>\n<td style=\"width:65.0902%;height:16px\">Repairing a damaged vehicle system in a workshop</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:16.1139%;height:16px\">Difficult</td>\n<td style=\"width:17.9238%;height:16px\">8+</td>\n<td style=\"width:65.0902%;height:16px\">Shooting a target in Effective range</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:16.1139%;height:16px\">Very Difficult</td>\n<td style=\"width:17.9238%;height:16px\">10+</td>\n<td style=\"width:65.0902%;height:16px\">Shooting a target beyond Effective range</td>\n</tr>\n<tr style=\"height:33px\">\n<td style=\"width:16.1139%;height:33px\">Formidable</td>\n<td style=\"width:17.9238%;height:33px\">12+</td>\n<td style=\"width:65.0902%;height:33px\">Landing a ship in a hurricane with a damaged engine, under enemy fire</td>\n</tr>\n</tbody>\n</table>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "i9UM8zGfIKyRC6aV",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!YRVdKTadQBAtuecX.i9UM8zGfIKyRC6aV"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079919,
+    "modifiedTime": 1760016422379,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!YRVdKTadQBAtuecX"
+}

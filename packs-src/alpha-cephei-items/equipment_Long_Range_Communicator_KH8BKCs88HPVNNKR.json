@@ -1,0 +1,59 @@
+{
+  "_id": "KH8BKCs88HPVNNKR",
+  "name": "Long-Range Communicator",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/long-range-communicator.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Generic personal long-range radio transceiver, effective to pick up and transmit frequencies at up to a 500km radius. Personal communicators can vary wildly in prices, ranges and quality from TL7 and above. You could get some sort of long range communication setup starting as low as TL5, but at that point, the technology is bulky and heavy to carry around.",
+    "shortdescr": "Personal long-range radio transceiver, 500km range.",
+    "quantity": 1,
+    "weight": 1,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080268,
+    "modifiedTime": 1760016422874,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KH8BKCs88HPVNNKR"
+}

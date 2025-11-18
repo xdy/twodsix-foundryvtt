@@ -1,0 +1,22 @@
+{
+  "name": "Firearms - Slugthrowers",
+  "sorting": "a",
+  "folder": "K4OqoQeeBHcinb9z",
+  "type": "Item",
+  "_id": "ZIRIexWQNhOuZkym",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "12.331",
+    "systemId": "twodsix",
+    "systemVersion": "5.8.4",
+    "createdTime": 1727616930720,
+    "modifiedTime": 1727616930720,
+    "lastModifiedBy": "G0793twHyHfODmAJ"
+  },
+  "_key": "!folders!ZIRIexWQNhOuZkym"
+}

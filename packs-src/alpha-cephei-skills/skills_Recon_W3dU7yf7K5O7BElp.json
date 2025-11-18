@@ -1,0 +1,52 @@
+{
+  "_id": "W3dU7yf7K5O7BElp",
+  "name": "Recon",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "Scouting for danger and spotting anything hidden or out of place.<div>• Spot an ambush: opposed check of Recon (INT) vs. the worst in Stealth (DEX)&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">from the enemy force.</span></div><div>• Observe an outpost for information: roll Recon (INT) 8+.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/binoculars.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 4900000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080083,
+    "modifiedTime": 1760016422624,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!W3dU7yf7K5O7BElp"
+}

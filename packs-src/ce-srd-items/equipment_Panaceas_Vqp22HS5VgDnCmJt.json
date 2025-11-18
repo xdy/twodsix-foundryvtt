@@ -1,0 +1,59 @@
+{
+  "_id": "Vqp22HS5VgDnCmJt",
+  "name": "Panaceas",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "Wide-spectrum medicinal drugs that are specifically designed not to interact harmfully. They cannot therefore be used on any wound or illness and are guaranteed not to make things worse. A character using panaceas may make a Medic check as if he had Medic 0 when treating an infection or disease.",
+    "shortdescr": "Panaceas",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_fhd8c5c89i",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Drugs",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/panacea.svg",
+  "effects": [],
+  "folder": "7JNabnKuKR3HpTut",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079866,
+    "modifiedTime": 1760016422332,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!Vqp22HS5VgDnCmJt"
+}

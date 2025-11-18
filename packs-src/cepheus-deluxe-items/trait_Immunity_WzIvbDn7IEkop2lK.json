@@ -1,0 +1,49 @@
+{
+  "name": "Immunity",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/antibody.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is particularly resistant to toxins and pathogens. When making a throw to resist poison or disease, the character throws with Advantage. When a medic treats this character with Medicinal or Panacea pharmaceuticals, they also gain Advantage.",
+    "prereq": "None",
+    "shortdescr": "Resistant to toxins and pathogens",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 4300000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "WzIvbDn7IEkop2lK",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737445,
+    "modifiedTime": 1760016422750,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!WzIvbDn7IEkop2lK"
+}

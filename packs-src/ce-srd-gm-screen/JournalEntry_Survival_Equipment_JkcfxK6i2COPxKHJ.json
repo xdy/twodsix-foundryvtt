@@ -1,0 +1,70 @@
+{
+  "name": "Survival Equipment",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "JkcfxK6i2COPxKHJ",
+  "pages": [
+    {
+      "name": "Survival Equipment",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:62.3593%;height:301px\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Description</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cost</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">Wgt</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Cold Weather Clothing</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">1</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr200</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">2</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Filter Mask</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr10</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Swimming Equipment</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">3</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr200</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">1</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Combination Mask</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr150</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Oxygen Tanks</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr500</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">5</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Respirator</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr100</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Underwater Air Tanks</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr800</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">5</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Artificial Gill</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr4,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">4</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Environment Suit</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr500</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Rescue Bubble</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr600</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">3</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Thruster Pack</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr2,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">5</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.1536%\">Portable Generator</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.3638%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:26.0174%\">Cr500,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:10.1744%\">15</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "KudnnkHuJ4d4ha9l",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!JkcfxK6i2COPxKHJ.KudnnkHuJ4d4ha9l"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079927,
+    "modifiedTime": 1760016422388,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!JkcfxK6i2COPxKHJ"
+}

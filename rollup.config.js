@@ -1,26 +1,33 @@
-const commonjs = require("@rollup/plugin-commonjs");
+import commonjs from "@rollup/plugin-commonjs";
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+import esbuild from 'rollup-plugin-esbuild';
+import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
+import fs from "fs";
+import * as glob from "glob";
 
-const {nodeResolve} = require('@rollup/plugin-node-resolve');
-const esbuild = require('rollup-plugin-esbuild');
-const dynamicImportVars = require('@rollup/plugin-dynamic-import-vars');
-const fs = require("fs");
-const glob = require("glob");
 const plugins = [
   nodeResolve(),
   commonjs(),
-  esbuild.default({
+  esbuild({
     include: /\.[jt]sx?$/, // TODO Might have to include d.ts here
     sourceMap: true,
     keepNames: true,
     minify: process.env.NODE_ENV === 'production'
   }),
-  dynamicImportVars.default({}),
+  dynamicImportVars({}),
 ];
 
-module.exports = function() {
-  const migrations = JSON.stringify(fs.readdirSync("src/migrations").filter(name => name.slice(0, 1) !== "." ).map(name => name.slice(0, -3)));
-  const hooks = JSON.stringify(fs.readdirSync('src/module/hooks').filter(name => name.slice(0, 1) !== "." ).map(name => name.slice(0, -3)));
-  const templates = JSON.stringify(glob.sync('static/templates/**/*.hbs').filter(name => name.slice(0, 1) !== "." ).map(file => file.replace("static", "systems/twodsix")));
+export default function rollupConfig() {
+  const migrations = JSON.stringify(fs.readdirSync("src/migrations").filter(nm => nm.slice(0, 1) !== "." ).map(nm => nm.slice(0, -3)));
+  const hooks = JSON.stringify(fs.readdirSync('src/module/hooks').filter(nm => nm.slice(0, 1) !== "." ).map(nm => nm.slice(0, -3)));
+  // Ensure forward slashes in template paths so Foundry can resolve them cross-platform
+  const templates = JSON.stringify(
+    glob
+      .sync('static/templates/**/*.hbs')
+      .filter(nm => nm.slice(0, 1) !== ".")
+      .map(file => file.replace(/\\/g, "/"))
+      .map(file => file.replace("static", "systems/twodsix"))
+  );
 
   return {
     input: 'src/twodsix.ts',

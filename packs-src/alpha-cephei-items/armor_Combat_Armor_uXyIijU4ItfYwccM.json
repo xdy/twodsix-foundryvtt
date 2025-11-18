@@ -1,0 +1,75 @@
+{
+  "_id": "uXyIijU4ItfYwccM",
+  "name": "Combat Armor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "Enclosed rigid military suit, with the same traits of a vacc suit, plus additional Protection rating. Counts as 2 items for encumbrance.<br><br>Skill Required: Zero G-1",
+    "shortdescr": "enclosed rigid military armor",
+    "quantity": 1,
+    "weight": 2,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Zero G",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 11,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 60
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "nonstackable": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1vxyhjhgcfw",
+      "path": "ce light-armor",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/Combat-armor.svg",
+  "effects": [],
+  "folder": "nycPK2btpYrXRFf2",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080280,
+    "modifiedTime": 1760016422886,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!uXyIijU4ItfYwccM"
+}

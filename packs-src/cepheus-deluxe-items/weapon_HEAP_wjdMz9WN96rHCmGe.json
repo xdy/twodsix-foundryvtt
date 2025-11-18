@@ -1,0 +1,82 @@
+{
+  "name": "HEAP",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "High Explosive Armor-Piercing anti-tank grenade using a focused blast to penetrate armor. This grenade can only be fired from a launcher and counts as a heavy weapon (1 AV hit) for purposes of damaging vehicles.<br><br>Blast 1: This weapon has an explosive component or is otherwise effective against all targets in its blast radius. The number given is the blast radius in meters. It is possible to avoid or minimize blast damage, see Diving for Cover in the Combat chapter.",
+    "shortdescr": "High Explosive Armor-Piercing anti-tank grenade using a focused blast to penetrate armor.",
+    "quantity": 1,
+    "weight": null,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Demolitions",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "5d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "1",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "requires launcher",
+    "weaponType": "Explosive",
+    "damageType": "NONE",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ilJy3l5MJQEdGSU7",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_tibbodv269",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Grenades and Explosives",
+      "color": "#00aaaa"
+    },
+    "twodsix": {},
+    "core": {}
+  },
+  "_id": "wjdMz9WN96rHCmGe",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737482,
+    "modifiedTime": 1760016422780,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.7EqtrBfc8Nf2YNEX",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!wjdMz9WN96rHCmGe"
+}

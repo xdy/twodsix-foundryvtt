@@ -1,0 +1,79 @@
+{
+  "name": "Shotgun",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/shotgun.svg",
+  "system": {
+    "name": "Shotgun",
+    "techLevel": 4,
+    "description": "The basic weapon for maximum shock effect without regard to accuracy. The shotgun has an 18mm diameter barrel and fires shells containing either six 7mm bullets, or one hundred and thirty 3mm pellets. In each case, the projectiles weigh a total of 30 grams. Velocity for the projectiles is about 350 meters per second. A cylindrical magazine containing 10 shells is inserted under the barrel and parallel to it; cartridges are then fed automatically into the shotgun for firing. Reloading consists of replacing the cylindrical magazine and takes two combat rounds. One shot is fired for each pull of the trigger. Magazines measure approximately 350mm long by 20mm in diameter and are quite clumsy to carry. Shotguns are equipped with a sling for carrying.",
+    "shortdescr": "Shotgun - ranged",
+    "quantity": 1,
+    "weight": 3750,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Shotguns)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 10,
+    "ammo": 10,
+    "useConsumableForAttack": "",
+    "magazineCost": 10,
+    "type": "weapon",
+    "lawLevel": "7",
+    "rangeBand": "shotgun",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "DEX 3/-1 9/+1",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "64t6609KoPD1mDTI",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696590171,
+    "modifiedTime": 1760016421886,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "Pjnn6Q9jwIfeLt2V",
+  "sort": 700000,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!Pjnn6Q9jwIfeLt2V"
+}

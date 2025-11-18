@@ -1,0 +1,60 @@
+{
+  "_id": "VtaIQmM0dDmUt2Uf",
+  "name": "Internal Blade",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "augment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Retractable ceramic blade, normally installed on the forearm. The character’s unarmed attacks with the blade do 2D damage. This implant is built to be concealable and won’t trip metal detectors. Only a TL11+ sensor or trained examination can reveal their presence.",
+    "shortdescr": "Unarmed attacks do 2D damage",
+    "quantity": 1,
+    "weight": 0,
+    "price": 2000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Arms",
+    "type": "augment",
+    "bonus": "unarmed damage 2D",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_487k4hw8dp4",
+      "path": "ce light-augments",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/internal-blade.svg",
+  "effects": [],
+  "folder": "akesqPKWL6RlAWqo",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080271,
+    "modifiedTime": 1760016422877,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!VtaIQmM0dDmUt2Uf"
+}

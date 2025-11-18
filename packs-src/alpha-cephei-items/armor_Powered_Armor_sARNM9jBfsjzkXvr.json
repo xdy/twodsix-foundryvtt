@@ -1,0 +1,130 @@
+{
+  "_id": "sARNM9jBfsjzkXvr",
+  "name": "Powered Armor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "This powerful motorized armor grants a +4 bonus to STR and DEX checks (except for ranged attacks), and a +2 damage bonus to unarmed attacks. Sealed against vacuum, hostile environments and rads like a vacc suit, with 6 hours of life support supplies. Powered armor does not count as an item for encumbrance when worn.<br><br>Skill Required: Zero G-2",
+    "shortdescr": "motorized combat armor",
+    "quantity": 1,
+    "weight": 3,
+    "price": 200000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 18,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 60
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": true,
+    "nonstackable": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_1vxyhjhgcfw",
+      "path": "ce light-armor",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/powered-armor.svg",
+  "effects": [
+    {
+      "origin": "Compendium.twodsix.cepheus-light-items.sARNM9jBfsjzkXvr",
+      "tint": "#ffffff",
+      "transfer": true,
+      "disabled": true,
+      "_id": "yh20LV8aj6p0tI1C",
+      "flags": {
+        "twodsix": {
+          "sourceId": "yh20LV8aj6p0tI1C"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.characteristics.strength.mod",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        },
+        {
+          "key": "system.characteristics.dexterity.mod",
+          "mode": 2,
+          "value": "4",
+          "priority": null
+        }
+      ],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Powered Armor",
+      "img": "./systems/twodsix/assets/icons/powered-armor.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
+      "sort": 0,
+      "_key": "!items.effects!sARNM9jBfsjzkXvr.yh20LV8aj6p0tI1C"
+    }
+  ],
+  "folder": "nycPK2btpYrXRFf2",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080278,
+    "modifiedTime": 1760016422883,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!sARNM9jBfsjzkXvr"
+}

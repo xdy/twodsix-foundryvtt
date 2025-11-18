@@ -1,0 +1,19 @@
+{
+  "name": "Ranged",
+  "sorting": "a",
+  "folder": "oGtTIbGAI37zbU4z",
+  "type": "Item",
+  "_id": "VaoWfK5i88LiiKfj",
+  "sort": 400000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "2.27.2",
+    "coreVersion": "11.294",
+    "createdTime": null,
+    "modifiedTime": 1680881022125,
+    "lastModifiedBy": "12WfDpqePx1TrVeA"
+  },
+  "_key": "!folders!VaoWfK5i88LiiKfj"
+}

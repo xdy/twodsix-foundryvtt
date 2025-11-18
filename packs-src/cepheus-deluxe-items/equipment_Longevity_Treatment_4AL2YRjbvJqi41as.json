@@ -1,0 +1,61 @@
+{
+  "name": "Longevity Treatment",
+  "type": "equipment",
+  "img": "./systems/twodsix/assets/icons/anagathic.svg",
+  "system": {
+    "name": "",
+    "techLevel": 15,
+    "description": "Longevity drugs prevent aging. For them to be effective, a character must take one dose each month. If the character misses even one month of Longevity Treatment, they revert to their chronological age within a week, which may be lethal in some cases.",
+    "shortdescr": "prevents aging",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SU8WH6nukL6X3EkG",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_l5fai9j7gxh",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Pharmaceuticals",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "4AL2YRjbvJqi41as",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737413,
+    "modifiedTime": 1760016422727,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.49GCUIMSIi9CdjTJ",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4AL2YRjbvJqi41as"
+}

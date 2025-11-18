@@ -1,0 +1,110 @@
+{
+  "name": "Bastet Frame Upgrade",
+  "type": "augment",
+  "img": "systems/twodsix/assets/icons/metabolic-accelerator.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A radical reconstruction of the entire organic body to grant superhuman agility and speed. The implant doubles the character’s DEX (to a maximum of 20), and grants Advantage on all DEX-related Athletics and Stealth throws. Furthermore, the Bastet Frame increases the character’s movement speed from 10m per round to 15m per round. The Bastet Frame Upgrade is incompatible with the Hercules Frame Upgrade.",
+    "shortdescr": "Grants superhuman agility and speed",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Full-Body",
+    "type": "augment",
+    "bonus": "Doubles DEX, Advantage on Athletics and Stealth, 15m per round",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [
+    {
+      "origin": "Compendium.twodsix.cepheus-deluxe-items.eqI5bWQKPyaApqu8",
+      "tint": "#ffffff",
+      "transfer": true,
+      "disabled": false,
+      "_id": "CfPLmZMvrEE9uEKD",
+      "flags": {
+        "twodsix": {
+          "sourceId": "CfPLmZMvrEE9uEKD"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.characteristics.dexterity.value",
+          "mode": 1,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Bastet Frame Upgrade",
+      "img": "systems/twodsix/assets/icons/metabolic-accelerator.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
+      "sort": 0,
+      "_key": "!items.effects!eqI5bWQKPyaApqu8.CfPLmZMvrEE9uEKD"
+    }
+  ],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "eqI5bWQKPyaApqu8",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737465,
+    "modifiedTime": 1760016422756,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!eqI5bWQKPyaApqu8"
+}

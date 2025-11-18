@@ -1,0 +1,61 @@
+{
+  "name": "Advanced Base",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/advanced-base.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "The Advanced Base is pressurized, modular, and capable of housing 6 persons. It requires 12 person-hours to assemble. Life support lasts for 24 hours without portable generator to power atmoscrubbers.",
+    "shortdescr": "Advanced Base",
+    "quantity": 1,
+    "weight": 3,
+    "price": 50000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "_id": "iuFOelMEEswOZUdx",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737468,
+    "modifiedTime": 1760016422769,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.RQJnd1rTP7pozzkn",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!iuFOelMEEswOZUdx"
+}

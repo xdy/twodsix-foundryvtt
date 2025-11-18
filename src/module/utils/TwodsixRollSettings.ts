@@ -36,7 +36,6 @@ export class TwodsixRollSettings {
   skillName:string;
   flags:Record<string, unknown>;
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(settings?:Record<string,any>, aSkill?:TwodsixItem, anItem?:TwodsixItem, sourceActor?:TwodsixActor) {
     this.difficulties = settings?.difficulties ? settings.difficulties : TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')];
     const skill = <Skills>aSkill?.system;

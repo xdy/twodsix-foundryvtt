@@ -1,0 +1,348 @@
+{
+  "name": "A Rumor About Them",
+  "img": "systems/twodsix/assets/icons/lock-spy.svg",
+  "results": [
+    {
+      "_id": "xiXReuss3QctD2bd",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They are utterly unable to pay their debts",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.xiXReuss3QctD2bd"
+    },
+    {
+      "_id": "83aGHqJrrkiDaXTy",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They have ties to the secret police",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.83aGHqJrrkiDaXTy"
+    },
+    {
+      "_id": "VHZLoNr5jveYsBDF",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Their business is a front for a larger criminal organization",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.VHZLoNr5jveYsBDF"
+    },
+    {
+      "_id": "cbVpPHyztbyjzF5n",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The trader is a member of a detestable cult",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.cbVpPHyztbyjzF5n"
+    },
+    {
+      "_id": "tPw8Sfu2HN43TSHd",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They have psychic powers",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.tPw8Sfu2HN43TSHd"
+    },
+    {
+      "_id": "Wwj21NaaQ2MrhLRX",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They killed the last trader who crossed them",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.Wwj21NaaQ2MrhLRX"
+    },
+    {
+      "_id": "TzwKtvOZA4cI0br9",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They have a side business trading in drugs",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.TzwKtvOZA4cI0br9"
+    },
+    {
+      "_id": "nhMbpwvHYCj7LdJP",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "The local government has a mole in their business",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.nhMbpwvHYCj7LdJP"
+    },
+    {
+      "_id": "Dg0er68nxFCjmRRm",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They secretly allied to anti-government revolutionaries",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.Dg0er68nxFCjmRRm"
+    },
+    {
+      "_id": "lhKcuuXUAfpUeySi",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They have truly detestable sexual proclivities",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.lhKcuuXUAfpUeySi"
+    },
+    {
+      "_id": "5QuLylSSeBVKv5kr",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They trade in slaves",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.5QuLylSSeBVKv5kr"
+    },
+    {
+      "_id": "vtcRhOXpqoIl9xuf",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Their weakness is a very expensive addiction",
+      "name": "",
+      "_key": "!tables.results!jSYcER0JUxWHeSXq.vtcRhOXpqoIl9xuf"
+    }
+  ],
+  "formula": "1d12",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zvg1qot7nf",
+      "path": "Social Encounters#/CF_SEP/Business Contact",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "jSYcER0JUxWHeSXq",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080313,
+    "modifiedTime": 1760016422923,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!jSYcER0JUxWHeSXq"
+}

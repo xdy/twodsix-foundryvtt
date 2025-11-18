@@ -1,0 +1,198 @@
+{
+  "name": "Robots",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_83vpuw46p6n",
+      "path": "CA Tables#/CF_SEP/Encounters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/science-robotics.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "kvXWSDKxwTZlEzCa",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Household Droid",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.jcnDzSdTkxosXg7k",
+      "description": "",
+      "_key": "!tables.results!YfYCkThq1mJiG8YO.kvXWSDKxwTZlEzCa"
+    },
+    {
+      "_id": "oZrE4ZZATt3rY7tH",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Agribot",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.EZjWKYW902ZiZyaR",
+      "description": "",
+      "_key": "!tables.results!YfYCkThq1mJiG8YO.oZrE4ZZATt3rY7tH"
+    },
+    {
+      "_id": "UPEVODxvpWHTpjNR",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Industrial Bot",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.W2Ea3iH43m2nbSwb",
+      "description": "",
+      "_key": "!tables.results!YfYCkThq1mJiG8YO.UPEVODxvpWHTpjNR"
+    },
+    {
+      "_id": "Zfb69Bccrm25V62D",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Security Droid",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.5OOeIMykxSAb8UFC",
+      "description": "",
+      "_key": "!tables.results!YfYCkThq1mJiG8YO.Zfb69Bccrm25V62D"
+    },
+    {
+      "_id": "hIM8YBPxHTIEANX3",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Police Robot",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.mURtjXbCm4bUsCWd",
+      "description": "",
+      "_key": "!tables.results!YfYCkThq1mJiG8YO.hIM8YBPxHTIEANX3"
+    },
+    {
+      "_id": "VDOM0Y4vrWJt7gcy",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Warbot",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.NYK48aPdXk2khwVX",
+      "description": "",
+      "_key": "!tables.results!YfYCkThq1mJiG8YO.VDOM0Y4vrWJt7gcy"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "YfYCkThq1mJiG8YO",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080064,
+    "modifiedTime": 1760016422593,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!YfYCkThq1mJiG8YO"
+}

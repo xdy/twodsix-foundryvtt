@@ -1,0 +1,115 @@
+{
+  "name": "Warship Type",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_040l4lztq682",
+      "path": "CE Tables#/CF_SEP/Starship Encounters Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Warship Type Sub-sub table",
+  "results": [
+    {
+      "_id": "N1RCsONNOItfmn9m",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Dreadnought",
+      "name": "",
+      "_key": "!tables.results!zOEn34q5Jf5n8J4B.N1RCsONNOItfmn9m"
+    },
+    {
+      "_id": "rnNoCkIIAfOtuT9G",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Heavy Cruiser",
+      "name": "",
+      "_key": "!tables.results!zOEn34q5Jf5n8J4B.rnNoCkIIAfOtuT9G"
+    },
+    {
+      "_id": "oytNaMSnxFmjBNTh",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Light Cruiser",
+      "name": "",
+      "_key": "!tables.results!zOEn34q5Jf5n8J4B.oytNaMSnxFmjBNTh"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "zOEn34q5Jf5n8J4B",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079750,
+    "modifiedTime": 1760016422220,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "RollTable.tKw5Di1cRj14QbUa",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!zOEn34q5Jf5n8J4B"
+}

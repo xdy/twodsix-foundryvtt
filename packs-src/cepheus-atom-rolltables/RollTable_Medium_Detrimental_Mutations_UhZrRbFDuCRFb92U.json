@@ -1,0 +1,252 @@
+{
+  "name": "Medium Detrimental Mutations",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_euiamf65fq",
+      "path": "CA Tables#/CF_SEP/Mutations",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "ES9n303tafqqdhxf",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/sight-disabled.svg",
+      "weight": 1,
+      "range": [
+        2,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Poor Vision",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.AZLgnsDtZNkHB5nA",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.ES9n303tafqqdhxf"
+    },
+    {
+      "_id": "NdsdyH5CjT9PPXvn",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Psychic Sensitivity",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.ByFdMIPwCDPnZ4xD",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.NdsdyH5CjT9PPXvn"
+    },
+    {
+      "_id": "89TqWcfVXtC0RLM7",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/bad-breath.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Distinctive Odor",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.xrEwyxi0wpEOjmbk",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.89TqWcfVXtC0RLM7"
+    },
+    {
+      "_id": "5HMClQpZi4v2SGP2",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/night-blindness.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Night Blindness",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.knwSTrhVc1K8pQeF",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.5HMClQpZi4v2SGP2"
+    },
+    {
+      "_id": "EezpzCpxGTusn70M",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/body-balance.svg",
+      "weight": 1,
+      "range": [
+        7,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Poor Reflexes",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.sdVr2cpNJwBu2rkM",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.EezpzCpxGTusn70M"
+    },
+    {
+      "_id": "I0uaX5b2cDQlLTi9",
+      "flags": {},
+      "type": "document",
+      "img": "icons/svg/mystery-man.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Minute Size",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.EouULe0drRtO0iHU",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.I0uaX5b2cDQlLTi9"
+    },
+    {
+      "_id": "noj2YTOLrfBT0U2c",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/voodoo-doll.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Pain Insensitivity",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.fW1kgN0DO1yhHiUY",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.noj2YTOLrfBT0U2c"
+    },
+    {
+      "_id": "xE5CNCjTUn5vFzlO",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/breaking-chain.svg",
+      "weight": 1,
+      "range": [
+        11,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Weakened",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.odOUyGn5w68CURfj",
+      "description": "",
+      "_key": "!tables.results!UhZrRbFDuCRFb92U.xE5CNCjTUn5vFzlO"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "UhZrRbFDuCRFb92U",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080064,
+    "modifiedTime": 1760016422593,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!UhZrRbFDuCRFb92U"
+}

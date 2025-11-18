@@ -1,0 +1,54 @@
+{
+  "name": "Administration",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Management, dealing with bureaucracies, understanding contracts, and&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">knowledge of the law. Also covers forgery.</span><div>• Write a contract: roll Administration (EDU) 8+.</div><div>• Legal advice: roll Administration (EDU) 8+, or more for complex cases.</div><div>• Avoid a routine police inspection: roll Administration (SOC) 10+.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/admin.svg",
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700403834578,
+    "modifiedTime": 1760016422623,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "QP55y7mWPmgwEt5I",
+  "sort": 9100000,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!QP55y7mWPmgwEt5I"
+}

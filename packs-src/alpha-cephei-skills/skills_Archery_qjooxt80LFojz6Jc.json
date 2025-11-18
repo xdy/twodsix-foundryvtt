@@ -1,0 +1,52 @@
+{
+  "_id": "qjooxt80LFojz6Jc",
+  "name": "Archery",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Using bows and crossbows in combat.<div>• Shoot an enemy within Effective range with a bow, or crossbow: roll Archery</div><div>(DEX) 8+. Combat modifiers apply (see p. 101).</div><div>• Shoot an enemy at Maximum range with a bow, or crossbow: roll Archery (DEX)</div><div>10+. Combat modifiers apply (see p. 101).</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/gun-combat-archery.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 8700000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080085,
+    "modifiedTime": 1760016422625,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!qjooxt80LFojz6Jc"
+}

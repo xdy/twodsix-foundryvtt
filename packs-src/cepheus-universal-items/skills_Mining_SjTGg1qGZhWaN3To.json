@@ -1,0 +1,50 @@
+{
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "name": "Mining",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/miner.svg",
+  "system": {
+    "name": "",
+    "description": "The character has experience and&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">training in prospecting and mining, both on a&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">world surface and in a zero-G environment. It&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">includes the use of mining equipment.</span>",
+    "type": "skills",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "value": 0,
+    "shortdescr": "",
+    "subtype": "",
+    "prereq": "",
+    "key": "key",
+    "characteristic": "NONE",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": ""
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422993,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "SjTGg1qGZhWaN3To",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!SjTGg1qGZhWaN3To"
+}

@@ -1,0 +1,71 @@
+{
+  "_id": "9azskZgd4IbTd5UH",
+  "name": "Starship Expenses",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_n6q9yayby2",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Starship Expenses",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Mortgage</h1>\n<p>A mortgaged ship’s owner must pay 1/240th of the ship’s cash price per month for 480 months (40 years). </p>\n<h1>Crew Salaries</h1>\n<table style=\"width:57.2718%;height:128px\" border=\"1\">\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Rating</td>\n<td style=\"width:48.1193%;height:16px\">Monthly Salary</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Captain</td>\n<td style=\"width:48.1193%;height:16px\">Cr6000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Pilot</td>\n<td style=\"width:48.1193%;height:16px\">Cr6000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Sensor Operator</td>\n<td style=\"width:48.1193%;height:16px\">Cr3000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Engineer</td>\n<td style=\"width:48.1193%;height:16px\">Cr4000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Medic</td>\n<td style=\"width:48.1193%;height:16px\">Cr3000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Purser</td>\n<td style=\"width:48.1193%;height:16px\">Cr3000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:51.1539%;height:16px\">Gunner</td>\n<td style=\"width:48.1193%;height:16px\">Cr1000</td>\n</tr>\n<tr>\n<td style=\"width:51.1539%\">Security and Marines</td>\n<td style=\"width:48.1193%\">Cr1000</td>\n</tr>\n<tr>\n<td style=\"width:51.1539%\">Support Crew</td>\n<td style=\"width:48.1193%\">Cr1000</td>\n</tr>\n<tr>\n<td style=\"width:51.1539%\">Steward</td>\n<td style=\"width:48.1193%\">Cr1000</td>\n</tr>\n</tbody>\n</table>\n<h1>Fuel</h1>\n<p>Starports rated A or B sell refined fuel at Cr500 per ton. Starports rated A to D sell unrefined fuel at Cr100 per ton.</p>\n<h1>Life Support</h1>\n<p>Each person, passenger or crew, costs Cr2000 per month for life support, other expenses, and overhead. Luxury life support costs Cr4000 per month. Each occupied low passenger berth costs Cr100 per month for life support in standard travel.</p>\n<p>Purchasing life support in bulk reduces costs and allows the ship to operate for a longer time away from port. A ton of life support supplies – enough for 20 persons for a month – costs Cr34000 instead of Cr40000.</p>\n<h1>Port Fees</h1>\n<p>A starport berth costs Cr100 for 6 days, and Cr100 per day afterwards.</p>\n<h1>Maintenance</h1>\n<p>Ships require maintenance work at a starport rated C or better once per year. This costs 0.1% of the ship’s listed price.</p>\n<p> </p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "uptbrCfPVueH0BU4",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!9azskZgd4IbTd5UH.uptbrCfPVueH0BU4"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080324,
+    "modifiedTime": 1760016422939,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.TH9sns8jQP9zgBew",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!9azskZgd4IbTd5UH"
+}

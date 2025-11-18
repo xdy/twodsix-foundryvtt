@@ -1,0 +1,197 @@
+{
+  "name": "Desert or Badlands Humanoids",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_oepu6t7x3f9",
+      "path": "CA Tables#/CF_SEP/Encounters#/CF_SEP/Humanoids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/desert.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "OVK4SeVULBHHDZYA",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/fiend/Lemure.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Tumoroid",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.OLqr695dY2Zndhlb",
+      "description": "",
+      "_key": "!tables.results!lUdeFOxyPAcCKuVY.OVK4SeVULBHHDZYA"
+    },
+    {
+      "_id": "l7wO0L2NyTRWuO56",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/TribalWarrior.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Sandman",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.5qVIN3yebHFVp6AH",
+      "description": "",
+      "_key": "!tables.results!lUdeFOxyPAcCKuVY.l7wO0L2NyTRWuO56"
+    },
+    {
+      "_id": "sE8HpmV5Fk49lPeN",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Lizardfolk.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Lizardfolk",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.DvaFwtUCNMCUDHXd",
+      "description": "",
+      "_key": "!tables.results!lUdeFOxyPAcCKuVY.sE8HpmV5Fk49lPeN"
+    },
+    {
+      "_id": "nsT0qOrYAxUcMyEx",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Sahuagin.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Insectaurs",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.SEbqcmzqVxcFYlRh",
+      "description": "",
+      "_key": "!tables.results!lUdeFOxyPAcCKuVY.nsT0qOrYAxUcMyEx"
+    },
+    {
+      "_id": "vOdjeoIwKdwxODQS",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/uncertainty.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Special! Referee's Choice",
+      "name": "",
+      "_key": "!tables.results!lUdeFOxyPAcCKuVY.vOdjeoIwKdwxODQS"
+    },
+    {
+      "_id": "kz2DfqOwAVRr4nX5",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!lUdeFOxyPAcCKuVY.kz2DfqOwAVRr4nX5"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "lUdeFOxyPAcCKuVY",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080065,
+    "modifiedTime": 1760016422595,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!lUdeFOxyPAcCKuVY"
+}

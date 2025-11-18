@@ -1,0 +1,333 @@
+{
+  "name": "Medicines",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_t425pvce42",
+      "path": "CA Tables#/CF_SEP/Relics#/CF_SEP/Relic Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "u5IXFsP5ECTJC0RR",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/anagathic.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Rebirth Serum",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.Hiq68sjKPiJTkOPP",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.u5IXFsP5ECTJC0RR"
+    },
+    {
+      "_id": "GpcREn9y4NODaK78",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/stimshot-B.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Stimshot B",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.jBE0nW1yFcqKN8nN",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.GpcREn9y4NODaK78"
+    },
+    {
+      "_id": "5ZZtog7oOevgdJMe",
+      "flags": {},
+      "type": "document",
+      "img": "./systems/twodsix/assets/icons/panacea.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Antibiotics",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.2X2hWt6ro1whQBAX",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.5ZZtog7oOevgdJMe"
+    },
+    {
+      "_id": "zK16VzWsDcm3z5Gq",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/nite-shot.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Nite Shot",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.CNJ3XNe6nzBXOPFP",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.zK16VzWsDcm3z5Gq"
+    },
+    {
+      "_id": "aVg47AzBnhFeldg1",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/medkit.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Medkit",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.rnLdmEM8YmbUy1pA",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.aVg47AzBnhFeldg1"
+    },
+    {
+      "_id": "rnuWgNIaJ7fv2ked",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/medicine-pills.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Sustenance Pills",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.jilXw7X2ULt1hsl8",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.rnuWgNIaJ7fv2ked"
+    },
+    {
+      "_id": "9FCHtHJ0Ebz3JsjK",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/syringe.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Empty Syringe",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.he4pnfTFOVC7DYiL",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.9FCHtHJ0Ebz3JsjK"
+    },
+    {
+      "_id": "PPwHZnLvar5n6VMz",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/Stimshot-A.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Stimshot A",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.tChEthpWE4Ah3atd",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.PPwHZnLvar5n6VMz"
+    },
+    {
+      "_id": "8YdYEO1C7omuvbNr",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/medical-drip.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Antitoxin",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.PlLHGwatPkK4x8jm",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.8YdYEO1C7omuvbNr"
+    },
+    {
+      "_id": "0TmwbSlcV3mbVX28",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/combat.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Combat Drugs",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.iOKhAhcOCpG5WjKn",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.0TmwbSlcV3mbVX28"
+    },
+    {
+      "_id": "MDTOu67JZfjnjWKS",
+      "flags": {},
+      "type": "document",
+      "img": "systems/twodsix/assets/icons/regen-tank.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Regeneration Tank",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-items.Item.9Lv960bSwOC4jOQM",
+      "description": "",
+      "_key": "!tables.results!2ONH6siDMYJCZJz0.MDTOu67JZfjnjWKS"
+    }
+  ],
+  "formula": "2D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "2ONH6siDMYJCZJz0",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080061,
+    "modifiedTime": 1760016422588,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!2ONH6siDMYJCZJz0"
+}

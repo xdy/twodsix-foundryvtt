@@ -1,0 +1,53 @@
+{
+  "name": "Recon",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/recon.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "Recon: scouting for danger and spotting threats, including traps. Recon also covers performing forward observation for artillery.<br><br>Examples: throw Recon/INT 8+ to correctly identify the composition of a concealed enemy force. Throw Recon/INT 10+ to identify a likely ambush kill zone. Throw Recon/INT 10+ to call down an airstrike on a large stationary target, such as a building. Throw Recon/INT 8+ to track a target in the wilderness. Throw Recon/INT 12+ to locate a devilishly hidden trap.",
+    "shortdescr": "Scouting for danger and spotting threats, including traps",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "w53D9eoGTCkFdiTO",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737481,
+    "modifiedTime": 1760016422779,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.hKNf0aBpr4jX4I1w",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!w53D9eoGTCkFdiTO"
+}

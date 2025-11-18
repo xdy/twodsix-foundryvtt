@@ -1,0 +1,77 @@
+{
+  "_id": "urzLMRMYscAWaqlo",
+  "name": "Auto Pistol",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/auto-pistol.svg",
+  "system": {
+    "name": "Auto Pistol",
+    "techLevel": 5,
+    "description": "Also referred to as a Semi-Automatic Pistol, Automatic Pistol or just a Pistol, the auto pistol is a basic repeating handgun. One cartridge is fired for each pull of the trigger. Auto pistol ammunition is interchangeable with submachinegun ammunition (although magazines are not). Preloaded magazines may be inserted into an empty pistol, but require a reload action to complete.",
+    "shortdescr": "Auto Pistol - ranged",
+    "quantity": 1,
+    "weight": 0.75,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat (Slug Pistol)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "pistol",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "MiE0iQdBR6wRdp9f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "TZxGG8c7kFt1cyHi": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696587994,
+    "modifiedTime": 1760016422344,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-srd-items.urzLMRMYscAWaqlo",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!urzLMRMYscAWaqlo"
+}

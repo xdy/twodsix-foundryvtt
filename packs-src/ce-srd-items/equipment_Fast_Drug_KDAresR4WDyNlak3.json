@@ -1,0 +1,59 @@
+{
+  "_id": "KDAresR4WDyNlak3",
+  "name": "Fast Drug",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "Also known as 'Hibernation', this drug puts the user into a state akin to suspended animation, slowing his metabolic rate down to a ratio of 60 to 1 – a subjective day for the user is actually two months. Fast drug is normally used to prolong life support reserves or as a cheap substitute for a cryoberth.",
+    "shortdescr": "Fast Drug",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_fhd8c5c89i",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Drugs",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/fast-forward.svg",
+  "effects": [],
+  "folder": "7JNabnKuKR3HpTut",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079857,
+    "modifiedTime": 1760016422327,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!KDAresR4WDyNlak3"
+}

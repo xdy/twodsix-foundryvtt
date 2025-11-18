@@ -1,0 +1,49 @@
+{
+  "name": "Gunslinger",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/cowboy-holster.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character is a master of handguns and can perform amazing feats of arms with them. When a shot fired by the character from a semiautomatic handgun \"drops\" an enemy (causes them to fall unconscious or die), the character may immediately attack a second enemy with the same handgun. The character can only attack one additional enemy per combat round. This is cumulative with the Double Tap weapon Aspect.",
+    "prereq": "Gun Combat 2",
+    "shortdescr": "Master of handguns",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 9000000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "zEnomNci6las4mNN",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737484,
+    "modifiedTime": 1760016422782,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!zEnomNci6las4mNN"
+}

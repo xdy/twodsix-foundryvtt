@@ -1,0 +1,33 @@
+{
+  "_id": "t0zcwm4StWB3gPyJ",
+  "name": "Internal - Craft",
+  "type": "script",
+  "author": "msuh6wePTuFs4VOF",
+  "img": "systems/twodsix/assets/icons/components/otherInternal.svg",
+  "scope": "global",
+  "command": "let compendiumTables = await game.packs.get(\"twodsix.cepheus-deluxe-tables\").getDocuments();\nlet table = await compendiumTables.find(o => o.name === \"Internal - Craft\");\nlet result = await table.draw();",
+  "folder": null,
+  "sort": 2900000,
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_yxfg7c9wgej"
+    }
+  },
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080053,
+    "modifiedTime": 1760016422572,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Macro.2wp1RB1XaOIEUgOd",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!macros!t0zcwm4StWB3gPyJ"
+}

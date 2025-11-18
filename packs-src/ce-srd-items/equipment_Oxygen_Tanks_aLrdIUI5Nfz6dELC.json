@@ -1,0 +1,59 @@
+{
+  "_id": "aLrdIUI5Nfz6dELC",
+  "name": "Oxygen Tanks",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "A complete set of compressed oxygen tanks, which allow independent breathing in smoke, dust, gas, or exotic (type A) atmosphere. Two tanks last 6 hours. Refill of proper atmospheric mixture for race cost Cr20.",
+    "shortdescr": "Oxygen Tanks",
+    "quantity": 1,
+    "weight": 5,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_io8or4a2knc",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Survival Equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/oxygen-tanks.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079870,
+    "modifiedTime": 1760016422335,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!aLrdIUI5Nfz6dELC"
+}

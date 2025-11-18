@@ -1,0 +1,51 @@
+{
+  "_id": "WGIiT2CCuzxPJd1x",
+  "name": "Liaison",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "The art and practice of negotiation and diplomacy in a myriad of social situations. This skill covers diplomatic meetings, haggling in interstellar trading negotiations, or at the shouq.",
+    "shortdescr": "Negotiation and diplomacy in social situations",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zjco251t0w",
+      "path": "ce light-skills",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/liaison.svg",
+  "effects": [],
+  "folder": "nIXJisBXpvXMn3Tn",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079715,
+    "modifiedTime": 1760016422156,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!WGIiT2CCuzxPJd1x"
+}

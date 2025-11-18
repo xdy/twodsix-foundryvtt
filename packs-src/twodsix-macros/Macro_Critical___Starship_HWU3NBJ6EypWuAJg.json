@@ -1,0 +1,33 @@
+{
+  "_id": "HWU3NBJ6EypWuAJg",
+  "name": "Critical - Starship",
+  "type": "script",
+  "author": "msuh6wePTuFs4VOF",
+  "img": "icons/svg/explosion.svg",
+  "scope": "global",
+  "command": "let compendiumTables = await game.packs.get(\"twodsix.cepheus-deluxe-tables\").getDocuments();\nlet table = await compendiumTables.find(o => o.name === \"Critical - Starship\");\nlet result = await table.draw();",
+  "folder": null,
+  "sort": 1800000,
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_yxfg7c9wgej"
+    }
+  },
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080040,
+    "modifiedTime": 1760016422562,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Macro.2wp1RB1XaOIEUgOd",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!macros!HWU3NBJ6EypWuAJg"
+}

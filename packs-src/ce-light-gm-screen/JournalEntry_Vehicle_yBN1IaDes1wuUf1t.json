@@ -1,0 +1,70 @@
+{
+  "_id": "yBN1IaDes1wuUf1t",
+  "name": "Vehicle",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Vehicle",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table style=\"height:437px;width:744px\" border=\"0\">\n<tbody>\n<tr style=\"height:33px\">\n<td style=\"width:119px;height:33px\">Vehicle</td>\n<td style=\"width:41px;height:33px\">TL</td>\n<td style=\"width:63px;height:33px\">Cost</td>\n<td style=\"width:52px;height:33px\">Agi</td>\n<td style=\"width:80px;height:33px\">Spd (kph)</td>\n<td style=\"width:54px;height:33px\">Light Damage</td>\n<td style=\"width:54px;height:33px\">Crit Damage</td>\n<td style=\"width:77px;height:33px\">Weapons</td>\n<td style=\"width:68px;height:33px\">Crew / Passengers</td>\n<td style=\"width:80px;height:33px\">Cargo (kg)</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Bus</td>\n<td style=\"width:41px;height:16px\">5</td>\n<td style=\"width:63px;height:16px\">KCr35</td>\n<td style=\"width:52px;height:16px\">-1</td>\n<td style=\"width:80px;height:16px\">150</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/30</td>\n<td style=\"width:80px;height:16px\">8000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Ground Car</td>\n<td style=\"width:41px;height:16px\">5</td>\n<td style=\"width:63px;height:16px\">KCr6</td>\n<td style=\"width:52px;height:16px\">+0</td>\n<td style=\"width:80px;height:16px\">150</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/3</td>\n<td style=\"width:80px;height:16px\">200</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Motor Boat</td>\n<td style=\"width:41px;height:16px\">5</td>\n<td style=\"width:63px;height:16px\">KCr530</td>\n<td style=\"width:52px;height:16px\">-3</td>\n<td style=\"width:80px;height:16px\">120</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">5/10</td>\n<td style=\"width:80px;height:16px\">10000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Truck</td>\n<td style=\"width:41px;height:16px\">5</td>\n<td style=\"width:63px;height:16px\">KCr50</td>\n<td style=\"width:52px;height:16px\">-1</td>\n<td style=\"width:80px;height:16px\">120</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:54px;height:16px\">9</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/1</td>\n<td style=\"width:80px;height:16px\">30000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Main Battle Tank</td>\n<td style=\"width:41px;height:16px\">6</td>\n<td style=\"width:63px;height:16px\">KCr100</td>\n<td style=\"width:52px;height:16px\">-2</td>\n<td style=\"width:80px;height:16px\">60</td>\n<td style=\"width:54px;height:16px\">25</td>\n<td style=\"width:54px;height:16px\">32</td>\n<td style=\"width:77px;height:16px\">Gunnery, 2 Support</td>\n<td style=\"width:68px;height:16px\">4/0</td>\n<td style=\"width:80px;height:16px\">100</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">APC</td>\n<td style=\"width:41px;height:16px\">6</td>\n<td style=\"width:63px;height:16px\">KCr65</td>\n<td style=\"width:52px;height:16px\">-1</td>\n<td style=\"width:80px;height:16px\">80</td>\n<td style=\"width:54px;height:16px\">12</td>\n<td style=\"width:54px;height:16px\">15</td>\n<td style=\"width:77px;height:16px\">Support</td>\n<td style=\"width:68px;height:16px\">2/9</td>\n<td style=\"width:80px;height:16px\">1000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Helicopter</td>\n<td style=\"width:41px;height:16px\">6</td>\n<td style=\"width:63px;height:16px\">KCr250</td>\n<td style=\"width:52px;height:16px\">+1</td>\n<td style=\"width:80px;height:16px\">100</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/7</td>\n<td style=\"width:80px;height:16px\">500</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Submersible</td>\n<td style=\"width:41px;height:16px\">6</td>\n<td style=\"width:63px;height:16px\">KCr1700</td>\n<td style=\"width:52px;height:16px\">-4</td>\n<td style=\"width:80px;height:16px\">40</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">5/10</td>\n<td style=\"width:80px;height:16px\">30000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">ATV, Tracked</td>\n<td style=\"width:41px;height:16px\">7</td>\n<td style=\"width:63px;height:16px\">KCr50</td>\n<td style=\"width:52px;height:16px\">-1</td>\n<td style=\"width:80px;height:16px\">80</td>\n<td style=\"width:54px;height:16px\">12</td>\n<td style=\"width:54px;height:16px\">15</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/15</td>\n<td style=\"width:80px;height:16px\">1000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">ATV, Wheeled</td>\n<td style=\"width:41px;height:16px\">7</td>\n<td style=\"width:63px;height:16px\">KCr50</td>\n<td style=\"width:52px;height:16px\">+0</td>\n<td style=\"width:80px;height:16px\">100</td>\n<td style=\"width:54px;height:16px\">12</td>\n<td style=\"width:54px;height:16px\">15</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/15</td>\n<td style=\"width:80px;height:16px\">10000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Jet Liner</td>\n<td style=\"width:41px;height:16px\">7</td>\n<td style=\"width:63px;height:16px\">KCr5000</td>\n<td style=\"width:52px;height:16px\">-1</td>\n<td style=\"width:80px;height:16px\">1000</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:54px;height:16px\">9</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">2/100</td>\n<td style=\"width:80px;height:16px\">20000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Jump Jet</td>\n<td style=\"width:41px;height:16px\">7</td>\n<td style=\"width:63px;height:16px\">KCr500</td>\n<td style=\"width:52px;height:16px\">+1</td>\n<td style=\"width:80px;height:16px\">600</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">2/6</td>\n<td style=\"width:80px;height:16px\">5000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Aircar</td>\n<td style=\"width:41px;height:16px\">8</td>\n<td style=\"width:63px;height:16px\">KCr150</td>\n<td style=\"width:52px;height:16px\">+0</td>\n<td style=\"width:80px;height:16px\">100</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/4</td>\n<td style=\"width:80px;height:16px\">2000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Air/Raft</td>\n<td style=\"width:41px;height:16px\">8</td>\n<td style=\"width:63px;height:16px\">KCr275</td>\n<td style=\"width:52px;height:16px\">+0</td>\n<td style=\"width:80px;height:16px\">400</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/2</td>\n<td style=\"width:80px;height:16px\">4000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">G/Carrier</td>\n<td style=\"width:41px;height:16px\">8</td>\n<td style=\"width:63px;height:16px\">KCr1000</td>\n<td style=\"width:52px;height:16px\">+0</td>\n<td style=\"width:80px;height:16px\">620</td>\n<td style=\"width:54px;height:16px\">16</td>\n<td style=\"width:54px;height:16px\">20</td>\n<td style=\"width:77px;height:16px\">Support</td>\n<td style=\"width:68px;height:16px\">2/12</td>\n<td style=\"width:80px;height:16px\">2000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">G/Barge</td>\n<td style=\"width:41px;height:16px\">8</td>\n<td style=\"width:63px;height:16px\">KCr500</td>\n<td style=\"width:52px;height:16px\">-2</td>\n<td style=\"width:80px;height:16px\">200</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:54px;height:16px\">9</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/1</td>\n<td style=\"width:80px;height:16px\">50000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">G/Liner</td>\n<td style=\"width:41px;height:16px\">8</td>\n<td style=\"width:63px;height:16px\">KCr10000</td>\n<td style=\"width:52px;height:16px\">-1</td>\n<td style=\"width:80px;height:16px\">1200</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:54px;height:16px\">9</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">2/100</td>\n<td style=\"width:80px;height:16px\">20000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Speeder</td>\n<td style=\"width:41px;height:16px\">8</td>\n<td style=\"width:63px;height:16px\">KCr890</td>\n<td style=\"width:52px;height:16px\">+2</td>\n<td style=\"width:80px;height:16px\">1500</td>\n<td style=\"width:54px;height:16px\">3</td>\n<td style=\"width:54px;height:16px\">6</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1/1</td>\n<td style=\"width:80px;height:16px\">4000</td>\n</tr>\n<tr style=\"height:33px\">\n<td style=\"width:119px;height:33px\">Destroyer (watercraft)</td>\n<td style=\"width:41px\">9</td>\n<td style=\"width:63px\">KCr4800</td>\n<td style=\"width:52px\">-5</td>\n<td style=\"width:80px\">80</td>\n<td style=\"width:54px\">16</td>\n<td style=\"width:54px\">20</td>\n<td style=\"width:77px\">8 Gunnery, 8 Support</td>\n<td style=\"width:68px\">18/12</td>\n<td style=\"width:80px\">40000</td>\n</tr>\n<tr style=\"height:33px\">\n<td style=\"width:119px\">G/Gunship</td>\n<td style=\"width:41px\">12</td>\n<td style=\"width:63px\">KCr2000</td>\n<td style=\"width:52px\">+1</td>\n<td style=\"width:80px\">1200</td>\n<td style=\"width:54px\">12</td>\n<td style=\"width:54px\">15</td>\n<td style=\"width:77px;height:18px\">Gunnery, Support</td>\n<td style=\"width:68px;height:18px\">2/16</td>\n<td style=\"width:80px;height:18px\">1000</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">Grav Belt</td>\n<td style=\"width:41px;height:16px\">12</td>\n<td style=\"width:63px;height:16px\">KCr100</td>\n<td style=\"width:52px;height:16px\">+2</td>\n<td style=\"width:80px;height:16px\">300</td>\n<td style=\"width:54px;height:16px\">-</td>\n<td style=\"width:54px;height:16px\">-</td>\n<td style=\"width:77px;height:16px\"> </td>\n<td style=\"width:68px;height:16px\">1</td>\n<td style=\"width:80px;height:16px\">personal</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"width:119px;height:16px\">G/Disc</td>\n<td style=\"width:41px;height:16px\">13</td>\n<td style=\"width:63px;height:16px\">KCr110</td>\n<td style=\"width:52px;height:16px\">+4</td>\n<td style=\"width:80px;height:16px\">400</td>\n<td style=\"width:54px;height:16px\">5</td>\n<td style=\"width:54px;height:16px\">7</td>\n<td style=\"width:77px;height:16px\">Support</td>\n<td style=\"width:68px;height:16px\">1</td>\n<td style=\"width:80px;height:16px\">50</td>\n</tr>\n<tr style=\"height:33px\">\n<td style=\"width:119px;height:33px\">Walker</td>\n<td style=\"width:41px;height:33px\">13</td>\n<td style=\"width:63px;height:33px\">KCr488</td>\n<td style=\"width:52px;height:33px\">+2</td>\n<td style=\"width:80px;height:33px\">90</td>\n<td style=\"width:54px;height:33px\">16</td>\n<td style=\"width:54px;height:33px\">20</td>\n<td style=\"width:77px;height:33px\">Gunnery, Support</td>\n<td style=\"width:68px;height:33px\">1</td>\n<td style=\"width:80px;height:33px\">100</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "IcVHzD6xvVOpH1o8",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!yBN1IaDes1wuUf1t.IcVHzD6xvVOpH1o8"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079921,
+    "modifiedTime": 1760016422381,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!yBN1IaDes1wuUf1t"
+}

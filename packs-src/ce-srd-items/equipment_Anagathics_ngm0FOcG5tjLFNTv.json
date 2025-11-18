@@ -1,0 +1,59 @@
+{
+  "_id": "ngm0FOcG5tjLFNTv",
+  "name": "Anagathics",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 15,
+    "description": "Slow the user’s aging process.&nbsp; Synthetic anagathics become possible at TL 15, but there are natural spices and other rare compounds that have comparable effects at all Technology Levels. Anagathics are illegal or heavily controlled on many worlds. One dose must be taken each month to maintain the anti-aging effect – if the character taking anagathics misses a dose they must make an immediate roll on the aging table as their body reacts badly to the interrupted supply.",
+    "shortdescr": "Anagathics",
+    "quantity": 1,
+    "weight": 0,
+    "price": 2000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_fhd8c5c89i",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Drugs",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/anagathic.svg",
+  "effects": [],
+  "folder": "7JNabnKuKR3HpTut",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079880,
+    "modifiedTime": 1760016422341,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ngm0FOcG5tjLFNTv"
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Telepathy",
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "PSI",
+    "type": "skills",
+    "description": "Telepathy is the talent of establishing mind-to-mind contact. It is usually subtle but can also be used to bluntly crush the wills of those who oppose the telepath.\n<div><br></div><div>Note that thoughts are universal, and thus psionic communications might very well ignore language barriers. However, psionic scan or communication with a target significantly different from the user (such as an insectoid alien scanned by a human) incurs double PSI cost.\n</div><div><br></div><div>Life Detection (PSI 1, 20m): detect the presence of other minds, their general type (human, sentient alien, irrational animal, etc.), and location.\n</div><div><br></div><div>Telepathy (PSI 2, 20m): read and communicate basic emotions; may influence the behavior of others, both sentient and irrational beings, subject to Referee discretion.\n</div><div><br></div><div>Read Surface Thoughts (PSI 3, 20m): read active, current thoughts. A non-psionic target cannot notice this power being used on them, but a Psionic Shield (see below) blocks the attempt. \n</div><div><br></div><div>Communicate (PSI 5, 5km): communicate telepathically with one known individual, or some individual that the psion knows the exact location of. The target does not have to be a telepath to communicate back with the psychic.\n</div><div>Emotion (PSI 6, 50m): causes one target to feel a very strong emotion (such as fear or mindless rage) for 1D combat rounds.\n</div><div><br></div><div>Suggestion (PSI 7, 5km): plants a simple hypnotic suggestion in the target. Note that targets will not obey suggestions which may physically harm themselves; if the suggestion is for that character to harm a friend, they may roll INT 6+ to resist the effect.\n</div><div><br></div><div>Probe (PSI 9, 1m): reads deep thoughts and long-term memories.\n</div><div><br></div><div>Assault (PSI 10, 250m): a brute-force telepathic assault, causing 4D damage to the target. Apply damage first to the target’s PSI, then INT, and finally END. Characters who are reduced to 0 in all these characteristics fall unconscious with serious wounds, including internal brain bleeding that needs immediate care. Lost INT regenerates at a rate of one point per day.\n</div><div><br></div><div>Domination (PSI 12, 5km): mind-control one target for 2D combat rounds. The control is complete and may include harming the target's friends. Only when the dominated target is forced to harm itself, they may roll INT 8+ to shake off the mind control.\n</div><div><br></div><div>Psionic Shielding and Telepathic Combat (PSI 1 but see cost below, 3m): as an action, all telepaths can shield themselves and other individuals in a 3m radius from telepathic intrusion. Attempting to use a telepathic power against a shielded target requires an opposed PSI check. The defender wins on a tie. If the intruder wins, they may use their power as desired at the usual cost, and the defender loses one Psionics point. If the intruder loses, they fail to penetrate the shield and expend one Psionics point instead. Note that this uses both characters' current PSI modifier: an exhausted telepath is more exposed to mental intrusion.</div>",
+    "shortdescr": "Communicate (PSI 5, 5km)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ok68zut371",
+      "path": "ce light-psionics",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "img": "systems/twodsix/assets/icons/telepathy.svg",
+  "effects": [],
+  "folder": "HvZvDaB5SC7wC3gv",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1700428403040,
+    "modifiedTime": 1760016422624,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "TSP8LHHffmakrtgX",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "wKDpARCmanYPD5xr": 3
+  },
+  "_key": "!items!TSP8LHHffmakrtgX"
+}

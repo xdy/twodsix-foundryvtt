@@ -1,0 +1,193 @@
+{
+  "name": "Derelict Encounter Type",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_040l4lztq682",
+      "path": "CE Tables#/CF_SEP/Starship Encounters Subtables",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Derelict Encounter Type Subtable",
+  "results": [
+    {
+      "_id": "XXnEFSSHgF2lM36b",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Escape pod or life boat",
+      "name": "",
+      "_key": "!tables.results!jagbntbiu125VwY7.XXnEFSSHgF2lM36b"
+    },
+    {
+      "_id": "uSrB4FgVZ8tWN1dT",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Merchant vessel",
+      "name": "",
+      "_key": "!tables.results!jagbntbiu125VwY7.uSrB4FgVZ8tWN1dT"
+    },
+    {
+      "_id": "viSggYVTb7hSdrt9",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Military vessel",
+      "name": "",
+      "_key": "!tables.results!jagbntbiu125VwY7.viSggYVTb7hSdrt9"
+    },
+    {
+      "_id": "YLToYeJkIxohIVRQ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Personal vessel",
+      "name": "",
+      "_key": "!tables.results!jagbntbiu125VwY7.YLToYeJkIxohIVRQ"
+    },
+    {
+      "_id": "wew7DCKngGlmW0ui",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Research vessel",
+      "name": "",
+      "_key": "!tables.results!jagbntbiu125VwY7.wew7DCKngGlmW0ui"
+    },
+    {
+      "_id": "XzcsCcxxCpWnojka",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Space habitat",
+      "name": "",
+      "_key": "!tables.results!jagbntbiu125VwY7.XzcsCcxxCpWnojka"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "jagbntbiu125VwY7",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079743,
+    "modifiedTime": 1760016422211,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "RollTable.9qZd3Kg6tWL2bt74",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!jagbntbiu125VwY7"
+}

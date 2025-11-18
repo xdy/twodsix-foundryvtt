@@ -1,0 +1,59 @@
+{
+  "_id": "ec4ObIHEbIVtl1gv",
+  "name": "Scientific Toolkit",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "Required for scientific testing and analysis. This kit contains diagnostic sensors, hand tools, computer analysis programs (at appropriate tech levels) and spare parts.",
+    "shortdescr": "Scientific Toolkit",
+    "quantity": 1,
+    "weight": 12,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_f8kagh4vy4g",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Tools",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/test-tubes.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079873,
+    "modifiedTime": 1760016422337,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ec4ObIHEbIVtl1gv"
+}

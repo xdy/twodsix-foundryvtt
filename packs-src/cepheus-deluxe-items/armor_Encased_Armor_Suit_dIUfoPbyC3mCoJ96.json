@@ -1,0 +1,76 @@
+{
+  "name": "Encased Armor Suit",
+  "type": "armor",
+  "img": "./systems/twodsix/assets/icons/combat-environment-suit.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "A heavy, full body rigid armor, often used by corporate SWAT and high-end mercenaries. The suit offers environmental protection as an Envirosuit and includes integrated comms and a HUD.<br><br>Fully protects against airborne toxins and pathogens. Reduces radiation by 20 rads.<br>",
+    "shortdescr": "An environmentally-protected armored soft-suit utilizing advanced ballistic polymers",
+    "quantity": 1,
+    "weight": 2,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 9,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 20
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "a7XuMzMB1lUiBYWm",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3odrbwitf0c",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "dIUfoPbyC3mCoJ96",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737463,
+    "modifiedTime": 1760016422754,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.4Omyp63mHCpv5XHJ",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!dIUfoPbyC3mCoJ96"
+}

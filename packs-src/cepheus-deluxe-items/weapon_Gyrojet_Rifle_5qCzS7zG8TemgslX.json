@@ -1,0 +1,82 @@
+{
+  "_id": "5qCzS7zG8TemgslX",
+  "name": "Gyrojet Rifle",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/default_weapon.png",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "Designed for use in zero-G environment, the gyroget rifle fires self-propelled rocket rounds. It has minimal recoil and works perfectly in hard vacuum.<br><br>&gt;Zero-G: the weapon does not suffer a penalty for firing a weapon in zero-g conditions. Lasers automatically have the Zero-G Aspect.",
+    "shortdescr": "Rifle that fires self-propelled rocket rounds",
+    "quantity": 1,
+    "weight": 1,
+    "price": 900,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "20",
+    "useConsumableForAttack": "",
+    "magazineCost": 15,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "100/400",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "2",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "WM0MvR08jIVlUsUq",
+  "sort": 500000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_sk461konhrd",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+      "color": "#00aaaa"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737416,
+    "modifiedTime": 1760016422728,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!5qCzS7zG8TemgslX"
+}

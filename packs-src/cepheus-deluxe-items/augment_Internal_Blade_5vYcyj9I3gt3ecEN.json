@@ -1,0 +1,62 @@
+{
+  "_id": "5vYcyj9I3gt3ecEN",
+  "name": "Internal Blade",
+  "type": "augment",
+  "img": "./systems/twodsix/assets/icons/internal-blade.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "A set of two 10cm retractable blades are implanted in the character’s limbs. These can be wrist blades, knuckle spikes, knee spikes, or even dew claws. The character’s unarmed attacks do 2D damage. The blades are constructed out of ceramic composites to avoid detection by most security scans. Only medical scans or TL13 or better sensors will detect the blades. Internal blades are considered illegal on world with Law Level 4+.<br>",
+    "shortdescr": "Unarmed attacks do 2D damage",
+    "quantity": 1,
+    "weight": 0,
+    "price": 5000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Full-Body",
+    "type": "augment",
+    "bonus": "unarmed damage 2D6",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737416,
+    "modifiedTime": 1760016422729,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.VtaIQmM0dDmUt2Uf",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!5vYcyj9I3gt3ecEN"
+}

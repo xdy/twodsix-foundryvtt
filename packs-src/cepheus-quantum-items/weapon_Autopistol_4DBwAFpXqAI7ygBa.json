@@ -1,0 +1,78 @@
+{
+  "_id": "4DBwAFpXqAI7ygBa",
+  "name": "Autopistol",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/auto-pistol.svg",
+  "system": {
+    "name": "Auto Pistol",
+    "techLevel": 5,
+    "description": "Autopistol (TL5): Semi-automatic handgun fed from a magazine. Preloaded magazines may be inserted into an empty pistol, but require a reload action to complete.",
+    "shortdescr": "Auto Pistol - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "10/50",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "16",
+    "useConsumableForAttack": "",
+    "magazineCost": 1,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "10/50",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "GPBSNXRjYCvOMJl6",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_dakj2vd78j8",
+      "path": "cepheus quantum#/CF_SEP/CQ - Weapons",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079909,
+    "modifiedTime": 1760016422355,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!4DBwAFpXqAI7ygBa"
+}

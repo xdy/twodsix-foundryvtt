@@ -1,0 +1,951 @@
+{
+  "_id": "M7HXRj4xOKgBrbLJ",
+  "name": "Advanced Trade Goods - CL",
+  "img": "icons/svg/d20-grey.svg",
+  "description": "Trade goods table from Cepheus Light rules set.  Items are tab delineated and rolls adjusted to die faces (e.g 1D6 as opposed to 1D). Unusual goods excluded.",
+  "results": [
+    {
+      "_id": "2hKZz2RBM69P6MBl",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Advanced Electronics\t100000\t1D6*5\tHt+2, In+4\tNi+2, Po+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.2hKZz2RBM69P6MBl"
+    },
+    {
+      "_id": "bIuc2Cor4BfwmCKY",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Advanced Manufactured Goods\t200000\t1D6*5\tIn+3, Ri+2\tLo+1, Ni+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.bIuc2Cor4BfwmCKY"
+    },
+    {
+      "_id": "ZcnaTVyFkIiZaKRq",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Agricultural Equipment\t150000\t1D6\tIn+3, Ri+2\tAg+2, Ga+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.ZcnaTVyFkIiZaKRq"
+    },
+    {
+      "_id": "TDkxgQBG1qSoSmrz",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Animal Products\t1500\t4D6*5\tAg+2, Ga+3\tHi+2, Ri+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.TDkxgQBG1qSoSmrz"
+    },
+    {
+      "_id": "9iVypl1eLWEZ5z0B",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Collectibles\t50000\t1D6\tIn+2, Hi+3\tHi+2, Ni+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.9iVypl1eLWEZ5z0B"
+    },
+    {
+      "_id": "s1WM7QDhtstIDmxo",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Computers\t150000\t2D6\tHt+3, In+2\tNa+1, Ni+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.s1WM7QDhtstIDmxo"
+    },
+    {
+      "_id": "EbUUG0nQwtyE3AxU",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Crystals and Gems\t20000\t1D6*5\tNi+3, Ic+2\tIn+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.EbUUG0nQwtyE3AxU"
+    },
+    {
+      "_id": "mv5InHf9nHDAuHKG",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Cybernetic Parts\t250000\t1D6*5\tBt+3, Ri+2\tNa+1, Ni+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.mv5InHf9nHDAuHKG"
+    },
+    {
+      "_id": "739VOTvK5ov5Qqfz",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Food service equipment\t4000\t2D6\tIn+3, Na+2\tAg+1, Ni+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.739VOTvK5ov5Qqfz"
+    },
+    {
+      "_id": "2FR0FTGnXVV6Oqxx",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Furniture\t5000\t4D6\tAg+2, Ga+3\tHu+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.2FR0FTGnXVV6Oqxx"
+    },
+    {
+      "_id": "oO2w1z2IC0iGqLea",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Gambling Devices &amp; Equipment\t4000\t1D6\tHi+2, Ri+3\tNa+2, Ni+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.oO2w1z2IC0iGqLea"
+    },
+    {
+      "_id": "q6hsP2ny7hfBBrYZ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Grav Vehicles\t160000\t1D6\tHt+3, Ri+2\tNi+2, Po+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.q6hsP2ny7hfBBrYZ"
+    },
+    {
+      "_id": "A7hODZiiN4bMAUGG",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Grocery Products\t6000\t1D6*5\tAg+3, Ga+2\tLo+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.A7hODZiiN4bMAUGG"
+    },
+    {
+      "_id": "xzXogYhEMJM809Bz",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Household Appliances\t12000\t4D6\tHi+2, In+3\tNa+1, Ni+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.xzXogYhEMJM809Bz"
+    },
+    {
+      "_id": "XfESrj0fcKKG8cev",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Industrial Supplies\t75000\t2D6\tIn+3, Ri+2\tNa+1, Ni+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.XfESrj0fcKKG8cev"
+    },
+    {
+      "_id": "PcRI8A7LXAx2xSSr",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Liquor\t15000\t1D6*5\tAg+3, Ga+2\tIn+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.PcRI8A7LXAx2xSSr"
+    },
+    {
+      "_id": "k3Gpa0FL5Cr231DQ",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Luxury foodstuffs and fabrics\t150000\t1D6\tAg+2, Ga+3\tIn+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.k3Gpa0FL5Cr231DQ"
+    },
+    {
+      "_id": "0OP0PNNFThOYweL5",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Manufacturing Equipment\t750000\t1D6*5\tIn+3, Ri+2\tNa+1, Ni+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.0OP0PNNFThOYweL5"
+    },
+    {
+      "_id": "Uatd9U3VprD60HGV",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Medical Equipment\t50000\t1D6*5\tHt+2, Ri+3\tHi+1, In+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.Uatd9U3VprD60HGV"
+    },
+    {
+      "_id": "Dyi8hjPjBZaHGgk8",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Petrochemicals\t10000\t2D6*5\tNa+2, Fl+3\tAg+1, In+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.Dyi8hjPjBZaHGgk8"
+    },
+    {
+      "_id": "bonxtauILEhz7Nak",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pharmaceuticals\t100000\t1D6\tHt+3, Wa+2\tLo+1, Ri+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.bonxtauILEhz7Nak"
+    },
+    {
+      "_id": "uSSfTCiqXmM2ERiC",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Complex chemical compounds\t7000\t4D6*5\tIn+2, Ri+3\tNi+2, Va+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.uSSfTCiqXmM2ERiC"
+    },
+    {
+      "_id": "urVc0Fz3RlzEoEre",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Precious Metals\t50000\t1D8\tAs+3, Ic+2\tIn+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.urVc0Fz3RlzEoEre"
+    },
+    {
+      "_id": "ybjUXakxEB014kJv",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Radioactives\t1000000\t1D6\tAs+2, Ni+3\tIn+2, Ht+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.ybjUXakxEB014kJv"
+    },
+    {
+      "_id": "4lFJ04tj3r50Cl6S",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Robots and Drones\t500000\t1D6*5\tHt+3, Ri+2\tNi+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.4lFJ04tj3r50Cl6S"
+    },
+    {
+      "_id": "EduM8zWwLNdHllP6",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Scientific Equipment\t50000\t1D6*5\tHt+3, Ri+2\tHi+2, Ni+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.EduM8zWwLNdHllP6"
+    },
+    {
+      "_id": "H4sB46SnZJoYZPUz",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Survival Gear\t4000\t2D6\tGa+1, Ri+2\tFl+2, Va+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.H4sB46SnZJoYZPUz"
+    },
+    {
+      "_id": "MR38xUjPEXQ2zV8A",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Textiles\t3000\t3D6*5\tAg+3, Ni+2\tNa+1, Ri+2",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.MR38xUjPEXQ2zV8A"
+    },
+    {
+      "_id": "0nKkum7nSgxv1YZI",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Uncommon Raw Materials\t50000\t2D6*5\tAg+3, Ni+2\tIn+2, Na+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.0nKkum7nSgxv1YZI"
+    },
+    {
+      "_id": "sKwD0g1u0n7qMcN4",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Uncommon Unrefined Ores\t20000\t2D6*5\tAs+2, Va+1\tIn+2, Na+1",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.sKwD0g1u0n7qMcN4"
+    },
+    {
+      "_id": "crr8YwuppsWI3WiB",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Illicit Luxury Goods\t150000\t1D6\tAg+2, Ga+3\tIn+4, Ri+6",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.crr8YwuppsWI3WiB"
+    },
+    {
+      "_id": "rPLYRlPzIw9qUX2Q",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Illicit Pharmaceuticals\t100000\t1D6\tHt+3, Wa+2\tIn+6, Ri+4",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.rPLYRlPzIw9qUX2Q"
+    },
+    {
+      "_id": "zorxMWqHhKn8TS4g",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Medical Research Material\t50000\t1D6*5\tHt+2, Ri+3\tIn+6, Na+4",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.zorxMWqHhKn8TS4g"
+    },
+    {
+      "_id": "eU2tB7JfJVTL3Pah",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Illegal Military Equipment*\t150000\t2D6\tHt+3, In+2\tHi+6, Ni+4",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.eU2tB7JfJVTL3Pah"
+    },
+    {
+      "_id": "pLBuyXkHwWS8UGyF",
+      "flags": {},
+      "type": "text",
+      "img": "icons/svg/d20-black.svg",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Illegal Weapons and Armor*\t30000\t2D6\tIn+3, Ri+2\tNi+6, Po+4",
+      "name": "",
+      "_key": "!tables.results!M7HXRj4xOKgBrbLJ.pLBuyXkHwWS8UGyF"
+    }
+  ],
+  "formula": "1d35",
+  "replacement": true,
+  "displayRoll": true,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_wdptii86rg"
+    }
+  },
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080286,
+    "modifiedTime": 1760016422897,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "RollTable.0fNt4VBfpEhgWyig",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.7.9",
+      "systemId": "twodsix",
+      "systemVersion": "0.7.12"
+    }
+  },
+  "_key": "!tables!M7HXRj4xOKgBrbLJ"
+}

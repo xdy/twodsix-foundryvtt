@@ -1,0 +1,585 @@
+{
+  "_id": "FQ9wZzfRMU5V6bTx",
+  "name": "Autodoc",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "robot",
+  "system": {
+    "name": "",
+    "size": "",
+    "hits": {
+      "value": 24,
+      "min": 0,
+      "max": 24,
+      "lastDelta": -24
+    },
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": 0
+    },
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "untrainedSkill": "2bySv9t8eMTchO3w",
+    "description": "",
+    "notes": "<div>Autodoc (TL14, MCr0.5): an immobile medical robot installed inside vehicles and spacecraft. An autodoc is capable of full-scale medical care and even trauma surgery. Its full volume is 3.5 cubic meters, or 0.25 ship displacement ton.</div><div>6F3AF0, Medicine-3</div><div>Medical and surgical equipment. Specific drugs must be purchased separately.</div>",
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 6,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": "",
+        "current": 6,
+        "mod": 0
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 15,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": "",
+        "current": 15,
+        "mod": 3
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 3,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": "",
+        "current": 3,
+        "mod": -1
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 10,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": "",
+        "current": 10,
+        "mod": 1
+      },
+      "education": {
+        "key": "education",
+        "value": 15,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": "",
+        "current": 15,
+        "mod": 3
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 0,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": "",
+        "current": 0,
+        "mod": -2
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 7,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 14,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 0,
+      "units": "ft",
+      "hover": false
+    },
+    "locomotionType": "None",
+    "price": "0.5 MCr",
+    "chassis": "",
+    "techLevel": "14",
+    "operationalTime": "",
+    "homeWorld": "",
+    "nationality": "",
+    "species": "Robot",
+    "age": {
+      "value": "18",
+      "min": 0
+    },
+    "gender": "none",
+    "heroPoints": 2,
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "bio": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    },
+    "hideStoredItems": {
+      "weapon": false,
+      "armor": false,
+      "augment": false,
+      "equipment": false,
+      "consumable": false,
+      "attachment": false
+    },
+    "experience": {
+      "value": 0,
+      "totalEarned": 0
+    },
+    "xpNotes": ""
+  },
+  "sort": 100001,
+  "flags": {
+    "core": {
+      "sheetClass": ""
+    }
+  },
+  "img": "systems/twodsix/assets/icons/default_robot.svg",
+  "items": [
+    {
+      "_id": "f4A9d54jSPUB6TZh",
+      "flags": {},
+      "name": "Medicine",
+      "type": "skills",
+      "img": "./systems/twodsix/assets/icons/medicine.svg",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 3,
+        "characteristic": "EDU",
+        "type": "skills",
+        "description": "Training in the medical sciences, from diagnosis and triage to surgery.",
+        "shortdescr": "Training in the medical sciences, from diagnosis and triage to surgery",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "name": "Skill Name",
+        "reference": ""
+      },
+      "sort": 100000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!FQ9wZzfRMU5V6bTx.f4A9d54jSPUB6TZh"
+    },
+    {
+      "_id": "dOmWHW3Y43IYmHVV",
+      "flags": {},
+      "name": "Medkit",
+      "type": "equipment",
+      "img": "./systems/twodsix/assets/icons/medkit.svg",
+      "system": {
+        "name": "",
+        "techLevel": 7,
+        "description": "",
+        "shortdescr": "Medkit",
+        "quantity": 1,
+        "weight": 1,
+        "price": 100,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "type": "equipment",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 200000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680633033122,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!FQ9wZzfRMU5V6bTx.dOmWHW3Y43IYmHVV"
+    },
+    {
+      "_id": "UJUtFquwZxvDIgbM",
+      "flags": {},
+      "name": "Multiscanner",
+      "type": "equipment",
+      "img": "icons/svg/mystery-man.svg",
+      "system": {
+        "name": "",
+        "techLevel": 10,
+        "description": "The Multiscanner combines several sensor functions: it can detect radiation, electromagnetic emissions, metals, and a limited set of chemicals and biological compounds. It can also perform standard blood tests.",
+        "shortdescr": "Multiscanner combines several sensor functions",
+        "quantity": 1,
+        "weight": 1,
+        "price": 2000,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "type": "equipment",
+        "useConsumableForAttack": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 300000,
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680633035586,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!FQ9wZzfRMU5V6bTx.UJUtFquwZxvDIgbM"
+    },
+    {
+      "name": "Untrained",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": ""
+      },
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "img": "./systems/twodsix/assets/icons/jack-of-all-trades.svg",
+      "_id": "2bySv9t8eMTchO3w",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1680633016184,
+        "modifiedTime": 1680633016184,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!FQ9wZzfRMU5V6bTx.2bySv9t8eMTchO3w"
+    },
+    {
+      "name": "Unarmed",
+      "type": "weapon",
+      "img": "systems/twodsix/assets/icons/unarmed.svg",
+      "system": {
+        "name": "",
+        "techLevel": 0,
+        "description": "Unarmed attack",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "2bySv9t8eMTchO3w",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "max(@characteristics.strength.mod, 1)",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "bludgeoning",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "_id": "2PyzvZZeHun2CVtt",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "B4JSPh84Wx3wBFTK": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": 1680633016251,
+        "modifiedTime": 1680701197903,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!FQ9wZzfRMU5V6bTx.2PyzvZZeHun2CVtt"
+    }
+  ],
+  "prototypeToken": {
+    "flags": {},
+    "name": "Autodoc",
+    "displayName": 40,
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": true,
+    "disposition": 1,
+    "displayBars": 40,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "alpha": 1,
+      "color": null,
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_robot.svg",
+      "tint": "#ffffff",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "alpha": 1,
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "effects": [],
+  "folder": null,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680633016132,
+    "modifiedTime": 1760016422070,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-robots.FQ9wZzfRMU5V6bTx",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!actors!FQ9wZzfRMU5V6bTx"
+}

@@ -1,0 +1,79 @@
+{
+  "name": "Cudgel",
+  "type": "weapon",
+  "img": "systems/twodsix/assets/icons/cudgel.svg",
+  "system": {
+    "name": "Cudgel",
+    "techLevel": 0,
+    "description": "A basic stick used as a weapon. Easily obtained from standing trees or through the use of an unloaded long gun such as a rifle or carbine (laser weapons are too delicate to be used as cudgels). Length: 1000 to 2000mm.",
+    "shortdescr": "Cudgel - melee",
+    "quantity": 1,
+    "weight": 1000,
+    "price": 10,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Blade Combat (Cudgel)",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": 0,
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "9",
+    "rangeBand": "cudgel",
+    "weaponType": "melee",
+    "damageType": "bludgeoning",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "4/-1 8/+2",
+    "meleeRangeModifier": "0",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "mpyM4Cvw0iFsvECX",
+  "flags": {
+    "cf": {
+      "id": "temp_7b2zwn0irpt"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1680696588858,
+    "modifiedTime": 1760016421888,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "Vyr5J1Xg1BbZqh6l",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!Vyr5J1Xg1BbZqh6l"
+}

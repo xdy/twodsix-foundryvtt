@@ -1,0 +1,59 @@
+{
+  "_id": "GkJgNMQBxAOBStPi",
+  "name": "Hand Computer",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 11,
+    "description": "The ‘handcomp' provides services of a small computer, plus serves as a computer terminal when linked (by its integral radio, network interface jack, or by other circuit) to a standard computer.",
+    "shortdescr": "Hand Computer",
+    "quantity": 1,
+    "weight": 0.5,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ob9f8dmqkqq",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Personal Devices",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/hand-computer.svg",
+  "effects": [],
+  "folder": "N95ZzE3bn2BUv49l",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079855,
+    "modifiedTime": 1760016422325,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!GkJgNMQBxAOBStPi"
+}

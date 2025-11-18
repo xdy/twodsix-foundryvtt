@@ -1,0 +1,68 @@
+{
+  "_id": "nKLFADI0NReO7JSl",
+  "name": "Silencer",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "consumable",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "description": "Silencer (TL6): May be attached to any firearm. Silencers work for single shots, and short bursts, but never Full Auto attacks. Silencers provide a DM-4 to hear the gunshot sound.",
+    "shortdescr": "DM-4 to hear gunshot",
+    "quantity": 1,
+    "weight": 0,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "currentCount": null,
+    "max": null,
+    "type": "equipment",
+    "subtype": "other",
+    "armorPiercing": null,
+    "bonusDamage": "",
+    "isAttachment": true,
+    "bandwidth": 0,
+    "softwareActive": true,
+    "damageType": "NONE",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "useConsumableForAttack": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_jz37yve72ui",
+      "path": "ce light-ranged-weapon-accessories",
+      "color": "#000000"
+    }
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "folder": "3JNYaeiiyV2bfLVW",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079722,
+    "modifiedTime": 1760016422175,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!nKLFADI0NReO7JSl"
+}

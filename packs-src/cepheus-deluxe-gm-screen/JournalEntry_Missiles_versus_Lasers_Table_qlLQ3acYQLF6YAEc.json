@@ -1,0 +1,69 @@
+{
+  "_id": "qlLQ3acYQLF6YAEc",
+  "name": "Missiles versus Lasers Table",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "msuh6wePTuFs4VOF": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_n6q9yayby2"
+    }
+  },
+  "pages": [
+    {
+      "name": "Missiles versus Lasers Table",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:100%;height:275px\" border=\"1\">\n<tbody>\n<tr style=\"height:31px\">\n<td style=\"width:30.8627%;height:31px\">\n<p> </p>\n</td>\n<td style=\"text-align:center;width:69.1373%;height:31px\" colspan=\"7\">Missile vs Laser Turret hits</td>\n</tr>\n<tr style=\"height:48px\">\n<td style=\"width:30.8627%;height:48px\">\n<p>No. of laser turrets/sand / No. of missiles</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:48px\">\n<p>10-20</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:48px\">\n<p>21-30</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:48px\">\n<p>31-40</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:48px\">\n<p>41-50</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:48px\">\n<p>51-60</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:48px\">\n<p>61-80</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:48px\">\n<p>81+</p>\n</td>\n</tr>\n<tr style=\"height:31px\">\n<td style=\"width:30.8627%;height:31px\">\n<p>10-20</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:31px\">\n<p>1D</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:31px\">\n<p>2D</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:31px\">\n<p>3D</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:31px\">\n<p>1 Critical</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>1D Critical</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>Destroyed!</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:31px\">\n<p>Destroyed!</p>\n</td>\n</tr>\n<tr style=\"height:31px\">\n<td style=\"width:30.8627%;height:31px\">\n<p>21-30</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:31px\">\n<p>1D</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:31px\">\n<p>2D</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:31px\">\n<p>2D</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:31px\">\n<p>3D</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>1 Critical</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>Destroyed!</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:31px\">\n<p>Destroyed!</p>\n</td>\n</tr>\n<tr style=\"height:31px\">\n<td style=\"width:30.8627%;height:31px\">\n<p>31-40</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:31px\">\n<p>1</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:31px\">\n<p>1D</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:31px\">\n<p>1D</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:31px\">\n<p>2D</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>3D</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>1 Critical</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:31px\">\n<p>1D Critical</p>\n</td>\n</tr>\n<tr style=\"height:31px\">\n<td style=\"width:30.8627%;height:31px\">\n<p>41-50</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:31px\">\n<p>-</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:31px\">\n<p>1</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:31px\">\n<p>1</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:31px\">\n<p>1D</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>2D</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>3D</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:31px\">\n<p>1 Critical</p>\n</td>\n</tr>\n<tr style=\"height:31px\">\n<td style=\"width:30.8627%;height:31px\">\n<p>51-60</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:31px\">\n<p>-</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:31px\">\n<p>-</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:31px\">\n<p>1</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:31px\">\n<p>1</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>1D</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>2D</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:31px\">\n<p>3D</p>\n</td>\n</tr>\n<tr style=\"height:31px\">\n<td style=\"width:30.8627%;height:31px\">\n<p>61-80</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:31px\">\n<p>-</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:31px\">\n<p>-</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:31px\">\n<p>-</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:31px\">\n<p>1</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>1</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:31px\">\n<p>1D</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:31px\">\n<p>2D</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:30.8627%;height:10px\">\n<p>81+</p>\n</td>\n<td style=\"width:8.38396%;text-align:center;height:10px\">\n<p>-</p>\n</td>\n<td style=\"width:8.99149%;text-align:center;height:10px\">\n<p>-</p>\n</td>\n<td style=\"width:9.59903%;text-align:center;height:10px\">\n<p>-</p>\n</td>\n<td style=\"width:9.96355%;text-align:center;height:10px\">\n<p>-</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:10px\">\n<p>1</p>\n</td>\n<td style=\"width:10.8141%;text-align:center;height:10px\">\n<p>1</p>\n</td>\n<td style=\"width:10.5711%;text-align:center;height:10px\">\n<p>1D</p>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "vwI265FaqE3s1ZVr",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!qlLQ3acYQLF6YAEc.vwI265FaqE3s1ZVr"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080327,
+    "modifiedTime": 1760016422942,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "JournalEntry.prOdo8i0IAkq1JP4",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!qlLQ3acYQLF6YAEc"
+}

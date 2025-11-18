@@ -1,0 +1,137 @@
+{
+  "name": "Powered Armor",
+  "type": "armor",
+  "img": "./systems/twodsix/assets/icons/powered-armor.svg",
+  "system": {
+    "name": "",
+    "techLevel": 13,
+    "description": "A servo-assisted fully enclosed combat armor. This powerful armor Grants DM+2 to STR and DEX characteristic checks and allows carrying double the user’s Encumbrance. Powered armor grants DM+4 to all melee damage done by its wearer. Powered Armor protects against vacuum and hostile environments, as a space suit, with 6 hours of life support, and reduces radiation by 50 rads. Powered armor does not count as an item for encumbrance when worn.<br><br>Skill Required: Zero-G 2",
+    "shortdescr": "motorized combat armor",
+    "quantity": 1,
+    "weight": 0,
+    "price": 200000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 18,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 50
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": true,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [
+    {
+      "origin": "Compendium.twodsix.cepheus-deluxe-items.C1Xg3Zk0BjB2cjyV",
+      "tint": "#ffffff",
+      "transfer": true,
+      "disabled": true,
+      "_id": "Kt5ZkRAK3Dk3sUGy",
+      "flags": {
+        "twodsix": {
+          "sourceId": "Kt5ZkRAK3Dk3sUGy"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.characteristics.strength.mod",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.characteristics.dexterity.mod",
+          "mode": 2,
+          "value": "2",
+          "priority": null
+        },
+        {
+          "key": "system.encumbrance.max",
+          "mode": 1,
+          "value": "2",
+          "priority": null
+        }
+      ],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Powered Armor",
+      "img": "./systems/twodsix/assets/icons/powered-armor.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
+      "sort": 0,
+      "_key": "!items.effects!C1Xg3Zk0BjB2cjyV.Kt5ZkRAK3Dk3sUGy"
+    }
+  ],
+  "folder": "a7XuMzMB1lUiBYWm",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3odrbwitf0c",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Armor",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "C1Xg3Zk0BjB2cjyV",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737422,
+    "modifiedTime": 1760016422733,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.sARNM9jBfsjzkXvr",
+    "duplicateSource": null,
+    "exportSource": {
+      "worldId": "on_the_run",
+      "uuid": null,
+      "coreVersion": "0.6.6",
+      "systemId": "twodsix",
+      "systemVersion": "0.6.27"
+    }
+  },
+  "_key": "!items!C1Xg3Zk0BjB2cjyV"
+}

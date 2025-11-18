@@ -1,0 +1,69 @@
+{
+  "_id": "AHNz0IpAdzNShVYR",
+  "name": "Underbarrel Grenade Launcher",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "consumable",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "As the grenade launcher heavy weapon, but single-shot and not Bulky. Cannot be installed on revolvers and pistols. See the entry under the Heavy Weapons section for full stats.",
+    "shortdescr": "grenade launcher support",
+    "quantity": 1,
+    "weight": 0,
+    "price": 1000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "currentCount": null,
+    "max": null,
+    "type": "equipment",
+    "subtype": "other",
+    "armorPiercing": null,
+    "bonusDamage": "",
+    "isAttachment": true,
+    "bandwidth": 0,
+    "softwareActive": true,
+    "damageType": "ballistic",
+    "parentName": "",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "useConsumableForAttack": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_jz37yve72ui",
+      "path": "ce light-ranged-weapon-accessories",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/demolition_explosives.svg",
+  "effects": [],
+  "folder": "3JNYaeiiyV2bfLVW",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080264,
+    "modifiedTime": 1760016422871,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!AHNz0IpAdzNShVYR"
+}

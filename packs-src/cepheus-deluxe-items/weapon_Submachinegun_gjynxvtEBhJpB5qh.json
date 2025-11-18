@@ -1,0 +1,81 @@
+{
+  "name": "Submachinegun",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/submachinegun.svg",
+  "system": {
+    "name": "Submachinegun",
+    "techLevel": 5,
+    "description": "Submachinegun (TL5): Light automatic weapon using pistol rounds. Bullets are interchangeable with the Autopistol; at the Referee's discretion, so are the magazines.<br><br>Auto 3: These weapons fire multiple rounds with every pull of the trigger, filling the air with a hail of fire. A weapon with the Auto aspect can make attacks in three fire modes: single, burst, and full auto, as described in the Combat chapter.",
+    "shortdescr": "Submachinegun - ranged",
+    "quantity": 1,
+    "weight": 2.5,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "30/100",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "30",
+    "useConsumableForAttack": "",
+    "magazineCost": 20,
+    "type": "weapon",
+    "lawLevel": "4",
+    "rangeBand": "30/100",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "3",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "WM0MvR08jIVlUsUq",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1690220554176,
+    "modifiedTime": 1760016422757,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "gjynxvtEBhJpB5qh",
+  "sort": 0,
+  "_key": "!items!gjynxvtEBhJpB5qh"
+}

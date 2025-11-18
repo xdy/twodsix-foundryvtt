@@ -1,0 +1,52 @@
+{
+  "_id": "zI0NvVk1AuSymODK",
+  "name": "Heavy Weapons",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "DEX",
+    "type": "skills",
+    "description": "Using plasma guns, rocket launchers, and other portable support&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">weapons.</span><div>• Shoot a human-sized character at Effective range: roll Heavy Weapons (DEX)&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">8+.</span></div><div>• Shoot a human-sized character at over Effective range, up to Maximum range:&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">roll Heavy Weapons (DEX) 10+.</span></div><div>• Fire a vehicle’s support weapon at a target at Effective range, or during a&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">dogfight: roll Heavy Weapons (DEX) 8+.</span></div><div>• Fire a vehicle’s support weapon at a target at over Effective range, up to&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">Maximum range: roll Heavy Weapons (DEX) 10+.</span></div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/heavy-weapons-man-portable.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 10100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080085,
+    "modifiedTime": 1760016422626,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!zI0NvVk1AuSymODK"
+}

@@ -1,0 +1,192 @@
+{
+  "name": "General NPC Physical Build",
+  "img": "systems/twodsix/assets/icons/muscle-up.svg",
+  "results": [
+    {
+      "_id": "oBW5iXYTi37VR8sJ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Short, slender, or frail",
+      "name": "",
+      "_key": "!tables.results!9wN6hPWF9quR1d7e.oBW5iXYTi37VR8sJ"
+    },
+    {
+      "_id": "UOsi7TITZBqIVnvp",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Stocky, compact, or small",
+      "name": "",
+      "_key": "!tables.results!9wN6hPWF9quR1d7e.UOsi7TITZBqIVnvp"
+    },
+    {
+      "_id": "cEYW6n34PWYXHO3T",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Average height and weight",
+      "name": "",
+      "_key": "!tables.results!9wN6hPWF9quR1d7e.cEYW6n34PWYXHO3T"
+    },
+    {
+      "_id": "GeY1bdyLEHQl1ikn",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Out of shape, soft, or voluptuous",
+      "name": "",
+      "_key": "!tables.results!9wN6hPWF9quR1d7e.GeY1bdyLEHQl1ikn"
+    },
+    {
+      "_id": "i3pJjNkPmpqI2WyR",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Built, Bulky, or Large",
+      "name": "",
+      "_key": "!tables.results!9wN6hPWF9quR1d7e.i3pJjNkPmpqI2WyR"
+    },
+    {
+      "_id": "Dz3MsNcgpnbtYKlN",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tall, lanky, or boney",
+      "name": "",
+      "_key": "!tables.results!9wN6hPWF9quR1d7e.Dz3MsNcgpnbtYKlN"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_h76wm4atct6",
+      "path": "Social Encounters#/CF_SEP/Detailing NPCs",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "9wN6hPWF9quR1d7e",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080311,
+    "modifiedTime": 1760016422914,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!9wN6hPWF9quR1d7e"
+}

@@ -1,0 +1,70 @@
+{
+  "_id": "G74Y5g23vOdTzIBZ",
+  "name": "Task Difficulties",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Quantum GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Task Difficulties",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:53px;width:45.6808%\" border=\"0\">\n<tbody>\n<tr style=\"height:13px\">\n<td style=\"width:25.5538%;height:13px\">\n<p>Difficulty Description</p>\n</td>\n<td style=\"width:44.7137%;height:13px\">\n<p>Difficulty Number</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:25.5538%;height:10px\">\n<p>Easy</p>\n</td>\n<td style=\"width:44.7137%;height:10px\">\n<p>4+</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:25.5538%;height:10px\">\n<p>Average</p>\n</td>\n<td style=\"width:44.7137%;height:10px\">\n<p>6+</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:25.5538%;height:10px\">\n<p>Difficult</p>\n</td>\n<td style=\"width:44.7137%;height:10px\">\n<p>8+</p>\n</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"width:25.5538%;height:10px\">\n<p>Formidable</p>\n</td>\n<td style=\"width:44.7137%;height:10px\">\n<p>10+</p>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "iu5YOTqe7qkaayfE",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!G74Y5g23vOdTzIBZ.iu5YOTqe7qkaayfE"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079969,
+    "modifiedTime": 1760016422450,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!G74Y5g23vOdTzIBZ"
+}

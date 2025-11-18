@@ -1,0 +1,62 @@
+{
+  "_id": "ACO7sXNLHjyrjYS8",
+  "name": "Internal Omnicomm",
+  "type": "augment",
+  "img": "./systems/twodsix/assets/icons/internal-omnicomm.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "As an Omnicomm but with a neural interface; allows communication without audible speech. This does not count as an implant. Highly common on high-tech worlds. Today’s smartphones will eventually evolve into an Omnicomm, a combination of all your telecom needs in one place, with holographic augmented reality capability.",
+    "shortdescr": "Neural interface that allows communication without audible speech",
+    "quantity": 1,
+    "weight": 0,
+    "price": 100,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Head",
+    "type": "augment",
+    "bonus": "internal comm interface",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737420,
+    "modifiedTime": 1760016422731,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.GxXKkadMBPqkSfvV",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ACO7sXNLHjyrjYS8"
+}

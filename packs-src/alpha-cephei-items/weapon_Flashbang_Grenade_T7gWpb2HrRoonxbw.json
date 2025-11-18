@@ -1,0 +1,81 @@
+{
+  "_id": "T7gWpb2HrRoonxbw",
+  "name": "Flashbang Grenade",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "<div>Non-lethal stun grenade emitting a powerful flash and deafening noise upon detonation.</div><div><br></div>Blast 10: This weapon has an explosive component or is otherwise effective against targets in its blast radius. The number given is the blast radius in meters.<div><br><div></div><div>Stun: These weapons are designed to deal non-lethal damage and will incapacitate a living target instead of killing it. Damage is only deducted from END, considering any armor. If the target’s END is reduced to 0 from stun damage, the target is incapacitated and unable to perform any actions for a number of rounds by which the damage exceeded his END. Damage received from stun weapons is completely healed after one hour of rest.</div></div>",
+    "shortdescr": "Non-lethal stun grenade emitting a powerful flash and deafening noise upon detonation",
+    "quantity": 1,
+    "weight": null,
+    "price": 30,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 10,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "STRx2/STRx4 (thrown)",
+    "damage": "3d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "",
+    "useConsumableForAttack": "",
+    "magazineCost": null,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown str/2*str",
+    "weaponType": "Thrown",
+    "damageType": "stun",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "Blast 10, Stun",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_xjmcjdzi8ro",
+      "path": "ce light-grenades",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/flashbang.svg",
+  "effects": [],
+  "folder": "wz7crqkoJIkuXViG",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080270,
+    "modifiedTime": 1760016422877,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!T7gWpb2HrRoonxbw"
+}

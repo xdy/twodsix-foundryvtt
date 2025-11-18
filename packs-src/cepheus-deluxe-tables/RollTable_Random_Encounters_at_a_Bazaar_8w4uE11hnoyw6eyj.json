@@ -1,0 +1,972 @@
+{
+  "name": "Random Encounters at a Bazaar",
+  "img": "systems/twodsix/assets/icons/shop.svg",
+  "results": [
+    {
+      "_id": "ff0kYqdJeyOn61LZ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Space Salvage Merchant",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.ff0kYqdJeyOn61LZ"
+    },
+    {
+      "_id": "6pS0pxwXiRUhhuhT",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Spice Trader",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.6pS0pxwXiRUhhuhT"
+    },
+    {
+      "_id": "yhW4LW7L8rNDqL2W",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Ship Crew",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.yhW4LW7L8rNDqL2W"
+    },
+    {
+      "_id": "jP1e8qIQRAM7NRYQ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Caravan Leader",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.jP1e8qIQRAM7NRYQ"
+    },
+    {
+      "_id": "dySuk1vdeX1hnOrA",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Local Law Enforcement",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.dySuk1vdeX1hnOrA"
+    },
+    {
+      "_id": "2ce0cB8GMxPQvgSn",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Food Truck/Stand",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.2ce0cB8GMxPQvgSn"
+    },
+    {
+      "_id": "IjJzgvX46mEnvudt",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unsupervised Children",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.IjJzgvX46mEnvudt"
+    },
+    {
+      "_id": "bhHkdbRAMTo4VRL1",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Researcher",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.bhHkdbRAMTo4VRL1"
+    },
+    {
+      "_id": "E1A2Hs1i4OBdYaW6",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Urchin",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.E1A2Hs1i4OBdYaW6"
+    },
+    {
+      "_id": "Sj2oa8D3GRend9kK",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Attorney",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.Sj2oa8D3GRend9kK"
+    },
+    {
+      "_id": "ZJu4BkR3mARqhj1l",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mercenary",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.ZJu4BkR3mARqhj1l"
+    },
+    {
+      "_id": "TEHJYEkeQwPEcGtF",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Arms Dealer",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.TEHJYEkeQwPEcGtF"
+    },
+    {
+      "_id": "TOxVUJOWeOXzRBtd",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        13,
+        13
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Street Performers",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.TOxVUJOWeOXzRBtd"
+    },
+    {
+      "_id": "TStA6lWeCCrjizB7",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        14,
+        14
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unusual Alien",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.TStA6lWeCCrjizB7"
+    },
+    {
+      "_id": "QL7djZX4c2Uk7c9w",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        15,
+        15
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Rowdy Youth",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.QL7djZX4c2Uk7c9w"
+    },
+    {
+      "_id": "WRUiJiHcd3J811c6",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        16,
+        16
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Street Preacher Looking for Converts",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.WRUiJiHcd3J811c6"
+    },
+    {
+      "_id": "0laZBMJSG3p64jcx",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        17,
+        17
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Bored Food Stand Worker",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.0laZBMJSG3p64jcx"
+    },
+    {
+      "_id": "dXKjphSOj3YnWDX9",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        18,
+        18
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Pirated Music Merchant",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.dXKjphSOj3YnWDX9"
+    },
+    {
+      "_id": "sukUnwywHb4TYsmo",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        19,
+        19
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Used Vehicle Salesperson",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.sukUnwywHb4TYsmo"
+    },
+    {
+      "_id": "1lcgGl0mLEHpnx2N",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        20,
+        20
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Noble with Retinue",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.1lcgGl0mLEHpnx2N"
+    },
+    {
+      "_id": "IbQ0COk7GO3QtWR7",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        21,
+        21
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Dissident on Soapbox",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.IbQ0COk7GO3QtWR7"
+    },
+    {
+      "_id": "bkYIOa2LkX6lwoSZ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        22,
+        22
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Reporter",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.bkYIOa2LkX6lwoSZ"
+    },
+    {
+      "_id": "rUnYUyqWWf2IDAcx",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        23,
+        23
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Potential Patron (Roll on table)",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.rUnYUyqWWf2IDAcx"
+    },
+    {
+      "_id": "2RaT5HmdeVed86uI",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        24,
+        24
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Sandwich Board Person",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.2RaT5HmdeVed86uI"
+    },
+    {
+      "_id": "NvXKhVTdXSKa78Ue",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        25,
+        25
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Farmer",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.NvXKhVTdXSKa78Ue"
+    },
+    {
+      "_id": "RZw7rZsinDv6LpKx",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        26,
+        26
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Doctor",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.RZw7rZsinDv6LpKx"
+    },
+    {
+      "_id": "7BY71HYNx4u2QcW6",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        27,
+        27
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Technician",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.7BY71HYNx4u2QcW6"
+    },
+    {
+      "_id": "8NgYxIvdQnUyHCVx",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        28,
+        28
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Criminal (Roll on Table)",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.8NgYxIvdQnUyHCVx"
+    },
+    {
+      "_id": "5CfYLIteWZ0axFLG",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        29,
+        29
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Government Inspector",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.5CfYLIteWZ0axFLG"
+    },
+    {
+      "_id": "cSHij1BkvuwgGodQ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        30,
+        30
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Tax Collector",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.cSHij1BkvuwgGodQ"
+    },
+    {
+      "_id": "2UK2xZpez3JK6gfv",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        31,
+        31
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Snake Oil Merchant",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.2UK2xZpez3JK6gfv"
+    },
+    {
+      "_id": "ZcOmhrMGqYtCOSXK",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        32,
+        32
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Grocer",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.ZcOmhrMGqYtCOSXK"
+    },
+    {
+      "_id": "geJ9ofWzWpKUKcdf",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        33,
+        33
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Drunk Stumbling to or from Saloon",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.geJ9ofWzWpKUKcdf"
+    },
+    {
+      "_id": "i30IpnfetbhkB2MB",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        34,
+        34
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Corporate Rep",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.i30IpnfetbhkB2MB"
+    },
+    {
+      "_id": "zvSoHOTQs0H9UQ2Z",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        35,
+        35
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Diplomat",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.zvSoHOTQs0H9UQ2Z"
+    },
+    {
+      "_id": "pjmwXG6DnBLypdAi",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        36,
+        36
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Freelance Broker",
+      "name": "",
+      "_key": "!tables.results!8w4uE11hnoyw6eyj.pjmwXG6DnBLypdAi"
+    }
+  ],
+  "formula": "1d36",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_wg4urws51a",
+      "path": "Social Encounters#/CF_SEP/Random Encounters",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "8w4uE11hnoyw6eyj",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080310,
+    "modifiedTime": 1760016422913,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!8w4uE11hnoyw6eyj"
+}

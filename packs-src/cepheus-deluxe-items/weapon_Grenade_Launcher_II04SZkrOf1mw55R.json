@@ -1,0 +1,82 @@
+{
+  "_id": "II04SZkrOf1mw55R",
+  "name": "Grenade Launcher",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/grenade-launcher.svg",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "Grenade launchers fire grenades over long distances. Grenades for a grenade launcher are not interchangeable with handheld grenades.<br><br>Bulky: A Bulky weapon has powerful recoil or is simply extremely heavy. This makes it difficult to use effectively in combat by someone of a weak physical stature. Characters with STR 8 or less suffer DM-2 when using such weapons. Bipod and Tripod accessories (see below) remove the Bulky aspect, as long as the weapon is stationary and mounted on the bipod or tripod.",
+    "shortdescr": "Grenade launchers are used to fire grenades over long distances",
+    "quantity": 1,
+    "weight": 3,
+    "price": 400,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "by grenade",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "6",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "100/500",
+    "weaponType": "Ranged",
+    "damageType": "NONE",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "SYsxz5nx4SirzdvP",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_i181bqkw8n",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Heavy Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737429,
+    "modifiedTime": 1760016422737,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.51pc5hwPJ3QyPGz9",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!II04SZkrOf1mw55R"
+}

@@ -1,0 +1,140 @@
+{
+  "_id": "SOcnjwuCj5A0bWY2",
+  "name": "Urban Scavenging",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CA Tables",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/locked-chest.svg",
+  "description": "Scavenging is dangerous. On an unmodified survival throw of 4 or less (regardless of skill), a mishap occurs, per the following table.",
+  "results": [
+    {
+      "_id": "fHzJgRMeOzw260wx",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/cutlass.svg",
+      "weight": 2,
+      "range": [
+        1,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Encounter! Roll on the appropriate Encounter table.",
+      "name": "",
+      "_key": "!tables.results!SOcnjwuCj5A0bWY2.fHzJgRMeOzw260wx"
+    },
+    {
+      "_id": "kxe9PelhedgTee8g",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/arm-sling.svg",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Injury! Throw Physical 6+ or suffer 1D damage.",
+      "name": "",
+      "_key": "!tables.results!SOcnjwuCj5A0bWY2.kxe9PelhedgTee8g"
+    },
+    {
+      "_id": "NZ4vzsK9ABT8D2lc",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/treasure-map.svg",
+      "weight": 2,
+      "range": [
+        4,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Lost! Character is separated from the party and may get into trouble (Referee’s discretion).",
+      "name": "",
+      "_key": "!tables.results!SOcnjwuCj5A0bWY2.NZ4vzsK9ABT8D2lc"
+    },
+    {
+      "_id": "kKSnRE5XxmGBVBGA",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/radioactive.svg",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Contamination! Throw Survival 4+ or gain a level of Contamination (see the Contamination and Mutations chapter).",
+      "name": "",
+      "_key": "!tables.results!SOcnjwuCj5A0bWY2.kKSnRE5XxmGBVBGA"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080064,
+    "modifiedTime": 1760016422593,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!SOcnjwuCj5A0bWY2"
+}

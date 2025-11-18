@@ -1,0 +1,50 @@
+{
+  "folder": "3zz4ZDjRQRPbf5zM",
+  "name": "Security",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/lockpicks.svg",
+  "system": {
+    "name": "",
+    "description": "Installing and also bypassing or&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">dismantling security measures, from&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">mechanical locks to swipe-card locks, keypad&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">locks, surveillance cameras and various types&nbsp;</span><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">of alarms and their triggers.</span>",
+    "type": "skills",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "value": 0,
+    "shortdescr": "",
+    "subtype": "",
+    "prereq": "",
+    "key": "key",
+    "characteristic": "NONE",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": ""
+  },
+  "effects": [],
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1726520536213,
+    "modifiedTime": 1760016422998,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "di6ZjnJCBYrgGsgQ",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "G0793twHyHfODmAJ": 3
+  },
+  "_key": "!items!di6ZjnJCBYrgGsgQ"
+}

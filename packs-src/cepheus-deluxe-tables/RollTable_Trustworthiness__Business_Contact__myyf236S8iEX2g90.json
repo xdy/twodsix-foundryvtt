@@ -1,0 +1,193 @@
+{
+  "name": "Trustworthiness (Business Contact)",
+  "img": "systems/twodsix/assets/icons/pay-money.svg",
+  "results": [
+    {
+      "_id": "NvSjxHRcCy8cUOTf",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They intend to completely screw over the PCs.",
+      "name": "",
+      "_key": "!tables.results!myyf236S8iEX2g90.NvSjxHRcCy8cUOTf"
+    },
+    {
+      "_id": "AgxDlVxPicGdHU6k",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They intend to pay but will deduct unforeseen expenses and any shortcomings from the PCs.",
+      "name": "",
+      "_key": "!tables.results!myyf236S8iEX2g90.AgxDlVxPicGdHU6k"
+    },
+    {
+      "_id": "3IlSmgQYdzwvGlPr",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They’ll hold up their end of the deal, but only if forced to.",
+      "name": "",
+      "_key": "!tables.results!myyf236S8iEX2g90.3IlSmgQYdzwvGlPr"
+    },
+    {
+      "_id": "V5he7sWdOtChSq54",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They’ll pay without any problems.",
+      "name": "",
+      "_key": "!tables.results!myyf236S8iEX2g90.V5he7sWdOtChSq54"
+    },
+    {
+      "_id": "AdyYQF29QpXVf2ng",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They’ll pay more than was originally bargained for, for future favors.",
+      "name": "",
+      "_key": "!tables.results!myyf236S8iEX2g90.AdyYQF29QpXVf2ng"
+    },
+    {
+      "_id": "LPKu2EIteOSDpkRJ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "They’ll pay generously and will give bonuses and information for free.",
+      "name": "",
+      "_key": "!tables.results!myyf236S8iEX2g90.LPKu2EIteOSDpkRJ"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "core": {},
+    "cf": {
+      "id": "temp_zvg1qot7nf",
+      "path": "Social Encounters#/CF_SEP/Business Contact",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "myyf236S8iEX2g90",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080314,
+    "modifiedTime": 1760016422924,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "RollTable.k5iXjYhehl7IHXE2",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!myyf236S8iEX2g90"
+}

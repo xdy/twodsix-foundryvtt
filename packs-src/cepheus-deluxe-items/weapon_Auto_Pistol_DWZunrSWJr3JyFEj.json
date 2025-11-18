@@ -1,0 +1,80 @@
+{
+  "_id": "DWZunrSWJr3JyFEj",
+  "name": "Auto Pistol",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/auto-pistol.svg",
+  "system": {
+    "name": "Auto Pistol",
+    "techLevel": 5,
+    "description": "Autopistol (TL5): Semi-automatic handgun fed from a magazine. Preloaded magazines may be inserted into an empty pistol, but require a reload action to complete.<br><br>Double Tap: may fire 2 bullets in one attack to gain DM+1 to damage.",
+    "shortdescr": "Auto Pistol - ranged",
+    "quantity": 1,
+    "weight": 1,
+    "price": 150,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "10/50",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "16",
+    "useConsumableForAttack": "",
+    "magazineCost": 7,
+    "type": "weapon",
+    "lawLevel": "6",
+    "rangeBand": "closeQuarters",
+    "weaponType": "ranged",
+    "damageType": "ballistic",
+    "rateOfFire": "1",
+    "doubleTap": true,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "WM0MvR08jIVlUsUq",
+  "sort": 800000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_sk461konhrd",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Ranged Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737424,
+    "modifiedTime": 1760016422734,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.ka178VXLZdprdQyk",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!DWZunrSWJr3JyFEj"
+}

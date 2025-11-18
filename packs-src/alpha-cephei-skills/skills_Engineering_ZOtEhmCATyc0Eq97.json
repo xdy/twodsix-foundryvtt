@@ -1,0 +1,52 @@
+{
+  "_id": "ZOtEhmCATyc0Eq97",
+  "name": "Engineering",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Use and maintenance of complex technological systems, such as&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">starship drives and power plants.</span><div>• Overcharge starship weapon: roll Engineering (EDU) 8+ for a temporary boost,&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">removing energy safety measures from guns.</span></div><div>• Redline engines: roll Engineering (EDU) 8+ to temporarily divert additional&nbsp;<span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">power to a starship drive.</span></div><div>• Engage jump drive: roll Engineering (EDU) 6+.</div>",
+    "shortdescr": "",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "name": "Skill Name",
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "2e Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/engineering.svg",
+  "effects": [],
+  "folder": null,
+  "sort": 5700000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080084,
+    "modifiedTime": 1760016422624,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!ZOtEhmCATyc0Eq97"
+}

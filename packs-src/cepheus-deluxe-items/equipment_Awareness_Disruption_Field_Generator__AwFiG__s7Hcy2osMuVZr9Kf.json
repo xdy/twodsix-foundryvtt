@@ -1,0 +1,60 @@
+{
+  "name": "Awareness Disruption Field Generator (AwFiG)",
+  "type": "equipment",
+  "img": "systems/twodsix/assets/icons/secret-door.svg",
+  "system": {
+    "name": "",
+    "techLevel": 16,
+    "description": "An Awareness Disruption Field Generator (AwFiG) emits a low-grade psionic wave that affects the perception of those around, causing them to disregard or overlook the presence of a person or thing. To the passer-by the wearer of the AwFiG is not present or is just part of the background and is unlikely to be remembered.",
+    "shortdescr": "Causes people to disregard or overlook the presence of a person or thing",
+    "quantity": 1,
+    "weight": 1,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "kmWuM3PXVZx3Q90f",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_bpg3uct3zcp",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Equipment",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "s7Hcy2osMuVZr9Kf",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737477,
+    "modifiedTime": 1760016422777,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!s7Hcy2osMuVZr9Kf"
+}

@@ -1,0 +1,69 @@
+{
+  "_id": "kbQc2vKWOtZm72tx",
+  "name": "Shield",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "Protection: DM-1 to be hit<br><br>Notes: May not be used with any two-handed weapon",
+    "shortdescr": "A personal shield",
+    "quantity": 1,
+    "weight": 1,
+    "price": 20,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": null,
+    "secondaryArmor": {
+      "value": null,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": null
+    },
+    "type": "weapon",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_4oz9jjp46ps",
+      "path": "cepheus atom#/CF_SEP/CA - Armor",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/shield-simple.svg",
+  "effects": [],
+  "folder": "tNJfsW50f5AVlVMg",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079801,
+    "modifiedTime": 1760016422284,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!kbQc2vKWOtZm72tx"
+}

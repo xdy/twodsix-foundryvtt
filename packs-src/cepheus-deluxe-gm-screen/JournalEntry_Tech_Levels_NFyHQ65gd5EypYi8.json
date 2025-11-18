@@ -1,0 +1,70 @@
+{
+  "_id": "NFyHQ65gd5EypYi8",
+  "name": "Tech Levels",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_458frav988h",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Tech Levels",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1279%\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width:7.79781%\">\n<div>TL</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Notable Characteristics</div>\n</td>\n<td style=\"width:23.731%\">\n<div>Historical Comparison</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>0</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>No technology, equivalent to the Stone age. Fire, agriculture, and stone tools.</div>\n</td>\n<td style=\"width:23.731%\">\n<div>Agricultural revolution, Stonehenge</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>1</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Roughly on a par with Bronze or Iron age technology. Writing and mathematics.</div>\n</td>\n<td style=\"width:23.731%\">\n<div>Ancient Egypt, Classical Greece, Rome, and China.</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>2</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Late Medieval technology. Simple black-powder firearms, ocean-going vessels</div>\n</td>\n<td style=\"width:23.731%\">\n<div>Renaissance Europe, early colonial America</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>3</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Mass production allows for product standardization, heralding the beginnings of industrial revolution and steam power.</div>\n</td>\n<td style=\"width:23.731%\">\n<div>Great Britain circa 1770</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>4</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>The transition to industrialization is complete, bringing plastics, radio, and other such inventions.</div>\n</td>\n<td style=\"width:23.731%\">\n<div>Western Europe circa 1900</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>5</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Widespread electrification, telecommunications, and internal combustion engines.</div>\n</td>\n<td style=\"width:23.731%\">\n<div>The First and Second World Wars</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>6</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Development of fission power and more advanced computing.</div>\n</td>\n<td style=\"width:23.731%\">\n<div>Early Cold War</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>7</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Can reach orbit reliably and has telecommunications satellites.</div>\n</td>\n<td style=\"width:23.731%\">\n<div>We are here</div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>8</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Possible to reach other worlds in the same system, although terraforming or full colonization is not within the culture’s capacity.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>9</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Development of crude gravity manipulation and controlled nuclear fusion, which makes space travel vastly safer and faster; first steps into Jump Drive technology. The advent of a wide range of cybernetics.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>10 (A)</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Development of gravitic vehicles revolutionizes transportation and warfare.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>11 (B)</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>The first primitive (non-creative) artificial intelligences become possible in the form of “low autonomous” interfaces, as computers begin to model synaptic networks.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>12 (C)</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Weather control revolutionizes terraforming and agriculture.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>13 (D)</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Powered Armor appears on the battlefield in response to new weapons. “High autonomous” interfaces allow computers to become self-actuating and self-teaching. Gravitics become capable of small-scale manipulation of matter.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>14 (E)</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Fusion tools and weapons become man-portable.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>15 (F)</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>The development of longevity treatments means that the human lifespan is now vastly increased.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n<tr>\n<td style=\"width:7.79781%\">\n<div>16 (G)</div>\n</td>\n<td style=\"width:67.5914%\">\n<div>Handheld plasma weapons and energy shields revolutionize warfare.</div>\n</td>\n<td style=\"width:23.731%\">\n<div> </div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "U4g4mg610fIoW40f",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!NFyHQ65gd5EypYi8.U4g4mg610fIoW40f"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080325,
+    "modifiedTime": 1760016422940,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!NFyHQ65gd5EypYi8"
+}

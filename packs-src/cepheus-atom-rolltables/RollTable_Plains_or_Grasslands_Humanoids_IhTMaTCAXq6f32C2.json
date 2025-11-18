@@ -1,0 +1,197 @@
+{
+  "name": "Plains or Grasslands Humanoids",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_oepu6t7x3f9",
+      "path": "CA Tables#/CF_SEP/Encounters#/CF_SEP/Humanoids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/grass.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "dNMX7Em8IDe71Plu",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/DeepGnome.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Plain Creeper",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.zJ8420cNqFeEMUoP",
+      "description": "",
+      "_key": "!tables.results!IhTMaTCAXq6f32C2.dNMX7Em8IDe71Plu"
+    },
+    {
+      "_id": "wx5I2eoNkLO0MVuo",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/fiend/Imp.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Carrin",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.eIwMS19L2j9nldc3",
+      "description": "",
+      "_key": "!tables.results!IhTMaTCAXq6f32C2.wx5I2eoNkLO0MVuo"
+    },
+    {
+      "_id": "EujG20948k4rY9RR",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/undead/Zombie.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Brighteyes",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.kXBV0v50Zper6BkA",
+      "description": "",
+      "_key": "!tables.results!IhTMaTCAXq6f32C2.EujG20948k4rY9RR"
+    },
+    {
+      "_id": "KnbzmvrS2ScYEHLw",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/undead/Ghast.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Needleman",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.JPWmCoU0rRIRtryS",
+      "description": "",
+      "_key": "!tables.results!IhTMaTCAXq6f32C2.KnbzmvrS2ScYEHLw"
+    },
+    {
+      "_id": "i3ySQ0RE8eG8v8TG",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/uncertainty.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Special! Referee's choice",
+      "name": "",
+      "_key": "!tables.results!IhTMaTCAXq6f32C2.i3ySQ0RE8eG8v8TG"
+    },
+    {
+      "_id": "xpql3yoKmWOrhDY7",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!IhTMaTCAXq6f32C2.xpql3yoKmWOrhDY7"
+    }
+  ],
+  "formula": "1D6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "IhTMaTCAXq6f32C2",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080062,
+    "modifiedTime": 1760016422590,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!IhTMaTCAXq6f32C2"
+}

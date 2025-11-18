@@ -1,0 +1,772 @@
+{
+  "name": "Gamma Wyrm",
+  "type": "animal",
+  "system": {
+    "name": "",
+    "homeWorld": "",
+    "animalType": {
+      "niche": "herbivore",
+      "subtype": "filter"
+    },
+    "location": "hills",
+    "size": "",
+    "numberAppearing": "1d6",
+    "reaction": {
+      "attack": 9,
+      "flee": 6
+    },
+    "moraleDM": "",
+    "hits": {
+      "value": 74,
+      "min": 0,
+      "max": 74,
+      "lastDelta": -36
+    },
+    "radiationDose": {
+      "value": 0,
+      "max": 0,
+      "min": 0
+    },
+    "encumbrance": {
+      "value": 0,
+      "max": 0
+    },
+    "primaryArmor": {
+      "value": 10
+    },
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 0
+    },
+    "untrainedSkill": "bonLwcPA0TpSskPO",
+    "description": "24/50, Move 10m (fly), Armor 10, Bite (melee 5D damage)<br>and 2 claws (melee 2D each) or breath (4D Fire damage to up 5 to 3 adjacent targets; may Contaminate; throw Survival 6+ to resist). Combat-3, Physical-1, Survival-2. May have a hoard of<br>relics in its lair.",
+    "notes": "<div><span style=\"color: var(--s2d6-light-color); font-family: inherit; font-size: inherit; text-align: inherit;\">10m Flying speed</span><br></div><div>May have a hoard of&nbsp;<span style=\"color: var(--s2d6-light-color) ; font-family: inherit; font-size: inherit; text-align: inherit;\">relics in its lair.</span></div>",
+    "characteristics": {
+      "strength": {
+        "key": "strength",
+        "value": 50,
+        "damage": 0,
+        "label": "Strength",
+        "shortLabel": "STR",
+        "displayShortLabel": ""
+      },
+      "dexterity": {
+        "key": "dexterity",
+        "value": 0,
+        "damage": 0,
+        "label": "Dexterity",
+        "shortLabel": "DEX",
+        "displayShortLabel": ""
+      },
+      "endurance": {
+        "key": "endurance",
+        "value": 24,
+        "damage": 0,
+        "label": "Endurance",
+        "shortLabel": "END",
+        "displayShortLabel": ""
+      },
+      "intelligence": {
+        "key": "intelligence",
+        "value": 7,
+        "damage": 0,
+        "label": "Intelligence",
+        "shortLabel": "INT",
+        "displayShortLabel": ""
+      },
+      "education": {
+        "key": "education",
+        "value": 7,
+        "damage": 0,
+        "label": "Education",
+        "shortLabel": "EDU",
+        "displayShortLabel": "INS"
+      },
+      "socialStanding": {
+        "key": "socialStanding",
+        "value": 7,
+        "damage": 0,
+        "label": "Social Standing",
+        "shortLabel": "SOC",
+        "displayShortLabel": "PAK"
+      },
+      "psionicStrength": {
+        "key": "psionicStrength",
+        "value": 0,
+        "damage": 0,
+        "label": "Psionic Strength",
+        "shortLabel": "PSI",
+        "displayShortLabel": ""
+      },
+      "stamina": {
+        "key": "stamina",
+        "value": 24,
+        "damage": 0,
+        "label": "Stamina",
+        "shortLabel": "STA",
+        "displayShortLabel": ""
+      },
+      "lifeblood": {
+        "key": "lifeblood",
+        "value": 50,
+        "damage": 0,
+        "label": "Lifeblood",
+        "shortLabel": "LFB",
+        "displayShortLabel": ""
+      },
+      "alternative1": {
+        "key": "alternative1",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 1",
+        "shortLabel": "ALT1",
+        "displayShortLabel": ""
+      },
+      "alternative2": {
+        "key": "alternative2",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative 2",
+        "shortLabel": "ALT2",
+        "displayShortLabel": ""
+      }
+    },
+    "conditions": {
+      "woundedEffect": 0,
+      "encumberedEffect": 0
+    },
+    "characteristicEdit": false,
+    "movement": {
+      "burrow": 0,
+      "climb": 0,
+      "fly": 0,
+      "swim": 0,
+      "walk": 10,
+      "units": "m",
+      "hover": false
+    },
+    "woundedEffect": 0,
+    "species": "Monster",
+    "age": {
+      "value": "",
+      "min": 0
+    },
+    "gender": "",
+    "contacts": "",
+    "allies": "",
+    "enemies": "",
+    "bio": "",
+    "finances": {
+      "cash": "0",
+      "pension": "0",
+      "debt": "0",
+      "payments": "0",
+      "livingCosts": "0",
+      "financial-notes": ""
+    }
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxpu59c259",
+      "path": "Monsters",
+      "color": "#000000"
+    },
+    "core": {}
+  },
+  "img": "systems/dnd5e/tokens/dragon/BrassDragonWyrmling.webp",
+  "items": [
+    {
+      "_id": "bonLwcPA0TpSskPO",
+      "name": "Untrained",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": -3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "",
+        "shortdescr": "",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 100000,
+      "flags": {
+        "twodsix": {
+          "untrainedSkill": true
+        }
+      },
+      "effects": [],
+      "img": "icons/svg/item-bag.svg",
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.bonLwcPA0TpSskPO"
+    },
+    {
+      "_id": "A3rmB2t4sUSpvUIs",
+      "name": "Combat",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 3,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Combat: this skill covers actions that involve committing violence. Anything from spears and guns to artillery and demolitions.<br><br>",
+        "shortdescr": "actions that involve committing violence",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Difficult",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 500000,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/melee.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.A3rmB2t4sUSpvUIs"
+    },
+    {
+      "_id": "V4WlefyGymaqsKIF",
+      "name": "Physical",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 1,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Physical: any time a character needs to exert themselves, use this skill. This can include feats of athleticism, stealth, acrobatics, and so on.",
+        "shortdescr": "athleticism, stealth, and acrobatics",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 600000,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/athletics-endurance.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.V4WlefyGymaqsKIF"
+    },
+    {
+      "_id": "MgSKvuYzmRNy4SAa",
+      "name": "Survival",
+      "type": "skills",
+      "system": {
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "value": 2,
+        "characteristic": "NONE",
+        "type": "skills",
+        "description": "Survival: this is the skill used for surviving the Wastes, and includes foraging, tracking, scouting, and avoiding Contamination.",
+        "shortdescr": "foraging, tracking, scouting, and avoiding contamination",
+        "subtype": "",
+        "key": "key",
+        "difficulty": "Average",
+        "rolltype": "Normal",
+        "trainingNotes": "",
+        "reference": ""
+      },
+      "sort": 400000,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/survival.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": null,
+        "systemVersion": null,
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.MgSKvuYzmRNy4SAa"
+    },
+    {
+      "_id": "ZSwgXWzjSlIOsyE2",
+      "name": "Bite",
+      "type": "weapon",
+      "system": {
+        "name": "New weapon",
+        "techLevel": 0,
+        "description": "",
+        "shortdescr": "bite",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "A3rmB2t4sUSpvUIs",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "5d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "piercing",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 500000,
+      "flags": {
+        "twodsix": {}
+      },
+      "img": "systems/twodsix/assets/icons/saber-tooth.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680701503580,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.ZSwgXWzjSlIOsyE2"
+    },
+    {
+      "_id": "jRAYOCK6wFxQOR6v",
+      "name": "Claws (2x)",
+      "type": "weapon",
+      "system": {
+        "name": "New weapon",
+        "techLevel": 0,
+        "description": "",
+        "shortdescr": "",
+        "quantity": 4,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "A3rmB2t4sUSpvUIs",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": "0",
+        "damage": "2d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "slashing",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 700000,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/wolverine-claws.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680701509714,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.jRAYOCK6wFxQOR6v"
+    },
+    {
+      "_id": "6QaynyzjnqegOCNE",
+      "name": "Breath",
+      "type": "weapon",
+      "system": {
+        "name": "New weapon",
+        "techLevel": 0,
+        "description": "4D Fire damage up to 3 adjacent targets; may Contaminate; throw Survival 6+ to resist",
+        "shortdescr": "Fire breath, contaminated",
+        "quantity": 1,
+        "weight": 0,
+        "price": null,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "A3rmB2t4sUSpvUIs",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": 4.5,
+          "width": null,
+          "units": "m",
+          "type": "square"
+        },
+        "range": "?",
+        "damage": "4d6",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": "0",
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "fire",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": "",
+        "location": [
+          "inventory",
+          "storage"
+        ]
+      },
+      "sort": 800000,
+      "flags": {},
+      "img": "systems/twodsix/assets/icons/dragon-breath.svg",
+      "effects": [],
+      "folder": null,
+      "ownership": {
+        "default": 0
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.27.0",
+        "coreVersion": "13.350",
+        "createdTime": null,
+        "modifiedTime": 1680632863925,
+        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.6QaynyzjnqegOCNE"
+    },
+    {
+      "name": "Unarmed",
+      "type": "weapon",
+      "img": "systems/twodsix/assets/icons/unarmed.svg",
+      "system": {
+        "name": "",
+        "techLevel": 0,
+        "description": "Unarmed attack",
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": "",
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "bonLwcPA0TpSskPO",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": "",
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "target": {
+          "value": null,
+          "width": null,
+          "units": "m",
+          "type": "none"
+        },
+        "range": 0,
+        "damage": "max(@characteristics.strength.mod, 1)",
+        "damageBonus": 0,
+        "magazineSize": 0,
+        "ammo": 0,
+        "useConsumableForAttack": "",
+        "magazineCost": 0,
+        "type": "weapon",
+        "lawLevel": 0,
+        "rangeBand": "",
+        "weaponType": "",
+        "damageType": "bludgeoning",
+        "rateOfFire": "",
+        "recoil": false,
+        "features": "",
+        "armorPiercing": 0,
+        "handlingModifiers": ""
+      },
+      "_id": "sJiV1cCSDnTH3wZ7",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "12WfDpqePx1TrVeA": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "2.32.2",
+        "coreVersion": "13.350",
+        "createdTime": 1683920260458,
+        "modifiedTime": 1683920260458,
+        "lastModifiedBy": "12WfDpqePx1TrVeA",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!actors.items!kA31ygPOeFy91IRz.sJiV1cCSDnTH3wZ7"
+    }
+  ],
+  "effects": [],
+  "prototypeToken": {
+    "flags": {},
+    "name": "Gamma Wrym",
+    "displayName": 40,
+    "width": 3,
+    "height": 3,
+    "lockRotation": false,
+    "rotation": 0,
+    "actorLink": false,
+    "disposition": -1,
+    "displayBars": 50,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "randomImg": false,
+    "light": {
+      "dim": 0,
+      "bright": 0,
+      "angle": 360,
+      "color": null,
+      "alpha": 1,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "coloration": 1,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "negative": false,
+      "priority": 0
+    },
+    "texture": {
+      "src": "systems/dnd5e/tokens/dragon/BrassDragonWyrmling.webp",
+      "tint": "#ffffff",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "alphaThreshold": 0.75
+    },
+    "sight": {
+      "angle": 360,
+      "enabled": true,
+      "range": 30,
+      "brightness": 1,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "alpha": 1,
+    "detectionModes": [],
+    "appendNumber": false,
+    "prependAdjective": false,
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1663272576358,
+    "modifiedTime": 1760016423088,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-atom-actors.Actor.Ql1zhtt3GYEPPNIU",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": "s8CAgO04cPoyeGhp",
+  "ownership": {
+    "default": 0,
+    "12WfDpqePx1TrVeA": 3
+  },
+  "_id": "kA31ygPOeFy91IRz",
+  "sort": 2600000,
+  "_key": "!actors!kA31ygPOeFy91IRz"
+}

@@ -1,0 +1,197 @@
+{
+  "name": "City or Urban",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_83vpuw46p6n",
+      "path": "CA Tables#/CF_SEP/Encounters",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/ancient-ruins.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "cgCWs4HKAhRzlSQW",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/uncertainty.svg",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Roll on the table corresponding to the common terrain type surrounding the ruins.",
+      "name": "",
+      "_key": "!tables.results!EW85snHCHCCpnbgr.cgCWs4HKAhRzlSQW"
+    },
+    {
+      "_id": "Dn1ThrEE1Hopn41A",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/SwarmInsects.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Giant Roaches",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.s8yYXyZtF6Nua7zr",
+      "description": "",
+      "_key": "!tables.results!EW85snHCHCCpnbgr.Dn1ThrEE1Hopn41A"
+    },
+    {
+      "_id": "wSUJQjeYTEVPPEDT",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/GiantLizard.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Giant Gecko",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.SWwZ57oYFdaEIQHO",
+      "description": "",
+      "_key": "!tables.results!EW85snHCHCCpnbgr.wSUJQjeYTEVPPEDT"
+    },
+    {
+      "_id": "C655JobltOLywvzs",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/monstrosity/CarrionCrawler.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Tentacle Worm",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.0mHRrmX2VsZb5lac",
+      "description": "",
+      "_key": "!tables.results!EW85snHCHCCpnbgr.C655JobltOLywvzs"
+    },
+    {
+      "_id": "nHT8fGKptsHySwQW",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/beast/Rat.webp",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Brain Mice",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.9W7E6qKYHb3K3Zd3",
+      "description": "",
+      "_key": "!tables.results!EW85snHCHCCpnbgr.nHT8fGKptsHySwQW"
+    },
+    {
+      "_id": "5T3lwnqHppiPeOLQ",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!EW85snHCHCCpnbgr.5T3lwnqHppiPeOLQ"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "EW85snHCHCCpnbgr",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080062,
+    "modifiedTime": 1760016422590,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!EW85snHCHCCpnbgr"
+}

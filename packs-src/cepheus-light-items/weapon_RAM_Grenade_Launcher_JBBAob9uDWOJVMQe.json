@@ -1,0 +1,80 @@
+{
+  "_id": "JBBAob9uDWOJVMQe",
+  "name": "RAM Grenade Launcher",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/RAM-grenade-launcher.svg",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "RAM Grenade Launcher (TL8): Advanced grenade launcher utilizing sophisticated rocket-assisted grenades (not interchangeable with those of the older grenade launcher). Provides better range and magazine capacity than a standard grenade launcher.",
+    "shortdescr": "Advanced grenade launcher utilizing sophisticated rocket-assisted grenades",
+    "quantity": 1,
+    "weight": 10,
+    "price": 800,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Heavy Weapons",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "By Grenade",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "10",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "50/200",
+    "weaponType": "Ranged",
+    "damageType": "NONE",
+    "rateOfFire": "3",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "STR 8/-2 9/0",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "TID7XHQIHysAG8fK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079707,
+    "modifiedTime": 1760016422149,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!JBBAob9uDWOJVMQe"
+}

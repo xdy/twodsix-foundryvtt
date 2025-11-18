@@ -1,0 +1,60 @@
+{
+  "name": "Multiscanner",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 10,
+    "description": "The Multiscanner combines several sensor functions: it can detect radiation, electromagnetic emissions, metals, and a limited set of chemicals and biological compounds. It can also perform standard blood tests.",
+    "shortdescr": "Multiscanner combines several sensor functions",
+    "quantity": 1,
+    "weight": 1,
+    "price": 2000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_bc94dj30dqc",
+      "path": "cepheus quantum#/CF_SEP/CQ - General Gear",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "icons/svg/mystery-man.svg",
+  "effects": [],
+  "_id": "j969NYctZgwavd6T",
+  "folder": "gW7EP0NcJYfmNpY6",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079911,
+    "modifiedTime": 1760016422357,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!j969NYctZgwavd6T"
+}

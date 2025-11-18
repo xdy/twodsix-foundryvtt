@@ -1,0 +1,70 @@
+{
+  "_id": "f9DBMgrPoDBzBCR9",
+  "name": "Vehicle Damage",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "CEL GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "Vehicle Damage",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table style=\"height:210px;width:562px\" border=\"0\">\n<tbody>\n<tr>\n<td style=\"width:122px\">2D</td>\n<td style=\"width:205px\">Regular Damage</td>\n<td style=\"width:285px\">Critical Damage</td>\n</tr>\n<tr>\n<td style=\"width:122px\">4-</td>\n<td style=\"width:205px\">Breach</td>\n<td style=\"width:285px\">Knocked Out</td>\n</tr>\n<tr>\n<td style=\"width:122px\">5</td>\n<td style=\"width:205px\">Cargo</td>\n<td style=\"width:285px\">Knocked Out</td>\n</tr>\n<tr>\n<td style=\"width:122px\">6</td>\n<td style=\"width:205px\">Occupants</td>\n<td style=\"width:285px\">Knocked Out</td>\n</tr>\n<tr>\n<td style=\"width:122px\">7</td>\n<td style=\"width:205px\">Weapon</td>\n<td style=\"width:285px\">Crew</td>\n</tr>\n<tr>\n<td style=\"width:122px\">8-9</td>\n<td style=\"width:205px\">Locomotion</td>\n<td style=\"width:285px\">Crew</td>\n</tr>\n<tr>\n<td style=\"width:122px\">10</td>\n<td style=\"width:205px\">Electronics</td>\n<td style=\"width:285px\">Destroyed</td>\n</tr>\n<tr>\n<td style=\"width:122px\">11</td>\n<td style=\"width:205px\">Power Plant</td>\n<td style=\"width:285px\">Destroyed</td>\n</tr>\n<tr>\n<td style=\"width:122px\">12</td>\n<td style=\"width:205px\">Critical</td>\n<td style=\"width:285px\">Destroyed</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "CVe2ZLl2AJcjA4Zy",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!f9DBMgrPoDBzBCR9.CVe2ZLl2AJcjA4Zy"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079920,
+    "modifiedTime": 1760016422380,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!f9DBMgrPoDBzBCR9"
+}

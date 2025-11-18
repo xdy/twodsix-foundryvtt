@@ -1,0 +1,70 @@
+{
+  "_id": "QXtwUxpAWH8THxpY",
+  "name": "Lift 100kg",
+  "type": "psiAbility",
+  "img": "./systems/twodsix/assets/icons/lift-100-kg.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 5,
+    "type": "psiAbility",
+    "description": "Lift 100kg (PSI 5, 50m): lift and maneuver up to a 100kg object for 1D combat rounds. This will cause 3D damage if hurled at a target. To hit a target throw PSI 8+ using the psion’s full PSI characteristic, using the normal ranged combat modifiers. Psions can also lift themselves or one other person if they are 100kg or lighter. This rudimentary flying can move a character at 5m per round, for one minute.",
+    "shortdescr": "Lift 100kg (PSI 5, 50m)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 5,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 1600000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.ZMGmUBFI5VVCbI9A",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569377982,
+    "modifiedTime": 1760016422744,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!QXtwUxpAWH8THxpY"
+}

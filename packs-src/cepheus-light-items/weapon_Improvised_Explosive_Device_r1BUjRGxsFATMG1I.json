@@ -1,0 +1,80 @@
+{
+  "_id": "r1BUjRGxsFATMG1I",
+  "name": "Improvised Explosive Device",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "Improvised Explosive Device (TL5): Home-made incendiary bomb commonly made from a glass container filled with highly flammable liquid and lit with a fuse.",
+    "shortdescr": "Home-made incendiary bomb commonly made from a glass container filled with highly flammable liquid and lit with a fuse.",
+    "quantity": 1,
+    "weight": null,
+    "price": 5,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 2,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown str/2*str",
+    "weaponType": "Ranged",
+    "damageType": "fire",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_xjmcjdzi8ro",
+      "path": "ce light-grenades",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/improvised-explosive-device.svg",
+  "effects": [],
+  "folder": "wz7crqkoJIkuXViG",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079724,
+    "modifiedTime": 1760016422177,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!r1BUjRGxsFATMG1I"
+}

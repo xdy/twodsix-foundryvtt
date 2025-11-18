@@ -1,0 +1,197 @@
+{
+  "name": "Swamp or Aquatic Humanoids",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_oepu6t7x3f9",
+      "path": "CA Tables#/CF_SEP/Encounters#/CF_SEP/Humanoids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/swamp.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "nIDKArDzSd56MFHV",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/heroes/RogueHuman.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Misborn",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.kruTZHNSQt49mzai",
+      "description": "",
+      "_key": "!tables.results!FGHjwJwA0ffP4USi.nIDKArDzSd56MFHV"
+    },
+    {
+      "_id": "CrS4rDCrdSNRvvKk",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/heroes/MonkStaff.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Brethren",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.soy8Ws5RmTwbeVoE",
+      "description": "",
+      "_key": "!tables.results!FGHjwJwA0ffP4USi.CrS4rDCrdSNRvvKk"
+    },
+    {
+      "_id": "vlUL6ApGfqj4iNeh",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!FGHjwJwA0ffP4USi.vlUL6ApGfqj4iNeh"
+    },
+    {
+      "_id": "X1hLn5a5nzGVQSKj",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Merfolk.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Hisser",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.wjABdwNvYkOX7qZK",
+      "description": "",
+      "_key": "!tables.results!FGHjwJwA0ffP4USi.X1hLn5a5nzGVQSKj"
+    },
+    {
+      "_id": "xXHgJw9jyzL1meZB",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/uncertainty.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Referee's Choice",
+      "name": "",
+      "_key": "!tables.results!FGHjwJwA0ffP4USi.xXHgJw9jyzL1meZB"
+    },
+    {
+      "_id": "sYWbRlOOn1QHhMK1",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!FGHjwJwA0ffP4USi.sYWbRlOOn1QHhMK1"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "FGHjwJwA0ffP4USi",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080062,
+    "modifiedTime": 1760016422590,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!FGHjwJwA0ffP4USi"
+}

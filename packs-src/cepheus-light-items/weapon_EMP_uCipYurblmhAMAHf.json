@@ -1,0 +1,80 @@
+{
+  "_id": "uCipYurblmhAMAHf",
+  "name": "EMP",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "weapon",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "EMP Grenade (TL8): Electro-Magnetic Pulse grenade emitting a powerful magnetic pulse capable of disrupting electronics but harmless to organic beings. It causes full damage to robots. Characters with implanted cybernetics are vulnerable to EMP but only take half stun \"damage\" (rounded up) from it. Non-cybered organic beings are immune to this stun damage.",
+    "shortdescr": "Electro-Magnetic Pulse grenade emitting a powerful magnetic pulse capable of disrupting electronics but harmless to organic beings.",
+    "quantity": 1,
+    "weight": 1,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": 5,
+      "width": null,
+      "units": "m",
+      "type": "radius"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "Thrown str/2*str",
+    "weaponType": "Thrown",
+    "damageType": "emp",
+    "rateOfFire": "1",
+    "recoil": true,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_xjmcjdzi8ro",
+      "path": "ce light-grenades",
+      "color": "#000000"
+    }
+  },
+  "img": "./systems/twodsix/assets/icons/emp.svg",
+  "effects": [],
+  "folder": "wz7crqkoJIkuXViG",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079727,
+    "modifiedTime": 1760016422180,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!uCipYurblmhAMAHf"
+}

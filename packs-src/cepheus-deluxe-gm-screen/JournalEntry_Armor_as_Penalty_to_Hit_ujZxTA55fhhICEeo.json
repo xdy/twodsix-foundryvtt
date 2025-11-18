@@ -1,0 +1,70 @@
+{
+  "_id": "ujZxTA55fhhICEeo",
+  "name": "Armor as Penalty to Hit",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_os49e6s7ia",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Armor as Penalty to Hit",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table class=\"MsoNormalTable\" style=\"height:96px;width:520.5pt;border-style:none;margin-left:auto;margin-right:auto\" border=\"1\">\n<tbody>\n<tr style=\"height:12px;text-align:center\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:center\"> </td>\n<td style=\"border-style:solid;border-width:1px;width:53px;text-align:center\">\n<div>None</div>\n</td>\n<td style=\"border-style:solid;border-width:1px;width:57px;text-align:center\">\n<div>Leather Jacket</div>\n</td>\n<td style=\"border-style:solid;border-width:1px;width:82px;text-align:center\">\n<div>Bulletproof Vest</div>\n</td>\n<td style=\"border-style:solid;border-width:1px;width:59px;text-align:center\">\n<div>Heavy Ballistic</div>\n</td>\n<td style=\"border-style:solid;border-width:1px;width:48px;text-align:center\">\n<div>Space Suit</div>\n</td>\n<td style=\"border-style:solid;border-width:1px;width:58px;text-align:center\">\n<div>Heavy Duster</div>\n</td>\n<td style=\"border-style:solid;border-width:1px;width:77px;text-align:center\">\n<div>Encased or Synth Silk</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>Powered Armor</div>\n</td>\n</tr>\n<tr style=\"height:12px\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:left\">\n<div>Natural Weapons</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-4</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>-5</div>\n</td>\n</tr>\n<tr style=\"height:12px\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:left\">\n<div>Bludgeoning Weapons</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-4</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>-5</div>\n</td>\n</tr>\n<tr style=\"height:12px\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:left\">\n<div>Slashing &amp; Piercing Weapons</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>-5</div>\n</td>\n</tr>\n<tr style=\"height:12px\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:left\">\n<div>Slug Weapons</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>-5</div>\n</td>\n</tr>\n<tr style=\"height:12px\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:left\">\n<div>Assault Weapons</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>-4</div>\n</td>\n</tr>\n<tr style=\"height:12px\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:left\">\n<div>Laser Weapons</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-2</div>\n</td>\n<td style=\"text-align:center\">\n<div>-3</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>-5</div>\n</td>\n</tr>\n<tr style=\"height:12px\">\n<td style=\"width:136px;border-width:1px;border-style:solid;border-image:initial;padding:0in 5.4pt;height:12px;text-align:left\">\n<div>Heavy Weapons</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>0</div>\n</td>\n<td style=\"text-align:center\">\n<div>-1</div>\n</td>\n<td style=\"width:81px;border-width:1px;border-style:solid;padding:0in 5.4pt;height:12px;text-align:center\">\n<div>-3</div>\n</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "phQeyYZi1bK2azkR",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!ujZxTA55fhhICEeo.phQeyYZi1bK2azkR"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080327,
+    "modifiedTime": 1760016422942,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!ujZxTA55fhhICEeo"
+}

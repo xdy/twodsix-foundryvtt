@@ -1,0 +1,131 @@
+{
+  "_id": "J0bZ6FlsxRzkhze8",
+  "name": "Shield",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/shield.svg",
+  "system": {
+    "name": "",
+    "techLevel": 0,
+    "description": "A personal shield, with which characters can bash enemies for 1D damage. Anyone carrying a shield penalizes enemies by DM-1 when they attack. If a shield is used with the Overwatch action in combat, the attack is penalized by DM-2.",
+    "shortdescr": "A personal shield",
+    "quantity": 1,
+    "weight": 1,
+    "price": 20,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "1d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "",
+    "rangeBand": "melee",
+    "weaponType": "melee",
+    "damageType": "bludgeoning",
+    "rateOfFire": "1",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [
+    {
+      "origin": "Compendium.twodsix.cepheus-deluxe-items.J0bZ6FlsxRzkhze8",
+      "tint": "#ffffff",
+      "transfer": true,
+      "disabled": true,
+      "_id": "W0d6O0JNx1bNEnbz",
+      "flags": {
+        "twodsix": {
+          "sourceId": "W0d6O0JNx1bNEnbz"
+        }
+      },
+      "changes": [
+        {
+          "key": "system.primaryArmor.value",
+          "mode": 2,
+          "value": "1",
+          "priority": null
+        }
+      ],
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "_stats": {
+        "coreVersion": "13.346",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Shield",
+      "img": "./systems/twodsix/assets/icons/shield.svg",
+      "type": "base",
+      "system": {},
+      "description": "",
+      "statuses": [],
+      "sort": 0,
+      "_key": "!items.effects!J0bZ6FlsxRzkhze8.W0d6O0JNx1bNEnbz"
+    }
+  ],
+  "folder": "Wu8PbhMDUEvbhVsu",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_d5gavafmlx",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Melee Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737430,
+    "modifiedTime": 1760016422738,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.doBXs5Di7ZqnM9y0",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!J0bZ6FlsxRzkhze8"
+}

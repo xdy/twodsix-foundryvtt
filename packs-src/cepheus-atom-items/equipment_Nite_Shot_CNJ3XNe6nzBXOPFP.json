@@ -1,0 +1,60 @@
+{
+  "_id": "CNJ3XNe6nzBXOPFP",
+  "name": "Nite Shot",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": null,
+    "description": "Nite-Nite Shot (target must throw Physical 8+ or fall unconscious for 1D turns)*",
+    "shortdescr": "Tranquilizer",
+    "quantity": 1,
+    "weight": 0,
+    "price": 75,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cv9wu3utvw",
+      "path": "cepheus atom#/CF_SEP/CA - Relics",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/nite-shot.svg",
+  "effects": [],
+  "folder": "lfpcID3E74YF6iPS",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079776,
+    "modifiedTime": 1760016422258,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!CNJ3XNe6nzBXOPFP"
+}

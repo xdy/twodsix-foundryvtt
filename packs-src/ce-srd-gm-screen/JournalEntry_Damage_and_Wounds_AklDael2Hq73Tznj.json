@@ -1,0 +1,70 @@
+{
+  "name": "Damage and Wounds",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "AklDael2Hq73Tznj",
+  "pages": [
+    {
+      "name": "Damage and Wounds",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"height:118px;width:69.3366%\">\n<thead>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:53.0523%\">Characteristic Damage</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:46.657%\">Result</td>\n</tr>\n</thead>\n<tbody>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:53.0523%\">At least 1 characteristic is damaged</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:46.657%\">Character is wounded</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:53.0523%\">All 3 characteristics are damaged</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:46.657%\">Character is seriously wounded</td>\n</tr>\n<tr style=\"height:16px\">\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:53.0523%\">2 characteristics are at Zero</td>\n<td style=\"text-align:left;vertical-align:middle;height:16px;width:46.657%\">Character is unconscious</td>\n</tr>\n<tr style=\"height:10px\">\n<td style=\"text-align:left;vertical-align:middle;height:10px;width:53.0523%\">3 characteristics are at Zero</td>\n<td style=\"text-align:left;vertical-align:middle;height:10px;width:46.657%\">Character is dead</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "xsWtVIB6B3RB9gZH",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!AklDael2Hq73Tznj.xsWtVIB6B3RB9gZH"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079926,
+    "modifiedTime": 1760016422387,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!AklDael2Hq73Tznj"
+}

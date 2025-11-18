@@ -1,0 +1,59 @@
+{
+  "name": "Oxygen Tanks",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 5,
+    "description": "Multi-purpose and interchangeable canisters of compressed “air” for any piece of technological equipment that uses them to allow a character to breathe safely, from vacc suits to pressure tents. Note that this is usually already included in equipment that needs it, unless specified. A refill of 6 hours of breathable air for humans at space stations costs Cr20.",
+    "shortdescr": "Oxygen tanks (6 hours).",
+    "quantity": 1,
+    "weight": 1,
+    "price": 250,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/oxygen-tanks.svg",
+  "effects": [],
+  "_id": "dCa4KYKg9iDNTipi",
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080272,
+    "modifiedTime": 1760016422878,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!dCa4KYKg9iDNTipi"
+}

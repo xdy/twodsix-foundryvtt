@@ -1,0 +1,28 @@
+{
+  "name": "Stock Market",
+  "type": "script",
+  "scope": "global",
+  "author": "B4JSPh84Wx3wBFTK",
+  "img": "systems/twodsix/assets/icons/chart.svg",
+  "command": "const riskLevels = {\n\tstable: \"1d3\",\n\tchangeable: \"1d6\",\n\thigh: \"2d6\"\n};\n\nconst changeLevels = {\n\tcrashing: {trend: 6, multiplier: \"(-1d6-3)\"},\n\tplunging: {trend: 4, multiplier: \"(-1d6)\"},\n\tsteeplyDeclining: {trend: 2, multiplier: \"(-1d3)\"},\n\tdeclining: {trend: 1, multiplier: \"(-1)\"},\n\tgrowing: {trend: 0, multiplier: \"(1)\"},\n\trapidlyGrowing: {trend: -2, multiplier: \"(1d3)\"},\n\texploding: {trend: -4, multiplier: \"(1d6)\"}\n};\n\nconst levelKeys = Object.keys(changeLevels);\n\nconst initStockData = {\n\t\"Stock A\": {risk: \"stable\", price: 100, change: \"growing\"},\n\t\"Stock B\": {risk: \"changeable\", price: 150, change: \"growing\"},\n\t\"Stock C\": {risk: \"high\", price: 80, change: \"growing\"}\n}\n\nupdateStockPrices();\n\nasync function updateStockPrices() {\n\tlet stocks = getCurrentData();\n\tconst marketDM = await getMarketDM();\n\tif (marketDM === undefined) {return;}\n\tlet tableHTML = `<table><tr><th>Stock Name</th><th class=\"centre\">Price (cr)</th></tr>`;\n\tfor (const stock in stocks) {\n\t\tconsole.log(`${stock} Before: `, stocks[stock]);\n\t\tawait updateStock(stocks[stock], marketDM);\n\t\ttableHTML += `<tr><td>${stock}</td><td class=\"centre\">${stocks[stock].price}</td></tr>`\n\t\tconsole.log(\"After: \", stocks[stock]);\n\t}\n\ttableHTML += `</table>`;\n\tsendToChat(stocks, tableHTML);\n}\n\nasync function updateStock(stock, marketDM) {\n\tstock.change = await getChangeLevel(stock.change, marketDM);\n\tconst rollString = `${riskLevels[stock.risk]} * ${changeLevels[stock.change].multiplier}`;\n\tconst deltaPrice = await new Roll(rollString, {}).evaluate({async: true});\n\tstock.price += deltaPrice.total;\n}\n\nasync function getChangeLevel(currentChange, marketDM) {\n\tconst lookupVal = await new Roll(\"2d6 + @DM + @changeDM\", {DM: marketDM, changeDM: changeLevels[currentChange].trend}).evaluate({async: true});\n\tlet shift = 0;\n\t\n\tif (lookupVal.total <= 2) {\n\t\tshift = -2;\n\t} else if (lookupVal.total <= 5) {\n\t\tshift = -1;\n\t} else if (lookupVal.total <= 8) {\n\t\tshift = 0;\n\t} else if (lookupVal.total <= 11) {\n\t\tshift = 1;\n\t} else if ( lookupVal.total > 11) {\n\t\tshift = 2;\n\t}\n\t\n\tconst currentIndex = levelKeys.findIndex( val => val === currentChange);\n\tconst newChange = levelKeys[Math.max(0, Math.min(levelKeys.length - 1, currentIndex + shift))];\n\treturn newChange;\n}\n\nasync function getMarketDM() {\n\tconst content = `\n\t  <form>\n\t  <div class=\"form-group\">\n\t\t<label>Modifier:</label>\n\t\t<div class=\"form-fields\"><input name=\"modifier\" type=\"number\" value=\"0\"/></div>\n\t  </div>\n\t  </form>`;\n\tretValue = await Dialog.prompt({title: \"Stock Market\", content, label: \"DM\", callback: (html) => {\n\t\tconst value = html.find('input[name=modifier]').val();\n\t\treturn (parseInt(value, 10));\n\t}});\n\treturn retValue;\n}\n\nfunction getCurrentData() {\n\tconst oldReport = game.messages.filter( msg => msg.getFlag('twodsix', 'marketReport')).pop();\n\tif (oldReport) {\n\t\treturn oldReport.getFlag('twodsix', 'marketReport');\n\t} else {\n\t\treturn initStockData;\n\t}\n}\n\nfunction sendToChat(stocks, tableHTML) {\n\tlet flavorText = `<section style=\"align-self: center;\"><img src=\"./systems/twodsix/assets/icons/chart.svg\" class=\"chat-image\"></section><section>Stock Market Report</section>`;\n\tflavorText += `<section class=\"card-buttons\"><button data-action=\"expand\" data-tooltip=\"${game.i18n.localize(\"TWODSIX.Rolls.ToggleDetails\")}\"><i class=\"fa-solid fa-circle-question\" style=\"margin-left: 3px;\"></i></button></section>`;\n\tconst flavor = `<section class=\"flavor-message\"><section class=\"flavor-line\">`+ flavorText + `</section><section class=\"dice-chattip\" style=\"display: none;\">` + tableHTML + `</section>`;\n\tChatMessage.create({\n\t\tflavor: flavor,\n\t\tflags: {\n\t\t  twodsix: {\n\t\t\tmarketReport: stocks\n\t\t  }\n\t\t}\n\t  });\n}",
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1716898615439,
+    "modifiedTime": 1760016422562,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_id": "DIesVxg1BI3hWkjp",
+  "sort": 200000,
+  "_key": "!macros!DIesVxg1BI3hWkjp"
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Piloting",
+  "type": "skills",
+  "img": "./systems/twodsix/assets/icons/piloting.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "DEX",
+    "type": "skills",
+    "description": "Piloting: operating, controlling, and navigating interplanetary and interstellar spacecraft, both in real space and in jump space.<br><br>Examples: throw Piloting/EDU 8+ to plot a jump course. Throw Pilot/DEX 10+ to land on a hostile planetary surface with no landing pad. See the Starship Operations and Space Combat chapters for more details on the Pilot skill.",
+    "shortdescr": "Operating, controlling, and navigating interplanetary and interstellar spacecraft",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "LXsIddZgqYgqpwFK",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_3btd7dw9pac",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "AT1jEKN0opbcUV6C",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737420,
+    "modifiedTime": 1760016422732,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.Y7rxMH2leT0LgnhM",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!AT1jEKN0opbcUV6C"
+}

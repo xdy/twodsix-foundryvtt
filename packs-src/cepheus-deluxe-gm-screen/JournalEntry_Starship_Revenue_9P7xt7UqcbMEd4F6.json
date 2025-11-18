@@ -1,0 +1,70 @@
+{
+  "_id": "9P7xt7UqcbMEd4F6",
+  "name": "Starship Revenue",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_n6q9yayby2",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    }
+  },
+  "pages": [
+    {
+      "name": "Starship Revenue",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<h1>Passage</h1>\n<table style=\"width:92.8849%;height:85px\" border=\"1\">\n<tbody>\n<tr style=\"height:17px\">\n<td style=\"width:24.2292%;height:17px\">Tickets</td>\n<td style=\"width:18.6071%;height:17px\">Cost per parsec</td>\n<td style=\"width:22.1336%;height:17px\">Weight Allowance (kg)</td>\n<td style=\"width:34.3036%;height:17px\">Passengers per Steward Level</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:24.2292%;height:17px\">High Passage</td>\n<td style=\"width:18.6071%;height:17px\">Cr 10,000</td>\n<td style=\"width:22.1336%;height:17px\">1,000</td>\n<td style=\"width:34.3036%;height:17px\">3</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:24.2292%;height:17px\">Middle Passage</td>\n<td style=\"width:18.6071%;height:17px\">Cr 8,000</td>\n<td style=\"width:22.1336%;height:17px\">100</td>\n<td style=\"width:34.3036%;height:17px\">6</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:24.2292%;height:17px\">Steerage Passage</td>\n<td style=\"width:18.6071%;height:17px\">Cr 3,000</td>\n<td style=\"width:22.1336%;height:17px\">20</td>\n<td style=\"width:34.3036%;height:17px\">12</td>\n</tr>\n<tr style=\"height:17px\">\n<td style=\"width:24.2292%;height:17px\">Low Passage</td>\n<td style=\"width:18.6071%;height:17px\">Cr 1,000</td>\n<td style=\"width:22.1336%;height:17px\">10</td>\n<td style=\"width:34.3036%;height:17px\">--</td>\n</tr>\n<tr>\n<td style=\"width:24.2292%\">Stowing Away</td>\n<td style=\"width:18.6071%\">--</td>\n<td style=\"width:22.1336%\">--</td>\n<td style=\"width:34.3036%\">--</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<h1>Available Freight and Passengers</h1>\n<table border=\"1\">\n<tbody>\n<tr>\n<td>\n<div>Destination Starport</div>\n<div>Class</div>\n</td>\n<td>\n<div>Freight (tons)</div>\n</td>\n<td>\n<div>High Passengers</div>\n<div>(Cr10,000/psc)</div>\n</td>\n<td>\n<div>Mid Passengers</div>\n<div>(Cr8,000/psc)</div>\n</td>\n<td>\n<div>Steerage Passengers</div>\n<div>(Cr3,000/psc)</div>\n</td>\n<td>\n<div>Low Passengers</div>\n<div>(Cr1,000/psc)</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>A</div>\n</td>\n<td>\n<div>3Dx10</div>\n</td>\n<td>\n<div>3D</div>\n</td>\n<td>\n<div>3D</div>\n</td>\n<td>\n<div>4D</div>\n</td>\n<td>\n<div>3Dx3</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>B</div>\n</td>\n<td>\n<div>3Dx5</div>\n</td>\n<td>\n<div>2D</div>\n</td>\n<td>\n<div>3D</div>\n</td>\n<td>\n<div>4D</div>\n</td>\n<td>\n<div>3Dx3</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>C</div>\n</td>\n<td>\n<div>3Dx2</div>\n</td>\n<td>\n<div>1D</div>\n</td>\n<td>\n<div>2D</div>\n</td>\n<td>\n<div>3D</div>\n</td>\n<td>\n<div>3D</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>D</div>\n</td>\n<td>\n<div>3D</div>\n</td>\n<td>\n<div>0</div>\n</td>\n<td>\n<div>1D</div>\n</td>\n<td>\n<div>2D</div>\n</td>\n<td>\n<div>2D</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>E</div>\n</td>\n<td>\n<div>1D</div>\n</td>\n<td>\n<div>0</div>\n</td>\n<td>\n<div>1D/2*</div>\n</td>\n<td>\n<div>1D</div>\n</td>\n<td>\n<div>1D</div>\n</td>\n</tr>\n<tr>\n<td>\n<div>X</div>\n</td>\n<td>\n<div>0</div>\n</td>\n<td>\n<div>0</div>\n</td>\n<td>\n<div>0</div>\n</td>\n<td>\n<div>0</div>\n</td>\n<td>\n<div>0</div>\n</td>\n</tr>\n</tbody>\n</table>\n<p>*Round down</p>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "6o4BY29DTAvybjDf",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!9P7xt7UqcbMEd4F6.6o4BY29DTAvybjDf"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080324,
+    "modifiedTime": 1760016422939,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!9P7xt7UqcbMEd4F6"
+}

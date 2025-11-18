@@ -1,0 +1,348 @@
+{
+  "name": "What is the patron’s most important asset or capability?",
+  "img": "systems/twodsix/assets/icons/progression.svg",
+  "results": [
+    {
+      "_id": "rrq8dtTUjOhRhLjh",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Contacts: the patron is well-connected and can put the PCs in touch with others.",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.rrq8dtTUjOhRhLjh"
+    },
+    {
+      "_id": "S07tBpDI4QRYOT62",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Extended Family or Clan: blood ties are usually trustworthy...",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.S07tBpDI4QRYOT62"
+    },
+    {
+      "_id": "raSZMqz3ONiaoJiQ",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Profession: the patron’s career or occupation provides tools and skills.",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.raSZMqz3ONiaoJiQ"
+    },
+    {
+      "_id": "SqH6ZU5FvUJxaHMk",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Money: financial resources that can make any problem less demanding.",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.SqH6ZU5FvUJxaHMk"
+    },
+    {
+      "_id": "uMuIygIhi4JqUWRH",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Information: leverage, intelligence, blackmail, knowledge is power for this patron.",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.uMuIygIhi4JqUWRH"
+    },
+    {
+      "_id": "9hTbkpn91f8U3svA",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Force: a personal army, heavy weapons, or just the will to use extreme force.",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.9hTbkpn91f8U3svA"
+    },
+    {
+      "_id": "aqoqG8RsxWx0NfPd",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Society: the patron’s position in society grants them power.",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.aqoqG8RsxWx0NfPd"
+    },
+    {
+      "_id": "QdQnlzlIXMBGGHXW",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Starships: the patron can put one or more ships at the PCs’ disposal.",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.QdQnlzlIXMBGGHXW"
+    },
+    {
+      "_id": "0EdmZbM8rvnMeZnE",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Moral Leverage: the patron has sympathetic allies",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.0EdmZbM8rvnMeZnE"
+    },
+    {
+      "_id": "LfATH2zqg1gNfO8o",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Influential: this patron has social influence over many people",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.LfATH2zqg1gNfO8o"
+    },
+    {
+      "_id": "IBGNGRhyJX3WWkmn",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Debt: the patron has many people in his or her financial or moral debt",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.IBGNGRhyJX3WWkmn"
+    },
+    {
+      "_id": "Y2uFxbqsoEQzi2g3",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unique: artifacts, psychic powers, or other strange, rare abilities give the patron power",
+      "name": "",
+      "_key": "!tables.results!eaEz503zLkBA97fP.Y2uFxbqsoEQzi2g3"
+    }
+  ],
+  "formula": "1d12",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z26th3l36c9",
+      "path": "Social Encounters#/CF_SEP/Patrons",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "eaEz503zLkBA97fP",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080312,
+    "modifiedTime": 1760016422921,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!eaEz503zLkBA97fP"
+}

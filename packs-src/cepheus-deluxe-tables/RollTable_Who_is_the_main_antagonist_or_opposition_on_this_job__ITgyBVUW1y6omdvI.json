@@ -1,0 +1,348 @@
+{
+  "name": "Who is the main antagonist or opposition on this job?",
+  "img": "systems/twodsix/assets/icons/avoidance.svg",
+  "results": [
+    {
+      "_id": "GxXdFkqp5pkPWNCc",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Unscrupulous business owner",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.GxXdFkqp5pkPWNCc"
+    },
+    {
+      "_id": "fkAKsNOJ2cIW2W9Q",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Offworld intelligence agents",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.fkAKsNOJ2cIW2W9Q"
+    },
+    {
+      "_id": "0N6nzcS1V8wA8xT7",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Amoral terrorist group",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.0N6nzcS1V8wA8xT7"
+    },
+    {
+      "_id": "IEe9kRKLGTWlVZQH",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "A local government official",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.IEe9kRKLGTWlVZQH"
+    },
+    {
+      "_id": "LUq0Le21q4cTMCok",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Well-connected political operator",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.LUq0Le21q4cTMCok"
+    },
+    {
+      "_id": "lgthfGFNEaJtgRgI",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Elite military unit",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.lgthfGFNEaJtgRgI"
+    },
+    {
+      "_id": "6LDo2OpeYTvP1M2E",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        7,
+        7
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Organized crime organization",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.6LDo2OpeYTvP1M2E"
+    },
+    {
+      "_id": "6OcMjAOCjeZ8Btuk",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        8,
+        8
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Mad eugenics cult",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.6OcMjAOCjeZ8Btuk"
+    },
+    {
+      "_id": "Pgeq5fPT9XGh1jEm",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        9,
+        9
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Anti-government rebels",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.Pgeq5fPT9XGh1jEm"
+    },
+    {
+      "_id": "sgatKXDTm05a5r8Q",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        10,
+        10
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Cutthroat corporation",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.sgatKXDTm05a5r8Q"
+    },
+    {
+      "_id": "2uoUlWQmRvEd2Oqr",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        11,
+        11
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Secretive cell of aliens",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.2uoUlWQmRvEd2Oqr"
+    },
+    {
+      "_id": "esa9fJhuJXmjvrwW",
+      "type": "text",
+      "weight": 1,
+      "range": [
+        12,
+        12
+      ],
+      "drawn": false,
+      "flags": {},
+      "img": "icons/svg/d20-black.svg",
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "All-seeing artificial intelligence",
+      "name": "",
+      "_key": "!tables.results!ITgyBVUW1y6omdvI.esa9fJhuJXmjvrwW"
+    }
+  ],
+  "formula": "1d12",
+  "replacement": true,
+  "displayRoll": false,
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_z26th3l36c9",
+      "path": "Social Encounters#/CF_SEP/Patrons",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "ITgyBVUW1y6omdvI",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080311,
+    "modifiedTime": 1760016422920,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!tables!ITgyBVUW1y6omdvI"
+}

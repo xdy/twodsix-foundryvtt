@@ -1,0 +1,52 @@
+{
+  "_id": "JG63QMFbwfv1skoO",
+  "name": "Physical",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "Physical: any time a character needs to exert themselves, use this skill. This can include feats of athleticism, stealth, acrobatics, and so on.",
+    "shortdescr": "athleticism, stealth, and acrobatics",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_1cfl9wwsnun",
+      "path": "cepheus atom#/CF_SEP/CA - Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/athletics-endurance.svg",
+  "effects": [],
+  "folder": "WewAiVrLgteyRNoN",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079780,
+    "modifiedTime": 1760016422272,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!JG63QMFbwfv1skoO"
+}

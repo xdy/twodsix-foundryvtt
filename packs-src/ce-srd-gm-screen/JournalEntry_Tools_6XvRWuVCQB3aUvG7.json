@@ -1,0 +1,70 @@
+{
+  "name": "Tools",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_as2my9p0azl",
+      "path": "CE SRD GM Screen",
+      "color": "#000000"
+    }
+  },
+  "_id": "6XvRWuVCQB3aUvG7",
+  "pages": [
+    {
+      "name": "Tools",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:59.0161%;height:208px\">\n<thead>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Description</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">TL</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">Cost</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">Wgt</td>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Mechanical Toolkit</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">4</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">12</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Electronics Toolkit</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">12</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Lock Pick Set</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">5</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">10</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">—</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Medical Kit</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">7</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">10</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Forensics Toolkit</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">8</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">12</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Engineering Toolkit</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">12</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Scientific Toolkit</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">12</td>\n</tr>\n<tr>\n<td style=\"text-align:left;vertical-align:middle;width:43.2074%\">Surveying Toolkit</td>\n<td style=\"text-align:left;vertical-align:middle;width:14.2143%\">9</td>\n<td style=\"text-align:left;vertical-align:middle;width:22.2486%\">1,000</td>\n<td style=\"text-align:left;vertical-align:middle;width:20.039%\">12</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "a0MyCL1Reo0OTDwP",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!6XvRWuVCQB3aUvG7.a0MyCL1Reo0OTDwP"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079926,
+    "modifiedTime": 1760016422387,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!6XvRWuVCQB3aUvG7"
+}

@@ -1,0 +1,69 @@
+{
+  "name": "Drain Health",
+  "type": "psiAbility",
+  "img": "systems/twodsix/assets/icons/life-tap.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 10,
+    "type": "psiAbility",
+    "description": "Drain Health (PSI 10 but see below for cost; Personal): drain 1 Lifeblood from a target, per PSI point spent, healing the psion at the same rate, up to their full Lifeblood rating. If the psion is uninjured, the target still takes damage. Note that touching an unwilling target requires an attack throw, using the psion’s Melee Combat skill and Psi DM.",
+    "shortdescr": "Drain 1 Lifeblood from a target per PSI point spent",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "1",
+    "damageType": "psionic",
+    "psiCost": 1,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "twodsix": {
+      "newItem": true
+    },
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "1vREGU2ORDGZZ6m7",
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569429079,
+    "modifiedTime": 1760016422137,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!1vREGU2ORDGZZ6m7"
+}

@@ -1,0 +1,79 @@
+{
+  "_id": "uamsgcvSTBFovlh8",
+  "name": "Machete",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/machete.svg",
+  "system": {
+    "name": "Sword",
+    "techLevel": 3,
+    "description": "A simple yet sturdy broad blade used for cutting foliage and foes alike.",
+    "shortdescr": "Machete - melee",
+    "quantity": 1,
+    "weight": 1,
+    "price": 50,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Melee Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "2d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "reach",
+    "weaponType": "melee",
+    "damageType": "slashing",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "Wu8PbhMDUEvbhVsu",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_d5gavafmlx",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Weapons#/CF_SEP/Melee Weapons",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737480,
+    "modifiedTime": 1760016422778,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.MLYUZgPOadrKePmI",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!uamsgcvSTBFovlh8"
+}

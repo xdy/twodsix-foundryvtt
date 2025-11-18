@@ -1,0 +1,70 @@
+{
+  "name": "Emotion",
+  "type": "psiAbility",
+  "img": "./systems/twodsix/assets/icons/emotion.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 6,
+    "type": "psiAbility",
+    "description": "Emotion (PSI 6, 50m): this power forces one target to feel a powerful emotion (such as fear) for 1D combat rounds.",
+    "shortdescr": "Emotion (PSI 6, 50m)",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "name": "",
+    "priorType": "skills",
+    "prereq": "",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 6,
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "sort": 3000000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_5baue4sff1v",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Psionics#/CF_SEP/Skills",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {
+      "newItem": true
+    }
+  },
+  "_id": "ypQZD4PCVAgoVzrA",
+  "_stats": {
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.LnehcKCJe43TX90Z",
+    "duplicateSource": null,
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1730569377982,
+    "modifiedTime": 1760016422781,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null
+  },
+  "_key": "!items!ypQZD4PCVAgoVzrA"
+}

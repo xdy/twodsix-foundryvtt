@@ -1,0 +1,49 @@
+{
+  "name": "Latent Psion",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/psychic-waves.svg",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": 0,
+    "type": "trait",
+    "description": "The character has untrained psionic abilities. See the Psionics chapter. Untrained, the character has 1 PSI point and one of the following powers: Enhanced Characteristic, Sense, Lift 1 gram, Life Detection, or Blink. The PSI point regenerates after a night's sleep, as usual. Psionic drugs affect the character as usual and allow more frequent use of their powers. Actual psionic training allows the character to roll a normal PSI characteristic and additional powers. See the Psionics chapter for more details.",
+    "prereq": "None",
+    "shortdescr": "Untrained psionic abilities",
+    "subtype": "",
+    "key": "key",
+    "reference": ""
+  },
+  "effects": [],
+  "folder": "Beuu5OH2jt6RvCOs",
+  "sort": 2500000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "twodsix": {},
+    "cf": {
+      "id": "temp_hyr6ua7dm4i",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Traits",
+      "color": "#00aaaa"
+    }
+  },
+  "_id": "GFPSNQGgFqGm9fm2",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737428,
+    "modifiedTime": 1760016422736,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!GFPSNQGgFqGm9fm2"
+}

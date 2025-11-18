@@ -1,0 +1,70 @@
+{
+  "_id": "nrz7qnUDikOeETd6",
+  "name": "General Equipment",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "folder": null,
+  "flags": {
+    "cf": {
+      "id": null,
+      "path": "Cepheus Atom GM Screen",
+      "color": "#000000"
+    }
+  },
+  "pages": [
+    {
+      "name": "General Equipment",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<table style=\"width:99.1354%\" border=\"1\">\n<tbody>\n<tr>\n<th style=\"width:20.5684%\">Item</th>\n<th style=\"width:12.2828%\">Cost (TU)</th>\n<th style=\"width:66.3859%\">Notes</th>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Binoculars</td>\n<td style=\"width:12.2828%\">80</td>\n<td style=\"width:66.3859%\">x10 magnification</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Compass</td>\n<td style=\"width:12.2828%\">30</td>\n<td style=\"width:66.3859%\">DM+1 to Survival throws to avoid getting lost</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Crowbar</td>\n<td style=\"width:12.2828%\">20</td>\n<td style=\"width:66.3859%\">May also serve as club</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Gas Mask</td>\n<td style=\"width:12.2828%\">90</td>\n<td style=\"width:66.3859%\">DM+2 to resist Contamination; automatic success on all throws to resist airborne toxins. Filter lasts for 6 hours of continuous use and costs 10 TU</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Lockpick Tools</td>\n<td style=\"width:12.2828%\">90</td>\n<td style=\"width:66.3859%\">Required to pick mechanical locks</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Mechanical Toolset</td>\n<td style=\"width:12.2828%\">80</td>\n<td style=\"width:66.3859%\">Useful for crafting, tinkering, and repairing.</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Mirror</td>\n<td style=\"width:12.2828%\">5</td>\n<td style=\"width:66.3859%\">Hand-held; made of polished stainless steel</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Musical Instrument</td>\n<td style=\"width:12.2828%\">50</td>\n<td style=\"width:66.3859%\">-</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Pole, 3m</td>\n<td style=\"width:12.2828%\">5</td>\n<td style=\"width:66.3859%\">Standard issue for adventurers in the Wastes</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Rations, 1 day</td>\n<td style=\"width:12.2828%\">1</td>\n<td style=\"width:66.3859%\">Food and Water</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Rope, 20m</td>\n<td style=\"width:12.2828%\">15</td>\n<td style=\"width:66.3859%\">-</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Tent</td>\n<td style=\"width:12.2828%\">40</td>\n<td style=\"width:66.3859%\">Can fit 3 comfortably, 5 uncomfortably.</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Torches (6)</td>\n<td style=\"width:12.2828%\">1</td>\n<td style=\"width:66.3859%\">Each burns for 1 hour</td>\n</tr>\n<tr>\n<td style=\"width:20.5684%\">Lighter</td>\n<td style=\"width:12.2828%\">10</td>\n<td style=\"width:66.3859%\">Throw 2D on each use; gas runs out on 4-</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "WXqtUkq7CIY7FZXW",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!nrz7qnUDikOeETd6.WXqtUkq7CIY7FZXW"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027079949,
+    "modifiedTime": 1760016422419,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "sort": 0,
+  "categories": [],
+  "_key": "!journal!nrz7qnUDikOeETd6"
+}

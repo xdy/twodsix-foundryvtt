@@ -1,0 +1,72 @@
+{
+  "_id": "c0Q8cA3CdWnYgIfd",
+  "name": "Battle Dress",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "skills",
+  "system": {
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "value": -3,
+    "characteristic": "NONE",
+    "type": "skills",
+    "description": "This skill permits the character to operate advanced battle armor, a powered form of combat armor that enhances the wearer's capabilities in various ways. Ground-based military forces, and numerous mercenaries, are often trained in the basics of battle dress operation. This skill also covers the ability to operate vehicles designed as mechanical exoskeletons.",
+    "shortdescr": "This skill permits the character to operate advanced battle armor, a powered form of combat armor that enhances the wearer's capabilities in various ways.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "groupLabel": "",
+    "name": "Battle Dress",
+    "techLevel": 13,
+    "quantity": 1,
+    "weight": 60,
+    "price": 200000,
+    "traits": [],
+    "equipped": "equipped",
+    "skillModifier": 0,
+    "skill": "",
+    "armor": 18,
+    "secondaryArmor": {
+      "value": 0
+    },
+    "radiationProtection": {
+      "value": 180
+    },
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "reference": ""
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ryrod4jywl",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Skills",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/battle-dress.svg",
+  "effects": [],
+  "folder": "MtPolbdQ8bMwmKNU",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027079871,
+    "modifiedTime": 1760016422335,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!c0Q8cA3CdWnYgIfd"
+}

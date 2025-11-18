@@ -1,0 +1,73 @@
+{
+  "name": "Vacc Suit",
+  "type": "armor",
+  "system": {
+    "name": "",
+    "techLevel": 8,
+    "description": "<div>The vacc suit or space suit is the spacer's best friend, providing life support and protection when in space. A vacc suit provides a breathable atmosphere and protection from the extremes of temperature, low pressure and radiation typically found in a hard vacuum (decreasing exposure by up to 40 rads), for six hours.</div><div><br></div><div>Requires Vacc Suit 0 skill.<br></div>",
+    "shortdescr": "Vacc Suit (TL 8)",
+    "quantity": 1,
+    "weight": 10000,
+    "price": 10000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Vacc Suit",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "armor": 6,
+    "secondaryArmor": {
+      "value": 0,
+      "protectionTypes": []
+    },
+    "radiationProtection": {
+      "value": 40
+    },
+    "type": "armor",
+    "useConsumableForAttack": "",
+    "isPowered": false,
+    "nonstackable": false,
+    "armorType": "nothing",
+    "location": [
+      "inventory",
+      "storage"
+    ],
+    "armorDM": null
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_otghevd6kk",
+      "path": "Data Entry#/CF_SEP/CE SRD#/CF_SEP/CE SRD Armor",
+      "color": "#000000"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/vacc-suit.svg",
+  "effects": [],
+  "folder": "bFJAAVPhSFPeDIOO",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1709061396902,
+    "modifiedTime": 1760016421887,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_id": "V02H5FBqENAvBQ7b",
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "B4JSPh84Wx3wBFTK": 3
+  },
+  "_key": "!items!V02H5FBqENAvBQ7b"
+}

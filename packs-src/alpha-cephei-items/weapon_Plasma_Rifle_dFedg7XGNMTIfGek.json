@@ -1,0 +1,78 @@
+{
+  "_id": "dFedg7XGNMTIfGek",
+  "name": "Plasma Rifle",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/plasma-rifle.svg",
+  "system": {
+    "name": "Laser Rifle",
+    "techLevel": 16,
+    "description": "The ultimate small arm, using miniaturized plasma gun technology to propel magnetically-shaped pockets of super-hot plasma at its targets.",
+    "shortdescr": "Plasma Rifle - ranged",
+    "quantity": 1,
+    "weight": 6,
+    "price": 15000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Gun Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "150/300",
+    "damage": "6d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "10",
+    "useConsumableForAttack": "",
+    "magazineCost": 500,
+    "type": "weapon",
+    "lawLevel": "2",
+    "rangeBand": "150/300",
+    "weaponType": "ranged",
+    "damageType": "plasma",
+    "rateOfFire": "",
+    "doubleTap": false,
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "8nkkiG1HAMrRLsrb",
+  "sort": 1400000,
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_zxe7vegdsle",
+      "path": "ce light-weapons",
+      "color": "#000000"
+    }
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080272,
+    "modifiedTime": 1760016422878,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!dFedg7XGNMTIfGek"
+}

@@ -1,0 +1,197 @@
+{
+  "name": "Forest or Jungle Humanoids",
+  "ownership": {
+    "default": 0,
+    "XuPrg9IcPetFHQzW": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_oepu6t7x3f9",
+      "path": "CA Tables#/CF_SEP/Encounters#/CF_SEP/Humanoids",
+      "color": "#000000"
+    }
+  },
+  "img": "systems/twodsix/assets/icons/jungle.svg",
+  "description": "",
+  "results": [
+    {
+      "_id": "mY0DURnoyfwAvaMb",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/humanoid/Thug.webp",
+      "weight": 1,
+      "range": [
+        1,
+        1
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Wardent",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.QSI7fzaStY2kZNIr",
+      "description": "",
+      "_key": "!tables.results!ole0Pgri3u8Oc4pE.mY0DURnoyfwAvaMb"
+    },
+    {
+      "_id": "QQLDa4v5SYkvQWFU",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/monstrosity/Ettercap.webp",
+      "weight": 1,
+      "range": [
+        2,
+        2
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Ettercap",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.HbVRp8VAGGCC21pf",
+      "description": "",
+      "_key": "!tables.results!ole0Pgri3u8Oc4pE.QQLDa4v5SYkvQWFU"
+    },
+    {
+      "_id": "CWZg9VA649897ucS",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/fiend/Dretch.webp",
+      "weight": 1,
+      "range": [
+        3,
+        3
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Green Man",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.EZItIWWxtgGlQV0S",
+      "description": "",
+      "_key": "!tables.results!ole0Pgri3u8Oc4pE.CWZg9VA649897ucS"
+    },
+    {
+      "_id": "pJCWSeNxUKpulenP",
+      "flags": {},
+      "type": "document",
+      "img": "systems/dnd5e/tokens/undead/Specter.webp",
+      "weight": 1,
+      "range": [
+        4,
+        4
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "Glowing One",
+      "documentUuid": "Compendium.twodsix.cepheus-atom-actors.Actor.8vFWY2UYYuFBI76J",
+      "description": "",
+      "_key": "!tables.results!ole0Pgri3u8Oc4pE.pJCWSeNxUKpulenP"
+    },
+    {
+      "_id": "pW6GIGb21ElEkxwv",
+      "flags": {},
+      "type": "text",
+      "img": "systems/twodsix/assets/icons/uncertainty.svg",
+      "weight": 1,
+      "range": [
+        5,
+        5
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "description": "Referee's Choice",
+      "name": "",
+      "_key": "!tables.results!ole0Pgri3u8Oc4pE.pW6GIGb21ElEkxwv"
+    },
+    {
+      "_id": "mywq4qDY886225pH",
+      "flags": {},
+      "type": "document",
+      "img": null,
+      "weight": 1,
+      "range": [
+        6,
+        6
+      ],
+      "drawn": false,
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "name": "",
+      "documentUuid": null,
+      "description": "",
+      "_key": "!tables.results!ole0Pgri3u8Oc4pE.mywq4qDY886225pH"
+    }
+  ],
+  "formula": "1d6",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "ole0Pgri3u8Oc4pE",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080065,
+    "modifiedTime": 1760016422595,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "folder": null,
+  "sort": 0,
+  "_key": "!tables!ole0Pgri3u8Oc4pE"
+}

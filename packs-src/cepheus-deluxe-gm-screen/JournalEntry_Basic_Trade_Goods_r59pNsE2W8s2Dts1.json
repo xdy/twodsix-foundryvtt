@@ -1,0 +1,71 @@
+{
+  "_id": "r59pNsE2W8s2Dts1",
+  "name": "Basic Trade Goods",
+  "folder": null,
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_pi9a9t8oz4d",
+      "path": "GM Screens#/CF_SEP/Cepheus Deluxe - GM Screen",
+      "color": "#00aaaa"
+    },
+    "core": {}
+  },
+  "pages": [
+    {
+      "name": "Basic Trade Goods",
+      "type": "text",
+      "title": {
+        "show": false,
+        "level": 1
+      },
+      "text": {
+        "format": 1,
+        "content": "<div>\n<table border=\"0\">\n<tbody>\n<tr>\n<td>Item</td>\n<td>Cost per ton</td>\n<td>Tons</td>\n<td>Purchase DMs</td>\n<td>Sale DMs</td>\n</tr>\n<tr>\n<td>Basic Consumable Goods</td>\n<td>Cr1000</td>\n<td>2Dx5</td>\n<td>Ag+3. Ga+2</td>\n<td>Hi+1, Ri+2</td>\n</tr>\n<tr>\n<td>Basic Electronics</td>\n<td>Cr25000</td>\n<td>2Dx5</td>\n<td>Ht+2, In+4</td>\n<td>Ni+2, Po+1</td>\n</tr>\n<tr>\n<td>Basic Machine Parts</td>\n<td>Cr1000</td>\n<td>2Dx5</td>\n<td>In+3, Ri+2</td>\n<td>Na+1, Ni+2</td>\n</tr>\n<tr>\n<td>Basic Manufactured Goods</td>\n<td>Cr20000</td>\n<td>2Dx5</td>\n<td>In+3, Ri+2</td>\n<td>Ag+1, Ni+2</td>\n</tr>\n<tr>\n<td>Basic Raw Materials</td>\n<td>Cr5000</td>\n<td>2Dx5</td>\n<td>As+3 Ni+1</td>\n<td>In+2 Ri+2</td>\n</tr>\n<tr>\n<td>Common Unrefined Ore</td>\n<td>Cr2000</td>\n<td>2Dx5</td>\n<td>As+2, Va+1</td>\n<td>In+2, Na+1</td>\n</tr>\n</tbody>\n</table>\n</div>"
+      },
+      "_stats": {
+        "coreVersion": "13.350",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "JHXIWpkYiuqIeBMO",
+      "system": {},
+      "image": {},
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "sort": 0,
+      "ownership": {
+        "default": -1
+      },
+      "flags": {},
+      "category": null,
+      "_key": "!journal.pages!r59pNsE2W8s2Dts1.JHXIWpkYiuqIeBMO"
+    }
+  ],
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "createdTime": 1732027080327,
+    "modifiedTime": 1760016422942,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.ce-light-gm-screen.wjKUjy9q4Wyw60XV",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!r59pNsE2W8s2Dts1"
+}

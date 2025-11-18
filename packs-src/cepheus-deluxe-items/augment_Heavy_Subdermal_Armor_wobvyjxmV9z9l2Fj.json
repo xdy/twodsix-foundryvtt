@@ -1,0 +1,62 @@
+{
+  "name": "Heavy Subdermal Armor",
+  "type": "augment",
+  "img": "systems/twodsix/assets/icons/heavy-subdermal-armor.svg",
+  "system": {
+    "name": "",
+    "techLevel": 9,
+    "description": "Unlike the lighter variety, heavy subdermal armor makes no attempt at being discreet. It provides 5 points of armor protection that is added to the protection rating of any worn armor. Heavy subdermal armor is detectable upon visual inspection and counts as two implants (4 Cybernetic Points). Heavy subdermal armor is illegal on worlds with Law Level 3+.",
+    "shortdescr": "embedded armor",
+    "quantity": 1,
+    "weight": 0,
+    "price": 20000,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "auglocation": "Full-Body",
+    "type": "augment",
+    "bonus": "+5 points armor",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "effects": [],
+  "folder": "ASRp8tglHaHRiqwO",
+  "sort": 100000,
+  "ownership": {
+    "default": 0,
+    "GOmBKof9PfoHZ54T": 3
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_ak867xaq2cv",
+      "path": "Cepheus Deluxe - Items#/CF_SEP/Cybernetics",
+      "color": "#00aaaa"
+    },
+    "core": {},
+    "twodsix": {}
+  },
+  "_id": "wobvyjxmV9z9l2Fj",
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732026737482,
+    "modifiedTime": 1760016422780,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": "Compendium.twodsix.cepheus-light-items.IhqWBhDF8OEfIidO",
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!wobvyjxmV9z9l2Fj"
+}

@@ -1,0 +1,60 @@
+{
+  "name": "Night Visor",
+  "ownership": {
+    "default": 0,
+    "KrOiJLcZ94d4ZOL3": 3
+  },
+  "type": "equipment",
+  "system": {
+    "name": "",
+    "techLevel": 7,
+    "description": "Combines low-light and infra-red vision in a compact and advanced package. At TL 6, you could get less advanced infra-red-only, heat-based night goggles.",
+    "shortdescr": "Provides low-light vision.",
+    "quantity": 1,
+    "weight": 1,
+    "price": 500,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "type": "equipment",
+    "useConsumableForAttack": "",
+    "location": [
+      "inventory",
+      "storage"
+    ]
+  },
+  "flags": {
+    "cf": {
+      "id": "temp_la7nqd19f18",
+      "path": "ce light-equipment",
+      "color": "#000000"
+    },
+    "twodsix": {}
+  },
+  "img": "systems/twodsix/assets/icons/night-visor.svg",
+  "effects": [],
+  "_id": "IAeh5fzyTWTJpcM0",
+  "folder": "rLvsCUV36tYzFBWl",
+  "sort": 100000,
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "6.8.1",
+    "coreVersion": "13.350",
+    "createdTime": 1732027080267,
+    "modifiedTime": 1760016422873,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!IAeh5fzyTWTJpcM0"
+}
