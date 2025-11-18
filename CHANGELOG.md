@@ -1,3 +1,11 @@
+## [6.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.2...v6.9.3) (2025-11-18)
+
+
+### Bug Fixes
+
+* change npm references to pnpm ([6261767](https://github.com/xdy/twodsix-foundryvtt/commit/62617673f3df8e2b09b068ea7457caaa85fc146e))
+* simlink going to incorrect directory ([#1896](https://github.com/xdy/twodsix-foundryvtt/issues/1896)) ([e0117c3](https://github.com/xdy/twodsix-foundryvtt/commit/e0117c3237310bc2841f88f26ac35312b4098775))
+
 ## [6.9.2](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.1...v6.9.2) (2025-11-16)
 
 

@@ -110,7 +110,7 @@ async function buildPacks() {
   console.log(chalk.yellow('Building packs from JSON source files...'));
 
   return new Promise((resolve, reject) => {
-    const buildProcess = spawn('npm', ['run', 'packs:build'], {
+    const buildProcess = spawn('pnpm', ['run', 'packs:build'], {
       stdio: 'inherit',
       shell: true
     });

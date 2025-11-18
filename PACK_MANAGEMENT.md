@@ -6,7 +6,7 @@ This project uses a JSON-first approach for pack management, providing better ve
 
 - **JSON Source Files**: Individual JSON files in `packs-src/` directory (tracked in git)
 - **Binary Distribution**: Compiled binary packs in `static/packs/` directory (ignored by git)
-- **Automated Building**: Integrated with gulp build process and npm scripts
+- **Automated Building**: Integrated with gulp build process and pnpm scripts
 
 ## Directory Structure
 
@@ -26,31 +26,31 @@ static/packs/                  # Binary distribution files (auto-generated)
 
 ## Available Commands
 
-### NPM Scripts
+### PNPM Scripts
 ```bash
 # Extract binary packs to JSON source files
-npm run packs:extract
+pnpm run packs:extract
 
 # Build JSON source files to binary packs
-npm run packs:build
+pnpm run packs:build
 
 # Clean rebuild (extract + build)
-npm run packs:rebuild
+pnpm run packs:rebuild
 
 # Git transition helper (used once during setup)
-npm run packs:transition
+pnpm run packs:transition
 ```
 
 ### Gulp Integration
 ```bash
 # Full build including pack building
-npm run build
+pnpm run build
 
 # Build only packs
 npx gulp buildPacks
 
 # Watch mode (rebuilds packs on JSON changes)
-npm run watch
+pnpm run watch
 ```
 
 ### Direct Script Usage
@@ -68,8 +68,8 @@ node scripts/packs.mjs help
 1. **Edit JSON source files** in `packs-src/`
 2. **Test changes**: 
    ```bash
-   npm run packs:build  # Build binary packs
-   npm run build        # Full project build
+   pnpm run packs:build  # Build binary packs
+   pnpm run build        # Full project build
    ```
 3. **Commit changes**: Only commit the JSON source files
    ```bash
@@ -81,7 +81,7 @@ node scripts/packs.mjs help
 
 Start watch mode to automatically rebuild packs when JSON files change:
 ```bash
-npm run watch
+pnpm run watch
 ```
 
 This will watch for changes in `packs-src/**/*.json` and automatically rebuild the affected packs.
@@ -92,7 +92,7 @@ This will watch for changes in `packs-src/**/*.json` and automatically rebuild t
 2. **Add JSON files** for your entities
 3. **Build and test**:
    ```bash
-   npm run packs:build
+   pnpm run packs:build
    ```
 4. **Commit the source files**
 
@@ -100,7 +100,7 @@ This will watch for changes in `packs-src/**/*.json` and automatically rebuild t
 
 If you need to extract existing binary packs to JSON:
 ```bash
-npm run packs:extract
+pnpm run packs:extract
 ```
 
 This will create individual JSON files for each entity in the appropriate `packs-src/` directories.
@@ -148,13 +148,13 @@ If pack building fails:
 If packs are missing after build:
 1. Verify source files exist in `packs-src/`
 2. Check that directory names match expected pack names
-3. Run `npm run packs:rebuild` for a clean rebuild
+3. Run `pnpm run packs:rebuild` for a clean rebuild
 
 ### Git Issues
 If you have conflicts with pack files:
 1. Only track JSON source files in `packs-src/`
 2. Binary packs in `static/packs/` should be ignored
-3. Run `npm run packs:build` after resolving conflicts
+3. Run `pnpm run packs:build` after resolving conflicts
 
 ## Migration Notes
 

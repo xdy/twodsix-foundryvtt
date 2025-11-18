@@ -52,7 +52,7 @@ function main() {
   // Check if directories exist
   if (!fs.existsSync(PACKS_SRC_DIR)) {
     console.error('❌ packs-src directory not found!');
-    console.error('   Please run "npm run packs:extract" first to create JSON source files.');
+    console.error('   Please run "pnpm run packs:extract" first to create JSON source files.');
     process.exit(1);
   }
 
@@ -97,7 +97,7 @@ function main() {
       console.log('\n💡 Next steps:');
       console.log('   1. Review the changes: git diff --cached');
       console.log('   2. Commit the changes: git commit -m "feat: migrate to JSON-based pack management"');
-      console.log('   3. Build packs when needed: npm run packs:build');
+      console.log('   3. Build packs when needed: pnpm run packs:build');
     }
   } else {
     console.log('📋 Manual Steps (Git not available):');
