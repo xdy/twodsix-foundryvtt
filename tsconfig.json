@@ -3,7 +3,12 @@
     "module": "ESNext",
     "target": "ES2020",
     "lib": ["DOM", "ES2020"],
-    "types": ["jquery", "@league-of-foundry-developers/foundry-vtt-types", "@types/fs-extra", "handlebars", "node"],
+    "types": [
+      "jquery",
+      "@league-of-foundry-developers/foundry-vtt-types",
+      "fs-extra",
+      "node"
+    ],
     "esModuleInterop": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
@@ -13,7 +18,6 @@
     "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
-    "typeRoots": ["./types"],
     "alwaysStrict": true,
     "strictNullChecks": true,
     "skipLibCheck": true

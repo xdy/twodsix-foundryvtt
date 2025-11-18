@@ -1,0 +1,11 @@
+packages:
+  - .
+
+ignoredBuiltDependencies:
+  - postinstall-postinstall
+
+onlyBuiltDependencies:
+  - '@league-of-foundry-developers/foundry-vtt-types'
+  - '@parcel/watcher'
+  - esbuild
+  - classic-level
