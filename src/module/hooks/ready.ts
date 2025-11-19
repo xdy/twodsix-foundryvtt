@@ -120,7 +120,9 @@ Hooks.once("ready", async function () {
 
 //This function is a kludge to reset token actors overrides not being calculated correctly on initialize
 async function toggleTokenEffect(actor:TwodsixActor): Promise<void> {
-  await toggleFirstActiveEffect(actor, true);
+  if ((!actor.inCompendium)) {
+    await toggleFirstActiveEffect(actor, true);
+  }
 }
 
 //This function is a kludge to reset linked actors overrides not being calculated correctly on initialize

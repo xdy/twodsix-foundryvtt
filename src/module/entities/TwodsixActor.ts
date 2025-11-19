@@ -1726,7 +1726,7 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
  * @public
  */
 export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise<void> {
-  if (["traveller", "robot", "animal"].includes(actor.type)) {
+  if (["traveller", "robot", "animal"].includes(actor.type) && !actor.inCompendium) {
     //Check for missing untrained skill
     const untrainedSkill = actor.getUntrainedSkill();
     if (!untrainedSkill) {
