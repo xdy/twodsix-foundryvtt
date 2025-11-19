@@ -300,7 +300,8 @@ export default class TwodsixActor extends Actor {
       case 'space-object':
         break;
       default:
-        ui.notifications.error(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
+        //Don't push error as it breaks data prep.  Needed for other modules that create types
+        //ui.notifications.error(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
         console.error(`Unknown actor type: ${this.type}`);
     }
   }
@@ -1726,7 +1727,7 @@ async function getMoveNumber(itemData:TwodsixItem): Promise <number> {
  * @public
  */
 export async function correctMissingUntrainedSkill(actor: TwodsixActor): Promise<void> {
-  if (["traveller", "robot", "animal"].includes(actor.type) && !actor.inCompendium) {
+  if (["traveller", "robot", "animal"].includes(actor.type)) {
     //Check for missing untrained skill
     const untrainedSkill = actor.getUntrainedSkill();
     if (!untrainedSkill) {
