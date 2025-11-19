@@ -1,6 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
+const validActorTypes = Object.keys(CONFIG.Actor.dataModels);
+const validItemTypes = Object.keys(CONFIG.Item.dataModels);
+
 /**
  * Applies an asynchronous function to all TwodsixActor instances in the world and in compendium packs (if they can be unlocked).
  * Includes actors from the world, unlinked tokens in all scenes, and all actor compendiums.
@@ -10,11 +13,11 @@
  * @returns A promise that resolves when all actors and packs have been processed.
  */
 export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void>)): Promise<void> {
-  const allActors = (game.actors?.contents ?? []) as TwodsixActor[];
+  const allActors = (game.actors?.filter(act => validActorTypes.includes(act.type)) ?? []) as TwodsixActor[];
 
   for (const scene of game.scenes ?? []) {
     for (const token of scene.tokens ?? []) {
-      if (token.actor && !token.actorLink) {
+      if (token.actor && !token.actorLink && validActorTypes.includes(token.actor.type)) {
         allActors.push(token.actor as TwodsixActor);
       }
     }
@@ -42,7 +45,7 @@ export async function applyToAllItems(fn: ((item:TwodsixItem) => Promise<void>))
   const itemPacks = game.packs.filter(pack => pack.metadata.type === 'Item' && pack.metadata.packageType !== 'system');
   await applyToAllPacks(fn, itemPacks);
 
-  const allItems = (game.items?.contents ?? []) as TwodsixItem[];
+  const allItems = (game.items?.filter(itm => validItemTypes.includes(itm.type)) ?? []) as TwodsixItem[];
   for (const item of allItems) {
     await fn(item);
   }
@@ -59,22 +62,36 @@ export async function applyToAllItems(fn: ((item:TwodsixItem) => Promise<void>))
  * @param packs - An array of compendium collections to process.
  * @returns A promise that resolves when all packs have been processed.
  */
-async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise<void>), packs:CompendiumCollection[]): Promise<void> {
+async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise<void>), packs: CompendiumCollection[]): Promise<void> {
   for (const pack of packs) {
     const wasLocked = pack.locked;
     try {
       if (pack.locked) {
-        await pack.configure({locked: false});
+        await pack.configure({ locked: false });
       }
+
+      // Determine valid types based on pack metadata
+      const validTypes = pack.metadata.type === 'Actor'
+        ? validActorTypes
+        : pack.metadata.type === 'Item'
+          ? validItemTypes
+          : [];
+
       for (const doc of await pack.getDocuments()) {
+        // Skip documents with invalid types
+        if (!validTypes.includes(doc.type)) {
+          console.log(`Skipping document with invalid type in pack ${pack.collection}:`, doc);
+          continue;
+        }
         try {
           await fn(doc);
         } catch (docError) {
           console.warn(`Error applying function to document in pack ${pack.collection}:`, docError);
         }
       }
+
       if (wasLocked) {
-        await pack.configure({locked: true});
+        await pack.configure({ locked: true });
       }
     } catch (packError) {
       console.warn(`Error processing pack ${pack.collection}:`, packError);
