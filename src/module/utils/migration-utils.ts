@@ -80,7 +80,7 @@ async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise
       for (const doc of await pack.getDocuments()) {
         // Skip documents with invalid types
         if (!validTypes.includes(doc.type)) {
-          console.warn(`Skipping document with invalid type in pack ${pack.collection}:`, doc);
+          console.log(`Skipping document with invalid type in pack ${pack.collection}:`, doc);
           continue;
         }
         try {
