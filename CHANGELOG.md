@@ -1,3 +1,10 @@
+## [6.9.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.3...v6.9.4) (2025-11-19)
+
+
+### Bug Fixes
+
+* Allow modules to add other actor types ([#1900](https://github.com/xdy/twodsix-foundryvtt/issues/1900)) ([ac8c681](https://github.com/xdy/twodsix-foundryvtt/commit/ac8c6811521dbf79e8d3fa3754a7da71bc6d185e))
+
 ## [6.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.2...v6.9.3) (2025-11-18)
 
 
