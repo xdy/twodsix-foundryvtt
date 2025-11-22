@@ -14,7 +14,18 @@ const PACKS_OUTPUT_DIR = path.join(__dirname, '..', 'static', 'packs');
 const WIKI_URL = 'https://github.com/xdy/twodsix-foundryvtt/wiki';
 const PAGES_TO_NOT_ENRICH = ["Custom Journal Page Enhancers"];
 
+// Load version info from config files
+const packageJsonPath = path.join(__dirname, '..', 'package.json');
+const systemJsonPath = path.join(__dirname, '..', 'static', 'system.json');
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+const systemJson = JSON.parse(fs.readFileSync(systemJsonPath, 'utf-8'));
+
 console.log('Starting pack compilation...');
+console.log('📦 System configuration:');
+console.log(`   System ID: ${systemJson.id}`);
+console.log(`   System Version: ${packageJson.version}`);
+console.log(`   Foundry Core (Minimum): ${systemJson.compatibility.minimum}`);
+console.log(`   Foundry Core (Verified): ${systemJson.compatibility.verified}`);
 console.log('Source directory:', PACKS_SRC_DIR);
 console.log('Output directory:', PACKS_OUTPUT_DIR);
 
@@ -62,7 +73,7 @@ async function fetchWikiPages() {
     //console.log('Fetched TOC HTML:', tocHtml); // Debugging log
 
     // Extract links to individual wiki pages from the TOC, excluding '_history'
-    const pageLinks = [...tocHtml.matchAll(/href="(\/xdy\/twodsix-foundryvtt\/wiki\/[^\"]+)/g)]
+    const pageLinks = [...tocHtml.matchAll(/href="(\/xdy\/twodsix-foundryvtt\/wiki\/[^"]+)/g)]
       .map(match => match[1])
       .filter(link => !link.includes('_history')); // Exclude '_history' page
     //console.log('Filtered page links:', pageLinks); // Debugging log
@@ -130,9 +141,9 @@ async function generateWikiJournal() {
   try {
     const pages = await fetchWikiPages();
     const now = Date.now();
-    const coreVersion = "13.351";
-    const systemId = "twodsix";
-    const systemVersion = "6.9.1";
+    const coreVersion = systemJson.compatibility.minimum;
+    const systemId = systemJson.id;
+    const systemVersion = packageJson.version;
     const lastModifiedBy = null;
     // Generate the root JournalEntry ID first
     const entryId = randomId();
@@ -201,7 +212,7 @@ async function generateWikiJournal() {
       sort: 0,
       _key: `!journal!${entryId}`
     };
-    const safeName = entry.name.replace(/[^a-zA-Z0-9_\-]/g, '_');
+    const safeName = entry.name.replace(/[^a-zA-Z0-9_-]/g, '_');
     const filename = `JournalEntry_${safeName}_${entryId}.json`;
     const filePath = path.join(sourceFolder, filename);
     fs.writeFileSync(filePath, JSON.stringify(entry, null, 2));
@@ -258,6 +269,10 @@ async function generateWikiJournal() {
 
   // Proceed with the existing pack compilation logic
   for (const packDir of packDirs) {
+    if (SKIP_WIKI && packDir === 'wiki-journal') {
+      console.log(`\nSkipping compilation of pack: ${packDir}`);
+      continue;
+    }
     const sourcePath = path.join(PACKS_SRC_DIR, packDir);
     const outputPath = path.join(PACKS_OUTPUT_DIR, packDir);
 

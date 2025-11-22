@@ -27,11 +27,12 @@
       <label for="system.secondaryArmor.protectionTypes" class="resource-label">{{#if settings.useCUData}}{{localize "TWODSIX.Items.Armor.ArmorProtectionTypes"}}{{else}}{{localize "TWODSIX.Items.Armor.SecondaryArmorProtectionTypes"}}{{/if}}</label>
       <multi-select name="system.secondaryArmor.protectionTypes">{{selectOptions settings.damageTypes selected=system.secondaryArmor.protectionTypes localize=true}}</multi-select>
     </div>
-
-    <div class="item-radiationProtection">
-      <label for="system.radiationProtection.value" class="resource-label">{{localize "TWODSIX.Items.Armor.RadProt"}}</label>
-      <input class="form-input" type="text" name="system.radiationProtection.value" value="{{system.radiationProtection.value}}" data-dtype="Number"/>
-    </div>
+    {{#unless settings.useRiderData}}
+      <div class="item-radiationProtection">
+        <label for="system.radiationProtection.value" class="resource-label">{{localize "TWODSIX.Items.Armor.RadProt"}}</label>
+        <input class="form-input" type="text" name="system.radiationProtection.value" value="{{system.radiationProtection.value}}" data-dtype="Number"/>
+      </div>
+    {{/unless}}
   {{/if}}
   <div class="item-qty">
     <label for="system.quantity" class="resource-label">{{localize "TWODSIX.Items.Equipment.Quantity"}}</label>

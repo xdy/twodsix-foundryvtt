@@ -1,0 +1,309 @@
+/**
+ * This is your TypeScript entry file for Foundry VTT.
+ * Register custom settings, sheets, and constants using the Foundry API.
+ * Change this heading to be more descriptive to your system, or remove it.
+ * Author: See the system.json file, where they are in chronological order.
+ * Content License: Basically OGL, see License section of README.md for details
+ * Software License: Apache, see License section of README.md for details
+ */
+
+
+import TwodsixActor from "./module/entities/TwodsixActor";
+import TwodsixItem from "./module/entities/TwodsixItem";
+import TwodsixCombat from "./module/entities/TwodsixCombat";
+import TwodsixCombatant from "./module/entities/TwodsixCombatant";
+import {TwodsixNPCSheet, TwodsixTravellerSheet} from "./module/sheets/TwodsixTravellerSheet";
+import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
+import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
+import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
+import registerHandlebarsHelpers from "./module/handlebars";
+import {registerSettings, switchCss} from "./module/settings";
+import "./module/migration";
+import {rollItemMacro} from "./module/utils/rollItemMacro";
+import {TwodsixVehicleSheet} from "./module/sheets/TwodsixVehicleSheet";
+import {TwodsixAnimalSheet} from "./module/sheets/TwodsixAnimalSheet";
+import {TwodsixRobotSheet} from "./module/sheets/TwodsixRobotSheet";
+import {TwodsixSpaceObjectSheet} from "./module/sheets/TwodsixSpaceObjectSheet";
+import { TwodsixWorldSheet } from "./module/sheets/TwodsixWorldSheet";
+import { WorldData } from "./module/data/world";
+import {TwodsixDiceRoll} from "./module/utils/TwodsixDiceRoll";
+import {TwodsixRollSettings} from "./module/utils/TwodsixRollSettings";
+import {addCustomEnrichers} from "./module/utils/enrichers";
+import {AnimalData, RobotData, TravellerData} from "./module/data/characters";
+import {ShipData, SpaceObjectData, VehicleData} from "./module/data/vehicles";
+import {
+  ArmorData,
+  AugmentData,
+  ComponentData,
+  ComputerData,
+  ConsumableData,
+  JunkStorageData,
+  PsiAbilityData,
+  ShipPositionData,
+  SkillData,
+  SpellData,
+  TraitData,
+  WeaponData
+} from "./module/data/item";
+import {GearData} from "./module/data/item-base";
+import {TwodsixActiveEffect} from "./module/entities/TwodsixActiveEffect";
+import {TwodsixBattleSheet} from "./module/sheets/TwodsixBattleSheet";
+import {TwodsixGamePause} from "./module/entities/TwodsixGamePause";
+import {TwodsixChatLog, TwodsixChatPopout} from "./module/entities/TwodsixChat";
+import {TwodsixTokenRuler} from "./module/utils/TwodsixTokenRuler";
+import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTracker";
+import { TwodsixCombatantData, TwodsixCombatData } from "./module/data/combat";
+import { TwodsixActiveEffectConfig } from "./module/sheets/TwodsixActiveEffectConfig";
+
+import { TWODSIX } from "./module/config";
+//import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
+
+hookScriptFiles.forEach((hookFile) => import(`./module/hooks/${hookFile}.js`));
+
+Hooks.once('init', async function () {
+  console.log(
+    `%cTWODSIX | Initializing system\n` +
+    `%c
+     _____                   _     _
+    |_   _|_      _____   __| |___(_)_  __
+      | | \\ \\ /\\ / / _ \\ / _\` / __| \\ \\/ /
+      | |  \\ V  V / (_) | (_| \\__ \\ |>  <
+      |_|   \\_/\\_/ \\___/ \\__,_|___/_/_/\\_\\
+    `,
+    "color: #ffffff; font-weight: bold; font-size: 16px;", // Style for the header
+    "color:rgba(41, 170, 225, 1); font-weight: normal; font-size: 12px;" // Style for the ASCII art
+  );
+
+  game['twodsix'] = {
+    TwodsixActor,
+    TwodsixItem,
+    TwodsixActiveEffect,
+    rollItemMacro,
+    TwodsixDiceRoll,
+    TwodsixRollSettings
+  };
+  // Add custom constants for configuration.
+  CONFIG.TWODSIX = TWODSIX;
+
+  // Active Effects
+  CONFIG.ActiveEffect.phases = {
+    initial: { label: "EFFECT.CHANGES.PHASES.initial.label", hint: "EFFECT.CHANGES.PHASES.initial.hint" },
+    derived: { label: "EFFECT.CHANGES.PHASES.derived.label", hint: "EFFECT.CHANGES.PHASES.derived.hint" },
+    custom: { label: "EFFECT.CHANGES.PHASES.custom.label", hint: "EFFECT.CHANGES.PHASES.custom.hint" },
+    encumbMax: { label: "EFFECT.CHANGES.PHASES.encumbMax.label", hint: "EFFECT.CHANGES.PHASES.encumbMax.hint" },
+    final: { label: "EFFECT.CHANGES.PHASES.final.label", hint: "EFFECT.CHANGES.PHASES.final.hint" }
+  };
+
+  foundry.applications.apps.DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
+  foundry.applications.apps.DocumentSheetConfig.registerSheet(ActiveEffect, 'twodsix', TwodsixActiveEffectConfig, { makeDefault: true });
+
+
+  // Actor
+  CONFIG.Actor.documentClass = TwodsixActor;
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.appv1.sheets.ActorSheet);
+  foundry.documents.collections.Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
+
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixTravellerSheet, {
+    types: ["traveller"],
+    label: "TWODSIX.SheetTypes.TravellerSheet",
+    makeDefault: true
+  });
+
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixNPCSheet, {
+    types: ["traveller"],
+    label: "TWODSIX.SheetTypes.NPCSheet",
+    makeDefault: false
+  });
+
+  foundry.documents.collections.Actors.registerSheet('twodsix', TwodsixRobotSheet, {
+    types: ["robot"],
+    label: "TWODSIX.SheetTypes.RobotSheet",
+    makeDefault: true
+  });
+
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixShipSheet, {
+    types: ["ship"],
+    label: "TWODSIX.SheetTypes.ShipSheet",
+    makeDefault: true,
+  });
+
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixBattleSheet, {
+    types: ["ship"],
+    label: "TWODSIX.SheetTypes.BattleSheet",
+    makeDefault: false,
+  });
+
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixVehicleSheet, {
+    types: ["vehicle"],
+    label: "TWODSIX.SheetTypes.VehicleSheet",
+    makeDefault: true,
+  });
+
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixAnimalSheet, {
+    types: ["animal"],
+    label: "TWODSIX.SheetTypes.AnimalSheet",
+    makeDefault: true,
+  });
+
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixSpaceObjectSheet, {
+    types: ["space-object"],
+    label: "TWODSIX.SheetTypes.SpaceObjectSheet",
+    makeDefault: true,
+  });
+
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixWorldSheet, {
+    types: ["world"],
+    label: "TWODSIX.SheetTypes.WorldSheet",
+    makeDefault: true,
+  });
+
+  /* Load Schemas */
+  Object.assign(CONFIG.Actor.dataModels, {
+    "traveller": TravellerData,
+    "animal": AnimalData,
+    "robot": RobotData,
+    "ship": ShipData,
+    "vehicle": VehicleData,
+    "space-object": SpaceObjectData,
+    "world": WorldData
+  });
+
+
+  // Items
+  CONFIG.Item.documentClass = TwodsixItem;
+  /* Load Schemas */
+  Object.assign(CONFIG.Item.dataModels, {
+    "equipment": GearData,
+    "weapon": WeaponData,
+    "armor": ArmorData,
+    "augment": AugmentData,
+    "storage": JunkStorageData,
+    "tool": GearData,
+    "junk": JunkStorageData,
+    "skills": SkillData,
+    "spell": SpellData,
+    "trait": TraitData,
+    "consumable": ConsumableData,
+    "component": ComponentData,
+    "ship_position": ShipPositionData,
+    "computer": ComputerData,
+    "psiAbility": PsiAbilityData
+  });
+
+  //Assign Sheets
+  foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
+  //Items.unregisterSheet("core", ItemSheet);
+  const baseItemTypes = Object.keys(CONFIG.Item.dataModels).filter(ot => ot !== 'ship_position');
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {
+    types: baseItemTypes,
+    makeDefault: true,
+    label: "TWODSIX.SheetTypes.ItemSheet"
+  });
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {
+    types: ["ship_position"],
+    makeDefault: true,
+    label: "TWODSIX.SheetTypes.ShipPositionSheet"
+  });
+
+  //Extend ActiveEffects class with custom overrides
+  CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;
+
+  //Extend Combat and Combatant classes with custom overrides and data models
+  CONFIG.Combat.documentClass = TwodsixCombat;
+  CONFIG.Combat.dataModels = TwodsixCombatData;
+  CONFIG.Combatant.documentClass = TwodsixCombatant;
+  CONFIG.Combatant.dataModels = TwodsixCombatantData;
+
+  registerHandlebarsHelpers();
+
+  registerSettings();
+
+  //Dice Rolls
+  CONFIG.Dice.rolls.push(TwodsixDiceRoll);
+
+  //Add custom Enrichers
+  addCustomEnrichers();
+
+  /* add fonts */
+  // @ts-expect-error Font definitions are not typed in Foundry config.
+  CONFIG.fontDefinitions["Asap"] = {
+    editor: true,
+    fonts: [
+      {urls: ["systems/twodsix/fonts/Asap-Regular.woff2", "systems/twodsix/fonts/Asap-Regular.ttf"]},
+      {urls: ["systems/twodsix/fonts/Asap-Bold.woff2", "systems/twodsix/fonts/Asap-Bold.ttf"], weight: 700},
+      {urls: ["systems/twodsix/fonts/Asap-Italic.woff2", "systems/twodsix/fonts/Asap-Italic.ttf"], style: "italic"},
+      {
+        urls: ["systems/twodsix/fonts/Asap-BoldItalic.woff2", "systems/twodsix/fonts/Asap-BoldItalic.ttf"],
+        style: "italic",
+        weight: 700
+      }
+    ]
+  };
+  CONFIG.fontDefinitions["Rye"] = {
+    editor: true,
+    fonts: [
+      {urls: ["systems/twodsix/fonts/Rye-Regular.ttf"]},
+    ]
+  };
+
+  /*Add time for a combat round default*/
+  CONFIG.time.roundTime = 6;
+
+  /*Register CSS Styles*/
+
+  let sheetName = "systems/twodsix/styles/";
+  const themeStyle = game.settings.get('twodsix', 'themeStyle');
+  switch (themeStyle) {
+    case "foundry":
+      sheetName += "twodsix_basic.css";
+      break;
+    case "western":
+      sheetName += "twodsix-western-theme.css";
+      break;
+    case "classic":
+      sheetName += "twodsix.css";
+      break;
+    default:
+      sheetName += "twodsix_basic.css";
+  }
+  switchCss(sheetName);
+
+  if (themeStyle === "classic") {
+    if (game.settings.get('twodsix', 'useModuleFixStyle')) {
+      switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
+    }
+    // Set CSS variables on the document root
+    const defaultColor = game.settings.get('twodsix', 'defaultColor');
+    const lightColor = game.settings.get('twodsix', 'lightColor');
+    const battleColor = game.settings.get('twodsix', 'battleColor');
+    const damageColor = game.settings.get('twodsix', 'damageStatColor');
+    document.documentElement.style.setProperty('--s2d6-default-color', defaultColor);
+    document.documentElement.style.setProperty('--s2d6-light-color', lightColor);
+    document.documentElement.style.setProperty('--s2d6-battle-color', battleColor);
+    document.documentElement.style.setProperty('--s2d6-damage-stat-color', damageColor);
+  }
+
+  // @ts-expect-error Handlebars template loader typing is missing in Foundry types.
+  await foundry.applications.handlebars.loadTemplates(handlebarsTemplateFiles);
+
+  //Add TL to compendium index
+  CONFIG.Item.compendiumIndexFields.push('system.techLevel');
+
+  //Game pause icon change
+  CONFIG.ui.pause = TwodsixGamePause;
+  // All other hooks are found in the module/hooks directory, and should be in the system.json esModules section.
+
+  //Add chat context
+  CONFIG.ui.chat = TwodsixChatLog;
+  CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
+
+  //Add custom combat tracker for space combat
+  CONFIG.ui.combat = TwodsixCombatTracker;
+
+  //Add Ruler measurements
+  CONFIG.Token.rulerClass = TwodsixTokenRuler;
+});
+
+Hooks.once('devModeReady', ({registerPackageDebugFlag}) => {
+  registerPackageDebugFlag('twodsix');
+});

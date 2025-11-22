@@ -6,21 +6,21 @@ This project uses a JSON-first approach for pack management, providing better ve
 
 - **JSON Source Files**: Individual JSON files in `packs-src/` directory (tracked in git)
 - **Binary Distribution**: Compiled binary packs in `static/packs/` directory (ignored by git)
-- **Automated Building**: Integrated with gulp build process and pnpm scripts
+- **Automated Building**: Integrated with project build process and pnpm scripts
 
 ## Directory Structure
 
 ```
-packs-src/                     # JSON source files (version controlled)
-├── 2e-skills/                 # Individual pack directories
-│   ├── Item1_id123.json      # Individual item/entity files
-│   └── Item2_id456.json
+packs-src/                       # JSON source files (version controlled)
+├── 2e-skills/                   # Individual pack directories
+│   ├── skills_Admin__ulwO.json  # Individual item/entity files
+│   └── skills_Advocate_sciG.json
 └── cepheus-deluxe-items/
-    ├── Weapon1_id789.json
-    └── Armor1_id012.json
+    ├── weapon__Rifle__kzwx.json
+    └── armor__Suit__012a.json
 
-static/packs/                  # Binary distribution files (auto-generated)
-├── 2e-skills/                 # Binary LevelDB packs
+static/packs/                    # Binary distribution files (auto-generated)
+├── 2e-skills/                   # Binary LevelDB packs
 └── cepheus-deluxe-items/
 ```
 
@@ -37,20 +37,20 @@ pnpm run packs:build
 # Clean rebuild (extract + build)
 pnpm run packs:rebuild
 
+# Verify JSON source files integrity
+pnpm run packs:verify
+
 # Git transition helper (used once during setup)
 pnpm run packs:transition
 ```
 
-### Gulp Integration
+### Build Integration
 ```bash
 # Full build including pack building
 pnpm run build
 
-# Build only packs
-npx gulp buildPacks
-
 # Watch mode (rebuilds packs on JSON changes)
-pnpm run watch
+pnpm run build:watch
 ```
 
 ### Direct Script Usage
@@ -79,12 +79,12 @@ node scripts/packs.mjs help
 
 ### Watch Mode for Development
 
-Start watch mode to automatically rebuild packs when JSON files change:
+Start watch mode to automatically rebuild the project when files change:
 ```bash
-pnpm run watch
+pnpm run build:watch
 ```
 
-This will watch for changes in `packs-src/**/*.json` and automatically rebuild the affected packs.
+This will watch for changes in `src/` and automatically rebuild the project. Note that `packs-src/` changes may require a manual `pnpm run packs:build` if not automatically handled by the watch process.
 
 ### Adding New Packs
 
@@ -119,7 +119,7 @@ This will create individual JSON files for each entity in the appropriate `packs
 
 ### ✅ **Automated Workflow**
 - Integrated with existing build process
-- Watch mode for instant feedback
+- Improved feedback loop
 - CI/CD friendly
 
 ### ✅ **Data Integrity**

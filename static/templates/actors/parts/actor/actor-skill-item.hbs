@@ -1,4 +1,4 @@
-<div class="item skill" data-item-id="{{item.id}}">
+<div class="item skill draggable" data-item-id="{{item.id}}">
   <ol class="ol-no-indent">
     <li class=" flexrow" >
       <span class="skill-container">
@@ -7,9 +7,9 @@
         </span>
         <span class="item-name rollable" data-label="{{item.name}}" data-action="skillTalentRoll">{{item.name}}</span>
         <input class= "item-value-edit" type="text" value="{{item.system.value}}" data-dtype="Number" data-action="selectItem"/>
-        <span class="item-name centre" for="skill-modifier">{{twodsix_skillCharacteristic actor item.system.characteristic}}</span>
-        <span class="item-name centre">{{{twodsix_adjustedSkillValue actor item}}}</span>
-        <span class="total-output flex1 skill-mod">{{twodsix_skillTotal actor item}}</span>
+        <span class="item-name centre" for="skill-modifier">{{item.system.displayCharMod}}</span>
+        <span class="item-name centre">{{{item.system.adjustedSkillValue}}}</span>
+        <span class="total-output flex1 skill-mod">{{item.system.skillTotal}}</span>
         {{#iff item.system.trainingNotes "!==" ""}}
           <span class="pie-chart" style ='{{makePieImage item.system.trainingNotes}}'></span>
         {{else}}

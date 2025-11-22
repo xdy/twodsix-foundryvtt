@@ -1,0 +1,1837 @@
+// Namespace TWODSIX Configuration Values
+
+const CHARACTERISTICS = Object.freeze({
+  "strength": "STR",
+  "dexterity": "DEX",
+  "endurance": "END",
+  "intelligence": "INT",
+  "education": "EDU",
+  "socialStanding": "SOC",
+  "psionicStrength": "PSI",
+  "stamina": "STA",
+  "lifeblood": "LFB",
+  "alternative1": "ALT1",
+  "alternative2": "ALT2",
+  "alternative3": "ALT3",
+  "morale": "MOR"
+});
+
+/**
+ * Difficulty variants one can use.
+ * Note that only variants that actually have different rules implementations are listed here.
+ * @type {Object}
+ */
+const DIFFICULTY_VARIANTS = Object.freeze({
+  "CE": "CE",
+  "CEL": "CEL",
+  "CD": "CD",
+  "AC": "AC",
+  "CU": "CU",
+  "Nomad": "Nomad"
+});
+
+/**
+ * Autofire variants one can use.
+ * Note that only variants that actually have different rules implementations are listed here.
+ * @type {Object}
+ */
+const AUTOFIRE_VARIANTS = Object.freeze({
+  "CE": "CE",
+  "CEL": "CEL",
+  "CT": "CT",
+  "CU": "CU"
+});
+
+/**
+ * Theme choices for Twodsix, using localization keys.
+ */
+const THEME_CHOICES = Object.freeze({
+  foundry: "TWODSIX.Settings.themeStyle.choices.FoundryStandard",
+  classic: "TWODSIX.Settings.themeStyle.choices.TwodsixClassic",
+  western: "TWODSIX.Settings.themeStyle.choices.Western"
+});
+
+/**
+ * Space combat system types that can be selected per ruleset.
+ * Each type defines phases, initiative formula, and action budget.
+ *
+ * Properties:
+ * - key: unique identifier for the phase type
+ * - name: display name
+ * - phases: array of phase names executed in sequence
+ * - shipInitiativeFormula: formula for rolling initiative
+ *   * @thrustBonus: +1 to the ship with the higher thrust rating (m-drive). Used when comparing relative advantage.
+ *   * @shipThrustRating: the ship's m-drive rating (thrust value). Used when absolute thrust value matters.
+ * - reRollInitiative: if true, initiative is rolled fresh each round; if false/omitted, initiative is rolled once at start
+ * - loopBackPhase: (optional) phase name to return to for looping systems (e.g., Cepheus Universal)
+ * - actionBudget: minor and significant actions available per round
+ * - reactionFormula: function returning number of reactions based on initiative value
+ */
+const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
+  fivePhase: {
+    key: 'fivePhase',
+    name: 'Five Phase (Classic Traveller)',
+    phases: ['movement', 'laserFire', 'enemyLaserFire', 'ordnanceLaunch', 'computerReprogramming'],
+    shipInitiativeFormula: "2d6",
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 0,
+      significantActions: 1,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  },
+  threePhase: {
+    key: 'threePhase',
+    name: 'Three Phase (Cepheus Engine)',
+    phases: ['declaration', 'actions', 'damage'],
+    shipInitiativeFormula: "2d6 + @thrustBonus", // +1 if greater thrust
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 3,
+      significantActions: 1,
+      useThrustCounter: false
+    },
+    reactionFormula: (initiative) => {
+      if (initiative <= 4) {
+        return 1;
+      }
+      if (initiative <= 8) {
+        return 2;
+      }
+      if (initiative <= 12) {
+        return 3;
+      }
+      return 4;
+    }
+  },
+  twoPhasePosition: {
+    key: 'twoPhasePosition',
+    name: 'Two Phase - Position Dynamic',
+    phases: ['position', 'action'],
+    shipInitiativeFormula: "2d6 + @skills.Piloting + @shipThrustRating",
+    reRollInitiative: true,
+    actionBudget: {
+      minorActions: 0,
+      significantActions: 1,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  },
+  eightPhaseLooping: {
+    key: 'eightPhaseLooping',
+    name: 'Eight Phase - Looping (Cepheus Universal)',
+    phases: ['detection', 'range', 'tactical', 'advantage', 'attack', 'screen', 'damageControl'],
+    loopBackPhase: 'tactical',  // Returns to phase 3 (tactical) after damageControl
+    shipInitiativeFormula: "2d6 + @skills.Pilot + @shipThrustRating",
+    reRollInitiative: true,
+    actionBudget: {
+      minorActions: 1,
+      significantActions: 0,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  },
+  mgt2eThreePhase: {
+    key: 'mgt2eThreePhase',
+    name: 'Three Phase (Mongoose Traveller 2E)',
+    phases: ['manoeuvre', 'attack', 'actions'],
+    shipInitiativeFormula: "2d6 + @skills.Pilot + @shipThrustRating",
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 2,
+      significantActions: 1,
+      useThrustCounter: true,
+      thrustPoolForReactions: true // Reactions use thrust pool instead of separate pool
+    },
+    reactionFormula: () => 0 // Disabled when using thrust pool
+  },
+  none: {
+    key: 'none',
+    name: 'Standard Foundry Combat (No Phases)',
+    phases: [],
+    shipInitiativeFormula: null, // Use the shipInitiativeFormula setting
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 0,
+      significantActions: 0,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  }
+});
+
+//TODO VARIANTS and RULESETS should really be combined/refactored.
+/**
+ * Sets of Twodsix settings that best match each supported ruleset.
+ */
+const RULESETS = Object.freeze({
+  CT: {
+    key: "CT",
+    name: "Classic Traveller",
+    settings: {
+      initiativeFormula: "2d6 + @characteristics.dexterity.value/100",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: false,
+      autofireRulesUsed: "CT",
+      modifierForZeroCharacteristic: 0,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      ShowLawLevel: true,
+      rangeModifierType: "CT_Bands",
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      ShowDoubleTap: false,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3000 * @characteristics.strength.value",
+      defaultMovement: 25,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "1d6",
+      showTimeframe: false,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.33334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Cover (full) -4, Evade (short) -1, Evade (medium) -2, Evade (long) -4, Darkness (total) -9, Darkness (partial) -6",
+      armorDamageFormula: "@damage",
+      addEffectToDamage: false,
+      addEffectToManualDamage: false,
+      weightModifierForWornArmor: "0",
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "CT",
+      shipDamageType: "CT",
+      spaceCombatPhases: "fivePhase",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.fivePhase.shipInitiativeFormula
+    }
+  },
+  CE: {
+    key: "CE",
+    name: "Cepheus Engine",
+    settings: {
+      initiativeFormula: "2d6 + @characteristics.dexterity.mod",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: false,
+      autofireRulesUsed: "CE",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      ShowLawLevel: true,
+      rangeModifierType: "CE_Bands",
+      ShowWeaponType: true,
+      ShowDamageType: true,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      ShowDoubleTap: false,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "12 * @characteristics.strength.current",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "1d6",
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.1667",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'CE',
+      targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement -1, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Recoil in Zero G -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "-2, -1, -1, 1, 1, 2",
+      psiTalentsRequireRoll: true,
+      xd6RollStyle: false,
+      shipWeaponType: "CE",
+      shipDamageType: "component",
+      spaceCombatPhases: "threePhase",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.threePhase.shipInitiativeFormula
+    }
+  },
+  CEL: {
+    key: "CEL",
+    name: "Cepheus Light",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics_",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: true,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      rangeModifierType: "doubleBand",
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3 * @characteristics.strength.value",
+      defaultMovement: 9,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
+    }
+  },
+  CEFTL: {
+    key: "CEFTL",
+    name: "Cepheus Faster Than Light",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      rangeModifierType: "doubleBand",
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      maxEncumbrance: "0",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false,
+      showComponentRating: false,
+      showComponentDM: false,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
+    }
+  },
+  CEATOM: {
+    key: "CEATOM",
+    name: "Cepheus Atom",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Combat",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      lifebloodInsteadOfCharacteristics: true,
+      showLifebloodStamina: false,
+      showContaminationBelowLifeblood: true,
+      rangeModifierType: "doubleBand",
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -1,
+      maxEncumbrance: "2 * @characteristics.endurance.value",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold",
+      showSpells: false,
+      useNationality: true,
+      animalsUseHits: false,
+      robotsUseHits: true,
+      animalsUseLocations: true,
+      displayReactionMorale: true,
+      showComponentRating: false,
+      showComponentDM: false,
+      encumbranceFraction: "0.5",
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula,
+    }
+  },
+  BARBARIC: {
+    key: "BARBARIC",
+    name: "Barbaric!",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Combat",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 4,
+      lifebloodInsteadOfCharacteristics: true,
+      showLifebloodStamina: false,
+      showContaminationBelowLifeblood: false,
+      rangeModifierType: "doubleBand",
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -1,
+      maxEncumbrance: "2 * @characteristics.endurance.value",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      unarmedDamage: "1d6",
+      showTimeframe: false,
+      showSpells: true,
+      useNationality: true,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: true,
+      displayReactionMorale: true,
+      showComponentRating: false,
+      showComponentDM: false,
+      encumbranceFraction: "0.5",
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false
+    }
+  },
+  CEQ: {
+    key: "CEQ",
+    name: "Cepheus Quantum",
+    settings: {
+      initiativeFormula: "1d1",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      lifebloodInsteadOfCharacteristics: true,
+      showLifebloodStamina: false,
+      showContaminationBelowLifeblood: false,
+      rangeModifierType: "doubleBand",
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      maxEncumbrance: "0",
+      defaultMovement: 9,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false,
+      showComponentRating: false,
+      showComponentDM: false,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: 0,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
+    }
+  },
+  CD: {
+    key: "CD",
+    name: "Cepheus Deluxe",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
+      difficultyListUsed: "CD",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: true,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: true,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      rangeModifierType: "doubleBand",
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 320,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3 * (7 + @characteristics.strength.mod)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 1, 1, 1",
+      reverseHealingOrder: true,
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
+    }
+  },
+  CDEE: {
+    key: "CDEE",
+    name: "Cepheus Deluxe Enhanced Edition",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
+      difficultyListUsed: "CD",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: true,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      rangeModifierType: "doubleBand",
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 320,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3 * (7 + @characteristics.strength.mod)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 1, 1, 1",
+      reverseHealingOrder: true,
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
+    }
+  },
+  CLU: {
+    key: "CLU",
+    name: "Cepheus Light Upgraded",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
+      difficultyListUsed: "CD",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: true,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: true,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      rangeModifierType: "doubleBand",
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 320,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3*(7 + @characteristics.strength.mod)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 1, 1, 1",
+      reverseHealingOrder: true,
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "CD",
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
+    }
+  },
+  SOC: {
+    key: "SOC",
+    name: "The Sword of Cepheus",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics",
+      difficultyListUsed: "CEL",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CE",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: false,
+      rangeModifierType: "doubleBand",
+      ShowWeaponType: true,
+      ShowDamageType: false,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: -1,
+      seriousWoundsRollModifier: -2,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3*(@characteristics.strength.value)",
+      defaultMovement: 10,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "armorOnly",
+      showSpells: true,
+      useNationality: true,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: false,
+      showComponentDM: false,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      xd6RollStyle: false
+    }
+  },
+  AC: {
+    key: "AC",
+    name: "Alpha Cephei",
+    settings: {
+      initiativeFormula: "2d6 + @skills.Tactics",
+      difficultyListUsed: "AC",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: true,
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: true,
+      absoluteCriticalEffectValue: 99,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      rangeModifierType: "doubleBand",
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "3*(@characteristics.strength.value)",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "max(@characteristics.strength.mod, 1)",
+      showTimeframe: false,
+      showHullAndArmor: "threshold",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: false,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'none',
+      targetDMList: "Aim +1, Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Prone (melee) +1, Darkness -3, Dim Light -1, Shield -1, Overwatch w/shield -2, Behind someone (if missed, 50% chance of hitting other) -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "0, 0, 0, 0, 0, 0",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "AC",
+      shipDamageType: "AC",
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
+    }
+  },
+  CU: {
+    key: "CU",
+    name: "Cepheus Universal",
+    settings: {
+      initiativeFormula: "2d6 + min( 1, max( @skills.Tactics, 0)) + min( 1, max( @skills.Recon, 0))",
+      difficultyListUsed: "CU",
+      difficultiesAsTargetNumber: false,
+      autofireRulesUsed: "CU",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      ShowLawLevel: false,
+      rangeModifierType: "CU_Bands",
+      ShowWeaponType: true,
+      ShowDamageType: true,
+      ShowRateOfFire: true,
+      ShowRecoil: false,
+      ShowDoubleTap: false,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "6 * @characteristics.strength.current",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "1d6 + min( 1, max( -1, @characteristics.strength.mod))",
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.3334",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'CE',
+      targetDMList: "Aiming +1, Aiming w/scope +2, Cover (partial) -3, Movement -1, Dodges -1, Frenzy Fire -2, Into Hand-to-Hand -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "-2, -1, -1, 1, 1, 2",
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "CE",
+      shipDamageType: "CU",
+      spaceCombatPhases: "eightPhaseLooping",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.eightPhaseLooping.shipInitiativeFormula
+    }
+  },
+  OTHER: {
+    key: "OTHER",
+    name: "Other",
+    settings: {
+      useDegreesOfSuccess: 'other',
+      rangeModifierType: "singleBand",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      chainBonus: "-3, -2, -1, 1, 2, 3",
+      xd6RollStyle: false
+    },
+  },
+  MGT2E: {
+    key: "MGT2E",
+    name: "Mongoose Traveller 2nd Edition",
+    settings: {
+      initiativeFormula: "2d6 -8 + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -3,
+      termForAdvantage: "boon",
+      termForDisadvantage: "bane",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 6,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: true,
+      rangeModifierType: "CE",
+      ShowWeaponType: true,
+      ShowDamageType: true,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "2*(@characteristics.endurance.current + @characteristics.strength.current + max(0, @skills.AthleticsEndurance) + max(0, @skills.AthleticsStrength))",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: true,
+      unarmedDamage: "1d6",
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: true,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.5",
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: 'other',
+      targetDMList: "Aiming +1, Cover -2, Running -1, Prone -1, Darkness -2, Fatigued -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "0.25",
+      chainBonus: "-3, -2, -1, 1, 2, 3",
+      reverseHealingOrder: false,
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "CE",
+      shipDamageType: "criticalHullDamage",
+      spaceCombatPhases: "mgt2eThreePhase",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.mgt2eThreePhase.shipInitiativeFormula
+    }
+  },
+  RIDER: {
+    key: "RIDER",
+    name: "Rider",
+    settings: {
+      initiativeFormula: "2d6 + @characteristics.dexterity.mod + @skills.Tactics",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: false,
+      autofireRulesUsed: "RIDER",
+      modifierForZeroCharacteristic: -2,
+      termForAdvantage: "advantage",
+      termForDisadvantage: "disadvantage",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 99,
+      ShowLawLevel: false,
+      rangeModifierType: "CE_Bands",
+      ShowWeaponType: true,
+      ShowDamageType: true,
+      ShowRateOfFire: true,  //may need to customize
+      ShowRecoil: true,
+      ShowDoubleTap: false,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "12 * @characteristics.strength.current",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: false,
+      unarmedDamage: "1d6",
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: true,
+      animalsUseHits: false,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.1667",
+      encumbranceModifier: -1,
+      useDegreesOfSuccess: 'CE',
+      targetDMList: "Aiming +1, Cover (half) -1, Cover (three quarter) -2, Cover (full) -4, Movement (normal) -2, Movement (fast) -4, Dodges -1, Prone (ranged) -2, Prone (melee) +2, Darkness (low light) -1, Darkness (full) -4",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "1",
+      chainBonus: "-2, -1, -1, 1, 1, 2",
+      psiTalentsRequireRoll: true,
+      xd6RollStyle: false,
+      shipWeaponType: "CE",
+      shipDamageType: "component",
+      spaceCombatPhases: "threePhase"
+    }
+  }
+})
+;
+
+const ROLLTYPES = Object.freeze({
+  Advantage: {key: 'Advantage', formula: "3d6kh2"},
+  Normal: {key: 'Normal', formula: "2d6"},
+  Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
+});
+
+const WeightlessItems = ["skills", "trait", "spell", "psiAbility"];
+
+const CONSUMABLES = Object.freeze({
+  air: "TWODSIX.Items.Consumable.Types.air",
+  drugs: "TWODSIX.Items.Consumable.Types.drugs",
+  food: "TWODSIX.Items.Consumable.Types.food",
+  fuel: "TWODSIX.Items.Consumable.Types.fuel",
+  magazine: "TWODSIX.Items.Consumable.Types.magazine",
+  power_cell: "TWODSIX.Items.Consumable.Types.power_cell",
+  software: "TWODSIX.Items.Consumable.Types.software",
+  processor: "TWODSIX.Items.Consumable.Types.processor",
+  suite: "TWODSIX.Items.Consumable.Types.suite",
+  other: "TWODSIX.Items.Consumable.Types.other"
+});
+
+const DIFFICULTIES = Object.freeze({
+  CE: {
+    Simple: {mod: 6, target: 2},
+    Easy: {mod: 4, target: 4},
+    Routine: {mod: 2, target: 6},
+    Average: {mod: 0, target: 8},
+    Difficult: {mod: -2, target: 10},
+    VeryDifficult: {mod: -4, target: 12},
+    Formidable: {mod: -6, target: 14},
+    Impossible: {mod: -8, target: 16}
+  },
+  CEL: {
+    Routine: {mod: 2, target: 4},
+    Average: {mod: 0, target: 6},
+    Difficult: {mod: -2, target: 8},
+    VeryDifficult: {mod: -4, target: 10},
+    Formidable: {mod: -6, target: 12}
+  },
+  AC: {
+    Routine: {mod: 2, target: 4},
+    Simple: {mod: 0, target: 6},
+    Average: {mod: -2, target: 8},
+    Difficult: {mod: -4, target: 10},
+    VeryDifficult: {mod: -6, target: 12},
+    Formidable: {mod: -8, target: 14},
+    Impossible: {mod: -10, target: 16}
+  },
+  CU: {
+    Easy: {mod: 4, target: 4},
+    Routine: {mod: 2, target: 6},
+    Average: {mod: 0, target: 8},
+    Difficult: {mod: -2, target: 10},
+    VeryDifficult: {mod: -4, target: 12},
+    Formidable: {mod: -6, target: 14}
+  },
+  Nomad: {
+    Easy: {mod: 1, target: 7},
+    Average: {mod: 0, target: 8},
+    Difficult: {mod: -1, target: 9},
+    Formidable: {mod: -2, target: 10},
+    Impossible: {mod: -4, target: 12}
+  },
+  CD: {
+    Easy: { mod: 1, target: 6 },
+    Average: { mod: 0, target: 8 },
+    Difficult: { mod: -1, target: 10 },
+    Formidable: { mod: -2, target: 12 },
+    Impossible: { mod: -4, target: 14 }
+  }
+});
+
+export const SHIP_ACTION_TYPE = Object.freeze({
+  skillRoll: "skillRoll",
+  chatMessage: "chatMessage",
+  fireEnergyWeapons: "fireEnergyWeapons",
+  executeMacro: "executeMacro"
+});
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ */
+export const MovementTypes = {
+  burrow: "TWODSIX.Actor.Movement.MovementBurrow",
+  climb: "TWODSIX.Actor.Movement.MovementClimb",
+  fly: "TWODSIX.Actor.Movement.MovementFly",
+  swim: "TWODSIX.Actor.Movement.MovementSwim",
+  walk: "TWODSIX.Actor.Movement.MovementWalk",
+  hover: "TWODSIX.Actor.Movement.MovementHover"
+};
+
+/**
+ * The valid units of measure for movement distances in the game system.
+ */
+export const MovementUnits = {
+  ft: "TWODSIX.Actor.Movement.DistFt",
+  mi: "TWODSIX.Actor.Movement.DistMi",
+  m: "TWODSIX.Actor.Movement.DistM",
+  km: "TWODSIX.Actor.Movement.DistKm",
+  pc: "TWODSIX.Actor.Movement.DistPc",
+  gu: "TWODSIX.Actor.Movement.DistGU"
+};
+
+/**
+ * The valid target Area Types in the game system.
+ */
+export const areaTargetTypes = {
+  none: {
+    label: "TWODSIX.Target.None",
+    template: ""
+  },
+  radius: {
+    label: "TWODSIX.Target.Radius",
+    template: "circle"
+  },
+  sphere: {
+    label: "TWODSIX.Target.Sphere",
+    template: "circle"
+  },
+  cylinder: {
+    label: "TWODSIX.Target.Cylinder",
+    template: "circle"
+  },
+  cone: {
+    label: "TWODSIX.Target.Cone",
+    template: "cone"
+  },
+  square: {
+    label: "TWODSIX.Target.Square",
+    template: "rect"
+  },
+  cube: {
+    label: "TWODSIX.Target.Cube",
+    template: "rect"
+  },
+  line: {
+    label: "TWODSIX.Target.Line",
+    template: "ray"
+  },
+  wall: {
+    label: "TWODSIX.Target.Wall",
+    template: "ray"
+  }
+};
+
+/**
+ * The valid pricing bases for components other than base hull.
+ */
+export const PricingOptions = {
+  perUnit: "TWODSIX.Items.Component.perUnit",
+  perCompTon: "TWODSIX.Items.Component.perCompTon",
+  perHullTon: "TWODSIX.Items.Component.perHullTon",
+  per100HullTon: "TWODSIX.Items.Component.per100HullTon",
+  pctHull: "TWODSIX.Items.Component.pctHull",
+  pctHullPerUnit: "TWODSIX.Items.Component.pctHullPerUnit"
+};
+
+/**
+ * The valid power bases for components other than base hull.
+ */
+export const PowerOptions = {
+  perUnit: "TWODSIX.Items.Component.powerPerUnit",
+  perCompTon: "TWODSIX.Items.Component.powerPerCompTon",
+  perHullTon: "TWODSIX.Items.Component.powerPerHullTon"
+};
+
+/**
+ * The valid pricing bases for base hull.
+ */
+export const HullPricingOptions = {
+  perUnit: "TWODSIX.Items.Component.perUnit",
+  perCompTon: "TWODSIX.Items.Component.perCompTon",
+  perHullTon: "TWODSIX.Items.Component.perHullTon",
+  per100HullTon: "TWODSIX.Items.Component.per100HullTon"
+};
+
+/**
+ * The valid choices for characteristic displays in the game system.
+ */
+export const CharacteristicDisplayTypes = {
+  core: "TWODSIX.Actor.CharDisplay.Core",
+  base: "TWODSIX.Actor.CharDisplay.Base",
+  alternate: "TWODSIX.Actor.CharDisplay.Alternate",
+  all: "TWODSIX.Actor.CharDisplay.All"
+};
+
+/**
+ * The valid states for components.
+ */
+export const ComponentStates = {
+  operational: "TWODSIX.Items.Component.operational",
+  damaged: "TWODSIX.Items.Component.damaged",
+  destroyed: "TWODSIX.Items.Component.destroyed",
+  off: "TWODSIX.Items.Component.off"
+};
+
+/**
+ * The valid types for drive components.
+ */
+export const DriveTypes = {
+  jdrive: "TWODSIX.Items.Component.jdrive",
+  mdrive: "TWODSIX.Items.Component.mdrive",
+  other: "TWODSIX.Items.Component.other"
+};
+
+/**
+ * The valid types of ship components.
+ */
+export const ComponentTypes = {
+  accommodations: "TWODSIX.Items.Component.accommodations",
+  ammo: "TWODSIX.Items.Component.ammo",
+  armament: "TWODSIX.Items.Component.armament",
+  armor: "TWODSIX.Items.Component.armor",
+  bridge: "TWODSIX.Items.Component.bridge",
+  cargo: "TWODSIX.Items.Component.cargo",
+  computer: "TWODSIX.Items.Component.computer",
+  dock: "TWODSIX.Items.Component.dock",
+  drive: "TWODSIX.Items.Component.drive",
+  drone: "TWODSIX.Items.Component.drone",
+  electronics: "TWODSIX.Items.Component.electronics",
+  fuel: "TWODSIX.Items.Component.fuel",
+  hull: "TWODSIX.Items.Component.hull",
+  mount: "TWODSIX.Items.Component.mount",
+  other: "TWODSIX.Items.Component.other",
+  otherExternal: "TWODSIX.Items.Component.otherExternal",
+  otherInternal: "TWODSIX.Items.Component.otherInternal",
+  power: "TWODSIX.Items.Component.power",
+  sensor: "TWODSIX.Items.Component.sensor",
+  shield: "TWODSIX.Items.Component.shield",
+  software: "TWODSIX.Items.Component.software",
+  storage: "TWODSIX.Items.Component.storage",
+  vehicle: "TWODSIX.Items.Component.vehicle"
+};
+
+export const ShipWeaponTypes = {
+  CT: {
+    pulseLaser: "TWODSIX.Items.Component.PulseLaser",
+    beamLaser: "TWODSIX.Items.Component.BeamLaser",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    other: "TWODSIX.Items.Component.Other"
+  },
+  CD: {
+    light: "TWODSIX.Items.Component.Light",
+    intermediate: "TWODSIX.Items.Component.Intermediate",
+    heavy: "TWODSIX.Items.Component.Heavy",
+    main: "TWODSIX.Items.Component.Main",
+    //mesonGun: "TWODSIX.Items.Component.MesonGun",
+    //graviticDisruptor: "TWODSIX.Items.Component.GraviticDisruptor",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
+    torpedoes: "TWODSIX.Items.Component.Torpedoes",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    special: "TWODSIX.Items.Component.Special",
+    other: "TWODSIX.Items.Component.Other"
+  },
+  CE: {
+    pulseLaser: "TWODSIX.Items.Component.PulseLaser",
+    beamLaser: "TWODSIX.Items.Component.BeamLaser",
+    particleBeam: "TWODSIX.Items.Component.ParticleBeam",
+    fusionGun: "TWODSIX.Items.Component.FusionGun",
+    mesonGun: "TWODSIX.Items.Component.MesonGun",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
+    torpedoes: "TWODSIX.Items.Component.Torpedoes",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    special: "TWODSIX.Items.Component.Special",
+    other: "TWODSIX.Items.Component.Other"
+  },
+  AC: {
+    pulseLaser: "TWODSIX.Items.Component.PulseLaser",
+    beamLaser: "TWODSIX.Items.Component.BeamLaser",
+    particleBeam: "TWODSIX.Items.Component.ParticleBeam",
+    particleCluster: "TWODSIX.Items.Component.ParticleCluster",
+    fusionGun: "TWODSIX.Items.Component.FusionGun",
+    fusionBeam: "TWODSIX.Items.Component.FusionBeam",
+    garviticLance: "TWODSIX.Items.Component.GraviticLance",
+    mesonGun: "TWODSIX.Items.Component.MesonGun",
+    missiles: "TWODSIX.Items.Component.Missiles",
+    plasmaBeam: "TWODSIX.Items.Component.PlasmaBeam",
+    nuclearMissiles: "TWODSIX.Items.Component.NuclearMissiles",
+    sandcaster: "TWODSIX.Items.Component.Sandcaster",
+    special: "TWODSIX.Items.Component.Special",
+    other: "TWODSIX.Items.Component.Other"
+  }
+};
+
+export const ShipArmorTypesCD = {
+  unarmored: "TWODSIX.Ship.ArmorCD.Unarmored",
+  light: "TWODSIX.Ship.ArmorCD.Light",
+  heavy: "TWODSIX.Ship.ArmorCD.Heavy",
+  massive: "TWODSIX.Ship.ArmorCD.Massive"
+};
+
+export const ShipDamageRules = {
+  component: "TWODSIX.Ship.DamageStyle.Component",
+  hullWCrit: "TWODSIX.Ship.DamageStyle.HullWithCrit",
+  hullOnly: "TWODSIX.Ship.DamageStyle.HullOnly",
+  surfaceInternal: "TWODSIX.Ship.DamageStyle.SurfaceOrInternal",
+  CT: "TWODSIX.Ship.DamageStyle.ClassicTraveller",
+  AC: "TWODSIX.Ship.DamageStyle.AlphaCephei",
+  CU: "TWODSIX.Ship.DamageStyle.CepheusUniversal"
+};
+
+/**
+ * The valid time units.
+ */
+export const TimeUnits = {
+  none: "TWODSIX.Actor.Skills.Timeframe.none",
+  sec: "TWODSIX.Actor.Skills.Timeframe.secs",
+  min: "TWODSIX.Actor.Skills.Timeframe.mins",
+  hrs: "TWODSIX.Actor.Skills.Timeframe.hrs",
+  days: "TWODSIX.Actor.Skills.Timeframe.days",
+  weeks: "TWODSIX.Actor.Skills.Timeframe.weeks",
+  months: "TWODSIX.Actor.Skills.Timeframe.months",
+  rounds: "TWODSIX.Actor.Skills.Timeframe.rounds"
+};
+
+/**
+ * The vehicle protection types.
+ */
+export const VehicleProtection = {
+  armorOnly: "TWODSIX.Vehicle.ProtectionType.ArmorOnly",
+  threshold: "TWODSIX.Vehicle.ProtectionType.Threshold",
+  armorHullStruc: "TWODSIX.Vehicle.ProtectionType.ArmorHullStruc",
+  detailedArmor: "TWODSIX.Vehicle.ProtectionType.DetailedArmor"
+};
+
+/**
+ * The animal types.
+ */
+export const AnimalNiche = {
+  herbivore: "TWODSIX.Animal.NicheType.Herbivore",
+  omnivore: "TWODSIX.Animal.NicheType.Omnivore",
+  carnivore: "TWODSIX.Animal.NicheType.Carnivore",
+  scavenger: "TWODSIX.Animal.NicheType.Scavenger",
+  other: "TWODSIX.Animal.NicheType.Other"
+};
+export const HerbivoreType = {
+  filter: "TWODSIX.Animal.Subtype.Filter",
+  intermittent: "TWODSIX.Animal.Subtype.Intermittent",
+  grazer: "TWODSIX.Animal.Subtype.Grazer"
+};
+export const OmnivoreType = {
+  gatherer: "TWODSIX.Animal.Subtype.Gatherer",
+  hunter: "TWODSIX.Animal.Subtype.Hunter",
+  eater: "TWODSIX.Animal.Subtype.Eater"
+};
+export const CarnivoreType = {
+  pouncer: "TWODSIX.Animal.Subtype.Pouncer",
+  chaser: "TWODSIX.Animal.Subtype.Chaser",
+  trapper: "TWODSIX.Animal.Subtype.Trapper",
+  siren: "TWODSIX.Animal.Subtype.Siren",
+  killer: "TWODSIX.Animal.Subtype.Killer"
+};
+export const ScavengerType = {
+  hijacker: "TWODSIX.Animal.Subtype.Hijacker",
+  intimidator: "TWODSIX.Animal.Subtype.Intimidator",
+  carrionEater: "TWODSIX.Animal.Subtype.CarrionEater",
+  reducer: "TWODSIX.Animal.Subtype.Reducer"
+};
+
+export const AnimalLocations = {
+  city: "TWODSIX.Animal.Locations.CityUrban",
+  plains: "TWODSIX.Animal.Locations.PlainsGrassland",
+  hills: "TWODSIX.Animal.Locations.HillsMountains",
+  desert: "TWODSIX.Animal.Locations.DesertBadlands",
+  swamp: "TWODSIX.Animal.Locations.SwampAquatic",
+  forest: "TWODSIX.Animal.Locations.ForestJungle"
+};
+
+export const SuccessTypes = {
+  none: "TWODSIX.Chat.Roll.DegreesOfSuccess.none",
+  CE: "TWODSIX.Chat.Roll.DegreesOfSuccess.CE",
+  other: "TWODSIX.Chat.Roll.DegreesOfSuccess.other"
+};
+
+export const AllAnimalTypes = Object.assign({}, HerbivoreType, OmnivoreType, CarnivoreType, ScavengerType);
+
+export const EQUIPPED_STATES = {
+  backpack: "TWODSIX.Actor.Items.LocationState.backpack",
+  equipped: "TWODSIX.Actor.Items.LocationState.equipped",
+  vehicle: "TWODSIX.Actor.Items.LocationState.vehicle",
+  ship: "TWODSIX.Actor.Items.LocationState.ship",
+  base: "TWODSIX.Actor.Items.LocationState.base"
+};
+
+export const EQUIPPED_TOGGLE_OPTIONS = {
+  core: "TWODSIX.Actor.Items.LocationState.core",
+  default: "TWODSIX.Actor.Items.LocationState.default",
+  all: "TWODSIX.Actor.Items.LocationState.all",
+};
+
+export const RANGE_MODIFIERS_TYPES = {
+  none: "TWODSIX.Chat.Roll.RangeModifierTypes.none",
+  CT_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CT_Bands",
+  CE_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CE_Bands",
+  CU_Bands: "TWODSIX.Chat.Roll.RangeModifierTypes.CU_Bands",
+  singleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.singleBand",
+  doubleBand: "TWODSIX.Chat.Roll.RangeModifierTypes.doubleBand"
+};
+
+export const CE_WEAPON_RANGE_TYPES = {
+  long: {
+    closeQuarters: "TWODSIX.Chat.Roll.WeaponRangeTypes.closeQuarters",
+    extendedReach: "TWODSIX.Chat.Roll.WeaponRangeTypes.extendedReach",
+    thrown: "TWODSIX.Chat.Roll.WeaponRangeTypes.thrown",
+    pistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.pistol",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    assaultWeapon: "TWODSIX.Chat.Roll.WeaponRangeTypes.assaultWeapon",
+    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  },
+  short: {
+    closeQuarters: "TWODSIX.Chat.Roll.WeaponRangeTypes.CQ",
+    extendedReach: "TWODSIX.Chat.Roll.WeaponRangeTypes.reach",
+    thrown: "TWODSIX.Chat.Roll.WeaponRangeTypes.thrown",
+    pistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.pistol",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    assaultWeapon: "TWODSIX.Chat.Roll.WeaponRangeTypes.AW",
+    rocket: "TWODSIX.Chat.Roll.WeaponRangeTypes.rocket",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  }
+};
+
+export const CU_WEAPON_RANGE_TYPES = {
+  long: {
+    personal: "TWODSIX.Chat.Roll.WeaponRangeTypes.personal",
+    close: "TWODSIX.Chat.Roll.WeaponRangeTypes.close",
+    short: "TWODSIX.Chat.Roll.WeaponRangeTypes.short",
+    medium: "TWODSIX.Chat.Roll.WeaponRangeTypes.medium",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    thrown: "TWODSIX.Chat.Roll.WeaponRangeTypes.thrown",
+    long: "TWODSIX.Chat.Roll.WeaponRangeTypes.long",
+    veryLong: "TWODSIX.Chat.Roll.WeaponRangeTypes.veryLong",
+    distant: "TWODSIX.Chat.Roll.WeaponRangeTypes.distant",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  },
+  short: {
+    personal: "TWODSIX.Chat.Roll.WeaponRangeTypes.pers",
+    close: "TWODSIX.Chat.Roll.WeaponRangeTypes.close",
+    short: "TWODSIX.Chat.Roll.WeaponRangeTypes.short",
+    medium: "TWODSIX.Chat.Roll.WeaponRangeTypes.medium",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    thrown: "TWODSIX.Chat.Roll.WeaponRangeTypes.thr",
+    long: "TWODSIX.Chat.Roll.WeaponRangeTypes.long",
+    veryLong: "TWODSIX.Chat.Roll.WeaponRangeTypes.vLong",
+    distant: "TWODSIX.Chat.Roll.WeaponRangeTypes.dist",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  }
+};
+
+export const CT_WEAPON_RANGE_TYPES = {
+  long: {
+    hands: "TWODSIX.Chat.Roll.WeaponRangeTypes.hands",
+    claws: "TWODSIX.Chat.Roll.WeaponRangeTypes.claws",
+    teeth: "TWODSIX.Chat.Roll.WeaponRangeTypes.teeth",
+    horns: "TWODSIX.Chat.Roll.WeaponRangeTypes.horns",
+    hooves: "TWODSIX.Chat.Roll.WeaponRangeTypes.hooves",
+    stinger: "TWODSIX.Chat.Roll.WeaponRangeTypes.stinger",
+    thrasher: "TWODSIX.Chat.Roll.WeaponRangeTypes.thrasher",
+    club: "TWODSIX.Chat.Roll.WeaponRangeTypes.club",
+    dagger: "TWODSIX.Chat.Roll.WeaponRangeTypes.dagger",
+    blade: "TWODSIX.Chat.Roll.WeaponRangeTypes.blade",
+    foil: "TWODSIX.Chat.Roll.WeaponRangeTypes.foil",
+    cutlass: "TWODSIX.Chat.Roll.WeaponRangeTypes.cutlass",
+    sword: "TWODSIX.Chat.Roll.WeaponRangeTypes.sword",
+    broadsword: "TWODSIX.Chat.Roll.WeaponRangeTypes.broadsword",
+    bayonet: "TWODSIX.Chat.Roll.WeaponRangeTypes.bayonet",
+    spear: "TWODSIX.Chat.Roll.WeaponRangeTypes.spear",
+    halberd: "TWODSIX.Chat.Roll.WeaponRangeTypes.halberd",
+    pike: "TWODSIX.Chat.Roll.WeaponRangeTypes.pike",
+    cudgel: "TWODSIX.Chat.Roll.WeaponRangeTypes.cudgel",
+    bodyPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.bodyPistol",
+    autoPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.autoPistol",
+    revolver: "TWODSIX.Chat.Roll.WeaponRangeTypes.revolver",
+    carbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.carbine",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    autoRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.autoRifle",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    submachinegun: "TWODSIX.Chat.Roll.WeaponRangeTypes.submachinegun",
+    laserCarbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.laserCarbine",
+    laserRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.laserRifle",
+    custom: "TWODSIX.Chat.Roll.WeaponRangeTypes.custom",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  },
+  short: {
+    hands: "TWODSIX.Chat.Roll.WeaponRangeTypes.hands",
+    claws: "TWODSIX.Chat.Roll.WeaponRangeTypes.claws",
+    teeth: "TWODSIX.Chat.Roll.WeaponRangeTypes.teeth",
+    horns: "TWODSIX.Chat.Roll.WeaponRangeTypes.horns",
+    hooves: "TWODSIX.Chat.Roll.WeaponRangeTypes.hooves",
+    stinger: "TWODSIX.Chat.Roll.WeaponRangeTypes.stinger",
+    thrasher: "TWODSIX.Chat.Roll.WeaponRangeTypes.thras",
+    club: "TWODSIX.Chat.Roll.WeaponRangeTypes.club",
+    dagger: "TWODSIX.Chat.Roll.WeaponRangeTypes.dagger",
+    blade: "TWODSIX.Chat.Roll.WeaponRangeTypes.blade",
+    foil: "TWODSIX.Chat.Roll.WeaponRangeTypes.foil",
+    cutlass: "TWODSIX.Chat.Roll.WeaponRangeTypes.cutl",
+    sword: "TWODSIX.Chat.Roll.WeaponRangeTypes.sword",
+    broadsword: "TWODSIX.Chat.Roll.WeaponRangeTypes.brdswd",
+    bayonet: "TWODSIX.Chat.Roll.WeaponRangeTypes.bynt",
+    spear: "TWODSIX.Chat.Roll.WeaponRangeTypes.spear",
+    halberd: "TWODSIX.Chat.Roll.WeaponRangeTypes.halb",
+    pike: "TWODSIX.Chat.Roll.WeaponRangeTypes.pike",
+    cudgel: "TWODSIX.Chat.Roll.WeaponRangeTypes.cudgel",
+    bodyPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.bPistl",
+    autoPistol: "TWODSIX.Chat.Roll.WeaponRangeTypes.aPistl",
+    revolver: "TWODSIX.Chat.Roll.WeaponRangeTypes.revolver",
+    carbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.carbine",
+    rifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.rifle",
+    autoRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.AR",
+    shotgun: "TWODSIX.Chat.Roll.WeaponRangeTypes.shotgun",
+    submachinegun: "TWODSIX.Chat.Roll.WeaponRangeTypes.subm",
+    laserCarbine: "TWODSIX.Chat.Roll.WeaponRangeTypes.LC",
+    laserRifle: "TWODSIX.Chat.Roll.WeaponRangeTypes.LR",
+    custom: "TWODSIX.Chat.Roll.WeaponRangeTypes.cust",
+    none: "TWODSIX.Chat.Roll.WeaponRangeTypes.none"
+  }
+};
+
+export const CT_ARMOR_TYPES = {
+  nothing: "TWODSIX.Chat.Roll.ArmorTypes.nothing",
+  jack: "TWODSIX.Chat.Roll.ArmorTypes.jack",
+  mesh: "TWODSIX.Chat.Roll.ArmorTypes.mesh",
+  cloth: "TWODSIX.Chat.Roll.ArmorTypes.cloth",
+  reflec: "TWODSIX.Chat.Roll.ArmorTypes.reflec",
+  ablat: "TWODSIX.Chat.Roll.ArmorTypes.ablat",
+  combat: "TWODSIX.Chat.Roll.ArmorTypes.combat"
+};
+
+export const TARGET_DM = {};
+
+export const AUG_LOCATIONS = {
+  Head: "TWODSIX.Items.Augmentation.Head",
+  Torso: "TWODSIX.Items.Augmentation.Torso",
+  Arms: "TWODSIX.Items.Augmentation.Arms",
+  Legs: "TWODSIX.Items.Augmentation.Legs",
+  "Full-Body": "TWODSIX.Items.Augmentation.FullBody",
+  None: "TWODSIX.Items.Augmentation.None"
+};
+
+export const ITEM_TYPE_SELECT = {
+  armor: "TWODSIX.Items.Items.AssignArmor",
+  augment: "TWODSIX.Items.Items.AssignAugment",
+  computer: "TWODSIX.Items.Items.AssignComputer",
+  consumable: "TWODSIX.Items.Items.AssignConsumable",
+  equipment: "TWODSIX.Items.Items.AssignEquipment",
+  junk: "TWODSIX.Items.Items.AssignJunk",
+  psiAbility: "TWODSIX.Items.Items.AssignPsiAbility",
+  storage: "TWODSIX.Items.Items.MoveStorage",
+  spell: "TWODSIX.Items.Items.AssignSpell",
+  tool: "TWODSIX.Items.Items.AssignTool",
+  weapon: "TWODSIX.Items.Items.AssignWeapon"
+};
+
+export const CU_DAMAGE_TYPES = {
+  acid: "TWODSIX.DamageType.Acid",
+  ballistic: "TWODSIX.DamageType.Ballistic",
+  disintegrate: "TWODSIX.DamageType.Disintegrate",
+  electrical: "TWODSIX.DamageType.Electrical",
+  entangle: "TWODSIX.DamageType.Entangle",
+  fire: "TWODSIX.DamageType.Fire",
+  laser: "TWODSIX.DamageType.Laser",
+  melee: "TWODSIX.DamageType.Melee",
+  plasma: "TWODSIX.DamageType.Plasma",
+  poison: "TWODSIX.DamageType.Poison",
+  stun: "TWODSIX.DamageType.Stun",
+  psionic: "TWODSIX.DamageType.Psionic"
+};
+
+export const DAMAGECOLORS = Object.freeze({
+  minorWoundTint: '#ffff00', // Yellow
+  seriousWoundTint: '#ff0000', // Red
+  deadTint: '#ffffff'  // White
+});
+
+export const effectType = Object.freeze({
+  dead: 'EFFECT.StatusDead',
+  wounded: 'EFFECT.StatusWounded',
+  unconscious: 'EFFECT.StatusUnconscious',
+  encumbered: 'EFFECT.StatusEncumbered'
+});
+
+// World Size options for selectOption helper (hex keys, localized labels)
+export const WorldSizeOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Size.0", gravity: "TWODSIX.World.Stats.Gravity.0" },
+  "1": { label: "TWODSIX.World.Stats.Size.1", gravity: "TWODSIX.World.Stats.Gravity.1" },
+  "2": { label: "TWODSIX.World.Stats.Size.2", gravity: "TWODSIX.World.Stats.Gravity.2" },
+  "3": { label: "TWODSIX.World.Stats.Size.3", gravity: "TWODSIX.World.Stats.Gravity.3" },
+  "4": { label: "TWODSIX.World.Stats.Size.4", gravity: "TWODSIX.World.Stats.Gravity.4" },
+  "5": { label: "TWODSIX.World.Stats.Size.5", gravity: "TWODSIX.World.Stats.Gravity.5" },
+  "6": { label: "TWODSIX.World.Stats.Size.6", gravity: "TWODSIX.World.Stats.Gravity.6" },
+  "7": { label: "TWODSIX.World.Stats.Size.7", gravity: "TWODSIX.World.Stats.Gravity.7" },
+  "8": { label: "TWODSIX.World.Stats.Size.8", gravity: "TWODSIX.World.Stats.Gravity.8" },
+  "9": { label: "TWODSIX.World.Stats.Size.9", gravity: "TWODSIX.World.Stats.Gravity.9" },
+  "A": { label: "TWODSIX.World.Stats.Size.A", gravity: "TWODSIX.World.Stats.Gravity.A" }
+});
+
+// World Atmosphere options for selectOption helper (hex keys, localized labels)
+export const WorldAtmosphereOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Atmosphere.0", pressure: "TWODSIX.World.Stats.Pressure.0", notes: "TWODSIX.World.Stats.AtmosphereNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Atmosphere.1", pressure: "TWODSIX.World.Stats.Pressure.1", notes: "TWODSIX.World.Stats.AtmosphereNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Atmosphere.2", pressure: "TWODSIX.World.Stats.Pressure.2", notes: "TWODSIX.World.Stats.AtmosphereNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Atmosphere.3", pressure: "TWODSIX.World.Stats.Pressure.3", notes: "TWODSIX.World.Stats.AtmosphereNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Atmosphere.4", pressure: "TWODSIX.World.Stats.Pressure.4", notes: "TWODSIX.World.Stats.AtmosphereNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Atmosphere.5", pressure: "TWODSIX.World.Stats.Pressure.5", notes: "TWODSIX.World.Stats.AtmosphereNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Atmosphere.6", pressure: "TWODSIX.World.Stats.Pressure.6", notes: "TWODSIX.World.Stats.AtmosphereNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Atmosphere.7", pressure: "TWODSIX.World.Stats.Pressure.7", notes: "TWODSIX.World.Stats.AtmosphereNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Atmosphere.8", pressure: "TWODSIX.World.Stats.Pressure.8", notes: "TWODSIX.World.Stats.AtmosphereNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Atmosphere.9", pressure: "TWODSIX.World.Stats.Pressure.9", notes: "TWODSIX.World.Stats.AtmosphereNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Atmosphere.A", pressure: "TWODSIX.World.Stats.Pressure.A", notes: "TWODSIX.World.Stats.AtmosphereNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.Atmosphere.B", pressure: "TWODSIX.World.Stats.Pressure.B", notes: "TWODSIX.World.Stats.AtmosphereNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.Atmosphere.C", pressure: "TWODSIX.World.Stats.Pressure.C", notes: "TWODSIX.World.Stats.AtmosphereNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.Atmosphere.D", pressure: "TWODSIX.World.Stats.Pressure.D", notes: "TWODSIX.World.Stats.AtmosphereNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.Atmosphere.E", pressure: "TWODSIX.World.Stats.Pressure.E", notes: "TWODSIX.World.Stats.AtmosphereNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.Atmosphere.F", pressure: "TWODSIX.World.Stats.Pressure.F", notes: "TWODSIX.World.Stats.AtmosphereNotes.F" }
+});
+
+// World Hydrographics options for selectOption helper (hex keys, localized labels)
+export const WorldHydrographicsOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Hydrographics.0", notes: "TWODSIX.World.Stats.HydrographicsNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Hydrographics.1", notes: "TWODSIX.World.Stats.HydrographicsNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Hydrographics.2", notes: "TWODSIX.World.Stats.HydrographicsNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Hydrographics.3", notes: "TWODSIX.World.Stats.HydrographicsNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Hydrographics.4", notes: "TWODSIX.World.Stats.HydrographicsNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Hydrographics.5", notes: "TWODSIX.World.Stats.HydrographicsNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Hydrographics.6", notes: "TWODSIX.World.Stats.HydrographicsNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Hydrographics.7", notes: "TWODSIX.World.Stats.HydrographicsNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Hydrographics.8", notes: "TWODSIX.World.Stats.HydrographicsNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Hydrographics.9", notes: "TWODSIX.World.Stats.HydrographicsNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Hydrographics.A", notes: "TWODSIX.World.Stats.HydrographicsNotes.A" }
+});
+
+// World Population options for selectOption helper (hex keys, localized labels)
+export const WorldPopulationOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Population.0", notes: "TWODSIX.World.Stats.PopulationNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Population.1", notes: "TWODSIX.World.Stats.PopulationNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Population.2", notes: "TWODSIX.World.Stats.PopulationNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Population.3", notes: "TWODSIX.World.Stats.PopulationNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Population.4", notes: "TWODSIX.World.Stats.PopulationNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Population.5", notes: "TWODSIX.World.Stats.PopulationNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Population.6", notes: "TWODSIX.World.Stats.PopulationNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Population.7", notes: "TWODSIX.World.Stats.PopulationNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Population.8", notes: "TWODSIX.World.Stats.PopulationNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Population.9", notes: "TWODSIX.World.Stats.PopulationNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Population.A", notes: "TWODSIX.World.Stats.PopulationNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.Population.B", notes: "TWODSIX.World.Stats.PopulationNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.Population.C", notes: "TWODSIX.World.Stats.PopulationNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.Population.D", notes: "TWODSIX.World.Stats.PopulationNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.Population.E", notes: "TWODSIX.World.Stats.PopulationNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.Population.F", notes: "TWODSIX.World.Stats.PopulationNotes.F" }
+});
+
+// Starport Class options for selectOption helper (hex keys, localized labels)
+export const StarportClassOptions = Object.freeze({
+  "A": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.A",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.A",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.A",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.A"
+  },
+  "B": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.B",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.B",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.B",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.B"
+  },
+  "C": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.C",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.C",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.C",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.C"
+  },
+  "D": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.D",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.D",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.D",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.D",
+  },
+  "E": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.E",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.E",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.E",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.E"
+  },
+  "X": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.X",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.X",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.X",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.X"
+  }
+});
+
+export const WorldGovernmentOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Government.0", notes: "TWODSIX.World.Stats.GovernmentNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Government.1", notes: "TWODSIX.World.Stats.GovernmentNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Government.2", notes: "TWODSIX.World.Stats.GovernmentNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Government.3", notes: "TWODSIX.World.Stats.GovernmentNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Government.4", notes: "TWODSIX.World.Stats.GovernmentNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Government.5", notes: "TWODSIX.World.Stats.GovernmentNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Government.6", notes: "TWODSIX.World.Stats.GovernmentNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Government.7", notes: "TWODSIX.World.Stats.GovernmentNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Government.8", notes: "TWODSIX.World.Stats.GovernmentNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Government.9", notes: "TWODSIX.World.Stats.GovernmentNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Government.A", notes: "TWODSIX.World.Stats.GovernmentNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.Government.B", notes: "TWODSIX.World.Stats.GovernmentNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.Government.C", notes: "TWODSIX.World.Stats.GovernmentNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.Government.D", notes: "TWODSIX.World.Stats.GovernmentNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.Government.E", notes: "TWODSIX.World.Stats.GovernmentNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.Government.F", notes: "TWODSIX.World.Stats.GovernmentNotes.F" }
+});
+
+// World Law Level options for selectOption helper (hex keys, localized labels)
+export const WorldLawLevelOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.LawLevel.0", notes: "TWODSIX.World.Stats.LawLevelNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.LawLevel.1", notes: "TWODSIX.World.Stats.LawLevelNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.LawLevel.2", notes: "TWODSIX.World.Stats.LawLevelNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.LawLevel.3", notes: "TWODSIX.World.Stats.LawLevelNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.LawLevel.4", notes: "TWODSIX.World.Stats.LawLevelNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.LawLevel.5", notes: "TWODSIX.World.Stats.LawLevelNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.LawLevel.6", notes: "TWODSIX.World.Stats.LawLevelNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.LawLevel.7", notes: "TWODSIX.World.Stats.LawLevelNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.LawLevel.8", notes: "TWODSIX.World.Stats.LawLevelNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.LawLevel.9", notes: "TWODSIX.World.Stats.LawLevelNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.LawLevel.A", notes: "TWODSIX.World.Stats.LawLevelNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.LawLevel.B", notes: "TWODSIX.World.Stats.LawLevelNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.LawLevel.C", notes: "TWODSIX.World.Stats.LawLevelNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.LawLevel.D", notes: "TWODSIX.World.Stats.LawLevelNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.LawLevel.E", notes: "TWODSIX.World.Stats.LawLevelNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.LawLevel.F", notes: "TWODSIX.World.Stats.LawLevelNotes.F" }
+});
+
+// World Tech Level options for selectOption helper (hex keys, localized labels)
+export const WorldTechLevelOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.TechLevel.0", notes: "TWODSIX.World.Stats.TechLevelNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.TechLevel.1", notes: "TWODSIX.World.Stats.TechLevelNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.TechLevel.2", notes: "TWODSIX.World.Stats.TechLevelNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.TechLevel.3", notes: "TWODSIX.World.Stats.TechLevelNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.TechLevel.4", notes: "TWODSIX.World.Stats.TechLevelNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.TechLevel.5", notes: "TWODSIX.World.Stats.TechLevelNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.TechLevel.6", notes: "TWODSIX.World.Stats.TechLevelNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.TechLevel.7", notes: "TWODSIX.World.Stats.TechLevelNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.TechLevel.8", notes: "TWODSIX.World.Stats.TechLevelNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.TechLevel.9", notes: "TWODSIX.World.Stats.TechLevelNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.TechLevel.A", notes: "TWODSIX.World.Stats.TechLevelNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.TechLevel.B", notes: "TWODSIX.World.Stats.TechLevelNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.TechLevel.C", notes: "TWODSIX.World.Stats.TechLevelNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.TechLevel.D", notes: "TWODSIX.World.Stats.TechLevelNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.TechLevel.E", notes: "TWODSIX.World.Stats.TechLevelNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.TechLevel.F", notes: "TWODSIX.World.Stats.TechLevelNotes.F" }
+});
+
+export const WorldFeaturesOptions = Object.freeze({
+  scoutBase: "TWODSIX.World.Stats.Features.ScoutBase",
+  navalBase: "TWODSIX.World.Stats.Features.NavalBase",
+  gasGiant: "TWODSIX.World.Stats.Features.GasGiant",
+  highPort: "TWODSIX.World.Stats.Features.HighPort",
+  travellersAid: "TWODSIX.World.Stats.Features.TravellersAid",
+  pirateBase: "TWODSIX.World.Stats.Features.PirateBase",
+  planetoidBelt: "TWODSIX.World.Stats.Features.PlanetoidBelt",
+});
+
+export const WorldTravelZones = Object.freeze({
+  "none": "TWODSIX.World.Stats.Zone.None",
+  "amber": "TWODSIX.World.Stats.Zone.Amber",
+  "red": "TWODSIX.World.Stats.Zone.Red"
+});
+
+
+export const TWODSIX = {
+  CHARACTERISTICS: CHARACTERISTICS,
+  CONSUMABLES: CONSUMABLES,
+  DIFFICULTY_VARIANTS: DIFFICULTY_VARIANTS,
+  AUTOFIRE_VARIANTS: AUTOFIRE_VARIANTS,
+  THEME_CHOICES: THEME_CHOICES,
+  SPACE_COMBAT_PHASE_TYPES: SPACE_COMBAT_PHASE_TYPES,
+  ROLLTYPES: ROLLTYPES,
+  DIFFICULTIES: DIFFICULTIES,
+  RULESETS: RULESETS,
+  SHIP_ACTION_TYPE: SHIP_ACTION_TYPE,
+  MovementUnits: MovementUnits,
+  MovementType: MovementTypes,
+  PricingOptions: PricingOptions,
+  PowerOptions: PowerOptions,
+  HullPricingOptions: HullPricingOptions,
+  ComponentStates: ComponentStates,
+  DriveTypes: DriveTypes,
+  ComponentTypes: ComponentTypes,
+  CharacteristicDisplayTypes: CharacteristicDisplayTypes,
+  TimeUnits: TimeUnits,
+  VehicleProtection: VehicleProtection,
+  AnimalNiche: AnimalNiche,
+  HerbivoreType: HerbivoreType,
+  OmnivoreType: OmnivoreType,
+  CarnivoreType: CarnivoreType,
+  ScavengerType: ScavengerType,
+  AllAnimalTypes: AllAnimalTypes,
+  AnimalLocations: AnimalLocations,
+  areaTargetTypes: areaTargetTypes,
+  SuccessTypes: SuccessTypes,
+  EQUIPPED_STATES: EQUIPPED_STATES,
+  EQUIPPED_TOGGLE_OPTIONS: EQUIPPED_TOGGLE_OPTIONS,
+  RANGE_MODIFIERS_TYPES: RANGE_MODIFIERS_TYPES,
+  CE_WEAPON_RANGE_TYPES: CE_WEAPON_RANGE_TYPES,
+  CU_WEAPON_RANGE_TYPES: CU_WEAPON_RANGE_TYPES,
+  CT_WEAPON_RANGE_TYPES: CT_WEAPON_RANGE_TYPES,
+  CT_ARMOR_TYPES: CT_ARMOR_TYPES,
+  TARGET_DM: TARGET_DM,
+  AUG_LOCATIONS: AUG_LOCATIONS,
+  ITEM_TYPE_SELECT: ITEM_TYPE_SELECT,
+  CU_DAMAGE_TYPES: CU_DAMAGE_TYPES,
+  effectType: effectType,
+  DAMAGECOLORS: DAMAGECOLORS,
+  WeightlessItems: WeightlessItems,
+  ShipWeaponTypes: ShipWeaponTypes,
+  ShipDamageRules: ShipDamageRules,
+  ShipArmorTypesCD: ShipArmorTypesCD,
+  WorldSizeOptions: WorldSizeOptions,
+  WorldAtmosphereOptions: WorldAtmosphereOptions,
+  WorldHydrographicsOptions: WorldHydrographicsOptions,
+  WorldPopulationOptions: WorldPopulationOptions,
+  StarportClassOptions: StarportClassOptions,
+  WorldGovernmentOptions: WorldGovernmentOptions,
+  WorldLawLevelOptions: WorldLawLevelOptions,
+  WorldTechLevelOptions: WorldTechLevelOptions,
+  WorldFeaturesOptions: WorldFeaturesOptions,
+  WorldTravelZones: WorldTravelZones
+};
+

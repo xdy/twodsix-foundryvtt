@@ -746,15 +746,6 @@
               "sourceId": "hBe0JpXSNRpmwR3f"
             }
           },
-          "changes": [
-            {
-              "key": "system.primaryArmor.value",
-              "type": "add",
-              "phase": "derived",
-              "value": "2",
-              "priority": null
-            }
-          ],
           "duration": {
             "startTime": null,
             "seconds": null,
@@ -778,7 +769,17 @@
           "name": "Subdermal Armor",
           "img": "./systems/twodsix/assets/icons/subdermal-armor.svg",
           "type": "base",
-          "system": {},
+          "system": {
+            "changes": [
+              {
+                "key": "system.primaryArmor.value",
+                "type": "add",
+                "phase": "derived",
+                "value": "2",
+                "priority": null
+              }
+            ]
+          },
           "description": "",
           "statuses": [],
           "sort": 0,

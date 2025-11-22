@@ -1,4 +1,3 @@
-
 /* ============================================================================
    TABLE OF CONTENTS
    ============================================================================
@@ -30,6 +29,9 @@
    24. Roll Dialog Format (SECTION-24)
    25. Battle Sheet (SECTION-25)
    26. Miscellaneous Overrides (SECTION-26)
+   27. Space Combat Tracker UI (SECTION-27)
+   28. Active Effects Configuration (SECTION-28)
+   29. World Sheet (SECTION-29)
    ============================================================================ */
 
 /* ============================================================================
@@ -105,6 +107,12 @@
   --s2d6-color-border-light-1: #ddd;
   --s2d6-color-shadow-primary: #603032;
   --s2d6-color-border-light-tertiary: #7a7971;
+  /* Additional semantic helpers for common patterns */
+  --s2d6-default-border: 1px solid var(--s2d6-default-color);
+  --s2d6-strong-border: 2px solid var(--s2d6-default-color);
+  --s2d6-groove-border: 1px groove var(--s2d6-default-color);
+  --s2d6-default-radius-lg: 2ch;
+  --s2d6-default-box-shadow: 0 0 5px var(--s2d6-default-color);
 }
 
 /* ============================================================================
@@ -516,7 +524,7 @@ h2 {
   display: grid;
   height: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 18em 1fr 1fr;
+  grid-template-rows: 19em 1fr 1fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -557,19 +565,18 @@ h2 {
 .npc-notes-container {
   grid-area: npc-notes-container;
   max-height: -webkit-fill-available;
-  border-style: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   /* Ensure the container itself uses the standard background and text color
      so it doesn't pick up the header/title styling from higher-level rules. */
   background-color: var(--s2d6-background-opaque);
   color: var(--s2d6-default-color);
-  border-width: 2px;
+
 }
 
 .npc-notes-ce {
   height: 90% !important;
-  border-radius: 0 0 2ch 2ch !important;
+  border-radius: 0 0 var(--s2d6-default-radius-lg) var(--s2d6-default-radius-lg) !important;
   overflow-y: auto;
   padding-left: 2px;
 }
@@ -580,10 +587,8 @@ h2 {
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
-  border: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
-  border-width: 2px;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   overflow: auto;
 }
 
@@ -765,11 +770,9 @@ h2 {
 }
 
 .vehicle-notes, .space-object-notes {
-  border-style: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   /*background-color: var(--s2d6-background-nearly-opaque);*/
-  border-width: 2px;
   max-height: 100%;
 }
 
@@ -791,10 +794,8 @@ h2 {
 }*/
 
 .vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage {
-  border: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
-  border-width: 2px;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   overflow: auto;
 }
 
@@ -886,7 +887,7 @@ h2 {
   height: 84%;
   width: 100%;
   padding: 0 1ch;
-  border-radius: 0 0 2ch 2ch;
+  border-radius: 0 0 var(--s2d6-default-radius-lg) var(--s2d6-default-radius-lg);
 }
 
 .space-object-notes-container {
@@ -1104,11 +1105,10 @@ img.condition-icon {
 .character-bgi-npc {
   font-size: 2ch;
   z-index: 9;
-  border: 2px solid;
-  border-radius: 2ch;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   padding: 0 1ch;
   color: var(--s2d6-default-color);
-  border-width: 2px;
   overflow: auto;
 }
 
@@ -1148,6 +1148,11 @@ img.condition-icon {
 
 .bgi-species input {
   width: 7em;
+  border: none;
+}
+
+.bgi-primaryLanguage input {
+  width: 10em;
   border: none;
 }
 
@@ -1345,7 +1350,7 @@ span.bgi-charEdit {
   align-items: center;
   flex-wrap: nowrap;
   height: auto;
-  margin-top: 2ch;
+  margin-top: 1ch;
   gap: 2ch;
 }
 
@@ -1636,8 +1641,8 @@ svg:hover {
   /* padding-top: 0.15em; */
   display: flex;
   background-color: var(--s2d6-background-opaque);
-  border-radius: 5ch 1ch 2ch 0ch;
-  border: solid 2px var(--s2d6-default-color);
+  border-radius: 5ch 1ch var(--s2d6-default-radius-lg) 0ch;
+  border: var(--s2d6-strong-border);
   flex-direction: column;
   justify-content: center;
   max-height: 3ch;
@@ -1755,7 +1760,7 @@ a.actor-notes-tab:hover {
 }
 
 .gear-header {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
   overflow-x: visible;
@@ -1857,7 +1862,7 @@ a.actor-notes-tab:hover {
 .skill-list {
   padding: 0.3em 0.5em;
   width: 98%;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
   /* font-weight: bold; */
@@ -1875,7 +1880,7 @@ a.actor-notes-tab:hover {
   text-align: center;
   color: var(--s2d6-item-active);
   background-color: var(--s2d6-default-color);
-  border-radius: 2ch 2ch 0 0;
+  border-radius: var(--s2d6-default-radius-lg) var(--s2d6-default-radius-lg) 0 0;
   padding-top: 2px;
 }
 
@@ -2093,7 +2098,7 @@ span.total-output {
 }
 
 .financial-notes div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   /* width: 14.8em; */
   width: 98%;
   min-height: 94%;
@@ -2116,7 +2121,7 @@ span.total-output {
   width: 31ch;
   padding: 0.5em;
   height: 3.5ch;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0;
 }
 
@@ -2140,7 +2145,7 @@ span.total-output {
   padding: 10px 0;
 }
 
-.item-title, .ship-grid .item-title input[type="text"]{
+.item-title, .ship-grid .item-title input[type="text"], .ship-grid input.item-title {
   -webkit-mask-image: url(../assets/actor/header.svg);
   mask-image: url(../assets/actor/header.svg);
   -webkit-mask-repeat: no-repeat;
@@ -2167,7 +2172,7 @@ span.total-output {
   font-weight: bold;
   font-size: 2ch;
   padding: 0.2em 0.2em 0.2em 0.5em;
-  border-radius: 2ch 0 4ch;
+  border-radius: var(--s2d6-default-radius-lg) 0 4ch;
 }
 
 .item-title-short {
@@ -2224,7 +2229,7 @@ span.total-output {
 }
 
 .info-container .editor {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 2px;
 }
 
@@ -2254,7 +2259,7 @@ span.total-output {
 
 
 .char-description div[contenteditable], .char-contacts div[contenteditable], .char-xp div[contenteditable], .char-bio div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   height: 95%;
   overflow-y: auto;
   color: var(--s2d6-light-color);
@@ -2262,7 +2267,7 @@ span.total-output {
 }
 
 /*.char-bio div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   height: 95%;
   overflow-y: auto;
   color: var(--s2d6-light-color);
@@ -2288,13 +2293,13 @@ span.total-output {
 }
 
 .notes-container .editor-content {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
 }
 
 notes-container > div[contenteditable] {
   height: 33em;
   width: 30.2em;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0;
   font-size: 15px;
   color: var(--s2d6-default-color);
@@ -2387,7 +2392,7 @@ notes-container > div[contenteditable] {
 
 .ship-name {
   grid-area: ship-name;
-  border-bottom: 2px solid var(--s2d6-default-color);
+  border-bottom: var(--s2d6-strong-border);
   z-index: 2;
   font-size: 2.5ch;
   padding: 5px 2px 0px 4px;
@@ -2453,7 +2458,7 @@ notes-container > div[contenteditable] {
   /* align-self: center; */
 }
 
-.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover, .power-title:hover {
   cursor: pointer;
 }
 
@@ -2490,10 +2495,8 @@ notes-container > div[contenteditable] {
 }
 
 .ship-armor-name textarea, .battle-armor-name textarea {
-  border: solid;
+  border: var(--s2d6-strong-border);
   border-radius: 1ch;
-  border-color: var(--s2d6-default-color);
-  border-width: 2px;
   text-align: center;
   font-size: 10px;
   overflow-wrap: break-word;
@@ -2718,17 +2721,25 @@ notes-container > div[contenteditable] {
   grid-area: avail;
 }
 
-.ship-stat input[type="number"],  .ship-stat-finance input[type="number"] {
+.ship-stat-finance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.ship-stat-finance input{
+  text-align: right;
+  width: 12ch;
+}
+
+.ship-stat input[type="number"] {
   text-align: center;
   /* width: 53px; */
   background-color: transparent;
   border: none;
   height: auto;
   /* margin-top: 5px; */
-}
-
-.ship-stat-finance input[type="number"] {
-  width: 10ch;
 }
 
 .small-font {
@@ -2859,7 +2870,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-position-box {
   width: 29ch;
-  border: 1px groove var(--s2d6-default-color);
+  border: var(--s2d6-groove-border);
   min-height: 6ch;
   border-radius: 0;
   display: flex;
@@ -2886,16 +2897,23 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-grid input[type="text"] {
   width: 30ch;
-  border: 1px groove var(--s2d6-default-color);
+  border: var(--s2d6-groove-border);
   border-radius: 0;
   height: 4ch;
 }
 
-.ship-grid > div > div[contenteditable] {
+.ship-grid > div textarea {
   width: 30ch;
-  border: 1px groove var(--s2d6-default-color) !important; /* must keep !important*/
+  border: var(--s2d6-groove-border);
   border-radius: 0;
-  min-height: 6ch;
+  height: 4ch;
+  resize: none;
+}
+
+.ship-grid input.item-title {
+    width: 28ch;
+    height: fit-content;
+    border: none;
 }
 
 .storage-wrapper {
@@ -2930,9 +2948,18 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   width: fit-content;
 }
 
-.storage-stored {
+.storage-stored-double {
   display: grid;
   grid-template-columns: 8.5em 5.5em 3em 3em 4em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas:
+    ". . . . . .";
+}
+
+.storage-stored-single {
+  display: grid;
+  grid-template-columns: 17em 11em 6em 6em 8em 6em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas:
@@ -2947,12 +2974,32 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   top:0%;
   z-index: 20;
   width: fit-content;
-  height: 3ch;
+  height: fit-content;
 }
 
-.components-stored-double, .cargo-stored-double {
+.components-stored-double {
   display: grid;
-  grid-template-columns: 23ch 7ch 5ch 7ch 7ch 7ch;
+  grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 0;
+  grid-template-areas:
+    ". . . . . .";
+  padding: 1px;
+}
+
+.cargo-stored-double {
+  display: grid;
+  grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 0;
+  grid-template-areas:
+    ". . . . . .";
+  padding: 1px;
+}
+
+.cargo-stored-single {
+  display: grid;
+  grid-template-columns: 19em 8em 4em 7em 7em 6em 3em;
   grid-template-rows: 1fr;
   gap: 1px 0;
   grid-template-areas:
@@ -3066,7 +3113,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .cargo-wrapper > div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   height: 18em;
   color: var(--s2d6-light-color);
   padding: 0.2em;
@@ -3084,7 +3131,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-notes-container .editor, .ship-notes-container-short .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0 3px 3px;
   width: 96%;
   height: 91%;
@@ -3096,7 +3143,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-notes-container >div[contenteditable], .ship-notes-container-short >div[contenteditable], .ship-finances-container >div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0 3px 3px;
   font-size: 15px;
   /* background-color: var(--s2d6-input-background); */
@@ -3150,12 +3197,12 @@ div.ship-value {
 }*/
 
 .ship-commonFunds input[type="number"] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   width: 36ch;
 }
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   /* width: 107%; */
   height: 31ch;
   border-radius: 0;
@@ -3180,7 +3227,7 @@ button.flexrow.flex-group-center.toggle-skills {
   outline: none;
   border-radius: 3px;
   background: var(--s2d6-header-border);
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
 }
 
 .mini-dice img.rollable {
@@ -3283,7 +3330,9 @@ select.form-input, input.form-input, span.form-input {
 
 .item-descr {
   flex: 1 1 auto;
-  min-height: 3em;
+  /*min-height: 3em;*/
+  margin-bottom: 1em;
+  box-sizing: border-box;
 }
 
 .item-descr div[contenteditable] {
@@ -3294,9 +3343,9 @@ select.form-input, input.form-input, span.form-input {
   height: unset;
 }
 
-.item-descr prose-mirror.editor.prosemirror {
+/*.item-descr prose-mirror.editor.prosemirror {
     height: 90%;
-}
+}*/
 
 .pusher {
   display: block;
@@ -3517,13 +3566,21 @@ background: var(--s2d6-sidebar-background);
 }
 
 .dice-roll .dice-formula, .dice-roll .dice-total {
-  flex: 0 0 100%;
+  /* Make the dice total a flexible row that wraps when necessary.
+     This lets the `.twodsix-roll-results` content try to fit on a
+     single line while allowing items to wrap if space is constrained. */
+  flex: 0 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   position: relative;
   margin: 0;
   line-height: 24px;
   text-align: center;
   background: var(--s2d6-background-nearly-transparent);
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 2px;
   box-shadow: 0 0 2px var(--s2d6-background-opaque) inset;
   word-break: break-all;
@@ -3531,7 +3588,9 @@ background: var(--s2d6-sidebar-background);
 }
 
 .dice-total {
-  white-space: pre-wrap;
+  /* Allow normal wrapping within the dice total so items can shrink
+     and remain on the same line where possible. */
+  white-space: normal;
 }
 
 .dice-roll .dice-total.crit-fail-roll {
@@ -3540,6 +3599,18 @@ background: var(--s2d6-sidebar-background);
 
 .dice-roll .dice-total.crit-success-roll {
   color: var(--s2d6-crit-success);
+}
+
+/* Ensure critical coloring applies to our structured roll results (sum/value)
+   when the outer .dice-total has a crit class. Use a more specific selector
+   so these rules override the normal result-value color. */
+.dice-roll .dice-total.crit-success-roll .twodsix-roll-results .result-value,
+.dice-roll .dice-total.crit-success-roll .twodsix-roll-results .result-sum {
+  color: var(--s2d6-crit-success);
+}
+.dice-roll .dice-total.crit-fail-roll .twodsix-roll-results .result-value,
+.dice-roll .dice-total.crit-fail-roll .twodsix-roll-results .result-sum {
+  color: var(--s2d6-crit-fail);
 }
 
 .dice-tooltip .dice-rolls .roll.d6 {
@@ -3579,6 +3650,162 @@ background: var(--s2d6-sidebar-background);
 .card-buttons {
   display: inline-flex;
   gap: 2px;
+}
+
+/* TWODSIX: Roll result compact styles (scoped under .chat-message) */
+.chat-message .twodsix-roll-results {
+  /* Stack the results row and the degree badge vertically, centered.
+     Make the container full-width so `.results-main` can center its
+     children (this ensures the single-row case is centered). */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+}
+.chat-message .twodsix-roll-results .results-main {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center the sum/effect/timeframe row */
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.chat-message .twodsix-roll-results .results-main > * {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  white-space: nowrap;
+}
+.chat-message .twodsix-roll-results .result-sum {
+  background: var(--s2d6-background-nearly-transparent);
+  /* Use the default color for the border so boxed items contrast properly */
+  border: var(--s2d6-default-border);
+  color: var(--s2d6-app-color);
+  padding: 0.08rem 0.65rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.chat-message .twodsix-roll-results .result-effect { color: var(--s2d6-light-color); padding: 0.25rem 0.5rem; }
+.chat-message .twodsix-roll-results .result-label {
+  color: var(--s2d6-default-color);
+  margin-right: 0.5rem; /* visible gap between label and value */
+  font-size: 0.88rem;
+  display: inline-block;
+}
+.chat-message .twodsix-roll-results .result-value {
+  color: var(--s2d6-app-color);
+  /* allow shrinking and ellipsis to keep row compact */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.chat-message .twodsix-roll-results .badge.timeframe {
+  background: var(--s2d6-light-background-transparent);
+  color: var(--s2d6-light-color);
+  padding: 0.08rem 0.4rem; /* tighter padding for boxed appearance */
+  border-radius: 8px; /* match result-sum radius */
+  font-weight: 700;
+  border: var(--s2d6-default-border);
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* result-item rule is handled by .results-main > * and .result-sum etc. */
+.chat-message .twodsix-roll-results .degree-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.24rem 0.44rem;
+  border-radius: 999px;
+  margin: 0;
+}
+.degree-fail { background: var(--s2d6-crit-fail); color: var(--s2d6-app-color); }
+.degree-partial { background: var(--s2d6-damage-orange); color: var(--s2d6-app-color); }
+.degree-success { background: var(--s2d6-crit-success); color: var(--s2d6-app-color); }
+.degree-critical { background: var(--s2d6-header-background); color: var(--s2d6-app-color); }
+.degree-unknown { background: var(--s2d6-background-nearly-transparent); color: var(--s2d6-app-color); }
+
+/* Ensure the degree and attack badges are centered below the results row */
+.chat-message .twodsix-roll-results .result-degree-wrap {
+  /* Keep the degree wrap inline so it can sit in the same flex row
+     as other result items. Center its contents vertically to match
+     the `result-sum` and other items. */
+  display: inline-flex;
+  align-items: center; /* vertical centering */
+  justify-content: center;
+  gap: 0.6rem;
+  align-self: center;
+  order: 999; /* ensure degree appears at the end of the row */
+}
+.chat-message .twodsix-roll-results .attack-badge { margin: 0.2rem 0 0 0; }
+
+/* Inline placement for degree when timeframe is absent: push to the row end */
+.chat-message .twodsix-roll-results .result-degree-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0; /* removed extra left margin so items fit on one line */
+  flex: 0 0 auto;
+  order: 999; /* keep badge visually at the end of the row */
+}
+.chat-message .twodsix-roll-results .result-degree-inline .attack-badge { margin: 0; }
+
+/* Attack outcome badge */
+.chat-message .twodsix-roll-results .attack-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+  margin: 0.2rem 0 0 0;
+  color: var(--s2d6-app-color);
+}
+
+.chat-message .twodsix-roll-results .attack-hit { background: var(--s2d6-crit-success); }
+.chat-message .twodsix-roll-results .attack-miss { background: var(--s2d6-crit-fail); }
+
+/* Box the timeframe value specifically (label sits to the left) */
+.chat-message .twodsix-roll-results .result-timeframe .result-value {
+  background: var(--s2d6-light-background-transparent);
+  color: var(--s2d6-light-color);
+  padding: 0.08rem 0.4rem;
+  border-radius: 6px;
+  font-weight: 700;
+  border: 1px solid var(--s2d6-color-border-light-1);
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Box the whole timeframe item (label + value) to ensure consistent border */
+.chat-message .twodsix-roll-results .result-item.result-timeframe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--s2d6-light-background-transparent);
+  color: var(--s2d6-light-color);
+  padding: 0.08rem 0.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  border: 1px solid var(--s2d6-color-border-light-1);
+}
+
+/* Avoid double-boxing: remove inner value border when whole item is boxed */
+.chat-message .twodsix-roll-results .result-item.result-timeframe .result-value {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .chat-message .twodsix-roll-results .results-main { gap: 0.4rem; }
 }
 
 #tooltip {
@@ -3669,6 +3896,13 @@ background: var(--s2d6-sidebar-background);
   padding: 0.5ch;
 }
 
+.flavor-table th {
+  text-align: left;
+}
+
+.flavor-table th.centre {
+    text-align: center;
+}
 /*
 #settings button {
     position: relative;
@@ -3736,7 +3970,7 @@ form button, .application a.button, .application button {
 }
 
 button:hover {
-  box-shadow: 0 0 5px var(--s2d6-default-color);
+  box-shadow: var(--s2d6-default-box-shadow);
   /*color: var(--s2d6-light-color);*/
   border-color: var(--s2d6-light-color);
 }
@@ -4054,7 +4288,7 @@ prose-mirror#chat-message {
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-light-color);
   margin-top: 0;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
 }
 .actor-editor.editor {
   height: 95%;
@@ -4345,7 +4579,7 @@ form .form-group.slim .form-fields > label {
 
 .tags.input-element-tags .tag {
   border-color: var(--s2d6-default-color);
-  background-color: var(--s2d6-header-background);
+  /*background-color: var(--s2d6-header-background);*/
 }
 
 multi-select.actor-sheet {
@@ -4513,9 +4747,8 @@ li.battle-damage button,  li.battle-weapons button{
 
 .battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
 .battle-operations-container, .battle-defence-container, .battle-positions-container, .battle-cargo-container {
-  border-style: solid;
-  border-radius: 2ch;
-  border-width: 2px;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   overflow-y: auto;
   overflow-x: hidden;
   --color-scrollbar: var(--s2d6-battle-color);
@@ -4697,9 +4930,9 @@ section.item-class {
   color: var(--s2d6-default-color);
 }
 
-.chat-form {
+/*.chat-form {
   background-color: var(--s2d6-header-background);
-}
+}*/
 
 .chat-sidebar {
   background-color: var(--s2d6-background-semi-opaque);
@@ -4922,4 +5155,518 @@ code {
 
 .augment-buildPoints input {
   width: 4ch;
+}
+
+
+/* ====================================
+   Space Combat Tracker Styles (SECTION-27)
+   ==================================== */
+
+/* Phase display in combat tracker header */
+.space-combat-phase {
+  background: var(--s2d6-background-nearly-transparent);
+  border: var(--s2d6-strong-border);
+  border-radius: 2px;
+  padding: 8px;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.space-combat-phase .phase-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--s2d6-light-color);
+}
+
+.space-combat-phase .phase-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.space-combat-phase .phase-control {
+  cursor: pointer;
+  padding: 4px 8px;
+  background: var(--s2d6-default-color);
+  border-radius: 2px;
+  color: var(--s2d6-item-active);
+  transition: background 0.2s;
+  border: none;
+}
+
+.space-combat-phase .phase-control:hover {
+  background: var(--s2d6-light-color);
+  color: var(--s2d6-item-active);
+}
+
+.space-combat-phase .phase-indicator {
+  font-weight: bold;
+  color: var(--s2d6-default-color);
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Combatant action indicator wrapper - separate row below standard Foundry elements */
+.action-indicator-wrapper {
+  display: flex;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--s2d6-dialog-color);
+  margin: 2px 0;
+  padding: 4px 8px;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center; /* Center the buttons */
+  position: static;
+  flex-wrap: nowrap; /* Keep on one line */
+  width: 100%;
+  min-height: 24px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.15); /* Slightly more visible background */
+  border-radius: 3px;
+  border-left: 3px solid var(--s2d6-light-color); /* Visual indicator */
+}
+
+/* Make action controls clickable */
+.action-indicator-wrapper .action-control {
+  pointer-events: auto;
+}
+
+/* Individual action control */
+.action-control {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  position: relative;
+  cursor: default;
+  min-height: 20px;
+  min-width: 36px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  font-size: 10px;
+  flex-shrink: 0; /* Prevent shrinking */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* GM can click to spend actions */
+.action-control.can-use {
+  cursor: pointer;
+  background: var(--s2d6-background-nearly-transparent);
+  border: 1px solid currentColor;
+}
+
+.action-control.can-use:hover {
+  background: var(--s2d6-background-semi-opaque);
+}
+
+/* Action count display */
+.action-control .action-count {
+  font-weight: bold;
+  min-width: 20px;
+  flex: 1;
+}
+
+/* Reserve space for undo button to prevent layout shifts - NOT for thrust controls */
+.action-control:not(.thrust-control)::after {
+  content: '';
+  width: 18px; /* 16px button + 2px margin */
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Undo button styling */
+.action-control .undo-action {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 2px;
+  font-size: 10px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.action-control .undo-action:hover {
+  opacity: 1;
+}
+
+/* Color coding by action type */
+.action-control.minor-actions {
+  color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color);
+}
+
+.action-control.significant-actions {
+  color: var(--s2d6-damage-orange);
+  border-color: var(--s2d6-damage-orange);
+}
+
+.action-control.reactions,
+.action-control.reaction-actions {
+  color: var(--s2d6-damage-stat-color);
+  border-color: var(--s2d6-damage-stat-color);
+}
+
+/* Thrust control layout */
+.action-control.thrust-control {
+  color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px;
+  gap: 6px;
+  min-width: 90px;
+  height: 24px;
+}
+
+/* Thrust control sections */
+.action-control.thrust-control .thrust-icon {
+  flex-shrink: 0;
+}
+
+.action-control.thrust-control .thrust-counter {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  min-width: 24px;
+}
+
+/* Thrust control buttons */
+.action-control.thrust-control .thrust-decrease,
+.action-control.thrust-control .thrust-increase {
+  height: 16px;
+  width: 16px;
+  --button-size: 16px !important;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  line-height: 16px;
+  border: none;
+  background: transparent;
+  color: var(--s2d6-default-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+/* Shared hover behavior - maintains current border color on hover */
+.action-control.minor-actions:hover,
+.action-control.significant-actions:hover,
+.action-control.reactions:hover,
+.action-control.reaction-actions:hover,
+.action-control.thrust-control:hover {
+  border-color: currentColor;
+}
+
+/* Shared used state - uses current color for background */
+.action-control.reactions.used,
+.action-control.reaction-actions.used {
+  background: var(--s2d6-damage-stat-color);
+  border-color: var(--s2d6-damage-stat-color);
+}
+
+/* Thrust button hover effects */
+.action-control.thrust-control .thrust-decrease:hover,
+.action-control.thrust-control .thrust-increase:hover {
+  color: var(--s2d6-item-active);
+  background: var(--s2d6-default-color);
+  box-shadow: 0 0 0 1px var(--s2d6-default-color);
+}
+
+/* Other control button styling for non-thrust controls */
+.action-control .control-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px;
+  width: 16px;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--s2d6-default-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* ------------------------------------------------------------------ */
+/* SECTION 28. ActiveEffect Config - responsive column sizing         */
+/* ------------------------------------------------------------------ */
+
+.active-effect-config .tab.changes {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.active-effect-config .tab.changes header, .active-effect-config .tab.changes ol {
+  grid-template-columns: 3fr 14ch 4fr 50px 4ch;
+}
+
+.active-effect-config .tab.changes header {
+  margin-right: 12px;
+}
+
+/* ------------------------------------------------------------------ */
+/* SECTION 29. World Sheet                                            */
+/* ------------------------------------------------------------------ */
+.twodsix-world-sheet .resource-label {
+  font-weight: bold;
+  min-width: 140px;
+  text-align: right;
+  margin-right: 0.5em;
+  flex-shrink: 0;
+}
+
+.twodsix-world-sheet {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.twodsix-world-sheet input[type="text"],
+.twodsix-world-sheet input[type="number"],
+.twodsix-world-sheet textarea,
+.twodsix-world-sheet select {
+  flex: 1 1 0;
+  /*max-width: 400px;*/
+  margin-left: 0.25em;
+}
+
+.twodsix-world-sheet .world-badge {
+  margin-left: 0.5em;
+  font-size: 1em;
+  font-weight: 600;
+  background: var(--s2d6-light-background-transparent);
+  border-radius: 0.4em;
+  padding: 0.1em 0.5em;
+  display: inline-block;
+  width: fit-content;
+}
+
+.twodsix-world-sheet .world-content-container {
+  /*max-width: 600px;*/
+  margin: 0 auto;
+}
+
+.world-tabs {
+  margin-bottom: 2ch;
+}
+
+.world-title {
+  height: 3ch;
+  width: 23ch;
+  display: block;
+  color: var(--s2d6-item-active);
+  background-color: var(--s2d6-default-color);
+  font-weight: bold;
+  font-size: 2ch;
+  padding: 0.2em 0.2em 0.2em 0.5em;
+  border-radius: var(--s2d6-default-radius-lg) 0 4ch;
+  margin-bottom: 1ch;
+}
+
+.world-content-container {
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
+  /* background-color: var(--s2d6-background-nearly-opaque); */
+  max-height: 50vh;
+  overflow-y: auto;
+  min-height: 33vh;
+}
+
+.world-inset /*, .twodsix-world-sheet .single-line.world-inset*/ {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1ch;
+}
+
+.actor-editor.environment-box {
+  min-height: 12ch;
+  margin-bottom: 1ch;
+}
+
+.actor-editor.notes-box {
+  min-height: 24ch;
+  margin-bottom: 1ch;
+}
+
+span.single-line.world-inset {
+  margin: 0.5ch 2ch 0ch 2ch;
+}
+
+.world-stats {
+    margin: 0 1ch 1ch 0;
+}
+
+.world-description .actor-editor {
+    margin: 0 2ch 2ch 2ch;
+}
+
+.world-img {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.world-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+.trade-codes {
+  text-align: left;
+}
+
+.trade-generator-section {
+  margin: 1ch 2ch;
+  padding: 1ch;
+  background: var(--s2d6-light-background-transparent);
+}
+
+.trade-generate-btn {
+  padding: 0.5ch 1.5ch;
+  background-color: var(--s2d6-default-color);
+  color: white;
+  border: none;
+  border-radius: 0.3ch;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0.5ch;
+}
+
+.trade-generate-btn:hover {
+  background-color: var(--s2d6-item-active);
+  transform: scale(1.02);
+}
+
+.trade-generate-btn i {
+  margin-right: 0.5ch;
+}
+
+.trade-generator-help {
+  font-size: smaller;
+  color: var(--s2d6-default-color);
+  margin: 0;
+  font-style: italic;
+}
+
+.trade-generation-report {
+  padding: 1ch;
+  line-height: 1.6;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.trade-generation-report h3 {
+  color: var(--s2d6-default-color);
+  border-bottom: var(--s2d6-strong-border);
+  padding-bottom: 0.5ch;
+  margin-bottom: 1ch;
+}
+
+.trade-generation-report h4 {
+  color: var(--s2d6-default-color);
+  margin-top: 1ch;
+  margin-bottom: 0.5ch;
+}
+
+.trade-section {
+  margin-bottom: 1.5ch;
+  padding: 0.5ch;
+  background: var(--s2d6-light-background-transparent);
+  border-left: 3px solid var(--s2d6-default-color);
+  border-radius: 0.3ch;
+}
+
+.trade-section ul {
+  margin: 0.5ch 0;
+  padding-left: 2ch;
+}
+
+.trade-section li {
+  margin: 0.25ch 0;
+}
+
+.trade-note {
+  color: var(--s2d6-default-color);
+  font-style: italic;
+  margin: 0.5ch 0;
+  padding: 0.5ch;
+  background: var(--s2d6-background-nearly-transparent);
+  border-radius: 0.2ch;
+}
+
+.trade-generation-report .trade-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  display: block;
+}
+
+.trade-generation-report .trade-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.dialog .trade-generation-report {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.dialog .trade-generation-report .trade-table-wrap {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.trade-generation-report .trade-table th,
+.trade-generation-report .trade-table td {
+  padding: 0.3ch 0.6ch;
+  border: var(--s2d6-default-border);
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.trade-generation-report .trade-table th {
+  background: var(--s2d6-background-nearly-transparent);
+  font-weight: 600;
 }
