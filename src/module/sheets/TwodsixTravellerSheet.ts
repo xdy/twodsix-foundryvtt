@@ -100,12 +100,6 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       showTraitAE: game.settings.get('twodsix', 'showTraitAE')
     });
 
-    context.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
-      const [ key, value ] = entry;
-      ret[ value ] = key;
-      return ret;
-    }, {});
-
     //Add custom source labels for active effects
     for(const effect of context.effects) {
       if (["dead", "unconscious", "wounded", "encumbered"].includes(Array.from(effect.statuses)[0])) {
