@@ -69,7 +69,14 @@ Hooks.once('init', async function () {
   };
 
   CONFIG.ActiveEffect.legacyTransferral = false;
-  CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
+  //CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
+  CONFIG.ActiveEffect.phases = {
+    initial: {label: "Init"},
+    derived: {label: "Derived"},
+    custom: {label: "Custom"},
+    encumbMax: {label: "Encumbrance Max"},
+    final: {label: "Final"}
+  };
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
