@@ -82,29 +82,30 @@ export class TwodsixActiveEffect extends ActiveEffect {
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
     // Ensure changes exist and are an array
     if (!data.changes || !Array.isArray(data.changes)) {
-      console.warn("No valid changes found in data.");
+      console.log("No valid changes found in data.");
       return;
     }
 
     // Calculate differences
     const newChanges = foundry.utils.diffObject(this, data);
+    if (newChanges?.changes) {
+      // Safeguard against undefined target
+      const actor: TwodsixActor | undefined = this.target;
+      const derivedKeys = actor?._getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
 
-    // Safeguard against undefined target
-    const actor: TwodsixActor | undefined = this.target;
-    const derivedKeys = actor?._getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
-
-    for (const change of data.changes) {
-      // Determine phase based on change properties
-      if (change.key === "system.encumbrance.max") {
-        change.phase = "encumbMax";
-      } else if (change.type === "custom") {
-        change.phase = "custom";
-      } else if (actor && ["traveller", "animal", "robot"].includes(actor.type)) {
-        change.phase = derivedKeys.includes(change.key) ? "derived" : "initial";
-      } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
-        change.phase = "derived";
-      } else {
-        change.phase = "initial";
+      for (const change of data.changes) {
+        // Determine phase based on change properties
+        if (change.key === "system.encumbrance.max") {
+          change.phase = "encumbMax";
+        } else if (change.type === "custom") {
+          change.phase = "custom";
+        } else if (actor && ["traveller", "animal", "robot"].includes(actor.type)) {
+          change.phase = derivedKeys.includes(change.key) ? "derived" : "initial";
+        } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+          change.phase = "derived";
+        } else {
+          change.phase = "initial";
+        }
       }
     }
   }
