@@ -1,3 +1,10 @@
+## [6.9.5](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.4...v6.9.5) (2025-11-22)
+
+
+### Bug Fixes
+
+* Fix migration console bug ([#1906](https://github.com/xdy/twodsix-foundryvtt/issues/1906)) ([d4fb2ce](https://github.com/xdy/twodsix-foundryvtt/commit/d4fb2ce1d4cd8cd07ba76c63328734aee81af282))
+
 ## [6.9.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.3...v6.9.4) (2025-11-19)
 
 
