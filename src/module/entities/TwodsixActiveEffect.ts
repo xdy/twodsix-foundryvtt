@@ -79,6 +79,38 @@ export class TwodsixActiveEffect extends ActiveEffect {
     this.updatePhases(data, options, user);
   }
 
+  /**
+   * Determines the phase of an active effect change based on the changes key.
+   *
+   * @param {object} change - The change object being processed.
+   * @returns {string} - The phase of the change (e.g., "encumbMax", "custom", "derived", "initial").
+   */
+  determinePhase(change: any): string {
+    // Safeguard against undefined target
+    const actor: TwodsixActor | undefined = this.target;
+    const derivedKeys = actor?._getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
+
+    if (change.key === "system.encumbrance.max") {
+      return "encumbMax";
+    } else if (change.type === "custom") {
+      return "custom";
+    } else if (actor && ["traveller", "animal", "robot"].includes(actor.type)) {
+      return derivedKeys.includes(change.key) ? "derived" : "initial";
+    } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+      return "derived";
+    } else {
+      return "initial";
+    }
+  }
+
+  /**
+   * Updates the phases of changes in the provided data object.
+   *
+   * @param {object} data - The data object containing changes to process.
+   * @param {object} [options] - Additional options for processing changes.
+   * @param {documents.BaseUser} [user] - The user requesting the update.
+   * @returns {void}
+   */
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
     // Ensure changes exist and are an array
     if (!data.changes || !Array.isArray(data.changes)) {
@@ -89,23 +121,8 @@ export class TwodsixActiveEffect extends ActiveEffect {
     // Calculate differences
     const newChanges = foundry.utils.diffObject(this, data);
     if (newChanges?.changes) {
-      // Safeguard against undefined target
-      const actor: TwodsixActor | undefined = this.target;
-      const derivedKeys = actor?._getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
-
       for (const change of data.changes) {
-        // Determine phase based on change properties
-        if (change.key === "system.encumbrance.max") {
-          change.phase = "encumbMax";
-        } else if (change.type === "custom") {
-          change.phase = "custom";
-        } else if (actor && ["traveller", "animal", "robot"].includes(actor.type)) {
-          change.phase = derivedKeys.includes(change.key) ? "derived" : "initial";
-        } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
-          change.phase = "derived";
-        } else {
-          change.phase = "initial";
-        }
+        change.phase = this.determinePhase(change);
       }
     }
   }
