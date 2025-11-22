@@ -1,9 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-const validActorTypes = Object.keys(CONFIG.Actor.dataModels);
-const validItemTypes = Object.keys(CONFIG.Item.dataModels);
-
 /**
  * Applies an asynchronous function to all TwodsixActor instances in the world and in compendium packs (if they can be unlocked).
  * Includes actors from the world, unlinked tokens in all scenes, and all actor compendiums.
@@ -13,6 +10,7 @@ const validItemTypes = Object.keys(CONFIG.Item.dataModels);
  * @returns A promise that resolves when all actors and packs have been processed.
  */
 export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void>)): Promise<void> {
+  const validActorTypes = Object.keys(CONFIG.Actor.dataModels);
   const allActors = (game.actors?.filter(act => validActorTypes.includes(act.type)) ?? []) as TwodsixActor[];
 
   for (const scene of game.scenes ?? []) {
@@ -44,8 +42,8 @@ export async function applyToAllActors(fn: ((actor:TwodsixActor) => Promise<void
 export async function applyToAllItems(fn: ((item:TwodsixItem) => Promise<void>)): Promise<void> {
   const itemPacks = game.packs.filter(pack => pack.metadata.type === 'Item' && pack.metadata.packageType !== 'system');
   await applyToAllPacks(fn, itemPacks);
-
-  const allItems = (game.items?.filter(itm => validItemTypes.includes(itm.type)) ?? []) as TwodsixItem[];
+  const validItemsTypes = Object.keys(CONFIG.Item.dataModels);
+  const allItems = (game.items?.filter(itm => validItemsTypes.includes(itm.type)) ?? []) as TwodsixItem[];
   for (const item of allItems) {
     await fn(item);
   }
@@ -72,9 +70,9 @@ async function applyToAllPacks(fn: ((doc: TwodsixActor | TwodsixItem) => Promise
 
       // Determine valid types based on pack metadata
       const validTypes = pack.metadata.type === 'Actor'
-        ? validActorTypes
+        ? Object.keys(CONFIG.Actor.dataModels)
         : pack.metadata.type === 'Item'
-          ? validItemTypes
+          ? Object.keys(CONFIG.Item.dataModels)
           : [];
 
       for (const doc of await pack.getDocuments()) {
