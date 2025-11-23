@@ -1547,7 +1547,7 @@ async function deleteIdFromShipPositions(actorId: string): void {
 
   for (const ship of allShips) {
     if ((<Ship>ship.system).shipPositionActorIds[actorId]) {
-      await ship.update({[`system.shipPositionActorIds.-=${actorId}`]: null });
+      await ship.update({[`system.shipPositionActorIds.${actorId}`]: _del });
     }
   }
 }
