@@ -749,7 +749,8 @@
           "changes": [
             {
               "key": "system.primaryArmor.value",
-              "mode": 2,
+              "type": "add",
+              "phase": "derived",
               "value": "2",
               "priority": null
             }
@@ -948,54 +949,6 @@
     }
   ],
   "effects": [
-    {
-      "origin": "Compendium.twodsix.cepheus-deluxe-actors.W0BCLkuEq22c4ADU.Item.3A2KhScjhlNfxb6q",
-      "tint": "#ffffff",
-      "transfer": false,
-      "disabled": true,
-      "_id": "eC1qYcsR2hJCK1k7",
-      "flags": {
-        "twodsix": {
-          "sourceId": "hBe0JpXSNRpmwR3f"
-        }
-      },
-      "changes": [
-        {
-          "key": "system.primaryArmor.value",
-          "mode": 2,
-          "value": "2",
-          "priority": null
-        }
-      ],
-      "duration": {
-        "startTime": 576,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": 10,
-        "startTurn": 0
-      },
-      "_stats": {
-        "coreVersion": "13.350",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
-        "lastModifiedBy": null,
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "name": "Subdermal Armor",
-      "img": "./systems/twodsix/assets/icons/subdermal-armor.svg",
-      "type": "base",
-      "system": {},
-      "description": "",
-      "statuses": [],
-      "sort": 0,
-      "_key": "!actors.effects!W0BCLkuEq22c4ADU.eC1qYcsR2hJCK1k7"
-    }
   ],
   "ownership": {
     "default": 0,

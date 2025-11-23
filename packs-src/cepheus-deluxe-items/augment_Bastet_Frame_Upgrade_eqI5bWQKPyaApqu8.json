@@ -45,7 +45,8 @@
       "changes": [
         {
           "key": "system.characteristics.dexterity.value",
-          "mode": 1,
+          "type": "multiply",
+          "phase": "initial",
           "value": "2",
           "priority": null
         }

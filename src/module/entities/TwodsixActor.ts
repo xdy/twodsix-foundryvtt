@@ -392,25 +392,11 @@ export default class TwodsixActor extends Actor {
     // Calculate encumbrance.value before AE passes (so AEs can modify it)
     system.encumbrance.value = this.getActorEncumbrance();
 
-    // Apply active effects in multiple passes (base pass already done by core FVTT)
-    // Collect all keys that have CUSTOM mode effects (excluding encumbrance.max)
-    const allCustomKeys = this.appliedEffects
-      .flatMap(e => e.changes.filter(c => c.type === "custom").map(c => c.key))
-      .filter(k => k); //Make certain keys are valid
-    const customKeys = [...new Set(allCustomKeys)].filter(k => k !== "system.encumbrance.max"); //Deduplicate and get rid of encumbrance.max
-
     // Second pass: apply non-CUSTOM effects to derived fields (excluding encumbrance.max and CUSTOM keys)
-    const derivedKeys = this._getDerivedDataKeys()
-      .filter(k => k !== "system.encumbrance.max" && !customKeys.includes(k));
-    if (derivedKeys.length > 0) {
-      this.applyActiveEffects("derived");
-    }
+    this.applyActiveEffects("derived");
 
     // Third pass: apply all CUSTOM mode effects (now that derived data is stable)
-    // Explicitly exclude encumbrance.max from this pass (it has its own pass after calculation)
-    if (customKeys.length > 0) {
-      this.applyActiveEffects("custom");
-    }
+    this.applyActiveEffects("custom");
 
     // Clear any override for encumbrance.max from previous passes before recalculating
     if (this.overrides.system?.encumbrance?.max !== undefined) {
@@ -1329,9 +1315,8 @@ export default class TwodsixActor extends Actor {
    * The list includes characteristic modifiers, skill keys, and (for travellers) special system values.
    *
    * @returns {string[]} An array of string keys representing derived data paths for this actor.
-   * @private
    */
-  private _getDerivedDataKeys(): string[] {
+  getDerivedDataKeys(): string[] {
     const derivedData: string[] = [];
     if (["traveller", "robot", "animal"].includes(this.type)) {
       // Add characteristics mods

@@ -80,7 +80,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
   }
 
   /**
-   * Determines the phase of an active effect change based on the changes key.
+   * Determines the phase of an active effect change based on the change's key.
    *
    * @param {object} change - The change object being processed.
    * @returns {string} - The phase of the change (e.g., "encumbMax", "custom", "derived", "initial").
@@ -88,7 +88,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
   determinePhase(change: any): string {
     // Safeguard against undefined target
     const actor: TwodsixActor | undefined = this.target;
-    const derivedKeys = actor?._getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
+    const derivedKeys = actor?.getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
 
     if (change.key === "system.encumbrance.max") {
       return "encumbMax";
@@ -114,7 +114,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
     // Ensure changes exist and are an array
     if (!data.changes || !Array.isArray(data.changes)) {
-      console.log("No valid changes found in data.");
+      //console.log("No valid changes found in data.");
       return;
     }
 

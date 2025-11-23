@@ -62,13 +62,15 @@
       "changes": [
         {
           "key": "system.characteristics.strength.value",
-          "mode": 5,
+          "type": "override",
+          "phase": "initial",
           "value": "18",
           "priority": null
         },
         {
           "key": "system.encumbrance.value",
-          "mode": 2,
+          "type": "add",
+          "phase": "derived",
           "value": "6",
           "priority": null
         }

@@ -53,13 +53,15 @@
       "changes": [
         {
           "key": "system.characteristics.strength.mod",
-          "mode": 2,
+          "type": "add",
+          "phase": "initial",
           "value": "2",
           "priority": null
         },
         {
           "key": "system.characteristics.dexterity.mod",
-          "mode": 2,
+          "type": "add",
+          "phase": "initial",
           "value": "2",
           "priority": null
         },
