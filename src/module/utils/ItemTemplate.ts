@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
@@ -90,18 +89,16 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
     // Minimize actor sheet if open
     if (this.actorSheet?.state > 0) {
       this.actorSheet?.minimize();
-      //console.log("Actor sheet minimized:", this.actorSheet);
+    }
+    // Suppress the Region Legend menu if open (do this before placement)
+    if (canvas?.regions?.legend?.close) {
+      await canvas.regions.legend.close();
     }
     let placedRegion = null;
     try {
       placedRegion = await canvas.regions.placeRegion(regionData, { create: true });
     } catch (e) {
-      // Placement cancelled or failed
       return null;
-    }
-    // Suppress the Region Legend menu if open
-    if (canvas?.regions?.legend?.close) {
-      canvas.regions.legend.close();
     }
     // Maximize the actor sheet after placement
     if (this.actorSheet) {
@@ -156,6 +153,11 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
         reject,
         rotate: this._onRotatePlacement.bind(this)
       };
+
+      // Suppress the Region Legend menu if open as soon as preview listeners are activated
+      if (canvas?.regions?.legend?.close) {
+        canvas.regions.legend.close();
+      }
 
       // Activate listeners for the new region document
       canvas.stage.on("mousemove", this.#events.move);

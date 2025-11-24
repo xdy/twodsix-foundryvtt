@@ -13,7 +13,6 @@ import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
 import { getTargetStatusModifiers} from "../utils/targetModifiers";
-import { Console } from "console";
 
 /**
  * Extend the base Item entity
@@ -251,17 +250,14 @@ export default class TwodsixItem extends Item {
 
     tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
 
-    /*Apply measured template if valid AOE*/
-    let placedRegion = null;
+    // Apply measured template if valid AOE. drawItemTemplate handles region placement and targeting.
     const isAOE = await this.drawItemTemplate();
-    if (isAOE && typeof isAOE === 'object' && isAOE.shape) {
-      placedRegion = isAOE;
-      // Switch back to token control before targeting
+    if (isAOE) {
+      // Switch back to token control after region placement for user convenience
       if (canvas.tokens && typeof canvas.tokens.activate === 'function') {
         canvas.tokens.activate({ tool: 'select' });
       }
-      // Target tokens for the placed region
-      ItemTemplate.targetTokensForPlacedRegion(placedRegion);
+      // Targeting is now handled within the region placement workflow; no redundant call here.
     }
 
     // Get fire mode parameters
