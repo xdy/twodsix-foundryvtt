@@ -155,7 +155,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
       };
 
       // Suppress the Region Legend menu if open as soon as preview listeners are activated
-      if (canvas?.regions?.legend?.close) {
+      if (canvas.regions.legend?.close) {
         canvas.regions.legend.close();
       }
 
