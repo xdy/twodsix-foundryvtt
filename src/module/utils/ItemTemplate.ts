@@ -209,47 +209,6 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
 }
 
 /**
- * Sets all tokens within the region to targeted using center-only logic.
- * Activates the Token layer before targeting.
- * @param {any} region - The placed region PlaceableObject or document.
- */
-export function targetTokensInTemplate(region: any): void {
-  // Ensure the Token layer is active before targeting
-  if (canvas.tokens && typeof canvas.tokens.activate === 'function') {
-    canvas.tokens.activate({ tool: 'select' });
-  }
-  // Use the PlaceableObject for the region if available
-  const regionObj = region.object ?? region;
-  if (!regionObj) {
-    console.warn("[Twodsix] No region object found for targeting");
-    return;
-  }
-  // Try to get the polygonTree from the region's document or object
-  const doc = regionObj.document || regionObj;
-  if (!doc.polygonTree || typeof doc.polygonTree.testPoint !== "function") {
-    console.warn("[Twodsix] Region object has no polygonTree for geometric checks", doc);
-    return;
-  }
-  const tokens = canvas.tokens?.placeables;
-  const arrayOfTokenIds: string[] = [];
-  if (tokens?.length > 0) {
-    for (const tok of tokens) {
-      const center = tok.center;
-      if (doc.polygonTree.testPoint(center)) {
-        arrayOfTokenIds.push(tok.id);
-      }
-    }
-    if (arrayOfTokenIds.length === 0) {
-      console.info("[Twodsix] No tokens found in region");
-    } else {
-      console.info(`[Twodsix] Targeting tokens in region: ${arrayOfTokenIds.join(", ")}`);
-    }
-    game.user?._onUpdateTokenTargets(arrayOfTokenIds);
-  } else {
-    console.warn("[Twodsix] No tokens found on canvas for targeting");
-  }
-}
-/**
  * Returns the center and corner points of a token for geometric checks.
  * (Currently unused, but kept for future flexibility if not restriced to center point.)
  * @param {Token|PlaceableObject} token - The token to get points for.
