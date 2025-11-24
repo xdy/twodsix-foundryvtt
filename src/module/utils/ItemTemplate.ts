@@ -46,12 +46,12 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
   /* -------------------------------------------- */
 
   /**
-   * Creates a preview of the region template and returns the placed region after confirmation.
+   * Creates a preview of the region template and returns the placed region document after confirmation.
    * Minimizes the actor sheet before placement and maximizes it after.
    * Uses foundry.utils and canvas.regions for region creation.
-   * @returns {Promise<Region|null>} A promise that resolves with the placed region or null if cancelled.
+   * @returns {Promise<RegionDocument|null>} A promise that resolves with the placed region or null if cancelled.
    */
-  async drawPreview(): Promise<any> {
+  async drawPreview(): Promise<RegionDocument|null> {
     const regionData = this.document?.toObject();
     // Minimize actor sheet if open
     if (this.actorSheet?.state > 0) {
