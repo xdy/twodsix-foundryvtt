@@ -13,6 +13,7 @@ import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
 import { getTargetStatusModifiers} from "../utils/targetModifiers";
+import { Console } from "console";
 
 /**
  * Extend the base Item entity
@@ -251,7 +252,17 @@ export default class TwodsixItem extends Item {
     tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
 
     /*Apply measured template if valid AOE*/
+    let placedRegion = null;
     const isAOE = await this.drawItemTemplate();
+    if (isAOE && typeof isAOE === 'object' && isAOE.shape) {
+      placedRegion = isAOE;
+      // Switch back to token control before targeting
+      if (canvas.tokens && typeof canvas.tokens.activate === 'function') {
+        canvas.tokens.activate({ tool: 'select' });
+      }
+      // Target tokens for the placed region
+      ItemTemplate.targetTokensForPlacedRegion(placedRegion);
+    }
 
     // Get fire mode parameters
     const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
@@ -1396,12 +1407,20 @@ export default class TwodsixItem extends Item {
     if ( itemForAOE.system.target?.type !== "none" ) {
       returnValue = true;
       try {
-        const template:ItemTemplate = await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
-        if (template && game.settings.get('twodsix', 'autoTargetAOE')) {
-          targetTokensInTemplate(template);
+        const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
+        console.log("Item Template: ", itemTemplate);
+        if (itemTemplate) {
+          const template = await itemTemplate.drawPreview();
+          console.log("Item Template: ", template);
+          if (template && game.settings.get('twodsix', 'autoTargetAOE')) {
+            targetTokensInTemplate(template);
+          }
+        } else {
+          console.error("Failed to create ItemTemplate from item:", itemForAOE);
         }
-      } catch /*(err)*/ {
+      } catch (err) {
         ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
+        console.log ("Template error: ", err);
       }
     }
     return returnValue;
@@ -1755,6 +1774,7 @@ function getRangeBand(range: number):string {
     return 'unknown';
   }
 }
+
 
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
 const INFEASIBLE = -99;
