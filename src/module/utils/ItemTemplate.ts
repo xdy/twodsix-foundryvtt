@@ -1,4 +1,4 @@
-// (sleep helper removed; no longer needed)
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
@@ -8,37 +8,6 @@ import { TWODSIX } from "../config";
  * A helper class for building MeasuredTemplates for item AOE.  Adapted from D5e system
  */
 export default class ItemTemplate extends foundry.documents.RegionDocument {
-  /**
-   * Check if a token is inside the template region using the canonical Foundry VTT v14+ method.
-   * @param token The token to check.
-   * @param region The region PlaceableObject.
-   */
-  static checkTokenInTemplate(token: PlaceableObject, region: PlaceableObject): boolean {
-    const doc = (region as any).document || region;
-    if (!doc || !doc.polygonTree || typeof doc.polygonTree.testPoint !== "function") {
-      return false;
-    }
-    // Check token center and corners
-    const points = [
-      { x: token.center.x, y: token.center.y },
-      { x: token.x, y: token.y },
-      { x: token.x + token.width, y: token.y },
-      { x: token.x, y: token.y + token.height },
-      { x: token.x + token.width, y: token.y + token.height }
-    ];
-    return points.some(pt => doc.polygonTree.testPoint(pt));
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * The initially active CanvasLayer to re-activate after the workflow is complete.
-   * @type {CanvasLayer}
-   */
-
-
-
-  /* -------------------------------------------- */
 
   /**
    * The initially active CanvasLayer to re-activate after the workflow is complete.
@@ -46,21 +15,18 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
    */
   #initialLayer;
 
-  /* -------------------------------------------- */
-
   /**
    * Track the bound event handlers so they can be properly canceled later.
    * @type {object}
    */
   #events;
 
-  /* -------------------------------------------- */
-
   /**
-   * A factory method to create an AbilityTemplate instance using provided data from a TwodsixItem instance
-   * @param {TwodsixItem} item               The Item object for which to construct the template
-   * @param {object} [options={}]       Options to modify the created template.
-   * @returns {ItemTemplate|null}    The template object, or null if the item does not produce a template
+   * Factory method to create an ItemTemplate instance using provided data from a TwodsixItem instance.
+   * Uses foundry.utils.deepClone for safe data handling.
+   * @param {TwodsixItem} item - The Item object for which to construct the template.
+   * @param {object} [options={}] - Options to modify the created template.
+   * @returns {Promise<ItemTemplate|null>} The template object, or null if the item does not produce a template.
    */
   static async fromItem(item: TwodsixItem, options: object = {}): Promise<ItemTemplate | null> {
     //console.log("Creating ItemTemplate from item:", item);
@@ -114,18 +80,10 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
   /* -------------------------------------------- */
 
   /**
-   * Creates a preview of the spell template.
-   * @returns {Promise}  A promise that resolves with the final measured template if created.
-   */
-  /**
-   * Creates a preview of the spell template and returns the placed region after confirmation.
-   * Maximizes the actor sheet after placement.
-   * @returns {Promise<Region|null>}  A promise that resolves with the placed region or null if cancelled.
-   */
-  /**
-   * Creates a preview of the spell template and returns the placed region after confirmation.
-   * Maximizes the actor sheet after placement, with a small delay to avoid UI race conditions.
-   * @returns {Promise<Region|null>}  A promise that resolves with the placed region or null if cancelled.
+   * Creates a preview of the region template and returns the placed region after confirmation.
+   * Minimizes the actor sheet before placement and maximizes it after.
+   * Uses foundry.utils and canvas.regions for region creation.
+   * @returns {Promise<Region|null>} A promise that resolves with the placed region or null if cancelled.
    */
   async drawPreview(): Promise<any> {
     const regionData = this.toObject();
@@ -154,6 +112,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
   /**
    * Helper to target tokens after region placement.
    * Call this with the placed region PlaceableObject returned from drawPreview.
+   * Uses center-only targeting logic for accuracy.
    * Example:
    *   const placedRegion = await template.drawPreview();
    *   if (placedRegion) ItemTemplate.targetTokensForPlacedRegion(placedRegion);
@@ -164,12 +123,27 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
     }
   }
 
-  /* -------------------------------------------- */
+  /**
+   * Check if a token's center is inside the template region using the canonical Foundry VTT v14+ method.
+   * Uses only the token center for targeting (strict method).
+   * @param {PlaceableObject} token - The token to check.
+   * @param {PlaceableObject} region - The region PlaceableObject.
+   * @returns {boolean} True if the token's center is inside the region, false otherwise.
+   */
+  static checkTokenInTemplate(token: PlaceableObject, region: PlaceableObject): boolean {
+    const doc = (region as any).document || region;
+    if (!doc || !doc.polygonTree || typeof doc.polygonTree.testPoint !== "function") {
+      return false;
+    }
+    // Only use the token center for targeting
+    const center = token.center;
+    return doc.polygonTree.testPoint(center);
+  }
 
   /**
-   * Activate listeners for the template preview
-   * @param {CanvasLayer} initialLayer  The initially active CanvasLayer to re-activate after the workflow is complete
-   * @returns {Promise}                 A promise that resolves with the final measured template if created.
+   * Activate listeners for the template preview.
+   * @param {CanvasLayer} initialLayer - The initially active CanvasLayer to re-activate after the workflow is complete.
+   * @returns {Promise<any>} A promise that resolves with the final measured template if created.
    */
   activatePreviewListeners(initialLayer: CanvasLayer): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -191,31 +165,11 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
     });
   }
 
-  /* -------------------------------------------- */
-
-  /**
-   * Shared code for when template placement ends by being confirmed or canceled.
-   * @param {Event} event  Triggering event that ended the placement.
-   */
-  async _finishPlacement(event) {
-    this.layer._onDragLeftCancel(event);
-    canvas.stage.off("mousemove", this.#events.move);
-    canvas.stage.off("mousedown", this.#events.confirm);
-    canvas.app.view.oncontextmenu = null;
-    canvas.app.view.onwheel = null;
-    this.#initialLayer.activate();
-    if (this.actorSheet?.state > 0) {
-      await this.actorSheet.maximize();
-    }
-  }
-
-  /* -------------------------------------------- */
-
   /**
    * Rotate the template preview by 3˚ increments when the mouse wheel is rotated.
-   * @param {Event} event  Triggering mouse event.
+   * @param {Event} event - Triggering mouse event.
    */
-  _onRotatePlacement(event) {
+  _onRotatePlacement(event: Event): Promise<void> {
     if ( event.ctrlKey ) {
       event.preventDefault(); // Avoid zooming the browser window
     }
@@ -231,9 +185,9 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
 
   /**
    * Confirm placement when the left mouse button is clicked.
-   * @param {Event} event  Triggering mouse event.
+   * @param {Event} event - Triggering mouse event.
    */
-  async _onConfirmPlacement(event) {
+  async _onConfirmPlacement(event: Event): Promise<void> {
     //console.log("Confirming placement for ItemTemplate:", this);
     await this._finishPlacement(event);
     const destination = this.getSnappedPosition(this.document);
@@ -249,23 +203,24 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
 
   /**
    * Cancel placement when the right mouse button is clicked.
-   * @param {Event} event  Triggering mouse event.
+   * @param {Event} event - Triggering mouse event.
    */
-  async _onCancelPlacement(event) {
+  async _onCancelPlacement(event: Event): Promise<void> {
     await this._finishPlacement(event);
     this.#events.reject();
   }
 
   /**
    * Migrate ItemTemplate data to Region data.
-   * @param {object} template                             The ItemTemplate data
-   * @param {object} [context]                            The migration context
-   * @param {BaseGrid} [context.grid]                     The grid
-   * @param {boolean} [context.gridTemplates]             Grid-shaped?
-   * @param {"round"|"flat"} [context.coneTemplateType]   The cone curvature
-   * @returns {object|null}                               The Region data or null if migration fails
+   * Uses foundry.utils.deepClone and math utilities for safe conversion.
+   * @param {object} template - The ItemTemplate data.
+   * @param {object} [context] - The migration context.
+   * @param {BaseGrid} [context.grid] - The grid.
+   * @param {boolean} [context.gridTemplates] - Grid-shaped?
+   * @param {"round"|"flat"} [context.coneTemplateType] - The cone curvature.
+   * @returns {object|null} The Region data or null if migration fails.
    */
-  static migrateItemTemplateData(template, {grid=canvas.scene?.grid ?? BaseScene.defaultGrid, gridTemplates=false, coneTemplateType="round"}={}) {
+  static migrateItemTemplateData(template: object, {grid=canvas.scene?.grid ?? BaseScene.defaultGrid, gridTemplates=false, coneTemplateType="round"}: { grid?: BaseGrid; gridTemplates?: boolean; coneTemplateType?: "round" | "flat"; }={}): object | null {
     try {
       const t = template.type || "circle";
       const x = Math.round(template.x || 0);
@@ -332,46 +287,39 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
       return null;
     }
   }
+
+  /**
+   * Shared code for when template placement ends by being confirmed or canceled.
+   * Cleans up event listeners and restores the initial layer and actor sheet state.
+   * @param {Event} event - Triggering event that ended the placement.
+   */
+  async _finishPlacement(event): Promise<void> {
+    // Cancel drag operation on the layer if possible
+    if (this.layer && typeof this.layer._onDragLeftCancel === 'function') {
+      this.layer._onDragLeftCancel(event);
+    }
+    // Remove event listeners
+    if (this.#events) {
+      canvas.stage.off("mousemove", this.#events.move);
+      canvas.stage.off("mousedown", this.#events.confirm);
+      canvas.app.view.oncontextmenu = null;
+      canvas.app.view.onwheel = null;
+    }
+    // Restore the initial layer
+    if (this.#initialLayer && typeof this.#initialLayer.activate === 'function') {
+      this.#initialLayer.activate();
+    }
+    // Restore actor sheet if minimized
+    if (this.actorSheet && this.actorSheet.state > 0 && typeof this.actorSheet.maximize === 'function') {
+      await this.actorSheet.maximize();
+    }
+  }
 }
 
 /**
- * Determines whether a token is within the template.
- * @param {Token} token  token on canvas.
- * @param {ItemTemplate} template  token on canvas.
- * @returns {boolean}   whether token in inside template
- */
-function checkTokenInTemplate(token: Token, region: any): boolean {
-  // Use the PlaceableObject for the region if available
-  const regionObj = region.object ?? region;
-  if (!regionObj || typeof regionObj.containsPoint !== "function") {
-    // Fallback: try to use shape.contains if available
-    const shape = regionObj.shape ?? regionObj.document?.shape;
-    if (shape && typeof shape.contains === "function") {
-      // Test token center
-      const center = token.center;
-      return shape.contains(center.x, center.y);
-    }
-    return false;
-  }
-  // Test token center and corners for large tokens
-  const points = [];
-  const {x, y, width, height} = token;
-  const gridSize = canvas.grid.size;
-  // Center
-  points.push(token.center);
-  // Corners (for tokens larger than 1x1)
-  if (token.document.width > 1 || token.document.height > 1) {
-    points.push({x: x, y: y});
-    points.push({x: x + width, y: y});
-    points.push({x: x, y: y + height});
-    points.push({x: x + width, y: y + height});
-  }
-  // If any point is inside the region, consider the token targeted
-  return points.some(pt => regionObj.containsPoint(pt));
-}
-/**
- * Sets all tokens within the template to targeted.
- * @param {MeasuredTemplate} template  token on canvas.
+ * Sets all tokens within the region to targeted using center-only logic.
+ * Activates the Token layer before targeting.
+ * @param {any} region - The placed region PlaceableObject or document.
  */
 export function targetTokensInTemplate(region: any): void {
   // Ensure the Token layer is active before targeting
@@ -394,15 +342,8 @@ export function targetTokensInTemplate(region: any): void {
   const arrayOfTokenIds: string[] = [];
   if (tokens?.length > 0) {
     for (const tok of tokens) {
-      // Check token center and corners
-      const points = [
-        { x: tok.center.x, y: tok.center.y },
-        { x: tok.x, y: tok.y },
-        { x: tok.x + tok.width, y: tok.y },
-        { x: tok.x, y: tok.y + tok.height },
-        { x: tok.x + tok.width, y: tok.y + tok.height }
-      ];
-      if (points.some(pt => doc.polygonTree.testPoint(pt))) {
+      const center = tok.center;
+      if (doc.polygonTree.testPoint(center)) {
         arrayOfTokenIds.push(tok.id);
       }
     }
@@ -416,3 +357,19 @@ export function targetTokensInTemplate(region: any): void {
     console.warn("[Twodsix] No tokens found on canvas for targeting");
   }
 }
+/**
+ * Returns the center and corner points of a token for geometric checks.
+ * (Currently unused, but kept for future flexibility.)
+ * @param {Token|PlaceableObject} token - The token to get points for.
+ * @returns {Array<{x: number, y: number}>} Array of points (center and corners).
+ */
+/*function getTokenPoints(token) {
+  const points = [
+    { x: token.center.x, y: token.center.y },
+    { x: token.x, y: token.y },
+    { x: token.x + token.width, y: token.y },
+    { x: token.x, y: token.y + token.height },
+    { x: token.x + token.width, y: token.y + token.height }
+  ];
+  return points;
+}*/

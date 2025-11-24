@@ -1408,10 +1408,10 @@ export default class TwodsixItem extends Item {
       returnValue = true;
       try {
         const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
-        console.log("Item Template: ", itemTemplate);
+        //console.log("Item Template: ", itemTemplate);
         if (itemTemplate) {
           const template = await itemTemplate.drawPreview();
-          console.log("Item Template: ", template);
+          //console.log("Item Template: ", template);
           if (template && game.settings.get('twodsix', 'autoTargetAOE')) {
             targetTokensInTemplate(template);
           }
