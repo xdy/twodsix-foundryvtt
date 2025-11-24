@@ -4,7 +4,7 @@
 import { TWODSIX } from "../config";
 
 /**
- * A helper class for building MeasuredTemplates for item AOE.  Adapted from D5e system
+ * A helper class for building MeasuredTemplates for item AOE.  Adapted from D5e system then heavly ChatGPT for v14
  */
 export default class ItemTemplate extends foundry.documents.RegionDocument {
 
@@ -39,7 +39,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
     };
 
     // Migrate itemTemplateData to Foundry regionData
-    const regionData = this.migrateItemTemplateData(itemTemplateData);
+    const regionData = this.generateItemTemplateData(itemTemplateData);
     if (!regionData) {
       console.error("Failed to migrate ItemTemplate data:", itemTemplateData);
       return null;
@@ -191,10 +191,10 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
     this.#events.reject();
   }
 
-  // -------------------- MIGRATION --------------------
+  // -------------------- GENERATE TEMPLATE DATA --------------------
 
   /**
-   * Migrate ItemTemplate data to Region data.
+   * Generate ItemTemplate data to Region data.
    * Uses foundry.utils.deepClone and math utilities for safe conversion.
    * @param {object} template - The ItemTemplate data.
    * @param {object} [context] - The migration context.
@@ -203,7 +203,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
    * @param {"round"|"flat"} [context.coneTemplateType] - The cone curvature.
    * @returns {object|null} The Region data or null if migration fails.
    */
-  static migrateItemTemplateData(template: object, {grid=canvas.scene?.grid ?? BaseScene.defaultGrid, gridTemplates=false, coneTemplateType="round"}: { grid?: BaseGrid; gridTemplates?: boolean; coneTemplateType?: "round" | "flat"; }={}): object | null {
+  static generateItemTemplateData(template: object, {grid=canvas.scene?.grid ?? BaseScene.defaultGrid, gridTemplates=false, coneTemplateType="round"}: { grid?: BaseGrid; gridTemplates?: boolean; coneTemplateType?: "round" | "flat"; }={}): object | null {
     try {
       // Extract raw intent
       const { target = {}, name: regionName = "Unnamed Region", uuid = "" } = template;
@@ -283,7 +283,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
    * Cleans up event listeners and restores the initial layer and actor sheet state.
    * @param {Event} event - Triggering event that ended the placement.
    */
-  async _finishPlacement(event): Promise<void> {
+  async _finishPlacement(event: Event): Promise<void> {
     // Cancel drag operation on the layer if possible
     if (this.layer && typeof this.layer._onDragLeftCancel === 'function') {
       this.layer._onDragLeftCancel(event);
@@ -349,7 +349,7 @@ export function targetTokensInTemplate(region: any): void {
 }
 /**
  * Returns the center and corner points of a token for geometric checks.
- * (Currently unused, but kept for future flexibility.)
+ * (Currently unused, but kept for future flexibility if not restriced to center point.)
  * @param {Token|PlaceableObject} token - The token to get points for.
  * @returns {Array<{x: number, y: number}>} Array of points (center and corners).
  */
