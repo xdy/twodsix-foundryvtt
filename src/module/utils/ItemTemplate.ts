@@ -4,21 +4,10 @@
 import { TWODSIX } from "../config";
 
 /**
- * A helper class for building MeasuredTemplates for item AOE.  Adapted from D5e system then heavly ChatGPT for v14
+ * A helper class for building Regions for item AOE.  Adapted from D5e system then heavly ChatGPT for v14
  */
-export default class ItemTemplate extends foundry.documents.RegionDocument {
+export default class ItemTemplate extends foundry.canvas.placeables.Region {
 
-  /**
-   * The initially active CanvasLayer to re-activate after the workflow is complete.
-   * @type {CanvasLayer}
-   */
-  #initialLayer;
-
-  /**
-   * Track the bound event handlers so they can be properly canceled later.
-   * @type {object}
-   */
-  #events;
 
   // -------------------- REGION CREATION --------------------
 
@@ -45,14 +34,13 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
       return null;
     }
 
-    // Create the region
-    const region = new foundry.documents.RegionDocument(foundry.utils.deepClone(regionData), { parent: canvas.scene });
-
-    // Ensure the returned object is an instance of ItemTemplate
-    const object = new this(region);
-    object.item = item;
-    object.actorSheet = item.actor?.sheet || null;
-    return object;
+    // Create the region document
+    const regionDoc = new foundry.documents.RegionDocument(foundry.utils.deepClone(regionData), { parent: canvas.scene });
+    // Create the placeable Region object (ItemTemplate extends Region)
+    const region = new this(regionDoc);
+    region.item = item;
+    region.actorSheet = item.actor?.sheet || null;
+    return region;
   }
 
   /* -------------------------------------------- */
@@ -64,7 +52,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
    * @returns {Promise<Region|null>} A promise that resolves with the placed region or null if cancelled.
    */
   async drawPreview(): Promise<any> {
-    const regionData = this.toObject();
+    const regionData = this.document?.toObject();
     // Minimize actor sheet if open
     if (this.actorSheet?.state > 0) {
       this.actorSheet?.minimize();
@@ -96,8 +84,28 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
    *   if (placedRegion) ItemTemplate.targetTokensForPlacedRegion(placedRegion);
    */
   static targetTokensForPlacedRegion(placedRegion: any): void {
-    if (placedRegion && placedRegion.shape) {
-      targetTokensInTemplate(placedRegion);
+    if (!placedRegion) {
+      console.warn("[Twodsix] targetTokensForPlacedRegion: No region provided");
+      return;
+    }
+    const tokens = canvas.tokens?.placeables;
+    const arrayOfTokenIds: string[] = [];
+    if (tokens?.length > 0) {
+      for (const tok of tokens) {
+        const center = tok.center;
+        let hit = false;
+        if (placedRegion.document?.polygonTree?.testPoint) {
+          hit = placedRegion.document.polygonTree.testPoint(center);
+        } else {
+          console.warn(`[Twodsix] No valid geometry method for region when checking token ${tok.id}`);
+        }
+        if (hit) {
+          arrayOfTokenIds.push(tok.id);
+        }
+      }
+      game.user?._onUpdateTokenTargets(arrayOfTokenIds);
+    } else {
+      console.warn("[Twodsix] No tokens found on canvas for targeting");
     }
   }
 
@@ -108,88 +116,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
    * @param {PlaceableObject} region - The region PlaceableObject.
    * @returns {boolean} True if the token's center is inside the region, false otherwise.
    */
-  static checkTokenInTemplate(token: PlaceableObject, region: PlaceableObject): boolean {
-    const doc = (region as any).document || region;
-    if (!doc || !doc.polygonTree || typeof doc.polygonTree.testPoint !== "function") {
-      return false;
-    }
-    // Only use the token center for targeting
-    const center = token.center;
-    return doc.polygonTree.testPoint(center);
-  }
-
-  // -------------------- EVENT HANDLING --------------------
-
-  /**
-   * Activate listeners for the template preview.
-   * @param {CanvasLayer} initialLayer - The initially active CanvasLayer to re-activate after the workflow is complete.
-   * @returns {Promise<any>} A promise that resolves with the final measured template if created.
-   */
-  activatePreviewListeners(initialLayer: CanvasLayer): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.#initialLayer = initialLayer;
-      this.#events = {
-        cancel: this._onCancelPlacement.bind(this),
-        confirm: this._onConfirmPlacement.bind(this),
-        move: this._onMovePlacement.bind(this),
-        resolve,
-        reject,
-        rotate: this._onRotatePlacement.bind(this)
-      };
-
-      // Suppress the Region Legend menu if open as soon as preview listeners are activated
-      if (canvas.regions.legend?.close) {
-        canvas.regions.legend.close();
-      }
-
-      // Activate listeners for the new region document
-      canvas.stage.on("mousemove", this.#events.move);
-      canvas.stage.on("mousedown", this.#events.confirm);
-      canvas.app.view.oncontextmenu = this.#events.cancel;
-      canvas.app.view.onwheel = this.#events.rotate;
-    });
-  }
-
-  /**
-   * Rotate the template preview by 3˚ increments when the mouse wheel is rotated.
-   * @param {Event} event - Triggering mouse event.
-   */
-  _onRotatePlacement(event: Event): Promise<void> {
-    if ( event.ctrlKey ) {
-      event.preventDefault(); // Avoid zooming the browser window
-    }
-    event.stopPropagation();
-    const delta = canvas.grid.type > CONST.GRID_TYPES.SQUARE ? 30 : 15;
-    const snap = event.shiftKey ? delta : 5;
-    const update = {direction: this.document.direction + (snap * Math.sign(event.deltaY))};
-    this.document.updateSource(update);
-    this.refresh();
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Confirm placement when the left mouse button is clicked.
-   * @param {Event} event - Triggering mouse event.
-   */
-  async _onConfirmPlacement(event: Event): Promise<void> {
-    await this._finishPlacement(event);
-    const destination = this.getSnappedPosition(this.document);
-    this.document.updateSource(destination);
-    const newTemplates = await canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]);
-    this.#events.resolve(newTemplates[0]);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Cancel placement when the right mouse button is clicked.
-   * @param {Event} event - Triggering mouse event.
-   */
-  async _onCancelPlacement(event: Event): Promise<void> {
-    await this._finishPlacement(event);
-    this.#events.reject();
-  }
+  // checkTokenInTemplate is no longer needed; use containsPoint or polygonTree directly in targeting.
 
   // -------------------- GENERATE TEMPLATE DATA --------------------
 
@@ -278,32 +205,7 @@ export default class ItemTemplate extends foundry.documents.RegionDocument {
     }
   }
 
-  /**
-   * Shared code for when template placement ends by being confirmed or canceled.
-   * Cleans up event listeners and restores the initial layer and actor sheet state.
-   * @param {Event} event - Triggering event that ended the placement.
-   */
-  async _finishPlacement(event: Event): Promise<void> {
-    // Cancel drag operation on the layer if possible
-    if (this.layer && typeof this.layer._onDragLeftCancel === 'function') {
-      this.layer._onDragLeftCancel(event);
-    }
-    // Remove event listeners
-    if (this.#events) {
-      canvas.stage.off("mousemove", this.#events.move);
-      canvas.stage.off("mousedown", this.#events.confirm);
-      canvas.app.view.oncontextmenu = null;
-      canvas.app.view.onwheel = null;
-    }
-    // Restore the initial layer
-    if (this.#initialLayer && typeof this.#initialLayer.activate === 'function') {
-      this.#initialLayer.activate();
-    }
-    // Restore actor sheet if minimized
-    if (this.actorSheet && this.actorSheet.state > 0 && typeof this.actorSheet.maximize === 'function') {
-      await this.actorSheet.maximize();
-    }
-  }
+  // Placement and event handling are now handled by core Region/canvas logic. Only actor sheet minimization/maximization is custom.
 }
 
 /**
