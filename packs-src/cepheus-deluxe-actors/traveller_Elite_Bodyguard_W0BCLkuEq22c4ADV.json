@@ -218,7 +218,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.pyDEKKXipO2fX7A7"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.pyDEKKXipO2fX7A7"
     },
     {
       "_id": "bCdaqVG6HcFZhcSA",
@@ -270,7 +270,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.bCdaqVG6HcFZhcSA"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.bCdaqVG6HcFZhcSA"
     },
     {
       "_id": "OKllPyuzWOGNPfLx",
@@ -322,7 +322,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.OKllPyuzWOGNPfLx"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.OKllPyuzWOGNPfLx"
     },
     {
       "_id": "VjcUZ6smeBW97B1u",
@@ -374,7 +374,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.VjcUZ6smeBW97B1u"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.VjcUZ6smeBW97B1u"
     },
     {
       "_id": "v0mXl7kfPCwl4ihq",
@@ -426,7 +426,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.v0mXl7kfPCwl4ihq"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.v0mXl7kfPCwl4ihq"
     },
     {
       "_id": "Otl7gtXdhN23mf9K",
@@ -504,7 +504,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.Otl7gtXdhN23mf9K"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.Otl7gtXdhN23mf9K"
     },
     {
       "_id": "CSj0Wzy3FeT2wHnB",
@@ -579,7 +579,7 @@
           "systemVersion": "0.6.27"
         }
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.CSj0Wzy3FeT2wHnB"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.CSj0Wzy3FeT2wHnB"
     },
     {
       "_id": "ZQ60TQh22In5eLgN",
@@ -639,7 +639,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.ZQ60TQh22In5eLgN"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.ZQ60TQh22In5eLgN"
     },
     {
       "_id": "JsYaCTyOevH9Wczo",
@@ -699,7 +699,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.JsYaCTyOevH9Wczo"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.JsYaCTyOevH9Wczo"
     },
     {
       "_id": "3A2KhScjhlNfxb6q",
@@ -782,7 +782,7 @@
           "description": "",
           "statuses": [],
           "sort": 0,
-          "_key": "!actors.items.effects!W0BCLkuEq22c4ADU.3A2KhScjhlNfxb6q.hBe0JpXSNRpmwR3f"
+          "_key": "!actors.items.effects!W0BCLkuEq22c4ADW.3A2KhScjhlNfxb6q.hBe0JpXSNRpmwR3f"
         }
       ],
       "folder": null,
@@ -810,7 +810,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.3A2KhScjhlNfxb6q"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.3A2KhScjhlNfxb6q"
     },
     {
       "_id": "rhlulHjVuPQm2eqi",
@@ -871,7 +871,7 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.rhlulHjVuPQm2eqi"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.rhlulHjVuPQm2eqi"
     },
     {
       "name": "Unarmed",
@@ -945,11 +945,10 @@
         "duplicateSource": null,
         "exportSource": null
       },
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.44n2jUnhwpSb1vFm"
+      "_key": "!actors.items!W0BCLkuEq22c4ADW.44n2jUnhwpSb1vFm"
     }
   ],
-  "effects": [
-  ],
+  "effects": [],
   "ownership": {
     "default": 0,
     "B4JSPh84Wx3wBFTK": 3
@@ -1069,6 +1068,6 @@
   },
   "folder": "GnzimFQ7GDJKVbRi",
   "sort": 100000,
-  "_id": "W0BCLkuEq22c4ADU",
-  "_key": "!actors!W0BCLkuEq22c4ADU"
+  "_id": "W0BCLkuEq22c4ADW",
+  "_key": "!actors!W0BCLkuEq22c4ADW"
 }
