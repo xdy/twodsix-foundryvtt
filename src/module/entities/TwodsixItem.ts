@@ -1404,14 +1404,10 @@ export default class TwodsixItem extends Item {
       returnValue = true;
       try {
         const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
-        //console.log("Item Template: ", itemTemplate);
         if (itemTemplate) {
-          const template: RegionDocument = await itemTemplate.drawPreview();
-          //console.log("Item Template: ", template);
-          if (template && game.settings.get('twodsix', 'autoTargetAOE')) {
-            // If template is a document, get the placeable object from the canvas
-            const regionObj = template.object ?? template;
-            ItemTemplate.targetTokensForPlacedRegion(regionObj);
+          const regionDoc: RegionDocument = await itemTemplate.drawPreview();
+          if (regionDoc && game.settings.get('twodsix', 'autoTargetAOE')) {
+            ItemTemplate.targetTokensForPlacedRegion(regionDoc);
           }
         } else {
           console.error("Failed to create ItemTemplate from item:", itemForAOE);

@@ -81,10 +81,10 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
    * Uses center-only targeting logic for accuracy.
    * Example:
    *   const placedRegion = await template.drawPreview();
-   *   if (placedRegion) ItemTemplate.targetTokensForPlacedRegion(placedRegion);
+   *   if (placedRegion?.object) ItemTemplate.targetTokensForPlacedRegion(placedRegion.object);
    */
-  static targetTokensForPlacedRegion(placedRegion: any): void {
-    if (!placedRegion) {
+  static targetTokensForPlacedRegion(regionDoc: RegionDocument): void {
+    if (!regionDoc) {
       console.warn("[Twodsix] targetTokensForPlacedRegion: No region provided");
       return;
     }
@@ -92,14 +92,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
     const arrayOfTokenIds: string[] = [];
     if (tokens?.length > 0) {
       for (const tok of tokens) {
-        const center = tok.center;
-        let hit = false;
-        if (placedRegion.document?.polygonTree?.testPoint) {
-          hit = placedRegion.document.polygonTree.testPoint(center);
-        } else {
-          console.warn(`[Twodsix] No valid geometry method for region when checking token ${tok.id}`);
-        }
-        if (hit) {
+        if (tok.document?.testInsideRegion(regionDoc)) {
           arrayOfTokenIds.push(tok.id);
         }
       }
