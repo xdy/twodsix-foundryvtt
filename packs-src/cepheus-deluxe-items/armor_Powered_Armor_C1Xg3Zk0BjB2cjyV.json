@@ -54,20 +54,21 @@
         {
           "key": "system.characteristics.strength.mod",
           "type": "add",
-          "phase": "initial",
+          "phase": "derived",
           "value": "2",
           "priority": null
         },
         {
           "key": "system.characteristics.dexterity.mod",
           "type": "add",
-          "phase": "initial",
+          "phase": "derived",
           "value": "2",
           "priority": null
         },
         {
           "key": "system.encumbrance.max",
-          "mode": 1,
+          "type": "multiply",
+          "phase": "encumbMax",
           "value": "2",
           "priority": null
         }
