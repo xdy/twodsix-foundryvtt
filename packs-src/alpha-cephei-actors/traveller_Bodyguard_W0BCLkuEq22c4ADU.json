@@ -918,7 +918,7 @@
   ],
   "effects": [
     {
-      "origin": "Custom",
+      "origin": null,
       "disabled": false,
       "name": "Subdermal armor",
       "_id": "65z3JnaRuphIoeSv",
