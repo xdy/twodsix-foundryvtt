@@ -47,15 +47,17 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
 
   /**
    * Creates a preview of the region template and returns the placed region document after confirmation.
-   * Minimizes the actor sheet before placement and maximizes it after.
-   * Uses foundry.utils and canvas.regions for region creation.
+   * Minimizes the actor sheet before placement and maximizes it after - if it was open.
+   * Uses canvas.regions for region creation.
    * @returns {Promise<RegionDocument|null>} A promise that resolves with the placed region or null if cancelled.
    */
   async drawPreview(): Promise<RegionDocument|null> {
     const regionData = this.document?.toObject();
+    let actorSheetOpen = false;
     // Minimize actor sheet if open
     if (this.actorSheet?.state > 0) {
       this.actorSheet?.minimize();
+      actorSheetOpen = true;
     }
     // Suppress the Region Legend menu if open (do this before placement)
     if (canvas?.regions?.legend?.close) {
@@ -67,8 +69,8 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
     } catch (e) {
       return null;
     }
-    // Maximize the actor sheet after placement
-    if (this.actorSheet) {
+    // Maximize the actor sheet after placement if previously open
+    if (this.actorSheet && actorSheetOpen) {
       await this.actorSheet.maximize();
     }
     return placedRegion;
