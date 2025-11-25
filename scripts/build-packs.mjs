@@ -245,8 +245,13 @@ async function generateWikiJournal() {
     }
   }
 
-  // Generate the wiki journal entry
-  await generateWikiJournal();
+  // Optionally skip wiki journal entry generation for development builds
+  const SKIP_WIKI = process.env.SKIP_WIKI === 'true';
+  if (!SKIP_WIKI) {
+    await generateWikiJournal();
+  } else {
+    console.log('Skipping wiki journal generation (SKIP_WIKI=true)');
+  }
 
   // Build the wiki journal pack using the CLI
   //await buildWikiPackWithCLI();
@@ -266,7 +271,7 @@ async function generateWikiJournal() {
       //  fs.rmSync(outputPath, { recursive: true, force: true });
       //}
 
-      await compilePack(sourcePath, outputPath, { recursive: true, log: false });
+      await compilePack(sourcePath, outputPath, { recursive: true, log: true });
       console.log(`  ✅ Successfully compiled ${packDir}`);
       successCount++;
     } catch (err) {

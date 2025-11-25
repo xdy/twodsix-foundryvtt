@@ -114,6 +114,12 @@ pnpm run build:watch
 
 This will continuously monitor the twodsix source files and rebuild the system when it detects a change.
 
+Because the building of the wiki journal entries takes a bit of time (depending on internet connection speeds).  It can be faster to use the command:
+```shell
+pnpm run build:develop
+```
+as this will bypass the rebuilding of the wiki journal entries.
+
 #### Launch Foundry VTT and create a world
 
 With all the above set up you can launch the Foundry app. If this is your first time running the app it will ask you enter your license key and sign an agreement. Once you've done all that, click on "Create World" and fill out the title and select "Twodsix - Cepheus & Traveller (Unofficial)" as the game system. Click on the "Create World" button when you're done.
