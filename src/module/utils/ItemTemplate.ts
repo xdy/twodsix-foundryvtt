@@ -4,7 +4,7 @@
 import { TWODSIX } from "../config";
 
 /**
- * A helper class for building Regions for item AOE.  Adapted from D5e system then heavly ChatGPT for v14
+ * A helper class for building Regions for item AOE.  Originally adapted from D5e system then v14 migrations for MeasuredTemplates
  */
 export default class ItemTemplate extends foundry.canvas.placeables.Region {
 
@@ -12,7 +12,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
   // -------------------- REGION CREATION --------------------
 
   /**
-   * Factory method to create an ItemTemplate instance using provided data from a TwodsixItem instance.
+   * System method to create an ItemTemplate instance using provided data from a TwodsixItem instance.
    * Uses foundry.utils.deepClone for safe data handling.
    * @param {TwodsixItem} item - The Item object for which to construct the template.
    * @param {object} [options={}] - Options to modify the created template.
@@ -83,7 +83,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
    * Uses center-only targeting logic for accuracy.
    * Example:
    *   const placedRegion = await template.drawPreview();
-   *   if (placedRegion?.object) ItemTemplate.targetTokensForPlacedRegion(placedRegion.object);
+   *   if (placedRegion) ItemTemplate.targetTokensForPlacedRegion(placedRegion);
    */
   static targetTokensForPlacedRegion(regionDoc: RegionDocument): void {
     if (!regionDoc) {
@@ -103,15 +103,6 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
       console.warn("[Twodsix] No tokens found on canvas for targeting");
     }
   }
-
-  /**
-   * Check if a token's center is inside the template region using the canonical Foundry VTT v14+ method.
-   * Uses only the token center for targeting (strict method).
-   * @param {PlaceableObject} token - The token to check.
-   * @param {PlaceableObject} region - The region PlaceableObject.
-   * @returns {boolean} True if the token's center is inside the region, false otherwise.
-   */
-  // checkTokenInTemplate is no longer needed; use containsPoint or polygonTree directly in targeting.
 
   // -------------------- GENERATE TEMPLATE DATA --------------------
 
@@ -199,23 +190,4 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
       return null;
     }
   }
-
-  // Placement and event handling are now handled by core Region/canvas logic. Only actor sheet minimization/maximization is custom.
 }
-
-/**
- * Returns the center and corner points of a token for geometric checks.
- * (Currently unused, but kept for future flexibility if not restriced to center point.)
- * @param {Token|PlaceableObject} token - The token to get points for.
- * @returns {Array<{x: number, y: number}>} Array of points (center and corners).
- */
-/*function getTokenPoints(token) {
-  const points = [
-    { x: token.center.x, y: token.center.y },
-    { x: token.x, y: token.y },
-    { x: token.x + token.width, y: token.y },
-    { x: token.x, y: token.y + token.height },
-    { x: token.x + token.width, y: token.y + token.height }
-  ];
-  return points;
-}*/
