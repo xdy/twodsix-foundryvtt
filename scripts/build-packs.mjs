@@ -271,7 +271,7 @@ async function generateWikiJournal() {
       //  fs.rmSync(outputPath, { recursive: true, force: true });
       //}
 
-      await compilePack(sourcePath, outputPath, { recursive: true, log: true });
+      await compilePack(sourcePath, outputPath, { recursive: true, log: SKIP_WIKI });
       console.log(`  ✅ Successfully compiled ${packDir}`);
       successCount++;
     } catch (err) {
