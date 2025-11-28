@@ -3200,12 +3200,21 @@ select.form-input, input.form-input, span.form-input {
   margin-top: 0.5em;
 }
 
+.item-descr {
+  flex: 1 1 auto;
+  min-height: 3em;
+}
+
 .item-descr div[contenteditable] {
   min-height: 10ch;
   border: none;
   padding: 0.5em;
   /* overflow-y: auto; */
   height: unset;
+}
+
+.item-descr prose-mirror.editor.prosemirror {
+    height: 90%;
 }
 
 .pusher {
@@ -3310,9 +3319,11 @@ select.form-input, input.form-input, span.form-input {
   text-align: center;
 }
 
-/*.item-class {
-  overflow-y: hidden;
-}*/
+.item-class, .skill-container-small {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
 .remove-consumable {
   text-align: center;
@@ -3832,22 +3843,9 @@ textarea#chat-message {
     min-height: 8ch;
 }
 
-/*#sidebar {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  right: 5px;
-  top: 5px;
-  width: 320px;
-  height: 99vh;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  background-image: none !important;
-  border: none !important;
-  background-color: var(--s2d6-dark-hover);
-}*/
+prose-mirror#chat-message {
+    min-height: 8ch;
+}
 
 /* SCENE INTERFACE */
 
