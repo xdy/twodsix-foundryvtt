@@ -3844,7 +3844,7 @@ textarea#chat-message {
 }
 
 prose-mirror#chat-message {
-    min-height: 8ch;
+    min-height: 120px;
 }
 
 /* SCENE INTERFACE */
