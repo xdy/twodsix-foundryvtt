@@ -174,6 +174,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {Event} ev   The originating click event
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+
     const li = target.closest('.item');
     const toDeleteItem:TwodsixItem = this.actor.items.get(li.dataset.itemId) || null;
 
@@ -330,6 +335,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   static async _onItemCreate(ev:Event, target:HTMLElement):Promise<void> {
     ev.preventDefault();
 
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
     // Get the type of item to create.
     const {type, subtype} = target.dataset;
 
@@ -402,6 +411,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    */
   protected async _onDrop(ev:DragEvent):Promise<boolean | any> {
     ev.preventDefault();
+
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+
     const dropData = getDataFromDropEvent(ev);
     const actor = <TwodsixActor>this.actor;
 
