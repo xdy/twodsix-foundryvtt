@@ -105,6 +105,9 @@ importers:
       gulp:
         specifier: ^5.0.1
         version: 5.0.1
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.1
       marked:
         specifier: ^17.0.1
         version: 17.0.1
