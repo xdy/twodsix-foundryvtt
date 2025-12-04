@@ -1,3 +1,41 @@
+/* ============================================================================
+   TWODSIX BASIC CSS - TABLE OF CONTENTS
+   ============================================================================
+   Use Ctrl+F to search for any section by its anchor (e.g., "SECTION-1:")
+
+   1. CSS Variables & Themes                              (SECTION-1)
+   2. Global Base Styles & Resets                         (SECTION-2)
+   3. Common/Shared Components                            (SECTION-3)
+   4. Character Sheet - Layout & Structure                (SECTION-4)
+   5. Character Sheet - Tabs                              (SECTION-5)
+   6. Character Sheet - Skill Tab                         (SECTION-6)
+   7. Character Sheet - Finances Tab                      (SECTION-7)
+   8. Character Sheet - Info Tab                          (SECTION-8)
+   9. Character Sheet - Notes Tab                         (SECTION-9)
+   10. NPC Sheet Structure & Styles                       (SECTION-10)
+   11. Ship Sheet Structure                               (SECTION-11)
+   12. Ship Sheet - Labels & Input Fields                 (SECTION-12)
+   13. Ship Sheet - Tabs                                  (SECTION-13)
+   14. Item Page Styles                                   (SECTION-14)
+   15. Item Page - Consumables                            (SECTION-15)
+   16. Chat Log Styles                                    (SECTION-16)
+   17. Interface Elements & Buttons                       (SECTION-17)
+   18. Token Sheet Styles                                 (SECTION-18)
+   19. Editor Styles (TinyMCE/Prosemirror)                (SECTION-19)
+   20. Skill List Headers                                 (SECTION-20)
+   21. Webcam Settings                                    (SECTION-21)
+   22. Damage Dialog                                      (SECTION-22)
+   23. Chrome Scrollbar Fix                               (SECTION-23)
+   24. Roll Dialog Format                                 (SECTION-24)
+   25. Monk's Active Tile Fix                             (SECTION-25)
+   26. Battle Sheet                                       (SECTION-26)
+   27. Utility & Miscellaneous                            (SECTION-27)
+   ============================================================================
+*/
+
+/* ============================================================================
+   SECTION-1: CSS VARIABLES & THEMES
+   ============================================================================ */
 /* Theme-aware base variables: prefer Foundry's variables and fall back */
 :root {
   --s2d6-background-transparent: rgba(0,0,0,0);
@@ -54,7 +92,9 @@
   --s2d6-skill-list-even: rgba(0,0,0,0.03);
 }
 
-/* Light theme overrides: let Foundry's light theme drive our variables */
+/* ============================================================================
+   Light theme overrides: let Foundry's light theme drive our variables
+   ============================================================================ */
 body.theme-light .application.twodsix,
 body.theme-light.application.twodsix {
   --s2d6-app-color: var(--color-text-emphatic);
@@ -80,7 +120,9 @@ body.theme-light.application.twodsix {
   --s2d6-skill-list-even: rgba(0,0,0,0.03);
 }
 
-/* Dark theme overrides: keep parity and allow Foundry's dark tokens to be used */
+/* ============================================================================
+   Dark theme overrides: keep parity and allow Foundry's dark tokens to be used
+   ============================================================================ */
 body.theme-dark .application.twodsix,
 body.theme-dark.application.twodsix {
   /* Use a lighter accent in dark mode so accents match header backgrounds */
@@ -178,6 +220,10 @@ label.checkbox > input[type="checkbox"] {
   border: 3px solid;
   border-radius: 15px;
 }
+
+/* ============================================================================
+   SECTION-10: NPC SHEET STRUCTURE & STYLES
+   ============================================================================ */
 
 .npc-content-container {
   display: grid;
@@ -676,7 +722,7 @@ img.character-info-mask {
 
 .character-name .npc {
   height: 22px !important;
-  width: 100% !important
+  width: 100% !important;
 }
 
 
@@ -1147,7 +1193,17 @@ svg:hover {
   fill: var(--s2d6-damage-red);
 }
 
-/* TABS */
+/* ============================================================================
+   SECTION-2: GLOBAL BASE STYLES & RESETS
+   ============================================================================ */
+
+/* ============================================================================
+   SECTION-3: COMMON/SHARED COMPONENTS
+   ============================================================================ */
+
+/* ============================================================================
+   SECTION-5: CHARACTER SHEET - TABS
+   ============================================================================ */
 .character-tabs {
   grid-area: top-row;
   /* overflow: hidden; */
@@ -1329,7 +1385,9 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
   text-align: center;
 }
 
-/*-------Skill Tab-----------*/
+/* ============================================================================
+   SECTION-6: CHARACTER SHEET - SKILL TAB
+   ============================================================================ */
 .initiative {
   text-align: center;
   /* margin-top: 0.5ch; */
@@ -1546,7 +1604,9 @@ span.total-output {
   border-top-color: inherit;
 }
 
-/*-------Finances Tab-----------*/
+/* ============================================================================
+   SECTION-7: CHARACTER SHEET - FINANCES TAB
+   ============================================================================ */
 
 .finances-container {
   display: grid;
@@ -1652,7 +1712,9 @@ span.total-output {
   text-align: left;
   margin-bottom: 10px;
 }
-/*-------Info Tab-----------*/
+/* ============================================================================
+   SECTION-8: CHARACTER SHEET - INFO TAB
+   ============================================================================ */
 
 .info-container {
   display: flex;
@@ -1731,7 +1793,9 @@ span.total-output {
 .showChat {
   cursor: pointer;
 }
-/*-------- Notes Tab ----*/
+/* ============================================================================
+   SECTION-9: CHARACTER SHEET - NOTES TAB
+   ============================================================================ */
 
 .notes-container {
   margin-left: 1ch;
@@ -1761,7 +1825,9 @@ span.total-output {
   overflow-y: auto;
 }
 
-/*----------- Ship Sheet ---------*/
+/* ============================================================================
+   SECTION-11: SHIP SHEET STRUCTURE
+   ============================================================================ */
 
 .ship-container {
   height: 90%;
@@ -2192,7 +2258,9 @@ input.power-current.red {
   border: none;
 }*/
 
-/*--- Labels ---*/
+/* ============================================================================
+   SECTION-11: SHIP SHEET - LABELS & INPUT FIELDS
+   ============================================================================ */
 
 span.ship-power-label {
   font-size: 2ch;
@@ -2204,16 +2272,15 @@ span.power-now, span.power-max {
   font-size: 1ch;
 }
 
-/*--- Input Fields ---*/
 
 input.power-current, input.power-total {
   font-size: 2ch;
   text-align: center;
 }
 
-/*------------------*/
-
-/*----------- Ship Tabs ----------*/
+/* ============================================================================
+   SECTION-12: SHIP SHEET - TABS
+   ============================================================================ */
 
 .ship-tabs {
   width: 100%;
@@ -2644,7 +2711,9 @@ button.flexrow.flex-group-center.toggle-skills {
 .mini-dice {
  align-self: center;
 }
-/*--- Item Page ---*/
+/* ============================================================================
+   SECTION-13: ITEM PAGE STYLES
+   ============================================================================ */
 
 .small-grid {
   display: grid;
@@ -2783,7 +2852,9 @@ img.item-img {
   color: var(--s2d6-stat-input);
 }
 
-/* ------ Item page - Consumables ------ */
+/* ============================================================================
+   SECTION-14: ITEM PAGE - CONSUMABLES
+   ============================================================================ */
 .consumable-row {
   /*padding-right: 3px;*/
   /*width: 96%;*/
@@ -2873,7 +2944,9 @@ img.item-img {
   color: var(--s2d6-nav-background);
 }
 
-/*--- Chat Log ---*/
+/* ============================================================================
+   SECTION-15: CHAT LOG STYLES
+   ============================================================================ */
 /*#sidebar {
   width: 320px;
 }
@@ -3096,7 +3169,9 @@ form button {
     color: #a2bce4;
 }*/
 
-/*--- INTERFACE MAKEUP ---*/
+/* ============================================================================
+   SECTION-16: INTERFACE ELEMENTS & BUTTONS
+   ============================================================================ */
 /*
 button {
   position: relative;
@@ -3186,7 +3261,9 @@ div.app.window-app.twodsix.ship.actor header a.close {
   top: 0.7em;
 }
 */
-/* TOKEN SHEET */
+/* ============================================================================
+   SECTION-17: TOKEN SHEET STYLES
+   ============================================================================ */
 /*
 .token-sheet .actor-sheet-tabs {
   flex: 0 0 32px;
@@ -3207,7 +3284,9 @@ form .form-group > label {
   line-height: 2ch;
 }
 
-/* EDITOR */
+/* ============================================================================
+   SECTION-18: EDITOR STYLES (TinyMCE/Prosemirror)
+   ============================================================================ */
 
 .editor {
   height: 95%;
@@ -3273,12 +3352,16 @@ form .form-group > label {
   border: 1px solid var(--s2d6-form-light);
 }
 
-/* Header elements inside skill lists */
+/* ============================================================================
+   SECTION-19: SKILL LIST HEADERS
+   ============================================================================ */
 .skill-list header,
 .skills-list header {
   color: var(--s2d6-title-color);
 }
-/* ------ WEBCAM Settings ------ */
+/* ============================================================================
+   SECTION-20: WEBCAM SETTINGS
+   ============================================================================ */
 /*
 #camera-views {
   position: fixed;
@@ -3297,7 +3380,9 @@ form .form-group > label {
   border: none !important;
 }
 */
-/* ------ Damage Dialog ------ */
+/* ============================================================================
+   SECTION-21: DAMAGE DIALOG
+   ============================================================================ */
 .damage-dialog, .healing-dialog {
   font-size: revert;
 }
@@ -3442,7 +3527,7 @@ Monk's Enhanced Journals
     margin-top: unset;
     text-align: unset;
     z-index: unset;
-    left: unset
+    left: unset;
 }
 
 .monks-journal-sheet.sheet .items-list .items-header > *, #journal-editcurrency .items-list .items-header > * {
@@ -3468,7 +3553,9 @@ Monk's Enhanced Journals
   flex: 3;
 }
 
-/* Chrome scrollbar fix */
+/* ============================================================================
+   SECTION-22: CHROME SCROLLBAR FIX
+   ============================================================================ */
 * {
   scrollbar-width: thin;
 }
@@ -3488,7 +3575,9 @@ multi-select.actor-sheet select {
   width: 2ch;
 }
 
-/* Roll Dialog Format*/
+/* ============================================================================
+   SECTION-23: ROLL DIALOG FORMAT
+   ============================================================================ */
 multi-select.select.target-modifier {
   flex-direction: row;
 }
@@ -3503,14 +3592,18 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   width: auto;
 }
 
-/* Monk's Active Tile Fix */
+/* ============================================================================
+   SECTION-24: MONK'S ACTIVE TILE FIX
+   ============================================================================ */
 .monks-active-tiles.sheet .items-list {
   top: 0;
   width: auto;
   margin-bottom: 3ch;
 }
 
-/*  Battle Sheet */
+/* ============================================================================
+   SECTION-25: BATTLE SHEET
+   ============================================================================ */
 .battle, .ship {
   overflow-y: auto;
 }
@@ -3712,6 +3805,10 @@ input.red {
   overflow-y: auto;
   overflow-x: hidden;
 }*/
+
+/* ============================================================================
+   SECTION-26: UTILITY & MISCELLANEOUS
+   ============================================================================ */
 
 table {
   border-radius: 0;

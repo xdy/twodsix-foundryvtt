@@ -1,4 +1,41 @@
 
+/* ============================================================================
+   TABLE OF CONTENTS
+   ============================================================================
+   Search for SECTION-X to jump to any section:
+
+   1. Font Definitions (SECTION-1)
+   2. CSS Variables (SECTION-2)
+   3. Global Base Styles (SECTION-3)
+   4. General Sheet Styling (SECTION-4)
+   5. Character Sheet Tabs (SECTION-5)
+   6. Skill Tab (SECTION-6)
+   7. Style Overrides (SECTION-7)
+   8. Finances Tab (SECTION-8)
+   9. Info Tab (SECTION-9)
+   10. Notes Tab (SECTION-10)
+   11. Ship Sheet Structure (SECTION-11)
+   12. Ship Tabs (SECTION-12)
+   13. Item Page (SECTION-13)
+   14. Item Page - Consumables (SECTION-14)
+   15. Chat Log (SECTION-15)
+   16. Interface Makeup (SECTION-16)
+   17. Scene Interface (SECTION-17)
+   18. Macro Bar (SECTION-18)
+   19. Token Sheet (SECTION-19)
+   20. Editor (SECTION-20)
+   21. Webcam Settings (SECTION-21)
+   22. Damage Dialog (SECTION-22)
+   23. Chrome Scrollbar Fix (SECTION-23)
+   24. Roll Dialog Format (SECTION-24)
+   25. Battle Sheet (SECTION-25)
+   26. Miscellaneous Overrides (SECTION-26)
+   ============================================================================ */
+
+/* ============================================================================
+   SECTION-1: FONT DEFINITIONS
+   ============================================================================ */
+
 @font-face {
   font-family: "Asap";
   src: url("../fonts/Asap-Regular.woff2") format("woff2"), url("../fonts/Asap-Regular.ttf") format("truetype");
@@ -25,6 +62,10 @@
   font-weight: bold;
   font-style: italic;
 }
+
+/* ============================================================================
+   SECTION-2: CSS VARIABLES
+   ============================================================================ */
 
 :root, .application.twodsix.themed.theme-dark {
   --s2d6-default-color: rgba(41, 170, 225, 1);
@@ -65,6 +106,10 @@
   --s2d6-color-shadow-primary: #603032;
   --s2d6-color-border-light-tertiary: #7a7971;
 }
+
+/* ============================================================================
+   SECTION-3: GLOBAL BASE STYLES
+   ============================================================================ */
 
 body {
   background-image: url(../assets/workbg2.webp);
@@ -205,10 +250,11 @@ table tr:nth-child(even) {
   background: var(--s2d6-background-opaque);
   border-color: var(--s2d6-item-border);
 }
-/******************************/
-/* ----------------------------------------- */
-/* General Sheet Styling
-/* ----------------------------------------- */
+
+/* ============================================================================
+   SECTION-4: GENERAL SHEET STYLING
+   ============================================================================ */
+
 .sheet {
   display: flex;
   flex-direction: column;
@@ -1553,7 +1599,9 @@ svg:hover {
   fill: var(--s2d6-damage-red);
 }
 
-/* TABS */
+/* ============================================================================
+   SECTION-5: CHARACTER SHEET TABS
+   ============================================================================ */
 
 .character-tabs .tabs {
   position: relative;
@@ -1784,7 +1832,9 @@ a.actor-notes-tab:hover {
   margin-left: 5%;
 }
 
-/*-------Skill Tab-----------*/
+/* ============================================================================
+   SECTION-6: SKILL TAB
+   ============================================================================ */
 
 .initiative {
   text-align: center;
@@ -1858,7 +1908,9 @@ a:hover, a.active {
   width: 98%;
 }
 
-/* Style overrides */
+/* ============================================================================
+   SECTION-7: STYLE OVERRIDES
+   ============================================================================ */
 
 .skills input[type='number'] {
   /*width: 2em;*/
@@ -2010,7 +2062,9 @@ span.total-output {
   border-top-color: var(--s2d6-select-light);
 }
 
-/*-------Finances Tab-----------*/
+/* ============================================================================
+   SECTION-8: FINANCES TAB
+   ============================================================================ */
 
 .tab.finances {
   overflow: auto;
@@ -2137,7 +2191,9 @@ span.total-output {
   margin-bottom: 10px;
 }
 
-/*-------Info Tab-----------*/
+/* ============================================================================
+   SECTION-9: INFO TAB
+   ============================================================================ */
 
 .info-container {
   display: grid;
@@ -2217,7 +2273,9 @@ span.total-output {
   cursor: pointer;
 }
 
-/*-------- Notes Tab ----*/
+/* ============================================================================
+   SECTION-10: NOTES TAB
+   ============================================================================ */
 
 .notes-container {
   margin-left: 1ch;
@@ -2244,7 +2302,10 @@ notes-container > div[contenteditable] {
   overflow-y: auto;
 }
 
-/*----------- Ship Sheet ---------*/
+/* ============================================================================
+   SECTION-11: SHIP SHEET STRUCTURE
+   ============================================================================ */
+
 .ship {
   --color-scrollbar: var(--s2d6-default-color);
   --color-scrollbar-track: var(--s2d6-nav-background);
@@ -2719,7 +2780,9 @@ input.power-current, input.power-total  {
 
 /*------------------*/
 
-/*----------- Ship Tabs ----------*/
+/* ============================================================================
+   SECTION-12: SHIP TABS
+   ============================================================================ */
 
 .ship-tabs {
   width: 120%;
@@ -3130,7 +3193,9 @@ button.flexrow.flex-group-center.toggle-skills {
   text-align: center;
 }
 
-/*--- Item Page ---*/
+/* ============================================================================
+   SECTION-13: ITEM PAGE
+   ============================================================================ */
 
 .small-grid {
   display: grid;
@@ -3262,7 +3327,10 @@ select.form-input, input.form-input, span.form-input {
   background-color: var(--s2d6-item-active);
 }
 
-/* ------ Item page - Consumables ------ */
+/* ============================================================================
+   SECTION-14: ITEM PAGE - CONSUMABLES
+   ============================================================================ */
+
 .consumable-row {
   /* padding: 0; */
   /*width: 94%;*/
@@ -3371,7 +3439,10 @@ table.consumable {
 table.consumable thead tr th, table.consumable tbody tr td {
   padding: 0.25rem;
 }
-/*--- Chat Log ---*/
+
+/* ============================================================================
+   SECTION-15: CHAT LOG
+   ============================================================================ */
 
 #sidebar-tabs.tabs .item.active {
   text-shadow: 0 0 2em var(--s2d6-default-color);
@@ -3616,7 +3687,9 @@ form button {
     color: #a2bce4;
 }*/
 
-/*--- INTERFACE MAKEUP ---*/
+/* ============================================================================
+   SECTION-16: INTERFACE MAKEUP
+   ============================================================================ */
 
 .ui-control {
   --control-border-color: var(--s2d6-default-color);
@@ -3863,7 +3936,9 @@ prose-mirror#chat-message {
     min-height: 120px;
 }
 
-/* SCENE INTERFACE */
+/* ============================================================================
+   SECTION-17: SCENE INTERFACE
+   ============================================================================ */
 
 #navigation {
   /*position: fixed;
@@ -3920,7 +3995,10 @@ prose-mirror#chat-message {
   border: none;
 }
 
-/* MACRO BAR */
+/* ============================================================================
+   SECTION-18: MACRO BAR
+   ============================================================================ */
+
 #hotbar #macro-list{
   background-color: var(--s2d6-background-nearly-transparent);
 }
@@ -3933,7 +4011,9 @@ prose-mirror#chat-message {
   border: 1px solid var(--s2d6-light-color);
 }
 
-/* TOKEN SHEET */
+/* ============================================================================
+   SECTION-19: TOKEN SHEET
+   ============================================================================ */
 
 .token-sheet .actor-sheet-tabs {
   flex: 0 0 32px;
@@ -3965,7 +4045,9 @@ prose-mirror#chat-message {
   margin-top: 1.5em;
 }
 
-/* EDITOR */
+/* ============================================================================
+   SECTION-20: EDITOR
+   ============================================================================ */
 
 .editor {
   /*height: 95%;*/
@@ -4042,7 +4124,11 @@ prose-mirror#chat-message {
   padding-bottom: 2px;
   border: solid;
 }
-/* ------ WEBCAM Settings ------ */
+
+/* ============================================================================
+   SECTION-21: WEBCAM SETTINGS
+   ============================================================================ */
+
 /*
 #camera-views {
   position: fixed;
@@ -4058,7 +4144,11 @@ prose-mirror#chat-message {
   background: none !important;
   border: none !important;
 }*/
-/* ------ Damage Dialog ------ */
+
+/* ============================================================================
+   SECTION-22: DAMAGE DIALOG
+   ============================================================================ */
+
 .damage-dialog, .healing-dialog {
   font-size: revert;
 }
@@ -4206,7 +4296,10 @@ input[type="text"].color {
   flex: 3;
 }
 
-/* Chrome scrollbar fix */
+/* ============================================================================
+   SECTION-23: CHROME SCROLLBAR FIX
+   ============================================================================ */
+
 /* * {
   scrollbar-color: var(--s2d6-default-color) var(--s2d6-color-text-dark-2);
   scrollbar-width: thin;
@@ -4292,7 +4385,10 @@ multi-select.actor-sheet select {
   color: var(--s2d6-form-light);
 }
 
-/* Roll Dialog Format*/
+/* ============================================================================
+   SECTION-24: ROLL DIALOG FORMAT
+   ============================================================================ */
+
 multi-select.select.target-modifier {
   flex-direction: row;
 }
@@ -4306,7 +4402,10 @@ multi-select.select.target-modifier div.tags.input-element-tags {
   width: auto;
 }
 
-/*  Battle Sheet */
+/* ============================================================================
+   SECTION-25: BATTLE SHEET
+   ============================================================================ */
+
 .battle {
   --color-scrollbar: var(--s2d6-battle-color);
   --color-scrollbar-track: var(--s2d6-nav-background);
@@ -4749,6 +4848,10 @@ section.secret {
     width: 32px;
   }
 }*/
+
+/* ============================================================================
+   SECTION-26: MISCELLANEOUS OVERRIDES
+   ============================================================================ */
 
 .category-browser aside nav.tabs > button {
   border-radius: 4px;
