@@ -100,12 +100,6 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       showTraitAE: game.settings.get('twodsix', 'showTraitAE')
     });
 
-    context.ACTIVE_EFFECT_MODES = Object.entries(CONST.ACTIVE_EFFECT_MODES).reduce((ret, entry) => {
-      const [ key, value ] = entry;
-      ret[ value ] = key;
-      return ret;
-    }, {});
-
     //Add custom source labels for active effects
     for(const effect of context.effects) {
       if (["dead", "unconscious", "wounded", "encumbered"].includes(Array.from(effect.statuses)[0])) {
@@ -248,6 +242,11 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
    * @static
    */
   static async _onToggleItem(ev:Event, target:HTMLElement): Promise<void> {
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+
     if (target) {
       const li = target.closest(".item");
       const itemSelected = <TwodsixItem>this.actor.items.get(li.dataset.itemId);

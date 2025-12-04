@@ -6,8 +6,8 @@ import { stackArmorValues } from "../utils/actorDamage";
 
 //This hook applies CUSTOM active effects values as a formula that is evaluated and not a static value.
 Hooks.on('applyActiveEffect', (actor:TwodsixActor, change:any, current: any/*, delta: any, changes:object*/) => {
-  // Only handle CUSTOM mode (mode 0) effects
-  if (change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM) {
+  // Only handle CUSTOM mode effects
+  if (change.type !== "custom") {
     return;
   }
 

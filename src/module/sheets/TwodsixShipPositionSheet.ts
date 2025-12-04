@@ -126,14 +126,14 @@ export class TwodsixShipPositionSheet extends foundry.applications.api.Handlebar
   static async _onDeleteAction(event:Event, target:HTMLElement) {
     const deleteId = target.dataset.id;
     if (deleteId) {
-      await this.item.update({ [`system.actions.-=${deleteId}`]: null });
+      await this.item.update({ [`system.actions.${deleteId}`]: _del });
     }
   }
 
   static async _onDeleteActor(event:Event, target:HTMLElement) {
     const deleteId = target.dataset.id;
     if (deleteId) {
-      await this.actor?.update({[`system.shipPositionActorIds.-=${deleteId}`]: null});
+      await this.actor?.update({[`system.shipPositionActorIds.${deleteId}`]: _del});
       this.render();
     }
   }
