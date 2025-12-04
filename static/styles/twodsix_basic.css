@@ -56,7 +56,7 @@
 
 /* Light theme overrides: let Foundry's light theme drive our variables */
 body.theme-light .application.twodsix,
-.application.twodsix.themed.theme-light {
+body.theme-light.application.twodsix {
   --s2d6-app-color: var(--color-text-emphatic);
   --s2d6-default-color: var(--color-text-primary);
   --s2d6-input-background: var(--input-background-color);
@@ -82,7 +82,7 @@ body.theme-light .application.twodsix,
 
 /* Dark theme overrides: keep parity and allow Foundry's dark tokens to be used */
 body.theme-dark .application.twodsix,
-.application.twodsix.themed.theme-dark {
+body.theme-dark.application.twodsix {
   /* Use a lighter accent in dark mode so accents match header backgrounds */
   --s2d6-app-color: var(--color-light-2, #ddd);
   --s2d6-default-color: var(--color-text-primary);
@@ -1713,9 +1713,15 @@ span.total-output {
   border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
   height: 90%;
+  min-height: 3em;
   overflow-y: auto;
   background-color: var(--s2d6-input-background) !important;
   padding: 0.2em;
+  line-height: 1.4;
+}
+
+.char-description div[contenteditable], .char-bio div[contenteditable] {
+  min-height: 6em;
 }
 
 .char-contacts div[contenteditable] {
@@ -3370,7 +3376,7 @@ input[type="text"].color {
   width: auto;
   max-width: 3ch;
   max-height: 3ch;
-  background-color: var(--s2d6-header-background);
+  background-color: var(--color-cool-4, #302831);
   display: list-item;
 }
 
