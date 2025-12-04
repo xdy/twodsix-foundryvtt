@@ -26,7 +26,7 @@
   font-style: italic;
 }
 
-:root {
+:root, .application.twodsix.themed.theme-dark {
   --s2d6-default-color: rgba(41, 170, 225, 1);
   --s2d6-battle-color: var(--s2d6-default-color);
   --s2d6-light-color: rgba(0, 229, 255, 1);
@@ -41,7 +41,9 @@
   --s2d6-light-background-transparent: rgba(255, 255, 255, 0.09);
   --s2d6-stat-input: rgb(146 172 213);
   --s2d6-item-active: var(--s2d6-background-opaque);
+  --s2d6-title-color: var(--s2d6-item-active);
   --s2d6-header-border: rgba(34, 80, 120, 1);
+  --s2d6-header-background: var(--s2d6-default-color);
   --s2d6-form-light: rgb(175, 173, 160, 1);
   --s2d6-item-border: var(--s2d6-stat-input);
   --s2d6-skill-list-even: var(--s2d6-light-background-transparent);
@@ -79,7 +81,8 @@ p span, p {
 }
 .application input, .application select, input, div[contenteditable], textarea {
   background: var(--s2d6-background-semi-opaque);
-  color: var(--s2d6-light-color);
+  /* Use the module's default text color for editable fields so they inherit theme correctly */
+  color: var(--s2d6-default-color);
   font-family: inherit;
   font-size: inherit;
   text-align: inherit;
@@ -511,7 +514,10 @@ h2 {
   border-style: solid;
   border-radius: 2ch;
   border-color: var(--s2d6-default-color);
-  background-color: var(--s2d6-background-nearly-opaque);
+  /* Ensure the container itself uses the standard background and text color
+     so it doesn't pick up the header/title styling from higher-level rules. */
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-default-color);
   border-width: 2px;
 }
 
@@ -520,6 +526,11 @@ h2 {
   border-radius: 0 0 2ch 2ch !important;
   overflow-y: auto;
   padding-left: 2px;
+}
+
+.npc-notes-ce[contenteditable] {
+  background: var(--s2d6-background-opaque);
+  color: var(--s2d6-default-color);
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
@@ -753,7 +764,9 @@ h2 {
 
 .vehicle-traits {
   grid-area: vehicle-traits;
-  background-color: var(--s2d6-background-nearly-opaque);
+  /* Use module standard content background/text so traits list doesn't inherit header styling */
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-default-color);
   height: min-content;
 }
 
@@ -863,7 +876,8 @@ h2 {
   position: sticky;
   top:0%;
   z-index: 20;
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-item-active);
 }
 
 .storage-wrapper-auto {
@@ -1314,8 +1328,10 @@ span.bgi-charEdit {
   height: 84%;
   overflow: auto;
 }
+
 .stat-table-small table {
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-background-opaque);
+  color: var(--s2d6-default-color);
 }
 
 .table-header-row {
@@ -1793,7 +1809,7 @@ a.actor-notes-tab:hover {
   width: 98%;
   border: 1px solid var(--s2d6-default-color);
   background-color: var(--s2d6-default-color);
-  color: var(--s2d6-background-opaque);
+  color: var(--s2d6-item-active);
   /* font-weight: bold; */
 }
 
@@ -2217,13 +2233,13 @@ span.total-output {
   border: 1px solid var(--s2d6-default-color);
 }
 
-.notes-container > div[contenteditable] {
+notes-container > div[contenteditable] {
   height: 33em;
   width: 30.2em;
   border: 1px solid var(--s2d6-default-color);
   border-radius: 0;
   font-size: 15px;
-  color: var(--s2d6-light-color);
+  color: var(--s2d6-default-color);
   padding: 0.2em;
   overflow-y: auto;
 }
@@ -3412,7 +3428,7 @@ background: var(--s2d6-sidebar-background);
   border: 1px solid var(--s2d6-header-border);
 }
 .chat-message.emote {
-  background: var(--s2d6-background-nearly-opaque);
+  background: var(--s2d6-default-color);
 }
 
 .chat-message .message-header {
@@ -3420,7 +3436,7 @@ background: var(--s2d6-sidebar-background);
   color: var(--s2d6-default-color);
 }
 .chat-message button, .message-sender {
-  color: var(--color-light-3);
+  color: var(--s2d6-color-text-light-3);
   border-color: var(--s2d6-default-color);
 }
 
@@ -3631,12 +3647,12 @@ form button {
 form button, .application a.button, .application button {
   background: var(--s2d6-background-opaque);
   border: 2px groove var(--s2d6-default-color);
-  color: var(--color-light-3);
+  color: var(--s2d6-color-text-light-3);
 }
 
 .application a.button:focus, .application button:focus {
   outline: none;
-  box-shadow: 0 0 4px var(--s2d6-app-color);
+  box-shadow: 0 0 4px var(--s2d6-item-active);
 }
 
 .application a.button:hover, .application button:hover {
@@ -3723,7 +3739,7 @@ option {
   /* top: 1%; */
   /* min-height: 2ch; */
   /* vertical-align: middle; */
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-item-active);
   border: none;
 }
 
@@ -3766,7 +3782,7 @@ option {
   box-shadow: 0 0 20px var(--s2d6-item-active);
   margin: 3px 0;
   padding: 0.5em;
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-item-active);
   border: 1px solid var(--s2d6-header-border);
   /* z-index: 30; */
 }
@@ -3863,7 +3879,7 @@ prose-mirror#chat-message {
 }
 
 #controls .scene-control, #controls .control-tool, #controls .control-tool.toggle, #controls ol.control-tools > li {
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-default-color);
 }
 
 #controls .scene-control.active, #controls .control-tool.active, #controls .scene-control:hover, #controls .control-tool:hover,#controls .control-tool.toggle.active,  #controls .control-tool.toggle:hover, #controls ol.control-tools > li.active, #controls ol.control-tools > li:hover {
@@ -4159,7 +4175,6 @@ input[type="text"].color {
   width: auto;
   max-width: 24px;
   max-height: 24px;
-  background-color: var(--s2d6-background-nearly-opaque);
   display: list-item;
   border: solid thin !important; /*must keep important*/
 }
@@ -4184,7 +4199,7 @@ input[type="text"].color {
   display: flex;
   justify-content: space-between;
   padding-right: 1ch;
-  color: var(--color-light-3);
+  color: var(--s2d6-color-text-light-3);
 }
 
 .active-effect-sheet .effect-change .value {
@@ -4237,7 +4252,7 @@ form .form-group.slim .form-fields > label {
 
 .tags.input-element-tags .tag {
   border-color: var(--s2d6-default-color);
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-header-background);
 }
 
 multi-select.actor-sheet {
@@ -4249,7 +4264,7 @@ multi-select.actor-sheet select {
 
 /* file picker updates*/
 .filepicker .favorites .path, .filepicker .display-modes a {
-  background: var(--s2d6-background-nearly-opaque);
+  background: var(--s2d6-default-color);
 }
 
 .filepicker .display-modes a.active {
@@ -4410,13 +4425,14 @@ li.battle-damage button,  li.battle-weapons button{
 }
 
 .item-title-battle {
-  background-color: var(--s2d6-battle-color);
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-item-active);
 }
 
 .battle-storage-header {
   /* border: 0 1px solid var(--s2d6-default-color); */
-  background-color: var(--s2d6-battle-color);
-  color: var(--s2d6-item-active);
+  background-color: var(--s2d6-default-color);
+  color: var(--s2d6-title-color);
   position: sticky;
   top:0%;
   z-index: 20;
@@ -4583,7 +4599,7 @@ section.item-class {
 }
 
 .chat-form {
-  background: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-header-background);
 }
 
 .chat-sidebar {
@@ -4672,11 +4688,11 @@ table.ship-action-table, table.vehicle-stats-table {
 }
 
 header.folder-header i {
-  color: var(--color-light-3);
+  color: var(--s2d6-color-text-light-3);
 }
 
 .compendium-name {
-  color: var(--color-light-3);
+  color: var(--s2d6-color-text-light-3);
 }
 
 .ui-control.button:hover {
@@ -4787,7 +4803,7 @@ section#settings a:hover {
 
 code {
   --color-text-primary: var(--s2d6-select-light);
-  --color-code-bg: var(--color-cool-4);
+  --color-code-bg: var(--s2d6-color-cool-4);
   --color-code-border: var(--color-cool-3);
 }
 

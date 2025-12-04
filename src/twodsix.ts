@@ -208,11 +208,17 @@ Hooks.once('init', async function () {
   }
   switchCss(sheetName);
   if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
-    document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
-    document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
-    document.documentElement.style.setProperty('--s2d6-battle-color', game.settings.get('twodsix', 'battleColor'));
+    // Set CSS variables on the document root
+    const defaultColor = game.settings.get('twodsix', 'defaultColor');
+    const lightColor = game.settings.get('twodsix', 'lightColor');
+    const battleColor = game.settings.get('twodsix', 'battleColor');
+    const damageColor = game.settings.get('twodsix', 'damageStatColor');
+    // Set inline vars for the main document so the UI is immediate
+    document.documentElement.style.setProperty('--s2d6-default-color', defaultColor);
+    document.documentElement.style.setProperty('--s2d6-light-color', lightColor);
+    document.documentElement.style.setProperty('--s2d6-battle-color', battleColor);
+    document.documentElement.style.setProperty('--s2d6-damage-stat-color', damageColor);
   }
-  document.documentElement.style.setProperty('--s2d6-damage-stat-color', game.settings.get('twodsix', 'damageStatColor'));
 
   if (game.settings.get('twodsix', 'useModuleFixStyle') && !game.settings.get('twodsix', 'useFoundryStandardStyle')) {
     switchCss("systems/twodsix/styles/twodsix_moduleFix.css");

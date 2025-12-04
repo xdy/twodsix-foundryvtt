@@ -1,39 +1,111 @@
+/* Theme-aware base variables: prefer Foundry's variables and fall back */
 :root {
-  --s2d6-background-transparent: rgba(0, 0, 0, 0);
-  --s2d6-background-nearly-transparent: rgba(0, 0, 0, 0.25);
-  --s2d6-background-semi-opaque: rgba(0, 0, 0, 0.5);
-  --s2d6-background-nearly-opaque: rgba(0, 0, 0, 0.75);
-  --s2d6-background-opaque: rgba(0, 0, 0, 1);
-  --s2d6-nav-background: rgba(52, 52, 52, 0.95);
-  --s2d6-dark-hover: var(--s2d6-background-nearly-opaque);
-  --s2d6-light-background-transparent: rgba(255, 255, 255, 0.09);
-  --s2d6-stat-input: rgba(110, 129, 158, 1);
-  --s2d6-item-active: var(--s2d6-background-opaque);
-  --s2d6-header-border: rgba(34, 80, 120, 1);
-  --s2d6-form-light: rgb(175, 173, 160, 1);
+  --s2d6-background-transparent: rgba(0,0,0,0);
+  --s2d6-background-nearly-transparent: rgba(0,0,0,0.25);
+  --s2d6-background-semi-opaque: rgba(0,0,0,0.5);
+  --s2d6-background-nearly-opaque: rgba(0,0,0,0.75);
+  --s2d6-background-opaque: rgba(0,0,0,1);
+
+  /* Prefer Foundry provided color tokens where available */
+  --s2d6-app-color: var(--color-text-emphatic, rgba(240,240,224,1));
+  --s2d6-default-color: var(--color-text-primary, rgba(0,0,0,1));
+  --s2d6-input-background: var(--input-background-color, rgba(0,0,0,0.05));
+  --s2d6-nav-background: var(--sidebar-background, rgba(52,52,52,0.95));
+  --s2d6-stat-input: var(--color-border, rgba(110,129,158,1));
   --s2d6-item-border: var(--s2d6-stat-input);
-  --s2d6-skill-list-even: rgba(0, 0, 0, 0.15);
-  --s2d6-sidebar-background: var(--s2d6-form-light); /*rgba(130, 129, 125, 1)*/
-  --s2d6-crit-fail: rgba(170, 2, 0, 1);
-  --s2d6-crit-success: rgba(47, 120, 34, 1);
-  --s2d6-dialog-color: rgba(168, 184, 208, 1); /*rgba(162, 188, 228, 1)*/
-  --s2d6-app-color: rgba(240, 240, 224, 1);
-  --s2d6-item-hover: var(--s2d6-app-color); /*rgba(255, 255, 255, 1)*/
+  --s2d6-item-active: var(--s2d6-background-opaque);
+  --s2d6-item-hover: var(--s2d6-app-color);
   --s2d6-select-light: var(--s2d6-item-hover);
-  --s2d6-damage-red: rgba(255, 0, 0, 1);
-  --s2d6-damage-stat-color: rgba(181, 44, 44, 1);
-  --s2d6-damage-orange: rgba(255, 90, 0, 1);
-  --s2d6-input-background: rgba(0, 0, 0, 0.05);
+
+  --s2d6-crit-fail: var(--color-level-error, rgba(170,2,0,1));
+  --s2d6-crit-success: var(--color-level-success, rgba(47,120,34,1));
+
+  --s2d6-dialog-color: var(--menu-background, rgba(168,184,208,1));
+
+  --s2d6-damage-red: var(--color-level-error, rgba(255,0,0,1));
+  --s2d6-damage-orange: var(--color-level-warning, rgba(255,90,0,1));
+  --s2d6-damage-stat-color: rgba(181,44,44,1);
+
   --s2d6-pie-color: var(--s2d6-background-opaque);
   --s2d6-pie-background-color: var(--s2d6-background-transparent);
-  --s2d6-default-color: rgba(0, 0, 0, 1);
-  --s2d6-color-text-light-highlight: rgba(247, 243, 232, 1);
-  --s2d6-color-shadow-dark: #111;
-  --s2d6-color-border-light-2: #999;
-  --s2d6-color-border-light-tertiary: #7a7971;
-  --s2d6-color-text-hyperlink: #ff6400;
-  --s2d6-color-shadow-primary: #603032;
-  --s2d6-color-text-light-3: #ccc;
+
+  --s2d6-color-text-light-highlight: var(--color-text-selection, rgba(247,243,232,1));
+  --s2d6-color-shadow-dark: var(--color-shadow-dark, #111);
+  --s2d6-color-border-light-2: var(--color-border, #999);
+  --s2d6-color-border-light-tertiary: var(--color-border, #7a7971);
+  /* Fallback for when Foundry app-scoped tokens are not visible in :root */
+  --s2d6-color-text-hyperlink: var(--color-text-hyperlink, #ff6400);
+  --s2d6-color-shadow-primary: var(--color-shadow-primary, #603032);
+  --s2d6-color-text-light-3: var(--color-light-3, #ccc);
+  /* Additional Foundry token mappings for static files that reference app-scoped tokens directly */
+  --s2d6-color-cool-4: var(--color-cool-4, #0c0609);
+  --s2d6-color-border-dark-3: var(--color-border-dark-3, #333);
+  --s2d6-color-underline-header: var(--color-underline-header, #782e22);
+  --s2d6-color-border-light-primary: var(--color-border-light-primary, #b5b3a4);
+  /* Title color (theme-aware) */
+  --s2d6-title-color: var(--color-dark-1, #111);
+  /* Header background (theme-aware) */
+  --s2d6-header-background: var(--color-light-2, #f5f5f5);
+  /* Header border (theme-aware, softer by default) */
+  --s2d6-header-border: var(--color-border, rgba(0,0,0,0.06));
+  /* Even-row subtle background for lists */
+  --s2d6-light-background-transparent: rgba(255, 255, 255, 0.09);
+  --s2d6-dark-background-transparent: rgba(0,0,0,0.04);
+  --s2d6-skill-list-even: rgba(0,0,0,0.03);
+}
+
+/* Light theme overrides: let Foundry's light theme drive our variables */
+body.theme-light .application.twodsix,
+.application.twodsix.themed.theme-light {
+  --s2d6-app-color: var(--color-text-emphatic);
+  --s2d6-default-color: var(--color-text-primary);
+  --s2d6-input-background: var(--input-background-color);
+  --s2d6-nav-background: var(--sidebar-background);
+  /* In the app scope prefer Foundry's accent token, falling back to hyperlink or hardcoded */
+  --s2d6-color-text-hyperlink: var(--color-text-accent, var(--color-text-hyperlink, #ff6400));
+  --s2d6-color-border-light-2: var(--color-border, #999);
+  /* Map additional module tokens to Foundry app-scoped tokens */
+  --s2d6-stat-input: var(--color-border, rgba(110,129,158,1));
+  --s2d6-dialog-color: var(--menu-background, var(--color-cool-4));
+  --s2d6-color-text-light-highlight: var(--color-text-selection, var(--color-light-1));
+  --s2d6-color-shadow-dark: var(--color-shadow-dark, #111);
+  --s2d6-color-border-light-tertiary: var(--color-border-light-tertiary, var(--color-border, #7a7971));
+  --s2d6-color-shadow-primary: var(--color-shadow-primary, #603032);
+  --s2d6-color-text-light-3: var(--color-light-3, #ccc);
+  /* In light mode we prefer an inverted header: dark background with light title text */
+  --s2d6-title-color: var(--color-light-1, #ffffff);
+  --s2d6-header-background: var(--color-dark-1, #111111);
+  /* Make header/gear borders darker in light mode so they remain visible */
+  --s2d6-header-border: var(--color-border, rgba(0,0,0,0.18));
+  --s2d6-skill-list-even: rgba(0,0,0,0.03);
+}
+
+/* Dark theme overrides: keep parity and allow Foundry's dark tokens to be used */
+body.theme-dark .application.twodsix,
+.application.twodsix.themed.theme-dark {
+  /* Use a lighter accent in dark mode so accents match header backgrounds */
+  --s2d6-app-color: var(--color-light-2, #ddd);
+  --s2d6-default-color: var(--color-text-primary);
+  --s2d6-input-background: var(--input-background-color);
+  --s2d6-nav-background: var(--sidebar-background);
+  /* In the app scope prefer Foundry's accent token, falling back to hyperlink or hardcoded */
+  --s2d6-color-text-hyperlink: var(--color-text-accent, var(--color-text-hyperlink, #ff6400));
+  --s2d6-color-border-light-2: var(--color-border, #999);
+  /* Map additional module tokens to Foundry app-scoped tokens */
+  --s2d6-stat-input: var(--color-border, rgba(110,129,158,1));
+  --s2d6-dialog-color: var(--menu-background, var(--color-cool-4));
+  --s2d6-color-text-light-highlight: var(--color-text-selection, var(--color-light-1));
+  --s2d6-color-shadow-dark: var(--color-shadow-dark, #111);
+  --s2d6-color-border-light-2: var(--color-border, #999);
+  --s2d6-color-border-light-tertiary: var(--color-border-light-tertiary, var(--color-border, #7a7971));
+  --s2d6-color-shadow-primary: var(--color-shadow-primary, #603032);
+  --s2d6-color-text-light-3: var(--color-light-3, #ccc);
+  /* In dark mode, make headers have a very soft light band and dark title text */
+  --s2d6-header-background: var(--color-light-3, rgba(255,255,255,0.07));
+  --s2d6-title-color: var(--color-dark-1, #111);
+  /* softer border in dark mode to avoid glaring contrast */
+  --s2d6-header-border: var(--color-light-3, rgba(255,255,255,0.06));
+  --s2d6-skill-list-even: rgba(255,255,255,0.05);
 }
 
 input[type= 'checkbox'] {
@@ -426,13 +498,11 @@ label.checkbox > input[type="checkbox"] {
   scrollbar-width: thin;
   font-family: inherit;
   height: 16ch;
-  color: var(--s2d6-item-active);
 }
 
 .vehicle-cargo-list textarea {
   min-height: 16ch;
   resize: vertical;
-  color: var(--s2d6-item-active);
   width: 100%;
 }
 
@@ -446,12 +516,11 @@ label.checkbox > input[type="checkbox"] {
   font-family: inherit;
   border-radius: 0 0  2ch 2ch;
   border: none;
-  color: var(--s2d6-item-active);
   display: block;
 }
 
 .space-object-notes textarea {
-  height: 88%;
+  height: 85%;
 }
 .space-object-notes {
   grid-area: space-object-notes;
@@ -492,8 +561,9 @@ label.checkbox > input[type="checkbox"] {
   border-color: var(--s2d6-background-opaque);
   position: sticky;
   top:0%;
-  background: url(../../../ui/parchment.jpg) repeat;
+  background-color: var(--s2d6-header-background);
   /*min-height: 4ch;*/
+  color: var(--s2d6-title-color);
 }
 
 .storage-wrapper-auto {
@@ -1133,7 +1203,7 @@ a.skill-tab:hover, a.item-tab:hover, a.finances-tab:hover, a.info-tab:hover, a.a
 
 a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active, a.actor-notes-tab.active, .effects-tab.active {
   color: var(--s2d6-item-hover);
-  background-color: var(--s2d6-background-nearly-opaque) !important;
+  background-color: var(--s2d6-header-background) !important;
   text-shadow: none !important;
   border: inset;
 }
@@ -1174,8 +1244,8 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 .gear-header {
-  background-color: var(--s2d6-background-nearly-opaque);
-  color: var(--s2d6-app-color);
+  background-color: var(--s2d6-header-background);
+  color: var(--s2d6-title-color);
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 2px;
@@ -1187,7 +1257,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 }
 
 .gear {
-  border: 1px solid var(--s2d6-background-semi-opaque);
+  border: 1px solid var(--s2d6-header-border);
   width: 98%;
   margin-bottom: -1px;
   padding-left: 2px;
@@ -1275,10 +1345,10 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-list {
   padding: 0.3em 0 0;
-  border: 1px solid var(--s2d6-background-nearly-opaque);
+  border: 1px solid var(--s2d6-header-background);
   border-radius: 1ch 0 0;
-  background-color: var(--s2d6-background-nearly-opaque);
-  color: var(--s2d6-app-color);
+  background-color: var(--s2d6-header-background);
+  color: var(--s2d6-title-color);
   /*font-weight: bold;*/
   width: 98%;
 }
@@ -1292,8 +1362,8 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .add-skill {
   width: 10ch;
   text-align: center;
-  background-color: var(--s2d6-background-nearly-opaque);
-  color: var(--s2d6-app-color);
+  background-color: var(--s2d6-header-background);
+  color: var(--s2d6-title-color);
   border-radius: 1ch 1ch 0 0;
   padding-top: 2px;
 }
@@ -1305,7 +1375,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 /*a:hover, a.active {
   text-shadow: 0 0 0.8em;
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-header-background);
 }*/
 
 .item.flexrow.item-header {
@@ -1318,7 +1388,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 
 .skill-header {
   cursor: pointer;
-  width: 35em;
+  width: 37em;
 }
 
 /* Style overrides */
@@ -1377,7 +1447,7 @@ input.item-value-edit, input.joat-skill-input {
 
 .skill:hover {
   border-left: 1px solid var(--s2d6-background-opaque);
-  border-right: 1px solid var(--s2d6-background-nearly-opaque);
+  border-right: 1px solid var(--s2d6-header-background);
   background-color: var(--s2d6-background-semi-opaque) !important;
 }
 
@@ -1545,11 +1615,11 @@ span.total-output {
 .item-title, .item-title-npc,  .item-title-vehicle, .item-title-battle {
   min-height: 3ch;
   display: block;
-  color: var(--s2d6-app-color);
   font-weight: bold;
   font-size: 2ch;
   padding: 0.2em 0.2em 0.2em 0.5em;
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-header-background);
+  color: var(--s2d6-title-color);
   border-radius: 1.5ch 1.5ch 0 0;
   /* position: fixed; */
 }
@@ -1564,11 +1634,11 @@ span.total-output {
   height: 22px;
   width: 10.4em;
   display: block;
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-title-color);
   font-weight: bold;
   font-size: 15px;
   padding: 0.2em 0.2em 0.2em 0.5em;
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-header-background);
   border-radius: 1ch 1ch 0 0;
 }
 /*.manifest {
@@ -1669,7 +1739,7 @@ span.total-output {
 }
 
 .notes-container .editor {
-  border: 1px solid var(--s2d6-color-border-light-tertiary);
+  /*border: 1px solid var(--s2d6-color-border-light-tertiary);*/
   border-radius: 0 3px 3px;
 }
 
@@ -1871,7 +1941,7 @@ img.ship-mask-bg {
   width: 90%;
   font-family: inherit;
   scrollbar-width: thin;
-  color: var(--s2d6-default-color);
+  border-color: intital;
 }
 
 .ship-hull {
@@ -1948,8 +2018,6 @@ img.ship-mask-bg {
 }
 
 .ship-mass input, .ship-tl input {
-  background-color: var(--s2d6-input-background) !important;
-  border: 1px solid var(--s2d6-default-color);
   border-radius: 0.5ch;
   width: 7ch;
 }
@@ -1981,8 +2049,8 @@ img.ship-mask-bg {
 }
 
 .power-title {
-  color: var(--s2d6-app-color);
-  background-color: var(--s2d6-background-nearly-opaque);
+  color: var(--s2d6-title-color);
+  background-color: var(--s2d6-header-background);
   border-radius: 0 0 1ch 1ch;
   font-weight: bold;
   border-bottom: none;
@@ -2182,7 +2250,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
   color: var(--s2d6-item-hover);
   text-shadow: none !important;
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-header-background);
   border: inset;
 }
 */
@@ -2261,7 +2329,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .ship-position-actor-token, .ship-position-action {
   background-color: var(--s2d6-background-nearly-transparent);
-  border: 1px solid var(--s2d6-default-color);
+  border: 1px solid var(--s2d6-color-border-light-2);
 }
 
 /*.crew-list, .ship-positions-list {
@@ -2328,8 +2396,8 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 
 .storage-header {
   /* border: 2px solid var(--s2d6-background-opaque); */
-  background-color: var(--s2d6-background-opaque);
-  color: var(--s2d6-app-color);
+  background-color: var(--s2d6-header-background);
+  color: var(--s2d6-title-color);
   position: sticky;
   top:0%;
   min-height: 5ch;
@@ -2933,9 +3001,7 @@ background: var(--sidebar-background);
 #chat-form textarea {
   width: 100%;
   height: 100%;
-  resize: none;
-  color: var(--light-color);
-  background: var(--background-opaque) !important;
+  resize: none
   border-color: var(--default-color) !important;
 }
 
@@ -3000,7 +3066,7 @@ background: var(--sidebar-background);
 }
 
 .flavor-table tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--s2d6-skill-list-even);
 }
 
 .flavor-table th, .flavor-table td {
@@ -3087,6 +3153,7 @@ div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-ap
   margin-left: 3em !important;
   position: relative;
   flex: none;
+  color: var(--s2d6-title-color);
 }
 
 div.app.window-app.twodsix.sheet.actor header a.configure-sheet, div.app.window-app.twodsix.ship.actor header a.configure-sheet {
@@ -3176,8 +3243,6 @@ form .form-group > label {
   height: 95%;
   padding-left: 4px;
   border: 1px solid;
-  background: var(--s2d6-input-background);
-  color: var(--s2d6-default-color);
   min-height: inherit;
 }
 
@@ -3196,10 +3261,16 @@ form .form-group > label {
 
 .header-row {
   text-align: center;
-  color: var(--s2d6-item-hover);
-  background-color: var(--s2d6-backgroun-semi-opaque);
+  color: var(--s2d6-title-color);
+  background-color: var(--s2d6-header-background);
   background-image: radial-gradient(circle farthest-side, var(--s2d6-background-opaque), var(--s2d6-input-background));
   border: 1px solid var(--s2d6-form-light);
+}
+
+/* Header elements inside skill lists */
+.skill-list header,
+.skills-list header {
+  color: var(--s2d6-title-color);
 }
 /* ------ WEBCAM Settings ------ */
 /*
@@ -3299,7 +3370,7 @@ input[type="text"].color {
   width: auto;
   max-width: 3ch;
   max-height: 3ch;
-  background-color: var(--s2d6-background-nearly-opaque);
+  background-color: var(--s2d6-header-background);
   display: list-item;
 }
 
@@ -3545,8 +3616,8 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 
 .battle-storage-header {
   /* border: 0 1px solid var(--s2d6-default-color); */
-  background-color: var(--s2d6-background-opaque);
-  color: var(--s2d6-app-color);
+  background-color: var(--s2d6-header-background);
+  color: var(--s2d6-title-color);
   position: sticky;
   top:0%;
   z-index: 20;
@@ -3723,10 +3794,6 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 
 .traveller-sheet {
   height: 100%;
-}
-
-textarea {
-  color: var(--s2d6-default-color);
 }
 
 .tl-label {
