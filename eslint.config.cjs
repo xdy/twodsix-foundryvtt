@@ -41,6 +41,8 @@ module.exports = [
       'foundry.js',
       '*.json',
       'client.mjs',
+      // Foundry symlinks
+      'foundry/**/*',
     ],
   },
 

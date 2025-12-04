@@ -16,6 +16,7 @@ dist/
 
 #This project
 foundryconfig.json
+foundry-config.yaml
 foundry.js
 foundry-esm.js
 foundry.mjs
