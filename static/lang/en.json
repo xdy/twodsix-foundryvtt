@@ -1836,6 +1836,7 @@
       "NoTargetFound": "No target for dropping found.",
       "LackPermissionToDamage": "You lack sufficient permissions on target actor.",
       "LackPermissionToEdit": "You lack sufficient permission to edit actor.",
+      "LackPermissionToRoll": "You lack sufficient permission to make roll.",
       "MultipleActorsFound": "Multiple actors found. Cannot apply damage.",
       "EncumbranceFormulaInvalid": "Encumbrance Formula is not valid.  Value is set to zero.",
       "ActorHasInitiativeAlready": "Actor already has initiative.",
