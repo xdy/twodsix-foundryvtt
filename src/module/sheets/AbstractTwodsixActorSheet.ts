@@ -702,7 +702,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   static async _onRollInitiative(ev:Event /*, target:HTMLElement*/): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
       return;
     }
