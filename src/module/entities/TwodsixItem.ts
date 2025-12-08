@@ -1510,6 +1510,10 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
 export async function onRollDamage(ev:Event, target:HTMLElement):Promise<void> {
   ev.preventDefault();
   ev.stopPropagation();
+  if (!this.actor.isOwner) {
+    ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
+    return;
+  }
   const itemId = target.closest('.item').dataset.itemId;
   let item = this.actor.items.get(itemId) as TwodsixItem;
 
