@@ -59,6 +59,11 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
   }
 
   static async _onRollReaction(): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
+      return;
+    }
+
     const reaction = (<Animal>this.actor.system).reaction;
     let rollString = "2d6";
     if (this.actor.system.woundedEffect) {
@@ -89,6 +94,11 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
   }
 
   static async _onRollMorale(): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
+      return;
+    }
+
     let rollString = "2d6";
     if (this.actor.system.woundedEffect) {
       rollString += " + @woundedEffect";

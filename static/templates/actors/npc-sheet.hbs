@@ -1,4 +1,4 @@
-<section class="{{cssClass}} untabbed-sheet" autocomplete="off">
+<section class="{{cssClass}} untabbed-sheet {{#if limited}}limited{{/if}}" autocomplete="off">
   {{#if settings.showSpells}}
   <div class="npc-content-container-spells">
   {{else}}
@@ -10,16 +10,26 @@
         {{#if settings.showStatusIcons}}
         <span class="actor-status-icons npc">
             {{#each effects as |anEffect|}}
-            {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint.css}} !important;"/>{{/unless}}
+            {{#unless (or anEffect.disabled anEffect.isSuppressed)}}
+              <img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid="{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint.css}} !important;"/>
+            {{/unless}}
             {{/each}}
+        </span>
         {{/if}}
       </div>
-      <div class="character-name npc"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
-                  onClick="this.select();" autocomplete="off"/></div>
+      <div class="character-name npc">
+        {{#if limited}}
+          <span class="name-limited" title="{{actor.name}}">{{actor.name}}</span>
+        {{else}}
+          <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/>
+        {{/if}}
+     </div>
       {{#if settings.showInitiativeButton}}
+        {{#if isOwner}}
         <div class = "initiative">
           <button type="button" class="roll-initiative" data-action="rollInitiative"><i class="fa-solid fa-dice" alt="2d6"></i>{{localize "TWODSIX.Rolls.RollInitiative"}}</button>
         </div>
+        {{/if}}
       {{/if}}
       {{#if settings.showActorReferences}}
         <div class = "centre">
@@ -67,7 +77,7 @@
       {{#if settings.hideUntrainedSkills}}
       <span class="item" data-item-id="{{untrainedSkill.id}}">
           <text class="item-name-nd rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll" draggable="false"> {{untrainedSkill.name}}</text>
-          <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" {{#if untrainedSkill.system.value}}name="{{concat 'system.skills.' (skillName untrainedSkill.name)}}"{{/if}} readonly/>
+          <input style="width: 3ch;" class="item-value-edit" type="number" value="{{untrainedSkill.system.value}}" {{#if untrainedSkill.system.value}}name="{{concat 'system.skills.' (skillName untrainedSkill.name)}}"{{/if}} readonly/>
       </span>
       {{/if}}
       </div>

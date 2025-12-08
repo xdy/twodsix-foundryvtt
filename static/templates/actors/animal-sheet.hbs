@@ -11,9 +11,16 @@
         data-tooltip="{{actor.name}}" alt='{{localize "TWODSIX.Actor.CharacterImage"}}'/>
         {{#if settings.showStatusIcons}}
         <span class="actor-status-icons npc">
-            {{#each effects as |anEffect|}}
-              {{#unless (or anEffect.disabled anEffect.isSuppressed)}}<img class="condition-icon" src="{{anEffect.img}}" data-tooltip="{{anEffect.name}}" data-uuid= "{{anEffect.uuid}}" style="border: 1px solid {{anEffect.tint.css}} !important;"/>{{/unless}}
-            {{/each}}
+          {{#each effects as |anEffect|}}
+            {{#unless (or anEffect.disabled anEffect.isSuppressed)}}
+              <img class="condition-icon"
+                   src="{{anEffect.img}}"
+                   data-tooltip="{{anEffect.name}}"
+                   data-uuid="{{anEffect.uuid}}"
+                   style="border: 1px solid {{anEffect.tint.css}} !important;"/>
+            {{/unless}}
+          {{/each}}
+        </span>
         {{/if}}
       </div>
       <div class="character-name npc" style="width: 100% !important; height: 26px !important;"><input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}'
@@ -53,12 +60,11 @@
       {{#each container.skillsList as |item id|}}
               <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">{{item.name}}</span>
-                <input style="width: 4ch;"  type="number"
+                <input style="width: 4ch;" type="number"
                   {{disabled (lookup @root.tooltips.skills (skillName item.name))}}
                   value="{{twodsix_skillTotal ../actor item}}"
                   data-tooltip="{{lookup @root.tooltips.skills (skillName item.name)}}"
-                  class= "item-value-edit" value="{{item.system.value}}" data-action="selectItem"
-                />
+                  class="item-value-edit" data-action="selectItem"/>
                 <span class="item-controls centre">
                   <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
                       class="fa-solid fa-pen-to-square"></i></a>

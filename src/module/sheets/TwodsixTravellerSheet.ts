@@ -242,7 +242,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
    * @static
    */
   static async _onToggleItem(ev:Event, target:HTMLElement): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
