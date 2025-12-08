@@ -176,7 +176,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {Event} ev   The originating click event
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -259,7 +259,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {HTMLElement} target  HTMLElement clicked
    */
   static async _onPerformAttack(ev:Event, target:HTMLElement): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
       return;
     }
@@ -341,7 +341,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   static async _onItemCreate(ev:Event, target:HTMLElement):Promise<void> {
     ev.preventDefault();
 
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -388,7 +388,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static _onItemEdit(ev:Event, target:HTMLElement):Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -412,7 +412,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static _onEditConsumable(ev:Event, target:HTMLElement):Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -427,7 +427,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   protected async _onDrop(ev:DragEvent):Promise<boolean | any> {
     ev.preventDefault();
 
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -801,7 +801,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static async _onSkillTalentRoll(ev:Event, target:HTMLElement): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
       return;
     }
@@ -819,7 +819,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static async _onRollChar(ev:Event, target: HTMLElement): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
       return;
     }
@@ -909,7 +909,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   }
 
   static async _onAdjustCounter(ev:Event, target:HTMLElement): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -940,7 +940,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   }
 
   static async _onReloadMagazine(ev:Event, target:HTMLElement): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }

@@ -59,7 +59,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
   }
 
   static async _onRollReaction(): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
       return;
     }
@@ -94,7 +94,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
   }
 
   static async _onRollMorale(): Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
       return;
     }

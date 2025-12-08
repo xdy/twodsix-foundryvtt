@@ -1510,7 +1510,7 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
 export async function onRollDamage(ev:Event, target:HTMLElement):Promise<void> {
   ev.preventDefault();
   ev.stopPropagation();
-  if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+  if (!this.actor.isOwner) {
     ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
     return;
   }

@@ -308,7 +308,7 @@ export async function changeReference(ev: Event):Promise<void> {
 }
 
 export async function openJournalEntry():Promise<void> {
-  if (this.document.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+  if (!this.document.isOwner) {
     //ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
     return;
   }
@@ -324,7 +324,7 @@ export async function openJournalEntry():Promise<void> {
 
 export async function deleteReference(ev: PointerEvent): Promise<void> {
   ev.preventDefault();
-  if (this.document.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+  if (!this.document.isOwner) {
     ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
     return;
   }
