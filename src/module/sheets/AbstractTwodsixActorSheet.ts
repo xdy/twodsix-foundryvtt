@@ -52,6 +52,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     context.owner = this.actor;
     context.actor = context.owner;
     context.system = this.actor.system;
+    context.limited = this.actor.limited;
+    context.isOwner = this.actor.isOwner;
 
     context.dtypes = ["String", "Number", "Boolean"];
 
@@ -174,6 +176,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {Event} ev   The originating click event
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+
     const li = target.closest('.item');
     const toDeleteItem:TwodsixItem = this.actor.items.get(li.dataset.itemId) || null;
 
@@ -330,6 +337,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   static async _onItemCreate(ev:Event, target:HTMLElement):Promise<void> {
     ev.preventDefault();
 
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+
     // Get the type of item to create.
     const {type, subtype} = target.dataset;
 
@@ -402,6 +414,12 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    */
   protected async _onDrop(ev:DragEvent):Promise<boolean | any> {
     ev.preventDefault();
+
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+
     const dropData = getDataFromDropEvent(ev);
     const actor = <TwodsixActor>this.actor;
 
@@ -672,6 +690,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   static async _onRollInitiative(ev:Event /*, target:HTMLElement*/): Promise<void> {
+    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+
     if (!canvas.tokens?.ownedTokens.find(t => t.actor?.id === this.actor.id)) { //would this.actor.token work as well? Maybe not for multile canvases
       ui.notifications.warn("TWODSIX.Warnings.NoActiveToken", {localize: true});
       return;
