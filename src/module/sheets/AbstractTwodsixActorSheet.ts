@@ -52,6 +52,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     context.owner = this.actor;
     context.actor = context.owner;
     context.system = this.actor.system;
+    context.limited = this.actor.limited;
+    context.isOwner = this.actor.isOwner;
 
     context.dtypes = ["String", "Number", "Boolean"];
 
@@ -174,7 +176,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {Event} ev   The originating click event
    */
   static async _onItemDelete(ev:Event, target:HTMLElement):Promise<void> {
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -257,6 +259,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @param {HTMLElement} target  HTMLElement clicked
    */
   static async _onPerformAttack(ev:Event, target:HTMLElement): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
+      return;
+    }
     const attackType = target.dataset.attackType || "single";
     const rof = target.dataset.rof ? parseInt(target.dataset.rof, 10) : 1;
     const item: TwodsixItem = getItemFromTarget(target, this.actor);
@@ -335,10 +341,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   static async _onItemCreate(ev:Event, target:HTMLElement):Promise<void> {
     ev.preventDefault();
 
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
+
     // Get the type of item to create.
     const {type, subtype} = target.dataset;
 
@@ -381,6 +388,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static _onItemEdit(ev:Event, target:HTMLElement):Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
     const li = target.closest('.item');
     const item = this.actor.items.get(li.dataset.itemId);
     item?.sheet?.render({force: true});
@@ -401,6 +412,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static _onEditConsumable(ev:Event, target:HTMLElement):Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
     const li = target.closest(".consumable-row");
     const item = this.actor.items.get(li.dataset.consumableId);
     item?.sheet?.render({force: true});
@@ -412,7 +427,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   protected async _onDrop(ev:DragEvent):Promise<boolean | any> {
     ev.preventDefault();
 
-    if (this.actor.permission !== CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER) {
+    if (!this.actor.isOwner) {
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
@@ -687,6 +702,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @private
    */
   static async _onRollInitiative(ev:Event /*, target:HTMLElement*/): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
+      return;
+    }
+
     if (!canvas.tokens?.ownedTokens.find(t => t.actor?.id === this.actor.id)) { //would this.actor.token work as well? Maybe not for multile canvases
       ui.notifications.warn("TWODSIX.Warnings.NoActiveToken", {localize: true});
       return;
@@ -781,6 +801,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static async _onSkillTalentRoll(ev:Event, target:HTMLElement): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
+      return;
+    }
     const showThrowDiag:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick') ? ev["shiftKey"] : !ev["shiftKey"];
     const item:TwodsixItem = getItemFromTarget(target, this.actor);
     if (item) {
@@ -795,6 +819,11 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
    * @static
    */
   static async _onRollChar(ev:Event, target: HTMLElement): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToRoll", {localize: true});
+      return;
+    }
+
     const shortChar = target.dataset.label;
     const showThrowDiag:boolean = game.settings.get('twodsix', 'invertSkillRollShiftClick') ? ev["shiftKey"] : !ev["shiftKey"];
     await (<TwodsixActor>this.actor).characteristicRoll({ rollModifiers: {characteristic: shortChar}}, showThrowDiag);
@@ -880,6 +909,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   }
 
   static async _onAdjustCounter(ev:Event, target:HTMLElement): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
     const modifier = parseInt(target.dataset.value, 10);
     const field = target.closest(".combined-buttons")?.dataset.field;
     const li = target.closest(".item");
@@ -907,6 +940,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
   }
 
   static async _onReloadMagazine(ev:Event, target:HTMLElement): Promise<void> {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
     const li = target.closest(".item");
     const itemSelected = this.actor.items.get(li.dataset.itemId);
     if (itemSelected.system.ammoLink === "none") {

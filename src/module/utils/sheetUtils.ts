@@ -308,6 +308,10 @@ export async function changeReference(ev: Event):Promise<void> {
 }
 
 export async function openJournalEntry():Promise<void> {
+  if (!this.document.isOwner) {
+    //ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+    return;
+  }
   if (this.document.system.pdfReference.type === 'JournalEntry') {
     const journalToOpen = await fromUuid(this.document.system.pdfReference.href);
     if (journalToOpen) {
@@ -320,6 +324,10 @@ export async function openJournalEntry():Promise<void> {
 
 export async function deleteReference(ev: PointerEvent): Promise<void> {
   ev.preventDefault();
+  if (!this.document.isOwner) {
+    ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+    return;
+  }
   if (this.document.system.pdfReference.href !== "") {
     await this.document.update({"system.pdfReference.type": "", "system.pdfReference.href": "", "system.pdfReference.label": ""});
   } else {

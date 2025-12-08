@@ -1,3 +1,10 @@
+## [6.9.6](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.5...v6.9.6) (2025-12-08)
+
+
+### Bug Fixes
+
+* make traveller, robot and animal sheets apply ownership ([#1917](https://github.com/xdy/twodsix-foundryvtt/issues/1917)) ([5fc6c9b](https://github.com/xdy/twodsix-foundryvtt/commit/5fc6c9b57b90b07f4cab3cbf44b13f469d04f6c6))
+
 ## [6.9.5](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.4...v6.9.5) (2025-11-22)
 
 
