@@ -19,18 +19,20 @@ export default class TwodsixCombatant extends Combatant {
 
   protected _getInitiativeFormula():string {
     if ((<TwodsixActor>this.actor).type === "ship") {
-      return <string>game.settings.get("twodsix", "shipInitiativeFormula");
+      // For ships, use the initiative formula from the selected space combat phase type
+      const phaseConfig = this.getRulesetSpaceCombatConfig();
+      return phaseConfig.shipInitiativeFormula || <string>game.settings.get("twodsix", "shipInitiativeFormula");
     } else {
       return <string>game.settings.get("twodsix", "initiativeFormula");
     }
   }
 
   /**
-   * Get the ruleset's space combat configuration
+   * Get the space combat phase configuration based on the spaceCombatPhases setting
    */
   getRulesetSpaceCombatConfig() {
-    const rulesetKey = game.settings.get('twodsix', 'activeRuleset');
-    return TWODSIX.RULESETS?.[rulesetKey as keyof typeof TWODSIX.RULESETS]?.spaceCombat || {};
+    const phaseKey = game.settings.get('twodsix', 'spaceCombatPhases');
+    return TWODSIX.SPACE_COMBAT_PHASE_TYPES?.[phaseKey as keyof typeof TWODSIX.SPACE_COMBAT_PHASE_TYPES] || {};
   }
 
   /**

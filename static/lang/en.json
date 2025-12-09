@@ -1743,6 +1743,17 @@
         "hint": "The roll DM that is applied for each hit to a component.",
         "name": "Component Damage DM"
       },
+      "spaceCombatPhases": {
+        "hint": "Select the ship combat phase sequence to use for ship battles.",
+        "name": "Ship combat phase sequence",
+        "choices": {
+          "fivePhase": "Five Phase (Classic Traveller)",
+          "threePhase": "Three Phase (Cepheus Engine)",
+          "twoPhasePosition": "Two Phase - Position Dynamic",
+          "eightPhaseLooping": "Eight Phase - Looping (Cepheus Universal)",
+          "mgt2eThreePhase": "Three Phase (Mongoose Traveller 2E)"
+        }
+      },
       "showTraitAE": {
         "hint": "List active effect formulas as part of trait short description (true) on Traveller Info tab.  Otherwise, show only the short description for the trait (false).",
         "name": "Show Active Effects for Traits"

@@ -44,13 +44,26 @@ const AUTOFIRE_VARIANTS = Object.freeze({
 /**
  * Space combat system types that can be selected per ruleset.
  * Each type defines phases, initiative formula, and action budget.
+ *
+ * Properties:
+ * - key: unique identifier for the phase type
+ * - name: display name
+ * - phases: array of phase names executed in sequence
+ * - shipInitiativeFormula: formula for rolling initiative
+ *   * @thrustBonus: +1 to the ship with the higher thrust rating (m-drive). Used when comparing relative advantage.
+ *   * @shipThrustRating: the ship's m-drive rating (thrust value). Used when absolute thrust value matters.
+ * - reRollInitiative: if true, initiative is rolled fresh each round; if false/omitted, initiative is rolled once at start
+ * - loopBackPhase: (optional) phase name to return to for looping systems (e.g., Cepheus Universal)
+ * - actionBudget: minor and significant actions available per round
+ * - reactionFormula: function returning number of reactions based on initiative value
  */
-const SPACE_COMBAT_TYPES = Object.freeze({
+const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
   fivePhase: {
     key: 'fivePhase',
     name: 'Five Phase (Classic Traveller)',
     phases: ['movement', 'laserFire', 'enemyLaserFire', 'ordnanceLaunch', 'computerReprogramming'],
-    shipInitiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
+    shipInitiativeFormula: "2d6",
+    reRollInitiative: false,
     actionBudget: {
       minorActions: 0,
       significantActions: 1
@@ -61,7 +74,8 @@ const SPACE_COMBAT_TYPES = Object.freeze({
     key: 'threePhase',
     name: 'Three Phase (Cepheus Engine)',
     phases: ['declaration', 'actions', 'damage'],
-    shipInitiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
+    shipInitiativeFormula: "2d6 + @thrustBonus", // +1 if greater thrust
+    reRollInitiative: false,
     actionBudget: {
       minorActions: 3,
       significantActions: 1
@@ -77,7 +91,8 @@ const SPACE_COMBAT_TYPES = Object.freeze({
     key: 'twoPhasePosition',
     name: 'Two Phase - Position Dynamic',
     phases: ['position', 'action'],
-    shipInitiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
+    shipInitiativeFormula: "2d6 + @skills.Piloting + @shipThrustRating",
+    reRollInitiative: true,
     actionBudget: {
       minorActions: 0,
       significantActions: 1
@@ -89,7 +104,8 @@ const SPACE_COMBAT_TYPES = Object.freeze({
     name: 'Eight Phase - Looping (Cepheus Universal)',
     phases: ['detection', 'range', 'tactical', 'advantage', 'attack', 'screen', 'damageControl'],
     loopBackPhase: 'tactical',  // Returns to phase 3 (tactical) after damageControl
-    shipInitiativeFormula: "2d6 + min(1, max(@skills.Tactics, 0)) + min(1, max(@skills.Recon, 0))",
+    shipInitiativeFormula: "2d6 + @skills.Pilot + @shipThrustRating",
+    reRollInitiative: true,
     actionBudget: {
       minorActions: 1,
       significantActions: 0
@@ -100,7 +116,8 @@ const SPACE_COMBAT_TYPES = Object.freeze({
     key: 'mgt2eThreePhase',
     name: 'Three Phase (Mongoose Traveller 2E)',
     phases: ['manoeuvre', 'attack', 'actions'],
-    shipInitiativeFormula: "2d6 + @skills.Pilot + @shipThrust",
+    shipInitiativeFormula: "2d6 + @skills.Pilot + @shipThrustRating",
+    reRollInitiative: false,
     actionBudget: {
       minorActions: 2,
       significantActions: 1
@@ -168,9 +185,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CT",
-      shipDamageType: "CT"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.fivePhase
+      shipDamageType: "CT",
+      spaceCombatPhases: "fivePhase"
+    }
   },
   CE: {
     key: "CE",
@@ -225,9 +242,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: true,
       xd6RollStyle: false,
       shipWeaponType: "CE",
-      shipDamageType: "component"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.threePhase
+      shipDamageType: "component",
+      spaceCombatPhases: "threePhase"
+    }
   },
   CEL: {
     key: "CEL",
@@ -275,9 +292,9 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.twoPhasePosition
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   CEFTL: {
     key: "CEFTL",
@@ -323,9 +340,9 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.twoPhasePosition
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   CEATOM: {
     key: "CEATOM",
@@ -464,9 +481,9 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.twoPhasePosition
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   CD: {
     key: "CD",
@@ -523,9 +540,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CD",
-      shipDamageType: "surfaceInternal"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.twoPhasePosition
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   CDEE: {
     key: "CDEE",
@@ -582,9 +599,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CD",
-      shipDamageType: "surfaceInternal"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.twoPhasePosition
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   CLU: {
     key: "CLU",
@@ -641,9 +658,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CD",
-      shipDamageType: "surfaceInternal"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.twoPhasePosition
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   SOC: {
     key: "SOC",
@@ -747,9 +764,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "AC",
-      shipDamageType: "AC"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.twoPhasePosition
+      shipDamageType: "AC",
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   CU: {
     key: "CU",
@@ -804,9 +821,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CE",
-      shipDamageType: "CU"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.eightPhaseLooping
+      shipDamageType: "CU",
+      spaceCombatPhases: "eightPhaseLooping"
+    }
   },
   OTHER: {
     key: "OTHER",
@@ -874,9 +891,9 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CE",
-      shipDamageType: "criticalHullDamage"
-    },
-    spaceCombat: SPACE_COMBAT_TYPES.mgt2eThreePhase
+      shipDamageType: "criticalHullDamage",
+      spaceCombatPhases: "mgt2eThreePhase"
+    }
   }
 })
 ;
@@ -1509,7 +1526,7 @@ export const TWODSIX = {
   CONSUMABLES: CONSUMABLES,
   DIFFICULTY_VARIANTS: DIFFICULTY_VARIANTS,
   AUTOFIRE_VARIANTS: AUTOFIRE_VARIANTS,
-  SPACE_COMBAT_TYPES: SPACE_COMBAT_TYPES,
+  SPACE_COMBAT_PHASE_TYPES: SPACE_COMBAT_PHASE_TYPES,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
   RULESETS: RULESETS,

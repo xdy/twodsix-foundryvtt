@@ -153,6 +153,11 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
     settings.roll.push(booleanSetting("psiTalentsRequireRoll", false));
     settings.roll.push(booleanSetting("xd6RollStyle", false));
     settings.ship.push(numberSetting('componentDamageDM', 0, false));
+    const spaceCombatPhaseChoices = Object.values(TWODSIX.SPACE_COMBAT_PHASE_TYPES).reduce((acc, type) => {
+      acc[type.key] = `TWODSIX.Settings.spaceCombatPhases.choices.${type.key}`;
+      return acc;
+    }, {});
+    settings.ship.push(stringChoiceSetting('spaceCombatPhases', TWODSIX.RULESETS.CE.settings.spaceCombatPhases, true, spaceCombatPhaseChoices));
     const weaponTypeLookup = Object.keys(TWODSIX.ShipWeaponTypes).reduce((acc, key) => {
       acc[key] = key;
       return acc;
