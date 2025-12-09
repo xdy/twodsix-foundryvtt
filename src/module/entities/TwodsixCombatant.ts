@@ -1,6 +1,20 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
 import TwodsixCombat from "./TwodsixCombat";
+
+/**
+ * @import { TwodsixActor } from "./_module.mjs";
+ */
+
+/**
+ * Extended Combatant class for Twodsix system with support for space combat action tracking.
+ * Manages initiative, actions, and reactions for ship-based encounters.
+ *
+ * Provides structured action economy management and ship-specific initiative calculations.
+ *
+ * @extends {foundry.documents.Combatant}
+ */
 
 export default class TwodsixCombatant extends foundry.documents.Combatant {
   declare data: Combatant.Data & {
@@ -27,6 +41,10 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
 
   /**
    * Pre-update validation and processing
+   * @param {object} changes - Proposed changes
+   * @param {object} options - Update options
+   * @param {User} user - User performing update
+   * @returns {Promise<boolean|void>} Whether update should proceed
    * @inheritdoc
    */
   async _preUpdate(changes, options, user) {
@@ -128,15 +146,22 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
 
   /**
    * Get thrust rating from a ship or space-object actor
+   * @param {object} actor - The actor to get thrust from
+   * @returns {number} Thrust rating value
    * @private
    */
-  _getThrustRating(actor: any): number {
+  _getThrustRating(actor) {
+    if (!actor) {
+      console.warn("TwodsixCombatant | _getThrustRating called with null actor");
+      return 0;
+    }
+
     if (actor.type === "ship") {
       // Try derived data first
       let thrust = actor.system.shipStats?.drives?.mDrive?.rating || 0;
 
       // Fall back to searching m-drive components
-      if (!thrust) {
+      if (!thrust && actor.items) {
         const mDriveComponents = actor.items.filter(item =>
           ["m-drive", "mdrive", "m drive"].includes(item.system.subtype?.toLowerCase())
         );
@@ -145,11 +170,15 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
           if (rating > thrust) thrust = rating;
         }
       }
+
+      console.debug(`TwodsixCombatant | Ship ${actor.name} thrust rating: ${thrust}`);
       return thrust;
     }
 
     if (actor.type === "space-object") {
-      return actor.system.thrust || 0;
+      const thrust = actor.system.thrust || 0;
+      console.debug(`TwodsixCombatant | Space object ${actor.name} thrust rating: ${thrust}`);
+      return thrust;
     }
 
     return 0;
@@ -265,6 +294,86 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
   }
 
   /**
+   * Get current action usage counts
+   * @private
+   */
+  _getActionCounts() {
+    return {
+      minorUsed: this.flags.twodsix?.minorActionsUsed ?? 0,
+      significantUsed: this.flags.twodsix?.significantActionsUsed ?? 0,
+      reactionsUsed: this.flags.twodsix?.reactionsUsed ?? 0,
+      reactionsAvailable: this.getAvailableReactions()
+    };
+  }
+
+  /**
+   * Generic action usage handler with comprehensive validation
+   * @param {string} actionType - Type of action ('minor', 'significant', 'reaction')
+   * @param {Function} canUseCheck - Function to validate if action can be used
+   * @param {string} flagKey - Flag key to update
+   * @param {string} errorKey - Localization key for error messages
+   * @param {object} options - Additional options
+   * @returns {Promise<boolean>} Whether the action was successfully used
+   * @private
+   */
+  async _useAction(
+    actionType,
+    canUseCheck,
+    flagKey,
+    errorKey,
+    options = {}
+  ) {
+    if (!this.actor) {
+      console.warn(`TwodsixCombatant | Attempted to use ${actionType} action on combatant without actor`);
+      return false;
+    }
+
+    const combat = this.combat;
+    if (!combat?.isSpaceCombat?.()) {
+      return true; // Allow in non-space combat
+    }
+
+    if (!canUseCheck()) {
+      if (game.user.isGM || this.isOwner) {
+        ui.notifications.warn(game.i18n.localize(errorKey));
+      }
+      return false;
+    }
+
+    const currentUsed = this.flags.twodsix?.[flagKey] ?? 0;
+    const updates = { [`flags.twodsix.${flagKey}`]: currentUsed + 1 };
+
+    // Allow hook to override
+    const hookName = `twodsix.use${actionType.charAt(0).toUpperCase() + actionType.slice(1)}Action`;
+    const allowed = Hooks.call(hookName, this, updates, options);
+    if (allowed === false) {
+      console.debug(`TwodsixCombatant | ${actionType} action blocked by hook`);
+      return false;
+    }
+
+    try {
+      await this.update(updates);
+      return true;
+    } catch (error) {
+      console.error(`TwodsixCombatant | Failed to update ${actionType} action usage:`, error);
+      return false;
+    }
+  }
+
+  /**
+   * Generic action undo handler
+   * @private
+   */
+  async _undoAction(flagKey: string): Promise<boolean> {
+    const currentUsed = this.flags.twodsix?.[flagKey] ?? 0;
+    if (currentUsed <= 0) return false;
+
+    const updates = { [`flags.twodsix.${flagKey}`]: Math.max(0, currentUsed - 1) };
+    await this.update(updates);
+    return true;
+  }
+
+  /**
    * Reset phase counters at start of turn (only for space actors in space combat)
    */
   async resetPhaseCounters(): Promise<void> {
@@ -294,11 +403,10 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   canUseMinorAction(): boolean {
     const budget = this.getActionBudget();
-    const minorUsed = this.flags.twodsix?.minorActionsUsed ?? 0;
-    const sigUsed = this.flags.twodsix?.significantActionsUsed ?? 0;
+    const { minorUsed, significantUsed } = this._getActionCounts();
 
     // If a significant action was used, only 1 minor action is allowed
-    const maxAllowed = sigUsed > 0 ? 1 : budget.minorActions;
+    const maxAllowed = significantUsed > 0 ? 1 : budget.minorActions;
     return minorUsed < maxAllowed;
   }
 
@@ -308,11 +416,10 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   canUseSignificantAction(): boolean {
     const budget = this.getActionBudget();
-    const sigUsed = this.flags.twodsix?.significantActionsUsed ?? 0;
-    const minorUsed = this.flags.twodsix?.minorActionsUsed ?? 0;
+    const { significantUsed, minorUsed } = this._getActionCounts();
 
     // Significant action requires no actions used yet
-    return sigUsed < budget.significantActions && minorUsed === 0;
+    return significantUsed < budget.significantActions && minorUsed === 0;
   }
 
   /**
@@ -320,8 +427,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {boolean}
    */
   canUseReaction(): boolean {
-    const reactionsUsed = this.flags.twodsix?.reactionsUsed ?? 0;
-    const reactionsAvailable = this.getAvailableReactions();
+    const { reactionsUsed, reactionsAvailable } = this._getActionCounts();
     return reactionsUsed < reactionsAvailable;
   }
 
@@ -331,29 +437,13 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the action was successfully used
    */
   async useMinorAction(options = {}): Promise<boolean> {
-    const combat = this.combat as TwodsixCombat;
-    if (!combat?.isSpaceCombat?.()) {
-      return true; // Allow in non-space combat
-    }
-
-    if (!this.canUseMinorAction()) {
-      ui.notifications.warn(
-        game.i18n.localize("TWODSIX.Combat.NoMinorActionsRemaining")
-      );
-      return false;
-    }
-
-    const used = this.flags.twodsix?.minorActionsUsed ?? 0;
-    const updates = {
-      "flags.twodsix.minorActionsUsed": used + 1,
-    };
-
-    // Allow hook to override
-    const allowed = Hooks.call("twodsix.useMinorAction", this, updates, options);
-    if (allowed === false) return false;
-
-    await this.update(updates);
-    return true;
+    return this._useAction(
+      'minor',
+      () => this.canUseMinorAction(),
+      'minorActionsUsed',
+      'TWODSIX.Combat.NoMinorActionsRemaining',
+      options
+    );
   }
 
   /**
@@ -361,15 +451,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the undo was successful
    */
   async undoMinorAction(): Promise<boolean> {
-    const used = this.flags.twodsix?.minorActionsUsed ?? 0;
-    if (used <= 0) return false;
-
-    const updates = {
-      "flags.twodsix.minorActionsUsed": Math.max(0, used - 1),
-    };
-
-    await this.update(updates);
-    return true;
+    return this._undoAction('minorActionsUsed');
   }
 
   /**
@@ -378,29 +460,13 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the action was successfully used
    */
   async useSignificantAction(options = {}): Promise<boolean> {
-    const combat = this.combat as TwodsixCombat;
-    if (!combat?.isSpaceCombat?.()) {
-      return true; // Allow in non-space combat
-    }
-
-    if (!this.canUseSignificantAction()) {
-      ui.notifications.warn(
-        game.i18n.localize("TWODSIX.Combat.NoSignificantActionsRemaining")
-      );
-      return false;
-    }
-
-    const used = this.flags.twodsix?.significantActionsUsed ?? 0;
-    const updates = {
-      "flags.twodsix.significantActionsUsed": used + 1,
-    };
-
-    // Allow hook to override
-    const allowed = Hooks.call("twodsix.useSignificantAction", this, updates, options);
-    if (allowed === false) return false;
-
-    await this.update(updates);
-    return true;
+    return this._useAction(
+      'significant',
+      () => this.canUseSignificantAction(),
+      'significantActionsUsed',
+      'TWODSIX.Combat.NoSignificantActionsRemaining',
+      options
+    );
   }
 
   /**
@@ -408,15 +474,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the undo was successful
    */
   async undoSignificantAction(): Promise<boolean> {
-    const used = this.flags.twodsix?.significantActionsUsed ?? 0;
-    if (used <= 0) return false;
-
-    const updates = {
-      "flags.twodsix.significantActionsUsed": Math.max(0, used - 1),
-    };
-
-    await this.update(updates);
-    return true;
+    return this._undoAction('significantActionsUsed');
   }
 
   /**
@@ -425,29 +483,13 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the reaction was successfully used
    */
   async useReaction(options = {}): Promise<boolean> {
-    const combat = this.combat as TwodsixCombat;
-    if (!combat?.isSpaceCombat?.()) {
-      return true; // Allow in non-space combat
-    }
-
-    if (!this.canUseReaction()) {
-      ui.notifications.warn(
-        game.i18n.localize("TWODSIX.Combat.NoReactionsRemaining")
-      );
-      return false;
-    }
-
-    const used = this.flags.twodsix?.reactionsUsed ?? 0;
-    const updates = {
-      "flags.twodsix.reactionsUsed": used + 1,
-    };
-
-    // Allow hook to override
-    const allowed = Hooks.call("twodsix.useReaction", this, updates, options);
-    if (allowed === false) return false;
-
-    await this.update(updates);
-    return true;
+    return this._useAction(
+      'reaction',
+      () => this.canUseReaction(),
+      'reactionsUsed',
+      'TWODSIX.Combat.NoReactionsRemaining',
+      options
+    );
   }
 
   /**
@@ -455,15 +497,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the undo was successful
    */
   async undoReaction(): Promise<boolean> {
-    const used = this.flags.twodsix?.reactionsUsed ?? 0;
-    if (used <= 0) return false;
-
-    const updates = {
-      "flags.twodsix.reactionsUsed": Math.max(0, used - 1),
-    };
-
-    await this.update(updates);
-    return true;
+    return this._undoAction('reactionsUsed');
   }
 
   /**

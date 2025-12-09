@@ -4,8 +4,17 @@
 import { TWODSIX } from "../config";
 
 /**
- * Extended Combat class for Twodsix system with support for space combat phases
- * Inspired by Starfinder RPG and Draw Steel system implementations
+ * @import { TwodsixActor, TwodsixCombatant } from "./_module.mjs";
+ */
+
+/**
+ * Extended Combat class for Twodsix system with support for space combat phases.
+ * Provides structured phase-based combat for ship encounters with action tracking
+ * and initiative management.
+ *
+ * Inspired by Starfinder RPG and Draw Steel system implementations.
+ *
+ * @extends {foundry.documents.Combat}
  */
 export default class TwodsixCombat extends foundry.documents.Combat {
   declare data: Combat.Data & {
@@ -29,8 +38,17 @@ export default class TwodsixCombat extends foundry.documents.Combat {
 
   /**
    * Initialize combat flags on creation
+   * @param {object} data - The initial data
+   * @param {object} options - Creation options
+   * @param {User} user - The creating user
+   * @returns {Promise<boolean|void>} Whether creation should proceed
+   * @protected
+   * @inheritdoc
    */
-  _preCreate(data, options, user) {
+  async _preCreate(data, options, user) {
+    const allowed = await super._preCreate(data, options, user);
+    if (allowed === false) return false;
+
     const isSpaceCombat = this._detectSpaceCombat(data.combatants);
     const update = {
       "flags.twodsix.isSpaceCombat": isSpaceCombat,
@@ -43,7 +61,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     }
 
     this.updateSource(update);
-    return super._preCreate(data, options, user);
+    return true;
   }
 
   /**
@@ -142,6 +160,62 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
+   * Calculate the next phase index based on current configuration
+   * @param {number} currentIndex - Current phase index (defaults to current)
+   * @returns {{nextIndex: number, isNewRound: boolean}} Calculated phase transition
+   * @private
+   */
+  _calculateNextPhaseIndex(currentIndex = this.getCurrentPhaseIndex()) {
+    if (!this.isSpaceCombat()) {
+      return { nextIndex: 0, isNewRound: false };
+    }
+
+    const config = this.getSpaceCombatConfig();
+    const phases = config?.phases || [];
+
+    if (phases.length === 0) {
+      console.warn("TwodsixCombat | No phases configured for space combat");
+      return { nextIndex: 0, isNewRound: false };
+    }
+
+    let nextIndex = currentIndex + 1;
+    let isNewRound = false;
+
+    // Check if we've reached the end of phases
+    if (nextIndex >= phases.length) {
+      if (config.loopBackPhase) {
+        const loopIndex = phases.indexOf(config.loopBackPhase);
+        nextIndex = loopIndex !== -1 ? loopIndex : 0;
+        // If we're looping back to an earlier phase, it's a new round
+        isNewRound = nextIndex < currentIndex;
+      } else {
+        // End of phase sequence, reset to beginning and advance round
+        nextIndex = 0;
+        isNewRound = true;
+      }
+    }
+
+    return { nextIndex, isNewRound };
+  }
+
+  /**
+   * Update phase data consistently
+   * @private
+   */
+  async _updatePhaseData(phaseIndex: number, additionalUpdates: Record<string, any> = {}): Promise<void> {
+    const config = this.getSpaceCombatConfig();
+    const phases = config.phases || [];
+
+    const updateData = {
+      'flags.twodsix.phaseIndex': phaseIndex,
+      'flags.twodsix.currentPhase': phases[phaseIndex],
+      ...additionalUpdates
+    };
+
+    await this.update(updateData);
+  }
+
+  /**
    * Advance to the next phase
    * This handles phase transitions and creates event data for hooks
    * Returns the new phase index
@@ -151,35 +225,8 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       return 0;
     }
 
-    const config = this.getSpaceCombatConfig();
-    const phases = config.phases || [];
-    const currentIndex = this.getCurrentPhaseIndex();
-    let nextIndex = currentIndex + 1;
-
-    // Check if we've reached the end of phases
-    if (nextIndex >= phases.length) {
-      // Check for looping phases (e.g., Cepheus Universal)
-      if (config.loopBackPhase) {
-        const loopIndex = phases.indexOf(config.loopBackPhase);
-        if (loopIndex !== -1) {
-          // Loop back to specified phase
-          nextIndex = loopIndex;
-        } else {
-          // Fallback to start
-          nextIndex = 0;
-        }
-      } else {
-        // End of phase sequence, reset to beginning
-        nextIndex = 0;
-      }
-    }
-
-    // Update phase
-    await this.update({
-      'flags.twodsix.phaseIndex': nextIndex,
-      'flags.twodsix.currentPhase': phases[nextIndex]
-    });
-
+    const { nextIndex } = this._calculateNextPhaseIndex();
+    await this._updatePhaseData(nextIndex);
     return nextIndex;
   }
 
@@ -191,13 +238,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       return;
     }
 
-    const config = this.getSpaceCombatConfig();
-    const phases = config.phases || [];
-
-    await this.update({
-      'flags.twodsix.phaseIndex': 0,
-      'flags.twodsix.currentPhase': phases[0] || 'declaration'
-    });
+    await this._updatePhaseData(0);
   }
 
   /**
@@ -210,36 +251,14 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       return;
     }
 
-    const config = this.getSpaceCombatConfig();
-    const phases = config.phases || [];
-    const currentIndex = this.getCurrentPhaseIndex();
-    let nextIndex = currentIndex + 1;
-    let shouldAdvanceRound = false;
-
-    // Check if we've reached the end of phases
-    if (nextIndex >= phases.length) {
-      if (config.loopBackPhase) {
-        const loopIndex = phases.indexOf(config.loopBackPhase);
-        nextIndex = loopIndex !== -1 ? loopIndex : 0;
-        // If we're looping back to an earlier phase, it's a new round
-        shouldAdvanceRound = nextIndex < currentIndex;
-      } else {
-        // End of phase sequence, reset to beginning and advance round
-        nextIndex = 0;
-        shouldAdvanceRound = true;
-      }
-    }
+    const { nextIndex, isNewRound } = this._calculateNextPhaseIndex();
 
     // If we need to advance the round, use nextRound which handles everything
-    if (shouldAdvanceRound) {
+    if (isNewRound) {
       await this.nextRound();
     } else {
       // Just advance the phase
-      await this.update({
-        'flags.twodsix.phaseIndex': nextIndex,
-        'flags.twodsix.currentPhase': phases[nextIndex],
-        turn: 0 // Reset turn when advancing phase
-      });
+      await this._updatePhaseData(nextIndex, { turn: 0 });
     }
   }
 
@@ -267,12 +286,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       }
     }
 
-    await this.update({
-      'flags.twodsix.phaseIndex': prevIndex,
-      'flags.twodsix.currentPhase': phases[prevIndex],
-      turn: 0 // Reset turn when changing phase
-    });
-
+    await this._updatePhaseData(prevIndex, { turn: 0 });
     return true;
   }
 
@@ -302,9 +316,10 @@ export default class TwodsixCombat extends foundry.documents.Combat {
 
   /**
    * Override startCombat to initialize space combat phases
+   * @returns {Promise<this>} The combat instance
    * @inheritdoc
    */
-  async startCombat(): Promise<this> {
+  async startCombat() {
     // Delegate to actors for combat initialization
     for (const combatant of this.combatants) {
       await combatant.actor?.system?.startCombat?.(combatant);
@@ -322,42 +337,60 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
+   * Handle combat cleanup and effect expiration
+   * @param {object} options - Deletion options
+   * @param {string} userId - User performing the deletion
+   * @returns {Promise<void>}
+   * @protected
+   * @inheritdoc
+   */
+  async _onDelete(options, userId) {
+    await super._onDelete(options, userId);
+
+    if (!game.user.isActiveGM || !this.round) return;
+
+    // Clean up space combat effects and reset ship systems
+    if (this.isSpaceCombat()) {
+      for (const combatant of this.combatants) {
+        const actor = combatant.actor;
+        if (!actor || !['ship', 'space-object'].includes(actor.type)) continue;
+
+        // Reset ship combat state
+        await actor.system?.endCombat?.(combatant);
+
+        // Clean up temporary effects
+        const effectUpdates = [];
+        for (const effect of actor.effects) {
+          if (effect.duration?.type === "combat" || effect.flags?.twodsix?.spaceCombat) {
+            effectUpdates.push({ _id: effect.id, disabled: true });
+          }
+        }
+
+        if (effectUpdates.length > 0) {
+          await actor.updateEmbeddedDocuments("ActiveEffect", effectUpdates);
+        }
+      }
+    }
+  }
+
+  /**
    * Override nextRound to handle phase advancement and initiative rerolls
    */
   async nextRound(): Promise<this> {
     if (this.isSpaceCombat()) {
       const config = this.getSpaceCombatConfig();
-      const oldPhaseIndex = this.getCurrentPhaseIndex();
-      const phases = config.phases || [];
+      const { nextIndex, isNewRound } = this._calculateNextPhaseIndex();
 
-      // Calculate next phase index
-      let nextIndex = oldPhaseIndex + 1;
-      if (nextIndex >= phases.length) {
-        if (config.loopBackPhase) {
-          const loopIndex = phases.indexOf(config.loopBackPhase);
-          nextIndex = loopIndex !== -1 ? loopIndex : 0;
-        } else {
-          nextIndex = 0;
-        }
-      }
-
-      // Check if we're starting a new round (either wrapped to 0 or looped back)
-      const isNewRound = nextIndex === 0 || (config.loopBackPhase && nextIndex < oldPhaseIndex);
-
-      // Build update object - combine phase and turn updates into single transaction
-      const updateData: any = {
-        'flags.twodsix.phaseIndex': nextIndex,
-        'flags.twodsix.currentPhase': phases[nextIndex],
-        turn: 0
-      };
+      // Build update data for phase and round
+      const additionalUpdates: any = { turn: 0 };
 
       // Only increment round if we're actually starting a new round
       if (isNewRound) {
-        updateData.round = this.round + 1;
+        additionalUpdates.round = this.round + 1;
       }
 
       // Apply all updates atomically
-      await this.update(updateData);
+      await this._updatePhaseData(nextIndex, additionalUpdates);
 
       // Reroll initiative if starting new round and configured to do so
       if (isNewRound && config.reRollInitiative) {

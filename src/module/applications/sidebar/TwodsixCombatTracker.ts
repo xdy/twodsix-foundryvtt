@@ -4,12 +4,31 @@
 import TwodsixCombat from "../../entities/TwodsixCombat";
 
 /**
+ * @import { TwodsixCombatant } from "../../entities/_module.mjs";
+ */
+
+/**
  * A custom combat tracker that extends Foundry's CombatTracker to support space combat phases
  * and action tracking for ship combat encounters.
  *
+ * Provides phase-based combat management with action economy tracking and ship-specific
+ * initiative handling for space encounters.
+ *
  * Inspired by Draw Steel's CombatTracker extension pattern.
+ *
+ * @extends {foundry.applications.sidebar.tabs.CombatTracker}
  */
 export default class TwodsixCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
+  /** @inheritdoc */
+  static DEFAULT_OPTIONS = {
+    actions: {
+      advancePhase: this.#advancePhase,
+      previousPhase: this.#previousPhase,
+      resetPhase: this.#resetPhase,
+      useAction: this.#useAction,
+      undoAction: this.#undoAction
+    },
+  };
   /**
    * Prepare the data for the combat tracker context
    * @inheritdoc
@@ -46,23 +65,52 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @private
    */
   _renderSpaceCombatPhaseDisplay() {
-    const combat = this.viewed as TwodsixCombat;
+    const combat = this.viewed;
 
     // Only show phase display for actual space combats
     if (!combat?.isSpaceCombat?.()) return;
 
-    const phaseInfo = combat.getPhaseDisplayInfo();
-    if (!phaseInfo) return;
+    try {
+      const phaseInfo = combat.getPhaseDisplayInfo();
+      if (!phaseInfo) {
+        console.warn("TwodsixCombatTracker | Failed to get phase display info");
+        return;
+      }
 
-    // Find the combat tracker header
-    const header = this.element.querySelector('.combat-tracker-header');
-    if (!header) return;
+      // Find the combat tracker header
+      const header = this.element.querySelector('.combat-tracker-header');
+      if (!header) {
+        console.warn("TwodsixCombatTracker | Combat tracker header not found");
+        return;
+      }
 
-    // Remove any existing phase display
-    const existing = header.querySelector('.space-combat-phase');
-    if (existing) existing.remove();
+      // Remove any existing phase display
+      const existing = header.querySelector('.space-combat-phase');
+      if (existing) existing.remove();
 
-    // Create phase display element
+      // Create phase display element
+      const phaseDisplay = this._createPhaseDisplayElement(phaseInfo, combat);
+
+      // Insert phase display after combat round
+      const roundDiv = header.querySelector('.combat-round');
+      if (roundDiv) {
+        roundDiv.after(phaseDisplay);
+      } else {
+        header.appendChild(phaseDisplay);
+      }
+    } catch (error) {
+      console.error("TwodsixCombatTracker | Error rendering phase display:", error);
+    }
+  }
+
+  /**
+   * Create the phase display DOM element
+   * @param {object} phaseInfo - Phase information object
+   * @param {TwodsixCombat} combat - Combat instance
+   * @returns {HTMLElement} Phase display element
+   * @private
+   */
+  _createPhaseDisplayElement(phaseInfo, combat) {
     const phaseDisplay = document.createElement('div');
     phaseDisplay.classList.add('space-combat-phase');
 
@@ -74,52 +122,85 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
 
     // Add phase controls for GM
     if (phaseInfo.canNavigatePhases) {
-      const phaseControls = document.createElement('div');
-      phaseControls.classList.add('phase-controls');
-
-      // Previous phase button
-      const prevButton = document.createElement('a');
-      prevButton.classList.add('phase-control');
-      prevButton.title = game.i18n.localize("TWODSIX.Combat.PreviousPhase");
-      prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
-      prevButton.addEventListener('click', async (event) => {
-        event.preventDefault();
-        const success = await combat.previousPhase();
-        if (!success) {
-          ui.notifications.warn(game.i18n.localize("TWODSIX.Combat.AlreadyFirstPhase"));
-        }
-        this.render();
-      });
-      phaseControls.appendChild(prevButton);
-
-      // Phase indicator (current/total)
-      const phaseIndicator = document.createElement('span');
-      phaseIndicator.classList.add('phase-indicator');
-      phaseIndicator.textContent = phaseInfo.phaseIndicator;
-      phaseControls.appendChild(phaseIndicator);
-
-      // Next phase button
-      const nextButton = document.createElement('a');
-      nextButton.classList.add('phase-control');
-      nextButton.title = game.i18n.localize("TWODSIX.Combat.NextPhase");
-      nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-      nextButton.addEventListener('click', async (event) => {
-        event.preventDefault();
-        await combat.advancePhaseWithRoundManagement();
-        this.render();
-      });
-      phaseControls.appendChild(nextButton);
-
+      const phaseControls = this._createPhaseControls(phaseInfo, combat);
       phaseDisplay.appendChild(phaseControls);
     }
 
-    // Insert phase display after combat round
-    const roundDiv = header.querySelector('.combat-round');
-    if (roundDiv) {
-      roundDiv.after(phaseDisplay);
-    } else {
-      header.appendChild(phaseDisplay);
-    }
+    return phaseDisplay;
+  }
+
+  /**
+   * Create phase control buttons
+   * @param {object} phaseInfo - Phase information object
+   * @param {TwodsixCombat} combat - Combat instance
+   * @returns {HTMLElement} Phase controls element
+   * @private
+   */
+  _createPhaseControls(phaseInfo, combat) {
+    const phaseControls = document.createElement('div');
+    phaseControls.classList.add('phase-controls');
+
+    // Previous phase button
+    const prevButton = document.createElement('a');
+    prevButton.classList.add('phase-control');
+    prevButton.title = game.i18n.localize("TWODSIX.Combat.PreviousPhase");
+    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevButton.dataset.action = 'previousPhase';
+    phaseControls.appendChild(prevButton);
+
+    // Phase indicator (current/total)
+    const phaseIndicator = document.createElement('span');
+    phaseIndicator.classList.add('phase-indicator');
+    phaseIndicator.textContent = phaseInfo.phaseIndicator;
+    phaseControls.appendChild(phaseIndicator);
+
+    // Next phase button
+    const nextButton = document.createElement('a');
+    nextButton.classList.add('phase-control');
+    nextButton.title = game.i18n.localize("TWODSIX.Combat.NextPhase");
+    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextButton.dataset.action = 'advancePhase';
+    phaseControls.appendChild(nextButton);
+
+    return phaseControls;
+  }
+
+  /**
+   * Get action data for a combatant
+   * @private
+   */
+  _getCombatantActionData(combatant, combat: TwodsixCombat) {
+    const budget = combat.getActionBudget();
+
+    return {
+      minor: {
+        used: combatant.flags?.twodsix?.minorActionsUsed ?? 0,
+        available: budget.minorActions,
+        canUse: combatant.canUseMinorAction?.() ?? false,
+        useMethod: () => combatant.useMinorAction(),
+        undoMethod: () => combatant.undoMinorAction(),
+        icon: 'fa-walking',
+        localizationKey: 'MinorActions'
+      },
+      significant: {
+        used: combatant.flags?.twodsix?.significantActionsUsed ?? 0,
+        available: budget.significantActions,
+        canUse: combatant.canUseSignificantAction?.() ?? false,
+        useMethod: () => combatant.useSignificantAction(),
+        undoMethod: () => combatant.undoSignificantAction(),
+        icon: 'fa-running',
+        localizationKey: 'SignificantActions'
+      },
+      reaction: {
+        used: combatant.flags?.twodsix?.reactionsUsed ?? 0,
+        available: combatant.getAvailableReactions?.() ?? 0,
+        canUse: combatant.canUseReaction?.() ?? false,
+        useMethod: () => combatant.useReaction(),
+        undoMethod: () => combatant.undoReaction(),
+        icon: 'fa-shield-alt',
+        localizationKey: 'Reactions'
+      }
+    };
   }
 
   /**
@@ -141,58 +222,19 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       const existing = element.querySelector('.action-indicator-wrapper');
       if (existing) existing.remove();
 
-      // Get action usage and budget
-      const minorUsed = combatant.flags?.twodsix?.minorActionsUsed ?? 0;
-      const sigUsed = combatant.flags?.twodsix?.significantActionsUsed ?? 0;
-      const reactionsUsed = combatant.flags?.twodsix?.reactionsUsed ?? 0;
-      const reactionsAvailable = combatant.getAvailableReactions?.() ?? 0;
-      const budget = combat.getActionBudget();
-      const minorCanUse = combatant.canUseMinorAction?.() ?? false;
-      const sigCanUse = combatant.canUseSignificantAction?.() ?? false;
-      const reactCanUse = combatant.canUseReaction?.() ?? false;
+      // Get action data
+      const actionData = this._getCombatantActionData(combatant, combat);
 
       // Create action indicator wrapper
       const actionWrapper = document.createElement('div');
       actionWrapper.classList.add('action-indicator-wrapper');
 
-      // Add minor actions control
-      actionWrapper.appendChild(
-        this._createActionControl(
-          'minor',
-          'fa-walking',
-          minorUsed,
-          budget.minorActions,
-          minorCanUse,
-          () => combatant.useMinorAction(),
-          () => combatant.undoMinorAction()
-        )
-      );
-
-      // Add significant actions control
-      actionWrapper.appendChild(
-        this._createActionControl(
-          'significant',
-          'fa-running',
-          sigUsed,
-          budget.significantActions,
-          sigCanUse,
-          () => combatant.useSignificantAction(),
-          () => combatant.undoSignificantAction()
-        )
-      );
-
-      // Add reactions control
-      actionWrapper.appendChild(
-        this._createActionControl(
-          'reaction',
-          'fa-shield-alt',
-          reactionsUsed,
-          reactionsAvailable,
-          reactCanUse,
-          () => combatant.useReaction(),
-          () => combatant.undoReaction()
-        )
-      );
+      // Add controls for each action type
+      Object.entries(actionData).forEach(([actionType, data]) => {
+        actionWrapper.appendChild(
+          this._createActionControl(actionType as any, data)
+        );
+      });
 
       // Insert after token name
       const tokenName = element.querySelector('.token-name');
@@ -203,50 +245,157 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   }
 
   /**
-   * Create an action control element (minor, significant, or reaction)
+   * Create an action control element
+   * @param {string} actionType - Type of action
+   * @param {object} data - Action data object
+   * @returns {HTMLElement} Action control element
    * @private
    */
-  _createActionControl(
-    actionType: 'minor' | 'significant' | 'reaction',
-    icon: string,
-    used: number,
-    available: number,
-    canUse: boolean,
-    useMethod: () => Promise<boolean>,
-    undoMethod: () => Promise<boolean>
-  ): HTMLElement {
+  _createActionControl(actionType, data) {
     const control = document.createElement('div');
     control.classList.add('action-control', `${actionType}-actions`);
-    control.title = game.i18n.localize(
-      `TWODSIX.Combat.${actionType === 'minor' ? 'MinorActions' : actionType === 'significant' ? 'SignificantActions' : 'Reactions'}`
-    );
-    control.innerHTML = `<i class="fas ${icon}"></i> <span class="action-count">${used}/${available}</span>`;
+    control.title = game.i18n.localize(`TWODSIX.Combat.${data.localizationKey}`);
+    control.innerHTML = `<i class="fas ${data.icon}"></i> <span class="action-count">${data.used}/${data.available}</span>`;
+
+    // Add data attributes for action handling
+    control.dataset.actionType = actionType;
+    control.dataset.action = 'useAction';
 
     // Add clickable state if can use
-    if (canUse && game.user.isGM) {
+    if (data.canUse && game.user.isGM) {
       control.classList.add('can-use');
-      control.addEventListener('click', async () => {
-        await useMethod();
-        this.render();
-      });
     }
 
     // Add undo button if actions were used
-    if (used > 0 && game.user.isGM) {
+    if (data.used > 0 && game.user.isGM) {
       const undoBtn = document.createElement('button');
       undoBtn.classList.add('undo-action');
       undoBtn.type = 'button';
       undoBtn.title = 'Undo';
       undoBtn.innerHTML = '<i class="fas fa-undo"></i>';
-      undoBtn.addEventListener('click', async (e) => {
-        e.stopPropagation();
-        await undoMethod();
-        this.render();
-      });
+      undoBtn.dataset.action = 'undoAction';
+      undoBtn.dataset.actionType = actionType;
       control.appendChild(undoBtn);
     }
 
     return control;
+  }
+
+  /* -------------------------------------------------- */
+  /*  Static Action Handlers                            */
+  /* -------------------------------------------------- */
+
+  /**
+   * Advance to the next combat phase
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #advancePhase(event, target) {
+    event.preventDefault();
+    const combat = this.viewed;
+    if (!combat?.isSpaceCombat?.()) return;
+
+    try {
+      await combat.advancePhaseWithRoundManagement();
+      this.render();
+    } catch (error) {
+      console.error("TwodsixCombatTracker | Error advancing phase:", error);
+      ui.notifications.error("Failed to advance combat phase");
+    }
+  }
+
+  /**
+   * Go to the previous combat phase
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #previousPhase(event, target) {
+    event.preventDefault();
+    const combat = this.viewed;
+    if (!combat?.isSpaceCombat?.()) return;
+
+    try {
+      const success = await combat.previousPhase();
+      if (!success) {
+        ui.notifications.warn(game.i18n.localize("TWODSIX.Combat.AlreadyFirstPhase"));
+      }
+      this.render();
+    } catch (error) {
+      console.error("TwodsixCombatTracker | Error going to previous phase:", error);
+      ui.notifications.error("Failed to go to previous phase");
+    }
+  }
+
+  /**
+   * Reset combat phase to beginning
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #resetPhase(event, target) {
+    event.preventDefault();
+    const combat = this.viewed;
+    if (!combat?.isSpaceCombat?.()) return;
+
+    try {
+      await combat.resetPhase();
+      this.render();
+    } catch (error) {
+      console.error("TwodsixCombatTracker | Error resetting phase:", error);
+      ui.notifications.error("Failed to reset combat phase");
+    }
+  }
+
+  /**
+   * Use a combatant action
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #useAction(event, target) {
+    const { combatantId, actionType } = target.closest('[data-combatant-id]')?.dataset ?? {};
+    if (!combatantId || !actionType) return;
+
+    const combat = this.viewed;
+    const combatant = combat?.combatants.get(combatantId);
+    if (!combatant) return;
+
+    try {
+      await combatant.toggleActionUsage(actionType, true);
+      this.render();
+    } catch (error) {
+      console.error(`TwodsixCombatTracker | Error using ${actionType} action:`, error);
+    }
+  }
+
+  /**
+   * Undo a combatant action
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #undoAction(event, target) {
+    event.stopPropagation();
+    const { combatantId, actionType } = target.closest('[data-combatant-id]')?.dataset ?? {};
+    if (!combatantId || !actionType) return;
+
+    const combat = this.viewed;
+    const combatant = combat?.combatants.get(combatantId);
+    if (!combatant) return;
+
+    try {
+      await combatant.toggleActionUsage(actionType, false);
+      this.render();
+    } catch (error) {
+      console.error(`TwodsixCombatTracker | Error undoing ${actionType} action:`, error);
+    }
   }
 
 
