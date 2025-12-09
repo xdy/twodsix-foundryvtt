@@ -55,13 +55,15 @@
       "changes": [
         {
           "key": "system.characteristics.strength.value",
-          "mode": 2,
+          "type": "add",
+          "phase": "initial",
           "value": "4",
           "priority": null
         },
         {
           "key": "system.characteristics.dexterity.value",
-          "mode": 2,
+          "type": "add",
+          "phase": "initial",
           "value": "4",
           "priority": null
         },
