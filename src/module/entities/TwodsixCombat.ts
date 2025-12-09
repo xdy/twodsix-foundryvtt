@@ -189,6 +189,49 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
+   * Advance phase with round management
+   * This method handles advancing to the next phase and manages round transitions
+   * when needed. It's used by the UI to advance phases manually.
+   */
+  async advancePhaseWithRoundManagement(): Promise<void> {
+    if (!this.isSpaceCombat()) {
+      return;
+    }
+
+    const config = this.getSpaceCombatConfig();
+    const phases = config.phases || [];
+    const currentIndex = this.getCurrentPhaseIndex();
+    let nextIndex = currentIndex + 1;
+    let shouldAdvanceRound = false;
+
+    // Check if we've reached the end of phases
+    if (nextIndex >= phases.length) {
+      if (config.loopBackPhase) {
+        const loopIndex = phases.indexOf(config.loopBackPhase);
+        nextIndex = loopIndex !== -1 ? loopIndex : 0;
+        // If we're looping back to an earlier phase, it's a new round
+        shouldAdvanceRound = nextIndex < currentIndex;
+      } else {
+        // End of phase sequence, reset to beginning and advance round
+        nextIndex = 0;
+        shouldAdvanceRound = true;
+      }
+    }
+
+    // If we need to advance the round, use nextRound which handles everything
+    if (shouldAdvanceRound) {
+      await this.nextRound();
+    } else {
+      // Just advance the phase
+      await this.update({
+        'flags.twodsix.phaseIndex': nextIndex,
+        'flags.twodsix.currentPhase': phases[nextIndex],
+        turn: 0 // Reset turn when advancing phase
+      });
+    }
+  }
+
+  /**
    * Override startCombat to initialize space combat phases
    * @inheritdoc
    */
