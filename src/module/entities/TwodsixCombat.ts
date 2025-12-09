@@ -52,15 +52,16 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    */
   _detectSpaceCombat(combatants = []) {
     // If no combatants array provided, use existing combatants
+    let combatantList: TwodsixActor[] = [];
     if (!combatants || combatants.length === 0) {
-      combatants = this.combatants || [];
+      combatantList = this.combatants.contents;
     }
 
     // No combatants means not a space combat
-    if (combatants.length === 0) return false;
+    if (combatantList.length === 0) return false;
 
     // All combatants must be ships/space objects for space combat
-    return combatants.every(c => {
+    return combatantList.every(c => {
       const actor = c.actor || game.actors.get(c.actorId);
       return ['ship', 'space-object'].includes(actor?.type);
     });

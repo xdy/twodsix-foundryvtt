@@ -78,14 +78,17 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
   }
 
   protected _getInitiativeFormula():string {
-    if ((<TwodsixActor>this.actor).type === "ship") {
-      // For ships, use the initiative formula from the selected space combat phase type
+    const actorType = (<TwodsixActor>this.actor).type;
+
+    // Ships and space-objects use the ship initiative formula
+    if (["ship", "space-object"].includes(actorType)) {
       const combat = this.combat as TwodsixCombat;
       const phaseConfig = combat?.getSpaceCombatConfig?.();
       return phaseConfig?.shipInitiativeFormula || <string>game.settings.get("twodsix", "shipInitiativeFormula");
-    } else {
-      return <string>game.settings.get("twodsix", "initiativeFormula");
     }
+
+    // Personal combatants use the standard formula
+    return <string>game.settings.get("twodsix", "initiativeFormula");
   }
 
   /**
@@ -94,104 +97,119 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   getRollData() {
     console.log(`[TwodsixCombatant] getRollData for ${this.actor?.name ?? this.name}`);
-    // Use actor's roll data as the base
-    const data = this.actor?.getRollData?.() || {};
+    const data = this.actor?.getRollData?.() || this.actor.system || {};
 
-    // Add ship-specific data if this is a ship combatant
-    if (this.actor?.type === "ship") {
-      // Get thrust rating from ship's derived data first
-      let thrustRating = this.actor.system.shipStats?.drives?.mDrive?.rating || 0;
-
-      // If not found in derived data, search components as backup
-      if (!thrustRating) {
-        const components = this.actor.items.filter(item => ["m-drive", "mdrive", "m drive"].includes((item.system.subtype).toLowerCase()));
-        components.forEach((component: any) => {
-          const rating = component.system.rating || 0;
-          if (rating > thrustRating) {
-            thrustRating = rating;
-          }
-        });
-      }
-
-      data.shipThrustRating = thrustRating;
-
-      // Look for pilot skill from crew actors assigned to ship positions
-      let pilotSkill = 0;
-
-      // Get all actor IDs assigned to ship positions
-      const shipPositionActorIds = Object.keys(this.actor.system.shipPositionActorIds || {});
-
-      for (const actorId of shipPositionActorIds) {
-        const crewActor = game.actors?.get(actorId);
-        if (!crewActor) continue;
-
-        // Look through the crew member's skills for pilot/piloting
-        const skills = crewActor.itemTypes?.skills || crewActor.items.filter(item => item.type === "skills");
-        for (const skill of skills) {
-          const skillName = skill.name?.toLowerCase() || "";
-          if (skillName.includes("pilot")) {
-            const skillValue = skill.system.value || 0;
-            if (skillValue > pilotSkill) {
-              pilotSkill = skillValue;
-            }
-          }
-        }
-      }
-
-      // Create skill data structure for formula compatibility
-      if (!data.skills) data.skills = {};
-      data.skills.Pilot = pilotSkill;
-      data.skills.Piloting = pilotSkill;
-
-      // Calculate thrust bonus - compare with all other ships in combat
-      // Only the ship with the highest thrust gets +1, others get 0
-      data.thrustBonus = 0;
-      const combat = this.combat as TwodsixCombat;
-      if (combat?.combatants) {
-        let hasHigherThrust = false;
-
-        // Check all other combatants to see if any have higher thrust
-        for (const other of combat.combatants) {
-          if (other.id === this.id) continue; // Skip self
-          if (other.actor?.type !== "ship") continue; // Skip non-ships
-
-          let otherThrust = other.actor.system.shipStats?.drives?.mDrive?.rating || 0;
-          if (!otherThrust) {
-            const otherComponents = other.actor.items.filter(item => ["m-drive", "mdrive", "m drive"].includes((item.system.subtype).toLowerCase()));
-            for (const component of otherComponents) {
-              const rating = component.system.rating || 0;
-              if (rating > otherThrust) {
-                otherThrust = rating;
-              }
-            }
-          }
-
-          if (otherThrust > thrustRating) {
-            hasHigherThrust = true;
-            break;
-          } else if (otherThrust === thrustRating && other.id < this.id) {
-            // Tie-breaker: if equal thrust, lower ID wins to ensure only one gets the bonus
-            hasHigherThrust = true;
-            break;
-          }
-        }
-
-        // Only grant +1 if this ship has the highest thrust (or wins tie-breaker)
-        if (!hasHigherThrust && thrustRating > 0) {
-          data.thrustBonus = 1;
-        }
-      }
-
-      // Debug logging for ship initiative data
-      console.log(`[TwodsixCombatant] Initiative Roll Data for ${this.actor.name}:`, {
-        shipThrustRating: data.shipThrustRating,
-        pilotSkill: data.skills?.Pilot,
-        thrustBonus: data.thrustBonus,
-        formula: this._getInitiativeFormula()
-      });
+    // Only add space combat modifiers for ships and space-objects
+    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+      return data;
     }
 
+    // Get thrust and pilot skill based on actor type
+    const thrustRating = this._getThrustRating(this.actor);
+    const pilotSkill = this._getPilotSkill(this.actor);
+
+    // Add space combat roll data
+    data.shipThrustRating = thrustRating;
+    if (!data.skills) data.skills = {};
+    data.skills.Pilot = pilotSkill;
+    data.skills.Piloting = pilotSkill;
+    data.thrustBonus = this._calculateThrustBonus(thrustRating);
+
+    // Debug logging
+    console.log(`[TwodsixCombatant] Initiative Roll Data for ${this.actor.name}:`, {
+      shipThrustRating: data.shipThrustRating,
+      pilotSkill,
+      thrustBonus: data.thrustBonus,
+      formula: this._getInitiativeFormula()
+    });
+
     return data;
+  }
+
+  /**
+   * Get thrust rating from a ship or space-object actor
+   * @private
+   */
+  _getThrustRating(actor: any): number {
+    if (actor.type === "ship") {
+      // Try derived data first
+      let thrust = actor.system.shipStats?.drives?.mDrive?.rating || 0;
+
+      // Fall back to searching m-drive components
+      if (!thrust) {
+        const mDriveComponents = actor.items.filter(item =>
+          ["m-drive", "mdrive", "m drive"].includes(item.system.subtype?.toLowerCase())
+        );
+        for (const component of mDriveComponents) {
+          const rating = component.system.rating || 0;
+          if (rating > thrust) thrust = rating;
+        }
+      }
+      return thrust;
+    }
+
+    if (actor.type === "space-object") {
+      return actor.system.thrust || 0;
+    }
+
+    return 0;
+  }
+
+  /**
+   * Get pilot skill from ship's crew
+   * @private
+   */
+  _getPilotSkill(actor: any): number {
+    // Only ships have pilots (not space-objects)
+    if (actor.type !== "ship") return 0;
+
+    let bestPilotSkill = 0;
+    const crewActorIds = Object.keys(actor.system.shipPositionActorIds || {});
+
+    for (const actorId of crewActorIds) {
+      const crewActor = game.actors?.get(actorId);
+      if (!crewActor) continue;
+
+      const skills = crewActor.itemTypes?.skills || crewActor.items.filter(item => item.type === "skills");
+      for (const skill of skills) {
+        if (skill.name?.toLowerCase().includes("pilot")) {
+          const skillValue = skill.system.value || 0;
+          if (skillValue > bestPilotSkill) {
+            bestPilotSkill = skillValue;
+          }
+        }
+      }
+    }
+
+    return bestPilotSkill;
+  }
+
+  /**
+   * Calculate thrust bonus (+1 for highest thrust in combat)
+   * @private
+   */
+  _calculateThrustBonus(myThrust: number): number {
+    if (myThrust === 0) return 0;
+
+    const combat = this.combat as TwodsixCombat;
+    if (!combat?.combatants) return 0;
+
+    // Check if any other combatant has higher thrust (or equal with lower ID)
+    for (const other of combat.combatants) {
+      if (other.id === this.id) continue;
+      if (!['ship', 'space-object'].includes(other.actor?.type)) continue;
+
+      const otherThrust = this._getThrustRating(other.actor);
+
+      // Higher thrust wins
+      if (otherThrust > myThrust) return 0;
+
+      // Tie-breaker: lower ID wins
+      if (otherThrust === myThrust && other.id < this.id) return 0;
+    }
+
+    // This combatant has highest thrust (or wins tie-breaker)
+    return 1;
   }
 
   /**
