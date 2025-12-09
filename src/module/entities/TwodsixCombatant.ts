@@ -202,17 +202,16 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @inheritdoc
    */
   getInitiativeRoll(formula) {
-    // If this is a space combat with a space-specific formula, use it with custom roll data
+    // For space combats, create roll with custom ship data
     const combat = this.combat as TwodsixCombat;
     if (combat?.isSpaceCombat?.()) {
-      const spaceCombatFormula = this._getInitiativeFormula?.();
-      if (spaceCombatFormula) {
-        const rollData = this.getRollData();
-        return new Roll(spaceCombatFormula, rollData);
-      }
+      // _getInitiativeFormula already provides the right formula
+      const rollFormula = formula || this._getInitiativeFormula();
+      const rollData = this.getRollData();
+      return new Roll(rollFormula, rollData);
     }
 
-    // Fall back to standard behavior
+    // Fall back to standard behavior for non-space combats
     return super.getInitiativeRoll(formula);
   }
 
@@ -271,6 +270,43 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       'flags.twodsix.reactionsAvailable': this.getAvailableReactions(),
       'flags.twodsix.hasty': false
     });
+  }
+
+  /**
+   * Check if combatant can use a minor action
+   * @returns {boolean}
+   */
+  canUseMinorAction(): boolean {
+    const budget = this.getActionBudget();
+    const minorUsed = this.flags.twodsix?.minorActionsUsed ?? 0;
+    const sigUsed = this.flags.twodsix?.significantActionsUsed ?? 0;
+
+    // If a significant action was used, only 1 minor action is allowed
+    const maxAllowed = sigUsed > 0 ? 1 : budget.minorActions;
+    return minorUsed < maxAllowed;
+  }
+
+  /**
+   * Check if combatant can use a significant action
+   * @returns {boolean}
+   */
+  canUseSignificantAction(): boolean {
+    const budget = this.getActionBudget();
+    const sigUsed = this.flags.twodsix?.significantActionsUsed ?? 0;
+    const minorUsed = this.flags.twodsix?.minorActionsUsed ?? 0;
+
+    // Significant action requires no actions used yet
+    return sigUsed < budget.significantActions && minorUsed === 0;
+  }
+
+  /**
+   * Check if combatant can use a reaction
+   * @returns {boolean}
+   */
+  canUseReaction(): boolean {
+    const reactionsUsed = this.flags.twodsix?.reactionsUsed ?? 0;
+    const reactionsAvailable = this.getAvailableReactions();
+    return reactionsUsed < reactionsAvailable;
   }
 
   /**
