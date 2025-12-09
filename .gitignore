@@ -16,15 +16,11 @@ dist/
 
 #This project
 foundryconfig.json
+foundry-config.json
 foundry-config.yaml
 foundry.js
 foundry-esm.js
 foundry.mjs
-foundry/license.json
-foundry/foundry*vtt*
-foundry/foundry*app*
-foundry/foundry*data*
-foundry/FoundryVTT-Node-*
 sample_data/local/*
 !sample_data/local/.gitkeep
 sample_data/*

@@ -1,3 +1,10 @@
+## [6.9.7](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.6...v6.9.7) (2025-12-09)
+
+
+### Bug Fixes
+
+* omit cargo & ammo listing from component tabs ([#1921](https://github.com/xdy/twodsix-foundryvtt/issues/1921)) ([cf6a22e](https://github.com/xdy/twodsix-foundryvtt/commit/cf6a22e93c5eae2d91d6ca4293d42c027ac543e3))
+
 ## [6.9.6](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.5...v6.9.6) (2025-12-08)
 
 
