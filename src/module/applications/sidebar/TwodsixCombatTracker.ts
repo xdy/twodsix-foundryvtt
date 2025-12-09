@@ -22,11 +22,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     actions: {
-      advancePhase: this.#advancePhase,
-      previousPhase: this.#previousPhase,
-      resetPhase: this.#resetPhase,
-      useAction: this.#useAction,
-      undoAction: this.#undoAction
+      advancePhase: TwodsixCombatTracker.#advancePhase,
+      previousPhase: TwodsixCombatTracker.#previousPhase,
+      resetPhase: TwodsixCombatTracker.#resetPhase,
+      useAction: TwodsixCombatTracker.#useAction,
+      undoAction: TwodsixCombatTracker.#undoAction
     },
   };
   /**
@@ -232,7 +232,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       // Add controls for each action type
       Object.entries(actionData).forEach(([actionType, data]) => {
         actionWrapper.appendChild(
-          this._createActionControl(actionType as any, data)
+          this._createActionControl(actionType as any, data, combatantId)
         );
       });
 
@@ -248,10 +248,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * Create an action control element
    * @param {string} actionType - Type of action
    * @param {object} data - Action data object
+   * @param {string} combatantId - ID of the combatant these actions belong to
    * @returns {HTMLElement} Action control element
    * @private
    */
-  _createActionControl(actionType, data) {
+  _createActionControl(actionType, data, combatantId) {
     const control = document.createElement('div');
     control.classList.add('action-control', `${actionType}-actions`);
     control.title = game.i18n.localize(`TWODSIX.Combat.${data.localizationKey}`);
@@ -259,6 +260,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
 
     // Add data attributes for action handling
     control.dataset.actionType = actionType;
+    control.dataset.combatantId = combatantId;
     control.dataset.action = 'useAction';
 
     // Add clickable state if can use
@@ -275,6 +277,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       undoBtn.innerHTML = '<i class="fas fa-undo"></i>';
       undoBtn.dataset.action = 'undoAction';
       undoBtn.dataset.actionType = actionType;
+      undoBtn.dataset.combatantId = combatantId;
       control.appendChild(undoBtn);
     }
 
@@ -359,12 +362,18 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @static
    */
   static async #useAction(event, target) {
-    const { combatantId, actionType } = target.closest('[data-combatant-id]')?.dataset ?? {};
-    if (!combatantId || !actionType) return;
+    const { combatantId, actionType } = target.dataset ?? {};
+    if (!combatantId || !actionType) {
+      console.warn('TwodsixCombatTracker | useAction: Missing combatantId or actionType', { combatantId, actionType });
+      return;
+    }
 
     const combat = this.viewed;
     const combatant = combat?.combatants.get(combatantId);
-    if (!combatant) return;
+    if (!combatant) {
+      console.warn('TwodsixCombatTracker | useAction: Combatant not found', combatantId);
+      return;
+    }
 
     try {
       await combatant.toggleActionUsage(actionType, true);
@@ -383,12 +392,18 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    */
   static async #undoAction(event, target) {
     event.stopPropagation();
-    const { combatantId, actionType } = target.closest('[data-combatant-id]')?.dataset ?? {};
-    if (!combatantId || !actionType) return;
+    const { combatantId, actionType } = target.dataset ?? {};
+    if (!combatantId || !actionType) {
+      console.warn('TwodsixCombatTracker | undoAction: Missing combatantId or actionType', { combatantId, actionType });
+      return;
+    }
 
     const combat = this.viewed;
     const combatant = combat?.combatants.get(combatantId);
-    if (!combatant) return;
+    if (!combatant) {
+      console.warn('TwodsixCombatTracker | undoAction: Combatant not found', combatantId);
+      return;
+    }
 
     try {
       await combatant.toggleActionUsage(actionType, false);

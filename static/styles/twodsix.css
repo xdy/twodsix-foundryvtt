@@ -4993,10 +4993,13 @@ code {
   display: flex;
   align-items: center;
   gap: 3px;
-  padding: 2px 4px;
+  padding: 2px 6px;
   border-radius: 2px;
   position: relative;
   cursor: default;
+  min-height: 20px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
 }
 
 /* GM can click to spend actions */
@@ -5004,7 +5007,6 @@ code {
   cursor: pointer;
   background: var(--s2d6-background-nearly-transparent);
   border: 1px solid currentColor;
-  padding: 2px 6px;
 }
 
 .action-control.can-use:hover {
@@ -5015,6 +5017,15 @@ code {
 .action-control .action-count {
   font-weight: bold;
   min-width: 20px;
+  flex: 1;
+}
+
+/* Reserve space for undo button to prevent layout shifts */
+.action-control::after {
+  content: '';
+  width: 18px; /* 16px button + 2px margin */
+  height: 16px;
+  flex-shrink: 0;
 }
 
 /* Undo button styling */
@@ -5028,6 +5039,16 @@ code {
   font-size: 9px;
   opacity: 0.7;
   transition: opacity 0.2s;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .action-control .undo-action:hover {
