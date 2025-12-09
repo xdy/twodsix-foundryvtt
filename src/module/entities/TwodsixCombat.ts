@@ -123,6 +123,18 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
+   * Get the localized current phase name
+   */
+  getCurrentPhaseLocalized(): string | null {
+    const phaseName = this.getCurrentPhase();
+    if (!phaseName) return null;
+
+    // Try to localize the phase name, fallback to the raw name if no localization exists
+    const localizedName = game.i18n.localize(`TWODSIX.Combat.Phases.${phaseName}`);
+    return localizedName !== `TWODSIX.Combat.Phases.${phaseName}` ? localizedName : phaseName;
+  }
+
+  /**
    * Get the current phase index
    */
   getCurrentPhaseIndex(): number {
@@ -229,6 +241,63 @@ export default class TwodsixCombat extends foundry.documents.Combat {
         turn: 0 // Reset turn when advancing phase
       });
     }
+  }
+
+  /**
+   * Go to the previous phase
+   * This method handles going backwards through phases with proper boundary checking
+   */
+  async previousPhase(): Promise<boolean> {
+    if (!this.isSpaceCombat()) {
+      return false;
+    }
+
+    const config = this.getSpaceCombatConfig();
+    const phases = config.phases || [];
+    const currentIndex = this.getCurrentPhaseIndex();
+    let prevIndex = currentIndex - 1;
+
+    if (prevIndex < 0) {
+      // Check for looping
+      if (config.loopBackPhase) {
+        prevIndex = phases.length - 1;
+      } else {
+        // Cannot go to previous phase, return false to indicate this
+        return false;
+      }
+    }
+
+    await this.update({
+      'flags.twodsix.phaseIndex': prevIndex,
+      'flags.twodsix.currentPhase': phases[prevIndex],
+      turn: 0 // Reset turn when changing phase
+    });
+
+    return true;
+  }
+
+  /**
+   * Get formatted phase display information for UI
+   */
+  getPhaseDisplayInfo() {
+    if (!this.isSpaceCombat()) {
+      return null;
+    }
+
+    const config = this.getSpaceCombatConfig();
+    const currentPhaseIndex = this.getCurrentPhaseIndex();
+    const currentPhaseName = this.getCurrentPhaseLocalized(); // Use localized name
+    const phases = config?.phases || [];
+
+    return {
+      isSpaceCombat: true,
+      currentPhase: currentPhaseName,
+      currentPhaseIndex: currentPhaseIndex,
+      phases: phases,
+      phaseIndicator: `${currentPhaseIndex + 1} / ${phases.length}`,
+      config: config,
+      canNavigatePhases: game.user.isGM
+    };
   }
 
   /**

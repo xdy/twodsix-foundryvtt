@@ -20,21 +20,8 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combat = this.viewed as TwodsixCombat;
     if (!combat?.isSpaceCombat?.()) return;
 
-    // Add space combat phase information to context
-    const config = combat.getSpaceCombatConfig();
-    const currentPhaseIndex = combat.getCurrentPhaseIndex();
-    const currentPhaseName = combat.getCurrentPhase();
-    const phases = config?.phases || [];
-
-    context.spaceCombat = {
-      isSpaceCombat: true,
-      currentPhase: currentPhaseName,
-      currentPhaseIndex: currentPhaseIndex,
-      phases: phases,
-      phaseIndicator: `${currentPhaseIndex + 1} / ${phases.length}`,
-      config: config,
-      canNavigatePhases: game.user.isGM
-    };
+    // Delegate to combat for phase information - single source of truth
+    context.spaceCombat = combat.getPhaseDisplayInfo();
   }
 
   /**
@@ -64,10 +51,8 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     // Only show phase display for actual space combats
     if (!combat?.isSpaceCombat?.()) return;
 
-    const config = combat.getSpaceCombatConfig();
-    const currentPhaseIndex = combat.getCurrentPhaseIndex();
-    const currentPhaseName = combat.getCurrentPhase();
-    const phases = config?.phases || [];
+    const phaseInfo = combat.getPhaseDisplayInfo();
+    if (!phaseInfo) return;
 
     // Find the combat tracker header
     const header = this.element.querySelector('.combat-tracker-header');
@@ -84,11 +69,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     // Add phase name
     const phaseName = document.createElement('h4');
     phaseName.classList.add('phase-name');
-    phaseName.textContent = `${game.i18n.localize("TWODSIX.Combat.Phase")}: ${currentPhaseName || 'Unknown'}`;
+    phaseName.textContent = `${game.i18n.localize("TWODSIX.Combat.Phase")}: ${phaseInfo.currentPhase || 'Unknown'}`;
     phaseDisplay.appendChild(phaseName);
 
     // Add phase controls for GM
-    if (game.user.isGM) {
+    if (phaseInfo.canNavigatePhases) {
       const phaseControls = document.createElement('div');
       phaseControls.classList.add('phase-controls');
 
@@ -99,14 +84,18 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
       prevButton.addEventListener('click', async (event) => {
         event.preventDefault();
-        await this._onPreviousPhase();
+        const success = await combat.previousPhase();
+        if (!success) {
+          ui.notifications.warn(game.i18n.localize("TWODSIX.Combat.AlreadyFirstPhase"));
+        }
+        this.render();
       });
       phaseControls.appendChild(prevButton);
 
       // Phase indicator (current/total)
       const phaseIndicator = document.createElement('span');
       phaseIndicator.classList.add('phase-indicator');
-      phaseIndicator.textContent = `${currentPhaseIndex + 1} / ${phases.length}`;
+      phaseIndicator.textContent = phaseInfo.phaseIndicator;
       phaseControls.appendChild(phaseIndicator);
 
       // Next phase button
@@ -260,33 +249,5 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     return control;
   }
 
-  /**
-   * Handle going to previous phase
-   * @private
-   */
-  async _onPreviousPhase() {
-    const combat = this.viewed as TwodsixCombat;
-    const config = combat.getSpaceCombatConfig();
-    const currentPhaseIndex = combat.getCurrentPhaseIndex();
-    const phases = config?.phases || [];
 
-    let prevIndex = currentPhaseIndex - 1;
-
-    if (prevIndex < 0) {
-      // Check for looping
-      if (config.loopBackPhase) {
-        prevIndex = phases.length - 1;
-      } else {
-        // Cannot go to previous round, just notify
-        ui.notifications.warn(game.i18n.localize("TWODSIX.Combat.AlreadyFirstPhase"));
-        return;
-      }
-    }
-
-    await combat.update({
-      'flags.twodsix.phaseIndex': prevIndex,
-      'flags.twodsix.currentPhase': phases[prevIndex]
-    });
-    this.render();
-  }
 }

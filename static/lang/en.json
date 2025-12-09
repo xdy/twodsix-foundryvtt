@@ -1784,7 +1784,19 @@
     "Reactions": "Reactions Used",
     "NoMinorActionsRemaining": "No minor actions remaining for this phase",
     "NoSignificantActionsRemaining": "No significant actions remaining for this phase",
-    "NoReactionsRemaining": "No reactions remaining"
+    "NoReactionsRemaining": "No reactions remaining",
+    "Phases": {
+      "detection": "Detection",
+      "range": "Range",
+      "tactical": "Tactical",
+      "advantage": "Advantage",
+      "attack": "Attack",
+      "screen": "Screen",
+      "damageControl": "Damage Control",
+      "declaration": "Declaration",
+      "actions": "Actions",
+      "damage": "Damage"
+    }
   },
   "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",
