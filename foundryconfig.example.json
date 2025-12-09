@@ -1,4 +1,5 @@
 {
   "dataPath": "PATH_TO_DATA_FOLDER/FoundryVTT/Data",
-  "systemName": "twodsix"
+  "systemName": "twodsix",
+  "installPath": "/Users/YourUsername/Applications/FoundryVTT"
 }

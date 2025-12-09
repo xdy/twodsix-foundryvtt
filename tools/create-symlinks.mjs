@@ -1,18 +1,16 @@
 import * as fs from "fs";
-import yaml from "js-yaml";
 import path from "path";
 
 console.log("Creating Foundry symlinks for IntelliSense...");
 
-if (fs.existsSync("foundry-config.yaml")) {
+if (fs.existsSync("foundryconfig.json")) {
   let fileRoot = "";
   try {
-    const fc = await fs.promises.readFile("foundry-config.yaml", "utf-8");
-    const foundryConfig = yaml.load(fc);
+    const foundryConfig = JSON.parse(fs.readFileSync('foundryconfig.json', 'utf8'));
 
     if (!foundryConfig.installPath) {
-      console.error("Error: installPath not specified in foundry-config.yaml");
-      console.log("Please copy foundry-config.example.yaml to foundry-config.yaml and set your Foundry installation path.");
+      console.error("Error: installPath not specified in foundryconfig.json");
+      console.log("Please copy foundryconfig.example.json to foundryconfig.json and set your Foundry installation path.");
       process.exit(1);
     }
 
@@ -30,11 +28,11 @@ if (fs.existsSync("foundry-config.yaml")) {
     // Verify the install path exists
     if (!fs.existsSync(fileRoot)) {
       console.error(`Error: Foundry install path does not exist: ${fileRoot}`);
-      console.log("Please verify the installPath in foundry-config.yaml is correct.");
+      console.log("Please verify the installPath in foundryconfig.json is correct.");
       process.exit(1);
     }
   } catch (err) {
-    console.error(`Error reading foundry-config.yaml: ${err}`);
+    console.error(`Error reading foundryconfig.json: ${err}`);
     process.exit(1);
   }
 
@@ -42,7 +40,9 @@ if (fs.existsSync("foundry-config.yaml")) {
     await fs.promises.mkdir("foundry");
     console.log("Created foundry directory");
   } catch (e) {
-    if (e.code !== "EEXIST") throw e;
+    if (e.code !== "EEXIST") {
+      throw e;
+    }
   }
 
   // Javascript files
@@ -91,8 +91,8 @@ if (fs.existsSync("foundry-config.yaml")) {
   console.log("\n✓ Symlinks created successfully!");
   console.log("You may need to restart VS Code to see IntelliSense improvements.");
 } else {
-  console.log("⚠ foundry-config.yaml not found.");
-  console.log("Please copy foundry-config.example.yaml to foundry-config.yaml");
+  console.log("⚠ foundryconfig.json not found.");
+  console.log("Please copy foundryconfig.example.json to foundryconfig.json");
   console.log("and set your Foundry installation path.");
   console.log("Then run: pnpm run symlinks");
   console.log("\nSkipping symlink creation...");
