@@ -1743,6 +1743,10 @@
         "hint": "The roll DM that is applied for each hit to a component.",
         "name": "Component Damage DM"
       },
+      "announceCombatPhases": {
+        "hint": "Post a chat message when the combat phase changes during space combat.",
+        "name": "Announce Combat Phases"
+      },
       "spaceCombatPhases": {
         "hint": "Select the ship combat phase sequence to use for ship battles.",
         "name": "Ship combat phase sequence",
@@ -1767,7 +1771,22 @@
         "name": "Rules for handling ship damage"
       }
     },
-    "CloseAndCreateNew": "Close and create new",
+    "Combat": {
+    "PhaseChange": "Combat Phase Change",
+    "Round": "Round",
+    "Phase": "Phase",
+    "System": "System",
+    "PreviousPhase": "Previous Phase",
+    "NextPhase": "Next Phase",
+    "AlreadyFirstPhase": "Already at the first phase of the first round",
+    "MinorActions": "Minor Actions Used",
+    "SignificantActions": "Significant Actions Used",
+    "Reactions": "Reactions Used",
+    "NoMinorActionsRemaining": "No minor actions remaining for this phase",
+    "NoSignificantActionsRemaining": "No significant actions remaining for this phase",
+    "NoReactionsRemaining": "No reactions remaining"
+  },
+  "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",
     "Yes": "Yes",
     "Name": "Name",

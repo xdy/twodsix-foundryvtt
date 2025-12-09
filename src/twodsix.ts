@@ -12,6 +12,7 @@
 
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
+import TwodsixCombat from "./module/entities/TwodsixCombat";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
 import {TwodsixTravellerSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixTravellerSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
@@ -38,6 +39,7 @@ import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
 import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
 import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
 import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
+import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTracker";
 
 //import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
@@ -173,6 +175,8 @@ Hooks.once('init', async function () {
   //Extend ActiveEffects class with custom overrides
   CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;
 
+  //Extend Combat and Combatant classes with custom overrides
+  CONFIG.Combat.documentClass = TwodsixCombat;
   CONFIG.Combatant.documentClass = TwodsixCombatant;
   registerHandlebarsHelpers();
 
@@ -237,6 +241,9 @@ Hooks.once('init', async function () {
   //Add chat context
   CONFIG.ui.chat = TwodsixChatLog;
   CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
+
+  //Add custom combat tracker for space combat
+  CONFIG.ui.combat = TwodsixCombatTracker;
 
   //Add Ruler measurements
   CONFIG.Token.rulerClass = TwodsixTokenRuler;

@@ -30,6 +30,7 @@
    24. Roll Dialog Format (SECTION-24)
    25. Battle Sheet (SECTION-25)
    26. Miscellaneous Overrides (SECTION-26)
+   27. Space Combat Tracker UI (SECTION-27)
    ============================================================================ */
 
 /* ============================================================================
@@ -4923,3 +4924,126 @@ code {
 .augment-buildPoints input {
   width: 4ch;
 }
+
+
+/* ====================================
+   Space Combat Tracker Styles (SECTION-27)
+   ==================================== */
+
+/* Phase display in combat tracker header */
+.space-combat-phase {
+  background: var(--s2d6-background-nearly-transparent);
+  border: 2px solid var(--s2d6-default-color);
+  border-radius: 2px;
+  padding: 8px;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.space-combat-phase .phase-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--s2d6-light-color);
+}
+
+.space-combat-phase .phase-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.space-combat-phase .phase-control {
+  cursor: pointer;
+  padding: 4px 8px;
+  background: var(--s2d6-default-color);
+  border-radius: 2px;
+  color: var(--s2d6-item-active);
+  transition: background 0.2s;
+  border: none;
+}
+
+.space-combat-phase .phase-control:hover {
+  background: var(--s2d6-light-color);
+  color: var(--s2d6-item-active);
+}
+
+.space-combat-phase .phase-indicator {
+  font-weight: bold;
+  color: var(--s2d6-default-color);
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Combatant action indicator wrapper */
+.action-indicator-wrapper {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  margin-top: 4px;
+  color: var(--s2d6-dialog-color);
+}
+
+/* Individual action control */
+.action-control {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  position: relative;
+  cursor: default;
+}
+
+/* GM can click to spend actions */
+.action-control.can-use {
+  cursor: pointer;
+  background: var(--s2d6-background-nearly-transparent);
+  border: 1px solid currentColor;
+  padding: 2px 6px;
+}
+
+.action-control.can-use:hover {
+  background: var(--s2d6-background-semi-opaque);
+}
+
+/* Action count display */
+.action-control .action-count {
+  font-weight: bold;
+  min-width: 20px;
+}
+
+/* Undo button styling */
+.action-control .undo-action {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 2px;
+  font-size: 9px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.action-control .undo-action:hover {
+  opacity: 1;
+}
+
+/* Color coding by action type */
+.action-control.minor-actions {
+  color: var(--s2d6-light-color);
+}
+
+.action-control.significant-actions {
+  color: var(--s2d6-damage-orange);
+}
+
+.action-control.reactions {
+  color: var(--s2d6-damage-stat-color);
+}
+
