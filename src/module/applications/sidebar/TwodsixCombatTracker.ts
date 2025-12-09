@@ -116,7 +116,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
       nextButton.addEventListener('click', async (event) => {
         event.preventDefault();
-        await combat.advancePhase();
+        await combat.advancePhaseWithRoundManagement();
         this.render();
       });
       phaseControls.appendChild(nextButton);

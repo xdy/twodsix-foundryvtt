@@ -132,10 +132,11 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   /**
    * Advance to the next phase
    * This handles phase transitions and creates event data for hooks
+   * Returns the new phase index
    */
-  async advancePhase(): Promise<void> {
+  async advancePhase(): Promise<number> {
     if (!this.isSpaceCombat()) {
-      return;
+      return 0;
     }
 
     const config = this.getSpaceCombatConfig();
@@ -149,27 +150,25 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       if (config.loopBackPhase) {
         const loopIndex = phases.indexOf(config.loopBackPhase);
         if (loopIndex !== -1) {
+          // Loop back to specified phase
           nextIndex = loopIndex;
-          // Just advance phase, not round
-          await this.update({
-            'flags.twodsix.phaseIndex': nextIndex,
-            'flags.twodsix.currentPhase': phases[nextIndex]
-          });
         } else {
-          // Fallback to start and advance round
-          await this.nextRound();
+          // Fallback to start
+          nextIndex = 0;
         }
       } else {
-        // End of phase sequence, call nextRound which handles initiative reroll
-        await this.nextRound();
+        // End of phase sequence, reset to beginning
+        nextIndex = 0;
       }
-    } else {
-      // Just advance phase, stay in same round
-      await this.update({
-        'flags.twodsix.phaseIndex': nextIndex,
-        'flags.twodsix.currentPhase': phases[nextIndex]
-      });
     }
+
+    // Update phase
+    await this.update({
+      'flags.twodsix.phaseIndex': nextIndex,
+      'flags.twodsix.currentPhase': phases[nextIndex]
+    });
+
+    return nextIndex;
   }
 
   /**
@@ -211,17 +210,45 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
-   * Override nextRound to handle initiative rerolls and phase reset
+   * Override nextRound to handle phase advancement and initiative rerolls
    */
   async nextRound(): Promise<this> {
     if (this.isSpaceCombat()) {
       const config = this.getSpaceCombatConfig();
+      const oldPhaseIndex = this.getCurrentPhaseIndex();
+      const phases = config.phases || [];
 
-      // Reset to first phase at the start of new round
-      await this.resetPhase();
+      // Calculate next phase index
+      let nextIndex = oldPhaseIndex + 1;
+      if (nextIndex >= phases.length) {
+        if (config.loopBackPhase) {
+          const loopIndex = phases.indexOf(config.loopBackPhase);
+          nextIndex = loopIndex !== -1 ? loopIndex : 0;
+        } else {
+          nextIndex = 0;
+        }
+      }
 
-      // Check if we need to reroll initiative each round
-      if (config.reRollInitiative) {
+      // Check if we're starting a new round (either wrapped to 0 or looped back)
+      const isNewRound = nextIndex === 0 || (config.loopBackPhase && nextIndex < oldPhaseIndex);
+
+      // Build update object - combine phase and turn updates into single transaction
+      const updateData: any = {
+        'flags.twodsix.phaseIndex': nextIndex,
+        'flags.twodsix.currentPhase': phases[nextIndex],
+        turn: 0
+      };
+
+      // Only increment round if we're actually starting a new round
+      if (isNewRound) {
+        updateData.round = this.round + 1;
+      }
+
+      // Apply all updates atomically
+      await this.update(updateData);
+
+      // Reroll initiative if starting new round and configured to do so
+      if (isNewRound && config.reRollInitiative) {
         // Clear initiative for all combatants and roll new initiatives
         const updates = this.combatants.map(c => ({
           _id: c.id,
@@ -233,8 +260,11 @@ export default class TwodsixCombat extends foundry.documents.Combat {
         // Roll initiative for all combatants
         await this.rollAll();
       }
+
+      return this;
     }
 
+    // Non-space combat: use default behavior
     return await super.nextRound();
   }
 
@@ -268,7 +298,8 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
-   * Override nextTurn - phase advancement is manual via advancePhase()
+   * Override nextTurn - don't advance phases here
+   * Phase advancement happens in nextRound when a full round completes
    */
   async nextTurn(): Promise<this> {
     return await super.nextTurn();
