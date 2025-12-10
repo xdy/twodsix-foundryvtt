@@ -179,7 +179,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @private
    */
   _getCombatantActionData(combatant, combat: TwodsixCombat) {
-    const budget = combat.getActionBudget();
+    const budget = combat?.getActionBudget();
     const config = combat?.getSpaceCombatConfig?.();
     const isUsingThrustPoolForReactions = config?.actionBudget?.thrustPoolForReactions;
 
