@@ -186,7 +186,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     return {
       minor: {
         used: combatant.flags?.twodsix?.minorActionsUsed ?? 0,
-        available: budget.minorActions,
+        available: budget?.minorActions ?? 0,
         canUse: combatant.canUseMinorAction?.() ?? false,
         useMethod: () => combatant.useMinorAction(),
         undoMethod: () => combatant.undoMinorAction(),
@@ -195,7 +195,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       },
       significant: {
         used: combatant.flags?.twodsix?.significantActionsUsed ?? 0,
-        available: budget.significantActions,
+        available: budget?.significantActions ?? 0,
         canUse: combatant.canUseSignificantAction?.() ?? false,
         useMethod: () => combatant.useSignificantAction(),
         undoMethod: () => combatant.undoSignificantAction(),
