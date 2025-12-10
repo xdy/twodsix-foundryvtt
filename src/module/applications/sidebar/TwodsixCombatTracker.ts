@@ -71,6 +71,13 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combat = this.viewed as TwodsixCombat;
     if (!combat?.usePhases?.()) return;
 
+    // Update the "Next Round" button label to "Next Phase" for space combat
+    const nextRoundBtn = this.element.querySelector('[data-action="nextRound"]');
+    if (nextRoundBtn) {
+      nextRoundBtn.setAttribute('data-tooltip', game.i18n.localize("TWODSIX.Combat.NextPhase"));
+      nextRoundBtn.setAttribute('aria-label', game.i18n.localize("TWODSIX.Combat.NextPhase"));
+    }
+
     // Add phase display section
     this._renderSpaceCombatPhaseDisplay();
 
