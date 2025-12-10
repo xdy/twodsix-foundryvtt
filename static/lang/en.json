@@ -1797,7 +1797,8 @@
       "damageControl": "Damage Control",
       "declaration": "Declaration",
       "actions": "Actions",
-      "damage": "Damage"
+      "damage": "Damage",
+      "manoeuvre": "Manoeuvre"
     }
   },
   "CloseAndCreateNew": "Close and create new",

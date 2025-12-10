@@ -125,9 +125,10 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
     actionBudget: {
       minorActions: 2,
       significantActions: 1,
-      useThrustCounter: true
+      useThrustCounter: true,
+      thrustPoolForReactions: true // Reactions use thrust pool instead of separate pool
     },
-    reactionFormula: () => 0
+    reactionFormula: () => 0 // Disabled when using thrust pool
   },
   none: {
     key: 'none',

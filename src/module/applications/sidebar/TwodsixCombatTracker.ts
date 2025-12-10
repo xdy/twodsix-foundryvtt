@@ -180,6 +180,8 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    */
   _getCombatantActionData(combatant, combat: TwodsixCombat) {
     const budget = combat.getActionBudget();
+    const config = combat?.getSpaceCombatConfig?.();
+    const isUsingThrustPoolForReactions = config?.actionBudget?.thrustPoolForReactions;
 
     return {
       minor: {
@@ -202,7 +204,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       },
       reaction: {
         used: combatant.flags?.twodsix?.reactionsUsed ?? 0,
-        available: combatant.getAvailableReactions?.() ?? 0,
+        available: isUsingThrustPoolForReactions ?
+          null : // No available count when using thrust pool - will show just reaction count
+          (combatant.getAvailableReactions?.() ?? 0), // Show available reactions in normal mode
         canUse: combatant.canUseReaction?.() ?? false,
         useMethod: () => combatant.useReaction(),
         undoMethod: () => combatant.undoReaction(),
@@ -286,7 +290,10 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const control = document.createElement('div');
     control.classList.add('action-control', `${actionType}-actions`);
     control.title = game.i18n.localize(`TWODSIX.Combat.${data.localizationKey}`);
-    control.innerHTML = `<i class="fas ${data.icon}"></i> <span class="action-count">${data.used}/${data.available}</span>`;
+
+    // Show just the count if available is null (thrust pool mode), otherwise show used/available
+    const countDisplay = data.available === null ? `${data.used}` : `${data.used}/${data.available}`;
+    control.innerHTML = `<i class="fas ${data.icon}"></i> <span class="action-count">${countDisplay}</span>`;
 
     // Add data attributes for action handling
     control.dataset.actionType = actionType;

@@ -54,7 +54,9 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   async _preUpdate(changes, options, user) {
     const allowed = await super._preUpdate(changes, options, user);
-    if (allowed === false) return false;
+    if (allowed === false) {
+      return false;
+    }
 
     // If initiative is being increased, trigger start of turn for actor
     if (("initiative" in changes) && (changes.initiative > this.initiative)) {
@@ -132,7 +134,9 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
 
     // Add space combat roll data
     data.shipThrustRating = thrustRating;
-    if (!data.skills) data.skills = {};
+    if (!data.skills) {
+      data.skills = {};
+    }
     data.skills.Pilot = pilotSkill;
     data.skills.Piloting = pilotSkill;
     data.thrustBonus = this._calculateThrustBonus(thrustRating);
@@ -163,7 +167,9 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
         );
         for (const component of mDriveComponents) {
           const rating = component.system.rating || 0;
-          if (rating > thrust) thrust = rating;
+          if (rating > thrust) {
+            thrust = rating;
+          }
         }
       }
 
@@ -183,14 +189,18 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   _getPilotSkill(actor: any): number {
     // Only ships have pilots (not space-objects)
-    if (actor.type !== "ship") return 0;
+    if (actor.type !== "ship") {
+      return 0;
+    }
 
     let bestPilotSkill = 0;
     const crewActorIds = Object.keys(actor.system.shipPositionActorIds || {});
 
     for (const actorId of crewActorIds) {
       const crewActor = game.actors?.get(actorId);
-      if (!crewActor) continue;
+      if (!crewActor) {
+        continue;
+      }
 
       const skills = crewActor.itemTypes?.skills || crewActor.items.filter(item => item.type === "skills");
       for (const skill of skills) {
@@ -211,23 +221,35 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @private
    */
   _calculateThrustBonus(myThrust: number): number {
-    if (myThrust === 0) return 0;
+    if (myThrust === 0) {
+      return 0;
+    }
 
     const combat = this.combat as TwodsixCombat;
-    if (!combat?.combatants) return 0;
+    if (!combat?.combatants) {
+      return 0;
+    }
 
     // Check if any other combatant has higher thrust (or equal with lower ID)
     for (const other of combat.combatants) {
-      if (other.id === this.id) continue;
-      if (!['ship', 'space-object'].includes(other.actor?.type)) continue;
+      if (other.id === this.id) {
+        continue;
+      }
+      if (!['ship', 'space-object'].includes(other.actor?.type)) {
+        continue;
+      }
 
       const otherThrust = this._getThrustRating(other.actor);
 
       // Higher thrust wins
-      if (otherThrust > myThrust) return 0;
+      if (otherThrust > myThrust) {
+        return 0;
+      }
 
       // Tie-breaker: lower ID wins
-      if (otherThrust === myThrust && other.id < this.id) return 0;
+      if (otherThrust === myThrust && other.id < this.id) {
+        return 0;
+      }
     }
 
     // This combatant has highest thrust (or wins tie-breaker)
@@ -257,10 +279,19 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * Calculate available reactions based on initiative
    */
   getAvailableReactions(): number {
-    if (!['ship', 'space-object'].includes(this.actor?.type)) return 0;
+    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+      return 0;
+    }
 
     const combat = this.combat as TwodsixCombat;
     const config = combat?.getSpaceCombatConfig?.();
+
+    // Check if this combat type uses thrust pool for reactions
+    if (config?.actionBudget?.thrustPoolForReactions) {
+      // Return available thrust instead of separate reactions
+      return this.availableThrust;
+    }
+
     const formula = config?.reactionFormula;
 
     if (formula && typeof formula === 'function') {
@@ -269,10 +300,15 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
 
     // Default CE formula if not specified
     const initiative = this.initiative ?? 0;
-    if (initiative <= 4) return 1;
-    if (initiative <= 8) return 2;
-    if (initiative <= 12) return 3;
-    return 4;
+    if (initiative <= 4) {
+      return 1;
+    } else if (initiative <= 8) {
+      return 2;
+    } else if (initiative <= 12) {
+      return 3;
+    } else {
+      return 4;
+    }
   }
 
   /**
@@ -330,13 +366,40 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @param {number} amount - Amount to change thrust by (positive or negative)
    */
   async toggleThrustUsage(amount: number = 1): Promise<void> {
-    if (!this.usesThrustCounter()) return;
+    if (!this.usesThrustCounter()) {
+      return;
+    }
 
     const currentUsed = this.flags.twodsix?.thrustUsed ?? 0;
     const maxThrust = this.getMaxThrustPoints();
     const newUsed = Math.max(0, Math.min(maxThrust, currentUsed + amount));
 
     await this.setFlag('twodsix', 'thrustUsed', newUsed);
+  }
+
+  /**
+   * Use one thrust point
+   * @returns {Promise<boolean>} Whether thrust was successfully used
+   */
+  async useThrust(): Promise<boolean> {
+    if (this.availableThrust <= 0) {
+      return false;
+    }
+    await this.toggleThrustUsage(1);
+    return true;
+  }
+
+  /**
+   * Restore one thrust point (undo usage)
+   * @returns {Promise<boolean>} Whether thrust was successfully restored
+   */
+  async undoThrust(): Promise<boolean> {
+    const currentUsed = this.flags.twodsix?.thrustUsed ?? 0;
+    if (currentUsed <= 0) {
+      return false;
+    }
+    await this.toggleThrustUsage(-1);
+    return true;
   }
 
   /**
@@ -398,7 +461,9 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   async _undoAction(flagKey: string): Promise<boolean> {
     const currentUsed = this.flags.twodsix?.[flagKey] ?? 0;
-    if (currentUsed <= 0) return false;
+    if (currentUsed <= 0) {
+      return false;
+    }
 
     const updates = { [`flags.twodsix.${flagKey}`]: Math.max(0, currentUsed - 1) };
     await this.update(updates);
@@ -406,7 +471,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
   }
 
   /**
-   * Reset phase counters at start of turn (only for space actors in space combat)
+   * Reset phase counters at start of phase (only actions, reactions persist across phases)
    */
   async resetPhaseCounters(): Promise<void> {
     // Only apply to space actors (ships and space-objects)
@@ -423,8 +488,31 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       'flags.twodsix.spacePhase': combat.getCurrentPhase() || 'declaration',
       'flags.twodsix.minorActionsUsed': 0,
       'flags.twodsix.significantActionsUsed': 0,
+      'flags.twodsix.hasty': false
+    });
+  }
+
+  /**
+   * Reset round counters at start of new round (actions and reactions)
+   */
+  async resetRoundCounters(): Promise<void> {
+    // Only apply to space actors (ships and space-objects)
+    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+      return;
+    }
+
+    const combat = this.combat as TwodsixCombat;
+    if (!combat?.isSpaceCombat?.()) {
+      return;
+    }
+
+    await this.update({
+      'flags.twodsix.spacePhase': combat.getCurrentPhase() || 'declaration',
+      'flags.twodsix.minorActionsUsed': 0,
+      'flags.twodsix.significantActionsUsed': 0,
       'flags.twodsix.reactionsUsed': 0,
       'flags.twodsix.reactionsAvailable': this.getAvailableReactions(),
+      'flags.twodsix.thrustUsed': 0, // Reset thrust on new round
       'flags.twodsix.hasty': false
     });
   }
@@ -459,6 +547,15 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {boolean}
    */
   canUseReaction(): boolean {
+    const combat = this.combat as TwodsixCombat;
+    const config = combat?.getSpaceCombatConfig?.();
+
+    // If using thrust pool for reactions, check thrust availability
+    if (config?.actionBudget?.thrustPoolForReactions) {
+      return this.availableThrust > 0;
+    }
+
+    // Otherwise use normal reaction system
     const { reactionsUsed, reactionsAvailable } = this._getActionCounts();
     return reactionsUsed < reactionsAvailable;
   }
@@ -515,6 +612,21 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the reaction was successfully used
    */
   async useReaction(options = {}): Promise<boolean> {
+    const combat = this.combat as TwodsixCombat;
+    const config = combat?.getSpaceCombatConfig?.();
+
+    // If using thrust pool for reactions, use thrust and track reaction count
+    if (config?.actionBudget?.thrustPoolForReactions) {
+      const thrustSuccess = await this.useThrust();
+      if (thrustSuccess) {
+        // Also increment reaction counter for tracking
+        const reactionsUsed = this.flags?.twodsix?.reactionsUsed ?? 0;
+        await this.setFlag('twodsix', 'reactionsUsed', reactionsUsed + 1);
+      }
+      return thrustSuccess;
+    }
+
+    // Otherwise use normal reaction system
     return this._useAction(
       'reaction',
       () => this.canUseReaction(),
@@ -529,6 +641,24 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the undo was successful
    */
   async undoReaction(): Promise<boolean> {
+    const combat = this.combat as TwodsixCombat;
+    const config = combat?.getSpaceCombatConfig?.();
+
+    // If using thrust pool for reactions, undo thrust and decrement reaction count
+    if (config?.actionBudget?.thrustPoolForReactions) {
+      const reactionsUsed = this.flags?.twodsix?.reactionsUsed ?? 0;
+      if (reactionsUsed > 0) {
+        const thrustSuccess = await this.undoThrust();
+        if (thrustSuccess) {
+          // Also decrement reaction counter
+          await this.setFlag('twodsix', 'reactionsUsed', reactionsUsed - 1);
+        }
+        return thrustSuccess;
+      }
+      return false;
+    }
+
+    // Otherwise use normal reaction system
     return this._undoAction('reactionsUsed');
   }
 

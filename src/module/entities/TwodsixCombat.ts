@@ -416,6 +416,17 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       // Apply all updates atomically
       await this._updatePhaseData(nextIndex, additionalUpdates);
 
+      // Reset counters based on whether it's a new round or just new phase
+      for (const combatant of this.combatants) {
+        if (['ship', 'space-object'].includes(combatant.actor?.type)) {
+          if (isNewRound) {
+            await combatant.resetRoundCounters?.();
+          } else {
+            await combatant.resetPhaseCounters?.();
+          }
+        }
+      }
+
       // Reroll initiative if starting new round and configured to do so
       if (isNewRound && config.reRollInitiative) {
         // Clear initiative for all combatants and roll new initiatives
@@ -458,7 +469,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   async _onPhaseChange(): Promise<void> {
     if (!this.isSpaceCombat()) return;
 
-    // Reset action/reaction counters for all combatants at phase start
+    // Reset action counters (not reactions) for all combatants at phase start
     for (const combatant of this.combatants) {
       if (['ship', 'space-object'].includes(combatant.actor?.type)) {
         await combatant.resetPhaseCounters?.();
