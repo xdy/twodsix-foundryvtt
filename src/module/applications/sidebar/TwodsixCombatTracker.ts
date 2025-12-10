@@ -25,6 +25,15 @@ import TwodsixCombat from "../../entities/TwodsixCombat";
  * @extends {foundry.applications.sidebar.tabs.CombatTracker}
  */
 export default class TwodsixCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
+  /** Determine if the current user may edit counters for this combatant */
+  static #canUserControlCombatant(combatant): boolean {
+    if (!combatant?.actor) {
+      return false;
+    }
+    // Check if user owns the ship/actor - this covers both GM and player ownership
+    return combatant.actor.isOwner;
+  }
+
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     actions: {
@@ -226,6 +235,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     combatantElements.forEach((element) => {
       const combatantId = element.dataset.combatantId;
       const combatant = combat.combatants.get(combatantId);
+      const canControl = TwodsixCombatTracker.#canUserControlCombatant(combatant);
 
       if (!combatant || !['ship', 'space-object'].includes(combatant.actor?.type)) {
         return;
@@ -250,14 +260,14 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
           localizationKey: 'ThrustUsed'
         };
         actionWrapper.appendChild(
-          this._createThrustControl(thrustData, combatantId)
+          this._createThrustControl(thrustData, combatantId, canControl)
         );
 
         // Also add reaction button even when using thrust counters
         const actionData = this._getCombatantActionData(combatant, combat);
         if (actionData.reaction) {
           actionWrapper.appendChild(
-            this._createActionControl('reaction', actionData.reaction, combatantId)
+            this._createActionControl('reaction', actionData.reaction, combatantId, canControl)
           );
         }
       } else {
@@ -267,10 +277,16 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
         // Add controls for each action type
         Object.entries(actionData).forEach(([actionType, data]) => {
           actionWrapper.appendChild(
-            this._createActionControl(actionType as any, data, combatantId)
+            this._createActionControl(actionType as any, data, combatantId, canControl)
           );
         });
       }
+
+      // Prevent double-click from opening actor sheet
+      actionWrapper.addEventListener('dblclick', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      });
 
       // Insert action indicators as a separate row after the entire combatant element
       // Insert after the combatant element as a sibling, not a child
@@ -283,10 +299,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @param {string} actionType - Type of action
    * @param {object} data - Action data object
    * @param {string} combatantId - ID of the combatant these actions belong to
+   * @param {boolean} canControl - Whether the current user can modify the counters
    * @returns {HTMLElement} Action control element
    * @private
    */
-  _createActionControl(actionType, data, combatantId) {
+  _createActionControl(actionType, data, combatantId, canControl) {
     const control = document.createElement('div');
     control.classList.add('action-control', `${actionType}-actions`);
     control.title = game.i18n.localize(`TWODSIX.Combat.${data.localizationKey}`);
@@ -301,12 +318,12 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     control.dataset.action = 'useAction';
 
     // Add clickable state if can use
-    if (data.canUse && game.user.isGM) {
+    if (data.canUse && canControl) {
       control.classList.add('can-use');
     }
 
     // Add undo button if actions were used
-    if (data.used > 0 && game.user.isGM) {
+    if (data.used > 0 && canControl) {
       const undoBtn = document.createElement('button');
       undoBtn.classList.add('undo-action');
       undoBtn.type = 'button';
@@ -325,7 +342,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * Create a thrust control element
    * @private
    */
-  _createThrustControl(thrustData, combatantId) {
+  _createThrustControl(thrustData, combatantId, canControl) {
     const control = document.createElement('div');
     control.classList.add('action-control', 'thrust-control');
     control.title = game.i18n.localize('TWODSIX.Combat.ThrustUsed') || 'Thrust Used';
@@ -337,12 +354,12 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     control.dataset.action = 'adjustThrust';
 
     // Add clickable state if GM
-    if (game.user.isGM) {
+    if (canControl) {
       control.classList.add('can-use');
     }
 
     // Add increase/decrease buttons
-    if (game.user.isGM) {
+    if (canControl) {
       const decreaseBtn = document.createElement('button');
       decreaseBtn.classList.add('thrust-decrease');
       decreaseBtn.type = 'button';
@@ -443,6 +460,8 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @static
    */
   static async #useAction(event, target) {
+    event.preventDefault();
+    event.stopPropagation();
     const { combatantId, actionType } = target.dataset ?? {};
     if (!combatantId || !actionType) {
       console.warn('TwodsixCombatTracker | useAction: Missing combatantId or actionType', { combatantId, actionType });
@@ -453,6 +472,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combatant = combat?.combatants.get(combatantId);
     if (!combatant) {
       console.warn('TwodsixCombatTracker | useAction: Combatant not found', combatantId);
+      return;
+    }
+
+    if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
+      ui.notifications.warn("You do not have permission to adjust this combatant.");
       return;
     }
 
@@ -472,6 +496,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @static
    */
   static async #undoAction(event, target) {
+    event.preventDefault();
     event.stopPropagation();
     const { combatantId, actionType } = target.dataset ?? {};
     if (!combatantId || !actionType) {
@@ -483,6 +508,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combatant = combat?.combatants.get(combatantId);
     if (!combatant) {
       console.warn('TwodsixCombatTracker | undoAction: Combatant not found', combatantId);
+      return;
+    }
+
+    if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
+      ui.notifications.warn("You do not have permission to adjust this combatant.");
       return;
     }
 
@@ -503,10 +533,16 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    */
   static async #adjustThrust(event, target) {
     event.preventDefault();
+    event.stopPropagation();
     const combatantId = target.dataset.combatantId;
     const combat = this.viewed;
     const combatant = combat?.combatants.get(combatantId);
     if (!combatant) return;
+
+    if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
+      ui.notifications.warn("You do not have permission to adjust this combatant.");
+      return;
+    }
 
     try {
       await combatant.toggleThrustUsage(1);
@@ -531,6 +567,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combatant = combat?.combatants.get(combatantId);
     if (!combatant) return;
 
+    if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
+      ui.notifications.warn("You do not have permission to adjust this combatant.");
+      return;
+    }
+
     try {
       await combatant.toggleThrustUsage(1);
       this.render();
@@ -553,6 +594,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combat = this.viewed;
     const combatant = combat?.combatants.get(combatantId);
     if (!combatant) return;
+
+    if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
+      ui.notifications.warn("You do not have permission to adjust this combatant.");
+      return;
+    }
 
     try {
       await combatant.toggleThrustUsage(-1);
