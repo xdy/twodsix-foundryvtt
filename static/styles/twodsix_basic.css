@@ -3984,8 +3984,12 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
   font-size: 10px;
   line-height: 1.2;
   min-width: 20px;
+  min-height: 24px; /* Match thrust control height */
   text-align: center;
   color: var(--s2d6-default-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .action-indicator-wrapper .action-control:hover {
@@ -4002,21 +4006,13 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 
 /* Action type specific styling */
 .action-control.minor-actions {
-  color: var(--s2d6-color-text-light-3);
-  border-color: var(--s2d6-color-border-light-2);
-}
-
-.action-control.minor-actions:hover {
-  border-color: var(--s2d6-color-text-light-3);
+  color: var(--s2d6-default-color);
+  border-color: var(--s2d6-default-color);
 }
 
 .action-control.significant-actions {
-  color: var(--s2d6-damage-orange);
-  border-color: var(--s2d6-damage-orange);
-}
-
-.action-control.significant-actions:hover {
-  border-color: var(--s2d6-damage-orange);
+  color: var(--s2d6-default-color);
+  border-color: var(--s2d6-default-color);
 }
 
 .action-control.reactions,
@@ -4025,13 +4021,141 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
   border-color: var(--s2d6-damage-stat-color);
 }
 
-.action-control.reactions:hover,
-.action-control.reaction-actions:hover {
-  border-color: var(--s2d6-damage-stat-color);
+.action-control.thrust-control {
+  color: var(--s2d6-default-color);
+  border-color: var(--s2d6-default-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px;
+  gap: 6px;
+  min-width: 90px;
+  height: 24px;
 }
 
+/* Shared hover behavior - maintains current border color on hover */
+.action-control.minor-actions:hover,
+.action-control.significant-actions:hover,
+.action-control.reactions:hover,
+.action-control.reaction-actions:hover,
+.action-control.thrust-control:hover {
+  border-color: currentColor;
+}
+
+/* Shared used state */
 .action-control.reactions.used,
 .action-control.reaction-actions.used {
   background: var(--s2d6-damage-stat-color);
   border-color: var(--s2d6-damage-stat-color);
+}
+
+/* Thrust control buttons */
+.action-control.thrust-control .thrust-decrease,
+.action-control.thrust-control .thrust-increase {
+  height: 16px;
+  width: 16px;
+  --button-size: 16px !important;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  line-height: 16px;
+  border: none;
+  background: transparent;
+  color: var(--s2d6-default-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+/* Thrust button hover effects */
+.action-control.thrust-control .thrust-decrease:hover,
+.action-control.thrust-control .thrust-increase:hover {
+  color: var(--s2d6-item-active);
+  background: var(--s2d6-default-color);
+  box-shadow: 0 0 0 1px var(--s2d6-default-color);
+}
+
+/* Other control button styling for non-thrust controls */
+.action-control .control-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px;
+  width: 16px;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--s2d6-default-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.action-control .control-button:hover {
+  color: var(--s2d6-light-color);
+  background: var(--s2d6-background-semi-opaque);
+  border-radius: 2px;
+}
+
+/* ====================================
+   Space Combat Tracker Styles
+   ==================================== */
+
+/* Phase display in combat tracker header */
+.space-combat-phase {
+  background: var(--s2d6-background-nearly-transparent);
+  border: 2px solid var(--s2d6-default-color);
+  border-radius: 2px;
+  padding: 8px;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.space-combat-phase .phase-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--s2d6-default-color);
+}
+
+.space-combat-phase .phase-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.space-combat-phase .phase-control {
+  cursor: pointer;
+  padding: 4px 8px;
+  background: var(--s2d6-default-color);
+  border-radius: 2px;
+  color: var(--s2d6-light-color);
+  transition: background 0.2s;
+  border: none;
+}
+
+.space-combat-phase .phase-control:hover {
+  background: var(--s2d6-light-color);
+  color: var(--s2d6-default-color);
+}
+
+.space-combat-phase .phase-indicator {
+  font-weight: bold;
+  color: var(--s2d6-default-color);
+  min-width: 40px;
+  text-align: center;
 }

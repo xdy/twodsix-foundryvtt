@@ -5041,8 +5041,8 @@ code {
   flex: 1;
 }
 
-/* Reserve space for undo button to prevent layout shifts */
-.action-control::after {
+/* Reserve space for undo button to prevent layout shifts - NOT for thrust controls */
+.action-control:not(.thrust-control)::after {
   content: '';
   width: 18px; /* 16px button + 2px margin */
   height: 16px;
@@ -5082,16 +5082,8 @@ code {
   border-color: var(--s2d6-light-color);
 }
 
-.action-control.minor-actions:hover {
-  border-color: var(--s2d6-light-color);
-}
-
 .action-control.significant-actions {
   color: var(--s2d6-damage-orange);
-  border-color: var(--s2d6-damage-orange);
-}
-
-.action-control.significant-actions:hover {
   border-color: var(--s2d6-damage-orange);
 }
 
@@ -5101,14 +5093,96 @@ code {
   border-color: var(--s2d6-damage-stat-color);
 }
 
-.action-control.reactions:hover,
-.action-control.reaction-actions:hover {
-  border-color: var(--s2d6-damage-stat-color);
+/* Thrust control layout */
+.action-control.thrust-control {
+  color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 6px;
+  gap: 6px;
+  min-width: 90px;
+  height: 24px;
 }
 
+/* Thrust control sections */
+.action-control.thrust-control .thrust-icon {
+  flex-shrink: 0;
+}
+
+.action-control.thrust-control .thrust-counter {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  min-width: 24px;
+}
+
+/* Thrust control buttons */
+.action-control.thrust-control .thrust-decrease,
+.action-control.thrust-control .thrust-increase {
+  height: 16px;
+  width: 16px;
+  --button-size: 16px !important;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  line-height: 16px;
+  border: none;
+  background: transparent;
+  color: var(--s2d6-default-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+/* Shared hover behavior - maintains current border color on hover */
+.action-control.minor-actions:hover,
+.action-control.significant-actions:hover,
+.action-control.reactions:hover,
+.action-control.reaction-actions:hover,
+.action-control.thrust-control:hover {
+  border-color: currentColor;
+}
+
+/* Shared used state - uses current color for background */
 .action-control.reactions.used,
 .action-control.reaction-actions.used {
   background: var(--s2d6-damage-stat-color);
   border-color: var(--s2d6-damage-stat-color);
+}
+
+/* Thrust button hover effects */
+.action-control.thrust-control .thrust-decrease:hover,
+.action-control.thrust-control .thrust-increase:hover {
+  color: var(--s2d6-item-active);
+  background: var(--s2d6-default-color);
+  box-shadow: 0 0 0 1px var(--s2d6-default-color);
+}
+
+/* Other control button styling for non-thrust controls */
+.action-control .control-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 14px;
+  width: 16px;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  color: var(--s2d6-default-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 

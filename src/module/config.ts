@@ -66,7 +66,8 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
     reRollInitiative: false,
     actionBudget: {
       minorActions: 0,
-      significantActions: 1
+      significantActions: 1,
+      useThrustCounter: false
     },
     reactionFormula: () => 0
   },
@@ -78,7 +79,8 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
     reRollInitiative: false,
     actionBudget: {
       minorActions: 3,
-      significantActions: 1
+      significantActions: 1,
+      useThrustCounter: false
     },
     reactionFormula: (initiative) => {
       if (initiative <= 4) return 1;
@@ -95,7 +97,8 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
     reRollInitiative: true,
     actionBudget: {
       minorActions: 0,
-      significantActions: 1
+      significantActions: 1,
+      useThrustCounter: false
     },
     reactionFormula: () => 0
   },
@@ -108,7 +111,8 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
     reRollInitiative: true,
     actionBudget: {
       minorActions: 1,
-      significantActions: 0
+      significantActions: 0,
+      useThrustCounter: false
     },
     reactionFormula: () => 0
   },
@@ -120,7 +124,8 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
     reRollInitiative: false,
     actionBudget: {
       minorActions: 2,
-      significantActions: 1
+      significantActions: 1,
+      useThrustCounter: true
     },
     reactionFormula: () => 0
   },
@@ -132,7 +137,8 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
     reRollInitiative: false,
     actionBudget: {
       minorActions: 0,
-      significantActions: 0
+      significantActions: 0,
+      useThrustCounter: false
     },
     reactionFormula: () => 0
   }

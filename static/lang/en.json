@@ -1783,6 +1783,7 @@
     "MinorActions": "Minor Actions Used",
     "SignificantActions": "Significant Actions Used",
     "Reactions": "Reactions Used",
+    "ThrustUsed": "Thrust Used",
     "NoMinorActionsRemaining": "No minor actions remaining for this phase",
     "NoSignificantActionsRemaining": "No significant actions remaining for this phase",
     "NoReactionsRemaining": "No reactions remaining",

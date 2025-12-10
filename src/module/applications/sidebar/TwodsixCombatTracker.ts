@@ -32,7 +32,10 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       previousPhase: TwodsixCombatTracker.#previousPhase,
       resetPhase: TwodsixCombatTracker.#resetPhase,
       useAction: TwodsixCombatTracker.#useAction,
-      undoAction: TwodsixCombatTracker.#undoAction
+      undoAction: TwodsixCombatTracker.#undoAction,
+      adjustThrust: TwodsixCombatTracker.#adjustThrust,
+      increaseThrust: TwodsixCombatTracker.#increaseThrust,
+      decreaseThrust: TwodsixCombatTracker.#decreaseThrust
     },
   };
   /**
@@ -228,26 +231,46 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       const existing = element.querySelector('.action-indicator-wrapper');
       if (existing) existing.remove();
 
-      // Get action data
-      const actionData = this._getCombatantActionData(combatant, combat);
-
       // Create action indicator wrapper
       const actionWrapper = document.createElement('div');
       actionWrapper.classList.add('action-indicator-wrapper');
 
-      // Add controls for each action type
-      Object.entries(actionData).forEach(([actionType, data]) => {
+      // Check if this combat uses thrust counter
+      if (combatant.usesThrustCounter?.()) {
+        // Add thrust counter control
+        const thrustData = {
+          used: combatant.flags?.twodsix?.thrustUsed ?? 0,
+          available: combatant.getMaxThrustPoints?.() ?? 0,
+          canUse: true, // Thrust can always be used/adjusted
+          icon: 'fa-rocket',
+          localizationKey: 'ThrustUsed'
+        };
         actionWrapper.appendChild(
-          this._createActionControl(actionType as any, data, combatantId)
+          this._createThrustControl(thrustData, combatantId)
         );
-      });
+
+        // Also add reaction button even when using thrust counters
+        const actionData = this._getCombatantActionData(combatant, combat);
+        if (actionData.reaction) {
+          actionWrapper.appendChild(
+            this._createActionControl('reaction', actionData.reaction, combatantId)
+          );
+        }
+      } else {
+        // Get action data for traditional action buttons
+        const actionData = this._getCombatantActionData(combatant, combat);
+
+        // Add controls for each action type
+        Object.entries(actionData).forEach(([actionType, data]) => {
+          actionWrapper.appendChild(
+            this._createActionControl(actionType as any, data, combatantId)
+          );
+        });
+      }
 
       // Insert action indicators as a separate row after the entire combatant element
-      const combatantElement = element;
-      if (combatantElement) {
-        // Insert after the combatant element as a sibling, not a child
-        combatantElement.insertAdjacentElement('afterend', actionWrapper);
-      }
+      // Insert after the combatant element as a sibling, not a child
+      element.insertAdjacentElement('afterend', actionWrapper);
     });
   }
 
@@ -286,6 +309,50 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       undoBtn.dataset.actionType = actionType;
       undoBtn.dataset.combatantId = combatantId;
       control.appendChild(undoBtn);
+    }
+
+    return control;
+  }
+
+  /**
+   * Create a thrust control element
+   * @private
+   */
+  _createThrustControl(thrustData, combatantId) {
+    const control = document.createElement('div');
+    control.classList.add('action-control', 'thrust-control');
+    control.title = game.i18n.localize('TWODSIX.Combat.ThrustUsed') || 'Thrust Used';
+    control.innerHTML = `<i class="fas ${thrustData.icon}"></i> <span class="action-count">${thrustData.used}/${thrustData.available}</span>`;
+
+    // Add data attributes for action handling
+    control.dataset.actionType = 'thrust';
+    control.dataset.combatantId = combatantId;
+    control.dataset.action = 'adjustThrust';
+
+    // Add clickable state if GM
+    if (game.user.isGM) {
+      control.classList.add('can-use');
+    }
+
+    // Add increase/decrease buttons
+    if (game.user.isGM) {
+      const decreaseBtn = document.createElement('button');
+      decreaseBtn.classList.add('thrust-decrease');
+      decreaseBtn.type = 'button';
+      decreaseBtn.title = 'Decrease Thrust';
+      decreaseBtn.innerHTML = '<i class="fas fa-minus"></i>';
+      decreaseBtn.dataset.action = 'decreaseThrust';
+      decreaseBtn.dataset.combatantId = combatantId;
+      control.appendChild(decreaseBtn);
+
+      const increaseBtn = document.createElement('button');
+      increaseBtn.classList.add('thrust-increase');
+      increaseBtn.type = 'button';
+      increaseBtn.title = 'Increase Thrust';
+      increaseBtn.innerHTML = '<i class="fas fa-plus"></i>';
+      increaseBtn.dataset.action = 'increaseThrust';
+      increaseBtn.dataset.combatantId = combatantId;
+      control.appendChild(increaseBtn);
     }
 
     return control;
@@ -417,6 +484,74 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       this.render();
     } catch (error) {
       console.error(`TwodsixCombatTracker | Error undoing ${actionType} action:`, error);
+    }
+  }
+
+  /**
+   * Handle thrust adjustment (click on thrust counter)
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #adjustThrust(event, target) {
+    event.preventDefault();
+    const combatantId = target.dataset.combatantId;
+    const combat = this.viewed;
+    const combatant = combat?.combatants.get(combatantId);
+    if (!combatant) return;
+
+    try {
+      await combatant.toggleThrustUsage(1);
+      this.render();
+    } catch (error) {
+      console.error('TwodsixCombatTracker | Error adjusting thrust:', error);
+    }
+  }
+
+  /**
+   * Handle thrust increase
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #increaseThrust(event, target) {
+    event.preventDefault();
+    event.stopPropagation();
+    const combatantId = target.dataset.combatantId;
+    const combat = this.viewed;
+    const combatant = combat?.combatants.get(combatantId);
+    if (!combatant) return;
+
+    try {
+      await combatant.toggleThrustUsage(1);
+      this.render();
+    } catch (error) {
+      console.error('TwodsixCombatTracker | Error increasing thrust:', error);
+    }
+  }
+
+  /**
+   * Handle thrust decrease
+   * @param {PointerEvent} event - The triggering event
+   * @param {HTMLElement} target - The action target element
+   * @this {TwodsixCombatTracker}
+   * @static
+   */
+  static async #decreaseThrust(event, target) {
+    event.preventDefault();
+    event.stopPropagation();
+    const combatantId = target.dataset.combatantId;
+    const combat = this.viewed;
+    const combatant = combat?.combatants.get(combatantId);
+    if (!combatant) return;
+
+    try {
+      await combatant.toggleThrustUsage(-1);
+      this.render();
+    } catch (error) {
+      console.error('TwodsixCombatTracker | Error decreasing thrust:', error);
     }
   }
 

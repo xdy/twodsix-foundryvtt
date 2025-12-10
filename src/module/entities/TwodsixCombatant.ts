@@ -296,8 +296,47 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       minorUsed: this.flags.twodsix?.minorActionsUsed ?? 0,
       significantUsed: this.flags.twodsix?.significantActionsUsed ?? 0,
       reactionsUsed: this.flags.twodsix?.reactionsUsed ?? 0,
-      reactionsAvailable: this.getAvailableReactions()
+      reactionsAvailable: this.getAvailableReactions(),
+      thrustUsed: this.flags.twodsix?.thrustUsed ?? 0,
+      thrustAvailable: this.getMaxThrustPoints()
     };
+  }
+
+  /**
+   * Get the maximum thrust points available for this ship
+   * @returns {number} Maximum thrust points based on ship's thrust rating
+   */
+  getMaxThrustPoints(): number {
+    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+      return 0;
+    }
+
+    // Get thrust rating from ship actor
+    const thrustRating = this._getThrustRating(this.actor);
+    return thrustRating || 0;
+  }
+
+  /**
+   * Check if the combat uses thrust counter instead of action buttons
+   */
+  usesThrustCounter(): boolean {
+    const combat = this.combat as TwodsixCombat;
+    const config = combat?.getSpaceCombatConfig?.();
+    return config?.actionBudget?.useThrustCounter ?? false;
+  }
+
+  /**
+   * Toggle thrust usage (increment/decrement thrust used counter)
+   * @param {number} amount - Amount to change thrust by (positive or negative)
+   */
+  async toggleThrustUsage(amount: number = 1): Promise<void> {
+    if (!this.usesThrustCounter()) return;
+
+    const currentUsed = this.flags.twodsix?.thrustUsed ?? 0;
+    const maxThrust = this.getMaxThrustPoints();
+    const newUsed = Math.max(0, Math.min(maxThrust, currentUsed + amount));
+
+    await this.setFlag('twodsix', 'thrustUsed', newUsed);
   }
 
   /**
