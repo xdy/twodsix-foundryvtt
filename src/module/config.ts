@@ -123,6 +123,18 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
       significantActions: 1
     },
     reactionFormula: () => 0
+  },
+  none: {
+    key: 'none',
+    name: 'Standard Foundry Combat (No Phases)',
+    phases: [],
+    shipInitiativeFormula: null, // Use the shipInitiativeFormula setting
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 0,
+      significantActions: 0
+    },
+    reactionFormula: () => 0
   }
 });
 

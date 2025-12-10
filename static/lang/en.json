@@ -1755,7 +1755,8 @@
           "threePhase": "Three Phase (Cepheus Engine)",
           "twoPhasePosition": "Two Phase - Position Dynamic",
           "eightPhaseLooping": "Eight Phase - Looping (Cepheus Universal)",
-          "mgt2eThreePhase": "Three Phase (Mongoose Traveller 2E)"
+          "mgt2eThreePhase": "Three Phase (Mongoose Traveller 2E)",
+          "none": "Standard Foundry Combat (No Phases)"
         }
       },
       "showTraitAE": {

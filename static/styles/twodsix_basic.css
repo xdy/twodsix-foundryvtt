@@ -3946,3 +3946,92 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 .augment-buildPoints input {
   width: 4ch;
 }
+
+/* ============================================================================
+   COMBAT TRACKER - ACTION INDICATORS
+   ============================================================================ */
+
+/* Combatant action indicator wrapper - separate row below standard Foundry elements */
+.action-indicator-wrapper {
+  display: flex;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--s2d6-dialog-color);
+  margin: 2px 0;
+  padding: 4px 8px;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center; /* Center the buttons */
+  position: static;
+  flex-wrap: nowrap; /* Keep on one line */
+  width: 100%;
+  min-height: 24px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.15); /* Slightly more visible background */
+  border-radius: 3px;
+  border-left: 3px solid var(--s2d6-color-border-light-primary); /* Visual indicator */
+}
+
+/* Individual action control buttons */
+.action-indicator-wrapper .action-control {
+  pointer-events: auto;
+  background: var(--s2d6-input-background);
+  border: 1px solid var(--s2d6-color-border-light-2);
+  border-radius: 2px;
+  padding: 2px 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 10px;
+  line-height: 1.2;
+  min-width: 20px;
+  text-align: center;
+  color: var(--s2d6-default-color);
+}
+
+.action-indicator-wrapper .action-control:hover {
+  background: var(--s2d6-item-hover);
+  border-color: var(--s2d6-color-border-light-primary);
+  transform: translateY(-1px);
+}
+
+.action-indicator-wrapper .action-control.used {
+  background: var(--s2d6-damage-red);
+  color: white;
+  border-color: var(--s2d6-damage-red);
+}
+
+/* Action type specific styling */
+.action-control.minor-actions {
+  color: var(--s2d6-color-text-light-3);
+  border-color: var(--s2d6-color-border-light-2);
+}
+
+.action-control.minor-actions:hover {
+  border-color: var(--s2d6-color-text-light-3);
+}
+
+.action-control.significant-actions {
+  color: var(--s2d6-damage-orange);
+  border-color: var(--s2d6-damage-orange);
+}
+
+.action-control.significant-actions:hover {
+  border-color: var(--s2d6-damage-orange);
+}
+
+.action-control.reactions,
+.action-control.reaction-actions {
+  color: var(--s2d6-damage-stat-color);
+  border-color: var(--s2d6-damage-stat-color);
+}
+
+.action-control.reactions:hover,
+.action-control.reaction-actions:hover {
+  border-color: var(--s2d6-damage-stat-color);
+}
+
+.action-control.reactions.used,
+.action-control.reaction-actions.used {
+  background: var(--s2d6-damage-stat-color);
+  border-color: var(--s2d6-damage-stat-color);
+}

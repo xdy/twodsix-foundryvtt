@@ -11,11 +11,16 @@ import TwodsixCombat from "./TwodsixCombat";
  * Extended Combatant class for Twodsix system with support for space combat action tracking.
  * Manages initiative, actions, and reactions for ship-based encounters.
  *
+ * Features:
+ * - Ship initiative calculation with thrust and pilot skill bonuses
+ * - Action economy management (minor, significant, reactions)
+ * - Space combat phase tracking
+ * - Automatic action budget enforcement
+ *
  * Provides structured action economy management and ship-specific initiative calculations.
  *
  * @extends {foundry.documents.Combatant}
  */
-
 export default class TwodsixCombatant extends foundry.documents.Combatant {
   declare data: Combatant.Data & {
     flags: {
@@ -114,7 +119,6 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * Adds ship-specific variables like @shipThrustRating and @skills.Pilot
    */
   getRollData() {
-    console.log(`[TwodsixCombatant] getRollData for ${this.actor?.name ?? this.name}`);
     const data = this.actor?.getRollData?.() || this.actor.system || {};
 
     // Only add space combat modifiers for ships and space-objects
@@ -132,14 +136,6 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     data.skills.Pilot = pilotSkill;
     data.skills.Piloting = pilotSkill;
     data.thrustBonus = this._calculateThrustBonus(thrustRating);
-
-    // Debug logging
-    console.log(`[TwodsixCombatant] Initiative Roll Data for ${this.actor.name}:`, {
-      shipThrustRating: data.shipThrustRating,
-      pilotSkill,
-      thrustBonus: data.thrustBonus,
-      formula: this._getInitiativeFormula()
-    });
 
     return data;
   }
@@ -171,14 +167,11 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
         }
       }
 
-      console.debug(`TwodsixCombatant | Ship ${actor.name} thrust rating: ${thrust}`);
       return thrust;
     }
 
     if (actor.type === "space-object") {
-      const thrust = actor.system.thrust || 0;
-      console.debug(`TwodsixCombatant | Space object ${actor.name} thrust rating: ${thrust}`);
-      return thrust;
+      return actor.system.thrust || 0;
     }
 
     return 0;
@@ -283,9 +276,10 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
   }
 
   /**
-   * Get action budget from the combat encounter
+   * Get available actions for this combatant from combat budget
+   * @returns {object} Action budget with minor and significant action counts
    */
-  getActionBudget() {
+  getActionBudget(): { minorActions: number; significantActions: number } {
     const combat = this.combat as TwodsixCombat;
     return combat?.getActionBudget?.() ?? {
       minorActions: 3,
@@ -347,7 +341,6 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     const hookName = `twodsix.use${actionType.charAt(0).toUpperCase() + actionType.slice(1)}Action`;
     const allowed = Hooks.call(hookName, this, updates, options);
     if (allowed === false) {
-      console.debug(`TwodsixCombatant | ${actionType} action blocked by hook`);
       return false;
     }
 

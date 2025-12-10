@@ -11,6 +11,12 @@ import TwodsixCombat from "../../entities/TwodsixCombat";
  * A custom combat tracker that extends Foundry's CombatTracker to support space combat phases
  * and action tracking for ship combat encounters.
  *
+ * Features:
+ * - Phase-based combat management with navigation controls
+ * - Action economy tracking with clickable indicators
+ * - Ship-specific initiative handling for space encounters
+ * - Localized phase display and controls
+ *
  * Provides phase-based combat management with action economy tracking and ship-specific
  * initiative handling for space encounters.
  *
@@ -51,7 +57,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     await super._onRender(context, options);
 
     const combat = this.viewed as TwodsixCombat;
-    if (!combat?.isSpaceCombat?.()) return;
+    if (!combat?.usePhases?.()) return;
 
     // Add phase display section
     this._renderSpaceCombatPhaseDisplay();
@@ -67,8 +73,8 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   _renderSpaceCombatPhaseDisplay() {
     const combat = this.viewed;
 
-    // Only show phase display for actual space combats
-    if (!combat?.isSpaceCombat?.()) return;
+    // Only show phase display when using phase-based combat
+    if (!combat?.usePhases?.()) return;
 
     try {
       const phaseInfo = combat.getPhaseDisplayInfo();
@@ -236,10 +242,11 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
         );
       });
 
-      // Insert after token name
-      const tokenName = element.querySelector('.token-name');
-      if (tokenName) {
-        tokenName.appendChild(actionWrapper);
+      // Insert action indicators as a separate row after the entire combatant element
+      const combatantElement = element;
+      if (combatantElement) {
+        // Insert after the combatant element as a sibling, not a child
+        combatantElement.insertAdjacentElement('afterend', actionWrapper);
       }
     });
   }
@@ -298,7 +305,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   static async #advancePhase(event, target) {
     event.preventDefault();
     const combat = this.viewed;
-    if (!combat?.isSpaceCombat?.()) return;
+    if (!combat?.usePhases?.()) return;
 
     try {
       await combat.advancePhaseWithRoundManagement();

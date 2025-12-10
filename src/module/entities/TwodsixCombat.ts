@@ -12,6 +12,12 @@ import { TWODSIX } from "../config";
  * Provides structured phase-based combat for ship encounters with action tracking
  * and initiative management.
  *
+ * Features:
+ * - Space combat phase management (3-phase or 5-phase systems)
+ * - Action budget tracking for ships and space objects
+ * - Round management with phase progression
+ * - Localized phase display
+ *
  * Inspired by Starfinder RPG and Draw Steel system implementations.
  *
  * @extends {foundry.documents.Combat}
@@ -67,21 +73,21 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   /**
    * Detect if this will be a space combat based on combatant types
    * Only returns true if ALL combatants are ships/space objects
+   * @param {Array} combatants - Optional array of combatants to check
+   * @returns {boolean} Whether this is a space combat
+   * @private
    */
   _detectSpaceCombat(combatants = []) {
-    // If no combatants array provided, use existing combatants
-    let combatantList: TwodsixActor[] = [];
-    if (!combatants || combatants.length === 0) {
-      combatantList = this.combatants.contents;
-    }
+    // Use provided combatants or existing ones
+    const combatantList = combatants.length > 0 ? combatants : this.combatants?.contents || [];
 
     // No combatants means not a space combat
     if (combatantList.length === 0) return false;
 
     // All combatants must be ships/space objects for space combat
     return combatantList.every(c => {
-      const actor = c.actor || game.actors.get(c.actorId);
-      return ['ship', 'space-object'].includes(actor?.type);
+      const actor = c.actor || game.actors?.get(c.actorId);
+      return actor && ['ship', 'space-object'].includes(actor.type);
     });
   }
 
@@ -90,6 +96,17 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    */
   isSpaceCombat(): boolean {
     return this.flags?.twodsix?.isSpaceCombat || this._detectSpaceCombat();
+  }
+
+  /**
+   * Check if this combat should use phase-based mechanics
+   */
+  usePhases(): boolean {
+    if (!this.isSpaceCombat()) {
+      return false;
+    }
+    const config = this.getSpaceCombatConfig();
+    return config.key !== 'none' && config.phases.length > 0;
   }
 
   /**
@@ -104,10 +121,10 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * Get the action budget for the current phase type
    */
   getActionBudget() {
-    if (!this.isSpaceCombat()) {
+    if (!this.usePhases()) {
       return {
-        minorActions: 3,
-        significantActions: 1
+        minorActions: 0,
+        significantActions: 0
       };
     }
 
@@ -128,16 +145,23 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
-   * Get the current phase name
+   * Get the current space combat phase name
+   * @returns {string|null} Current phase name or null if not space combat
    */
   getCurrentPhase(): string | null {
-    if (!this.isSpaceCombat()) {
+    if (!this.usePhases()) {
       return null;
     }
 
     const phaseIndex = this.flags.twodsix?.phaseIndex ?? 0;
     const config = this.getSpaceCombatConfig();
-    return config.phases?.[phaseIndex] || null;
+
+    if (!config.phases || config.phases.length === 0) {
+      console.warn("TwodsixCombat | No phases configured for space combat");
+      return null;
+    }
+
+    return config.phases[phaseIndex] || config.phases[0];
   }
 
   /**
@@ -166,7 +190,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * @private
    */
   _calculateNextPhaseIndex(currentIndex = this.getCurrentPhaseIndex()) {
-    if (!this.isSpaceCombat()) {
+    if (!this.usePhases()) {
       return { nextIndex: 0, isNewRound: false };
     }
 

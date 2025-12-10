@@ -4979,13 +4979,30 @@ code {
   text-align: center;
 }
 
-/* Combatant action indicator wrapper */
+/* Combatant action indicator wrapper - separate row below standard Foundry elements */
 .action-indicator-wrapper {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   font-size: 11px;
-  margin-top: 4px;
   color: var(--s2d6-dialog-color);
+  margin: 2px 0;
+  padding: 4px 8px;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center; /* Center the buttons */
+  position: static;
+  flex-wrap: nowrap; /* Keep on one line */
+  width: 100%;
+  min-height: 24px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.15); /* Slightly more visible background */
+  border-radius: 3px;
+  border-left: 3px solid var(--s2d6-light-color); /* Visual indicator */
+}
+
+/* Make action controls clickable */
+.action-indicator-wrapper .action-control {
+  pointer-events: auto;
 }
 
 /* Individual action control */
@@ -4993,13 +5010,17 @@ code {
   display: flex;
   align-items: center;
   gap: 3px;
-  padding: 2px 6px;
-  border-radius: 2px;
+  padding: 3px 5px;
+  border-radius: 3px;
   position: relative;
   cursor: default;
   min-height: 20px;
+  min-width: 36px;
   border: 1px solid transparent;
   box-sizing: border-box;
+  font-size: 10px;
+  flex-shrink: 0; /* Prevent shrinking */
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* GM can click to spend actions */
@@ -5036,7 +5057,7 @@ code {
   cursor: pointer;
   padding: 0;
   margin-left: 2px;
-  font-size: 9px;
+  font-size: 10px;
   opacity: 0.7;
   transition: opacity 0.2s;
   height: 16px;
@@ -5058,13 +5079,36 @@ code {
 /* Color coding by action type */
 .action-control.minor-actions {
   color: var(--s2d6-light-color);
+  border-color: var(--s2d6-light-color);
+}
+
+.action-control.minor-actions:hover {
+  border-color: var(--s2d6-light-color);
 }
 
 .action-control.significant-actions {
   color: var(--s2d6-damage-orange);
+  border-color: var(--s2d6-damage-orange);
 }
 
-.action-control.reactions {
+.action-control.significant-actions:hover {
+  border-color: var(--s2d6-damage-orange);
+}
+
+.action-control.reactions,
+.action-control.reaction-actions {
   color: var(--s2d6-damage-stat-color);
+  border-color: var(--s2d6-damage-stat-color);
+}
+
+.action-control.reactions:hover,
+.action-control.reaction-actions:hover {
+  border-color: var(--s2d6-damage-stat-color);
+}
+
+.action-control.reactions.used,
+.action-control.reaction-actions.used {
+  background: var(--s2d6-damage-stat-color);
+  border-color: var(--s2d6-damage-stat-color);
 }
 
