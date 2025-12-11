@@ -160,7 +160,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   const isAlreadyDead = selectedActor.effects.some(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset'); //toString shouldn't be needed
   if (!isAlreadyUnconscious && !isAlreadyDead) {
-    if (['CE', 'AC', 'CU', 'OTHER'].includes(rulesSet)) {
+    if (['CE', 'AC', 'CU', 'OTHER', "MGT2E"].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         await setConditionState('unconscious', selectedActor, true);
       }
@@ -298,6 +298,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'CE':
       case 'AC':
       case 'OTHER':
+      case "MGT2E":
         return (getCEWoundTint(selectedTraveller));
       case 'CEQ':
       case 'CEATOM':
