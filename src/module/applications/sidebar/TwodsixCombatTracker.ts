@@ -37,7 +37,8 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   /** @inheritdoc */
   static DEFAULT_OPTIONS = {
     actions: {
-      advancePhase: TwodsixCombatTracker.#advancePhase,
+      nextTurn: TwodsixCombatTracker.#nextTurn,
+      nextPhase: TwodsixCombatTracker.#nextPhase,
       previousPhase: TwodsixCombatTracker.#previousPhase,
       resetPhase: TwodsixCombatTracker.#resetPhase,
       useAction: TwodsixCombatTracker.#useAction,
@@ -47,6 +48,37 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       decreaseThrust: TwodsixCombatTracker.#decreaseThrust
     },
   };
+
+  /**
+   * Override nextTurn to allow combatant owners to advance their turn
+   * Uses socket to have GM execute the update for proper broadcasting
+   * @param {MouseEvent} event - The click event
+   * @param {HTMLElement} target - The clicked element
+   * @private
+   */
+  static async #nextTurn(event, target) {
+    const combat = this.viewed;
+    if (!combat) return;
+
+    // Check if user can advance turn (GM or owns current combatant)
+    const combatant = combat.combatant;
+    const canAdvance = game.user.isGM || combatant?.actor?.isOwner;
+
+    if (!canAdvance) {
+      ui.notifications.warn("COMBAT.TurnWarning", {localize: true});
+      return;
+    }
+
+    // If player owns the combatant but not GM, use socket to have GM perform the action
+    if (!game.user.isGM && combatant?.actor?.isOwner) {
+      game.socket.emit("system.twodsix", ["twodsix.advanceTurn", combat.id]);
+      return;
+    }
+
+    // GM can directly advance
+    await combat.nextTurn();
+  }
+
   /**
    * Prepare the data for the combat tracker context
    * @inheritdoc
@@ -184,7 +216,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     nextButton.classList.add('phase-control');
     nextButton.title = game.i18n.localize("TWODSIX.Combat.NextPhase");
     nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-    nextButton.dataset.action = 'advancePhase';
+    nextButton.dataset.action = 'nextPhase';
     phaseControls.appendChild(nextButton);
 
     return phaseControls;
@@ -400,13 +432,13 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @this {TwodsixCombatTracker}
    * @static
    */
-  static async #advancePhase(event, target) {
+  static async #nextPhase(event, target) {
     event.preventDefault();
     const combat = this.viewed;
     if (!combat?.usePhases?.()) return;
 
     try {
-      await combat.advancePhase();
+      await combat.nextPhase();
       this.render();
     } catch (error) {
       console.error("TwodsixCombatTracker | Error advancing phase:", error);
