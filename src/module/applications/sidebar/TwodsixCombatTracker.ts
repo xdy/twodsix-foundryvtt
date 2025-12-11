@@ -406,7 +406,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     if (!combat?.usePhases?.()) return;
 
     try {
-      await combat.advancePhaseWithRoundManagement();
+      await combat.advancePhase();
       this.render();
     } catch (error) {
       console.error("TwodsixCombatTracker | Error advancing phase:", error);

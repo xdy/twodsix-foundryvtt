@@ -86,6 +86,11 @@ export default class TwodsixCombat extends foundry.documents.Combat {
 
     // All combatants must be ships/space objects for space combat
     return combatantList.every(c => {
+      // Use the combatant's method if available, otherwise check actor type directly
+      if (c._isSpaceActor) {
+        return c._isSpaceActor();
+      }
+      // Fallback for construction-time checks before combatant methods are available
       const actor = c.actor || game.actors?.get(c.actorId);
       return actor && ['ship', 'space-object'].includes(actor.type);
     });
@@ -195,31 +200,21 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     }
 
     const config = this.getSpaceCombatConfig();
-    const phases = config?.phases || [];
+    const phases = config?.phases ?? [];
 
-    if (phases.length === 0) {
-      console.warn("TwodsixCombat | No phases configured for space combat");
-      return { nextIndex: 0, isNewRound: false };
+    if (!phases.length) {
+      return { nextIndex: 0, isNewRound: true };
     }
 
-    let nextIndex = currentIndex + 1;
-    let isNewRound = false;
+    const loopStart = config.loopBackPhase
+      ? Math.max(0, phases.indexOf(config.loopBackPhase))
+      : 0;
 
-    // Check if we've reached the end of phases
-    if (nextIndex >= phases.length) {
-      if (config.loopBackPhase) {
-        const loopIndex = phases.indexOf(config.loopBackPhase);
-        nextIndex = loopIndex !== -1 ? loopIndex : 0;
-        // If we're looping back to an earlier phase, it's a new round
-        isNewRound = nextIndex < currentIndex;
-      } else {
-        // End of phase sequence, reset to beginning and advance round
-        nextIndex = 0;
-        isNewRound = true;
-      }
-    }
+    const rawNext = currentIndex + 1;
+    const wrapped = rawNext >= phases.length ? loopStart : rawNext;
+    const isNewRound = wrapped <= currentIndex;
 
-    return { nextIndex, isNewRound };
+    return { nextIndex: wrapped, isNewRound };
   }
 
   /**
@@ -240,21 +235,6 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
-   * Advance to the next phase
-   * This handles phase transitions and creates event data for hooks
-   * Returns the new phase index
-   */
-  async advancePhase(): Promise<number> {
-    if (!this.isSpaceCombat()) {
-      return 0;
-    }
-
-    const { nextIndex } = this._calculateNextPhaseIndex();
-    await this._updatePhaseData(nextIndex);
-    return nextIndex;
-  }
-
-  /**
    * Reset phase to the beginning
    */
   async resetPhase(): Promise<void> {
@@ -266,23 +246,37 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
+   * Reset counters for all space combatants
+   * @param {boolean} isNewRound - Whether this is a new round (resets reactions/thrust) or just new phase
+   * @private
+   */
+  async _resetCombatantCounters(isNewRound: boolean): Promise<void> {
+    for (const combatant of this.combatants) {
+      if (combatant._isSpaceActor?.()) {
+        if (isNewRound) {
+          await combatant.resetRoundCounters?.();
+        } else {
+          await combatant.resetPhaseCounters?.();
+        }
+      }
+    }
+  }
+
+  /**
    * Advance phase with round management
    * This method handles advancing to the next phase and manages round transitions
    * when needed. It's used by the UI to advance phases manually.
    */
-  async advancePhaseWithRoundManagement(): Promise<void> {
-    if (!this.isSpaceCombat()) {
-      return;
-    }
+  async advancePhase(): Promise<void> {
+    if (!this.isSpaceCombat()) return;
 
     const { nextIndex, isNewRound } = this._calculateNextPhaseIndex();
 
-    // If we need to advance the round, use nextRound which handles everything
     if (isNewRound) {
       await this.nextRound();
     } else {
-      // Just advance the phase
       await this._updatePhaseData(nextIndex, { turn: 0 });
+      await this._resetCombatantCounters(false);
     }
   }
 
@@ -291,26 +285,32 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * This method handles going backwards through phases with proper boundary checking
    */
   async previousPhase(): Promise<boolean> {
-    if (!this.isSpaceCombat()) {
-      return false;
-    }
+    if (!this.isSpaceCombat()) return false;
 
     const config = this.getSpaceCombatConfig();
-    const phases = config.phases || [];
-    const currentIndex = this.getCurrentPhaseIndex();
-    let prevIndex = currentIndex - 1;
+    const phases = config.phases ?? [];
+    if (!phases.length) return false;
 
-    if (prevIndex < 0) {
-      // Check for looping
-      if (config.loopBackPhase) {
-        prevIndex = phases.length - 1;
-      } else {
-        // Cannot go to previous phase, return false to indicate this
-        return false;
+    const currentIndex = this.getCurrentPhaseIndex();
+    const loopStart = config.loopBackPhase
+      ? Math.max(0, phases.indexOf(config.loopBackPhase))
+      : 0;
+
+    let prevIndex = currentIndex - 1;
+    const additionalUpdates: any = { turn: 0 };
+
+    // If we've gone below the loop start
+    if (prevIndex < loopStart) {
+      // Can only wrap backwards if we're past round 1
+      if (this.round <= 1) {
+        return false; // First round or invalid state - can't go back to round 0
       }
+      // Round 2+ - wrap to last phase and decrement round
+      prevIndex = phases.length - 1;
+      additionalUpdates.round = this.round - 1;
     }
 
-    await this._updatePhaseData(prevIndex, { turn: 0 });
+    await this._updatePhaseData(prevIndex, additionalUpdates);
     return true;
   }
 
@@ -398,11 +398,11 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
-   * Override nextRound to handle phase advancement and initiative rerolls
+   * Override nextRound to handle phase advancement and round increments
+   * Initialization logic (rerolls, resets) happens in _onStartRound
    */
   async nextRound(): Promise<this> {
-    if (this.isSpaceCombat()) {
-      const config = this.getSpaceCombatConfig();
+    if (this.isSpaceCombat() && this.usePhases()) {
       const { nextIndex, isNewRound } = this._calculateNextPhaseIndex();
 
       // Build update data for phase and round
@@ -416,85 +416,63 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       // Apply all updates atomically
       await this._updatePhaseData(nextIndex, additionalUpdates);
 
-      // Reset counters based on whether it's a new round or just new phase
-      for (const combatant of this.combatants) {
-        if (['ship', 'space-object'].includes(combatant.actor?.type)) {
-          if (isNewRound) {
-            await combatant.resetRoundCounters?.();
-          } else {
-            await combatant.resetPhaseCounters?.();
-          }
-        }
-      }
-
-      // Reroll initiative if starting new round and configured to do so
-      if (isNewRound && config.reRollInitiative) {
-        // Clear initiative for all combatants and roll new initiatives
-        const updates = this.combatants.map(c => ({
-          _id: c.id,
-          initiative: null
-        }));
-
-        await this.updateEmbeddedDocuments("Combatant", updates);
-
-        // Roll initiative for all combatants
-        await this.rollAll();
-      }
-
       return this;
     }
 
-    // Non-space combat: use default behavior
+    // Non-space combat or space combat without phases: use default behavior
     return await super.nextRound();
   }
 
   /**
-   * Override _onUpdate to handle phase-specific logic
+   * Foundry lifecycle hook called when a new round starts
+   * Handle counter resets and initiative rerolls here
+   * @protected
    */
-  _onUpdate(changed, options, userId) {
-    super._onUpdate(changed, options, userId);
+  protected async _onStartRound(): Promise<void> {
+    // Call parent implementation first
+    await super._onStartRound();
 
-    // Only run for active GM
-    if (!game.users.activeGM?.isSelf) return;
+    // Only handle phase-based space combat initialization here
+    if (!this.isSpaceCombat() || !this.usePhases()) {
+      return;
+    }
 
-    // Handle phase change effects
-    if (changed.flags?.twodsix?.phaseIndex !== undefined) {
-      this._onPhaseChange();
+    const config = this.getSpaceCombatConfig();
+    if (!config) {
+      return;
+    }
+
+    // This hook only fires on actual round transitions, so always treat as new round
+    await this._resetCombatantCounters(true);
+
+    // Re-roll initiative if configured for this phase system
+    if (config.reRollInitiative) {
+      // Force re-roll for all combatants (not just null initiatives)
+      const ids = this.combatants.map(c => c.id);
+      await this.rollInitiative(ids);
     }
   }
 
   /**
-   * Handle actions when phase changes
-   */
-  async _onPhaseChange(): Promise<void> {
-    if (!this.isSpaceCombat()) return;
-
-    // Reset action counters (not reactions) for all combatants at phase start
-    for (const combatant of this.combatants) {
-      if (['ship', 'space-object'].includes(combatant.actor?.type)) {
-        await combatant.resetPhaseCounters?.();
-      }
-    }
-  }
-
-  /**
-   * Override nextTurn - don't advance phases here
-   * Phase advancement happens in nextRound when a full round completes
+   * Override nextTurn to advance phases when all combatants have acted
+   * In phase-based combat, each phase cycles through all combatants once
    */
   async nextTurn(): Promise<this> {
-    return await super.nextTurn();
-  }
+    if (!this.usePhases()) {
+      return await super.nextTurn();
+    }
 
-  /**
-   * End the current turn without starting a new one
-   * Useful for space combat when ending a phase
-   */
-  async endTurn() {
-    const updateData = { round: this.round, turn: null };
-    const updateOptions = { direction: 1, endTurn: true };
-    Hooks.callAll("combatTurn", this, updateData, updateOptions);
-    await this.update(updateData, updateOptions);
-    return this;
+    // Check if we're at the last turn in this phase
+    const nextTurnIndex = this.turn + 1;
+    if (nextTurnIndex >= this.turns.length) {
+      // End of turns - advance to next phase (and round if needed)
+      // advancePhase will handle phase/round logic and reset turn to 0
+      await this.advancePhase();
+      return this;
+    }
+
+    // Normal turn advancement within the phase
+    return await super.nextTurn();
   }
 
   /**

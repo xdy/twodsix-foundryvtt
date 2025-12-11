@@ -102,6 +102,23 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     }
   }
 
+  /**
+   * Check if this combatant's actor is a space actor (ship or space-object)
+   * @private
+   */
+  _isSpaceActor(): boolean {
+    return ['ship', 'space-object'].includes(this.actor?.type);
+  }
+
+  /**
+   * Get available thrust points (max - used)
+   */
+  get availableThrust(): number {
+    const maxThrust = this.getMaxThrustPoints();
+    const usedThrust = this.flags.twodsix?.thrustUsed ?? 0;
+    return Math.max(0, maxThrust - usedThrust);
+  }
+
   protected _getInitiativeFormula():string {
     const actorType = (<TwodsixActor>this.actor).type;
 
@@ -124,7 +141,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     const data = this.actor?.getRollData?.() || this.actor.system || {};
 
     // Only add space combat modifiers for ships and space-objects
-    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+    if (!this._isSpaceActor()) {
       return data;
     }
 
@@ -235,7 +252,8 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       if (other.id === this.id) {
         continue;
       }
-      if (!['ship', 'space-object'].includes(other.actor?.type)) {
+      const otherCombatant = other as TwodsixCombatant;
+      if (!otherCombatant._isSpaceActor()) {
         continue;
       }
 
@@ -279,7 +297,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * Calculate available reactions based on initiative
    */
   getAvailableReactions(): number {
-    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+    if (!this._isSpaceActor()) {
       return 0;
     }
 
@@ -343,7 +361,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {number} Maximum thrust points based on ship's thrust rating
    */
   getMaxThrustPoints(): number {
-    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+    if (!this._isSpaceActor()) {
       return 0;
     }
 
@@ -475,7 +493,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   async resetPhaseCounters(): Promise<void> {
     // Only apply to space actors (ships and space-objects)
-    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+    if (!this._isSpaceActor()) {
       return;
     }
 
@@ -497,7 +515,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    */
   async resetRoundCounters(): Promise<void> {
     // Only apply to space actors (ships and space-objects)
-    if (!['ship', 'space-object'].includes(this.actor?.type)) {
+    if (!this._isSpaceActor()) {
       return;
     }
 
@@ -505,6 +523,9 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     if (!combat?.isSpaceCombat?.()) {
       return;
     }
+
+    // Clear token movement history for the new round
+    await this.clearMovementHistory();
 
     await this.update({
       'flags.twodsix.spacePhase': combat.getCurrentPhase() || 'declaration',
