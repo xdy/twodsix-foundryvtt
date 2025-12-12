@@ -297,7 +297,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
   async _onDrop(ev:DragEvent):Promise<boolean | any> {
     ev.preventDefault();
-    ev.stopPropagation();
+    //ev.stopPropagation();
     if (ev.dataTransfer === null || ev.target === null) {
       return false;
     }
@@ -314,7 +314,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       const droppedObject:any = await getDocFromDropData(dropData);
 
       if (["traveller", "robot"].includes(droppedObject.type)) {
-        this._addCrewToSheet(droppedObject, ev);
+        return await this._addCrewToSheet(droppedObject, ev);
       } else if ((droppedObject.type === "skills") && ev.target !== null && ev.target?.closest(".ship-position")) {
         //check for double drop trigger, not clear why this occurs
         if (ev.currentTarget.className === "ship-position-box") {
@@ -346,18 +346,45 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  async _addCrewToSheet(droppedObject: TwodsixActor, ev: Event): Promise <void> {
-    const actorId = droppedObject._id;
-    const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
-    if (ev.target !== null && ev.target?.closest(".ship-position")) {
-      const shipPositionId = ev.target.closest(".ship-position").dataset.id;
-      await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
-      this.actor.items.get(shipPositionId)?.sheet?.render();
+  async _addCrewToSheet(droppedObject: TwodsixActor, ev: Event): Promise <boolean> {
+    const onTab:string = ev.target?.closest(".tab")?.dataset?.tab;
+    if (onTab === "shipPositions") {
+      // Try to add dropped actor to closest ship position
+      const actorId:string = droppedObject._id;
+      const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
+      if (ev.target !== null && ev.target?.closest(".ship-position")) {
+        const shipPositionId = ev.target.closest(".ship-position").dataset.id;
+        await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
+        this.actor.items.get(shipPositionId)?.sheet?.render();
+      } else {
+        await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: _del});
+      }
+      this.actor.items.get(currentShipPositionId)?.sheet?.render();
+      return true;
+    } else if (onTab === "shipCrew") {
+      // Try to add actor's name to closest crew designator
+      const crewPositionName:string = ev.target.name ?? ev.target.dataset?.edit;
+      if(crewPositionName?.includes("crewLabel")) {
+        return false;
+      }
+      let nameToAdd = droppedObject.name;
+      if (crewPositionName && nameToAdd) {
+        if (["marine", "gunner", "engineer"].includes(crewPositionName.replace("system.crew.", ""))) {
+          // Multi crew boxes
+          const listedNames:string = foundry.utils.getProperty(this.actor, crewPositionName);
+          if (listedNames?.includes(nameToAdd)) {
+            return false;
+          } else if (listedNames) {
+            nameToAdd = `${listedNames}, ${nameToAdd}`;
+          }
+        }
+        await this.actor.update({[crewPositionName]: nameToAdd});
+        return true;
+      }
+      return false;
     } else {
-      await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: _del});
+      return false;
     }
-    this.actor.items.get(currentShipPositionId)?.sheet?.render();
-    return true;
   }
 
   async _addVehicleCraftToComponents(droppedObject: any, uuid: string): Promise <void> {

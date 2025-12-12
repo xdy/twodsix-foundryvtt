@@ -2141,7 +2141,7 @@ span.total-output {
   padding: 10px 0;
 }
 
-.item-title, .ship-grid .item-title input[type="text"]{
+.item-title, .ship-grid .item-title input[type="text"], .ship-grid input.item-title {
   -webkit-mask-image: url(../assets/actor/header.svg);
   mask-image: url(../assets/actor/header.svg);
   -webkit-mask-repeat: no-repeat;
@@ -2892,11 +2892,18 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   height: 4ch;
 }
 
-.ship-grid > div > div[contenteditable] {
+.ship-grid > div textarea {
   width: 30ch;
-  border: 1px groove var(--s2d6-default-color) !important; /* must keep !important*/
+  border: 1px groove var(--s2d6-default-color);
   border-radius: 0;
-  min-height: 6ch;
+  height: 4ch;
+  resize: none;
+}
+
+.ship-grid input.item-title {
+    width: 28ch;
+    height: fit-content;
+    border: none;
 }
 
 .storage-wrapper {

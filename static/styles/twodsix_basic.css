@@ -2413,18 +2413,26 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   border: 1px solid yellow !important;
 }
 
-.ship-grid input[type="text"] {
+.ship-grid input[type="text"], .ship-grid > div textarea {
   width: 207px;
   border: 1px groove;
   border-radius: 0;
 }
 
-.ship-grid > div > div[contenteditable] {
-  width: 207px;
-  border: 1px groove !important;
-  border-radius: 0;
+.ship-grid input.item-title {
+  border-radius: 1.5ch 1.5ch 0 0;
+  padding: 2px 1ch;
+}
+
+.ship-grid > div:nth-child(n+10) input[type="text"]:not(.item-title) {
+  height: 2.5em;
+  max-height: unset;
   min-height: 6ch;
-  background-color: var(--s2d6-input-background);
+}
+
+.ship-grid > div textarea {
+  height: 4ch;
+  resize: none;
 }
 
 .storage-wrapper {
