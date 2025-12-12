@@ -314,17 +314,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       const droppedObject:any = await getDocFromDropData(dropData);
 
       if (["traveller", "robot"].includes(droppedObject.type)) {
-        const actorId = droppedObject._id;
-        const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
-        if (ev.target !== null && ev.target?.closest(".ship-position")) {
-          const shipPositionId = ev.target.closest(".ship-position").dataset.id;
-          await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
-          this.actor.items.get(shipPositionId)?.sheet?.render();
-        } else {
-          await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: _del});
-        }
-        this.actor.items.get(currentShipPositionId)?.sheet?.render();
-        return true;
+        this._addCrewToSheet(droppedObject, ev);
       } else if ((droppedObject.type === "skills") && ev.target !== null && ev.target?.closest(".ship-position")) {
         //check for double drop trigger, not clear why this occurs
         if (ev.currentTarget.className === "ship-position-box") {
@@ -355,6 +345,21 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       return false;
     }
   }
+
+  async _addCrewToSheet(droppedObject: TwodsixActor, ev: Event): Promise <void> {
+    const actorId = droppedObject._id;
+    const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
+    if (ev.target !== null && ev.target?.closest(".ship-position")) {
+      const shipPositionId = ev.target.closest(".ship-position").dataset.id;
+      await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
+      this.actor.items.get(shipPositionId)?.sheet?.render();
+    } else {
+      await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: _del});
+    }
+    this.actor.items.get(currentShipPositionId)?.sheet?.render();
+    return true;
+  }
+
   async _addVehicleCraftToComponents(droppedObject: any, uuid: string): Promise <void> {
     const newComponent = {
       name: droppedObject.name,
