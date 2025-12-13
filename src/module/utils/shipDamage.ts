@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vttt-types are updated to cover v10.
 
 import { TWODSIX } from "../config";
 type DamageResult = { location: string; hits: number };
@@ -171,10 +171,13 @@ function generateDamageTable(damageList: DamageResult[]): string {
     if (row.location === "destroyed") {
       return `<span>${game.i18n.localize("TWODSIX.Ship.DamageMessages.ShipDestroyed")}</span>`;
     }
-    //Allow for custom j-drive label and localize
-    let componentName = game.i18n.localize(row.location === "j-drive" ? game.settings.get('twodsix', 'jDriveLabel') : `TWODSIX.Items.Component.${row.location}`);
-    if (componentName.includes("TWODSIX")) {
-      componentName = row.location;
+    //Localize location
+    let componentName = game.i18n.localize(`TWODSIX.Items.Component.${row.location}`);
+    //Allow for custom j-drive and m-drive label
+    if (row.location === "j-drive") {
+      componentName = game.settings.get('twodsix', 'jDriveLabel');
+    } else if (row.location === "m-drive") {
+      componentName = game.settings.get('twodsix', 'mDriveLabel');
     }
 
     //Check for explicitly destroyed components

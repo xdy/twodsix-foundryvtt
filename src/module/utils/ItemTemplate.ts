@@ -1,258 +1,193 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-
 import { TWODSIX } from "../config";
 
 /**
- * A helper class for building MeasuredTemplates for item AOE.  Adapted from D5e system
+ * A helper class for building Regions for item AOE.  Originally adapted from D5e system then v14 migrations for MeasuredTemplates
  */
-export default class ItemTemplate extends foundry.canvas.placeables.MeasuredTemplate {
+export default class ItemTemplate extends foundry.canvas.placeables.Region {
+
+
+  // -------------------- REGION CREATION --------------------
 
   /**
-   * Track the timestamp when the last mouse move event was captured.
-   * @type {number}
+   * System method to create an ItemTemplate instance using provided data from a TwodsixItem instance.
+   * Uses foundry.utils.deepClone for safe data handling.
+   * @param {TwodsixItem} item - The Item object for which to construct the template.
+   * @param {object} [options={}] - Options to modify the created template.
+   * @returns {Promise<ItemTemplate|null>} The template object, or null if the item does not produce a template.
    */
-  #moveTime = 0;
-
-  /* -------------------------------------------- */
-
-  /**
-   * The initially active CanvasLayer to re-activate after the workflow is complete.
-   * @type {CanvasLayer}
-   */
-  #initialLayer;
-
-  /* -------------------------------------------- */
-
-  /**
-   * Track the bound event handlers so they can be properly canceled later.
-   * @type {object}
-   */
-  #events;
-
-  /* -------------------------------------------- */
-
-  /**
-   * A factory method to create an AbilityTemplate instance using provided data from an TwodsixItem instance
-   * @param {TwodsixItem} item               The Item object for which to construct the template
-   * @param {object} [options={}]       Options to modify the created template.
-   * @returns {ItemTemplate|null}    The template object, or null if the item does not produce a template
-   */
-  static fromItem(item: TwodsixItem, options: object={}): Promise<ItemTemplate> {
+  static async fromItem(item: TwodsixItem, options: object = {}): Promise<ItemTemplate | null> {
     const target = item.system.target ?? {};
-    const templateShape = TWODSIX.areaTargetTypes[target.type]?.template;
-    if ( !templateShape ) {
+    // Only pass minimal intent to migration: target, name, uuid
+    const itemTemplateData = {
+      target,
+      name: item.name || "Unnamed Region",
+      uuid: item.uuid
+    };
+
+    // Migrate itemTemplateData to Foundry regionData
+    const regionData = this.generateItemTemplateData(itemTemplateData);
+    if (!regionData) {
+      console.error("Failed to migrate ItemTemplate data:", itemTemplateData);
       return null;
     }
-    // Prepare template data
-    const templateData = foundry.utils.mergeObject({
-      t: templateShape,
-      user: game.user?.id,
-      distance: target.value,
-      direction: 0,
-      x: 0,
-      y: 0,
-      fillColor: game.user?.color,
-      flags: { twodsix: { origin: item.uuid } }
-    }, options);
 
-    // Additional type-specific data
-    switch ( templateShape ) {
-      case "cone":
-        templateData.angle = CONFIG.MeasuredTemplate.defaults.angle;
-        break;
-      case "rect": // 5e rectangular AoEs are always cubes
-        templateData.distance = Math.hypot(target.value, target.value);
-        templateData.width = target.value;
-        templateData.direction = 45;
-        break;
-      case "ray": // 5e rays are most commonly 1 square (5 ft) in width
-        templateData.width = target.width ?? canvas.dimensions?.distance;
-        break;
-      default:
-        break;
-    }
-
-    // Return the template constructed from the item data
-    const cls = CONFIG.MeasuredTemplate.documentClass;
-    const template = new cls(foundry.utils.deepClone(templateData), {parent: canvas.scene});
-    const object = new this(template);
-    object.item = item;
-    object.actorSheet = item.actor?.sheet || null;
-
-    // TWODSIX DOES NOT IMPLENT TEMPLATE HOOKS AS DOES 5e
-    return object;
+    // Create the region document
+    const regionDoc = new foundry.documents.RegionDocument(foundry.utils.deepClone(regionData), { parent: canvas.scene });
+    // Create the placeable Region object (ItemTemplate extends Region)
+    const region = new this(regionDoc);
+    region.item = item;
+    region.actorSheet = item.actor?.sheet || null;
+    return region;
   }
 
   /* -------------------------------------------- */
 
   /**
-   * Creates a preview of the spell template.
-   * @returns {Promise}  A promise that resolves with the final measured template if created.
+   * Creates a preview of the region template and returns the placed region document after confirmation.
+   * Minimizes the actor sheet before placement and maximizes it after - if it was open.
+   * Uses canvas.regions for region creation.
+   * @returns {Promise<RegionDocument|null>} A promise that resolves with the placed region or null if cancelled.
    */
-  drawPreview(): Promise<any> {
-    const initialLayer = canvas.activeLayer;
-
-    // Draw the template and switch to the template layer
-    this.draw();
-    this.layer.activate();
-    this.layer.preview?.addChild(this);
-
-    // Hide the sheet that originated the preview
+  async drawPreview(): Promise<RegionDocument|null> {
+    const regionData = this.document?.toObject();
+    let actorSheetOpen = false;
+    // Minimize actor sheet if open
     if (this.actorSheet?.state > 0) {
       this.actorSheet?.minimize();
+      actorSheetOpen = true;
     }
-
-    // Activate interactivity
-    return this.activatePreviewListeners(initialLayer);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Activate listeners for the template preview
-   * @param {CanvasLayer} initialLayer  The initially active CanvasLayer to re-activate after the workflow is complete
-   * @returns {Promise}                 A promise that resolves with the final measured template if created.
-   */
-  activatePreviewListeners(initialLayer: CanvasLayer): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.#initialLayer = initialLayer;
-      this.#events = {
-        cancel: this._onCancelPlacement.bind(this),
-        confirm: this._onConfirmPlacement.bind(this),
-        move: this._onMovePlacement.bind(this),
-        resolve,
-        reject,
-        rotate: this._onRotatePlacement.bind(this)
-      };
-
-      // Activate listeners
-      canvas.stage.on("mousemove", this.#events.move);
-      canvas.stage.on("mousedown", this.#events.confirm);
-      canvas.app.view.oncontextmenu = this.#events.cancel;
-      canvas.app.view.onwheel = this.#events.rotate;
-    });
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Shared code for when template placement ends by being confirmed or canceled.
-   * @param {Event} event  Triggering event that ended the placement.
-   */
-  async _finishPlacement(event) {
-    this.layer._onDragLeftCancel(event);
-    canvas.stage.off("mousemove", this.#events.move);
-    canvas.stage.off("mousedown", this.#events.confirm);
-    canvas.app.view.oncontextmenu = null;
-    canvas.app.view.onwheel = null;
-    this.#initialLayer.activate();
-    if (this.actorSheet?.state > 0) {
+    // Suppress the Region Legend menu if open (do this before placement)
+    if (canvas?.regions?.legend?.close) {
+      await canvas.regions.legend.close();
+    }
+    let placedRegion = null;
+    try {
+      placedRegion = await canvas.regions.placeRegion(regionData, { create: true });
+    } catch (e) {
+      return null;
+    }
+    // Maximize the actor sheet after placement if previously open
+    if (this.actorSheet && actorSheetOpen) {
       await this.actorSheet.maximize();
     }
+    return placedRegion;
   }
-
-  /* -------------------------------------------- */
+  // -------------------- TARGETING --------------------
 
   /**
-   * Move the template preview when the mouse moves.
-   * @param {Event} event  Triggering mouse event.
+   * Helper to target tokens after region placement.
+   * Call this with the placed region PlaceableObject returned from drawPreview.
+   * Uses center-only targeting logic for accuracy.
+   * Example:
+   *   const placedRegion = await template.drawPreview();
+   *   if (placedRegion) ItemTemplate.targetTokensForPlacedRegion(placedRegion);
    */
-  _onMovePlacement(event) {
-    event.stopPropagation();
-    const now = Date.now(); // Apply a 20ms throttle
-    if ( now - this.#moveTime <= 20 ) {
+  static targetTokensForPlacedRegion(regionDoc: RegionDocument): void {
+    if (!regionDoc) {
+      console.warn("[Twodsix] targetTokensForPlacedRegion: No region provided");
       return;
     }
-    const center = event.data.getLocalPosition(this.layer);
-    const snapped = this.getSnappedPosition(center);
-    this.document.updateSource(snapped);
-    this.refresh();
-    this.#moveTime = now;
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Rotate the template preview by 3˚ increments when the mouse wheel is rotated.
-   * @param {Event} event  Triggering mouse event.
-   */
-  _onRotatePlacement(event) {
-    if ( event.ctrlKey ) {
-      event.preventDefault(); // Avoid zooming the browser window
-    }
-    event.stopPropagation();
-    const delta = canvas.grid.type > CONST.GRID_TYPES.SQUARE ? 30 : 15;
-    const snap = event.shiftKey ? delta : 5;
-    const update = {direction: this.document.direction + (snap * Math.sign(event.deltaY))};
-    this.document.updateSource(update);
-    this.refresh();
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Confirm placement when the left mouse button is clicked.
-   * @param {Event} event  Triggering mouse event.
-   */
-  async _onConfirmPlacement(event) {
-    await this._finishPlacement(event);
-    const destination = this.getSnappedPosition(this.document);
-    this.document.updateSource(destination);
-    const newTemplates = await canvas.scene.createEmbeddedDocuments("MeasuredTemplate", [this.document.toObject()]);
-    this.#events.resolve(newTemplates[0]);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
-   * Cancel placement when the right mouse button is clicked.
-   * @param {Event} event  Triggering mouse event.
-   */
-  async _onCancelPlacement(event) {
-    await this._finishPlacement(event);
-    this.#events.reject();
-  }
-}
-
-/**
- * Determines whether a token is within the template.
- * @param {Token} token  token on canvas.
- * @param {ItemTemplate} template  token on canvas.
- * @returns {boolean}   whether token in inside template
- */
-function checkTokenInTemplate (token:Token, template:MeasuredTemplate):boolean {
-  const grid = canvas.scene?.grid;
-  const {x: tempx, y: tempy} = template;
-  const startX = token.document.width >= 1 ? 0.5 : token.document.width/2;
-  const startY = token.document.height >= 1 ? 0.5 : token.document.height/2;
-  for (let x = startX; x < token.document.width; x++) {
-    for (let y = startY; y < token.document.width; y++) {
-      const curr = { x: token.document.x + x * grid.size - tempx, y: token.document.y + y * grid.size - tempy };
-      const contains = template.object.shape?.contains(curr.x, curr.y);
-      //const contains = template.object.testPoint({x: curr.x, y: curr.y});
-      if (contains) {
-        return true;
+    const tokens = canvas.tokens?.placeables;
+    const arrayOfTokenIds: string[] = [];
+    if (tokens?.length > 0) {
+      for (const tok of tokens) {
+        if (tok.document?.testInsideRegion(regionDoc)) {
+          arrayOfTokenIds.push(tok.id);
+        }
       }
+      game.user?._onUpdateTokenTargets(arrayOfTokenIds);
+    } else {
+      console.warn("[Twodsix] No tokens found on canvas for targeting");
     }
   }
-  return false;
-}
-/**
- * Sets all tokens within the template to targeted.
- * @param {MeasuredTemplate} template  token on canvas.
- */
-export function targetTokensInTemplate(template:MeasuredTemplate):void {
-  const tokens = canvas.tokens?.placeables;
-  template.object._refreshShape();
-  const arrayOfTokenIds:string[] = [];
-  if (tokens?.length > 0) {
-    for (const tok of tokens) {
-      if (checkTokenInTemplate(tok, template)) {
-        arrayOfTokenIds.push(tok.id);
+
+  // -------------------- GENERATE TEMPLATE DATA --------------------
+
+  /**
+   * Generate ItemTemplate data to Region data.
+   * Uses foundry.utils.deepClone and math utilities for safe conversion.
+   * @param {object} template - The ItemTemplate data.
+   * @param {object} [context] - The migration context.
+   * @param {BaseGrid} [context.grid] - The grid.
+   * @param {boolean} [context.gridTemplates] - Grid-shaped?
+   * @param {"round"|"flat"} [context.coneTemplateType] - The cone curvature.
+   * @returns {object|null} The Region data or null if migration fails.
+   */
+  static generateItemTemplateData(template: object, {grid=canvas.scene?.grid ?? BaseScene.defaultGrid, gridTemplates=false, coneTemplateType="round"}: { grid?: BaseGrid; gridTemplates?: boolean; coneTemplateType?: "round" | "flat"; }={}): object | null {
+    try {
+      // Extract raw intent
+      const { target = {}, name: regionName = "Unnamed Region", uuid = "" } = template;
+      const regionShape = TWODSIX.areaTargetTypes?.[target.type]?.template;
+      if (!regionShape) {
+        console.error("No region shape found for target:", target);
+        return null;
       }
+      const x = 0;
+      const y = 0;
+      const elevation = 0;
+      const distance = Math.abs(target.value || 0);
+      const direction = 0;
+      const angle = target.angle || 90;
+      const width = target.width || 0;
+      const fillColor = game.user?.color || "#ff0000";
+      const hidden = false;
+      const flags = { twodsix: { origin: uuid }, core: {MeasuredTemplate: true }};
+
+      // Use gridlessGrid if grid is not gridless
+      const gridBased = gridTemplates === true;
+      if (!gridBased && !grid.isGridless) {
+        grid = canvas.scene.gridlessGrid; // Use the gridlessGrid property from the Scene class
+      }
+      const distancePixels = grid.size / grid.distance;
+      let shape;
+      switch (regionShape) {
+        case "circle":
+          shape = {type: "circle", x, y, radius: distance * distancePixels, gridBased};
+          break;
+        case "cone": {
+          const curvature = gridBased || (coneTemplateType === "round") ? "round" : "flat";
+          shape = {type: "cone", x, y, radius: distance * distancePixels, angle, rotation: direction, curvature, gridBased};
+          break;
+        }
+        case "rect": {
+          const {x: x1, y: y1} = grid.getTranslatedPoint({x, y}, direction, distance);
+          let rectWidth = grid.measurePath([{x, y}, {x: x1, y}]).distance * distancePixels;
+          let rectHeight = grid.measurePath([{x, y}, {x, y: y1}]).distance * distancePixels;
+          const rotation = direction.toNearest(90, "floor");
+          if ((rotation === 90) || (rotation === 270)) {
+            [rectWidth, rectHeight] = [rectHeight, rectWidth];
+          }
+          shape = {type: "rectangle", x, y, width: rectWidth, height: rectHeight, anchorX: 0, anchorY: 0, rotation, gridBased};
+          break;
+        }
+        case "ray":
+          shape = {type: "line", x, y, length: distance * distancePixels, width: width * distancePixels, rotation: direction, gridBased};
+          break;
+        default:
+          console.error("Unsupported template type:", regionShape);
+          return null;
+      }
+
+      // Create the Region data
+      return {
+        name: regionName || `${shape.type.capitalize()} Template`,
+        color: fillColor,
+        shapes: [shape],
+        elevation: {bottom: elevation, top: null},
+        restriction: {enabled: false, type: "move", priority: 0},
+        behaviors: [],
+        visibility: hidden ? CONST.REGION_VISIBILITY.OBSERVER : CONST.REGION_VISIBILITY.ALWAYS,
+        displayMeasurements: true,
+        locked: false,
+        ownership: {default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE},
+        flags: foundry.utils.deepClone(flags)
+      };
+    } catch (err) {
+      console.error("Error migrating ItemTemplate data:", err);
+      return null;
     }
-    game.user?._onUpdateTokenTargets(arrayOfTokenIds);
   }
 }

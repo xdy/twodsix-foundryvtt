@@ -100,27 +100,27 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
   //Define AE if actor is encumbered
   if (state === true) {
     const modifier:string = getEncumbranceModifier(ratio).toString();
-    let changeData: { key: string; mode: any; value: string; }[];
+    let changeData: { key: string; type: any; value: string; }[];
     if (game.settings.get('twodsix', 'ruleset') === 'CT') {
       changeData = [{
         key: "system.characteristics.strength.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        type: "add",
         value: modifier
       },
       {
         key: "system.characteristics.dexterity.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        type: "add",
         value: modifier
       },
       {
         key: "system.characteristics.endurance.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        type: "add",
         value: modifier
       }];
     } else {
       changeData = [{
         key: "system.conditions.encumberedEffect",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
+        type: "add",
         value: modifier
       }];
     }
@@ -128,7 +128,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
     if (game.settings.get('twodsix', 'ruleset') === 'CU') {
       changeData.push({
         key: "system.movement.walk",
-        mode: CONST.ACTIVE_EFFECT_MODES.MULTIPLY,
+        type: "multiply",
         value: 0.75
       });
     }
@@ -160,7 +160,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   const isAlreadyDead = selectedActor.effects.some(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset'); //toString shouldn't be needed
   if (!isAlreadyUnconscious && !isAlreadyDead) {
-    if (['CE', 'AC', 'CU', 'OTHER'].includes(rulesSet)) {
+    if (['CE', 'AC', 'CU', 'OTHER', "MGT2E"].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         await setConditionState('unconscious', selectedActor, true);
       }
@@ -253,9 +253,9 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     }
     let changeData = {}; //AC has a movement penalty not roll penalty
     if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-      changeData = { key: "system.movement.walk", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: 1.5 };
+      changeData = { key: "system.movement.walk", type: "override", value: 1.5 };
     } else {
-      changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
+      changeData = { key: "system.conditions.woundedEffect", type: "add", value: woundModifier.toString() };
     }
     //
     if (!currentEffectId) {
@@ -298,6 +298,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'CE':
       case 'AC':
       case 'OTHER':
+      case "MGT2E":
         return (getCEWoundTint(selectedTraveller));
       case 'CEQ':
       case 'CEATOM':
