@@ -102,6 +102,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       allowDragDropOfListsShip: game.settings.get('twodsix', 'allowDragDropOfListsShip'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
+      mDriveLabel: game.settings.get('twodsix', 'mDriveLabel') || "TWODSIX.Ship.MDrive",
       jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive",
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),

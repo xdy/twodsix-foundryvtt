@@ -156,6 +156,7 @@ declare global {
       'twodsix.showSkillGroups': boolean;
       'twodsix.NoDuplicatesOnHotbar': boolean;
       'twodsix.jDriveLabel': string;
+      'twodsix.mDriveLabel': string;
       'twodsix.showCost': boolean;
       'twodsix.showTotalArmor': boolean;
       'twodsix.showItemIconsInChat': boolean;

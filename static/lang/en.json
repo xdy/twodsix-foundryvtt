@@ -1679,6 +1679,10 @@
         "hint": "The display label for the jump drive on the power management settings",
         "name": "Jump Drive Label"
       },
+      "mDriveLabel": {
+        "hint": "The display label for the manoeuvre drive on the power management settings",
+        "name": "Manoeuvre Drive Label"
+      },
       "showCost": {
         "hint": "List the ship component's cost in MCr for the single-line component list on the ship sheet.",
         "name": "Display Cost"

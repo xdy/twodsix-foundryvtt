@@ -606,8 +606,8 @@ export default class TwodsixActor extends Actor {
     if (!this.system.shipStats.mass.max || this.system.shipStats.mass.max <= 0) {
       const calcDisplacement = estimateDisplacement(this);
       if (calcDisplacement && calcDisplacement > 0) {
-        this.update({"system.shipStats.mass.max": calcDisplacement});
-        /*actorData.system.shipStats.mass.max = calcDisplacement;*/
+        //this.update({"system.shipStats.mass.max": calcDisplacement});
+        this.system.shipStats.mass.max = calcDisplacement;
       }
     }
 
@@ -632,7 +632,7 @@ export default class TwodsixActor extends Actor {
     });
 
     //Update component costs for those that depend on base hull value
-    this.itemTypes.component.filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !["fuel", "cargo", "vehicle"].includes(it.system.subtype)).forEach((item: TwodsixItem) => {
+    this.itemTypes.component.filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !["fuel", "cargo", "ammo", "vehicle"].includes(it.system.subtype)).forEach((item: TwodsixItem) => {
       item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) / 100;
       if (item.system.pricingBasis === "pctHullPerUnit") {
         item.system.installedCost *= item.system.quantity;
@@ -747,12 +747,9 @@ export default class TwodsixActor extends Actor {
       } else {
         switch (anComponent.subtype) {
           case 'drive': {
-            const componentName = item.name?.toLowerCase() ?? "";
-            const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();  //Must localize as intial/default value is "TWODSIX.Ship.JDrive"
-            const mDriveLabel = game.i18n.localize("TWODSIX.Ship.MDrive").toLowerCase();
-            if (componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes(jDriveLabel)) {
+            if (item.isJDriveComponent()) {
               calcShipStats.power.jDrive += powerForItem;
-            } else if (componentName.includes('m-drive') || componentName.includes('m drive') || componentName.includes(mDriveLabel)) {
+            } else if (item.isMDriveComponent()) {
               calcShipStats.power.mDrive += powerForItem;
             } else {
               calcShipStats.power.systems += powerForItem;

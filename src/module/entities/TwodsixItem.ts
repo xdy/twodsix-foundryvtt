@@ -1494,6 +1494,32 @@ export default class TwodsixItem extends Item {
 
     return { rangeModifier, rangeLabel };
   }
+
+  /**
+   * Checks if this component is a J-Drive (Jump Drive) based on name and label settings.
+   * @returns {boolean}
+   */
+  isJDriveComponent(): boolean {
+    if (this.type !== "component") {
+      return false;
+    }
+    const componentName = this.name?.toLowerCase() ?? "";
+    const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();
+    return componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes('jdrive') || componentName.includes(jDriveLabel);
+  }
+
+  /**
+   * Checks if this component is an M-Drive (Maneuver Drive) based on name and label settings.
+   * @returns {boolean}
+   */
+  isMDriveComponent(): boolean {
+    if (this.type !== "component") {
+      return false;
+    }
+    const componentName = this.name?.toLowerCase() ?? "";
+    const mDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'mDriveLabel'))).toLowerCase();
+    return componentName.includes('m-drive') || componentName.includes('m drive') || componentName.includes('mdrive') || componentName.includes(mDriveLabel);
+  }
 }
 
 /**

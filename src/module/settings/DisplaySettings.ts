@@ -97,6 +97,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.actor.push(booleanSetting('omitALTifZero', false));
     settings.actor.push(stringChoiceSetting('equippedToggleStates', "default", true, TWODSIX.EQUIPPED_TOGGLE_OPTIONS));
     settings.actor.push(booleanSetting('showSkillGroups', false));
+    settings.ship.push(stringSetting('mDriveLabel', "TWODSIX.Ship.MDrive", false, "world", updateMDrive, true));
     settings.ship.push(stringSetting('jDriveLabel', "TWODSIX.Ship.JDrive", false, "world", updateJDrive, true));
     settings.ship.push(booleanSetting('showCost', false));
     settings.actor.push(booleanSetting('showTotalArmor', false));
@@ -174,5 +175,11 @@ export const setDocumentPartials = function () {
 export const updateJDrive = function (value) {
   if (value === "") {
     game.settings.set('twodsix', 'jDriveLabel', "TWODSIX.Ship.JDrive");
+  }
+};
+
+export const updateMDrive = function (value) {
+  if (value === "") {
+    game.settings.set('twodsix', 'mDriveLabel', "TWODSIX.Ship.mDrive");
   }
 };

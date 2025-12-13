@@ -2,6 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import TwodsixCombat from "./TwodsixCombat";
+import TwodsixItem from "./TwodsixItem";
 
 /**
  * @import { TwodsixActor } from "./_module.mjs";
@@ -178,10 +179,8 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       let thrust = actor.system.shipStats?.drives?.mDrive?.rating || 0;
 
       // Fall back to searching m-drive components
-      if (!thrust && actor.items) {
-        const mDriveComponents = actor.items.filter(item =>
-          ["m-drive", "mdrive", "m drive"].includes(item.system.subtype?.toLowerCase())
-        );
+      if (!thrust && actor.itemTypes.component) {
+        const mDriveComponents = actor.itemTypes.component.filter((item:TwodsixItem) => item.isMDriveComponent());
         for (const component of mDriveComponents) {
           const rating = component.system.rating || 0;
           if (rating > thrust) {
@@ -189,7 +188,6 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
           }
         }
       }
-
       return thrust;
     }
 
