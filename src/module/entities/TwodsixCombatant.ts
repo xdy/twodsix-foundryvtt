@@ -3,6 +3,7 @@
 
 import TwodsixCombat from "./TwodsixCombat";
 import TwodsixItem from "./TwodsixItem";
+import TwodsixActor from "./TwodsixActor";
 
 /**
  * @import { TwodsixActor } from "./_module.mjs";
@@ -164,37 +165,21 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
 
   /**
    * Get thrust rating from a ship or space-object actor
-   * @param {object} actor - The actor to get thrust from
+   * @param {TwodsixActor} actor - The actor to get thrust from
    * @returns {number} Thrust rating value
    * @private
    */
-  _getThrustRating(actor) {
+  _getThrustRating(actor: TwodsixActor): number {
     if (!actor) {
       console.warn("TwodsixCombatant | _getThrustRating called with null actor");
       return 0;
     }
-
     if (actor.type === "ship") {
-      // Try derived data first
-      let thrust = actor.system.shipStats?.drives?.mDrive?.rating || 0;
-
-      // Fall back to searching m-drive components
-      if (!thrust && actor.itemTypes.component) {
-        const mDriveComponents = actor.itemTypes.component.filter((item:TwodsixItem) => item.isMDriveComponent());
-        for (const component of mDriveComponents) {
-          const rating = component.system.rating || 0;
-          if (rating > thrust) {
-            thrust = rating;
-          }
-        }
-      }
-      return thrust;
+      return actor.getDriveRatings().thrust;
     }
-
     if (actor.type === "space-object") {
       return actor.system.thrust || 0;
     }
-
     return 0;
   }
 
@@ -202,7 +187,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * Get pilot skill from ship's crew
    * @private
    */
-  _getPilotSkill(actor: any): number {
+  _getPilotSkill(actor: TwodsixActor): number {
     // Only ships have pilots (not space-objects)
     if (actor.type !== "ship") {
       return 0;
@@ -246,16 +231,15 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     }
 
     // Check if any other combatant has higher thrust (or equal with lower ID)
-    for (const other of combat.combatants) {
-      if (other.id === this.id) {
+    for (const otherCombatant of (combat.combatants as TwodsixCombatant[])) {
+      if (otherCombatant.id === this.id) {
         continue;
       }
-      const otherCombatant = other as TwodsixCombatant;
       if (!otherCombatant._isSpaceActor()) {
         continue;
       }
 
-      const otherThrust = this._getThrustRating(other.actor);
+      const otherThrust = this._getThrustRating(otherCombatant.actor);
 
       // Higher thrust wins
       if (otherThrust > myThrust) {
@@ -263,7 +247,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       }
 
       // Tie-breaker: lower ID wins
-      if (otherThrust === myThrust && other.id < this.id) {
+      if (otherThrust === myThrust && otherCombatant.id < this.id) {
         return 0;
       }
     }
@@ -277,7 +261,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * For ships in space combat, uses custom roll data with thrust and pilot skill bonuses
    * @inheritdoc
    */
-  getInitiativeRoll(formula) {
+  getInitiativeRoll(formula:string) {
     // For space combats, create roll with custom ship data
     const combat = this.combat as TwodsixCombat;
     if (combat?.isSpaceCombat?.()) {

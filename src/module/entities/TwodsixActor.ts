@@ -611,6 +611,11 @@ export default class TwodsixActor extends Actor {
       }
     }
 
+    /*Estimate thrust and jump if missing*/
+    const {jump, thrust} = this.getDriveRatings();
+    this.system.shipStats.drives.jDrive.rating = jump;
+    this.system.shipStats.drives.mDrive.rating = thrust;
+
     const massProducedMultiplier = this.system.isMassProduced ? (1 - parseFloat(game.settings.get("twodsix", "massProductionDiscount"))) : 1;
 
     this.itemTypes.component.forEach((item: TwodsixItem) => {
@@ -1476,6 +1481,41 @@ export default class TwodsixActor extends Actor {
         await this.damageActor({damageValue: psiCost - netPoints, armorPiercingValue: 9999, damageType: "psionic", damageLabel: game.i18n.localize("TWODSIX.DamageType.Psionic"), canBeParried: false}, false);
       }
     }
+  }
+
+  /**
+   * Calculates the maximum Jump and Thrust ratings for a ship's drives.
+   * Returns the highest found rating for each drive type that are active, or the value from
+   * system.shipStats.drives if present.
+   *
+   * @returns {{ jump: number, thrust: number }} An object with the highest jump and thrust ratings.
+   */
+  public getDriveRatings(): { jump: number, thrust: number } {
+    if (this.type !== "ship") {
+      return { jump: 0, thrust: 0 };
+    }
+
+    let jump = 0;
+    let thrust = 0;
+
+    const driveComponents: TwodsixItem[] = this.itemTypes.component.filter(
+      (it: TwodsixItem) =>
+        it.system.subtype === 'drive' &&
+        !["off", "destroyed"].includes(it.system.status)
+    );
+
+    for (const drive of driveComponents) {
+      if (drive.isMDriveComponent()) {
+        thrust = Math.max(thrust, drive.system.rating || 0);
+      } else if (drive.isJDriveComponent()) {
+        jump = Math.max(jump, drive.system.rating || 0);
+      }
+    }
+
+    return {
+      jump: this.system.shipStats.drives.jDrive.rating || jump,
+      thrust: this.system.shipStats.drives.mDrive.rating || thrust
+    };
   }
 }
 
