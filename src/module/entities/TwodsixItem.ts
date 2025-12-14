@@ -1503,6 +1503,9 @@ export default class TwodsixItem extends Item {
     if (this.type !== "component") {
       return false;
     }
+    if (this.system.driveType === "jdrive") {
+      return true;
+    }
     const componentName = this.name?.toLowerCase() ?? "";
     const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();
     return componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes('jdrive') || componentName.includes(jDriveLabel);
@@ -1515,6 +1518,9 @@ export default class TwodsixItem extends Item {
   isMDriveComponent(): boolean {
     if (this.type !== "component") {
       return false;
+    }
+    if (this.system.driveType === "mdrive") {
+      return true;
     }
     const componentName = this.name?.toLowerCase() ?? "";
     const mDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'mDriveLabel'))).toLowerCase();

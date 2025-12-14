@@ -678,7 +678,10 @@
         "Sandcaster": "Sandcaster",
         "Other": "Other",
         "StoredAmmunition": "Stored Ammunition",
-        "reload": "reload"
+        "reload": "reload",
+        "driveType": "Drive Type",
+        "jdrive": "System Jump Drive",
+        "mdrive": "Manoeuvre Drive"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",

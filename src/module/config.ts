@@ -1112,6 +1112,15 @@ export const ComponentStates = {
 };
 
 /**
+ * The valid types for drive components.
+ */
+export const DriveTypes = {
+  jdrive: "TWODSIX.Items.Component.jdrive",
+  mdrive: "TWODSIX.Items.Component.mdrive",
+  other: "TWODSIX.Items.Component.other"
+};
+
+/**
  * The valid types of ship components.
  */
 export const ComponentTypes = {
@@ -1508,6 +1517,7 @@ export type TWODSIX = {
   PowerOptions: typeof PowerOptions,
   HullPricingOptions: typeof HullPricingOptions,
   ComponentStates: typeof ComponentStates,
+  DriveTypes: typeof DriveTypes
   ComponentTypes: typeof ComponentTypes,
   CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes,
   TimeUnts: typeof TimeUnits,
@@ -1556,6 +1566,7 @@ export const TWODSIX = {
   PowerOptions: PowerOptions,
   HullPricingOptions: HullPricingOptions,
   ComponentStates: ComponentStates,
+  DriveTypes: DriveTypes,
   ComponentTypes: ComponentTypes,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes,
   TimeUnits: TimeUnits,

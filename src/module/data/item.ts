@@ -198,6 +198,7 @@ export class ComponentData extends GearData {
     schema.radDamage = new fields.StringField({...requiredBlankString});
     schema.range = new fields.StringField({...requiredBlankString});
     schema.status = new fields.StringField({required: true, blank: false, initial: "operational" });
+    schema.driveType = new fields.StringField({required: true, blank: false, initial: "other" });
     schema.weightIsPct = new fields.BooleanField({ required: true, initial: false});
     schema.isIllegal = new fields.BooleanField({ required: true, initial: false});
     schema.purchasePrice = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0});//new fields.StringField({...requiredBlankString});
