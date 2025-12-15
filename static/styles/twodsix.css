@@ -2938,9 +2938,18 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   width: fit-content;
 }
 
-.storage-stored {
+.storage-stored-double {
   display: grid;
   grid-template-columns: 8.5em 5.5em 3em 3em 4em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas:
+    ". . . . . .";
+}
+
+.storage-stored-single {
+  display: grid;
+  grid-template-columns: 17em 11em 6em 6em 8em 6em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas:
@@ -2960,7 +2969,17 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .components-stored-double, .cargo-stored-double {
   display: grid;
-  grid-template-columns: 23ch 7ch 5ch 7ch 7ch 7ch;
+  grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 0;
+  grid-template-areas:
+    ". . . . . .";
+  padding: 1px;
+}
+
+.cargo-stored-single {
+  display: grid;
+  grid-template-columns: 21em 8em 4em 7em 7em 6em;
   grid-template-rows: 1fr;
   gap: 1px 0;
   grid-template-areas:

@@ -1,0 +1,19 @@
+<div class="storage-wrapper">
+  <div class="grid-columns-single storage-header">
+    <div class="storage-stored-single">
+      {{> "systems/twodsix/templates/actors/parts/common/item-storage-header.hbs"}}
+    </div>
+  </div>
+
+  <div class="grid-columns-single item-list">
+    {{#each storage as |item id|}}
+      <div class="item grid-columns-single-row" data-item-id="{{item.id}}">
+        <ol class="ol-no-indent">
+          <li class="storage-stored-single">
+            {{> "systems/twodsix/templates/actors/parts/common/item-storage-row.hbs" item=item}}
+          </li>
+        </ol>
+      </div>
+    {{/each}}
+  </div>
+</div>

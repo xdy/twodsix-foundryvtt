@@ -2465,9 +2465,19 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /* border: solid 1px var(--s2d6-input-background); */
 }
 
-.storage-stored {
+.storage-stored-double {
   display: grid;
   grid-template-columns: 8.5em 5em 3em 3em 4em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas:
+    ". . . . . .";
+  /*border-right: 1px solid var(--s2d6-form-light);*/
+}
+
+.storage-stored-single {
+  display: grid;
+  grid-template-columns: 17em 10em 6em 6em 8em 6em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas:
@@ -2482,12 +2492,22 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   position: sticky;
   top:0%;
   min-height: 5ch;
-  /* width: fit-content; */
+  /*width: fit-content;*/
 }
 
 .components-stored-double, .cargo-stored-double {
   display: grid;
   grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas:
+    ". . . . . .";
+  /*border-right: 1px solid var(--s2d6-form-light);*/
+}
+
+.cargo-stored-single {
+  display: grid;
+  grid-template-columns: 21em 8em 4em 7em 7em 6em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas:

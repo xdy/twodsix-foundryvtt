@@ -96,6 +96,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
     Object.assign(context.settings, {
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
+      showSingleCargoColumn: game.settings.get('twodsix', 'showSingleCargoColumn'),
       showBandwidth: game.settings.get('twodsix', 'showBandwidth'),
       showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),

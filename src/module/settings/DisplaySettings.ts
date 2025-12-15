@@ -67,6 +67,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.token.push(booleanSetting('defaultTokenSettings', true));
     settings.token.push(booleanSetting('useSystemDefaultTokenIcon', false));
     settings.ship.push(booleanSetting('showSingleComponentColumn', false));
+    settings.ship.push(booleanSetting('showSingleCargoColumn', false));
     settings.ship.push(booleanSetting('showBandwidth', false));
     settings.general.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
     settings.actor.push(booleanSetting('useWoundedStatusIndicators', false));

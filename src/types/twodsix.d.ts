@@ -66,6 +66,7 @@ declare global {
       'twodsix.showHeroPoints': boolean;
       'twodsix.showLifebloodStamina': boolean;
       'twodsix.showSingleComponentColumn': boolean;
+      'twodsix.showSingleCargoColumn': boolean;
       'twodsix.showBandwidth': boolean;
       'twodsix.useFoundryStandardStyle': boolean;
       'twodsix.useSystemDefaultTokenIcon': boolean;
@@ -168,6 +169,7 @@ declare global {
 
 declare interface TwodsixShipSheetSettings {
   showSingleComponentColumn: boolean;
+  showSingleCargoColumn: boolean;
   useFoundryStandardStyle: boolean;
   showWeightUsage: boolean;
   useProseMirror: boolean;

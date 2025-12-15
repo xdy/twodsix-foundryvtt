@@ -1314,6 +1314,10 @@
         "hint": "Show the ship components list as a single row.",
         "name": "Ship components listed as single row"
       },
+      "showSingleCargoColumn": {
+        "hint": "Show the ship cargo and locker lists as a single row.",
+        "name": "Ship cargo and locker listed as single row"
+      },
       "showBandwidth": {
         "hint": "Show the used and available bandwidth for computers and software.",
         "name": "Ship computing bandwidth"
