@@ -3291,7 +3291,9 @@ select.form-input, input.form-input, span.form-input {
 
 .item-descr {
   flex: 1 1 auto;
-  min-height: 3em;
+  /*min-height: 3em;*/
+  margin-bottom: 1em;
+  box-sizing: border-box;
 }
 
 .item-descr div[contenteditable] {
@@ -3302,9 +3304,9 @@ select.form-input, input.form-input, span.form-input {
   height: unset;
 }
 
-.item-descr prose-mirror.editor.prosemirror {
+/*.item-descr prose-mirror.editor.prosemirror {
     height: 90%;
-}
+}*/
 
 .pusher {
   display: block;
@@ -4353,7 +4355,7 @@ form .form-group.slim .form-fields > label {
 
 .tags.input-element-tags .tag {
   border-color: var(--s2d6-default-color);
-  background-color: var(--s2d6-header-background);
+  /*background-color: var(--s2d6-header-background);*/
 }
 
 multi-select.actor-sheet {
