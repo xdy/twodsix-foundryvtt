@@ -80,6 +80,10 @@ export default function registerHandlebarsHelpers(): void {
     return game.i18n.localize(`TWODSIX.Items.Consumable.Types.${type}`);
   });
 
+  Handlebars.registerHelper('twodsix_showConsumable', (item: TwodsixItem) => {
+    return ["traveller", "animal", "robot"].includes(item.type);
+  });
+
   Handlebars.registerHelper('twodsix_refillText', (subtype, quantity) => {
     const refillWord = ["magazine", "power_cell"].includes(subtype) ? "Reload" : "Refill";
     return `${game.i18n.localize(`TWODSIX.Actor.Items.${refillWord}`)} (${quantity - 1})`;
