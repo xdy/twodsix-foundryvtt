@@ -82,8 +82,10 @@
 
   <!-- Characteristic Edit Mode -->
   {{#unless settings.dontShowStatBlock}}
+    {{#if isOwner}}
     <span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
       <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
     </span>
+    {{/if}}
   {{/unless}}
 {{/unless}}

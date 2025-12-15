@@ -16,19 +16,17 @@ dist/
 
 #This project
 foundryconfig.json
+foundry-config.json
+foundry-config.yaml
 foundry.js
 foundry-esm.js
 foundry.mjs
-foundry/license.json
-foundry/foundry*vtt*
-foundry/foundry*app*
-foundry/foundry*data*
-foundry/FoundryVTT-Node-*
 sample_data/local/*
 !sample_data/local/.gitkeep
 foundry/client.mjs
 foundry/config.mjs
 client.mjs
+foundry/**
 
 # AI instructions
 .github/copilot-instructions.md

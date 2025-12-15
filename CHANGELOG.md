@@ -1,3 +1,31 @@
+## [6.9.7](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.6...v6.9.7) (2025-12-09)
+
+
+### Bug Fixes
+
+* omit cargo & ammo listing from component tabs ([#1921](https://github.com/xdy/twodsix-foundryvtt/issues/1921)) ([cf6a22e](https://github.com/xdy/twodsix-foundryvtt/commit/cf6a22e93c5eae2d91d6ca4293d42c027ac543e3))
+
+## [6.9.6](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.5...v6.9.6) (2025-12-08)
+
+
+### Bug Fixes
+
+* make traveller, robot and animal sheets apply ownership ([#1917](https://github.com/xdy/twodsix-foundryvtt/issues/1917)) ([5fc6c9b](https://github.com/xdy/twodsix-foundryvtt/commit/5fc6c9b57b90b07f4cab3cbf44b13f469d04f6c6))
+
+## [6.9.5](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.4...v6.9.5) (2025-11-22)
+
+
+### Bug Fixes
+
+* Fix migration console bug ([#1906](https://github.com/xdy/twodsix-foundryvtt/issues/1906)) ([d4fb2ce](https://github.com/xdy/twodsix-foundryvtt/commit/d4fb2ce1d4cd8cd07ba76c63328734aee81af282))
+
+## [6.9.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.3...v6.9.4) (2025-11-19)
+
+
+### Bug Fixes
+
+* Allow modules to add other actor types ([#1900](https://github.com/xdy/twodsix-foundryvtt/issues/1900)) ([ac8c681](https://github.com/xdy/twodsix-foundryvtt/commit/ac8c6811521dbf79e8d3fa3754a7da71bc6d185e))
+
 ## [6.9.3](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.2...v6.9.3) (2025-11-18)
 
 
