@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
+import TwodsixCombatant from "src/module/entities/TwodsixCombatant";
 import TwodsixCombat from "../../entities/TwodsixCombat";
 
 /**
@@ -57,19 +58,19 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    * @private
    */
   static async #nextTurn(event, target) {
-    const combat = this.viewed;
+    const combat:TwodsixCombat = this.viewed;
     if (!combat) return;
 
     // Check if user can advance turn (GM or owns current combatant)
-    const combatant = combat.combatant;
-    const canAdvance = game.user.isGM || combatant?.actor?.isOwner;
+    const combatant:TwodsixCombatant = combat.combatant;
+    const canAdvance:boolean = game.user.isGM || combatant?.actor?.isOwner;
 
     if (!canAdvance) {
       ui.notifications.warn("COMBAT.TurnWarning", {localize: true});
       return;
     }
 
-    // If player owns the combatant but not GM, use socket to have GM perform the action
+    //If player owns the combatant but not GM, use socket to have GM perform the action
     if (!game.user.isGM && combatant?.actor?.isOwner) {
       game.socket.emit("system.twodsix", ["twodsix.advanceTurn", combat.id]);
       return;
