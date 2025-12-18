@@ -221,7 +221,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * Update phase data consistently and broadcast to all clients
    * @private
    */
-  async _updatePhaseData(phaseIndex: number, additionalUpdates: Record<string, any> = {}): Promise<void> {
+  async _updatePhaseData(phaseIndex: number, additionalUpdates: Record<string, any> = {}, updateOptions: Record<string, any> = {}): Promise<void> {
     const config = this.getSpaceCombatConfig();
     const phases = config.phases || [];
 
@@ -232,8 +232,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     };
 
     // Use update() to broadcast to all clients
-    // Permission check is bypassed because this is called from nextTurn flow
-    await this.update(updateData, { diff: false });
+    await this.update(updateData, { diff: false, ...updateOptions });
   }
 
   /**
@@ -269,7 +268,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * This method handles advancing to the next phase and manages round transitions
    * when needed. It's used by the UI to advance phases manually and by nextTurn.
    */
-  async nextPhase(): Promise<void> {
+  async nextPhase(updateOptions: Record<string, any> = {}): Promise<void> {
     if (!this.isSpaceCombat()) return;
 
     const { nextIndex, isNewRound } = this._calculateNextPhaseIndex();
@@ -277,7 +276,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     if (isNewRound) {
       await this.nextRound();
     } else {
-      await this._updatePhaseData(nextIndex, { turn: 0 });
+      await this._updatePhaseData(nextIndex, { turn: 0 }, updateOptions);
       await this._resetCombatantCounters(false);
     }
   }
@@ -471,7 +470,8 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     const nextTurnIndex = this.turn + 1;
     if (nextTurnIndex >= this.turns.length) {
       // End of turns - advance to next phase (and round if needed)
-      await this.nextPhase();
+      const advanceTime = this.getTimeDelta(this.round, this.turn, this.round, nextTurnIndex);
+      await this.nextPhase(advanceTime);
       return this;
     }
 
