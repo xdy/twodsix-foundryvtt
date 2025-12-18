@@ -1,407 +1,532 @@
 // Twodsix Ship Statblock Import Macro
 // Paste a statblock in the prompt and this macro will create a TwodsixActor ship with components.
 
-(async () => {
-  // Prompt for statblock input using DialogV2.input
-  const statblockResult = await foundry.applications.api.DialogV2.input({
-    window: { title: "Import Ship Statblock", icon: "fa-solid fa-ship" },
-    content: `<p>Paste the ship statblock below:</p><textarea name="statblock" style="width:100%;height:200px;"></textarea>`,
-    ok: { label: "Import" },
-    cancel: { label: "Cancel" }
-  });
-  const statblock = statblockResult?.statblock;
-  if (!statblock) {
-    return ui.notifications.warn("Import cancelled.");
+// Prompt for statblock input using DialogV2.input
+const statblockResult = await foundry.applications.api.DialogV2.input({
+  window: { title: "Import Ship Statblock", icon: "fa-solid fa-ship" },
+  content: `<p>Paste the ship statblock below:</p><textarea name="statblock" style="width:100%;height:200px;"></textarea>`,
+  ok: { label: "Import" },
+  cancel: { label: "Cancel" }
+});
+const statblock = statblockResult?.statblock;
+if (!statblock) {
+  return ui.notifications.warn("Import cancelled.");
+}
+
+
+// === CONSTANTS & HELPERS ===
+// Helper: Preprocess the raw statblock text so all field labels start on their own line, and normalize whitespace
+function preprocessStatblock(rawText) {
+  let text = rawText;
+  // Insert a newline before any field label (from FIELD_LABELS) that is not already at the start of a line
+  const labelPattern = new RegExp(`([^\n])\\s*(${FIELD_LABELS.map(escapeRegex).join('|')})`, 'g');
+  text = text.replace(labelPattern, '$1\n$2');
+  // Remove accidental double newlines and trim lines
+  text = text.replace(/\n{2,}/g, '\n');
+  text = text.split('\n').map(line => line.trimEnd()).join('\n');
+  return text;
+}
+// Helper: Extract a field from statblock text using a regex and optional transform
+function extractField(text, regex, transform) {
+  const match = text.match(regex);
+  if (!match) {
+    return undefined;
   }
+  return transform ? transform(match) : match[1];
+}
+// Helper: Create and push a component to the items array
+function createComponent(targetItems, { name: componentName, type = "component", system = {} }) {
+  if (!componentName || typeof componentName !== "string" || !componentName.trim()) {
+    return;
+  }
+  targetItems.push({ name: componentName.trim(), type, system });
+}
+// Field labels used throughout macro
+const FIELD_LABELS = [
+  'Tonnage:', 'Armor:', 'Maneuver:', 'Jump:', 'P-Plant:', 'Fuel:', 'Computer:', 'Cost:', 'Armament:', 'Fittings:', 'Crew:'
+];
 
-  // --- Parsing utility ---
-  function parseShipStatblock(text) {
-    const shipName = (text.match(/^(.*?)\n/) || [])[1]?.trim() || "Unnamed Ship";
-    const tonnage = Number((text.match(/Tonnage:\s*(\d+)/i) || [])[1]);
-    const armor = (text.match(/Armor:\s*([^;]+)/i) || [])[1]?.replace(/\n/g, ' ').trim();
-    const maneuver = Number((text.match(/Maneuver:\s*(\d+)[- ]*G/i) || [])[1]);
-    const jump = Number((text.match(/Jump:\s*(\d+)/i) || [])[1]);
-    const powerPlant = (text.match(/P-Plant:\s*Rating\s*(\d+)/i) || [])[1];
-    const fuel = Number((text.match(/Fuel:\s*(\d+)/i) || [])[1]);
-    const computer = (text.match(/Computer:\s*([^;]+)/i) || [])[1]?.replace(/\n/g, ' ').trim();
-    const cost = (text.match(/Cost:\s*([^;]+)/i) || [])[1]?.replace(/\n/g, ' ').trim();
-    // Armament: capture up to Fittings or Crew or end of line
-    const armamentMatch = text.match(/Armament:\s*([\s\S]*?)(?:Fittings:|Crew:|$)/i);
-    const armament = armamentMatch ? armamentMatch[1].replace(/\n/g, ' ').trim() : undefined;
-    const fittings = (text.match(/Fittings:\s*([^\n]+)/i) || [])[1]?.trim();
-    const crew = (text.match(/Crew:\s*([^\n]+)/i) || [])[1]?.trim();
-    const staterooms = Number((text.match(/(\d+)x?staterooms?/i) || [])[1]);
-    const cryoberths = Number((text.match(/(\d+)x?cryoberths?/i) || [])[1]);
-    const lowBerths = Number((text.match(/(\d+)x?emergency low berths?/i) || [])[1]);
-    const magazine = Number((text.match(/magazine \((\d+) missiles?\)/i) || [])[1]);
-    const escapePods = Number((text.match(/(\d+)x?escape pods?/i) || [])[1]);
-    const armory = (text.match(/armory for (\d+) marines?/i) || [])[1];
-    const fuelProcessor = (text.match(/fuel processor \(([^)]+)\)/i) || [])[1];
-    const cargo = Number((text.match(/([\d.]+)\s*tons? of cargo/i) || [])[1]);
+// Non-weapon terms for filtering
+const NON_WEAPON_TERMS_LIST = [
+  'fittings', 'gunners', 'crew', 'troops', 'marines', 'stateroom', 'berth', 'pod', 'processor', 'armory', 'cargo',
+  'engineer', 'medic', 'operator', 'co', 'captain', 'escape', 'magazine', 'space'
+];
 
-    // Weapons and hardpoints parsing
-    const weapons = [];
-    const hardpoints = [];
-    // Unified non-weapon terms list
-    const nonWeaponTermsList = [
-      'fittings', 'gunners', 'crew', 'troops', 'marines', 'stateroom', 'berth', 'pod', 'processor', 'armory', 'cargo',
-      'engineer', 'medic', 'operator', 'co', 'captain', 'escape', 'magazine', 'space'
-    ];
-    const nonWeaponTerms = new RegExp(nonWeaponTermsList.join('|'), 'i');
-    // For cleaning trailing non-weapon words
-    const trailingNonWeaponWords = new RegExp(`\\b(${nonWeaponTermsList.join('|')})s?\\b.*$`, 'i');
-    if (armament) {
-      // Find all turret/hardpoint patterns (can be multiple)
-      // Example: '3x triple turrets: 1x missile, 2x pulse lasers; 2x double turrets: 2x beam lasers'
-      let armamentRemainder = armament;
-      const turretRegex = /(\d+)x?\s*([\w\s]+turrets?):\s*([^;]+)/gi;
-      let turretMatch;
-      console.log('--- Armament String ---', armament);
-      while ((turretMatch = turretRegex.exec(armamentRemainder)) !== null) {
-        const turretCount = Number(turretMatch[1]) || 1;
-        const turretType = turretMatch[2].trim();
-        const turretContents = turretMatch[3];
-        // Add hardpoints
+// Weapon keywords for filtering
+const WEAPON_KEYWORDS = /laser|missile|cannon|gun|railgun|plasma|particle|sand|fusion|gauss|autocannon|beam|pulse|torpedo|barbette|spinal/i;
+
+// Helper: escape regex special chars
+function escapeRegex(str) {
+  return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
+// Regexes built from constants
+const statblockFieldRegex = new RegExp(`^(${FIELD_LABELS.map(escapeRegex).join('|')})`, 'i');
+const nonWeaponTerms = new RegExp(NON_WEAPON_TERMS_LIST.join('|'), 'i');
+const trailingNonWeaponWords = new RegExp(`\\b(${NON_WEAPON_TERMS_LIST.join('|')})s?\\b.*$`, 'i');
+
+// Helper: Parse weapons and hardpoints from armament string (extracted from parser for clarity)
+function parseWeaponsAndHardpoints(armament) {
+  const weapons = [];
+  const hardpoints = [];
+  if (!armament) {
+    return { weapons, hardpoints };
+  }
+  let armamentRemainder = armament;
+  const turretRegex = /(\d+)x?\s*([\w\s]+turrets?):\s*([^;]+)/gi;
+  let turretMatch;
+  while ((turretMatch = turretRegex.exec(armamentRemainder)) !== null) {
+    const turretCount = Number(turretMatch[1]) || 1;
+    const turretType = turretMatch[2].trim();
+    const turretContents = turretMatch[3];
+    for (let i = 0; i < turretCount; i++) {
+      hardpoints.push({ name: turretType, quantity: 1 });
+    }
+    turretContents.split(/[,;]/).forEach(w => {
+      const m = w.match(/(\d+)x?\s*([\w\s\-']+)/i);
+      if (m) {
         for (let i = 0; i < turretCount; i++) {
-          hardpoints.push({ name: turretType, quantity: 1 });
+          weapons.push({ name: m[2].trim(), quantity: Number(m[1]) });
         }
-        // Parse weapons inside turrets (one component per weapon type per turret)
-        turretContents.split(/[,;]/).forEach(w => {
-          const m = w.match(/(\d+)x?\s*([\w\s\-']+)/i);
-          if (m) {
-            for (let i = 0; i < turretCount; i++) {
-              weapons.push({
-                name: m[2].trim(),
-                quantity: Number(m[1])
-              });
-            }
-          } else if (w.trim()) {
-            for (let i = 0; i < turretCount; i++) {
-              weapons.push({ name: w.trim(), quantity: 1 });
-            }
-          }
-        });
-        // Remove the matched turret section from armament string
-        armamentRemainder = armamentRemainder.replace(turretMatch[0], "");
-      }
-      // Parse any remaining weapons outside turrets
-      armamentRemainder.split(/[;,]/).forEach(w => {
-        const m = w.match(/(\d+)x?\s*([\w\s\-']+)/i);
-        if (m) {
-          weapons.push({
-            name: m[2].trim(),
-            quantity: Number(m[1]) || 1
-          });
-        } else if (w.trim()) {
+      } else if (w.trim()) {
+        for (let i = 0; i < turretCount; i++) {
           weapons.push({ name: w.trim(), quantity: 1 });
         }
-      });
-      // Filter out non-weapon and malformed entries from weapons array
-      const weaponKeywords = /laser|missile|cannon|gun|railgun|plasma|particle|sand|fusion|gauss|autocannon|beam|pulse|torpedo|barbette|spinal/i;
-      for (let i = weapons.length - 1; i >= 0; i--) {
-        // Remove trailing non-weapon words (e.g., 'Fittings', 'Crew', etc.)
-        weapons[i].name = weapons[i].name.replace(trailingNonWeaponWords, '').trim();
-        if (!weaponKeywords.test(weapons[i].name) || nonWeaponTerms.test(weapons[i].name) || weapons[i].name.length < 2) {
-          weapons.splice(i, 1);
-        }
       }
-    }
-    // Fittings parsing
-    const fittingsArr = [];
-    if (fittings) {
-      fittings.split(/,/).forEach(f => {
-        const m = f.match(/(\d+)x?\s*([\w\s\-']+)/i);
-        let name = m ? m[2].trim() : f.trim();
-        // Skip escape pods in fittings if already parsed as dedicated field
-        if (name && /escape pods?/i.test(name) && escapePods) return;
-        if (m) {
-          fittingsArr.push({
-            name: name,
-            quantity: Number(m[1]) || 1
-          });
-        } else if (f.trim()) {
-          fittingsArr.push({ name: name, quantity: 1 });
-        }
-      });
-    }
-    return {
-      name: shipName, tonnage, armor, maneuver, jump, powerPlant, fuel, computer, cost, weapons, hardpoints, fittings: fittingsArr, crew,
-      staterooms, cryoberths, lowBerths, magazine, escapePods, armory, fuelProcessor, cargo
-    };
+    });
+    armamentRemainder = armamentRemainder.replace(turretMatch[0], "");
   }
-
-  // --- Helper: Map component type from name ---
-  function mapComponentType(componentName) {
-    // Simple mapping based on keywords in the component name
-    const n = componentName.toLowerCase();
-    if (n.includes("laser") || n.includes("missile") || n.includes("cannon") || n.includes("gun")) {
-      return "armament";
+  armamentRemainder.split(/[;,]/).forEach(w => {
+    const m = w.match(/(\d+)x?\s*([\w\s\-']+)/i);
+    if (m) {
+      weapons.push({ name: m[2].trim(), quantity: Number(m[1]) || 1 });
+    } else if (w.trim()) {
+      weapons.push({ name: w.trim(), quantity: 1 });
     }
-    if ( n.includes("turret") ) {
-      return "hardpoint";
+  });
+  for (let i = weapons.length - 1; i >= 0; i--) {
+    weapons[i].name = weapons[i].name.replace(trailingNonWeaponWords, '').trim();
+    if (!WEAPON_KEYWORDS.test(weapons[i].name) || nonWeaponTerms.test(weapons[i].name) || weapons[i].name.length < 2) {
+      weapons.splice(i, 1);
     }
-    if (n.includes("stateroom") || n.includes("cryoberth") || n.includes("low berth")) {
-      return "accomodations";
-    }
-    if (n.includes("magazine")) {
-      return "magazine";
-    }
-    if (n.includes("escape pod")) {
-      return "otherInternal";
-    }
-    if (n.includes("armory")) {
-      return "otherInternal";
-    }
-    if (n.includes("fuel processor")) {
-      return "fuel";
-    }
-    if (n.includes("cargo")) {
-      return "cargo";
-    }
-    if (n.includes("computer")) {
-      return "computer";
-    }
-    if (n.includes("power plant") || n.includes("p-plant")) {
-      return "power";
-    }
-    if (n.includes("m-drive") || n.includes("maneuver")) {
-      return "drive";
-    }
-    if (n.includes("j-drive") || n.includes("jump")) {
-      return "drive";
-    }
-    if (n.includes("sensor")) {
-      return "sensor";
-    }
-    // Default fallback
-    return "otherInternal";
   }
+  return { weapons, hardpoints };
+}
 
-  // --- Main import logic ---
-  const parsed = parseShipStatblock(statblock);
-  if (!parsed.name || !parsed.tonnage) {
-    return ui.notifications.error("Failed to parse ship name or tonnage. Please check the statblock format.");
+// Helper: Parse fittings from fittings string (extracted for clarity)
+function parseFittings(fittings, escapePods) {
+  const fittingsArr = [];
+  if (!fittings) {
+    return fittingsArr;
   }
-
-  // Create the ship actor
-  const actorData = {
-    name: parsed.name,
-    type: "ship",
-    system: {
-      deckPlan: "",
-      crew: {},
-      crewLabel: {},
-      cargo: "",
-      financeNotes: "",
-      maintenanceCost: "0",
-      mortgageCost: "0",
-      shipValue: parsed.cost ? String(parsed.cost) : "0",
-      isMassProduced: false,
-      commonFunds: 0,
-      financeValues: { cash: 0 },
-      reqPower: {
-        systems: 0, "m-drive": 0, "j-drive": 0, sensors: 0, weapons: 0
-      },
-      weightStats: {
-        systems: 0, cargo: parsed.cargo ? Number(parsed.cargo) : 0, fuel: parsed.fuel ? Number(parsed.fuel) : 0, vehicles: 0, available: 0
-      },
-      shipPositionActorIds: {},
-      shipStats: {
-        hull: { value: parsed.tonnage ? Number(parsed.tonnage) : 0, max: parsed.tonnage ? Number(parsed.tonnage) : 0, min: 0 },
-        fuel: { value: parsed.fuel ? Number(parsed.fuel) : 0, max: parsed.fuel ? Number(parsed.fuel) : 0, min: 0, isRefined: true },
-        power: { value: 0, max: 0, min: 0 },
-        armor: {
-          name: parsed.armor || "",
-          weight: "",
-          cost: "",
-          value: 0,
-          max: 0,
-          min: 0
-        },
-        mass: { value: 0, max: 0, min: 0 },
-        fuel_tanks: { name: "", weight: "", cost: "" },
-        drives: {
-          overdrive: false,
-          jDrive: { rating: parsed.jump ? Number(parsed.jump) : 0 },
-          mDrive: { rating: parsed.maneuver ? Number(parsed.maneuver) : 0 }
-        },
-        bandwidth: { value: 0, max: 0, min: 0 }
-      },
-      combatPosition: 0,
-      characteristics: { morale: { value: 0, max: 0, min: 0 } }
+  fittings.split(/,/).forEach(f => {
+    const m = f.match(/(\d+)x?\s*([\w\s\-']+)/i);
+    let componentName = m ? m[2].trim() : f.trim();
+    if (componentName && /escape pods?/i.test(componentName) && escapePods) {
+      return;
     }
+    if (/^(crew|cargo|scientist|pilot|engineer|medic|operator|total|sensor operator|cost|construction time)/i.test(componentName)) {
+      return;
+    }
+    if (!componentName || componentName.toLowerCase() === 'x') {
+      return;
+    }
+    let subtype = mapComponentType(componentName);
+    if (m) {
+      fittingsArr.push({ name: componentName, quantity: Number(m[1]) || 1, subtype });
+    } else if (f.trim()) {
+      fittingsArr.push({ name: componentName, quantity: 1, subtype });
+    }
+  });
+  return fittingsArr;
+}
+
+// Helper: Parse title line to extract TL, ton string, and cleaned name
+// Expects format: TL# #-TON Name (ton string preserved in returned name)
+function parseTitleLine(title) {
+  const result = { name: title, techLevel: undefined, titleTonnage: undefined, titleTonnageStr: undefined };
+  if (!title || typeof title !== 'string') {
+    return result;
+  }
+  // Strict pattern: TL# <ton-string> <rest-of-name>
+  // ton-string examples: "200-TON", "200 TON", "200-ton"
+  const m = title.match(/^\s*TL\s*#?(\d+)\s+(\d+(?:\s*[-]?\s*ton(?:s)?)?)\s+(.*)$/i);
+  if (!m) {
+    return result;
+  }
+  result.techLevel = Number(m[1]);
+  result.titleTonnageStr = m[2].trim();
+  const tn = result.titleTonnageStr.match(/(\d+)/);
+  if (tn) {
+    result.titleTonnage = Number(tn[1]);
+  }
+  // Preserve ton-string in name: e.g., '200-TON TRADER'
+  result.name = `${result.titleTonnageStr} ${m[3].trim()}`.trim();
+  return result;
+}
+
+// Simple assertions (comments):
+// parseTitleLine('TL11 200-TON TRADER') => { name: '200-TON TRADER', techLevel:11, titleTonnage:200 }
+// parseTitleLine('TL6 STAR RUNNER') => no match (returns original name)
+
+
+// Helper: extract number after 'MCr' (or any number)
+function extractMCrNumber(str) {
+  if (!str) {
+    return undefined;
+  }
+  const costMatch = str.match(/MCr\s*([\d.]+)/i);
+  if (costMatch) {
+    return costMatch[1];
+  }
+  const numMatch = str.match(/([\d.]+)/);
+  if (numMatch) {
+    return numMatch[1];
+  }
+  return undefined;
+}
+
+// --- Parsing utility ---
+function parseShipStatblock(text) {
+  // Extract ship name as all lines up to the first recognized field (e.g., Tonnage, Armor, etc.)
+  // This supports multi-line names
+
+  // Improved extraction for ALL-CAPS multi-line name and description
+  let shipName = "Unnamed Ship";
+  let shipDescription = "";
+  let statblockStartIdx = 0;
+  // 1. Extract all-caps name block (allowing for multi-line)
+  const lines = text.split(/\r?\n/);
+  let nameLines = [];
+  let idx = 0;
+  // Collect consecutive ALL-CAPS lines (allowing numbers, dashes, spaces)
+  while (idx < lines.length && /^[A-Z0-9\- ]+$/.test(lines[idx].trim()) && lines[idx].trim().length > 0) {
+    nameLines.push(lines[idx].trim());
+    idx++;
+  }
+  if (nameLines.length > 0) {
+    shipName = nameLines.join(' ').replace(/\s+/g, ' ').trim();
+  }
+  // Parse TL / title tonnage from the name and clean the returned name
+  let techLevel;
+  let titleTonnage;
+  const titleParsed = parseTitleLine(shipName);
+  if (titleParsed) {
+    techLevel = titleParsed.techLevel;
+    titleTonnage = titleParsed.titleTonnage;
+    shipName = titleParsed.name;
+  }
+  // 2. Skip blank lines after name
+  while (idx < lines.length && lines[idx].trim() === "") {
+    idx++;
+  }
+  // 3. Collect description lines until a statblock field is found
+  let descLines = [];
+  while (idx < lines.length && !statblockFieldRegex.test(lines[idx].trim())) {
+    descLines.push(lines[idx]);
+    idx++;
+  }
+  if (descLines.length > 0) {
+    shipDescription = descLines.join(' ').replace(/\s+/g, ' ').trim();
+  }
+  // 4. The rest is the statblock
+  statblockStartIdx = idx;
+  const statblockText = lines.slice(statblockStartIdx).join('\n');
+  // Now parse fields from statblockText only
+  let tonnage = Number(extractField(statblockText, /Tonnage:\s*(\d+)/i));
+  // If no explicit Tonnage field but title contained one, use it
+  if ((!tonnage || isNaN(tonnage)) && titleTonnage) {
+    tonnage = Number(titleTonnage);
+  }
+  let armor = extractField(statblockText, /Armor:\s*([^;]+)/i, m => m[1]?.replace(/\n/g, ' ').trim());
+  if (armor && /^(none|no|n\/a)$/i.test(armor)) {
+    armor = undefined;
+  }
+  const maneuver = Number(extractField(statblockText, /Maneuver:\s*(\d+)[- ]*G/i));
+  const jump = Number(extractField(statblockText, /Jump:\s*(\d+)/i));
+  const powerPlant = extractField(statblockText, /P-Plant:\s*Rating\s*(\d+)/i);
+  const fuel = Number(extractField(statblockText, /Fuel:\s*(\d+)/i));
+  const computer = extractField(statblockText, /Computer:\s*([^;]+)/i, m => m[1]?.replace(/\n/g, ' ').trim());
+  let cost = extractField(statblockText, /Cost:\s*([^;]+)/i, m => m[1]?.replace(/\n/g, ' ').trim());
+  cost = extractMCrNumber(cost);
+  // Armament: capture up to Fittings or Crew or end of line
+  let armament = extractField(statblockText, /Armament:\s*([\s\S]*?)(?:Fittings:|Crew:|$)/i, m => m[1].replace(/\n/g, ' ').trim());
+  // Ignore placeholders like 'reserved for weapon systems'
+  if (armament && /reserved for weapon systems|reserved for weapons|reserved for armament/i.test(armament)) {
+    armament = undefined;
+  }
+  const fittings = extractField(statblockText, /Fittings:\s*([^\n]+)/i, m => m[1]?.trim());
+  const crew = extractField(statblockText, /Crew:\s*([^\n]+)/i, m => m[1]?.trim());
+  const staterooms = Number(extractField(statblockText, /(\d+)x?staterooms?/i));
+  const cryoberths = Number(extractField(statblockText, /(\d+)x?cryoberths?/i));
+  const lowBerths = Number(extractField(statblockText, /(\d+)x?emergency low berths?/i));
+  const magazine = Number(extractField(statblockText, /magazine \((\d+) missiles?\)/i));
+  const escapePods = Number(extractField(statblockText, /(\d+)x?escape pods?/i));
+  const armory = extractField(statblockText, /armory for (\d+) marines?/i);
+  const fuelProcessor = extractField(statblockText, /fuel processor \(([^)]+)\)/i);
+  const cargo = Number(extractField(statblockText, /([\d.]+)\s*tons? of cargo/i));
+
+  // Weapons and hardpoints parsing (delegated to helper)
+  const { weapons, hardpoints } = parseWeaponsAndHardpoints(armament);
+  // Fittings parsing (delegated to helper)
+  const fittingsArr = parseFittings(fittings, escapePods);
+  return {
+    name: shipName,
+    description: shipDescription,
+    tonnage, armor, maneuver, jump, powerPlant, fuel, computer, cost, weapons, hardpoints, fittings: fittingsArr, crew,
+    staterooms, cryoberths, lowBerths, magazine, escapePods, armory, fuelProcessor, cargo,
+    techLevel
   };
-  const shipActor = await Actor.create(actorData);
+}
 
-  // Prepare items/components
-  const items = [];
+// --- Helper: Map component type from name (table-driven, ordered) ---
+const COMPONENT_MAP = [
+  { pattern: /\b(escape pods?|escape pod)\b/i, subtype: 'otherInternal' },
+  { pattern: /\b(cryoberths?|cryoberth|staterooms?|stateroom)\b/i, subtype: 'accomodations' },
+  { pattern: /\b(emergency low berths?|low berth|low berths?)\b/i, subtype: 'accomodations' },
+  { pattern: /\b(m[- ]?drive|maneuver)\b/i, subtype: 'drive' },
+  { pattern: /\b(j[- ]?drive|jump)\b/i, subtype: 'drive' },
+  { pattern: /\b(power ?plant|p-plant)\b/i, subtype: 'power' },
+  { pattern: /\b(computer)\b/i, subtype: 'computer' },
+  { pattern: /\b(missile|laser|cannon|gun|railgun|plasma|fusion|beam|pulse|torpedo|autocannon|meson|particle|sandcaster)\b/i, subtype: 'armament' },
+  { pattern: /\b(turret|hardpoint|mount)\b/i, subtype: 'mount' },
+  { pattern: /\b(magazine)\b/i, subtype: 'magazine' },
+  { pattern: /\b(armory)\b/i, subtype: 'otherInternal' },
+  { pattern: /\b(fuel processor|fuel purification|fuel system)\b/i, subtype: 'fuel' },
+  { pattern: /\b(cargo|cargo space)\b/i, subtype: 'cargo' },
+  { pattern: /\b(sensor|sensors?)\b/i, subtype: 'sensor' },
+  { pattern: /\b(shield|shields?)\b/i, subtype: 'shield' },
+  { pattern: /\b(drone|drones?)\b/i, subtype: 'drone' },
+  { pattern: /\b(vehicle|gig)\b/i, subtype: 'vehicle' },
+  { pattern: /\b(software)\b/i, subtype: 'software' },
+  { pattern: /\b(electronics?)\b/i, subtype: 'electronics' },
+  { pattern: /\b(bridge)\b/i, subtype: 'bridge' },
+  { pattern: /\b(dock)\b/i, subtype: 'dock' },
+  { pattern: /\b(storage|storage space)\b/i, subtype: 'storage' }
+];
 
-  // Add hull component for displacement weight (primary hull)
-  if (parsed.tonnage) {
-    items.push({
-      name: `Hull (${parsed.tonnage} tons)`,
-      type: "component",
-      system: {
-        subtype: "hull",
-        weight: String(parsed.tonnage),
-        isBaseHull: true
-      }
-    });
+function mapComponentType(componentName) {
+  if (!componentName || typeof componentName !== 'string') {
+    return 'otherInternal';
   }
-
-  // Drives
-  if (parsed.maneuver) {
-    items.push({
-      name: `M-Drive ${parsed.maneuver}G`,
-      type: "component",
-      system: { subtype: "drive", rating: String(parsed.maneuver), driveType: "mdrive" }
-    });
-  }
-  if (parsed.jump) {
-    items.push({
-      name: `J-Drive ${parsed.jump}`,
-      type: "component",
-      system: { subtype: "drive", rating: String(parsed.jump), driveType: "jdrive" }
-    });
-  }
-  if (parsed.powerPlant) {
-    items.push({
-      name: `Power Plant ${parsed.powerPlant}`,
-      type: "component",
-      system: { subtype: "power", rating: String(parsed.powerPlant), generatesPower: true }
-    });
-  }
-  // Computer
-  if (parsed.computer) {
-    items.push({
-      name: `Computer ${parsed.computer}`,
-      type: "component",
-      system: { subtype: "computer", rating: String(parsed.computer) }
-    });
-  }
-  // Armor
-  if (parsed.armor) {
-    items.push({
-      name: parsed.armor,
-      type: "component",
-      system: { subtype: "armor", features: parsed.armor }
-    });
-  }
-
-  // Hardpoints (turrets)
-  if (parsed.hardpoints && parsed.hardpoints.length > 0) {
-    for (const hardpoint of parsed.hardpoints) {
-      items.push({
-        name: hardpoint.name,
-        type: "component",
-        system: { subtype: "mount", availableQuantity: String(hardpoint.quantity), quantity: String(hardpoint.quantity) }
-      });
+  for (const { pattern, subtype } of COMPONENT_MAP) {
+    if (pattern.test(componentName)) {
+      return subtype;
     }
   }
+  return 'otherInternal';
+}
 
-  // Weapons
-  for (const weapon of parsed.weapons) {
-    // If weapon.turrets is set, create one component per turret, each with the specified quantity
-    if (weapon.turrets) {
-      for (let i = 0; i < weapon.turrets; i++) {
-        items.push({
-          name: weapon.name,
-          type: "component",
-          system: { subtype: "armament", availableQuantity: String(weapon.quantity), quantity: String(weapon.quantity) }
-        });
-      }
-    } else {
-      items.push({
+// Quick assertions (examples; left as comments for maintainers)
+// console.assert(mapComponentType('Cryoberth') === 'accomodations');
+// console.assert(mapComponentType('Escape Pods') === 'otherInternal');
+// console.assert(mapComponentType('M-Drive 3G') === 'drive');
+
+
+// --- Main import logic ---
+// --- Preprocessing ---
+const preprocessedStatblock = preprocessStatblock(statblock);
+const parsed = parseShipStatblock(preprocessedStatblock);
+if (!parsed.name || !parsed.tonnage) {
+  return ui.notifications.error("Failed to parse ship name or tonnage. Please check the statblock format.");
+}
+
+// Create the ship actor
+const actorData = {
+  name: parsed.name,
+  type: "ship",
+  system: {
+    deckPlan: "",
+    crew: {},
+    crewLabel: {},
+    cargo: "",
+    financeNotes: "",
+    maintenanceCost: "0",
+    mortgageCost: "0",
+    shipValue: parsed.cost ? String(parsed.cost) : "0",
+    techLevel: parsed.techLevel ? Number(parsed.techLevel) : 0,
+    isMassProduced: false,
+    commonFunds: 0,
+    financeValues: { cash: 0 },
+    reqPower: {
+      systems: 0, "m-drive": 0, "j-drive": 0, sensors: 0, weapons: 0
+    },
+    weightStats: {
+      systems: 0, cargo: parsed.cargo ? Number(parsed.cargo) : 0, fuel: parsed.fuel ? Number(parsed.fuel) : 0, vehicles: 0, available: 0
+    },
+    shipPositionActorIds: {},
+    shipStats: {
+      hull: { value: Number(parsed.tonnage), max: Number(parsed.tonnage), min: 0 },
+      fuel: { value: parsed.fuel ? Number(parsed.fuel) : 0, max: parsed.fuel ? Number(parsed.fuel) : 0, min: 0, isRefined: true },
+      power: { value: 0, max: 0, min: 0 },
+      armor: {
+        name: parsed.armor || "",
+        weight: "",
+        cost: "",
+        value: 0,
+        max: 0,
+        min: 0
+      },
+      mass: { value: 0, max: 0, min: 0 },
+      fuel_tanks: { name: "", weight: "", cost: "" },
+      drives: {
+        overdrive: false,
+        jDrive: { rating: parsed.jump ? Number(parsed.jump) : 0 },
+        mDrive: { rating: parsed.maneuver ? Number(parsed.maneuver) : 0 }
+      },
+      bandwidth: { value: 0, max: 0, min: 0 }
+    },
+    combatPosition: 0,
+    characteristics: { morale: { value: 7, max: 0, min: 0 } },
+    notes: parsed.description || ""
+  }
+};
+const shipActor = await Actor.create(actorData);
+
+// Prepare items/components
+const items = [];
+
+// Add hull component for displacement weight (primary hull)
+createComponent(items, {
+  name: `Hull (${parsed.tonnage} tons)`,
+  system: { subtype: mapComponentType("hull"), weight: String(parsed.tonnage), isBaseHull: true }
+});
+
+// Drives
+if (parsed.maneuver) {
+  createComponent(items, {
+    name: `m-Drive ${parsed.maneuver}G`,
+    system: { subtype: mapComponentType("m-drive"), rating: String(parsed.maneuver), driveType: "mdrive" }
+  });
+}
+if (parsed.jump) {
+  createComponent(items, {
+    name: `j-Drive ${parsed.jump}`,
+    system: { subtype: mapComponentType("j-drive"), rating: String(parsed.jump), driveType: "jdrive" }
+  });
+}
+if (parsed.powerPlant) {
+  createComponent(items, {
+    name: `Power Plant ${parsed.powerPlant}`,
+    system: { subtype: mapComponentType("power plant"), rating: String(parsed.powerPlant), generatesPower: true }
+  });
+}
+// Computer
+if (parsed.computer) {
+  createComponent(items, {
+    name: `Computer ${parsed.computer}`,
+    system: { subtype: mapComponentType("computer"), rating: String(parsed.computer) }
+  });
+}
+// Armor
+if (parsed.armor) {
+  createComponent(items, {
+    name: parsed.armor,
+    system: { subtype: mapComponentType("armor"), features: parsed.armor }
+  });
+}
+
+// Hardpoints (turrets)
+if (parsed.hardpoints && parsed.hardpoints.length > 0) {
+  for (const hardpoint of parsed.hardpoints) {
+    createComponent(items, {
+      name: hardpoint.name,
+      system: { subtype: "mount", availableQuantity: String(hardpoint.quantity), quantity: String(hardpoint.quantity) }
+    });
+  }
+}
+
+// Weapons
+for (const weapon of parsed.weapons) {
+  // If weapon.turrets is set, create one component per turret, each with the specified quantity
+  if (weapon.turrets) {
+    for (let i = 0; i < weapon.turrets; i++) {
+      createComponent(items, {
         name: weapon.name,
-        type: "component",
         system: { subtype: "armament", availableQuantity: String(weapon.quantity), quantity: String(weapon.quantity) }
       });
     }
-  }
-  // Fittings with improved mapping
-  for (const fitting of parsed.fittings) {
-    // Skip only fittings that are just 'fuel' if parsed.fuel exists, but allow fuel processors and similar
-    if (/^fuel$/i.test(fitting.name.trim()) && parsed.fuel) {
-      continue;
-    }
-    let subtype = "otherInternal";
-    if (/fuel processor|fuel purification|fuel system/i.test(fitting.name)) {
-      subtype = "fuel";
-    }
-    items.push({
-      name: fitting.name,
-      type: "component",
-      system: { subtype: subtype, availableQuantity: String(fitting.quantity), quantity: String(fitting.quantity) }
+  } else {
+    createComponent(items, {
+      name: weapon.name,
+      system: { subtype: "armament", availableQuantity: String(weapon.quantity), quantity: String(weapon.quantity) }
     });
   }
-  // Staterooms
-  if (parsed.staterooms) {
-    items.push({
-      name: `Staterooms`,
-      type: "component",
-      system: { subtype: "accomodations", availableQuantity: String(parsed.staterooms), quantity: String(parsed.staterooms) }
-    });
+}
+// Fittings with improved mapping
+for (const fitting of parsed.fittings) {
+  // Skip only fittings that are just 'fuel' if parsed.fuel exists, but allow fuel processors and similar
+  if (/^fuel$/i.test(fitting.name.trim()) && parsed.fuel) {
+    continue;
   }
-  // Cryoberths
-  if (parsed.cryoberths) {
-    items.push({
-      name: `Cryoberths`,
-      type: "component",
-      system: { subtype: "accomodations", availableQuantity: String(parsed.cryoberths), quantity: String(parsed.cryoberths) }
-    });
+  let subtype = fitting.subtype || "otherInternal";
+  if (!fitting.subtype && /fuel processor|fuel purification|fuel system/i.test(fitting.name)) {
+    subtype = "fuel";
   }
-  // Emergency Low Berths
-  if (parsed.lowBerths) {
-    items.push({
-      name: `Emergency Low Berths`,
-      type: "component",
-      system: { subtype: "accomodations", availableQuantity: String(parsed.lowBerths), quantity: String(parsed.lowBerths) }
-    });
-  }
-  // Magazine
-  if (parsed.magazine) {
-    items.push({
-      name: `Missile Magazine`,
-      type: "component",
-      system: { subtype: "ammo", availableQuantity: String(parsed.magazine), quantity: String(parsed.magazine) }
-    });
-  }
-  // Escape Pods
-  if (parsed.escapePods) {
-    items.push({
-      name: `Escape Pods`,
-      type: "component",
-      system: { subtype: "otherInternal", availableQuantity: String(parsed.escapePods), quantity: String(parsed.escapePods) }
-    });
-  }
-  // Armory
-  if (parsed.armory) {
-    items.push({
-      name: `Armory`,
-      type: "component",
-      system: { subtype: "otherInternal", features: `For ${parsed.armory} marines` }
-    });
-  }
-  // Fuel Processor
-  if (parsed.fuelProcessor) {
-    items.push({
-      name: `Fuel Processor`,
-      type: "component",
-      system: { subtype: "fuel", features: parsed.fuelProcessor }
-    });
-  }
-  // Cargo
-  if (parsed.cargo) {
-    items.push({
-      name: `Cargo Space`,
-      type: "component",
-      system: { subtype: "cargo", tons: String(parsed.cargo) }
-    });
-  }
+  createComponent(items, {
+    name: fitting.name,
+    system: { subtype: subtype, availableQuantity: String(fitting.quantity), quantity: String(fitting.quantity) }
+  });
+}
+// Staterooms
+if (parsed.staterooms) {
+  createComponent(items, {
+    name: `Staterooms`,
+    system: { subtype: mapComponentType("stateroom"), availableQuantity: String(parsed.staterooms), quantity: String(parsed.staterooms) }
+  });
+}
+// Cryoberths
+if (parsed.cryoberths) {
+  createComponent(items, {
+    name: `Cryoberths`,
+    system: { subtype: mapComponentType("cryoberth"), availableQuantity: String(parsed.cryoberths), quantity: String(parsed.cryoberths) }
+  });
+}
+// Emergency Low Berths
+if (parsed.lowBerths) {
+  createComponent(items, {
+    name: `Emergency Low Berths`,
+    system: { subtype: mapComponentType("low berth"), availableQuantity: String(parsed.lowBerths), quantity: String(parsed.lowBerths) }
+  });
+}
+// Magazine
+if (parsed.magazine) {
+  createComponent(items, {
+    name: `Missile Magazine`,
+    system: { subtype: mapComponentType("magazine"), availableQuantity: String(parsed.magazine), quantity: String(parsed.magazine) }
+  });
+}
+// Escape Pods
+if (parsed.escapePods) {
+  createComponent(items, {
+    name: `Escape Pods`,
+    system: { subtype: mapComponentType("escape pod"), availableQuantity: String(parsed.escapePods), quantity: String(parsed.escapePods) }
+  });
+}
+// Armory
+if (parsed.armory) {
+  createComponent(items, {
+    name: `Armory`,
+    system: { subtype: mapComponentType("armory"), features: `For ${parsed.armory} marines` }
+  });
+}
+// Fuel Processor
+if (parsed.fuelProcessor) {
+  createComponent(items, {
+    name: `Fuel Processor`,
+    system: { subtype: mapComponentType("fuel processor"), features: parsed.fuelProcessor }
+  });
+}
+// Cargo
+if (parsed.cargo) {
+  createComponent(items, {
+    name: `Cargo Space`,
+    system: { subtype: mapComponentType("cargo"), tons: String(parsed.cargo) }
+  });
+}
 
-  if (items.length > 0) {
-    await shipActor.createEmbeddedDocuments("Item", items);
-  }
+if (items.length > 0) {
+  await shipActor.createEmbeddedDocuments("Item", items);
+}
 
-  ui.notifications.info(`Imported ship: ${parsed.name}`);
-})();
+ui.notifications.info(`Imported ship: ${parsed.name}`);
