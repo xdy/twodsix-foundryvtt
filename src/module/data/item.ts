@@ -240,6 +240,11 @@ export class ComponentData extends GearData {
         source.shipWeaponType = "other";
       }
     }
+    if ("subtype" in source) {
+      if (source.subtype === "accomodations") {
+        source.subtype = "accommodations";
+      }
+    }
     return super.migrateData(source);
   }
 }

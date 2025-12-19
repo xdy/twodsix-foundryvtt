@@ -1124,7 +1124,7 @@ export const DriveTypes = {
  * The valid types of ship components.
  */
 export const ComponentTypes = {
-  accomodations: "TWODSIX.Items.Component.accomodations",
+  accommodations: "TWODSIX.Items.Component.accommodations",
   ammo: "TWODSIX.Items.Component.ammo",
   armament: "TWODSIX.Items.Component.armament",
   armor: "TWODSIX.Items.Component.armor",

@@ -560,7 +560,7 @@
       "Component": {
         "Ammunition":"Ammunition",
         "componentName": "Component",
-        "accomodations": "accommodations",
+        "accommodations": "accommodations",
         "ammo": "ammo",
         "armament": "armament",
         "armor": "armor",

@@ -208,7 +208,7 @@ export default function registerHandlebarsHelpers(): void {
    */
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string): string => {
     const iconMap: Record<string, string> = {
-      accomodations: "fa-solid fa-bed",
+      accommodations: "fa-solid fa-bed",
       ammo: "fa-solid fa-bomb",
       armament: "fa-solid fa-crosshairs",
       armor: "fa-solid fa-grip-vertical",

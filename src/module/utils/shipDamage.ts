@@ -662,7 +662,7 @@ function getHitCU(): DamageResult {
  * @returns {DamageResult} The critical hit location and number of hits.
  */
 function getIncidentalHitCU():DamageResult {
-  const hitTable = ["fire", "fire", "fire", "cargo", "cargo", "fuel", "accomodations", "hanger", "tractor-beam", "life-support", "life-support"];
+  const hitTable = ["fire", "fire", "fire", "cargo", "cargo", "fuel", "accommodations", "hanger", "tractor-beam", "life-support", "life-support"];
   return rollHitTable(hitTable, 1);
 }
 

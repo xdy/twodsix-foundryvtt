@@ -50,7 +50,7 @@ function addComponent(itemsToAdd, valueOrObj, compName, subtype, extra = {}) {
   // If called with value, name, subtype, extra
   // Only add quantity for countable subtypes
   const countable = [
-    'accomodations', 'mount', 'armament', 'ammo', 'cargo', 'fuel', 'vehicle', 'drone', 'storage', 'otherInternal', 'stateroom', 'cryoberth', 'low berth', 'escape pod'
+    'accommodations', 'mount', 'armament', 'ammo', 'cargo', 'fuel', 'vehicle', 'drone', 'storage', 'otherInternal', 'stateroom', 'cryoberth', 'low berth', 'escape pod'
   ];
   const qty = Number.isInteger(valueOrObj) ? valueOrObj : parseInt(valueOrObj, 10);
   if (countable.includes(subtype)) {
@@ -244,7 +244,7 @@ function parseFittings(fittings, escapePods) {
       return;
     }
     let subtype = mapComponentType(componentName);
-    if (componentName && qn.quantity && qn.quantity > 0) {
+    if (qn.quantity && qn.quantity > 0) {
       fittingsArr.push({ name: componentName, quantity: qn.quantity, subtype });
     }
   });
@@ -323,12 +323,8 @@ function parseShipStatblock(text) {
   // Parse TL / title tonnage from the name and clean the returned name
   let techLevel;
   let titleTonnage;
-  const titleParsed = parseTitleLine(shipName);
-  if (titleParsed) {
-    techLevel = titleParsed.techLevel;
-    titleTonnage = titleParsed.titleTonnage;
-    shipName = titleParsed.name;
-  }
+  ({ techLevel, titleTonnage, name: shipName } = parseTitleLine(shipName));
+
   // 2. Skip blank lines after name
   while (idx < lines.length && lines[idx].trim() === "") {
     idx++;
@@ -423,8 +419,8 @@ function parseShipStatblock(text) {
 // --- Helper: Map component type from name (table-driven, ordered) ---
 const COMPONENT_MAP = [
   { pattern: /\b(escape pods?|escape pod)\b/i, subtype: 'otherInternal' },
-  { pattern: /\b(cryoberths?|cryoberth|staterooms?|stateroom)\b/i, subtype: 'accomodations' },
-  { pattern: /\b(emergency low berths?|low berth|low berths?)\b/i, subtype: 'accomodations' },
+  { pattern: /\b(cryoberths?|cryoberth|staterooms?|stateroom)\b/i, subtype: 'accommodations' },
+  { pattern: /\b(emergency low berths?|low berth|low berths?)\b/i, subtype: 'accommodations' },
   { pattern: /\b(m[- ]?drive|maneuver)\b/i, subtype: 'drive' },
   { pattern: /\b(j[- ]?drive|jump)\b/i, subtype: 'drive' },
   { pattern: /\b(power ?plant|p-plant)\b/i, subtype: 'power' },
@@ -435,7 +431,7 @@ const COMPONENT_MAP = [
   { pattern: /\b(turret|hardpoint|mount)\b/i, subtype: 'mount' },
   { pattern: /\b(magazine)\b/i, subtype: 'magazine' },
   { pattern: /\b(armory)\b/i, subtype: 'otherInternal' },
-  { pattern: /\b(fuel processor|fuel purification|fuel system)\b/i, subtype: 'fuel' },
+  { pattern: /\b(fuel scoop|fuel scoops|fuel processor|fuel purification|fuel system)\b/i, subtype: 'fuel' },
   { pattern: /\b(cargo|cargo space)\b/i, subtype: 'cargo' },
   { pattern: /\b(sensor|sensors?)\b/i, subtype: 'sensor' },
   { pattern: /\b(shield|shields?)\b/i, subtype: 'shield' },
@@ -461,7 +457,7 @@ function mapComponentType(componentName) {
 }
 
 // Quick assertions (examples; left as comments for maintainers)
-// console.assert(mapComponentType('Cryoberth') === 'accomodations');
+// console.assert(mapComponentType('Cryoberth') === 'accommodations');
 // console.assert(mapComponentType('Escape Pods') === 'otherInternal');
 // console.assert(mapComponentType('M-Drive 3G') === 'drive');
 
