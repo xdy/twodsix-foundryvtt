@@ -18,6 +18,8 @@ if (!statblock) {
 // Helper: Preprocess the raw statblock text so all field labels start on their own line, and normalize whitespace
 function preprocessStatblock(rawText) {
   let text = rawText;
+  // Normalize CRLF/CR to LF to stabilize parsing across sources
+  text = text.replace(/\r\n?/g, '\n');
   // Insert a newline before any field label (from FIELD_LABELS) that is not already at the start of a line
   const labelPattern = new RegExp(`([^\n])\\s*(${FIELD_LABELS.map(escapeRegex).join('|')})`, 'g');
   text = text.replace(labelPattern, '$1\n$2');
@@ -34,12 +36,49 @@ function extractField(text, regex, transform) {
   }
   return transform ? transform(match) : match[1];
 }
-// Helper: Create and push a component to the items array
-function createComponent(targetItems, { name: componentName, type = "component", system = {} }) {
-  if (!componentName || typeof componentName !== "string" || !componentName.trim()) {
+// Helper: Create and push a component to the items array if value is present
+function addComponent(itemsToAdd, valueOrObj, compName, subtype, extra = {}) {
+  // If called with an object (for backward compatibility)
+  if (typeof valueOrObj === 'object' && valueOrObj !== null && !Array.isArray(valueOrObj)) {
+    const { name: componentName, type = "component", system = {} } = valueOrObj;
+    if (!componentName || typeof componentName !== "string" || !componentName.trim()) {
+      return;
+    }
+    itemsToAdd.push({ name: componentName.trim(), type, system });
     return;
   }
-  targetItems.push({ name: componentName.trim(), type, system });
+  // If called with value, name, subtype, extra
+  // Only add quantity for countable subtypes
+  const countable = [
+    'accomodations', 'mount', 'armament', 'ammo', 'cargo', 'fuel', 'vehicle', 'drone', 'storage', 'otherInternal', 'stateroom', 'cryoberth', 'low berth', 'escape pod'
+  ];
+  const qty = Number.isInteger(valueOrObj) ? valueOrObj : parseInt(valueOrObj, 10);
+  if (countable.includes(subtype)) {
+    if (Number.isInteger(qty) && qty > 0) {
+      itemsToAdd.push({
+        name: compName,
+        type: "component",
+        system: { subtype, ...extra, availableQuantity: qty, quantity: qty }
+      });
+    } else {
+      // Log skipped item for debugging
+      console.warn("Skipped item due to invalid quantity:", {
+        name: compName,
+        value: valueOrObj,
+        parsedQty: qty,
+        subtype,
+        extra
+      });
+      ui.notifications?.warn(`Skipped item: ${compName} (value: ${valueOrObj}, parsedQty: ${qty})`);
+    }
+  } else {
+    // For non-countable items, add with no quantity fields, or default to 1 if schema requires
+    itemsToAdd.push({
+      name: compName,
+      type: "component",
+      system: { subtype, ...extra }
+    });
+  }
 }
 // Field labels used throughout macro
 const FIELD_LABELS = [
@@ -60,10 +99,32 @@ function escapeRegex(str) {
   return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
+// Helper: Parse an entry like "3x Name" or "3 Name" or just "Name" into { name, quantity }
+function parseQtyName(input) {
+  if (!input || typeof input !== 'string') {
+    return { name: '', quantity: 0 };
+  }
+  // Match quantity at start or after whitespace, but not decimals
+  const m = input.match(/^(?:\s*)?(\d+)(?!\.)x?\s*(.+)/i);
+  if (m) {
+    return { name: m[2].trim(), quantity: Number(m[1]) || 1 };
+  }
+  // Also match "Name" only
+  const parsedName = input.trim();
+  return { name: parsedName, quantity: parsedName ? 1 : 0 };
+}
+// Inline assertions (comments):
+// console.assert(JSON.stringify(parseQtyName('3x Laser')) === JSON.stringify({ name: 'Laser', quantity: 3 }));
+// console.assert(JSON.stringify(parseQtyName('2 Laser')) === JSON.stringify({ name: 'Laser', quantity: 2 }));
+// console.assert(JSON.stringify(parseQtyName('Laser')) === JSON.stringify({ name: 'Laser', quantity: 1 }));
+// console.assert(JSON.stringify(parseQtyName('2x Fuel Processor (20 tons/day)')) === JSON.stringify({ name: 'Fuel Processor (20 tons/day)', quantity: 2 }));
+// console.assert(JSON.stringify(parseQtyName('64.5 tons of cargo space')) === JSON.stringify({ name: '64.5 tons of cargo space', quantity: 1 }));
+
 // Regexes built from constants
 const statblockFieldRegex = new RegExp(`^(${FIELD_LABELS.map(escapeRegex).join('|')})`, 'i');
 const nonWeaponTerms = new RegExp(NON_WEAPON_TERMS_LIST.join('|'), 'i');
-const trailingNonWeaponWords = new RegExp(`\\b(${NON_WEAPON_TERMS_LIST.join('|')})s?\\b.*$`, 'i');
+// Do not consume content inside parentheses when stripping trailing non-weapon descriptors
+const trailingNonWeaponWords = new RegExp(`\\b(?:${NON_WEAPON_TERMS_LIST.join('|')})s?\\b[^()]*$`, 'i');
 
 // Helper: Parse weapons and hardpoints from armament string (extracted from parser for clarity)
 function parseWeaponsAndHardpoints(armament) {
@@ -71,6 +132,16 @@ function parseWeaponsAndHardpoints(armament) {
   const hardpoints = [];
   if (!armament) {
     return { weapons, hardpoints };
+  }
+  function cleanWeaponNamePreserveParens(rawName) {
+    if (!rawName) {
+      return rawName;
+    }
+    const parenMatch = rawName.match(/\s*(\([^)]*\))\s*$/);
+    const parenSuffix = parenMatch ? ` ${parenMatch[1]}` : '';
+    const base = rawName.replace(/\s*\([^)]*\)\s*$/, '');
+    const cleanedBase = base.replace(trailingNonWeaponWords, '').trim();
+    return `${cleanedBase}${parenSuffix}`.trim();
   }
   let armamentRemainder = armament;
   const turretRegex = /(\d+)x?\s*([\w\s]+turrets?):\s*([^;]+)/gi;
@@ -83,29 +154,25 @@ function parseWeaponsAndHardpoints(armament) {
       hardpoints.push({ name: turretType, quantity: 1 });
     }
     turretContents.split(/[,;]/).forEach(w => {
-      const m = w.match(/(\d+)x?\s*([\w\s\-']+)/i);
-      if (m) {
-        for (let i = 0; i < turretCount; i++) {
-          weapons.push({ name: m[2].trim(), quantity: Number(m[1]) });
-        }
-      } else if (w.trim()) {
-        for (let i = 0; i < turretCount; i++) {
-          weapons.push({ name: w.trim(), quantity: 1 });
-        }
+      const { name: wName, quantity } = parseQtyName(w);
+      if (!wName) {
+        return;
+      }
+      for (let i = 0; i < turretCount; i++) {
+        weapons.push({ name: wName, quantity: quantity || 1 });
       }
     });
     armamentRemainder = armamentRemainder.replace(turretMatch[0], "");
   }
   armamentRemainder.split(/[;,]/).forEach(w => {
-    const m = w.match(/(\d+)x?\s*([\w\s\-']+)/i);
-    if (m) {
-      weapons.push({ name: m[2].trim(), quantity: Number(m[1]) || 1 });
-    } else if (w.trim()) {
-      weapons.push({ name: w.trim(), quantity: 1 });
+    const { name: wName, quantity } = parseQtyName(w);
+    if (!wName) {
+      return;
     }
+    weapons.push({ name: wName, quantity: quantity || 1 });
   });
   for (let i = weapons.length - 1; i >= 0; i--) {
-    weapons[i].name = weapons[i].name.replace(trailingNonWeaponWords, '').trim();
+    weapons[i].name = cleanWeaponNamePreserveParens(weapons[i].name);
     if (!WEAPON_KEYWORDS.test(weapons[i].name) || nonWeaponTerms.test(weapons[i].name) || weapons[i].name.length < 2) {
       weapons.splice(i, 1);
     }
@@ -120,22 +187,65 @@ function parseFittings(fittings, escapePods) {
     return fittingsArr;
   }
   fittings.split(/,/).forEach(f => {
-    const m = f.match(/(\d+)x?\s*([\w\s\-']+)/i);
-    let componentName = m ? m[2].trim() : f.trim();
-    if (componentName && /escape pods?/i.test(componentName) && escapePods) {
+    let qn = parseQtyName(f);
+    let componentName = qn.name;
+    // Special handling for armory for N marines
+    let armoryMatch = f.match(/armory for (\d+) marines?/i);
+    if (armoryMatch) {
+      fittingsArr.push({ name: 'Armory', quantity: parseInt(armoryMatch[1], 10), subtype: mapComponentType('armory') });
       return;
     }
-    if (/^(crew|cargo|scientist|pilot|engineer|medic|operator|total|sensor operator|cost|construction time)/i.test(componentName)) {
+    // Special handling for escape pods
+    let escapePodsMatch = f.match(/(\d+)\s*escape pods?/i);
+    if (escapePodsMatch) {
+      fittingsArr.push({ name: 'Escape Pods', quantity: parseInt(escapePodsMatch[1], 10), subtype: mapComponentType('escape pod') });
       return;
     }
-    if (!componentName || componentName.toLowerCase() === 'x') {
+    // Special handling for staterooms
+    let stateroomsMatch = f.match(/(\d+)\s*staterooms?/i);
+    if (stateroomsMatch) {
+      fittingsArr.push({ name: 'Staterooms', quantity: parseInt(stateroomsMatch[1], 10), subtype: mapComponentType('stateroom') });
+      return;
+    }
+    // Special handling for cryoberths
+    let cryoberthsMatch = f.match(/(\d+)\s*cryoberths?/i);
+    if (cryoberthsMatch) {
+      fittingsArr.push({ name: 'Cryoberths', quantity: parseInt(cryoberthsMatch[1], 10), subtype: mapComponentType('cryoberth') });
+      return;
+    }
+    // Special handling for emergency low berths
+    let lowBerthsMatch = f.match(/(\d+)\s*emergency low berths?/i);
+    if (lowBerthsMatch) {
+      fittingsArr.push({ name: 'Emergency Low Berths', quantity: parseInt(lowBerthsMatch[1], 10), subtype: mapComponentType('low berth') });
+      return;
+    }
+
+    // Special handling for fuel processor: "fuel processor (N t/day)" or similar
+    let fuelProcMatch = f.match(/fuel processor/i);
+    if (fuelProcMatch) {
+      let fuelProcQty = parseQtyName(f);
+      if (fuelProcQty.quantity && fuelProcQty.quantity > 0) {
+        fittingsArr.push({ name: 'Fuel Processor', quantity: fuelProcQty.quantity, subtype: mapComponentType('fuel processor') });
+        return;
+      }
+      // If no valid quantity, skip adding Fuel Processor
+      return;
+    }
+
+    // Combine all skip conditions for clarity
+    if (
+      /cargo\b|cargo space/i.test(componentName) ||
+      /missile magazine/i.test(componentName) ||
+      /^(crew|scientist|pilot|engineer|medic|operator|total|sensor operator|cost|construction time)/i.test(componentName) ||
+      !componentName || componentName.toLowerCase() === 'x' ||
+      /^\d+(?:\.\d+)?$/.test(componentName) ||
+      /([\d.]+)\s*tons?(?:\s+of)?\s+(?:cargo|cargo space)/i.test(f)
+    ) {
       return;
     }
     let subtype = mapComponentType(componentName);
-    if (m) {
-      fittingsArr.push({ name: componentName, quantity: Number(m[1]) || 1, subtype });
-    } else if (f.trim()) {
-      fittingsArr.push({ name: componentName, quantity: 1, subtype });
+    if (componentName && qn.quantity && qn.quantity > 0) {
+      fittingsArr.push({ name: componentName, quantity: qn.quantity, subtype });
     }
   });
   return fittingsArr;
@@ -168,6 +278,9 @@ function parseTitleLine(title) {
 // Simple assertions (comments):
 // parseTitleLine('TL11 200-TON TRADER') => { name: '200-TON TRADER', techLevel:11, titleTonnage:200 }
 // parseTitleLine('TL6 STAR RUNNER') => no match (returns original name)
+// console.assert(parseTitleLine('TL11 200-TON TRADER').techLevel === 11);
+// console.assert(parseTitleLine('TL11 200-TON TRADER').titleTonnage === 200);
+// console.assert(parseTitleLine('TL11 200-TON TRADER').name === '200-TON TRADER');
 
 
 // Helper: extract number after 'MCr' (or any number)
@@ -238,7 +351,13 @@ function parseShipStatblock(text) {
   if ((!tonnage || isNaN(tonnage)) && titleTonnage) {
     tonnage = Number(titleTonnage);
   }
-  let armor = extractField(statblockText, /Armor:\s*([^;]+)/i, m => m[1]?.replace(/\n/g, ' ').trim());
+  // Build a regex to match any field label from FIELD_LABELS (escaped, without trailing colon)
+  const fieldLabelPattern = FIELD_LABELS.map(l => escapeRegex(l.replace(/:$/, '')) + ":").join("|");
+  let armor = extractField(
+    statblockText,
+    new RegExp(`Armor:\\s*([\\s\\S]*?)(?=;|\\n|${fieldLabelPattern}|$)`, 'i'),
+    m => m[1]?.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim()
+  );
   if (armor && /^(none|no|n\/a)$/i.test(armor)) {
     armor = undefined;
   }
@@ -255,12 +374,34 @@ function parseShipStatblock(text) {
   if (armament && /reserved for weapon systems|reserved for weapons|reserved for armament/i.test(armament)) {
     armament = undefined;
   }
-  const fittings = extractField(statblockText, /Fittings:\s*([^\n]+)/i, m => m[1]?.trim());
+  // Capture multiline fittings up to the next label (Crew/Cost/Construction Time) or end
+  const fittings = extractField(
+    statblockText,
+    /Fittings:\s*([\s\S]*?)(?:Crew:|Cost:|Construction Time:|$)/i,
+    m => m[1]?.replace(/\n/g, ' ').trim()
+  );
   const crew = extractField(statblockText, /Crew:\s*([^\n]+)/i, m => m[1]?.trim());
   const staterooms = Number(extractField(statblockText, /(\d+)x?staterooms?/i));
   const cryoberths = Number(extractField(statblockText, /(\d+)x?cryoberths?/i));
   const lowBerths = Number(extractField(statblockText, /(\d+)x?emergency low berths?/i));
-  const magazine = Number(extractField(statblockText, /magazine \((\d+) missiles?\)/i));
+  // Match both 'missile magazine (N missiles)' and 'magazine (N missiles)'
+  let magazineQty = 1; // Default to 1 if not found
+  let magazineMatch = statblockText.match(/(?:missile\s+magazine|magazine)\s*\((\d+)\s*missiles?\)/i);
+  if (magazineMatch && magazineMatch[1]) {
+    magazineQty = parseInt(magazineMatch[1], 10);
+    if (isNaN(magazineQty) || magazineQty < 1) {
+      magazineQty = 1;
+    }
+  } else {
+    // Try to extract any number before 'missiles' in parentheses
+    let fallbackMatch = statblockText.match(/\((\d+)\s*missiles?\)/i);
+    if (fallbackMatch && fallbackMatch[1]) {
+      magazineQty = parseInt(fallbackMatch[1], 10);
+      if (isNaN(magazineQty) || magazineQty < 1) {
+        magazineQty = 1;
+      }
+    }
+  }
   const escapePods = Number(extractField(statblockText, /(\d+)x?escape pods?/i));
   const armory = extractField(statblockText, /armory for (\d+) marines?/i);
   const fuelProcessor = extractField(statblockText, /fuel processor \(([^)]+)\)/i);
@@ -274,7 +415,7 @@ function parseShipStatblock(text) {
     name: shipName,
     description: shipDescription,
     tonnage, armor, maneuver, jump, powerPlant, fuel, computer, cost, weapons, hardpoints, fittings: fittingsArr, crew,
-    staterooms, cryoberths, lowBerths, magazine, escapePods, armory, fuelProcessor, cargo,
+    staterooms, cryoberths, lowBerths, magazineQty, escapePods, armory, fuelProcessor, cargo,
     techLevel
   };
 }
@@ -288,6 +429,8 @@ const COMPONENT_MAP = [
   { pattern: /\b(j[- ]?drive|jump)\b/i, subtype: 'drive' },
   { pattern: /\b(power ?plant|p-plant)\b/i, subtype: 'power' },
   { pattern: /\b(computer)\b/i, subtype: 'computer' },
+  { pattern: /\b(armor)\b/i, subtype: 'armor' },
+  { pattern: /\b(hull)\b/i, subtype: 'hull' },
   { pattern: /\b(missile|laser|cannon|gun|railgun|plasma|fusion|beam|pulse|torpedo|autocannon|meson|particle|sandcaster)\b/i, subtype: 'armament' },
   { pattern: /\b(turret|hardpoint|mount)\b/i, subtype: 'mount' },
   { pattern: /\b(magazine)\b/i, subtype: 'magazine' },
@@ -297,7 +440,7 @@ const COMPONENT_MAP = [
   { pattern: /\b(sensor|sensors?)\b/i, subtype: 'sensor' },
   { pattern: /\b(shield|shields?)\b/i, subtype: 'shield' },
   { pattern: /\b(drone|drones?)\b/i, subtype: 'drone' },
-  { pattern: /\b(vehicle|gig)\b/i, subtype: 'vehicle' },
+  { pattern: /\b(vehicle|gig|dropship)\b/i, subtype: 'vehicle' },
   { pattern: /\b(software)\b/i, subtype: 'software' },
   { pattern: /\b(electronics?)\b/i, subtype: 'electronics' },
   { pattern: /\b(bridge)\b/i, subtype: 'bridge' },
@@ -325,8 +468,7 @@ function mapComponentType(componentName) {
 
 // --- Main import logic ---
 // --- Preprocessing ---
-const preprocessedStatblock = preprocessStatblock(statblock);
-const parsed = parseShipStatblock(preprocessedStatblock);
+const parsed = parseShipStatblock(preprocessStatblock(statblock));
 if (!parsed.name || !parsed.tonnage) {
   return ui.notifications.error("Failed to parse ship name or tonnage. Please check the statblock format.");
 }
@@ -386,76 +528,33 @@ const shipActor = await Actor.create(actorData);
 // Prepare items/components
 const items = [];
 
-// Add hull component for displacement weight (primary hull)
-createComponent(items, {
-  name: `Hull (${parsed.tonnage} tons)`,
-  system: { subtype: mapComponentType("hull"), weight: String(parsed.tonnage), isBaseHull: true }
-});
-
+addComponent(items, parsed.tonnage, `Hull (${parsed.tonnage} tons)`, mapComponentType("hull"), { weight: String(parsed.tonnage), isBaseHull: true });
 // Drives
-if (parsed.maneuver) {
-  createComponent(items, {
-    name: `m-Drive ${parsed.maneuver}G`,
-    system: { subtype: mapComponentType("m-drive"), rating: String(parsed.maneuver), driveType: "mdrive" }
-  });
+addComponent(items, parsed.maneuver, `m-Drive ${parsed.maneuver}G`, mapComponentType("m-drive"), { rating: String(parsed.maneuver), driveType: "mdrive" });
+addComponent(items, parsed.jump, `j-Drive ${parsed.jump}`, mapComponentType("j-drive"), { rating: String(parsed.jump), driveType: "jdrive" });
+addComponent(items, parsed.powerPlant, `Power Plant ${parsed.powerPlant}`, mapComponentType("power plant"), { rating: String(parsed.powerPlant), generatesPower: true });
+addComponent(items, parsed.computer, `Computer ${parsed.computer}`, mapComponentType("computer"), { rating: String(parsed.computer) });
+if (parsed.armor && !/^(none|no|n\/a)$/i.test(parsed.armor)) {
+  addComponent(items, parsed.armor, parsed.armor, mapComponentType("armor"), { features: parsed.armor });
 }
-if (parsed.jump) {
-  createComponent(items, {
-    name: `j-Drive ${parsed.jump}`,
-    system: { subtype: mapComponentType("j-drive"), rating: String(parsed.jump), driveType: "jdrive" }
-  });
+if (parsed.fuelProcessor && typeof parsed.fuelProcessor === 'string' && parsed.fuelProcessor.trim() !== '') {
+  addComponent(items, 1, `Fuel Processor`, mapComponentType("fuel processor"), { features: parsed.fuelProcessor });
 }
-if (parsed.powerPlant) {
-  createComponent(items, {
-    name: `Power Plant ${parsed.powerPlant}`,
-    system: { subtype: mapComponentType("power plant"), rating: String(parsed.powerPlant), generatesPower: true }
-  });
+if (parsed.magazineQty) {
+  addComponent(items, parsed.magazineQty, "Missile Magazine", "ammo");
 }
-// Computer
-if (parsed.computer) {
-  createComponent(items, {
-    name: `Computer ${parsed.computer}`,
-    system: { subtype: mapComponentType("computer"), rating: String(parsed.computer) }
-  });
-}
-// Armor
-if (parsed.armor) {
-  createComponent(items, {
-    name: parsed.armor,
-    system: { subtype: mapComponentType("armor"), features: parsed.armor }
-  });
-}
-
-// Hardpoints (turrets)
+// Hardpoints
 if (parsed.hardpoints && parsed.hardpoints.length > 0) {
   for (const hardpoint of parsed.hardpoints) {
-    createComponent(items, {
-      name: hardpoint.name,
-      system: { subtype: "mount", availableQuantity: String(hardpoint.quantity), quantity: String(hardpoint.quantity) }
-    });
+    addComponent(items, hardpoint.quantity, hardpoint.name, "mount");
   }
 }
-
 // Weapons
 for (const weapon of parsed.weapons) {
-  // If weapon.turrets is set, create one component per turret, each with the specified quantity
-  if (weapon.turrets) {
-    for (let i = 0; i < weapon.turrets; i++) {
-      createComponent(items, {
-        name: weapon.name,
-        system: { subtype: "armament", availableQuantity: String(weapon.quantity), quantity: String(weapon.quantity) }
-      });
-    }
-  } else {
-    createComponent(items, {
-      name: weapon.name,
-      system: { subtype: "armament", availableQuantity: String(weapon.quantity), quantity: String(weapon.quantity) }
-    });
-  }
+  addComponent(items, weapon.quantity, weapon.name, "armament");
 }
-// Fittings with improved mapping
+// Fittings
 for (const fitting of parsed.fittings) {
-  // Skip only fittings that are just 'fuel' if parsed.fuel exists, but allow fuel processors and similar
   if (/^fuel$/i.test(fitting.name.trim()) && parsed.fuel) {
     continue;
   }
@@ -463,66 +562,7 @@ for (const fitting of parsed.fittings) {
   if (!fitting.subtype && /fuel processor|fuel purification|fuel system/i.test(fitting.name)) {
     subtype = "fuel";
   }
-  createComponent(items, {
-    name: fitting.name,
-    system: { subtype: subtype, availableQuantity: String(fitting.quantity), quantity: String(fitting.quantity) }
-  });
-}
-// Staterooms
-if (parsed.staterooms) {
-  createComponent(items, {
-    name: `Staterooms`,
-    system: { subtype: mapComponentType("stateroom"), availableQuantity: String(parsed.staterooms), quantity: String(parsed.staterooms) }
-  });
-}
-// Cryoberths
-if (parsed.cryoberths) {
-  createComponent(items, {
-    name: `Cryoberths`,
-    system: { subtype: mapComponentType("cryoberth"), availableQuantity: String(parsed.cryoberths), quantity: String(parsed.cryoberths) }
-  });
-}
-// Emergency Low Berths
-if (parsed.lowBerths) {
-  createComponent(items, {
-    name: `Emergency Low Berths`,
-    system: { subtype: mapComponentType("low berth"), availableQuantity: String(parsed.lowBerths), quantity: String(parsed.lowBerths) }
-  });
-}
-// Magazine
-if (parsed.magazine) {
-  createComponent(items, {
-    name: `Missile Magazine`,
-    system: { subtype: mapComponentType("magazine"), availableQuantity: String(parsed.magazine), quantity: String(parsed.magazine) }
-  });
-}
-// Escape Pods
-if (parsed.escapePods) {
-  createComponent(items, {
-    name: `Escape Pods`,
-    system: { subtype: mapComponentType("escape pod"), availableQuantity: String(parsed.escapePods), quantity: String(parsed.escapePods) }
-  });
-}
-// Armory
-if (parsed.armory) {
-  createComponent(items, {
-    name: `Armory`,
-    system: { subtype: mapComponentType("armory"), features: `For ${parsed.armory} marines` }
-  });
-}
-// Fuel Processor
-if (parsed.fuelProcessor) {
-  createComponent(items, {
-    name: `Fuel Processor`,
-    system: { subtype: mapComponentType("fuel processor"), features: parsed.fuelProcessor }
-  });
-}
-// Cargo
-if (parsed.cargo) {
-  createComponent(items, {
-    name: `Cargo Space`,
-    system: { subtype: mapComponentType("cargo"), tons: String(parsed.cargo) }
-  });
+  addComponent(items, fitting.quantity, fitting.name, subtype);
 }
 
 if (items.length > 0) {
