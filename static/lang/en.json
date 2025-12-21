@@ -1581,7 +1581,7 @@
         "name": "Damage and Protection Types"
       },
       "animalTypesIndependentofNiche": {
-        "hint": "Animals may have any type, indpependent of the niche chosen.",
+        "hint": "Animals may have any type, independent of the niche chosen.",
         "name": "Animal Types Are Independent of Niche"
       },
       "reduceStatusIcons": {
@@ -1781,6 +1781,15 @@
       "shipDamageType": {
         "hint": "Determines how ship damage is generated in damage report.  Component style determines damage to components directly (e.g. Cepheus Engine).  Hull with Criticals determines damage primarily to the ship hull with a critical every 10% of total hull damage (e.g. MgT2e).  Hull only determines damage only to hull.  Surface or Internal determines damage based on weapon penetration (e.g. Cepheus Deluxe). Classic Traveller looks up hits on Hit Locations table. Alpha Cephei uses its specific component lookup table and armor gates hits (not reduces).  Cepheus Univeral uses its damage to hull and component hits table.",
         "name": "Rules for handling ship damage"
+      },
+      "themeStyle": {
+        "hint": "Select the theme prrefered.",
+        "name": "Select Theme Style",
+        "choices": {
+          "FoundryStandard": "Foundry Standard",
+          "TwodsixClassic": "Twodsix Classic",
+          "Western": "Western"
+        }
       }
     },
     "Combat": {

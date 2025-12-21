@@ -42,6 +42,15 @@ const AUTOFIRE_VARIANTS = Object.freeze({
 });
 
 /**
+ * Theme choices for Twodsix, using localization keys.
+ */
+const THEME_CHOICES = Object.freeze({
+  foundry: "TWODSIX.Settings.themeStyle.choices.FoundryStandard",
+  classic: "TWODSIX.Settings.themeStyle.choices.TwodsixClassic",
+  western: "TWODSIX.Settings.themeStyle.choices.Western"
+});
+
+/**
  * Space combat system types that can be selected per ruleset.
  * Each type defines phases, initiative formula, and action budget.
  *
@@ -1507,6 +1516,7 @@ export type TWODSIX = {
   CONSUMABLES: typeof CONSUMABLES,
   DIFFICULTY_VARIANTS: typeof DIFFICULTY_VARIANTS,
   AUTOFIRE_VARIANTS: typeof AUTOFIRE_VARIANTS,
+  THEME_CHOICES: typeof THEME_CHOICES,
   ROLLTYPES: typeof ROLLTYPES,
   DIFFICULTIES: typeof DIFFICULTIES,
   RULESETS: typeof RULESETS,
@@ -1555,6 +1565,7 @@ export const TWODSIX = {
   CONSUMABLES: CONSUMABLES,
   DIFFICULTY_VARIANTS: DIFFICULTY_VARIANTS,
   AUTOFIRE_VARIANTS: AUTOFIRE_VARIANTS,
+  THEME_CHOICES: THEME_CHOICES,
   SPACE_COMBAT_PHASE_TYPES: SPACE_COMBAT_PHASE_TYPES,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,

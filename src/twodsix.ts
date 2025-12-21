@@ -204,28 +204,37 @@ Hooks.once('init', async function () {
   CONFIG.time.roundTime = 6;
 
   /*Register CSS Styles*/
+
   let sheetName = "systems/twodsix/styles/";
-  if (game.settings.get('twodsix', 'useFoundryStandardStyle')) {
-    sheetName += "twodsix_basic.css";
-  } else {
-    sheetName += "twodsix.css";
+  const themeStyle = game.settings.get('twodsix', 'themeStyle');
+  switch (themeStyle) {
+    case "foundry":
+      sheetName += "twodsix_basic.css";
+      break;
+    case "western":
+      sheetName += "twodsix-western-theme.css";
+      break;
+    case "classic":
+      sheetName += "twodsix.css";
+      break;
+    default:
+      sheetName += "twodsix_basic.css";
   }
   switchCss(sheetName);
-  if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
+
+  if (themeStyle === "classic") {
+    if (game.settings.get('twodsix', 'useModuleFixStyle')) {
+      switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
+    }
     // Set CSS variables on the document root
     const defaultColor = game.settings.get('twodsix', 'defaultColor');
     const lightColor = game.settings.get('twodsix', 'lightColor');
     const battleColor = game.settings.get('twodsix', 'battleColor');
     const damageColor = game.settings.get('twodsix', 'damageStatColor');
-    // Set inline vars for the main document so the UI is immediate
     document.documentElement.style.setProperty('--s2d6-default-color', defaultColor);
     document.documentElement.style.setProperty('--s2d6-light-color', lightColor);
     document.documentElement.style.setProperty('--s2d6-battle-color', battleColor);
     document.documentElement.style.setProperty('--s2d6-damage-stat-color', damageColor);
-  }
-
-  if (game.settings.get('twodsix', 'useModuleFixStyle') && !game.settings.get('twodsix', 'useFoundryStandardStyle')) {
-    switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
   }
 
   //@ts-ignore

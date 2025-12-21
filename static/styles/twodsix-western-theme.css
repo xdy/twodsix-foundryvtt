@@ -1,0 +1,117 @@
+/* Western Theme for Twodsix - Extends twodsix_basic */
+
+@import url('./twodsix_basic.css');
+@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+
+:root {
+  /* Western color palette */
+  --s2d6-app-color: #a67c52;
+  --s2d6-default-color: #4b2e19;
+  --s2d6-input-background: #f5e6c8;
+  --s2d6-nav-background: #c2b280;
+  --s2d6-header-background: #c2b280;
+  --s2d6-header-border: #7c4a02;
+  --s2d6-title-color: #3e2723;
+  --s2d6-item-border: #7c4a02;
+  --s2d6-item-active: #a67c52;
+  --s2d6-item-hover: #d8b083;
+  --s2d6-select-light: #d8b083;
+
+  /* Western accent colors */
+  --s2d6-color-text-hyperlink: #ff6400;
+  --s2d6-color-shadow-primary: #a67c52;
+  --s2d6-color-border-light-primary: #b5b3a4;
+
+  /* Western background texture (add this image to static/assets/) */
+  --s2d6-background-image: url('../assets/wood-pattern.png');
+
+  /* Override Foundry's font variable for body text */
+  --font-body: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+
+  /* Foundry core font and heading overrides */
+  --font-sans: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  --font-primary: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  --font-h1: 'Rye', serif;
+  --font-h2: 'Roboto Slab', serif;
+  --font-h3: 'Rye', 'Roboto Slab', serif;
+
+  /* Western color overrides for Foundry variables */
+  --color-text-primary: #4b2e19;
+  --color-text-emphatic: #3e2723;
+  --color-text-hyperlink: #ff6400;
+  --color-header-background: #c2b280;
+  --color-border: #7c4a02;
+  --color-border-light-primary: #b5b3a4;
+  --color-shadow-primary: #a67c52;
+
+}
+
+/* Light mode overrides for western theme */
+body.theme-light,
+body.theme-light .application,
+body.theme-light .application.twodsix {
+  --s2d6-app-color: #c2b280;
+  --s2d6-default-color: #4b2e19;
+  --s2d6-input-background: #f5e6c8;
+  --s2d6-nav-background: #f5e6c8;
+  --s2d6-header-background: #a67c52;
+  --s2d6-header-border: #a67c52;
+  --s2d6-title-color: #3e2723;
+  --s2d6-item-border: #a67c52;
+  --s2d6-item-active: #c2b280;
+  --s2d6-item-hover: #f5e6c8;
+  --s2d6-select-light: #f5e6c8;
+  --s2d6-color-text-hyperlink: #ff6400;
+  --s2d6-color-shadow-primary: #a67c52;
+  --s2d6-color-border-light-primary: #b5b3a4;
+}
+
+/* Dark mode overrides for western theme */
+body.theme-dark,
+body.theme-dark .application,
+body.theme-dark .application.twodsix {
+  --s2d6-app-color: #a67c52;
+  --s2d6-default-color: #fdf6e3;
+  --s2d6-input-background: #4b2e19;
+  --s2d6-nav-background: #7c4a02;
+  --s2d6-header-background: #4b2e19;
+  --s2d6-header-border: #a67c52;
+  --s2d6-title-color: #f5e6c8;
+  --s2d6-item-border: #a67c52;
+  --s2d6-item-active: #7c4a02;
+  --s2d6-item-hover: #a67c52;
+  --s2d6-select-light: #a67c52;
+  --s2d6-color-text-hyperlink: #ffb366;
+  --s2d6-color-shadow-primary: #7c4a02;
+  --s2d6-color-border-light-primary: #b5b3a4;
+}
+
+body {
+  --font-body: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  font-family: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  color: var(--s2d6-default-color);
+}
+
+/* Example override for window headers */
+.window-header {
+  background: linear-gradient(90deg, #c2b280 0%, #a67c52 100%);
+  border-bottom: 2px solid #7c4a02;
+  color: #3e2723;
+}
+
+/* Example override for combat tracker */
+.combat-tracker {
+  background: rgba(194, 178, 128, 0.95);
+  border: 2px solid #7c4a02;
+  box-shadow: 0 0 10px #a67c52;
+}
+
+/* Example override for buttons */
+.button {
+  background: #a67c52;
+  color: #fff8e1;
+  border: 1px solid #7c4a02;
+  font-family: 'Roboto Slab', serif;
+}
+
+/* Add more selectors for other UI elements as needed */
