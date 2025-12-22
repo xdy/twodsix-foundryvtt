@@ -1,3 +1,4 @@
+
 /* Western Theme for Twodsix - Extends twodsix_basic */
 
 @import url('./twodsix_basic.css');
@@ -16,6 +17,8 @@
   --s2d6-item-active: #a67c52;
   --s2d6-item-hover: #d8b083;
   --s2d6-select-light: #d8b083;
+  --s2d6-pie-color: var(--s2d6-app-color);
+  --s2d6-pie-background-color: var(--s2d6-background-opaque);
 
   /* Western accent colors */
   --s2d6-color-text-hyperlink: #ff6400;
@@ -44,6 +47,10 @@
   --color-border-light-primary: #b5b3a4;
   --color-shadow-primary: #a67c52;
 
+}
+
+.application.twodsix {
+  font-size: var(--font-size-12);
 }
 
 /* Light mode overrides for western theme */
@@ -85,7 +92,13 @@ body.theme-dark .application.twodsix {
   --s2d6-color-shadow-primary: #7c4a02;
   --s2d6-color-border-light-primary: #b5b3a4;
 }
-
+/* Western theme: readable header row fade for both light and dark */
+body.theme-light .application.twodsix .header-row {
+  background-image: linear-gradient(90deg, var(--s2d6-header-background, #e7d1b1) 0%, var(--s2d6-header-border, #a67c52) 100%);
+}
+body.theme-dark .application.twodsix .header-row {
+  background-image: linear-gradient(90deg, var(--s2d6-header-background, #4b2e19) 0%, var(--s2d6-header-border, #a67c52) 100%);
+}
 body {
   --font-body: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
   font-family: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
@@ -93,25 +106,50 @@ body {
 }
 
 /* Example override for window headers */
-.window-header {
+/*.window-header {
   background: linear-gradient(90deg, #c2b280 0%, #a67c52 100%);
   border-bottom: 2px solid #7c4a02;
   color: #3e2723;
-}
+}*/
 
 /* Example override for combat tracker */
-.combat-tracker {
+/*.combat-tracker {
   background: rgba(194, 178, 128, 0.95);
   border: 2px solid #7c4a02;
   box-shadow: 0 0 10px #a67c52;
-}
+}*/
 
 /* Example override for buttons */
-.button {
+/*.button {
   background: #a67c52;
   color: #fff8e1;
   border: 1px solid #7c4a02;
   font-family: 'Roboto Slab', serif;
-}
+}*/
 
 /* Add more selectors for other UI elements as needed */
+.character-bgi-std, .character-bgi-npc  {
+  font-size: var(--font-size-12);
+}
+
+.stat-table {
+  font-size: smaller;
+}
+
+.character-bgi-std input {
+  background-color: var(--s2d6-input-background) !important;
+}
+
+.item-title, .item-title-npc, .item-title-vehicle {
+  font-size: 1.5ch;
+}
+
+.skill-header {
+  cursor: pointer;
+  width: 43em;
+}
+
+.npc-notes-container, .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments, .character-bgi-npc,
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage  {
+  border-color: var(--s2d6-header-border);
+}
