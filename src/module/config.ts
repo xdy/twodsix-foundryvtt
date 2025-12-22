@@ -895,7 +895,7 @@ const RULESETS = Object.freeze({
       maxEncumbrance: "2*(@characteristics.endurance.current + @characteristics.strength.current + max(0, @skills.AthleticsEndurance) + max(0, @skills.AthleticsStrength))",
       defaultMovement: 6,
       defaultMovementUnits: "m",
-      addEffectForShipDamage: false,
+      addEffectForShipDamage: true,
       unarmedDamage: "1d6",
       showTimeframe: true,
       showHullAndArmor: "armorHullStruc",
