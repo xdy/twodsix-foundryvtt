@@ -90,6 +90,9 @@
   --s2d6-light-background-transparent: rgba(255, 255, 255, 0.09);
   --s2d6-dark-background-transparent: rgba(0,0,0,0.04);
   --s2d6-skill-list-even: rgba(0,0,0,0.03);
+  --s2d6-default-border-style: 2px solid;
+  --s2d6-thin-border-style: 1px solid;
+  --s2d6-light-color: var(--s2d6-item-border);
 }
 
 /* ============================================================================
@@ -117,7 +120,7 @@ body.theme-light.application.twodsix {
   --s2d6-header-background: var(--color-dark-1, #111111);
   /* Make header/gear borders darker in light mode so they remain visible */
   --s2d6-header-border: var(--color-border, rgba(0,0,0,0.18));
-  --s2d6-skill-list-even: rgba(0,0,0,0.03);
+  --s2d6-skill-list-even: rgba(0,0,0,0.1);
 }
 
 /* ============================================================================
@@ -217,7 +220,7 @@ label.checkbox > input[type="checkbox"] {
   justify-content: space-between;
   grid-template-rows: 6% 39% 4.6% 23.2% 27.2%;
   width: 99%;
-  border: 3px solid;
+  border: var(--s2d6-default-border-style) var(--s2d6-header-border);
   border-radius: 15px;
 }
 
@@ -270,7 +273,7 @@ label.checkbox > input[type="checkbox"] {
 .npc-notes-container {
   grid-area: npc-notes-container;
   max-height: -webkit-fill-available;
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 2ch;
 }
 
@@ -282,7 +285,7 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 2ch;
   overflow: auto;
 }
@@ -475,7 +478,7 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .vehicle-notes {
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 2ch;
   max-height: 100%;
 }
@@ -486,7 +489,7 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage {
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 2ch;
 }
 
@@ -536,7 +539,7 @@ label.checkbox > input[type="checkbox"] {
 }
 
 .vehicle-armor-name textarea, .vehicle-cargo-list textarea {
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style);
   border-radius: 1ch !important;
   /*text-align: center;*/
   overflow-wrap: break-word;
@@ -647,8 +650,7 @@ img.character-info-mask {
 
 .character-photo {
   z-index: 0;
-  border: 2px solid;
-  border-color: inherit;
+  border: var(--s2d6-default-border-style) var(--s2d6-header-border);
   border-radius: 1ch 1ch 0 0;
   object-fit: contain;
   grid-area: character-photo;
@@ -716,7 +718,7 @@ img.character-info-mask {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 1px solid; */
+  /* border: var(--s2d6-thin-border-style) */
   /* align-self: center; */
 }
 
@@ -745,7 +747,7 @@ img.character-info-mask {
   /* max-height: 8em; */
   font-size: 2ch;
   z-index: 9;
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 0 0 1ch 1ch;
   overflow-y: auto;
 }
@@ -759,7 +761,7 @@ img.character-info-mask {
   /* max-height: 9em; */
   font-size: 2ch;
   z-index: 9;
-  border: 2px solid;
+  border: var(--s2d6-default-border-style) var(--s2d6-header-border);
   border-radius: 0 0 1ch 1ch;
   grid-area: character-bgi;
   overflow: auto;
@@ -768,7 +770,7 @@ img.character-info-mask {
 .character-bgi-npc {
   font-size: 16px;
   z-index: 9;
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 2ch;
   padding: 0 1ch;
 }
@@ -1470,7 +1472,7 @@ input.item-value-edit, input.joat-skill-input {
 
 .skill-box {
   /* width: 5em; */
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style);
   display: flex;
 }
 
@@ -1648,7 +1650,7 @@ span.total-output {
   width: 215px;
   padding: 0.5em;
   height: 3ch;
-  /*border: 2px solid;*/
+  /*border: var(--s2d6-default-border-style);*/
   border-radius: 0 0 3px 3px;
 }
 
@@ -1858,7 +1860,7 @@ img.ship-mask-bg {
   grid-area: ship-image;
   height: 100%;
   z-index: 0;
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 15px;
   text-align: center;
   background-color: var(--s2d6-input-background);
@@ -1908,7 +1910,7 @@ img.ship-mask-bg {
   z-index: 3;
   position: relative;
   /* width: 406px; */
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 15px;
   overflow: hidden;
   width: 99%;
@@ -1999,7 +2001,7 @@ img.ship-mask-bg {
 }
 
 .ship-armor-name textarea, .battle-armor-name textarea  {
-  /*border: 2px solid;
+  /*border: var(--s2d6-default-border-style);
   border-radius: 1ch !important;*/
   text-align: center;
   font-size: x-small;
@@ -2096,7 +2098,7 @@ img.ship-mask-bg {
 
 .ship-mass input[type="text"], .ship-tl input[type="text"] {
   width: 2.5em;
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style);
   left: -1em;
   position: relative;
 }
@@ -2114,7 +2116,7 @@ img.ship-mask-bg {
   grid-area: ship-requirements;
   z-index: 3;
   text-align: center;
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 15px;
   width: 99%;
   overflow: hidden;
@@ -2299,7 +2301,7 @@ input.power-current, input.power-total {
 }
 
 a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab, a.ship-cargo-tab, a.ship-finance-tab, a.ship-notes-tab {
-  /*border: 2px solid;
+  /*border: var(--s2d6-default-border-style);
   border-radius: 15px;
   vertical-align: middle;
   padding: 3px 4px;
@@ -2328,7 +2330,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 */
 .ship-tabs-info.sheet-body {
-  border: 2px solid;
+  border: var(--s2d6-default-border-style);
   border-radius: 20px;
   z-index: 99;
   /* position: absolute; */
@@ -2377,7 +2379,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 .ship-position-box {
   width: 29ch;
   min-height: 7ch;
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style);
   border-radius: 0;
   align-content: space-evenly;
   display: flex;
@@ -2486,7 +2488,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
 }
 
 .storage-header {
-  /* border: 2px solid var(--s2d6-background-opaque); */
+  /* border: var(--s2d6-default-border-style) var(--s2d6-background-opaque); */
   background-color: var(--s2d6-header-background);
   color: var(--s2d6-title-color);
   position: sticky;
@@ -2697,7 +2699,7 @@ div.ship-value {
 }*/
 
 .ship-commonFunds input[type="number"] {
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style);
   width: 36ch;
 }
 
@@ -2759,7 +2761,7 @@ button.flexrow.flex-group-center.toggle-skills {
   min-height: 50px;
   padding: 5px;
   /*background: rgba(0, 0, 0, 0.25);*/
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style);
   border-radius: 1px;
   -webkit-user-select: text;
   -moz-user-select: text;
@@ -3169,7 +3171,7 @@ background: var(--sidebar-background);
   width: calc(100% - 2ch);
   background-color: var(--s2d6-color-text-light-3);
   margin: 1ch;
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style)
 }
 
 .flavor-table tr:nth-child(even) {
@@ -3355,7 +3357,7 @@ form .form-group > label {
 .editor-content {
   height: 95%;
   padding-left: 4px;
-  border: 1px solid;
+  border: var(--s2d6-thin-border-style) var(--s2d6-header-border);
   min-height: inherit;
 }
 
@@ -4142,7 +4144,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 /* Phase display in combat tracker header */
 .space-combat-phase {
   background: var(--s2d6-background-nearly-transparent);
-  border: 2px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border-style) var(--s2d6-default-color);
   border-radius: 2px;
   padding: 8px;
   margin: 8px 0;

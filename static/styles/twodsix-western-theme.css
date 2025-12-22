@@ -2,7 +2,14 @@
 /* Western Theme for Twodsix - Extends twodsix_basic */
 
 @import url('./twodsix_basic.css');
-@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');*/
+
+@font-face {
+  font-family: "Rye";
+  src: url("../fonts/Rye-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   /* Western color palette */
@@ -71,6 +78,7 @@ body.theme-light .application.twodsix {
   --s2d6-color-text-hyperlink: #ff6400;
   --s2d6-color-shadow-primary: #a67c52;
   --s2d6-color-border-light-primary: #b5b3a4;
+  --s2d6-skill-list-even: rgba(0, 0, 0, 0.1);
 }
 
 /* Dark mode overrides for western theme */
@@ -105,28 +113,6 @@ body {
   color: var(--s2d6-default-color);
 }
 
-/* Example override for window headers */
-/*.window-header {
-  background: linear-gradient(90deg, #c2b280 0%, #a67c52 100%);
-  border-bottom: 2px solid #7c4a02;
-  color: #3e2723;
-}*/
-
-/* Example override for combat tracker */
-/*.combat-tracker {
-  background: rgba(194, 178, 128, 0.95);
-  border: 2px solid #7c4a02;
-  box-shadow: 0 0 10px #a67c52;
-}*/
-
-/* Example override for buttons */
-/*.button {
-  background: #a67c52;
-  color: #fff8e1;
-  border: 1px solid #7c4a02;
-  font-family: 'Roboto Slab', serif;
-}*/
-
 /* Add more selectors for other UI elements as needed */
 .character-bgi-std, .character-bgi-npc  {
   font-size: var(--font-size-12);
@@ -152,4 +138,17 @@ body {
 .npc-notes-container, .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments, .character-bgi-npc,
 .vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage  {
   border-color: var(--s2d6-header-border);
+}
+
+.wooden-sign {
+  border: 6px solid transparent;
+  border-image: var(--s2d6-background-image) 10 round;
+  padding: 6px;
+  background-color: #f5f5dc; /* Aged paper background */
+}
+
+.window-content {
+  box-shadow:
+    inset 0 0 50px var(--s2d6-header-border),   /* Darker "stain" around edges */
+    5px 5px 15px rgba(0,0,0,0.3); /* Soft shadow on the wall */
 }

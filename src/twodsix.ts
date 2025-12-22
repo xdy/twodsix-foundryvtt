@@ -199,6 +199,12 @@ Hooks.once('init', async function () {
       {urls: ["systems/twodsix/fonts/Asap-BoldItalic.woff2", "systems/twodsix/fonts/Asap-BoldItalic.ttf"], style: "italic", weight: 700}
     ]
   };
+  CONFIG.fontDefinitions["Rye"] = {
+    editor: true,
+    fonts: [
+      {urls: ["systems/twodsix/fonts/Rye-Regular.ttf"]},
+    ]
+  };
 
   /*Add time for a combat round default*/
   CONFIG.time.roundTime = 6;
