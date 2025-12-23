@@ -32,7 +32,7 @@
   --s2d6-item-hover: var(--s2d6-very-light-brown);
   --s2d6-select-light: var(--s2d6-very-light-brown);
   --s2d6-pie-color: var(--s2d6-app-color);
-  --s2d6-pie-background-color: var(--s2d6-background-opaque);
+  --s2d6-pie-background-color: var(--s2d6-background-transparent);
 
   /* Western accent colors */
   --s2d6-color-text-hyperlink: #ff6400;
