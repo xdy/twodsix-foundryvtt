@@ -127,12 +127,21 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       this.element.querySelector(".window-content").classList.add("overlap-header");
       this.element.querySelector(".window-header").classList.add("transparent-header");
     }
+
     // Everything below here is only needed if the sheet is editable
     if (!context.editable) {
       return;
     }
     this.element.querySelector(".joat-skill-input")?.addEventListener('input', this._updateJoatSkill.bind(this));
     this.element.querySelector(".joat-skill-input")?.addEventListener('blur', this._onJoatSkillBlur.bind(this));
+  }
+
+  async _preRender(context:Context, options:any): void {
+    await super._preRender(context, options);
+    //Change window icon if western mode
+    if ( game.settings.get("twodsix", "themeStyle") === "western") {
+      options.window.icon = "fa-solid fa-hat-cowboy";
+    }
   }
 
   /**
