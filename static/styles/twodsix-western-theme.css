@@ -13,23 +13,30 @@
 
 :root {
   /* Western color palette */
-  --s2d6-app-color: #a67c52;
-  --s2d6-default-color: #4b2e19;
-  --s2d6-input-background: #f5e6c8;
-  --s2d6-nav-background: #c2b280;
-  --s2d6-header-background: #c2b280;
-  --s2d6-header-border: #7c4a02;
-  --s2d6-title-color: #3e2723;
-  --s2d6-item-border: #7c4a02;
-  --s2d6-item-active: #a67c52;
-  --s2d6-item-hover: #d8b083;
-  --s2d6-select-light: #d8b083;
+  --s2d6-light-brown : #a67c52;
+  --s2d6-app-color: var(--s2d6-light-brown);
+  --s2d6-dark-brown: #4b2e19;
+  --s2d6-default-color: var(--s2d6-dark-brown);
+  --s2d6-light-background: #f5e6c8;
+  --s2d6-input-background: var(--s2d6-light-background);
+  --s2d6-medium-background: #c2b280;
+  --s2d6-nav-background: var(--s2d6-medium-background);
+  --s2d6-header-background: var(--s2d6-medium-background);
+  --s2d6-border-brown: #7c4a02;
+  --s2d6-header-border: var(--s2d6-border-brown);
+  --s2d6-very-dark-brown: #3e2723;
+  --s2d6-title-color: var(--s2d6-very-dark-brown);
+  --s2d6-item-border: var(--s2d6-border-brown);
+  --s2d6-item-active: var(--s2d6-light-brown);
+  --s2d6-very-light-brown: #d8b083;
+  --s2d6-item-hover: var(--s2d6-very-light-brown);
+  --s2d6-select-light: var(--s2d6-very-light-brown);
   --s2d6-pie-color: var(--s2d6-app-color);
   --s2d6-pie-background-color: var(--s2d6-background-opaque);
 
   /* Western accent colors */
   --s2d6-color-text-hyperlink: #ff6400;
-  --s2d6-color-shadow-primary: #a67c52;
+  --s2d6-color-shadow-primary: var(--s2d6-light-brown);
   --s2d6-color-border-light-primary: #b5b3a4;
 
   /* Western background texture (add this image to static/assets/) */
@@ -46,13 +53,13 @@
   --font-h3: 'Rye', 'Roboto Slab', serif;
 
   /* Western color overrides for Foundry variables */
-  --color-text-primary: #4b2e19;
-  --color-text-emphatic: #3e2723;
+  --color-text-primary: var(--s2d6-dark-brown);
+  --color-text-emphatic: var(--s2d6-very-dark-brown);
   --color-text-hyperlink: #ff6400;
-  --color-header-background: #c2b280;
-  --color-border: #7c4a02;
+  --color-header-background: var(--s2d6-medium-background);
+  --color-border: var(--s2d6-border-brown);
   --color-border-light-primary: #b5b3a4;
-  --color-shadow-primary: #a67c52;
+  --color-shadow-primary: var(--s2d6-light-brown);
 
 }
 
@@ -64,19 +71,19 @@
 body.theme-light,
 body.theme-light .application,
 body.theme-light .application.twodsix {
-  --s2d6-app-color: #c2b280;
-  --s2d6-default-color: #4b2e19;
-  --s2d6-input-background: #f5e6c8;
-  --s2d6-nav-background: #f5e6c8;
-  --s2d6-header-background: #a67c52;
-  --s2d6-header-border: #a67c52;
-  --s2d6-title-color: #3e2723;
-  --s2d6-item-border: #a67c52;
-  --s2d6-item-active: #c2b280;
-  --s2d6-item-hover: #f5e6c8;
-  --s2d6-select-light: #f5e6c8;
-  --s2d6-color-text-hyperlink: #ff6400;
-  --s2d6-color-shadow-primary: #a67c52;
+  --s2d6-app-color: var(--s2d6-medium-background);
+  --s2d6-default-color: var(--s2d6-dark-brown);
+  --s2d6-input-background: var(--s2d6-light-background);
+  --s2d6-nav-background: var(--s2d6-light-background);
+  --s2d6-header-background: var(--s2d6-light-brown);
+  --s2d6-header-border: var(--s2d6-light-brown);
+  --s2d6-title-color: var(--s2d6-very-dark-brown);
+  --s2d6-item-border: var(--s2d6-light-brown);
+  --s2d6-item-active: var(--s2d6-medium-background);
+  --s2d6-item-hover: var(--s2d6-light-background);
+  --s2d6-select-light: var(--s2d6-light-background);
+  --s2d6-color-text-hyperlink: var(--color-text-hyperlink);
+  --s2d6-color-shadow-primary: var(--s2d6-light-brown);
   --s2d6-color-border-light-primary: #b5b3a4;
   --s2d6-skill-list-even: rgba(0, 0, 0, 0.1);
 }
@@ -85,27 +92,27 @@ body.theme-light .application.twodsix {
 body.theme-dark,
 body.theme-dark .application,
 body.theme-dark .application.twodsix {
-  --s2d6-app-color: #a67c52;
+  --s2d6-app-color: var(--s2d6-light-brown);
   --s2d6-default-color: #fdf6e3;
-  --s2d6-input-background: #4b2e19;
-  --s2d6-nav-background: #7c4a02;
-  --s2d6-header-background: #4b2e19;
-  --s2d6-header-border: #a67c52;
-  --s2d6-title-color: #f5e6c8;
-  --s2d6-item-border: #a67c52;
-  --s2d6-item-active: #7c4a02;
-  --s2d6-item-hover: #a67c52;
-  --s2d6-select-light: #a67c52;
+  --s2d6-input-background: var(--s2d6-dark-brown);
+  --s2d6-nav-background: var(--s2d6-border-brown);
+  --s2d6-header-background: var(--s2d6-dark-brown);
+  --s2d6-header-border: var(--s2d6-light-brown);
+  --s2d6-title-color: var(--s2d6-light-background);
+  --s2d6-item-border: var(--s2d6-light-brown);
+  --s2d6-item-active: var(--s2d6-border-brown);
+  --s2d6-item-hover: var(--s2d6-light-brown);
+  --s2d6-select-light: var(--s2d6-light-brown);
   --s2d6-color-text-hyperlink: #ffb366;
-  --s2d6-color-shadow-primary: #7c4a02;
+  --s2d6-color-shadow-primary: var(--s2d6-border-brown);
   --s2d6-color-border-light-primary: #b5b3a4;
 }
 /* Western theme: readable header row fade for both light and dark */
 body.theme-light .application.twodsix .header-row {
-  background-image: linear-gradient(90deg, var(--s2d6-header-background, #e7d1b1) 0%, var(--s2d6-header-border, #a67c52) 100%);
+  background-image: linear-gradient(90deg, var(--s2d6-header-background, #e7d1b1) 0%, var(--s2d6-header-border, --s2d6-light-brown) 100%);
 }
 body.theme-dark .application.twodsix .header-row {
-  background-image: linear-gradient(90deg, var(--s2d6-header-background, #4b2e19) 0%, var(--s2d6-header-border, #a67c52) 100%);
+  background-image: linear-gradient(90deg, var(--s2d6-header-background, --s2d6-dark-brown) 0%, var(--s2d6-header-border, --s2d6-light-brown) 100%);
 }
 body {
   --font-body: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
@@ -114,7 +121,8 @@ body {
 }
 
 /* Add more selectors for other UI elements as needed */
-.character-bgi-std, .character-bgi-npc  {
+.character-bgi-std, .character-bgi-npc,
+.ship-state-grid, .ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input, input.power-current, input.power-total {
   font-size: var(--font-size-12);
 }
 
@@ -135,8 +143,29 @@ body {
   width: 43em;
 }
 
+.editor-content {
+  height: auto;
+}
+
+.notes-container {
+  margin: unset;
+  padding-left: 1ch;
+  padding-right: 1ch;
+  padding-top: 2ch;
+  height: 38em;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+
 .npc-notes-container, .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments, .character-bgi-npc,
-.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage  {
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .vehicle-storage, .vehicle-notes,
+.space-object-stats, .space-object-notes, .space-object-stats,
+.financial-notes div[contenteditable], .cash input[type='text'], .pension input[type='text'], .debt input[type='text'], .ship-payments input[type='text'], .living-costs input[type='text'],
+.ship-image, .ship-state-grid, .ship-name, .ship-name input[type="text"], .ship-info, .ship-tabs-info.sheet-body, .ship-power-management,
+.ship-notes-container-short .editor, .ship-financial-notes div[contenteditable], .ship-financial-notes .editor, .ship-commonFunds input[type="number"],
+div.ship-value, .ship-stat, .ship-stat-finance,
+.ship-position-box, .position-data,
+.info-container .editor, .components-header {
   border-color: var(--s2d6-header-border);
 }
 
