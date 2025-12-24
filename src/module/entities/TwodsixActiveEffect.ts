@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
+import { stackArmorValues } from "../utils/actorDamage";
 import { applyEncumberedEffect } from "../utils/showStatusIcons";
 
 /**
@@ -20,12 +21,15 @@ export class TwodsixActiveEffect extends ActiveEffect {
     if (this.parent instanceof Item) {
       if (["trait"].includes(this.parent.type)) {
         return false;
+      } else if (["consumable"].includes(this.parent.type) && this.parent.system.subtype === "software" && !this.parent.system.softwareActive) {
+        return true;
       } else if (["storage", "junk"].includes(this.parent.type) || this.parent.system.equipped !== 'equipped') {
         return true;
       }
     }
     return false;
   }
+
   /**
    * Perform follow-up operations after a Document of this type is created.
    * Post-creation operations occur for all clients after the creation is broadcast.
@@ -51,12 +55,12 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * Pre-creation operations only occur for the client which requested the operation.
    * @param {object} data               The initial data object provided to the document creation request.
    * @param {object} options            Additional options which modify the creation request.
-   * @param {User} userId                 The User requesting the document creation.
+   * @param {string} userId                 The User requesting the document creation.
    * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
    * @see {Document#_preCreate}
    * @protected
    */
-  protected async _preCreate(data:object, options:object, userId:User): Promise<boolean|void> {
+  protected async _preCreate(data:object, options:object, userId:string): Promise<boolean|void> {
     const allowed:boolean = await super._preCreate(data, options, userId);
     if (!allowed) {
       return false;
@@ -158,6 +162,105 @@ export class TwodsixActiveEffect extends ActiveEffect {
     }
 
   }
+
+  /**
+   * Apply all custom effects for a given actor and phase, and populate actor.overrides for override effects.
+   * @param {TwodsixActor} actor - The actor to apply effects to.
+   * @param {Array<TwodsixActiveEffect>} effects - The list of effects to process.
+   * @param {string} phase - The phase to apply.
+   */
+  static applyAllCustomEffects(actor, effects, phase) {
+    // Do not reset actor.overrides here; let the AE workflow manage initialization.
+    // Deduplicate override effects by highest priority
+    const overrideMap = {};
+    const normalCustoms = [];
+    for (const effect of effects) {
+      if (!effect.active) continue;
+      for (const change of effect.changes) {
+        if (!change.key || change.phase !== phase) continue;
+        if (
+          change.type === "custom" &&
+          typeof change.value === "string" &&
+          change.value.trim().startsWith("=")
+        ) {
+          const priority = change.priority ?? effect.priority ?? 0;
+          if (!overrideMap[change.key] || (priority > (overrideMap[change.key].change?.priority ?? overrideMap[change.key].effect?.priority ?? 0))) {
+            overrideMap[change.key] = {effect, change};
+          }
+        } else if (
+          change.type === "custom" &&
+          (!change.value || typeof change.value !== "string" || !change.value.trim().startsWith("="))
+        ) {
+          normalCustoms.push({effect, change});
+        }
+      }
+    }
+    // Apply deduped override effects (highest priority per key)
+    for (const {effect, change} of Object.values(overrideMap)) {
+      TwodsixActiveEffect.applyCustomEffect(actor, change);
+    }
+    // Apply all other custom effects (not starting with "=")
+    for (const {effect, change} of normalCustoms) {
+      TwodsixActiveEffect.applyCustomEffect(actor, change);
+    }
+  }
+
+  /**
+   * Apply a custom effect change to the actor, evaluating as a formula if needed.
+   * @param {TwodsixActor} actor - The actor to apply the effect to.
+   * @param {object} change - The change object from the effect.
+   */
+  static applyCustomEffect(actor:TwodsixActor, change:object) {
+    // Only handle CUSTOM mode effects
+    if (change.type !== "custom") {
+      return undefined;
+    }
+
+    // Get the current value
+    const current = foundry.utils.getProperty(actor, change.key);
+    if (current == undefined) {
+      return undefined;
+    }
+
+    let update = 0;
+    let operator = '+';
+    let changeFormula = change.value;
+    if (foundry.utils.getType(changeFormula) !== 'string') {
+      changeFormula = changeFormula.toString();
+    } else {
+      changeFormula = changeFormula.trim();
+    }
+    // Process operator
+    if (["+", "/", "-", "*", "="].includes(changeFormula[0])) {
+      operator = changeFormula[0];
+      changeFormula = changeFormula.slice(1);
+    }
+    const formula = Roll.replaceFormulaData(changeFormula, actor, { missing: "0", warn: false });
+    const ct = foundry.utils.getType(current);
+    if (Roll.validate(formula)) {
+      const r = Roll.safeEval(formula);
+      switch (ct) {
+        case "string": {
+          const currentAsFloat = Number.parseFloat(current);
+          if (Number.isInteger(currentAsFloat)) {
+            update = calculateUpdate(parseInt(current), parseInt(r), operator, change.key);
+          } else {
+            update = calculateUpdate(currentAsFloat, r, operator, change.key);
+          }
+          break;
+        }
+        case "number":
+          update = calculateUpdate(current, r, operator, change.key);
+          break;
+      }
+    } else if (ct === 'string') {
+      update = operator === '+' ? current + changeFormula : changeFormula;
+    }
+
+    // For CUSTOM mode, we've computed the value ourselves
+    foundry.utils.setProperty(actor, change.key, update);
+    foundry.utils.setProperty(actor.overrides, change.key, update);
+  }
 }
 
 /**
@@ -199,4 +302,41 @@ function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
     }
   }
   return false;
+}
+
+/**
+ * Apply a numerical effect value using a math operator
+ * @param {number} current  Current value to apply effect
+ * @param {number} effectChange Value of the effect change
+ * @param {string} operator numerical operator to use for applying effect
+ * @param {string} key The property key being modified (for armor detection)
+ * @returns {number}  The updated value when effectChange is applied to current
+ */
+function calculateUpdate(current:number, effectChange:number, operator:string, key:string = ''): number {
+  // Detect armor keys and use stackArmorValues for '+' operator
+  if (operator === '+' && isArmorKey(key)) {
+    return stackArmorValues(current, effectChange);
+  }
+
+  switch (operator) {
+    case '+':
+      return current + effectChange;
+    case '-':
+      return current - effectChange;
+    case '=':
+      return effectChange;
+    case '*':
+      return current * effectChange;
+    case '/':
+      return current / effectChange;
+    default:
+      return current;
+  }
+}
+
+/**
+ * Check if a change key refers to an armor-related property
+ */
+function isArmorKey(key: string): boolean {
+  return key.includes('armor') || key.includes('Armor');
 }

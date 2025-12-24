@@ -1307,9 +1307,20 @@ export default class TwodsixActor extends Actor {
    * @override This overrides the core FVTT method to account for modifying derived data in multiple passes
    */
   applyActiveEffects(phase?: string): void {
-    super.applyActiveEffects(phase || "initial");
+    if (phase === "custom") {
+      // Only custom logic for "custom" phase
+      const allEffects = Array.from(this.appliedEffects ?? []);
+      TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
+    } else if (phase === "encumbMax") {
+      // First process standard types
+      super.applyActiveEffects(phase);
+      // Then process custom types
+      const allEffects = Array.from(this.appliedEffects ?? []);
+      TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
+    } else {
+      super.applyActiveEffects(phase || "initial");
+    }
   }
-
 
   /**
    * Build a list of system data keys that are considered "derived data" for this actor.
