@@ -139,7 +139,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   async _preRender(context:Context, options:any): void {
     await super._preRender(context, options);
     //Change window icon if western mode
-    if ( game.settings.get("twodsix", "themeStyle") === "western") {
+    if ( game.settings.get("twodsix", "themeStyle") === "western" && options.window?.icon) {
       options.window.icon = "fa-solid fa-hat-cowboy";
     }
   }
