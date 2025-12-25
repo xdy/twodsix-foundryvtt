@@ -169,7 +169,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @param {Array<TwodsixActiveEffect>} effects - The list of effects to process.
    * @param {string} phase - The phase to apply.
    */
-  static applyAllCustomEffects(actor, effects, phase) {
+  static applyAllCustomEffects(actor: TwodsixActor, effects: Array<TwodsixActiveEffect>, phase: string) {
     // Do not reset actor.overrides here; let the AE workflow manage initialization.
     // Deduplicate override effects by highest priority
     const overrideMap = {};
