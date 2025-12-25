@@ -74,9 +74,9 @@ export default class TwodsixActor extends Actor {
 
           let newImage = "";
           if (this.type === "traveller") {
-            newImage = 'systems/twodsix/assets/icons/default_actor.png';
+            newImage = game.settings.get("twodsix", "themeStyle") === "western" ? 'systems/twodsix/assets/icons/bandit.png' : 'systems/twodsix/assets/icons/default_actor.png';
           } else if (this.type === "animal") {
-            newImage = 'systems/twodsix/assets/icons/alien-bug.svg';
+            newImage = game.settings.get("twodsix", "themeStyle") === "western" ? 'systems/twodsix/assets/icons/buffalo-head.svg' : 'systems/twodsix/assets/icons/alien-bug.svg';
           } else if (this.type === "robot") {
             newImage = 'systems/twodsix/assets/icons/default_robot.svg';
           } else {
@@ -148,7 +148,7 @@ export default class TwodsixActor extends Actor {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
           foundry.utils.mergeObject(changeData, {
-            img: 'systems/twodsix/assets/icons/default_vehicle.png'
+            img: game.settings.get("twodsix", "themeStyle") === "western" ? 'systems/twodsix/assets/icons/old-wagon.png' : 'systems/twodsix/assets/icons/default_vehicle.png'
           });
         }
         break;
@@ -157,7 +157,7 @@ export default class TwodsixActor extends Actor {
         if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
           isDefaultImg = true;
           foundry.utils.mergeObject(changeData, {
-            img: 'systems/twodsix/assets/icons/default_space-object.png'
+            img: game.settings.get("twodsix", "themeStyle") === "western" ?'systems/twodsix/assets/icons/cactus.png' : 'systems/twodsix/assets/icons/default_space-object.png'
           });
         }
         break;
