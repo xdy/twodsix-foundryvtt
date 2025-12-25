@@ -184,23 +184,23 @@ export class TwodsixActiveEffect extends ActiveEffect {
           change.value.trim().startsWith("=")
         ) {
           const priority = change.priority ?? effect.priority ?? 0;
-          if (!overrideMap[change.key] || (priority > (overrideMap[change.key].change?.priority ?? overrideMap[change.key].effect?.priority ?? 0))) {
-            overrideMap[change.key] = {effect, change};
+          if (!overrideMap[change.key] || (priority > (overrideMap[change.key]?.priority ?? 0))) {
+            overrideMap[change.key] = change;
           }
         } else if (
           change.type === "custom" &&
           (!change.value || typeof change.value !== "string" || !change.value.trim().startsWith("="))
         ) {
-          normalCustoms.push({effect, change});
+          normalCustoms.push(change);
         }
       }
     }
     // Apply deduped override effects (highest priority per key)
-    for (const {effect, change} of Object.values(overrideMap)) {
+    for (const change of Object.values(overrideMap)) {
       TwodsixActiveEffect.applyCustomEffect(actor, change);
     }
     // Apply all other custom effects (not starting with "=")
-    for (const {effect, change} of normalCustoms) {
+    for (const change of normalCustoms) {
       TwodsixActiveEffect.applyCustomEffect(actor, change);
     }
   }
