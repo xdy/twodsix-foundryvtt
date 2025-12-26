@@ -62,7 +62,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   protected async _preCreate(data:object, options:object, user: documents.BaseUser): Promise<boolean|void> {
     const allowed:boolean = await super._preCreate(data, options, user);
-    console.log("TwodsixActiveEffect _preCreate allowed:", allowed, "data:", data, "options:", options, "user:", user);
+    //console.log("TwodsixActiveEffect _preCreate allowed:", allowed, "data:", data, "options:", options, "user:", user);
     if (allowed === false) {
       return false;
     }
@@ -79,7 +79,10 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @protected
    */
   async _preUpdate(data: object, options: object, user: documents.BaseUser): Promise<void|boolean> {
-    await super._preUpdate(data, options, user);
+    const allowed:boolean = await super._preUpdate(data, options, user);
+    if (allowed === false) {
+      return false;
+    }
     //console.log(data, options, user);
     this.updatePhases(data, options, user);
   }
