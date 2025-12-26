@@ -560,7 +560,7 @@
       "Component": {
         "Ammunition":"Ammunition",
         "componentName": "Component",
-        "accomodations": "accommodations",
+        "accommodations": "accommodations",
         "ammo": "ammo",
         "armament": "armament",
         "armor": "armor",
@@ -678,7 +678,10 @@
         "Sandcaster": "Sandcaster",
         "Other": "Other",
         "StoredAmmunition": "Stored Ammunition",
-        "reload": "reload"
+        "reload": "reload",
+        "driveType": "Drive Type",
+        "jdrive": "System Jump Drive",
+        "mdrive": "Manoeuvre Drive"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -1311,6 +1314,10 @@
         "hint": "Show the ship components list as a single row.",
         "name": "Ship components listed as single row"
       },
+      "showSingleCargoColumn": {
+        "hint": "Show the ship cargo and locker lists as a single row.",
+        "name": "Ship cargo and locker listed as single row"
+      },
       "showBandwidth": {
         "hint": "Show the used and available bandwidth for computers and software.",
         "name": "Ship computing bandwidth"
@@ -1679,6 +1686,10 @@
         "hint": "The display label for the jump drive on the power management settings",
         "name": "Jump Drive Label"
       },
+      "mDriveLabel": {
+        "hint": "The display label for the manoeuvre drive on the power management settings",
+        "name": "Manoeuvre Drive Label"
+      },
       "showCost": {
         "hint": "List the ship component's cost in MCr for the single-line component list on the ship sheet.",
         "name": "Display Cost"
@@ -1743,6 +1754,22 @@
         "hint": "The roll DM that is applied for each hit to a component.",
         "name": "Component Damage DM"
       },
+      "announceCombatPhases": {
+        "hint": "Post a chat message when the combat phase changes during space combat.",
+        "name": "Announce Combat Phases"
+      },
+      "spaceCombatPhases": {
+        "hint": "Select the ship combat phase sequence to use for ship battles.",
+        "name": "Ship combat phase sequence",
+        "choices": {
+          "fivePhase": "Five Phase (Classic Traveller)",
+          "threePhase": "Three Phase (Cepheus Engine)",
+          "twoPhasePosition": "Two Phase - Position Dynamic",
+          "eightPhaseLooping": "Eight Phase - Looping (Cepheus Universal)",
+          "mgt2eThreePhase": "Three Phase (Mongoose Traveller 2E)",
+          "none": "Standard Foundry Combat (No Phases)"
+        }
+      },
       "showTraitAE": {
         "hint": "List active effect formulas as part of trait short description (true) on Traveller Info tab.  Otherwise, show only the short description for the trait (false).",
         "name": "Show Active Effects for Traits"
@@ -1756,7 +1783,36 @@
         "name": "Rules for handling ship damage"
       }
     },
-    "CloseAndCreateNew": "Close and create new",
+    "Combat": {
+    "PhaseChange": "Combat Phase Change",
+    "Round": "Round",
+    "Phase": "Phase",
+    "System": "System",
+    "PreviousPhase": "Previous Phase",
+    "NextPhase": "Next Phase",
+    "AlreadyFirstPhase": "Already at the first phase of the first round",
+    "MinorActions": "Minor Actions Used",
+    "SignificantActions": "Significant Actions Used",
+    "Reactions": "Reactions Used",
+    "ThrustUsed": "Thrust Used",
+    "NoMinorActionsRemaining": "No minor actions remaining for this phase",
+    "NoSignificantActionsRemaining": "No significant actions remaining for this phase",
+    "NoReactionsRemaining": "No reactions remaining",
+    "Phases": {
+      "detection": "Detection",
+      "range": "Range",
+      "tactical": "Tactical",
+      "advantage": "Advantage",
+      "attack": "Attack",
+      "screen": "Screen",
+      "damageControl": "Damage Control",
+      "declaration": "Declaration",
+      "actions": "Actions",
+      "damage": "Damage",
+      "manoeuvre": "Manoeuvre"
+    }
+  },
+  "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",
     "Yes": "Yes",
     "Name": "Name",

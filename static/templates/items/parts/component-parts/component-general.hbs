@@ -30,6 +30,16 @@
       {{selectOptions config.ComponentStates selected = system.status localize = true}}
     </select>
   </div>
+
+  {{#iff system.subtype "===" "drive"}}
+    <div class="item-skill">
+      <label for="system.driveType" class="resource-label">{{localize "TWODSIX.Items.Component.driveType"}}:</label>
+      <select class="select-color" name="system.driveType" value={{system.driveType}}>
+        {{selectOptions config.DriveTypes selected = system.driveType localize = true}}
+      </select>
+    </div>
+  {{/iff}}
+
   <div class="item-hits">
     <label for="system.hits" class="resource-label">{{localize "TWODSIX.Items.Component.SustainedHits"}}</label>
     <input class="form-input" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{getComponentMaxHits}}"/>

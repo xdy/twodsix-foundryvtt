@@ -8,7 +8,7 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/utils";
-import ItemTemplate, { targetTokensInTemplate } from "../utils/ItemTemplate";
+import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
 import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
@@ -250,8 +250,15 @@ export default class TwodsixItem extends Item {
 
     tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
 
-    /*Apply measured template if valid AOE*/
+    // Apply measured template if valid AOE. drawItemTemplate handles region placement and targeting.
     const isAOE = await this.drawItemTemplate();
+    if (isAOE) {
+      // Switch back to token control after region placement for user convenience
+      if (canvas.tokens && typeof canvas.tokens.activate === 'function') {
+        canvas.tokens.activate({ tool: 'select' });
+      }
+      // Targeting is now handled within the region placement workflow; no redundant call here.
+    }
 
     // Get fire mode parameters
     const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
@@ -1396,12 +1403,18 @@ export default class TwodsixItem extends Item {
     if ( itemForAOE.system.target?.type !== "none" ) {
       returnValue = true;
       try {
-        const template:ItemTemplate = await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
-        if (template && game.settings.get('twodsix', 'autoTargetAOE')) {
-          targetTokensInTemplate(template);
+        const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
+        if (itemTemplate) {
+          const regionDoc: RegionDocument = await itemTemplate.drawPreview();
+          if (regionDoc && game.settings.get('twodsix', 'autoTargetAOE')) {
+            ItemTemplate.targetTokensForPlacedRegion(regionDoc);
+          }
+        } else {
+          console.error("Failed to create ItemTemplate from item:", itemForAOE);
         }
-      } catch /*(err)*/ {
+      } catch (err) {
         ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
+        console.log ("Template error: ", err);
       }
     }
     return returnValue;
@@ -1480,6 +1493,38 @@ export default class TwodsixItem extends Item {
     }
 
     return { rangeModifier, rangeLabel };
+  }
+
+  /**
+   * Checks if this component is a J-Drive (Jump Drive) based on name and label settings.
+   * @returns {boolean}
+   */
+  isJDriveComponent(): boolean {
+    if (this.type !== "component") {
+      return false;
+    }
+    if (this.system.driveType === "jdrive") {
+      return true;
+    }
+    const componentName = this.name?.toLowerCase() ?? "";
+    const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();
+    return componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes('jdrive') || componentName.includes(jDriveLabel);
+  }
+
+  /**
+   * Checks if this component is an M-Drive (Maneuver Drive) based on name and label settings.
+   * @returns {boolean}
+   */
+  isMDriveComponent(): boolean {
+    if (this.type !== "component") {
+      return false;
+    }
+    if (this.system.driveType === "mdrive") {
+      return true;
+    }
+    const componentName = this.name?.toLowerCase() ?? "";
+    const mDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'mDriveLabel'))).toLowerCase();
+    return componentName.includes('m-drive') || componentName.includes('m drive') || componentName.includes('mdrive') || componentName.includes(mDriveLabel);
   }
 }
 
@@ -1759,6 +1804,7 @@ function getRangeBand(range: number):string {
     return 'unknown';
   }
 }
+
 
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
 const INFEASIBLE = -99;

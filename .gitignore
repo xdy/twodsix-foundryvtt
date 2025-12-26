@@ -23,9 +23,12 @@ foundry-esm.js
 foundry.mjs
 sample_data/local/*
 !sample_data/local/.gitkeep
+sample_data/*
+!sample_data/.gitkeep
 foundry/client.mjs
 foundry/config.mjs
 client.mjs
+foundry/*
 foundry/**
 
 # AI instructions

@@ -68,83 +68,98 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
  * @param {TwodsixActor} selectedActor  The actor to check
  * @public
  */
+let encumbranceUpdateInProgress = false;
 export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
-  let state = false;
-  let ratio = 0;
-  let aeToKeep: TwodsixActiveEffect | undefined = undefined;
-  const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
-
-  //Determined whether encumbered if not dead
-  if (selectedActor.system.hits.value > 0) {
-    if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
-      state = true;
-      ratio = 1;
-    } else if (maxEncumbrance > 0) {
-      ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
-      state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction'))); //remove await
-    }
+  if (encumbranceUpdateInProgress) {
+    return;
   }
+  encumbranceUpdateInProgress = true;
+  try {
+    const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
+    let state = false;
+    let ratio = 0;
+    let aeToKeep: TwodsixActiveEffect | undefined = undefined;
+    const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
 
-  // Delete encumbered AE's if uneeded or more than one
-  if (isCurrentlyEncumbered.length > 0) {
-    if (state === true) {
-      aeToKeep = isCurrentlyEncumbered.pop();
-    }
-    if(isCurrentlyEncumbered.length > 0) {
-      const idList = isCurrentlyEncumbered.map(i => i.id);
-      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
-    }
-  }
-
-  //Define AE if actor is encumbered
-  if (state === true) {
-    const modifier:string = getEncumbranceModifier(ratio).toString();
-    let changeData: { key: string; mode: any; value: string; }[];
-    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
-      changeData = [{
-        key: "system.characteristics.strength.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      },
-      {
-        key: "system.characteristics.dexterity.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      },
-      {
-        key: "system.characteristics.endurance.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      }];
-    } else {
-      changeData = [{
-        key: "system.conditions.encumberedEffect",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      }];
-    }
-
-    if (game.settings.get('twodsix', 'ruleset') === 'CU') {
-      changeData.push({
-        key: "system.movement.walk",
-        mode: CONST.ACTIVE_EFFECT_MODES.MULTIPLY,
-        value: 0.75
-      });
-    }
-
-    if (!aeToKeep) {
-      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-        name: game.i18n.localize(TWODSIX.effectType.encumbered),
-        img: "systems/twodsix/assets/icons/weight.svg",
-        changes: changeData,
-        statuses: ["encumbered"]
-      }], {dontSync: true, noHook: true});
-    } else {
-      if (changeData[0].value !== aeToKeep.changes[0].value) {
-        await aeToKeep.update({changes: changeData });
+    //Determined whether encumbered if not dead
+    if (selectedActor.system.hits.value > 0) {
+      if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
+        state = true;
+        ratio = 1;
+      } else if (maxEncumbrance > 0) {
+        ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
+        state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction'))); //remove await
       }
     }
+
+    // Delete encumbered AE's if uneeded or more than one
+    if (isCurrentlyEncumbered.length > 0) {
+      if (state === true) {
+        aeToKeep = isCurrentlyEncumbered.pop();
+      }
+      if (isCurrentlyEncumbered.length > 0) {
+        const idList = isCurrentlyEncumbered.map(i => i.id);
+        await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
+      }
+    }
+
+    //Define AE if actor is encumbered
+    if (state === true) {
+      const modifier: string = getEncumbranceModifier(ratio).toString();
+      let changeData: { key: string; type: any; value: string; }[];
+      if (game.settings.get('twodsix', 'ruleset') === 'CT') {
+        changeData = [
+          {
+            key: "system.characteristics.strength.value",
+            type: "add",
+            value: modifier
+          },
+          {
+            key: "system.characteristics.dexterity.value",
+            type: "add",
+            value: modifier
+          },
+          {
+            key: "system.characteristics.endurance.value",
+            type: "add",
+            value: modifier
+          }
+        ];
+      } else {
+        changeData = [
+          {
+            key: "system.conditions.encumberedEffect",
+            type: "add",
+            value: modifier
+          }
+        ];
+      }
+
+      if (game.settings.get('twodsix', 'ruleset') === 'CU') {
+        changeData.push({
+          key: "system.movement.walk",
+          type: "multiply",
+          value: 0.75
+        });
+      }
+
+      if (!aeToKeep) {
+        await selectedActor.createEmbeddedDocuments("ActiveEffect", [
+          {
+            name: game.i18n.localize(TWODSIX.effectType.encumbered),
+            img: "systems/twodsix/assets/icons/weight.svg",
+            changes: changeData,
+            statuses: ["encumbered"]
+          }
+        ], {dontSync: true});
+      } else {
+        if (changeData[0].value !== aeToKeep.changes[0].value) {
+          await aeToKeep.update({ changes: changeData });
+        }
+      }
+    }
+  } finally {
+    encumbranceUpdateInProgress = false;
   }
 }
 
@@ -160,7 +175,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   const isAlreadyDead = selectedActor.effects.some(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset'); //toString shouldn't be needed
   if (!isAlreadyUnconscious && !isAlreadyDead) {
-    if (['CE', 'AC', 'CU', 'OTHER'].includes(rulesSet)) {
+    if (['CE', 'AC', 'CU', 'OTHER', "MGT2E"].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         await setConditionState('unconscious', selectedActor, true);
       }
@@ -253,9 +268,9 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     }
     let changeData = {}; //AC has a movement penalty not roll penalty
     if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-      changeData = { key: "system.movement.walk", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: 1.5 };
+      changeData = { key: "system.movement.walk", type: "override", value: 1.5 };
     } else {
-      changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
+      changeData = { key: "system.conditions.woundedEffect", type: "add", value: woundModifier.toString() };
     }
     //
     if (!currentEffectId) {
@@ -298,6 +313,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'CE':
       case 'AC':
       case 'OTHER':
+      case "MGT2E":
         return (getCEWoundTint(selectedTraveller));
       case 'CEQ':
       case 'CEATOM':

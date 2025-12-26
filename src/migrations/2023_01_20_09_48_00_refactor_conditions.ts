@@ -7,13 +7,13 @@ import { applyToAllActors } from "../module/utils/migration-utils";
 async function refactorConditions (actor: TwodsixActor): Promise<void> {
   const encumberedEffect = actor.effects.find(eff => [game.i18n.localize(TWODSIX.effectType.encumbered), "Encumbered"].includes(eff.name));
   if (encumberedEffect) {
-    const changeData = { key: "system.conditions.encumberedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: encumberedEffect.changes[0].value };
+    const changeData = { key: "system.conditions.encumberedEffect", type: "add", value: encumberedEffect.changes[0].value };
     await actor.updateEmbeddedDocuments('ActiveEffect', [{ _id: encumberedEffect.id, changes: [changeData] }]);
   }
 
   const woundedEffect = actor.effects.find(eff => [game.i18n.localize(TWODSIX.effectType.wounded), "Wounded"].includes(eff.name));
   if (woundedEffect) {
-    const changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundedEffect.changes[0].value };
+    const changeData = { key: "system.conditions.woundedEffect", type: "add", value: woundedEffect.changes[0].value };
     await actor.updateEmbeddedDocuments('ActiveEffect', [{ _id: woundedEffect.id, changes: [changeData] }]);
   }
 }

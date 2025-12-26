@@ -392,25 +392,11 @@ export default class TwodsixActor extends Actor {
     // Calculate encumbrance.value before AE passes (so AEs can modify it)
     system.encumbrance.value = this.getActorEncumbrance();
 
-    // Apply active effects in multiple passes (base pass already done by core FVTT)
-    // Collect all keys that have CUSTOM mode effects (excluding encumbrance.max)
-    const allCustomKeys = this.appliedEffects
-      .flatMap(e => e.changes.filter(c => c.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM).map(c => c.key))
-      .filter(k => k); //Make certain keys are valid
-    const customKeys = [...new Set(allCustomKeys)].filter(k => k !== "system.encumbrance.max"); //Deduplicate and get rid of encumbrance.max
-
     // Second pass: apply non-CUSTOM effects to derived fields (excluding encumbrance.max and CUSTOM keys)
-    const derivedKeys = this._getDerivedDataKeys()
-      .filter(k => k !== "system.encumbrance.max" && !customKeys.includes(k));
-    if (derivedKeys.length > 0) {
-      this.applyActiveEffects(derivedKeys);
-    }
+    this.applyActiveEffects("derived");
 
     // Third pass: apply all CUSTOM mode effects (now that derived data is stable)
-    // Explicitly exclude encumbrance.max from this pass (it has its own pass after calculation)
-    if (customKeys.length > 0) {
-      this.applyActiveEffects(customKeys);
-    }
+    this.applyActiveEffects("custom");
 
     // Clear any override for encumbrance.max from previous passes before recalculating
     if (this.overrides.system?.encumbrance?.max !== undefined) {
@@ -420,7 +406,7 @@ export default class TwodsixActor extends Actor {
     system.encumbrance.max = this.getMaxEncumbrance(true);
 
     // Fourth pass: final override for encumbrance.max
-    this.applyActiveEffects(["system.encumbrance.max"]);
+    this.applyActiveEffects("encumbMax");
 
   }
 
@@ -620,10 +606,15 @@ export default class TwodsixActor extends Actor {
     if (!this.system.shipStats.mass.max || this.system.shipStats.mass.max <= 0) {
       const calcDisplacement = estimateDisplacement(this);
       if (calcDisplacement && calcDisplacement > 0) {
-        this.update({"system.shipStats.mass.max": calcDisplacement});
-        /*actorData.system.shipStats.mass.max = calcDisplacement;*/
+        //this.update({"system.shipStats.mass.max": calcDisplacement});
+        this.system.shipStats.mass.max = calcDisplacement;
       }
     }
+
+    /*Estimate thrust and jump if missing*/
+    const {jump, thrust} = this.getDriveRatings();
+    this.system.shipStats.drives.jDrive.rating = jump;
+    this.system.shipStats.drives.mDrive.rating = thrust;
 
     const massProducedMultiplier = this.system.isMassProduced ? (1 - parseFloat(game.settings.get("twodsix", "massProductionDiscount"))) : 1;
 
@@ -646,7 +637,7 @@ export default class TwodsixActor extends Actor {
     });
 
     //Update component costs for those that depend on base hull value
-    this.itemTypes.component.filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !["fuel", "cargo", "vehicle"].includes(it.system.subtype)).forEach((item: TwodsixItem) => {
+    this.itemTypes.component.filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !["fuel", "cargo", "ammo", "vehicle"].includes(it.system.subtype)).forEach((item: TwodsixItem) => {
       item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) / 100;
       if (item.system.pricingBasis === "pctHullPerUnit") {
         item.system.installedCost *= item.system.quantity;
@@ -761,12 +752,9 @@ export default class TwodsixActor extends Actor {
       } else {
         switch (anComponent.subtype) {
           case 'drive': {
-            const componentName = item.name?.toLowerCase() ?? "";
-            const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();  //Must localize as intial/default value is "TWODSIX.Ship.JDrive"
-            const mDriveLabel = game.i18n.localize("TWODSIX.Ship.MDrive").toLowerCase();
-            if (componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes(jDriveLabel)) {
+            if (item.isJDriveComponent()) {
               calcShipStats.power.jDrive += powerForItem;
-            } else if (componentName.includes('m-drive') || componentName.includes('m drive') || componentName.includes(mDriveLabel)) {
+            } else if (item.isMDriveComponent()) {
               calcShipStats.power.mDrive += powerForItem;
             } else {
               calcShipStats.power.systems += powerForItem;
@@ -1313,116 +1301,26 @@ export default class TwodsixActor extends Actor {
   /**
    * Apply transformations to this Actor's data caused by Active Effects.
    *
-   * Behavior is controlled by the optional `onlyKeys` list:
-   * - When `onlyKeys` is omitted, this is the "base pass": apply effects that target
-   *   non-derived keys, excluding CUSTOM mode. Statuses are updated.
-   * - When `onlyKeys` is provided, apply only those changes whose key is explicitly listed.
-   *   This is used for selective passes on derived properties and CUSTOM mode effects.
-   *
-   * Notes:
-   * - Status icons are cleared only in the base pass (when `onlyKeys` is not provided).
-   * - If the Item Piles module marks this actor as a merchant, derived-key passes are skipped.
-   * - CUSTOM mode effects are deferred to later passes when all derived data is stable.
-   *
-   * Typical usage pattern (4 passes):
-   * 1) Base pass: `applyActiveEffects()` (invoked automatically during Actor.prepareData before `prepareDerivedData()`)
-   *    - Applies non-derived keys, non-CUSTOM modes only
-   * 2) Derived pass: `applyActiveEffects(this._getDerivedDataKeys().filter(k => k !== "system.encumbrance.max"))`
-   *    - Applies characteristic mods, skills, armor values (non-CUSTOM modes)
-   * 3) CUSTOM pass: `applyActiveEffects(customKeys)` where customKeys are all CUSTOM mode effect keys
-   *    - Applies CUSTOM formulas that may reference derived data
-   * 4) Targeted override: `applyActiveEffects(["system.encumbrance.max"])`
-   *    - Final override for encumbrance max after calculation
-   *
-   * @param {string[]} [onlyKeys] Restrict application to these data paths; when omitted, applies only to
+   * @param {string} phase Restrict application to these data paths; when omitted, applies only to
    *                              non-derived keys (base pass).
    * @returns {void}
    * @override This overrides the core FVTT method to account for modifying derived data in multiple passes
    */
-  applyActiveEffects(onlyKeys?: string[]): void {
-    // Skip derived-key passes for Item Piles merchants
-    if (onlyKeys && game.modules.get("item-piles")?.active && this.getFlag("item-piles", "data.enabled")) {
-      return;
-    }
-
-    // Simple recursion protection for derived data passes
-    if (onlyKeys) {
-      this._aeCallDepth = (this._aeCallDepth || 0) + 1;
-      if (this._aeCallDepth > 10) {
-        console.warn(`Active Effects exceeded maximum depth for keys: ${onlyKeys.join(", ")} - possible circular dependency`);
-        ui.notifications.warn("TWODSIX.Warnings.ActiveEffectsLoop", {localize: true});
-        this._aeCallDepth = 0;
-        return;
-      }
+  applyActiveEffects(phase?: string): void {
+    if (phase === "custom") {
+      // Only custom logic for "custom" phase
+      const allEffects = Array.from(this.appliedEffects ?? []);
+      TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
+    } else if (phase === "encumbMax") {
+      // First process standard types
+      super.applyActiveEffects(phase);
+      // Then process custom types
+      const allEffects = Array.from(this.appliedEffects ?? []);
+      TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
     } else {
-      // Reset depth counter on base pass
-      this._aeCallDepth = 0;
-    }
-
-    const overrides = {};
-
-    // Clear statuses only in base pass
-    if (!onlyKeys) {
-      this.statuses.clear();
-    }
-
-    // Choose effects: all applicable for base pass, already-applied for targeted passes
-    const effects = onlyKeys ? this.appliedEffects : this.allApplicableEffects();
-    const changes = [];
-
-    for (const effect of effects) {
-      // Skip inactive effects in base pass
-      if (!onlyKeys && !effect.active) {
-        continue;
-      }
-
-      // Filter changes based on pass type
-      let filtered = effect.changes;
-      if (onlyKeys) {
-        // Targeted pass: only apply changes for specified keys
-        filtered = filtered.filter(change => onlyKeys.includes(change.key));
-      } else {
-        // Base pass: non-derived, non-CUSTOM only
-        const derivedData = this._getDerivedDataKeys();
-        filtered = filtered.filter(change =>
-          !derivedData.includes(change.key) && change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM
-        );
-      }
-
-      // Add filtered changes with priority
-      changes.push(...filtered.map(change => {
-        const c = foundry.utils.deepClone(change);
-        c.effect = effect;
-        c.priority = c.priority ?? (change.mode * 10 + (onlyKeys ? -100 : 0));
-        return c;
-      }));
-
-      // Collect status effects
-      for (const statusId of effect.statuses) {
-        this.statuses.add(statusId);
-      }
-    }
-
-    // Sort by priority and apply
-    changes.sort((a, b) => a.priority - b.priority);
-    for (const change of changes) {
-      if (!change.key) {
-        continue;
-      }
-      const result = change.effect.apply(this, change);
-      Object.assign(overrides, result);
-    }
-
-    // Merge or replace overrides
-    if (onlyKeys) {
-      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
-      // Decrement call depth after successful completion
-      this._aeCallDepth = Math.max(0, (this._aeCallDepth || 0) - 1);
-    } else {
-      this.overrides = foundry.utils.expandObject(overrides);
+      super.applyActiveEffects(phase || "initial");
     }
   }
-
 
   /**
    * Build a list of system data keys that are considered "derived data" for this actor.
@@ -1430,9 +1328,8 @@ export default class TwodsixActor extends Actor {
    * The list includes characteristic modifiers, skill keys, and (for travellers) special system values.
    *
    * @returns {string[]} An array of string keys representing derived data paths for this actor.
-   * @private
    */
-  private _getDerivedDataKeys(): string[] {
+  getDerivedDataKeys(): string[] {
     const derivedData: string[] = [];
     if (["traveller", "robot", "animal"].includes(this.type)) {
       // Add characteristics mods
@@ -1596,6 +1493,41 @@ export default class TwodsixActor extends Actor {
       }
     }
   }
+
+  /**
+   * Calculates the maximum Jump and Thrust ratings for a ship's drives.
+   * Returns the highest found rating for each drive type that are active, or the value from
+   * system.shipStats.drives if present.
+   *
+   * @returns {{ jump: number, thrust: number }} An object with the highest jump and thrust ratings.
+   */
+  public getDriveRatings(): { jump: number, thrust: number } {
+    if (this.type !== "ship") {
+      return { jump: 0, thrust: 0 };
+    }
+
+    let jump = 0;
+    let thrust = 0;
+
+    const driveComponents: TwodsixItem[] = this.itemTypes.component.filter(
+      (it: TwodsixItem) =>
+        it.system.subtype === 'drive' &&
+        !["off", "destroyed"].includes(it.system.status)
+    );
+
+    for (const drive of driveComponents) {
+      if (drive.isMDriveComponent()) {
+        thrust = Math.max(thrust, drive.system.rating || 0);
+      } else if (drive.isJDriveComponent()) {
+        jump = Math.max(jump, drive.system.rating || 0);
+      }
+    }
+
+    return {
+      jump: this.system.shipStats.drives.jDrive.rating || jump,
+      thrust: this.system.shipStats.drives.mDrive.rating || thrust
+    };
+  }
 }
 
 /**
@@ -1663,7 +1595,7 @@ async function deleteIdFromShipPositions(actorId: string): void {
 
   for (const ship of allShips) {
     if ((<Ship>ship.system).shipPositionActorIds[actorId]) {
-      await ship.update({[`system.shipPositionActorIds.-=${actorId}`]: null });
+      await ship.update({[`system.shipPositionActorIds.${actorId}`]: _del });
     }
   }
 }
