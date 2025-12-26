@@ -55,14 +55,15 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * Pre-creation operations only occur for the client which requested the operation.
    * @param {object} data               The initial data object provided to the document creation request.
    * @param {object} options            Additional options which modify the creation request.
-   * @param {string} userId                 The User requesting the document creation.
+   * @param { documents.BaseUser} user                 The User requesting the document creation.
    * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
    * @see {Document#_preCreate}
    * @protected
    */
-  protected async _preCreate(data:object, options:object, userId:string): Promise<boolean|void> {
-    const allowed:boolean = await super._preCreate(data, options, userId);
-    if (!allowed) {
+  protected async _preCreate(data:object, options:object, user: documents.BaseUser): Promise<boolean|void> {
+    const allowed:boolean = await super._preCreate(data, options, user);
+    console.log("TwodsixActiveEffect _preCreate allowed:", allowed, "data:", data, "options:", options, "user:", user);
+    if (allowed === false) {
       return false;
     }
     this.updatePhases(data, options, user);
