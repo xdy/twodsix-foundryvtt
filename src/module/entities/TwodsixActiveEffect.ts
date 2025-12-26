@@ -7,7 +7,8 @@ import { applyEncumberedEffect } from "../utils/showStatusIcons";
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
  * We extend to our own class to have isSuppressed getter work with equipped status and
- * check for encumbrance when an AE is created or deleted.  CUSTOM mode is still applied as a hook.
+ * check for encumbrance when an AE is created or deleted.  CUSTOM mode is applied as part of TwodsixActor.applyActiveEffects,
+ * calling TwodsixActiveEffect.applyAllCustomEffects now.
  * Each TwodsixActiveEffect belongs to the effects collection of its parent Document.
  * Each TwodsixActiveEffect contains a ActiveEffectData object which provides its source data.
  */
@@ -62,7 +63,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   protected async _preCreate(data:object, options:object, user: documents.BaseUser): Promise<boolean|void> {
     const allowed:boolean = await super._preCreate(data, options, user);
-    console.log("TwodsixActiveEffect _preCreate allowed:", allowed, "data:", data, "options:", options, "user:", user);
+    //console.log("TwodsixActiveEffect _preCreate allowed:", allowed, "data:", data, "options:", options, "user:", user);
     if (allowed === false) {
       return false;
     }
@@ -79,7 +80,10 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @protected
    */
   async _preUpdate(data: object, options: object, user: documents.BaseUser): Promise<void|boolean> {
-    await super._preUpdate(data, options, user);
+    const allowed:boolean = await super._preUpdate(data, options, user);
+    if (allowed === false) {
+      return false;
+    }
     //console.log(data, options, user);
     this.updatePhases(data, options, user);
   }
