@@ -67,7 +67,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-prettier": "^5.5.4",
-    "fs-extra": "^11.3.2",
+    "fs-extra": "^11.3.3",
     "glob": "^13.0.0",
     "gulp": "^5.0.1",
     "marked": "^17.0.1",
