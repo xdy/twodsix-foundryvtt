@@ -7,7 +7,8 @@ import { applyEncumberedEffect } from "../utils/showStatusIcons";
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
  * We extend to our own class to have isSuppressed getter work with equipped status and
- * check for encumbrance when an AE is created or deleted.  CUSTOM mode is still applied as a hook.
+ * check for encumbrance when an AE is created or deleted.  CUSTOM mode is applied as part of TwodsixActor.applyActiveEffects,
+ * calling TwodsixActiveEffect.applyAllCustomEffects now.
  * Each TwodsixActiveEffect belongs to the effects collection of its parent Document.
  * Each TwodsixActiveEffect contains a ActiveEffectData object which provides its source data.
  */
