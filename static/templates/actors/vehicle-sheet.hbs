@@ -174,7 +174,11 @@
   <section class="tab {{tabs.storage.cssClass}}" data-group="primary" data-tab="storage" style="height: 100%;">
     <div class="vehicle-storage">
       <span class="item-title-vehicle">{{localize "TWODSIX.Vehicle.Tabs.Storage"}}</span>
-      {{> "systems/twodsix/templates/actors/parts/common/item-storage.hbs"}}
+      {{#if settings.showSingleComponentColumn}}
+        {{> "systems/twodsix/templates/actors/parts/common/item-storage-single.hbs"}}
+      {{else}}
+        {{> "systems/twodsix/templates/actors/parts/common/item-storage-double.hbs"}}
+      {{/if}}
     </div>
   </section>
 

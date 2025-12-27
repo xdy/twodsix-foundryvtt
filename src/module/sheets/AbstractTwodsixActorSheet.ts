@@ -72,7 +72,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
       showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
-      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
+      useFoundryStandardStyle: game.settings.get('twodsix', 'themeStyle') !== 'classic',
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") || game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
@@ -1203,7 +1203,7 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     const realChanges = effect.changes.filter(ch => ch.key === field);
     if (realChanges.length > 0) {
       const changesStr = realChanges.map(change =>
-        `${modes[change.mode] || ""}(${change.value})`
+        `${modes[change.type] || ""}(${change.value})`
       ).join(", ");
       effectStrings.push(`${effect.name}: ${changesStr}`);
     }

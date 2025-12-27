@@ -60,6 +60,7 @@ function adjustMovementForEncumbrance(actorData: Traveller, movementSpeed: numbe
       }
       break;
     case "CE":
+    case "RIDER":
       if (encumbrance > maxEncumbrance) {
         return 0; // Cannot move
       } else if (encumbrance > maxEncumbrance / 2) {
