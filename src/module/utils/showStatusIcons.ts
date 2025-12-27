@@ -175,7 +175,7 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
   const isAlreadyDead = selectedActor.effects.some(eff => eff.statuses.has('dead'));
   const rulesSet = game.settings.get('twodsix', 'ruleset'); //toString shouldn't be needed
   if (!isAlreadyUnconscious && !isAlreadyDead) {
-    if (['CE', 'AC', 'CU', 'OTHER', "MGT2E"].includes(rulesSet)) {
+    if (['CE', 'AC', 'CU', 'OTHER', "MGT2E", "RIDER"].includes(rulesSet)) {
       if (isUnconsciousCE(<Traveller>selectedActor.system)) {
         await setConditionState('unconscious', selectedActor, true);
       }
@@ -314,6 +314,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'AC':
       case 'OTHER':
       case "MGT2E":
+      case "RIDER":
         return (getCEWoundTint(selectedTraveller));
       case 'CEQ':
       case 'CEATOM':
@@ -439,7 +440,7 @@ function getEncumbranceModifier(ratio:number):number {
   const ruleset = game.settings.get('twodsix', 'ruleset');
   if (ratio === 0 ) {
     return 0; //Shoudn't get here
-  } else if (['CE'].includes(ruleset)) {
+  } else if (['CE', 'RIDER'].includes(ruleset)) {
     if (ratio <= game.settings.get('twodsix', 'encumbranceFraction')) {
       return 0;
     } else if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 2) {

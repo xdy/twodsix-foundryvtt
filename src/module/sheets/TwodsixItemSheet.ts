@@ -102,6 +102,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
       ShowDoubleTap: game.settings.get('twodsix', 'ShowDoubleTap'),
+      ShowSingleAction: game.settings.get('twodsix', 'ruleset') === 'RIDER',
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),

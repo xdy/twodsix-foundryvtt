@@ -23,6 +23,7 @@ export class WeaponData extends GearData {
     schema.damageType = new fields.StringField({required: true, blank: false, initial: "NONE" });
     schema.rateOfFire = new fields.StringField({...requiredBlankString});
     schema.doubleTap = new fields.BooleanField({ required: true, initial: false});
+    schema.isSingleAction = new fields.BooleanField({ required: true, initial: false});
     schema.recoil = new fields.BooleanField({ required: true, initial: false});
     schema.features = new fields.StringField({...requiredBlankString});
     schema.armorPiercing = new fields.StringField({required: true, blank: false, initial: "0" });

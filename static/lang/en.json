@@ -92,6 +92,8 @@
       "ROFBurst": "Burst Fire",
       "ROFFull": "Full Auto",
       "ROFDoubleTap": "Double Tap",
+      "ROFMulti": "Multi Fire",
+      "ROFFan": "Fan Fire",
       "ReplaceMacroCommand": "Update Macro Command",
       "rulesetChange": {
         "title": "Change ruleset",
@@ -1107,6 +1109,8 @@
       "FullAuto": "Full Auto",
       "DoubleTap": "Double Tap",
       "Single": "Single",
+      "Multi": "Multi",
+      "Fan": "Fan Fire",
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",

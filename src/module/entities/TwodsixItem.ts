@@ -214,6 +214,7 @@ export default class TwodsixItem extends Item {
    * @param showThrowDialog {boolean} Whether to show roll/through dialog
    * @param rateOfFireCE {number} Fire rate / consumables used
    * @param showInChat Whehter to show attack in chat
+   * @param overrideSettings settings to override default roll parameters from Item
    */
   public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true, overrideSettings?: any ):Promise<void> {
     if (this.type !== "weapon") {
@@ -554,6 +555,15 @@ export default class TwodsixItem extends Item {
           Object.assign(tmpSettings.rollModifiers, { rof: 1 });
         }
         usedAmmo = 2;
+        break;
+      case "multi":
+        numberOfAttacks = isAOE ? 1 : rateOfFire;
+        usedAmmo = numberOfAttacks;
+        break;
+      case "fan":
+        numberOfAttacks = 3;
+        usedAmmo = numberOfAttacks;
+        Object.assign(tmpSettings.rollModifiers, { rof: -1 });
         break;
     }
     Object.assign(tmpSettings, { bonusDamage: bonusDamage });
@@ -1213,6 +1223,15 @@ export default class TwodsixItem extends Item {
           await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
         }
         break;
+      case TWODSIX.RULESETS.RIDER.key:
+        if (modes[0] > 1 || this.system.isSingleAction) {
+          attackType = await promptForRIDERROF(this);
+          rof = (attackType === 'single') ? 1 : Number(modes[0]);
+          await this.performAttack(attackType, showThrowDialog, rof, true, tmpSettings);
+        } else {
+          await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
+        }
+        break;
       default:
         await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
         break;
@@ -1732,6 +1751,33 @@ async function promptForCTROF(modes: string[]): Promise<string> {
       rejectClose: false
     });
   }
+}
+
+async function promptForRIDERROF(weapon: TwodsixItem): Promise<string> {
+  const buttons = [{
+    action: "single",
+    label: "TWODSIX.Dialogs.ROFSingle",
+    default: true
+  }];
+  if (weapon.system.rateOfFire > 1) {
+    buttons.push({
+      action: "multi",
+      label: "TWODSIX.Dialogs.ROFMulti"
+    });
+  }
+  if (weapon.system.isSingleAction) {
+    buttons.push({
+      action: "fan",
+      label: "TWODSIX.Dialogs.ROFFan"
+    });
+  }
+  return await foundry.applications.api.DialogV2.wait({
+    window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+    content: "",
+    buttons: buttons,
+    rejectClose: false
+  });
+
 }
 
 /**

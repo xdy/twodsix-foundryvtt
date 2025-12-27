@@ -63,6 +63,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
               ];
             }
           case "CE":
+          case "RIDER":
             if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
               return [];
             } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 2) && game.settings.get("twodsix", "useEncumbrance")) {
