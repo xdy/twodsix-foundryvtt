@@ -958,7 +958,7 @@ const RULESETS = Object.freeze({
       showTimeframe: true,
       showHullAndArmor: "armorHullStruc",
       showSpells: false,
-      useNationality: false,
+      useNationality: true,
       animalsUseHits: false,
       robotsUseHits: false,
       animalsUseLocations: false,
