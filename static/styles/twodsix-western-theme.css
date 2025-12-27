@@ -181,3 +181,7 @@ div.ship-value, .ship-stat, .ship-stat-finance,
     inset 0 0 50px var(--s2d6-header-border),   /* Darker "stain" around edges */
     5px 5px 15px rgba(0,0,0,0.3); /* Soft shadow on the wall */
 }
+
+button.roll-initiative {
+  font-family: var(--font-body);
+}
