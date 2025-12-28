@@ -262,7 +262,7 @@ export default class TwodsixItem extends Item {
     }
 
     // Get fire mode parameters
-    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
+    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE, skill);
     const useCTBands: boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
 
     // Define Targets
@@ -496,9 +496,11 @@ export default class TwodsixItem extends Item {
    * @param {number} rateOfFireCE  The rate of fire used
    * @param {string} attackType The type of attack (e.g. burst, double-tap, etc.)
    * @param {object} tmpSettings the temporary settings object for the roll
+   * @param {boolean} isAOE Attack is an area attack - force to only a single attack
+   * @param {TwodsixItem} skill Skill used for attack
    * @returns {object} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
-  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object, isAOE:boolean): object {
+  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object, isAOE:boolean, skill:TwodsixItem): object {
     const ruleSet = game.settings.get('twodsix', 'ruleset');
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
@@ -563,7 +565,7 @@ export default class TwodsixItem extends Item {
       case "fan":
         numberOfAttacks = 3;
         usedAmmo = numberOfAttacks;
-        Object.assign(tmpSettings.rollModifiers, { rof: -1 });
+        Object.assign(tmpSettings.rollModifiers, { rof: skill?.system.value > 2 ? -1 : -2 });
         break;
     }
     Object.assign(tmpSettings, { bonusDamage: bonusDamage });

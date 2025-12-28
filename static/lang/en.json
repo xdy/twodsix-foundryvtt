@@ -819,7 +819,8 @@
         "CustomModifier": {
           "range": "Custom Range Modifier",
           "armor": "Custom Armor Modifier"
-        }
+        },
+        "isSingleAction": "Is Single Action?"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
