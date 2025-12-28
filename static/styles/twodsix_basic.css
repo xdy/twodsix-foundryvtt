@@ -416,7 +416,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   height: 100%;
   grid-template-columns: 30% 35% 30%;
-  grid-template-rows: 82% 18%;
+  grid-template-rows: 83% 18%;
   gap: 2%;
   /*position: relative;*/
   grid-template-areas:
@@ -1238,7 +1238,7 @@ svg:hover {
   background: transparent !important;
   grid-area: character-tabs;
   height: 100%;
-  overflow: auto;
+  /*overflow: auto;*/
 }
 /*
 .skill-tab, .item-tab, .finances-tab, .info-tab, .actor-notes-tab, .effects-tab {
@@ -1280,7 +1280,7 @@ a.skill-tab.active, a.item-tab.active, a.finances-tab.active, a.info-tab.active,
 .tab.inventory {
   /* margin-top: 1em; */
   height: 100%;
-  /* overflow: auto; */
+  overflow: auto;
 }
 
 /* .character-inventory {
@@ -1488,8 +1488,8 @@ input.item-value-edit, input.joat-skill-input {
 
 .tab.skills {
   top: 2em;
-  /* height: 524px; */
-  /* overflow-y: auto; */
+  height: 95%;
+  overflow-y: auto;
 }
 
 .item-controls .item-toggle i { display: inline; }
@@ -1607,6 +1607,11 @@ span.total-output {
 /* ============================================================================
    SECTION-7: CHARACTER SHEET - FINANCES TAB
    ============================================================================ */
+
+.tab.finances {
+  height: 100%;
+  overflow: auto;
+}
 
 .finances-container {
   display: grid;
@@ -1736,9 +1741,9 @@ span.total-output {
 }
 
 .tab.info {
-  top: 2em;
-  /* height: 550px; */
-  overflow-x: hidden;
+  /*top: 2em;*/
+  height: 100%;
+  overflow: auto;
 }
 
 .info-container .editor {
@@ -3454,6 +3459,12 @@ form .form-group > label {
 
 input[type="text"].color {
   width: fit-content;
+}
+
+.tab.effects {
+  /*top: 2em;*/
+  height: 100%;
+  overflow: auto;
 }
 
 .effect-image {
