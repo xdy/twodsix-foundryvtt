@@ -185,3 +185,7 @@ div.ship-value, .ship-stat, .ship-stat-finance,
 button.roll-initiative {
   font-family: var(--font-body);
 }
+
+nav.actor-sheet-tabs.tabs {
+  border-color:  var(--s2d6-header-border);
+}
