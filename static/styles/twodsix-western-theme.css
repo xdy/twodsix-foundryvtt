@@ -182,7 +182,7 @@ div.ship-value, .ship-stat, .ship-stat-finance,
     5px 5px 15px rgba(0,0,0,0.3); /* Soft shadow on the wall */
 }
 
-button.roll-initiative {
+button.roll-initiative, .chat-message h4 {
   font-family: var(--font-body);
 }
 
