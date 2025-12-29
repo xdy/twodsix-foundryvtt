@@ -2454,7 +2454,7 @@ notes-container > div[contenteditable] {
   /* align-self: center; */
 }
 
-.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover, .power-title:hover {
   cursor: pointer;
 }
 

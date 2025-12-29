@@ -427,7 +427,7 @@ label.checkbox > input[type="checkbox"] {
 .space-object-content-container {
   display: grid;
   grid-template-columns: 18em 18em;
-  grid-template-rows: 23em 8em;
+  grid-template-rows: 24em 8em;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -1963,7 +1963,7 @@ img.ship-mask-bg {
   padding: 0;
 }
 
-.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover, .power-title:hover {
   cursor: pointer;
 }
 

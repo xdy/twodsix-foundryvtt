@@ -177,6 +177,7 @@ export interface Ship {
   weightStats: WeightStats;
   shipStats:ShipStats;
   shipPositionActorIds: ShipPositionActorIds;
+  showWeightUsage: boolean;
 }
 
 export interface Crew {

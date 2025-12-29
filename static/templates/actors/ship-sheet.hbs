@@ -30,9 +30,9 @@
       {{/unless}}
       <div class="ship-power-subgrid">
         {{#if settings.showWeightUsage}}
-          <span class ="power-title">{{localize "TWODSIX.Ship.PowerWeightManagement"}}</span>
+          <span class ="power-title" data-action="toggleWeight">{{localize "TWODSIX.Ship.PowerWeightManagement"}}</span>
           {{else}}
-          <span class ="power-title">{{localize "TWODSIX.Ship.PowerManagement"}}</span>
+          <span class ="power-title" data-action="toggleWeight">{{localize "TWODSIX.Ship.PowerManagement"}}</span>
         {{/if}}
         <span class="ship-power-label">{{localize "TWODSIX.Ship.Power"}}</span>
         <div class="ship-power-used">
