@@ -169,7 +169,9 @@ export interface Ship {
   notes:string;
   cargo:string;
   finances:string;
+  financeValues: FinanceValues;
   shipValue:string;
+  commonFunds: number;
   maintenanceCost:string;
   mortgageCost:string;
   isMassProduced:boolean;
@@ -178,6 +180,12 @@ export interface Ship {
   shipStats:ShipStats;
   shipPositionActorIds: ShipPositionActorIds;
   showWeightUsage: boolean;
+}
+
+export interface FinanceValues {
+  cash:number;
+  mortgagePaymentTerm:number;
+  massProductionDiscount:number;
 }
 
 export interface Crew {

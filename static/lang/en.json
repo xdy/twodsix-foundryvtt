@@ -1000,6 +1000,7 @@
       "MacroTooltip": "Macro Name",
       "chatTooltip": "Ahoy!",
       "ExecuteMacro": "Execute Macro",
+      "ToggleDisplay" : "Change Display",
       "None": "None"
     },
     "Vehicle": {
@@ -1327,7 +1328,7 @@
         "name": "Show the 'Weapon Type' field on weapon sheets"
       },
       "showWeightUsage": {
-        "hint": "Display ship weight values instead of power on ship sheet.",
+        "hint": "Display ship weight values instead of power on ship sheet by default.",
         "name": "Show Weight instead of Power management on Ship Sheet"
       },
       "systemMigrationVersion": {
@@ -1389,12 +1390,12 @@
         "name": "Maximum hits for a component."
       },
       "mortgagePayment": {
-        "hint": "The number to divide the ship cost by to determine the monthly mortgage payments over 40 years.  A value of 240 means that the ship cost is divided 240 to dermine the monthly payment.",
-        "name": "Mortgage Payment Terms."
+        "hint": "The default number to divide the ship cost by to determine the monthly mortgage payments over 40 years.  A value of 240 means that the ship cost is divided 240 to dermine the monthly payment.",
+        "name": "Default Mortgage Payment Terms"
       },
       "massProductionDiscount": {
-        "hint": "The cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
-        "name": "Discount for ship being mass produced"
+        "hint": "The default cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
+        "name": "Default discount for ship being mass produced"
       },
       "reverseHealingOrder": {
         "hint": "Healing using token bar input heals in the same order that auto damage occurs. The first characteristic damaged is also the first healed.  If this setting is false, healing starts with last characterisic and works backwards.",

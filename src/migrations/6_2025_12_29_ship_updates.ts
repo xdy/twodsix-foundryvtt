@@ -18,6 +18,17 @@ async function migrateShipData(actor: TwodsixActor): Promise<void> {
     if (actor.system.showWeightUsage !== currentShowWeight) {
       foundry.utils.mergeObject(updates, {'system.showWeightUsage': currentShowWeight});
     }
+
+    const currentMortgageTerm:boolean = parseFloat(game.settings.get('twodsix', 'mortgagePayment'));
+    if (actor.system.financeValues.mortgagePaymentTerm !== currentMortgageTerm) {
+      foundry.utils.mergeObject(updates, {'system.financeValues.mortgagePaymentTerm': currentMortgageTerm});
+    }
+
+    const currentMassProductionDiscount:number = parseFloat(game.settings.get('twodsix', 'massProductionDiscount'));
+    if (actor.system.fianceValues.massProductionDiscount !== currentMassProductionDiscount) {
+      foundry.utils.mergeObject(updates, {'system.financeValues.massProductionDiscount': currentMassProductionDiscount});
+    }
+
     await actor.update(updates);
   }
 }

@@ -142,6 +142,23 @@ export default class TwodsixActor extends Actor {
             img: 'systems/twodsix/assets/icons/default_ship.png'
           });
         }
+
+        //Set default display preferences
+        const currentWeightDisplay:number = game.settings.get('twodsix', 'showWeightUsage');
+        if (this.system.showWeightUsage !== currentWeightDisplay) {
+          foundry.utils.mergeObject(changeData, {'system.showWeightUsage': currentWeightDisplay});
+        }
+
+        const currentMortgageTerm:number = game.settings.get('twodsix', 'mortgagePayment');
+        if (this.system.financeValues.mortgagePaymentTerm !== currentMortgageTerm) {
+          foundry.utils.mergeObject(changeData, {'system.financeValues.mortgagePaymentTerm': currentMortgageTerm});
+        }
+
+        const currentMassProductionDiscount:number = parseFloat(game.settings.get('twodsix', 'massProductionDiscount'));
+        if (this.system.financeValues.massProductionDiscount !== currentMassProductionDiscount) {
+          foundry.utils.mergeObject(changeData, {'system.financeValues.massProductionDiscount': currentMassProductionDiscount});
+        }
+
         break;
       }
       case "vehicle": {
@@ -616,7 +633,7 @@ export default class TwodsixActor extends Actor {
     this.system.shipStats.drives.jDrive.rating = jump;
     this.system.shipStats.drives.mDrive.rating = thrust;
 
-    const massProducedMultiplier = this.system.isMassProduced ? (1 - parseFloat(game.settings.get("twodsix", "massProductionDiscount"))) : 1;
+    const massProducedMultiplier = this.system.isMassProduced ? (1 - this.system.financeValues.massProductionDiscount) : 1;
 
     this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
@@ -774,7 +791,7 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    function updateShipData(shipActor): void {
+    function updateShipData(shipActor:TwodsixActor): void {
       shipActor.system.shipStats.power.value = roundToMaxDecimals(calcShipStats.power.used, 1);
       shipActor.system.shipStats.power.max = roundToMaxDecimals(calcShipStats.power.max, 1);
       shipActor.system.reqPower.systems = roundToMaxDecimals(calcShipStats.power.systems, 1);
@@ -793,7 +810,7 @@ export default class TwodsixActor extends Actor {
       shipActor.system.weightStats.available = roundToMaxDecimals(calcShipStats.weight.available, 2);
 
       shipActor.system.shipValue = calcShipStats.cost.total.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
-      shipActor.system.mortgageCost = (calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
+      shipActor.system.mortgageCost = (calcShipStats.cost.total / (<Ship>shipActor.system).financeValues.mortgagePaymentTerm * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
       shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }

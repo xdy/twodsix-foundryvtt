@@ -2719,6 +2719,11 @@ notes-container > div[contenteditable] {
   grid-area: avail;
 }
 
+.ship-stat-finance {
+  display: flex;
+  align-items: center;
+}
+
 .ship-stat input[type="number"],  .ship-stat-finance input[type="number"] {
   text-align: center;
   /* width: 53px; */
@@ -2729,7 +2734,7 @@ notes-container > div[contenteditable] {
 }
 
 .ship-stat-finance input[type="number"] {
-  width: 10ch;
+  /*width: 10ch;*/
 }
 
 .small-font {
