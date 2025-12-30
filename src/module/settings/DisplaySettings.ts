@@ -72,7 +72,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.general.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
     settings.actor.push(booleanSetting('useWoundedStatusIndicators', false));
     settings.actor.push(booleanSetting('useEncumbranceStatusIndicators', false));
-    //settings.ship.push(booleanSetting('showWeightUsage', false));
+    settings.ship.push(booleanSetting('showWeightUsage', false));
     settings.general.push(booleanSetting('showActorReferences', true));
     settings.general.push(booleanSetting('usePDFPagerForRefs', false));
     settings.actor.push(booleanSetting('showIcons', false));

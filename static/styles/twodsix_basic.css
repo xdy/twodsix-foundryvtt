@@ -2230,6 +2230,7 @@ img.ship-mask-bg {
 .ship-stat-finance {
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .ship-stat input, .ship-stat-finance input {
@@ -2687,10 +2688,10 @@ div.ship-value {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 33ch;
+  height: 42ch;
   border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
-  width: 30ch;
+  width: 35ch;
   padding: 0 2ch;
   /* font-size: 15px; */
   overflow-y: auto;

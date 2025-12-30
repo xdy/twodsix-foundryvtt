@@ -25,7 +25,7 @@ async function migrateShipData(actor: TwodsixActor): Promise<void> {
     }
 
     const currentMassProductionDiscount:number = parseFloat(game.settings.get('twodsix', 'massProductionDiscount'));
-    if (actor.system.fianceValues.massProductionDiscount !== currentMassProductionDiscount) {
+    if (actor.system.financeValues.massProductionDiscount !== currentMassProductionDiscount) {
       foundry.utils.mergeObject(updates, {'system.financeValues.massProductionDiscount': currentMassProductionDiscount});
     }
 
