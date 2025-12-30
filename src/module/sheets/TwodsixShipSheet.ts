@@ -41,7 +41,8 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       selectDeckplan: this._onDeckplanClick,
       deleteDeckplan: this._onDeckplanUnlink,
       adjustFuelType: this._onAdjustFuelType,
-      itemLink: this._onDocumentLink
+      itemLink: this._onDocumentLink,
+      toggleWeight: this._toggleWeight
     },
     tag: "form"
   };
@@ -98,7 +99,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
       showSingleCargoColumn: game.settings.get('twodsix', 'showSingleCargoColumn'),
       showBandwidth: game.settings.get('twodsix', 'showBandwidth'),
-      showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
+      showWeightUsage: (<TwodsixActor>this.actor).system.showWeightUsage ?? game.settings.get('twodsix', 'showWeightUsage'),
       useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       allowDragDropOfListsShip: game.settings.get('twodsix', 'allowDragDropOfListsShip'),
@@ -272,6 +273,9 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       const deckPlan = game.scenes?.get((<Ship>this.actor.system).deckPlan);
       await deckPlan?.view();
     }
+  }
+  static async _toggleWeight() {
+    (<TwodsixActor>this.actor).update({"system.showWeightUsage": !(<TwodsixActor>this.actor).system.showWeightUsage});
   }
 
   static _onDeckplanUnlink() {

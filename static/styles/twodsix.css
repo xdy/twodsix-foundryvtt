@@ -2454,7 +2454,7 @@ notes-container > div[contenteditable] {
   /* align-self: center; */
 }
 
-.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover, .power-title:hover {
   cursor: pointer;
 }
 
@@ -2719,17 +2719,25 @@ notes-container > div[contenteditable] {
   grid-area: avail;
 }
 
-.ship-stat input[type="number"],  .ship-stat-finance input[type="number"] {
+.ship-stat-finance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.ship-stat-finance input{
+  text-align: right;
+  width: 12ch;
+}
+
+.ship-stat input[type="number"] {
   text-align: center;
   /* width: 53px; */
   background-color: transparent;
   border: none;
   height: auto;
   /* margin-top: 5px; */
-}
-
-.ship-stat-finance input[type="number"] {
-  width: 10ch;
 }
 
 .small-font {

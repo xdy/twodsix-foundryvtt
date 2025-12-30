@@ -445,7 +445,7 @@
       "ShipValue": "Skeppsvärde",
       "MortgagePerMonth": "Uppskattad Amortering",
       "MaintenancePerMonth": "Underhållskostnad",
-      "CrPerMonth": "Cr/månad",
+      "CrPerMonth": "Cr / månad",
       "SHIPCARGO": "SKEPPSLAST"
     },
     "Vehicle": {

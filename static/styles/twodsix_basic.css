@@ -430,7 +430,7 @@ label.checkbox > input[type="checkbox"] {
 .space-object-content-container {
   display: grid;
   grid-template-columns: 18em 18em;
-  grid-template-rows: 23em 8em;
+  grid-template-rows: 24em 8em;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -1965,7 +1965,7 @@ img.ship-mask-bg {
   padding: 0;
 }
 
-.fuel-name:hover, .fuel-bar:hover, .status-component:hover {
+.fuel-name:hover, .fuel-bar:hover, .status-component:hover, .power-title:hover {
   cursor: pointer;
 }
 
@@ -2227,6 +2227,12 @@ img.ship-mask-bg {
   width: 100%;
   justify-content: space-evenly;
   overflow: hidden;
+}
+
+.ship-stat-finance {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .ship-stat input, .ship-stat-finance input {
@@ -2684,10 +2690,10 @@ div.ship-value {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 33ch;
+  height: 42ch;
   border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
-  width: 28ch;
+  width: 35ch;
   padding: 0 2ch;
   /* font-size: 15px; */
   overflow-y: auto;
