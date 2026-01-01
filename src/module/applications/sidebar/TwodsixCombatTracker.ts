@@ -229,12 +229,12 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    */
   _getCombatantActionData(combatant, combat: TwodsixCombat) {
     const budget = combat?.getActionBudget();
-    const config = combat?.getSpaceCombatConfig?.();
+    const config = combat?.getSpaceCombatConfig();
     const isUsingThrustPoolForReactions = config?.actionBudget?.thrustPoolForReactions;
 
     return {
       minor: {
-        used: combatant.flags?.twodsix?.minorActionsUsed ?? 0,
+        used: combatant.system?.minorActionsUsed ?? 0,
         available: budget?.minorActions ?? 0,
         canUse: combatant.canUseMinorAction?.() ?? false,
         useMethod: () => combatant.useMinorAction(),
@@ -243,7 +243,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
         localizationKey: 'MinorActions'
       },
       significant: {
-        used: combatant.flags?.twodsix?.significantActionsUsed ?? 0,
+        used: combatant.system?.significantActionsUsed ?? 0,
         available: budget?.significantActions ?? 0,
         canUse: combatant.canUseSignificantAction?.() ?? false,
         useMethod: () => combatant.useSignificantAction(),
@@ -252,7 +252,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
         localizationKey: 'SignificantActions'
       },
       reaction: {
-        used: combatant.flags?.twodsix?.reactionsUsed ?? 0,
+        used: combatant.system?.reactionsUsed ?? 0,
         available: isUsingThrustPoolForReactions ?
           null : // No available count when using thrust pool - will show just reaction count
           (combatant.getAvailableReactions?.() ?? 0), // Show available reactions in normal mode
@@ -293,7 +293,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
       if (combatant.usesThrustCounter?.()) {
         // Add thrust counter control
         const thrustData = {
-          used: combatant.flags?.twodsix?.thrustUsed ?? 0,
+          used: combatant.system?.thrustUsed ?? 0,
           available: combatant.getMaxThrustPoints?.() ?? 0,
           canUse: true, // Thrust can always be used/adjusted
           icon: 'fa-rocket',

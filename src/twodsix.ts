@@ -40,6 +40,7 @@ import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
 import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
 import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
 import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTracker";
+import { TwodsixCombatantData, TwodsixCombatData } from "./module/data/combat";
 
 //import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
@@ -175,9 +176,12 @@ Hooks.once('init', async function () {
   //Extend ActiveEffects class with custom overrides
   CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;
 
-  //Extend Combat and Combatant classes with custom overrides
+  //Extend Combat and Combatant classes with custom overrides and data models
   CONFIG.Combat.documentClass = TwodsixCombat;
+  CONFIG.Combat.dataModels = TwodsixCombatData;
   CONFIG.Combatant.documentClass = TwodsixCombatant;
+  CONFIG.Combatant.dataModels = TwodsixCombatantData;
+
   registerHandlebarsHelpers();
 
   registerSettings();

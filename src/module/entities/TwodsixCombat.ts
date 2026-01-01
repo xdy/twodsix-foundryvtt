@@ -7,6 +7,9 @@ import { TWODSIX } from "../config";
  * @import { TwodsixActor, TwodsixCombatant } from "./_module.mjs";
  */
 
+// Default action budget used when phase config doesn't specify one
+export const DEFAULT_ACTION_BUDGET = { minorActions: 3, significantActions: 1 };
+
 /**
  * Extended Combat class for Twodsix system with support for space combat phases.
  * Provides structured phase-based combat for ship encounters with action tracking
@@ -23,15 +26,6 @@ import { TWODSIX } from "../config";
  * @extends {foundry.documents.Combat}
  */
 export default class TwodsixCombat extends foundry.documents.Combat {
-  declare data: Combat.Data & {
-    flags: {
-      twodsix: {
-        currentPhase?: string;
-        phaseIndex?: number;
-        isSpaceCombat?: boolean;
-      }
-    }
-  };
 
   /**
    * Prepare derived data for this combat
@@ -43,7 +37,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   }
 
   /**
-   * Initialize combat flags on creation
+   * Initialize combat data on creation
    * @param {object} data - The initial data
    * @param {object} options - Creation options
    * @param {User} user - The creating user
@@ -57,13 +51,13 @@ export default class TwodsixCombat extends foundry.documents.Combat {
 
     const isSpaceCombat = this._detectSpaceCombat(data.combatants);
     const update = {
-      "flags.twodsix.isSpaceCombat": isSpaceCombat,
-      "flags.twodsix.phaseIndex": 0
+      "system.isSpaceCombat": isSpaceCombat,
+      "system.phaseIndex": 0
     };
 
     if (isSpaceCombat) {
       const config = this.getSpaceCombatConfig();
-      update["flags.twodsix.currentPhase"] = config.phases?.[0] || 'declaration';
+      update["system.currentPhase"] = config.phases?.[0] || 'declaration';
     }
 
     this.updateSource(update);
@@ -98,9 +92,10 @@ export default class TwodsixCombat extends foundry.documents.Combat {
 
   /**
    * Check if this is a space combat encounter
+   * The isSpaceCombat flag is maintained automatically via _preCreate and _onCreateDescendantDocuments
    */
   isSpaceCombat(): boolean {
-    return this.flags?.twodsix?.isSpaceCombat || this._detectSpaceCombat();
+    return this.system.isSpaceCombat ?? false;
   }
 
   /**
@@ -134,10 +129,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     }
 
     const config = this.getSpaceCombatConfig();
-    return config.actionBudget || {
-      minorActions: 3,
-      significantActions: 1
-    };
+    return config.actionBudget || DEFAULT_ACTION_BUDGET;
   }
 
   /**
@@ -158,7 +150,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
       return null;
     }
 
-    const phaseIndex = this.flags.twodsix?.phaseIndex ?? 0;
+    const phaseIndex = this.system.phaseIndex ?? 0;
     const config = this.getSpaceCombatConfig();
 
     if (!config.phases || config.phases.length === 0) {
@@ -185,7 +177,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * Get the current phase index
    */
   getCurrentPhaseIndex(): number {
-    return this.flags.twodsix?.phaseIndex ?? 0;
+    return this.system.phaseIndex ?? 0;
   }
 
   /**
@@ -226,8 +218,8 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     const phases = config.phases || [];
 
     const updateData = {
-      'flags.twodsix.phaseIndex': phaseIndex,
-      'flags.twodsix.currentPhase': phases[phaseIndex],
+      'system.phaseIndex': phaseIndex,
+      'system.currentPhase': phases[phaseIndex] ?? phases[0],
       ...additionalUpdates
     };
 
@@ -352,9 +344,9 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     // }
 
     // Initialize space combat if not already set
-    if (this.isSpaceCombat() && !this.flags?.twodsix?.isSpaceCombat) {
+    if (this.isSpaceCombat() && !this.system.isSpaceCombat) {
       await this.update({
-        'flags.twodsix.isSpaceCombat': true
+        'system.isSpaceCombat': true
       });
       await this.resetPhase();
     }
@@ -449,11 +441,28 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     // This hook only fires on actual round transitions, so always treat as new round
     await this._resetCombatantCounters(true);
 
-    // Re-roll initiative if configured for this phase system
-    if (config.reRollInitiative) {
-      // Force re-roll for all combatants (not just null initiatives)
-      const ids = this.combatants.map(c => c.id);
-      await this.rollInitiative(ids);
+    // Determine which combatants need initiative rolled
+    let idsToRoll = [];
+    if (this.round === 1) {
+      // Only roll for combatants without initiative on round 1
+      idsToRoll = this.combatants.filter(c => c.initiative === null).map(c => c.id);
+    } else if (config.reRollInitiative) {
+      // Reroll all combatants on subsequent rounds if configured
+      idsToRoll = this.combatants.map(c => c.id);
+    }
+
+    // Roll initiative if needed
+    const didRollInitiative = idsToRoll.length > 0;
+    if (didRollInitiative) {
+      await this.rollInitiative(idsToRoll, { updateTurn: false });
+    }
+
+    // Reset the pointer to the top of the order after rolling initiative
+    if (didRollInitiative) {
+      const first = this.turns?.[0];
+      if (first) {
+        await this.update({ turn: 0, combatantId: first.id });
+      }
     }
   }
 
@@ -490,11 +499,11 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     // When combatants are added, recalculate space combat status
     if (collection === "combatants" && game.user.isGM) {
       const isSpaceCombat = this._detectSpaceCombat();
-      const wasSpaceCombat = this.flags?.twodsix?.isSpaceCombat || false;
+      const wasSpaceCombat = this.system.isSpaceCombat || false;
 
-      // Update space combat flag if it changed
+      // Update space combat boolean if it changed
       if (isSpaceCombat !== wasSpaceCombat) {
-        this.update({ 'flags.twodsix.isSpaceCombat': isSpaceCombat });
+        this.update({ 'system.isSpaceCombat': isSpaceCombat });
 
         // Reset phases if becoming space combat
         if (isSpaceCombat) {
