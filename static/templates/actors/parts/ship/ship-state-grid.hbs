@@ -34,8 +34,12 @@
   </div>
   <div class="ship-fuel">
     <div class="ship-fuel-display">
-      <span class = "fuel-name" data-action="adjustFuelType">
-        {{#if actor.system.shipStats.fuel.isRefined}} {{localize "TWODSIX.Ship.RefinedFuel"}}{{else}}{{localize "TWODSIX.Ship.UnrefinedFuel"}}{{/if}}
+      <span class = "fuel-name" data-action="adjustFuelType" data-tooltip='{{localize "TWODSIX.Ship.ToggleDisplay"}}'>
+        {{#if actor.system.shipStats.fuel.isRefined}}
+          {{localize "TWODSIX.Ship.RefinedFuel"}}
+        {{else}}
+          {{localize "TWODSIX.Ship.UnrefinedFuel"}}
+        {{/if}}
         <meter class = "fuel-bar" value="{{actor.system.shipStats.fuel.value}}" max = "{{actor.system.shipStats.fuel.max}}" min="0" low= "{{twodsix_product actor.system.shipStats.fuel.max 0.25}}" high = "{{twodsix_product actor.system.shipStats.fuel.max 0.5}}" optimum = "{{twodsix_product actor.system.shipStats.fuel.max 0.95}}">{{actor.system.shipStats.fuel.value}}</meter>
       </span>
       <span class="ship-fuel-value">

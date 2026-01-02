@@ -409,7 +409,7 @@
       "ShipValue": "Valeur du vaisseau",
       "MortgagePerMonth": "Est. paiement de l'hypothèque",
       "MaintenancePerMonth": "Coût de maintenance",
-      "CrPerMonth": "Cr/mois"
+      "CrPerMonth": "Cr / mois"
     },
     "Vehicle": {
       "SystemStatus": "État du système",

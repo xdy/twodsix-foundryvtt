@@ -27,7 +27,7 @@
             {{#if @root/settings.showTraitAE}}
             <ul>
               {{#each item.effects.contents.[0].changes as |change|}}
-              <li>{{change.key}} {{lookup @root.ACTIVE_EFFECT_MODES change.mode}} {{change.value}}</li>
+              <li>{{change.key}} {{change.type}} {{change.value}}</li>
               {{/each}}
             </ul>
             {{/if}}

@@ -1,0 +1,26 @@
+<div class="grid-columns-double storage-header">
+  <div class="cargo-stored-double">
+    {{> "systems/twodsix/templates/actors/parts/ship/cargo-header.hbs"}}
+  </div>
+  <div class="cargo-stored-double">
+    {{> "systems/twodsix/templates/actors/parts/ship/cargo-header.hbs"}}
+  </div>
+</div>
+<div class="grid-columns-double item-list">
+  {{#each allCargo as |item id|}}
+    <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
+      <ol class="ol-no-indent">
+        <li class="cargo-stored-double">
+          {{> "systems/twodsix/templates/actors/parts/ship/ship-cargo-row.hbs" item=item}}
+        </li>
+      </ol>
+    </div>
+  {{/each}}
+  {{#if (twodsix_isOdd allCargo.length)}}
+      <div class="grid-columns-double-row">
+        <ol class="ol-no-indent">&nbsp;
+          <li class="item components-stored-double" ></li>
+        </ol>
+      </div>
+  {{/if}}
+</div>

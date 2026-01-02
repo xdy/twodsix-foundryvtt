@@ -346,17 +346,14 @@ async function skillDialog(skillList: object): Promise<string|boolean> {
     }
   ];
 
-  return new Promise<void>((resolve) => {
-    new foundry.applications.api.DialogV2({
-      window: {title: "TWODSIX.Rolls.SelectSkill"},
-      content: content,
-      buttons: buttons,
-      submit: () => {
-        resolve(returnValue);
-      },
-    }).render({force: true});
+  await foundry.applications.api.DialogV2.wait({
+    window: {title: "TWODSIX.Rolls.SelectSkill"},
+    content: content,
+    buttons: buttons,
   });
+  return returnValue;
 }
+
 /**
  * Returns chain roll DM based on effect and string setting
  * @param {number} effect    effect from assisting / first roll

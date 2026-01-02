@@ -12,6 +12,7 @@
 
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
+import TwodsixCombat from "./module/entities/TwodsixCombat";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
 import {TwodsixTravellerSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixTravellerSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
@@ -38,6 +39,8 @@ import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
 import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
 import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
 import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
+import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTracker";
+import { TwodsixCombatantData, TwodsixCombatData } from "./module/data/combat";
 
 //import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
@@ -69,7 +72,14 @@ Hooks.once('init', async function () {
   };
 
   CONFIG.ActiveEffect.legacyTransferral = false;
-  CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
+  //CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
+  CONFIG.ActiveEffect.phases = {
+    initial: {label: "Init"},
+    derived: {label: "Derived"},
+    custom: {label: "Custom"},
+    encumbMax: {label: "Encumbrance Max"},
+    final: {label: "Final"}
+  };
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
@@ -166,7 +176,12 @@ Hooks.once('init', async function () {
   //Extend ActiveEffects class with custom overrides
   CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;
 
+  //Extend Combat and Combatant classes with custom overrides and data models
+  CONFIG.Combat.documentClass = TwodsixCombat;
+  CONFIG.Combat.dataModels = TwodsixCombatData;
   CONFIG.Combatant.documentClass = TwodsixCombatant;
+  CONFIG.Combatant.dataModels = TwodsixCombatantData;
+
   registerHandlebarsHelpers();
 
   registerSettings();
@@ -201,11 +216,17 @@ Hooks.once('init', async function () {
   }
   switchCss(sheetName);
   if (!game.settings.get('twodsix', 'useFoundryStandardStyle')) {
-    document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
-    document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
-    document.documentElement.style.setProperty('--s2d6-battle-color', game.settings.get('twodsix', 'battleColor'));
+    // Set CSS variables on the document root
+    const defaultColor = game.settings.get('twodsix', 'defaultColor');
+    const lightColor = game.settings.get('twodsix', 'lightColor');
+    const battleColor = game.settings.get('twodsix', 'battleColor');
+    const damageColor = game.settings.get('twodsix', 'damageStatColor');
+    // Set inline vars for the main document so the UI is immediate
+    document.documentElement.style.setProperty('--s2d6-default-color', defaultColor);
+    document.documentElement.style.setProperty('--s2d6-light-color', lightColor);
+    document.documentElement.style.setProperty('--s2d6-battle-color', battleColor);
+    document.documentElement.style.setProperty('--s2d6-damage-stat-color', damageColor);
   }
-  document.documentElement.style.setProperty('--s2d6-damage-stat-color', game.settings.get('twodsix', 'damageStatColor'));
 
   if (game.settings.get('twodsix', 'useModuleFixStyle') && !game.settings.get('twodsix', 'useFoundryStandardStyle')) {
     switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
@@ -224,6 +245,9 @@ Hooks.once('init', async function () {
   //Add chat context
   CONFIG.ui.chat = TwodsixChatLog;
   CONFIG.ChatMessage.popoutClass = TwodsixChatPopout;
+
+  //Add custom combat tracker for space combat
+  CONFIG.ui.combat = TwodsixCombatTracker;
 
   //Add Ruler measurements
   CONFIG.Token.rulerClass = TwodsixTokenRuler;

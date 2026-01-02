@@ -30,9 +30,9 @@
       {{/unless}}
       <div class="ship-power-subgrid">
         {{#if settings.showWeightUsage}}
-          <span class ="power-title">{{localize "TWODSIX.Ship.PowerWeightManagement"}}</span>
+          <span class ="power-title" data-action="toggleWeight" data-tooltip='{{localize "TWODSIX.Ship.ToggleDisplay"}}'>{{localize "TWODSIX.Ship.PowerWeightManagement"}}</span>
           {{else}}
-          <span class ="power-title">{{localize "TWODSIX.Ship.PowerManagement"}}</span>
+          <span class ="power-title" data-action="toggleWeight" data-tooltip='{{localize "TWODSIX.Ship.ToggleDisplay"}}'>{{localize "TWODSIX.Ship.PowerManagement"}}</span>
         {{/if}}
         <span class="ship-power-label">{{localize "TWODSIX.Ship.Power"}}</span>
         <div class="ship-power-used">
@@ -60,7 +60,7 @@
             {{/iff}}
           {{else}}
             <div class="ship-stat systems-power"><label for="system.reqPower.systems">{{localize "TWODSIX.Ship.Systems"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.systems}}" name="system.reqPower.systems" id="system.reqPower.systems"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
-            <div class="ship-stat m-drive-power"><label for="system.reqPower.m-drive">{{localize "TWODSIX.Ship.MDrive"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.m-drive}}" name="system.reqPower.m-drive" id="system.reqPower.m-drive"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
+            <div class="ship-stat m-drive-power"><label for="system.reqPower.m-drive">{{localize settings.mDriveLabel}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.m-drive}}" name="system.reqPower.m-drive" id="system.reqPower.m-drive"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
             <div class="ship-stat j-drive-power"><label for="system.reqPower.j-drive">{{localize settings.jDriveLabel}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.j-drive}}" name="system.reqPower.j-drive" id="system.reqPower.j-drive"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
             <div class="ship-stat sensors-power"><label for="system.reqPower.sensors">{{localize "TWODSIX.Ship.Sensors"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.sensors}}" name="system.reqPower.sensors" id="system.reqPower.sensors"/><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
             <div class="ship-stat weapons-power"><label for="system.reqPower.weapons">{{localize "TWODSIX.Ship.Weapons"}}</label><input {{#if settings.useShipAutoCalc}}readonly{{/if}} type="number" value="{{actor.system.reqPower.weapons}}" name="system.reqPower.weapons" id="system.reqPower.weapons"><span class = "small-font">{{localize "TWODSIX.Ship.PP"}}</span></div>
@@ -105,7 +105,11 @@
 
         {{!-- Storage Tab --}}
         <div class="tab ship-storage {{tabs.shipStorage.cssClass}}" data-group="primary" data-tab="shipStorage">
-            {{> "systems/twodsix/templates/actors/parts/common/item-storage.hbs"}}
+          {{#if settings.showSingleCargoColumn}}
+            {{> "systems/twodsix/templates/actors/parts/common/item-storage-single.hbs"}}
+          {{else}}
+            {{> "systems/twodsix/templates/actors/parts/common/item-storage-double.hbs"}}
+          {{/if}}
         </div>
 
         {{!-- Cargo Tab --}}

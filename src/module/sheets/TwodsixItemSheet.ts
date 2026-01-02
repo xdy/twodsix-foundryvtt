@@ -132,6 +132,12 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
 
     context.config = foundry.utils.duplicate(TWODSIX);
 
+    //setup custom drive type labels
+    if (this.item.system.subtype === "drive") {
+      context.config.DriveTypes.jdrive = game.settings.get("twodsix", "jDriveLabel") || TWODSIX.DriveTypes.jdrive;
+      context.config.DriveTypes.mdrive = game.settings.get("twodsix", "mDriveLabel") || TWODSIX.DriveTypes.mdrive;
+    }
+
     //prevent processor/suite attachements to computers(?)
     if (this.actor && this.item.type === "consumable" ) {
       const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
