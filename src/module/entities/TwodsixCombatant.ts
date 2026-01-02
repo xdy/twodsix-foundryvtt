@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import TwodsixCombat from "./TwodsixCombat";
+import TwodsixCombat, { DEFAULT_ACTION_BUDGET } from "./TwodsixCombat";
 import TwodsixActor from "./TwodsixActor";
 
 /**
@@ -23,18 +23,6 @@ import TwodsixActor from "./TwodsixActor";
  * @extends {foundry.documents.Combatant}
  */
 export default class TwodsixCombatant extends foundry.documents.Combatant {
-  declare data: Combatant.Data & {
-    flags: {
-      twodsix: {
-        spacePhase?: 'declaration' | 'actions' | 'damage';
-        minorActionsUsed?: number;
-        significantActionsUsed?: number;
-        reactionsUsed?: number;
-        reactionsAvailable?: number;
-        hasty?: boolean;
-      }
-    }
-  };
 
   /**
    * Prepare derived data for this combatant
@@ -75,7 +63,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     super._onUpdate(changed, options, userId);
 
     // Refresh combatant display when relevant data changes
-    if ("initiative" in changed || changed.flags?.twodsix) {
+    if ("initiative" in changed || changed.system) {
       this.refreshCombatant();
     }
   }
@@ -112,22 +100,35 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
   }
 
   /**
+   * Get space combat configuration from combat
+   * @private
+   */
+  _getSpaceCombatConfig() {
+    const combat = this.combat as TwodsixCombat;
+    return combat?.getSpaceCombatConfig();
+  }
+
+  /**
    * Get available thrust points (max - used)
    */
   get availableThrust(): number {
     const maxThrust = this.getMaxThrustPoints();
-    const usedThrust = this.flags.twodsix?.thrustUsed ?? 0;
+    const usedThrust = this.system.thrustUsed ?? 0;
     return Math.max(0, maxThrust - usedThrust);
   }
 
   protected _getInitiativeFormula():string {
-    const actorType = (<TwodsixActor>this.actor).type;
+    // Guard against missing actor/combat during edge cases (e.g., pending creation)
+    const actorType = (<TwodsixActor>this.actor)?.type;
+    if (!actorType) {
+      return <string>game.settings.get("twodsix", "initiativeFormula");
+    }
 
     // Ships and space-objects use the ship initiative formula
     if (["ship", "space-object"].includes(actorType)) {
-      const combat = this.combat as TwodsixCombat;
-      const phaseConfig = combat?.getSpaceCombatConfig?.();
-      return phaseConfig?.shipInitiativeFormula || <string>game.settings.get("twodsix", "shipInitiativeFormula");
+      const phaseConfig = this._getSpaceCombatConfig();
+      const shipFormula = phaseConfig?.shipInitiativeFormula || <string>game.settings.get("twodsix", "shipInitiativeFormula");
+      return shipFormula || <string>game.settings.get("twodsix", "initiativeFormula");
     }
 
     // Personal combatants use the standard formula
@@ -282,8 +283,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       return 0;
     }
 
-    const combat = this.combat as TwodsixCombat;
-    const config = combat?.getSpaceCombatConfig?.();
+    const config = this._getSpaceCombatConfig();
 
     // Check if this combat type uses thrust pool for reactions
     if (config?.actionBudget?.thrustPoolForReactions) {
@@ -311,28 +311,16 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
   }
 
   /**
-   * Get available actions for this combatant from combat budget
-   * @returns {object} Action budget with minor and significant action counts
-   */
-  getActionBudget(): { minorActions: number; significantActions: number } {
-    const combat = this.combat as TwodsixCombat;
-    return combat?.getActionBudget?.() ?? {
-      minorActions: 3,
-      significantActions: 1
-    };
-  }
-
-  /**
    * Get current action usage counts
    * @private
    */
   _getActionCounts() {
     return {
-      minorUsed: this.flags.twodsix?.minorActionsUsed ?? 0,
-      significantUsed: this.flags.twodsix?.significantActionsUsed ?? 0,
-      reactionsUsed: this.flags.twodsix?.reactionsUsed ?? 0,
+      minorUsed: this.system.minorActionsUsed ?? 0,
+      significantUsed: this.system.significantActionsUsed ?? 0,
+      reactionsUsed: this.system.reactionsUsed ?? 0,
       reactionsAvailable: this.getAvailableReactions(),
-      thrustUsed: this.flags.twodsix?.thrustUsed ?? 0,
+      thrustUsed: this.system.thrustUsed ?? 0,
       thrustAvailable: this.getMaxThrustPoints()
     };
   }
@@ -355,8 +343,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * Check if the combat uses thrust counter instead of action buttons
    */
   usesThrustCounter(): boolean {
-    const combat = this.combat as TwodsixCombat;
-    const config = combat?.getSpaceCombatConfig?.();
+    const config = this._getSpaceCombatConfig();
     return config?.actionBudget?.useThrustCounter ?? false;
   }
 
@@ -369,11 +356,11 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       return;
     }
 
-    const currentUsed = this.flags.twodsix?.thrustUsed ?? 0;
+    const currentUsed = this.system.thrustUsed ?? 0;
     const maxThrust = this.getMaxThrustPoints();
     const newUsed = Math.max(0, Math.min(maxThrust, currentUsed + amount));
 
-    await this.setFlag('twodsix', 'thrustUsed', newUsed);
+    await this.update({'system.thrustUsed': newUsed});
   }
 
   /**
@@ -393,7 +380,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether thrust was successfully restored
    */
   async undoThrust(): Promise<boolean> {
-    const currentUsed = this.flags.twodsix?.thrustUsed ?? 0;
+    const currentUsed = this.system.thrustUsed ?? 0;
     if (currentUsed <= 0) {
       return false;
     }
@@ -405,7 +392,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * Generic action usage handler with comprehensive validation
    * @param {string} actionType - Type of action ('minor', 'significant', 'reaction')
    * @param {Function} canUseCheck - Function to validate if action can be used
-   * @param {string} flagKey - Flag key to update
+   * @param {string} systemKey - system key to update
    * @param {string} errorKey - Localization key for error messages
    * @param {object} options - Additional options
    * @returns {Promise<boolean>} Whether the action was successfully used
@@ -414,7 +401,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
   async _useAction(
     actionType,
     canUseCheck,
-    flagKey,
+    systemKey,
     errorKey,
     options = {}
   ) {
@@ -435,8 +422,8 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       return false;
     }
 
-    const currentUsed = this.flags.twodsix?.[flagKey] ?? 0;
-    const updates = { [`flags.twodsix.${flagKey}`]: currentUsed + 1 };
+    const currentUsed = this.system[systemKey] ?? 0;
+    const updates = { [`system.${systemKey}`]: currentUsed + 1 };
 
     // Allow hook to override
     const hookName = `twodsix.use${actionType.charAt(0).toUpperCase() + actionType.slice(1)}Action`;
@@ -458,13 +445,13 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * Generic action undo handler
    * @private
    */
-  async _undoAction(flagKey: string): Promise<boolean> {
-    const currentUsed = this.flags.twodsix?.[flagKey] ?? 0;
+  async _undoAction(systemKey: string): Promise<boolean> {
+    const currentUsed = this.system[systemKey] ?? 0;
     if (currentUsed <= 0) {
       return false;
     }
 
-    const updates = { [`flags.twodsix.${flagKey}`]: Math.max(0, currentUsed - 1) };
+    const updates = { [`system.${systemKey}`]: Math.max(0, currentUsed - 1) };
     await this.update(updates);
     return true;
   }
@@ -484,10 +471,10 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     }
 
     await this.update({
-      'flags.twodsix.spacePhase': combat.getCurrentPhase() || 'declaration',
-      'flags.twodsix.minorActionsUsed': 0,
-      'flags.twodsix.significantActionsUsed': 0,
-      'flags.twodsix.hasty': false
+      'system.spacePhase': combat.getCurrentPhase() || 'declaration',
+      'system.minorActionsUsed': 0,
+      'system.significantActionsUsed': 0,
+      'system.hasty': false
     });
   }
 
@@ -509,13 +496,13 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     await this.clearMovementHistory();
 
     await this.update({
-      'flags.twodsix.spacePhase': combat.getCurrentPhase() || 'declaration',
-      'flags.twodsix.minorActionsUsed': 0,
-      'flags.twodsix.significantActionsUsed': 0,
-      'flags.twodsix.reactionsUsed': 0,
-      'flags.twodsix.reactionsAvailable': this.getAvailableReactions(),
-      'flags.twodsix.thrustUsed': 0, // Reset thrust on new round
-      'flags.twodsix.hasty': false
+      'system.spacePhase': combat.getCurrentPhase() || 'declaration',
+      'system.minorActionsUsed': 0,
+      'system.significantActionsUsed': 0,
+      'system.reactionsUsed': 0,
+      'system.reactionsAvailable': this.getAvailableReactions(),
+      'system.thrustUsed': 0, // Reset thrust on new round
+      'system.hasty': false
     });
   }
 
@@ -524,7 +511,8 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {boolean}
    */
   canUseMinorAction(): boolean {
-    const budget = this.getActionBudget();
+    const combat = this.combat as TwodsixCombat;
+    const budget = combat?.getActionBudget() ?? DEFAULT_ACTION_BUDGET;
     const { minorUsed, significantUsed } = this._getActionCounts();
 
     // If a significant action was used, only 1 minor action is allowed
@@ -537,7 +525,8 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {boolean}
    */
   canUseSignificantAction(): boolean {
-    const budget = this.getActionBudget();
+    const combat = this.combat as TwodsixCombat;
+    const budget = combat?.getActionBudget() ?? DEFAULT_ACTION_BUDGET;
     const { significantUsed, minorUsed } = this._getActionCounts();
 
     // Significant action requires no actions used yet
@@ -549,8 +538,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {boolean}
    */
   canUseReaction(): boolean {
-    const combat = this.combat as TwodsixCombat;
-    const config = combat?.getSpaceCombatConfig?.();
+    const config = this._getSpaceCombatConfig();
 
     // If using thrust pool for reactions, check thrust availability
     if (config?.actionBudget?.thrustPoolForReactions) {
@@ -614,16 +602,15 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the reaction was successfully used
    */
   async useReaction(options = {}): Promise<boolean> {
-    const combat = this.combat as TwodsixCombat;
-    const config = combat?.getSpaceCombatConfig?.();
+    const config = this._getSpaceCombatConfig();
 
     // If using thrust pool for reactions, use thrust and track reaction count
     if (config?.actionBudget?.thrustPoolForReactions) {
       const thrustSuccess = await this.useThrust();
       if (thrustSuccess) {
         // Also increment reaction counter for tracking
-        const reactionsUsed = this.flags?.twodsix?.reactionsUsed ?? 0;
-        await this.setFlag('twodsix', 'reactionsUsed', reactionsUsed + 1);
+        const reactionsUsed = this.system.reactionsUsed ?? 0;
+        await this.update({'system.reactionsUsed': reactionsUsed + 1});
       }
       return thrustSuccess;
     }
@@ -643,17 +630,16 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
    * @returns {Promise<boolean>} Whether the undo was successful
    */
   async undoReaction(): Promise<boolean> {
-    const combat = this.combat as TwodsixCombat;
-    const config = combat?.getSpaceCombatConfig?.();
+    const config = this._getSpaceCombatConfig();
 
     // If using thrust pool for reactions, undo thrust and decrement reaction count
     if (config?.actionBudget?.thrustPoolForReactions) {
-      const reactionsUsed = this.flags?.twodsix?.reactionsUsed ?? 0;
+      const reactionsUsed = this.system.reactionsUsed ?? 0;
       if (reactionsUsed > 0) {
         const thrustSuccess = await this.undoThrust();
         if (thrustSuccess) {
           // Also decrement reaction counter
-          await this.setFlag('twodsix', 'reactionsUsed', reactionsUsed - 1);
+          await this.update({'system.reactionsUsed': reactionsUsed - 1});
         }
         return thrustSuccess;
       }
