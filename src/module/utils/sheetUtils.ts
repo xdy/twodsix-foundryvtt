@@ -348,23 +348,21 @@ export function isDisplayableSkill(skill:Skills): boolean {
 }
 
 export async function confirmRollFormula(initFormula:string, title:string):Promise<string> {
-  const returnText:string = await new Promise((resolve) => {
-    new foundry.applications.api.DialogV2({
-      window: {title: title},
-      content:
-        `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" value="` + initFormula + `"></input>`,
-      buttons: [
-        {
-          action: "roll",
-          icon: "fa-solid fa-dice",
-          label: "TWODSIX.Rolls.Roll",
-          default: true,
-          callback: (event, button, dialog) => {
-            resolve(dialog.element.querySelector('[name="outputFormula"]')?.value);
-          }
+  let returnText: string = "";
+  await foundry.applications.api.DialogV2.wait({
+    window: { title: title },
+    content: `<label for="outputFormula">Formula</label><input type="text" name="outputFormula" value="` + initFormula + `"></input>`,
+    buttons: [
+      {
+        action: "roll",
+        icon: "fa-solid fa-dice",
+        label: "TWODSIX.Rolls.Roll",
+        default: true,
+        callback: (event, button, dialog) => {
+          returnText = dialog.element.querySelector('[name="outputFormula"]')?.value;
         }
-      ],
-    }).render({force: true});
+      }
+    ],
   });
   return (returnText ?? "");
 }

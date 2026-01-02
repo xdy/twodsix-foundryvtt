@@ -63,6 +63,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
               ];
             }
           case "CE":
+          case "RIDER":
             if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
               return [];
             } else if ((actorData.encumbrance.value > actorData.encumbrance.max / 2) && game.settings.get("twodsix", "useEncumbrance")) {
@@ -78,6 +79,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
               { range: movementSpeed * 3, color: "run" }
             ];
           case "OTHER":
+          case "MGT2E":
             if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
               return [];
             } else if ((actorData.encumbrance.value > actorData.encumbrance.max * parseFloat(game.settings.get("twodsix", "encumbFractionOneSquare"))) && game.settings.get("twodsix", "useEncumbrance")) {

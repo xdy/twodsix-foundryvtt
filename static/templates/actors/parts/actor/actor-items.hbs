@@ -15,10 +15,11 @@
         <a class="item-control item-create" data-tooltip='{{localize "TWODSIX.Actor.Items.CreateItem"}}' data-type="weapon" data-action="itemCreate"><i class="fa-solid fa-plus"></i></a>
         <a class="item-control item-viewToggle" data-item-type="weapon" data-action="toggleView">
           {{#unless system.hideStoredItems.weapon}}
-          <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i></a>
+            <i class="fa-solid fa-eye" data-tooltip='{{localize "TWODSIX.Actor.Items.DisplayStored"}}'></i>
           {{else}}
-          <i class="fa-solid fa-eye-slash" data-tooltip='{{localize "TWODSIX.Actor.Items.HideStored"}}'></i></a>
+            <i class="fa-solid fa-eye-slash" data-tooltip='{{localize "TWODSIX.Actor.Items.HideStored"}}'></i>
           {{/unless}}
+        </a>
       </span>
     </div>
     <section class="item-list">
@@ -82,11 +83,23 @@
                   <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="performAttack" data-attack-type="auto-full" data-rof="{{twodsix_CTBurstSize item}}">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
                 </span>
               {{/if}}
-              {{else if ../settings.useCUAutofireRules}}
+            {{else if ../settings.useCUAutofireRules}}
               {{#if (twodsix_useCUAuto item)}}
                 <span class="items-weapons-abilities">
                   <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="performAttack" data-attack-type="single" data-rof="1">[{{localize "TWODSIX.Rolls.Single"}}]</span>
                   <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="performAttack" data-attack-type="auto-full" data-rof="{{item.system.rateOfFire}}">[{{localize "TWODSIX.Rolls.FullAuto"}}]</span>
+                </span>
+              {{/if}}
+            {{else if ../settings.useRIDERFireRules}}
+              {{#if (twodsix_useRIDERMulti item)}}
+                <span class="items-weapons-abilities">
+                  <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="performAttack" data-attack-type="single" data-rof="1">[{{localize "TWODSIX.Rolls.Single"}}]</span>
+                  {{#iff item.system.rateOfFire ">" 1}}
+                    <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="performAttack" data-attack-type="multi" data-rof="{{item.system.rateOfFire}}">[{{localize "TWODSIX.Rolls.Multi"}} ({{item.system.rateOfFire}})]</span>
+                  {{/iff}}
+                  {{#if item.system.isSingleAction}}
+                    <span class="item-name item-ability perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="performAttack" data-attack-type="fan" data-rof="3">[{{localize "TWODSIX.Rolls.Fan"}}]</span>
+                  {{/if}}
                 </span>
               {{/if}}
             {{/if}}

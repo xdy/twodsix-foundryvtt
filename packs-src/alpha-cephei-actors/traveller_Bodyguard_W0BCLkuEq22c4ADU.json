@@ -91,17 +91,25 @@
         "label": "Alternative 2",
         "shortLabel": "ALT2",
         "displayShortLabel": ""
+      },
+      "alternative3": {
+        "key": "alternative3",
+        "value": 7,
+        "damage": 0,
+        "label": "Alternative3",
+        "shortLabel": "ALT3",
+        "displayShortLabel": ""
       }
     },
     "characteristicEdit": false,
     "primaryArmor": {
-      "value": "8"
+      "value": 8
     },
     "secondaryArmor": {
-      "value": "0"
+      "value": 0
     },
     "radiationProtection": {
-      "value": "0"
+      "value": 0
     },
     "conditions": {
       "woundedEffect": 0,
@@ -110,11 +118,14 @@
     "radiationDose": {
       "value": 0,
       "max": 0,
-      "min": 0
+      "min": 0,
+      "label": ""
     },
     "encumbrance": {
       "value": 4,
-      "max": 30
+      "max": 30,
+      "min": 0,
+      "offset": 0
     },
     "movement": {
       "burrow": 0,
@@ -125,7 +136,9 @@
       "units": "m",
       "hover": false
     },
-    "docReference": "",
+    "docReference": [
+      ""
+    ],
     "pdfReference": {
       "type": "",
       "href": "",
@@ -136,7 +149,7 @@
     "nationality": "",
     "species": "",
     "age": {
-      "value": "",
+      "value": 0,
       "min": 0
     },
     "hits": {
@@ -148,8 +161,6 @@
     "gender": "",
     "heroPoints": 2,
     "contacts": "",
-    "allies": "",
-    "enemies": "",
     "untrainedSkill": "pyDEKKXipO2fX7A7",
     "description": "",
     "bio": "",
@@ -166,8 +177,8 @@
       "cash": 0,
       "pension": 0,
       "debt": 0,
-      "payments": 0,
-      "livingCosts": 0
+      "livingCosts": 0,
+      "payment": 0
     },
     "hideStoredItems": {
       "weapon": false,
@@ -182,7 +193,10 @@
       "value": 0,
       "totalEarned": 0
     },
-    "xpNotes": ""
+    "xpNotes": "",
+    "armorType": "nothing",
+    "armorDM": 0,
+    "displaySkillGroup": {}
   },
   "items": [
     {
@@ -191,7 +205,9 @@
       "type": "skills",
       "img": "icons/svg/item-bag.svg",
       "system": {
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -207,30 +223,30 @@
         "difficulty": "Average",
         "rolltype": "Normal",
         "trainingNotes": "",
-        "reference": ""
+        "name": "",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "GOmBKof9PfoHZ54T": 3
-      },
       "flags": {
         "twodsix": {
           "untrainedSkill": true
         }
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": "13.350",
-        "createdTime": null,
-        "modifiedTime": null,
+        "systemId": "twodsix",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
         "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
+      },
+      "ownership": {
+        "default": 0
       },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.pyDEKKXipO2fX7A7"
     },
@@ -240,7 +256,9 @@
       "type": "skills",
       "img": "./systems/twodsix/assets/icons/gun-combat.svg",
       "system": {
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -249,22 +267,21 @@
         "value": 3,
         "characteristic": "DEX",
         "type": "skills",
-        "description": "Gun Combat: using small arms, crossbows, and bows in combat.<br><br>Examples: throw Gun Combat/DEX 8+ to hit a target in Effective range with a handgun. Throw Gun combat/DEX 10+ to hit a target at Maximum range. See the Combat chapter for more information.",
+        "description": "Gun Combat: using small arms, crossbows, and bows in combat.<br /><br />Examples: throw Gun Combat/DEX 8+ to hit a target in Effective range with a handgun. Throw Gun combat/DEX 10+ to hit a target at Maximum range. See the Combat chapter for more information.",
         "shortdescr": "Using small arms, crossbows, and bows in combat",
         "subtype": "",
         "key": "key",
         "difficulty": "Average",
         "rolltype": "Normal",
         "trainingNotes": "",
-        "reference": ""
+        "name": "",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "GOmBKof9PfoHZ54T": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_3btd7dw9pac",
@@ -274,15 +291,16 @@
         "core": {}
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": "13.350",
-        "createdTime": null,
-        "modifiedTime": null,
+        "systemId": "twodsix",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
         "lastModifiedBy": null,
-        "compendiumSource": "Compendium.twodsix.cepheus-light-items.enQOAVdQXndSdf0j",
+        "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
+      },
+      "ownership": {
+        "default": 0
       },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.bCdaqVG6HcFZhcSA"
     },
@@ -292,7 +310,9 @@
       "type": "skills",
       "img": "./systems/twodsix/assets/icons/melee.svg",
       "system": {
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -301,22 +321,21 @@
         "value": 3,
         "characteristic": "STR",
         "type": "skills",
-        "description": "Melee Combat: fighting hand-to-hand, either with a weapon or unarmed.<br><br>Examples: throw Melee Combat/STR 8+ to hit a target with a sword. The Combat chapter has more detailed examples of how to use the Melee Combat skill.",
+        "description": "Melee Combat: fighting hand-to-hand, either with a weapon or unarmed.<br /><br />Examples: throw Melee Combat/STR 8+ to hit a target with a sword. The Combat chapter has more detailed examples of how to use the Melee Combat skill.",
         "shortdescr": "Fighting hand-to-hand, either with a weapon or unarmed",
         "subtype": "",
         "key": "key",
         "difficulty": "Average",
         "rolltype": "Normal",
         "trainingNotes": "",
-        "reference": ""
+        "name": "",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "GOmBKof9PfoHZ54T": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_3btd7dw9pac",
@@ -326,15 +345,16 @@
         "core": {}
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": "13.350",
-        "createdTime": null,
-        "modifiedTime": null,
+        "systemId": "twodsix",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
         "lastModifiedBy": null,
-        "compendiumSource": "Compendium.twodsix.cepheus-light-items.eVVFG5oHgsBycy1K",
+        "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
+      },
+      "ownership": {
+        "default": 0
       },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.OKllPyuzWOGNPfLx"
     },
@@ -344,7 +364,9 @@
       "type": "skills",
       "img": "./systems/twodsix/assets/icons/athletics-dexterity.svg",
       "system": {
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -353,22 +375,21 @@
         "value": 2,
         "characteristic": "END",
         "type": "skills",
-        "description": "Athletics: the ability to exert oneself physically. You may add the Athletics skill to appropriate physical characteristic rolls. This skill is never rolled unskilled.<br><br>Examples: throw Athletics/END 6+ to swim against a powerful current. To move past obstacles while running, using Parkour-style moves, throw Athletics/DEX 8+. To climb a rope quickly, throw Athletics/STR 8+.",
+        "description": "Athletics: the ability to exert oneself physically. You may add the Athletics skill to appropriate physical characteristic rolls. This skill is never rolled unskilled.<br /><br />Examples: throw Athletics/END 6+ to swim against a powerful current. To move past obstacles while running, using Parkour-style moves, throw Athletics/DEX 8+. To climb a rope quickly, throw Athletics/STR 8+.",
         "shortdescr": "The ability to exert oneself physically",
         "subtype": "",
         "key": "key",
         "difficulty": "Average",
         "rolltype": "Normal",
         "trainingNotes": "",
-        "reference": ""
+        "name": "",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "GOmBKof9PfoHZ54T": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_3btd7dw9pac",
@@ -378,15 +399,16 @@
         "core": {}
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": "13.350",
-        "createdTime": null,
-        "modifiedTime": null,
+        "systemId": "twodsix",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
         "lastModifiedBy": null,
-        "compendiumSource": "Compendium.twodsix.cepheus-light-items.bupjJOC81mWCqwd4",
+        "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
+      },
+      "ownership": {
+        "default": 0
       },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.VjcUZ6smeBW97B1u"
     },
@@ -396,7 +418,9 @@
       "type": "skills",
       "img": "./systems/twodsix/assets/icons/recon.svg",
       "system": {
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -405,22 +429,21 @@
         "value": 2,
         "characteristic": "INT",
         "type": "skills",
-        "description": "Recon: scouting for danger and spotting threats, including traps. Recon also covers performing forward observation for artillery.<br><br>Examples: throw Recon/INT 8+ to correctly identify the composition of a concealed enemy force. Throw Recon/INT 10+ to identify a likely ambush kill zone. Throw Recon/INT 10+ to call down an airstrike on a large stationary target, such as a building. Throw Recon/INT 8+ to track a target in the wilderness. Throw Recon/INT 12+ to locate a devilishly hidden trap.",
+        "description": "Recon: scouting for danger and spotting threats, including traps. Recon also covers performing forward observation for artillery.<br /><br />Examples: throw Recon/INT 8+ to correctly identify the composition of a concealed enemy force. Throw Recon/INT 10+ to identify a likely ambush kill zone. Throw Recon/INT 10+ to call down an airstrike on a large stationary target, such as a building. Throw Recon/INT 8+ to track a target in the wilderness. Throw Recon/INT 12+ to locate a devilishly hidden trap.",
         "shortdescr": "Scouting for danger and spotting threats, including traps",
         "subtype": "",
         "key": "key",
         "difficulty": "Average",
         "rolltype": "Normal",
         "trainingNotes": "",
-        "reference": ""
+        "name": "",
+        "priorType": "unknown",
+        "prereq": "",
+        "groupLabel": ""
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "GOmBKof9PfoHZ54T": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_3btd7dw9pac",
@@ -430,15 +453,16 @@
         "core": {}
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": "13.350",
-        "createdTime": null,
-        "modifiedTime": null,
+        "systemId": "twodsix",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
         "lastModifiedBy": null,
-        "compendiumSource": "Compendium.twodsix.cepheus-light-items.hKNf0aBpr4jX4I1w",
+        "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
+      },
+      "ownership": {
+        "default": 0
       },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.v0mXl7kfPCwl4ihq"
     },
@@ -450,7 +474,7 @@
       "system": {
         "name": "",
         "techLevel": 9,
-        "description": "A set of two 10cm retractable blades are implanted in the character’s limbs. These can be wrist blades, knuckle spikes, knee spikes, or even dew claws. The character’s unarmed attacks do 2D damage. The blades are constructed out of ceramic composites to avoid detection by most security scans. Only medical scans or TL13 or better sensors will detect the blades. Internal blades are considered illegal on world with Law Level 4+.<br>",
+        "description": "A set of two 10cm retractable blades are implanted in the character’s limbs. These can be wrist blades, knuckle spikes, knee spikes, or even dew claws. The character’s unarmed attacks do 2D damage. The blades are constructed out of ceramic composites to avoid detection by most security scans. Only medical scans or TL13 or better sensors will detect the blades. Internal blades are considered illegal on world with Law Level 4+.<br />",
         "shortdescr": "Unarmed attacks do 2D damage",
         "quantity": 1,
         "weight": 0,
@@ -461,7 +485,9 @@
         "skill": "OKllPyuzWOGNPfLx",
         "associatedSkillName": "Melee Combat",
         "equipped": "equipped",
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -470,18 +496,13 @@
         "auglocation": "Full-Body",
         "type": "augment",
         "bonus": "unarmed damage 2D6",
-        "location": [
-          "inventory",
-          "storage"
-        ]
+        "priorType": "unknown",
+        "useConsumableForAttack": "",
+        "buildPoints": 0
       },
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "GOmBKof9PfoHZ54T": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_ak867xaq2cv",
@@ -491,15 +512,16 @@
         "core": {}
       },
       "_stats": {
-        "systemId": null,
-        "systemVersion": null,
-        "coreVersion": "13.350",
-        "createdTime": null,
-        "modifiedTime": null,
+        "systemId": "twodsix",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
         "lastModifiedBy": null,
-        "compendiumSource": "Compendium.twodsix.cepheus-light-items.VtaIQmM0dDmUt2Uf",
+        "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
+      },
+      "ownership": {
+        "default": 0
       },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.rhlulHjVuPQm2eqi"
     },
@@ -514,14 +536,16 @@
         "shortdescr": "",
         "quantity": 1,
         "weight": 0,
-        "price": null,
+        "price": 0,
         "traits": [],
         "consumables": [],
         "skillModifier": 0,
         "skill": "OKllPyuzWOGNPfLx",
         "associatedSkillName": "",
         "equipped": "equipped",
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -537,107 +561,61 @@
         "damage": "2d6",
         "damageBonus": 0,
         "magazineSize": 0,
-        "ammo": "0",
+        "ammo": 0,
         "useConsumableForAttack": "",
         "magazineCost": 0,
         "type": "weapon",
-        "location": [
-          "inventory",
-          "storage"
-        ],
-        "lawLevel": 0,
-        "rangeBand": "",
+        "lawLevel": "0",
+        "rangeBand": "none",
         "weaponType": "",
         "damageType": "NONE",
         "rateOfFire": "",
         "recoil": false,
         "features": "",
-        "armorPiercing": 0,
-        "handlingModifiers": ""
+        "armorPiercing": "0",
+        "handlingModifiers": "",
+        "priorType": "unknown",
+        "doubleTap": false,
+        "parryAV": 0,
+        "isShield": false,
+        "meleeRangeModifier": "0",
+        "customCT": {
+          "armor": {
+            "nothing": "0",
+            "jack": "0",
+            "mesh": "0",
+            "cloth": "0",
+            "reflec": "0",
+            "ablat": "0",
+            "combat": "0"
+          },
+          "range": {
+            "close": "0",
+            "short": "0",
+            "medium": "0",
+            "long": "0",
+            "veryLong": "0"
+          }
+        }
       },
       "_id": "44n2jUnhwpSb1vFm",
       "effects": [],
       "folder": null,
       "sort": 0,
-      "ownership": {
-        "default": 0,
-        "B4JSPh84Wx3wBFTK": 3
-      },
       "flags": {},
       "_stats": {
         "systemId": "twodsix",
-        "systemVersion": "2.27.0",
-        "coreVersion": "13.350",
-        "createdTime": 1680714507690,
-        "modifiedTime": 1680714605064,
-        "lastModifiedBy": "B4JSPh84Wx3wBFTK",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
+        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
+      },
+      "ownership": {
+        "default": 0
       },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.44n2jUnhwpSb1vFm"
-    },
-    {
-      "name": "Subdermal Armor",
-      "ownership": {
-        "default": 0,
-        "KrOiJLcZ94d4ZOL3": 3,
-        "wKDpARCmanYPD5xr": 3
-      },
-      "type": "augment",
-      "system": {
-        "name": "",
-        "techLevel": 12,
-        "description": "Provides 6 points of armor protection. Subdermal armor is added to the protection rating of any worn armor, and is detectable upon visual inspection. This augment counts as two for the purpose of implant limits.",
-        "shortdescr": "Embedded protection 6 armor.",
-        "quantity": 1,
-        "weight": 0,
-        "price": 20000,
-        "traits": [],
-        "consumables": [],
-        "skillModifier": 0,
-        "skill": "VjcUZ6smeBW97B1u",
-        "associatedSkillName": "",
-        "equipped": "equipped",
-        "docReference": "",
-        "pdfReference": {
-          "type": "",
-          "href": "",
-          "label": ""
-        },
-        "auglocation": "Full-Body",
-        "type": "augment",
-        "bonus": "+6 points armor",
-        "location": [
-          "inventory",
-          "storage"
-        ],
-        "useConsumableForAttack": ""
-      },
-      "flags": {
-        "cf": {
-          "id": "temp_487k4hw8dp4",
-          "path": "ce light-augments",
-          "color": "#000000"
-        }
-      },
-      "img": "./systems/twodsix/assets/icons/subdermal-armor.svg",
-      "effects": [],
-      "folder": "akesqPKWL6RlAWqo",
-      "sort": 100000,
-      "_stats": {
-        "systemId": "twodsix",
-        "systemVersion": "4.6.0",
-        "coreVersion": "13.350",
-        "createdTime": 1701145954140,
-        "modifiedTime": 1701146034520,
-        "lastModifiedBy": "wKDpARCmanYPD5xr",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": null
-      },
-      "_id": "oa1tH7XOkgY2HX4h",
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.oa1tH7XOkgY2HX4h"
     },
     {
       "name": "Gauss Pistol",
@@ -646,7 +624,7 @@
       "system": {
         "name": "Gauss Rifle",
         "techLevel": 12,
-        "description": "These high-tech weapons accelerate small metal spikes to supersonic velocities.<br><br>Auto 2: These weapons fire multiple rounds with every pull of the trigger, filling the air with a hail of fire. A weapon with the Auto aspect can make attacks in three fire modes: single, burst, and full auto, as described in the Combat chapter.",
+        "description": "These high-tech weapons accelerate small metal spikes to supersonic velocities.<br /><br />Auto 2: These weapons fire multiple rounds with every pull of the trigger, filling the air with a hail of fire. A weapon with the Auto aspect can make attacks in three fire modes: single, burst, and full auto, as described in the Combat chapter.",
         "shortdescr": "Gauss Pistol - ranged",
         "quantity": 1,
         "weight": 1,
@@ -657,7 +635,9 @@
         "skill": "bCdaqVG6HcFZhcSA",
         "associatedSkillName": "Gun Combat",
         "equipped": "equipped",
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -673,7 +653,7 @@
         "damage": "3d6",
         "damageBonus": 0,
         "magazineSize": 0,
-        "ammo": "30",
+        "ammo": 30,
         "useConsumableForAttack": "",
         "magazineCost": 30,
         "type": "weapon",
@@ -685,18 +665,34 @@
         "doubleTap": false,
         "recoil": true,
         "features": "Auto 2",
-        "armorPiercing": 0,
+        "armorPiercing": "0",
         "handlingModifiers": "",
-        "location": ""
+        "priorType": "unknown",
+        "parryAV": 0,
+        "isShield": false,
+        "meleeRangeModifier": "0",
+        "customCT": {
+          "armor": {
+            "nothing": "0",
+            "jack": "0",
+            "mesh": "0",
+            "cloth": "0",
+            "reflec": "0",
+            "ablat": "0",
+            "combat": "0"
+          },
+          "range": {
+            "close": "0",
+            "short": "0",
+            "medium": "0",
+            "long": "0",
+            "veryLong": "0"
+          }
+        }
       },
       "effects": [],
       "folder": "8nkkiG1HAMrRLsrb",
       "sort": 500000,
-      "ownership": {
-        "default": 0,
-        "KrOiJLcZ94d4ZOL3": 3,
-        "wKDpARCmanYPD5xr": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_zxe7vegdsle",
@@ -706,16 +702,17 @@
       },
       "_stats": {
         "systemId": "twodsix",
-        "systemVersion": "4.6.0",
-        "coreVersion": "13.350",
-        "createdTime": 1701146455371,
-        "modifiedTime": 1701146535896,
-        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
+        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "_id": "bvtKv2xFC6URqsSI",
+      "ownership": {
+        "default": 0
+      },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.bvtKv2xFC6URqsSI"
     },
     {
@@ -736,7 +733,9 @@
         "skill": "pyDEKKXipO2fX7A7",
         "associatedSkillName": "Medicine",
         "equipped": "backpack",
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -744,19 +743,11 @@
         },
         "type": "equipment",
         "useConsumableForAttack": "",
-        "location": [
-          "inventory",
-          "storage"
-        ]
+        "priorType": "unknown"
       },
       "effects": [],
       "folder": "rLvsCUV36tYzFBWl",
       "sort": 100000,
-      "ownership": {
-        "default": 0,
-        "KrOiJLcZ94d4ZOL3": 3,
-        "wKDpARCmanYPD5xr": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_la7nqd19f18",
@@ -766,16 +757,17 @@
       },
       "_stats": {
         "systemId": "twodsix",
-        "systemVersion": "4.6.0",
-        "coreVersion": "13.350",
-        "createdTime": 1701146498369,
-        "modifiedTime": 1701146498369,
-        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
+        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "_id": "CVcZfjhSDN8vRwKC",
+      "ownership": {
+        "default": 0
+      },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.CVcZfjhSDN8vRwKC"
     },
     {
@@ -796,7 +788,9 @@
         "skill": "pyDEKKXipO2fX7A7",
         "associatedSkillName": "Computers",
         "equipped": "backpack",
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -804,19 +798,11 @@
         },
         "type": "equipment",
         "useConsumableForAttack": "",
-        "location": [
-          "inventory",
-          "storage"
-        ]
+        "priorType": "unknown"
       },
       "effects": [],
       "folder": "rLvsCUV36tYzFBWl",
       "sort": 100000,
-      "ownership": {
-        "default": 0,
-        "KrOiJLcZ94d4ZOL3": 3,
-        "wKDpARCmanYPD5xr": 3
-      },
       "flags": {
         "cf": {
           "id": "temp_la7nqd19f18",
@@ -827,25 +813,21 @@
       },
       "_stats": {
         "systemId": "twodsix",
-        "systemVersion": "4.6.0",
-        "coreVersion": "13.350",
-        "createdTime": 1701146501911,
-        "modifiedTime": 1701146501911,
-        "lastModifiedBy": "wKDpARCmanYPD5xr",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
+        "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
       "_id": "hOvxt9gpiR84fArf",
+      "ownership": {
+        "default": 0
+      },
       "_key": "!actors.items!W0BCLkuEq22c4ADU.hOvxt9gpiR84fArf"
     },
     {
       "name": "Ballistic Suit",
-      "ownership": {
-        "default": 0,
-        "KrOiJLcZ94d4ZOL3": 3,
-        "wKDpARCmanYPD5xr": 3
-      },
       "type": "armor",
       "system": {
         "name": "",
@@ -861,7 +843,9 @@
         "skill": "pyDEKKXipO2fX7A7",
         "associatedSkillName": "",
         "equipped": "equipped",
-        "docReference": "",
+        "docReference": [
+          ""
+        ],
         "pdfReference": {
           "type": "",
           "href": "",
@@ -879,10 +863,9 @@
         "useConsumableForAttack": "",
         "isPowered": false,
         "nonstackable": false,
-        "location": [
-          "inventory",
-          "storage"
-        ]
+        "priorType": "unknown",
+        "armorDM": 0,
+        "armorType": "nothing"
       },
       "flags": {
         "cf": {
@@ -897,75 +880,126 @@
       "sort": 100000,
       "_stats": {
         "systemId": "twodsix",
-        "systemVersion": "4.6.0",
-        "coreVersion": "13.350",
-        "createdTime": 1701146522554,
-        "modifiedTime": 1701146526439,
-        "lastModifiedBy": "wKDpARCmanYPD5xr",
-        "compendiumSource": null,
-        "duplicateSource": null,
-        "exportSource": {
-          "worldId": "on_the_run",
-          "uuid": null,
-          "coreVersion": "0.6.6",
-          "systemId": "twodsix",
-          "systemVersion": "0.6.27"
-        }
-      },
-      "_id": "g16qWhCb0vEGcrCy",
-      "_key": "!actors.items!W0BCLkuEq22c4ADU.g16qWhCb0vEGcrCy"
-    }
-  ],
-  "effects": [
-    {
-      "origin": "Custom",
-      "disabled": false,
-      "name": "Subdermal armor",
-      "_id": "65z3JnaRuphIoeSv",
-      "changes": [
-        {
-          "key": "system.primaryArmor.value",
-          "mode": 2,
-          "value": "6",
-          "priority": null
-        }
-      ],
-      "duration": {
-        "startTime": 0,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
-      },
-      "description": "",
-      "transfer": false,
-      "statuses": [],
-      "flags": {},
-      "tint": "#ffffff",
-      "_stats": {
-        "coreVersion": "13.350",
-        "systemId": null,
-        "systemVersion": null,
-        "createdTime": null,
-        "modifiedTime": null,
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
         "lastModifiedBy": null,
         "compendiumSource": null,
         "duplicateSource": null,
         "exportSource": null
       },
-      "img": "systems/twodsix/assets/icons/subdermal-armor.svg",
-      "type": "base",
-      "system": {},
+      "_id": "g16qWhCb0vEGcrCy",
+      "ownership": {
+        "default": 0
+      },
+      "_key": "!actors.items!W0BCLkuEq22c4ADU.g16qWhCb0vEGcrCy"
+    },
+    {
+      "name": "Subdermal Armor",
+      "type": "augment",
+      "system": {
+        "name": "",
+        "techLevel": 12,
+        "description": "Provides 6 points of armor protection. Subdermal armor is added to the protection rating of any worn armor, and is detectable upon visual inspection. This augment counts as two for the purpose of implant limits.",
+        "shortdescr": "Embedded protection 6 armor.",
+        "quantity": 1,
+        "weight": 0,
+        "price": 20000,
+        "traits": [],
+        "consumables": [],
+        "skillModifier": 0,
+        "skill": "pyDEKKXipO2fX7A7",
+        "associatedSkillName": "",
+        "equipped": "equipped",
+        "docReference": [
+          ""
+        ],
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "auglocation": "Full-Body",
+        "type": "augment",
+        "bonus": "+6 points armor",
+        "useConsumableForAttack": "",
+        "priorType": "unknown",
+        "buildPoints": 0
+      },
+      "flags": {
+        "cf": {
+          "id": "temp_487k4hw8dp4",
+          "path": "ce light-augments",
+          "color": "#000000"
+        }
+      },
+      "img": "./systems/twodsix/assets/icons/subdermal-armor.svg",
+      "effects": [
+        {
+          "origin": null,
+          "tint": "#ffffff",
+          "name": "Subdermal Armor",
+          "description": "",
+          "transfer": true,
+          "disabled": false,
+          "_id": "GqKhFEBUV8vnMCA9",
+          "img": "icons/svg/aura.svg",
+          "type": "base",
+          "system": {},
+          "changes": [
+            {
+              "key": "system.primaryArmor.value",
+              "type": "add",
+              "value": 6,
+              "priority": null,
+              "phase": "derived"
+            }
+          ],
+          "duration": {
+            "startTime": 42,
+            "combat": null,
+            "seconds": null,
+            "rounds": null,
+            "turns": null,
+            "startRound": 0,
+            "startTurn": 0
+          },
+          "statuses": [],
+          "showIcon": 1,
+          "folder": null,
+          "sort": 0,
+          "flags": {},
+          "_stats": {
+            "coreVersion": "14.352",
+            "systemId": "twodsix",
+            "systemVersion": "6.9.5",
+            "lastModifiedBy": null,
+            "compendiumSource": null,
+            "duplicateSource": null,
+            "exportSource": null
+          },
+          "_key": "!actors.items.effects!W0BCLkuEq22c4ADU.RaOihis9shw3WrYq.GqKhFEBUV8vnMCA9"
+        }
+      ],
+      "folder": null,
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "6.9.5",
+        "coreVersion": "14.352",
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "ownership": {
+        "default": 0,
+        "g35c71Hsyv7w1Lw4": 3
+      },
       "sort": 0,
-      "_key": "!actors.effects!W0BCLkuEq22c4ADU.65z3JnaRuphIoeSv"
+      "_id": "RaOihis9shw3WrYq",
+      "_key": "!actors.items!W0BCLkuEq22c4ADU.RaOihis9shw3WrYq"
     }
   ],
-  "ownership": {
-    "default": 0,
-    "B4JSPh84Wx3wBFTK": 3
-  },
+  "effects": [],
   "flags": {
     "cf": {
       "id": "temp_rxguv8nhfha",
@@ -1042,7 +1076,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "appendNumber": false,
     "prependAdjective": false,
     "occludable": {
@@ -1070,17 +1104,21 @@
   },
   "_stats": {
     "systemId": "twodsix",
-    "systemVersion": "6.8.1",
-    "coreVersion": "13.350",
-    "createdTime": 1680714507654,
-    "modifiedTime": 1760016423037,
+    "systemVersion": "6.9.5",
+    "coreVersion": "14.352",
+    "createdTime": 1764092077761,
+    "modifiedTime": 1764092078174,
     "lastModifiedBy": "g35c71Hsyv7w1Lw4",
-    "compendiumSource": "Compendium.twodsix.cepheus-deluxe-actors.JMaj64wmR5TN13TO",
+    "compendiumSource": null,
     "duplicateSource": null,
     "exportSource": null
   },
   "folder": "GnzimFQ7GDJKVbRi",
-  "sort": 100000,
   "_id": "W0BCLkuEq22c4ADU",
+  "ownership": {
+    "default": 0,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "sort": 1200000,
   "_key": "!actors!W0BCLkuEq22c4ADU"
 }
