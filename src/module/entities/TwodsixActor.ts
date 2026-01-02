@@ -265,11 +265,6 @@ export default class TwodsixActor extends Actor {
 
     //Check for status change
     if (options.diff && game.user?.id === userId) {  //Not certain why options.diff is needed, but opening token editor for tokenActor and cancelling fires updateActor
-      if (!!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
-        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-          await applyWoundedEffect(this);
-        }
-      }
       if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (this.type === 'traveller')) {
         if (isEncumbranceChange(changed)) {
           await applyEncumberedEffect(this);
@@ -277,9 +272,16 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    //scroll hits change
-    if (!!options.deltaHits && this.isOwner ) {
-      this.scrollDamage(options.deltaHits);
+    if (!!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
+      if (options.diff && game.user?.id === userId) {
+        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+          await applyWoundedEffect(this);
+        }
+      }
+      //scroll hits change
+      if (this.isOwner) {
+        this.scrollDamage(options.deltaHits);
+      }
     }
   }
 
@@ -327,6 +329,7 @@ export default class TwodsixActor extends Actor {
   * Check Crew Titles for missing and set to localized default
   */
   _checkCrewTitles(): void {
+    if (!this.system.crewLabel) return; // Guard against missing field during ActorDelta initialization
     for (const pos in this.system.crewLabel) {
       if (this.system.crewLabel[pos] === "") {
         this.system.crewLabel[pos] = game.i18n.localize("TWODSIX.Ship.Crew." + pos.toUpperCase());
@@ -338,6 +341,7 @@ export default class TwodsixActor extends Actor {
   * Update Ship characteristics - used for morale
   */
   _updateCharacteristics(): void {
+    if (!this.system.characteristics) return; // Guard against missing field during ActorDelta initialization
     for (const cha of Object.keys(this.system.characteristics)) {
       const characteristic: Characteristic = this.system.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
@@ -351,6 +355,9 @@ export default class TwodsixActor extends Actor {
    */
   async _prepareActorDerivedData(): void {
     const {system} = this;
+
+    // Guard against missing system data during ActorDelta initialization
+    if (!system.characteristics || !system.hits || !system.encumbrance) return;
 
     //Update Damage
     for (const cha of Object.keys(system.characteristics)) {
@@ -587,6 +594,9 @@ export default class TwodsixActor extends Actor {
   }
 
   _prepareShipDerivedData(): void {
+    // Guard against missing system data during ActorDelta initialization
+    if (!this.system.shipStats || !this.system.financeValues) return;
+
     const calcShipStats = {
       power: {
         max: 0,
@@ -630,8 +640,8 @@ export default class TwodsixActor extends Actor {
 
     /*Estimate thrust and jump if missing*/
     const {jump, thrust} = this.getDriveRatings();
-    this.system.shipStats.drives.jDrive.rating = jump;
-    this.system.shipStats.drives.mDrive.rating = thrust;
+    this.system.shipStats.drives.jDrive.rating = Number.isFinite(jump) ? jump : 0;
+    this.system.shipStats.drives.mDrive.rating = Number.isFinite(thrust) ? thrust : 0;
 
     const massProducedMultiplier = this.system.isMassProduced ? (1 - this.system.financeValues.massProductionDiscount) : 1;
 
@@ -809,9 +819,14 @@ export default class TwodsixActor extends Actor {
       shipActor.system.weightStats.systems = roundToMaxDecimals(calcShipStats.weight.systems, 2);
       shipActor.system.weightStats.available = roundToMaxDecimals(calcShipStats.weight.available, 2);
 
-      shipActor.system.shipValue = calcShipStats.cost.total.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
-      shipActor.system.mortgageCost = (calcShipStats.cost.total / (<Ship>shipActor.system).financeValues.mortgagePaymentTerm * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
-      shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
+      const totalCost = Number.isFinite(calcShipStats.cost.total) ? calcShipStats.cost.total : 0;
+      const mortgageTerm = Number.isFinite((<Ship>shipActor.system).financeValues.mortgagePaymentTerm) && (<Ship>shipActor.system).financeValues.mortgagePaymentTerm > 0
+        ? (<Ship>shipActor.system).financeValues.mortgagePaymentTerm
+        : 240;
+
+      shipActor.system.shipValue = totalCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
+      shipActor.system.mortgageCost = (totalCost / mortgageTerm * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
+      shipActor.system.maintenanceCost = (totalCost * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
 
@@ -1533,16 +1548,23 @@ export default class TwodsixActor extends Actor {
     );
 
     for (const drive of driveComponents) {
+      const rating = Number(drive.system.rating);
+      const validRating = Number.isFinite(rating) ? rating : 0;
+
       if (drive.isMDriveComponent()) {
-        thrust = Math.max(thrust, drive.system.rating || 0);
+        thrust = Math.max(thrust, validRating);
       } else if (drive.isJDriveComponent()) {
-        jump = Math.max(jump, drive.system.rating || 0);
+        jump = Math.max(jump, validRating);
       }
     }
 
+    // Return stored values if valid, otherwise use calculated values
+    const storedJump = Number(this.system.shipStats.drives.jDrive.rating);
+    const storedThrust = Number(this.system.shipStats.drives.mDrive.rating);
+
     return {
-      jump: this.system.shipStats.drives.jDrive.rating || jump,
-      thrust: this.system.shipStats.drives.mDrive.rating || thrust
+      jump: Number.isFinite(storedJump) ? storedJump : jump,
+      thrust: Number.isFinite(storedThrust) ? storedThrust : thrust
     };
   }
 }
