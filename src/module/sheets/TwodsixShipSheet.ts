@@ -193,7 +193,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         for (const actorId in (<Ship>shipActor.system)?.shipPositionActorIds) {
           const actor = game.actors?.get(actorId);
           if (actor === undefined) {
-            await shipActor.update({[`system.shipPositionActorIds.-=${actorId}`]: null });
+            await shipActor.update({[`system.shipPositionActorIds.${actorId}`]: _del });
           }
         }
       }
@@ -213,7 +213,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       (<ShipPosition>(<TwodsixItem>this.actor.items.get(shipPositionId)).system).actors?.forEach(async (actor:TwodsixActor) => {
         if (actor.id && actor.id in (<Ship>this.actor.system).shipPositionActorIds) {
           if (actor.id) {
-            await this.actor.update({ [`system.shipPositionActorIds.-=${actor.id}`]: null });
+            await this.actor.update({ [`system.shipPositionActorIds.${actor.id}`]: _del });
           }
         }
       });
@@ -321,7 +321,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
           await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
           this.actor.items.get(shipPositionId)?.sheet?.render();
         } else {
-          await this.actor.update({[`system.shipPositionActorIds.-=${actorId}`]: null});
+          await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: _del});
         }
         this.actor.items.get(currentShipPositionId)?.sheet?.render();
         return true;

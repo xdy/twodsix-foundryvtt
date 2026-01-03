@@ -67,7 +67,8 @@
       "changes": [
         {
           "key": "system.primaryArmor.value",
-          "mode": 2,
+          "type": "add",
+          "phase": "derived",
           "value": "1",
           "priority": null
         }

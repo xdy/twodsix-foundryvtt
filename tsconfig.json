@@ -10,17 +10,27 @@
       "node"
     ],
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
     "allowUmdGlobalAccess": true,
     "noImplicitAny": false,
-    "baseUrl": ".",
     "removeComments": false,
     "resolveJsonModule": true,
     "alwaysStrict": true,
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@client/*": ["./foundry/client/*"],
+      "@common/*": ["./foundry/common/*"]
+    }
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "foundry/client/global.d.mts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
 }

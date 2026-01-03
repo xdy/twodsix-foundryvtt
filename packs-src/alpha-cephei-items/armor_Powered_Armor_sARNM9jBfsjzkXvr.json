@@ -66,13 +66,15 @@
       "changes": [
         {
           "key": "system.characteristics.strength.mod",
-          "mode": 2,
+          "type": "add",
+          "phase": "derived",
           "value": "4",
           "priority": null
         },
         {
           "key": "system.characteristics.dexterity.mod",
-          "mode": 2,
+          "type": "add",
+          "phase": "derived",
           "value": "4",
           "priority": null
         }

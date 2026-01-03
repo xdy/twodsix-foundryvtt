@@ -47,6 +47,87 @@ export class TwodsixActiveEffect extends ActiveEffect {
   }
 
   /**
+   * Perform preliminary operations before an Actor of this type is created.
+   * Pre-creation operations only occur for the client which requested the operation.
+   * @param {object} data               The initial data object provided to the document creation request.
+   * @param {object} options            Additional options which modify the creation request.
+   * @param {User} userId                 The User requesting the document creation.
+   * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
+   * @see {Document#_preCreate}
+   * @protected
+   */
+  protected async _preCreate(data:object, options:object, userId:User): Promise<boolean|void> {
+    const allowed:boolean = await super._preCreate(data, options, userId);
+    if (!allowed) {
+      return false;
+    }
+    this.updatePhases(data, options, user);
+  }
+  /**
+   * Perform preliminary operations before a Document of this type is updated.
+   * Pre-update operations only occur for the client which requested the operation.
+   * @param {object} data            The data object that is changed - NOT always relative to the documents prior values
+   * @param {object} options            Additional options which modify the update request
+   * @param {documents.BaseUser} user   The User requesting the document update
+   * @returns {Promise<boolean|void>}   A return value of false indicates the update operation should be cancelled.
+   * @see {Document#_preUpdate}
+   * @protected
+   */
+  async _preUpdate(data: object, options: object, user: documents.BaseUser): Promise<void|boolean> {
+    await super._preUpdate(data, options, user);
+    //console.log(data, options, user);
+    this.updatePhases(data, options, user);
+  }
+
+  /**
+   * Determines the phase of an active effect change based on the change's key.
+   *
+   * @param {object} change - The change object being processed.
+   * @returns {string} - The phase of the change (e.g., "encumbMax", "custom", "derived", "initial").
+   */
+  determinePhase(change: any): string {
+    // Safeguard against undefined target
+    const actor: TwodsixActor | undefined = this.target;
+    const derivedKeys = actor?.getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
+
+    if (change.key === "system.encumbrance.max") {
+      return "encumbMax";
+    } else if (change.type === "custom") {
+      return "custom";
+    } else if (actor && ["traveller", "animal", "robot"].includes(actor.type)) {
+      return derivedKeys.includes(change.key) ? "derived" : "initial";
+    } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+      return "derived";
+    } else {
+      return "initial";
+    }
+  }
+
+  /**
+   * Updates the phases of changes in the provided data object.
+   *
+   * @param {object} data - The data object containing changes to process.
+   * @param {object} [options] - Additional options for processing changes.
+   * @param {documents.BaseUser} [user] - The user requesting the update.
+   * @returns {void}
+   */
+  updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
+    // Ensure changes exist and are an array
+    if (!data.changes || !Array.isArray(data.changes)) {
+      //console.log("No valid changes found in data.");
+      return;
+    }
+
+    // Calculate differences
+    const newChanges = foundry.utils.diffObject(this, data);
+    if (newChanges?.changes) {
+      for (const change of data.changes) {
+        change.phase = this.determinePhase(change);
+      }
+    }
+  }
+
+  /**
    * Perform follow-up operations after a Document of this type is updated.
    * Post-update operations occur for all clients after the update is broadcast.
    * @param {object} changed            The differential data that was changed relative to the documents prior values
@@ -55,7 +136,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onUpdate}
    * @override
    */
-  async _onUpdate(changed: object, options: object, userId: string):void {
+  async _onUpdate(changed: object, options: object, userId: string):Promise<void> {
     await super._onUpdate(changed, options, userId);
     if(game.userId === userId  && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);
@@ -70,7 +151,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onDelete}
    * @override
    */
-  async _onDelete(options: object, userId: string):void {
+  async _onDelete(options: object, userId: string):Promis<void> {
     await super._onDelete(options, userId);
     if(game.userId === userId && this.parent?.type === 'traveller') {
       await checkEncumbranceStatus(this);

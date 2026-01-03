@@ -126,6 +126,8 @@ export const changeDefaultColor = function () {
     game.settings.set('twodsix', 'defaultColor', "#29aae1");
   }
   document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
+  // Re-render pause screen if it exists to update SVG color
+  ui.pause?.render(false);
 };
 
 export const changeBattleColor = function () {
