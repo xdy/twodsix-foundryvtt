@@ -83,9 +83,15 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
       useThrustCounter: false
     },
     reactionFormula: (initiative) => {
-      if (initiative <= 4) return 1;
-      if (initiative <= 8) return 2;
-      if (initiative <= 12) return 3;
+      if (initiative <= 4) {
+        return 1;
+      }
+      if (initiative <= 8) {
+        return 2;
+      }
+      if (initiative <= 12) {
+        return 3;
+      }
       return 4;
     }
   },

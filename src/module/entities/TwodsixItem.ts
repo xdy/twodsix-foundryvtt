@@ -149,7 +149,7 @@ export default class TwodsixItem extends Item {
   }
 
   private sortByName(a: TwodsixItem, b: TwodsixItem): number {
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+    return a.name.localeCompare(b.name, game.i18n.lang, { sensitivity: 'base' });
   }
 
   /**

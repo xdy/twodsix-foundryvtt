@@ -122,7 +122,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
     // Ensure changes exist and are an array
-    if (!data.changes || !Array.isArray(data.changes)) {
+    if (!data.changes || foundry.utils.getType(data.changes) !== 'Array') {
       //console.log("No valid changes found in data.");
       return;
     }
@@ -180,9 +180,13 @@ export class TwodsixActiveEffect extends ActiveEffect {
     const overrideMap = {};
     const normalCustoms = [];
     for (const effect of effects) {
-      if (!effect.active) continue;
+      if (!effect.active) {
+        continue;
+      }
       for (const change of effect.changes) {
-        if (!change.key || change.phase !== phase) continue;
+        if (!change.key || change.phase !== phase) {
+          continue;
+        }
         if (
           change.type === "custom" &&
           typeof change.value === "string" &&

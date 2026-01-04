@@ -7,6 +7,12 @@ import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "./actorDamage";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
+// Track which actors have encumbrance updates in progress to prevent concurrent modifications
+const encumbranceUpdateInProgress = new Set<string>();
+
+// Track which actors have wounded state updates in progress to prevent concurrent modifications
+const woundedStateUpdateInProgress = new Set<string>();
+
 export function checkForDamageStat (update: any, actorType: string): boolean {
   if (update.effects?.length > 0) {
     const damageCharacteristics = getDamageCharacteristics(actorType);
@@ -68,14 +74,27 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
  * @param {TwodsixActor} selectedActor  The actor to check
  * @public
  */
-let encumbranceUpdateInProgress = false;
-export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  if (encumbranceUpdateInProgress) {
+export function applyEncumberedEffect(selectedActor: TwodsixActor): void {
+  performEncumbranceUpdate(selectedActor);
+}
+
+/**
+ * Performs the actual encumbrance effect update logic.
+ * @param {TwodsixActor} selectedActor  The actor to check
+ * @private
+ */
+async function performEncumbranceUpdate(selectedActor: TwodsixActor): Promise<void> {
+  const actorKey = selectedActor.uuid;
+
+  // Prevent concurrent updates - if an update is already in progress, skip this one
+  // (another update will run soon with fresher data)
+  if (encumbranceUpdateInProgress.has(actorKey)) {
     return;
   }
-  encumbranceUpdateInProgress = true;
+
   try {
-    const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
+    encumbranceUpdateInProgress.add(actorKey);
+
     let state = false;
     let ratio = 0;
     let aeToKeep: TwodsixActiveEffect | undefined = undefined;
@@ -92,13 +111,14 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
       }
     }
 
-    // Delete encumbered AE's if uneeded or more than one
-    if (isCurrentlyEncumbered.length > 0) {
+    // Delete encumbered AE's if unneeded or more than one
+    const currentEncumberedEffects = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
+    if (currentEncumberedEffects.length > 0) {
       if (state === true) {
-        aeToKeep = isCurrentlyEncumbered.pop();
+        aeToKeep = currentEncumberedEffects.pop();
       }
-      if (isCurrentlyEncumbered.length > 0) {
-        const idList = isCurrentlyEncumbered.map(i => i.id);
+      if (currentEncumberedEffects.length > 0) {
+        const idList = currentEncumberedEffects.map(i => i.id);
         await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
       }
     }
@@ -159,7 +179,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
       }
     }
   } finally {
-    encumbranceUpdateInProgress = false;
+    encumbranceUpdateInProgress.delete(actorKey);
   }
 }
 
@@ -243,50 +263,63 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
  * @param {string} tint The wounded tint color (as a hex code string).  Color indicates the severity of wounds. TWODSIX.DAMAGECOLORS.minorWoundTint and TWODSIX.DAMAGECOLORS.seriousWoundTint
  */
 async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
-  let currentEffectId = "";
-  //Clean up effects
-  if (isAlreadySet?.length > 0) {
-    const idList = isAlreadySet.map(i => i.id);
-    if (state) {
-      currentEffectId = idList.pop();
-    }
-    if(idList.length > 0) {
-      await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
-    }
+  const actorKey = targetActor.uuid;
+
+  // Prevent concurrent updates - if an update is already in progress, skip this one
+  if (woundedStateUpdateInProgress.has(actorKey)) {
+    return;
   }
-  //Set effect if state true
-  if (state) {
-    let woundModifier = 0;
-    switch (tint) {
-      case TWODSIX.DAMAGECOLORS.minorWoundTint:
-        woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
-        break;
-      case TWODSIX.DAMAGECOLORS.seriousWoundTint:
-        woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
-        break;
-    }
-    let changeData = {}; //AC has a movement penalty not roll penalty
-    if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-      changeData = { key: "system.movement.walk", type: "override", value: 1.5 };
-    } else {
-      changeData = { key: "system.conditions.woundedEffect", type: "add", value: woundModifier.toString() };
-    }
-    //
-    if (!currentEffectId) {
-      await targetActor.createEmbeddedDocuments("ActiveEffect", [{
-        name: game.i18n.localize(TWODSIX.effectType.wounded),
-        img: "icons/svg/blood.svg",
-        tint: tint,
-        changes: [changeData],
-        statuses: ['wounded']
-      }]);
-    } else {
-      const currentEfffect = targetActor.effects.get(currentEffectId);
-      if (currentEfffect.tint !== tint) {
-        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
+
+  try {
+    woundedStateUpdateInProgress.add(actorKey);
+
+    const isAlreadySet = targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
+    let currentEffectId = "";
+    //Clean up effects
+    if (isAlreadySet?.length > 0) {
+      const idList = isAlreadySet.map(i => i.id);
+      if (state) {
+        currentEffectId = idList.pop();
+      }
+      if(idList.length > 0) {
+        await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
       }
     }
+    //Set effect if state true
+    if (state) {
+      let woundModifier = 0;
+      switch (tint) {
+        case TWODSIX.DAMAGECOLORS.minorWoundTint:
+          woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
+          break;
+        case TWODSIX.DAMAGECOLORS.seriousWoundTint:
+          woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
+          break;
+      }
+      let changeData = {}; //AC has a movement penalty not roll penalty
+      if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
+        changeData = { key: "system.movement.walk", type: "override", value: 1.5 };
+      } else {
+        changeData = { key: "system.conditions.woundedEffect", type: "add", value: woundModifier.toString() };
+      }
+      //
+      if (!currentEffectId) {
+        await targetActor.createEmbeddedDocuments("ActiveEffect", [{
+          name: game.i18n.localize(TWODSIX.effectType.wounded),
+          img: "icons/svg/blood.svg",
+          tint: tint,
+          changes: [changeData],
+          statuses: ['wounded']
+        }]);
+      } else {
+        const currentEfffect = targetActor.effects.get(currentEffectId);
+        if (currentEfffect.tint !== tint) {
+          await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
+        }
+      }
+    }
+  } finally {
+    woundedStateUpdateInProgress.delete(actorKey);
   }
 }
 

@@ -10,7 +10,7 @@ async function refactorDamageTypes (item: TwodsixItem): Promise<void> {
     if (["weapon", "consumable"].includes(item.type)){
       const damageType  = camelCase(item.system.damageType);
       item.update({"system.damageType": damageTypeList[damageType] ? damageType : "NONE"});
-    } else if (item.type === "armor" && !Array.isArray(item.system.secondaryArmor.protectionTypes)) {
+    } else if (item.type === "armor" && foundry.utils.getType(item.system.secondaryArmor.protectionTypes) !== 'Array') {
       const protectionArray = [];
       let protectionTypes = item.system.secondaryArmor.protectionTypes.split(',');
       protectionTypes = protectionTypes.map((s:string) => camelCase(s));

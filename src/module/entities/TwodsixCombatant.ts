@@ -293,7 +293,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
 
     const formula = config?.reactionFormula;
 
-    if (formula && typeof formula === 'function') {
+    if (formula && foundry.utils.getType(formula) === 'function') {
       return formula(this.initiative ?? 0);
     }
 

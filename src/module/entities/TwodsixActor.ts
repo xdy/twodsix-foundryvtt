@@ -208,7 +208,7 @@ export default class TwodsixActor extends Actor {
     let deltaHits = 0;
     if (data?.system?.characteristics && ['traveller', 'animal', 'robot'].includes(this.type)) {
       const charDiff = foundry.utils.diffObject(this.system._source.characteristics, data.system.characteristics); //v12 stopped passing diffferential
-      if (Object.keys(charDiff).length > 0) {
+      if (!foundry.utils.isEmpty(charDiff)) {
         deltaHits = this.getDeltaHits(charDiff);
       }
 
@@ -229,7 +229,7 @@ export default class TwodsixActor extends Actor {
         finances: data?.system?.finances ? foundry.utils.diffObject(this.system._source.finances, data.system.finances) : {},
         financeValues: data?.system?.financeValues ? foundry.utils.diffObject(this.system._source.financeValues, data.system.financeValues) : {} //v12 stopped passing diffferential
       };
-      if (Object.keys(financeDiff.finances).length > 0 || Object.keys(financeDiff.financeValues).length > 0) {
+      if (!foundry.utils.isEmpty(financeDiff.finances) || !foundry.utils.isEmpty(financeDiff.financeValues)) {
         updateFinances(this, data, financeDiff);
       }
     } else if (this.type === 'ship') {
@@ -329,7 +329,9 @@ export default class TwodsixActor extends Actor {
   * Check Crew Titles for missing and set to localized default
   */
   _checkCrewTitles(): void {
-    if (!this.system.crewLabel) return; // Guard against missing field during ActorDelta initialization
+    if (!this.system.crewLabel) {
+      return; // Guard against missing field during ActorDelta initialization
+    }
     for (const pos in this.system.crewLabel) {
       if (this.system.crewLabel[pos] === "") {
         this.system.crewLabel[pos] = game.i18n.localize("TWODSIX.Ship.Crew." + pos.toUpperCase());
@@ -341,7 +343,9 @@ export default class TwodsixActor extends Actor {
   * Update Ship characteristics - used for morale
   */
   _updateCharacteristics(): void {
-    if (!this.system.characteristics) return; // Guard against missing field during ActorDelta initialization
+    if (!this.system.characteristics) {
+      return; // Guard against missing field during ActorDelta initialization
+    }
     for (const cha of Object.keys(this.system.characteristics)) {
       const characteristic: Characteristic = this.system.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
@@ -357,7 +361,9 @@ export default class TwodsixActor extends Actor {
     const {system} = this;
 
     // Guard against missing system data during ActorDelta initialization
-    if (!system.characteristics || !system.hits || !system.encumbrance) return;
+    if (!system.characteristics || !system.hits || !system.encumbrance) {
+      return;
+    }
 
     //Update Damage
     for (const cha of Object.keys(system.characteristics)) {
@@ -595,7 +601,9 @@ export default class TwodsixActor extends Actor {
 
   _prepareShipDerivedData(): void {
     // Guard against missing system data during ActorDelta initialization
-    if (!this.system.shipStats || !this.system.financeValues) return;
+    if (!this.system.shipStats || !this.system.financeValues) {
+      return;
+    }
 
     const calcShipStats = {
       power: {

@@ -123,7 +123,7 @@ async function sendReportToMessage(damageList: DamageResult[], radReport: string
 
   // Enrich radiation report for inline rolls and secrets
   let enrichedRadReport = "";
-  if (Array.isArray(radReport)) {
+  if (foundry.utils.getType(radReport) === 'Array') {
     enrichedRadReport = generateDamageTable(radReport);
   } else {
     enrichedRadReport = await foundry.applications.ux.TextEditor.implementation.enrichHTML(radReport, { secrets: ship.isOwner });
