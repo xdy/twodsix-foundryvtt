@@ -617,128 +617,162 @@ export default class TwodsixActor extends Actor {
       },
       cost: {
         baseHullValue: 0,
-        hullOffset: 1.0,
         percentHull: 0,
-        perHullTon: 0,
         componentValue: 0,
         total: 0
       },
       bandwidth: {
         used: 0,
         available: 0
+      },
+      mass: {
+        max: 0
+      },
+      drives: {
+        jDrive: {
+          rating: 0
+        },
+        mDrive: {
+          rating: 0
+        }
       }
     };
 
-    /* estimate displacement if missing */
-    if (!this.system.shipStats.mass.max || this.system.shipStats.mass.max <= 0) {
-      const calcDisplacement = estimateDisplacement(this);
-      if (calcDisplacement && calcDisplacement > 0) {
-        //this.update({"system.shipStats.mass.max": calcDisplacement});
-        this.system.shipStats.mass.max = calcDisplacement;
-      }
+    /* Calculate displacement from components */
+    const calcDisplacement = Math.round(
+      this.itemTypes.component
+        .filter((item: TwodsixItem) => (<Component>item.system).isBaseHull)
+        .reduce((sum, item) => sum + getWeight(item), 0)
+    );
+    if (calcDisplacement && calcDisplacement > 0) {
+      calcShipStats.mass.max = calcDisplacement;
+    } else {
+      calcShipStats.mass.max = this.system.shipStats.mass.max || 0;
     }
 
-    /*Estimate thrust and jump if missing*/
+    // Seed mass early so weight/cost helpers use calculated mass during this cycle
+    this.system.calcShipStats = {mass: {max: calcShipStats.mass.max}} as any;
+
+    /* Calculate drive ratings */
     const {jump, thrust} = this.getDriveRatings();
-    this.system.shipStats.drives.jDrive.rating = Number.isFinite(jump) ? jump : 0;
-    this.system.shipStats.drives.mDrive.rating = Number.isFinite(thrust) ? thrust : 0;
+    calcShipStats.drives.jDrive.rating = Number.isFinite(jump) ? jump : 0;
+    calcShipStats.drives.mDrive.rating = Number.isFinite(thrust) ? thrust : 0;
 
     const massProducedMultiplier = this.system.isMassProduced ? (1 - this.system.financeValues.massProductionDiscount) : 1;
 
+    // Process all components
     this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
+
+      // Check conditions once per component
+      const isExcludedFromCost = ["fuel", "cargo", "ammo", "vehicle"].includes(anComponent.subtype);
+      const isOperational = ["operational", "damaged"].includes(anComponent.status);
+      const isBaseHull = anComponent.subtype === "hull" && anComponent.isBaseHull;
+
       const powerForItem = getPower(item);
       const weightForItem = getWeight(item);
 
-      /* Allocate Power */
       allocatePower(anComponent, powerForItem, item);
-
-      /* Allocate Weight*/
       allocateWeight(anComponent, weightForItem);
 
-      /*Calculate Cost*/
-      calculateComponentCost(anComponent, weightForItem, this, massProducedMultiplier);
+      if (!isExcludedFromCost) {
+        calculateComponentCost(anComponent, weightForItem, isBaseHull);
+      }
 
-      /*Calculate Cost*/
-      calculateBandwidth(anComponent);
-    });
-
-    //Update component costs for those that depend on base hull value
-    this.itemTypes.component.filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !["fuel", "cargo", "ammo", "vehicle"].includes(it.system.subtype)).forEach((item: TwodsixItem) => {
-      item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) / 100;
-      if (item.system.pricingBasis === "pctHullPerUnit") {
-        item.system.installedCost *= item.system.quantity;
+      if (isOperational) {
+        calculateBandwidth(anComponent);
       }
     });
 
-    /*Calculate implicit values*/
-    calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors +
-      calcShipStats.power.weapons + calcShipStats.power.systems;
-
-    calcShipStats.weight.available = this.system.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
-      - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
-
-    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * ( 1 + calcShipStats.cost.percentHull / 100 );
-
-    /*Push values to ship actor*/
-    updateShipData(this);
-
-    function estimateDisplacement(shipActor): number {
-      let returnValue = 0;
-      shipActor.itemTypes.component.filter((item: TwodsixItem) => (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
-        returnValue += getWeight(item);
+    // Update costs for pctHull-based components (now that baseHullValue is known)
+    const excludedSubtypes = ["fuel", "cargo", "ammo", "vehicle"];
+    this.itemTypes.component
+      .filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !excludedSubtypes.includes(it.system.subtype))
+      .forEach((item: TwodsixItem) => {
+        const multiplier = item.system.pricingBasis === "pctHullPerUnit" ? item.system.quantity : 1;
+        item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) * multiplier / 100;
       });
-      return Math.round(returnValue);
-    }
 
-    function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor:TwodsixActor, multiplier:number): void {
-      if (!["fuel", "cargo", "ammo", "vehicle"].includes(anComponent.subtype)) {
-        if (anComponent.subtype === "hull" && anComponent.isBaseHull) {
-          switch (anComponent.pricingBasis) {
-            case "perUnit":
-              anComponent.installedCost = Number(anComponent.price) * anComponent.quantity * multiplier;
-              break;
-            case "perCompTon":
-              anComponent.installedCost = Number(anComponent.price) * weightForItem * multiplier;
-              break;
-            case "perHullTon":
-              anComponent.installedCost = (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price) * multiplier;
-              break;
-            case "per100HullTon":
-              anComponent.installedCost = (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price)/100 * multiplier;
-              break;
-          }
-          calcShipStats.cost.baseHullValue += anComponent.installedCost;
-        } else {
-          switch (anComponent.pricingBasis) {
-            case "perUnit":
-              anComponent.installedCost = Number(anComponent.price) * anComponent.quantity * multiplier;
-              break;
-            case "perCompTon":
-              anComponent.installedCost = Number(anComponent.price) * weightForItem * multiplier;
-              break;
-            case "pctHull":
-              calcShipStats.cost.percentHull += Number(anComponent.price);
-              break;
-            case "pctHullPerUnit":
-              calcShipStats.cost.percentHull += Number(anComponent.price) * anComponent.quantity;
-              break;
-            case "perHullTon":
-              anComponent.installedCost = Number(anComponent.price) * (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * multiplier;
-              break;
-            case "per100HullTon":
-              anComponent.installedCost = Number(anComponent.price)/100 * (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * multiplier;
-              break;
-          }
-          if (!["pctHull", "pctHullPerUnit"].includes(anComponent.pricingBasis)) {
-            calcShipStats.cost.componentValue += anComponent.installedCost;
-          }
-        }
+    // Calculate totals
+    calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors + calcShipStats.power.weapons + calcShipStats.power.systems;
+    calcShipStats.weight.available = calcShipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0) - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
+    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * (1 + calcShipStats.cost.percentHull / 100);
+
+    // Build final calcShipStats object
+    const totalCost = Number.isFinite(calcShipStats.cost.total) ? calcShipStats.cost.total : 0;
+    const mortgageTerm = Number.isFinite(this.system.financeValues.mortgagePaymentTerm) && this.system.financeValues.mortgagePaymentTerm > 0
+      ? this.system.financeValues.mortgagePaymentTerm
+      : game.settings.get('twodsix', 'mortgageTerm');
+
+    this.system.calcShipStats = {
+      power: {
+        value: roundToMaxDecimals(calcShipStats.power.used, 1),
+        max: roundToMaxDecimals(calcShipStats.power.max, 1)
+      },
+      bandwidth: {
+        value: Math.round(calcShipStats.bandwidth.used),
+        max: Math.round(calcShipStats.bandwidth.available)
+      },
+      mass: {
+        value: 0,
+        max: calcShipStats.mass.max
+      },
+      drives: {
+        jDrive: {rating: calcShipStats.drives.jDrive.rating},
+        mDrive: {rating: calcShipStats.drives.mDrive.rating}
+      },
+      reqPower: formatPowerStats(calcShipStats.power),
+      weightStats: formatWeightStats(calcShipStats.weight),
+      cost: {
+        total: totalCost,
+        shipValue: totalCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1}),
+        mortgageCost: formatMCrAsCredits(totalCost / mortgageTerm),
+        maintenanceCost: formatMCrAsCredits(totalCost * 0.001 / 12)
+      }
+    };
+
+    function calculateComponentCost(anComponent: Component, weightForItem: number, isBaseHull: boolean): void {
+      const price = Number(anComponent.price);
+
+      // Handle percentage-based costs first
+      if (anComponent.pricingBasis === "pctHull") {
+        calcShipStats.cost.percentHull += price;
+        return;
+      }
+      if (anComponent.pricingBasis === "pctHullPerUnit") {
+        calcShipStats.cost.percentHull += price * anComponent.quantity;
+        return;
+      }
+
+      const hullMass = calcShipStats.mass.max || calcShipStats.weight.baseHull;
+
+      let cost = 0;
+      switch (anComponent.pricingBasis) {
+        case "perUnit":
+          cost = price * anComponent.quantity * massProducedMultiplier;
+          break;
+        case "perCompTon":
+          cost = price * weightForItem * massProducedMultiplier;
+          break;
+        case "perHullTon":
+          cost = hullMass * price * massProducedMultiplier;
+          break;
+        case "per100HullTon":
+          cost = (hullMass * price / 100) * massProducedMultiplier;
+          break;
+      }
+
+      anComponent.installedCost = cost;
+
+      if (isBaseHull) {
+        calcShipStats.cost.baseHullValue += cost;
+      } else {
+        calcShipStats.cost.componentValue += cost;
       }
     }
 
     function calculateBandwidth(anComponent: Component): void {
-      if (game.settings.get("twodsix", "showBandwidth") && ["operational", "damaged"].includes(anComponent.status)) {
+      if (game.settings.get("twodsix", "showBandwidth")) {
         if (anComponent.subtype === "computer") {
           calcShipStats.bandwidth.available += anComponent.bandwidth;
         } else if (anComponent.subtype === "software") {
@@ -799,34 +833,6 @@ export default class TwodsixActor extends Actor {
             break;
         }
       }
-    }
-
-    function updateShipData(shipActor:TwodsixActor): void {
-      shipActor.system.shipStats.power.value = roundToMaxDecimals(calcShipStats.power.used, 1);
-      shipActor.system.shipStats.power.max = roundToMaxDecimals(calcShipStats.power.max, 1);
-      shipActor.system.reqPower.systems = roundToMaxDecimals(calcShipStats.power.systems, 1);
-      shipActor.system.reqPower["m-drive"] = roundToMaxDecimals(calcShipStats.power.mDrive, 1);
-      shipActor.system.reqPower["j-drive"] = roundToMaxDecimals(calcShipStats.power.jDrive, 1);
-      shipActor.system.reqPower.sensors = roundToMaxDecimals(calcShipStats.power.sensors, 1);
-      shipActor.system.reqPower.weapons = roundToMaxDecimals(calcShipStats.power.weapons, 1);
-
-      shipActor.system.shipStats.bandwidth.value = Math.round(calcShipStats.bandwidth.used);
-      shipActor.system.shipStats.bandwidth.max = Math.round(calcShipStats.bandwidth.available);
-
-      shipActor.system.weightStats.vehicles = roundToMaxDecimals(calcShipStats.weight.vehicles, 2);
-      shipActor.system.weightStats.cargo = roundToMaxDecimals(calcShipStats.weight.cargo, 2);
-      shipActor.system.weightStats.fuel = roundToMaxDecimals(calcShipStats.weight.fuel, 2);
-      shipActor.system.weightStats.systems = roundToMaxDecimals(calcShipStats.weight.systems, 2);
-      shipActor.system.weightStats.available = roundToMaxDecimals(calcShipStats.weight.available, 2);
-
-      const totalCost = Number.isFinite(calcShipStats.cost.total) ? calcShipStats.cost.total : 0;
-      const mortgageTerm = Number.isFinite((<Ship>shipActor.system).financeValues.mortgagePaymentTerm) && (<Ship>shipActor.system).financeValues.mortgagePaymentTerm > 0
-        ? (<Ship>shipActor.system).financeValues.mortgagePaymentTerm
-        : 240;
-
-      shipActor.system.shipValue = totalCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
-      shipActor.system.mortgageCost = (totalCost / mortgageTerm * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
-      shipActor.system.maintenanceCost = (totalCost * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
 
@@ -1558,14 +1564,55 @@ export default class TwodsixActor extends Actor {
       }
     }
 
-    // Return stored values if valid, otherwise use calculated values
-    const storedJump = Number(this.system.shipStats.drives.jDrive.rating);
-    const storedThrust = Number(this.system.shipStats.drives.mDrive.rating);
+    // Check setting: use calcShipStats only if auto-calc is enabled
+    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
 
-    return {
-      jump: Number.isFinite(storedJump) ? storedJump : jump,
-      thrust: Number.isFinite(storedThrust) ? storedThrust : thrust
-    };
+    if (useAutoCalcs) {
+      // Use calculated values from calcShipStats, fallback to component calculations
+      const calcJump = this.system.calcShipStats?.drives?.jDrive?.rating;
+      const calcThrust = this.system.calcShipStats?.drives?.mDrive?.rating;
+      return {
+        jump: Number.isFinite(calcJump) ? calcJump : jump,
+        thrust: Number.isFinite(calcThrust) ? calcThrust : thrust
+      };
+    } else {
+      // Use manual values from shipStats, fallback to component calculations
+      const storedJump = Number(this.system.shipStats.drives.jDrive.rating);
+      const storedThrust = Number(this.system.shipStats.drives.mDrive.rating);
+      return {
+        jump: Number.isFinite(storedJump) ? storedJump : jump,
+        thrust: Number.isFinite(storedThrust) ? storedThrust : thrust
+      };
+    }
+  }
+
+  /**
+   * Override getRollData to provide setting-aware shipStats for ships
+   * When useShipAutoCalcs is enabled, shipStats will point to calculated values
+   * When disabled, shipStats will point to manual values
+   * @override
+   */
+  getRollData() {
+    const data = super.getRollData();
+
+    // Only modify for ship actors
+    if (this.type === 'ship' && this.system.calcShipStats) {
+      const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+
+      if (useAutoCalcs) {
+        // Replace shipStats with calculated values when auto-calc is enabled
+        data.shipStats = {
+          ...this.system.shipStats,
+          mass: this.system.calcShipStats.mass,
+          drives: this.system.calcShipStats.drives,
+          power: this.system.calcShipStats.power,
+          bandwidth: this.system.calcShipStats.bandwidth
+        };
+      }
+      // Otherwise, shipStats already contains manual values from this.system
+    }
+
+    return data;
   }
 }
 
@@ -1586,7 +1633,12 @@ export function getPower(item: TwodsixItem): number{
       }
       return (quant * pf);
     } else if (item.system.powerBasis === 'perHullTon') {
-      return pf * (item.actor?.system.shipStats.mass.max ?? 0);
+      // Check setting: use calcShipStats only if auto-calc is enabled
+      const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+      const massMax = (useAutoCalcs && item.actor?.system.calcShipStats?.mass?.max)
+        ? item.actor.system.calcShipStats.mass.max
+        : (item.actor?.system.shipStats.mass.max ?? 0);
+      return pf * massMax;
     } else if (item.system.powerBasis === 'perCompTon') {
       return pf * getWeight(item);
     }
@@ -1608,7 +1660,12 @@ export function getWeight(item: TwodsixItem): number{
   }  make true displacement and not mass*/
   let wf = 0;
   if (item.system.weightIsPct) {
-    wf = (item.system.weight ?? 0) / 100 * (item.actor?.system.shipStats.mass.max ?? 0);
+    // Check setting: use calcShipStats only if auto-calc is enabled
+    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+    const massMax = (useAutoCalcs && item.actor?.system.calcShipStats?.mass?.max)
+      ? item.actor.system.calcShipStats.mass.max
+      : (item.actor?.system.shipStats.mass.max ?? 0);
+    wf = (item.system.weight ?? 0) / 100 * massMax;
   } else {
     wf = item.system.weight ?? 0;
   }
@@ -1738,4 +1795,31 @@ function isEncumbranceChange(changed:object): boolean {
     return true;
   }
   return false;
+}
+
+function formatPowerStats(power: {systems: number; mDrive: number; jDrive: number; sensors: number; weapons: number}): object {
+  return {
+    systems: roundToMaxDecimals(power.systems, 1),
+    mDrive: roundToMaxDecimals(power.mDrive, 1),
+    jDrive: roundToMaxDecimals(power.jDrive, 1),
+    sensors: roundToMaxDecimals(power.sensors, 1),
+    weapons: roundToMaxDecimals(power.weapons, 1)
+  };
+}
+
+function formatWeightStats(weight: {vehicles: number; cargo: number; fuel: number; systems: number; available: number}): object {
+  return {
+    vehicles: roundToMaxDecimals(weight.vehicles, 2),
+    cargo: roundToMaxDecimals(weight.cargo, 2),
+    fuel: roundToMaxDecimals(weight.fuel, 2),
+    systems: roundToMaxDecimals(weight.systems, 2),
+    available: roundToMaxDecimals(weight.available, 2)
+  };
+}
+
+function formatMCrAsCredits(mcr: number, decimals: number = 0): string {
+  return (mcr * 1000000).toLocaleString(game.i18n.lang, {
+    maximumFractionDigits: decimals,
+    ...(decimals > 0 && {minimumFractionDigits: decimals})
+  });
 }
