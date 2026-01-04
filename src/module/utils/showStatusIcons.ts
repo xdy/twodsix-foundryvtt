@@ -74,16 +74,7 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
  * @param {TwodsixActor} selectedActor  The actor to check
  * @public
  */
-export function applyEncumberedEffect(selectedActor: TwodsixActor): void {
-  performEncumbranceUpdate(selectedActor);
-}
-
-/**
- * Performs the actual encumbrance effect update logic.
- * @param {TwodsixActor} selectedActor  The actor to check
- * @private
- */
-async function performEncumbranceUpdate(selectedActor: TwodsixActor): Promise<void> {
+export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
   const actorKey = selectedActor.uuid;
 
   // Prevent concurrent updates - if an update is already in progress, skip this one
@@ -273,7 +264,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
   try {
     woundedStateUpdateInProgress.add(actorKey);
 
-    const isAlreadySet = targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
+    const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has('wounded'));
     let currentEffectId = "";
     //Clean up effects
     if (isAlreadySet?.length > 0) {
