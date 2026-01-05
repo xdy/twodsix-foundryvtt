@@ -123,16 +123,19 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
           {
             key: "system.characteristics.strength.value",
             type: "add",
+            phase: "initial",
             value: modifier
           },
           {
             key: "system.characteristics.dexterity.value",
             type: "add",
+            phase: "initial",
             value: modifier
           },
           {
             key: "system.characteristics.endurance.value",
             type: "add",
+            phase: "initial",
             value: modifier
           }
         ];
@@ -141,6 +144,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
           {
             key: "system.conditions.encumberedEffect",
             type: "add",
+            phase: "derived",
             value: modifier
           }
         ];
@@ -150,6 +154,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
         changeData.push({
           key: "system.movement.walk",
           type: "multiply",
+          phase: "initial",
           value: 0.75
         });
       }
@@ -289,9 +294,9 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
       }
       let changeData = {}; //AC has a movement penalty not roll penalty
       if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-        changeData = { key: "system.movement.walk", type: "override", value: 1.5 };
+        changeData = { key: "system.movement.walk", type: "override", phase: "initial", value: 1.5 };
       } else {
-        changeData = { key: "system.conditions.woundedEffect", type: "add", value: woundModifier.toString() };
+        changeData = { key: "system.conditions.woundedEffect", type: "add", phase: "derived", value: woundModifier.toString() };
       }
       //
       if (!currentEffectId) {
