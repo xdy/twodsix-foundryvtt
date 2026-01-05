@@ -13,6 +13,9 @@ const encumbranceUpdateInProgress = new Set<string>();
 // Track which actors have wounded state updates in progress to prevent concurrent modifications
 const woundedStateUpdateInProgress = new Set<string>();
 
+// Track per-status updates to avoid duplicate unconscious/etc. during rapid changes
+const conditionUpdateInProgress = new Set<string>();
+
 export function checkForDamageStat (update: any, actorType: string): boolean {
   if (update.effects?.length > 0) {
     const damageCharacteristics = getDamageCharacteristics(actorType);
@@ -224,14 +227,24 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
  * @param {boolean} state Whether the status is enabled
  */
 async function setConditionState(effectStatus: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
+  const statusKey = `${targetActor.uuid}::${effectStatus}`;
+
+  // Prevent overlapping updates for the same status on the same actor
+  if (conditionUpdateInProgress.has(statusKey)) {
+    return;
+  }
+
+  try {
+    conditionUpdateInProgress.add(statusKey);
+
   const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
   const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
 
   if (isAlreadySet.length > 1) {
-    //Need to get rid of duplicates
-    for (let i = 1; i < isAlreadySet.length; i++) {
-      await targetActor.toggleStatusEffect(targetEffect.id, {active: false});
-    }
+    // Remove duplicates; keep the first
+    const [, ...dupes] = isAlreadySet;
+    const idList = dupes.map(eff => eff.id);
+    await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
   }
 
   if ((isAlreadySet.length > 0) !== state) {
@@ -249,6 +262,9 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
         await targetActor.toggleStatusEffect(targetEffect.id, {active: state});
       }
     }
+  }
+  } finally {
+    conditionUpdateInProgress.delete(statusKey);
   }
 }
 
@@ -293,7 +309,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
           break;
       }
       let changeData = {}; //AC has a movement penalty not roll penalty
-      if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
+      if ( ['AC', 'CE'].includes(game.settings.get('twodsix', 'ruleset')) && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
         changeData = { key: "system.movement.walk", type: "override", phase: "initial", value: 1.5 };
       } else {
         changeData = { key: "system.conditions.woundedEffect", type: "add", phase: "derived", value: woundModifier.toString() };
