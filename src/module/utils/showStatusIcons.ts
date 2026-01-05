@@ -237,32 +237,32 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
   try {
     conditionUpdateInProgress.add(statusKey);
 
-  const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
-  const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
+    const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
+    const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
 
-  if (isAlreadySet.length > 1) {
-    // Remove duplicates; keep the first
-    const [, ...dupes] = isAlreadySet;
-    const idList = dupes.map(eff => eff.id);
-    await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
-  }
+    if (isAlreadySet.length > 1) {
+      // Remove duplicates; keep the first
+      const [, ...dupes] = isAlreadySet;
+      const idList = dupes.map(eff => eff.id);
+      await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
+    }
 
-  if ((isAlreadySet.length > 0) !== state) {
-    if (targetEffect) {
-      if (effectStatus === 'dead') {
-        await targetActor.toggleStatusEffect(targetEffect.id, {active: state, overlay: false});
+    if ((isAlreadySet.length > 0) !== state) {
+      if (targetEffect) {
+        if (effectStatus === 'dead') {
+          await targetActor.toggleStatusEffect(targetEffect.id, {active: state, overlay: false});
 
-        // Set defeated if in combat (no longer needed in v12)
-        /*const fighters = game.combats?.active?.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.actorId === targetActor.id);
-        if (combatant !== undefined) {
-          await combatant.update({defeated: state});
-        }*/
-      } else {
-        await targetActor.toggleStatusEffect(targetEffect.id, {active: state});
+          // Set defeated if in combat (no longer needed in v12)
+          /*const fighters = game.combats?.active?.combatants;
+          const combatant = fighters?.find((f: Combatant) => f.actorId === targetActor.id);
+          if (combatant !== undefined) {
+            await combatant.update({defeated: state});
+          }*/
+        } else {
+          await targetActor.toggleStatusEffect(targetEffect.id, {active: state});
+        }
       }
     }
-  }
   } finally {
     conditionUpdateInProgress.delete(statusKey);
   }
