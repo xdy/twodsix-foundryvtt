@@ -90,7 +90,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
       }
       if (currentEncumberedEffects.length > 0) {
         const idList = currentEncumberedEffects.map(i => i.id);
-        await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
+        await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList, { dontSync: true });
       }
     }
 
@@ -107,9 +107,9 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
             changes: changeData,
             statuses: ["encumbered"]
           }
-        ], {dontSync: true});
+        ], { dontSync: true });
       } else if (changeData[0].value !== aeToKeep.changes[0].value) {
-        await aeToKeep.update({ changes: changeData });
+        await aeToKeep.update({ changes: changeData }, { dontSync: true });
       }
     }
   });
@@ -215,42 +215,40 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     // Remove effect if state false
     if (!state) {
       if (currentEffectId) {
-        await targetActor.deleteEmbeddedDocuments("ActiveEffect", [currentEffectId]);
+        await targetActor.deleteEmbeddedDocuments("ActiveEffect", [currentEffectId], { dontSync: true });
       }
       return;
     }
 
     //Set effect if state true
-    if (state) {
-      let woundModifier = 0;
-      switch (tint) {
-        case TWODSIX.DAMAGECOLORS.minorWoundTint:
-          woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
-          break;
-        case TWODSIX.DAMAGECOLORS.seriousWoundTint:
-          woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
-          break;
-      }
-      let changeData = {}; //AC has a movement penalty not roll penalty
-      if ( ['AC', 'CE'].includes(game.settings.get('twodsix', 'ruleset')) && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-        changeData = { key: "system.movement.walk", type: "override", phase: "initial", value: 1.5 };
-      } else {
-        changeData = { key: "system.conditions.woundedEffect", type: "add", phase: "derived", value: woundModifier.toString() };
-      }
-      //
-      if (!currentEffectId) {
-        await targetActor.createEmbeddedDocuments("ActiveEffect", [{
-          name: game.i18n.localize(TWODSIX.effectType.wounded),
-          img: "icons/svg/blood.svg",
-          tint: tint,
-          changes: [changeData],
-          statuses: ['wounded']
-        }]);
-      } else {
-        const currentEfffect = targetActor.effects.get(currentEffectId);
-        if (currentEfffect.tint !== tint) {
-          await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
-        }
+    let woundModifier = 0;
+    switch (tint) {
+      case TWODSIX.DAMAGECOLORS.minorWoundTint:
+        woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
+        break;
+      case TWODSIX.DAMAGECOLORS.seriousWoundTint:
+        woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
+        break;
+    }
+    let changeData = {}; //AC has a movement penalty not roll penalty
+    if ( ['AC', 'CE'].includes(game.settings.get('twodsix', 'ruleset')) && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
+      changeData = { key: "system.movement.walk", type: "override", phase: "initial", value: 1.5 };
+    } else {
+      changeData = { key: "system.conditions.woundedEffect", type: "add", phase: "derived", value: woundModifier.toString() };
+    }
+    //
+    if (!currentEffectId) {
+      await targetActor.createEmbeddedDocuments("ActiveEffect", [{
+        name: game.i18n.localize(TWODSIX.effectType.wounded),
+        img: "icons/svg/blood.svg",
+        tint: tint,
+        changes: [changeData],
+        statuses: ['wounded']
+      }], { dontSync: true });
+    } else {
+      const currentEfffect = targetActor.effects.get(currentEffectId);
+      if (currentEfffect.tint !== tint) {
+        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }], { dontSync: true });
       }
     }
   });
@@ -277,7 +275,7 @@ async function dedupeStatusEffects(actor: TwodsixActor, statusId: string): Promi
   if (dupes.length > 0) {
     const ids = dupes.map(eff => eff.id).filter(Boolean);
     if (ids.length) {
-      await actor.deleteEmbeddedDocuments("ActiveEffect", ids);
+      await actor.deleteEmbeddedDocuments("ActiveEffect", ids, { dontSync: true });
     }
   }
   return keep;
