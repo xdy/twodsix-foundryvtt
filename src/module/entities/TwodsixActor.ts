@@ -14,7 +14,7 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances, updateShipFinances } from "../hooks/updateFinances";
-import { applyEncumberedEffect, applyWoundedEffect, applyBatchedStatusEffects } from "../utils/showStatusIcons";
+import { applyBatchedStatusEffects } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "./TwodsixActiveEffect";
 import { generateShipDamageReport } from "../utils/shipDamage";
 
@@ -1216,9 +1216,9 @@ export default class TwodsixActor extends Actor {
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemCopy]))[0];
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !TWODSIX.WeightlessItems.includes(addedItem.type)) {
-      await applyEncumberedEffect(this);
-    }
+    //if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !TWODSIX.WeightlessItems.includes(addedItem.type)) {
+    //  await applyEncumberedEffect(this);
+    //}
     console.log(`Twodsix | Added Item ${addedItem.name} to character`);
     return (!!addedItem);
   }

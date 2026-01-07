@@ -11,7 +11,7 @@ import { getCharacteristicFromDisplayLabel } from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
-import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
+import { applyBatchedStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
 import { getTargetStatusModifiers} from "../utils/targetModifiers";
 
 /**
@@ -95,17 +95,23 @@ export default class TwodsixItem extends Item {
     await super._onUpdate(changed, options, userId);
     if (game.user?.id === userId) {
       const owningActor: TwodsixActor = this.actor;
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor?.type === 'traveller' && !options.dontSync) {
-        if (!TWODSIX.WeightlessItems.includes(this.type) && changed.system) {
-          if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
-            await applyEncumberedEffect(owningActor);
+      let needsEncumbrance = false;
+      let needsWounded = false;
+      if (owningActor) {
+        if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor.type === 'traveller' && !options.dontSync) {
+          if (!TWODSIX.WeightlessItems.includes(this.type) && changed.system) {
+            if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
+              needsEncumbrance = true;
+            }
           }
         }
-      }
-      //Needed - for active effects changing damage stats
-      if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
-        if (checkForDamageStat(changed, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
-          await applyWoundedEffect(owningActor);
+        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+          if (checkForDamageStat(changed, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
+            needsWounded = true;
+          }
+        }
+        if (needsEncumbrance || needsWounded) {
+          await applyBatchedStatusEffects(owningActor, { encumbrance: needsEncumbrance, wounded: needsWounded });
         }
       }
     }
