@@ -17,6 +17,29 @@ const woundedStateUpdateInProgress = new Set<string>();
 const conditionUpdateInProgress = new Set<string>();
 
 /**
+ * Apply wounded and encumbered effects in a batched manner to reduce redundant updates.
+ * @param {TwodsixActor} selectedActor The actor to update
+ * @param {object} options Flags for which effects to apply
+ * @param {boolean} options.encumbrance Whether to check encumbrance
+ * @param {boolean} options.wounded Whether to check wounded
+ * @public
+ */
+export async function applyBatchedStatusEffects(selectedActor: TwodsixActor, { encumbrance = false, wounded = false } = {}): Promise<void> {
+  // Set a flag to prevent recursive status checks
+  selectedActor._applyingStatusEffects = true;
+  try {
+    if (encumbrance) {
+      await applyEncumberedEffect(selectedActor);
+    }
+    if (wounded) {
+      await applyWoundedEffect(selectedActor);
+    }
+  } finally {
+    selectedActor._applyingStatusEffects = false;
+  }
+}
+
+/**
  * Determine whether wounded effect applies to actor.  Update encumbered AE & tint, if necessary.
  * @param {TwodsixActor} selectedActor  The actor to check
  * @public
@@ -90,7 +113,7 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
       }
       if (currentEncumberedEffects.length > 0) {
         const idList = currentEncumberedEffects.map(i => i.id);
-        await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList, { dontSync: true });
+        await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
       }
     }
 
@@ -107,9 +130,9 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
             changes: changeData,
             statuses: ["encumbered"]
           }
-        ], { dontSync: true });
+        ]);
       } else if (changeData[0].value !== aeToKeep.changes[0].value) {
-        await aeToKeep.update({ changes: changeData }, { dontSync: true });
+        await aeToKeep.update({ changes: changeData });
       }
     }
   });
@@ -215,7 +238,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
     // Remove effect if state false
     if (!state) {
       if (currentEffectId) {
-        await targetActor.deleteEmbeddedDocuments("ActiveEffect", [currentEffectId], { dontSync: true });
+        await targetActor.deleteEmbeddedDocuments("ActiveEffect", [currentEffectId]);
       }
       return;
     }
@@ -244,11 +267,11 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
         tint: tint,
         changes: [changeData],
         statuses: ['wounded']
-      }], { dontSync: true });
+      }]);
     } else {
       const currentEfffect = targetActor.effects.get(currentEffectId);
       if (currentEfffect.tint !== tint) {
-        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }], { dontSync: true });
+        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
       }
     }
   });
@@ -275,7 +298,7 @@ async function dedupeStatusEffects(actor: TwodsixActor, statusId: string): Promi
   if (dupes.length > 0) {
     const ids = dupes.map(eff => eff.id).filter(Boolean);
     if (ids.length) {
-      await actor.deleteEmbeddedDocuments("ActiveEffect", ids, { dontSync: true });
+      await actor.deleteEmbeddedDocuments("ActiveEffect", ids);
     }
   }
   return keep;

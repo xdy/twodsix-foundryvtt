@@ -14,7 +14,7 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances, updateShipFinances } from "../hooks/updateFinances";
-import { applyEncumberedEffect, applyWoundedEffect } from "../utils/showStatusIcons";
+import { applyEncumberedEffect, applyWoundedEffect, applyBatchedStatusEffects } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "./TwodsixActiveEffect";
 import { generateShipDamageReport } from "../utils/shipDamage";
 
@@ -23,6 +23,7 @@ import { generateShipDamageReport } from "../utils/shipDamage";
  * @extends {Actor}
  */
 export default class TwodsixActor extends Actor {
+  public _applyingStatusEffects: boolean = false;
   /** @override */
   /**
    * Perform preliminary operations before an Actor of this type is created.
@@ -263,21 +264,22 @@ export default class TwodsixActor extends Actor {
   async _onUpdate(changed:object, options:object, userId:string) {
     await super._onUpdate(changed, options, userId);
 
+    // Skip status checks if this update was triggered by status effect application to avoid loops
+    if (this._applyingStatusEffects) {
+      return;
+    }
+
     //Check for status change
     if (options.diff && game.user?.id === userId) {  //Not certain why options.diff is needed, but opening token editor for tokenActor and cancelling fires updateActor
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (this.type === 'traveller')) {
-        if (isEncumbranceChange(changed)) {
-          await applyEncumberedEffect(this);
-        }
+      const needsEncumbranceCheck = game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (this.type === 'traveller') && isEncumbranceChange(changed);
+      const needsWoundedCheck = !!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type)) && game.settings.get('twodsix', 'useWoundedStatusIndicators');
+
+      if (needsEncumbranceCheck || needsWoundedCheck) {
+        await applyBatchedStatusEffects(this, { encumbrance: needsEncumbranceCheck, wounded: needsWoundedCheck });
       }
     }
 
     if (!!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
-      if (options.diff && game.user?.id === userId) {
-        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-          await applyWoundedEffect(this);
-        }
-      }
       //scroll hits change
       if (this.isOwner) {
         this.scrollDamage(options.deltaHits);
