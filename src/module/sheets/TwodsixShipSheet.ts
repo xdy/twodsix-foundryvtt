@@ -95,12 +95,15 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       context.shipPositions = [];
     }
 
+    const useShipAutoCalc = game.settings.get('twodsix', 'useShipAutoCalcs');
+    const showCost = game.settings.get('twodsix', 'showCost') && useShipAutoCalc;
+
     Object.assign(context.settings, {
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
       showSingleCargoColumn: game.settings.get('twodsix', 'showSingleCargoColumn'),
       showBandwidth: game.settings.get('twodsix', 'showBandwidth'),
       showWeightUsage: (<TwodsixActor>this.actor).system.showWeightUsage ?? game.settings.get('twodsix', 'showWeightUsage'),
-      useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
+      useShipAutoCalc,
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       allowDragDropOfListsShip: game.settings.get('twodsix', 'allowDragDropOfListsShip'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
@@ -108,12 +111,12 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive",
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      showCost: game.settings.get('twodsix', 'showCost'),
+      showCost,
       showCombatPosition: game.settings.get('twodsix', 'showCombatPosition'),
       singleComponentClass: (`components-stored-single` +
                                 (game.settings.get('twodsix', 'showComponentRating') ? ` rating` : ` no-rating`) +
                                 (game.settings.get('twodsix', 'showComponentDM') ? ` dm`:` no-dm`) +
-                                (game.settings.get('twodsix', 'showCost') ? ` cost`:` no-cost`)),
+                                (showCost ? ` cost`:` no-cost`)),
       useMCr: game.settings.get('twodsix', 'showCommonFundsMCr')
     });
 
@@ -394,18 +397,28 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   async _addVehicleCraftToComponents(droppedObject: any, uuid: string): Promise <void> {
+    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+
     const newComponent = {
       name: droppedObject.name,
       img: droppedObject.img,
       type: "component",
       system: {
         docReference: droppedObject.type === "ship" ? "" : droppedObject.system.docReference,
-        price: droppedObject.type === "ship" ? droppedObject.system.shipValue : droppedObject.system.cost,
+        price: droppedObject.type === "ship"
+          ? (useAutoCalcs && droppedObject.system.calcShipStats?.cost?.shipValue
+            ? droppedObject.system.calcShipStats.cost.shipValue
+            : droppedObject.system.shipValue)
+          : droppedObject.system.cost,
         quantity: 1,
         status: "operational",
         subtype: "vehicle",
         techLevel: droppedObject.system.techLevel,
-        weight: droppedObject.type === "ship" ? droppedObject.system.shipStats.mass.max : droppedObject.system.weight,
+        weight: droppedObject.type === "ship" ? (() => {
+          return (useAutoCalcs && droppedObject.system.calcShipStats?.mass?.max)
+            ? droppedObject.system.calcShipStats.mass.max
+            : droppedObject.system.shipStats.mass.max;
+        })() : droppedObject.system.weight,
         actorLink: uuid
       }
     };

@@ -25,7 +25,7 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
   }
 
   for (const effect of effectsList) {
-    if (!effect.changes || !Array.isArray(effect.changes)) {
+    if (!effect.changes || foundry.utils.getType(effect.changes) !== 'Array') {
       console.log(`No valid changes found for effect: ${effect.name} on ${doc.name}`);
       continue;
     }

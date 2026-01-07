@@ -9,7 +9,7 @@ async function convertToNumber(item: TwodsixItem): Promise<void> {
   migrateLocaleStringToNumber(item, updates, "weight");
   migrateLocaleStringToNumber(item, updates, "purchasePrice");
   migrateLocaleStringToNumber(item, updates, "ammo");
-  if (Object.keys(updates.system).length > 0) {
+  if (!foundry.utils.isEmpty(updates.system)) {
     await item.update(updates);
   }
 }

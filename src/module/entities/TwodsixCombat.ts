@@ -47,7 +47,9 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    */
   async _preCreate(data, options, user) {
     const allowed = await super._preCreate(data, options, user);
-    if (allowed === false) return false;
+    if (allowed === false) {
+      return false;
+    }
 
     const isSpaceCombat = this._detectSpaceCombat(data.combatants);
     const update = {
@@ -76,7 +78,9 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     const combatantList = combatants.length > 0 ? combatants : this.combatants?.contents || [];
 
     // No combatants means not a space combat
-    if (combatantList.length === 0) return false;
+    if (combatantList.length === 0) {
+      return false;
+    }
 
     // All combatants must be ships/space objects for space combat
     return combatantList.every(c => {
@@ -166,7 +170,9 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    */
   getCurrentPhaseLocalized(): string | null {
     const phaseName = this.getCurrentPhase();
-    if (!phaseName) return null;
+    if (!phaseName) {
+      return null;
+    }
 
     // Try to localize the phase name, fallback to the raw name if no localization exists
     const localizedName = game.i18n.localize(`TWODSIX.Combat.Phases.${phaseName}`);
@@ -261,7 +267,9 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * when needed. It's used by the UI to advance phases manually and by nextTurn.
    */
   async nextPhase(updateOptions: Record<string, any> = {}): Promise<void> {
-    if (!this.isSpaceCombat()) return;
+    if (!this.isSpaceCombat()) {
+      return;
+    }
 
     const { nextIndex, isNewRound } = this._calculateNextPhaseIndex();
 
@@ -278,11 +286,15 @@ export default class TwodsixCombat extends foundry.documents.Combat {
    * This method handles going backwards through phases with proper boundary checking
    */
   async previousPhase(): Promise<boolean> {
-    if (!this.isSpaceCombat()) return false;
+    if (!this.isSpaceCombat()) {
+      return false;
+    }
 
     const config = this.getSpaceCombatConfig();
     const phases = config.phases ?? [];
-    if (!phases.length) return false;
+    if (!phases.length) {
+      return false;
+    }
 
     const currentIndex = this.getCurrentPhaseIndex();
     const loopStart = config.loopBackPhase
@@ -365,13 +377,17 @@ export default class TwodsixCombat extends foundry.documents.Combat {
   async _onDelete(options, userId) {
     await super._onDelete(options, userId);
 
-    if (!game.user.isActiveGM || !this.round) return;
+    if (!game.user.isActiveGM || !this.round) {
+      return;
+    }
 
     // Clean up space combat effects and reset ship systems
     if (this.isSpaceCombat()) {
       for (const combatant of this.combatants) {
         const actor = combatant.actor;
-        if (!actor || !['ship', 'space-object'].includes(actor.type)) continue;
+        if (!actor || !['ship', 'space-object'].includes(actor.type)) {
+          continue;
+        }
 
         // Extension point: Reset ship combat state
         // Uncomment if ship/space-object data models need to clean up state

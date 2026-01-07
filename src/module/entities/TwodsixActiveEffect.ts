@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { stackArmorValues } from "../utils/actorDamage";
-import { applyEncumberedEffect } from "../utils/showStatusIcons";
+import { applyBatchedStatusEffects } from "../utils/showStatusIcons";
 
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
@@ -122,7 +122,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
     // Ensure changes exist and are an array
-    if (!data.changes || !Array.isArray(data.changes)) {
+    if (!data.changes || foundry.utils.getType(data.changes) !== 'Array') {
       //console.log("No valid changes found in data.");
       return;
     }
@@ -180,9 +180,13 @@ export class TwodsixActiveEffect extends ActiveEffect {
     const overrideMap = {};
     const normalCustoms = [];
     for (const effect of effects) {
-      if (!effect.active) continue;
+      if (!effect.active) {
+        continue;
+      }
       for (const change of effect.changes) {
-        if (!change.key || change.phase !== phase) continue;
+        if (!change.key || change.phase !== phase) {
+          continue;
+        }
         if (
           change.type === "custom" &&
           typeof change.value === "string" &&
@@ -269,21 +273,24 @@ export class TwodsixActiveEffect extends ActiveEffect {
 }
 
 /**
- * Calls applyEncumberedEffect if active effect could change encumbered status
+ * Calls applyBatchedStatusEffects if active effect could change encumbered status
  * @param {TwodsixActiveEffect} activeEffect  The active effect being changed
  * @returns {void}
  */
 async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
-  if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (changesEncumbranceStat(activeEffect) || activeEffect.statuses.has('dead'))) {
-    if (activeEffect.statuses.size === 0 ) {
-      await applyEncumberedEffect(activeEffect.parent);
-    } else {
-      const notEncumbered = !activeEffect.statuses.has('encumbered');
-      const notUnc = !activeEffect.statuses.has('unconscious');
-      if (notEncumbered && notUnc) {
-        await applyEncumberedEffect(activeEffect.parent);
-      }
-    }
+  const parentActor: TwodsixActor = activeEffect.parent;
+  if (!parentActor) return;
+  if (!game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) return;
+
+  // Only proceed if the effect could impact encumbrance
+  if (!changesEncumbranceStat(activeEffect) && !activeEffect.statuses.has('dead')) return;
+
+  // If the effect is being removed or no longer applies encumbered/unconscious
+  if (
+    activeEffect.statuses.size === 0 ||
+    (!activeEffect.statuses.has('encumbered') && !activeEffect.statuses.has('unconscious'))
+  ) {
+    await applyBatchedStatusEffects(parentActor, { encumbrance: true });
   }
 }
 /**

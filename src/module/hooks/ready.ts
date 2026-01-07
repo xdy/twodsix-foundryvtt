@@ -59,10 +59,14 @@ Hooks.once("ready", async function () {
 
   // Handle combat turn advancement for players via socket
   Hooks.on("twodsix.advanceTurn", async (combatId) => {
-    if (!game.user.isGM) return;
+    if (!game.user.isGM) {
+      return;
+    }
 
     const combat = game.combats.get(combatId);
-    if (!combat) return;
+    if (!combat) {
+      return;
+    }
 
     // GM executes the turn advancement with proper permissions and broadcasting
     await combat.nextTurn();

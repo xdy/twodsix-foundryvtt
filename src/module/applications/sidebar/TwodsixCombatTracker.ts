@@ -59,7 +59,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
    */
   static async #nextTurn(event, target) {
     const combat:TwodsixCombat = this.viewed;
-    if (!combat) return;
+    if (!combat) {
+      return;
+    }
 
     // Check if user can advance turn (GM or owns current combatant)
     const combatant:TwodsixCombatant = combat.combatant;
@@ -88,7 +90,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     await super._prepareTrackerContext(context, options);
 
     const combat = this.viewed as TwodsixCombat;
-    if (!combat?.isSpaceCombat?.()) return;
+    if (!combat?.isSpaceCombat?.()) {
+      return;
+    }
 
     // Delegate to combat for phase information - single source of truth
     context.spaceCombat = combat.getPhaseDisplayInfo();
@@ -102,7 +106,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     await super._onRender(context, options);
 
     const combat = this.viewed as TwodsixCombat;
-    if (!combat?.usePhases?.()) return;
+    if (!combat?.usePhases?.()) {
+      return;
+    }
 
     // Update the "Next Round" button label to "Next Phase" for space combat
     const nextRoundBtn = this.element.querySelector('[data-action="nextRound"]');
@@ -126,7 +132,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combat = this.viewed;
 
     // Only show phase display when using phase-based combat
-    if (!combat?.usePhases?.()) return;
+    if (!combat?.usePhases?.()) {
+      return;
+    }
 
     try {
       const phaseInfo = combat.getPhaseDisplayInfo();
@@ -144,7 +152,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
 
       // Remove any existing phase display
       const existing = header.querySelector('.space-combat-phase');
-      if (existing) existing.remove();
+      if (existing) {
+        existing.remove();
+      }
 
       // Create phase display element
       const phaseDisplay = this._createPhaseDisplayElement(phaseInfo, combat);
@@ -283,7 +293,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
 
       // Remove any existing action indicators
       const existing = element.querySelector('.action-indicator-wrapper');
-      if (existing) existing.remove();
+      if (existing) {
+        existing.remove();
+      }
 
       // Create action indicator wrapper
       const actionWrapper = document.createElement('div');
@@ -436,7 +448,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   static async #nextPhase(event, target) {
     event.preventDefault();
     const combat = this.viewed;
-    if (!combat?.usePhases?.()) return;
+    if (!combat?.usePhases?.()) {
+      return;
+    }
 
     try {
       await combat.nextPhase();
@@ -457,7 +471,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   static async #previousPhase(event, target) {
     event.preventDefault();
     const combat = this.viewed;
-    if (!combat?.isSpaceCombat?.()) return;
+    if (!combat?.isSpaceCombat?.()) {
+      return;
+    }
 
     try {
       const success = await combat.previousPhase();
@@ -481,7 +497,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
   static async #resetPhase(event, target) {
     event.preventDefault();
     const combat = this.viewed;
-    if (!combat?.isSpaceCombat?.()) return;
+    if (!combat?.isSpaceCombat?.()) {
+      return;
+    }
 
     try {
       await combat.resetPhase();
@@ -577,7 +595,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combatantId = target.dataset.combatantId;
     const combat = this.viewed;
     const combatant = combat?.combatants.get(combatantId);
-    if (!combatant) return;
+    if (!combatant) {
+      return;
+    }
 
     if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
       ui.notifications.warn("You do not have permission to adjust this combatant.");
@@ -605,7 +625,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combatantId = target.dataset.combatantId;
     const combat = this.viewed;
     const combatant = combat?.combatants.get(combatantId);
-    if (!combatant) return;
+    if (!combatant) {
+      return;
+    }
 
     if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
       ui.notifications.warn("You do not have permission to adjust this combatant.");
@@ -633,7 +655,9 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const combatantId = target.dataset.combatantId;
     const combat = this.viewed;
     const combatant = combat?.combatants.get(combatantId);
-    if (!combatant) return;
+    if (!combatant) {
+      return;
+    }
 
     if (!TwodsixCombatTracker.#canUserControlCombatant(combatant)) {
       ui.notifications.warn("You do not have permission to adjust this combatant.");

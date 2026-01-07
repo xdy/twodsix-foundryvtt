@@ -19,15 +19,7 @@ export const registerSettings = function ():void {
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
-  }).sort(function (a, b) {
-    if (a[1] < b[1]) {
-      return -1;
-    }
-    if (a[1] > b[1]) {
-      return 1;
-    }
-    return 0;
-  });
+  }).sort((a, b) => a[1].localeCompare(b[1], game.i18n.lang, { sensitivity: 'base' }));
   stringChoiceSetting('ruleset', TWODSIX.RULESETS["CE"].key, false, Object.fromEntries(rulesetOptions), true);
   //need a custom setting to use requiresReload
   game.settings.register("twodsix", "overrideDamageRoll", {

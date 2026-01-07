@@ -122,7 +122,11 @@ function getMoveColorType(token: TokenData, distance: number): Color {
   let movementSpeed = 0;
 
   if (actorType === "ship") {
-    movementSpeed = token.actor.system.shipStats.drives.jDrive?.rating;
+    // Check setting: use calcShipStats only if auto-calc is enabled
+    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+    movementSpeed = (useAutoCalcs && token.actor.system.calcShipStats?.drives?.jDrive?.rating)
+      ? token.actor.system.calcShipStats.drives.jDrive.rating
+      : token.actor.system.shipStats.drives.jDrive.rating;
     if (token.scene.grid.units === "pc" && movementSpeed) {
       return distance <= movementSpeed ? colors["jump"] : colors["not"];
     }

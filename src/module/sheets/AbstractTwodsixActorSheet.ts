@@ -213,7 +213,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     // Only run this for non-vehicle/non-ship/non-space-object actors
     if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space-object"].includes(selectedActor.type)) {
       for (const i of selectedActor.items.filter((it:TwodsixItem) => !TWODSIX.WeightlessItems.includes(it.type))) {
-        const current = Array.isArray(i.system.consumables) ? foundry.utils.duplicate(i.system.consumables) : [];
+        const current = foundry.utils.getType(i.system.consumables) === 'Array' ? foundry.utils.duplicate(i.system.consumables) : [];
         const filtered = current.filter((id: string) => id !== toDeleteItem.id);
 
         const update: Record<string, any> = { _id: i.id };

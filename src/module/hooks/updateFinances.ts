@@ -12,9 +12,9 @@ import TwodsixActor from "../entities/TwodsixActor";
  */
 export function updateFinances(actor: TwodsixActor, update: Record<string, any>, financeDiff: any): void {
   if (["traveller"].includes(actor.type)) {
-    if (Object.keys(financeDiff.finances).length > 0) {
+    if (!foundry.utils.isEmpty(financeDiff.finances)) {
       updateFinanceValues(actor, update, financeDiff);
-    } else if (Object.keys(financeDiff.financeValues).length > 0) {
+    } else if (!foundry.utils.isEmpty(financeDiff.financeValues)) {
       updateFinanceText(actor, update, financeDiff);
     }
   }

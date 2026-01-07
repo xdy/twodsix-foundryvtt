@@ -7,7 +7,7 @@
           <span>{{localize "TWODSIX.Ship.Name"}}: <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.Actor.CharacterName"}}' onClick="this.select();" autocomplete="off"/></span>
         </div>
         <div class="battle-operations">
-          <span>{{localize "TWODSIX.Ship.Displacement"}}: <input type="number" value="{{actor.system.shipStats.mass.max}}" name="system.shipStats.mass.max" placeholder="0" class="battle-input"/> ({{localize "TWODSIX.Ship.dtons"}})</span>
+          <span>{{localize "TWODSIX.Ship.Displacement"}}: {{#if settings.useShipAutoCalc}}<input type="number" value="{{actor.system.calcShipStats.mass.max}}" placeholder="0" class="battle-input" readonly/>{{else}}<input type="number" value="{{actor.system.shipStats.mass.max}}" name="system.shipStats.mass.max" placeholder="0" class="battle-input"/>{{/if}} ({{localize "TWODSIX.Ship.dtons"}})</span>
         </div>
         <div class="battle-operations">
           <span>{{localize "TWODSIX.Actor.Items.TechLevel"}}: <input type="number" value="{{actor.system.techLevel}}" name="system.techLevel" placeholder="0" class="battle-input"/></span>
@@ -123,27 +123,36 @@
         <span class="item-title-battle">{{localize "TWODSIX.Ship.Operations"}}</span>
 
         <div class="battle-operations">
-          <span>{{localize "TWODSIX.Ship.Jump"}}: <input type="number" value="{{actor.system.shipStats.drives.jDrive.rating}}" name="system.shipStats.drives.jDrive.rating" placeholder="0" min="0" max="15" step="1" class="battle-input"/><abbr data-tooltip='{{localize "TWODSIX.Ship.Parsecs"}}'>{{localize "TWODSIX.Ship.pc"}}</abbr></span>
+          <span>{{localize "TWODSIX.Ship.Jump"}}: {{#if settings.useShipAutoCalc}}<input type="number" value="{{actor.system.calcShipStats.drives.jDrive.rating}}" placeholder="0" min="0" max="15" step="1" class="battle-input" readonly/>{{else}}<input type="number" value="{{actor.system.shipStats.drives.jDrive.rating}}" name="system.shipStats.drives.jDrive.rating" placeholder="0" min="0" max="15" step="1" class="battle-input"/>{{/if}}<abbr data-tooltip='{{localize "TWODSIX.Ship.Parsecs"}}'>{{localize "TWODSIX.Ship.pc"}}</abbr></span>
         </div>
         <div class="battle-operations">
-          {{localize "TWODSIX.Ship.Thrust"}}: <input type="number" value="{{actor.system.shipStats.drives.mDrive.rating}}" name="system.shipStats.drives.mDrive.rating" class="battle-input" placeholder="0" min="0" max="15" step="1"/> {{localize "TWODSIX.Ship.Gs"}}
+          {{localize "TWODSIX.Ship.Thrust"}}: {{#if settings.useShipAutoCalc}}<input type="number" value="{{actor.system.calcShipStats.drives.mDrive.rating}}" class="battle-input" placeholder="0" min="0" max="15" step="1" readonly/>{{else}}<input type="number" value="{{actor.system.shipStats.drives.mDrive.rating}}" name="system.shipStats.drives.mDrive.rating" class="battle-input" placeholder="0" min="0" max="15" step="1"/>{{/if}} {{localize "TWODSIX.Ship.Gs"}}
         </div>
         <div class="battle-operations">
           {{localize "TWODSIX.Ship.Overdrive"}}:<input type="checkbox" class="checkbox" name="system.shipStats.drives.overdrive" {{checked actor.system.shipStats.drives.overdrive}} data-dtype="Boolean"/>
         </div>
         {{#if settings.showBandwidth}}
           <div class="battle-operations">
-            {{localize "TWODSIX.Items.Consumable.Bandwidth"}}: <input type="number" value="{{actor.system.shipStats.bandwidth.value}}" name="system.shipStats.bandwidth.value" placeholder="0" min="0" max="{{actor.system.shipStats.bandwidth.max}}" step = "1" class="battle-input"/>/<input type="number" value="{{actor.system.shipStats.bandwidth.max}}" name="system.shipStats.bandwidth.max" placeholder="0" min="0" step="1" class="battle-input"/>
+            {{localize "TWODSIX.Items.Consumable.Bandwidth"}}: {{#if settings.useShipAutoCalc}}<input type="number" value="{{actor.system.calcShipStats.bandwidth.value}}" placeholder="0" min="0" max="{{actor.system.calcShipStats.bandwidth.max}}" step = "1" class="battle-input" readonly/>/<input type="number" value="{{actor.system.calcShipStats.bandwidth.max}}" placeholder="0" min="0" step="1" class="battle-input" readonly/>{{else}}<input type="number" value="{{actor.system.shipStats.bandwidth.value}}" name="system.shipStats.bandwidth.value" placeholder="0" min="0" max="{{actor.system.shipStats.bandwidth.max}}" step = "1" class="battle-input"/>/<input type="number" value="{{actor.system.shipStats.bandwidth.max}}" name="system.shipStats.bandwidth.max" placeholder="0" min="0" step="1" class="battle-input"/>{{/if}}
           </div>
         {{/if}}
         <div class="battle-operations">
           <span>{{localize "TWODSIX.Ship.Power"}}: </span>
-          {{#iff actor.system.shipStats.power.value '>' actor.system.shipStats.power.max}}
-            <input type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input red"/>
+          {{#if settings.useShipAutoCalc}}
+            {{#iff actor.system.calcShipStats.power.value '>' actor.system.calcShipStats.power.max}}
+              <input type="number" value="{{actor.system.calcShipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input red" readonly/>
+            {{else}}
+              <input type="number" value="{{actor.system.calcShipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input" readonly/>
+            {{/iff}}
+            /<input type="number" value="{{actor.system.calcShipStats.power.max}}" name="system.shipStats.power.max" placeholder="0" class="battle-input" readonly/>
           {{else}}
-            <input type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input"/>
-          {{/iff}}
-          /<input type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0" class="battle-input"/>
+            {{#iff actor.system.shipStats.power.value '>' actor.system.shipStats.power.max}}
+              <input type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input red"/>
+            {{else}}
+              <input type="number" value="{{actor.system.shipStats.power.value}}" name="system.shipStats.power.value" placeholder="0" class="battle-input"/>
+            {{/iff}}
+            /<input type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0" class="battle-input"/>
+          {{/if}}
           <span class="small-font">{{localize "TWODSIX.Ship.PP"}}</span>
         </div>
         {{#if settings.showCombatPosition}}

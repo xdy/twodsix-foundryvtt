@@ -265,7 +265,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         Object.assign(updates, {"system.pricingBasis": "perUnit"});
       }
 
-      if (Object.keys(updates).length !== 0) {
+      if (!foundry.utils.isEmpty(updates)) {
         await this.item.update(updates);
       }
     } else if (this.item.type === "consumable" ) {
