@@ -322,7 +322,7 @@ export default class TwodsixActor extends Actor {
         break;
       default:
         //Don't push error as it breaks data prep.  Needed for other modules that create types
-        //ui.notifications.error(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
+        //ui.notifications.error(game.i18n.localize("TWODSIX.Actor.UnknownActorType") + " " + this.type);
         console.warn(`Unknown actor type: ${this.type}`);
     }
   }

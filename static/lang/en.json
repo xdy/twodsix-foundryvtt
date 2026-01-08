@@ -29,7 +29,8 @@
       "NewEffect": "New Effect",
       "CreateEffect": "Create Effect",
       "Add": "Add",
-      "IncludingEffects": "Including active effects:"
+      "IncludingEffects": "Including active effects:",
+      "None": "None"
     },
     "Damage": {
       "DealDamage": "Deal damage",
@@ -71,7 +72,6 @@
       "HealingCard": "Damage Card",
       "HealingDice": "Healing Dice"
     },
-
     "DamageType": {
       "Acid": "Acid",
       "Ballistic": "Ballistic",
@@ -742,7 +742,7 @@
         "NumberOfSkills": "Number of Skills",
         "SkillRanks": "Skill Ranks",
         "GroupLabel": "Group Label",
-        "Melee Combat": "Melee Combat"
+        "MeleeCombat": "Melee Combat"
       },
       "Traits": {
         "Prerequisite": "Prerequisite",
