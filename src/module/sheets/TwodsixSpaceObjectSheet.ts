@@ -95,7 +95,7 @@ export class TwodsixSpaceObjectSheet extends foundry.applications.api.Handlebars
       rolls: [damage],
       flags: {
         "core.canPopout": true,
-        "transfer": transfer,
+        "twodsix.transfer": transfer,
         "twodsix.itemUUID": "",
         "twodsix.rollClass": "Damage",
         "twodsix.tokenUUID": (<Actor>this.actor).getActiveTokens()[0]?.document.uuid ?? ""
