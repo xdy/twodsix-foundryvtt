@@ -2986,72 +2986,120 @@ img.item-img {
 /* ============================================================================
    SECTION-15: CHAT LOG STYLES
    ============================================================================ */
-/*#sidebar {
-  width: 320px;
-}
-
-#sidebar-tabs.tabs .item.active {
-  text-shadow: 0 0 2em var(--default-color);
-  text-decoration: none;
-  background-color: var(--default-color);
-  color: var(--background-opaque);
-}
-
-#sidebar-tabs.tabs .item.active {
-  text-shadow: 0 0 2em var(--default-color);
-  text-decoration: none;
-}
-
-#sidebar-tabs.tabs a:hover {
-  text-shadow: 0 0 0.8em var(--light-color);
-}
-
-#chat-log .message {
-  background: var(--background-semi-opaque) none !important;
-  border: 1px solid var(--item-border);
-  border-radius: 0;
-  margin: 3px;
-  padding: 5px;
-  color: var(--default-color);
-  font-size: 14px;
-  box-shadow: 0 0 7px var(--dark-hover);
-}
-
-#chat-log .message .message-header {
-  line-height: 20px;
-  color: var(--default-color) !important;
-}
-
-.table-description {
-  color: var(--stat-input) !important;
-}
-
-.chat-message .table-draw .table-results .table-result .result-text {
-  color: var(--dialog-color);
-}
-
-.chat-message .table-draw .table-results .table-result img.result-image {
-background: var(--sidebar-background);
-}
-*/
-/*.dice-roll .dice-formula, .dice-roll .dice-total {
-  flex: 0 0 100%;
-  position: relative;
-  margin: 0;
-  line-height: 24px;
-  text-align: center;
-  background: var(--background-opaque);
-  border: 1px solid var(--default-color);
-  border-radius: 1px;
-  box-shadow: 0 0 2px var(--background-opaque) inset;
-  word-break: break-all;
-  font-size: inherit;
-}*/
 
 .table-caption {
   font-size: 1.5em;
   font-style: italic;
 }
+
+/* TWODSIX: Roll result compact styles (scoped under .chat-message)
+   Ported from twodsix.css and adapted to basic/light theme variables */
+.chat-message .twodsix-roll-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+}
+.chat-message .twodsix-roll-results .results-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.chat-message .twodsix-roll-results .results-main > * {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  white-space: nowrap;
+}
+.chat-message .twodsix-roll-results .result-sum {
+  background: var(--s2d6-background-nearly-transparent);
+  border: 1px solid var(--s2d6-item-border);
+  color: var(--s2d6-default-color);
+  padding: 0.08rem 0.65rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.chat-message .twodsix-roll-results .result-effect {
+  color: var(--s2d6-default-color);
+  padding: 0.25rem 0.5rem;
+}
+.chat-message .twodsix-roll-results .result-label {
+  /* Use default color for labels so they match other message header/labels */
+  color: var(--s2d6-default-color);
+  margin-right: 0.5rem;
+  font-size: 0.88rem;
+  display: inline-block;
+}
+.chat-message .twodsix-roll-results .result-value {
+  /* Use the standard/default text color in the basic (light) theme
+     so Sum/Effect/Timeframe values are not washed-out. */
+  color: var(--s2d6-default-color);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.chat-message .twodsix-roll-results .result-item.result-timeframe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--s2d6-light-background-transparent);
+  color: var(--s2d6-default-color);
+  padding: 0.08rem 0.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  border: 1px solid var(--s2d6-default-color);
+}
+.chat-message .twodsix-roll-results .degree-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.24rem 0.44rem;
+  border-radius: 999px;
+  margin: 0;
+  color: var(--s2d6-app-color);
+}
+.degree-fail { background: var(--s2d6-crit-fail); color: var(--s2d6-app-color); }
+.degree-partial { background: var(--s2d6-damage-orange); color: var(--s2d6-app-color); }
+.degree-success { background: var(--s2d6-crit-success); color: var(--s2d6-app-color); }
+.degree-critical { background: var(--s2d6-crit-success); color: var(--s2d6-app-color); }
+.degree-unknown { background: var(--s2d6-background-nearly-transparent); color: var(--s2d6-default-color); }
+.chat-message .twodsix-roll-results .result-degree-wrap {
+  /* Inline degree wrap so it can appear on the main results row;
+     center vertically to match other items like `result-sum`. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  align-self: center;
+  order: 999; /* ensure degree appears at the end of the row */
+}
+.chat-message .twodsix-roll-results .result-degree-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0;
+  flex: 0 0 auto;
+  order: 999;
+}
+.chat-message .twodsix-roll-results .attack-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+  margin: 0.2rem 0 0 0;
+  color: var(--s2d6-app-color);
+}
+.chat-message .twodsix-roll-results .attack-hit { background: var(--s2d6-crit-success); }
+.chat-message .twodsix-roll-results .attack-miss { background: var(--s2d6-crit-fail); }
+
 
 .dice-total {
   white-space: pre-wrap;
@@ -3068,73 +3116,20 @@ background: var(--sidebar-background);
 .dice-roll .dice-total.crit-success-roll {
   color: var(--s2d6-crit-success);
 }
-/*
-.dice-tooltip .dice-rolls .roll.d6 {
-  background-image: url(../assets/chatlog/d6.svg) !important;
-}*/
 
 .dice-tooltip .dice-rolls .roll.max {
   color: var(--s2d6-crit-success);
-  /*filter: none !important;*/
 }
 
 .dice-tooltip .dice-rolls .roll.min {
   color: var(--s2d6-crit-fail);
-  /*filter: none !important;*/
 }
 
 .dice-tooltip .dice-rolls .roll.discarded {
   color: inherit;
   filter: sepia(0.5) contrast(0.75) opacity(0.4);
 }
-/*
-.dice-tooltip .dice-rolls .roll {
-  width: 24px;
-  line-height: 24px;
-  float: left;
-  margin-right: 1px;
-  background-image: url(../assets/chatlog/d6.svg) !important;
-  background-repeat: no-repeat;
-  background-size: 24px 24px;
-  font-size: 16px;
-  color: var(--default-color);
-  font-weight: bold;
-  text-align: center;
-}
 
-.dice-roll .dice-formula, .dice-roll .dice-total {
-  flex: 0 0 100%;
-  position: relative;
-  margin: 0;
-  line-height: 24px;
-  text-align: center;
-  background: var(--background-transparent);
-  color: var(--default-color);
-  border: 1px solid var(--default-color);
-  border-radius: 0;
-  box-shadow: 0 0 2px var(--background-opaque) inset;
-  word-break: break-all;
-}
-
-#chat-form textarea {
-  width: 100%;
-  height: 100%;
-  resize: none
-  border-color: var(--default-color) !important;
-}
-
-#chat-controls div.roll-type-select select {
-  position: relative;
-  width: 200px;
-  height: 24px;
-  top: -3px;
-  border-color: var(--default-color) !important;
-}
-
-.damage {
-  border: var(--damage-stat-color);
-}
-*/
 .damage-message {
   border-radius: 1ch;
   border: 1px solid var(--s2d6-damage-red);
@@ -3190,135 +3185,10 @@ background: var(--sidebar-background);
 .flavor-table th, .flavor-table td {
   padding: 0.5ch;
 }
-/*
-#settings button {
-    position: relative;
-    margin: 0.5em 0;
-    background-color: var(--dark-background);
-    border-color: var(--default-color);
-    color: #a8b8d0;
-}
-#settings button:hover {
-    color: var(--light-color);
-    border-color: var(--light-color);
-}
-form button {
-    background: #000000a6 !important;
-    border: 2px groove var(--item-border);
-    color: #a2bce4;
-}*/
 
 /* ============================================================================
    SECTION-16: INTERFACE ELEMENTS & BUTTONS
    ============================================================================ */
-/*
-button {
-  position: relative;
-  margin: 0.5em 0;
-  background-color: var(--background-opaque) !important;
-  border-color: var(--default-color) !important;
-  color: var(--form-light) !important;
-}
-
-form button {
-  background: var(--background-opaque);
-  border: 2px groove var(--default-color);
-}
-
-button:hover {
-  box-shadow: 0 0 5px var(--default-color);
-  color: var(--light-color);
-  border-color: var(--light-color);
-}
-
-button:hover, button:focus {
-  outline: none;
-  box-shadow: 0 0 5px var(--default-color) !important;
-}
-
-form .notes, form .hint {
-  flex: 0 0 100%;
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--form-light);
-  margin: 3px 0;
-}
-*/
-/*#module-management .package-list .package-title, #module-management .package-list .package-metadata, #module-management .package-list .package-description {
-  color: var(--form-light);
-}
-
-.dialog .dialog-buttons button:last-child {
-  margin-right: 0;
-  border: 2px groove var(--item-border);
-  color: var(--dialog-color);
-  background-color: var(--item-active);
-}
-
-.dialog .dialog-buttons button:last-child:hover {
-  margin-right: 0;
-  color: var(--light-color);
-  border-color: var(--light-color);
-}
-
-
-.window-app .window-content > * {
-  flex: 1;
-}
-*/
-
-/*
-div.app.window-app.twodsix.sheet.actor header h4.window-title, div.app.window-app.twodsix.ship.actor header h4.window-title {
-  margin-top: 0.25em !important;
-  margin-left: 3em !important;
-  position: relative;
-  flex: none;
-  color: var(--s2d6-title-color);
-}
-
-div.app.window-app.twodsix.sheet.actor header a.configure-sheet, div.app.window-app.twodsix.ship.actor header a.configure-sheet {
-  position: absolute;
-  left: 22em;
-  top: 0.8em;
-}
-
-div.app.window-app.twodsix.sheet.actor header a.configure-token, div.app.window-app.twodsix.ship.actor header a.configure-token {
-  position: absolute;
-  left: 38.5em;
-  top: 0.8em;
-}
-
-div.app.window-app.twodsix.sheet.actor header a.close {
-  position: absolute;
-  left: 50.5em;
-  top: 0.7em;
-}
-
-div.app.window-app.twodsix.ship.actor header a.close {
-  position: absolute;
-  left: 51.5em;
-  top: 0.7em;
-}
-*/
-/* ============================================================================
-   SECTION-17: TOKEN SHEET STYLES
-   ============================================================================ */
-/*
-.token-sheet .actor-sheet-tabs {
-  flex: 0 0 32px;
-  border-bottom: 1px solid var(--form-light);
-  line-height: 28px !important;
-  width: 32.5em;
-}
-
-.token-sheet .notes {
-  font-size: 13px;
-  padding: 0.5em 0.5em;
-  margin-bottom: 0.5em;
-  border-bottom: 1px solid var(--form-light);
-  margin-top: 1.5em;
-}
-*/
 form .form-group > label {
   line-height: 2ch;
 }
@@ -3335,21 +3205,6 @@ form .form-group > label {
   color: var(--default-color);*/
 }
 
-/*
-.tox .tox-toolbar, .tox .tox-toolbar__overflow, .tox .tox-toolbar__primary {
-  background-color: var(--item-active) !important;
-}
-
-.tox .tox-tbtn svg {
-  display: block;
-  fill: var(--default-color);
-}
-
-.tox .tox-tbtn:hover svg {
-  fill: var(--light-color) !important;
-}
-*/
-
 .tox .tox-edit-area {
   display: flex;
   flex: 1;
@@ -3358,10 +3213,6 @@ form .form-group > label {
   position: relative;
   padding-left: 0.5em;
 }
-
-/*.editor-content p {
-  padding-left: 0.8em;
-}*/
 
 .editor-content {
   height: 95%;

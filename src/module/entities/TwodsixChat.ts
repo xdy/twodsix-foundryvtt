@@ -133,7 +133,9 @@ export async function onChatCardAction(event: Event, target:HTMLElement): Promis
   // Handle different actions
   if (action === "expand") {
     // Prevent players from revealing hidden/blind roll details via the expand button
-    if (!message.isContentVisible) return;
+    if (!message.isContentVisible) {
+      return;
+    }
     onExpandClick(message);
     return;
   } else if (action === "abilityCheck") {

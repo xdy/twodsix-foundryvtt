@@ -1124,7 +1124,9 @@
       "MakesOpposedRoll": "Makes an opposed / contested roll.",
       "MakesChainRoll": "Makes a chain / assisted roll.",
       "MakesParryRoll": "Makes a melee combat skill check to parry attack with",
-      "MakesUncRoll": "Rolls to remain conscious."
+      "MakesUncRoll": "Rolls to remain conscious.",
+      "Hit": "Hit",
+      "Miss": "Miss"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
