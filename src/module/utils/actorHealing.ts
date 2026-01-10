@@ -163,11 +163,14 @@ class HealingDialogHandler {
   html: HTMLElement;
   hooks = {};
   stats: Stats;
+  debouncedRefresh: () => void;
 
   constructor(stats: Stats) {
     this.stats = stats;
     this.hooks["updateActor"] = Hooks.on("updateActor", this.hookUpdate.bind(this));
     this.hooks["updateToken"] = Hooks.on("updateToken", this.hookUpdate.bind(this));
+    // Create debounced version of refresh for input handlers (150ms delay for responsive feel)
+    this.debouncedRefresh = foundry.utils.debounce(() => this.refresh(), 150);
   }
 
   private hookUpdate(): void {
@@ -224,13 +227,15 @@ class HealingDialogHandler {
   private registerEventListeners() {
     this.html.querySelectorAll(".healing-input")?.forEach(el => {
       el.addEventListener ('input', (ev:Event) => {
-        const value = this.getNumericValueFromEvent(ev, true);
         const stat = this.stats[ev.currentTarget.dataset.stat];
+        // getNumericValueFromEvent handles validation and shows warnings immediately
+        const value = this.getNumericValueFromEvent(ev, true);
 
         this.stats.edited = true;
+        // Clamp value (should already be clamped by validation, but double-check)
         stat.healing = Math.clamp(value, 0, stat.original.damage);
 
-        this.refresh();
+        this.debouncedRefresh();
       });
     });
   }
@@ -257,6 +262,10 @@ class HealingDialogHandler {
 
   public unRegisterListeners() {
     Object.entries(this.hooks).forEach(([hookName, hook]: [string, number]) => Hooks.off(hookName, hook));
+    // Cancel any pending debounced updates to prevent stale refresh after dialog closes
+    if (this.debouncedRefresh?.cancel) {
+      this.debouncedRefresh.cancel();
+    }
     //this.html.removeEventListener('change', "**");
   }
 }

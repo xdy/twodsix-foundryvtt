@@ -169,14 +169,24 @@ export interface Ship {
   notes:string;
   cargo:string;
   finances:string;
+  financeValues: FinanceValues;
   shipValue:string;
+  commonFunds: number;
   maintenanceCost:string;
   mortgageCost:string;
   isMassProduced:boolean;
   reqPower:ReqPower;
   weightStats: WeightStats;
   shipStats:ShipStats;
+  calcShipStats?:CalcShipStats; // Runtime object with calculated values
   shipPositionActorIds: ShipPositionActorIds;
+  showWeightUsage: boolean;
+}
+
+export interface FinanceValues {
+  cash:number;
+  mortgagePaymentTerm:number;
+  massProductionDiscount:number;
 }
 
 export interface Crew {
@@ -219,6 +229,29 @@ export interface ShipStats {
   mass:Staterooms;
   drives: Drives;
   bandwidth:Hits;
+}
+
+export interface CalcShipStats {
+  power: {
+    value: number;
+    max: number;
+  };
+  bandwidth: {
+    value: number;
+    max: number;
+  };
+  mass: {
+    value: number;
+    max: number;
+  };
+  drives: {
+    jDrive: {
+      rating: number;
+    };
+    mDrive: {
+      rating: number;
+    };
+  };
 }
 
 export interface Staterooms {

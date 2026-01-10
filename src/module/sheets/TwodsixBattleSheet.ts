@@ -44,14 +44,6 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
   async _prepareContext(options):any {
     const context = await super._prepareContext(options);
 
-    // Reset autocalc values to _source values
-    if (game.settings.get("twodsix", "useShipAutoCalcs"))  {
-      context.actor.system.shipStats.bandwidth.value = this.actor.system._source.shipStats.bandwidth.value;
-      context.actor.system.shipStats.bandwidth.max = this.actor.system._source.shipStats.bandwidth.max;
-      context.actor.system.shipStats.power.value = this.actor.system._source.shipStats.power.value;
-      context.actor.system.shipStats.power.max = this.actor.system._source.shipStats.power.max;
-    }
-
     //Build Position Data context
     const positionData = [];
     const allPositions = this.actor.itemTypes.ship_position.sort(comparePositions);

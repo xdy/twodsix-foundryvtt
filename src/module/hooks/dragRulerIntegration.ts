@@ -20,7 +20,11 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
       let movementSpeed = 0;
 
       if (actorType === "ship") {
-        movementSpeed = token.actor.system.shipStats.drives.jDrive.rating;
+        // Check setting: use calcShipStats only if auto-calc is enabled
+        const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+        movementSpeed = (useAutoCalcs && token.actor.system.calcShipStats?.drives?.jDrive?.rating)
+          ? token.actor.system.calcShipStats.drives.jDrive.rating
+          : token.actor.system.shipStats.drives.jDrive.rating;
         if (token.scene.grid.units === "pc") {
           return [
             { range: movementSpeed, color: "jump" },
@@ -78,6 +82,7 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
               { range: movementSpeed * 3, color: "run" }
             ];
           case "OTHER":
+          case "MGT2E":
             if ((actorData.encumbrance.value > actorData.encumbrance.max) && game.settings.get("twodsix", "useEncumbrance")) {
               return [];
             } else if ((actorData.encumbrance.value > actorData.encumbrance.max * parseFloat(game.settings.get("twodsix", "encumbFractionOneSquare"))) && game.settings.get("twodsix", "useEncumbrance")) {

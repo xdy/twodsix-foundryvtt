@@ -41,6 +41,116 @@ const AUTOFIRE_VARIANTS = Object.freeze({
   "CU": "CU"
 });
 
+/**
+ * Space combat system types that can be selected per ruleset.
+ * Each type defines phases, initiative formula, and action budget.
+ *
+ * Properties:
+ * - key: unique identifier for the phase type
+ * - name: display name
+ * - phases: array of phase names executed in sequence
+ * - shipInitiativeFormula: formula for rolling initiative
+ *   * @thrustBonus: +1 to the ship with the higher thrust rating (m-drive). Used when comparing relative advantage.
+ *   * @shipThrustRating: the ship's m-drive rating (thrust value). Used when absolute thrust value matters.
+ * - reRollInitiative: if true, initiative is rolled fresh each round; if false/omitted, initiative is rolled once at start
+ * - loopBackPhase: (optional) phase name to return to for looping systems (e.g., Cepheus Universal)
+ * - actionBudget: minor and significant actions available per round
+ * - reactionFormula: function returning number of reactions based on initiative value
+ */
+const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
+  fivePhase: {
+    key: 'fivePhase',
+    name: 'Five Phase (Classic Traveller)',
+    phases: ['movement', 'laserFire', 'enemyLaserFire', 'ordnanceLaunch', 'computerReprogramming'],
+    shipInitiativeFormula: "2d6",
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 0,
+      significantActions: 1,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  },
+  threePhase: {
+    key: 'threePhase',
+    name: 'Three Phase (Cepheus Engine)',
+    phases: ['declaration', 'actions', 'damage'],
+    shipInitiativeFormula: "2d6 + @thrustBonus", // +1 if greater thrust
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 3,
+      significantActions: 1,
+      useThrustCounter: false
+    },
+    reactionFormula: (initiative) => {
+      if (initiative <= 4) {
+        return 1;
+      }
+      if (initiative <= 8) {
+        return 2;
+      }
+      if (initiative <= 12) {
+        return 3;
+      }
+      return 4;
+    }
+  },
+  twoPhasePosition: {
+    key: 'twoPhasePosition',
+    name: 'Two Phase - Position Dynamic',
+    phases: ['position', 'action'],
+    shipInitiativeFormula: "2d6 + @skills.Piloting + @shipThrustRating",
+    reRollInitiative: true,
+    actionBudget: {
+      minorActions: 0,
+      significantActions: 1,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  },
+  eightPhaseLooping: {
+    key: 'eightPhaseLooping',
+    name: 'Eight Phase - Looping (Cepheus Universal)',
+    phases: ['detection', 'range', 'tactical', 'advantage', 'attack', 'screen', 'damageControl'],
+    loopBackPhase: 'tactical',  // Returns to phase 3 (tactical) after damageControl
+    shipInitiativeFormula: "2d6 + @skills.Pilot + @shipThrustRating",
+    reRollInitiative: true,
+    actionBudget: {
+      minorActions: 1,
+      significantActions: 0,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  },
+  mgt2eThreePhase: {
+    key: 'mgt2eThreePhase',
+    name: 'Three Phase (Mongoose Traveller 2E)',
+    phases: ['manoeuvre', 'attack', 'actions'],
+    shipInitiativeFormula: "2d6 + @skills.Pilot + @shipThrustRating",
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 2,
+      significantActions: 1,
+      useThrustCounter: true,
+      thrustPoolForReactions: true // Reactions use thrust pool instead of separate pool
+    },
+    reactionFormula: () => 0 // Disabled when using thrust pool
+  },
+  none: {
+    key: 'none',
+    name: 'Standard Foundry Combat (No Phases)',
+    phases: [],
+    shipInitiativeFormula: null, // Use the shipInitiativeFormula setting
+    reRollInitiative: false,
+    actionBudget: {
+      minorActions: 0,
+      significantActions: 0,
+      useThrustCounter: false
+    },
+    reactionFormula: () => 0
+  }
+});
+
 //TODO VARIANTS and RULESETS should really be combined/refactored.
 /**
  * Sets of Twodsix settings that best match each supported ruleset.
@@ -100,7 +210,8 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CT",
-      shipDamageType: "CT"
+      shipDamageType: "CT",
+      spaceCombatPhases: "fivePhase"
     }
   },
   CE: {
@@ -156,7 +267,8 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: true,
       xd6RollStyle: false,
       shipWeaponType: "CE",
-      shipDamageType: "component"
+      shipDamageType: "component",
+      spaceCombatPhases: "threePhase"
     }
   },
   CEL: {
@@ -205,7 +317,8 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition"
     }
   },
   CEFTL: {
@@ -252,8 +365,9 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
-    },
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition"
+    }
   },
   CEATOM: {
     key: "CEATOM",
@@ -346,7 +460,7 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
       xd6RollStyle: false
-    },
+    }
   },
   CEQ: {
     key: "CEQ",
@@ -392,7 +506,8 @@ const RULESETS = Object.freeze({
       addEffectToDamage: true,
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition"
     }
   },
   CD: {
@@ -450,7 +565,8 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CD",
-      shipDamageType: "surfaceInternal"
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition"
     }
   },
   CDEE: {
@@ -508,7 +624,8 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CD",
-      shipDamageType: "surfaceInternal"
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition"
     }
   },
   CLU: {
@@ -566,7 +683,8 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CD",
-      shipDamageType: "surfaceInternal"
+      shipDamageType: "surfaceInternal",
+      spaceCombatPhases: "twoPhasePosition"
     }
   },
   SOC: {
@@ -671,7 +789,8 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "AC",
-      shipDamageType: "AC"
+      shipDamageType: "AC",
+      spaceCombatPhases: "twoPhasePosition"
     }
   },
   CU: {
@@ -727,7 +846,8 @@ const RULESETS = Object.freeze({
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
       shipWeaponType: "CE",
-      shipDamageType: "CU"
+      shipDamageType: "CU",
+      spaceCombatPhases: "eightPhaseLooping"
     }
   },
   OTHER: {
@@ -740,6 +860,65 @@ const RULESETS = Object.freeze({
       chainBonus: "-3, -2, -1, 1, 2, 3",
       xd6RollStyle: false
     },
+  },
+  MGT2E: {
+    key: "MGT2E",
+    name: "Mongoose Traveller 2nd Edition",
+    settings: {
+      initiativeFormula: "2d6 -8 + max(@characteristics.dexterity.mod,@characteristics.intelligence.mod)",
+      difficultyListUsed: "CE",
+      difficultiesAsTargetNumber: true,
+      autofireRulesUsed: "CEL",
+      ShowDoubleTap: false,
+      modifierForZeroCharacteristic: -3,
+      termForAdvantage: "boon",
+      termForDisadvantage: "bane",
+      absoluteBonusValueForEachTimeIncrement: 1,
+      criticalNaturalAffectsEffect: false,
+      absoluteCriticalEffectValue: 6,
+      showLifebloodStamina: false,
+      lifebloodInsteadOfCharacteristics: false,
+      showContaminationBelowLifeblood: false,
+      ShowLawLevel: true,
+      rangeModifierType: "CE",
+      ShowWeaponType: true,
+      ShowDamageType: true,
+      ShowRateOfFire: true,
+      ShowRecoil: true,
+      minorWoundsRollModifier: 0,
+      seriousWoundsRollModifier: 0,
+      mortgagePayment: 240,
+      massProductionDiscount: "0.10",
+      maxEncumbrance: "2*(@characteristics.endurance.current + @characteristics.strength.current + max(0, @skills.AthleticsEndurance) + max(0, @skills.AthleticsStrength))",
+      defaultMovement: 6,
+      defaultMovementUnits: "m",
+      addEffectForShipDamage: true,
+      unarmedDamage: "1d6",
+      showTimeframe: true,
+      showHullAndArmor: "armorHullStruc",
+      showSpells: false,
+      useNationality: false,
+      animalsUseHits: true,
+      robotsUseHits: false,
+      animalsUseLocations: false,
+      displayReactionMorale: true,
+      showComponentRating: true,
+      showComponentDM: true,
+      encumbranceFraction: "0.5",
+      encumbranceModifier: -2,
+      useDegreesOfSuccess: 'other',
+      targetDMList: "Aiming +1, Cover -2, Running -1, Prone -1, Darkness -2, Fatigued -2",
+      armorDamageFormula: "@damage - @effectiveArmor",
+      addEffectToDamage: true,
+      weightModifierForWornArmor: "0.25",
+      chainBonus: "-3, -2, -1, 1, 2, 3",
+      reverseHealingOrder: false,
+      psiTalentsRequireRoll: false,
+      xd6RollStyle: false,
+      shipWeaponType: "CE",
+      shipDamageType: "criticalHullDamage",
+      spaceCombatPhases: "mgt2eThreePhase"
+    }
   }
 })
 ;
@@ -939,10 +1118,19 @@ export const ComponentStates = {
 };
 
 /**
+ * The valid types for drive components.
+ */
+export const DriveTypes = {
+  jdrive: "TWODSIX.Items.Component.jdrive",
+  mdrive: "TWODSIX.Items.Component.mdrive",
+  other: "TWODSIX.Items.Component.other"
+};
+
+/**
  * The valid types of ship components.
  */
 export const ComponentTypes = {
-  accomodations: "TWODSIX.Items.Component.accomodations",
+  accommodations: "TWODSIX.Items.Component.accommodations",
   ammo: "TWODSIX.Items.Component.ammo",
   armament: "TWODSIX.Items.Component.armament",
   armor: "TWODSIX.Items.Component.armor",
@@ -1335,6 +1523,7 @@ export type TWODSIX = {
   PowerOptions: typeof PowerOptions,
   HullPricingOptions: typeof HullPricingOptions,
   ComponentStates: typeof ComponentStates,
+  DriveTypes: typeof DriveTypes
   ComponentTypes: typeof ComponentTypes,
   CharacteristicDisplayTypes: typeof CharacteristicDisplayTypes,
   TimeUnts: typeof TimeUnits,
@@ -1372,6 +1561,7 @@ export const TWODSIX = {
   CONSUMABLES: CONSUMABLES,
   DIFFICULTY_VARIANTS: DIFFICULTY_VARIANTS,
   AUTOFIRE_VARIANTS: AUTOFIRE_VARIANTS,
+  SPACE_COMBAT_PHASE_TYPES: SPACE_COMBAT_PHASE_TYPES,
   ROLLTYPES: ROLLTYPES,
   DIFFICULTIES: DIFFICULTIES,
   RULESETS: RULESETS,
@@ -1382,6 +1572,7 @@ export const TWODSIX = {
   PowerOptions: PowerOptions,
   HullPricingOptions: HullPricingOptions,
   ComponentStates: ComponentStates,
+  DriveTypes: DriveTypes,
   ComponentTypes: ComponentTypes,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes,
   TimeUnits: TimeUnits,

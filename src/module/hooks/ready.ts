@@ -57,6 +57,21 @@ Hooks.once("ready", async function () {
     Hooks.call(data[0], ...data.slice(1));
   });
 
+  // Handle combat turn advancement for players via socket
+  Hooks.on("twodsix.advanceTurn", async (combatId) => {
+    if (!game.user.isGM) {
+      return;
+    }
+
+    const combat = game.combats.get(combatId);
+    if (!combat) {
+      return;
+    }
+
+    // GM executes the turn advancement with proper permissions and broadcasting
+    await combat.nextTurn();
+  });
+
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (_bar, data, slot) => createItemMacro(data, slot));
 

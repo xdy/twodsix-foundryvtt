@@ -1,0 +1,29 @@
+<div class="storage-wrapper">
+  <div class="grid-columns-double storage-header">
+    <div class="storage-stored-double">
+      {{> "systems/twodsix/templates/actors/parts/common/item-storage-header.hbs"}}
+    </div>
+    <div class="storage-stored-double">
+      {{> "systems/twodsix/templates/actors/parts/common/item-storage-header.hbs"}}
+    </div>
+  </div>
+
+  <div class="grid-columns-double item-list">
+    {{#each storage as |item id|}}
+    <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
+      <ol class="ol-no-indent">
+        <li class="storage-stored-double">
+          {{> "systems/twodsix/templates/actors/parts/common/item-storage-row.hbs" item=item}}
+        </li>
+      </ol>
+    </div>
+    {{/each}}
+    {{#if (twodsix_isOdd storage.length)}}
+        <div class="grid-columns-double-row">
+          <ol class="ol-no-indent">&nbsp;
+            <li class="item storage-stored-double"></li>
+          </ol>
+        </div>
+    {{/if}}
+  </div>
+</div>

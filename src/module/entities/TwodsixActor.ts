@@ -14,7 +14,7 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances, updateShipFinances } from "../hooks/updateFinances";
-import { applyEncumberedEffect, applyWoundedEffect } from "../utils/showStatusIcons";
+import { applyBatchedStatusEffects } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "./TwodsixActiveEffect";
 import { generateShipDamageReport } from "../utils/shipDamage";
 
@@ -23,6 +23,7 @@ import { generateShipDamageReport } from "../utils/shipDamage";
  * @extends {Actor}
  */
 export default class TwodsixActor extends Actor {
+  public _applyingStatusEffects: boolean = false;
   /** @override */
   /**
    * Perform preliminary operations before an Actor of this type is created.
@@ -142,6 +143,23 @@ export default class TwodsixActor extends Actor {
             img: 'systems/twodsix/assets/icons/default_ship.png'
           });
         }
+
+        //Set default display preferences
+        const currentWeightDisplay:number = game.settings.get('twodsix', 'showWeightUsage');
+        if (this.system.showWeightUsage !== currentWeightDisplay) {
+          foundry.utils.mergeObject(changeData, {'system.showWeightUsage': currentWeightDisplay});
+        }
+
+        const currentMortgageTerm:number = game.settings.get('twodsix', 'mortgagePayment');
+        if (this.system.financeValues.mortgagePaymentTerm !== currentMortgageTerm) {
+          foundry.utils.mergeObject(changeData, {'system.financeValues.mortgagePaymentTerm': currentMortgageTerm});
+        }
+
+        const currentMassProductionDiscount:number = parseFloat(game.settings.get('twodsix', 'massProductionDiscount'));
+        if (this.system.financeValues.massProductionDiscount !== currentMassProductionDiscount) {
+          foundry.utils.mergeObject(changeData, {'system.financeValues.massProductionDiscount': currentMassProductionDiscount});
+        }
+
         break;
       }
       case "vehicle": {
@@ -191,7 +209,7 @@ export default class TwodsixActor extends Actor {
     let deltaHits = 0;
     if (data?.system?.characteristics && ['traveller', 'animal', 'robot'].includes(this.type)) {
       const charDiff = foundry.utils.diffObject(this.system._source.characteristics, data.system.characteristics); //v12 stopped passing diffferential
-      if (Object.keys(charDiff).length > 0) {
+      if (!foundry.utils.isEmpty(charDiff)) {
         deltaHits = this.getDeltaHits(charDiff);
       }
 
@@ -212,7 +230,7 @@ export default class TwodsixActor extends Actor {
         finances: data?.system?.finances ? foundry.utils.diffObject(this.system._source.finances, data.system.finances) : {},
         financeValues: data?.system?.financeValues ? foundry.utils.diffObject(this.system._source.financeValues, data.system.financeValues) : {} //v12 stopped passing diffferential
       };
-      if (Object.keys(financeDiff.finances).length > 0 || Object.keys(financeDiff.financeValues).length > 0) {
+      if (!foundry.utils.isEmpty(financeDiff.finances) || !foundry.utils.isEmpty(financeDiff.financeValues)) {
         updateFinances(this, data, financeDiff);
       }
     } else if (this.type === 'ship') {
@@ -246,23 +264,26 @@ export default class TwodsixActor extends Actor {
   async _onUpdate(changed:object, options:object, userId:string) {
     await super._onUpdate(changed, options, userId);
 
+    // Skip status checks if this update was triggered by status effect application to avoid loops
+    if (this._applyingStatusEffects) {
+      return;
+    }
+
     //Check for status change
     if (options.diff && game.user?.id === userId) {  //Not certain why options.diff is needed, but opening token editor for tokenActor and cancelling fires updateActor
-      if (!!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
-        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
-          await applyWoundedEffect(this);
-        }
-      }
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (this.type === 'traveller')) {
-        if (isEncumbranceChange(changed)) {
-          await applyEncumberedEffect(this);
-        }
+      const needsEncumbranceCheck = game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && (this.type === 'traveller') && isEncumbranceChange(changed);
+      const needsWoundedCheck = !!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type)) && game.settings.get('twodsix', 'useWoundedStatusIndicators');
+
+      if (needsEncumbranceCheck || needsWoundedCheck) {
+        await applyBatchedStatusEffects(this, { encumbrance: needsEncumbranceCheck, wounded: needsWoundedCheck });
       }
     }
 
-    //scroll hits change
-    if (!!options.deltaHits && this.isOwner ) {
-      this.scrollDamage(options.deltaHits);
+    if (!!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type))) {
+      //scroll hits change
+      if (this.isOwner) {
+        this.scrollDamage(options.deltaHits);
+      }
     }
   }
 
@@ -301,7 +322,7 @@ export default class TwodsixActor extends Actor {
         break;
       default:
         //Don't push error as it breaks data prep.  Needed for other modules that create types
-        //ui.notifications.error(game.i18n.localize("Twodsix.Actor.UnknownActorType") + " " + this.type);
+        //ui.notifications.error(game.i18n.localize("TWODSIX.Actor.UnknownActorType") + " " + this.type);
         console.warn(`Unknown actor type: ${this.type}`);
     }
   }
@@ -310,6 +331,9 @@ export default class TwodsixActor extends Actor {
   * Check Crew Titles for missing and set to localized default
   */
   _checkCrewTitles(): void {
+    if (!this.system.crewLabel) {
+      return; // Guard against missing field during ActorDelta initialization
+    }
     for (const pos in this.system.crewLabel) {
       if (this.system.crewLabel[pos] === "") {
         this.system.crewLabel[pos] = game.i18n.localize("TWODSIX.Ship.Crew." + pos.toUpperCase());
@@ -321,6 +345,9 @@ export default class TwodsixActor extends Actor {
   * Update Ship characteristics - used for morale
   */
   _updateCharacteristics(): void {
+    if (!this.system.characteristics) {
+      return; // Guard against missing field during ActorDelta initialization
+    }
     for (const cha of Object.keys(this.system.characteristics)) {
       const characteristic: Characteristic = this.system.characteristics[cha];
       characteristic.current = characteristic.value - characteristic.damage;
@@ -334,6 +361,11 @@ export default class TwodsixActor extends Actor {
    */
   async _prepareActorDerivedData(): void {
     const {system} = this;
+
+    // Guard against missing system data during ActorDelta initialization
+    if (!system.characteristics || !system.hits || !system.encumbrance) {
+      return;
+    }
 
     //Update Damage
     for (const cha of Object.keys(system.characteristics)) {
@@ -392,25 +424,11 @@ export default class TwodsixActor extends Actor {
     // Calculate encumbrance.value before AE passes (so AEs can modify it)
     system.encumbrance.value = this.getActorEncumbrance();
 
-    // Apply active effects in multiple passes (base pass already done by core FVTT)
-    // Collect all keys that have CUSTOM mode effects (excluding encumbrance.max)
-    const allCustomKeys = this.appliedEffects
-      .flatMap(e => e.changes.filter(c => c.mode === CONST.ACTIVE_EFFECT_MODES.CUSTOM).map(c => c.key))
-      .filter(k => k); //Make certain keys are valid
-    const customKeys = [...new Set(allCustomKeys)].filter(k => k !== "system.encumbrance.max"); //Deduplicate and get rid of encumbrance.max
-
     // Second pass: apply non-CUSTOM effects to derived fields (excluding encumbrance.max and CUSTOM keys)
-    const derivedKeys = this._getDerivedDataKeys()
-      .filter(k => k !== "system.encumbrance.max" && !customKeys.includes(k));
-    if (derivedKeys.length > 0) {
-      this.applyActiveEffects(derivedKeys);
-    }
+    this.applyActiveEffects("derived");
 
     // Third pass: apply all CUSTOM mode effects (now that derived data is stable)
-    // Explicitly exclude encumbrance.max from this pass (it has its own pass after calculation)
-    if (customKeys.length > 0) {
-      this.applyActiveEffects(customKeys);
-    }
+    this.applyActiveEffects("custom");
 
     // Clear any override for encumbrance.max from previous passes before recalculating
     if (this.overrides.system?.encumbrance?.max !== undefined) {
@@ -420,7 +438,7 @@ export default class TwodsixActor extends Actor {
     system.encumbrance.max = this.getMaxEncumbrance(true);
 
     // Fourth pass: final override for encumbrance.max
-    this.applyActiveEffects(["system.encumbrance.max"]);
+    this.applyActiveEffects("encumbMax");
 
   }
 
@@ -584,6 +602,11 @@ export default class TwodsixActor extends Actor {
   }
 
   _prepareShipDerivedData(): void {
+    // Guard against missing system data during ActorDelta initialization
+    if (!this.system.shipStats || !this.system.financeValues) {
+      return;
+    }
+
     const calcShipStats = {
       power: {
         max: 0,
@@ -604,123 +627,162 @@ export default class TwodsixActor extends Actor {
       },
       cost: {
         baseHullValue: 0,
-        hullOffset: 1.0,
         percentHull: 0,
-        perHullTon: 0,
         componentValue: 0,
         total: 0
       },
       bandwidth: {
         used: 0,
         available: 0
+      },
+      mass: {
+        max: 0
+      },
+      drives: {
+        jDrive: {
+          rating: 0
+        },
+        mDrive: {
+          rating: 0
+        }
       }
     };
 
-    /* estimate displacement if missing */
-    if (!this.system.shipStats.mass.max || this.system.shipStats.mass.max <= 0) {
-      const calcDisplacement = estimateDisplacement(this);
-      if (calcDisplacement && calcDisplacement > 0) {
-        this.update({"system.shipStats.mass.max": calcDisplacement});
-        /*actorData.system.shipStats.mass.max = calcDisplacement;*/
-      }
+    /* Calculate displacement from components */
+    const calcDisplacement = Math.round(
+      this.itemTypes.component
+        .filter((item: TwodsixItem) => (<Component>item.system).isBaseHull)
+        .reduce((sum, item) => sum + getWeight(item), 0)
+    );
+    if (calcDisplacement && calcDisplacement > 0) {
+      calcShipStats.mass.max = calcDisplacement;
+    } else {
+      calcShipStats.mass.max = this.system.shipStats.mass.max || 0;
     }
 
-    const massProducedMultiplier = this.system.isMassProduced ? (1 - parseFloat(game.settings.get("twodsix", "massProductionDiscount"))) : 1;
+    // Seed mass early so weight/cost helpers use calculated mass during this cycle
+    this.system.calcShipStats = {mass: {max: calcShipStats.mass.max}} as any;
 
+    /* Calculate drive ratings */
+    const {jump, thrust} = this.getDriveRatings();
+    calcShipStats.drives.jDrive.rating = Number.isFinite(jump) ? jump : 0;
+    calcShipStats.drives.mDrive.rating = Number.isFinite(thrust) ? thrust : 0;
+
+    const massProducedMultiplier = this.system.isMassProduced ? (1 - this.system.financeValues.massProductionDiscount) : 1;
+
+    // Process all components
     this.itemTypes.component.forEach((item: TwodsixItem) => {
       const anComponent = <Component>item.system;
+
+      // Check conditions once per component
+      const isExcludedFromCost = ["fuel", "cargo", "ammo", "vehicle"].includes(anComponent.subtype);
+      const isOperational = ["operational", "damaged"].includes(anComponent.status);
+      const isBaseHull = anComponent.subtype === "hull" && anComponent.isBaseHull;
+
       const powerForItem = getPower(item);
       const weightForItem = getWeight(item);
 
-      /* Allocate Power */
       allocatePower(anComponent, powerForItem, item);
-
-      /* Allocate Weight*/
       allocateWeight(anComponent, weightForItem);
 
-      /*Calculate Cost*/
-      calculateComponentCost(anComponent, weightForItem, this, massProducedMultiplier);
+      if (!isExcludedFromCost) {
+        calculateComponentCost(anComponent, weightForItem, isBaseHull);
+      }
 
-      /*Calculate Cost*/
-      calculateBandwidth(anComponent);
-    });
-
-    //Update component costs for those that depend on base hull value
-    this.itemTypes.component.filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !["fuel", "cargo", "vehicle"].includes(it.system.subtype)).forEach((item: TwodsixItem) => {
-      item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) / 100;
-      if (item.system.pricingBasis === "pctHullPerUnit") {
-        item.system.installedCost *= item.system.quantity;
+      if (isOperational) {
+        calculateBandwidth(anComponent);
       }
     });
 
-    /*Calculate implicit values*/
-    calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors +
-      calcShipStats.power.weapons + calcShipStats.power.systems;
-
-    calcShipStats.weight.available = this.system.shipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0)
-      - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
-
-    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * ( 1 + calcShipStats.cost.percentHull / 100 );
-
-    /*Push values to ship actor*/
-    updateShipData(this);
-
-    function estimateDisplacement(shipActor): number {
-      let returnValue = 0;
-      shipActor.itemTypes.component.filter((item: TwodsixItem) => (<Component>item.system).isBaseHull).forEach((item: TwodsixItem) => {
-        returnValue += getWeight(item);
+    // Update costs for pctHull-based components (now that baseHullValue is known)
+    const excludedSubtypes = ["fuel", "cargo", "ammo", "vehicle"];
+    this.itemTypes.component
+      .filter((it:TwodsixItem) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !excludedSubtypes.includes(it.system.subtype))
+      .forEach((item: TwodsixItem) => {
+        const multiplier = item.system.pricingBasis === "pctHullPerUnit" ? item.system.quantity : 1;
+        item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) * multiplier / 100;
       });
-      return Math.round(returnValue);
-    }
 
-    function calculateComponentCost(anComponent: Component, weightForItem: number, shipActor:TwodsixActor, multiplier:number): void {
-      if (!["fuel", "cargo", "ammo", "vehicle"].includes(anComponent.subtype)) {
-        if (anComponent.subtype === "hull" && anComponent.isBaseHull) {
-          switch (anComponent.pricingBasis) {
-            case "perUnit":
-              anComponent.installedCost = Number(anComponent.price) * anComponent.quantity * multiplier;
-              break;
-            case "perCompTon":
-              anComponent.installedCost = Number(anComponent.price) * weightForItem * multiplier;
-              break;
-            case "perHullTon":
-              anComponent.installedCost = (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price) * multiplier;
-              break;
-            case "per100HullTon":
-              anComponent.installedCost = (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * Number(anComponent.price)/100 * multiplier;
-              break;
-          }
-          calcShipStats.cost.baseHullValue += anComponent.installedCost;
-        } else {
-          switch (anComponent.pricingBasis) {
-            case "perUnit":
-              anComponent.installedCost = Number(anComponent.price) * anComponent.quantity * multiplier;
-              break;
-            case "perCompTon":
-              anComponent.installedCost = Number(anComponent.price) * weightForItem * multiplier;
-              break;
-            case "pctHull":
-              calcShipStats.cost.percentHull += Number(anComponent.price);
-              break;
-            case "pctHullPerUnit":
-              calcShipStats.cost.percentHull += Number(anComponent.price) * anComponent.quantity;
-              break;
-            case "perHullTon":
-              anComponent.installedCost = Number(anComponent.price) * (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * multiplier;
-              break;
-            case "per100HullTon":
-              anComponent.installedCost = Number(anComponent.price)/100 * (shipActor.system.shipStats.mass.max || calcShipStats.weight.baseHull) * multiplier;
-              break;
-          }
-          if (!["pctHull", "pctHullPerUnit"].includes(anComponent.pricingBasis)) {
-            calcShipStats.cost.componentValue += anComponent.installedCost;
-          }
-        }
+    // Calculate totals
+    calcShipStats.power.used = calcShipStats.power.jDrive + calcShipStats.power.mDrive + calcShipStats.power.sensors + calcShipStats.power.weapons + calcShipStats.power.systems;
+    calcShipStats.weight.available = calcShipStats.mass.max - (calcShipStats.weight.vehicles ?? 0) - (calcShipStats.weight.cargo ?? 0) - (calcShipStats.weight.fuel ?? 0) - (calcShipStats.weight.systems ?? 0);
+    calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * (1 + calcShipStats.cost.percentHull / 100);
+
+    // Build final calcShipStats object
+    const totalCost = Number.isFinite(calcShipStats.cost.total) ? calcShipStats.cost.total : 0;
+    const mortgageTerm = Number.isFinite(this.system.financeValues.mortgagePaymentTerm) && this.system.financeValues.mortgagePaymentTerm > 0
+      ? this.system.financeValues.mortgagePaymentTerm
+      : game.settings.get('twodsix', 'mortgageTerm');
+
+    this.system.calcShipStats = {
+      power: {
+        value: roundToMaxDecimals(calcShipStats.power.used, 1),
+        max: roundToMaxDecimals(calcShipStats.power.max, 1)
+      },
+      bandwidth: {
+        value: Math.round(calcShipStats.bandwidth.used),
+        max: Math.round(calcShipStats.bandwidth.available)
+      },
+      mass: {
+        value: 0,
+        max: calcShipStats.mass.max
+      },
+      drives: {
+        jDrive: {rating: calcShipStats.drives.jDrive.rating},
+        mDrive: {rating: calcShipStats.drives.mDrive.rating}
+      },
+      reqPower: formatPowerStats(calcShipStats.power),
+      weightStats: formatWeightStats(calcShipStats.weight),
+      cost: {
+        total: totalCost,
+        shipValue: totalCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1}),
+        mortgageCost: formatMCrAsCredits(totalCost / mortgageTerm),
+        maintenanceCost: formatMCrAsCredits(totalCost * 0.001 / 12)
+      }
+    };
+
+    function calculateComponentCost(anComponent: Component, weightForItem: number, isBaseHull: boolean): void {
+      const price = Number(anComponent.price);
+
+      // Handle percentage-based costs first
+      if (anComponent.pricingBasis === "pctHull") {
+        calcShipStats.cost.percentHull += price;
+        return;
+      }
+      if (anComponent.pricingBasis === "pctHullPerUnit") {
+        calcShipStats.cost.percentHull += price * anComponent.quantity;
+        return;
+      }
+
+      const hullMass = calcShipStats.mass.max || calcShipStats.weight.baseHull;
+
+      let cost = 0;
+      switch (anComponent.pricingBasis) {
+        case "perUnit":
+          cost = price * anComponent.quantity * massProducedMultiplier;
+          break;
+        case "perCompTon":
+          cost = price * weightForItem * massProducedMultiplier;
+          break;
+        case "perHullTon":
+          cost = hullMass * price * massProducedMultiplier;
+          break;
+        case "per100HullTon":
+          cost = (hullMass * price / 100) * massProducedMultiplier;
+          break;
+      }
+
+      anComponent.installedCost = cost;
+
+      if (isBaseHull) {
+        calcShipStats.cost.baseHullValue += cost;
+      } else {
+        calcShipStats.cost.componentValue += cost;
       }
     }
 
     function calculateBandwidth(anComponent: Component): void {
-      if (game.settings.get("twodsix", "showBandwidth") && ["operational", "damaged"].includes(anComponent.status)) {
+      if (game.settings.get("twodsix", "showBandwidth")) {
         if (anComponent.subtype === "computer") {
           calcShipStats.bandwidth.available += anComponent.bandwidth;
         } else if (anComponent.subtype === "software") {
@@ -761,12 +823,9 @@ export default class TwodsixActor extends Actor {
       } else {
         switch (anComponent.subtype) {
           case 'drive': {
-            const componentName = item.name?.toLowerCase() ?? "";
-            const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();  //Must localize as intial/default value is "TWODSIX.Ship.JDrive"
-            const mDriveLabel = game.i18n.localize("TWODSIX.Ship.MDrive").toLowerCase();
-            if (componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes(jDriveLabel)) {
+            if (item.isJDriveComponent()) {
               calcShipStats.power.jDrive += powerForItem;
-            } else if (componentName.includes('m-drive') || componentName.includes('m drive') || componentName.includes(mDriveLabel)) {
+            } else if (item.isMDriveComponent()) {
               calcShipStats.power.mDrive += powerForItem;
             } else {
               calcShipStats.power.systems += powerForItem;
@@ -784,29 +843,6 @@ export default class TwodsixActor extends Actor {
             break;
         }
       }
-    }
-
-    function updateShipData(shipActor): void {
-      shipActor.system.shipStats.power.value = roundToMaxDecimals(calcShipStats.power.used, 1);
-      shipActor.system.shipStats.power.max = roundToMaxDecimals(calcShipStats.power.max, 1);
-      shipActor.system.reqPower.systems = roundToMaxDecimals(calcShipStats.power.systems, 1);
-      shipActor.system.reqPower["m-drive"] = roundToMaxDecimals(calcShipStats.power.mDrive, 1);
-      shipActor.system.reqPower["j-drive"] = roundToMaxDecimals(calcShipStats.power.jDrive, 1);
-      shipActor.system.reqPower.sensors = roundToMaxDecimals(calcShipStats.power.sensors, 1);
-      shipActor.system.reqPower.weapons = roundToMaxDecimals(calcShipStats.power.weapons, 1);
-
-      shipActor.system.shipStats.bandwidth.value = Math.round(calcShipStats.bandwidth.used);
-      shipActor.system.shipStats.bandwidth.max = Math.round(calcShipStats.bandwidth.available);
-
-      shipActor.system.weightStats.vehicles = roundToMaxDecimals(calcShipStats.weight.vehicles, 2);
-      shipActor.system.weightStats.cargo = roundToMaxDecimals(calcShipStats.weight.cargo, 2);
-      shipActor.system.weightStats.fuel = roundToMaxDecimals(calcShipStats.weight.fuel, 2);
-      shipActor.system.weightStats.systems = roundToMaxDecimals(calcShipStats.weight.systems, 2);
-      shipActor.system.weightStats.available = roundToMaxDecimals(calcShipStats.weight.available, 2);
-
-      shipActor.system.shipValue = calcShipStats.cost.total.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
-      shipActor.system.mortgageCost = (calcShipStats.cost.total / game.settings.get("twodsix", "mortgagePayment") * 1000000).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
-      shipActor.system.maintenanceCost = (calcShipStats.cost.total * 0.001 * 1000000 / 12).toLocaleString(game.i18n.lang, {maximumFractionDigits: 0});
     }
   }
 
@@ -1180,9 +1216,9 @@ export default class TwodsixActor extends Actor {
 
     //Create Item
     const addedItem = (await this.createEmbeddedDocuments("Item", [itemCopy]))[0];
-    if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !TWODSIX.WeightlessItems.includes(addedItem.type)) {
-      await applyEncumberedEffect(this);
-    }
+    //if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && this.type === 'traveller' && !TWODSIX.WeightlessItems.includes(addedItem.type)) {
+    //  await applyEncumberedEffect(this);
+    //}
     console.log(`Twodsix | Added Item ${addedItem.name} to character`);
     return (!!addedItem);
   }
@@ -1313,116 +1349,26 @@ export default class TwodsixActor extends Actor {
   /**
    * Apply transformations to this Actor's data caused by Active Effects.
    *
-   * Behavior is controlled by the optional `onlyKeys` list:
-   * - When `onlyKeys` is omitted, this is the "base pass": apply effects that target
-   *   non-derived keys, excluding CUSTOM mode. Statuses are updated.
-   * - When `onlyKeys` is provided, apply only those changes whose key is explicitly listed.
-   *   This is used for selective passes on derived properties and CUSTOM mode effects.
-   *
-   * Notes:
-   * - Status icons are cleared only in the base pass (when `onlyKeys` is not provided).
-   * - If the Item Piles module marks this actor as a merchant, derived-key passes are skipped.
-   * - CUSTOM mode effects are deferred to later passes when all derived data is stable.
-   *
-   * Typical usage pattern (4 passes):
-   * 1) Base pass: `applyActiveEffects()` (invoked automatically during Actor.prepareData before `prepareDerivedData()`)
-   *    - Applies non-derived keys, non-CUSTOM modes only
-   * 2) Derived pass: `applyActiveEffects(this._getDerivedDataKeys().filter(k => k !== "system.encumbrance.max"))`
-   *    - Applies characteristic mods, skills, armor values (non-CUSTOM modes)
-   * 3) CUSTOM pass: `applyActiveEffects(customKeys)` where customKeys are all CUSTOM mode effect keys
-   *    - Applies CUSTOM formulas that may reference derived data
-   * 4) Targeted override: `applyActiveEffects(["system.encumbrance.max"])`
-   *    - Final override for encumbrance max after calculation
-   *
-   * @param {string[]} [onlyKeys] Restrict application to these data paths; when omitted, applies only to
+   * @param {string} phase Restrict application to these data paths; when omitted, applies only to
    *                              non-derived keys (base pass).
    * @returns {void}
    * @override This overrides the core FVTT method to account for modifying derived data in multiple passes
    */
-  applyActiveEffects(onlyKeys?: string[]): void {
-    // Skip derived-key passes for Item Piles merchants
-    if (onlyKeys && game.modules.get("item-piles")?.active && this.getFlag("item-piles", "data.enabled")) {
-      return;
-    }
-
-    // Simple recursion protection for derived data passes
-    if (onlyKeys) {
-      this._aeCallDepth = (this._aeCallDepth || 0) + 1;
-      if (this._aeCallDepth > 10) {
-        console.warn(`Active Effects exceeded maximum depth for keys: ${onlyKeys.join(", ")} - possible circular dependency`);
-        ui.notifications.warn("TWODSIX.Warnings.ActiveEffectsLoop", {localize: true});
-        this._aeCallDepth = 0;
-        return;
-      }
+  applyActiveEffects(phase?: string): void {
+    if (phase === "custom") {
+      // Only custom logic for "custom" phase
+      const allEffects = Array.from(this.appliedEffects ?? []);
+      TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
+    } else if (phase === "encumbMax") {
+      // First process standard types
+      super.applyActiveEffects(phase);
+      // Then process custom types
+      const allEffects = Array.from(this.appliedEffects ?? []);
+      TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
     } else {
-      // Reset depth counter on base pass
-      this._aeCallDepth = 0;
-    }
-
-    const overrides = {};
-
-    // Clear statuses only in base pass
-    if (!onlyKeys) {
-      this.statuses.clear();
-    }
-
-    // Choose effects: all applicable for base pass, already-applied for targeted passes
-    const effects = onlyKeys ? this.appliedEffects : this.allApplicableEffects();
-    const changes = [];
-
-    for (const effect of effects) {
-      // Skip inactive effects in base pass
-      if (!onlyKeys && !effect.active) {
-        continue;
-      }
-
-      // Filter changes based on pass type
-      let filtered = effect.changes;
-      if (onlyKeys) {
-        // Targeted pass: only apply changes for specified keys
-        filtered = filtered.filter(change => onlyKeys.includes(change.key));
-      } else {
-        // Base pass: non-derived, non-CUSTOM only
-        const derivedData = this._getDerivedDataKeys();
-        filtered = filtered.filter(change =>
-          !derivedData.includes(change.key) && change.mode !== CONST.ACTIVE_EFFECT_MODES.CUSTOM
-        );
-      }
-
-      // Add filtered changes with priority
-      changes.push(...filtered.map(change => {
-        const c = foundry.utils.deepClone(change);
-        c.effect = effect;
-        c.priority = c.priority ?? (change.mode * 10 + (onlyKeys ? -100 : 0));
-        return c;
-      }));
-
-      // Collect status effects
-      for (const statusId of effect.statuses) {
-        this.statuses.add(statusId);
-      }
-    }
-
-    // Sort by priority and apply
-    changes.sort((a, b) => a.priority - b.priority);
-    for (const change of changes) {
-      if (!change.key) {
-        continue;
-      }
-      const result = change.effect.apply(this, change);
-      Object.assign(overrides, result);
-    }
-
-    // Merge or replace overrides
-    if (onlyKeys) {
-      this.overrides = foundry.utils.mergeObject(this.overrides, foundry.utils.expandObject(overrides));
-      // Decrement call depth after successful completion
-      this._aeCallDepth = Math.max(0, (this._aeCallDepth || 0) - 1);
-    } else {
-      this.overrides = foundry.utils.expandObject(overrides);
+      super.applyActiveEffects(phase || "initial");
     }
   }
-
 
   /**
    * Build a list of system data keys that are considered "derived data" for this actor.
@@ -1430,9 +1376,8 @@ export default class TwodsixActor extends Actor {
    * The list includes characteristic modifiers, skill keys, and (for travellers) special system values.
    *
    * @returns {string[]} An array of string keys representing derived data paths for this actor.
-   * @private
    */
-  private _getDerivedDataKeys(): string[] {
+  getDerivedDataKeys(): string[] {
     const derivedData: string[] = [];
     if (["traveller", "robot", "animal"].includes(this.type)) {
       // Add characteristics mods
@@ -1596,6 +1541,89 @@ export default class TwodsixActor extends Actor {
       }
     }
   }
+
+  /**
+   * Calculates the maximum Jump and Thrust ratings for a ship's drives.
+   * Returns the highest found rating for each drive type that are active, or the value from
+   * system.shipStats.drives if present.
+   *
+   * @returns {{ jump: number, thrust: number }} An object with the highest jump and thrust ratings.
+   */
+  public getDriveRatings(): { jump: number, thrust: number } {
+    if (this.type !== "ship") {
+      return { jump: 0, thrust: 0 };
+    }
+
+    let jump = 0;
+    let thrust = 0;
+
+    const driveComponents: TwodsixItem[] = this.itemTypes.component.filter(
+      (it: TwodsixItem) =>
+        it.system.subtype === 'drive' &&
+        !["off", "destroyed"].includes(it.system.status)
+    );
+
+    for (const drive of driveComponents) {
+      const rating = Number(drive.system.rating);
+      const validRating = Number.isFinite(rating) ? rating : 0;
+
+      if (drive.isMDriveComponent()) {
+        thrust = Math.max(thrust, validRating);
+      } else if (drive.isJDriveComponent()) {
+        jump = Math.max(jump, validRating);
+      }
+    }
+
+    // Check setting: use calcShipStats only if auto-calc is enabled
+    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+
+    if (useAutoCalcs) {
+      // Use calculated values from calcShipStats, fallback to component calculations
+      const calcJump = this.system.calcShipStats?.drives?.jDrive?.rating;
+      const calcThrust = this.system.calcShipStats?.drives?.mDrive?.rating;
+      return {
+        jump: Number.isFinite(calcJump) ? calcJump : jump,
+        thrust: Number.isFinite(calcThrust) ? calcThrust : thrust
+      };
+    } else {
+      // Use manual values from shipStats, fallback to component calculations
+      const storedJump = Number(this.system.shipStats.drives.jDrive.rating);
+      const storedThrust = Number(this.system.shipStats.drives.mDrive.rating);
+      return {
+        jump: Number.isFinite(storedJump) ? storedJump : jump,
+        thrust: Number.isFinite(storedThrust) ? storedThrust : thrust
+      };
+    }
+  }
+
+  /**
+   * Override getRollData to provide setting-aware shipStats for ships
+   * When useShipAutoCalcs is enabled, shipStats will point to calculated values
+   * When disabled, shipStats will point to manual values
+   * @override
+   */
+  getRollData() {
+    const data = super.getRollData();
+
+    // Only modify for ship actors
+    if (this.type === 'ship' && this.system.calcShipStats) {
+      const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+
+      if (useAutoCalcs) {
+        // Replace shipStats with calculated values when auto-calc is enabled
+        data.shipStats = {
+          ...this.system.shipStats,
+          mass: this.system.calcShipStats.mass,
+          drives: this.system.calcShipStats.drives,
+          power: this.system.calcShipStats.power,
+          bandwidth: this.system.calcShipStats.bandwidth
+        };
+      }
+      // Otherwise, shipStats already contains manual values from this.system
+    }
+
+    return data;
+  }
 }
 
 /**
@@ -1615,7 +1643,12 @@ export function getPower(item: TwodsixItem): number{
       }
       return (quant * pf);
     } else if (item.system.powerBasis === 'perHullTon') {
-      return pf * (item.actor?.system.shipStats.mass.max ?? 0);
+      // Check setting: use calcShipStats only if auto-calc is enabled
+      const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+      const massMax = (useAutoCalcs && item.actor?.system.calcShipStats?.mass?.max)
+        ? item.actor.system.calcShipStats.mass.max
+        : (item.actor?.system.shipStats.mass.max ?? 0);
+      return pf * massMax;
     } else if (item.system.powerBasis === 'perCompTon') {
       return pf * getWeight(item);
     }
@@ -1637,7 +1670,12 @@ export function getWeight(item: TwodsixItem): number{
   }  make true displacement and not mass*/
   let wf = 0;
   if (item.system.weightIsPct) {
-    wf = (item.system.weight ?? 0) / 100 * (item.actor?.system.shipStats.mass.max ?? 0);
+    // Check setting: use calcShipStats only if auto-calc is enabled
+    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+    const massMax = (useAutoCalcs && item.actor?.system.calcShipStats?.mass?.max)
+      ? item.actor.system.calcShipStats.mass.max
+      : (item.actor?.system.shipStats.mass.max ?? 0);
+    wf = (item.system.weight ?? 0) / 100 * massMax;
   } else {
     wf = item.system.weight ?? 0;
   }
@@ -1663,7 +1701,7 @@ async function deleteIdFromShipPositions(actorId: string): void {
 
   for (const ship of allShips) {
     if ((<Ship>ship.system).shipPositionActorIds[actorId]) {
-      await ship.update({[`system.shipPositionActorIds.-=${actorId}`]: null });
+      await ship.update({[`system.shipPositionActorIds.${actorId}`]: _del });
     }
   }
 }
@@ -1767,4 +1805,31 @@ function isEncumbranceChange(changed:object): boolean {
     return true;
   }
   return false;
+}
+
+function formatPowerStats(power: {systems: number; mDrive: number; jDrive: number; sensors: number; weapons: number}): object {
+  return {
+    systems: roundToMaxDecimals(power.systems, 1),
+    mDrive: roundToMaxDecimals(power.mDrive, 1),
+    jDrive: roundToMaxDecimals(power.jDrive, 1),
+    sensors: roundToMaxDecimals(power.sensors, 1),
+    weapons: roundToMaxDecimals(power.weapons, 1)
+  };
+}
+
+function formatWeightStats(weight: {vehicles: number; cargo: number; fuel: number; systems: number; available: number}): object {
+  return {
+    vehicles: roundToMaxDecimals(weight.vehicles, 2),
+    cargo: roundToMaxDecimals(weight.cargo, 2),
+    fuel: roundToMaxDecimals(weight.fuel, 2),
+    systems: roundToMaxDecimals(weight.systems, 2),
+    available: roundToMaxDecimals(weight.available, 2)
+  };
+}
+
+function formatMCrAsCredits(mcr: number, decimals: number = 0): string {
+  return (mcr * 1000000).toLocaleString(game.i18n.lang, {
+    maximumFractionDigits: decimals,
+    ...(decimals > 0 && {minimumFractionDigits: decimals})
+  });
 }

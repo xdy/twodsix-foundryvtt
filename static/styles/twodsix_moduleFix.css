@@ -99,7 +99,7 @@ div.pdf-app section.window-content {
 .monks-enhanced-journal .directory li.folder.collapsed > .folder-header:not(.customcolor) {
   background: revert;
   background-color: var(--s2d6-background-opaque);
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-title-color);
 }
 
 .monks-enhanced-journal .directory li.folder:not(.collapsed) > .folder-header {
@@ -117,7 +117,7 @@ div.pdf-app section.window-content {
   font-family: unset;
   font-weight: unset;
   font-size: 2em;
-  border-bottom: 2px solid var(--color-underline-header);
+  border-bottom: 2px solid var(--s2d6-color-underline-header);
   margin: unset;
 }
 
@@ -128,18 +128,18 @@ div.pdf-app section.window-content {
 .monks-journal-sheet .items-list .item-header .item-control {
   background-color: var(--s2d6-background-opaque);
   border: 2px groove var(--s2d6-default-color);
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-title-color);
   height: auto;
 }
 
 .monks-enhanced-journal .directory li.journalentry, .monks-enhanced-journal .directory li.journalentrypage  {
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-title-color);
 }
 
 .monks-enhanced-journal .directory .directory-list .directory-item,
 .monks-enhanced-journal .directory li.journalentry,
 .monks-enhanced-journal .directory li.journalentrypage {
-  border-bottom: 1px solid var(--color-border-dark-3);
+  border-bottom: 1px solid var(--s2d6-color-border-dark-3);
   border-top: 1px solid var(--s2d6-background-transparent);
 }
 
@@ -270,7 +270,7 @@ div.pdf-app section.window-content {
 
 .monks-journal-sheet .sheet-container .journal-sheet-header .sheet-icon  {
   background-color: var(--s2d6-background-opaque);
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-title-color);
 }
 
 .monks-journal-sheet .journal-sheet-header.header-name input[type="text"]  {
@@ -303,7 +303,7 @@ div.pdf-app section.window-content {
 }
 
 .item.item-piles-flexrow.item-piles-clickable-link {
-  color: var(--color-light-3);
+  color: var(--s2d6-color-text-light-3);
 }
 
 .item-piles-config-container p {
@@ -355,7 +355,7 @@ div.svelte-ip-m19fn7 {
 
 .tah-dialog-light-button {
   background: var(--s2d6-background-nearly-opaque);
-  border: 1px solid var(--color-border-light-primary);
+  border: 1px solid var(--s2d6-color-border-light-primary);
 }
 
 .tagify__tag__removeBtn, .tagify__tag>div, .tah-dialog-tagify .tagify__input, .tagify__input:focus:empty::before {
@@ -400,7 +400,7 @@ div.svelte-ip-m19fn7 {
 
 .quick-insert-result li span.sub, .quick-insert-result li a i.action-icon {
   background: var(--s2d6-background-nearly-transparent);
-  color: var(--s2d6-app-color);
+  color: var(--s2d6-title-color);
 }
 
 .quick-insert-app .search-selected a, .quick-insert-result li a:hover {
@@ -436,7 +436,7 @@ div.svelte-ip-m19fn7 {
 .window-app.forien-quest-preview .window-content,
 .quest-body,
 #forien-quest-log .quest-log .table ul li.drag-quest {
-	background: var(--s2d6-background-nearly-opaque);
+  background: var(--s2d6-background-nearly-opaque);
 }
 
 #forien-quest-log .editor, .window-app.forien-quest-preview .editor,
@@ -449,12 +449,13 @@ div.svelte-ip-m19fn7 {
 #forien-quest-log .actions i, .window-app.forien-quest-preview .actions i  {
 	color: 	var(--s2d6-default-color) !important;
 }
+
 #forien-quest-log .actions i.fa-trash, .window-app.forien-quest-preview .actions i.fa-trash {
-    color: #f009 !important;
+  color: #f009 !important;
 }
 
 #forien-quest-log h2, .window-app.forien-quest-preview h2 {
-  border-bottom: 1px solid var(--color-underline-header);
+  border-bottom: 1px solid var(--s2d6-color-underline-header);
 }
 
 

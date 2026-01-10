@@ -17,9 +17,13 @@ const compat = new FlatCompat({
 });
 
 module.exports = [
-  // Files/paths to ignore (replaces .eslintignore)
+  // Ignore patterns MUST be first
   {
     ignores: [
+      'node_modules/**',
+      'foundry/**',
+      'dist/**',
+      'build/**',
       // IDE
       '.idea/',
       '.vs/',

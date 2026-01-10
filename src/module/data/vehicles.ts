@@ -50,9 +50,12 @@ export class ShipData extends TwodsixVehicleBaseData {
     schema.mortgageCost = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.shipValue = new fields.StringField({ required: true, blank: true, initial: "0"});
     schema.isMassProduced = new fields.BooleanField({required: true, initial: false});
+    schema.showWeightUsage = new fields.BooleanField({required: true, initial: false});
     schema.commonFunds = new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 });
     schema.financeValues = new fields.SchemaField({
-      cash: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0})
+      cash: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0}),
+      mortgagePaymentTerm: new fields.NumberField({ required: true, nullable: false, integer: true, initial: 240}),
+      massProductionDiscount: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0.1}),
     });
     schema.reqPower = new fields.SchemaField({
       systems: new fields.NumberField({ ...requiredInteger, initial: 0 }),
@@ -61,7 +64,7 @@ export class ShipData extends TwodsixVehicleBaseData {
       sensors: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       weapons: new fields.NumberField({ ...requiredInteger, initial: 0 })
     });
-    schema.weightStats= new fields.SchemaField( {
+    schema.weightStats = new fields.SchemaField( {
       systems: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
       cargo: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
       fuel: new fields.NumberField({ required: true, nullable: false, integer: false, initial: 0 }),
