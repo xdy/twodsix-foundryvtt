@@ -279,11 +279,17 @@ export class TwodsixActiveEffect extends ActiveEffect {
  */
 async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
   const parentActor: TwodsixActor = activeEffect.parent;
-  if (!parentActor) return;
-  if (!game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) return;
+  if (!parentActor) {
+    return;
+  }
+  if (!game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+    return;
+  }
 
   // Only proceed if the effect could impact encumbrance
-  if (!changesEncumbranceStat(activeEffect) && !activeEffect.statuses.has('dead')) return;
+  if (!changesEncumbranceStat(activeEffect) && !activeEffect.statuses.has('dead')) {
+    return;
+  }
 
   // If the effect is being removed or no longer applies encumbered/unconscious
   if (

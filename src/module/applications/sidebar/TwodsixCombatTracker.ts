@@ -68,7 +68,7 @@ export default class TwodsixCombatTracker extends foundry.applications.sidebar.t
     const canAdvance:boolean = game.user.isGM || combatant?.actor?.isOwner;
 
     if (!canAdvance) {
-      ui.notifications.warn("COMBAT.TurnWarning", {localize: true});
+      ui.notifications.warn("TWODSIX.Combat.TurnWarning", {localize: true});
       return;
     }
 

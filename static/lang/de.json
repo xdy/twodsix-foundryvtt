@@ -680,7 +680,7 @@
         "resultShows": "Resultat zeigt",
         "Roll": "Wurf",
         "Rolling": "Würfeln",
-        "sum": "Summe",
+        "Sum": "Summe",
         "using": "benutzt {characteristic}",
         "With": "mit"
       },
@@ -1325,7 +1325,7 @@
       "ShippingSize": "Größe"
     },
     "Rolls": {
-      "sum": "Summe",
+      "Sum": "Summe",
       "characteristic": "Charakteristik",
       "ToggleDetails": "Details anzeigen",
       "AdjustedDamage": "Schaden durch Effekt angepasst",

@@ -29,7 +29,8 @@
       "NewEffect": "New Effect",
       "CreateEffect": "Create Effect",
       "Add": "Add",
-      "IncludingEffects": "Including active effects:"
+      "IncludingEffects": "Including active effects:",
+      "None": "None"
     },
     "Damage": {
       "DealDamage": "Deal damage",
@@ -71,7 +72,6 @@
       "HealingCard": "Damage Card",
       "HealingDice": "Healing Dice"
     },
-
     "DamageType": {
       "Acid": "Acid",
       "Ballistic": "Ballistic",
@@ -744,7 +744,7 @@
         "NumberOfSkills": "Number of Skills",
         "SkillRanks": "Skill Ranks",
         "GroupLabel": "Group Label",
-        "Melee Combat": "Melee Combat"
+        "MeleeCombat": "Melee Combat"
       },
       "Traits": {
         "Prerequisite": "Prerequisite",
@@ -1102,7 +1102,7 @@
       "Rolling": "Rolling",
       "With": "with",
       "resultShows": "result shows",
-      "sum": "sum",
+      "Sum": "Sum",
       "using": "using {characteristic}",
       "Wounds": "Wounds",
       "AttackDM": "Atack DM",
@@ -1129,7 +1129,9 @@
       "MakesOpposedRoll": "Makes an opposed / contested roll.",
       "MakesChainRoll": "Makes a chain / assisted roll.",
       "MakesParryRoll": "Makes a melee combat skill check to parry attack with",
-      "MakesUncRoll": "Rolls to remain conscious."
+      "MakesUncRoll": "Rolls to remain conscious.",
+      "Hit": "Hit",
+      "Miss": "Miss"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1813,6 +1815,7 @@
     "SignificantActions": "Significant Actions Used",
     "Reactions": "Reactions Used",
     "ThrustUsed": "Thrust Used",
+    "TurnWarning": "Lack permissions to change turn",
     "NoMinorActionsRemaining": "No minor actions remaining for this phase",
     "NoSignificantActionsRemaining": "No significant actions remaining for this phase",
     "NoReactionsRemaining": "No reactions remaining",

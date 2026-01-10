@@ -3554,7 +3554,15 @@ background: var(--s2d6-sidebar-background);
 }
 
 .dice-roll .dice-formula, .dice-roll .dice-total {
-  flex: 0 0 100%;
+  /* Make the dice total a flexible row that wraps when necessary.
+     This lets the `.twodsix-roll-results` content try to fit on a
+     single line while allowing items to wrap if space is constrained. */
+  flex: 0 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   position: relative;
   margin: 0;
   line-height: 24px;
@@ -3568,7 +3576,9 @@ background: var(--s2d6-sidebar-background);
 }
 
 .dice-total {
-  white-space: pre-wrap;
+  /* Allow normal wrapping within the dice total so items can shrink
+     and remain on the same line where possible. */
+  white-space: normal;
 }
 
 .dice-roll .dice-total.crit-fail-roll {
@@ -3577,6 +3587,18 @@ background: var(--s2d6-sidebar-background);
 
 .dice-roll .dice-total.crit-success-roll {
   color: var(--s2d6-crit-success);
+}
+
+/* Ensure critical coloring applies to our structured roll results (sum/value)
+   when the outer .dice-total has a crit class. Use a more specific selector
+   so these rules override the normal result-value color. */
+.dice-roll .dice-total.crit-success-roll .twodsix-roll-results .result-value,
+.dice-roll .dice-total.crit-success-roll .twodsix-roll-results .result-sum {
+  color: var(--s2d6-crit-success);
+}
+.dice-roll .dice-total.crit-fail-roll .twodsix-roll-results .result-value,
+.dice-roll .dice-total.crit-fail-roll .twodsix-roll-results .result-sum {
+  color: var(--s2d6-crit-fail);
 }
 
 .dice-tooltip .dice-rolls .roll.d6 {
@@ -3616,6 +3638,162 @@ background: var(--s2d6-sidebar-background);
 .card-buttons {
   display: inline-flex;
   gap: 2px;
+}
+
+/* TWODSIX: Roll result compact styles (scoped under .chat-message) */
+.chat-message .twodsix-roll-results {
+  /* Stack the results row and the degree badge vertically, centered.
+     Make the container full-width so `.results-main` can center its
+     children (this ensures the single-row case is centered). */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+}
+.chat-message .twodsix-roll-results .results-main {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center the sum/effect/timeframe row */
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.chat-message .twodsix-roll-results .results-main > * {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  white-space: nowrap;
+}
+.chat-message .twodsix-roll-results .result-sum {
+  background: var(--s2d6-background-nearly-transparent);
+  /* Use the default color for the border so boxed items contrast properly */
+  border: 1px solid var(--s2d6-default-color);
+  color: var(--s2d6-app-color);
+  padding: 0.08rem 0.65rem;
+  border-radius: 8px;
+  text-align: center;
+}
+.chat-message .twodsix-roll-results .result-effect { color: var(--s2d6-light-color); padding: 0.25rem 0.5rem; }
+.chat-message .twodsix-roll-results .result-label {
+  color: var(--s2d6-default-color);
+  margin-right: 0.5rem; /* visible gap between label and value */
+  font-size: 0.88rem;
+  display: inline-block;
+}
+.chat-message .twodsix-roll-results .result-value {
+  color: var(--s2d6-app-color);
+  /* allow shrinking and ellipsis to keep row compact */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+.chat-message .twodsix-roll-results .badge.timeframe {
+  background: var(--s2d6-light-background-transparent);
+  color: var(--s2d6-light-color);
+  padding: 0.08rem 0.4rem; /* tighter padding for boxed appearance */
+  border-radius: 8px; /* match result-sum radius */
+  font-weight: 700;
+  border: 1px solid var(--s2d6-default-color);
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* result-item rule is handled by .results-main > * and .result-sum etc. */
+.chat-message .twodsix-roll-results .degree-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.24rem 0.44rem;
+  border-radius: 999px;
+  margin: 0;
+}
+.degree-fail { background: var(--s2d6-crit-fail); color: var(--s2d6-app-color); }
+.degree-partial { background: var(--s2d6-damage-orange); color: var(--s2d6-app-color); }
+.degree-success { background: var(--s2d6-crit-success); color: var(--s2d6-app-color); }
+.degree-critical { background: var(--s2d6-header-background); color: var(--s2d6-app-color); }
+.degree-unknown { background: var(--s2d6-background-nearly-transparent); color: var(--s2d6-app-color); }
+
+/* Ensure the degree and attack badges are centered below the results row */
+.chat-message .twodsix-roll-results .result-degree-wrap {
+  /* Keep the degree wrap inline so it can sit in the same flex row
+     as other result items. Center its contents vertically to match
+     the `result-sum` and other items. */
+  display: inline-flex;
+  align-items: center; /* vertical centering */
+  justify-content: center;
+  gap: 0.6rem;
+  align-self: center;
+  order: 999; /* ensure degree appears at the end of the row */
+}
+.chat-message .twodsix-roll-results .attack-badge { margin: 0.2rem 0 0 0; }
+
+/* Inline placement for degree when timeframe is absent: push to the row end */
+.chat-message .twodsix-roll-results .result-degree-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0; /* removed extra left margin so items fit on one line */
+  flex: 0 0 auto;
+  order: 999; /* keep badge visually at the end of the row */
+}
+.chat-message .twodsix-roll-results .result-degree-inline .attack-badge { margin: 0; }
+
+/* Attack outcome badge */
+.chat-message .twodsix-roll-results .attack-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+  margin: 0.2rem 0 0 0;
+  color: var(--s2d6-app-color);
+}
+
+.chat-message .twodsix-roll-results .attack-hit { background: var(--s2d6-crit-success); }
+.chat-message .twodsix-roll-results .attack-miss { background: var(--s2d6-crit-fail); }
+
+/* Box the timeframe value specifically (label sits to the left) */
+.chat-message .twodsix-roll-results .result-timeframe .result-value {
+  background: var(--s2d6-light-background-transparent);
+  color: var(--s2d6-light-color);
+  padding: 0.08rem 0.4rem;
+  border-radius: 6px;
+  font-weight: 700;
+  border: 1px solid var(--s2d6-color-border-light-1);
+  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Box the whole timeframe item (label + value) to ensure consistent border */
+.chat-message .twodsix-roll-results .result-item.result-timeframe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--s2d6-light-background-transparent);
+  color: var(--s2d6-light-color);
+  padding: 0.08rem 0.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  border: 1px solid var(--s2d6-color-border-light-1);
+}
+
+/* Avoid double-boxing: remove inner value border when whole item is boxed */
+.chat-message .twodsix-roll-results .result-item.result-timeframe .result-value {
+  background: transparent;
+  padding: 0;
+  border: 0;
+  font-weight: 600;
+}
+
+@media (max-width: 420px) {
+  .chat-message .twodsix-roll-results .results-main { gap: 0.4rem; }
 }
 
 #tooltip {
