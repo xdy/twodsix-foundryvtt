@@ -69,20 +69,20 @@ Hooks.on("renderChatMessageHTML", (message: any, html: HTMLElement, messageData?
     const effectHtml = `<div class="result-item result-effect"><div class="result-label">${escapeHtml(effectString)}</div><div class="result-value">${escapeHtml(effect)}</div></div>`;
 
     let timeframeHtml = '';
-    const showTimeframe = game.settings.get('twodsix', 'showTimeframe') && (message.getFlag?.('twodsix', 'timeframe') ?? flags.timeframe);
+    const showTimeframe = game.settings.get('twodsix', 'showTimeframe') && (message.getFlag('twodsix', 'timeframe') ?? flags.timeframe);
     if (showTimeframe) {
-      const timeframe = message.getFlag?.('twodsix', 'timeframe') ?? flags.timeframe;
+      const timeframe = message.getFlag('twodsix', 'timeframe') ?? flags.timeframe;
       const timeString = game.i18n.localize('TWODSIX.Rolls.Timeframe') || 'Timeframe';
       timeframeHtml = `<div class="result-item result-timeframe"><div class="result-label">${escapeHtml(timeString)}</div><div class="result-value">${escapeHtml(timeframe)}</div></div>`;
     }
 
     // Degree and optional attack badge
-    const deg = message.getFlag?.('twodsix', 'degreeOfSuccess') ?? flags.degreeOfSuccess ?? '';
-    const degreeClass = message.getFlag?.('twodsix', 'degreeClass') ?? flags.degreeClass ?? '';
-    const degreeKey = message.getFlag?.('twodsix', 'degreeKey') ?? flags.degreeKey ?? '';
-    const rollClass = message.getFlag?.('twodsix', 'rollClass') ?? flags.rollClass ?? '';
+    const deg = message.getFlag('twodsix', 'degreeOfSuccess') ?? flags.degreeOfSuccess ?? '';
+    const degreeClass = message.getFlag('twodsix', 'degreeClass') ?? flags.degreeClass ?? '';
+    const degreeKey = message.getFlag('twodsix', 'degreeKey') ?? flags.degreeKey ?? '';
+    const rollClass = message.getFlag('twodsix', 'rollClass') ?? flags.rollClass ?? '';
     const isAttack = rollClass === 'Attack';
-    const isHit = Number(message.getFlag?.('twodsix', 'effect') ?? flags.effect ?? 0) >= 0;
+    const isHit = Number(message.getFlag('twodsix', 'effect') ?? flags.effect ?? 0) >= 0;
 
     // Respect the `useDegreesOfSuccess` setting: when set to "none",
     const showDegrees = game.settings.get('twodsix', 'useDegreesOfSuccess') !== 'none';
