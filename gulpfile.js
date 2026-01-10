@@ -378,4 +378,11 @@ const execBuild = gulp.parallel(buildCode, buildStyles, copyStaticFiles);
 const execBuildWithPacks = gulp.series(buildPacks, gulp.parallel(execBuild, copyPacks), buildSummary);
 
 const build = gulp.series(clean, execBuildWithPacks);
-export { build, buildPacks, buildWatch, clean, linkUserData as link, bumpVersion };
+
+// Develop build: skips wiki journal generation by setting SKIP_WIKI
+function developBuild(done) {
+  process.env.SKIP_WIKI = 'true';
+  return build(done);
+}
+
+export { build, buildPacks, buildWatch, clean, linkUserData as link, bumpVersion, developBuild };

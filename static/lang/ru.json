@@ -456,7 +456,7 @@
       "Component": {
         "Ammunition": "Боеприпасы",
         "componentName": "Компонент",
-        "accomodations": "каюты",
+        "accommodations": "каюты",
         "armament": "вооружение",
         "armor": "броня",
         "bridge": "мостик",

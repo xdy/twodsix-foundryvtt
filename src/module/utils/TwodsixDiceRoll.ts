@@ -185,6 +185,61 @@ export class TwodsixDiceRoll {
     }
   }
 
+  /**
+   * Compute a stable, non-localized degree key for styling and logic.
+   * Returns one of the language keys from `DegreesOfSuccess` or an empty
+   * string when degrees are disabled or not applicable.
+   */
+  private getDegreeKey(): string {
+    //Check for override for natural 2 or 12
+    if (game.settings.get("twodsix", 'overrideSuccessWithNaturalCrit')) {
+      if (this.naturalTotal === 2) {
+        return 'ExceptionalFailure';
+      }
+      if (this.naturalTotal === 12) {
+        return 'ExceptionalSuccess';
+      }
+    }
+
+    const useDegrees = game.settings.get("twodsix", 'useDegreesOfSuccess');
+    if (useDegrees === "CE") {
+      if (this.effect <= -6) {
+        return 'ExceptionalFailure';
+      }
+      if (this.effect <= -1) {
+        return 'Failure';
+      }
+      if (this.effect <= 5) {
+        return 'Success';
+      }
+      if (this.effect >= 6) {
+        return 'ExceptionalSuccess';
+      }
+      return '';
+    } else if (useDegrees === "other") {
+      if (this.effect <= -6) {
+        return 'ExceptionalFailure';
+      }
+      if (this.effect <= -2) {
+        return 'AverageFailure';
+      }
+      if (this.effect === -1) {
+        return 'MarginalFailure';
+      }
+      if (this.effect === 0) {
+        return 'MarginalSuccess';
+      }
+      if (this.effect <= 5) {
+        return 'AverageSuccess';
+      }
+      if (this.effect >= 6) {
+        return 'ExceptionalSuccess';
+      }
+      return '';
+    }
+    return '';
+  }
+
   public getRollModifierList(): string[] {
     const returnValue = [];
     // Add chain modifier
@@ -387,10 +442,38 @@ export class TwodsixDiceRoll {
         }
       }
     }
-    // Add degree of Success
+    // Add degree of Success (localized label) and a stable degree key used
+    // for styling. The numeric logic lives in `getDegreeKey()` so we avoid
+    // duplicating calculations here.
     let degreeOfSuccess = ``;
+    let degreeClass = ``;
+    let degreeKey = ``;
     if (!["Attack", "ShipWeapon", "Unknown"].includes(this.rollSettings.flags.rollClass) && game.settings.get('twodsix', 'useDegreesOfSuccess') !== 'none') {
-      degreeOfSuccess = this.getDegreeOfSuccess();
+      degreeKey = this.getDegreeKey();
+      degreeOfSuccess = degreeKey ? game.i18n.localize(`TWODSIX.Chat.Roll.DegreesOfSuccess.${degreeKey}`) : "";
+      // Map degreeKey to a CSS class used by the stylesheet.
+      switch (degreeKey) {
+        case 'ExceptionalFailure':
+          degreeClass = 'degree-fail';
+          break;
+        case 'Failure':
+        case 'AverageFailure':
+          degreeClass = 'degree-fail';
+          break;
+        case 'MarginalFailure':
+          degreeClass = 'degree-partial';
+          break;
+        case 'MarginalSuccess':
+        case 'AverageSuccess':
+        case 'Success':
+          degreeClass = 'degree-success';
+          break;
+        case 'ExceptionalSuccess':
+          degreeClass = 'degree-critical';
+          break;
+        default:
+          degreeClass = 'degree-unknown';
+      }
     }
 
     //Add buttons
@@ -430,6 +513,8 @@ export class TwodsixDiceRoll {
           "twodsix.crit": this.getCrit(),
           "twodsix.effect": this.effect,
           "twodsix.degreeOfSuccess": degreeOfSuccess,
+          "twodsix.degreeClass": degreeClass,
+          "twodsix.degreeKey": degreeKey,
           "twodsix.timeframe": timeToComplete,
           "twodsix.itemUUID": this.rollSettings.flags.itemUUID ?? "",
           "twodsix.tokenUUID": this.rollSettings.flags.tokenUUID ?? "",

@@ -1,0 +1,196 @@
+
+/* Western Theme for Twodsix - Extends twodsix_basic */
+
+@import url('./twodsix_basic.css');
+/*@import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');*/
+
+@font-face {
+  font-family: "Rye";
+  src: url("../fonts/Rye-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Western color palette */
+  --s2d6-light-brown : #a67c52;
+  --s2d6-app-color: var(--s2d6-light-brown);
+  --s2d6-dark-brown: #4b2e19;
+  --s2d6-default-color: var(--s2d6-dark-brown);
+  --s2d6-light-background: #f5e6c8;
+  --s2d6-input-background: var(--s2d6-light-background);
+  --s2d6-medium-background: #c2b280;
+  --s2d6-nav-background: var(--s2d6-medium-background);
+  --s2d6-header-background: var(--s2d6-medium-background);
+  --s2d6-border-brown: #7c4a02;
+  --s2d6-header-border: var(--s2d6-border-brown);
+  --s2d6-very-dark-brown: #3e2723;
+  --s2d6-title-color: var(--s2d6-very-dark-brown);
+  --s2d6-item-border: var(--s2d6-border-brown);
+  --s2d6-item-active: var(--s2d6-light-brown);
+  --s2d6-very-light-brown: #d8b083;
+  --s2d6-item-hover: var(--s2d6-very-light-brown);
+  --s2d6-select-light: var(--s2d6-very-light-brown);
+  --s2d6-pie-color: var(--s2d6-app-color);
+  --s2d6-pie-background-color: var(--s2d6-background-transparent);
+
+  /* Western accent colors */
+  --s2d6-color-text-hyperlink: #ff6400;
+  --s2d6-color-shadow-primary: var(--s2d6-light-brown);
+  --s2d6-color-border-light-primary: #b5b3a4;
+
+  /* Western background texture (add this image to static/assets/) */
+  --s2d6-background-image: url('../assets/wood-pattern.png');
+
+  /* Override Foundry's font variable for body text */
+  --font-body: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+
+  /* Foundry core font and heading overrides */
+  --font-sans: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  --font-primary: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  --font-h1: 'Rye', serif;
+  --font-h2: 'Roboto Slab', serif;
+  --font-h3: 'Rye', 'Roboto Slab', serif;
+
+  /* Western color overrides for Foundry variables */
+  --color-text-primary: var(--s2d6-dark-brown);
+  --color-text-emphatic: var(--s2d6-very-dark-brown);
+  --color-text-hyperlink: #ff6400;
+  --color-header-background: var(--s2d6-medium-background);
+  --color-border: var(--s2d6-border-brown);
+  --color-border-light-primary: #b5b3a4;
+  --color-shadow-primary: var(--s2d6-light-brown);
+
+}
+
+.application.twodsix {
+  font-size: var(--font-size-12);
+}
+
+/* Light mode overrides for western theme */
+body.theme-light,
+body.theme-light .application,
+body.theme-light .application.twodsix {
+  --s2d6-app-color: var(--s2d6-medium-background);
+  --s2d6-default-color: var(--s2d6-dark-brown);
+  --s2d6-input-background: var(--s2d6-light-background);
+  --s2d6-nav-background: var(--s2d6-light-background);
+  --s2d6-header-background: var(--s2d6-light-brown);
+  --s2d6-header-border: var(--s2d6-light-brown);
+  --s2d6-title-color: var(--s2d6-very-dark-brown);
+  --s2d6-item-border: var(--s2d6-light-brown);
+  --s2d6-item-active: var(--s2d6-medium-background);
+  --s2d6-item-hover: var(--s2d6-light-background);
+  --s2d6-select-light: var(--s2d6-light-background);
+  --s2d6-color-text-hyperlink: var(--color-text-hyperlink);
+  --s2d6-color-shadow-primary: var(--s2d6-light-brown);
+  --s2d6-color-border-light-primary: #b5b3a4;
+  --s2d6-skill-list-even: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode overrides for western theme */
+body.theme-dark,
+body.theme-dark .application,
+body.theme-dark .application.twodsix {
+  --s2d6-app-color: var(--s2d6-light-brown);
+  --s2d6-default-color: #fdf6e3;
+  --s2d6-input-background: var(--s2d6-dark-brown);
+  --s2d6-nav-background: var(--s2d6-border-brown);
+  --s2d6-header-background: var(--s2d6-dark-brown);
+  --s2d6-header-border: var(--s2d6-light-brown);
+  --s2d6-title-color: var(--s2d6-light-background);
+  --s2d6-item-border: var(--s2d6-light-brown);
+  --s2d6-item-active: var(--s2d6-border-brown);
+  --s2d6-item-hover: var(--s2d6-light-brown);
+  --s2d6-select-light: var(--s2d6-light-brown);
+  --s2d6-color-text-hyperlink: #ffb366;
+  --s2d6-color-shadow-primary: var(--s2d6-border-brown);
+  --s2d6-color-border-light-primary: #b5b3a4;
+}
+/* Western theme: readable header row fade for both light and dark */
+body.theme-light .application.twodsix .header-row {
+  background-image: linear-gradient(90deg, var(--s2d6-header-background, #e7d1b1) 0%, var(--s2d6-header-border, --s2d6-light-brown) 100%);
+}
+body.theme-dark .application.twodsix .header-row {
+  background-image: linear-gradient(90deg, var(--s2d6-header-background, --s2d6-dark-brown) 0%, var(--s2d6-header-border, --s2d6-light-brown) 100%);
+}
+body {
+  --font-body: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  font-family: 'Rye', 'Roboto Slab', 'Courier New', Courier, monospace;
+  color: var(--s2d6-default-color);
+}
+
+/* Add more selectors for other UI elements as needed */
+.character-bgi-std, .character-bgi-npc,
+.ship-state-grid, .ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input, input.power-current, input.power-total {
+  font-size: var(--font-size-12);
+}
+
+.stat-table {
+  font-size: smaller;
+}
+
+.character-bgi-std input {
+  background-color: var(--s2d6-input-background) !important;
+}
+
+.item-title, .item-title-npc, .item-title-vehicle {
+  font-size: 1.5ch;
+  padding: 0.5ch 1ch 0 1ch;
+}
+
+.skill-header {
+  cursor: pointer;
+  width: 43em;
+}
+
+.editor-content {
+  height: auto;
+}
+
+.notes-container {
+  margin: unset;
+  padding-left: 1ch;
+  padding-right: 1ch;
+  padding-top: 2ch;
+  height: 38em;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+
+.npc-notes-container, .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments, .character-bgi-npc,
+.vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .vehicle-storage, .vehicle-notes,
+.space-object-stats, .space-object-notes, .space-object-stats,
+.financial-notes div[contenteditable], .cash input[type='text'], .pension input[type='text'], .debt input[type='text'], .ship-payments input[type='text'], .living-costs input[type='text'],
+.ship-image, .ship-state-grid, .ship-name, .ship-name input[type="text"], .ship-info, .ship-tabs-info.sheet-body, .ship-power-management,
+.ship-notes-container-short .editor, .ship-financial-notes div[contenteditable], .ship-financial-notes .editor, .ship-commonFunds input[type="number"],
+div.ship-value, .ship-stat, .ship-stat-finance,
+.ship-position-box, .position-data,
+.info-container .editor, .components-header {
+  border-color: var(--s2d6-header-border);
+}
+
+.wooden-sign {
+  border: 6px solid transparent;
+  border-image: var(--s2d6-background-image) 10 round;
+  padding: 6px;
+  background-color: #f5f5dc; /* Aged paper background */
+}
+
+.window-content {
+  box-shadow:
+    inset 0 0 50px var(--s2d6-header-border),   /* Darker "stain" around edges */
+    5px 5px 15px rgba(0,0,0,0.3); /* Soft shadow on the wall */
+}
+
+button.roll-initiative, .chat-message h4 {
+  font-family: var(--font-body);
+}
+
+nav.actor-sheet-tabs.tabs {
+  border-color:  var(--s2d6-header-border);
+}
+
+.content-container {
+  border-radius: 0;
+}

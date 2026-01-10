@@ -67,8 +67,9 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.token.push(booleanSetting('defaultTokenSettings', true));
     settings.token.push(booleanSetting('useSystemDefaultTokenIcon', false));
     settings.ship.push(booleanSetting('showSingleComponentColumn', false));
+    settings.ship.push(booleanSetting('showSingleCargoColumn', false));
     settings.ship.push(booleanSetting('showBandwidth', false));
-    settings.general.push(booleanSetting('useFoundryStandardStyle', false, false, 'world', refreshWindow));
+    settings.general.push(stringChoiceSetting('themeStyle', 'classic', true, TWODSIX.THEME_CHOICES, false, 'world', refreshWindow));
     settings.actor.push(booleanSetting('useWoundedStatusIndicators', false));
     settings.actor.push(booleanSetting('useEncumbranceStatusIndicators', false));
     settings.ship.push(booleanSetting('showWeightUsage', false));
@@ -97,6 +98,7 @@ export default class DisplaySettings extends foundry.applications.api.Handlebars
     settings.actor.push(booleanSetting('omitALTifZero', false));
     settings.actor.push(stringChoiceSetting('equippedToggleStates', "default", true, TWODSIX.EQUIPPED_TOGGLE_OPTIONS));
     settings.actor.push(booleanSetting('showSkillGroups', false));
+    settings.ship.push(stringSetting('mDriveLabel', "TWODSIX.Ship.MDrive", false, "world", updateMDrive, true));
     settings.ship.push(stringSetting('jDriveLabel', "TWODSIX.Ship.JDrive", false, "world", updateJDrive, true));
     settings.ship.push(booleanSetting('showCost', false));
     settings.actor.push(booleanSetting('showTotalArmor', false));
@@ -126,6 +128,8 @@ export const changeDefaultColor = function () {
     game.settings.set('twodsix', 'defaultColor', "#29aae1");
   }
   document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
+  // Re-render pause screen if it exists to update SVG color
+  ui.pause?.render(false);
 };
 
 export const changeBattleColor = function () {
@@ -172,5 +176,11 @@ export const setDocumentPartials = function () {
 export const updateJDrive = function (value) {
   if (value === "") {
     game.settings.set('twodsix', 'jDriveLabel', "TWODSIX.Ship.JDrive");
+  }
+};
+
+export const updateMDrive = function (value) {
+  if (value === "") {
+    game.settings.set('twodsix', 'mDriveLabel', "TWODSIX.Ship.mDrive");
   }
 };

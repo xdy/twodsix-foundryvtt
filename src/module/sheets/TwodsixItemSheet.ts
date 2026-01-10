@@ -102,6 +102,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       ShowRateOfFire: game.settings.get('twodsix', 'ShowRateOfFire'),
       ShowRecoil: game.settings.get('twodsix', 'ShowRecoil'),
       ShowDoubleTap: game.settings.get('twodsix', 'ShowDoubleTap'),
+      ShowSingleAction: game.settings.get('twodsix', 'ruleset') === 'RIDER',
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
@@ -131,6 +132,12 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
 
     context.config = foundry.utils.duplicate(TWODSIX);
+
+    //setup custom drive type labels
+    if (this.item.system.subtype === "drive") {
+      context.config.DriveTypes.jdrive = game.settings.get("twodsix", "jDriveLabel") || TWODSIX.DriveTypes.jdrive;
+      context.config.DriveTypes.mdrive = game.settings.get("twodsix", "mDriveLabel") || TWODSIX.DriveTypes.mdrive;
+    }
 
     //prevent processor/suite attachements to computers(?)
     if (this.actor && this.item.type === "consumable" ) {
@@ -258,7 +265,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         Object.assign(updates, {"system.pricingBasis": "perUnit"});
       }
 
-      if (Object.keys(updates).length !== 0) {
+      if (!foundry.utils.isEmpty(updates)) {
         await this.item.update(updates);
       }
     } else if (this.item.type === "consumable" ) {

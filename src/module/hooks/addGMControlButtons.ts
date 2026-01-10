@@ -33,7 +33,7 @@ async function requestRoll(): Promise<void> {
   const tokenData = getSelectedTokenData();
   const skillsList = getAllSkills();
   const itemsList = getAllRollableItems();
-  if (Object.keys(tokenData).length > 0) {
+  if (!foundry.utils.isEmpty(tokenData)) {
     const selections = await throwDialog(skillsList, itemsList, tokenData);
     if (selections.shouldRoll) {
       selections.userActorList = getUserActorList(selections, tokenData);

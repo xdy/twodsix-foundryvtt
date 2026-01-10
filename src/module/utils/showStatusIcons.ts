@@ -7,20 +7,36 @@ import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "./actorDamage";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
-export function checkForDamageStat (update: any, actorType: string): boolean {
-  if (update.effects?.length > 0) {
-    const damageCharacteristics = getDamageCharacteristics(actorType);
-    for (const effect of update.effects) {
-      for (const change of effect.changes) {
-        for (const char of damageCharacteristics) {
-          if (change.key.includes(char)) {
-            return true;
-          }
-        }
-      }
+// Track which actors have encumbrance updates in progress to prevent concurrent modifications
+const encumbranceUpdateInProgress = new Set<string>();
+
+// Track which actors have wounded state updates in progress to prevent concurrent modifications
+const woundedStateUpdateInProgress = new Set<string>();
+
+// Track per-status updates to avoid duplicate unconscious/etc. during rapid changes
+const conditionUpdateInProgress = new Set<string>();
+
+/**
+ * Apply wounded and encumbered effects in a batched manner to reduce redundant updates.
+ * @param {TwodsixActor} selectedActor The actor to update
+ * @param {object} options Flags for which effects to apply
+ * @param {boolean} options.encumbrance Whether to check encumbrance
+ * @param {boolean} options.wounded Whether to check wounded
+ * @public
+ */
+export async function applyBatchedStatusEffects(selectedActor: TwodsixActor, { encumbrance = false, wounded = false } = {}): Promise<void> {
+  // Set a flag to prevent recursive status checks
+  selectedActor._applyingStatusEffects = true;
+  try {
+    if (encumbrance) {
+      await applyEncumberedEffect(selectedActor);
     }
+    if (wounded) {
+      await applyWoundedEffect(selectedActor);
+    }
+  } finally {
+    selectedActor._applyingStatusEffects = false;
   }
-  return false;
 }
 
 /**
@@ -69,85 +85,58 @@ export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<v
  * @public
  */
 export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  const isCurrentlyEncumbered = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
-  let state = false;
-  let ratio = 0;
-  let aeToKeep: TwodsixActiveEffect | undefined = undefined;
-  const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
+  await withGuard(encumbranceUpdateInProgress, selectedActor.uuid, async () => {
+    let state = false;
+    let ratio = 0;
+    let aeToKeep: TwodsixActiveEffect | undefined = undefined;
+    const ruleset = game.settings.get('twodsix', 'ruleset');
+    const encumbranceFraction = parseFloat(game.settings.get('twodsix', 'encumbranceFraction'));
+    const encumbranceModifier = game.settings.get('twodsix', 'encumbranceModifier');
+    const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
 
-  //Determined whether encumbered if not dead
-  if (selectedActor.system.hits.value > 0) {
-    if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
-      state = true;
-      ratio = 1;
-    } else if (maxEncumbrance > 0) {
-      ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
-      state = (ratio > parseFloat(game.settings.get('twodsix', 'encumbranceFraction'))); //remove await
-    }
-  }
-
-  // Delete encumbered AE's if uneeded or more than one
-  if (isCurrentlyEncumbered.length > 0) {
-    if (state === true) {
-      aeToKeep = isCurrentlyEncumbered.pop();
-    }
-    if(isCurrentlyEncumbered.length > 0) {
-      const idList = isCurrentlyEncumbered.map(i => i.id);
-      await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
-    }
-  }
-
-  //Define AE if actor is encumbered
-  if (state === true) {
-    const modifier:string = getEncumbranceModifier(ratio).toString();
-    let changeData: { key: string; mode: any; value: string; }[];
-    if (game.settings.get('twodsix', 'ruleset') === 'CT') {
-      changeData = [{
-        key: "system.characteristics.strength.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      },
-      {
-        key: "system.characteristics.dexterity.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      },
-      {
-        key: "system.characteristics.endurance.value",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      }];
-    } else {
-      changeData = [{
-        key: "system.conditions.encumberedEffect",
-        mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-        value: modifier
-      }];
-    }
-
-    if (game.settings.get('twodsix', 'ruleset') === 'CU') {
-      changeData.push({
-        key: "system.movement.walk",
-        mode: CONST.ACTIVE_EFFECT_MODES.MULTIPLY,
-        value: 0.75
-      });
-    }
-
-    if (!aeToKeep) {
-      await selectedActor.createEmbeddedDocuments("ActiveEffect", [{
-        name: game.i18n.localize(TWODSIX.effectType.encumbered),
-        img: "systems/twodsix/assets/icons/weight.svg",
-        changes: changeData,
-        statuses: ["encumbered"]
-      }], {dontSync: true, noHook: true});
-    } else {
-      if (changeData[0].value !== aeToKeep.changes[0].value) {
-        await aeToKeep.update({changes: changeData });
+    //Determined whether encumbered if not dead
+    if (selectedActor.system.hits.value > 0) {
+      if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
+        state = true;
+        ratio = 1;
+      } else if (maxEncumbrance > 0) {
+        ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
+        state = (ratio > encumbranceFraction); //remove await
       }
     }
-  }
-}
 
+    // Delete encumbered AE's if unneeded or more than one
+    const currentEncumberedEffects = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
+    if (currentEncumberedEffects.length > 0) {
+      if (state === true) {
+        aeToKeep = currentEncumberedEffects.pop();
+      }
+      if (currentEncumberedEffects.length > 0) {
+        const idList = currentEncumberedEffects.map(i => i.id);
+        await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
+      }
+    }
+
+    //Define AE if actor is encumbered
+    if (state === true) {
+      const modifier: string = getEncumbranceModifier(ratio, encumbranceFraction, encumbranceModifier, ruleset).toString();
+      const changeData = buildEncumbranceChangeData(ruleset, modifier);
+
+      if (!aeToKeep) {
+        await selectedActor.createEmbeddedDocuments("ActiveEffect", [
+          {
+            name: game.i18n.localize(TWODSIX.effectType.encumbered),
+            img: "systems/twodsix/assets/icons/weight.svg",
+            changes: changeData,
+            statuses: ["encumbered"]
+          }
+        ]);
+      } else if (changeData[0].value !== aeToKeep.changes[0].value) {
+        await aeToKeep.update({ changes: changeData });
+      }
+    }
+  });
+}
 
 /**
  * Determine whether actor becomes unconscious based on ruleset. Depending on ruleset, may make endurance roll.
@@ -158,32 +147,53 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
 async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: TwodsixActiveEffect | undefined, tintToApply: string): Promise<void> {
   const isAlreadyUnconscious = selectedActor.effects.some(eff => eff.statuses.has('unconscious'));
   const isAlreadyDead = selectedActor.effects.some(eff => eff.statuses.has('dead'));
-  const rulesSet = game.settings.get('twodsix', 'ruleset'); //toString shouldn't be needed
-  if (!isAlreadyUnconscious && !isAlreadyDead) {
-    if (['CE', 'AC', 'CU', 'OTHER'].includes(rulesSet)) {
-      if (isUnconsciousCE(<Traveller>selectedActor.system)) {
-        await setConditionState('unconscious', selectedActor, true);
-      }
-    } else if (['CT'].includes(rulesSet)) {
-      if (oldWoundState === undefined && [TWODSIX.DAMAGECOLORS.minorWoundTint, TWODSIX.DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
-        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
-      }
-    } else if (oldWoundState?.tint.css !== TWODSIX.DAMAGECOLORS.seriousWoundTint && tintToApply === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-      if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
-        await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
-      } else {
-        const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target=== 8); //always 8+
-        const returnRoll = await selectedActor.characteristicRoll({
-          rollModifiers: {characteristic: 'END'},
-          difficulty: setDifficulty,
-          extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesUncRoll")
-        }, false);
-        if (returnRoll && returnRoll.effect < 0) {
-          await setConditionState('unconscious', selectedActor, true);
-        }
-      }
-    }
+  if (isAlreadyUnconscious || isAlreadyDead) {
+    return;
   }
+
+  const rulesSet = game.settings.get('twodsix', 'ruleset');
+
+  if (['CE', 'AC', 'CU', 'OTHER', "MGT2E", "RIDER"].includes(rulesSet)) {
+    await handleCEStyleUnconscious(selectedActor);
+  } else if (rulesSet === 'CT') {
+    await handleCTUnconscious(selectedActor, oldWoundState, tintToApply);
+  } else if (oldWoundState?.tint.css !== TWODSIX.DAMAGECOLORS.seriousWoundTint && tintToApply === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
+    await handleSeriousWoundUnconscious(selectedActor, rulesSet);
+  }
+}
+
+async function handleCEStyleUnconscious(selectedActor: TwodsixActor): Promise<void> {
+  if (isUnconsciousCE(<Traveller>selectedActor.system)) {
+    await setConditionState('unconscious', selectedActor, true);
+  }
+}
+
+async function handleCTUnconscious(selectedActor: TwodsixActor, oldWoundState: TwodsixActiveEffect | undefined, tintToApply: string): Promise<void> {
+  if (!oldWoundState && [TWODSIX.DAMAGECOLORS.minorWoundTint, TWODSIX.DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
+    await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
+  }
+}
+
+async function handleSeriousWoundUnconscious(selectedActor: TwodsixActor, rulesSet: string): Promise<void> {
+  if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
+    await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
+    return;
+  }
+
+  const failedRoll = await rollSeriousWoundUnconscious(selectedActor);
+  if (failedRoll) {
+    await setConditionState('unconscious', selectedActor, true);
+  }
+}
+
+async function rollSeriousWoundUnconscious(selectedActor: TwodsixActor): Promise<boolean> {
+  const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target === 8); //always 8+
+  const returnRoll = await selectedActor.characteristicRoll({
+    rollModifiers: {characteristic: 'END'},
+    difficulty: setDifficulty,
+    extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesUncRoll")
+  }, false);
+  return !!(returnRoll && returnRoll.effect < 0);
 }
 
 /**
@@ -193,32 +203,26 @@ async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: 
  * @param {boolean} state Whether the status is enabled
  */
 async function setConditionState(effectStatus: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const isAlreadySet = targetActor.effects.filter(eff => eff.statuses.has(effectStatus));
-  const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
+  const statusKey = `${targetActor.uuid}::${effectStatus}`;
 
-  if (isAlreadySet.length > 1) {
-    //Need to get rid of duplicates
-    for (let i = 1; i < isAlreadySet.length; i++) {
-      await targetActor.toggleStatusEffect(targetEffect.id, {active: false});
+  await withGuard(conditionUpdateInProgress, statusKey, async () => {
+    const existingEffect = await dedupeStatusEffects(targetActor, effectStatus);
+    const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
+    if (!targetEffect) {
+      return;
     }
-  }
 
-  if ((isAlreadySet.length > 0) !== state) {
-    if (targetEffect) {
-      if (effectStatus === 'dead') {
-        await targetActor.toggleStatusEffect(targetEffect.id, {active: state, overlay: false});
-
-        // Set defeated if in combat (no longer needed in v12)
-        /*const fighters = game.combats?.active?.combatants;
-        const combatant = fighters?.find((f: Combatant) => f.actorId === targetActor.id);
-        if (combatant !== undefined) {
-          await combatant.update({defeated: state});
-        }*/
-      } else {
-        await targetActor.toggleStatusEffect(targetEffect.id, {active: state});
-      }
+    const needsChange = (existingEffect !== undefined) !== state;
+    if (!needsChange) {
+      return;
     }
-  }
+
+    const toggleOptions = effectStatus === 'dead'
+      ? {active: state, overlay: false}
+      : {active: state};
+
+    await targetActor.toggleStatusEffect(targetEffect.id, toggleOptions);
+  });
 }
 
 /**
@@ -228,20 +232,18 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
  * @param {string} tint The wounded tint color (as a hex code string).  Color indicates the severity of wounds. TWODSIX.DAMAGECOLORS.minorWoundTint and TWODSIX.DAMAGECOLORS.seriousWoundTint
  */
 async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  const isAlreadySet = targetActor?.effects.filter(eff => eff.statuses.has('wounded'));
-  let currentEffectId = "";
-  //Clean up effects
-  if (isAlreadySet?.length > 0) {
-    const idList = isAlreadySet.map(i => i.id);
-    if (state) {
-      currentEffectId = idList.pop();
+  await withGuard(woundedStateUpdateInProgress, targetActor.uuid, async () => {
+    const existingWound = await dedupeStatusEffects(targetActor, "wounded");
+    const currentEffectId = existingWound?.id ?? "";
+    // Remove effect if state false
+    if (!state) {
+      if (currentEffectId) {
+        await targetActor.deleteEmbeddedDocuments("ActiveEffect", [currentEffectId]);
+      }
+      return;
     }
-    if(idList.length > 0) {
-      await targetActor.deleteEmbeddedDocuments("ActiveEffect", idList);
-    }
-  }
-  //Set effect if state true
-  if (state) {
+
+    //Set effect if state true
     let woundModifier = 0;
     switch (tint) {
       case TWODSIX.DAMAGECOLORS.minorWoundTint:
@@ -252,10 +254,10 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
         break;
     }
     let changeData = {}; //AC has a movement penalty not roll penalty
-    if (game.settings.get('twodsix', 'ruleset') === 'AC' && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-      changeData = { key: "system.movement.walk", mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE, value: 1.5 };
+    if ( ['AC', 'CE'].includes(game.settings.get('twodsix', 'ruleset')) && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
+      changeData = { key: "system.movement.walk", type: "override", phase: "initial", value: 1.5 };
     } else {
-      changeData = { key: "system.conditions.woundedEffect", mode: CONST.ACTIVE_EFFECT_MODES.ADD, value: woundModifier.toString() };
+      changeData = { key: "system.conditions.woundedEffect", type: "add", phase: "derived", value: woundModifier.toString() };
     }
     //
     if (!currentEffectId) {
@@ -272,7 +274,87 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
         await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
       }
     }
+  });
+}
+
+/**
+ * Remove duplicate ActiveEffects that share the same status on an actor.
+ * Keeps the first matching ActiveEffect and removes any additional duplicates.
+ * Returns the surviving ActiveEffect (or undefined if none were present).
+ *
+ * This helps ensure there is at most one AE with the given status and
+ * prevents concurrently-created duplicates from lingering.
+ *
+ * @param {TwodsixActor} actor - The actor whose ActiveEffects will be scanned.
+ * @param {string} statusId - The status identifier to deduplicate (e.g. 'wounded').
+ * @returns {Promise<TwodsixActiveEffect|undefined>} The kept ActiveEffect or undefined.
+ */
+async function dedupeStatusEffects(actor: TwodsixActor, statusId: string): Promise<TwodsixActiveEffect | undefined> {
+  const matches = actor.effects.filter(eff => eff.statuses.has(statusId));
+  if (matches.length === 0) {
+    return undefined;
   }
+  const [keep, ...dupes] = matches;
+  if (dupes.length > 0) {
+    const ids = dupes.map(eff => eff.id).filter(Boolean);
+    if (ids.length) {
+      await actor.deleteEmbeddedDocuments("ActiveEffect", ids);
+    }
+  }
+  return keep;
+}
+
+/**
+ * Execute an async function while preventing concurrent executions for the same key.
+ * If the provided `guardSet` already contains `key`, the call is skipped and
+ * `undefined` is returned. Otherwise `key` is added to `guardSet` for the
+ * duration of `fn` and removed afterwards (even if `fn` throws).
+ *
+ * @template T
+ * @param {Set<string>} guardSet - A Set tracking in-progress keys (per-concern guards).
+ * @param {string} key - The unique key to guard (e.g. actor UUID or `${actorUUID}::status`).
+ * @param {() => Promise<T>} fn - The async function to execute while guarded.
+ * @returns {Promise<T|undefined>} The result of `fn`, or `undefined` if the call was skipped due to an existing guard.
+ */
+async function withGuard<T>(guardSet: Set<string>, key: string, fn: () => Promise<T>): Promise<T | undefined> {
+  if (guardSet.has(key)) {
+    return undefined;
+  }
+
+  try {
+    guardSet.add(key);
+    return await fn();
+  } finally {
+    guardSet.delete(key);
+  }
+}
+
+/**
+ * Inspect an update payload (typically an ActiveEffect update) to determine
+ * whether any of the changes target one of this actor type's damage
+ * characteristics. Used to short-circuit or trigger damage-related logic when
+ * ActiveEffects modify characteristic fields.
+ *
+ * @param {object} update - The update payload containing `effects` (ActiveEffect data)
+ * @param {string} actorType - The actor type (e.g. "traveller", "animal") used
+ *   to resolve which characteristics count as damage targets via
+ *   `getDamageCharacteristics(actorType)`.
+ * @returns {boolean} True if any change key includes a damage characteristic.
+ */
+export function checkForDamageStat (update: any, actorType: string): boolean {
+  if (update.effects?.length > 0) {
+    const damageCharacteristics = getDamageCharacteristics(actorType);
+    for (const effect of update.effects) {
+      for (const change of effect.changes) {
+        for (const char of damageCharacteristics) {
+          if (change.key.includes(char)) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
 }
 
 /**
@@ -298,6 +380,8 @@ export function getIconTint(selectedActor: TwodsixActor): string {
       case 'CE':
       case 'AC':
       case 'OTHER':
+      case "MGT2E":
+      case "RIDER":
         return (getCEWoundTint(selectedTraveller));
       case 'CEQ':
       case 'CEATOM':
@@ -337,7 +421,7 @@ export function getCDWoundTint(selectedTraveller: TwodsixActor): string {
 
 export function getCELWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
-  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
+  const testArray = getPrimaryCharacteristics(selectedTraveller);
   const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
   const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
   if (currentZero === maxNonZero) {
@@ -354,7 +438,7 @@ export function getCELWoundTint(selectedTraveller: TwodsixActor): string {
 
 export function getCEWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
-  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
+  const testArray = getPrimaryCharacteristics(selectedTraveller);
   const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
   const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
   const numDamaged = testArray.filter(chr => chr.damage > 0 && chr.value !== 0).length;
@@ -380,7 +464,7 @@ export function getCEWoundTint(selectedTraveller: TwodsixActor): string {
 
 export function getCUWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
-  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
+  const testArray = getPrimaryCharacteristics(selectedTraveller);
   const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
   if (currentZero === 3) {
     returnVal = TWODSIX.DAMAGECOLORS.deadTint;
@@ -393,8 +477,12 @@ export function getCUWoundTint(selectedTraveller: TwodsixActor): string {
 }
 
 export function isUnconsciousCE(selectedTraveller: TwodsixActor): boolean {
-  const testArray = [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
+  const testArray = getPrimaryCharacteristics(selectedTraveller);
   return (testArray.filter(chr => chr.current <= 0 && chr.value !== 0).length === 2);
+}
+
+function getPrimaryCharacteristics(selectedTraveller: TwodsixActor) {
+  return [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
 }
 
 export function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
@@ -419,32 +507,76 @@ export function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
  * @return {number} encumbrance roll modifier value that gets applied to the encumbered AE
  * @function
  */
-function getEncumbranceModifier(ratio:number):number {
-  const ruleset = game.settings.get('twodsix', 'ruleset');
+function getEncumbranceModifier(ratio:number, encumbranceFraction:number, encumbranceModifier:number, ruleset:string):number {
   if (ratio === 0 ) {
     return 0; //Shoudn't get here
-  } else if (['CE'].includes(ruleset)) {
-    if (ratio <= game.settings.get('twodsix', 'encumbranceFraction')) {
+  } else if (["CE", "RIDER"].includes(ruleset)) {
+    if (ratio <= encumbranceFraction) {
       return 0;
-    } else if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 2) {
-      return game.settings.get('twodsix', 'encumbranceModifier');
+    } else if (ratio <= encumbranceFraction * 2) {
+      return encumbranceModifier;
     } else {
-      if (ratio <= game.settings.get('twodsix', 'encumbranceFraction') * 3) {
-        return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+      if (ratio <= encumbranceFraction * 3) {
+        return encumbranceModifier * 2;
       } else {
         //console.log(game.i18n.localize("TWODSIX.Warnings.ActorOverloaded"));
-        return game.settings.get('twodsix', 'encumbranceModifier') * 20; //Cannot take any actions other than push
+        return encumbranceModifier * 20; //Cannot take any actions other than push
       }
     }
-  } else if (['CU', 'CT'].includes(ruleset)) {
+  } else if (["CU", "CT"].includes(ruleset)) {
     if (ratio <= 1/3) {
       return 0;
     } else if (ratio <= 2/3) {
-      return game.settings.get('twodsix', 'encumbranceModifier');
+      return encumbranceModifier;
     } else {
-      return game.settings.get('twodsix', 'encumbranceModifier') * 2;
+      return encumbranceModifier * 2;
     }
   } else {
-    return game.settings.get('twodsix', 'encumbranceModifier');
+    return encumbranceModifier;
   }
+}
+
+function buildEncumbranceChangeData(ruleset: string, modifier: string): { key: string; type: any; value: string; phase: string }[] {
+  if (ruleset === 'CT') {
+    return [
+      {
+        key: "system.characteristics.strength.value",
+        type: "add",
+        phase: "initial",
+        value: modifier
+      },
+      {
+        key: "system.characteristics.dexterity.value",
+        type: "add",
+        phase: "initial",
+        value: modifier
+      },
+      {
+        key: "system.characteristics.endurance.value",
+        type: "add",
+        phase: "initial",
+        value: modifier
+      }
+    ];
+  }
+
+  const data = [
+    {
+      key: "system.conditions.encumberedEffect",
+      type: "add",
+      phase: "derived",
+      value: modifier
+    }
+  ];
+
+  if (ruleset === 'CU') {
+    data.push({
+      key: "system.movement.walk",
+      type: "multiply",
+      phase: "initial",
+      value: 0.75
+    });
+  }
+
+  return data;
 }

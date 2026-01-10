@@ -80,6 +80,10 @@ export default function registerHandlebarsHelpers(): void {
     return game.i18n.localize(`TWODSIX.Items.Consumable.Types.${type}`);
   });
 
+  Handlebars.registerHelper('twodsix_showConsumable', (item: TwodsixItem) => {
+    return ["traveller", "animal", "robot"].includes(item.type);
+  });
+
   Handlebars.registerHelper('twodsix_refillText', (subtype, quantity) => {
     const refillWord = ["magazine", "power_cell"].includes(subtype) ? "Reload" : "Refill";
     return `${game.i18n.localize(`TWODSIX.Actor.Items.${refillWord}`)} (${quantity - 1})`;
@@ -144,6 +148,10 @@ export default function registerHandlebarsHelpers(): void {
     return parseInt(weapon.system.rateOfFire) > 1;
   });
 
+  Handlebars.registerHelper('twodsix_useRIDERMulti', (weapon: TwodsixItem) => {
+    return parseInt(weapon.system.rateOfFire) > 1 || weapon.system.isSingleAction;
+  });
+
   Handlebars.registerHelper('twodsix_useCTAuto', (weapon: TwodsixItem) => {
     const modes = (weapon.system.rateOfFire ?? "").split(/[-/]/);
     return (modes.length > 1);
@@ -204,7 +212,7 @@ export default function registerHandlebarsHelpers(): void {
    */
   Handlebars.registerHelper('twodsix_getComponentIcon', (componentType: string): string => {
     const iconMap: Record<string, string> = {
-      accomodations: "fa-solid fa-bed",
+      accommodations: "fa-solid fa-bed",
       ammo: "fa-solid fa-bomb",
       armament: "fa-solid fa-crosshairs",
       armor: "fa-solid fa-grip-vertical",

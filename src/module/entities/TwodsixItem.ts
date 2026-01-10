@@ -8,10 +8,10 @@ import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/s
 import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
 import { confirmRollFormula } from "../utils/sheetUtils";
 import { getCharacteristicFromDisplayLabel } from "../utils/utils";
-import ItemTemplate, { targetTokensInTemplate } from "../utils/ItemTemplate";
+import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
-import { applyEncumberedEffect, applyWoundedEffect, checkForDamageStat } from "../utils/showStatusIcons";
+import { applyBatchedStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
 import { getTargetStatusModifiers} from "../utils/targetModifiers";
 
 /**
@@ -95,17 +95,23 @@ export default class TwodsixItem extends Item {
     await super._onUpdate(changed, options, userId);
     if (game.user?.id === userId) {
       const owningActor: TwodsixActor = this.actor;
-      if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor?.type === 'traveller' && !options.dontSync) {
-        if (!TWODSIX.WeightlessItems.includes(this.type) && changed.system) {
-          if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
-            await applyEncumberedEffect(owningActor);
+      let needsEncumbrance = false;
+      let needsWounded = false;
+      if (owningActor) {
+        if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor.type === 'traveller' && !options.dontSync) {
+          if (!TWODSIX.WeightlessItems.includes(this.type) && changed.system) {
+            if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
+              needsEncumbrance = true;
+            }
           }
         }
-      }
-      //Needed - for active effects changing damage stats
-      if (game.settings.get('twodsix', 'useWoundedStatusIndicators') && owningActor) {
-        if (checkForDamageStat(changed, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
-          await applyWoundedEffect(owningActor);
+        if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
+          if (checkForDamageStat(changed, owningActor.type) && ["traveller", "animal", "robot"].includes(owningActor.type)) {
+            needsWounded = true;
+          }
+        }
+        if (needsEncumbrance || needsWounded) {
+          await applyBatchedStatusEffects(owningActor, { encumbrance: needsEncumbrance, wounded: needsWounded });
         }
       }
     }
@@ -149,7 +155,7 @@ export default class TwodsixItem extends Item {
   }
 
   private sortByName(a: TwodsixItem, b: TwodsixItem): number {
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
+    return a.name.localeCompare(b.name, game.i18n.lang, { sensitivity: 'base' });
   }
 
   /**
@@ -214,6 +220,7 @@ export default class TwodsixItem extends Item {
    * @param showThrowDialog {boolean} Whether to show roll/through dialog
    * @param rateOfFireCE {number} Fire rate / consumables used
    * @param showInChat Whehter to show attack in chat
+   * @param overrideSettings settings to override default roll parameters from Item
    */
   public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true, overrideSettings?: any ):Promise<void> {
     if (this.type !== "weapon") {
@@ -250,11 +257,18 @@ export default class TwodsixItem extends Item {
 
     tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
 
-    /*Apply measured template if valid AOE*/
+    // Apply measured template if valid AOE. drawItemTemplate handles region placement and targeting.
     const isAOE = await this.drawItemTemplate();
+    if (isAOE) {
+      // Switch back to token control after region placement for user convenience
+      if (canvas.tokens && typeof canvas.tokens.activate === 'function') {
+        canvas.tokens.activate({ tool: 'select' });
+      }
+      // Targeting is now handled within the region placement workflow; no redundant call here.
+    }
 
     // Get fire mode parameters
-    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE);
+    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE, skill);
     const useCTBands: boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
 
     // Define Targets
@@ -488,9 +502,11 @@ export default class TwodsixItem extends Item {
    * @param {number} rateOfFireCE  The rate of fire used
    * @param {string} attackType The type of attack (e.g. burst, double-tap, etc.)
    * @param {object} tmpSettings the temporary settings object for the roll
+   * @param {boolean} isAOE Attack is an area attack - force to only a single attack
+   * @param {TwodsixItem} skill Skill used for attack
    * @returns {object} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
-  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object, isAOE:boolean): object {
+  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object, isAOE:boolean, skill:TwodsixItem): object {
     const ruleSet = game.settings.get('twodsix', 'ruleset');
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
@@ -547,6 +563,15 @@ export default class TwodsixItem extends Item {
           Object.assign(tmpSettings.rollModifiers, { rof: 1 });
         }
         usedAmmo = 2;
+        break;
+      case "multi":
+        numberOfAttacks = isAOE ? 1 : rateOfFire;
+        usedAmmo = numberOfAttacks;
+        break;
+      case "fan":
+        numberOfAttacks = 3;
+        usedAmmo = numberOfAttacks;
+        Object.assign(tmpSettings.rollModifiers, { rof: skill?.system.value > 2 ? -1 : -2 });
         break;
     }
     Object.assign(tmpSettings, { bonusDamage: bonusDamage });
@@ -1206,6 +1231,15 @@ export default class TwodsixItem extends Item {
           await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
         }
         break;
+      case TWODSIX.RULESETS.RIDER.key:
+        if (modes[0] > 1 || this.system.isSingleAction) {
+          attackType = await promptForRIDERROF(this);
+          rof = (attackType === 'single') ? 1 : Number(modes[0]);
+          await this.performAttack(attackType, showThrowDialog, rof, true, tmpSettings);
+        } else {
+          await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
+        }
+        break;
       default:
         await this.performAttack(attackType, showThrowDialog, 1, true, tmpSettings);
         break;
@@ -1396,12 +1430,18 @@ export default class TwodsixItem extends Item {
     if ( itemForAOE.system.target?.type !== "none" ) {
       returnValue = true;
       try {
-        const template:ItemTemplate = await (ItemTemplate.fromItem(itemForAOE))?.drawPreview();
-        if (template && game.settings.get('twodsix', 'autoTargetAOE')) {
-          targetTokensInTemplate(template);
+        const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
+        if (itemTemplate) {
+          const regionDoc: RegionDocument = await itemTemplate.drawPreview();
+          if (regionDoc && game.settings.get('twodsix', 'autoTargetAOE')) {
+            ItemTemplate.targetTokensForPlacedRegion(regionDoc);
+          }
+        } else {
+          console.error("Failed to create ItemTemplate from item:", itemForAOE);
         }
-      } catch /*(err)*/ {
+      } catch (err) {
         ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
+        console.log ("Template error: ", err);
       }
     }
     return returnValue;
@@ -1480,6 +1520,38 @@ export default class TwodsixItem extends Item {
     }
 
     return { rangeModifier, rangeLabel };
+  }
+
+  /**
+   * Checks if this component is a J-Drive (Jump Drive) based on name and label settings.
+   * @returns {boolean}
+   */
+  isJDriveComponent(): boolean {
+    if (this.type !== "component") {
+      return false;
+    }
+    if (this.system.driveType === "jdrive") {
+      return true;
+    }
+    const componentName = this.name?.toLowerCase() ?? "";
+    const jDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'jDriveLabel'))).toLowerCase();
+    return componentName.includes('j-drive') || componentName.includes('j drive') || componentName.includes('jdrive') || componentName.includes(jDriveLabel);
+  }
+
+  /**
+   * Checks if this component is an M-Drive (Maneuver Drive) based on name and label settings.
+   * @returns {boolean}
+   */
+  isMDriveComponent(): boolean {
+    if (this.type !== "component") {
+      return false;
+    }
+    if (this.system.driveType === "mdrive") {
+      return true;
+    }
+    const componentName = this.name?.toLowerCase() ?? "";
+    const mDriveLabel = (game.i18n.localize(game.settings.get('twodsix', 'mDriveLabel'))).toLowerCase();
+    return componentName.includes('m-drive') || componentName.includes('m drive') || componentName.includes('mdrive') || componentName.includes(mDriveLabel);
   }
 }
 
@@ -1689,6 +1761,33 @@ async function promptForCTROF(modes: string[]): Promise<string> {
   }
 }
 
+async function promptForRIDERROF(weapon: TwodsixItem): Promise<string> {
+  const buttons = [{
+    action: "single",
+    label: "TWODSIX.Dialogs.ROFSingle",
+    default: true
+  }];
+  if (weapon.system.rateOfFire > 1) {
+    buttons.push({
+      action: "multi",
+      label: "TWODSIX.Dialogs.ROFMulti"
+    });
+  }
+  if (weapon.system.isSingleAction) {
+    buttons.push({
+      action: "fan",
+      label: "TWODSIX.Dialogs.ROFFan"
+    });
+  }
+  return await foundry.applications.api.DialogV2.wait({
+    window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
+    content: "",
+    buttons: buttons,
+    rejectClose: false
+  });
+
+}
+
 /**
  * A function for returning qualitative range band. Per CE rules https://www.orffenspace.com/cepheus-srd/personal-combat.html#range
  * or per Classic Traveller Rules https://www.drivethrurpg.com/product/80192/CTTTBThe-Traveller-Book?cPath=21_4767
@@ -1759,6 +1858,7 @@ function getRangeBand(range: number):string {
     return 'unknown';
   }
 }
+
 
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
 const INFEASIBLE = -99;

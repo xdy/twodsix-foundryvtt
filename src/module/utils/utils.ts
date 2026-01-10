@@ -1,43 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-// https://stackoverflow.com/a/34749873
-/**
- * Simple object check.
- * @param item
- * @returns {boolean}
- */
-export function isObject(item):boolean {
-  return (item && typeof item === 'object' && !Array.isArray(item));
-}
-
-/**
- * Deep merge two objects.
- * @param target
- * @param sources
- */
-export function mergeDeep(target:Record<string, any>, ...sources:Record<string, any>[]):Record<string, any> {
-  if (!sources.length) {
-    return target;
-  }
-  const source = sources.shift();
-
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!target[key]) {
-          Object.assign(target, { [key]: {} });
-        }
-        mergeDeep(target[key], source[key]);
-      } else {
-        Object.assign(target, { [key]: source[key] });
-      }
-    }
-  }
-
-  return mergeDeep(target, ...sources);
-}
-
 /**
  * Returns the localized, default short label based on logical shortLabel
  * @param {string} char the logical, characteristic shortLabel (not the display label)
@@ -98,7 +61,7 @@ export function ObjectbyString(o, s) {
 }
 
 /**
- * Sort an object alphabettically by key
+ * Sort an object alphabetically by key
  * @param {object} obj
  * @returns {object} the sorted object
  */
@@ -115,17 +78,9 @@ export function sortObj(obj: object): object {
  * @returns {TwodsixItem[]} the sorted item array
  */
 export function sortByItemName(itemArray: TwodsixItem[]): TwodsixItem[] {
-  return itemArray.sort(function (a:TwodsixItem, b:TwodsixItem) {
-    const aName = a.name.toLowerCase();
-    const bName = b.name.toLowerCase();
-    if (aName < bName) {
-      return -1;
-    } else if (aName > bName) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  return itemArray.sort((a: TwodsixItem, b: TwodsixItem) =>
+    a.name.localeCompare(b.name, game.i18n.lang, { sensitivity: 'base' })
+  );
 }
 
 /**

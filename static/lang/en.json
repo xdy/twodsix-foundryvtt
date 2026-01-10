@@ -29,7 +29,8 @@
       "NewEffect": "New Effect",
       "CreateEffect": "Create Effect",
       "Add": "Add",
-      "IncludingEffects": "Including active effects:"
+      "IncludingEffects": "Including active effects:",
+      "None": "None"
     },
     "Damage": {
       "DealDamage": "Deal damage",
@@ -71,7 +72,6 @@
       "HealingCard": "Damage Card",
       "HealingDice": "Healing Dice"
     },
-
     "DamageType": {
       "Acid": "Acid",
       "Ballistic": "Ballistic",
@@ -92,6 +92,8 @@
       "ROFBurst": "Burst Fire",
       "ROFFull": "Full Auto",
       "ROFDoubleTap": "Double Tap",
+      "ROFMulti": "Multi Fire",
+      "ROFFan": "Fan Fire",
       "ReplaceMacroCommand": "Update Macro Command",
       "rulesetChange": {
         "title": "Change ruleset",
@@ -560,7 +562,7 @@
       "Component": {
         "Ammunition":"Ammunition",
         "componentName": "Component",
-        "accomodations": "accommodations",
+        "accommodations": "accommodations",
         "ammo": "ammo",
         "armament": "armament",
         "armor": "armor",
@@ -678,7 +680,10 @@
         "Sandcaster": "Sandcaster",
         "Other": "Other",
         "StoredAmmunition": "Stored Ammunition",
-        "reload": "reload"
+        "reload": "reload",
+        "driveType": "Drive Type",
+        "jdrive": "System Jump Drive",
+        "mdrive": "Manoeuvre Drive"
       },
       "Equipment": {
         "AssignSkill": "Assign Skill",
@@ -739,7 +744,7 @@
         "NumberOfSkills": "Number of Skills",
         "SkillRanks": "Skill Ranks",
         "GroupLabel": "Group Label",
-        "Melee Combat": "Melee Combat"
+        "MeleeCombat": "Melee Combat"
       },
       "Traits": {
         "Prerequisite": "Prerequisite",
@@ -814,7 +819,8 @@
         "CustomModifier": {
           "range": "Custom Range Modifier",
           "armor": "Custom Armor Modifier"
-        }
+        },
+        "isSingleAction": "Is Single Action?"
       },
       "Spells": {
         "CircleSchool": "Spell Circle/School",
@@ -939,8 +945,11 @@
       "WhileUsing": "while using ",
       "MaintPM": "Maintenance P/M",
       "MANIFEST": "MANIFEST",
+      "MassProductionDiscount": "Mass Production Discount",
       "MAX": "MAX",
       "MDrive": "M-Drive",
+      "Months": "Month(s)",
+      "MortgageTerm": "Mortgage Term",
       "Morale": "Morale",
       "Name": "Name",
       "NewAction": "New Action",
@@ -983,7 +992,7 @@
       "ShipValue": "Ship Value",
       "MortgagePerMonth": "Est. Mortgage Payment",
       "MaintenancePerMonth": "Maintenance Cost",
-      "CrPerMonth": "Cr/month",
+      "CrPerMonth": "Cr / month",
       "Chat": "Chat",
       "UseAComponent": "Fire weapon",
       "executeMacro": "Macro",
@@ -997,6 +1006,7 @@
       "MacroTooltip": "Macro Name",
       "chatTooltip": "Ahoy!",
       "ExecuteMacro": "Execute Macro",
+      "ToggleDisplay" : "Change Display",
       "None": "None"
     },
     "Vehicle": {
@@ -1092,7 +1102,7 @@
       "Rolling": "Rolling",
       "With": "with",
       "resultShows": "result shows",
-      "sum": "sum",
+      "Sum": "Sum",
       "using": "using {characteristic}",
       "Wounds": "Wounds",
       "AttackDM": "Atack DM",
@@ -1104,6 +1114,8 @@
       "FullAuto": "Full Auto",
       "DoubleTap": "Double Tap",
       "Single": "Single",
+      "Multi": "Multi",
+      "Fan": "Fan Fire",
       "Timeframe": "Time",
       "RollInitiative": "Roll Initiative",
       "characteristic": "characteristic",
@@ -1117,7 +1129,9 @@
       "MakesOpposedRoll": "Makes an opposed / contested roll.",
       "MakesChainRoll": "Makes a chain / assisted roll.",
       "MakesParryRoll": "Makes a melee combat skill check to parry attack with",
-      "MakesUncRoll": "Rolls to remain conscious."
+      "MakesUncRoll": "Rolls to remain conscious.",
+      "Hit": "Hit",
+      "Miss": "Miss"
     },
     "Settings": {
       "absoluteBonusValueForEachTimeIncrement": {
@@ -1311,6 +1325,10 @@
         "hint": "Show the ship components list as a single row.",
         "name": "Ship components listed as single row"
       },
+      "showSingleCargoColumn": {
+        "hint": "Show the ship cargo and locker lists as a single row.",
+        "name": "Ship cargo and locker listed as single row"
+      },
       "showBandwidth": {
         "hint": "Show the used and available bandwidth for computers and software.",
         "name": "Ship computing bandwidth"
@@ -1320,7 +1338,7 @@
         "name": "Show the 'Weapon Type' field on weapon sheets"
       },
       "showWeightUsage": {
-        "hint": "Display ship weight values instead of power on ship sheet.",
+        "hint": "Display ship weight values instead of power on ship sheet by default.",
         "name": "Show Weight instead of Power management on Ship Sheet"
       },
       "systemMigrationVersion": {
@@ -1382,12 +1400,12 @@
         "name": "Maximum hits for a component."
       },
       "mortgagePayment": {
-        "hint": "The number to divide the ship cost by to determine the monthly mortgage payments over 40 years.  A value of 240 means that the ship cost is divided 240 to dermine the monthly payment.",
-        "name": "Mortgage Payment Terms."
+        "hint": "The default number to divide the ship cost by to determine the monthly mortgage payments over 40 years.  A value of 240 means that the ship cost is divided 240 to dermine the monthly payment.",
+        "name": "Default Mortgage Payment Terms"
       },
       "massProductionDiscount": {
-        "hint": "The cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
-        "name": "Discount for ship being mass produced"
+        "hint": "The default cost savings for ship construction due to being mass produced. A value of 0.1 means that 10% is deducted from the base price of the ship.",
+        "name": "Default discount for ship being mass produced"
       },
       "reverseHealingOrder": {
         "hint": "Healing using token bar input heals in the same order that auto damage occurs. The first characteristic damaged is also the first healed.  If this setting is false, healing starts with last characterisic and works backwards.",
@@ -1574,7 +1592,7 @@
         "name": "Damage and Protection Types"
       },
       "animalTypesIndependentofNiche": {
-        "hint": "Animals may have any type, indpependent of the niche chosen.",
+        "hint": "Animals may have any type, independent of the niche chosen.",
         "name": "Animal Types Are Independent of Niche"
       },
       "reduceStatusIcons": {
@@ -1679,6 +1697,10 @@
         "hint": "The display label for the jump drive on the power management settings",
         "name": "Jump Drive Label"
       },
+      "mDriveLabel": {
+        "hint": "The display label for the manoeuvre drive on the power management settings",
+        "name": "Manoeuvre Drive Label"
+      },
       "showCost": {
         "hint": "List the ship component's cost in MCr for the single-line component list on the ship sheet.",
         "name": "Display Cost"
@@ -1743,6 +1765,22 @@
         "hint": "The roll DM that is applied for each hit to a component.",
         "name": "Component Damage DM"
       },
+      "announceCombatPhases": {
+        "hint": "Post a chat message when the combat phase changes during space combat.",
+        "name": "Announce Combat Phases"
+      },
+      "spaceCombatPhases": {
+        "hint": "Select the ship combat phase sequence to use for ship battles.",
+        "name": "Ship combat phase sequence",
+        "choices": {
+          "fivePhase": "Five Phase (Classic Traveller)",
+          "threePhase": "Three Phase (Cepheus Engine)",
+          "twoPhasePosition": "Two Phase - Position Dynamic",
+          "eightPhaseLooping": "Eight Phase - Looping (Cepheus Universal)",
+          "mgt2eThreePhase": "Three Phase (Mongoose Traveller 2E)",
+          "none": "Standard Foundry Combat (No Phases)"
+        }
+      },
       "showTraitAE": {
         "hint": "List active effect formulas as part of trait short description (true) on Traveller Info tab.  Otherwise, show only the short description for the trait (false).",
         "name": "Show Active Effects for Traits"
@@ -1754,9 +1792,48 @@
       "shipDamageType": {
         "hint": "Determines how ship damage is generated in damage report.  Component style determines damage to components directly (e.g. Cepheus Engine).  Hull with Criticals determines damage primarily to the ship hull with a critical every 10% of total hull damage (e.g. MgT2e).  Hull only determines damage only to hull.  Surface or Internal determines damage based on weapon penetration (e.g. Cepheus Deluxe). Classic Traveller looks up hits on Hit Locations table. Alpha Cephei uses its specific component lookup table and armor gates hits (not reduces).  Cepheus Univeral uses its damage to hull and component hits table.",
         "name": "Rules for handling ship damage"
+      },
+      "themeStyle": {
+        "hint": "Select the theme prrefered.",
+        "name": "Select Theme Style",
+        "choices": {
+          "FoundryStandard": "Foundry Standard",
+          "TwodsixClassic": "Twodsix Classic",
+          "Western": "Western"
+        }
       }
     },
-    "CloseAndCreateNew": "Close and create new",
+    "Combat": {
+    "PhaseChange": "Combat Phase Change",
+    "Round": "Round",
+    "Phase": "Phase",
+    "System": "System",
+    "PreviousPhase": "Previous Phase",
+    "NextPhase": "Next Phase",
+    "AlreadyFirstPhase": "Already at the first phase of the first round",
+    "MinorActions": "Minor Actions Used",
+    "SignificantActions": "Significant Actions Used",
+    "Reactions": "Reactions Used",
+    "ThrustUsed": "Thrust Used",
+    "TurnWarning": "Lack permissions to change turn",
+    "NoMinorActionsRemaining": "No minor actions remaining for this phase",
+    "NoSignificantActionsRemaining": "No significant actions remaining for this phase",
+    "NoReactionsRemaining": "No reactions remaining",
+    "Phases": {
+      "detection": "Detection",
+      "range": "Range",
+      "tactical": "Tactical",
+      "advantage": "Advantage",
+      "attack": "Attack",
+      "screen": "Screen",
+      "damageControl": "Damage Control",
+      "declaration": "Declaration",
+      "actions": "Actions",
+      "damage": "Damage",
+      "manoeuvre": "Manoeuvre"
+    }
+  },
+  "CloseAndCreateNew": "Close and create new",
     "Copy": "Copy",
     "Yes": "Yes",
     "Name": "Name",

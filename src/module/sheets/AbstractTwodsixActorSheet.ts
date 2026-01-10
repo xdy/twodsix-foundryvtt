@@ -72,7 +72,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
       showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
-      useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
+      useFoundryStandardStyle: game.settings.get('twodsix', 'themeStyle') !== 'classic',
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") || game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
@@ -213,7 +213,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     // Only run this for non-vehicle/non-ship/non-space-object actors
     if (toDeleteItem.type === "consumable" && !["ship", "vehicle", "space-object"].includes(selectedActor.type)) {
       for (const i of selectedActor.items.filter((it:TwodsixItem) => !TWODSIX.WeightlessItems.includes(it.type))) {
-        const current = Array.isArray(i.system.consumables) ? foundry.utils.duplicate(i.system.consumables) : [];
+        const current = foundry.utils.getType(i.system.consumables) === 'Array' ? foundry.utils.duplicate(i.system.consumables) : [];
         const filtered = current.filter((id: string) => id !== toDeleteItem.id);
 
         const update: Record<string, any> = { _id: i.id };
@@ -782,15 +782,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     ];
 
     const html = await foundry.applications.handlebars.renderTemplate(template, dialogData);
-    return new Promise<void>((resolve) => {
-      new foundry.applications.api.DialogV2({
-        window: {title: "TWODSIX.Rolls.RollInitiative", icon: "fa-solid fa-dice"},
-        content: html,
-        buttons: buttons,
-        submit: () => {
-          resolve();
-        },
-      }).render({force: true});
+    await foundry.applications.api.DialogV2.wait({
+      window: {title: "TWODSIX.Rolls.RollInitiative", icon: "fa-solid fa-dice"},
+      content: html,
+      buttons: buttons,
     });
   }
 
@@ -1203,7 +1198,7 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     const realChanges = effect.changes.filter(ch => ch.key === field);
     if (realChanges.length > 0) {
       const changesStr = realChanges.map(change =>
-        `${modes[change.mode] || ""}(${change.value})`
+        `${modes[change.type] || ""}(${change.value})`
       ).join(", ");
       effectStrings.push(`${effect.name}: ${changesStr}`);
     }

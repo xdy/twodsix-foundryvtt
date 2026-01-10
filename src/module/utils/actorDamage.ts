@@ -235,11 +235,14 @@ class DamageDialogHandler {
   html: HTMLElement;
   hooks = {};
   stats: Stats;
+  debouncedRefresh: () => void;
 
   constructor(stats: Stats) {
     this.stats = stats;
     this.hooks["updateActor"] = Hooks.on("updateActor", this.hookUpdate.bind(this));
     this.hooks["updateToken"] = Hooks.on("updateToken", this.hookUpdate.bind(this));
+    // Create debounced version of refresh for input handlers (150ms delay for responsive feel)
+    this.debouncedRefresh = foundry.utils.debounce(() => this.refresh(), 150);
   }
 
   private hookUpdate(): void {
@@ -309,14 +312,14 @@ class DamageDialogHandler {
     this.html.querySelectorAll(".damage")?.forEach(el => {
       el.addEventListener ('input', (ev:Event) => {
         this.stats.setDamage(this.getNumericValueFromEvent(ev));
-        this.refresh();
+        this.debouncedRefresh();
       });
     });
 
     this.html.querySelectorAll(".armor")?.forEach(el => {
       el.addEventListener ('input', (ev:Event) => {
         this.stats.setArmor(this.getNumericValueFromEvent(ev));
-        this.refresh();
+        this.debouncedRefresh();
       });
     });
 
@@ -328,7 +331,7 @@ class DamageDialogHandler {
         this.stats.edited = true;
         stat.damage = value;
 
-        this.refresh();
+        this.debouncedRefresh();
       });
     });
   }
@@ -355,6 +358,10 @@ class DamageDialogHandler {
 
   public unRegisterListeners() {
     Object.entries(this.hooks).forEach(([hookName, hook]: [string, number]) => Hooks.off(hookName, hook));
+    // Cancel any pending debounced updates to prevent stale refresh after dialog closes
+    if (this.debouncedRefresh?.cancel) {
+      this.debouncedRefresh.cancel();
+    }
     //this.html.removeEventListener('change', "**");
   }
 }

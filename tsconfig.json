@@ -10,17 +10,23 @@
       "node"
     ],
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
     "allowUmdGlobalAccess": true,
     "noImplicitAny": false,
     "baseUrl": ".",
+    "paths": {
+      "@client/*": ["foundry/client/*"],
+      "@common/*": ["foundry/common/*"]
+    },
     "removeComments": false,
     "resolveJsonModule": true,
     "alwaysStrict": true,
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "foundry", "dist", "build"]
 }

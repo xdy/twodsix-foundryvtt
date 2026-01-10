@@ -1,0 +1,16 @@
+<div class="grid-columns-single storage-header">
+  <div class="cargo-stored-single">
+    {{> "systems/twodsix/templates/actors/parts/ship/cargo-header.hbs"}}
+  </div>
+</div>
+<div class="grid-columns-single item-list">
+  {{#each allCargo as |item id|}}
+    <div class="item grid-columns-single-row" data-item-id="{{item.id}}">
+      <ol class="ol-no-indent">
+        <li class="cargo-stored-single">
+          {{> "systems/twodsix/templates/actors/parts/ship/ship-cargo-row.hbs" item=item}}
+        </li>
+      </ol>
+    </div>
+  {{/each}}
+</div>

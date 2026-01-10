@@ -58,6 +58,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
 
     // Add relevant data from system settings
     Object.assign(context.settings, {
+      showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
       showHullAndArmor: game.settings.get('twodsix', 'showHullAndArmor'),
       showRangeSpeedNoUnits: game.settings.get('twodsix', 'showRangeSpeedNoUnits'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')

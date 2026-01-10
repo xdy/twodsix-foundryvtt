@@ -41,7 +41,8 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       selectDeckplan: this._onDeckplanClick,
       deleteDeckplan: this._onDeckplanUnlink,
       adjustFuelType: this._onAdjustFuelType,
-      itemLink: this._onDocumentLink
+      itemLink: this._onDocumentLink,
+      toggleWeight: this._toggleWeight
     },
     tag: "form"
   };
@@ -94,23 +95,28 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       context.shipPositions = [];
     }
 
+    const useShipAutoCalc = game.settings.get('twodsix', 'useShipAutoCalcs');
+    const showCost = game.settings.get('twodsix', 'showCost') && useShipAutoCalc;
+
     Object.assign(context.settings, {
       showSingleComponentColumn: game.settings.get('twodsix', 'showSingleComponentColumn'),
+      showSingleCargoColumn: game.settings.get('twodsix', 'showSingleCargoColumn'),
       showBandwidth: game.settings.get('twodsix', 'showBandwidth'),
-      showWeightUsage: game.settings.get('twodsix', 'showWeightUsage'),
-      useShipAutoCalc: game.settings.get('twodsix', 'useShipAutoCalcs'),
+      showWeightUsage: (<TwodsixActor>this.actor).system.showWeightUsage ?? game.settings.get('twodsix', 'showWeightUsage'),
+      useShipAutoCalc,
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       allowDragDropOfListsShip: game.settings.get('twodsix', 'allowDragDropOfListsShip'),
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
+      mDriveLabel: game.settings.get('twodsix', 'mDriveLabel') || "TWODSIX.Ship.MDrive",
       jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive",
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
       showComponentDM: game.settings.get('twodsix', 'showComponentDM'),
-      showCost: game.settings.get('twodsix', 'showCost'),
+      showCost,
       showCombatPosition: game.settings.get('twodsix', 'showCombatPosition'),
       singleComponentClass: (`components-stored-single` +
                                 (game.settings.get('twodsix', 'showComponentRating') ? ` rating` : ` no-rating`) +
                                 (game.settings.get('twodsix', 'showComponentDM') ? ` dm`:` no-dm`) +
-                                (game.settings.get('twodsix', 'showCost') ? ` cost`:` no-cost`)),
+                                (showCost ? ` cost`:` no-cost`)),
       useMCr: game.settings.get('twodsix', 'showCommonFundsMCr')
     });
 
@@ -193,7 +199,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         for (const actorId in (<Ship>shipActor.system)?.shipPositionActorIds) {
           const actor = game.actors?.get(actorId);
           if (actor === undefined) {
-            await shipActor.update({[`system.shipPositionActorIds.-=${actorId}`]: null });
+            await shipActor.update({[`system.shipPositionActorIds.${actorId}`]: _del });
           }
         }
       }
@@ -213,7 +219,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       (<ShipPosition>(<TwodsixItem>this.actor.items.get(shipPositionId)).system).actors?.forEach(async (actor:TwodsixActor) => {
         if (actor.id && actor.id in (<Ship>this.actor.system).shipPositionActorIds) {
           if (actor.id) {
-            await this.actor.update({ [`system.shipPositionActorIds.-=${actor.id}`]: null });
+            await this.actor.update({ [`system.shipPositionActorIds.${actor.id}`]: _del });
           }
         }
       });
@@ -271,6 +277,9 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       await deckPlan?.view();
     }
   }
+  static async _toggleWeight() {
+    (<TwodsixActor>this.actor).update({"system.showWeightUsage": !(<TwodsixActor>this.actor).system.showWeightUsage});
+  }
 
   static _onDeckplanUnlink() {
     if ((<Ship>this.actor.system)?.deckPlan) {
@@ -297,7 +306,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
 
   async _onDrop(ev:DragEvent):Promise<boolean | any> {
     ev.preventDefault();
-    ev.stopPropagation();
+    //ev.stopPropagation();
     if (ev.dataTransfer === null || ev.target === null) {
       return false;
     }
@@ -314,17 +323,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       const droppedObject:any = await getDocFromDropData(dropData);
 
       if (["traveller", "robot"].includes(droppedObject.type)) {
-        const actorId = droppedObject._id;
-        const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
-        if (ev.target !== null && ev.target?.closest(".ship-position")) {
-          const shipPositionId = ev.target.closest(".ship-position").dataset.id;
-          await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
-          this.actor.items.get(shipPositionId)?.sheet?.render();
-        } else {
-          await this.actor.update({[`system.shipPositionActorIds.-=${actorId}`]: null});
-        }
-        this.actor.items.get(currentShipPositionId)?.sheet?.render();
-        return true;
+        return await this._addCrewToSheet(droppedObject, ev);
       } else if ((droppedObject.type === "skills") && ev.target !== null && ev.target?.closest(".ship-position")) {
         //check for double drop trigger, not clear why this occurs
         if (ev.currentTarget.className === "ship-position-box") {
@@ -355,19 +354,71 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       return false;
     }
   }
+
+  async _addCrewToSheet(droppedObject: TwodsixActor, ev: Event): Promise <boolean> {
+    const onTab:string = ev.target?.closest(".tab")?.dataset?.tab;
+    if (onTab === "shipPositions") {
+      // Try to add dropped actor to closest ship position
+      const actorId:string = droppedObject._id;
+      const currentShipPositionId = (<Ship>this.actor.system).shipPositionActorIds[actorId];
+      if (ev.target !== null && ev.target?.closest(".ship-position")) {
+        const shipPositionId = ev.target.closest(".ship-position").dataset.id;
+        await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: shipPositionId});
+        this.actor.items.get(shipPositionId)?.sheet?.render();
+      } else {
+        await this.actor.update({[`system.shipPositionActorIds.${actorId}`]: _del});
+      }
+      this.actor.items.get(currentShipPositionId)?.sheet?.render();
+      return true;
+    } else if (onTab === "shipCrew") {
+      // Try to add actor's name to closest crew designator
+      const crewPositionName:string = ev.target.name ?? ev.target.dataset?.edit;
+      if(crewPositionName?.includes("crewLabel")) {
+        return false;
+      }
+      let nameToAdd = droppedObject.name;
+      if (crewPositionName && nameToAdd) {
+        if (["marine", "gunner", "engineer"].includes(crewPositionName.replace("system.crew.", ""))) {
+          // Multi crew boxes
+          const listedNames:string = foundry.utils.getProperty(this.actor, crewPositionName);
+          if (listedNames?.includes(nameToAdd)) {
+            return false;
+          } else if (listedNames) {
+            nameToAdd = `${listedNames}, ${nameToAdd}`;
+          }
+        }
+        await this.actor.update({[crewPositionName]: nameToAdd});
+        return true;
+      }
+      return false;
+    } else {
+      return false;
+    }
+  }
+
   async _addVehicleCraftToComponents(droppedObject: any, uuid: string): Promise <void> {
+    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+
     const newComponent = {
       name: droppedObject.name,
       img: droppedObject.img,
       type: "component",
       system: {
         docReference: droppedObject.type === "ship" ? "" : droppedObject.system.docReference,
-        price: droppedObject.type === "ship" ? droppedObject.system.shipValue : droppedObject.system.cost,
+        price: droppedObject.type === "ship"
+          ? (useAutoCalcs && droppedObject.system.calcShipStats?.cost?.shipValue
+            ? droppedObject.system.calcShipStats.cost.shipValue
+            : droppedObject.system.shipValue)
+          : droppedObject.system.cost,
         quantity: 1,
         status: "operational",
         subtype: "vehicle",
         techLevel: droppedObject.system.techLevel,
-        weight: droppedObject.type === "ship" ? droppedObject.system.shipStats.mass.max : droppedObject.system.weight,
+        weight: droppedObject.type === "ship" ? (() => {
+          return (useAutoCalcs && droppedObject.system.calcShipStats?.mass?.max)
+            ? droppedObject.system.calcShipStats.mass.max
+            : droppedObject.system.shipStats.mass.max;
+        })() : droppedObject.system.weight,
         actorLink: uuid
       }
     };
