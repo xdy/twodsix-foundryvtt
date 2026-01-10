@@ -58,7 +58,7 @@ Hooks.on("renderChatMessageHTML", (message: any, html: HTMLElement, messageData?
     return;
   }
 
-  const effect: string = message.getFlag?.('twodsix', 'effect') ?? flags.effect ?? '';
+  const effect: string = message.getFlag('twodsix', 'effect') ?? flags.effect ?? '';
   if (!isNaN(Number(effect))) {
     const sumString = game.i18n.localize('TWODSIX.Rolls.Sum') || 'Sum';
     const effectString = game.i18n.localize('TWODSIX.Rolls.Effect') || 'Effect';
