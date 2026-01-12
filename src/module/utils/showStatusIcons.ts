@@ -24,7 +24,9 @@ const conditionUpdateInProgress = new Set<string>();
  * @param {boolean} options.wounded Whether to check wounded
  * @public
  */
-export async function applyBatchedStatusEffects(selectedActor: TwodsixActor, { encumbrance = false, wounded = false } = {}): Promise<void> {
+export async function applyBatchedStatusEffects(selectedActor: TwodsixActor, { encumbrance = false, wounded = false }: { encumbrance: boolean; wounded: boolean; } = {}): Promise<void> {
+  // Avoid re-entrancy: if actor is already applying status effects, skip.
+  if (selectedActor._applyingStatusEffects) return;
   // Set a flag to prevent recursive status checks
   selectedActor._applyingStatusEffects = true;
   try {
@@ -342,19 +344,12 @@ async function withGuard<T>(guardSet: Set<string>, key: string, fn: () => Promis
  * @returns {boolean} True if any change key includes a damage characteristic.
  */
 export function checkForDamageStat (update: any, actorType: string): boolean {
-  if (update.effects?.length > 0) {
-    const damageCharacteristics = getDamageCharacteristics(actorType);
-    for (const effect of update.effects) {
-      for (const change of effect.changes) {
-        for (const char of damageCharacteristics) {
-          if (change.key.includes(char)) {
-            return true;
-          }
-        }
-      }
-    }
-  }
-  return false;
+  const damageCharacteristics = getDamageCharacteristics(actorType);
+  return !!(update.effects?.some((effect: any) =>
+    (effect.changes ?? []).some((change: any) =>
+      damageCharacteristics.some((char: string) => (change?.key ?? '').includes(`characteristics.${char}.`))
+    )
+  ));
 }
 
 /**

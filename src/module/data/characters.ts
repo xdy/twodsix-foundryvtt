@@ -26,11 +26,11 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.secondaryArmor = makeValueField();
 
     schema.finances = new fields.SchemaField({
-      cash: new fields.StringField({ required: true, blank: true, initial: "0"}),
-      pension: new fields.StringField({ required: true, blank: true, initial: "0"}),
-      payments: new fields.StringField({ required: true, blank: true, initial: "0"}),
-      debt: new fields.StringField({ required: true, blank: true, initial: "0"}),
-      livingCosts: new fields.StringField({ required: true, blank: true, initial: "0"}),
+      cash: new fields.StringField({ required: true, blank: false, initial: "0"}),
+      pension: new fields.StringField({ required: true, blank: false, initial: "0"}),
+      payments: new fields.StringField({ required: true, blank: false, initial: "0"}),
+      debt: new fields.StringField({ required: true, blank: false, initial: "0"}),
+      livingCosts: new fields.StringField({ required: true, blank: false, initial: "0"}),
       'financial-notes': new fields.StringField({...requiredBlankString})
     });
     schema.financeValues = new fields.SchemaField({
@@ -65,6 +65,16 @@ export class TravellerData extends TwodsixActorBaseData {
   static migrateData(source:any) {
     if ("age" in source) {
       migrateStringToNumber(source.age, "value");
+    }
+    if ("finances" in source) {
+      const fin = source.finances;
+      if (fin && typeof fin === 'object') {
+        for (const [key, value] of Object.entries(fin)) {
+          if (value === "" || value === null || value === undefined) {
+            source.finances[key] = "0";
+          }
+        }
+      }
     }
     return super.migrateData(source);
   }

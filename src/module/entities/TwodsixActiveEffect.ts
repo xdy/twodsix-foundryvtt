@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { stackArmorValues } from "../utils/actorDamage";
-import { applyBatchedStatusEffects } from "../utils/showStatusIcons";
+import { applyBatchedStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
 
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
@@ -42,8 +42,8 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onCreate(data: object, options: object, userId: string):void {
     await super._onCreate(data, options, userId);
-    if (game.userId === userId  && this.parent?.type === 'traveller') {
-      await checkEncumbranceStatus(this);
+    if (game.userId === userId && this.target) {
+      await evaluateEffectStatusImpact(this);
     }
     // A hack to fix a bug in v13
     if (data.changes?.length === 0) {
@@ -147,8 +147,8 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onUpdate(changed: object, options: object, userId: string):Promise<void> {
     await super._onUpdate(changed, options, userId);
-    if(game.userId === userId  && this.parent?.type === 'traveller') {
-      await checkEncumbranceStatus(this);
+    if (game.userId === userId && this.target) {
+      await evaluateEffectStatusImpact(this);
     }
   }
 
@@ -160,10 +160,10 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onDelete}
    * @override
    */
-  async _onDelete(options: object, userId: string):Promis<void> {
+  async _onDelete(options: object, userId: string): Promise<void> {
     await super._onDelete(options, userId);
-    if(game.userId === userId && this.parent?.type === 'traveller') {
-      await checkEncumbranceStatus(this);
+    if (game.userId === userId && this.target) {
+      await evaluateEffectStatusImpact(this);
     }
 
   }
@@ -177,36 +177,33 @@ export class TwodsixActiveEffect extends ActiveEffect {
   static applyAllCustomEffects(actor: TwodsixActor, effects: Array<TwodsixActiveEffect>, phase: string) {
     // Do not reset actor.overrides here; let the AE workflow manage initialization.
     // Deduplicate override effects by highest priority
-    const overrideMap = {};
-    const normalCustoms = [];
+    const overrideMap: Record<string, { change: any; priority: number }> = {};
+    const normalCustoms: any[] = [];
     for (const effect of effects) {
       if (!effect.active) {
         continue;
       }
-      for (const change of effect.changes) {
+      for (const change of effect.changes ?? []) {
         if (!change.key || change.phase !== phase) {
           continue;
         }
-        if (
-          change.type === "custom" &&
-          typeof change.value === "string" &&
-          change.value.trim().startsWith("=")
-        ) {
-          const priority = change.priority ?? effect.priority ?? 0;
-          if (!overrideMap[change.key] || (priority > (overrideMap[change.key]?.priority ?? 0))) {
-            overrideMap[change.key] = change;
+
+        // Overrides are custom changes that start with '='; keep the highest priority per key
+        if (change.type === "custom" && typeof change.value === "string" && change.value.trim().startsWith("=")) {
+          const priority = change.priority ?? (effect.priority ?? 0) as number;
+          if (!overrideMap[change.key] || priority > overrideMap[change.key].priority) {
+            overrideMap[change.key] = { change, priority };
           }
-        } else if (
-          change.type === "custom" &&
-          (!change.value || typeof change.value !== "string" || !change.value.trim().startsWith("="))
-        ) {
+        } else if (change.type === "custom") {
+          // Non-override custom changes are applied in order
           normalCustoms.push(change);
         }
       }
     }
+
     // Apply deduped override effects (highest priority per key)
-    for (const change of Object.values(overrideMap)) {
-      TwodsixActiveEffect.applyCustomEffect(actor, change);
+    for (const entry of Object.values(overrideMap)) {
+      TwodsixActiveEffect.applyCustomEffect(actor, entry.change);
     }
     // Apply all other custom effects (not starting with "=")
     for (const change of normalCustoms) {
@@ -273,39 +270,53 @@ export class TwodsixActiveEffect extends ActiveEffect {
 }
 
 /**
- * Calls applyBatchedStatusEffects if active effect could change encumbered status
- * @param {TwodsixActiveEffect} activeEffect  The active effect being changed
- * @returns {void}
+ * Evaluate whether an ActiveEffect change could affect encumbrance or wounded status,
+ * and request batched status effect updates for the resolved actor when appropriate.
+ *
+ * This handles both encumbrance (weight-related) and wounded/dead/unconscious checks
+ * by inspecting the ActiveEffect's changes and statuses and respecting system settings.
+ *
+ * @param {TwodsixActiveEffect} activeEffect The active effect being changed
+ * @returns {Promise<void>}
  */
-async function checkEncumbranceStatus (activeEffect:TwodsixActiveEffect):void {
-  const parentActor: TwodsixActor = activeEffect.parent;
-  if (!parentActor) {
-    return;
-  }
-  if (!game.settings.get('twodsix', 'useEncumbranceStatusIndicators')) {
+async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Promise<void> {
+  // Resolve the actor defensively: prefer the modern `target`, fall back to `parent` for compatibility
+  const parentActor: TwodsixActor | undefined = activeEffect.target;
+  if (!parentActor) return;
+  const encumbranceEnabled = game.settings.get('twodsix', 'useEncumbranceStatusIndicators');
+  const woundedEnabled = game.settings.get('twodsix', 'useWoundedStatusIndicators');
+  const encumbranceApplicable = encumbranceEnabled && parentActor.type === 'traveller';
+  const woundedApplicable = woundedEnabled && ["traveller", "animal", "robot"].includes(parentActor.type);
+  if (!encumbranceApplicable && !woundedApplicable) {
     return;
   }
 
-  // Only proceed if the effect could impact encumbrance
-  if (!changesEncumbranceStat(activeEffect) && !activeEffect.statuses.has('dead')) {
+  // Determine whether this AE changes could impact encumbrance or wounded status
+  // Only consider the AE's configured changes (not its status icons)
+  const encumbranceRelevant = changesEncumbranceStat(activeEffect);
+  const woundedRelevant = checkForDamageStat({ effects: [{ changes: activeEffect.changes ?? [] }] }, parentActor.type);
+
+  // If neither is relevant, skip
+  if (!encumbranceRelevant && !woundedRelevant) {
     return;
   }
 
-  // If the effect is being removed or no longer applies encumbered/unconscious
-  if (
-    activeEffect.statuses.size === 0 ||
-    (!activeEffect.statuses.has('encumbered') && !activeEffect.statuses.has('unconscious'))
-  ) {
-    await applyBatchedStatusEffects(parentActor, { encumbrance: true });
+  // If this AE's configured changes could affect encumbrance or wounded status,
+  // request the appropriate batched checks for the actor (respecting applicability).
+  const encumbranceCheck = encumbranceApplicable && encumbranceRelevant;
+  const woundedCheck = woundedApplicable && woundedRelevant;
+  if (encumbranceCheck || woundedCheck) {
+    await applyBatchedStatusEffects(parentActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
   }
 }
+
 /**
  * Checks the changes in an active effect and determines whether it might affect encumbrance
  * @param {TwodsixActiveEffect} activeEffect  The active effect being changed
  * @returns {boolean} Whether the effect could change encumbrance status
  */
 function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
-  if (activeEffect.changes.length > 0) {
+  if (activeEffect.changes?.length > 0) {
     for (const change of activeEffect.changes) {
       if (change.key){
         if (change.key.includes('system.characteristics.strength.value')  ||

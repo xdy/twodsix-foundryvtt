@@ -83,6 +83,38 @@ export default class TwodsixItem extends Item {
   }
 
   /**
+   * Perform follow-up operations after an Item of this type is created.
+   * If a `trait` with ActiveEffects is added to a traveller, ensure encumbrance is re-evaluated.
+   */
+  async _onCreate(data:object, options:object, userId:string) {
+    await super._onCreate(data, options, userId);
+    if (game.user?.id === userId) {
+      const owningActor: TwodsixActor = this.actor;
+      if (owningActor) {
+        const createdHasEffects = !!(data.effects && data.effects.length > 0);
+        const createdType = data.type;
+        await TwodsixItem._maybeTriggerItemStatusChecks(owningActor, createdHasEffects, createdType);
+      }
+    }
+  }
+
+  /**
+   * Perform follow-up operations after a Document of this type is deleted.
+   * If a `trait` with ActiveEffects is removed from a traveller, ensure encumbrance is re-evaluated.
+   */
+  async _onDelete(options: object, userId: string) {
+    await super._onDelete(options, userId);
+    if (game.user?.id === userId) {
+      const owningActor: TwodsixActor = this.actor;
+      if (owningActor) {
+        const deletedHasEffects = !!(this.effects?.contents?.length > 0);
+        const deletedType = this.type;
+        await TwodsixItem._maybeTriggerItemStatusChecks(owningActor, deletedHasEffects, deletedType);
+      }
+    }
+  }
+
+  /**
    * Perform follow-up operations after a Document of this type is updated.
    * Post-update operations occur for all clients after the update is broadcast.
    * @param {object} changed            The differential data that was changed relative to the documents prior values
@@ -98,11 +130,16 @@ export default class TwodsixItem extends Item {
       let needsEncumbrance = false;
       let needsWounded = false;
       if (owningActor) {
-        if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor.type === 'traveller' && !options.dontSync) {
+        if (game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor.type === 'traveller' && !options?.dontSync) {
           if (!TWODSIX.WeightlessItems.includes(this.type) && changed.system) {
-            if ((Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || (Object.hasOwn(changed.system, "equipped")) && this.system.weight > 0)) {
+            if (Object.hasOwn(changed.system, "weight") || Object.hasOwn(changed.system, "quantity") || Object.hasOwn(changed.system, "equipped")) {
               needsEncumbrance = true;
             }
+          }
+          // Traits are normally weightless but can carry ActiveEffects; if the item's effects changed,
+          // treat it as relevant for encumbrance status checks.
+          if (this.type === 'trait' && changed.effects) {
+            needsEncumbrance = true;
           }
         }
         if (game.settings.get('twodsix', 'useWoundedStatusIndicators')) {
@@ -125,6 +162,23 @@ export default class TwodsixItem extends Item {
       } else if (changed.system?.techLevel) {
         ui.items.render();
       }
+    }
+  }
+
+  /**
+   * Helper to centralize logic for triggering batched encumbrance/wounded status checks
+   * when items are created or deleted.
+   * @param {TwodsixActor} owningActor
+   * @param {boolean} hasEffects
+   * @param {string} itemType
+   */
+  private static async _maybeTriggerItemStatusChecks(owningActor: TwodsixActor, hasEffects: boolean, itemType: string) {
+    if (!owningActor || owningActor._applyingStatusEffects) return;
+    const encumbranceCheck = game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor.type === 'traveller';
+    const woundedCheck = game.settings.get('twodsix', 'useWoundedStatusIndicators') && ["traveller", "animal", "robot"].includes(owningActor.type);
+    const isRelevantItem = ![...TWODSIX.WeightlessItems, 'ship_position'].includes(itemType);
+    if ((hasEffects || isRelevantItem) && (encumbranceCheck || woundedCheck)) {
+      await applyBatchedStatusEffects(owningActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
     }
   }
 
