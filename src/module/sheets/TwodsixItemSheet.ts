@@ -362,7 +362,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       if(game.settings.get('twodsix', 'useItemActiveEffects')) {
         if (await fromUuid(this.item.uuid)) {
           TwodsixActiveEffect.create({
-            origin: undefined, //UUID? this.item.uuid
             icon: this.item.img,
             tint: "#ffffff",
             name: this.item.name,
