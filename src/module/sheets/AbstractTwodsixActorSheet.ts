@@ -898,7 +898,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       await this.actor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
         icon: "icons/svg/aura.svg",
-        origin: "Custom",
         disabled: false,
         description: ""
       }]);
