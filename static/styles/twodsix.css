@@ -517,7 +517,7 @@ h2 {
   display: grid;
   height: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 18em 1fr 1fr;
+  grid-template-rows: 19em 1fr 1fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -1149,6 +1149,11 @@ img.condition-icon {
 
 .bgi-species input {
   width: 7em;
+  border: none;
+}
+
+.bgi-primaryLanguage input {
+  width: 10em;
   border: none;
 }
 

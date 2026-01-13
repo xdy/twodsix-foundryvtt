@@ -121,7 +121,7 @@ body {
 }
 
 /* Add more selectors for other UI elements as needed */
-.character-bgi-std, .character-bgi-npc,
+.character-bgi-std, .character-bgi-npc, .character-bgi,
 .ship-state-grid, .ship-info input, .ship-fuel-value input, .ship-drives input, .ship-armor-value input, input.power-current, input.power-total {
   font-size: var(--font-size-12);
 }
@@ -193,4 +193,12 @@ nav.actor-sheet-tabs.tabs {
 
 .content-container {
   border-radius: 0;
+}
+
+.bgi-char-narrow, .bgi-char-wide {
+  font-size: 12px;
+}
+
+.npc-content-container {
+  grid-template-rows: 22em 1fr 1fr;
 }

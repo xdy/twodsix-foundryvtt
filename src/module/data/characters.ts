@@ -13,6 +13,7 @@ export class TravellerData extends TwodsixActorBaseData {
     const schema = super.defineSchema();
     schema.homeWorld = new fields.StringField({...requiredBlankString});
     schema.nationality = new fields.StringField({...requiredBlankString});
+    schema.primaryLanguage = new fields.StringField({...requiredBlankString});
     schema.species =  new fields.StringField({...requiredBlankString});
     schema.age = new fields.SchemaField({
       value: new fields.NumberField({required: true, nullable: true, integer: false, initial: 18}),

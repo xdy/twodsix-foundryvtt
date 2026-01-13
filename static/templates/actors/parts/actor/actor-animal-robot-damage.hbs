@@ -8,12 +8,14 @@
     </span>
     <span class="bgi-char-wide bgi-hits-damage" data-tooltip='{{localize "TWODSIX.Actor.Hits"}}'>
     <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
-    <span class="bgi-char-wide bgi-radiationDose" >
-      <i class="fa-solid fa-radiation" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'></i>:<input
-      {{disabled tooltips.radiationDose.value}}
-      name="system.radiationDose.value" value={{system.radiationDose.value}} min="0" type="number"
-      data-tooltip="{{tooltips.radiationDose.value}}" />
-    </span><br>
+    {{#unless settings.useRiderData}}
+      <span class="bgi-char-wide bgi-radiationDose" >
+        <i class="fa-solid fa-radiation" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'></i>:<input
+        {{disabled tooltips.radiationDose.value}}
+        name="system.radiationDose.value" value={{system.radiationDose.value}} min="0" type="number"
+        data-tooltip="{{tooltips.radiationDose.value}}" />
+      </span>
+    {{/unless}}<br>
   {{else if settings.lifebloodInsteadOfCharacteristics}}
     <span class="bgi-char-narrow bgi-endurance-value" data-tooltip='{{localize "TWODSIX.Actor.Endurance"}}'>
       {{#iff system.characteristics.endurance.value "===" system.characteristics.endurance.current}}
@@ -41,11 +43,13 @@
     <span class="bgi-char-wide bgi-lifeblood-damage" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
         <input type="number" name="system.characteristics.strength.damage" value="{{system.characteristics.strength.damage}}" min="0" max="{{system.characteristics.strength.value}}"/></span>
     {{#if settings.showContaminationBelowLifeblood}}
-      <span class="bgi-char-wide bgi-radiationDose" ><i class="fa-solid fa-radiation" data-tooltip='{{localize "TWODSIX.Actor.Contamination"}}'></i>:<input
-        {{disabled tooltips.radiationDose.value}}
-        name="system.radiationDose.value" value={{system.radiationDose.value}} type="number" min="0"
-        data-tooltip="{{tooltips.radiationDose.value}}"/>
-      </span>
+      {{#unless settings.useRiderData}}
+        <span class="bgi-char-wide bgi-radiationDose" ><i class="fa-solid fa-radiation" data-tooltip='{{localize "TWODSIX.Actor.Contamination"}}'></i>:<input
+          {{disabled tooltips.radiationDose.value}}
+          name="system.radiationDose.value" value={{system.radiationDose.value}} type="number" min="0"
+          data-tooltip="{{tooltips.radiationDose.value}}"/>
+        </span>
+      {{/unless}}
     {{/if}}
     <br>
   {{else}}
@@ -74,11 +78,15 @@
       />-
     </span>
     <span class="bgi-char-wide bgi-lifeblood-damage" data-tooltip='{{localize "TWODSIX.Actor.Lifeblood"}}'>
-        <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/></span>
+        <input type="number" name="system.characteristics.lifeblood.damage" value="{{system.characteristics.lifeblood.damage}}" min="0" max="{{system.characteristics.lifeblood.value}}"/>
+    </span>
     {{/if}}
-    <span class="bgi-char-wide bgi-radiationDose" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
-      {{disabled tooltips.radiationDose.value}}
-      name="system.radiationDose.value" value={{system.radiationDose.value}} type="number" min="0"
-      data-tooltip="{{tooltips.radiationDose.value}}"/>
-      </span><br>
+    {{#unless settings.useRiderData}}
+      <span class="bgi-char-wide bgi-radiationDose" data-tooltip='{{localize "TWODSIX.Actor.RadiationExposure"}}'><i class="fa-solid fa-radiation"></i>:<input
+        {{disabled tooltips.radiationDose.value}}
+        name="system.radiationDose.value" value={{system.radiationDose.value}} type="number" min="0"
+        data-tooltip="{{tooltips.radiationDose.value}}"/>
+      </span>
+    {{/unless}}
+    <br>
   {{/if}}

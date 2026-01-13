@@ -82,7 +82,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
-      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
+      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU',
+      useRiderData: game.settings.get('twodsix', 'ruleset') === 'RIDER'
     };
 
     if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {

@@ -232,7 +232,7 @@ label.checkbox > input[type="checkbox"] {
   display: grid;
   height: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 20em 1fr 1fr;
+  grid-template-rows: 21em 1fr 1fr;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -801,6 +801,11 @@ img.character-info-mask {
   border: none;
 }
 
+.bgi-primaryLanguage input {
+  width: 10em;
+  border: none;
+}
+
 .bgi-homeWorld input, .bgi-locomotionType input {
   width: 8em;
   border: none;
@@ -863,18 +868,18 @@ img.character-info-mask {
   font-size: smaller;
 }
 
-.bgi-char-narrow {
+/*.bgi-char-narrow {
   font-size: 16px;
-}
+}*/
 
 .bgi-char-narrow input {
   width: 1.5em;
   text-align: right;
 }
 
-.bgi-char-wide {
+/*.bgi-char-wide {
   font-size: 16px;
-}
+}*/
 
 .bgi-char-wide input {
   width: 2.2em;
