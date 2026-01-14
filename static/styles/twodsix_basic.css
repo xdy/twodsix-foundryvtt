@@ -3759,7 +3759,7 @@ table.ship-action-table, table.vehicle-stats-table {
   border-style: solid;
 }
 
-input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], input[type="file"], select {
+input[type="text"], input[type="number"], input[type="password"], input[type="date"], input[type="time"], input[type="search"], select {
   max-height: 3ch;
   padding: 0 2px;
 }
