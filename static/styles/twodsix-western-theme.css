@@ -63,8 +63,12 @@
 
 }
 
-.application.twodsix {
+.application.twodsix, .standard-form .hint, textarea {
   font-size: var(--font-size-12);
+}
+
+.form-group label {
+  font-size: var(--font-size-14);
 }
 
 /* Light mode overrides for western theme */
@@ -183,7 +187,7 @@ div.ship-value, .ship-stat, .ship-stat-finance,
     5px 5px 15px rgba(0,0,0,0.3); /* Soft shadow on the wall */
 }
 
-button.roll-initiative, .chat-message h4 {
+button.roll-initiative, .chat-message h4, textarea {
   font-family: var(--font-body);
 }
 
@@ -196,9 +200,13 @@ nav.actor-sheet-tabs.tabs {
 }
 
 .bgi-char-narrow, .bgi-char-wide {
-  font-size: 12px;
+  font-size: var(--font-size-12);
 }
 
 .npc-content-container {
   grid-template-rows: 22em 1fr 1fr;
+}
+
+nav.tabs {
+  gap: 0.5rem;
 }
