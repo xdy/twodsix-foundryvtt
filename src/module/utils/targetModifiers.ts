@@ -29,13 +29,18 @@ export function generateTargetDMObject():void {
       const parsedResult: RegExpMatchArray | null = re.exec(modifier);
       if (parsedResult) {
         const keyValue = `key${i}`;
+        const label = parsedResult[1].trim() || game.i18n.localize("TWODSIX.Ship.Unknown");
+        const value = parseInt(parsedResult[2]) || 0;
+        const remainder = parsedResult[3] ? parsedResult[3].trim() : "";
+        const link = remainder || label; //As backup try to link to label rather than an explict stirng coming after a |
+        const statusKey = CONFIG.statusEffects.find(se => link === game.i18n.localize(se.name))?.id || "";
         Object.assign(modifierObject, {
           [keyValue]: {
-            label: parsedResult[1].trim() || game.i18n.localize("TWODSIX.Ship.Unknown"),
-            value: parseInt(parsedResult[2]) || 0,
+            label,
+            value,
             key: keyValue,
-            statusKey: CONFIG.statusEffects.find(se => parsedResult[3].trim() === game.i18n.localize(se.name))?.id || "",
-            linkString: parsedResult[3].trim() || ""
+            statusKey,
+            linkString: link
           }
         });
         ++i;
