@@ -210,3 +210,12 @@ nav.actor-sheet-tabs.tabs {
 nav.tabs {
   gap: 0.5rem;
 }
+
+.animal-content-container-small {
+  grid-template-columns: 15em 25em 18em;
+}
+
+select#settings-config-twodsix\.ruleset {
+  /*font-size: var(--font-size-12);*/
+  font-family: var(--font-sans);
+}

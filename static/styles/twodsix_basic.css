@@ -102,7 +102,7 @@ body.theme-light .application.twodsix,
 body.theme-light.application.twodsix {
   --s2d6-app-color: var(--color-text-emphatic);
   --s2d6-default-color: var(--color-text-primary);
-  --s2d6-input-background: var(--input-background-color);
+  --s2d6-input-background: tan;
   --s2d6-nav-background: var(--sidebar-background);
   /* In the app scope prefer Foundry's accent token, falling back to hyperlink or hardcoded */
   --s2d6-color-text-hyperlink: var(--color-text-accent, var(--color-text-hyperlink, #ff6400));
@@ -960,13 +960,23 @@ span.bgi-charEdit {
 }
 
 .character-characteristics {
-  width: 16em;
-  margin-top: 2em;
-  margin-left: 1em;
-  position: relative;
-  z-index: 6;
-  height: 7.5em;
+  width: 92%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-area: character-characteristics;
+  overflow: auto hidden;
+  gap: 1ch 0;
   color: inherit !important;
+}
+
+.character-characteristics.atom {
+  flex-direction: row;
+  /* margin-top: 6ch; */
+  align-content: center;
+  justify-content: space-evenly;
 }
 
 .stat {
@@ -1096,13 +1106,9 @@ span.special-name {
 }
 
 span.stat-ability {
-  margin: -0.3em;
   position: relative;
-  left: 1.1em;
-  top: -1.1em;
-  border: solid;
-  border-width: thin;
-  border-radius: 15%;
+  top: -3.4em;
+  left: 0.5em;
 }
 
 input[data-tooltip *="("] {
@@ -1115,13 +1121,9 @@ span.stat-ability-table {
 }
 
 span.stat-modifier {
-  margin: -5px;
   position: relative;
-  left: 1.7em;
-  top: -1.1em;
-  border: solid;
-  border-width: thin;
-  border-radius: 15%;
+  top: -3.4em;
+  left: 0.7em;
 }
 
 span.stat-modifier-table {
@@ -1138,12 +1140,8 @@ span.stat-ability-table input, span.stat-modifier-table input {
 
 span.stat-damage {
   position: relative;
-  /*padding-left: 0.1em;*/
-  top: 0.2em;
-  border: solid;
-  border-width: thin;
-  left: -0.7em;
-  border-radius: 15%;
+  top: -3.6em;
+  left: 1.4em;
 }
 
 span.stat-damage-table {
