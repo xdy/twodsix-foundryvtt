@@ -155,8 +155,9 @@ export const changeDamageColor = function () {
 
 export const updateStatusIcons = function () {
   if (game.settings.get('twodsix', 'reduceStatusIcons')) {
-    CONFIG.statusEffects = CONFIG.statusEffects.filter( (se) => ["dead", "unconscious", "stun", "sleep", "prone", "restrain", "paralysis", "fly", "blind", "corrode", "burning", "poison",
-      "invisible", "target", "encumbered", "wounded", "aiming", "fatigued", "cover", "thrust", "irradiated", "target-lock"].includes(se.id));
+    const allowedKeys = ["dead", "unconscious", "stun", "sleep", "prone", "restrain", "paralysis", "fly", "blind", "corrode", "burning", "poison",
+      "invisible", "target", "encumbered", "wounded", "aiming", "fatigued", "cover", "thrust", "irradiated", "target-lock"];
+    CONFIG.statusEffects = Object.fromEntries(Object.entries(CONFIG.statusEffects).filter(([key, value]) => allowedKeys.includes(key)));
   } else {
     window.location.reload();
   }

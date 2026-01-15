@@ -209,7 +209,7 @@ async function setConditionState(effectStatus: string, targetActor: TwodsixActor
 
   await withGuard(conditionUpdateInProgress, statusKey, async () => {
     const existingEffect = await dedupeStatusEffects(targetActor, effectStatus);
-    const targetEffect = CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
+    const targetEffect = CONFIG.statusEffects[effectStatus] || CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
     if (!targetEffect) {
       return;
     }
