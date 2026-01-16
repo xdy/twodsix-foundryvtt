@@ -1020,6 +1020,20 @@ span.bgi-charEdit {
   margin: 1ch 0 0;
 }
 
+.stat-table-small {
+  grid-area: character-characteristics;
+  margin-left: 4%;
+  margin-top: 4px;
+  height: 84%;
+  width: 95%;
+  overflow: auto;
+}
+.stat-table th, .stat-table td,
+.stat-table-small th, .stat-table-small td,
+.stat-table-npc th, .stat-table-npc td,
+.vehicle-stats-table th, .vehicle-stats-table td {
+  padding: 2px;
+}
 .table-header-row {
   height: 5ch;
 }
@@ -1036,7 +1050,7 @@ span.edit-char-toggle {
 span.stat-name {
   position: relative;
   left: 0.5em;
-  top: -0.8em;
+  /*top: -0.8em;*/
   font-size: 1.2em;
   display: block;
   width: 4em;

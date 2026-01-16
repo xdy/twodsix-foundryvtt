@@ -73,6 +73,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       showInitiativeButton: game.settings.get("twodsix", "showInitiativeButton"),
       useProseMirror: game.settings.get('twodsix', 'useProseMirror'),
       useFoundryStandardStyle: game.settings.get('twodsix', 'themeStyle') !== 'classic',
+      useWesternStyle: game.settings.get('twodsix', 'themeStyle') === 'western',
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
       dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") || game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),

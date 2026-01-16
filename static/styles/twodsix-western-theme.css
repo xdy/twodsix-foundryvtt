@@ -207,6 +207,10 @@ nav.actor-sheet-tabs.tabs {
   grid-template-rows: 22em 1fr 1fr;
 }
 
+.robot-content-container {
+  grid-template-rows: 22em 1fr 1fr 1fr;
+}
+
 nav.tabs {
   gap: 0.5rem;
 }

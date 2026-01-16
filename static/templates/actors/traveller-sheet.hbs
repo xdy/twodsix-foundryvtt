@@ -33,29 +33,30 @@
     {{/if}}
 
     {{#unless limited}}
+      {{log this}}
       {{#if settings.lifebloodInsteadOfCharacteristics}}
         {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-atom.hbs"}}
       {{else}}
-        {{#if settings.useFoundryStandardStyle}}
-        <div class="stat-table">
-          <table>
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.hbs"}}
-          </table>
-        </div>
+        {{!-- If Western style is enabled, prefer the table layout. Otherwise fall back to existing logic. --}}
+        {{#if settings.useWesternStyle}}
+          <div class="stat-table-small">
+            <table>
+              {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.hbs"}}
+            </table>
+          </div>
         {{else}}
-          {{#iff settings.showAlternativeCharacteristics "!==" "all"}}
-            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.hbs"}}
-          {{/iff}}
           {{#iff settings.showAlternativeCharacteristics "===" "all"}}
             {{#if settings.showAllCharWithTable}}
               <div class="stat-table-small">
                 <table>
-                {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.hbs"}}
+                  {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-table.hbs"}}
                 </table>
               </div>
             {{else}}
               {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics-rotate.hbs"}}
             {{/if}}
+          {{else}}
+            {{> "systems/twodsix/templates/actors/parts/actor/actor-characteristics.hbs"}}
           {{/iff}}
         {{/if}}
       {{/if}}
