@@ -74,11 +74,11 @@ Hooks.once('init', async function () {
   CONFIG.ActiveEffect.legacyTransferral = false;
   //CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
   CONFIG.ActiveEffect.phases = {
-    initial: {label: "Init"},
-    derived: {label: "Derived"},
-    custom: {label: "Custom"},
-    encumbMax: {label: "Encumbrance Max"},
-    final: {label: "Final"}
+    initial: { label: "EFFECT.CHANGES.PHASES.initial.label", hint: "EFFECT.CHANGES.PHASES.initial.hint" },
+    derived: { label: "EFFECT.CHANGES.PHASES.derived.label", hint: "EFFECT.CHANGES.PHASES.derived.hint" },
+    custom: { label: "EFFECT.CHANGES.PHASES.custom.label", hint: "EFFECT.CHANGES.PHASES.custom.hint" },
+    encumbMax: { label: "EFFECT.CHANGES.PHASES.encumbMax.label", hint: "EFFECT.CHANGES.PHASES.encumbMax.hint" },
+    final: { label: "EFFECT.CHANGES.PHASES.final.label", hint: "EFFECT.CHANGES.PHASES.final.hint" }
   };
 
   // Actor

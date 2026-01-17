@@ -62,22 +62,6 @@
           "sourceId": "yh20LV8aj6p0tI1C"
         }
       },
-      "changes": [
-        {
-          "key": "system.characteristics.strength.mod",
-          "type": "add",
-          "phase": "derived",
-          "value": "4",
-          "priority": null
-        },
-        {
-          "key": "system.characteristics.dexterity.mod",
-          "type": "add",
-          "phase": "derived",
-          "value": "4",
-          "priority": null
-        }
-      ],
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -101,7 +85,24 @@
       "name": "Powered Armor",
       "img": "./systems/twodsix/assets/icons/powered-armor.svg",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.strength.mod",
+            "type": "add",
+            "phase": "derived",
+            "value": "4",
+            "priority": null
+          },
+          {
+            "key": "system.characteristics.dexterity.mod",
+            "type": "add",
+            "phase": "derived",
+            "value": "4",
+            "priority": null
+          }
+        ]
+      },
       "description": "",
       "statuses": [],
       "sort": 0,
