@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+import { TwodsixActiveEffect } from "src/module/entities/TwodsixActiveEffect";
 import TwodsixActor from "../module/entities/TwodsixActor";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import { applyToAllActors, applyToAllItems } from "../module/utils/migration-utils";
@@ -15,7 +16,7 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
     ? doc.getDerivedDataKeys()
     : [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
 
-  const effectsList = (doc.documentName === "Actor"
+  const effectsList:TwodsixActiveEffect[] = (doc.documentName === "Actor"
     ? Array.from(doc.allApplicableEffects())
     : doc.effects?.contents)
     ?? [];
@@ -25,18 +26,18 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
   }
 
   for (const effect of effectsList) {
-    if (!effect.changes || foundry.utils.getType(effect.changes) !== 'Array') {
+    if (!effect.system?.changes || foundry.utils.getType(effect.system?.changes) !== 'Array') {
       console.log(`No valid changes found for effect: ${effect.name} on ${doc.name}`);
       continue;
     }
 
-    for (const change of effect.changes) {
+    for (const change of effect.system.changes) {
       const phase = determinePhase(change, doc.documentName === "Actor" ? doc : undefined, derivedKeys);
       change.phase = phase;
     }
 
     try {
-      await effect.update({ changes: effect.changes });
+      await effect.update({ 'system.changes': effect.system.changes });
       console.log(`Updated effect: ${effect.name} for document: ${doc.name}`);
     } catch (error) {
       console.error(`Failed to update effect: ${effect.name} for document: ${doc.name}`, error);

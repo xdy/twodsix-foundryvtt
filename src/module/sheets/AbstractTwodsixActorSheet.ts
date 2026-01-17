@@ -1196,8 +1196,8 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
 
   const effectStrings: string[] = [];
   for (const effect of actor.appliedEffects) {
-    const realChanges = effect.changes.filter(ch => ch.key === field);
-    if (realChanges.length > 0) {
+    const realChanges = effect.system.changes?.filter(ch => ch.key === field);
+    if (realChanges?.length > 0) {
       const changesStr = realChanges.map(change =>
         `${modes[change.type] || ""}(${change.value})`
       ).join(", ");

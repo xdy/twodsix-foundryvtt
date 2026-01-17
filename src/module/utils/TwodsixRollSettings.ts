@@ -11,6 +11,7 @@ import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
 import { getTargetDMSelectObject } from "./targetModifiers";
+import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
 export class TwodsixRollSettings {
   bonusDamage:string;
@@ -415,9 +416,9 @@ export function getCustomModifiers(selectedActor:TwodsixActor, characteristic:st
   const characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
   const simpleSkillRef = skill ? `system.skills.` + simplifySkillName(skill.name) : ``;
   const returnObject = [];
-  const customEffects = selectedActor.appliedEffects.filter(eff  => !eff.statuses.has('encumbered') && !eff.statuses.has('wounded'));
+  const customEffects:TwodsixActiveEffect[] = selectedActor.appliedEffects.filter(eff  => !eff.statuses.has('encumbered') && !eff.statuses.has('wounded'));
   for (const effect of customEffects) {
-    for (const change of effect.changes) {
+    for (const change of effect.system.changes) {
       if (change.key === `system.characteristics.${characteristicKey}.mod` || change.key === `system.characteristics.${characteristicKey}.value` || (change.key === simpleSkillRef) && simpleSkillRef) {
         returnObject.push({
           name: effect.name,

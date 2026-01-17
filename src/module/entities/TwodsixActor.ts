@@ -578,7 +578,7 @@ export default class TwodsixActor extends Actor {
       if (game.settings.get('twodsix', 'ruleset') === 'CT') {
         const encumberedEffect:TwodsixActiveEffect = this.effects.find(eff  => eff.statuses.has('encumbered'));
         if (encumberedEffect) {
-          for (const change of encumberedEffect.changes) {
+          for (const change of encumberedEffect.system.changes) {
             const rollKey = change.key.replace('system.', '');
             foundry.utils.mergeObject(rollData, {[rollKey]: foundry.utils.getProperty(this, change.key) - parseInt(change.value)});
           }
