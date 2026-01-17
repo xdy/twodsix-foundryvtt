@@ -46,9 +46,9 @@ export class TwodsixActiveEffect extends ActiveEffect {
       await evaluateEffectStatusImpact(this);
     }
     // A hack to fix a bug in v13
-    if (data.changes?.length === 0) {
-      data.changes.push({});
-    }
+    //if (data.system.changes?.length === 0) {
+    //  data.system.changes.push({});
+    //}
   }
 
   /**
@@ -122,15 +122,15 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
     // Ensure changes exist and are an array
-    if (!data.changes || foundry.utils.getType(data.changes) !== 'Array') {
+    if (!data.system.changes || foundry.utils.getType(data.system.changes) !== 'Array') {
       //console.log("No valid changes found in data.");
       return;
     }
 
     // Calculate differences
     const newChanges = foundry.utils.diffObject(this, data);
-    if (newChanges?.changes) {
-      for (const change of data.changes) {
+    if (newChanges?.system?.changes) {
+      for (const change of data.system.changes) {
         change.phase = this.determinePhase(change);
       }
     }
@@ -183,7 +183,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
       if (!effect.active) {
         continue;
       }
-      for (const change of effect.changes ?? []) {
+      for (const change of effect.system.changes ?? []) {
         if (!change.key || change.phase !== phase) {
           continue;
         }
@@ -294,7 +294,10 @@ async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Prom
   // Determine whether this AE changes could impact encumbrance or wounded status
   // Only consider the AE's configured changes (not its status icons)
   const encumbranceRelevant = changesEncumbranceStat(activeEffect);
-  const woundedRelevant = checkForDamageStat({ effects: [{ changes: activeEffect.changes ?? [] }] }, parentActor.type);
+  const woundedRelevant = checkForDamageStat(
+    { effects: [{ system: activeEffect.system}]},
+    parentActor.type
+  );
 
   // If neither is relevant, skip
   if (!encumbranceRelevant && !woundedRelevant) {
@@ -316,8 +319,8 @@ async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Prom
  * @returns {boolean} Whether the effect could change encumbrance status
  */
 function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
-  if (activeEffect.changes?.length > 0) {
-    for (const change of activeEffect.changes) {
+  if (activeEffect.system.changes?.length > 0) {
+    for (const change of activeEffect.system.changes) {
       if (change.key){
         if (change.key.includes('system.characteristics.strength.value')  ||
         change.key.includes('system.characteristics.strength.current') ||

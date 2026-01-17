@@ -26,7 +26,7 @@
           <span class="item-name centre">{{item.system.shortdescr}}
             {{#if @root/settings.showTraitAE}}
             <ul>
-              {{#each item.effects.contents.[0].changes as |change|}}
+              {{#each item.effects.contents.[0].system.changes as |change|}}
               <li>{{change.key}} {{change.type}} {{change.value}}</li>
               {{/each}}
             </ul>

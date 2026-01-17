@@ -129,12 +129,12 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
           {
             name: game.i18n.localize(TWODSIX.effectType.encumbered),
             img: "systems/twodsix/assets/icons/weight.svg",
-            changes: changeData,
+            system: {changes: changeData},
             statuses: ["encumbered"]
           }
         ]);
-      } else if (changeData[0].value !== aeToKeep.changes[0].value) {
-        await aeToKeep.update({ changes: changeData });
+      } else if (changeData[0].value !== aeToKeep.system.changes[0].value) {
+        await aeToKeep.update({ 'system.changes': changeData });
       }
     }
   });
@@ -267,7 +267,7 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
         name: game.i18n.localize(TWODSIX.effectType.wounded),
         img: "icons/svg/blood.svg",
         tint: tint,
-        changes: [changeData],
+        system: {changes: [changeData]},
         statuses: ['wounded']
       }]);
     } else {
@@ -346,7 +346,7 @@ async function withGuard<T>(guardSet: Set<string>, key: string, fn: () => Promis
 export function checkForDamageStat (update: any, actorType: string): boolean {
   const damageCharacteristics = getDamageCharacteristics(actorType);
   return !!(update.effects?.some((effect: any) =>
-    (effect.changes ?? []).some((change: any) =>
+    (effect.system?.changes ?? []).some((change: any) =>
       damageCharacteristics.some((char: string) => (change?.key ?? '').includes(`characteristics.${char}.`))
     )
   ));
