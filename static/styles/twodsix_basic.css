@@ -960,8 +960,8 @@ span.bgi-charEdit {
 }
 
 .character-characteristics {
-  width: 92%;
-  height: 98%;
+  /*width: 92%;
+  height: 98%;*/
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -970,6 +970,10 @@ span.bgi-charEdit {
   overflow: auto hidden;
   gap: 1ch 0;
   color: inherit !important;
+}
+
+.character-characteristics.wide {
+  gap: 1ch;
 }
 
 .character-characteristics.atom {
@@ -981,11 +985,10 @@ span.bgi-charEdit {
 
 .stat {
   background-size: cover !important;
-  height: 48px;
+  height: 68px;
   width: 61px;
   display: inline-block;
   position: relative;
-  margin-bottom: 1.5em;
 }
 
 .morale {
@@ -1083,6 +1086,7 @@ input.stat-name-table {
   border: none;
   -moz-appearance: textfield;
   appearance: textfield;
+  background: var(--s2d6-background-transparent);
 }
 
 .stat img {
@@ -1102,20 +1106,15 @@ input.stat-name-table {
 }
 
 .special {
-  height: 50px;
+  height: 75px;
   width: 45px;
   background-size: cover;
   position: relative;
-  left: 14em;
-  top: -6.5em;
 }
 
 span.special-name {
   position: relative;
-  top: -2.3em;
-  right: -0.8em;
   font-size: 1.2em;
-  width: 4em;
   cursor: pointer;
 }
 
@@ -1182,30 +1181,20 @@ span.stat-damage-table input {
 
 span.special-ability {
   position: relative;
-  top: -2.9em;
-  left: 0.7em;
-  border: solid;
-  border-width: thin;
-  border-radius: 15%;
+  top: -4em;
+  left: 0.5em;
 }
 
 span.special-modifier {
-  margin: -5px;
   position: relative;
-  left: 1em;
-  top: -4.15em;
-  border: solid;
-  border-width: thin;
-  border-radius: 15%;
+  left: 1.5em;
+  top: -4.7em;
 }
 
 span.special-damage {
   position: relative;
-  top: -3.4em;
-  left: 0.7em;
-  border: solid;
-  border-width: thin;
-  border-radius: 15%;
+  top: -5.3em;
+  left: 0.5em;
 }
 
 svg:hover {
