@@ -909,7 +909,7 @@ export default class TwodsixActor extends Actor {
   }
 
   getDeltaHits(charDiff:any): number {
-    const newCharacteristics = foundry.utils.mergeObject(this.system.characteristics, charDiff);
+    const newCharacteristics = foundry.utils.mergeObject(foundry.utils.duplicate(this.system.characteristics), charDiff);
     const updatedHitValues = this.getCurrentHits(newCharacteristics);
     const deltaHits = this.system.hits.value - updatedHitValues.value;
     //Object.assign(update.system.hits, {lastDelta: deltaHits});
