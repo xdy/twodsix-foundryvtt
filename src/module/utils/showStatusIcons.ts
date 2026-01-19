@@ -130,7 +130,8 @@ export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promis
             name: game.i18n.localize(TWODSIX.effectType.encumbered),
             img: "systems/twodsix/assets/icons/weight.svg",
             system: {changes: changeData},
-            statuses: ["encumbered"]
+            statuses: ["encumbered"],
+            showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
           }
         ]);
       } else if (changeData[0].value !== aeToKeep.system.changes[0].value) {
@@ -268,7 +269,8 @@ async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: 
         img: "icons/svg/blood.svg",
         tint: tint,
         system: {changes: [changeData]},
-        statuses: ['wounded']
+        statuses: ['wounded'],
+        showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
       }]);
     } else {
       const currentEfffect = targetActor.effects.get(currentEffectId);

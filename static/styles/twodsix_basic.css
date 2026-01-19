@@ -3359,6 +3359,7 @@ input[type="text"].color {
   max-height: 3ch;
   background-color: var(--color-cool-4, #302831);
   display: list-item;
+  border-style: solid;
 }
 
 .effects-container {

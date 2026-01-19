@@ -71,8 +71,6 @@ Hooks.once('init', async function () {
     TwodsixRollSettings
   };
 
-  CONFIG.ActiveEffect.legacyTransferral = false;
-  //CONFIG.ActiveEffect.sidebarIcon = "fa-solid fa-person-rays";
   CONFIG.ActiveEffect.phases = {
     initial: { label: "EFFECT.CHANGES.PHASES.initial.label", hint: "EFFECT.CHANGES.PHASES.initial.hint" },
     derived: { label: "EFFECT.CHANGES.PHASES.derived.label", hint: "EFFECT.CHANGES.PHASES.derived.hint" },
