@@ -122,7 +122,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
     // Ensure changes exist and are an array
-    if (!data.system.changes || foundry.utils.getType(data.system.changes) !== 'Array') {
+    if (!data.system?.changes || foundry.utils.getType(data.system?.changes) !== 'Array') {
       //console.log("No valid changes found in data.");
       return;
     }

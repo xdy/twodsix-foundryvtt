@@ -906,7 +906,7 @@ span.bgi-charEdit {
 .bgi-armor input {
   position: relative;
   margin-bottom: -0.5em;
-  width: 3ch;
+  width: 4ch;
   border: none;
 }
 
@@ -3367,6 +3367,7 @@ input[type="text"].color {
   max-height: 3ch;
   background-color: var(--color-cool-4, #302831);
   display: list-item;
+  border-style: solid;
 }
 
 .effects-container {

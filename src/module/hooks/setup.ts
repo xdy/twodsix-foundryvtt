@@ -15,6 +15,8 @@ Hooks.once('setup', async function () {
     thrust: {id: 'thrust', name: 'EFFECT.StatusThrust', img: "systems/twodsix/assets/icons/thrust.svg"},
     "target-lock": {id: 'target-lock', name: 'EFFECT.StatusTargetLock', img: "systems/twodsix/assets/icons/convergence-target.svg"},
     wounded: {id: 'wounded', name: 'EFFECT.StatusWounded', img: "systems/twodsix/assets/icons/blood.svg"},
+    unconscious: {id: 'unconscious', name: 'EFFECT.StatusUnconscious', img: 'icons/svg/unconscious.svg', showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS},
+    dead: {id: 'dead', name: 'EFFECT.StatusDead', img: 'icons/svg/skull.svg', showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS}
   });
   const bleeding = CONFIG.statusEffects.find(se => se.id === 'bleeding');
   if(bleeding) {

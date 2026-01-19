@@ -2017,16 +2017,40 @@
     }
   },
   "EFFECT": {
-   "StatusWounded": "Wounded",
-   "StatusEncumbered": "Encumbered",
-   "StatusDead": "Dead",
-   "StatusUnconscious": "Unconscious",
-   "StatusAiming": "Aiming",
-   "StatusFatigued": "Fatigued",
-   "StatusInCover": "In Cover",
-   "StatusThrust": "Thrust",
-   "StatusInvisible": "Stealthed",
-   "StatusIrradiated": "Irradiated",
-   "StatusTargetLock": "Target Lock"
+    "StatusWounded": "Wounded",
+    "StatusEncumbered": "Encumbered",
+    "StatusDead": "Dead",
+    "StatusUnconscious": "Unconscious",
+    "StatusAiming": "Aiming",
+    "StatusFatigued": "Fatigued",
+    "StatusInCover": "In Cover",
+    "StatusThrust": "Thrust",
+    "StatusInvisible": "Stealthed",
+    "StatusIrradiated": "Irradiated",
+    "StatusTargetLock": "Target Lock",
+    "CHANGES": {
+      "PHASES": {
+        "initial": {
+          "label": "Initial",
+          "hint": "Applied during the initial application phase of active effects."
+        },
+        "derived": {
+          "label": "Derived",
+          "hint": "Applied to derived data after core calculations are performed."
+        },
+        "custom": {
+          "label": "Custom",
+          "hint": "Handled programmatically by system or module custom handlers."
+        },
+        "encumbMax": {
+          "label": "Encumbrance Max",
+          "hint": "Applied when updating an actor's maximum encumbrance."
+        },
+        "final": {
+          "label": "Final",
+          "hint": "Applied during the finalization phase of active effect processing."
+        }
+      }
+    }
   }
 }

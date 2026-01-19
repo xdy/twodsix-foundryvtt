@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import {TwodsixActorBaseData} from "./character-base";
-import { makeValueField, migrateStringToNumber } from "./commonSchemaUtils";
+import { makeValueField, makeSecondaryArmorField, migrateStringToNumber } from "./commonSchemaUtils";
 
 const fields = foundry.data.fields;
 const requiredInteger = { required: true, nullable: false, integer: true };
@@ -100,10 +100,7 @@ export class AnimalData extends TwodsixActorBaseData {
     });
     schema.moraleDM = new fields.StringField({...requiredBlankString});
 
-    schema.secondaryArmor = new fields.SchemaField({
-      value: new fields.NumberField({required: true, integer: true, initial: 0}),
-      protectionTypes: new fields.ArrayField(new fields.StringField({blank: false}))
-    });
+    schema.secondaryArmor = makeSecondaryArmorField();
     return schema;
   }
 }
@@ -119,10 +116,7 @@ export class RobotData extends TwodsixActorBaseData {
     schema.chassis = new fields.StringField({...requiredBlankString});
     schema.techLevel = new fields.NumberField({ ...requiredInteger, initial: 0 });
     schema.operationalTime = new fields.StringField({...requiredBlankString});
-    schema.secondaryArmor = new fields.SchemaField({
-      value: new fields.NumberField({required: true, integer: true, initial: 0}),
-      protectionTypes: new fields.ArrayField(new fields.StringField({blank: false}))
-    });
+    schema.secondaryArmor = makeSecondaryArmorField();
     schema.maxBuildPoints = new fields.NumberField({...requiredInteger, initial: 0});
     return schema;
   }

@@ -51,15 +51,6 @@
         }
       },
       "name": "Battle Dress",
-      "changes": [
-        {
-          "key": "system.characteristics.strength.value",
-          "type": "custom",
-          "phase": "custom",
-          "value": "+@system.characteristics.strength.value",
-          "priority": null
-        }
-      ],
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -84,7 +75,17 @@
       },
       "img": "systems/twodsix/assets/icons/battle-dress.svg",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.strength.value",
+            "type": "custom",
+            "phase": "custom",
+            "value": "+@system.characteristics.strength.value",
+            "priority": null
+          }
+        ]
+      },
       "sort": 0,
       "_key": "!items.effects!Z8BY1RvcnaesvmE9.rGFRveaZoUElSjXq"
     }

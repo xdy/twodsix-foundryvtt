@@ -29,7 +29,20 @@ export function makeResourceField(initialValue:number, initialMax:number, schema
  */
 export function makeValueField(initialValue = 0, schemaOptions: object={}):any {
   return new fields.SchemaField({
-    value: new fields.NumberField({required: true, integer: true, initial: initialValue}),
+    value: new fields.NumberField({required: true, integer: false, initial: initialValue}),
+  }, schemaOptions);
+}
+
+/**
+ * Produce the schema field for a secondary armor block used by animals/robots.
+ * It matches the explicit schema used in `characters.ts` for animals and robots.
+ * @param {number} initialValue
+ * @param {object} schemaOptions
+ */
+export function makeSecondaryArmorField(initialValue = 0, schemaOptions: object={}): any {
+  return new fields.SchemaField({
+    value: new fields.NumberField({required: true, integer: false, initial: initialValue}),
+    protectionTypes: new fields.ArrayField(new fields.StringField({blank: false}))
   }, schemaOptions);
 }
 
