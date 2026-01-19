@@ -238,7 +238,7 @@ function findTable(tableName:string, options?:any): RollTable {
     return null;
   }
   if (!(table instanceof RollTable)) {
-    if (!options?.noWarning){
+    if (!options?.noWarnings){
       sendWarning("TWODSIX.Warnings.typeMismatch", {id: tableName});
     }
     return null;
@@ -250,7 +250,7 @@ function sendWarning(msg, params) {
   if (!params) {
     return ui.notifications.warn(msg, {localize: true});
   } else {
-    return ui.notifications.warn(game.i18n.format(game.i18n.localize(msg), params));
+    return ui.notifications.warn(game.i18n.format(msg, params));
   }
 }
 
