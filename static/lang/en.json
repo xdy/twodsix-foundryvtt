@@ -1800,8 +1800,12 @@
         "choices": {
           "FoundryStandard": "Foundry Standard",
           "TwodsixClassic": "Twodsix Classic",
-          "Western": "Western"
+          "Western": "Western Theme"
         }
+      },
+      "suppressTableWarnings": {
+        "hint": "When enabled, the text-editor enrichers will not show warnings if a referenced Roll Table is missing or is not a RollTable.",
+        "name": "Suppress Table Warnings"
       }
     },
     "Combat": {

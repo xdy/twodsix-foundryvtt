@@ -231,16 +231,13 @@ function displayTable(uuid: string, table:any, tableName: string): string {
  */
 function findTable(tableName:string, options?:any): RollTable {
   const table = game.tables.find(i => i.name.toLowerCase() == tableName.toLowerCase()) || fromUuidSync(tableName);
+  const noWarn = options?.noWarnings ?? game.settings.get('twodsix', 'suppressTableWarnings');
   if (!table) {
-    if (!options?.noWarnings){
-      sendWarning("TWODSIX.Warnings.tableNotFound", {id: tableName});
-    }
+    if (!noWarn) sendWarning("TWODSIX.Warnings.tableNotFound", {id: tableName});
     return null;
   }
   if (!(table instanceof RollTable)) {
-    if (!options?.noWarnings){
-      sendWarning("TWODSIX.Warnings.typeMismatch", {id: tableName});
-    }
+    if (!noWarn) sendWarning("TWODSIX.Warnings.typeMismatch", {id: tableName});
     return null;
   }
   return table;
