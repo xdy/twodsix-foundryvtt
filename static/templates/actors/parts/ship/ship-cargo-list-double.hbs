@@ -7,7 +7,7 @@
   </div>
 </div>
 <div class="grid-columns-double item-list">
-  {{#each allCargo as |item id|}}
+  {{#each container.allCargo as |item id|}}
     <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
         <li class="cargo-stored-double">
@@ -16,7 +16,7 @@
       </ol>
     </div>
   {{/each}}
-  {{#if (twodsix_isOdd allCargo.length)}}
+  {{#if (twodsix_isOdd container.allCargo.length)}}
       <div class="grid-columns-double-row">
         <ol class="ol-no-indent">&nbsp;
           <li class="item components-stored-double" ></li>

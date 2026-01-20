@@ -9,7 +9,7 @@
   </div>
 
   <div class="grid-columns-double item-list">
-    {{#each storage as |item id|}}
+    {{#each container.storage as |item id|}}
     <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
         <li class="storage-stored-double">
@@ -18,10 +18,10 @@
       </ol>
     </div>
     {{/each}}
-    {{#if (twodsix_isOdd storage.length)}}
+    {{#if (twodsix_isOdd container.storage.length)}}
         <div class="grid-columns-double-row">
-          <ol class="ol-no-indent">&nbsp;
-            <li class="item storage-stored-double"></li>
+          <ol class="ol-no-indent"></ol>
+            <li class="storage-stored-double">&nbsp;</li>
           </ol>
         </div>
     {{/if}}
