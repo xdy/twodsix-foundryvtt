@@ -42,7 +42,7 @@
         </div>
         <div class="item-list battle">
           {{#each container.nonCargoForDamage as |item id|}}
-            <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
+            <div class="grid-columns-single-row item draggable" data-item-id="{{item.id}}">
               <ol class="ol-no-indent">
                 <li class="battle-damage">
                   <span class="item-name"><i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i> {{item.name}}</span>
@@ -89,7 +89,7 @@
         <div class="item-list battle">
           {{#each container.nonCargo as |item id|}}
             {{#iff item.system.subtype "===" "armament"}}
-              <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
+              <div class="grid-columns-single-row item draggable" data-item-id="{{item.id}}">
                 <ol class="ol-no-indent">
                   <li class="battle-weapons">
                     <span class="item-name">{{item.name}}{{#if settings.allowDragDropOfListsShip}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i>{{/if}}</span>
@@ -194,7 +194,7 @@
         </div>
         <div class="item-list battle">
           {{#each positionData as |position|}}
-              <div class="grid-columns-single-row item" data-item-id="{{position.id}}">
+              <div class="grid-columns-single-row item draggable" data-item-id="{{position.id}}">
                 <ol class="ol-no-indent">
                   <li class="battle-positions">
                     <a class="item-name position-name" data-action="positionClick">{{position.name}}</a>
@@ -225,7 +225,7 @@
         </div>
         <div class="item-list battle">
           {{#each container.allCargo as |item id|}}
-          <div class="grid-columns-single-row item" data-item-id="{{item.id}}">
+          <div class="grid-columns-single-row item draggable" data-item-id="{{item.id}}">
             <ol class="ol-no-indent">
               <li class="battle-cargo">
                 <span class="item-name">{{item.name}}</span>

@@ -10,7 +10,7 @@
 
   <div class="grid-columns-double item-list">
     {{#each container.storage as |item id|}}
-    <div class="item grid-columns-double-row" data-item-id="{{item.id}}">
+    <div class="item grid-columns-double-row draggable" data-item-id="{{item.id}}">
       <ol class="ol-no-indent">
         <li class="storage-stored-double">
           {{> "systems/twodsix/templates/actors/parts/common/item-storage-row.hbs" item=item}}

@@ -63,8 +63,8 @@
             <span class="item-name-nd" draggable="false">{{localize "TWODSIX.Actor.Skills.JOAT"}}</span>
             <input type="number" value="{{jackOfAllTrades}}" class="joat-skill-input" style="width: 3ch;"/>,
         </span>
-      {{#each container.skillsList as |item id|}}
-              <span class="item" data-item-id="{{item.id}}" style = "display: inline-block;">
+            {{#each container.skillsList as |item id|}}
+              <span class="item draggable" data-item-id="{{item.id}}" style = "display: inline-block;">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">{{item.name}}</span>
                 {{#iff (twodsix_adjustedSkillValue ../actor item) "!==" "&#8212;"}}
                   <input disabled style="width: 3ch;" class= "item-value-edit orange" type="number" value="{{twodsix_adjustedSkillValue ../actor item}}" name="{{concat 'system.skills.' (skillName item.name)}}"/>
@@ -75,7 +75,7 @@
               </span>
       {{/each}}
       {{#if settings.hideUntrainedSkills}}
-      <span class="item" data-item-id="{{untrainedSkill.id}}">
+      <span class="item draggable" data-item-id="{{untrainedSkill.id}}">
           <text class="item-name-nd rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll" draggable="false"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value="{{untrainedSkill.system.value}}" {{#if untrainedSkill.system.value}}name="{{concat 'system.skills.' (skillName untrainedSkill.name)}}"{{/if}} readonly/>
       </span>
@@ -87,8 +87,8 @@
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Items.Armor"}}</span>
       {{#unless limited}}
       <div class="npc-list">
-         {{#each container.armor as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+        {{#each container.armor as |item id|}}
+          <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}} </span>
               <span class="item-controls centre">
                 <a class="item-control item-toggle" data-tooltip='{{localize (concat "TWODSIX.Actor.Items.LocationState." item.system.equipped)}}' data-action="toggleItem">
@@ -107,8 +107,8 @@
       {{#unless limited}}
       <div class="npc-list">
         <span >
-         {{#each container.weapon as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+        {{#each container.weapon as |item id|}}
+          <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="performAttack">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 6}}</span>
               {{#each item.system.consumableData as |consumableData|}}
                 {{#iff ../system.useConsumableForAttack '===' consumableData._id}}
@@ -135,7 +135,7 @@
       <div class="npc-list">
         <span >
          {{#each container.trait as |item id|}}
-          <span class="item" data-item-id="{{item.id}}" >
+          <span class="item draggable" data-item-id="{{item.id}}" >
               <span class="item-name showChat" data-action="showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
 
@@ -158,7 +158,7 @@
       <div class="npc-list">
         <span >
         {{#each container.spell as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+          <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name showChat" data-action="showChat">{{item.name}} </span>
               <span class="item-name centre rollable" data-action="skillTalentRoll">{{item.system.value}}</span>{{#unless @last}}, {{/unless}}
             </span>

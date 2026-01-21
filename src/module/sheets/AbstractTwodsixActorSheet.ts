@@ -25,7 +25,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     return this.actor.type;
   }
 
-
   static DEFAULT_OPTIONS = {
     actions: {
       itemCreate: this._onItemCreate,
@@ -149,26 +148,13 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     //Handle update of doc reference
     this.element.querySelectorAll(`[name="reference"]`)?.forEach( el => el.addEventListener('change', changeReference.bind(this)));
 
-    /****************
-     *
-     * Drag Drop
-     *
-     ****************/
+    // Templates should include `draggable` on item/effect rows so core DragDrop binds.
+    // Per-selector DragDrop bindings removed in favor of template changes.
+  }
 
-    //need to augment DragDrop listener as only GM and droppable class is allowed in core ActorSheetV2
-    if (game.user.isOwner && this.options.dragDrop) {
-      (<object[]>this.options.dragDrop).forEach( (selector:{dragSelector: string, dropSelector:string}) => {
-        new foundry.applications.ux.DragDrop({
-          dragSelector: selector.dragSelector,
-          dropSelector: selector.dropSelector,
-          callbacks: {
-            dragstart: this._onDragStart.bind(this),
-            dragover: this._onDragOver.bind(this),
-            drop: this._onDrop.bind(this)
-          }
-        }).bind(this.element);
-      });
-    }
+  /** @override */
+  _canDragDrop(/*selector*/): boolean {
+    return this.isEditable && !!this.actor?.isOwner;
   }
 
   /**
@@ -279,37 +265,46 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
   /**
    * An event that occurs when a drag workflow begins for a draggable item on the sheet.
-   * @param {DragEvent} event       The initiating drag start event
+   * @param {DragEvent} ev      The initiating drag start event
    * @returns {Promise<void>}
    * @protected
    */
   _onDragStart(ev:DragEvent):void {
-    let li = ev.currentTarget.closest('.item');
+    let li = (ev.currentTarget as HTMLElement)?.closest('.item');
     let dragData:any;
     if (li?.dataset) {
-      if ( "link" in event.target.dataset ) {
+      if ( "link" in (ev.target as HTMLElement).dataset ) {
         return;
       }
 
       // Owned Items
       if ( li.dataset.itemId ) {
         const item = this.actor.items.get(li.dataset.itemId);
-        dragData = item.toDragData();
+        dragData = item?.toDragData();
       }
 
     } else {
-      li = ev.currentTarget.closest('.effect');
+      li = (ev.currentTarget as HTMLElement)?.closest('.effect');
       // Active Effect
-      if ( li?.dataset.uuid ) {
+      if ( li?.dataset?.uuid ) {
         const effect = fromUuidSync(li.dataset.uuid);
-        dragData = effect.toDragData();
+        dragData = effect?.toDragData();
       }
     }
-    // Set data transfer
-    if ( !dragData ) {
+
+    // If we don't have custom drag data, delegate to the base implementation
+    if (!dragData) {
+      console.log("Reverting to base dragStart behavior");
+      try {
+        super._onDragStart(ev);
+      } catch (err) {
+        console.log(err);
+      }
       return;
     }
-    event.dataTransfer.setData("text/plain", JSON.stringify(dragData));
+
+    // Set data transfer
+    ev.dataTransfer?.setData("text/plain", JSON.stringify(dragData));
   }
 
   /**
