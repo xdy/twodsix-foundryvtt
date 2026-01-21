@@ -42,7 +42,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onCreate(data: object, options: object, userId: string):void {
     await super._onCreate(data, options, userId);
-    if (game.userId === userId && this.target) {
+    if (game.userId === userId && this.target?.documentName === "Actor") {
       await evaluateEffectStatusImpact(this);
     }
     // A hack to fix a bug in v13
@@ -96,8 +96,11 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   determinePhase(change: any): string {
     // Safeguard against undefined target
-    const actor: TwodsixActor | undefined = this.target;
-    const derivedKeys = actor?.getDerivedDataKeys() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
+    let actor: TwodsixActor | TwodsixItem | undefined = this.target;
+    if (actor?.documentName === 'Item' ) {
+      actor = this.actor;
+    }
+    const derivedKeys = actor?.getDerivedDataKeys?.() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
 
     if (change.key === "system.encumbrance.max") {
       return "encumbMax";
@@ -147,7 +150,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onUpdate(changed: object, options: object, userId: string):Promise<void> {
     await super._onUpdate(changed, options, userId);
-    if (game.userId === userId && this.target) {
+    if (game.userId === userId && this.target?.documentName === "Actor") {
       await evaluateEffectStatusImpact(this);
     }
   }
@@ -162,7 +165,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onDelete(options: object, userId: string): Promise<void> {
     await super._onDelete(options, userId);
-    if (game.userId === userId && this.target) {
+    if (game.userId === userId && this.target?.documentName === "Actor") {
       await evaluateEffectStatusImpact(this);
     }
 
@@ -282,7 +285,10 @@ export class TwodsixActiveEffect extends ActiveEffect {
 async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Promise<void> {
   // Resolve the actor defensively: prefer the modern `target`, fall back to `parent` for compatibility
   const parentActor: TwodsixActor | undefined = activeEffect.target;
-  if (!parentActor) return;
+
+  // Only proceed if the resolved target is an Actor (not an Item)
+  if (parentActor?.documentName !== 'Actor') return;
+
   const encumbranceEnabled = game.settings.get('twodsix', 'useEncumbranceStatusIndicators');
   const woundedEnabled = game.settings.get('twodsix', 'useWoundedStatusIndicators');
   const encumbranceApplicable = encumbranceEnabled && parentActor.type === 'traveller';
