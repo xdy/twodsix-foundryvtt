@@ -25,7 +25,7 @@
     <section class="item-list">
       {{#each container.weapon as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.weapon item.system.equipped)}}
-      <div class="item gear" data-item-id="{{item.id}}">
+      <div class="item gear draggable" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
           <li class="flexrow">
             <span class="items-weapons">
@@ -53,7 +53,7 @@
             </span>
           </li>
           <!-- Automatic fire buttons -->
-          <li class="item flexrow" data-item-id="{{item.id}}">
+          <li class="item flexrow draggable" data-item-id="{{item.id}}">
             {{#if ../settings.useCEAutofireRules}}
               {{#each (twodsix_burstModes item) as |mode|}}
                 <span class="items-weapons-abilities">
@@ -136,7 +136,7 @@
     <section class="item-list">
       {{#each container.armor as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.armor item.system.equipped)}}
-      <div class="item gear" data-item-id="{{item.id}}">
+      <div class="item gear draggable" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
           <li class="flexrow" >
             <span class="items-armor">
@@ -195,7 +195,7 @@
     <section class="item-list">
       {{#each container.augment as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.augment item.system.equipped)}}
-      <div class="item gear" data-item-id="{{item.id}}">
+      <div class="item gear draggable" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
           <li class="flexrow">
             <span class="items-augments">
@@ -238,7 +238,7 @@
       <section class="item-list">
         {{#each container.equipmentAndTools as |item id|}}
         {{#unless (twodsix_hideItem ../system.hideStoredItems.equipment item.system.equipped)}}
-        <div class="item gear" data-item-id="{{item.id}}">
+        <div class="item gear draggable" data-item-id="{{item.id}}">
           <ol class="ol-no-indent">
             <li class="flexrow">
                 <span class="items-equipment">
@@ -285,7 +285,7 @@
       <section class="item-list">
         {{#each container.storageAndJunk as |item id|}}
         {{#unless (twodsix_hideItem ../system.hideStoredItems.junk item.system.equipped)}}
-        <div class="item gear" data-item-id="{{item.id}}">
+        <div class="item gear draggable" data-item-id="{{item.id}}">
           <ol class="ol-no-indent">
             <li class="flexrow">
                 <span class="items-armor">
@@ -337,7 +337,7 @@
       {{#each container.consumable as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.consumable item.system.equipped)}}
         {{#unless item.system.isAttachment}}
-        <div class="item gear" data-item-id="{{item.id}}">
+        <div class="item gear draggable" data-item-id="{{item.id}}">
               <ol class="ol-no-indent">
                 <li class="flexrow">
                     <span class="items-consumable">
@@ -384,7 +384,7 @@
       {{#each container.consumable as |item id|}}
       {{#unless (twodsix_hideItem ../system.hideStoredItems.attachment item.system.equipped)}}
       {{#if item.system.isAttachment}}
-      <div class="item gear" data-item-id="{{item.id}}">
+      <div class="item gear draggable" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
           <li class="flexrow" >
               <span class="items-consumable">
