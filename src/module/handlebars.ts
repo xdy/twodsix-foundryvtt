@@ -81,7 +81,12 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_showConsumable', (item: TwodsixItem) => {
-    return ["traveller", "animal", "robot"].includes(item.type);
+    if (!item) return false;
+    // Only valid for items that are owned by an actor
+    const actorType = item.actor?.type;
+    if (!actorType) return false;
+    // Show consumable UI only when the owning actor is a traveller, animal or robot
+    return ["traveller", "animal", "robot"].includes(actorType);
   });
 
   Handlebars.registerHelper('twodsix_refillText', (subtype, quantity) => {
