@@ -55,7 +55,7 @@
           {{#if settings.useShipAutoCalc}}
             <input readonly class="power-total" type="number" value="{{actor.system.calcShipStats.power.max}}" placeholder="0"/>
           {{else}}
-            <input type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0"/>
+            <input class="power-total" type="number" value="{{actor.system.shipStats.power.max}}" name="system.shipStats.power.max" placeholder="0"/>
           {{/if}}
           <span class="power-max">{{localize "TWODSIX.Ship.MAX"}}</span>
         </div>
