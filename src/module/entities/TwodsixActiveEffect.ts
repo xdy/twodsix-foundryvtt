@@ -42,7 +42,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onCreate(data: object, options: object, userId: string):void {
     await super._onCreate(data, options, userId);
-    if (game.userId === userId && this.target?.documentName === "Actor") {
+    if (game.userId === userId && this.modifiesActor) {
       await evaluateEffectStatusImpact(this);
     }
     // A hack to fix a bug in v13
@@ -150,7 +150,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onUpdate(changed: object, options: object, userId: string):Promise<void> {
     await super._onUpdate(changed, options, userId);
-    if (game.userId === userId && this.target?.documentName === "Actor") {
+    if (game.userId === userId && this.modifiesActor) {
       await evaluateEffectStatusImpact(this);
     }
   }
@@ -165,7 +165,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   async _onDelete(options: object, userId: string): Promise<void> {
     await super._onDelete(options, userId);
-    if (game.userId === userId && this.target?.documentName === "Actor") {
+    if (game.userId === userId && this.modifiesActor) {
       await evaluateEffectStatusImpact(this);
     }
 
@@ -283,11 +283,10 @@ export class TwodsixActiveEffect extends ActiveEffect {
  * @returns {Promise<void>}
  */
 async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Promise<void> {
-  // Resolve the actor defensively: prefer the modern `target`, fall back to `parent` for compatibility
-  const parentActor: TwodsixActor | undefined = activeEffect.target;
-
-  // Only proceed if the resolved target is an Actor (not an Item)
-  if (parentActor?.documentName !== 'Actor') return;
+  // Only proceed if the ActiveEffect is actually modifying an Actor
+  if (!activeEffect.modifiesActor) return;
+  // Resolve the actor defensively: prefer the modern `target`
+  const parentActor: TwodsixActor | undefined = activeEffect.target as TwodsixActor | undefined;
 
   const encumbranceEnabled = game.settings.get('twodsix', 'useEncumbranceStatusIndicators');
   const woundedEnabled = game.settings.get('twodsix', 'useWoundedStatusIndicators');
