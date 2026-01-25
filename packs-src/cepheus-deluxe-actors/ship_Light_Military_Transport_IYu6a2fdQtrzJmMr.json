@@ -43,8 +43,8 @@
     "isMassProduced": true,
     "reqPower": {
       "systems": 0,
-      "m-drive": 0,
-      "j-drive": 0,
+      "mDrive": 0,
+      "jDrive": 0,
       "sensors": 0,
       "weapons": 0
     },
