@@ -284,14 +284,19 @@ export class TwodsixActiveEffect extends ActiveEffect {
  */
 async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Promise<void> {
   // Only proceed if the ActiveEffect is actually modifying an Actor
-  if (!activeEffect.modifiesActor) return;
-  // Resolve the actor defensively: prefer the modern `target`
-  const parentActor: TwodsixActor | undefined = activeEffect.target as TwodsixActor | undefined;
+  if (!activeEffect.modifiesActor) {
+    return;
+  }
+
+  const targetActor: TwodsixActor = activeEffect.target;
+  if (!targetActor || targetActor?.documentName !== "Actor") {
+    return;
+  }
 
   const encumbranceEnabled = game.settings.get('twodsix', 'useEncumbranceStatusIndicators');
   const woundedEnabled = game.settings.get('twodsix', 'useWoundedStatusIndicators');
-  const encumbranceApplicable = encumbranceEnabled && parentActor.type === 'traveller';
-  const woundedApplicable = woundedEnabled && ["traveller", "animal", "robot"].includes(parentActor.type);
+  const encumbranceApplicable = encumbranceEnabled && targetActor.type === 'traveller';
+  const woundedApplicable = woundedEnabled && ["traveller", "animal", "robot"].includes(targetActor.type);
   if (!encumbranceApplicable && !woundedApplicable) {
     return;
   }
@@ -301,7 +306,7 @@ async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Prom
   const encumbranceRelevant = changesEncumbranceStat(activeEffect);
   const woundedRelevant = checkForDamageStat(
     { effects: [{ system: activeEffect.system}]},
-    parentActor.type
+    targetActor.type
   );
 
   // If neither is relevant, skip
@@ -314,7 +319,7 @@ async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Prom
   const encumbranceCheck = encumbranceApplicable && encumbranceRelevant;
   const woundedCheck = woundedApplicable && woundedRelevant;
   if (encumbranceCheck || woundedCheck) {
-    await applyBatchedStatusEffects(parentActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
+    await applyBatchedStatusEffects(targetActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
   }
 }
 

@@ -59,8 +59,8 @@ export class ShipData extends TwodsixVehicleBaseData {
     });
     schema.reqPower = new fields.SchemaField({
       systems: new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      "m-drive": new fields.NumberField({ ...requiredInteger, initial: 0 }),
-      "j-drive": new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      mDrive: new fields.NumberField({ ...requiredInteger, initial: 0 }),
+      jDrive: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       sensors: new fields.NumberField({ ...requiredInteger, initial: 0 }),
       weapons: new fields.NumberField({ ...requiredInteger, initial: 0 })
     });
