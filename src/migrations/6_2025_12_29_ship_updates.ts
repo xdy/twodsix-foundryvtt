@@ -32,7 +32,7 @@ async function migrateShipData(actor: TwodsixActor): Promise<void> {
     }
 
     // Normalize legacy reqPower keys from "m-drive"/"j-drive" to camelCase mDrive/jDrive
-    if (actor.system?.reqPower && typeof actor.system.reqPower === 'object') {
+    if (actor.system.reqPower && typeof actor.system.reqPower === 'object') {
       const rp = actor.system.reqPower;
       let changed = false;
       const newReqPower = foundry.utils.deepClone(rp);
