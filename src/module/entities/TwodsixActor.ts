@@ -1395,7 +1395,9 @@ export default class TwodsixActor extends Actor {
           "system.encumbrance.value",
           "system.primaryArmor.value",
           "system.secondaryArmor.value",
-          "system.radiationProtection.value"
+          "system.radiationProtection.value",
+          "system.conditions.encumberedEffect",
+          "system.conditions.woundedEffect"
         );
       }
     }
