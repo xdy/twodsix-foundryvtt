@@ -67,7 +67,13 @@ export class TwodsixActiveEffect extends ActiveEffect {
     if (allowed === false) {
       return false;
     }
-    this.updatePhases(data, options, user);
+    const oldChanges = foundry.utils.duplicate(data.system.changes);
+    if (oldChanges) {
+      this.updatePhases(data, options, user);
+      if (!foundry.utils.equals(oldChanges, data.system.changes)) {
+        this.updateSource({"system.changes": data.system.changes});
+      }
+    }
   }
   /**
    * Perform preliminary operations before a Document of this type is updated.
@@ -100,7 +106,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
     if (actor?.documentName === 'Item' ) {
       actor = this.actor;
     }
-    const derivedKeys = actor?.getDerivedDataKeys?.() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
+    const derivedKeys = actor?.getDerivedDataKeys?.() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection.", "conditions.encumberedEffect", "conditions.woundedEffect"];
 
     if (change.key === "system.encumbrance.max") {
       return "encumbMax";
