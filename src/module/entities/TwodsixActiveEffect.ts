@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { stackArmorValues } from "../utils/actorDamage";
-import { applyBatchedStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
+import { applyAllStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
 
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
@@ -67,7 +67,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
     if (allowed === false) {
       return false;
     }
-    const oldChanges = foundry.utils.duplicate(data.system.changes);
+    const oldChanges = foundry.utils.duplicate(data?.system?.changes ?? []);
     if (oldChanges) {
       this.updatePhases(data, options, user);
       if (!foundry.utils.equals(oldChanges, data.system.changes)) {
@@ -325,7 +325,7 @@ async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Prom
   const encumbranceCheck = encumbranceApplicable && encumbranceRelevant;
   const woundedCheck = woundedApplicable && woundedRelevant;
   if (encumbranceCheck || woundedCheck) {
-    await applyBatchedStatusEffects(targetActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
+    await applyAllStatusEffects(targetActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
   }
 }
 

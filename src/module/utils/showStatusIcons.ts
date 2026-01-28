@@ -7,329 +7,66 @@ import { TWODSIX } from "../config";
 import { getDamageCharacteristics } from "./actorDamage";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
 
-// Track which actors have encumbrance updates in progress to prevent concurrent modifications
-const encumbranceUpdateInProgress = new Set<string>();
-
-// Track which actors have wounded state updates in progress to prevent concurrent modifications
-const woundedStateUpdateInProgress = new Set<string>();
-
-// Track per-status updates to avoid duplicate unconscious/etc. during rapid changes
-const conditionUpdateInProgress = new Set<string>();
+// =====================
+// 1. Main API (Exports)
+// =====================
 
 /**
- * Apply wounded and encumbered effects in a batched manner to reduce redundant updates.
- * @param {TwodsixActor} selectedActor The actor to update
- * @param {object} options Flags for which effects to apply
+ * Batch apply all relevant status effects (encumbered, wounded, etc.) to the actor in a single update cycle.
+ * Uses modular helpers to collect changes, then applies them in a single batch.
+ * @param {TwodsixActor} actor The actor to update
+ * @param {object} options Flags for which effects to check (default: all)
  * @param {boolean} options.encumbrance Whether to check encumbrance
  * @param {boolean} options.wounded Whether to check wounded
- * @public
  */
-export async function applyBatchedStatusEffects(selectedActor: TwodsixActor, { encumbrance = false, wounded = false }: { encumbrance: boolean; wounded: boolean; } = {}): Promise<void> {
-  // Avoid re-entrancy: if actor is already applying status effects, skip.
-  if (selectedActor._applyingStatusEffects) return;
-  // Set a flag to prevent recursive status checks
-  selectedActor._applyingStatusEffects = true;
+export async function applyAllStatusEffects(
+  actor: TwodsixActor,
+  { encumbrance = true, wounded = true }: { encumbrance?: boolean; wounded?: boolean } = {}
+): Promise<void> {
+  if (actor._applyingStatusEffects) {
+    return;
+  }
+  actor._applyingStatusEffects = true;
   try {
+    let create: any[] = [], update: any[] = [], del: string[] = [];
     if (encumbrance) {
-      await applyEncumberedEffect(selectedActor);
+      const changes = await getEncumberedEffectChanges(actor);
+      create = create.concat(changes.create);
+      update = update.concat(changes.update);
+      del = del.concat(changes.delete);
     }
     if (wounded) {
-      await applyWoundedEffect(selectedActor);
+      const changes = await getWoundedEffectChanges(actor);
+      create = create.concat(changes.create);
+      update = update.concat(changes.update);
+      del = del.concat(changes.delete);
     }
+    const promises = [];
+    const suppressRender = { render: false };
+    if (create.length) {
+      promises.push(actor.createEmbeddedDocuments("ActiveEffect", create, suppressRender));
+    }
+    if (update.length) {
+      promises.push(actor.updateEmbeddedDocuments("ActiveEffect", update, suppressRender));
+    }
+    if (del.length) {
+      promises.push(actor.deleteEmbeddedDocuments("ActiveEffect", del, suppressRender));
+    }
+    await Promise.all(promises);
+  } catch (error) {
+    console.error("Error applying status effects:", error);
   } finally {
-    selectedActor._applyingStatusEffects = false;
-  }
-}
-
-/**
- * Determine whether wounded effect applies to actor.  Update encumbered AE & tint, if necessary.
- * @param {TwodsixActor} selectedActor  The actor to check
- * @public
- */
-export async function applyWoundedEffect(selectedActor: TwodsixActor): Promise<void> {
-  const tintToApply = getIconTint(selectedActor);
-  const oldWoundState = selectedActor.effects.find(eff => eff.statuses.has("wounded"));
-  const isCurrentlyDead = selectedActor.effects.find(eff => eff.statuses.has("dead"));
-
-  if (!tintToApply) {
-    if (isCurrentlyDead) {
-      await setConditionState('dead', selectedActor, false);
+    actor._applyingStatusEffects = false;
+    // Manually refresh the actor sheet after all changes to avoid flicker from multiple renders
+    if (actor.sheet) {
+      actor.sheet.render(true);
     }
-    if (oldWoundState) {
-      await setWoundedState(selectedActor, false, tintToApply);
-    }
-  } else {
-    if (tintToApply === TWODSIX.DAMAGECOLORS.deadTint) {
-      if (!isCurrentlyDead) {
-        await setConditionState('dead', selectedActor, true);
-      }
-      if (oldWoundState) {
-        await setWoundedState(selectedActor, false, tintToApply);
-      }
-      await setConditionState('unconscious', selectedActor, false);
-    } else {
-      if (isCurrentlyDead) {
-        await setConditionState('dead', selectedActor, false);
-      }
-      if (selectedActor.type !== 'animal'  && selectedActor.type !== 'robot' && !isCurrentlyDead /*&& oldWoundState?.tint.css !== TWODSIX.DAMAGECOLORS.seriousWoundTint*/) {
-        await checkUnconsciousness(selectedActor, oldWoundState, tintToApply);
-      }
-      if (tintToApply !== oldWoundState?.tint.css) {
-        await setWoundedState(selectedActor, true, tintToApply);
+    // Refresh all tokens for this actor to update overlays/effects
+    if (actor.getActiveTokens) {
+      for (const token of actor.getActiveTokens(true)) {
+        token.refresh();
       }
     }
-  }
-}
-
-/**
- * Determine whether encumbered effect applies to actor.  Update encumbered AE, if necessary.
- * @param {TwodsixActor} selectedActor  The actor to check
- * @public
- */
-export async function applyEncumberedEffect(selectedActor: TwodsixActor): Promise<void> {
-  await withGuard(encumbranceUpdateInProgress, selectedActor.uuid, async () => {
-    let state = false;
-    let ratio = 0;
-    let aeToKeep: TwodsixActiveEffect | undefined = undefined;
-    const ruleset = game.settings.get('twodsix', 'ruleset');
-    const encumbranceFraction = parseFloat(game.settings.get('twodsix', 'encumbranceFraction'));
-    const encumbranceModifier = game.settings.get('twodsix', 'encumbranceModifier');
-    const maxEncumbrance = selectedActor.system.encumbrance.max; //selectedActor.getMaxEncumbrance()
-
-    //Determined whether encumbered if not dead
-    if (selectedActor.system.hits.value > 0) {
-      if (maxEncumbrance === 0 && selectedActor.system.encumbrance.value > 0) {
-        state = true;
-        ratio = 1;
-      } else if (maxEncumbrance > 0) {
-        ratio = /*selectedActor.getActorEncumbrance()*/ selectedActor.system.encumbrance.value / maxEncumbrance;
-        state = (ratio > encumbranceFraction); //remove await
-      }
-    }
-
-    // Delete encumbered AE's if unneeded or more than one
-    const currentEncumberedEffects = selectedActor.effects.filter(eff => eff.statuses.has('encumbered'));
-    if (currentEncumberedEffects.length > 0) {
-      if (state === true) {
-        aeToKeep = currentEncumberedEffects.pop();
-      }
-      if (currentEncumberedEffects.length > 0) {
-        const idList = currentEncumberedEffects.map(i => i.id);
-        await selectedActor.deleteEmbeddedDocuments("ActiveEffect", idList);
-      }
-    }
-
-    //Define AE if actor is encumbered
-    if (state === true) {
-      const modifier: string = getEncumbranceModifier(ratio, encumbranceFraction, encumbranceModifier, ruleset).toString();
-      const changeData = buildEncumbranceChangeData(ruleset, modifier);
-
-      if (!aeToKeep) {
-        await selectedActor.createEmbeddedDocuments("ActiveEffect", [
-          {
-            name: game.i18n.localize(TWODSIX.effectType.encumbered),
-            img: "systems/twodsix/assets/icons/weight.svg",
-            system: {changes: changeData},
-            statuses: ["encumbered"],
-            showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
-          }
-        ]);
-      } else if (changeData[0].value !== aeToKeep.system.changes[0].value) {
-        await aeToKeep.update({ 'system.changes': changeData });
-      }
-    }
-  });
-}
-
-/**
- * Determine whether actor becomes unconscious based on ruleset. Depending on ruleset, may make endurance roll.
- * @param {TwodsixActor} selectedActor  The actor to check
- * @param {TwodsixActiveEffect | undefined} oldWoundState The current wounded AE for actor
- * @param {string} tintToApply The wounded state tint to be applied (the updated tint)
- */
-async function checkUnconsciousness(selectedActor: TwodsixActor, oldWoundState: TwodsixActiveEffect | undefined, tintToApply: string): Promise<void> {
-  const isAlreadyUnconscious = selectedActor.effects.some(eff => eff.statuses.has('unconscious'));
-  const isAlreadyDead = selectedActor.effects.some(eff => eff.statuses.has('dead'));
-  if (isAlreadyUnconscious || isAlreadyDead) {
-    return;
-  }
-
-  const rulesSet = game.settings.get('twodsix', 'ruleset');
-
-  if (['CE', 'AC', 'CU', 'OTHER', "MGT2E", "RIDER"].includes(rulesSet)) {
-    await handleCEStyleUnconscious(selectedActor);
-  } else if (rulesSet === 'CT') {
-    await handleCTUnconscious(selectedActor, oldWoundState, tintToApply);
-  } else if (oldWoundState?.tint.css !== TWODSIX.DAMAGECOLORS.seriousWoundTint && tintToApply === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-    await handleSeriousWoundUnconscious(selectedActor, rulesSet);
-  }
-}
-
-async function handleCEStyleUnconscious(selectedActor: TwodsixActor): Promise<void> {
-  if (isUnconsciousCE(<Traveller>selectedActor.system)) {
-    await setConditionState('unconscious', selectedActor, true);
-  }
-}
-
-async function handleCTUnconscious(selectedActor: TwodsixActor, oldWoundState: TwodsixActiveEffect | undefined, tintToApply: string): Promise<void> {
-  if (!oldWoundState && [TWODSIX.DAMAGECOLORS.minorWoundTint, TWODSIX.DAMAGECOLORS.seriousWoundTint].includes(tintToApply)) {
-    await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
-  }
-}
-
-async function handleSeriousWoundUnconscious(selectedActor: TwodsixActor, rulesSet: string): Promise<void> {
-  if (['CEQ', 'CEATOM', 'BARBARIC'].includes(rulesSet)) {
-    await setConditionState('unconscious', selectedActor, true); // Automatic unconsciousness or out of combat
-    return;
-  }
-
-  const failedRoll = await rollSeriousWoundUnconscious(selectedActor);
-  if (failedRoll) {
-    await setConditionState('unconscious', selectedActor, true);
-  }
-}
-
-async function rollSeriousWoundUnconscious(selectedActor: TwodsixActor): Promise<boolean> {
-  const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target === 8); //always 8+
-  const returnRoll = await selectedActor.characteristicRoll({
-    rollModifiers: {characteristic: 'END'},
-    difficulty: setDifficulty,
-    extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesUncRoll")
-  }, false);
-  return !!(returnRoll && returnRoll.effect < 0);
-}
-
-/**
- * Toggles an effect status/condition on an actor.
- * @param {string} effectStatus status/condition name to change
- * @param {TwodsixActor} targetActor  The actor to update
- * @param {boolean} state Whether the status is enabled
- */
-async function setConditionState(effectStatus: string, targetActor: TwodsixActor, state: boolean): Promise<void> {
-  const statusKey = `${targetActor.uuid}::${effectStatus}`;
-
-  await withGuard(conditionUpdateInProgress, statusKey, async () => {
-    const existingEffect = await dedupeStatusEffects(targetActor, effectStatus);
-    const targetEffect = CONFIG.statusEffects[effectStatus] || CONFIG.statusEffects.find(statusEffect => (statusEffect.id === effectStatus));
-    if (!targetEffect) {
-      return;
-    }
-
-    const needsChange = (existingEffect !== undefined) !== state;
-    if (!needsChange) {
-      return;
-    }
-
-    const toggleOptions = effectStatus === 'dead'
-      ? {active: state, overlay: false}
-      : {active: state};
-
-    await targetActor.toggleStatusEffect(targetEffect.id, toggleOptions);
-  });
-}
-
-/**
- * Determine whether wounded effect applies to actor.  Update wounded AE, if necessary.
- * @param {TwodsixActor} targetActor  The actor to check
- * @param {boolean} state whether wounded effect applies
- * @param {string} tint The wounded tint color (as a hex code string).  Color indicates the severity of wounds. TWODSIX.DAMAGECOLORS.minorWoundTint and TWODSIX.DAMAGECOLORS.seriousWoundTint
- */
-async function setWoundedState(targetActor: TwodsixActor, state: boolean, tint: string): Promise<void> {
-  await withGuard(woundedStateUpdateInProgress, targetActor.uuid, async () => {
-    const existingWound = await dedupeStatusEffects(targetActor, "wounded");
-    const currentEffectId = existingWound?.id ?? "";
-    // Remove effect if state false
-    if (!state) {
-      if (currentEffectId) {
-        await targetActor.deleteEmbeddedDocuments("ActiveEffect", [currentEffectId]);
-      }
-      return;
-    }
-
-    //Set effect if state true
-    let woundModifier = 0;
-    switch (tint) {
-      case TWODSIX.DAMAGECOLORS.minorWoundTint:
-        woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
-        break;
-      case TWODSIX.DAMAGECOLORS.seriousWoundTint:
-        woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
-        break;
-    }
-    let changeData = {}; //AC has a movement penalty not roll penalty
-    if ( ['AC', 'CE'].includes(game.settings.get('twodsix', 'ruleset')) && tint === TWODSIX.DAMAGECOLORS.seriousWoundTint) {
-      changeData = { key: "system.movement.walk", type: "override", phase: "initial", value: 1.5 };
-    } else {
-      changeData = { key: "system.conditions.woundedEffect", type: "add", phase: "derived", value: woundModifier.toString() };
-    }
-    //
-    if (!currentEffectId) {
-      await targetActor.createEmbeddedDocuments("ActiveEffect", [{
-        name: game.i18n.localize(TWODSIX.effectType.wounded),
-        img: "icons/svg/blood.svg",
-        tint: tint,
-        system: {changes: [changeData]},
-        statuses: ['wounded'],
-        showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
-      }]);
-    } else {
-      const currentEfffect = targetActor.effects.get(currentEffectId);
-      if (currentEfffect.tint !== tint) {
-        await targetActor.updateEmbeddedDocuments('ActiveEffect', [{ _id: currentEffectId, tint: tint, changes: [changeData] }]);
-      }
-    }
-  });
-}
-
-/**
- * Remove duplicate ActiveEffects that share the same status on an actor.
- * Keeps the first matching ActiveEffect and removes any additional duplicates.
- * Returns the surviving ActiveEffect (or undefined if none were present).
- *
- * This helps ensure there is at most one AE with the given status and
- * prevents concurrently-created duplicates from lingering.
- *
- * @param {TwodsixActor} actor - The actor whose ActiveEffects will be scanned.
- * @param {string} statusId - The status identifier to deduplicate (e.g. 'wounded').
- * @returns {Promise<TwodsixActiveEffect|undefined>} The kept ActiveEffect or undefined.
- */
-async function dedupeStatusEffects(actor: TwodsixActor, statusId: string): Promise<TwodsixActiveEffect | undefined> {
-  const matches = actor.effects.filter(eff => eff.statuses.has(statusId));
-  if (matches.length === 0) {
-    return undefined;
-  }
-  const [keep, ...dupes] = matches;
-  if (dupes.length > 0) {
-    const ids = dupes.map(eff => eff.id).filter(Boolean);
-    if (ids.length) {
-      await actor.deleteEmbeddedDocuments("ActiveEffect", ids);
-    }
-  }
-  return keep;
-}
-
-/**
- * Execute an async function while preventing concurrent executions for the same key.
- * If the provided `guardSet` already contains `key`, the call is skipped and
- * `undefined` is returned. Otherwise `key` is added to `guardSet` for the
- * duration of `fn` and removed afterwards (even if `fn` throws).
- *
- * @template T
- * @param {Set<string>} guardSet - A Set tracking in-progress keys (per-concern guards).
- * @param {string} key - The unique key to guard (e.g. actor UUID or `${actorUUID}::status`).
- * @param {() => Promise<T>} fn - The async function to execute while guarded.
- * @returns {Promise<T|undefined>} The result of `fn`, or `undefined` if the call was skipped due to an existing guard.
- */
-async function withGuard<T>(guardSet: Set<string>, key: string, fn: () => Promise<T>): Promise<T | undefined> {
-  if (guardSet.has(key)) {
-    return undefined;
-  }
-
-  try {
-    guardSet.add(key);
-    return await fn();
-  } finally {
-    guardSet.delete(key);
   }
 }
 
@@ -354,12 +91,214 @@ export function checkForDamageStat (update: any, actorType: string): boolean {
   ));
 }
 
+// =====================
+// 2. Batching Logic
+// =====================
+
+/**
+ * Determine whether encumbered effect applies to actor and return changes to apply.
+ * Handles deduplication, deletion, and creation/update of encumbered ActiveEffects by retuning a change object for batching.
+ * @param {TwodsixActor} actor - The actor to check.
+ * @returns {Promise<{create: any[], update: any[], delete: string[]}>} Object with arrays of effects to create, update, or delete.
+ */
+async function getEncumberedEffectChanges(actor: TwodsixActor): Promise<{create: any[], update: any[], delete: string[]}> {
+  let state = false;
+  let aeToKeep: TwodsixActiveEffect | undefined = undefined;
+  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const encumbranceFraction = parseFloat(game.settings.get('twodsix', 'encumbranceFraction'));
+  const maxEncumbrance = actor.system.encumbrance.max;
+  if (actor.system.hits.value > 0) {
+    if (maxEncumbrance === 0 && actor.system.encumbrance.value > 0) {
+      state = true;
+    } else if (maxEncumbrance > 0) {
+      const ratio:number = actor.system.encumbrance.value / maxEncumbrance;
+      state = (ratio > encumbranceFraction);
+    }
+  }
+
+  //Dedupe or delete encumbrance effects if necessary
+  const currentEncumberedEffects = actor.effects.filter(eff => eff.statuses.has('encumbered'));
+  let toDelete: string[] = [];
+  if (currentEncumberedEffects.length > 0) {
+    if (state === true) {
+      aeToKeep = currentEncumberedEffects.pop();
+    }
+    if (currentEncumberedEffects.length > 0) {
+      toDelete = currentEncumberedEffects.map(i => i.id);
+    }
+  }
+
+  //Add or modify exsiting AE if actor is encumbered
+  if (state === true) {
+    const modifier: string = getEncumbranceModifier(actor);
+    const changeData = buildEncumbranceChangeData(ruleset, modifier);
+    if (!aeToKeep) {
+      return { create: [{
+        name: game.i18n.localize(TWODSIX.effectType.encumbered),
+        img: "systems/twodsix/assets/icons/weight.svg",
+        system: {changes: changeData},
+        statuses: ["encumbered"],
+        showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
+      }], update: [], delete: toDelete };
+    } else if (!foundry.utils.equals(changeData, aeToKeep.system.changes)) {
+      return { create: [], update: [{ _id: aeToKeep.id, 'system.changes': changeData }], delete: toDelete };
+    }
+  }
+  if (toDelete.length > 0) {
+    return { create: [], update: [], delete: toDelete };
+  }
+  return { create: [], update: [], delete: [] };
+}
+
+/**
+ * Determine whether wounded, dead, or unconscious effects apply to actor and return changes to apply.
+ * Determines creation, update, and deletion changes of related ActiveEffects for batching.
+ * @param {TwodsixActor} actor - The actor to check.
+ * @returns {Promise<{create: any[], update: any[], delete: string[]}>} Object with arrays of effects to create, update, or delete.
+ */
+async function getWoundedEffectChanges(actor: TwodsixActor): Promise<{create: any[], update: any[], delete: string[]}> {
+  const tintToApply = getIconTint(actor);
+  const oldWoundState = getEffectByStatus(actor, "wounded");
+  const deadEffect = getEffectByStatus(actor, "dead");
+  const unconsciousEffect = getEffectByStatus(actor, "unconscious");
+  const toDelete: string[] = [];
+  const create: any[] = [], update: any[] = [], unconsciousCreate: any[] = [];
+
+  // --- Dead status ---
+  if (tintToApply === TWODSIX.DAMAGECOLORS.deadTint) {
+    if (!deadEffect) {
+      create.push(getDeadEffect());
+    }
+    if (oldWoundState) {
+      toDelete.push(oldWoundState.id);
+    }
+    if (unconsciousEffect) {
+      toDelete.push(unconsciousEffect.id);
+    }
+    // Only keep dead effect
+    return { create, update: [], delete: toDelete };
+  } else if (deadEffect) {
+    // Remove dead effect if not dead
+    toDelete.push(deadEffect.id);
+  }
+
+  // --- Wounded status ---
+  if (!tintToApply) {
+    if (oldWoundState) {
+      toDelete.push(oldWoundState.id);
+    }
+    return { create: [], update: [], delete: toDelete };
+  }
+
+  let woundModifier = 0;
+  switch (tintToApply) {
+    case TWODSIX.DAMAGECOLORS.minorWoundTint:
+      woundModifier = game.settings.get('twodsix', 'minorWoundsRollModifier');
+      break;
+    case TWODSIX.DAMAGECOLORS.seriousWoundTint:
+      woundModifier = game.settings.get('twodsix', 'seriousWoundsRollModifier');
+      break;
+  }
+  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const changeData = buildWoundedChangeData(ruleset, tintToApply, woundModifier);
+
+  // --- Unconsciousness status ---
+  if (!unconsciousEffect && !deadEffect) {
+    if (await isUnconscious(actor, ruleset, tintToApply, oldWoundState)) {
+      unconsciousCreate.push(getUnconsciousEffect());
+    }
+  }
+
+  if (!oldWoundState) {
+    create.push(getWoundedEffect(tintToApply, changeData));
+    return { create: create.concat(unconsciousCreate), update: [], delete: toDelete };
+  } else if (!tintEquals(oldWoundState.tint, tintToApply)) {
+    update.push({ _id: oldWoundState.id, tint: tintToApply, changes: [changeData] });
+    return { create: unconsciousCreate, update, delete: toDelete };
+  }
+  return { create: [], update: [], delete: toDelete };
+}
+
+// ================================
+// 3. Effect Construction Helpers
+// ================================
+
+function getDeadEffect() {
+  return {
+    name: game.i18n.localize(TWODSIX.effectType.dead),
+    img: "icons/svg/skull.svg",
+    statuses: ["dead"],
+    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS,
+    system: { changes: [] }
+  };
+}
+
+function getWoundedEffect(tintToApply: string, changeData: any) {
+  return {
+    name: game.i18n.localize(TWODSIX.effectType.wounded),
+    img: "icons/svg/blood.svg",
+    tint: tintToApply,
+    system: { changes: [changeData] },
+    statuses: ["wounded"],
+    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
+  };
+}
+
+function getUnconsciousEffect() {
+  return {
+    name: game.i18n.localize(TWODSIX.effectType.unconscious),
+    img: "icons/svg/unconscious.svg",
+    statuses: ["unconscious"],
+    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS,
+    system: { changes: [] }
+  };
+}
+
+// =====================
+// 5. Utilities
+// =====================
+
+/**
+ * Roll to determine if the actor becomes unconscious due to wounds.
+ * Uses END characteristic and a standard 8+ difficulty, with flavor text for the roll.
+ * @param {TwodsixActor} selectedActor - The actor to roll for unconsciousness.
+ * @returns {Promise<boolean>} True if the roll fails (actor is unconscious), false otherwise.
+ */
+async function rollForUnconsciousness(selectedActor: TwodsixActor): Promise<boolean> {
+  const setDifficulty = Object.values(TWODSIX.DIFFICULTIES[(game.settings.get('twodsix', 'difficultyListUsed'))]).find(e => e.target === 8); //always 8+
+  const returnRoll = await selectedActor.characteristicRoll({
+    rollModifiers: {characteristic: 'END'},
+    difficulty: setDifficulty,
+    extraFlavor: game.i18n.localize("TWODSIX.Rolls.MakesUncRoll")
+  }, false);
+  return !!(returnRoll && returnRoll.effect < 0);
+}
+
+function getPrimaryCharacteristics(selectedTraveller: TwodsixActor) {
+  return [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
+}
+
+// Helper to get the first effect with a given status
+function getEffectByStatus(actor: TwodsixActor, statusName: string) {
+  return actor.effects.find(eff => eff.statuses.has(statusName));
+}
+
+// Helper to robustly compare tints (string or Color object)
+// Necessary because core FVTT moved from string (hex) values for tint to a Color object where tint.css is now hex value
+function tintEquals(tint: any, color: string): boolean {
+  return (typeof tint === 'string' ? tint : tint?.css) === color;
+}
+
+// =====================================
+// 6. Ruleset/Domain-Specific Logic
+// =====================================
+
 /**
  * Determine the wounded tint that applies to actor.  Depends on ruleset.
  * @param {TwodsixActor} selectedActor  The actor to check
  * @returns {string} The wounded tint color (as a hex code string).  Color indicates the severity of wounds. TWODSIX.DAMAGECOLORS.minorWoundTint and TWODSIX.DAMAGECOLORS.seriousWoundTint
  */
-export function getIconTint(selectedActor: TwodsixActor): string {
+function getIconTint(selectedActor: TwodsixActor): string {
   const selectedTraveller = <Traveller>selectedActor.system;
   if ((selectedActor.type === 'animal' && game.settings.get('twodsix', 'animalsUseHits')) || (selectedActor.type === 'robot' && game.settings.get('twodsix', 'robotsUseHits'))) {
     return(getHitsTint(selectedTraveller));
@@ -392,7 +331,7 @@ export function getIconTint(selectedActor: TwodsixActor): string {
   }
 }
 
-export function getHitsTint(selectedTraveller: TwodsixActor): string {
+function getHitsTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   if (selectedTraveller.characteristics.lifeblood.current <= 0) {
     returnVal = TWODSIX.DAMAGECOLORS.deadTint;
@@ -404,7 +343,7 @@ export function getHitsTint(selectedTraveller: TwodsixActor): string {
   return returnVal;
 }
 
-export function getCDWoundTint(selectedTraveller: TwodsixActor): string {
+function getCDWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   if (selectedTraveller.characteristics.lifeblood.current <= 0 && selectedTraveller.characteristics.stamina.current <= 0) {
     returnVal = TWODSIX.DAMAGECOLORS.deadTint;
@@ -416,7 +355,7 @@ export function getCDWoundTint(selectedTraveller: TwodsixActor): string {
   return returnVal;
 }
 
-export function getCELWoundTint(selectedTraveller: TwodsixActor): string {
+function getCELWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   const testArray = getPrimaryCharacteristics(selectedTraveller);
   const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
@@ -433,7 +372,7 @@ export function getCELWoundTint(selectedTraveller: TwodsixActor): string {
   return returnVal;
 }
 
-export function getCEWoundTint(selectedTraveller: TwodsixActor): string {
+function getCEWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   const testArray = getPrimaryCharacteristics(selectedTraveller);
   const maxNonZero = testArray.filter(chr => chr.value !== 0).length;
@@ -459,7 +398,7 @@ export function getCEWoundTint(selectedTraveller: TwodsixActor): string {
   return returnVal;
 }
 
-export function getCUWoundTint(selectedTraveller: TwodsixActor): string {
+function getCUWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   const testArray = getPrimaryCharacteristics(selectedTraveller);
   const currentZero = testArray.filter(chr => chr.current <= 0  && chr.value !== 0).length;
@@ -473,16 +412,42 @@ export function getCUWoundTint(selectedTraveller: TwodsixActor): string {
   return returnVal;
 }
 
-export function isUnconsciousCE(selectedTraveller: TwodsixActor): boolean {
+function isUnconsciousCE(selectedTraveller: TwodsixActor): boolean {
   const testArray = getPrimaryCharacteristics(selectedTraveller);
   return (testArray.filter(chr => chr.current <= 0 && chr.value !== 0).length === 2);
 }
 
-function getPrimaryCharacteristics(selectedTraveller: TwodsixActor) {
-  return [selectedTraveller.characteristics.strength, selectedTraveller.characteristics.dexterity, selectedTraveller.characteristics.endurance];
+/**
+ * Determine if the unconscious effect should be applied to the actor based on ruleset and wound state.
+ * Handles ruleset-specific logic and transition checks for serious wounds and unconsciousness rolls.
+ * @param {TwodsixActor} actor - The actor to check.
+ * @param {string} ruleset - The current ruleset identifier.
+ * @param {string} tintToApply - The tint color indicating wound severity.
+ * @param {any} oldWoundState - The previous wounded effect state, if any.
+ * @returns {Promise<boolean>} True if the unconscious effect should be applied, false otherwise.
+ */
+async function isUnconscious(actor: TwodsixActor, ruleset: string, tintToApply: string, oldWoundState: any): Promise<boolean> {
+  const oldTint = oldWoundState && (typeof oldWoundState.tint === 'string' ? oldWoundState.tint : oldWoundState.tint?.css);
+  if (["CE", "AC", "CU", "RIDER", "OTHER"].includes(ruleset)) {
+    return isUnconsciousCE(actor.system);
+  } else if (["CT"].includes(ruleset)) {
+    return !oldWoundState && [TWODSIX.DAMAGECOLORS.minorWoundTint, TWODSIX.DAMAGECOLORS.seriousWoundTint].includes(tintToApply);
+  } else if (
+    oldWoundState &&
+    !tintEquals(oldTint, TWODSIX.DAMAGECOLORS.seriousWoundTint) &&
+    tintToApply === TWODSIX.DAMAGECOLORS.seriousWoundTint
+  ) {
+    if (["CEQ", "CEATOM", "BARBARIC"].includes(ruleset)) {
+      return true;
+    } else {
+      const failedRoll = await rollForUnconsciousness(actor);
+      return failedRoll;
+    }
+  }
+  return false;
 }
 
-export function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
+function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
   let returnVal = '';
   const lfbCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'strength' : 'lifeblood';
   const endCharacteristic: string = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics') ? 'endurance' : 'stamina';
@@ -498,38 +463,11 @@ export function getCEAWoundTint(selectedTraveller: TwodsixActor): string {
   return returnVal;
 }
 
-/**
- * Determine the encumbrance modifier based on the  ratio of encumbrance to the maximum encumbrance.
- * @param {number} ratio  encumbrance/max encumbrance
- * @return {number} encumbrance roll modifier value that gets applied to the encumbered AE
- * @function
- */
-function getEncumbranceModifier(ratio:number, encumbranceFraction:number, encumbranceModifier:number, ruleset:string):number {
-  if (ratio === 0 ) {
-    return 0; //Shoudn't get here
-  } else if (["CE", "RIDER"].includes(ruleset)) {
-    if (ratio <= encumbranceFraction) {
-      return 0;
-    } else if (ratio <= encumbranceFraction * 2) {
-      return encumbranceModifier;
-    } else {
-      if (ratio <= encumbranceFraction * 3) {
-        return encumbranceModifier * 2;
-      } else {
-        //console.log(game.i18n.localize("TWODSIX.Warnings.ActorOverloaded"));
-        return encumbranceModifier * 20; //Cannot take any actions other than push
-      }
-    }
-  } else if (["CU", "CT"].includes(ruleset)) {
-    if (ratio <= 1/3) {
-      return 0;
-    } else if (ratio <= 2/3) {
-      return encumbranceModifier;
-    } else {
-      return encumbranceModifier * 2;
-    }
+function buildWoundedChangeData(ruleset: string, tint: string, woundModifier: number) {
+  if (["AC", "CE", "RIDER"].includes(ruleset) && tintEquals(tint, TWODSIX.DAMAGECOLORS.seriousWoundTint)) {
+    return { key: "system.movement.walk", type: "override", phase: "initial", value: 1.5 };
   } else {
-    return encumbranceModifier;
+    return { key: "system.conditions.woundedEffect", type: "add", phase: "derived", value: woundModifier.toString() };
   }
 }
 
@@ -576,4 +514,51 @@ function buildEncumbranceChangeData(ruleset: string, modifier: string): { key: s
   }
 
   return data;
+}
+
+/**
+ * Determine the encumbrance modifier based on the  ratio of encumbrance to the maximum encumbrance.
+ * @param {TwodsixActor} selectedTraveller  actor to check for encumbered condition
+ * @return {number} encumbrance roll modifier value that gets applied to the encumbered AE
+ * @function
+ */
+function getEncumbranceModifier(selectedTraveller: TwodsixActor): string {
+  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const encumbranceFraction = parseFloat(game.settings.get('twodsix', 'encumbranceFraction'));
+  const encumbranceModifier = game.settings.get('twodsix', 'encumbranceModifier');
+  const maxEncumbrance = selectedTraveller.system.encumbrance.max;
+  let ratio = 0;
+  if (maxEncumbrance === 0 && selectedTraveller.system.encumbrance.value > 0) {
+    ratio = 1;
+  } else if (maxEncumbrance > 0) {
+    ratio = selectedTraveller.system.encumbrance.value / maxEncumbrance;
+  }
+
+  let modifier = 0;
+  if (ratio === 0) {
+    modifier = 0;
+  } else if (["CE", "RIDER"].includes(ruleset)) {
+    if (ratio <= encumbranceFraction) {
+      modifier = 0;
+    } else if (ratio <= encumbranceFraction * 2) {
+      modifier = encumbranceModifier;
+    } else {
+      if (ratio <= encumbranceFraction * 3) {
+        modifier = encumbranceModifier * 2;
+      } else {
+        modifier = encumbranceModifier * 20; //Cannot take any actions other than push
+      }
+    }
+  } else if (["CU", "CT"].includes(ruleset)) {
+    if (ratio <= 1/3) {
+      modifier = 0;
+    } else if (ratio <= 2/3) {
+      modifier = encumbranceModifier;
+    } else {
+      modifier = encumbranceModifier * 2;
+    }
+  } else {
+    modifier = encumbranceModifier;
+  }
+  return modifier.toString();
 }
