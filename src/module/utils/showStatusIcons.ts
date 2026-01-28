@@ -103,18 +103,15 @@ export function checkForDamageStat (update: any, actorType: string): boolean {
  */
 async function getEncumberedEffectChanges(actor: TwodsixActor): Promise<{create: any[], update: any[], delete: string[]}> {
   let state = false;
-  let ratio = 0;
   let aeToKeep: TwodsixActiveEffect | undefined = undefined;
   const ruleset = game.settings.get('twodsix', 'ruleset');
   const encumbranceFraction = parseFloat(game.settings.get('twodsix', 'encumbranceFraction'));
-  const encumbranceModifier = game.settings.get('twodsix', 'encumbranceModifier');
   const maxEncumbrance = actor.system.encumbrance.max;
   if (actor.system.hits.value > 0) {
     if (maxEncumbrance === 0 && actor.system.encumbrance.value > 0) {
       state = true;
-      ratio = 1;
     } else if (maxEncumbrance > 0) {
-      ratio = actor.system.encumbrance.value / maxEncumbrance;
+      const ratio:number = actor.system.encumbrance.value / maxEncumbrance;
       state = (ratio > encumbranceFraction);
     }
   }
