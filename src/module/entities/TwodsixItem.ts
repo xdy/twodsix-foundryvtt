@@ -11,7 +11,7 @@ import { getCharacteristicFromDisplayLabel } from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { TWODSIX } from "../config";
-import { applyBatchedStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
+import { applyAllStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
 import { getTargetStatusModifiers} from "../utils/targetModifiers";
 
 /**
@@ -148,7 +148,7 @@ export default class TwodsixItem extends Item {
           }
         }
         if (needsEncumbrance || needsWounded) {
-          await applyBatchedStatusEffects(owningActor, { encumbrance: needsEncumbrance, wounded: needsWounded });
+          await applyAllStatusEffects(owningActor, { encumbrance: needsEncumbrance, wounded: needsWounded });
         }
       }
     }
@@ -173,12 +173,14 @@ export default class TwodsixItem extends Item {
    * @param {string} itemType
    */
   private static async _maybeTriggerItemStatusChecks(owningActor: TwodsixActor, hasEffects: boolean, itemType: string) {
-    if (!owningActor || owningActor._applyingStatusEffects) return;
+    if (!owningActor || owningActor._applyingStatusEffects) {
+      return;
+    }
     const encumbranceCheck = game.settings.get('twodsix', 'useEncumbranceStatusIndicators') && owningActor.type === 'traveller';
     const woundedCheck = game.settings.get('twodsix', 'useWoundedStatusIndicators') && ["traveller", "animal", "robot"].includes(owningActor.type);
     const isRelevantItem = ![...TWODSIX.WeightlessItems, 'ship_position'].includes(itemType);
     if ((hasEffects || isRelevantItem) && (encumbranceCheck || woundedCheck)) {
-      await applyBatchedStatusEffects(owningActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
+      await applyAllStatusEffects(owningActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
     }
   }
 

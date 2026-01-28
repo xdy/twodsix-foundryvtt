@@ -14,7 +14,7 @@ import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { updateFinances, updateShipFinances } from "../hooks/updateFinances";
-import { applyBatchedStatusEffects } from "../utils/showStatusIcons";
+import { applyAllStatusEffects } from "../utils/showStatusIcons";
 import { TwodsixActiveEffect } from "./TwodsixActiveEffect";
 import { generateShipDamageReport } from "../utils/shipDamage";
 
@@ -275,7 +275,7 @@ export default class TwodsixActor extends Actor {
       const needsWoundedCheck = !!options.deltaHits && (["traveller", "animal", "robot"].includes(this.type)) && game.settings.get('twodsix', 'useWoundedStatusIndicators');
 
       if (needsEncumbranceCheck || needsWoundedCheck) {
-        await applyBatchedStatusEffects(this, { encumbrance: needsEncumbranceCheck, wounded: needsWoundedCheck });
+        await applyAllStatusEffects(this, { encumbrance: needsEncumbranceCheck, wounded: needsWoundedCheck });
       }
     }
 
