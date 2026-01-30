@@ -1355,16 +1355,28 @@ export default class TwodsixActor extends Actor {
    * @override This overrides the core FVTT method to account for modifying derived data in multiple passes
    */
   applyActiveEffects(phase?: string): void {
+    const allEffects = this.appliedEffects ?? [];
     if (phase === "custom") {
       // Only custom logic for "custom" phase
-      const allEffects = Array.from(this.appliedEffects ?? []);
       TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
     } else if (phase === "encumbMax") {
-      // First process standard types
-      super.applyActiveEffects(phase);
-      // Then process custom types
-      const allEffects = Array.from(this.appliedEffects ?? []);
-      TwodsixActiveEffect.applyAllCustomEffects(this, allEffects, phase);
+      // Only consider effects with at least one encumbMax change
+      const encumbMaxEffects = allEffects.filter(eff =>
+        (eff.system?.changes || []).some(change => change.phase === phase)
+      );
+      const hasNonCustom = encumbMaxEffects.some(eff =>
+        (eff.system?.changes || []).some(change => change.type !== "custom")
+      );
+      if (hasNonCustom) {
+        super.applyActiveEffects(phase);
+      }
+      // Always apply custom effects for encumbMax
+      const customEffects = encumbMaxEffects.filter(eff =>
+        (eff.system?.changes || []).some(change => change.type === "custom")
+      );
+      if (customEffects.length > 0) {
+        TwodsixActiveEffect.applyAllCustomEffects(this, customEffects, phase);
+      }
     } else {
       super.applyActiveEffects(phase || "initial");
     }
@@ -1382,22 +1394,22 @@ export default class TwodsixActor extends Actor {
     if (["traveller", "robot", "animal"].includes(this.type)) {
       // Add characteristics mods
       for (const char of Object.keys(this.system.characteristics)) {
-        derivedData.push(`system.characteristics.${char}.mod`);
+        derivedData.push(`characteristics.${char}.mod`);
       }
       // Add skills
       for (const skill of this.itemTypes.skills) {
-        derivedData.push(`system.skills.${simplifySkillName(skill.name)}`);
+        derivedData.push(`skills.${simplifySkillName(skill.name)}`);
       }
       // Add specials
       if (this.type === 'traveller') {
         derivedData.push(
-          "system.encumbrance.max",
-          "system.encumbrance.value",
-          "system.primaryArmor.value",
-          "system.secondaryArmor.value",
-          "system.radiationProtection.value",
-          "system.conditions.encumberedEffect",
-          "system.conditions.woundedEffect"
+          "encumbrance.max",
+          "encumbrance.value",
+          "primaryArmor.value",
+          "secondaryArmor.value",
+          "radiationProtection.value",
+          "conditions.encumberedEffect",
+          "conditions.woundedEffect"
         );
       }
     }

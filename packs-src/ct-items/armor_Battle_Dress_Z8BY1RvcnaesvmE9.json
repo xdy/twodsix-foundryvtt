@@ -81,7 +81,7 @@
             "key": "system.characteristics.strength.value",
             "type": "custom",
             "phase": "custom",
-            "value": "+@system.characteristics.strength.value",
+            "value": "+@characteristics.strength.value",
             "priority": null
           }
         ]

@@ -168,3 +168,15 @@ export function removeStringElement(arr:[string], value:string):[string] {
   }
   return arr;
 }
+
+/**
+ * Utility to rewrite @system.xyz to @xyz in roll formulas for FVTT changes to AE's in v14.
+ * @param {string} formula - The formula string to clean.
+ * @returns {string} - The cleaned formula string.
+ */
+export function cleanSystemReferences(formula: string): string {
+  if (typeof formula !== 'string') {
+    return formula;
+  }
+  return formula.replace(/@system\./g, '@');
+}

@@ -4,6 +4,7 @@ import { TwodsixActiveEffect } from "src/module/entities/TwodsixActiveEffect";
 import TwodsixActor from "../module/entities/TwodsixActor";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import { applyToAllActors, applyToAllItems } from "../module/utils/migration-utils";
+import { cleanSystemReferences } from '../module/utils/utils';
 
 /**
  * Migrates a document's active effects by updating AE phases using the determinePhase method.
@@ -32,6 +33,10 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
     }
 
     for (const change of effect.system.changes) {
+      // Only process and clean formulas for changes with type === 'custom'
+      if (change.type === "custom" && typeof change.value === "string") {
+        change.value = cleanSystemReferences(change.value);
+      }
       const phase = determinePhase(change, doc.documentName === "Actor" ? doc : undefined, derivedKeys);
       change.phase = phase;
     }
@@ -59,8 +64,16 @@ function determinePhase(change: any, actor: TwodsixActor | undefined, derivedKey
   } else if (change.type === "custom") {
     return "custom";
   } else if (actor) {
-    return derivedKeys.includes(change.key) ? "derived" : "initial";
+    if (derivedKeys.includes(change.key)) {
+      return "derived";
+    }
+    if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
+      return "derived";
+    }
+    return "initial";
   } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+    return "derived";
+  } else if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
     return "derived";
   } else {
     return "initial";
@@ -87,3 +100,5 @@ export async function migrate(): Promise<void> {
   console.log("AE Phase Migration Complete");
   return Promise.resolve();
 }
+
+

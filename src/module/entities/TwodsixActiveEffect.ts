@@ -3,6 +3,7 @@
 
 import { stackArmorValues } from "../utils/actorDamage";
 import { applyAllStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
+import { cleanSystemReferences } from "../utils/utils";
 
 /**
  * The system-side TwodsixActiveEffect document which overrides/extends the common ActiveEffect model.
@@ -67,8 +68,13 @@ export class TwodsixActiveEffect extends ActiveEffect {
     if (allowed === false) {
       return false;
     }
-    const oldChanges = foundry.utils.duplicate(data?.system?.changes ?? []);
-    if (oldChanges) {
+    if (!data?.system?.changes) {
+      return;
+    }
+
+    // Add phase information
+    const oldChanges: any[] = foundry.utils.duplicate(data.system.changes);
+    if (Array.isArray(oldChanges) && oldChanges?.length > 0) {
       this.updatePhases(data, options, user);
       if (!foundry.utils.equals(oldChanges, data.system.changes)) {
         this.updateSource({"system.changes": data.system.changes});
@@ -113,8 +119,17 @@ export class TwodsixActiveEffect extends ActiveEffect {
     } else if (change.type === "custom") {
       return "custom";
     } else if (actor && ["traveller", "animal", "robot"].includes(actor.type)) {
-      return derivedKeys.includes(change.key) ? "derived" : "initial";
+      if (derivedKeys.includes(change.key)) {
+        return "derived";
+      }
+      // Also check if change.value (if string) references any derivedKeys
+      if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
+        return "derived";
+      }
+      return "initial";
     } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+      return "derived";
+    } else if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
       return "derived";
     } else {
       return "initial";
@@ -226,6 +241,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @param {object} change - The change object from the effect.
    */
   static applyCustomEffect(actor:TwodsixActor, change:object) {
+
     // Only handle CUSTOM mode effects
     if (change.type !== "custom") {
       return undefined;
@@ -245,12 +261,15 @@ export class TwodsixActiveEffect extends ActiveEffect {
     } else {
       changeFormula = changeFormula.trim();
     }
+    // Clean @system references for backward compatibility
+    changeFormula = cleanSystemReferences(changeFormula);
+
     // Process operator
     if (["+", "/", "-", "*", "="].includes(changeFormula[0])) {
       operator = changeFormula[0];
       changeFormula = changeFormula.slice(1);
     }
-    const formula = Roll.replaceFormulaData(changeFormula, actor, { missing: "0", warn: false });
+    const formula = Roll.replaceFormulaData(changeFormula, actor.getRollData(), { missing: "0", warn: false });
     const ct = foundry.utils.getType(current);
     if (Roll.validate(formula)) {
       const r = Roll.safeEval(formula);
