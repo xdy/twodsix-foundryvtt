@@ -4,15 +4,20 @@ import { TwodsixActiveEffect } from "src/module/entities/TwodsixActiveEffect";
 import TwodsixActor from "../module/entities/TwodsixActor";
 import TwodsixItem from "../module/entities/TwodsixItem";
 import { applyToAllActors, applyToAllItems } from "../module/utils/migration-utils";
+import { cleanSystemReferences } from '../module/utils/utils';
 
 /**
- * Migrates a document's active effects by updating AE phases using the determinePhase method.
+ * Migrates a document's active effects by:
+ * 1) updating AE phases using the determinePhase method.
+ * 2) cleaning value formula references to remove @system. prefix
+ * 3) migrate custom AE to standard FVTT mode
  * Processes active effects from actor or item in the world and compendium packs.
  * @param {Document} doc
  * @returns {Promise<void>} A promise that resolves when the migration is complete.
  */
-async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<void> {
-  const derivedKeys = doc.documentName === "Actor"
+async function updateActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<void> {
+  const isActor = doc.documentName === "Actor";
+  const derivedKeys = isActor
     ? doc.getDerivedDataKeys()
     : [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
 
@@ -32,7 +37,11 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
     }
 
     for (const change of effect.system.changes) {
-      const phase = determinePhase(change, doc.documentName === "Actor" ? doc : undefined, derivedKeys);
+      // Only migrate formulas and types for changes with type === 'custom'
+      if (change.type === "custom" && typeof change.value === "string") {
+        migrateCustomChange(change);
+      }
+      const phase = determinePhase(change, derivedKeys, isActor);
       change.phase = phase;
     }
 
@@ -53,17 +62,47 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
  * @param {string[]} derivedKeys - A list of derived keys to compare against the change key.
  * @returns {string} - The phase of the change (e.g., "encumbMax", "custom", "derived", "initial").
  */
-function determinePhase(change: any, actor: TwodsixActor | undefined, derivedKeys: string[]): string {
-  if (change.key === "system.encumbrance.max") {
+function determinePhase(change: any, derivedKeys: string[], isActor: boolean): string {
+  // Remove leading 'system.' if present
+  const key = change.key.startsWith('system.') ? change.key.slice(7) : change.key;
+  if (key === "encumbrance.max") {
     return "encumbMax";
   } else if (change.type === "custom") {
     return "custom";
-  } else if (actor) {
-    return derivedKeys.includes(change.key) ? "derived" : "initial";
-  } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+  }
+  let isDerived = false;
+  if (isActor) {
+    // Exact match for actors (full keys)
+    isDerived = derivedKeys.includes(key);
+  } else {
+    // Substring match for items (fallback patterns)
+    isDerived = derivedKeys.some(dkey => key.includes(dkey));
+  }
+  if (isDerived) {
+    return "derived";
+  } else if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
     return "derived";
   } else {
     return "initial";
+  }
+}
+
+function migrateCustomChange(change: any): void {
+  change.value = cleanSystemReferences(change.value);
+  const operator = change.value.trim().charAt(0);
+  const operand = change.value.trim().slice(1).trim();
+  const typeMap: Record<string, string> = {
+    "+": "add",
+    "-": "subtract",
+    "*": "multiply",
+    "=": "override"
+  };
+  if (operator === "/") {
+    change.type = "multiply";
+    change.value = `1/(${operand})`;
+  } else if (operator in typeMap) {
+    change.type = typeMap[operator];
+    change.value = operand;
   }
 }
 
@@ -74,16 +113,18 @@ export async function migrate(): Promise<void> {
   // Process all actors
   await applyToAllActors(async (actor: TwodsixActor) => {
     if (validActorTypes.includes(actor.type)) {
-      await updatePhasesForActiveEffects(actor);
+      await updateActiveEffects(actor);
     }
   });
 
   // Process all items
   await applyToAllItems(async (item: TwodsixItem) => {
     if (validItemTypes.includes(item.type)) {
-      await updatePhasesForActiveEffects(item);
+      await updateActiveEffects(item);
     }
   });
   console.log("AE Phase Migration Complete");
   return Promise.resolve();
 }
+
+

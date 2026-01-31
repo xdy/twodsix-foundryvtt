@@ -79,9 +79,9 @@
         "changes": [
           {
             "key": "system.characteristics.strength.value",
-            "type": "custom",
-            "phase": "custom",
-            "value": "+@system.characteristics.strength.value",
+            "type": "multiply",
+            "phase": "initial",
+            "value": "2",
             "priority": null
           }
         ]

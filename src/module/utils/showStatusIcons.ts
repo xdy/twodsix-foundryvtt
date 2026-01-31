@@ -53,20 +53,22 @@ export async function applyAllStatusEffects(
       promises.push(actor.deleteEmbeddedDocuments("ActiveEffect", del, suppressRender));
     }
     await Promise.all(promises);
+    if (promises.length > 0) {
+      // Manually refresh the actor sheet after all changes to avoid flicker from multiple renders
+      if (actor.sheet) {
+        actor.sheet.render(true);
+      }
+      // Refresh all tokens for this actor to update overlays/effects
+      if (actor.getActiveTokens) {
+        for (const token of actor.getActiveTokens(true)) {
+          token.refresh();
+        }
+      }
+    }
   } catch (error) {
     console.error("Error applying status effects:", error);
   } finally {
     actor._applyingStatusEffects = false;
-    // Manually refresh the actor sheet after all changes to avoid flicker from multiple renders
-    if (actor.sheet) {
-      actor.sheet.render(true);
-    }
-    // Refresh all tokens for this actor to update overlays/effects
-    if (actor.getActiveTokens) {
-      for (const token of actor.getActiveTokens(true)) {
-        token.refresh();
-      }
-    }
   }
 }
 
@@ -133,13 +135,7 @@ async function getEncumberedEffectChanges(actor: TwodsixActor): Promise<{create:
     const modifier: string = getEncumbranceModifier(actor);
     const changeData = buildEncumbranceChangeData(ruleset, modifier);
     if (!aeToKeep) {
-      return { create: [{
-        name: game.i18n.localize(TWODSIX.effectType.encumbered),
-        img: "systems/twodsix/assets/icons/weight.svg",
-        system: {changes: changeData},
-        statuses: ["encumbered"],
-        showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
-      }], update: [], delete: toDelete };
+      return { create: [getEncumberedEffect(changeData)], update: [], delete: toDelete };
     } else if (!foundry.utils.equals(changeData, aeToKeep.system.changes)) {
       return { create: [], update: [{ _id: aeToKeep.id, 'system.changes': changeData }], delete: toDelete };
     }
@@ -228,7 +224,7 @@ function getDeadEffect() {
     name: game.i18n.localize(TWODSIX.effectType.dead),
     img: "icons/svg/skull.svg",
     statuses: ["dead"],
-    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS,
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS,
     system: { changes: [] }
   };
 }
@@ -240,7 +236,7 @@ function getWoundedEffect(tintToApply: string, changeData: any) {
     tint: tintToApply,
     system: { changes: [changeData] },
     statuses: ["wounded"],
-    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS
   };
 }
 
@@ -249,8 +245,18 @@ function getUnconsciousEffect() {
     name: game.i18n.localize(TWODSIX.effectType.unconscious),
     img: "icons/svg/unconscious.svg",
     statuses: ["unconscious"],
-    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS,
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS,
     system: { changes: [] }
+  };
+}
+
+function getEncumberedEffect(changeData: any) {
+  return {
+    name: game.i18n.localize(TWODSIX.effectType.encumbered),
+    img: "systems/twodsix/assets/icons/weight.svg",
+    system: { changes: changeData },
+    statuses: ["encumbered"],
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS
   };
 }
 
