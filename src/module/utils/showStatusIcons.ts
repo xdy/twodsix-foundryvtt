@@ -224,7 +224,7 @@ function getDeadEffect() {
     name: game.i18n.localize(TWODSIX.effectType.dead),
     img: "icons/svg/skull.svg",
     statuses: ["dead"],
-    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS,
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS,
     system: { changes: [] }
   };
 }
@@ -236,7 +236,7 @@ function getWoundedEffect(tintToApply: string, changeData: any) {
     tint: tintToApply,
     system: { changes: [changeData] },
     statuses: ["wounded"],
-    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS
   };
 }
 
@@ -245,7 +245,7 @@ function getUnconsciousEffect() {
     name: game.i18n.localize(TWODSIX.effectType.unconscious),
     img: "icons/svg/unconscious.svg",
     statuses: ["unconscious"],
-    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS,
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS,
     system: { changes: [] }
   };
 }
@@ -256,7 +256,7 @@ function getEncumberedEffect(changeData: any) {
     img: "systems/twodsix/assets/icons/weight.svg",
     system: { changes: changeData },
     statuses: ["encumbered"],
-    showIcon: ActiveEffect.SHOW_ICON_CHOICES.ALWAYS
+    showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON.ALWAYS
   };
 }
 
