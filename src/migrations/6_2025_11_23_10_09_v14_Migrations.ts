@@ -7,12 +7,15 @@ import { applyToAllActors, applyToAllItems } from "../module/utils/migration-uti
 import { cleanSystemReferences } from '../module/utils/utils';
 
 /**
- * Migrates a document's active effects by updating AE phases using the determinePhase method.
+ * Migrates a document's active effects by:
+ * 1) updating AE phases using the determinePhase method.
+ * 2) cleaning value formula references to remove @system. prefix
+ * 3) migrate custom AE to standard FVTT mode
  * Processes active effects from actor or item in the world and compendium packs.
  * @param {Document} doc
  * @returns {Promise<void>} A promise that resolves when the migration is complete.
  */
-async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<void> {
+async function updateActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<void> {
   const isActor = doc.documentName === "Actor";
   const derivedKeys = isActor
     ? doc.getDerivedDataKeys()
@@ -34,9 +37,9 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
     }
 
     for (const change of effect.system.changes) {
-      // Only process and clean formulas for changes with type === 'custom'
+      // Only migrate formulas and types for changes with type === 'custom'
       if (change.type === "custom" && typeof change.value === "string") {
-        change.value = cleanSystemReferences(change.value);
+        migrateCustomChange(change);
       }
       const phase = determinePhase(change, derivedKeys, isActor);
       change.phase = phase;
@@ -70,7 +73,7 @@ function determinePhase(change: any, derivedKeys: string[], isActor: boolean): s
   let isDerived = false;
   if (isActor) {
     // Exact match for actors (full keys)
-    isDerived = isDerived = derivedKeys.includes(key);
+    isDerived = derivedKeys.includes(key);
   } else {
     // Substring match for items (fallback patterns)
     isDerived = derivedKeys.some(dkey => key.includes(dkey));
@@ -84,6 +87,25 @@ function determinePhase(change: any, derivedKeys: string[], isActor: boolean): s
   }
 }
 
+function migrateCustomChange(change: any): void {
+  change.value = cleanSystemReferences(change.value);
+  const operator = change.value.trim().charAt(0);
+  const operand = change.value.trim().slice(1).trim();
+  const typeMap: Record<string, string> = {
+    "+": "add",
+    "-": "subtract",
+    "*": "multiply",
+    "=": "override"
+  };
+  if (operator === "/") {
+    change.type = "multiply";
+    change.value = `1/(${operand})`;
+  } else if (operator in typeMap) {
+    change.type = typeMap[operator];
+    change.value = operand;
+  }
+}
+
 export async function migrate(): Promise<void> {
   const validActorTypes = ["traveller", "animal", "robot"];
   const validItemTypes = ['equipment', 'weapon', 'armor', 'augment', 'tool', 'trait', 'consumable', 'computer'];
@@ -91,14 +113,14 @@ export async function migrate(): Promise<void> {
   // Process all actors
   await applyToAllActors(async (actor: TwodsixActor) => {
     if (validActorTypes.includes(actor.type)) {
-      await updatePhasesForActiveEffects(actor);
+      await updateActiveEffects(actor);
     }
   });
 
   // Process all items
   await applyToAllItems(async (item: TwodsixItem) => {
     if (validItemTypes.includes(item.type)) {
-      await updatePhasesForActiveEffects(item);
+      await updateActiveEffects(item);
     }
   });
   console.log("AE Phase Migration Complete");

@@ -250,6 +250,8 @@ export class TwodsixActiveEffect extends ActiveEffect {
       return undefined;
     }
 
+    console.log(`Applying custom effect: key=${change.key}, value=${change.value}, actor=${actor.name}`);
+
     // Get the current value
     const current = foundry.utils.getProperty(actor, change.key);
     if (current == undefined) {

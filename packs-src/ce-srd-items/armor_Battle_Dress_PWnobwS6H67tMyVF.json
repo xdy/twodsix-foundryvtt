@@ -69,8 +69,9 @@
             "priority": null
           },
           {
-            "key": "skills.Tactics",
-            "mode": 5,
+            "key": "system.skills.Tactics",
+            "type": "override",
+            "phase": "derived",
             "value": "2",
             "priority": null
           }
