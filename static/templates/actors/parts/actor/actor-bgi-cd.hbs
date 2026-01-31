@@ -61,6 +61,8 @@
           type="number" value="{{system.radiationProtection.value}}" placeholder='0' min="0" readonly
           data-tooltip="{{tooltips.radiationProtection.value}}"/></span>
 {{/if}}
+
+<!-- Encumbrance Information-->
 <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip='{{localize "TWODSIX.Items.Encumbrance"}}'>
   {{#iff system.encumbrance.value ">" system.encumbrance.max}}
   {{#iff system.encumbrance.max ">" "0"}}
@@ -70,7 +72,7 @@
   {{/iff}}
   {{else}}
   <i class="fa-solid fa-weight-hanging"></i>
-  {{/iff}}:<input style="text-align: right;" type="number" value="{{system.encumbrance.value}}" placeholder='0' disabled data-tooltip="{{twooltips.encumbrance.value}}"/>
+  {{/iff}}:<input style="text-align: right;" type="number" value="{{system.encumbrance.value}}" placeholder='0' disabled data-tooltip="{{tooltips.encumbrance.value}}"/>
       /{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input type="number" value="{{system.encumbrance.max}}" placeholder='0' disabled data-tooltip="{{tooltips.encumbrance.max}}"/>{{/if}}
 </span>
 {{#unless settings.useCTData}}<br>{{/unless}}
