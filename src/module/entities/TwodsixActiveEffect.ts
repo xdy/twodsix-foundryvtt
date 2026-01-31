@@ -108,26 +108,29 @@ export class TwodsixActiveEffect extends ActiveEffect {
    */
   determinePhase(change: any): string {
     // Safeguard against undefined target
-    let actor: TwodsixActor | TwodsixItem | undefined = this.target;
-    if (actor?.documentName === 'Item' ) {
-      actor = this.actor;
+    let doc: TwodsixActor | TwodsixItem | undefined = this.target;
+    if (doc?.documentName === 'Item') {
+      doc = this.actor;
     }
-    const derivedKeys = actor?.getDerivedDataKeys?.() ?? [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection.", "conditions.encumberedEffect", "conditions.woundedEffect"];
+    const isActor = doc?.documentName === 'Actor';
+    const derivedKeys = isActor
+      ? doc?.getDerivedDataKeys?.() ?? []
+      : [".mod", "skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection.", "conditions.encumberedEffect", "conditions.woundedEffect"];
 
-    if (change.key === "system.encumbrance.max") {
+    // Remove leading 'system.' if present
+    const key = change.key.startsWith('system.') ? change.key.slice(7) : change.key;
+    if (key === "encumbrance.max") {
       return "encumbMax";
     } else if (change.type === "custom") {
       return "custom";
-    } else if (actor && ["traveller", "animal", "robot"].includes(actor.type)) {
-      if (derivedKeys.includes(change.key)) {
-        return "derived";
-      }
-      // Also check if change.value (if string) references any derivedKeys
-      if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
-        return "derived";
-      }
-      return "initial";
-    } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+    }
+    let isDerived = false;
+    if (isActor) {
+      isDerived = derivedKeys.includes(key);
+    } else {
+      isDerived = derivedKeys.some(dkey => key.includes(dkey)); // probably using fallback so can't do exact match
+    }
+    if (isDerived) {
       return "derived";
     } else if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
       return "derived";

@@ -13,7 +13,8 @@ import { cleanSystemReferences } from '../module/utils/utils';
  * @returns {Promise<void>} A promise that resolves when the migration is complete.
  */
 async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<void> {
-  const derivedKeys = doc.documentName === "Actor"
+  const isActor = doc.documentName === "Actor";
+  const derivedKeys = isActor
     ? doc.getDerivedDataKeys()
     : [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
 
@@ -37,7 +38,7 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
       if (change.type === "custom" && typeof change.value === "string") {
         change.value = cleanSystemReferences(change.value);
       }
-      const phase = determinePhase(change, doc.documentName === "Actor" ? doc : undefined, derivedKeys);
+      const phase = determinePhase(change, derivedKeys, isActor);
       change.phase = phase;
     }
 
@@ -58,20 +59,23 @@ async function updatePhasesForActiveEffects(doc: TwodsixActor | TwodsixItem): Pr
  * @param {string[]} derivedKeys - A list of derived keys to compare against the change key.
  * @returns {string} - The phase of the change (e.g., "encumbMax", "custom", "derived", "initial").
  */
-function determinePhase(change: any, actor: TwodsixActor | undefined, derivedKeys: string[]): string {
-  if (change.key === "system.encumbrance.max") {
+function determinePhase(change: any, derivedKeys: string[], isActor: boolean): string {
+  // Remove leading 'system.' if present
+  const key = change.key.startsWith('system.') ? change.key.slice(7) : change.key;
+  if (key === "encumbrance.max") {
     return "encumbMax";
   } else if (change.type === "custom") {
     return "custom";
-  } else if (actor) {
-    if (derivedKeys.includes(change.key)) {
-      return "derived";
-    }
-    if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
-      return "derived";
-    }
-    return "initial";
-  } else if (derivedKeys.some(dkey => change.key.indexOf(dkey) >= 0)) {
+  }
+  let isDerived = false;
+  if (isActor) {
+    // Exact match for actors (full keys)
+    isDerived = isDerived = derivedKeys.includes(key);
+  } else {
+    // Substring match for items (fallback patterns)
+    isDerived = derivedKeys.some(dkey => key.includes(dkey));
+  }
+  if (isDerived) {
     return "derived";
   } else if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
     return "derived";
