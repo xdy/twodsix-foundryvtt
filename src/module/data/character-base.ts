@@ -113,7 +113,9 @@ export function makeCharacteristicField(key:string, shortName:string, schemaOpti
   return new fields.SchemaField({
     key: new fields.StringField({ required: true, blank: true, initial: key }),
     value: new fields.NumberField({ ...requiredInteger, initial: 7, min: 0 }),
+    current: new fields.NumberField({ ...requiredInteger, initial: 7, min: 0 }, {persisted: false}),
     damage: new fields.NumberField({ ...requiredInteger, initial: 0, min: 0 }),
+    mod: new fields.NumberField({ ...requiredInteger, initial: 0}, {persisted: false}),
     label: new fields.StringField({ required: true, blank: true, initial: key.capitalize() }),
     shortLabel: new fields.StringField({ required: true, blank: true, initial: shortName }),
     displayShortLabel: new fields.StringField({ required: true, blank: true })

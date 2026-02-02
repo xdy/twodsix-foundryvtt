@@ -41,7 +41,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @see {Document#_onCreate}
    * @override
    */
-  async _onCreate(data: object, options: object, userId: string):void {
+  async _onCreate(data: object, options: object, userId: string): Promise<void> {
     await super._onCreate(data, options, userId);
     if (game.userId === userId && this.modifiesActor) {
       await evaluateEffectStatusImpact(this);
@@ -148,13 +148,13 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @returns {void}
    */
   updatePhases(data: object, options?: object, user?: documents.BaseUser): void {
-    // Ensure changes exist and are an array
-    if (!data.system?.changes || foundry.utils.getType(data.system?.changes) !== 'Array') {
+    // Ensure data and changes exist and are valid
+    if (!data || !data.system?.changes || foundry.utils.getType(data.system?.changes) !== 'Array') {
       //console.log("No valid changes found in data.");
       return;
     }
 
-    // Calculate differences
+    // Calculate differences and update phases only if there are changes
     const newChanges = foundry.utils.diffObject(this, data);
     if (newChanges?.system?.changes) {
       for (const change of data.system.changes) {
@@ -307,7 +307,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
  * and request batched status effect updates for the resolved actor when appropriate.
  *
  * This handles both encumbrance (weight-related) and wounded/dead/unconscious checks
- * by inspecting the ActiveEffect's changes and statuses and respecting system settings.
+ * by inspecting the ActiveEffect's changes and respecting system settings.
  *
  * @param {TwodsixActiveEffect} activeEffect The active effect being changed
  * @returns {Promise<void>}
@@ -360,12 +360,13 @@ async function evaluateEffectStatusImpact(activeEffect:TwodsixActiveEffect):Prom
  */
 function changesEncumbranceStat(activeEffect:TwodsixActiveEffect):boolean {
   if (activeEffect.system.changes?.length > 0) {
+    const ruleset = game.settings.get('twodsix', 'ruleset') as string;
     for (const change of activeEffect.system.changes) {
       if (change.key){
         if (change.key.includes('system.characteristics.strength.value')  ||
         change.key.includes('system.characteristics.strength.current') ||
         change.key.includes('system.characteristics.strength.mod') ||
-        (change.key.includes('system.characteristics.endurance.value') && ['CEATOM', "BARBARIC"].includes(game.settings.get('twodsix', 'ruleset'))) ||
+        (change.key.includes('system.characteristics.endurance.value') && ['CEATOM', "BARBARIC"].includes(ruleset)) ||
         change.key.includes('system.encumbrance.max') ||
         change.key.includes('system.encumbrance.value')) {
           return true;

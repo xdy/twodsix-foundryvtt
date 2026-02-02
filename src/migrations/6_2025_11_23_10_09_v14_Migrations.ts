@@ -37,17 +37,24 @@ async function updateActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<voi
     }
 
     for (const change of effect.system.changes) {
+      //console.log(`Processing change:`, change);
+
+      if (!change.key || change.value === undefined || change.value === null || change.value === "") {
+        console.warn(`Skipping invalid change:`, change);
+        continue;
+      }
+
       // Only migrate formulas and types for changes with type === 'custom'
-      if (change.type === "custom" && typeof change.value === "string") {
+      if (change.type === "custom" && (typeof change.value === "string" || typeof change.value === "number")) {
         migrateCustomChange(change);
       }
+
       const phase = determinePhase(change, derivedKeys, isActor);
       change.phase = phase;
     }
 
     try {
       await effect.update({ 'system.changes': effect.system.changes });
-      console.log(`Updated effect: ${effect.name} for document: ${doc.name}`);
     } catch (error) {
       console.error(`Failed to update effect: ${effect.name} for document: ${doc.name}`, error);
     }
@@ -88,6 +95,16 @@ function determinePhase(change: any, derivedKeys: string[], isActor: boolean): s
 }
 
 function migrateCustomChange(change: any): void {
+  if (typeof change.value === "number") {
+    change.type = "add";
+    return;
+  }
+
+  if (typeof change.value !== "string") {
+    console.warn(`Skipping change with unsupported value type:`, change);
+    return;
+  }
+
   change.value = cleanSystemReferences(change.value);
   const operator = change.value.trim().charAt(0);
   const operand = change.value.trim().slice(1).trim();
@@ -97,12 +114,16 @@ function migrateCustomChange(change: any): void {
     "*": "multiply",
     "=": "override"
   };
+
   if (operator === "/") {
     change.type = "multiply";
     change.value = `1/(${operand})`;
   } else if (operator in typeMap) {
     change.type = typeMap[operator];
     change.value = operand;
+  } else {
+    console.warn(`Unhandled operator: ${operator} in change value: ${change.value}`);
+    change.type = "custom"; // Fallback to custom type
   }
 }
 

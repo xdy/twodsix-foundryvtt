@@ -1,4 +1,3 @@
-
 /* ============================================================================
    TABLE OF CONTENTS
    ============================================================================
@@ -5405,3 +5404,19 @@ code {
   font-weight: bold;
 }
 
+/* ------------------------------------------------------------------ */
+/* ActiveEffect changes list - responsive column sizing              */
+/* ------------------------------------------------------------------ */
+
+.active-effect-config .tab.changes {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.active-effect-config .tab.changes header, .active-effect-config .tab.changes ol {
+  grid-template-columns: 3fr 14ch 4fr 50px 4ch;
+}
+
+.active-effect-config .tab.changes header {
+  margin-right: 12px;
+}

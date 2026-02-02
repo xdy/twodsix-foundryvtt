@@ -41,6 +41,7 @@ import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat
 import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
 import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTracker";
 import { TwodsixCombatantData, TwodsixCombatData } from "./module/data/combat";
+import { TwodsixActiveEffectConfig } from "./module/sheets/TwodsixActiveEffectConfig";
 
 //import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
@@ -71,6 +72,7 @@ Hooks.once('init', async function () {
     TwodsixRollSettings
   };
 
+  // Active Effects
   CONFIG.ActiveEffect.phases = {
     initial: { label: "EFFECT.CHANGES.PHASES.initial.label", hint: "EFFECT.CHANGES.PHASES.initial.hint" },
     derived: { label: "EFFECT.CHANGES.PHASES.derived.label", hint: "EFFECT.CHANGES.PHASES.derived.hint" },
@@ -78,6 +80,9 @@ Hooks.once('init', async function () {
     encumbMax: { label: "EFFECT.CHANGES.PHASES.encumbMax.label", hint: "EFFECT.CHANGES.PHASES.encumbMax.hint" },
     final: { label: "EFFECT.CHANGES.PHASES.final.label", hint: "EFFECT.CHANGES.PHASES.final.hint" }
   };
+
+  foundry.applications.apps.DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
+  foundry.applications.apps.DocumentSheetConfig.registerSheet(ActiveEffect, 'twodsix', TwodsixActiveEffectConfig, { makeDefault: true });
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;

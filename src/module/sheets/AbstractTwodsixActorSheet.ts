@@ -9,6 +9,7 @@ import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { simplifySkillName, sortObj } from "../utils/utils";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
+import { TwodsixActiveEffectConfig } from "./TwodsixActiveEffectConfig";
 import { TWODSIX } from "../config";
 
 /**
@@ -853,7 +854,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     const selectedEffect = <TwodsixActiveEffect> await fromUuid(effectUuid);
     //console.log(selectedEffect);
     if (selectedEffect) {
-      await new foundry.applications.sheets.ActiveEffectConfig({document: selectedEffect}).render({force: true});
+      await new TwodsixActiveEffectConfig({document: selectedEffect}).render({force: true});
     }
   }
 
