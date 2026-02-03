@@ -1152,14 +1152,15 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     return "";
   }
 
-  const modes = [
-    `<i class="fa-regular fa-circle-question"></i>`,
-    `<i class="fa-regular fa-circle-xmark"></i>`,
-    `<i class="fa-solid fa-circle-plus"></i>`,
-    `<i class="fa-regular fa-circle-down"></i>`,
-    `<i class="fa-regular fa-circle-up"></i>`,
-    `<i class="fa-solid fa-shuffle"></i>`
-  ];
+  const types = {
+    custom: `<i class="fa-regular fa-circle-question"></i>`,
+    multiply: `<i class="fa-regular fa-circle-xmark"></i>`,
+    add: `<i class="fa-solid fa-circle-plus"></i>`,
+    subtract: `<i class="fa-solid fa-circle-minus"></i>`,
+    downgrade: `<i class="fa-regular fa-circle-down"></i>`,
+    upgrade: `<i class="fa-regular fa-circle-up"></i>`,
+    override: `<i class="fa-solid fa-shuffle"></i>`
+  };
 
   if (foundry.utils.getProperty(actor.overrides, field) === undefined) {
     return "";
@@ -1195,7 +1196,7 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     const realChanges = effect.system.changes?.filter(ch => ch.key === field);
     if (realChanges?.length > 0) {
       const changesStr = realChanges.map(change =>
-        `${modes[change.type] || ""}(${change.value})`
+        `${types[change.type] || ""}(${change.value})`
       ).join(", ");
       effectStrings.push(`${effect.name}: ${changesStr}`);
     }
