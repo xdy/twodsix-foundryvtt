@@ -513,7 +513,7 @@ export default class TwodsixCombat extends foundry.documents.Combat {
     super._onCreateDescendantDocuments(_parent, collection, documents, data, options, userId);
 
     // When combatants are added, recalculate space combat status
-    if (collection === "combatants" && game.user.isGM) {
+    if (collection === "combatants" && game.user.isActiveGM) {
       const isSpaceCombat = this._detectSpaceCombat();
       const wasSpaceCombat = this.system.isSpaceCombat || false;
 
