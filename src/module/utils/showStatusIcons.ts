@@ -54,8 +54,8 @@ export async function applyAllStatusEffects(
     }
     await Promise.all(promises);
     if (promises.length > 0) {
-      // Manually refresh the actor sheet after all changes to avoid flicker from multiple renders
-      if (actor.sheet) {
+      // Manually refresh the actor sheet after all changes
+      if (actor.sheet?.rendered) {
         actor.sheet.render(true);
       }
       // Refresh all tokens for this actor to update overlays/effects

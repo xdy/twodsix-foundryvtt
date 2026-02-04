@@ -127,7 +127,7 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
     // Ships and space-objects use the ship initiative formula
     if (["ship", "space-object"].includes(actorType)) {
       const phaseConfig = this._getSpaceCombatConfig();
-      const shipFormula = phaseConfig?.shipInitiativeFormula || <string>game.settings.get("twodsix", "shipInitiativeFormula");
+      const shipFormula = <string>game.settings.get("twodsix", "shipInitiativeFormula") || phaseConfig?.shipInitiativeFormula;
       return shipFormula || <string>game.settings.get("twodsix", "initiativeFormula");
     }
 
@@ -174,11 +174,16 @@ export default class TwodsixCombatant extends foundry.documents.Combatant {
       console.warn("TwodsixCombatant | _getThrustRating called with null actor");
       return 0;
     }
-    if (actor.type === "ship") {
-      return actor.getDriveRatings().thrust;
-    }
     if (actor.type === "space-object") {
       return actor.system.thrust || 0;
+    }
+    if (actor.type === "ship") {
+      const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
+      if (useAutoCalcs) {
+        return actor.system.calcShipStats?.drives?.mDrive?.rating || 0;
+      } else {
+        return actor.system.shipStats?.drives?.mDrive?.rating || 0;
+      }
     }
     return 0;
   }

@@ -57,16 +57,23 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     context.dtypes = ["String", "Number", "Boolean"];
 
+    const actorType = this.actor.type;
+    const isShipLike = ['ship', 'vehicle', 'space-object'].includes(actorType);
+    const ruleset = game.settings.get('twodsix', 'ruleset');
+    const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
+    const showLifebloodStamina = game.settings.get("twodsix", "showLifebloodStamina");
+    const lifebloodInsteadOfCharacteristics = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics');
+
     // Add relevant data from system settings
     context.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType),
       rangeTypes: getRangeTypes('short'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
-      lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
+      lifebloodInsteadOfCharacteristics,
       showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
-      showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
+      showLifebloodStamina,
       showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
       showIcons: game.settings.get("twodsix", "showIcons"),
       showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
@@ -75,17 +82,17 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       useFoundryStandardStyle: game.settings.get('twodsix', 'useFoundryStandardStyle'),
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
-      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") || game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
+      dontShowStatBlock: (showLifebloodStamina || lifebloodInsteadOfCharacteristics),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       damageTypes: getDamageTypes(false),
       Infinity: Infinity,
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
-      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
-      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU'
+      useCTData: ruleset === 'CT',
+      useCUData: ruleset === 'CU'
     };
 
-    if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
+    if (!isShipLike) {
       context.untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       if (!context.untrainedSkill) {
         //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
@@ -99,7 +106,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
       //Prepare characteristic display values
       setCharacteristicDisplay(context);
-      if (this.actor.type === 'traveller') {
+      if (actorType === 'traveller') {
         context.system.characteristics.displayOrder = getDisplayOrder(context);
       }
 
@@ -107,7 +114,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     this._prepareItemContainers(context);
 
-    if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
+    if (!isShipLike) {
       this._prepareTooltips(context);
     }
 
@@ -895,7 +902,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         description: ""
       }]);
     } else {
-      console.log("Unknown Action");
+      console.warn("Unknown effect control action:", action);
     }
     //await this.render(false);
   }
