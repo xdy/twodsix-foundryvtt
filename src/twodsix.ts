@@ -46,7 +46,7 @@ import { TwodsixActiveEffectConfig } from "./module/sheets/TwodsixActiveEffectCo
 //import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
-// @ts-ignore
+// @ts-expect-error Dynamic hook file imports are not typed.
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
 
 Hooks.once('init', async function () {
@@ -196,7 +196,7 @@ Hooks.once('init', async function () {
   addCustomEnrichers();
 
   /* add fonts */
-  // @ts-ignore
+  // @ts-expect-error Font definitions are not typed in Foundry config.
   CONFIG.fontDefinitions["Asap"] = {
     editor: true,
     fonts: [
@@ -235,7 +235,7 @@ Hooks.once('init', async function () {
     switchCss("systems/twodsix/styles/twodsix_moduleFix.css");
   }
 
-  //@ts-ignore
+  // @ts-expect-error Handlebars template loader typing is missing in Foundry types.
   await foundry.applications.handlebars.loadTemplates(handlebarsTemplateFiles);
 
   //Add TL to compendium index
