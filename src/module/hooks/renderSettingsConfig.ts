@@ -18,7 +18,11 @@ async function createWarningDialog(event, message: string) {
 }
 
 Hooks.on('updateSetting', async (setting) => {
-  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const ruleset = getValidRulesetKey();
+  if (!TWODSIX.RULESETS[ruleset] || !TWODSIX.RULESETS[ruleset].settings) {
+    console.error(`updateSetting: Could not resolve a valid ruleset. Aborting.`);
+    return;
+  }
   if (Object.keys(TWODSIX.RULESETS[ruleset].settings).includes(setting.key.slice(8))) {
     if (game.settings.sheet.rendered) {
       game.settings.sheet.render({force: true});
@@ -43,7 +47,12 @@ Hooks.on('renderAdvancedSettings', async (app, htmlElement) => {
 
 Hooks.on('renderSettingsConfig', async (app, html:JQuery|HTMLElement) => {
   const htmlElement:HTMLElement = (html instanceof jQuery) ? html.get(0) : html; //Maybe not required when v13 fully Appv2
-  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const ruleset = getValidRulesetKey();
+  if (!TWODSIX.RULESETS[ruleset] || !TWODSIX.RULESETS[ruleset].settings) {
+    console.error(`renderSettingsConfig: Could not resolve a valid ruleset. Aborting.`);
+    return;
+  }
+
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
     return game.settings.get("twodsix", settingName) === value;
@@ -90,3 +99,15 @@ Hooks.on('renderSettingsConfig', async (app, html:JQuery|HTMLElement) => {
     }
   });
 });
+
+// Returns a valid ruleset key, falling back to default if needed
+function getValidRulesetKey(): string {
+  let ruleset = game.settings.get('twodsix', 'ruleset');
+  if (!TWODSIX.RULESETS || !TWODSIX.RULESETS[ruleset] || !TWODSIX.RULESETS[ruleset].settings) {
+    const defaultRulesetKey = TWODSIX.RULESETS["CE"].key;
+    console.warn(`getValidRulesetKey: Invalid ruleset '${ruleset}'. Setting to default '${defaultRulesetKey}'.`);
+    game.settings.set('twodsix', 'ruleset', defaultRulesetKey);
+    ruleset = defaultRulesetKey;
+  }
+  return ruleset;
+}
