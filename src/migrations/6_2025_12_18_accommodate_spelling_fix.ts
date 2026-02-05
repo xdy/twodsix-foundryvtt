@@ -11,15 +11,15 @@
 
 import { applyToAllItems } from "../module/utils/migration-utils";
 
-async function migrateAccommodationSpelling(item: TwodsixItem): Promise<void> {
+function migrateAccommodationSpelling(item: TwodsixItem): Record<string, any> | void {
   if (item.type === 'component' && item.system.subtype === 'accomodations') {
-    await item.update({ 'system.subtype': 'accommodations' });
+    return { 'system.subtype': 'accommodations' };
   }
 }
 
 export async function migrate(): Promise<void> {
   console.log("[TWODSIX] Starting accommodation spelling migration...");
-  await applyToAllItems(migrateAccommodationSpelling);
+  await applyToAllItems(migrateAccommodationSpelling, { batch: true });
   console.log("[TWODSIX] Accommodation spelling migration complete");
   return Promise.resolve();
 }

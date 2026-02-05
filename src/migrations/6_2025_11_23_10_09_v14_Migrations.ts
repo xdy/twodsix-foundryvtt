@@ -21,20 +21,22 @@ async function updateActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<voi
     ? doc.getDerivedDataKeys()
     : [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
 
-  const effectsList:TwodsixActiveEffect[] = (doc.documentName === "Actor"
-    ? Array.from(doc.allApplicableEffects())
-    : doc.effects?.contents)
-    ?? [];
+  // Only process effects directly owned by this document
+  const effectsList:TwodsixActiveEffect[] = doc.effects?.contents ?? [];
 
   if (!effectsList.length) {
     return;
   }
+
+  const effectUpdates: Array<{ _id: string; 'system.changes': any[] }> = [];
 
   for (const effect of effectsList) {
     if (!effect.system?.changes || foundry.utils.getType(effect.system?.changes) !== 'Array') {
       console.log(`No valid changes found for effect: ${effect.name} on ${doc.name}`);
       continue;
     }
+
+    let effectChanged = false;
 
     for (const change of effect.system.changes) {
       //console.log(`Processing change:`, change);
@@ -47,16 +49,30 @@ async function updateActiveEffects(doc: TwodsixActor | TwodsixItem): Promise<voi
       // Only migrate formulas and types for changes with type === 'custom'
       if (change.type === "custom" && (typeof change.value === "string" || typeof change.value === "number")) {
         migrateCustomChange(change);
+        effectChanged = true;
       }
 
       const phase = determinePhase(change, derivedKeys, isActor);
-      change.phase = phase;
+      if (change.phase !== phase) {
+        change.phase = phase;
+        effectChanged = true;
+      }
     }
 
+    if (effectChanged) {
+      effectUpdates.push({
+        _id: effect.id,
+        'system.changes': effect.system.changes
+      });
+    }
+  }
+
+  // Batch update all effects for this document at once
+  if (effectUpdates.length > 0) {
     try {
-      await effect.update({ 'system.changes': effect.system.changes });
+      await doc.updateEmbeddedDocuments('ActiveEffect', effectUpdates);
     } catch (error) {
-      console.error(`Failed to update effect: ${effect.name} for document: ${doc.name}`, error);
+      console.error(`Failed to update effects for document: ${doc.name}`, error);
     }
   }
 }
@@ -131,19 +147,20 @@ export async function migrate(): Promise<void> {
   const validActorTypes = ["traveller", "animal", "robot"];
   const validItemTypes = ['equipment', 'weapon', 'armor', 'augment', 'tool', 'trait', 'consumable', 'computer'];
 
-  // Process all actors
+  // Process all actors - effects are batched per document via updateEmbeddedDocuments
   await applyToAllActors(async (actor: TwodsixActor) => {
     if (validActorTypes.includes(actor.type)) {
       await updateActiveEffects(actor);
     }
   });
 
-  // Process all items
+  // Process all items - effects are batched per document via updateEmbeddedDocuments
   await applyToAllItems(async (item: TwodsixItem) => {
     if (validItemTypes.includes(item.type)) {
       await updateActiveEffects(item);
     }
   });
+
   console.log("AE Phase Migration Complete");
   return Promise.resolve();
 }

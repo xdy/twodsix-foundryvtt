@@ -13,7 +13,7 @@
 
 import { applyToAllActors } from "../module/utils/migration-utils";
 
-async function migrateShipData(actor: TwodsixActor): Promise<void> {
+function migrateShipData(actor: TwodsixActor): Record<string, any> | void {
   if (actor.type === 'ship') {
     const updates = {};
     const currentShowWeight:boolean = game.settings.get('twodsix', 'showWeightUsage');
@@ -51,13 +51,15 @@ async function migrateShipData(actor: TwodsixActor): Promise<void> {
       }
     }
 
-    await actor.update(updates);
+    if (!foundry.utils.isEmpty(updates)) {
+      return updates;
+    }
   }
 }
 
 export async function migrate(): Promise<void> {
   console.log("[TWODSIX] Starting accommodation ship data migration...");
-  await applyToAllActors(migrateShipData);
+  await applyToAllActors(migrateShipData, { batch: true });
   console.log("[TWODSIX] Ship data migration complete");
   return Promise.resolve();
 }
