@@ -57,16 +57,23 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     context.dtypes = ["String", "Number", "Boolean"];
 
+    const actorType = this.actor.type;
+    const isShipLike = ['ship', 'vehicle', 'space-object'].includes(actorType);
+    const ruleset = game.settings.get('twodsix', 'ruleset');
+    const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
+    const showLifebloodStamina = game.settings.get("twodsix", "showLifebloodStamina");
+    const lifebloodInsteadOfCharacteristics = game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics');
+
     // Add relevant data from system settings
     context.settings = {
-      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType')),
+      ShowRangeBandAndHideRange: ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType),
       rangeTypes: getRangeTypes('short'),
       ExperimentalFeatures: game.settings.get('twodsix', 'ExperimentalFeatures'),
       autofireRulesUsed: game.settings.get('twodsix', 'autofireRulesUsed'),
       showAlternativeCharacteristics: game.settings.get('twodsix', 'showAlternativeCharacteristics'),
-      lifebloodInsteadOfCharacteristics: game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics'),
+      lifebloodInsteadOfCharacteristics,
       showContaminationBelowLifeblood: game.settings.get('twodsix', 'showContaminationBelowLifeblood'),
-      showLifebloodStamina: game.settings.get("twodsix", "showLifebloodStamina"),
+      showLifebloodStamina,
       showHeroPoints: game.settings.get("twodsix", "showHeroPoints"),
       showIcons: game.settings.get("twodsix", "showIcons"),
       showStatusIcons: game.settings.get("twodsix", "showStatusIcons"),
@@ -76,18 +83,18 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       useWesternStyle: game.settings.get('twodsix', 'themeStyle') === 'western',
       showReferences: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showSpells: game.settings.get('twodsix', 'showSpells'),
-      dontShowStatBlock: (game.settings.get("twodsix", "showLifebloodStamina") || game.settings.get('twodsix', 'lifebloodInsteadOfCharacteristics')),
+      dontShowStatBlock: (showLifebloodStamina || lifebloodInsteadOfCharacteristics),
       hideUntrainedSkills: game.settings.get('twodsix', 'hideUntrainedSkills'),
       damageTypes: getDamageTypes(false),
       Infinity: Infinity,
       usePDFPager: game.settings.get('twodsix', 'usePDFPagerForRefs'),
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
-      useCTData: game.settings.get('twodsix', 'ruleset') === 'CT',
-      useCUData: game.settings.get('twodsix', 'ruleset') === 'CU',
-      useRiderData: game.settings.get('twodsix', 'ruleset') === 'RIDER'
+      useRiderData: ruleset === 'RIDER',
+      useCTData: ruleset === 'CT',
+      useCUData: ruleset === 'CU'
     };
 
-    if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
+    if (!isShipLike) {
       context.untrainedSkill = (<TwodsixActor>this.actor).getUntrainedSkill();
       if (!context.untrainedSkill) {
         //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
@@ -101,7 +108,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
       //Prepare characteristic display values
       setCharacteristicDisplay(context);
-      if (this.actor.type === 'traveller') {
+      if (actorType === 'traveller') {
         context.system.characteristics.displayOrder = getDisplayOrder(context);
       }
 
@@ -109,7 +116,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     this._prepareItemContainers(context);
 
-    if (!['ship', 'vehicle', 'space-object'].includes(this.actor.type)) {
+    if (!isShipLike) {
       this._prepareTooltips(context);
     }
 
@@ -897,7 +904,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         description: ""
       }]);
     } else {
-      console.log("Unknown Action");
+      console.warn("Unknown effect control action:", action);
     }
     //await this.render(false);
   }
@@ -1154,14 +1161,15 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     return "";
   }
 
-  const modes = [
-    `<i class="fa-regular fa-circle-question"></i>`,
-    `<i class="fa-regular fa-circle-xmark"></i>`,
-    `<i class="fa-solid fa-circle-plus"></i>`,
-    `<i class="fa-regular fa-circle-down"></i>`,
-    `<i class="fa-regular fa-circle-up"></i>`,
-    `<i class="fa-solid fa-shuffle"></i>`
-  ];
+  const types = {
+    custom: `<i class="fa-regular fa-circle-question"></i>`,
+    multiply: `<i class="fa-regular fa-circle-xmark"></i>`,
+    add: `<i class="fa-solid fa-circle-plus"></i>`,
+    subtract: `<i class="fa-solid fa-circle-minus"></i>`,
+    downgrade: `<i class="fa-regular fa-circle-down"></i>`,
+    upgrade: `<i class="fa-regular fa-circle-up"></i>`,
+    override: `<i class="fa-solid fa-shuffle"></i>`
+  };
 
   if (foundry.utils.getProperty(actor.overrides, field) === undefined) {
     return "";
@@ -1197,7 +1205,7 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     const realChanges = effect.system.changes?.filter(ch => ch.key === field);
     if (realChanges?.length > 0) {
       const changesStr = realChanges.map(change =>
-        `${modes[change.type] || ""}(${change.value})`
+        `${types[change.type] || ""}(${change.value})`
       ).join(", ");
       effectStrings.push(`${effect.name}: ${changesStr}`);
     }

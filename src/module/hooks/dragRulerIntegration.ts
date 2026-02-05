@@ -123,6 +123,6 @@ Hooks.once("dragRuler.ready", (SpeedProvider) => {
       }
     }
   }
-  //@ts-ignore
+  // @ts-expect-error dragRuler typings are not available at runtime.
   dragRuler.registerSystem("twodsix", TwodsixSpeedProvider);
 });

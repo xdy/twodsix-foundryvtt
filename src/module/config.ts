@@ -220,7 +220,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "CT",
       shipDamageType: "CT",
-      spaceCombatPhases: "fivePhase"
+      spaceCombatPhases: "fivePhase",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.fivePhase.shipInitiativeFormula
     }
   },
   CE: {
@@ -277,7 +278,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "CE",
       shipDamageType: "component",
-      spaceCombatPhases: "threePhase"
+      spaceCombatPhases: "threePhase",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.threePhase.shipInitiativeFormula
     }
   },
   CEL: {
@@ -327,7 +329,8 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      spaceCombatPhases: "twoPhasePosition"
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
     }
   },
   CEFTL: {
@@ -375,7 +378,8 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      spaceCombatPhases: "twoPhasePosition"
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
     }
   },
   CEATOM: {
@@ -422,7 +426,9 @@ const RULESETS = Object.freeze({
       weightModifierForWornArmor: "1",
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
-      xd6RollStyle: false
+      xd6RollStyle: false,
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula,
     }
   },
   BARBARIC: {
@@ -516,7 +522,8 @@ const RULESETS = Object.freeze({
       chainBonus: "0, 0, 0, 0, 0, 0",
       psiTalentsRequireRoll: false,
       xd6RollStyle: false,
-      spaceCombatPhases: "twoPhasePosition"
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
     }
   },
   CD: {
@@ -575,7 +582,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "CD",
       shipDamageType: "surfaceInternal",
-      spaceCombatPhases: "twoPhasePosition"
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
     }
   },
   CDEE: {
@@ -634,7 +642,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "CD",
       shipDamageType: "surfaceInternal",
-      spaceCombatPhases: "twoPhasePosition"
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
     }
   },
   CLU: {
@@ -693,7 +702,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "CD",
       shipDamageType: "surfaceInternal",
-      spaceCombatPhases: "twoPhasePosition"
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
     }
   },
   SOC: {
@@ -799,7 +809,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "AC",
       shipDamageType: "AC",
-      spaceCombatPhases: "twoPhasePosition"
+      spaceCombatPhases: "twoPhasePosition",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.twoPhasePosition.shipInitiativeFormula
     }
   },
   CU: {
@@ -856,7 +867,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "CE",
       shipDamageType: "CU",
-      spaceCombatPhases: "eightPhaseLooping"
+      spaceCombatPhases: "eightPhaseLooping",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.eightPhaseLooping.shipInitiativeFormula
     }
   },
   OTHER: {
@@ -926,7 +938,8 @@ const RULESETS = Object.freeze({
       xd6RollStyle: false,
       shipWeaponType: "CE",
       shipDamageType: "criticalHullDamage",
-      spaceCombatPhases: "mgt2eThreePhase"
+      spaceCombatPhases: "mgt2eThreePhase",
+      shipInitiativeFormula: SPACE_COMBAT_PHASE_TYPES.mgt2eThreePhase.shipInitiativeFormula
     }
   },
   RIDER: {

@@ -663,8 +663,9 @@ export default class TwodsixActor extends Actor {
     // Seed mass early so weight/cost helpers use calculated mass during this cycle
     this.system.calcShipStats = {mass: {max: calcShipStats.mass.max}} as any;
 
-    /* Calculate drive ratings */
-    const {jump, thrust} = this.getDriveRatings();
+
+    // Use getDriveRatings for drive ratings (single source of truth)
+    const { jump, thrust } = this._getDriveRatings();
     calcShipStats.drives.jDrive.rating = Number.isFinite(jump) ? jump : 0;
     calcShipStats.drives.mDrive.rating = Number.isFinite(thrust) ? thrust : 0;
 
@@ -1557,57 +1558,48 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Calculates the maximum Jump and Thrust ratings for a ship's drives.
-   * Returns the highest found rating for each drive type that are active, or the value from
-   * system.shipStats.drives if present.
+   * Computes the maximum Jump and Thrust ratings for a ship's drives based on installed components.
+   * Only applies to actors of type "ship" or "space-object". Ignores inactive or destroyed drives.
    *
-   * @returns {{ jump: number, thrust: number }} An object with the highest jump and thrust ratings.
+   * @returns {{ jump: number, thrust: number }} An object with the highest jump and thrust ratings found among active components.
+   * @private
    */
-  public getDriveRatings(): { jump: number, thrust: number } {
-    if (this.type !== "ship") {
+  private _getDriveRatings(): { jump: number, thrust: number } {
+    if (!["ship", "space-object"].includes(this.type)) {
       return { jump: 0, thrust: 0 };
     }
 
     let jump = 0;
     let thrust = 0;
+    const parseRating = (value: unknown): number => {
+      if (typeof value === "number" && Number.isFinite(value)) {
+        return value;
+      }
+      if (typeof value === "string" && value.trim() !== "") {
+        const direct = Number(value);
+        if (Number.isFinite(direct)) {
+          return direct;
+        }
+        const match = value.match(/-?\d+(?:\.\d+)?/);
+        if (match) {
+          const parsed = Number(match[0]);
+          return Number.isFinite(parsed) ? parsed : 0;
+        }
+      }
+      return 0;
+    };
 
-    const driveComponents: TwodsixItem[] = this.itemTypes.component.filter(
-      (it: TwodsixItem) =>
-        it.system.subtype === 'drive' &&
-        !["off", "destroyed"].includes(it.system.status)
-    );
-
-    for (const drive of driveComponents) {
-      const rating = Number(drive.system.rating);
-      const validRating = Number.isFinite(rating) ? rating : 0;
-
+    this.itemTypes.component.filter(
+      (it: TwodsixItem) => it.system.subtype === 'drive' && !["off", "destroyed"].includes(it.system.status)
+    ).forEach((drive: TwodsixItem) => {
+      const validRating = parseRating(drive.system.rating);
       if (drive.isMDriveComponent()) {
         thrust = Math.max(thrust, validRating);
       } else if (drive.isJDriveComponent()) {
         jump = Math.max(jump, validRating);
       }
-    }
-
-    // Check setting: use calcShipStats only if auto-calc is enabled
-    const useAutoCalcs = game.settings.get('twodsix', 'useShipAutoCalcs');
-
-    if (useAutoCalcs) {
-      // Use calculated values from calcShipStats, fallback to component calculations
-      const calcJump = this.system.calcShipStats?.drives?.jDrive?.rating;
-      const calcThrust = this.system.calcShipStats?.drives?.mDrive?.rating;
-      return {
-        jump: Number.isFinite(calcJump) ? calcJump : jump,
-        thrust: Number.isFinite(calcThrust) ? calcThrust : thrust
-      };
-    } else {
-      // Use manual values from shipStats, fallback to component calculations
-      const storedJump = Number(this.system.shipStats.drives.jDrive.rating);
-      const storedThrust = Number(this.system.shipStats.drives.mDrive.rating);
-      return {
-        jump: Number.isFinite(storedJump) ? storedJump : jump,
-        thrust: Number.isFinite(storedThrust) ? storedThrust : thrust
-      };
-    }
+    });
+    return { jump, thrust };
   }
 
   /**

@@ -44,14 +44,6 @@ Hooks.once("ready", async function () {
     });
   }
 
-  //Toggle actors' effect to correct off calc on refresh, should be fixed in version 11.306 onward for tokens
-  if (game.users.activeGM?.isSelf) {
-    if (game.release.build < 306) {
-      await applyToAllActors(toggleTokenEffect);
-    }
-    //await applyToAllActors(toggleActorEffect);
-  }
-
   // A socket hook proxy
   game.socket?.on("system.twodsix", (data) => {
     Hooks.call(data[0], ...data.slice(1));
@@ -135,33 +127,7 @@ Hooks.once("ready", async function () {
   //checkDefaultActorSheetTypes();
 });
 
-//This function is a kludge to reset token actors overrides not being calculated correctly on initialize
-async function toggleTokenEffect(actor:TwodsixActor): Promise<void> {
-  if ((!actor.inCompendium)) {
-    await toggleFirstActiveEffect(actor, true);
-  }
-}
 
-//This function is a kludge to reset linked actors overrides not being calculated correctly on initialize
-//async function toggleActorEffect(actor:TwodsixActor): Promise<void> {
-//  await toggleFirstActiveEffect(actor, false);
-//}
-
-/**
- * Toggles first AE on actor so that AE are correctly calculated on load.  This is a hack to fix an issue with FVTT or Twodsix that I can't find
- * @param {TwodsixActor} actor the actor to toggle
- * @param {boolean} isToken whether the actor is unlinked (Token actor) or not
- * @function
- */
-async function toggleFirstActiveEffect(actor:TwodsixActor, isToken: boolean): Promise<void> {
-  if (actor.isToken === isToken  && actor.isOwner) {
-    const actorEffects = Array.from(actor.allApplicableEffects());
-    if (actorEffects.length > 0) {
-      await actorEffects[0].update({'disabled': !actorEffects[0].disabled});
-      await actorEffects[0].update({'disabled': !actorEffects[0].disabled});
-    }
-  }
-}
 
 /**
  * Check that the default actor sheet type exists in Actors.registeredSheets. If not,
