@@ -79,8 +79,6 @@ export async function applyToAllActors(
 
   const actorPacks = game.packs.filter(pack => pack.metadata.type === 'Actor' && pack.metadata.packageType !== 'system');
   await applyToAllPacks(fn, actorPacks, options);
-
-  return Promise.resolve();
 }
 
 /**
@@ -109,16 +107,14 @@ export async function applyToAllItems(
 
   const itemPacks = game.packs.filter(pack => pack.metadata.type === 'Item' && pack.metadata.packageType !== 'system');
   await applyToAllPacks(fn, itemPacks, options);
-
-  return Promise.resolve();
 }
 
 /**
- * Applies an asynchronous function to all documents (TwodsixActor or TwodsixItem) in the provided compendium packs.
+ * Applies a function to all documents (TwodsixActor or TwodsixItem) in the provided compendium packs.
  * Temporarily unlocks locked packs if possible, processes all documents, and relocks packs if they were originally locked.
  * Errors in unlocking, processing, or relocking packs and individual documents are caught and logged.
  *
- * @param fn - An async function to apply to each document in the pack. Can either:
+ * @param fn - A function (sync or async) to apply to each document in the pack. Can either:
  *             - Return void and call doc.update() itself (old behavior)
  *             - Return an update object to be batched (new batching behavior)
  * @param packs - An array of compendium collections to process.
@@ -127,7 +123,7 @@ export async function applyToAllItems(
  * @returns A promise that resolves when all packs have been processed.
  */
 async function applyToAllPacks(
-  fn: ((doc: TwodsixActor | TwodsixItem) => Promise<void | Record<string, any>>),
+  fn: ((doc: TwodsixActor | TwodsixItem) => void | Record<string, any> | Promise<void | Record<string, any>>),
   packs: CompendiumCollection[],
   options: { batch?: boolean } = {}
 ): Promise<void> {
@@ -160,9 +156,11 @@ async function applyToAllPacks(
         // Collect updates with error handling
         for (const doc of validDocs) {
           try {
-            const result = await fn(doc);
-            if (result && typeof result === 'object') {
-              updates.push({ _id: doc.id, ...result });
+            const result = fn(doc);
+            // Handle both sync and async results
+            const resolved = result instanceof Promise ? await result : result;
+            if (resolved && typeof resolved === 'object') {
+              updates.push({ _id: doc.id, ...resolved });
             }
           } catch (docError) {
             console.warn(`Error applying function to document in pack ${pack.collection}:`, docError);

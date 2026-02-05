@@ -151,6 +151,12 @@ export async function migrate(): Promise<void> {
   await applyToAllActors(async (actor: TwodsixActor) => {
     if (validActorTypes.includes(actor.type)) {
       await updateActiveEffects(actor);
+      // Also process all embedded items' effects
+      for (const item of actor.items.contents) {
+        if (validItemTypes.includes(item.type)) {
+          await updateActiveEffects(item);
+        }
+      }
     }
   });
 

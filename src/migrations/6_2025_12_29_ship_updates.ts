@@ -3,11 +3,16 @@
 
 /**
  * Migration:
- * 1) Fix misspelled component subtype "accomodations" → "accommodations"
- * 2) Use camel case for j-drive and m-drive reqPower
+ * 1) Fix misspelled component subtype "accomodations" → "accommodations" for all world, compendium, and embedded ship items.
+ * 2) Use camel case for j-drive and m-drive reqPower on ship actors.
+ * 3) Update ship finance values and showWeightUsage from settings.
  *
- * This migration corrects items across the world, actors, and compendium packs.
- * It leverages the built-in migration infrastructure and applyToAllActors utility.
+ * This migration corrects:
+ * - All world and compendium items (batch mode)
+ * - All embedded items for ship actors (non-batched, with logging)
+ * - All ship actors (batched)
+ *
+ * Logging is included for embedded item updates.
  *
  */
 
@@ -58,7 +63,7 @@ function migrateShipData(actor: TwodsixActor): Record<string, any> | void {
 }
 
 export async function migrate(): Promise<void> {
-  console.log("[TWODSIX] Starting accommodation ship data migration...");
+  console.log("[TWODSIX] Starting ship data migration...");
   await applyToAllActors(migrateShipData, { batch: true });
   console.log("[TWODSIX] Ship data migration complete");
   return Promise.resolve();
