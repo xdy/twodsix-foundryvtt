@@ -69,8 +69,7 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
 
   static registerSettings(): any {
     const DEFAULT_INITIATIVE_FORMULA = "2d6 + @characteristics.dexterity.mod";
-    // TODO: With the new ship positions this should be changed to take the pilot's piloting skill into consideration.
-    const DEFAULT_SHIP_INITIATIVE_FORMULA = "2d6";
+    const DEFAULT_SHIP_INITIATIVE_FORMULA = "2d6 + max(@skills.Piloting, @skills.Pilot)";
     const DEFAULT_MAX_ENCUMBRANCE_FORMULA = "12 * @characteristics.strength.current";
 
     const settings = {
