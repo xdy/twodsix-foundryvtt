@@ -123,32 +123,32 @@ export const refreshWindow = function () {
   window.location.reload();
 };
 
-export const changeDefaultColor = function () {
+export const changeDefaultColor = async function () {
   if (game.settings.get('twodsix', 'defaultColor') === "") {
-    game.settings.set('twodsix', 'defaultColor', "#29aae1");
+    await game.settings.set('twodsix', 'defaultColor', "#29aae1");
   }
   document.documentElement.style.setProperty('--s2d6-default-color',  game.settings.get('twodsix', 'defaultColor'));
   // Re-render pause screen if it exists to update SVG color
   ui.pause?.render(false);
 };
 
-export const changeBattleColor = function () {
+export const changeBattleColor = async function () {
   if (game.settings.get('twodsix', 'battleColor') === "") {
-    game.settings.set('twodsix', 'battleColor', "#29aae1");
+    await game.settings.set('twodsix', 'battleColor', "#29aae1");
   }
   document.documentElement.style.setProperty('--s2d6-battle-color',  game.settings.get('twodsix', 'battleColor'));
 };
 
-export const changeLightColor = function () {
+export const changeLightColor = async function () {
   if (game.settings.get('twodsix', 'lightColor') === "") {
-    game.settings.set('twodsix', 'lightColor', "#00e5ff");
+    await game.settings.set('twodsix', 'lightColor', "#00e5ff");
   }
   document.documentElement.style.setProperty('--s2d6-light-color', game.settings.get('twodsix', 'lightColor'));
 };
 
-export const changeDamageColor = function () {
+export const changeDamageColor = async function () {
   if (game.settings.get('twodsix', 'damageStatColor') === "") {
-    game.settings.set('twodsix', 'damageStatColor', "#b52c2c");
+    await game.settings.set('twodsix', 'damageStatColor', "#b52c2c");
   }
   document.documentElement.style.setProperty('--s2d6-damage-stat-color', game.settings.get('twodsix', 'damageStatColor'));
 };
@@ -174,14 +174,14 @@ export const setDocumentPartials = function () {
   ui.items.render();
 };
 
-export const updateJDrive = function (value) {
+export const updateJDrive = async function (value) {
   if (value === "") {
-    game.settings.set('twodsix', 'jDriveLabel', "TWODSIX.Ship.JDrive");
+    await game.settings.set('twodsix', 'jDriveLabel', "TWODSIX.Ship.JDrive");
   }
 };
 
-export const updateMDrive = function (value) {
+export const updateMDrive = async function (value) {
   if (value === "") {
-    game.settings.set('twodsix', 'mDriveLabel', "TWODSIX.Ship.mDrive");
+    await game.settings.set('twodsix', 'mDriveLabel', "TWODSIX.Ship.mDrive");
   }
 };

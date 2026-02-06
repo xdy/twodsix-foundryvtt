@@ -169,51 +169,51 @@ export default class RulesetSettings extends foundry.applications.api.Handlebars
   }
 }
 
-export const checkManualDamageSetting = function () {
+export const checkManualDamageSetting = async function () {
   if (!game.settings.get('twodsix', 'addEffectToDamage') && game.settings.get('twodsix', 'addEffectToManualDamage')) {
-    game.settings.set('twodsix', 'addEffectToManualDamage', false);
+    await game.settings.set('twodsix', 'addEffectToManualDamage', false);
     ui.notifications.warn("TWODSIX.Warnings.ResetEffectForManualDamage", {localize: true});
   }
 };
 
-export const updateSTRShortLabel = function (value:string) {
+export const updateSTRShortLabel = async function (value:string) {
   if (!value) {
-    game.settings.set('twodsix', "shortSTR", "TWODSIX.Items.Skills.STR");
+    await game.settings.set('twodsix', "shortSTR", "TWODSIX.Items.Skills.STR");
   }
 };
 
-export const updateDEXShortLabel = function (value:string) {
+export const updateDEXShortLabel = async function (value:string) {
   if (!value) {
-    game.settings.set('twodsix', "shortDEX", "TWODSIX.Items.Skills.DEX");
+    await game.settings.set('twodsix', "shortDEX", "TWODSIX.Items.Skills.DEX");
   }
 };
 
-export const updateENDShortLabel = function (value:string) {
+export const updateENDShortLabel = async function (value:string) {
   if (!value) {
-    game.settings.set('twodsix', "shortEND", "TWODSIX.Items.Skills.END");
+    await game.settings.set('twodsix', "shortEND", "TWODSIX.Items.Skills.END");
   }
 };
 
-export const updateINTShortLabel = function (value:string) {
+export const updateINTShortLabel = async function (value:string) {
   if (!value) {
-    game.settings.set('twodsix', "shortINT", "TWODSIX.Items.Skills.INT");
+    await game.settings.set('twodsix', "shortINT", "TWODSIX.Items.Skills.INT");
   }
 };
 
-export const updateEDUShortLabel = function (value:string) {
+export const updateEDUShortLabel = async function (value:string) {
   if (!value) {
-    game.settings.set('twodsix', "shortEDU", "TWODSIX.Items.Skills.EDU");
+    await game.settings.set('twodsix', "shortEDU", "TWODSIX.Items.Skills.EDU");
   }
 };
 
-export const updateSOCShortLabel = function (value:string) {
+export const updateSOCShortLabel = async function (value:string) {
   if (!value) {
-    game.settings.set('twodsix', "shortSOC", "TWODSIX.Items.Skills.SOC");
+    await game.settings.set('twodsix', "shortSOC", "TWODSIX.Items.Skills.SOC");
   }
 };
 
-export const updatePSIShortLabel = function (value:string) {
+export const updatePSIShortLabel = async function (value:string) {
   if (!value) {
-    game.settings.set('twodsix', "shortPSI", "TWODSIX.Items.Skills.PSI");
+    await game.settings.set('twodsix', "shortPSI", "TWODSIX.Items.Skills.PSI");
   }
 };

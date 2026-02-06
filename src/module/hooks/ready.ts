@@ -13,13 +13,13 @@ Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions
   if (game.modules.get("combat-utility-belt")?.active) {
     if (game.settings.get("combat-utility-belt", "removeDefaultEffects")) {
-      game.settings.set("combat-utility-belt", "removeDefaultEffects", false);
+      await game.settings.set("combat-utility-belt", "removeDefaultEffects", false);
     }
   }
 
   //*Set default damage options localized
   if (game.settings.get("twodsix", "damageTypeOptions") === ""  && game.settings.get('twodsix', 'ruleset') !== 'CU') {
-    game.settings.set("twodsix", "damageTypeOptions", game.i18n.localize("TWODSIX.Settings.defaultDamageOptions"));
+    await game.settings.set("twodsix", "damageTypeOptions", game.i18n.localize("TWODSIX.Settings.defaultDamageOptions"));
   }
 
   if (!Roll.validate(game.settings.get('twodsix', 'maxEncumbrance'))) {
@@ -118,7 +118,7 @@ Hooks.once("ready", async function () {
   if (game.settings.get('twodsix', 'chainBonus') === "") {
     const ruleset = game.settings.get('twodsix', 'ruleset');
     const rulesetChainBonus = TWODSIX.RULESETS[ruleset]?.settings.chainBonus;
-    game.settings.set('twodsix', 'chainBonus', rulesetChainBonus ?? "");
+    await game.settings.set('twodsix', 'chainBonus', rulesetChainBonus ?? "");
   }
 
   //Check default actor sheet types
