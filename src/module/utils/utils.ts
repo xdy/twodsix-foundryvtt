@@ -154,17 +154,16 @@ export function roundToMaxDecimals(num:number, maxDecimals:number): number {
  * Find the first key whose JSON-serialised value matches the provided value.
  * @param object - Search target object
  * @param value - Value to match
- * @param options.fallback - Optional fallback key if no match is found
  * @returns The matching key, the fallback, or undefined if nothing matches
  */
-export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown, options?: { fallback?: string }):string | undefined {
+export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):string | undefined {
+  if (!value || value === "NONE") {
+    return undefined;
+  }
   const compareValue = JSON.stringify(value);
   const returnKey = Object.keys(object).find(key => JSON.stringify(object[key]) === compareValue);
   if (returnKey !== undefined) {
     return returnKey;
-  }
-  if (options?.fallback) {
-    return options.fallback;
   }
   console.warn("utils.getKeyByValue: value not found", { value, object });
   return undefined;

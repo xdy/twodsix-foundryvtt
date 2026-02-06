@@ -476,7 +476,7 @@ export function getInitialSettingsFromFormula(parseString: string, actor: Twodsi
     if(!char && skill) {
       //Try to get characteristic key from skill
       characteristicKey = getKeyByValue(TWODSIX.CHARACTERISTICS, (<Skills>skill.system).characteristic);
-    } else if (char) {
+    } else if (char && char !== "NONE") {
       //find the most advantageous characteristic to use based on the displayed (custom) short label
       const charOptions = char.split("|").map(str => str.trim());
       let candidateCharObject = undefined;
