@@ -683,7 +683,7 @@ const RULESETS = Object.freeze({
       encumbranceFraction: "0.334",
       encumbranceModifier: -2,
       useDegreesOfSuccess: 'none',
-      targetDMList: "Obscured -1, Cover (hard) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1, Overwatch w/Shield -2",
+      targetDMList: "Obscured -1, Cover (good) -2, Cover (heavy) -3, Cover (total) -4, Running -1, Prone (ranged) -2, Darkness -2, Dim Light -1, Shield -1",
       armorDamageFormula: "@damage - @effectiveArmor",
       addEffectToDamage: true,
       weightModifierForWornArmor: "1",
@@ -1520,6 +1520,191 @@ export const effectType = Object.freeze({
   encumbered: 'EFFECT.StatusEncumbered'
 });
 
+// World Size options for selectOption helper (hex keys, localized labels)
+export const WorldSizeOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Size.0", gravity: "TWODSIX.World.Stats.Gravity.0" },
+  "1": { label: "TWODSIX.World.Stats.Size.1", gravity: "TWODSIX.World.Stats.Gravity.1" },
+  "2": { label: "TWODSIX.World.Stats.Size.2", gravity: "TWODSIX.World.Stats.Gravity.2" },
+  "3": { label: "TWODSIX.World.Stats.Size.3", gravity: "TWODSIX.World.Stats.Gravity.3" },
+  "4": { label: "TWODSIX.World.Stats.Size.4", gravity: "TWODSIX.World.Stats.Gravity.4" },
+  "5": { label: "TWODSIX.World.Stats.Size.5", gravity: "TWODSIX.World.Stats.Gravity.5" },
+  "6": { label: "TWODSIX.World.Stats.Size.6", gravity: "TWODSIX.World.Stats.Gravity.6" },
+  "7": { label: "TWODSIX.World.Stats.Size.7", gravity: "TWODSIX.World.Stats.Gravity.7" },
+  "8": { label: "TWODSIX.World.Stats.Size.8", gravity: "TWODSIX.World.Stats.Gravity.8" },
+  "9": { label: "TWODSIX.World.Stats.Size.9", gravity: "TWODSIX.World.Stats.Gravity.9" },
+  "A": { label: "TWODSIX.World.Stats.Size.A", gravity: "TWODSIX.World.Stats.Gravity.A" }
+});
+
+// World Atmosphere options for selectOption helper (hex keys, localized labels)
+export const WorldAtmosphereOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Atmosphere.0", pressure: "TWODSIX.World.Stats.Pressure.0", notes: "TWODSIX.World.Stats.AtmosphereNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Atmosphere.1", pressure: "TWODSIX.World.Stats.Pressure.1", notes: "TWODSIX.World.Stats.AtmosphereNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Atmosphere.2", pressure: "TWODSIX.World.Stats.Pressure.2", notes: "TWODSIX.World.Stats.AtmosphereNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Atmosphere.3", pressure: "TWODSIX.World.Stats.Pressure.3", notes: "TWODSIX.World.Stats.AtmosphereNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Atmosphere.4", pressure: "TWODSIX.World.Stats.Pressure.4", notes: "TWODSIX.World.Stats.AtmosphereNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Atmosphere.5", pressure: "TWODSIX.World.Stats.Pressure.5", notes: "TWODSIX.World.Stats.AtmosphereNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Atmosphere.6", pressure: "TWODSIX.World.Stats.Pressure.6", notes: "TWODSIX.World.Stats.AtmosphereNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Atmosphere.7", pressure: "TWODSIX.World.Stats.Pressure.7", notes: "TWODSIX.World.Stats.AtmosphereNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Atmosphere.8", pressure: "TWODSIX.World.Stats.Pressure.8", notes: "TWODSIX.World.Stats.AtmosphereNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Atmosphere.9", pressure: "TWODSIX.World.Stats.Pressure.9", notes: "TWODSIX.World.Stats.AtmosphereNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Atmosphere.A", pressure: "TWODSIX.World.Stats.Pressure.A", notes: "TWODSIX.World.Stats.AtmosphereNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.Atmosphere.B", pressure: "TWODSIX.World.Stats.Pressure.B", notes: "TWODSIX.World.Stats.AtmosphereNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.Atmosphere.C", pressure: "TWODSIX.World.Stats.Pressure.C", notes: "TWODSIX.World.Stats.AtmosphereNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.Atmosphere.D", pressure: "TWODSIX.World.Stats.Pressure.D", notes: "TWODSIX.World.Stats.AtmosphereNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.Atmosphere.E", pressure: "TWODSIX.World.Stats.Pressure.E", notes: "TWODSIX.World.Stats.AtmosphereNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.Atmosphere.F", pressure: "TWODSIX.World.Stats.Pressure.F", notes: "TWODSIX.World.Stats.AtmosphereNotes.F" }
+});
+
+// World Hydrographics options for selectOption helper (hex keys, localized labels)
+export const WorldHydrographicsOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Hydrographics.0", notes: "TWODSIX.World.Stats.HydrographicsNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Hydrographics.1", notes: "TWODSIX.World.Stats.HydrographicsNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Hydrographics.2", notes: "TWODSIX.World.Stats.HydrographicsNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Hydrographics.3", notes: "TWODSIX.World.Stats.HydrographicsNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Hydrographics.4", notes: "TWODSIX.World.Stats.HydrographicsNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Hydrographics.5", notes: "TWODSIX.World.Stats.HydrographicsNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Hydrographics.6", notes: "TWODSIX.World.Stats.HydrographicsNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Hydrographics.7", notes: "TWODSIX.World.Stats.HydrographicsNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Hydrographics.8", notes: "TWODSIX.World.Stats.HydrographicsNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Hydrographics.9", notes: "TWODSIX.World.Stats.HydrographicsNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Hydrographics.A", notes: "TWODSIX.World.Stats.HydrographicsNotes.A" }
+});
+
+// World Population options for selectOption helper (hex keys, localized labels)
+export const WorldPopulationOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Population.0", notes: "TWODSIX.World.Stats.PopulationNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Population.1", notes: "TWODSIX.World.Stats.PopulationNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Population.2", notes: "TWODSIX.World.Stats.PopulationNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Population.3", notes: "TWODSIX.World.Stats.PopulationNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Population.4", notes: "TWODSIX.World.Stats.PopulationNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Population.5", notes: "TWODSIX.World.Stats.PopulationNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Population.6", notes: "TWODSIX.World.Stats.PopulationNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Population.7", notes: "TWODSIX.World.Stats.PopulationNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Population.8", notes: "TWODSIX.World.Stats.PopulationNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Population.9", notes: "TWODSIX.World.Stats.PopulationNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Population.A", notes: "TWODSIX.World.Stats.PopulationNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.Population.B", notes: "TWODSIX.World.Stats.PopulationNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.Population.C", notes: "TWODSIX.World.Stats.PopulationNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.Population.D", notes: "TWODSIX.World.Stats.PopulationNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.Population.E", notes: "TWODSIX.World.Stats.PopulationNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.Population.F", notes: "TWODSIX.World.Stats.PopulationNotes.F" }
+});
+
+// Starport Class options for selectOption helper (hex keys, localized labels)
+export const StarportClassOptions = Object.freeze({
+  "A": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.A",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.A",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.A",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.A"
+  },
+  "B": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.B",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.B",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.B",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.B"
+  },
+  "C": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.C",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.C",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.C",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.C"
+  },
+  "D": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.D",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.D",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.D",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.D",
+  },
+  "E": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.E",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.E",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.E",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.E"
+  },
+  "X": {
+    label: "TWODSIX.World.Stats.StarportDescriptor.X",
+    bestFuel: "TWODSIX.World.Stats.StarportFuel.X",
+    annualMaintenance: "TWODSIX.World.Stats.StarportMaint.X",
+    shipyardCapacity: "TWODSIX.World.Stats.StarportShipyard.X"
+  }
+});
+
+export const WorldGovernmentOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.Government.0", notes: "TWODSIX.World.Stats.GovernmentNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.Government.1", notes: "TWODSIX.World.Stats.GovernmentNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.Government.2", notes: "TWODSIX.World.Stats.GovernmentNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.Government.3", notes: "TWODSIX.World.Stats.GovernmentNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.Government.4", notes: "TWODSIX.World.Stats.GovernmentNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.Government.5", notes: "TWODSIX.World.Stats.GovernmentNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.Government.6", notes: "TWODSIX.World.Stats.GovernmentNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.Government.7", notes: "TWODSIX.World.Stats.GovernmentNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.Government.8", notes: "TWODSIX.World.Stats.GovernmentNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.Government.9", notes: "TWODSIX.World.Stats.GovernmentNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.Government.A", notes: "TWODSIX.World.Stats.GovernmentNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.Government.B", notes: "TWODSIX.World.Stats.GovernmentNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.Government.C", notes: "TWODSIX.World.Stats.GovernmentNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.Government.D", notes: "TWODSIX.World.Stats.GovernmentNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.Government.E", notes: "TWODSIX.World.Stats.GovernmentNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.Government.F", notes: "TWODSIX.World.Stats.GovernmentNotes.F" }
+});
+
+// World Law Level options for selectOption helper (hex keys, localized labels)
+export const WorldLawLevelOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.LawLevel.0", notes: "TWODSIX.World.Stats.LawLevelNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.LawLevel.1", notes: "TWODSIX.World.Stats.LawLevelNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.LawLevel.2", notes: "TWODSIX.World.Stats.LawLevelNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.LawLevel.3", notes: "TWODSIX.World.Stats.LawLevelNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.LawLevel.4", notes: "TWODSIX.World.Stats.LawLevelNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.LawLevel.5", notes: "TWODSIX.World.Stats.LawLevelNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.LawLevel.6", notes: "TWODSIX.World.Stats.LawLevelNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.LawLevel.7", notes: "TWODSIX.World.Stats.LawLevelNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.LawLevel.8", notes: "TWODSIX.World.Stats.LawLevelNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.LawLevel.9", notes: "TWODSIX.World.Stats.LawLevelNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.LawLevel.A", notes: "TWODSIX.World.Stats.LawLevelNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.LawLevel.B", notes: "TWODSIX.World.Stats.LawLevelNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.LawLevel.C", notes: "TWODSIX.World.Stats.LawLevelNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.LawLevel.D", notes: "TWODSIX.World.Stats.LawLevelNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.LawLevel.E", notes: "TWODSIX.World.Stats.LawLevelNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.LawLevel.F", notes: "TWODSIX.World.Stats.LawLevelNotes.F" }
+});
+
+// World Tech Level options for selectOption helper (hex keys, localized labels)
+export const WorldTechLevelOptions = Object.freeze({
+  "0": { label: "TWODSIX.World.Stats.TechLevel.0", notes: "TWODSIX.World.Stats.TechLevelNotes.0" },
+  "1": { label: "TWODSIX.World.Stats.TechLevel.1", notes: "TWODSIX.World.Stats.TechLevelNotes.1" },
+  "2": { label: "TWODSIX.World.Stats.TechLevel.2", notes: "TWODSIX.World.Stats.TechLevelNotes.2" },
+  "3": { label: "TWODSIX.World.Stats.TechLevel.3", notes: "TWODSIX.World.Stats.TechLevelNotes.3" },
+  "4": { label: "TWODSIX.World.Stats.TechLevel.4", notes: "TWODSIX.World.Stats.TechLevelNotes.4" },
+  "5": { label: "TWODSIX.World.Stats.TechLevel.5", notes: "TWODSIX.World.Stats.TechLevelNotes.5" },
+  "6": { label: "TWODSIX.World.Stats.TechLevel.6", notes: "TWODSIX.World.Stats.TechLevelNotes.6" },
+  "7": { label: "TWODSIX.World.Stats.TechLevel.7", notes: "TWODSIX.World.Stats.TechLevelNotes.7" },
+  "8": { label: "TWODSIX.World.Stats.TechLevel.8", notes: "TWODSIX.World.Stats.TechLevelNotes.8" },
+  "9": { label: "TWODSIX.World.Stats.TechLevel.9", notes: "TWODSIX.World.Stats.TechLevelNotes.9" },
+  "A": { label: "TWODSIX.World.Stats.TechLevel.A", notes: "TWODSIX.World.Stats.TechLevelNotes.A" },
+  "B": { label: "TWODSIX.World.Stats.TechLevel.B", notes: "TWODSIX.World.Stats.TechLevelNotes.B" },
+  "C": { label: "TWODSIX.World.Stats.TechLevel.C", notes: "TWODSIX.World.Stats.TechLevelNotes.C" },
+  "D": { label: "TWODSIX.World.Stats.TechLevel.D", notes: "TWODSIX.World.Stats.TechLevelNotes.D" },
+  "E": { label: "TWODSIX.World.Stats.TechLevel.E", notes: "TWODSIX.World.Stats.TechLevelNotes.E" },
+  "F": { label: "TWODSIX.World.Stats.TechLevel.F", notes: "TWODSIX.World.Stats.TechLevelNotes.F" }
+});
+
+export const WorldFeaturesOptions = Object.freeze({
+  scoutBase: "TWODSIX.World.Stats.Features.ScoutBase",
+  navalBase: "TWODSIX.World.Stats.Features.NavalBase",
+  gasGiant: "TWODSIX.World.Stats.Features.GasGiant",
+  highPort: "TWODSIX.World.Stats.Features.HighPort",
+  travellersAid: "TWODSIX.World.Stats.Features.TravellersAid",
+  pirateBase: "TWODSIX.World.Stats.Features.PirateBase",
+  planetoidBelt: "TWODSIX.World.Stats.Features.PlanetoidBelt",
+});
+
+export const WorldTravelZones = Object.freeze({
+  "none": "TWODSIX.World.Stats.Zone.None",
+  "amber": "TWODSIX.World.Stats.Zone.Amber",
+  "red": "TWODSIX.World.Stats.Zone.Red"
+});
+
 
 export type TWODSIX = {
   CHARACTERISTICS: typeof CHARACTERISTICS,
@@ -1566,7 +1751,17 @@ export type TWODSIX = {
   WeightlessItems: typeof WeightlessItems,
   ShipWeaponTypes: typeof ShipWeaponTypes,
   ShipDamageRules: typeof ShipDamageRules,
-  ShipArmorTypesCD: typeof ShipArmorTypesCD
+  ShipArmorTypesCD: typeof ShipArmorTypesCD,
+  WorldSizeOptions: typeof WorldSizeOptions,
+  WorldAtmosphereOptions: typeof WorldAtmosphereOptions
+  WorldHydrographicsOptions: typeof WorldHydrographicsOptions
+  WorldPopulationOptions: typeof WorldPopulationOptions,
+  StarportClassOptions: typeof StarportClassOptions,
+  WorldGovernmentOptions: typeof WorldGovernmentOptions,
+  WorldLawLevelOptions: typeof WorldLawLevelOptions,
+  WorldTechLevelOptions: typeof WorldTechLevelOptions,
+  WorldFeaturesOptions: typeof WorldFeaturesOptions,
+  WorldTravelZones: typeof WorldTravelZones
 };
 
 export const TWODSIX = {
@@ -1615,5 +1810,16 @@ export const TWODSIX = {
   WeightlessItems: WeightlessItems,
   ShipWeaponTypes: ShipWeaponTypes,
   ShipDamageRules: ShipDamageRules,
-  ShipArmorTypesCD: ShipArmorTypesCD
+  ShipArmorTypesCD: ShipArmorTypesCD,
+  WorldSizeOptions: WorldSizeOptions,
+  WorldAtmosphereOptions: WorldAtmosphereOptions,
+  WorldHydrographicsOptions: WorldHydrographicsOptions,
+  WorldPopulationOptions: WorldPopulationOptions,
+  StarportClassOptions: StarportClassOptions,
+  WorldGovernmentOptions: WorldGovernmentOptions,
+  WorldLawLevelOptions: WorldLawLevelOptions,
+  WorldTechLevelOptions: WorldTechLevelOptions,
+  WorldFeaturesOptions: WorldFeaturesOptions,
+  WorldTravelZones: WorldTravelZones
 };
+

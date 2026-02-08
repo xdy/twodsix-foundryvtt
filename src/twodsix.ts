@@ -27,6 +27,8 @@ import { TwodsixVehicleSheet } from "./module/sheets/TwodsixVehicleSheet";
 import { TwodsixAnimalSheet} from "./module/sheets/TwodsixAnimalSheet";
 import { TwodsixRobotSheet } from "./module/sheets/TwodsixRobotSheet";
 import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
+import { TwodsixWorldSheet } from "./module/sheets/TwodsixWorldSheet";
+import { WorldData } from "./module/data/world";
 import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
 import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
 import { addCustomEnrichers } from "./module/utils/enrichers";
@@ -137,6 +139,12 @@ Hooks.once('init', async function () {
     makeDefault: true,
   });
 
+  foundry.documents.collections.Actors.registerSheet("twodsix", TwodsixWorldSheet, {
+    types: ["world"],
+    label: "TWODSIX.SheetTypes.WorldSheet",
+    makeDefault: true,
+  });
+
   /* Load Schemas */
   Object.assign(CONFIG.Actor.dataModels, {
     "traveller": TravellerData,
@@ -144,7 +152,8 @@ Hooks.once('init', async function () {
     "robot": RobotData,
     "ship": ShipData,
     "vehicle": VehicleData,
-    "space-object": SpaceObjectData
+    "space-object": SpaceObjectData,
+    "world": WorldData
   });
 
 
