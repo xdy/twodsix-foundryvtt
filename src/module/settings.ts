@@ -52,11 +52,11 @@ export const registerSettings = function ():void {
     }
   }
 
-  function  _overrideDamageRollSetting(setting:boolean) {
+  async function  _overrideDamageRollSetting(setting:boolean) {
     const currentValue = game.settings.get('twodsix', 'automateDamageRollOnHit');
     if (currentValue !== undefined) {
       const setScope = setting ? 'world' : 'client';
-      game.settings.set('twodsix', 'automateDamageRollOnHit', currentValue, {scope: setScope, default: currentValue, config: true, type: Boolean});
+      await game.settings.set('twodsix', 'automateDamageRollOnHit', currentValue, {scope: setScope, default: currentValue, config: true, type: Boolean});
     }
   }
 };

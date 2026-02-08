@@ -80,6 +80,8 @@ export default class TwodsixActor extends Actor {
             newImage = game.settings.get("twodsix", "themeStyle") === "western" ? 'systems/twodsix/assets/icons/buffalo-head.svg' : 'systems/twodsix/assets/icons/alien-bug.svg';
           } else if (this.type === "robot") {
             newImage = 'systems/twodsix/assets/icons/default_robot.svg';
+          } else if (this.type === "world") {
+            newImage = 'systems/twodsix/assets/icons/default_world.svg';
           } else {
             newImage = foundry.documents.BaseActor.DEFAULT_ICON;
           }
@@ -309,6 +311,9 @@ export default class TwodsixActor extends Actor {
       case 'animal':
       case 'robot':
         this._prepareActorDerivedData();
+        break;
+      case 'world':
+        // No derived data needed for world actors yet, but placeholder for future logic
         break;
       case 'ship':
         if (game.settings.get("twodsix", "useShipAutoCalcs")) {
@@ -1260,6 +1265,9 @@ export default class TwodsixActor extends Actor {
         if (![...TWODSIX.WeightlessItems, "cargo"].includes(droppedItem.type)) {
           return await this._addDroppedEquipment(droppedItem);
         }
+        break;
+      case 'world':
+        // No item drops supported for world actors yet
         break;
     }
     ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});

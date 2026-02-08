@@ -18,7 +18,11 @@ async function createWarningDialog(event, message: string) {
 }
 
 Hooks.on('updateSetting', async (setting) => {
-  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const ruleset = await getValidRulesetKey();
+  if (!ruleset || !TWODSIX.RULESETS[ruleset] || !TWODSIX.RULESETS[ruleset].settings) {
+    console.error(`renderSettingsConfig: Could not resolve a valid ruleset. Aborting.`);
+    return;
+  }
   if (Object.keys(TWODSIX.RULESETS[ruleset].settings).includes(setting.key.slice(8))) {
     if (game.settings.sheet.rendered) {
       game.settings.sheet.render({force: true});
@@ -43,7 +47,12 @@ Hooks.on('renderAdvancedSettings', async (app, htmlElement) => {
 
 Hooks.on('renderSettingsConfig', async (app, html:JQuery|HTMLElement) => {
   const htmlElement:HTMLElement = (html instanceof jQuery) ? html.get(0) : html; //Maybe not required when v13 fully Appv2
-  const ruleset = game.settings.get('twodsix', 'ruleset');
+  const ruleset = await getValidRulesetKey();
+  if (!ruleset || !TWODSIX.RULESETS[ruleset] || !TWODSIX.RULESETS[ruleset].settings) {
+    console.error(`renderSettingsConfig: Could not resolve a valid ruleset. Aborting.`);
+    return;
+  }
+
   const rulesetSettings = TWODSIX.RULESETS[ruleset].settings;
   const settings = Object.entries(rulesetSettings).map(([settingName, value]) => {
     return game.settings.get("twodsix", settingName) === value;
@@ -68,10 +77,15 @@ Hooks.on('renderSettingsConfig', async (app, html:JQuery|HTMLElement) => {
       const newRulesetSettings = TWODSIX.RULESETS[newRuleset].settings;
       await game.settings.set("twodsix", "ruleset", newRuleset);
       // Step through each option and update the corresponding field
-      Object.entries(newRulesetSettings).forEach(([settingName, value]) => {
-        game.settings.set("twodsix", settingName, value);
-        console.log(`${newRuleset} ${settingName} = ${value}`);
-      });
+      const promises = [];
+      for (const [settingName, value] of Object.entries(newRulesetSettings)) {
+        promises.push(
+          game.settings.set("twodsix", settingName, value).then(() => {
+            console.log(`${newRuleset} ${settingName} = ${value}`);
+          })
+        );
+      }
+      await Promise.all(promises);
     }
   });
 
@@ -90,3 +104,23 @@ Hooks.on('renderSettingsConfig', async (app, html:JQuery|HTMLElement) => {
     }
   });
 });
+
+// Returns a valid ruleset key, falling back to default if needed
+async function getValidRulesetKey(): Promise<string | undefined> {
+  let ruleset = game.settings.get('twodsix', 'ruleset');
+  if (!TWODSIX.RULESETS) {
+    console.error("getValidRulesetKey: TWODSIX.RULESETS is not defined. System misconfiguration.");
+    return undefined;
+  }
+  if (!ruleset || !TWODSIX.RULESETS[ruleset] || !TWODSIX.RULESETS[ruleset].settings) {
+    const defaultRulesetKey = TWODSIX.RULESETS["CE"]?.key;
+    console.warn(`getValidRulesetKey: Invalid ruleset '${ruleset}'. Setting to default '${defaultRulesetKey}'.`);
+    if (defaultRulesetKey) {
+      await game.settings.set('twodsix', 'ruleset', defaultRulesetKey);
+      ruleset = defaultRulesetKey;
+    } else {
+      return undefined;
+    }
+  }
+  return ruleset;
+}

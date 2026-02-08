@@ -1,0 +1,242 @@
+{{log this}}
+<section class="twodsix-world-sheet" autocomplete="off">
+  <div class ="world-image-name">
+    <table>
+      <tr>
+        <th>
+          <div class="world-img">
+            <img class="world-image" src="{{actor.img}}" data-tooltip="{{actor.img}}" alt="{{actor.name}}" data-edit="img" data-action="editImage"/>
+            <span class="actor-status-icons">
+              {{#each displayFeatures as |feature|}}
+                {{#with (lookup ../features feature) as |feat|}}
+                  <img class="condition-icon" src="{{feat.img}}" data-tooltip="{{feat.name}}" style="border: 1px solid !important;"/>
+                {{/with}}
+              {{/each}}
+            </span>
+          </div>
+        </th>
+        <th>
+          <div class="world-name">
+            <span class="single-line world-inset world-uwp">
+              <label class="resource-label" for="actor.name">
+                {{localize "TWODSIX.World.Name"}}:
+              </label>
+              <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.World.Name"}}' onClick="this.select();" autocomplete="off"/>
+            </span>
+          </div>
+          <div class="world-summary">
+            <span class="single-line world-inset world-uwp">
+              <label class="resource-label">{{localize "TWODSIX.World.UWP"}}: </label><span class="world-badge">{{getUWP}}</span>
+            </span>
+            <span class="single-line world-inset world-tradeCodes">
+              <label class="resource-label">{{localize "TWODSIX.World.TradeCodes"}}: </label>
+              <span class="trade-codes">
+                {{#each getTradeCodes as |code|}}
+                  <span class="world-badge" data-tooltip = "{{localize code.tooltip}}">{{code.code}}</span>
+                {{/each}}
+              </span>
+            </span>
+          </div>
+        </th>
+      </tr>
+    </table>
+  </div>
+  <section class="world-tabs">
+    {{> "systems/twodsix/templates/misc/navigation-tabs.hbs"}}
+  </section>
+
+  <section class="tab {{tabs.worlddata.cssClass}}" data-group="primary" data-tab="worlddata">
+    <div class="world-content-container scrollable">
+      <div class="world-stats">
+        <span class="world-title">{{localize "TWODSIX.World.Tabs.WorldData"}}</span>
+        <span class="single-line world-inset world-coordinates">
+          <label class="resource-label">{{localize "TWODSIX.World.Coordinates"}}: </label><input type="text" value="{{actor.system.coordinates}}" name="system.coordinates"/>
+        </span>
+        <span class="single-line world-inset world-starport">
+          <label class="resource-label">{{localize "TWODSIX.World.Starport"}}: </label>
+          <select name="system.starport" >
+            {{selectOptions StarportClassOptions selected=actor.system.starport localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-size">
+          <label class="resource-label">{{localize "TWODSIX.World.Size"}}: </label>
+          <select name="system.size" >
+            {{selectOptions WorldSizeOptions selected=actor.system.size localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-atmosphere">
+          <label class="resource-label">{{localize "TWODSIX.World.Atmosphere"}}: </label>
+          <select name="system.atmosphere" >
+            {{selectOptions WorldAtmosphereOptions selected=actor.system.atmosphere localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-hydrographics">
+          <label class="resource-label">{{localize "TWODSIX.World.Hydrographics"}}: </label>
+          <select name="system.hydrographics" >
+            {{selectOptions WorldHydrographicsOptions selected=actor.system.hydrographics localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-population">
+          <label class="resource-label">{{localize "TWODSIX.World.Population"}}: </label>
+          <select name="system.population" >
+            {{selectOptions WorldPopulationOptions selected=actor.system.population localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-government">
+          <label class="resource-label">{{localize "TWODSIX.World.Government"}}: </label>
+          <select name="system.government" >
+            {{selectOptions WorldGovernmentOptions selected=actor.system.government localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-lawLevel">
+          <label class="resource-label">{{localize "TWODSIX.World.LawLevel"}}: </label>
+          <select name="system.lawLevel" >
+            {{selectOptions WorldLawLevelOptions selected=actor.system.lawLevel localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-techLevel">
+          <label class="resource-label">{{localize "TWODSIX.World.TechLevel"}}: </label>
+          <select name="system.techLevel" >
+            {{selectOptions WorldTechLevelOptions selected=actor.system.techLevel localize=false inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-allegiance">
+          <label class="resource-label">{{localize "TWODSIX.World.Allegiance"}}: </label><input type="text" value="{{actor.system.allegiance}}" name="system.allegiance"/>
+        </span>
+        <span class="single-line world-inset world-travelZone">
+          <label class="resource-label">{{localize "TWODSIX.World.TravelZone"}}: </label>
+          <select name="system.travelZone" >
+            {{selectOptions WorldTravelZoneOptions selected=actor.system.travelZone localize=true inverted=false}}
+          </select>
+        </span>
+        <span class="single-line world-inset world-features">
+          <label class="resource-label">{{localize "TWODSIX.World.Features"}}: </label>
+          <multi-select class="select world-features" name="system.features" multiple>{{selectOptions WorldFeaturesOptions selected=actor.system.features localize=true}}</multi-select>
+        </span>
+        <span class="single-line world-inset world-populationModifier">
+          <label class="resource-label">{{localize "TWODSIX.World.Stats.PopulationModifier"}}: </label>
+          <input type="number" name="system.populationModifier" value="{{actor.system.populationModifier}}" min="0" style="width: 4em;"/>
+        </span>
+        <span class="single-line world-inset world-numPlanetoidBelts">
+          <label class="resource-label">{{localize "TWODSIX.World.Stats.NumPlanetoidBelts"}}: </label>
+          <input type="number" name="system.numPlanetoidBelts" value="{{actor.system.numPlanetoidBelts}}" min="0" style="width: 4em;"/>
+        </span>
+        <span class="single-line world-inset world-numGasGiants">
+          <label class="resource-label">{{localize "TWODSIX.World.Stats.NumGasGiants"}}: </label>
+          <input type="number" name="system.numGasGiants" value="{{actor.system.numGasGiants}}" min="0" style="width: 4em;"/>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="tab {{tabs.description.cssClass}}" data-group="primary" data-tab="description">
+    <div class="world-content-container scrollable">
+      <div class="world-description">
+        <span class="world-title">{{localize "TWODSIX.World.Description"}}</span>
+        {{#if settings.useProseMirror}}
+          <prose-mirror class="actor-editor" name="system.description" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.description}}" collaborate="true" toggled="false"
+            style="min-height: 40ch;"
+            {{disabled tooltips.description}}>
+            {{{richText.description}}}
+          </prose-mirror>
+        {{else}}
+          <div contenteditable="true" data-edit="system.description">{{{system.description}}}</div>
+        {{/if}}
+      </div>
+    </div>
+  </section>
+
+  <section class="tab {{tabs.trade.cssClass}}" data-group="primary" data-tab="trade">
+    <div class="world-content-container scrollable">
+      <span class="world-title">{{localize "TWODSIX.World.Tabs.Trade"}}</span>
+      <span class="single-line world-inset world-mainExports">
+          <label class="resource-label">{{localize "TWODSIX.World.MainExports"}}: </label><input type="text" value="{{actor.system.mainExports}}" name="system.mainExports"/>
+      </span>
+      <span class="single-line world-inset world-mainImports">
+          <label class="resource-label">{{localize "TWODSIX.World.MainImports"}}: </label><input type="text" value="{{actor.system.mainImports}}" name="system.mainImports"/>
+      </span>
+      <span class="single-line world-inset world-economicLevel">
+          <label class="resource-label">{{localize "TWODSIX.World.EconomicLevel"}}: </label><input type="text" value="{{actor.system.economicLevel}}" name="system.economicLevel"/>
+      </span>
+      <span class="single-line world-inset world-marketProfile">
+          <label class="resource-label">{{localize "TWODSIX.World.MarketProfile"}}: </label><textarea name="system.marketProfile" class="world-textarea">{{actor.system.marketProfile}}</textarea>
+      </span>
+      <span class="single-line world-inset world-localCurrency">
+          <label class="resource-label">{{localize "TWODSIX.World.LocalCurrency"}}: </label><input type="text" value="{{actor.system.localCurrency}}" name="system.localCurrency"/>
+      </span>
+      <span class="single-line world-inset world-portFees">
+          <label class="resource-label">{{localize "TWODSIX.World.PortFees"}}: </label><input type="number" value="{{actor.system.portFees}}" name="system.portFees"/>
+      </span>
+    </div>
+  </section>
+
+  <section class="tab {{tabs.environment.cssClass}}" data-group="primary" data-tab="environment">
+    <div class="world-content-container scrollable">
+      <span class="world-title">{{localize "TWODSIX.World.Tabs.Environment"}}</span>
+      <span class="world-inset world-climate">
+        <label class="resource-label">{{localize "TWODSIX.World.Climate"}}:</label>
+        {{#if settings.useProseMirror}}
+          <prose-mirror class="actor-editor environment-box" name="system.climate" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.climate}}" collaborate="true" toggled="false"
+            {{disabled tooltips.climate}}>
+            {{{richText.climate}}}
+          </prose-mirror>
+        {{else}}
+          <div contenteditable="true" data-edit="system.climate">{{{system.climate}}}</div>
+        {{/if}}
+      </span>
+      <span class="world-inset world-hazards">
+        <label class="resource-label">{{localize "TWODSIX.World.Hazards"}}:</label>
+        {{#if settings.useProseMirror}}
+          <prose-mirror class="actor-editor environment-box" name="system.hazards" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.hazards}}" collaborate="true" toggled="false"
+            {{disabled tooltips.hazards}}>
+            {{{richText.hazards}}}
+          </prose-mirror>
+        {{else}}
+          <div contenteditable="true" data-edit="system.hazards">{{{system.hazards}}}</div>
+        {{/if}}
+      </span>
+      <span class= "world-inset world-specialRules">
+         <label class="resource-label">{{localize "TWODSIX.World.SpecialRules"}}:</label>
+        {{#if settings.useProseMirror}}
+          <prose-mirror class="actor-editor environment-box" name="system.specialRules" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.specialRules}}" collaborate="true" toggled="false"
+            {{disabled tooltips.specialRules}}>
+            {{{richText.specialRules}}}
+          </prose-mirror>
+        {{else}}
+          <div contenteditable="true" data-edit="system.specialRules">{{{system.specialRules}}}</div>
+        {{/if}}
+      </span>
+      <span class="world-inset world-adventureHooks">
+         <label class="resource-label">{{localize "TWODSIX.World.AdventureHooks"}}:</label>
+        {{#if settings.useProseMirror}}
+          <prose-mirror class="actor-editor environment-box" name="system.adventureHooks" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.adventureHooks}}" collaborate="true" toggled="false"
+            {{disabled tooltips.adventureHooks}}>
+            {{{richText.adventureHooks}}}
+          </prose-mirror>
+        {{else}}
+          <div contenteditable="true" data-edit="system.adventureHooks">{{{system.adventureHooks}}}</div>
+        {{/if}}
+      </span>
+    </div>
+  </section>
+
+  <section class="tab {{tabs.notes.cssClass}}" data-group="primary" data-tab="notes">
+    <div class="world-content-container scrollable">
+      <span class="world-title">{{localize "TWODSIX.World.Tabs.Notes"}}</span>
+      <span class="world-inset world-notes">
+        <label class="resource-label">{{localize "TWODSIX.World.Notes"}}:</label>
+        {{#if settings.useProseMirror}}
+          <prose-mirror class="actor-editor notes-box" name="system.notes" data-document-u-u-i-d="{{actor.uuid}}" value="{{system.notes}}" collaborate="true" toggled="false"
+            {{disabled tooltips.notes}}>
+            {{{richText.notes}}}
+          </prose-mirror>
+        {{else}}
+          <div contenteditable="true" data-edit="system.notes">{{{system.notes}}}</div>
+        {{/if}}
+      </span>
+      <span class="single-line world-inset world-relatedActors">
+          <label class="resource-label">{{localize "TWODSIX.World.RelatedActors"}}: </label><input type="text" value="{{actor.system.relatedActors}}" name="system.relatedActors"/>
+      </span>
+    </div>
+  </section>
+</section>

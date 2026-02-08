@@ -59,14 +59,15 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillCharacteristic', (actor, characteristic) => {
-    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic)];
+    if (!characteristic || characteristic === "NONE") {
+      return game.i18n.localize("TWODSIX.Items.Skills.NONE");
+    }
+    const charKey = characteristic === "NONE" ? undefined : getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
+    const characteristicElement = charKey ? actor.system.characteristics[charKey] : undefined;
     if (characteristicElement) {
-      //const mod: number = calcModFor(characteristicElement.current);
       const mod: number = characteristicElement.mod;
       const abbreviatedCharName: string = characteristicElement.displayShortLabel;
       return abbreviatedCharName + "(" + (mod < 0 ? "" : "+") + mod + ")";
-    } else if ('NONE' === characteristic) {
-      return game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
       if (!showedError) {
         ui.notifications.error("TWODSIX.Handlebars.CantShowCharacteristic", {localize: true});
@@ -99,7 +100,8 @@ export default function registerHandlebarsHelpers(): void {
   });
 
   Handlebars.registerHelper('twodsix_skillTotal', (actor, skillItem) => {
-    const characteristicElement = actor.system.characteristics[getKeyByValue(TWODSIX.CHARACTERISTICS, skillItem.system.characteristic)];
+    const charKey = skillItem.system.characteristic === "NONE" ? undefined : getKeyByValue(TWODSIX.CHARACTERISTICS, skillItem.system.characteristic);
+    const characteristicElement = charKey ? actor.system.characteristics[charKey] : undefined;
     let adjValue = actor.system.skills[simplifySkillName(skillItem.name)] ?? skillItem.system.value;
 
     /* only modify if hideUntrained is false and skill value is untrained (-3) */

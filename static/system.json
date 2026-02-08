@@ -44,7 +44,8 @@
       "vehicle": {"htmlFields": ["description"]},
       "animal": {"htmlFields": ["description", "notes"]},
       "robot": {"htmlFields": ["description", "notes"]},
-      "space-object": {"htmlFields": ["description", "notes"]}
+      "space-object": {"htmlFields": ["description", "notes"]},
+      "world": {"htmlFields": ["climate", "hazards", "specialRules", "adventureHooks", "notes", "description"]}
     },
     "Item": {
       "equipment": {"htmlFields": ["description"]},

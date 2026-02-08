@@ -58,7 +58,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     context.dtypes = ["String", "Number", "Boolean"];
 
     const actorType = this.actor.type;
-    const isShipLike = ['ship', 'vehicle', 'space-object'].includes(actorType);
+    const isShipLike = ['ship', 'vehicle', 'space-object', "world"].includes(actorType);
     const ruleset = game.settings.get('twodsix', 'ruleset');
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const showLifebloodStamina = game.settings.get("twodsix", "showLifebloodStamina");
@@ -119,8 +119,10 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
     if (!isShipLike) {
       this._prepareTooltips(context);
     }
-
-    context.config = TWODSIX;
+    // generate config object, but exclude world specifc as theose are more complex keys and handled by WorldSheet
+    context.config = Object.fromEntries(
+      Object.entries(TWODSIX).filter(([key]) => !key.startsWith("World") && !key.startsWith("Starport"))
+    );
     return context;
   }
 

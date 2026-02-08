@@ -30,6 +30,8 @@
    25. Monk's Active Tile Fix                             (SECTION-25)
    26. Battle Sheet                                       (SECTION-26)
    27. Utility & Miscellaneous                            (SECTION-27)
+   28. Active Effects Config Sheet                        (SECTION-28)
+   29. World Sheet                                        (SECTION-29)
    ============================================================================
 */
 
@@ -4110,7 +4112,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 }
 
 /* ------------------------------------------------------------------ */
-/* ActiveEffect changes list - responsive column sizing              */
+/* SECTION 28 - ActiveEffect Config Sheet - responsive column sizing  */
 /* ------------------------------------------------------------------ */
 
 .active-effect-config .tab.changes {
@@ -4124,4 +4126,116 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
 
 .active-effect-config .tab.changes header {
   margin-right: 12px;
+}
+
+/* ==========================================
+   SECTION 29 - World Sheet Styles (twodsix)
+   ========================================== */
+.twodsix-world-sheet .resource-label {
+  font-weight: bold;
+  min-width: 140px;
+  text-align: right;
+  margin-right: 0.5em;
+  flex-shrink: 0;
+}
+
+.twodsix-world-sheet {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.twodsix-world-sheet input[type="text"],
+.twodsix-world-sheet input[type="number"],
+.twodsix-world-sheet textarea,
+.twodsix-world-sheet select {
+  flex: 1 1 0;
+  /*max-width: 400px;*/
+  margin-left: 0.25em;
+}
+
+.twodsix-world-sheet .world-badge {
+  margin-left: 0.5em;
+  font-size: 1em;
+  font-weight: 600;
+  background: #eaeaea;
+  border-radius: 0.4em;
+  padding: 0.1em 0.5em;
+  display: inline-block;
+  width: fit-content;
+}
+
+.twodsix-world-sheet .world-content-container {
+  /*max-width: 600px;*/
+  margin: 0 auto;
+}
+
+.world-tabs {
+  margin-bottom: 2ch;
+}
+
+.world-title {
+  height: 3ch;
+  width: 23ch;
+  display: block;
+  color: var(--s2d6-title-color);
+  background-color: var(--s2d6-default-color);
+  font-weight: bold;
+  font-size: 2ch;
+  padding: 0.2em 0.2em 0.2em 0.5em;
+  border-radius: 2ch 0 4ch;
+  margin-bottom: 1ch;
+}
+
+.world-content-container {
+  border-style: solid;
+  border-radius: 2ch;
+  border-color: var(--s2d6-default-color);
+  /* background-color: var(--s2d6-background-nearly-opaque); */
+  border-width: 2px;
+  max-height: 100%;
+  overflow-y: auto;
+  min-height: 33vh;
+}
+
+.world-inset /*, .twodsix-world-sheet .single-line.world-inset*/ {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1ch;
+}
+
+.actor-editor.environment-box, .actor-editor.notes-box {
+  min-height: 12ch;
+}
+
+span.single-line.world-inset {
+  margin: 0.5ch 2ch 0ch 2ch;
+}
+
+.world-stats {
+    margin: 0 1ch 1ch 0;
+}
+
+.world-description .actor-editor {
+    margin: 0 2ch 2ch 2ch;
+}
+
+.world-img {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.world-image {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+.trade-codes {
+  text-align: left;
 }

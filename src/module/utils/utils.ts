@@ -150,9 +150,23 @@ export function roundToMaxDecimals(num:number, maxDecimals:number): number {
   return roundToDecimal(num, decimalsToShow);
 }
 
-export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):string {
-  //TODO This assumes I always find the value. Bad form really.
-  return <string>Object.keys(object).find(key => JSON.stringify(object[key]) === JSON.stringify(value));
+/**
+ * Find the first key whose JSON-serialised value matches the provided value.
+ * @param object - Search target object
+ * @param value - Value to match
+ * @returns The matching key, the fallback, or undefined if nothing matches
+ */
+export function getKeyByValue(object:{ [x:string]:unknown; }, value:unknown):string | undefined {
+  if (!value || value === "NONE") {
+    return undefined;
+  }
+  const compareValue = JSON.stringify(value);
+  const returnKey = Object.keys(object).find(key => JSON.stringify(object[key]) === compareValue);
+  if (returnKey !== undefined) {
+    return returnKey;
+  }
+  console.warn("utils.getKeyByValue: value not found", { value, object });
+  return undefined;
 }
 
 /**
