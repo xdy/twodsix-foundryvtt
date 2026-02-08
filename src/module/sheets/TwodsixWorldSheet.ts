@@ -190,7 +190,7 @@ export function generateUWP(input: any): string {
   let uwp = `${starport}${size}${atmosphere}${hydrographics}${population}${government}${lawLevel}-${techLevel}${baseCode}`;
 
   // Add travel zone code: 'A' for Amber, 'R' for Red
-  const travelZone = input.system.travelZone;
+  const travelZone = input.system?.travelZone || input.travelZone || "";
   if (typeof travelZone === "string") {
     const tz = travelZone.trim().toLowerCase();
     if (tz === "amber") {
