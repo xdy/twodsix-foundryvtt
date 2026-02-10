@@ -27,7 +27,7 @@
               <label class="resource-label" for="actor.name">
                 {{localize "TWODSIX.World.Name"}}:
               </label>
-              <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.World.Name"}}' onClick="this.select();" autocomplete="off"/>
+              <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.World.Name"}}' onClick="this.select();" autocomplete="off" style="text-align: left;"/>
             </span>
           </div>
           <div class="world-summary">
@@ -168,7 +168,7 @@
         <label class="resource-label">{{localize "TWODSIX.World.MarketProfile"}}: </label><textarea name="system.marketProfile" class="world-textarea">{{actor.system.marketProfile}}</textarea>
       </span>
       <span class="single-line world-inset world-localCurrency">
-          label class="resource-label">{{localize "TWODSIX.World.LocalCurrency"}}: </label><input type="text" value="{{actor.system.localCurrency}}" name="system.localCurrency"/>
+        <label class="resource-label">{{localize "TWODSIX.World.LocalCurrency"}}: </label><input type="text" value="{{actor.system.localCurrency}}" name="system.localCurrency"/>
       </span>
       <span class="single-line world-inset world-portFees">
         <label class="resource-label">{{localize "TWODSIX.World.PortFees"}}: </label><input type="text" value="{{actor.system.portFees}}" name="system.portFees"/>

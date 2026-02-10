@@ -79,8 +79,13 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     context.getUWP = generateUWP(this.actor);
     const tradeCodesColor = generateTradeCodes(this.actor);
     context.getTradeCodes = tradeCodesColor.codes;
-    context.fillColor = tradeCodesColor.fillColor || '#fff';
+    context.fillColor = tradeCodesColor.fillColor || '#ffffff';
     context.showDefaultImage = this.actor.img === 'systems/twodsix/assets/icons/default_world.png';
+    if (this.actor.isToken && this.token && context.showDefaultImage) {
+      if (this.token.texture.tint.css !== tradeCodesColor.fillColor ) {
+        await this.token.update({ "texture.tint": tradeCodesColor.fillColor });
+      }
+    }
 
     if (game.settings.get('twodsix', 'useProseMirror')) {
       const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
