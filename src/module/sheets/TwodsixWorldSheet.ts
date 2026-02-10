@@ -20,7 +20,10 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       submitOnChange: true,
       submitOnClose: true
     },
-    tag: "form"
+    tag: "form",
+    actions: {
+      editSVG: this.#onEditWorldImage
+    },
   };
 
   static PARTS = {
@@ -74,7 +77,10 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     context.displayFeatures = displayFeatures;
     context.WorldTravelZoneOptions = TWODSIX.WorldTravelZones;
     context.getUWP = generateUWP(this.actor);
-    context.getTradeCodes = generateTradeCodes(this.actor);
+    const tradeCodesColor = generateTradeCodes(this.actor);
+    context.getTradeCodes = tradeCodesColor.codes;
+    context.fillColor = tradeCodesColor.fillColor || '#fff';
+    context.showDefaultImage = this.actor.img === 'systems/twodsix/assets/icons/default_world.png';
 
     if (game.settings.get('twodsix', 'useProseMirror')) {
       const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
@@ -88,6 +94,43 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       };
     }
     return context;
+  }
+  /**
+   * Edit a World Image.
+   * Allows SVG element to be clicked and changed as default only works with img elements.
+   * @this {TwodsixWorldSheet}
+   * @type {ApplicationClickAction}
+   */
+  static async #onEditWorldImage(_event, target) {
+    if ( target.nodeName !== "svg" ) {
+      throw new Error("The editSVG action is available only for SVG elements.");
+    }
+    const attr = target.dataset.edit;
+    const current = foundry.utils.getProperty(this.document._source, attr);
+    const defaultImage = 'systems/twodsix/assets/icons/default_world.png';
+    const fp = new foundry.applications.apps.FilePicker.implementation({
+      current,
+      type: "image",
+      redirectToRoot: defaultImage ? [defaultImage] : [],
+      callback: path => {
+        // Only accept valid image extensions (including .svg)
+        if (!/\.(png|jpg|jpeg|webp|svg|gif)$/i.test(path)) {
+          ui.notifications.error(game.i18n.localize("ERROR.FileInvalidImageExtension"));
+          return;
+        }
+        target.src = path;
+        // Update the document's property (e.g., img or other attr)
+        if ( this.options.form.submitOnChange ) {
+          this.document.update({ [attr]: path });
+        }
+      },
+      position: {
+        top: this.position.top + 40,
+        left: this.position.left + 10
+      },
+      document: this.document
+    });
+    await fp.browse();
   }
 }
 
@@ -255,7 +298,7 @@ export function generateTradeCodes(input: any): { code: string, tooltip: string 
   const techLevel = num(stats.techLevel);
 
   const codes: { code: string, tooltip: string }[] = [];
-
+  let fillColor = '#ffffff';
   // Agricultural (Ag): Atmosphere 4-9, Hydrographics 4-8, Population 5-7
   if (atmosphere >= 4 && atmosphere <= 9 && hydrographics >= 4 && hydrographics <= 8 && population >= 5 && population <= 7) {
     codes.push({ code: "Ag", tooltip: tradeCodeTooltip("Ag") });
@@ -267,18 +310,22 @@ export function generateTradeCodes(input: any): { code: string, tooltip: string 
   // Barren (Ba): Population 0, Government 0, LawLevel 0
   if (population === 0 && government === 0 && lawLevel === 0) {
     codes.push({ code: "Ba", tooltip: tradeCodeTooltip("Ba") });
+    fillColor = '#999999';
   }
   // Desert (De): Atmosphere >= 2, Hydrographics 0
   if (atmosphere >= 2 && hydrographics === 0) {
     codes.push({ code: "De", tooltip: tradeCodeTooltip("De") });
+    fillColor = '#cc8800';
   }
   // Fluid Oceans (Fl): Atmosphere >= 10, Hydrographics >= 1
   if (atmosphere >= 10 && hydrographics >= 1) {
     codes.push({ code: "Fl", tooltip: tradeCodeTooltip("Fl") });
+    fillColor = '#ff6600';
   }
   // Garden (Ga): Size 5, 6, or 8; Atmosphere 4-9; Hydrographics 4-8
   if ((size === 5 || size === 6 || size === 8) && atmosphere >= 4 && atmosphere <= 9 && hydrographics >= 4 && hydrographics <= 8) {
     codes.push({ code: "Ga", tooltip: tradeCodeTooltip("Ga") });
+    fillColor = '#009900';
   }
   // High Population (Hi): Population >= 9
   if (population >= 9) {
@@ -287,6 +334,7 @@ export function generateTradeCodes(input: any): { code: string, tooltip: string 
   // Ice-Capped (Ic): Atmosphere 0-1, Hydrographics >= 1
   if ((atmosphere === 0 || atmosphere === 1) && hydrographics >= 1) {
     codes.push({ code: "Ic", tooltip: tradeCodeTooltip("Ic") });
+    fillColor = '#ccccff';
   }
   // Industrial (In): Atmosphere 0-2, 4, 7, 9; Population >= 9
   if ((atmosphere >= 0 && atmosphere <= 2) || atmosphere === 4 || atmosphere === 7 || atmosphere === 9) {
@@ -317,6 +365,7 @@ export function generateTradeCodes(input: any): { code: string, tooltip: string 
   // Water World (Wa): Hydrographics === 10
   if (hydrographics === 10) {
     codes.push({ code: "Wa", tooltip: tradeCodeTooltip("Wa") });
+    fillColor = '#3366cc';
   }
   // Vacuum (Va): Atmosphere 0
   if (atmosphere === 0) {
@@ -331,7 +380,7 @@ export function generateTradeCodes(input: any): { code: string, tooltip: string 
     codes.push({ code: "Lt", tooltip: tradeCodeTooltip("Lt") });
   }
 
-  return codes;
+  return {codes, fillColor};
 }
 
 /**
