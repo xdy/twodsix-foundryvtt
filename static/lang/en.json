@@ -1251,28 +1251,28 @@
           "X": "None"
         },
         "StarportFuel": {
-          "A": "Refined",
-          "B": "Refined",
-          "C": "Unrefined",
-          "D": "Unrefined",
-          "E": "None",
-          "X": "None"
+          "A": "Refined Fuel",
+          "B": "Refined Fuel",
+          "C": "Unrefined Fuel",
+          "D": "Unrefined Fuel",
+          "E": "No Fuel",
+          "X": "No Fuel"
         },
         "StarportMaint": {
-          "A": "Yes",
-          "B": "Yes",
-          "C": "No",
-          "D": "No",
-          "E": "No",
-          "X": "No"
+          "A": "Can Maintain",
+          "B": "Can Maintain",
+          "C": "No Maintenance",
+          "D": "No Maintenance",
+          "E": "No Maintenance",
+          "X": "No Maintenance"
         },
         "StarportShipyard": {
           "A": "Can construct starships and non-starships",
           "B": "Can construct non-starships",
           "C": "Can perform reasonable repairs",
-          "D": "None",
-          "E": "None",
-          "X": "None"
+          "D": "No shipyard",
+          "E": "No shipyard",
+          "X": "No shipyard"
         },
         "Size": {
           "0": "800 km (Asteroid)",
@@ -1319,21 +1319,21 @@
           "F": "Unusual"
         },
         "Pressure": {
-          "0": "0.00",
-          "1": "0.001 to 0.09",
-          "2": "0.1 to 0.42",
-          "3": "0.1 to 0.42",
-          "4": "0.43 to 0.7",
-          "5": "0.43 to 0.7",
-          "6": "0.71 to 1.49",
-          "7": "0.71 to 1.49",
-          "8": "1.5 to 2.49",
-          "9": "1.5 to 2.49",
+          "0": "0.00 atm",
+          "1": "0.001 to 0.09 atm",
+          "2": "0.1 to 0.42 atm",
+          "3": "0.1 to 0.42 atm",
+          "4": "0.43 to 0.7 atm",
+          "5": "0.43 to 0.7 atm",
+          "6": "0.71 to 1.49 atm",
+          "7": "0.71 to 1.49 atm",
+          "8": "1.5 to 2.49 atm",
+          "9": "1.5 to 2.49 atm",
           "A": "Varies",
           "B": "Varies",
           "C": "Varies",
-          "D": "2.5+",
-          "E": "0.5 or less",
+          "D": "2.5+ atm",
+          "E": "0.5 atm or less",
           "F": "Varies"
         },
         "AtmosphereNotes": {

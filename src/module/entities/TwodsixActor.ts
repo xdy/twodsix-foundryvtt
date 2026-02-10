@@ -182,6 +182,15 @@ export default class TwodsixActor extends Actor {
         }
         break;
       }
+      case "world": {
+        if (this.img === foundry.documents.BaseActor.DEFAULT_ICON) {
+          isDefaultImg = true;
+          foundry.utils.mergeObject(changeData, {
+            img: 'systems/twodsix/assets/icons/default_world.png'
+          });
+        }
+        break;
+      }
     }
     this.updateSource(changeData);
 

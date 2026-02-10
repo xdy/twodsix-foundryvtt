@@ -38,9 +38,9 @@ export class WorldData extends foundry.abstract.TypeDataModel {
     schema.notes = new fields.HTMLField({ ...requiredBlankString });
     schema.relatedActors = new fields.StringField({ ...requiredBlankString });
     // Additional UWP/World fields per Cepheus SRD
-    schema.populationModifier = new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 });
-    schema.numPlanetoidBelts = new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 });
-    schema.numGasGiants = new fields.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 });
+    schema.populationModifier = new fields.NumberField({ ...requiredInteger, initial: 0 });
+    schema.numPlanetoidBelts = new fields.NumberField({...requiredInteger, initial: 0 });
+    schema.numGasGiants = new fields.NumberField({ ...requiredInteger, initial: 0 } );
     return schema;
   }
 }
