@@ -216,7 +216,6 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     };
 
     const availableByName = new Map(tradeInfo.goods.map((good) => [good.name, good]));
-    const saleByName = new Map(tradeInfo.saleGoods.map((item) => [item.good.name, item]));
 
     const rows: Array<{
       name: string;
