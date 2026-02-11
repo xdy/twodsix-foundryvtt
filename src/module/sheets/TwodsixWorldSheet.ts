@@ -2,6 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
+import { generateTradeInformation } from "../trade/TradeGenerator";
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
@@ -22,7 +23,8 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     },
     tag: "form",
     actions: {
-      editSVG: this.#onEditWorldImage
+      editSVG: this.#onEditWorldImage,
+      generateTrade: this.#onGenerateTrade
     },
   };
 
@@ -110,7 +112,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     if ( target.nodeName !== "svg" ) {
       throw new Error("The editSVG action is available only for SVG elements.");
     }
-    const attr = target.dataset.edit;
+    const attr = "img";
     const current = foundry.utils.getProperty(this.document._source, attr);
     const defaultImage = 'systems/twodsix/assets/icons/default_world.png';
     const fp = new foundry.applications.apps.FilePicker.implementation({
@@ -136,6 +138,213 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       document: this.document
     });
     await fp.browse();
+  }
+
+  /**
+   * Generate trade information based on Cepheus Engine rules.
+   * Implements the Speculative Trade Checklist from SRD Chapter 7.
+   * @this {TwodsixWorldSheet}
+   * @type {ApplicationClickAction}
+   */
+  static async #onGenerateTrade(_event, _target) {
+    // Create dialog for trader skill and buyer modifier
+    const dialogContent = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/trade-dialog.hbs');
+    const result = await foundry.applications.api.DialogV2.wait({
+      window: {
+        title: game.i18n.localize("TWODSIX.Trade.TradeParametersPrompt"),
+      },
+      position: {width: 500},
+      content: dialogContent,
+      buttons: [
+        {
+          action: "generate",
+          label: game.i18n.localize("TWODSIX.Trade.GenerateButton"),
+          default: true
+        },
+        {
+          action: "cancel",
+          label: game.i18n.localize("Cancel")
+        }
+      ],
+      rejectClose: false
+    }, { id: `trade-params-dialog-${this.document.id}` });
+
+    if (result === "cancel" || result === null) {
+      return;
+    }
+
+    // Parse form values
+    const brokerSkill = parseInt(document.getElementById("brokerSkill")?.value || 0);
+    const useLocalBroker = (document.getElementById("useLocalBroker") as HTMLInputElement | null)?.checked ?? false;
+    const buyerModifier = parseInt(document.getElementById("buyerModifier")?.value || 0);
+    const supplierModifier = parseInt(document.getElementById("supplierModifier")?.value || 0);
+    const restrictTradeCodes = (document.getElementById("restrictTradeCodes") as HTMLInputElement | null)?.checked ?? false;
+    const capSameWorld = (document.getElementById("capSameWorld") as HTMLInputElement | null)?.checked ?? true;
+    const includeIllegal = (document.getElementById("includeIllegal") as HTMLInputElement | null)?.checked ?? false;
+
+    const worldData = {
+      name: this.document.name,
+      tradeCodes: generateTradeCodes(this.document).codes.map((c) => c.code),
+      starport: this.document.system.starport,
+      zone: this.document.system.travelZone || 'Green',
+      lawLevel: this.document.system.lawLevel,
+      includeIllegalGoods: includeIllegal,
+      capSameWorld,
+      restrictTradeGoodsToCodes: restrictTradeCodes,
+      traderSkill: useLocalBroker ? 0 : Math.max(0, Math.min(15, brokerSkill)),
+      useLocalBroker,
+      localBrokerSkill: useLocalBroker ? Math.max(0, Math.min(4, brokerSkill)) : 0,
+      supplierModifier: supplierModifier,
+      buyerModifier: buyerModifier
+    };
+
+    const tradeInfo = generateTradeInformation(worldData);
+
+    // Create a comprehensive trade report
+    let report = `<div class="trade-generation-report">\n`;
+    report += `<h3>${game.i18n.localize("TWODSIX.Trade.GenerationReport")} - ${this.document.name}</h3>\n`;
+
+    // Supplier info
+    report += `<section class="trade-section">\n`;
+    report += `<h4>${game.i18n.localize("TWODSIX.Trade.SupplierInfo")}</h4>\n`;
+    report += `<p>${tradeInfo.supplierInfo}</p>\n`;
+    report += `</section>\n`;
+
+    // Helper to format numbers with locale
+    const formatCr = (num: number): string => {
+      return num.toLocaleString(game.i18n.lang, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    };
+
+    const availableByName = new Map(tradeInfo.goods.map((good) => [good.name, good]));
+    const saleByName = new Map(tradeInfo.saleGoods.map((item) => [item.good.name, item]));
+
+    const rows: Array<{
+      name: string;
+      illegal?: boolean;
+      buyPrice?: number;
+      buyMod?: number;
+      sellPrice?: number;
+      sellMod?: number;
+    }> = [];
+
+    tradeInfo.commonGoodsRolled.forEach((item) => {
+      rows.push({
+        name: item.good.name,
+        illegal: false,
+        buyPrice: item.purchasePrice,
+        buyMod: item.purchasePriceModPercent,
+        sellPrice: item.salePrice,
+        sellMod: item.salePriceModPercent
+      });
+    });
+
+    tradeInfo.saleGoods.forEach((item) => {
+      const available = availableByName.get(item.good.name);
+      rows.push({
+        name: item.good.name,
+        illegal: item.good.illegal,
+        buyPrice: available?.purchasePrice,
+        buyMod: available?.purchasePriceModPercent,
+        sellPrice: item.salePrice,
+        sellMod: item.salePriceModPercent
+      });
+    });
+
+    report += `<section class="trade-section">\n`;
+    report += `<h4>${game.i18n.localize("TWODSIX.Trade.GoodsPricingTable")}</h4>\n`;
+    report += `<p class="trade-note">Table values include per-good trade code modifiers. Purchase prices are shown only for goods available from this supplier.</p>\n`;
+    report += `<div class="trade-table-wrap">\n`;
+    report += `<table class="trade-table">\n`;
+    report += `<thead>\n`;
+    report += `<tr>` +
+      `<th>${game.i18n.localize("TWODSIX.Trade.GoodsColumn")}</th>` +
+      `<th>${game.i18n.localize("TWODSIX.Trade.IllegalColumn")}</th>` +
+      `<th>${game.i18n.localize("TWODSIX.Trade.BuyPriceColumn")}</th>` +
+      `<th>${game.i18n.localize("TWODSIX.Trade.BuyModColumn")}</th>` +
+      `<th>${game.i18n.localize("TWODSIX.Trade.SellPriceColumn")}</th>` +
+      `<th>${game.i18n.localize("TWODSIX.Trade.SellModColumn")}</th>` +
+      `</tr>\n`;
+    report += `</thead>\n`;
+    report += `<tbody>\n`;
+    rows.forEach((row) => {
+      const illegalMark = row.illegal ? "*" : "";
+      const buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} Cr/ton` : "";
+      const buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
+      const sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} Cr/ton` : "";
+      const sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
+      report += `<tr>` +
+        `<td><strong>${row.name}</strong></td>` +
+        `<td>${illegalMark}</td>` +
+        `<td>${buyPrice}</td>` +
+        `<td>${buyMod}</td>` +
+        `<td>${sellPrice}</td>` +
+        `<td>${sellMod}</td>` +
+        `</tr>\n`;
+    });
+    report += `</tbody>\n`;
+    report += `</table>\n`;
+    report += `</div>\n`;
+    report += `</section>\n`;
+
+    // Purchase pricing summary (buying from suppliers)
+    report += `<section class="trade-section">\n`;
+    report += `<h4>${game.i18n.localize("TWODSIX.Trade.PurchasePricing")}</h4>\n`;
+    report += `<p class="trade-note">💰 Buying from suppliers: Base check below is before per-good trade code modifiers (see table). Prices include local broker commission when enabled.</p>\n`;
+    if (tradeInfo.brokerInfo.useLocalBroker) {
+      const capNote = tradeInfo.brokerInfo.requestedSkill > tradeInfo.brokerInfo.starportCap
+        ? ` (capped at ${tradeInfo.brokerInfo.starportCap} for starport)`
+        : "";
+      report += `<p>${game.i18n.localize("TWODSIX.Trade.LocalBrokerSkillUsed")}: ${tradeInfo.brokerInfo.effectiveSkill}${capNote}</p>\n`;
+      report += `<p>${game.i18n.localize("TWODSIX.Trade.LocalBrokerCommission")}: ${tradeInfo.brokerInfo.commissionPercent}%</p>\n`;
+    } else {
+      report += `<p>${game.i18n.localize("TWODSIX.Trade.BrokerSkillUsed")}: ${tradeInfo.brokerInfo.effectiveSkill}</p>\n`;
+    }
+    report += `<p>${game.i18n.localize("TWODSIX.Trade.SkillCheck")}: ${tradeInfo.purchaseSkillCheck.result}</p>\n`;
+    report += `<p>${game.i18n.localize("TWODSIX.Trade.TradeCodeBonus")}: ${tradeInfo.purchaseSkillCheck.priceModifier > 0 ? '+' : ''}${tradeInfo.purchaseSkillCheck.priceModifier}</p>\n`;
+    report += `<p>${game.i18n.localize("TWODSIX.Trade.PriceModifier")}: ${tradeInfo.purchaseSkillCheck.percentage}% of base price (base check, before per-good trade DMs)</p>\n`;
+    report += `</section>\n`;
+
+    // Market reference pricing (selling to buyers)
+    report += `<section class="trade-section">\n`;
+    report += `<h4>${game.i18n.localize("TWODSIX.Trade.MarketReference")}</h4>\n`;
+    report += `<p class="trade-note">💰 Selling to buyers: Base check below is before per-good trade code modifiers (see table). Prices include local broker commission when enabled. Actual profit requires selling on a different world with different trade codes.</p>\n`;
+    report += `<p>${game.i18n.localize("TWODSIX.Trade.SkillCheck")}: ${tradeInfo.saleSkillCheck.result}</p>\n`;
+    report += `<p>${game.i18n.localize("TWODSIX.Trade.TradeCodeBonus")}: ${tradeInfo.saleSkillCheck.priceModifier > 0 ? '+' : ''}${tradeInfo.saleSkillCheck.priceModifier}</p>\n`;
+    report += `<p>${game.i18n.localize("TWODSIX.Trade.PriceModifier")}: ${tradeInfo.saleSkillCheck.percentage}% of base price (base check, before per-good trade DMs)</p>\n`;
+    if (buyerModifier !== 0) {
+      report += `<p>${game.i18n.localize("TWODSIX.Trade.BuyerModifierApplied")}: ${buyerModifier > 0 ? '+' : ''}${buyerModifier}</p>\n`;
+    }
+    report += `</section>\n`;
+
+    report += `</div>\n`;
+
+    // Display the report using DialogV2
+    const buttons = [
+      {
+        action: "copy",
+        icon: "fa-solid fa-copy",
+        label: game.i18n.localize("TWODSIX.Trade.CopyToChat"),
+        callback: () => {
+          ChatMessage.create({
+            content: report,
+            speaker: ChatMessage.getSpeaker({ actor: this.document })
+          });
+        }
+      },
+      {
+        action: "close",
+        icon: "fa-solid fa-xmark",
+        label: game.i18n.localize("TWODSIX.Trade.Close")
+      }
+    ];
+
+    await foundry.applications.api.DialogV2.wait({
+      window: { title: game.i18n.localize("TWODSIX.Trade.GenerationReport"), icon: "fa-solid fa-coins" },
+      position: {width: 700},
+      content: report,
+      buttons: buttons,
+      rejectClose: false
+    });
   }
 }
 

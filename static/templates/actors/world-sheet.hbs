@@ -155,6 +155,13 @@
   <section class="tab {{tabs.trade.cssClass}}" data-group="primary" data-tab="trade">
     <div class="world-content-container scrollable">
       <span class="world-title">{{localize "TWODSIX.World.Tabs.Trade"}}</span>
+      <div class="trade-generator-section">
+        <button type="button" data-action="generateTrade" class="trade-generate-btn">
+          <i class="fas fa-dice"></i> {{localize "TWODSIX.Trade.GenerateButton"}}
+        </button>
+        <p class="trade-generator-help">{{localize "TWODSIX.Trade.GenerateHelp"}}</p>
+      </div>
+      <hr style="margin: 1em 0;">
       <span class="single-line world-inset world-mainExports">
         <label class="resource-label">{{localize "TWODSIX.World.MainExports"}}: </label><input type="text" value="{{actor.system.mainExports}}" name="system.mainExports"/>
       </span>

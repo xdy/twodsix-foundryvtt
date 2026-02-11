@@ -13,6 +13,7 @@
     "clean": "gulp clean",
     "bump-version": "gulp bumpVersion",
     "lint": "eslint ./src --fix && tsc --project tsconfig.json --noEmit",
+    "types:generate": "node src/scripts/generate-types.mjs",
     "symlinks": "node ./tools/create-symlinks.mjs",
     "data:copy": "node src/scripts/data_copy.mjs",
     "data:reset": "pnpm run build && node src/scripts/data_reset.mjs -f",
