@@ -41,14 +41,14 @@
     <h4>{{localize "TWODSIX.Trade.PurchasePricing"}}</h4>
     <p class="trade-note">{{localize "TWODSIX.Trade.PurchasePricingNote"}}</p>
     {{#if brokerInfo.useLocalBroker}}
-      <p>{{localize "TWODSIX.Trade.LocalBrokerSkillUsed"}}: {{brokerInfo.effectiveSkill}}{{#if (gt brokerInfo.requestedSkill brokerInfo.starportCap)}} (capped at {{brokerInfo.starportCap}} for starport){{/if}}</p>
+      <p>{{localize "TWODSIX.Trade.LocalBrokerSkillUsed"}}: {{brokerInfo.effectiveSkill}}{{#if (gt brokerInfo.requestedSkill brokerInfo.starportCap)}} ({{localize "TWODSIX.Trade.CappedAtStarport" cap=brokerInfo.starportCap}}){{/if}}</p>
       <p>{{localize "TWODSIX.Trade.LocalBrokerCommission"}}: {{brokerInfo.commissionPercent}}%</p>
     {{else}}
       <p>{{localize "TWODSIX.Trade.BrokerSkillUsed"}}: {{brokerInfo.effectiveSkill}}</p>
     {{/if}}
     <p>{{localize "TWODSIX.Trade.SkillCheck"}}: {{purchaseSkillCheck.result}}</p>
     <p>{{localize "TWODSIX.Trade.TradeCodeBonus"}}: {{#if (gt purchaseSkillCheck.priceModifier 0)}}+{{/if}}{{purchaseSkillCheck.priceModifier}}</p>
-    <p>{{localize "TWODSIX.Trade.PriceModifier"}}: {{purchaseSkillCheck.percentage}}% of base price (base check, before per-good trade DMs)</p>
+    <p>{{localize "TWODSIX.Trade.PriceModifier"}}: {{purchaseSkillCheck.percentage}}% {{localize "TWODSIX.Trade.PriceModifierBaseNote"}}</p>
   </section>
 
   <section class="trade-section">
@@ -56,7 +56,7 @@
     <p class="trade-note">{{localize "TWODSIX.Trade.MarketReferenceNote"}}</p>
     <p>{{localize "TWODSIX.Trade.SkillCheck"}}: {{saleSkillCheck.result}}</p>
     <p>{{localize "TWODSIX.Trade.TradeCodeBonus"}}: {{#if (gt saleSkillCheck.priceModifier 0)}}+{{/if}}{{saleSkillCheck.priceModifier}}</p>
-    <p>{{localize "TWODSIX.Trade.PriceModifier"}}: {{saleSkillCheck.percentage}}% of base price (base check, before per-good trade DMs)</p>
+    <p>{{localize "TWODSIX.Trade.PriceModifier"}}: {{saleSkillCheck.percentage}}% {{localize "TWODSIX.Trade.PriceModifierBaseNote"}}</p>
     {{#if (ne worldData.buyerModifier 0)}}
     <p>{{localize "TWODSIX.Trade.BuyerModifierApplied"}}: {{#if (gt worldData.buyerModifier 0)}}+{{/if}}{{worldData.buyerModifier}}</p>
     {{/if}}

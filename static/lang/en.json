@@ -1488,6 +1488,7 @@
       "SkillCheck": "Broker Skill Check Result",
       "TradeCodeBonus": "Trade Code Bonus",
       "PriceModifier": "Price Modifier",
+      "PriceModifierBaseNote": "of base price (base check, before per-good trade DMs)",
       "ExamplePrice": "Example Price Calculation",
       "CopyToChat": "Copy to Chat",
       "Close": "Close"
