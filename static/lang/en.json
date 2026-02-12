@@ -1439,7 +1439,12 @@
       }
     },
     "Trade": {
+      "CappedAtStarport": "capped at {cap} for starport",
+      "CrPerTon": "Cr/ton",
       "GenerateButton": "Generate Speculative Trade",
+      "GoodsPricingTableNote": "Table values include per-good trade code modifiers. Purchase prices are shown only for goods available from this supplier.",
+      "PurchasePricingNote": "💰 Buying from suppliers: Base check below is before per-good trade code modifiers (see table). Prices include local broker commission when enabled.",
+      "MarketReferenceNote": "💰 Selling to buyers: Base check below is before per-good trade code modifiers (see table). Prices include local broker commission when enabled. Actual profit requires selling on a different world with different trade codes.",
       "GenerateHelp": "Click the button to generate speculative trade information based on the Cepheus Engine SRD rules. This simulates finding suppliers, available goods, and price negotiations.",
       "GenerationReport": "Speculative Trade Generation",
       "TradeParametersPrompt": "Trade Parameters",
@@ -1470,7 +1475,6 @@
       "PurchasePricing": "Purchase Pricing Summary",
       "SalePricing": "Sale Pricing (Sell Prices)",
       "MarketReference": "Market Reference Prices",
-      "MarketReferenceNote": "These are reference prices for what goods would sell for on THIS world. Actual profit depends on finding a different world with different trade codes and demand. With no destination world selected, no profit can be calculated.",
       "GoodsPricingTable": "Goods Pricing",
       "GoodsColumn": "Goods",
       "IllegalColumn": "Illegal*",

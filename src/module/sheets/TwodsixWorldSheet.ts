@@ -109,9 +109,16 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
    * @type {ApplicationClickAction}
    */
   static async #onEditWorldImage(_event, target) {
-    if ( target.nodeName !== "svg" ) {
+    if (target.nodeName !== "svg") {
       throw new Error("The editSVG action is available only for SVG elements.");
     }
+    // If Tokenizer is active and provides an API, delegate to it
+    const tokenizerApi = game.modules.get("vtta-tokenizer")?.api;
+    if (tokenizerApi && typeof tokenizerApi.launch === "function") {
+      tokenizerApi.launch(this.document);
+      return;
+    }
+    // Default image picker logic
     const attr = "img";
     const current = foundry.utils.getProperty(this.document._source, attr);
     const defaultImage = 'systems/twodsix/assets/icons/default_world.png';
@@ -127,7 +134,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
         }
         target.src = path;
         // Update the document's property (e.g., img or other attr)
-        if ( this.options.form.submitOnChange ) {
+        if (this.options.form.submitOnChange) {
           this.document.update({ [attr]: path });
         }
       },
@@ -199,16 +206,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     };
 
     const tradeInfo = generateTradeInformation(worldData);
-
-    // Create a comprehensive trade report
-    let report = `<div class="trade-generation-report">\n`;
-    report += `<h3>${game.i18n.localize("TWODSIX.Trade.GenerationReport")} - ${this.document.name}</h3>\n`;
-
-    // Supplier info
-    report += `<section class="trade-section">\n`;
-    report += `<h4>${game.i18n.localize("TWODSIX.Trade.SupplierInfo")}</h4>\n`;
-    report += `<p>${tradeInfo.supplierInfo}</p>\n`;
-    report += `</section>\n`;
+    tradeInfo.worldData = worldData;
 
     // Helper to format numbers with locale
     const formatCr = (num: number): string => {
@@ -249,75 +247,24 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       });
     });
 
-    report += `<section class="trade-section">\n`;
-    report += `<h4>${game.i18n.localize("TWODSIX.Trade.GoodsPricingTable")}</h4>\n`;
-    report += `<p class="trade-note">Table values include per-good trade code modifiers. Purchase prices are shown only for goods available from this supplier.</p>\n`;
-    report += `<div class="trade-table-wrap">\n`;
-    report += `<table class="trade-table">\n`;
-    report += `<thead>\n`;
-    report += `<tr>` +
-      `<th>${game.i18n.localize("TWODSIX.Trade.GoodsColumn")}</th>` +
-      `<th>${game.i18n.localize("TWODSIX.Trade.IllegalColumn")}</th>` +
-      `<th>${game.i18n.localize("TWODSIX.Trade.BuyPriceColumn")}</th>` +
-      `<th>${game.i18n.localize("TWODSIX.Trade.BuyModColumn")}</th>` +
-      `<th>${game.i18n.localize("TWODSIX.Trade.SellPriceColumn")}</th>` +
-      `<th>${game.i18n.localize("TWODSIX.Trade.SellModColumn")}</th>` +
-      `</tr>\n`;
-    report += `</thead>\n`;
-    report += `<tbody>\n`;
     rows.forEach((row) => {
-      const illegalMark = row.illegal ? "*" : "";
-      const buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} Cr/ton` : "";
-      const buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
-      const sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} Cr/ton` : "";
-      const sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
-      report += `<tr>` +
-        `<td><strong>${row.name}</strong></td>` +
-        `<td>${illegalMark}</td>` +
-        `<td>${buyPrice}</td>` +
-        `<td>${buyMod}</td>` +
-        `<td>${sellPrice}</td>` +
-        `<td>${sellMod}</td>` +
-        `</tr>\n`;
+      row.illegalMark = row.illegal ? "*" : "";
+      row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
+      row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
+      row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
+      row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
     });
-    report += `</tbody>\n`;
-    report += `</table>\n`;
-    report += `</div>\n`;
-    report += `</section>\n`;
+    tradeInfo.rows = rows;
 
     // Purchase pricing summary (buying from suppliers)
-    report += `<section class="trade-section">\n`;
-    report += `<h4>${game.i18n.localize("TWODSIX.Trade.PurchasePricing")}</h4>\n`;
-    report += `<p class="trade-note">💰 Buying from suppliers: Base check below is before per-good trade code modifiers (see table). Prices include local broker commission when enabled.</p>\n`;
     if (tradeInfo.brokerInfo.useLocalBroker) {
-      const capNote = tradeInfo.brokerInfo.requestedSkill > tradeInfo.brokerInfo.starportCap
-        ? ` (capped at ${tradeInfo.brokerInfo.starportCap} for starport)`
+      tradeInfo.capNote = tradeInfo.brokerInfo.requestedSkill > tradeInfo.brokerInfo.starportCap
+        ? ` (${game.i18n.format("TWODSIX.Trade.CappedAtStarport", {cap: tradeInfo.brokerInfo.starportCap})})`
         : "";
-      report += `<p>${game.i18n.localize("TWODSIX.Trade.LocalBrokerSkillUsed")}: ${tradeInfo.brokerInfo.effectiveSkill}${capNote}</p>\n`;
-      report += `<p>${game.i18n.localize("TWODSIX.Trade.LocalBrokerCommission")}: ${tradeInfo.brokerInfo.commissionPercent}%</p>\n`;
-    } else {
-      report += `<p>${game.i18n.localize("TWODSIX.Trade.BrokerSkillUsed")}: ${tradeInfo.brokerInfo.effectiveSkill}</p>\n`;
     }
-    report += `<p>${game.i18n.localize("TWODSIX.Trade.SkillCheck")}: ${tradeInfo.purchaseSkillCheck.result}</p>\n`;
-    report += `<p>${game.i18n.localize("TWODSIX.Trade.TradeCodeBonus")}: ${tradeInfo.purchaseSkillCheck.priceModifier > 0 ? '+' : ''}${tradeInfo.purchaseSkillCheck.priceModifier}</p>\n`;
-    report += `<p>${game.i18n.localize("TWODSIX.Trade.PriceModifier")}: ${tradeInfo.purchaseSkillCheck.percentage}% of base price (base check, before per-good trade DMs)</p>\n`;
-    report += `</section>\n`;
-
-    // Market reference pricing (selling to buyers)
-    report += `<section class="trade-section">\n`;
-    report += `<h4>${game.i18n.localize("TWODSIX.Trade.MarketReference")}</h4>\n`;
-    report += `<p class="trade-note">💰 Selling to buyers: Base check below is before per-good trade code modifiers (see table). Prices include local broker commission when enabled. Actual profit requires selling on a different world with different trade codes.</p>\n`;
-    report += `<p>${game.i18n.localize("TWODSIX.Trade.SkillCheck")}: ${tradeInfo.saleSkillCheck.result}</p>\n`;
-    report += `<p>${game.i18n.localize("TWODSIX.Trade.TradeCodeBonus")}: ${tradeInfo.saleSkillCheck.priceModifier > 0 ? '+' : ''}${tradeInfo.saleSkillCheck.priceModifier}</p>\n`;
-    report += `<p>${game.i18n.localize("TWODSIX.Trade.PriceModifier")}: ${tradeInfo.saleSkillCheck.percentage}% of base price (base check, before per-good trade DMs)</p>\n`;
-    if (buyerModifier !== 0) {
-      report += `<p>${game.i18n.localize("TWODSIX.Trade.BuyerModifierApplied")}: ${buyerModifier > 0 ? '+' : ''}${buyerModifier}</p>\n`;
-    }
-    report += `</section>\n`;
-
-    report += `</div>\n`;
 
     // Display the report using DialogV2
+    const tradeReport = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/trade-report.hbs', tradeInfo);
     const buttons = [
       {
         action: "copy",
@@ -325,7 +272,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
         label: game.i18n.localize("TWODSIX.Trade.CopyToChat"),
         callback: () => {
           ChatMessage.create({
-            content: report,
+            content: tradeReport,
             speaker: ChatMessage.getSpeaker({ actor: this.document })
           });
         }
@@ -336,11 +283,10 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
         label: game.i18n.localize("TWODSIX.Trade.Close")
       }
     ];
-
     await foundry.applications.api.DialogV2.wait({
       window: { title: game.i18n.localize("TWODSIX.Trade.GenerationReport"), icon: "fa-solid fa-coins" },
       position: {width: 700},
-      content: report,
+      content: tradeReport,
       buttons: buttons,
       rejectClose: false
     });
