@@ -1,43 +1,3 @@
-/**
- * Build and format trade report rows for display, given a TradeGenerationResult.
- * Handles price formatting, illegal marks, and percent formatting.
- */
-export function buildTradeReportRows(tradeInfo: any, i18n: typeof game.i18n): Array<any> {
-  const formatCr = (num: number): string => {
-    return num.toLocaleString(i18n.lang, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-  };
-  const availableByName = new Map(tradeInfo.goods.map((good) => [good.name, good]));
-  const rows: Array<any> = [];
-  tradeInfo.commonGoodsRolled.forEach((item: any) => {
-    rows.push({
-      name: item.good.name,
-      illegal: false,
-      buyPrice: item.purchasePrice,
-      buyMod: item.purchasePriceModPercent,
-      sellPrice: item.salePrice,
-      sellMod: item.salePriceModPercent
-    });
-  });
-  tradeInfo.saleGoods.forEach((item: any) => {
-    const available = availableByName.get(item.good.name);
-    rows.push({
-      name: item.good.name,
-      illegal: item.good.illegal,
-      buyPrice: available?.purchasePrice,
-      buyMod: available?.purchasePriceModPercent,
-      sellPrice: item.salePrice,
-      sellMod: item.salePriceModPercent
-    });
-  });
-  rows.forEach((row) => {
-    row.illegalMark = row.illegal ? "*" : "";
-    row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
-    row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
-    row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
-    row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
-  });
-  return rows;
-}
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
@@ -1038,4 +998,45 @@ export function getAllTradeGoods(): TradeGood[] {
  */
 export function getAllCommonGoods(): CommonGood[] {
   return [...COMMON_GOODS];
+}
+
+/**
+ * Build and format trade report rows for display, given a TradeGenerationResult.
+ * Handles price formatting, illegal marks, and percent formatting.
+ */
+export function buildTradeReportRows(tradeInfo: any): Array<any> {
+  const formatCr = (num: number): string => {
+    return num.toLocaleString(game.i18n.lang, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  };
+  const availableByName = new Map(tradeInfo.goods.map((good) => [good.name, good]));
+  const rows: Array<any> = [];
+  tradeInfo.commonGoodsRolled.forEach((item: any) => {
+    rows.push({
+      name: item.good.name,
+      illegal: false,
+      buyPrice: item.purchasePrice,
+      buyMod: item.purchasePriceModPercent,
+      sellPrice: item.salePrice,
+      sellMod: item.salePriceModPercent
+    });
+  });
+  tradeInfo.saleGoods.forEach((item: any) => {
+    const available = availableByName.get(item.good.name);
+    rows.push({
+      name: item.good.name,
+      illegal: item.good.illegal,
+      buyPrice: available?.purchasePrice,
+      buyMod: available?.purchasePriceModPercent,
+      sellPrice: item.salePrice,
+      sellMod: item.salePriceModPercent
+    });
+  });
+  rows.forEach((row) => {
+    row.illegalMark = row.illegal ? "*" : "";
+    row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
+    row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
+    row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
+    row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
+  });
+  return rows;
 }

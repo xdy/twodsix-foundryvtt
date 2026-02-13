@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
-import { generateTradeInformation } from "../trade/TradeGenerator";
+import { buildTradeReportRows, generateTradeInformation } from "../trade/TradeGenerator";
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
@@ -166,7 +166,19 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
         {
           action: "generate",
           label: game.i18n.localize("TWODSIX.Trade.GenerateButton"),
-          default: true
+          default: true,
+          callback: (_eventDialog, _button, dialog) => {
+            return {
+              brokerSkill: parseInt(dialog.element.querySelector("#brokerSkill")?.value || 0),
+              useLocalBroker: (dialog.element.querySelector("#useLocalBroker")?.checked ?? false),
+              buyerModifier: parseInt(dialog.element.querySelector("#buyerModifier")?.value || 0),
+              supplierModifier: parseInt(dialog.element.querySelector("#supplierModifier")?.value || 0),
+              restrictTradeCodes: (dialog.element.querySelector("#restrictTradeCodes")?.checked ?? false),
+              capSameWorld: (dialog.element.querySelector("#capSameWorld")?.checked ?? true),
+              includeIllegal: (dialog.element.querySelector("#includeIllegal")?.checked ?? false),
+              action: "generate"
+            };
+          }
         },
         {
           action: "cancel",
@@ -176,18 +188,12 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       rejectClose: false
     }, { id: `trade-params-dialog-${this.document.id}` });
 
-    if (result === "cancel" || result === null) {
+    if (!result || result === "cancel") {
       return;
     }
 
-    // Parse form values
-    const brokerSkill = parseInt(document.getElementById("brokerSkill")?.value || 0);
-    const useLocalBroker = (document.getElementById("useLocalBroker") as HTMLInputElement | null)?.checked ?? false;
-    const buyerModifier = parseInt(document.getElementById("buyerModifier")?.value || 0);
-    const supplierModifier = parseInt(document.getElementById("supplierModifier")?.value || 0);
-    const restrictTradeCodes = (document.getElementById("restrictTradeCodes") as HTMLInputElement | null)?.checked ?? false;
-    const capSameWorld = (document.getElementById("capSameWorld") as HTMLInputElement | null)?.checked ?? true;
-    const includeIllegal = (document.getElementById("includeIllegal") as HTMLInputElement | null)?.checked ?? false;
+    // Use values returned from callback
+    const { brokerSkill, useLocalBroker, buyerModifier, supplierModifier, restrictTradeCodes, capSameWorld, includeIllegal } = result || {};
 
     const worldData = {
       name: this.document.name,
@@ -213,48 +219,8 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       return num.toLocaleString(game.i18n.lang, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     };
 
-    const availableByName = new Map(tradeInfo.goods.map((good) => [good.name, good]));
-
-    const rows: Array<{
-      name: string;
-      illegal?: boolean;
-      buyPrice?: number;
-      buyMod?: number;
-      sellPrice?: number;
-      sellMod?: number;
-    }> = [];
-
-    tradeInfo.commonGoodsRolled.forEach((item) => {
-      rows.push({
-        name: item.good.name,
-        illegal: false,
-        buyPrice: item.purchasePrice,
-        buyMod: item.purchasePriceModPercent,
-        sellPrice: item.salePrice,
-        sellMod: item.salePriceModPercent
-      });
-    });
-
-    tradeInfo.saleGoods.forEach((item) => {
-      const available = availableByName.get(item.good.name);
-      rows.push({
-        name: item.good.name,
-        illegal: item.good.illegal,
-        buyPrice: available?.purchasePrice,
-        buyMod: available?.purchasePriceModPercent,
-        sellPrice: item.salePrice,
-        sellMod: item.salePriceModPercent
-      });
-    });
-
-    rows.forEach((row) => {
-      row.illegalMark = row.illegal ? "*" : "";
-      row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
-      row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
-      row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
-      row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
-    });
-    tradeInfo.rows = rows;
+    // Build and format trade report rows using TradeGenerator utility
+    tradeInfo.rows = buildTradeReportRows(tradeInfo);
 
     // Purchase pricing summary (buying from suppliers)
     if (tradeInfo.brokerInfo.useLocalBroker) {
@@ -267,13 +233,25 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     const tradeReport = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/trade-report.hbs', tradeInfo);
     const buttons = [
       {
-        action: "copy",
-        icon: "fa-solid fa-copy",
+        action: "copyChat",
+        icon: "fa-solid fa-comment",
         label: game.i18n.localize("TWODSIX.Trade.CopyToChat"),
         callback: () => {
           ChatMessage.create({
             content: tradeReport,
             speaker: ChatMessage.getSpeaker({ actor: this.document })
+          });
+        }
+      },
+      {
+        action: "copyClipboard",
+        icon: "fa-solid fa-copy",
+        label: game.i18n.localize("TWODSIX.Trade.CopyToClipboard"),
+        callback: () => {
+          navigator.clipboard.writeText(tradeReport).then(() => {
+            ui.notifications?.info(game.i18n.localize("TWODSIX.Trade.CopiedToClipboard"));
+          }, () => {
+            ui.notifications?.error(game.i18n.localize("TWODSIX.Trade.ClipboardFailed"));
           });
         }
       },

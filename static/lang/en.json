@@ -1538,7 +1538,10 @@
       "PriceModifierBaseNote": "of base price (base check, before per-good trade DMs)",
       "ExamplePrice": "Example Price Calculation",
       "CopyToChat": "Copy to Chat",
-      "Close": "Close"
+      "Close": "Close",
+      "CopyToClipboard": "Copy to Clipboard",
+      "CopiedToClipboard": "Trade report copied to clipboard!",
+      "ClipboardFailed": "Failed to copy to clipboard."
     },
     "Resource": {
       "Value": "Value",
