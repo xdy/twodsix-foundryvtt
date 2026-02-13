@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
-import { buildTradeReportRows, generateTradeInformation } from "../trade/TradeGenerator";
+import { buildTradeReportRows, generateTradeInformation } from "../utils/TradeGenerator";
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
@@ -193,7 +193,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     }
 
     // Use values returned from callback
-    const { brokerSkill, useLocalBroker, buyerModifier, supplierModifier, restrictTradeCodes, capSameWorld, includeIllegal } = result || {};
+    const { brokerSkill, useLocalBroker, buyerModifier, supplierModifier, restrictTradeCodes, capSameWorld, includeIllegal } = result;
 
     const worldData = {
       name: this.document.name,
@@ -213,11 +213,6 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
 
     const tradeInfo = generateTradeInformation(worldData);
     tradeInfo.worldData = worldData;
-
-    // Helper to format numbers with locale
-    const formatCr = (num: number): string => {
-      return num.toLocaleString(game.i18n.lang, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-    };
 
     // Build and format trade report rows using TradeGenerator utility
     tradeInfo.rows = buildTradeReportRows(tradeInfo);

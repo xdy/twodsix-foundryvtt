@@ -1,5 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+/**
+ * TradeGenerator.ts
+ * Core trade generation logic for 2d6-based systems (Cepheus Engine, etc.)
+ * Implements trade good selection, price calculation, and report formatting.
+ *
+ * @module TradeGenerator
+ */
 
 
 /**
@@ -7,6 +14,9 @@
  * Implements Cepheus Engine SRD Chapter 7: Trade and Commerce
  */
 
+/**
+ * Represents a trade good with rolled quantity and calculated prices for a specific trade generation instance.
+ */
 export interface TradeGoodWithRoll {
   name: string;
   basePrice: number;
@@ -21,6 +31,9 @@ export interface TradeGoodWithRoll {
   illegal?: boolean;
 }
 
+/**
+ * The result of a trade generation operation, including all goods, prices, and summary info.
+ */
 export interface TradeGenerationResult {
   goods: TradeGoodWithRoll[];
   saleGoods: TradeGoodSalePrice[];
@@ -40,6 +53,9 @@ export interface TradeGenerationResult {
   };
 }
 
+/**
+ * Information about the use of a local broker in trade, including effective skill and commission.
+ */
 export interface LocalBrokerInfo {
   useLocalBroker: boolean;
   requestedSkill: number;
@@ -48,6 +64,9 @@ export interface LocalBrokerInfo {
   starportCap: number;
 }
 
+/**
+ * A trade good definition, including base price, quantity formula, and trade code modifiers.
+ */
 export interface TradeGood {
   name: string;
   basePrice: number;
@@ -58,12 +77,18 @@ export interface TradeGood {
   unusual?: boolean;
 }
 
+/**
+ * A common good available on any world, with base price and quantity formula.
+ */
 export interface CommonGood {
   name: string;
   basePrice: number;
   quantity: string;
 }
 
+/**
+ * A common good with rolled quantity and calculated prices for a specific trade generation instance.
+ */
 export interface CommonGoodWithRoll {
   good: CommonGood;
   rolledQuantity: number;
@@ -73,12 +98,18 @@ export interface CommonGoodWithRoll {
   salePriceModPercent: number;
 }
 
+/**
+ * Sale price information for a trade good, including percent modifier.
+ */
 export interface TradeGoodSalePrice {
   good: TradeGood;
   salePrice: number;
   salePriceModPercent: number;
 }
 
+/**
+ * Starport class and its associated trade bonus.
+ */
 export interface StarportBonus {
   class: string;
   bonus: number;
@@ -712,7 +743,9 @@ function applyBrokerCommission(
 }
 
 /**
- * Generate trade information for a world
+ * Generate trade information for a world, including available goods, prices, and summary info.
+ * @param worldData - Data about the world and trade context (trade codes, starport, modifiers, etc.)
+ * @returns TradeGenerationResult with all generated trade data for the world.
  */
 export function generateTradeInformation(worldData: {
   name: string;
@@ -970,9 +1003,9 @@ export function generateTradeInformation(worldData: {
 }
 
 /**
- * Calculate the final price of goods given base price and modifier percentage
- * @param basePrice The base price in credits
- * @param modifierPercent The percentage modifier (e.g., 80 for 80%, 150 for 150%)
+ * Calculate the final price of goods given base price and modifier percentage.
+ * @param basePrice - The base price in credits
+ * @param modifierPercent - The percentage modifier (e.g., 80 for 80%, 150 for 150%)
  * @returns The calculated price in credits
  */
 export function calculatePrice(basePrice: number, modifierPercent: number): number {
@@ -980,21 +1013,24 @@ export function calculatePrice(basePrice: number, modifierPercent: number): numb
 }
 
 /**
- * Get a random trade good from the table
+ * Get a random trade good from the table.
+ * @returns A randomly selected TradeGood
  */
 export function getRandomTradeGood(): TradeGood {
   return TRADE_GOODS[Math.floor(Math.random() * TRADE_GOODS.length)];
 }
 
 /**
- * Get all trade goods (for reference)
+ * Get all trade goods (for reference or display).
+ * @returns Array of all TradeGood objects
  */
 export function getAllTradeGoods(): TradeGood[] {
   return [...TRADE_GOODS];
 }
 
 /**
- * Get all common goods (for reference)
+ * Get all common goods (for reference or display).
+ * @returns Array of all CommonGood objects
  */
 export function getAllCommonGoods(): CommonGood[] {
   return [...COMMON_GOODS];
@@ -1002,7 +1038,9 @@ export function getAllCommonGoods(): CommonGood[] {
 
 /**
  * Build and format trade report rows for display, given a TradeGenerationResult.
- * Handles price formatting, illegal marks, and percent formatting.
+ * Handles price formatting, illegal marks, and percent formatting for UI.
+ * @param tradeInfo - TradeGenerationResult or compatible object
+ * @returns Array of row objects for report rendering
  */
 export function buildTradeReportRows(tradeInfo: any): Array<any> {
   const formatCr = (num: number): string => {
