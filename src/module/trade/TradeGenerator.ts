@@ -1,4 +1,48 @@
 /**
+ * Build and format trade report rows for display, given a TradeGenerationResult.
+ * Handles price formatting, illegal marks, and percent formatting.
+ */
+export function buildTradeReportRows(tradeInfo: any, i18n: typeof game.i18n): Array<any> {
+  const formatCr = (num: number): string => {
+    return num.toLocaleString(i18n.lang, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  };
+  const availableByName = new Map(tradeInfo.goods.map((good) => [good.name, good]));
+  const rows: Array<any> = [];
+  tradeInfo.commonGoodsRolled.forEach((item: any) => {
+    rows.push({
+      name: item.good.name,
+      illegal: false,
+      buyPrice: item.purchasePrice,
+      buyMod: item.purchasePriceModPercent,
+      sellPrice: item.salePrice,
+      sellMod: item.salePriceModPercent
+    });
+  });
+  tradeInfo.saleGoods.forEach((item: any) => {
+    const available = availableByName.get(item.good.name);
+    rows.push({
+      name: item.good.name,
+      illegal: item.good.illegal,
+      buyPrice: available?.purchasePrice,
+      buyMod: available?.purchasePriceModPercent,
+      sellPrice: item.salePrice,
+      sellMod: item.salePriceModPercent
+    });
+  });
+  rows.forEach((row) => {
+    row.illegalMark = row.illegal ? "*" : "";
+    row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
+    row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
+    row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
+    row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
+  });
+  return rows;
+}
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
+
+
+/**
  * Trade Generation System
  * Implements Cepheus Engine SRD Chapter 7: Trade and Commerce
  */
@@ -51,6 +95,7 @@ export interface TradeGood {
   purchaseDM: Record<string, number>; // Trade codes and bonuses
   saleDM: Record<string, number>;
   illegal?: boolean;
+  unusual?: boolean;
 }
 
 export interface CommonGood {
@@ -83,228 +128,228 @@ export interface StarportBonus {
 
 // Common Goods - available on any world
 const COMMON_GOODS: CommonGood[] = [
-  { name: "Basic Consumable Goods", basePrice: 1000, quantity: "2D6*5" },
-  { name: "Basic Electronics", basePrice: 25000, quantity: "2D6*5" },
-  { name: "Basic Machine Parts", basePrice: 10000, quantity: "2D6*5" },
-  { name: "Basic Manufactured Goods", basePrice: 20000, quantity: "2D6*5" },
-  { name: "Basic Raw Materials", basePrice: 5000, quantity: "2D6*5" },
-  { name: "Basic Unrefined Ore", basePrice: 2000, quantity: "2D6*5" }
+  { name: "TWODSIX.Trade.BasicGoods.ConsumableGoods", basePrice: 1000, quantity: "2D6*5" },
+  { name: "TWODSIX.Trade.BasicGoods.Electronics", basePrice: 25000, quantity: "2D6*5" },
+  { name: "TWODSIX.Trade.BasicGoods.MachineParts", basePrice: 10000, quantity: "2D6*5" },
+  { name: "TWODSIX.Trade.BasicGoods.ManufacturedGoods", basePrice: 20000, quantity: "2D6*5" },
+  { name: "TWODSIX.Trade.BasicGoods.RawMaterials", basePrice: 5000, quantity: "2D6*5" },
+  { name: "TWODSIX.Trade.BasicGoods.UnrefinedOre", basePrice: 2000, quantity: "2D6*5" }
 ];
 
 // Trade Goods - roll on D66 table
 const TRADE_GOODS: TradeGood[] = [
   {
-    name: "Advanced Electronics",
+    name: "TWODSIX.Trade.TradeGoods.AdvancedElectronics",
     basePrice: 100000,
     quantity: "1D6*5",
     purchaseDM: { "Ht": 2, "In": 3 },
     saleDM: { "Ni": 2, "Po": 1 }
   },
   {
-    name: "Advanced Manufactured Goods",
+    name: "TWODSIX.Trade.TradeGoods.AdvancedManufacturedGoods",
     basePrice: 200000,
     quantity: "1D6*5",
     purchaseDM: { "In": 3, "Ri": 2 },
     saleDM: { "Ag": 1, "Ni": 2 }
   },
   {
-    name: "Agricultural Equipment",
+    name: "TWODSIX.Trade.TradeGoods.AgriculturalEquipment",
     basePrice: 150000,
     quantity: "1D6",
     purchaseDM: { "In": 3, "Ri": 2 },
     saleDM: { "Ag": 2, "Ga": 1 }
   },
   {
-    name: "Animal Products",
+    name: "TWODSIX.Trade.TradeGoods.AnimalProducts",
     basePrice: 1500,
     quantity: "4D6*5",
     purchaseDM: { "Ag": 2, "Ga": 3 },
     saleDM: { "Hi": 2, "Ri": 1 }
   },
   {
-    name: "Collectibles",
+    name: "TWODSIX.Trade.TradeGoods.Collectibles",
     basePrice: 50000,
     quantity: "1D6",
     purchaseDM: { "In": 2, "Ri": 3 },
     saleDM: { "Hi": 2, "Ni": 1 }
   },
   {
-    name: "Computers & Computer Parts",
+    name: "TWODSIX.Trade.TradeGoods.ComputersAndParts",
     basePrice: 150000,
     quantity: "2D6",
     purchaseDM: { "Ht": 3, "In": 2 },
     saleDM: { "Na": 1, "Ni": 2 }
   },
   {
-    name: "Crystals & Gems",
+    name: "TWODSIX.Trade.TradeGoods.CrystalsAndGems",
     basePrice: 20000,
     quantity: "1D6*5",
     purchaseDM: { "Ni": 3, "Na": 2 },
     saleDM: { "In": 1, "Ri": 2 }
   },
   {
-    name: "Cybernetic Parts",
+    name: "TWODSIX.Trade.TradeGoods.CyberneticParts",
     basePrice: 250000,
     quantity: "1D6*5",
     purchaseDM: { "Ht": 3, "Ri": 2 },
     saleDM: { "Na": 1, "Ni": 2 }
   },
   {
-    name: "Food Service Equipment",
+    name: "TWODSIX.Trade.TradeGoods.FoodServiceEquipment",
     basePrice: 4000,
     quantity: "2D6",
     purchaseDM: { "In": 3, "Na": 2 },
     saleDM: { "Ag": 1, "Ni": 2 }
   },
   {
-    name: "Furniture",
+    name: "TWODSIX.Trade.TradeGoods.Furniture",
     basePrice: 5000,
     quantity: "4D6",
     purchaseDM: { "Ag": 2, "Ga": 3 },
     saleDM: { "Hi": 1, "Ri": 2 }
   },
   {
-    name: "Gambling Devices & Equipment",
+    name: "TWODSIX.Trade.TradeGoods.GamblingDevicesAndEquipment",
     basePrice: 4000,
     quantity: "1D6",
     purchaseDM: { "Hi": 2, "Ri": 3 },
     saleDM: { "Na": 2, "Ni": 1 }
   },
   {
-    name: "Grav Vehicles",
+    name: "TWODSIX.Trade.TradeGoods.GravVehicles",
     basePrice: 160000,
     quantity: "1D6",
     purchaseDM: { "Ht": 3, "Ri": 2 },
     saleDM: { "Ni": 2, "Po": 1 }
   },
   {
-    name: "Grocery Products",
+    name: "TWODSIX.Trade.TradeGoods.GroceryProducts",
     basePrice: 6000,
     quantity: "1D6*5",
     purchaseDM: { "Ag": 3, "Ga": 2 },
     saleDM: { "Hi": 1, "Ri": 2 }
   },
   {
-    name: "Household Appliances",
+    name: "TWODSIX.Trade.TradeGoods.HouseholdAppliances",
     basePrice: 12000,
     quantity: "4D6",
     purchaseDM: { "Hi": 2, "In": 3 },
     saleDM: { "Na": 1, "Ni": 2 }
   },
   {
-    name: "Industrial Supplies",
+    name: "TWODSIX.Trade.TradeGoods.IndustrialSupplies",
     basePrice: 75000,
     quantity: "2D6",
     purchaseDM: { "In": 3, "Ri": 2 },
     saleDM: { "Na": 1, "Ni": 2 }
   },
   {
-    name: "Liquor & Other Intoxicants",
+    name: "TWODSIX.Trade.TradeGoods.LiquorAndIntoxicants",
     basePrice: 15000,
     quantity: "1D6*5",
     purchaseDM: { "Ag": 3, "Ga": 2 },
     saleDM: { "In": 1, "Ri": 2 }
   },
   {
-    name: "Luxury Goods",
+    name: "TWODSIX.Trade.TradeGoods.LuxuryGoods",
     basePrice: 150000,
     quantity: "1D6",
     purchaseDM: { "Ag": 2, "Ga": 3 },
     saleDM: { "In": 1, "Ri": 2 }
   },
   {
-    name: "Manufacturing Equipment",
+    name: "TWODSIX.Trade.TradeGoods.ManufacturingEquipment",
     basePrice: 750000,
     quantity: "1D6*5",
     purchaseDM: { "In": 3, "Ri": 2 },
     saleDM: { "Na": 1, "Ni": 2 }
   },
   {
-    name: "Medical Equipment",
+    name: "TWODSIX.Trade.TradeGoods.MedicalEquipment",
     basePrice: 50000,
     quantity: "1D6*5",
     purchaseDM: { "Ht": 2, "Ri": 3 },
     saleDM: { "Hi": 1, "In": 2 }
   },
   {
-    name: "Petrochemicals",
+    name: "TWODSIX.Trade.TradeGoods.Petrochemicals",
     basePrice: 10000,
     quantity: "2D6*5",
     purchaseDM: { "Na": 2, "Ni": 3 },
     saleDM: { "Ag": 1, "In": 2 }
   },
   {
-    name: "Pharmaceuticals",
+    name: "TWODSIX.Trade.TradeGoods.Pharmaceuticals",
     basePrice: 100000,
     quantity: "1D6",
     purchaseDM: { "Ht": 3, "Wa": 2 },
     saleDM: { "In": 2, "Ri": 1 }
   },
   {
-    name: "Polymers",
+    name: "TWODSIX.Trade.TradeGoods.Polymers",
     basePrice: 7000,
     quantity: "4D6*5",
     purchaseDM: { "In": 2, "Ri": 3 },
     saleDM: { "Ni": 2, "Va": 1 }
   },
   {
-    name: "Precious Metals",
+    name: "TWODSIX.Trade.TradeGoods.PreciousMetals",
     basePrice: 50000,
     quantity: "1D6",
     purchaseDM: { "As": 3, "Ic": 2 },
     saleDM: { "In": 1, "Ri": 2 }
   },
   {
-    name: "Radioactives",
+    name: "TWODSIX.Trade.TradeGoods.Radioactives",
     basePrice: 1000000,
     quantity: "1D6",
     purchaseDM: { "As": 2, "Ni": 3 },
     saleDM: { "In": 2, "Ht": 1 }
   },
   {
-    name: "Robots & Drones",
+    name: "TWODSIX.Trade.TradeGoods.RobotsAndDrones",
     basePrice: 500000,
     quantity: "1D6*5",
     purchaseDM: { "Ht": 3, "In": 2 },
     saleDM: { "Ni": 1, "Ri": 2 }
   },
   {
-    name: "Scientific Equipment",
+    name: "TWODSIX.Trade.TradeGoods.ScientificEquipment",
     basePrice: 50000,
     quantity: "1D6*5",
     purchaseDM: { "Ht": 3, "Ri": 2 },
     saleDM: { "Hi": 2, "Ni": 1 }
   },
   {
-    name: "Survival Gear",
+    name: "TWODSIX.Trade.TradeGoods.SurvivalGear",
     basePrice: 4000,
     quantity: "2D6",
     purchaseDM: { "Ga": 3, "Ri": 2 },
     saleDM: { "Fl": 2, "Va": 1 }
   },
   {
-    name: "Textiles",
+    name: "TWODSIX.Trade.TradeGoods.Textiles",
     basePrice: 3000,
     quantity: "3D6*5",
     purchaseDM: { "Ag": 3, "Ni": 2 },
     saleDM: { "Na": 1, "Ri": 2 }
   },
   {
-    name: "Uncommon Raw Materials",
+    name: "TWODSIX.Trade.TradeGoods.UncommonRawMaterials",
     basePrice: 50000,
     quantity: "2D6*5",
     purchaseDM: { "Ag": 3, "Ni": 2 },
     saleDM: { "In": 2, "Na": 1 }
   },
   {
-    name: "Uncommon Unrefined Ores",
+    name: "TWODSIX.Trade.TradeGoods.UncommonUnrefinedOres",
     basePrice: 20000,
     quantity: "2D6*5",
     purchaseDM: { "As": 2, "Va": 1 },
     saleDM: { "In": 2, "Na": 1 }
   },
   {
-    name: "Illicit Luxury Goods",
+    name: "TWODSIX.Trade.TradeGoods.IllicitLuxuryGoods",
     basePrice: 150000,
     quantity: "1D6",
     purchaseDM: { "Ag": 2, "Ga": 3 },
@@ -312,7 +357,7 @@ const TRADE_GOODS: TradeGood[] = [
     illegal: true
   },
   {
-    name: "Illicit Pharmaceuticals",
+    name: "TWODSIX.Trade.TradeGoods.IllicitPharmaceuticals",
     basePrice: 100000,
     quantity: "1D6",
     purchaseDM: { "Ht": 3, "Wa": 2 },
@@ -320,7 +365,7 @@ const TRADE_GOODS: TradeGood[] = [
     illegal: true
   },
   {
-    name: "Medical Research Material",
+    name: "TWODSIX.Trade.TradeGoods.MedicalResearchMaterial",
     basePrice: 50000,
     quantity: "1D6*5",
     purchaseDM: { "Ht": 2, "Ri": 3 },
@@ -328,7 +373,7 @@ const TRADE_GOODS: TradeGood[] = [
     illegal: true
   },
   {
-    name: "Military Equipment",
+    name: "TWODSIX.Trade.TradeGoods.MilitaryEquipment",
     basePrice: 150000,
     quantity: "2D6",
     purchaseDM: { "Ht": 3, "In": 2 },
@@ -336,7 +381,7 @@ const TRADE_GOODS: TradeGood[] = [
     illegal: true
   },
   {
-    name: "Personal Weapons & Armor",
+    name: "TWODSIX.Trade.TradeGoods.PersonalWeaponsAndArmor",
     basePrice: 30000,
     quantity: "2D6",
     purchaseDM: { "In": 3, "Ri": 2 },
@@ -345,10 +390,11 @@ const TRADE_GOODS: TradeGood[] = [
   },
   {
     name: "Unusual Cargo",
-    basePrice: 100000,
-    quantity: "1D6",
-    purchaseDM: { "Ri": 2 },
-    saleDM: { "In": 2, "Ri": 2 }
+    basePrice: 0,
+    quantity: "0",
+    purchaseDM: {},
+    saleDM: {},
+    unusual: true
   }
 ];
 
@@ -572,6 +618,10 @@ function getLargestTradeCodeModifier(
   return largest;
 }
 
+function clampCheck(value: number): number {
+  return Math.max(2, Math.min(16, value));
+}
+
 /**
  * Simulate a Broker skill check result (2d6 + skill + modifiers)
  * Returns 2-16+ typically, based on actual skill roll
@@ -587,7 +637,7 @@ function simulateBrokerCheck(
 
   // Apply all modifiers: 2d6 + trader skill + situational + traffic + zone
   const result = dice + traderSkill + modifier + trafficMod + zoneMod;
-  return Math.max(2, Math.min(16, result)); // Clamp to 2-16
+  return clampCheck(result); // Clamp to 2-16
 }
 
 /**
@@ -610,8 +660,8 @@ function calculateGoodPricing(
 } {
   const purchaseDM = getLargestTradeCodeModifier(tradeCodes, good.purchaseDM);
   const saleDM = getLargestTradeCodeModifier(tradeCodes, good.saleDM);
-  const purchaseCheck = Math.max(2, Math.min(16, basePurchaseCheck + purchaseDM - saleDM));
-  const saleCheck = Math.max(2, Math.min(16, baseSaleCheck + saleDM - purchaseDM));
+  const purchaseCheck = clampCheck(basePurchaseCheck + purchaseDM - saleDM);
+  const saleCheck = clampCheck(baseSaleCheck + saleDM - purchaseDM);
   return calculatePricesFromChecks(good.basePrice, purchaseCheck, saleCheck, ruleset);
 }
 
@@ -734,6 +784,7 @@ export function generateTradeInformation(worldData: {
 
   // Get current ruleset from game settings to determine which price table to use
   const ruleset = (game.settings?.get('twodsix', 'ruleset') as string) || 'CE';
+  const priceTable = getPriceModifierTable(ruleset);
 
   const brokerInfo = getBrokerInfo(useLocalBroker, traderSkill, localBrokerSkill, worldData.starport);
   const effectiveBrokerSkill = brokerInfo.effectiveSkill;
@@ -745,7 +796,7 @@ export function generateTradeInformation(worldData: {
   const saleZoneMod = getZoneSafetyModifier(zone, false, ruleset);
 
   // DEBUG: Log trade generation parameters (useful for testing/debugging)
-  console.log('🔍 Trade Generation:', {
+  /*console.log('🔍 Trade Generation:', {
     world: worldData.name,
     ruleset,
     zone: `${worldData.zone || '(default)'} → ${zone}`,
@@ -756,7 +807,7 @@ export function generateTradeInformation(worldData: {
       purchaseZone: purchaseZoneMod,
       saleZone: saleZoneMod
     }
-  });
+  });*/
 
   const tradeCodeSet = new Set(tradeCodes);
   const isTradeCodeMatched = (good: TradeGood): boolean => {
@@ -791,10 +842,6 @@ export function generateTradeInformation(worldData: {
     goodsIndices.splice(randomIdx, 1);
   }
 
-  const supplierInfo =
-    `Found ${availableIndices.size} types of goods at supplier. ` +
-    `Starport bonus: +${starportBonus}. Good supply situation: +${supplierBonus}.`;
-
   // Base price checks with traffic and zone modifiers
   const basePurchaseCheck = simulateBrokerCheck(
     effectiveBrokerSkill,
@@ -814,13 +861,20 @@ export function generateTradeInformation(worldData: {
   const saleGoods: TradeGoodSalePrice[] = [];
   const purchasePriceByName = new Map<string, number>();
   const purchasePriceByNamePreCommission = new Map<string, number>();
+  let unusualFound = false;
 
   TRADE_GOODS.forEach((good, index) => {
     const isAvailable = availableIndices.has(index);
+    if (good.unusual) {
+      if (isAvailable) {
+        unusualFound = true;
+      }
+      return;
+    }
 
     // For illegal goods, add bonus to sale check
     const illegalSaleMod = good.illegal ? getIllegalGoodsSaleModifier(good.illegal, zone, ruleset) : 0;
-    const adjustedSaleCheck = Math.max(2, Math.min(16, baseSaleCheck + illegalSaleMod));
+    const adjustedSaleCheck = clampCheck(baseSaleCheck + illegalSaleMod);
 
     // Calculate pricing for this good (using adjusted sale check for illegal goods)
     const pricing = calculateGoodPricing(good, tradeCodes, basePurchaseCheck, adjustedSaleCheck, ruleset);
@@ -845,9 +899,6 @@ export function generateTradeInformation(worldData: {
     // Add to purchase list if available
     if (isAvailable) {
       const rolledQty = rollDice(good.quantity);
-      const salePriceForCap = saleAdjusted.price;
-      const salePriceModForCap = saleAdjusted.modPercent;
-
       rolledGoods.push({
         name: good.name,
         basePrice: good.basePrice,
@@ -855,8 +906,8 @@ export function generateTradeInformation(worldData: {
         rolledQuantity: rolledQty,
         purchasePriceModPercent: purchaseAdjusted.modPercent,
         purchasePrice: purchaseAdjusted.price,
-        salePriceModPercent: salePriceModForCap,
-        salePrice: salePriceForCap,
+        salePriceModPercent: saleAdjusted.modPercent,
+        salePrice: saleAdjusted.price,
         purchaseDM: good.purchaseDM,
         saleDM: good.saleDM,
         illegal: good.illegal
@@ -895,6 +946,17 @@ export function generateTradeInformation(worldData: {
     }
   });
 
+  // Supplier/port bonuses are reported for future supplier-finding rules.
+  const availableGoodsCount = [...availableIndices].filter((index) => !TRADE_GOODS[index]?.unusual).length;
+  let supplierInfo = game.i18n.format("TWODSIX.Trade.SupplierInfoSummary", {
+    count: availableGoodsCount,
+    starportBonus,
+    supplierBonus
+  });
+  if (unusualFound) {
+    supplierInfo += ` ${game.i18n.localize("TWODSIX.Trade.SupplierInfoUnusual")}`;
+  }
+
   // Also roll for common goods (no trade-code DMs, just base checks)
   const commonGoodsRolled = COMMON_GOODS.map((good) => {
     const rolledQuantity = rollDice(good.quantity);
@@ -917,16 +979,13 @@ export function generateTradeInformation(worldData: {
       false
     );
 
-    const salePriceAdjusted = saleAdjusted.price;
-    const salePriceModAdjusted = saleAdjusted.modPercent;
-
     return {
       good,
       rolledQuantity,
       purchasePrice: purchaseAdjusted.price,
       purchasePriceModPercent: purchaseAdjusted.modPercent,
-      salePrice: salePriceAdjusted,
-      salePriceModPercent: salePriceModAdjusted
+      salePrice: saleAdjusted.price,
+      salePriceModPercent: saleAdjusted.modPercent
     };
   });
 
@@ -940,12 +999,12 @@ export function generateTradeInformation(worldData: {
     purchaseSkillCheck: {
       result: basePurchaseCheck,
       priceModifier: 0, // Per-good DMs applied individually, not factored into base check
-      percentage: getPriceModifierTable(ruleset)[basePurchaseCheck]?.purchase || getPriceModifierTable(ruleset)[8].purchase
+      percentage: priceTable[basePurchaseCheck]?.purchase || priceTable[8].purchase
     },
     saleSkillCheck: {
       result: baseSaleCheck,
       priceModifier: 0, // No trade-code DMs for sale base check (applied per good)
-      percentage: getPriceModifierTable(ruleset)[baseSaleCheck]?.sale || getPriceModifierTable(ruleset)[8].sale
+      percentage: priceTable[baseSaleCheck]?.sale || priceTable[8].sale
     }
   };
 }

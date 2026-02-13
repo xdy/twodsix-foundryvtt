@@ -24,7 +24,7 @@
         <tbody>
           {{#each rows as |row|}}
           <tr>
-            <td><strong>{{row.name}}</strong></td>
+            <td><strong>{{localize row.name}}</strong></td>
             <td>{{row.illegalMark}}</td>
             <td>{{#if row.buyPrice}}{{row.buyPrice}}{{/if}}</td>
             <td>{{#if row.buyMod}}{{row.buyMod}}{{/if}}</td>
