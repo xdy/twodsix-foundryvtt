@@ -1539,8 +1539,8 @@
       "ExamplePrice": "Example Price Calculation",
       "CopyToChat": "Copy to Chat",
       "Close": "Close",
-      "CopyToClipboard": "Copy to Clipboard",
-      "CopiedToClipboard": "Trade report copied to clipboard!",
+      "CopyToClipboard": "Copy to Clipboard as HTML",
+      "CopiedToClipboard": "Trade report copied to clipboard as HTML!",
       "ClipboardFailed": "Failed to copy to clipboard."
     },
     "Resource": {
