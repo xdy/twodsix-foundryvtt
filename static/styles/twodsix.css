@@ -5540,3 +5540,123 @@ span.single-line.world-inset {
 .trade-codes {
   text-align: left;
 }
+
+.trade-generator-section {
+  margin: 1ch 2ch;
+  padding: 1ch;
+  background: var(--s2d6-light-background-transparent);
+}
+
+.trade-generate-btn {
+  padding: 0.5ch 1.5ch;
+  background-color: var(--s2d6-default-color);
+  color: white;
+  border: none;
+  border-radius: 0.3ch;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0.5ch;
+}
+
+.trade-generate-btn:hover {
+  background-color: var(--s2d6-item-active);
+  transform: scale(1.02);
+}
+
+.trade-generate-btn i {
+  margin-right: 0.5ch;
+}
+
+.trade-generator-help {
+  font-size: smaller;
+  color: var(--s2d6-item-active);
+  margin: 0;
+  font-style: italic;
+}
+
+.trade-generation-report {
+  padding: 1ch;
+  line-height: 1.6;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.trade-generation-report h3 {
+  color: var(--s2d6-default-color);
+  border-bottom: 2px solid var(--s2d6-default-color);
+  padding-bottom: 0.5ch;
+  margin-bottom: 1ch;
+}
+
+.trade-generation-report h4 {
+  color: var(--s2d6-default-color);
+  margin-top: 1ch;
+  margin-bottom: 0.5ch;
+}
+
+.trade-section {
+  margin-bottom: 1.5ch;
+  padding: 0.5ch;
+  background: var(--s2d6-light-background-transparent);
+  border-left: 3px solid var(--s2d6-default-color);
+  border-radius: 0.3ch;
+}
+
+.trade-section ul {
+  margin: 0.5ch 0;
+  padding-left: 2ch;
+}
+
+.trade-section li {
+  margin: 0.25ch 0;
+}
+
+.trade-note {
+  color: var(--s2d6-default-color);
+  font-style: italic;
+  margin: 0.5ch 0;
+  padding: 0.5ch;
+  background: var(--s2d6-background-nearly-transparent);
+  border-radius: 0.2ch;
+}
+
+.trade-generation-report .trade-table {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  display: block;
+}
+
+.trade-generation-report .trade-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.dialog .trade-generation-report {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.dialog .trade-generation-report .trade-table-wrap {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.trade-generation-report .trade-table th,
+.trade-generation-report .trade-table td {
+  padding: 0.3ch 0.6ch;
+  border: 1px solid var(--s2d6-default-color);
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.trade-generation-report .trade-table th {
+  background: var(--s2d6-background-nearly-transparent);
+  font-weight: 600;
+}

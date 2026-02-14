@@ -1365,6 +1365,45 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
+   * Handle a dropped trade-cargo payload on a ship actor.
+   * Creates a new cargo component item and deducts funds from the ship.
+   *
+   * @param {object} cargoData - The trade cargo data (from drag/drop), should include buyPriceValue, buyMod, name, illegal, quantity, etc.
+   * @param {number} qty - The quantity of cargo to transfer.
+   * @returns {Promise<boolean>} True if the cargo was added, false if insufficient funds or not processed.
+   */
+  public async handleDroppedTradeCargo(cargoData: any, qty: number): Promise<boolean> {
+    if (this.type !== 'ship') {
+      ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
+      return false;
+    }
+
+    const purchasePrice = cargoData.buyPriceValue * qty;
+    if (this.system.financeValues.cash < purchasePrice) {
+      ui.notifications.warn("TWODSIX.Warnings.InsufficientFunds", {localize: true});
+      return false;
+    }
+    const price = purchasePrice / (parseFloat(cargoData.buyMod)/100);
+    const itemData = {
+      name: game.i18n.localize(cargoData.name) || 'Cargo',
+      img: "systems/twodsix/assets/icons/components/cargo.svg",
+      type: 'component',
+      system: {
+        subtype: 'cargo',
+        purchasePrice,
+        price,
+        isIllegal: cargoData.illegal || false,
+        quantity: qty,
+        weight: 1
+      }
+    };
+    await this.createEmbeddedDocuments('Item', [itemData]);
+    await this.update({'system.financeValues.cash': this.system.financeValues.cash - purchasePrice});
+    ui.notifications.info(game.i18n.localize('TWODSIX.Trade.CargoAddedToShip'));
+    return true;
+  }
+
+  /**
    * Apply transformations to this Actor's data caused by Active Effects.
    *
    * @param {string} phase Restrict application to these data paths; when omitted, applies only to

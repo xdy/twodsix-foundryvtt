@@ -32,6 +32,18 @@ Hooks.on("renderChatMessageHTML", (message: any, html: HTMLElement, messageData?
     return;
   }
 
+  // Enable drag-and-drop for trade-cargo rows in chat
+  html.querySelectorAll('.trade-cargo-row').forEach(row => {
+    row.setAttribute("draggable", "true");
+    row.addEventListener("dragstart", (ev) => {
+      let tradeData = row.getAttribute("data-trade");
+      if (tradeData && ev.dataTransfer) {
+        tradeData = { type: "trade-cargo", row: JSON.parse(tradeData)}; //row wrapper needed as Dialog uses it
+        ev.dataTransfer.setData("text/plain", JSON.stringify(tradeData));
+      }
+    });
+  });
+
   // Construct the structured roll results DOM here during chat message
   // rendering. This restores the previous render-hook approach (sum,
   // effect, timeframe on one row and a centered degree badge below) and

@@ -1,4 +1,3 @@
-{{log this}}
 <section class="twodsix-world-sheet" autocomplete="off">
   <div class ="world-image-name">
     <table>
@@ -27,7 +26,7 @@
               <label class="resource-label" for="actor.name">
                 {{localize "TWODSIX.World.Name"}}:
               </label>
-              <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.World.Name"}}' onClick="this.select();" autocomplete="off"/>
+              <input name="name" type="text" value="{{actor.name}}" placeholder='{{localize "TWODSIX.World.Name"}}' onClick="this.select();" autocomplete="off" style="text-align: left;"/>
             </span>
           </div>
           <div class="world-summary">
@@ -155,6 +154,13 @@
   <section class="tab {{tabs.trade.cssClass}}" data-group="primary" data-tab="trade">
     <div class="world-content-container scrollable">
       <span class="world-title">{{localize "TWODSIX.World.Tabs.Trade"}}</span>
+      <div class="trade-generator-section">
+        <button type="button" data-action="generateTrade" class="trade-generate-btn">
+          <i class="fas fa-dice"></i> {{localize "TWODSIX.Trade.GenerateButton"}}
+        </button>
+        <p class="trade-generator-help">{{localize "TWODSIX.Trade.GenerateHelp"}}</p>
+      </div>
+      <hr style="margin: 1em 0;">
       <span class="single-line world-inset world-mainExports">
         <label class="resource-label">{{localize "TWODSIX.World.MainExports"}}: </label><input type="text" value="{{actor.system.mainExports}}" name="system.mainExports"/>
       </span>
@@ -168,7 +174,7 @@
         <label class="resource-label">{{localize "TWODSIX.World.MarketProfile"}}: </label><textarea name="system.marketProfile" class="world-textarea">{{actor.system.marketProfile}}</textarea>
       </span>
       <span class="single-line world-inset world-localCurrency">
-          label class="resource-label">{{localize "TWODSIX.World.LocalCurrency"}}: </label><input type="text" value="{{actor.system.localCurrency}}" name="system.localCurrency"/>
+        <label class="resource-label">{{localize "TWODSIX.World.LocalCurrency"}}: </label><input type="text" value="{{actor.system.localCurrency}}" name="system.localCurrency"/>
       </span>
       <span class="single-line world-inset world-portFees">
         <label class="resource-label">{{localize "TWODSIX.World.PortFees"}}: </label><input type="text" value="{{actor.system.portFees}}" name="system.portFees"/>

@@ -1,0 +1,35 @@
+<div class="form-group">
+  <label>{{localize "TWODSIX.Trade.UseLocalBrokerLabel"}}</label>
+  <input type="checkbox" id="useLocalBroker" name="useLocalBroker" {{checked false}}>
+  <p class="hint">{{localize "TWODSIX.Trade.UseLocalBrokerHelp"}}</p>
+</div>
+<div class="form-group">
+  <label>{{localize "TWODSIX.Trade.TraderSkillLabel"}}</label>
+  <input type="number" id="brokerSkill" name="brokerSkill" min="-5" max="15" value="0" placeholder="0">
+  <p class="hint">{{localize "TWODSIX.Trade.TraderSkillHelp"}}</p>
+</div>
+<div class="form-group">
+  <label>{{localize "TWODSIX.Trade.BuyerModifierLabel"}}</label>
+  <input type="number" id="buyerModifier" name="buyerModifier" value="0" placeholder="e.g., +2 or -3">
+  <p class="hint">{{localize "TWODSIX.Trade.BuyerModifierHelp"}}</p>
+</div>
+<div class="form-group">
+  <label> {{localize "TWODSIX.Trade.SupplierModifierLabel"}}</label>
+  <input type="number" id="supplierModifier" name="supplierModifier" value="0" placeholder="e.g., +2 or -3">
+  <p class="hint">{{localize "TWODSIX.Trade.SupplierModifierHelp"}}</p>
+</div>
+<div class="form-group">
+  <label>{{localize "TWODSIX.Trade.RestrictTradeCodesLabel"}}</label>
+  <input type="checkbox" id="restrictTradeCodes" name="restrictTradeCodes" {{checked true}}>
+  <p class="hint">{{localize "TWODSIX.Trade.RestrictTradeCodesHelp"}}</p>
+</div>
+<div class="form-group">
+  <label> {{localize "TWODSIX.Trade.SameWorldCapLabel"}}</label>
+  <input type="checkbox" id="capSameWorld" name="capSameWorld" {{checked false}}>
+  <p class="hint"> {{localize "TWODSIX.Trade.SameWorldCapHelp"}}</p>
+</div>
+<div class="form-group">
+  <label>{{localize "TWODSIX.Trade.IncludeIllegalLabel"}}</label>
+  <input type="checkbox" id="includeIllegal" name="includeIllegal" {{checked false}}>
+  <p class="hint">{{localize "TWODSIX.Trade.IncludeIllegalHelp"}}</p>
+</div>

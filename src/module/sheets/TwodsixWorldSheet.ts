@@ -2,6 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
+import { buildTradeReportRows, generateTradeInformation } from "../utils/TradeGenerator";
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
@@ -22,7 +23,8 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     },
     tag: "form",
     actions: {
-      editSVG: this.#onEditWorldImage
+      editSVG: this.#onEditWorldImage,
+      generateTrade: this.#onGenerateTrade
     },
   };
 
@@ -79,8 +81,13 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     context.getUWP = generateUWP(this.actor);
     const tradeCodesColor = generateTradeCodes(this.actor);
     context.getTradeCodes = tradeCodesColor.codes;
-    context.fillColor = tradeCodesColor.fillColor || '#fff';
+    context.fillColor = tradeCodesColor.fillColor || '#ffffff';
     context.showDefaultImage = this.actor.img === 'systems/twodsix/assets/icons/default_world.png';
+    if (this.actor.isToken && this.token && context.showDefaultImage) {
+      if (this.token.texture.tint.css !== tradeCodesColor.fillColor ) {
+        await this.token.update({ "texture.tint": tradeCodesColor.fillColor });
+      }
+    }
 
     if (game.settings.get('twodsix', 'useProseMirror')) {
       const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
@@ -95,6 +102,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     }
     return context;
   }
+
   /**
    * Edit a World Image.
    * Allows SVG element to be clicked and changed as default only works with img elements.
@@ -102,10 +110,17 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
    * @type {ApplicationClickAction}
    */
   static async #onEditWorldImage(_event, target) {
-    if ( target.nodeName !== "svg" ) {
+    if (target.nodeName !== "svg") {
       throw new Error("The editSVG action is available only for SVG elements.");
     }
-    const attr = target.dataset.edit;
+    // If Tokenizer is active and provides an API, delegate to it
+    const tokenizerApi = game.modules.get("vtta-tokenizer")?.api;
+    if (tokenizerApi && typeof tokenizerApi.launch === "function") {
+      tokenizerApi.launch(this.document);
+      return;
+    }
+    // Default image picker logic
+    const attr = "img";
     const current = foundry.utils.getProperty(this.document._source, attr);
     const defaultImage = 'systems/twodsix/assets/icons/default_world.png';
     const fp = new foundry.applications.apps.FilePicker.implementation({
@@ -120,7 +135,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
         }
         target.src = path;
         // Update the document's property (e.g., img or other attr)
-        if ( this.options.form.submitOnChange ) {
+        if (this.options.form.submitOnChange) {
           this.document.update({ [attr]: path });
         }
       },
@@ -131,6 +146,148 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       document: this.document
     });
     await fp.browse();
+  }
+
+  /**
+   * Generate trade information based on Cepheus Engine rules.
+   * Implements the Speculative Trade Checklist from SRD Chapter 7.
+   * @this {TwodsixWorldSheet}
+   * @type {ApplicationClickAction}
+   */
+  static async #onGenerateTrade(_event, _target) {
+    // Create dialog for trader skill and buyer modifier
+    const dialogContent = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/trade-dialog.hbs');
+    const result = await foundry.applications.api.DialogV2.wait({
+      window: {
+        title: game.i18n.localize("TWODSIX.Trade.TradeParametersPrompt"),
+      },
+      position: {width: 500},
+      content: dialogContent,
+      buttons: [
+        {
+          action: "generate",
+          label: game.i18n.localize("TWODSIX.Trade.GenerateButton"),
+          default: true,
+          callback: (_eventDialog, _button, dialog) => {
+            return {
+              brokerSkill: parseInt(dialog.element.querySelector("#brokerSkill")?.value || 0),
+              useLocalBroker: (dialog.element.querySelector("#useLocalBroker")?.checked ?? false),
+              buyerModifier: parseInt(dialog.element.querySelector("#buyerModifier")?.value || 0),
+              supplierModifier: parseInt(dialog.element.querySelector("#supplierModifier")?.value || 0),
+              restrictTradeCodes: (dialog.element.querySelector("#restrictTradeCodes")?.checked ?? false),
+              capSameWorld: (dialog.element.querySelector("#capSameWorld")?.checked ?? true),
+              includeIllegal: (dialog.element.querySelector("#includeIllegal")?.checked ?? false),
+              action: "generate"
+            };
+          }
+        },
+        {
+          action: "cancel",
+          label: game.i18n.localize("Cancel")
+        }
+      ],
+      rejectClose: false
+    }, { id: `trade-params-dialog-${this.document.id}` });
+
+    if (!result || result === "cancel") {
+      return;
+    }
+
+    // Use values returned from callback
+    const { brokerSkill, useLocalBroker, buyerModifier, supplierModifier, restrictTradeCodes, capSameWorld, includeIllegal } = result;
+
+    const worldData = {
+      name: this.document.name,
+      tradeCodes: generateTradeCodes(this.document).codes.map((c) => c.code),
+      starport: this.document.system.starport,
+      zone: this.document.system.travelZone || 'Green',
+      lawLevel: this.document.system.lawLevel,
+      includeIllegalGoods: includeIllegal,
+      capSameWorld,
+      restrictTradeGoodsToCodes: restrictTradeCodes,
+      traderSkill: useLocalBroker ? 0 : Math.max(0, Math.min(15, brokerSkill)),
+      useLocalBroker,
+      localBrokerSkill: useLocalBroker ? Math.max(0, Math.min(4, brokerSkill)) : 0,
+      supplierModifier: supplierModifier,
+      buyerModifier: buyerModifier
+    };
+
+    const tradeInfo = generateTradeInformation(worldData);
+    tradeInfo.worldData = worldData;
+
+    // Build and format trade report rows using TradeGenerator utility
+    tradeInfo.rows = buildTradeReportRows(tradeInfo);
+
+    // Purchase pricing summary (buying from suppliers)
+    if (tradeInfo.brokerInfo.useLocalBroker) {
+      tradeInfo.capNote = tradeInfo.brokerInfo.requestedSkill > tradeInfo.brokerInfo.starportCap
+        ? ` (${game.i18n.format("TWODSIX.Trade.CappedAtStarport", {cap: tradeInfo.brokerInfo.starportCap})})`
+        : "";
+    }
+
+    // Display the report using DialogV2
+    const tradeReport = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/trade-report.hbs', tradeInfo);
+    const buttons = [
+      {
+        action: "copyChat",
+        icon: "fa-solid fa-comment",
+        label: game.i18n.localize("TWODSIX.Trade.CopyToChat"),
+        callback: () => {
+          ChatMessage.create({
+            content: tradeReport,
+            speaker: ChatMessage.getSpeaker({ actor: this.document })
+          });
+        }
+      },
+      {
+        action: "copyClipboard",
+        icon: "fa-solid fa-copy",
+        label: game.i18n.localize("TWODSIX.Trade.CopyToClipboard"),
+        callback: () => {
+          navigator.clipboard.writeText(tradeReport).then(() => {
+            ui.notifications?.info(game.i18n.localize("TWODSIX.Trade.CopiedToClipboard"));
+          }, () => {
+            ui.notifications?.error(game.i18n.localize("TWODSIX.Trade.ClipboardFailed"));
+          });
+        }
+      },
+      {
+        action: "close",
+        icon: "fa-solid fa-xmark",
+        label: game.i18n.localize("TWODSIX.Trade.Close")
+      }
+    ];
+    await foundry.applications.api.DialogV2.wait({
+      window: { title: game.i18n.localize("TWODSIX.Trade.GenerationReport"), icon: "fa-solid fa-coins" },
+      position: {width: 700},
+      content: tradeReport,
+      buttons: buttons,
+      rejectClose: false,
+      render: (_ev, html) => {
+        // Attach dragstart handler for trade-cargo rows using native DOM and DialogV2 html.element
+        html.element.querySelectorAll('.trade-cargo-row').forEach(row => {
+          row.addEventListener('dragstart', (ev) => {
+            const tr = ev.currentTarget;
+            const tradeData = tr.getAttribute('data-trade');
+            let payload = {};
+            if (tradeData) {
+              try {
+                const parsed = JSON.parse(tradeData);
+                payload = { type: 'trade-cargo', row: parsed };
+              } catch (e) {
+                payload = {};
+              }
+            }
+            // Always set a valid JSON string, even if empty
+            const dragEvent = ev.originalEvent ?? ev;
+            if (dragEvent.dataTransfer) {
+              dragEvent.dataTransfer.setData('text/plain', JSON.stringify(payload));
+              dragEvent.dataTransfer.effectAllowed = 'copy';
+            }
+          });
+        });
+      }
+    });
   }
 }
 
