@@ -458,7 +458,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
         return false;
       }
-      const cargoData = dropData.row || dropData.payload || dropData.data || dropData || {};
+      const cargoData = dropData.row || dropData.payload || dropData.data || dropData;
 
       const maxQty = cargoData.quantity || 1;
       const html = `<label>${game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer")} (max ${maxQty}):</label>
