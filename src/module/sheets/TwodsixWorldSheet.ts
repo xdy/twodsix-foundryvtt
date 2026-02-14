@@ -111,7 +111,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
    */
   static async #onEditWorldImage(_event, target) {
     if (target.nodeName !== "svg") {
-      throw new Error("The editSVG action is available only for SVG elements.");
+      ui.notifications.error(game.i18n.localize("TWODSIX.Errors.TargetMustBeSVG"));
     }
     // If Tokenizer is active and provides an API, delegate to it
     const tokenizerApi = game.modules.get("vtta-tokenizer")?.api;
@@ -130,7 +130,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       callback: path => {
         // Only accept valid image extensions (including .svg)
         if (!/\.(png|jpg|jpeg|webp|svg|gif)$/i.test(path)) {
-          ui.notifications.error(game.i18n.localize("ERROR.FileInvalidImageExtension"));
+          ui.notifications.error(game.i18n.localize("TWODSIX.Errors.FileInvalidImageExtension"));
           return;
         }
         target.src = path;
