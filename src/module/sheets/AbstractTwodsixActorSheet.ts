@@ -447,9 +447,40 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       return false;
     }
 
-    if (actor.type === "traveller" && dropData.type === "Actor") { ///what about ship where valid?******************
+    if (actor.type === "traveller" && dropData.type === "Actor") {
       ui.notifications.warn("TWODSIX.Warnings.CantDragActorOntoActor", {localize: true});
       return false;
+    }
+
+    // Handle trade-cargo drop for ship
+    if (dropData.type === 'trade-cargo') {
+      if (actor.type !== 'ship') {
+        ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
+        return false;
+      }
+      const cargoData = dropData.row || dropData.payload || dropData.data || dropData || {};
+
+      const maxQty = cargoData.quantity || 1;
+      const html = `<label>${game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer")} (max ${maxQty}):</label>
+      <input type="number" name="qty" min="1" max="${maxQty}" value="${maxQty}" style="width:60px"/>`;
+
+      const qty = await foundry.applications.api.DialogV2.prompt({
+        window: { title: "Transfer Cargo", icon: "fa-solid fa-boxes-stacked" },
+        content: html,
+        buttons: [
+          {
+            action: "ok",
+            label: "OK",
+            callback: (_event, target) => Number(target.form.elements.qty.value)
+          }
+        ]
+      });
+
+      if (!Number.isInteger(qty)) {
+        // cancelled trade
+        return false;
+      }
+      return await actor.handleDroppedTradeCargo(cargoData, qty);
     }
 
     if (dropData.type === 'damageItem') {

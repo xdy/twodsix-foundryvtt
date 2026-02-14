@@ -367,7 +367,7 @@ export default function registerHandlebarsHelpers(): void {
 
   Handlebars.registerHelper('getComponentPrice', (item: TwodsixItem) => {
     if (item.system.subtype === "cargo") {
-      return Number(item.system.purchasePrice).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2});
+      return Number(item.system.purchasePrice/1e6).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 3});
     } else {
       return Number(item.system.price).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 2}) ;
     }

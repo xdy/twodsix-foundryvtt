@@ -1439,6 +1439,8 @@
       }
     },
     "Trade": {
+      "QuantityColumn": "Tons Available",
+      "CargoAddedToShip": "Cargo added to ship's components.",
       "CappedAtStarport": "capped at {cap} for starport",
       "CrPerTon": "Cr/ton",
       "GenerateButton": "Generate Speculative Trade",
@@ -2417,7 +2419,8 @@
       "NoAvailableActors": "No available Travellers or Robots to select",
       "NoLinkedAmmo": "No ammunition linked",
       "AmmoNotFound": "Can't find ammunition",
-      "NoAmmoToReload": "No ammunition remains to reload"
+      "NoAmmoToReload": "No ammunition remains to reload",
+      "InsufficientFunds": "Not enough common funds to make transaction."
     }
   },
   "TYPES": {

@@ -102,6 +102,7 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     }
     return context;
   }
+
   /**
    * Edit a World Image.
    * Allows SVG element to be clicked and changed as default only works with img elements.
@@ -261,7 +262,31 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       position: {width: 700},
       content: tradeReport,
       buttons: buttons,
-      rejectClose: false
+      rejectClose: false,
+      render: (_ev, html) => {
+        // Attach dragstart handler for trade-cargo rows using native DOM and DialogV2 html.element
+        html.element.querySelectorAll('.trade-cargo-row').forEach(row => {
+          row.addEventListener('dragstart', (ev) => {
+            const tr = ev.currentTarget;
+            const tradeData = tr.getAttribute('data-trade');
+            let payload = {};
+            if (tradeData) {
+              try {
+                const parsed = JSON.parse(tradeData);
+                payload = { type: 'trade-cargo', row: parsed };
+              } catch (e) {
+                payload = {};
+              }
+            }
+            // Always set a valid JSON string, even if empty
+            const dragEvent = ev.originalEvent ?? ev;
+            if (dragEvent.dataTransfer) {
+              dragEvent.dataTransfer.setData('text/plain', JSON.stringify(payload));
+              dragEvent.dataTransfer.effectAllowed = 'copy';
+            }
+          });
+        });
+      }
     });
   }
 }

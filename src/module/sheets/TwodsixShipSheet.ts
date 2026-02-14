@@ -305,27 +305,24 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   async _onDrop(ev:DragEvent):Promise<boolean | any> {
+    // Only handle ship-specific drops here. Delegate all other drops to AbstractTwodsixActorSheet.
     ev.preventDefault();
-    //ev.stopPropagation();
     if (ev.dataTransfer === null || ev.target === null) {
       return false;
     }
 
     try {
       const dropData:any = getDataFromDropEvent(ev);
-      if (dropData.type === 'html' || dropData.type === 'pdf') {
-        await super._onDrop(ev);
-        return true;
-      } else if (dropData.type === 'damageItem') {
-        //ui.notifications.warn("TWODSIX.Warnings.CantAutoDamage", {localize: true});
-        return (<TwodsixActor>this.actor).handleDamageData(dropData.payload, false);
+      // If dropData is a type not handled by this sheet, delegate immediately
+      if (!dropData || ["html", "pdf", "JournalEntry", "ActiveEffect", "Folder", "ItemList", "Scene", "trade-cargo", "damageItem"].includes(dropData.type)) {
+        return await super._onDrop(ev);
       }
+
       const droppedObject:any = await getDocFromDropData(dropData);
 
-      if (["traveller", "robot"].includes(droppedObject.type)) {
+      if (droppedObject && ["traveller", "robot"].includes(droppedObject.type)) {
         return await this._addCrewToSheet(droppedObject, ev);
-      } else if ((droppedObject.type === "skills") && ev.target !== null && ev.target?.closest(".ship-position")) {
-        //check for double drop trigger, not clear why this occurs
+      } else if (droppedObject && (droppedObject.type === "skills") && ev.target !== null && ev.target?.closest(".ship-position")) {
         if (ev.currentTarget.className === "ship-position-box") {
           const shipPositionId = ev.target.closest(".ship-position").dataset.id;
           const shipPosition = <TwodsixItem>this.actor.items.get(shipPositionId);
@@ -334,23 +331,23 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
         } else {
           return false;
         }
-      } else if (["vehicle", "ship"].includes(droppedObject.type)) {
+      } else if (droppedObject && ["vehicle", "ship"].includes(droppedObject.type)) {
         await this._addVehicleCraftToComponents(droppedObject, dropData.uuid);
         return true;
-      } else if (droppedObject.type === "animal") {
+      } else if (droppedObject && droppedObject.type === "animal") {
         ui.notifications.warn("TWODSIX.Warnings.AnimalsCantHoldPositions", {localize: true});
         return false;
-      } else if (["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable", "computer", "junk"].includes(droppedObject.type)) {
+      } else if (droppedObject && ["equipment", "weapon", "armor", "augment", "storage", "tool", "consumable", "computer", "junk"].includes(droppedObject.type)) {
         await this.processDroppedItem(ev, droppedObject);
         return true;
-      } else if (ev.currentTarget.className === 'ship-position-box ship-position-add-box' && droppedObject.type === 'ship_position') {
+      } else if (ev.currentTarget.className === 'ship-position-box ship-position-add-box' && droppedObject && droppedObject.type === 'ship_position') {
         return false; //avoid double add
       } else {
-        await super._onDrop(ev);
-        return true;
+        // Delegate all other drops to AbstractTwodsixActorSheet
+        return await super._onDrop(ev);
       }
     } catch (err) {
-      console.warn(err); // uncomment when debugging
+      console.error(err);
       return false;
     }
   }

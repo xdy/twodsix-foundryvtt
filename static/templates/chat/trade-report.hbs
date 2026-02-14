@@ -14,6 +14,7 @@
           <tr>
             <th>{{localize "TWODSIX.Trade.GoodsColumn"}}</th>
             <th>{{localize "TWODSIX.Trade.IllegalColumn"}}</th>
+            <th>{{localize "TWODSIX.Trade.QuantityColumn"}}</th>
             <th>{{localize "TWODSIX.Trade.BuyPriceColumn"}}</th>
             <th>{{localize "TWODSIX.Trade.BuyModColumn"}}</th>
             <th>{{localize "TWODSIX.Trade.SellPriceColumn"}}</th>
@@ -22,9 +23,16 @@
         </thead>
         <tbody>
           {{#each rows as |row|}}
-          <tr>
+          <tr
+            {{#if row.buyPrice}}
+              draggable="true"
+              class="trade-cargo-row"
+              data-trade='{{{row._json}}}'
+            {{/if}}
+          >
             <td><strong>{{localize row.name}}</strong></td>
             <td>{{row.illegalMark}}</td>
+            <td>{{row.quantity}}</td>
             <td>{{#if row.buyPrice}}{{row.buyPrice}}{{/if}}</td>
             <td>{{#if row.buyMod}}{{row.buyMod}}{{/if}}</td>
             <td>{{#if row.sellPrice}}{{row.sellPrice}}{{/if}}</td>

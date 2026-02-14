@@ -1055,7 +1055,8 @@ export function buildTradeReportRows(tradeInfo: any): Array<any> {
       buyPrice: item.purchasePrice,
       buyMod: item.purchasePriceModPercent,
       sellPrice: item.salePrice,
-      sellMod: item.salePriceModPercent
+      sellMod: item.salePriceModPercent,
+      quantity: item.rolledQuantity
     });
   });
   tradeInfo.saleGoods.forEach((item: any) => {
@@ -1066,15 +1067,25 @@ export function buildTradeReportRows(tradeInfo: any): Array<any> {
       buyPrice: available?.purchasePrice,
       buyMod: available?.purchasePriceModPercent,
       sellPrice: item.salePrice,
-      sellMod: item.salePriceModPercent
+      sellMod: item.salePriceModPercent,
+      quantity: available?.rolledQuantity
     });
   });
   rows.forEach((row) => {
     row.illegalMark = row.illegal ? "*" : "";
+    row.buyPriceValue = row.buyPrice;
     row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
     row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
     row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
     row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
+    // Add item type and subtype for drag-and-drop cargo creation
+    row.itemType = "component";
+    row.itemSubtype = "cargo";
+    try {
+      row._json = JSON.stringify(row);
+    } catch (e) {
+      row._json = '{}';
+    }
   });
   return rows;
 }
