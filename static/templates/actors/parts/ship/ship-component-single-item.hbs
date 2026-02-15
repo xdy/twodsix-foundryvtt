@@ -14,7 +14,7 @@
       {{#if settings.showComponentDM}}
       <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
       {{/if}}
-      <span class="item-name centre">{{getComponentWeight item}}</span>
+      <span class="item-name centre">{{item.system.componentWeightDisplay}}</span>
       {{#if settings.showCost}}
         <span class="item-name centre">{{getComponentCost item}}</span>
       {{/if}}

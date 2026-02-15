@@ -696,6 +696,8 @@ export default class TwodsixActor extends Actor {
 
       const powerForItem = getPower(item);
       const weightForItem = getWeight(item);
+      item.system.componentWeight = weightForItem;
+      item.system.componentWeightDisplay = weightForItem.toLocaleString(game.i18n.lang, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
       allocatePower(anComponent, powerForItem, item);
       allocateWeight(anComponent, weightForItem);

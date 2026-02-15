@@ -118,6 +118,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       itemTypes: TWODSIX.ITEM_TYPE_SELECT,
       psiTalentsRequireRoll: game.settings.get('twodsix', 'psiTalentsRequireRoll'),
       ShipWeaponTypes: TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')] ?? {},
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     };
 
     if (this.item.type === 'skills') {

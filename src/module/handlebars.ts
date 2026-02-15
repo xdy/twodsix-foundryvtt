@@ -361,9 +361,9 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
-  Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
+  /*Handlebars.registerHelper('getComponentWeight', (item: TwodsixItem) => {
     return getWeight(item).toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1});
-  });
+  });*/
 
   Handlebars.registerHelper('getComponentPrice', (item: TwodsixItem) => {
     if (item.system.subtype === "cargo") {
@@ -378,9 +378,6 @@ export default function registerHandlebarsHelpers(): void {
     return item.system.generatesPower ? "+" + retValue : retValue;
   });
 
-  Handlebars.registerHelper('getComponentMaxHits', () => {
-    return game.settings.get("twodsix", "maxComponentHits");
-  });
 
   Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
     return getCharacteristicList(actor);
