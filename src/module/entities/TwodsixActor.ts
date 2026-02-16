@@ -695,6 +695,7 @@ export default class TwodsixActor extends Actor {
       const isBaseHull = anComponent.subtype === "hull" && anComponent.isBaseHull;
 
       const powerForItem = getPower(item);
+      item.system.componentPowerDisplay = (item.system.generatesPower ? "+" : "") + powerForItem.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1});
       const weightForItem = getWeight(item);
       item.system.componentWeight = weightForItem;
       item.system.componentWeightDisplay = weightForItem.toLocaleString(game.i18n.lang, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
