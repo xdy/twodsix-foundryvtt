@@ -91,7 +91,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       showActorReferences: game.settings.get('twodsix', 'showActorReferences'),
       useRiderData: ruleset === 'RIDER',
       useCTData: ruleset === 'CT',
-      useCUData: ruleset === 'CU'
+      useCUData: ruleset === 'CU',
+      maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     };
 
     if (!isShipLike) {
@@ -570,6 +571,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       if (["traveller", "animal", "robot"].includes(actor.type)) {
         if (it.type === "skills") {
           this._processSkillItem(it, actor, skillGroups, skillsList, counters);
+          this._processSkillDisplayLabels(it, actor);
         }
       }
       //Add consumable labels
@@ -1063,6 +1065,55 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       }
       skillsList.push(item);
     }
+  }
+
+  /**
+   * Assigns display labels for a skill item on actor sheet display.
+   * This is called for each skill item after it is processed for the sheet context.
+   *
+   * @param {TwodsixItem} skill - The skill item to annotate with the display string.
+   * @param {TwodsixActor} actor - The actor owning the skill, used to look up characteristic values.
+   *
+   * The resulting strings are stored as `skill.system.displayCharMod`, `skill.system.adjustedSkillValue`,
+   * and `skill.system.skillTotal` for use in templates.
+   */
+  private _processSkillDisplayLabels(skill: TwodsixItem, actor: TwodsixActor): void {
+    const characteristic = skill.system.characteristic;
+    let displayCharacteristic = "";
+    let mod = 0;
+    if (!characteristic || characteristic === "NONE") {
+      displayCharacteristic = game.i18n.localize("TWODSIX.Items.Skills.NONE");
+    } else {
+      const charKey = characteristic === "NONE" ? undefined : (typeof TWODSIX !== "undefined" && TWODSIX.CHARACTERISTICS ? Object.keys(TWODSIX.CHARACTERISTICS).find(key => TWODSIX.CHARACTERISTICS[key] === characteristic) : undefined);
+      const characteristicElement = charKey ? actor.system.characteristics[charKey] : undefined;
+      if (characteristicElement) {
+        mod = characteristicElement.mod;
+        const abbreviatedCharName = characteristicElement.displayShortLabel;
+        displayCharacteristic = `${abbreviatedCharName}(${mod < 0 ? "" : "+"}${mod})`;
+      } else {
+        displayCharacteristic = "XXX";
+      }
+    }
+    skill.system.displayCharMod = displayCharacteristic;
+
+    // Compute adjustedSkillValue as in the original helper: no untrained override
+    const adjValue = actor.system.skills[simplifySkillName(skill.name)];
+    skill.system.adjustedSkillValue = adjValue !== skill.system.value ? adjValue : `&#8212;`;
+
+    // For skillTotal, always add the characteristic modifier if present, even for untrained override
+    let totalValue = typeof adjValue === "number" ? adjValue : skill.system.value;
+    const untrainedDefault = CONFIG.Item.dataModels.skills.schema.getInitialValue().value;
+    if (
+      totalValue === untrainedDefault &&
+      !game.settings.get("twodsix", "hideUntrainedSkills") &&
+      actor.system.untrainedSkill
+    ) {
+      const untrainedSkillItem = actor.items.find((i) => i._id === actor.system.untrainedSkill);
+      if (untrainedSkillItem) {
+        totalValue = untrainedSkillItem.system.value;
+      }
+    }
+    skill.system.skillTotal = totalValue + mod;
   }
 }
 

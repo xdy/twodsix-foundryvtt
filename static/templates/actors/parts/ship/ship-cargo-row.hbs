@@ -1,5 +1,5 @@
 <span class="item-name">{{item.name}}</span>
-<span class="item-name centre">{{getComponentWeight item}}</span>
+<span class="item-name centre">{{item.system.componentWeightDisplay}}</span>
 <span class="item-name centre">{{item.system.quantity}}</span>
 <span class="item-name centre">{{getComponentPrice item}}</span>
 <span class="item-name centre">{{#if item.system.isIllegal}}<i class="fa-solid fa-skull-crossbones"></i>{{/if}}</span>

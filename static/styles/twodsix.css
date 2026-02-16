@@ -2978,7 +2978,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   top:0%;
   z-index: 20;
   width: fit-content;
-  height: 3ch;
+  height: fit-content;
 }
 
 .components-stored-double, .cargo-stored-double {

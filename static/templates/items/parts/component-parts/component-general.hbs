@@ -42,7 +42,7 @@
 
   <div class="item-hits">
     <label for="system.hits" class="resource-label">{{localize "TWODSIX.Items.Component.SustainedHits"}}</label>
-    <input class="form-input" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{getComponentMaxHits}}"/>
+    <input class="form-input" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{settings.maxComponentHits}}"/>
   </div>
 
   {{#iff system.subtype "!==" "vehicle"}}
