@@ -2,10 +2,9 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 /*import { advantageDisadvantageTerm } from "./i18n";*/
-import { getKeyByValue} from "./utils/utils";
 import { TWODSIX } from "./config";
 import TwodsixItem from "./entities/TwodsixItem";
-import TwodsixActor, { getPower } from "./entities/TwodsixActor";
+import TwodsixActor from "./entities/TwodsixActor";
 import { getCharacteristicList } from "./utils/TwodsixRollSettings";
 import { simplifySkillName } from "./utils/utils";
 
