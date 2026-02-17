@@ -151,15 +151,9 @@
     </div>
   </section>
 
-  <section class="tab {{tabs.trade.cssClass}}" data-group="primary" data-tab="trade">
+  <section class="tab {{tabs.economy.cssClass}}" data-group="primary" data-tab="economy">
     <div class="world-content-container scrollable">
-      <span class="world-title">{{localize "TWODSIX.World.Tabs.Trade"}}</span>
-      <div class="trade-generator-section">
-        <button type="button" data-action="generateTrade" class="trade-generate-btn">
-          <i class="fas fa-dice"></i> {{localize "TWODSIX.Trade.GenerateButton"}}
-        </button>
-        <p class="trade-generator-help">{{localize "TWODSIX.Trade.GenerateHelp"}}</p>
-      </div>
+      <span class="world-title">{{localize "TWODSIX.World.Tabs.Economy"}}</span>
       <hr style="margin: 1em 0;">
       <span class="single-line world-inset world-mainExports">
         <label class="resource-label">{{localize "TWODSIX.World.MainExports"}}: </label><input type="text" value="{{actor.system.mainExports}}" name="system.mainExports"/>
@@ -179,6 +173,41 @@
       <span class="single-line world-inset world-portFees">
         <label class="resource-label">{{localize "TWODSIX.World.PortFees"}}: </label><input type="text" value="{{actor.system.portFees}}" name="system.portFees"/>
       </span>
+    </div>
+  </section>
+
+  <section class="tab {{tabs.trade.cssClass}}" data-group="primary" data-tab="trade">
+    <div class="world-content-container scrollable">
+      <span class="world-title">{{localize "TWODSIX.World.Tabs.Trade"}}</span>
+      <div class="trade-generator-section">
+        <button type="button" data-action="generateTrade" class="trade-generate-btn">
+          <i class="fas fa-dice"></i> {{localize "TWODSIX.Trade.GenerateButton"}}
+        </button>
+        <p class="trade-generator-help">{{localize "TWODSIX.Trade.GenerateHelp"}}</p>
+      </div>
+
+      {{!-- Cargo Items on World --}}
+      {{#if container.allCargo.length}}
+        <hr style="margin: 1em 0;">
+        <span class="world-title">{{localize "TWODSIX.Trade.WorldCargo"}}</span>
+        <p class="trade-generator-help">{{localize "TWODSIX.Trade.WorldCargoHelp"}}</p>
+        <div class="grid-columns-single storage-header">
+          <div class="cargo-stored-single">
+            {{> "systems/twodsix/templates/actors/parts/ship/cargo-header.hbs"}}
+          </div>
+        </div>
+        <div class="grid-columns-single item-list">
+          {{#each container.allCargo as |item id|}}
+            <div class="item grid-columns-single-row {{#if item.system.quantity}}draggable{{/if}}" data-item-id="{{item.id}}">
+              <ol class="ol-no-indent">
+                <li class="cargo-stored-single">
+                  {{> "systems/twodsix/templates/actors/parts/ship/ship-cargo-row.hbs" item=item}}
+                </li>
+              </ol>
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
     </div>
   </section>
 

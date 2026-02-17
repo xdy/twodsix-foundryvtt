@@ -250,6 +250,13 @@ export default function registerHandlebarsHelpers(): void {
     }
   });
 
+  Handlebars.registerHelper('formatCargoPrice', (value: number) => {
+    if (value == null || value === 0) {
+      return '—';
+    }
+    return value.toLocaleString(game.i18n.lang, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  });
+
   Handlebars.registerHelper('getCharacteristicList', (actor: TwodsixActor) => {
     return getCharacteristicList(actor);
   });

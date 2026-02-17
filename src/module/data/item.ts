@@ -202,6 +202,10 @@ export class ComponentData extends GearData {
     schema.weightIsPct = new fields.BooleanField({ required: true, initial: false});
     schema.isIllegal = new fields.BooleanField({ required: true, initial: false});
     schema.purchasePrice = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0});//new fields.StringField({...requiredBlankString});
+    schema.buyPricePerTon = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0});
+    schema.sellPricePerTon = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0});
+    schema.buyPriceMod = new fields.NumberField({required: true, nullable: false, integer: false, initial: 100});
+    schema.sellPriceMod = new fields.NumberField({required: true, nullable: false, integer: false, initial: 100});
     schema.cargoLocation = new fields.StringField({...requiredBlankString});
     schema.generatesPower = new fields.BooleanField({ required: true, initial: false});
     schema.isRefined = new fields.BooleanField({ required: true, initial: false});

@@ -2976,7 +2976,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   height: fit-content;
 }
 
-.components-stored-double, .cargo-stored-double {
+.components-stored-double {
   display: grid;
   grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
   grid-template-rows: 1fr;
@@ -2986,9 +2986,19 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
   padding: 1px;
 }
 
+.cargo-stored-double {
+  display: grid;
+  grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 4em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px 0;
+  grid-template-areas:
+    ". . . . . .";
+  padding: 1px;
+}
+
 .cargo-stored-single {
   display: grid;
-  grid-template-columns: 21em 8em 4em 7em 7em 6em;
+  grid-template-columns: 19em 8em 4em 7em 7em 6em 3em;
   grid-template-rows: 1fr;
   gap: 1px 0;
   grid-template-areas:
@@ -5483,7 +5493,7 @@ code {
   border-color: var(--s2d6-default-color);
   /* background-color: var(--s2d6-background-nearly-opaque); */
   border-width: 2px;
-  max-height: 100%;
+  max-height: 50vh;
   overflow-y: auto;
   min-height: 33vh;
 }
@@ -5565,7 +5575,7 @@ span.single-line.world-inset {
 
 .trade-generator-help {
   font-size: smaller;
-  color: var(--s2d6-item-active);
+  color: var(--s2d6-default-color);
   margin: 0;
   font-style: italic;
 }

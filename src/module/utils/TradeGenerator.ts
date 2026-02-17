@@ -37,6 +37,7 @@ export interface TradeGoodWithRoll {
 export interface TradeGenerationResult {
   goods: TradeGoodWithRoll[];
   saleGoods: TradeGoodSalePrice[];
+  unusualGoods: Array<{ name: string; quantity: number }>;
   commonGoods: CommonGood[];
   commonGoodsRolled: CommonGoodWithRoll[];
   supplierInfo: string;
@@ -382,7 +383,7 @@ const TRADE_GOODS: TradeGood[] = [
   {
     name: "Unusual Cargo",
     basePrice: 0,
-    quantity: "0",
+    quantity: "1D6",
     purchaseDM: {},
     saleDM: {},
     unusual: true
@@ -852,6 +853,7 @@ export function generateTradeInformation(worldData: {
   // Single pass through all goods to build both lists
   const rolledGoods: TradeGoodWithRoll[] = [];
   const saleGoods: TradeGoodSalePrice[] = [];
+  const unusualGoods: Array<{ name: string; quantity: number }> = [];
   const purchasePriceByName = new Map<string, number>();
   const purchasePriceByNamePreCommission = new Map<string, number>();
   let unusualFound = false;
@@ -861,6 +863,7 @@ export function generateTradeInformation(worldData: {
     if (good.unusual) {
       if (isAvailable) {
         unusualFound = true;
+        unusualGoods.push({ name: good.name, quantity: rollDice(good.quantity) });
       }
       return;
     }
@@ -985,6 +988,7 @@ export function generateTradeInformation(worldData: {
   return {
     goods: rolledGoods,
     saleGoods,
+    unusualGoods,
     commonGoods: COMMON_GOODS,
     commonGoodsRolled,
     supplierInfo,
@@ -1010,6 +1014,81 @@ export function generateTradeInformation(worldData: {
  */
 export function calculatePrice(basePrice: number, modifierPercent: number): number {
   return Math.round(basePrice * (modifierPercent / 100));
+}
+
+/**
+ * Create cargo component items on a world (or ship-like) actor from trade generation results.
+ * Creates items for all goods: purchasable goods get quantity and buy/sell prices,
+ * sale-only goods get quantity 0 with sale price for reference.
+ * Clears all existing cargo items on the actor before creating new ones.
+ *
+ * Uses structured cargo fields:
+ *   price           = base (list) price per ton
+ *   buyPricePerTon  = what the supplier charges per ton
+ *   sellPricePerTon = what this world's buyers will pay per ton
+ *   buyPriceMod     = purchase price modifier %
+ *   sellPriceMod    = sale price modifier %
+ *   purchasePrice   = total paid (buyPricePerTon * quantity)
+ *   quantity        = tons available (0 for sale-only reference items)
+ *
+ * @param actor - The Foundry actor (world, ship, etc.) to add cargo items to
+ * @param tradeInfo - The TradeGenerationResult (with rows from buildTradeReportRows)
+ * @returns Promise resolving to the number of cargo items created
+ */
+export async function createCargoItemsOnActor(actor: any, tradeInfo: any): Promise<number> {
+  // Clear all existing cargo items on this actor first
+  const existingCargo = actor.items?.filter((i: any) => i.type === 'component' && i.system?.subtype === 'cargo') || [];
+  if (existingCargo.length > 0) {
+    const idsToDelete = existingCargo.map((i: any) => i.id);
+    await actor.deleteEmbeddedDocuments('Item', idsToDelete);
+  }
+
+  const rows = tradeInfo.rows || buildTradeReportRows(tradeInfo);
+  const itemsData: any[] = [];
+
+  for (const row of rows) {
+    const buyPerTon = row.buyPricePerTon ?? 0;
+    const sellPerTon = row.sellPricePerTon ?? 0;
+    const isPurchasable = buyPerTon > 0 && row.quantity != null;
+    const hasSalePrice = sellPerTon > 0;
+
+    // Skip rows with no useful data at all (unless unusual via quantity check)
+    if (!isPurchasable && !hasSalePrice && !row.quantity) {
+      continue;
+    }
+
+    // qty: full quantity for purchasable or unusual goods, 0 for sale-only references
+    const qty = isPurchasable ? row.quantity : (hasSalePrice ? 0 : row.quantity || 0);
+    const buyMod = row.buyPriceMod ?? 100;
+    const sellMod = row.sellPriceMod ?? 100;
+    const basePrice = buyPerTon > 0 ? Math.round(buyPerTon / (buyMod / 100)) : Math.round(sellPerTon / (sellMod / 100));
+
+    itemsData.push({
+      name: game.i18n.localize(row.name) || 'Cargo',
+      img: "systems/twodsix/assets/icons/components/cargo.svg",
+      type: 'component',
+      system: {
+        subtype: 'cargo',
+        status: 'operational',
+        price: basePrice,
+        buyPricePerTon: buyPerTon,
+        sellPricePerTon: sellPerTon,
+        buyPriceMod: buyMod,
+        sellPriceMod: sellMod,
+        purchasePrice: buyPerTon * qty,
+        isIllegal: row.illegal || false,
+        quantity: qty,
+        weight: 1
+      }
+    });
+  }
+
+  if (itemsData.length === 0) {
+    return 0;
+  }
+
+  await actor.createEmbeddedDocuments('Item', itemsData);
+  return itemsData.length;
 }
 
 /**
@@ -1071,18 +1150,43 @@ export function buildTradeReportRows(tradeInfo: any): Array<any> {
       quantity: available?.rolledQuantity
     });
   });
+  // Unusual goods: blank prices, rolled quantity, draggable
+  if (tradeInfo.unusualGoods) {
+    tradeInfo.unusualGoods.forEach((unusual: any) => {
+      rows.push({
+        name: unusual.name,
+        illegal: false,
+        buyPrice: undefined,
+        buyMod: undefined,
+        sellPrice: undefined,
+        sellMod: undefined,
+        quantity: unusual.quantity
+      });
+    });
+  }
   rows.forEach((row) => {
     row.illegalMark = row.illegal ? "*" : "";
-    row.buyPriceValue = row.buyPrice;
+    // Store canonical numeric values for cargo creation and drag data
+    row.buyPricePerTon = row.buyPrice ?? 0;
+    row.sellPricePerTon = row.sellPrice ?? 0;
+    row.buyPriceMod = row.buyMod ?? 100;
+    row.sellPriceMod = row.sellMod ?? 100;
+    // Format display strings (overwrites raw values used above)
     row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
     row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
     row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
     row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
-    // Add item type and subtype for drag-and-drop cargo creation
-    row.itemType = "component";
-    row.itemSubtype = "cargo";
+    // Build drag-data JSON with canonical numeric field names
     try {
-      row._json = JSON.stringify(row);
+      row._json = JSON.stringify({
+        name: row.name,
+        illegal: row.illegal,
+        quantity: row.quantity,
+        buyPricePerTon: row.buyPricePerTon,
+        sellPricePerTon: row.sellPricePerTon,
+        buyPriceMod: row.buyPriceMod,
+        sellPriceMod: row.sellPriceMod
+      });
     } catch (e) {
       row._json = '{}';
     }
