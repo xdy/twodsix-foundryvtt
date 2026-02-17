@@ -2516,7 +2516,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /*width: fit-content;*/
 }
 
-.components-stored-double, .cargo-stored-double {
+.components-stored-double {
   display: grid;
   grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3em;
   grid-template-rows: 1fr;
@@ -2526,9 +2526,19 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   /*border-right: 1px solid var(--s2d6-form-light);*/
 }
 
+.cargo-stored-double {
+  display: grid;
+  grid-template-columns: 10.5em 4em 2em 3.5em 3.5em 3.5em 3em;
+  grid-template-rows: 1fr;
+  gap: 1px;
+  grid-template-areas:
+    ". . . . . .";
+  /*border-right: 1px solid var(--s2d6-form-light);*/
+}
+
 .cargo-stored-single {
   display: grid;
-  grid-template-columns: 21em 8em 4em 7em 7em 6em;
+  grid-template-columns: 19em 8em 4em 7em 7em 6em 3em;
   grid-template-rows: 1fr;
   gap: 1px;
   grid-template-areas:
@@ -4193,7 +4203,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
   border-color: var(--s2d6-default-color);
   /* background-color: var(--s2d6-background-nearly-opaque); */
   border-width: 2px;
-  max-height: 100%;
+  max-height: 50vh;
   overflow-y: auto;
   min-height: 33vh;
 }

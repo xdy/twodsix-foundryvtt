@@ -2,13 +2,15 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
-import { buildTradeReportRows, generateTradeInformation } from "../utils/TradeGenerator";
+import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from "../utils/TradeGenerator";
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
     sheetType: "TwodsixWorldSheet",
     classes: ["twodsix", "world", "actor"],
-    dragDrop: [],
+    dragDrop: [
+      {dragSelector: ".item.draggable", dropSelector: null}
+    ],
     position: {
       width: 835,
       height: 600
@@ -40,7 +42,8 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       tabs: [
         {id: "worlddata", icon: "fa-solid fa-globe", label: "TWODSIX.World.Tabs.WorldData"},
         {id: "description", icon: "fa-solid fa-book", label: "TWODSIX.World.Tabs.Description"},
-        {id: "trade", icon: "fa-solid fa-coins", label: "TWODSIX.World.Tabs.Trade"},
+        {id: "economy", icon: "fa-solid fa-money-bill-wheat", label: "TWODSIX.World.Tabs.Economy"},
+        {id: "trade", icon: "fa-solid fa-shop", label: "TWODSIX.World.Tabs.Trade"},
         {id: "environment", icon: "fa-solid fa-leaf", label: "TWODSIX.World.Tabs.Environment"},
         {id: "notes", icon: "fa-solid fa-sticky-note", label: "TWODSIX.World.Tabs.Notes"}
       ],
@@ -229,6 +232,19 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
     const tradeReport = await foundry.applications.handlebars.renderTemplate('systems/twodsix/templates/chat/trade-report.hbs', tradeInfo);
     const buttons = [
       {
+        action: "createCargo",
+        icon: "fa-solid fa-box",
+        label: game.i18n.localize("TWODSIX.Trade.CreateCargoItems"),
+        callback: async () => {
+          const count = await createCargoItemsOnActor(this.document, tradeInfo);
+          if (count > 0) {
+            ui.notifications?.info(game.i18n.format("TWODSIX.Trade.CargoItemsCreated", { count }));
+          } else {
+            ui.notifications?.warn(game.i18n.localize("TWODSIX.Trade.NoCargoToCreate"));
+          }
+        }
+      },
+      {
         action: "copyChat",
         icon: "fa-solid fa-comment",
         label: game.i18n.localize("TWODSIX.Trade.CopyToChat"),
@@ -264,25 +280,17 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       buttons: buttons,
       rejectClose: false,
       render: (_ev, html) => {
-        // Attach dragstart handler for trade-cargo rows using native DOM and DialogV2 html.element
+        // Attach dragstart handler for trade-cargo rows in the dialog
         html.element.querySelectorAll('.trade-cargo-row').forEach(row => {
           row.addEventListener('dragstart', (ev) => {
-            const tr = ev.currentTarget;
-            const tradeData = tr.getAttribute('data-trade');
-            let payload = {};
-            if (tradeData) {
+            const tradeData = (ev.currentTarget as HTMLElement).getAttribute('data-trade');
+            if (tradeData && ev.dataTransfer) {
               try {
-                const parsed = JSON.parse(tradeData);
-                payload = { type: 'trade-cargo', row: parsed };
+                ev.dataTransfer.setData('text/plain', JSON.stringify({ type: 'trade-cargo', row: JSON.parse(tradeData) }));
+                ev.dataTransfer.effectAllowed = 'copy';
               } catch (e) {
-                payload = {};
+                // Invalid JSON in data-trade attribute — ignore
               }
-            }
-            // Always set a valid JSON string, even if empty
-            const dragEvent = ev.originalEvent ?? ev;
-            if (dragEvent.dataTransfer) {
-              dragEvent.dataTransfer.setData('text/plain', JSON.stringify(payload));
-              dragEvent.dataTransfer.effectAllowed = 'copy';
             }
           });
         });

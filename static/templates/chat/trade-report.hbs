@@ -24,7 +24,7 @@
         <tbody>
           {{#each rows as |row|}}
           <tr
-            {{#if row.buyPrice}}
+            {{#if row.quantity}}
               draggable="true"
               class="trade-cargo-row"
               data-trade='{{{row._json}}}'

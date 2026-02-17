@@ -455,35 +455,15 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       return false;
     }
 
-    // Handle trade-cargo drop for ship
+    // Handle trade-cargo drop for ship (from trade report or chat)
     if (dropData.type === 'trade-cargo') {
       if (actor.type !== 'ship') {
         ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
         return false;
       }
-      const cargoData = dropData.row || dropData.payload || dropData.data || dropData;
-
-      const maxQty = cargoData.quantity || 1;
-      const html = `<label>${game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer")} (max ${maxQty}):</label>
-      <input type="number" name="qty" min="1" max="${maxQty}" value="${maxQty}" style="width:60px"/>`;
-
-      const qty = await foundry.applications.api.DialogV2.prompt({
-        window: { title: "Transfer Cargo", icon: "fa-solid fa-boxes-stacked" },
-        content: html,
-        buttons: [
-          {
-            action: "ok",
-            label: "OK",
-            callback: (_event, target) => Number(target.form.elements.qty.value)
-          }
-        ]
-      });
-
-      if (!Number.isInteger(qty)) {
-        // cancelled trade
-        return false;
-      }
-      return await actor.handleDroppedTradeCargo(cargoData, qty);
+      // Normalize: extract cargo row data from any of the possible wrapper shapes
+      const cargoRow = dropData.row || dropData.payload || dropData.data || dropData;
+      return await actor.handleDroppedCargo(cargoRow, dropData.sourceActorUuid, dropData.sourceItemId);
     }
 
     if (dropData.type === 'damageItem') {
@@ -536,6 +516,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
       }
     }
+
     return await (<TwodsixActor>this.actor).handleDroppedItem(dropedItem);
   }
 
@@ -630,6 +611,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       context.summaryStatus = sortObj(summaryStatus);
       context.container.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
       context.container.nonCargo = actor.itemTypes.component.filter( i => !["cargo", "ammo"].includes(i.system.subtype));
+    } else if (["world"].includes(actor.type)) {
+      context.container.allCargo = [...component.cargo??[]];
     } else if (["robot"].includes(actor.type)) {
       context.buildPoints = counters.buildPoints;
     }

@@ -1241,8 +1241,20 @@ export default class TwodsixActor extends Actor {
     return (!!addedItem);
   }
 
-  public async handleDroppedItem(droppedItem:TwodsixItem): Promise<boolean> {
-    if(!droppedItem) {
+  /**
+   * Handle a dropped item on this actor.
+   * Routes to appropriate handler based on actor type and item properties.
+   * For ship and world actors, checks for cargo trade scenarios (world↔ship) before falling back to normal inventory logic.
+   * @param {TwodsixItem} droppedItem   The dropped item document
+   * @returns {Promise<boolean>}        True if item was successfully handled, false otherwise
+   * @remarks
+   * - **Traveller/Animal/Robot**: Routes to skill or equipment handlers based on item type
+   * - **Ship**: First checks if cargo is being traded from world actor (handled as purchase); otherwise adds as equipment
+   * - **Vehicle**: Adds non-weightless and non-cargo items as equipment
+   * - **World**: First checks if cargo is being traded from ship actor (handled as sale); no other drops supported
+   */
+  public async handleDroppedItem(droppedItem: TwodsixItem): Promise<boolean> {
+    if (!droppedItem) {
       return false;
     }
 
@@ -1268,19 +1280,32 @@ export default class TwodsixActor extends Actor {
           return await this._addDroppedEquipment(droppedItem);
         }
         break;
-      case 'ship':
+      case 'ship': {
+        // Check for cargo trade from world
+        const cargoRowFromWorld = this.buildCargoRowFromItem(droppedItem);
+        if (cargoRowFromWorld && droppedItem.actor?.type === "world") {
+          return await this.handleDroppedCargo(cargoRowFromWorld, droppedItem.actor.uuid, droppedItem.id);
+        }
+        // Normal equipment
         if (!TWODSIX.WeightlessItems.includes(droppedItem.type)) {
           return await this._addDroppedEquipment(droppedItem);
         }
         break;
+      }
       case 'vehicle':
         if (![...TWODSIX.WeightlessItems, "cargo"].includes(droppedItem.type)) {
           return await this._addDroppedEquipment(droppedItem);
         }
         break;
-      case 'world':
-        // No item drops supported for world actors yet
+      case 'world': {
+        // Check for cargo trade from ship
+        const cargoRowFromShip = this.buildCargoRowFromItem(droppedItem);
+        if (cargoRowFromShip && droppedItem.actor?.type === "ship") {
+          await droppedItem.actor.handleDroppedCargoToWorldFromItem(droppedItem);
+          return true;
+        }
         break;
+      }
     }
     ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
     return false;
@@ -1368,41 +1393,220 @@ export default class TwodsixActor extends Actor {
   }
 
   /**
-   * Handle a dropped trade-cargo payload on a ship actor.
-   * Creates a new cargo component item and deducts funds from the ship.
+   * Normalize a cargo component item into a trade cargoRow object for trade logic.
+   * Used for drag-and-drop cargo transfers between world and ship actors so that it can use
+   * same handling as handleDroppedCargo that trade chat and report does
    *
-   * @param {object} cargoData - The trade cargo data (from drag/drop), should include buyPriceValue, buyMod, name, illegal, quantity, etc.
-   * @param {number} qty - The quantity of cargo to transfer.
-   * @returns {Promise<boolean>} True if the cargo was added, false if insufficient funds or not processed.
+   * @param {TwodsixItem} item - The cargo component item to normalize.
+   * @returns {object|null} Normalized cargoRow object or null if not a cargo component.
    */
-  public async handleDroppedTradeCargo(cargoData: any, qty: number): Promise<boolean> {
+  public buildCargoRowFromItem(item: TwodsixItem): any | null {
+    if (!item || item.type !== "component" || item.system?.subtype !== "cargo") {
+      return null;
+    }
+
+    return {
+      name: item.name,
+      illegal: item.system.isIllegal || false,
+      quantity: item.system.quantity || 0,
+      buyPricePerTon: item.system.buyPricePerTon || 0,
+      sellPricePerTon: item.system.sellPricePerTon || 0,
+      buyPriceMod: item.system.buyPriceMod || 100,
+      sellPriceMod: item.system.sellPriceMod || 100
+    };
+  }
+
+  private async _promptCargoQuantity(maxQty: number): Promise<number | null> {
+    const qtyHtml = `<label>${game.i18n.localize("TWODSIX.Actor.Items.QuantityToTransfer")} (max ${maxQty}):</label>
+    <input type="number" name="qty" min="1" max="${maxQty}" value="${maxQty}" style="width:60px"/>`;
+
+    const qty = await foundry.applications.api.DialogV2.prompt({
+      window: { title: game.i18n.localize("TWODSIX.Trade.TransferCargo"), icon: "fa-solid fa-boxes-stacked" },
+      content: qtyHtml,
+      buttons: [
+        {
+          action: "ok",
+          label: "OK",
+          callback: (_event, target) => Number(target.form.elements.qty.value)
+        }
+      ]
+    });
+
+    if (!Number.isInteger(qty) || qty <= 0) {
+      return null;
+    }
+
+    return Math.min(qty, maxQty);
+  }
+
+  /**
+   * Sell ship cargo to a world actor using the cargo item's sell price.
+   * Prompts for quantity, reduces or deletes the cargo item, and credits ship cash.
+   *
+   * @param {TwodsixItem} item - The ship cargo component item being sold.
+   * @returns {Promise<boolean>} True if the sale completed.
+   */
+  public async handleDroppedCargoToWorldFromItem(item: TwodsixItem): Promise<boolean> {
+    if (this.type !== "ship") {
+      ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
+      return false;
+    }
+
+    const cargoRow = this.buildCargoRowFromItem(item);
+    if (!cargoRow) {
+      return false;
+    }
+
+    const maxQty = item.system.quantity || 0;
+    if (maxQty <= 0) {
+      ui.notifications.warn("TWODSIX.Trade.NoCargoToTransfer", {localize: true});
+      return false;
+    }
+
+    const transferQty = await this._promptCargoQuantity(maxQty);
+    if (!transferQty) {
+      return false;
+    }
+    const sellPerTon = cargoRow.sellPricePerTon ?? 0;
+    const totalProceeds = sellPerTon * transferQty;
+
+    const remainingQty = maxQty - transferQty;
+    if (remainingQty <= 0) {
+      await item.delete();
+    } else {
+      await item.update({
+        "system.quantity": remainingQty,
+        "system.purchasePrice": item.system.buyPricePerTon * remainingQty
+      });
+    }
+
+    await this.update({"system.financeValues.cash": this.system.financeValues.cash + totalProceeds});
+    return true;
+  }
+
+  /**
+   * Unified handler for cargo dropped onto a ship actor from any source:
+   * trade report dialog, trade chat message, or world actor sheet.
+   *
+   * All sources emit a normalized cargo row with numeric values:
+   *   { name, illegal, quantity, buyPricePerTon, sellPricePerTon, buyPriceMod, sellPriceMod }
+   *
+   * When dragged from a world actor, sourceActorUuid and sourceItemId are also provided
+   * so the source inventory can be reduced after transfer.
+   *
+   * @param {object} cargoRow - Normalized cargo data with numeric values
+   * @param {string} [sourceActorUuid] - UUID of the source world actor (for world→ship transfers)
+   * @param {string} [sourceItemId] - Item ID on the source actor (for world→ship transfers)
+   * @returns {Promise<boolean>} True if the cargo was added/transferred
+   */
+  public async handleDroppedCargo(cargoRow: any, sourceActorUuid?: string, sourceItemId?: string): Promise<boolean> {
     if (this.type !== 'ship') {
       ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
       return false;
     }
 
-    const purchasePrice = cargoData.buyPriceValue * qty;
-    if (this.system.financeValues.cash < purchasePrice) {
+    // Resolve source actor and item if this is a world→ship transfer
+    let sourceActor: any = null;
+    let sourceItem: any = null;
+    if (sourceActorUuid && sourceItemId) {
+      sourceActor = await fromUuid(sourceActorUuid);
+      if (!sourceActor) {
+        ui.notifications.error("TWODSIX.Errors.SourceActorNotFound", {localize: true});
+        return false;
+      }
+      sourceItem = sourceActor.items.get(sourceItemId);
+      if (!sourceItem) {
+        ui.notifications.error("TWODSIX.Errors.SourceItemNotFound", {localize: true});
+        return false;
+      }
+    }
+
+    // Determine max available quantity
+    const maxQty = sourceItem
+      ? (sourceItem.system.quantity || 0)
+      : (cargoRow.quantity || 1);
+
+    if (maxQty <= 0) {
+      ui.notifications.warn("TWODSIX.Trade.NoCargoToTransfer", {localize: true});
+      return false;
+    }
+
+    // Prompt for quantity
+    const transferQty = await this._promptCargoQuantity(maxQty);
+    if (!transferQty) {
+      return false;
+    }
+
+    const buyPerTon = cargoRow.buyPricePerTon ?? 0;
+    const sellPerTon = cargoRow.sellPricePerTon ?? 0;
+    const buyMod = cargoRow.buyPriceMod ?? 100;
+    const sellMod = cargoRow.sellPriceMod ?? 100;
+    const basePrice = buyPerTon > 0 ? Math.round(buyPerTon / (buyMod / 100)) : (sellPerTon > 0 ? Math.round(sellPerTon / (sellMod / 100)) : 0);
+    const totalCost = buyPerTon * transferQty;
+    const cargoName = game.i18n.localize(cargoRow.name) || 'Cargo';
+
+    // Check if ship has enough funds
+    if (this.system.financeValues.cash < totalCost) {
       ui.notifications.warn("TWODSIX.Warnings.InsufficientFunds", {localize: true});
       return false;
     }
-    const price = purchasePrice / (parseFloat(cargoData.buyMod)/100);
-    const itemData = {
-      name: game.i18n.localize(cargoData.name) || 'Cargo',
-      img: "systems/twodsix/assets/icons/components/cargo.svg",
-      type: 'component',
-      system: {
-        subtype: 'cargo',
-        purchasePrice,
-        price,
-        isIllegal: cargoData.illegal || false,
-        quantity: qty,
-        weight: 1
+
+    // Check if there's already a matching cargo item on the ship
+    const existingCargo = this.items.find(
+      (i: any) => i.type === 'component' && i.system?.subtype === 'cargo' && i.name === cargoName
+    );
+
+    if (existingCargo) {
+      // Merge: update quantity and recalculate total purchasePrice
+      const newQty = existingCargo.system.quantity + transferQty;
+      const newPurchasePrice = existingCargo.system.purchasePrice + totalCost;
+      await existingCargo.update({
+        'system.quantity': newQty,
+        'system.purchasePrice': newPurchasePrice
+      });
+    } else {
+      // Create new cargo item on ship
+      const itemData = {
+        name: cargoName,
+        img: "systems/twodsix/assets/icons/components/cargo.svg",
+        type: 'component',
+        system: {
+          subtype: 'cargo',
+          status: 'operational',
+          price: basePrice,
+          buyPricePerTon: buyPerTon,
+          sellPricePerTon: sellPerTon,
+          buyPriceMod: buyMod,
+          sellPriceMod: sellMod,
+          purchasePrice: totalCost,
+          isIllegal: cargoRow.illegal || false,
+          quantity: transferQty,
+          weight: 1
+        }
+      };
+      await this.createEmbeddedDocuments('Item', [itemData]);
+    }
+
+    // If this was a world→ship transfer, reduce quantity on the source world actor
+    if (sourceActor && sourceItem) {
+      const remainingQty = (sourceItem.system.quantity || 0) - transferQty;
+      if (remainingQty <= 0) {
+        await sourceActor.deleteEmbeddedDocuments('Item', [sourceItem.id]);
+      } else {
+        await sourceItem.update({
+          'system.quantity': remainingQty,
+          'system.purchasePrice': sourceItem.system.buyPricePerTon * remainingQty
+        });
       }
-    };
-    await this.createEmbeddedDocuments('Item', [itemData]);
-    await this.update({'system.financeValues.cash': this.system.financeValues.cash - purchasePrice});
-    ui.notifications.info(game.i18n.localize('TWODSIX.Trade.CargoAddedToShip'));
+    }
+
+    // Deduct funds from the ship
+    await this.update({'system.financeValues.cash': this.system.financeValues.cash - totalCost});
+
+    ui.notifications.info(game.i18n.format('TWODSIX.Trade.CargoTransferred', {
+      qty: transferQty,
+      name: cargoName
+    }));
     return true;
   }
 
