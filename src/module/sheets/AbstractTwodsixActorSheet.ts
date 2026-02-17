@@ -453,7 +453,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       return false;
     }
 
-    // Handle trade-cargo drop for ship (from trade report, chat, or world sheet)
+    // Handle trade-cargo drop for ship (from trade report or chat)
     if (dropData.type === 'trade-cargo') {
       if (actor.type !== 'ship') {
         ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});
@@ -514,6 +514,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
         return false; //JOAT or Untrained which can't be moved / or drag dropping not allowed
       }
     }
+
     return await (<TwodsixActor>this.actor).handleDroppedItem(dropedItem);
   }
 

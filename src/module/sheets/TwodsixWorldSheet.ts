@@ -107,37 +107,6 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
   }
 
   /**
-   * Override drag start to emit trade-cargo type for cargo items.
-   * Uses the same normalized payload shape as trade report and chat drags,
-   * with additional source fields to enable world→ship transfer.
-   */
-  _onDragStart(ev: DragEvent): void {
-    const li = (ev.currentTarget as HTMLElement)?.closest('.item');
-    if (li?.dataset?.itemId) {
-      const item = this.actor.items.get(li.dataset.itemId);
-      if (item && item.type === 'component' && item.system.subtype === 'cargo') {
-        const dragData = {
-          type: 'trade-cargo',
-          row: {
-            name: item.name,
-            illegal: item.system.isIllegal || false,
-            quantity: item.system.quantity || 0,
-            buyPricePerTon: item.system.buyPricePerTon || 0,
-            sellPricePerTon: item.system.sellPricePerTon || 0,
-            buyPriceMod: item.system.buyPriceMod || 100,
-            sellPriceMod: item.system.sellPriceMod || 100
-          },
-          sourceActorUuid: this.actor.uuid,
-          sourceItemId: item.id
-        };
-        ev.dataTransfer?.setData('text/plain', JSON.stringify(dragData));
-        return;
-      }
-    }
-    super._onDragStart(ev);
-  }
-
-  /**
    * Edit a World Image.
    * Allows SVG element to be clicked and changed as default only works with img elements.
    * @this {TwodsixWorldSheet}
