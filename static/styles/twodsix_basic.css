@@ -2462,7 +2462,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px;
   grid-template-areas:
     ". .";
-  width: 55.5em;
+  width: 62em;
   align-items: center;
   border-right: 1px solid var(--s2d6-form-light);
 }
