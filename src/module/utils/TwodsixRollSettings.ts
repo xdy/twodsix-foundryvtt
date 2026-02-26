@@ -5,7 +5,6 @@ import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
 import {getDifficultiesSelectObject, getRollTypeSelectObject} from "./sheetUtils";
 import { getKeyByValue } from "./utils";
-import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
@@ -19,7 +18,7 @@ export class TwodsixRollSettings {
   //diceModifier:number;
   shouldRoll:boolean;
   rollType:string;
-  rollMode:DICE_ROLL_MODES;
+  rollMode:string;
   //characteristic:string;
   skillRoll:boolean;
   itemRoll:boolean;
@@ -124,7 +123,7 @@ export class TwodsixRollSettings {
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
     this.rollType = settings?.rollType ?? (aSkill?.system)?.rolltype ??  "Normal";
-    this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
+    this.rollMode = settings?.rollMode ?? game.settings.get('core', 'messageMode');
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
     this.isPsionicAbility = this.itemRoll ? anItem.type === "psiAbility" : false;
@@ -220,7 +219,7 @@ export class TwodsixRollSettings {
       difficultyList: getDifficultiesSelectObject(this.difficulties),
       skillsList: (<TwodsixActor>skill?.actor)?.getSkillNameList(),
       rollMode: this.rollMode,
-      rollModes: CONFIG.Dice.rollModes,
+      rollModes: CONFIG.ChatMessage.modes,
       characteristicList: _getTranslatedCharacteristicList(<TwodsixActor>skill?.actor),
       initialChoice: this.rollModifiers.characteristic,
       initialSkill: this.rollModifiers.selectedSkill,

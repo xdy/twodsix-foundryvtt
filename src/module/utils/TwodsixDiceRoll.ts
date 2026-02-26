@@ -524,7 +524,7 @@ export class TwodsixDiceRoll {
           "twodsix.attackType": this.rollSettings.flags.attackType ?? ""
         }
       },
-      {rollMode: this.rollSettings.rollMode}
+      {messageMode: this.rollSettings.rollMode}
     );
   }
 }

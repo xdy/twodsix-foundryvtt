@@ -747,8 +747,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       rollType: "Normal",
       rollTypes: getRollTypeSelectObject(),
       diceModifier: "",
-      rollMode: game.settings.get('core', 'rollMode'),
-      rollModes: CONFIG.Dice.rollModes,
+      rollMode: game.settings.get('core', 'messageMode'),
+      rollModes: CONFIG.ChatMessage.modes,
       rollFormula: game.settings.get("twodsix", "initiativeFormula")
     };
     if (showThrowDiag) {
@@ -771,7 +771,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     if (this.token?.combatant?.id) {
       //@ts-expect-error FVTT Object not included currently
-      game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}});
+      game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {messageMode: dialogData.rollMode}});
     } else {
       this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}}});
     }
