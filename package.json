@@ -3,7 +3,7 @@
   "name": "twodsix",
   "version": "6.9.7",
   "description": "A 2d6 system",
-  "packageManager": "pnpm@10.28.1",
+  "packageManager": "pnpm@10.30.3",
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp watch",
@@ -27,7 +27,7 @@
     "packs:verify": "node scripts/verify-pack-workflow.mjs"
   },
   "engines": {
-    "node": ">=20.19.5 <23.0.0"
+    "node": ">=22"
   },
   "license": "",
   "homepage": "",
