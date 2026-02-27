@@ -747,8 +747,8 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       rollType: "Normal",
       rollTypes: getRollTypeSelectObject(),
       diceModifier: "",
-      rollMode: game.settings.get('core', 'messageMode'),
-      rollModes: CONFIG.ChatMessage.modes,
+      messageMode: game.settings.get('core', 'messageMode'),
+      messageModes: CONFIG.ChatMessage.modes,
       rollFormula: game.settings.get("twodsix", "initiativeFormula")
     };
     if (showThrowDiag) {
@@ -771,9 +771,9 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
 
     if (this.token?.combatant?.id) {
       //@ts-expect-error FVTT Object not included currently
-      game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {messageMode: dialogData.rollMode}});
+      game.combat?.rollInitiative(this.token.combatant.id, {formula: dialogData.rollFormula, messageOptions: {messageMode: dialogData.messageMode}});
     } else {
-      this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {rollMode: dialogData.rollMode}}});
+      this.actor.rollInitiative({createCombatants: true, rerollInitiative: false, initiativeOptions: {formula: dialogData.rollFormula, messageOptions: {messageMode: dialogData.messageMode}}});
     }
   }
 
@@ -790,7 +790,7 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
           dialogData.shouldRoll = true;
           dialogData.rollType = formElements["rollType"]?.value;
           dialogData.diceModifier = formElements["diceModifier"]?.value;
-          dialogData.rollMode = formElements["rollMode"]?.value;
+          dialogData.messageMode = formElements["messageMode"]?.value;
           dialogData.rollFormula = formElements["rollFormula"]?.value;
         }
       },

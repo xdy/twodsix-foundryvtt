@@ -540,7 +540,7 @@ export default class TwodsixItem extends Item {
       totalBonusDamage += (addEffect ? ` + `: ``) + `${settings.bonusDamage}`;
     }
 
-    const damagePayload = await this.rollDamage(settings.rollMode, totalBonusDamage, showInChat, false, roll.effect) || null;
+    const damagePayload = await this.rollDamage(settings.messageMode, totalBonusDamage, showInChat, false, roll.effect) || null;
     if (targetTokens.length >= 1 && damagePayload) {
       if (isAOE) {
         for (const target of targetTokens) {
@@ -940,11 +940,11 @@ export default class TwodsixItem extends Item {
   /**
    * Send message to chat when using a psionic action.
    * @param {number} pointsUsed The number of psi points used for action
-   * @param {string} rollMode The roll mode used, if any
+   * @param {string} messageMode The roll mode used, if any
    * @param {number} rollEffect the effect of the skill roll,used for damage calcs if necessary
    * @private
    */
-  private async sendPsiUseToChat(pointsUsed:number, rollMode:string , rollEffect:number=0):Promise<void> {
+  private async sendPsiUseToChat(pointsUsed:number, messageMode:string , rollEffect:number=0):Promise<void> {
     const picture = this.img;
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
     let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="padding-left: 1ch;">`
@@ -968,7 +968,7 @@ export default class TwodsixItem extends Item {
       speaker: ChatMessage.getSpeaker({ actor: this.actor })
     };
 
-    if (rollMode !== 'public') {
+    if (messageMode !== 'public') {
       const showToUsers = game.users.filter((user)=> user.isGM || (game.userId === user.id));
       Object.assign(messageContent, {whisper: showToUsers});
     }
@@ -1001,7 +1001,7 @@ export default class TwodsixItem extends Item {
   private async doPsiAction(showThrowDiag: boolean): Promise<void> {
     let psiCost: number|undefined;
     let rollEffect = 0;
-    let rollMode = "gm";
+    let messageMode = "gm";
     if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
       ui.notifications.warn("TWODSIX.Warnings.NoPsiPoints", {localize: true});
     } else {
@@ -1011,7 +1011,7 @@ export default class TwodsixItem extends Item {
       } else {
         const diceRoll = await this.skillRoll(showThrowDiag);
         if (diceRoll) {
-          rollMode = diceRoll.rollSettings.rollMode;
+          messageMode = diceRoll.rollSettings.messageMode;
           rollEffect = diceRoll.effect;
           psiCost = await this.processPsiPoints(rollEffect);
         } else {
@@ -1020,12 +1020,12 @@ export default class TwodsixItem extends Item {
       }
 
       if (psiCost !== undefined) {
-        await this.sendPsiUseToChat(psiCost, rollMode, rollEffect);
+        await this.sendPsiUseToChat(psiCost, messageMode, rollEffect);
 
         // Roll damage and post, if necessary
         if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit") && rollEffect >=0 ) {
           const bonusDamage:string = game.settings.get("twodsix", "addEffectToDamage") && rollEffect !== 0 ?  ` ${rollEffect}` : ``;
-          const damagePayload = await this.rollDamage(rollMode || game.settings.get('core', 'messageMode'), bonusDamage, true, showThrowDiag, rollEffect);
+          const damagePayload = await this.rollDamage(messageMode || game.settings.get('core', 'messageMode'), bonusDamage, true, showThrowDiag, rollEffect);
           if (damagePayload?.damageValue > 0) {
             const targetTokens = Array.from(game.user.targets);
             if (targetTokens.length > 0) {
@@ -1037,7 +1037,7 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public async rollDamage(rollMode:string, bonusDamage = "", showInChat = true, confirmFormula = false, effect = 0):Promise<object | void> {
+  public async rollDamage(messageMode:string, bonusDamage = "", showInChat = true, confirmFormula = false, effect = 0):Promise<object | void> {
     const consumableDamage = this.getConsumableBonusDamage();
     if (!this.system.damage && !consumableDamage) {
       ui.notifications.warn("TWODSIX.Warnings.NoDamageForWeapon", {localize: true});
@@ -1138,7 +1138,7 @@ export default class TwodsixItem extends Item {
             "twodsix.tokenUUID": (<Actor>this.actor)?.getActiveTokens()[0]?.document.uuid ?? "",
             "twodsix.actorUUID": (<Actor>this.actor)?.uuid ?? ""
           }
-        }, {messageMode: rollMode});
+        }, {messageMode: messageMode});
       }
       return contentData;
     }

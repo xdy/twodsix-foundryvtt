@@ -507,7 +507,7 @@ export class TwodsixDiceRoll {
         style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [this.roll],
         flavor: flavor,
-        //rollMode: this.rollSettings.rollMode,
+        //messageMode: this.rollSettings.messageMode,
         flags: {
           "core.canPopout": true,
           "twodsix.crit": this.getCrit(),
@@ -524,7 +524,7 @@ export class TwodsixDiceRoll {
           "twodsix.attackType": this.rollSettings.flags.attackType ?? ""
         }
       },
-      {messageMode: this.rollSettings.rollMode}
+      {messageMode: this.rollSettings.messageMode}
     );
   }
 }

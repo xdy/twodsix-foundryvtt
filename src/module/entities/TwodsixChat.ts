@@ -393,7 +393,7 @@ async function makeRequestedRoll(message: ChatMessage): void {
   const tmpSettings = {
     difficulty: messageSettings.difficulty,
     rollType: messageSettings.rollType,
-    rollMode: messageSettings.rollMode,
+    messageMode: messageSettings.messageMode,
     itemRoll: messageSettings.itemId !== "NONE",
     skillName: messageSettings.skillName,
     skillRoll: messageSettings.skillName !== "---" || messageSettings.itemId !== "NONE",
