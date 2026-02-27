@@ -3891,6 +3891,13 @@ background: var(--s2d6-sidebar-background);
   padding: 0.5ch;
 }
 
+.flavor-table th {
+  text-align: left;
+}
+
+.flavor-table th.centre {
+    text-align: center;
+}
 /*
 #settings button {
     position: relative;
