@@ -8,7 +8,7 @@ import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import { confirmRollFormula} from "./sheetUtils";
 import { TwodsixRollSettings, getInitialSettingsFromFormula } from "./TwodsixRollSettings";
-import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
+//import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
 export class TwodsixShipActions {
   public static availableMethods = <AvailableShipActions>{
@@ -126,7 +126,7 @@ export class TwodsixShipActions {
           }
         }
         const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
-        await (<TwodsixItem>extra.component).rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), bonusDamage, true, false, result.effect);
+        await (<TwodsixItem>extra.component).rollDamage((<string>game.settings.get('core', 'messageMode')), bonusDamage, true, false, result.effect);
       } else {
         await TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }

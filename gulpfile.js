@@ -111,8 +111,7 @@ async function buildPacks() {
 
   return new Promise((resolve, reject) => {
     const buildProcess = spawn('pnpm', ['run', 'packs:build'], {
-      stdio: 'inherit',
-      shell: true
+      stdio: 'inherit'
     });
 
     buildProcess.on('close', (code) => {

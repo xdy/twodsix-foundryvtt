@@ -5,7 +5,6 @@ import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
 import {getDifficultiesSelectObject, getRollTypeSelectObject} from "./sheetUtils";
 import { getKeyByValue } from "./utils";
-import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 import {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
@@ -19,7 +18,7 @@ export class TwodsixRollSettings {
   //diceModifier:number;
   shouldRoll:boolean;
   rollType:string;
-  rollMode:DICE_ROLL_MODES;
+  messageMode:string;
   //characteristic:string;
   skillRoll:boolean;
   itemRoll:boolean;
@@ -124,7 +123,7 @@ export class TwodsixRollSettings {
     this.difficulty = settings?.difficulty ?? difficulty;
     this.shouldRoll = false;
     this.rollType = settings?.rollType ?? (aSkill?.system)?.rolltype ??  "Normal";
-    this.rollMode = settings?.rollMode ?? game.settings.get('core', 'rollMode');
+    this.messageMode = settings?.messageMode ?? game.settings.get('core', 'messageMode');
     this.skillRoll = !!(settings?.skillRoll ?? aSkill);
     this.itemRoll = !!(anItem);
     this.isPsionicAbility = this.itemRoll ? anItem.type === "psiAbility" : false;
@@ -219,8 +218,8 @@ export class TwodsixRollSettings {
       difficulty: getKeyByValue(this.difficulties, this.difficulty),
       difficultyList: getDifficultiesSelectObject(this.difficulties),
       skillsList: (<TwodsixActor>skill?.actor)?.getSkillNameList(),
-      rollMode: this.rollMode,
-      rollModes: CONFIG.Dice.rollModes,
+      messageMode: this.messageMode,
+      messageModes: CONFIG.ChatMessage.modes,
       characteristicList: _getTranslatedCharacteristicList(<TwodsixActor>skill?.actor),
       initialChoice: this.rollModifiers.characteristic,
       initialSkill: this.rollModifiers.selectedSkill,
@@ -258,7 +257,7 @@ export class TwodsixRollSettings {
           this.shouldRoll = true;
           this.difficulty = this.difficulties[formElements["difficulty"]?.value];
           this.rollType = formElements["rollType"]?.value;
-          this.rollMode = formElements["rollMode"]?.value;
+          this.messageMode = formElements["messageMode"]?.value;
           this.rollModifiers.chain = dialogData.skillRoll ? parseInt(formElements["rollModifiers.chain"]?.value || 0, 10) : this.rollModifiers.chain;
           this.rollModifiers.characteristic = dialogData.skillRoll ? formElements["rollModifiers.characteristic"]?.value : this.rollModifiers.characteristic;
           this.rollModifiers.item = dialogData.itemRoll ? parseInt(formElements["rollModifiers.item"]?.value || 0, 10) : this.rollModifiers.item;

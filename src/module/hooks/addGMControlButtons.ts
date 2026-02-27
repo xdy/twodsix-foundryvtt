@@ -132,8 +132,8 @@ async function throwDialog(skillsList:string[], itemsList:string[], tokenData:an
     skillsList: skillsList,
     itemsList: itemsList,
     showItemList: Object.keys(tokenData).length === 1,
-    rollMode: game.settings.get('core', 'rollMode'),
-    rollModes: CONFIG.Dice.rollModes,
+    messageMode: game.settings.get('core', 'messageMode'),
+    messageModes: CONFIG.ChatMessage.modes,
     characteristicList: _genUntranslatedCharacteristicList(),
     initialChoice: "NONE",
     initialSkill: "NONE",
@@ -152,7 +152,7 @@ async function throwDialog(skillsList:string[], itemsList:string[], tokenData:an
         returnValue.selectedTokens = formElements["selectedTokens"] ? Array.from(formElements["selectedTokens"].selectedOptions)?.map((({ value }) => value)) : [];
         returnValue.difficulty = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')][formElements["difficulty"]?.value];
         returnValue.rollType = formElements["rollType"]?.value;
-        returnValue.rollMode = formElements["rollMode"]?.value;
+        returnValue.messageMode = formElements["messageMode"]?.value;
         returnValue.characteristic = formElements["characteristic"]?.value;
         returnValue.selectedSkill = formElements["selectedSkill"]?.value;
         returnValue.skillName = skillsList[formElements["selectedSkill"]?.value];

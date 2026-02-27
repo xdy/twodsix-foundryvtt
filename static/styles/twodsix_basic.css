@@ -2470,7 +2470,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   gap: 1px;
   grid-template-areas:
     ". .";
-  width: 55.5em;
+  width: 62em;
   align-items: center;
   border-right: 1px solid var(--s2d6-form-light);
 }
@@ -3204,6 +3204,14 @@ img.item-img {
 
 .flavor-table th, .flavor-table td {
   padding: 0.5ch;
+}
+
+.flavor-table th {
+  text-align: left;
+}
+
+.flavor-table th.centre {
+    text-align: center;
 }
 
 /* ============================================================================

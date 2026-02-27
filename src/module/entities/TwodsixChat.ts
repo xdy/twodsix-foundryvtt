@@ -172,7 +172,7 @@ export async function onChatCardAction(event: Event, target:HTMLElement): Promis
     }
     switch (action) {
       case "damage":
-        await item.rollDamage((<DICE_ROLL_MODES>game.settings.get('core', 'rollMode')), totalBonusDamage, true, showFormulaDialog, effect);
+        await item.rollDamage((<string>game.settings.get('core', 'messageMode')), totalBonusDamage, true, showFormulaDialog, effect);
         break;
       case "opposed":
         //opposed roll
@@ -393,7 +393,7 @@ async function makeRequestedRoll(message: ChatMessage): void {
   const tmpSettings = {
     difficulty: messageSettings.difficulty,
     rollType: messageSettings.rollType,
-    rollMode: messageSettings.rollMode,
+    messageMode: messageSettings.messageMode,
     itemRoll: messageSettings.itemId !== "NONE",
     skillName: messageSettings.skillName,
     skillRoll: messageSettings.skillName !== "---" || messageSettings.itemId !== "NONE",

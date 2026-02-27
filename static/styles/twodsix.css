@@ -107,6 +107,12 @@
   --s2d6-color-border-light-1: #ddd;
   --s2d6-color-shadow-primary: #603032;
   --s2d6-color-border-light-tertiary: #7a7971;
+  /* Additional semantic helpers for common patterns */
+  --s2d6-default-border: 1px solid var(--s2d6-default-color);
+  --s2d6-strong-border: 2px solid var(--s2d6-default-color);
+  --s2d6-groove-border: 1px groove var(--s2d6-default-color);
+  --s2d6-default-radius-lg: 2ch;
+  --s2d6-default-box-shadow: 0 0 5px var(--s2d6-default-color);
 }
 
 /* ============================================================================
@@ -559,19 +565,18 @@ h2 {
 .npc-notes-container {
   grid-area: npc-notes-container;
   max-height: -webkit-fill-available;
-  border-style: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   /* Ensure the container itself uses the standard background and text color
      so it doesn't pick up the header/title styling from higher-level rules. */
   background-color: var(--s2d6-background-opaque);
   color: var(--s2d6-default-color);
-  border-width: 2px;
+
 }
 
 .npc-notes-ce {
   height: 90% !important;
-  border-radius: 0 0 2ch 2ch !important;
+  border-radius: 0 0 var(--s2d6-default-radius-lg) var(--s2d6-default-radius-lg) !important;
   overflow-y: auto;
   padding-left: 2px;
 }
@@ -582,10 +587,8 @@ h2 {
 }
 
 .npc-skills, .npc-weapons, .npc-traits, .npc-armor, .npc-spells, .npc-augments {
-  border: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
-  border-width: 2px;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   overflow: auto;
 }
 
@@ -767,11 +770,9 @@ h2 {
 }
 
 .vehicle-notes, .space-object-notes {
-  border-style: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   /*background-color: var(--s2d6-background-nearly-opaque);*/
-  border-width: 2px;
   max-height: 100%;
 }
 
@@ -793,10 +794,8 @@ h2 {
 }*/
 
 .vehicle-systems, .vehicle-components, .vehicle-traits, .vehicle-armor, .vehicle-stats, .space-object-stats, .position-data, .vehicle-storage {
-  border: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
-  border-width: 2px;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   overflow: auto;
 }
 
@@ -888,7 +887,7 @@ h2 {
   height: 84%;
   width: 100%;
   padding: 0 1ch;
-  border-radius: 0 0 2ch 2ch;
+  border-radius: 0 0 var(--s2d6-default-radius-lg) var(--s2d6-default-radius-lg);
 }
 
 .space-object-notes-container {
@@ -1106,11 +1105,10 @@ img.condition-icon {
 .character-bgi-npc {
   font-size: 2ch;
   z-index: 9;
-  border: 2px solid;
-  border-radius: 2ch;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   padding: 0 1ch;
   color: var(--s2d6-default-color);
-  border-width: 2px;
   overflow: auto;
 }
 
@@ -1643,8 +1641,8 @@ svg:hover {
   /* padding-top: 0.15em; */
   display: flex;
   background-color: var(--s2d6-background-opaque);
-  border-radius: 5ch 1ch 2ch 0ch;
-  border: solid 2px var(--s2d6-default-color);
+  border-radius: 5ch 1ch var(--s2d6-default-radius-lg) 0ch;
+  border: var(--s2d6-strong-border);
   flex-direction: column;
   justify-content: center;
   max-height: 3ch;
@@ -1762,7 +1760,7 @@ a.actor-notes-tab:hover {
 }
 
 .gear-header {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
   overflow-x: visible;
@@ -1864,7 +1862,7 @@ a.actor-notes-tab:hover {
 .skill-list {
   padding: 0.3em 0.5em;
   width: 98%;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   background-color: var(--s2d6-default-color);
   color: var(--s2d6-item-active);
   /* font-weight: bold; */
@@ -1882,7 +1880,7 @@ a.actor-notes-tab:hover {
   text-align: center;
   color: var(--s2d6-item-active);
   background-color: var(--s2d6-default-color);
-  border-radius: 2ch 2ch 0 0;
+  border-radius: var(--s2d6-default-radius-lg) var(--s2d6-default-radius-lg) 0 0;
   padding-top: 2px;
 }
 
@@ -2100,7 +2098,7 @@ span.total-output {
 }
 
 .financial-notes div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   /* width: 14.8em; */
   width: 98%;
   min-height: 94%;
@@ -2123,7 +2121,7 @@ span.total-output {
   width: 31ch;
   padding: 0.5em;
   height: 3.5ch;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0;
 }
 
@@ -2174,7 +2172,7 @@ span.total-output {
   font-weight: bold;
   font-size: 2ch;
   padding: 0.2em 0.2em 0.2em 0.5em;
-  border-radius: 2ch 0 4ch;
+  border-radius: var(--s2d6-default-radius-lg) 0 4ch;
 }
 
 .item-title-short {
@@ -2231,7 +2229,7 @@ span.total-output {
 }
 
 .info-container .editor {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 2px;
 }
 
@@ -2261,7 +2259,7 @@ span.total-output {
 
 
 .char-description div[contenteditable], .char-contacts div[contenteditable], .char-xp div[contenteditable], .char-bio div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   height: 95%;
   overflow-y: auto;
   color: var(--s2d6-light-color);
@@ -2269,7 +2267,7 @@ span.total-output {
 }
 
 /*.char-bio div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   height: 95%;
   overflow-y: auto;
   color: var(--s2d6-light-color);
@@ -2295,13 +2293,13 @@ span.total-output {
 }
 
 .notes-container .editor-content {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
 }
 
 notes-container > div[contenteditable] {
   height: 33em;
   width: 30.2em;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0;
   font-size: 15px;
   color: var(--s2d6-default-color);
@@ -2394,7 +2392,7 @@ notes-container > div[contenteditable] {
 
 .ship-name {
   grid-area: ship-name;
-  border-bottom: 2px solid var(--s2d6-default-color);
+  border-bottom: var(--s2d6-strong-border);
   z-index: 2;
   font-size: 2.5ch;
   padding: 5px 2px 0px 4px;
@@ -2497,10 +2495,8 @@ notes-container > div[contenteditable] {
 }
 
 .ship-armor-name textarea, .battle-armor-name textarea {
-  border: solid;
+  border: var(--s2d6-strong-border);
   border-radius: 1ch;
-  border-color: var(--s2d6-default-color);
-  border-width: 2px;
   text-align: center;
   font-size: 10px;
   overflow-wrap: break-word;
@@ -2874,7 +2870,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-position-box {
   width: 29ch;
-  border: 1px groove var(--s2d6-default-color);
+  border: var(--s2d6-groove-border);
   min-height: 6ch;
   border-radius: 0;
   display: flex;
@@ -2901,14 +2897,14 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 
 .ship-grid input[type="text"] {
   width: 30ch;
-  border: 1px groove var(--s2d6-default-color);
+  border: var(--s2d6-groove-border);
   border-radius: 0;
   height: 4ch;
 }
 
 .ship-grid > div textarea {
   width: 30ch;
-  border: 1px groove var(--s2d6-default-color);
+  border: var(--s2d6-groove-border);
   border-radius: 0;
   height: 4ch;
   resize: none;
@@ -3117,7 +3113,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .cargo-wrapper > div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   height: 18em;
   color: var(--s2d6-light-color);
   padding: 0.2em;
@@ -3135,7 +3131,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-notes-container .editor, .ship-notes-container-short .editor, .ship-finances-container .editor, .cargo-wrapper .editor {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0 3px 3px;
   width: 96%;
   height: 91%;
@@ -3147,7 +3143,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active , a.ship-storage-tab.active,
 }
 
 .ship-notes-container >div[contenteditable], .ship-notes-container-short >div[contenteditable], .ship-finances-container >div[contenteditable] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 0 3px 3px;
   font-size: 15px;
   /* background-color: var(--s2d6-input-background); */
@@ -3201,12 +3197,12 @@ div.ship-value {
 }*/
 
 .ship-commonFunds input[type="number"] {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   width: 36ch;
 }
 
 .ship-financial-notes div[contenteditable], .ship-financial-notes .editor {
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   /* width: 107%; */
   height: 31ch;
   border-radius: 0;
@@ -3231,7 +3227,7 @@ button.flexrow.flex-group-center.toggle-skills {
   outline: none;
   border-radius: 3px;
   background: var(--s2d6-header-border);
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
 }
 
 .mini-dice img.rollable {
@@ -3584,7 +3580,7 @@ background: var(--s2d6-sidebar-background);
   line-height: 24px;
   text-align: center;
   background: var(--s2d6-background-nearly-transparent);
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   border-radius: 2px;
   box-shadow: 0 0 2px var(--s2d6-background-opaque) inset;
   word-break: break-all;
@@ -3686,7 +3682,7 @@ background: var(--s2d6-sidebar-background);
 .chat-message .twodsix-roll-results .result-sum {
   background: var(--s2d6-background-nearly-transparent);
   /* Use the default color for the border so boxed items contrast properly */
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   color: var(--s2d6-app-color);
   padding: 0.08rem 0.65rem;
   border-radius: 8px;
@@ -3712,7 +3708,7 @@ background: var(--s2d6-sidebar-background);
   padding: 0.08rem 0.4rem; /* tighter padding for boxed appearance */
   border-radius: 8px; /* match result-sum radius */
   font-weight: 700;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   font-size: 0.82rem;
   display: inline-flex;
   align-items: center;
@@ -3900,6 +3896,13 @@ background: var(--s2d6-sidebar-background);
   padding: 0.5ch;
 }
 
+.flavor-table th {
+  text-align: left;
+}
+
+.flavor-table th.centre {
+    text-align: center;
+}
 /*
 #settings button {
     position: relative;
@@ -3967,7 +3970,7 @@ form button, .application a.button, .application button {
 }
 
 button:hover {
-  box-shadow: 0 0 5px var(--s2d6-default-color);
+  box-shadow: var(--s2d6-default-box-shadow);
   /*color: var(--s2d6-light-color);*/
   border-color: var(--s2d6-light-color);
 }
@@ -4285,7 +4288,7 @@ prose-mirror#chat-message {
   background: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-light-color);
   margin-top: 0;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
 }
 .actor-editor.editor {
   height: 95%;
@@ -4744,9 +4747,8 @@ li.battle-damage button,  li.battle-weapons button{
 
 .battle-name-photo, .battle-status-container, .battle-damage-container, .battle-weapons-container,
 .battle-operations-container, .battle-defence-container, .battle-positions-container, .battle-cargo-container {
-  border-style: solid;
-  border-radius: 2ch;
-  border-width: 2px;
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   overflow-y: auto;
   overflow-x: hidden;
   --color-scrollbar: var(--s2d6-battle-color);
@@ -4928,9 +4930,9 @@ section.item-class {
   color: var(--s2d6-default-color);
 }
 
-.chat-form {
+/*.chat-form {
   background-color: var(--s2d6-header-background);
-}
+}*/
 
 .chat-sidebar {
   background-color: var(--s2d6-background-semi-opaque);
@@ -5163,7 +5165,7 @@ code {
 /* Phase display in combat tracker header */
 .space-combat-phase {
   background: var(--s2d6-background-nearly-transparent);
-  border: 2px solid var(--s2d6-default-color);
+  border: var(--s2d6-strong-border);
   border-radius: 2px;
   padding: 8px;
   margin: 8px 0;
@@ -5488,16 +5490,14 @@ code {
   font-weight: bold;
   font-size: 2ch;
   padding: 0.2em 0.2em 0.2em 0.5em;
-  border-radius: 2ch 0 4ch;
+  border-radius: var(--s2d6-default-radius-lg) 0 4ch;
   margin-bottom: 1ch;
 }
 
 .world-content-container {
-  border-style: solid;
-  border-radius: 2ch;
-  border-color: var(--s2d6-default-color);
+  border: var(--s2d6-strong-border);
+  border-radius: var(--s2d6-default-radius-lg);
   /* background-color: var(--s2d6-background-nearly-opaque); */
-  border-width: 2px;
   max-height: 50vh;
   overflow-y: auto;
   min-height: 33vh;
@@ -5595,7 +5595,7 @@ span.single-line.world-inset {
 
 .trade-generation-report h3 {
   color: var(--s2d6-default-color);
-  border-bottom: 2px solid var(--s2d6-default-color);
+  border-bottom: var(--s2d6-strong-border);
   padding-bottom: 0.5ch;
   margin-bottom: 1ch;
 }
@@ -5661,7 +5661,7 @@ span.single-line.world-inset {
 .trade-generation-report .trade-table th,
 .trade-generation-report .trade-table td {
   padding: 0.3ch 0.6ch;
-  border: 1px solid var(--s2d6-default-color);
+  border: var(--s2d6-default-border);
   font-size: 0.9em;
   white-space: nowrap;
 }

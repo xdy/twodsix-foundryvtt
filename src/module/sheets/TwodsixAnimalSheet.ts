@@ -69,7 +69,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
     if (this.actor.system.woundedEffect) {
       rollString += " + @woundedEffect";
     }
-    const roll = await (new Roll(rollString, this.actor.getRollData()).roll({rollMode: CONST.DICE_ROLL_MODES.PRIVATE}));
+    const roll = await (new Roll(rollString, this.actor.getRollData()).roll({messageMode: "gm"}));
 
     let flavor = "";
 
@@ -88,7 +88,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
         speaker: ChatMessage.getSpeaker({ alias: this.actor.name}),
         flavor: flavor,
         style: CONST.CHAT_MESSAGE_STYLES.OTHER,
-      }, {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
+      }, {messageMode: "gm"}
       );
     }
   }
@@ -106,7 +106,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
     if (this.actor.system.moraleDM) {
       rollString += " + @moraleDM";
     }
-    const roll = await new Roll(rollString, this.actor.getRollData()).roll({rollMode: CONST.DICE_ROLL_MODES.PRIVATE});
+    const roll = await new Roll(rollString, this.actor.getRollData()).roll({messageMode: "gm"});
 
     let flavor = "";
     if (roll.total <= 5) {
@@ -127,7 +127,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
       style: CONST.CHAT_MESSAGE_STYLES.OTHER,
       rolls: [roll]
     },
-    {rollMode: CONST.DICE_ROLL_MODES.PRIVATE}
+    {messageMode: "gm"}
     );
   }
 }
