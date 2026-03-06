@@ -82,28 +82,28 @@ function newContextOptions(coreContext:ContextMenuEntry[] ):ContextMenuEntry[]  
   };
   coreContext.push(
     {
-      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDamage"),
+      label: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDamage"),
       icon: '<i class="fas fa-user-minus"></i>',
-      condition: canApply,
-      callback: li => applyChatCardDamage(li, 1)
+      visible: canApply,
+      onClick: (_event, li) => applyChatCardDamage(li, 1)
     },
     {
-      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDestructiveDamage"),
+      label: game.i18n.localize("TWODSIX.Chat.Roll.ApplyDestructiveDamage"),
       icon: '<i class="fas fa-user-injured"></i>',
-      condition: canApply,
-      callback: li => applyChatCardDamage(li, 10)
+      visible: canApply,
+      onClick: (_event, li) => applyChatCardDamage(li, 10)
     },
     {
-      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyReducedDamage"),
+      label: game.i18n.localize("TWODSIX.Chat.Roll.ApplyReducedDamage"),
       icon: '<i class="fas fa-user-shield"></i>',
-      condition: canApply,
-      callback: li => applyChatCardDamage(li, 0.1)
+      visible: canApply,
+      onClick: (_event, li) => applyChatCardDamage(li, 0.1)
     },
     {
-      name: game.i18n.localize("TWODSIX.Chat.Roll.ApplyHealing"),
+      label: game.i18n.localize("TWODSIX.Chat.Roll.ApplyHealing"),
       icon: '<i class="fas fa-user-plus"></i>',
-      condition: canApply,
-      callback: li => applyChatCardDamage(li, -1)
+      visible: canApply,
+      onClick: (_event, li) => applyChatCardDamage(li, -1)
     }
   );
   return coreContext;
