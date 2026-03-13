@@ -3479,7 +3479,7 @@ Monk's Enhanced Journals
 }
 
 /* ============================================================================
-   SECTION-22: CHROME SCROLLBAR FIX
+   SECTION-23: CHROME SCROLLBAR FIX
    ============================================================================ */
 * {
   scrollbar-width: thin;
@@ -3501,7 +3501,7 @@ multi-select.actor-sheet select {
 }
 
 /* ============================================================================
-   SECTION-23: ROLL DIALOG FORMAT
+   SECTION-24: ROLL DIALOG FORMAT
    ============================================================================ */
 multi-select.select.target-modifier {
   flex-direction: row;
@@ -3518,7 +3518,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 /* ============================================================================
-   SECTION-24: MONK'S ACTIVE TILE FIX
+   SECTION-25: MONK'S ACTIVE TILE FIX
    ============================================================================ */
 .monks-active-tiles.sheet .items-list {
   top: 0;
@@ -3527,7 +3527,7 @@ multi-select.select.target-modifier div.tags.input-element-tags {
 }
 
 /* ============================================================================
-   SECTION-25: BATTLE SHEET
+   SECTION-26: BATTLE SHEET
    ============================================================================ */
 .battle, .ship {
   overflow-y: auto;
@@ -3732,7 +3732,7 @@ input.red {
 }*/
 
 /* ============================================================================
-   SECTION-26: UTILITY & MISCELLANEOUS
+   SECTION-27: UTILITY & MISCELLANEOUS
    ============================================================================ */
 
 table {
@@ -3872,6 +3872,10 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
   width: 4ch;
 }
 
+color-picker, file-picker, formula-input {
+  background: var(--s2d6-background-nearly-transparent);
+  border: 1px solid var(--s2d6-thin-border-style);
+}
 /* ============================================================================
    COMBAT TRACKER - ACTION INDICATORS
    ============================================================================ */
