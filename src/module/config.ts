@@ -24,6 +24,7 @@ const CHARACTERISTICS = Object.freeze({
 const DIFFICULTY_VARIANTS = Object.freeze({
   "CE": "CE",
   "CEL": "CEL",
+  "CD": "CD",
   "AC": "AC",
   "CU": "CU",
   "Nomad": "Nomad"
@@ -522,7 +523,7 @@ const RULESETS = Object.freeze({
     name: "Cepheus Deluxe",
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
-      difficultyListUsed: "CE",
+      difficultyListUsed: "CD",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",
       ShowDoubleTap: true,
@@ -582,7 +583,7 @@ const RULESETS = Object.freeze({
     name: "Cepheus Deluxe Enhanced Edition",
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
-      difficultyListUsed: "CE",
+      difficultyListUsed: "CD",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",
       ShowDoubleTap: false,
@@ -642,7 +643,7 @@ const RULESETS = Object.freeze({
     name: "Cepheus Light Upgraded",
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
-      difficultyListUsed: "CE",
+      difficultyListUsed: "CD",
       difficultiesAsTargetNumber: true,
       autofireRulesUsed: "CEL",
       ShowDoubleTap: true,
@@ -962,7 +963,8 @@ export type CU_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Easy:{
 export type CEL_DIFFICULTIES = { Formidable:{ mod:number; target:number }; Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number }; Routine:{ mod:number; target:number } };
 export type AC_DIFFICULTIES = { Impossible:{ mod:number; target:number }; Formidable:{ mod:number; target:number }; VeryDifficult:{ mod:number; target:number };  Difficult:{ mod:number; target:number }; Average:{ mod:number; target:number }; Simple:{ mod:number; target:number }; Routine:{ mod:number; target:number }};
 export type Nomad_DIFFICULTIES = {Easy: {mod: number, target: number}; Average: {mod: number, target: number}; Difficult: {mod: number, target: number}; Formidable: {mod: number, target: number}; Impossible: {mod: number, target: number}};
-const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES, CU:CU_DIFFICULTIES, Nomad:Nomad_DIFFICULTIES }> = Object.freeze({
+export type CD_DIFFICULTIES = {Easy: {mod: number, target: number}; Average: {mod: number, target: number}; Difficult: {mod: number, target: number}; Formidable: {mod: number, target: number}; Impossible: {mod: number, target: number}};
+const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_DIFFICULTIES, CU:CU_DIFFICULTIES, Nomad:Nomad_DIFFICULTIES, CD:CD_DIFFICULTIES }> = Object.freeze({
   CE: {
     Simple: {mod: 6, target: 2},
     Easy: {mod: 4, target: 4},
@@ -1003,6 +1005,13 @@ const DIFFICULTIES:Readonly<{ CE:CE_DIFFICULTIES; CEL:CEL_DIFFICULTIES, AC: AC_D
     Difficult: {mod: -1, target: 9},
     Formidable: {mod: -2, target: 10},
     Impossible: {mod: -4, target: 12}
+  },
+  CD: {
+    Easy: { mod: 1, target: 6 },
+    Average: { mod: 0, target: 8 },
+    Difficult: { mod: -1, target: 10 },
+    Formidable: { mod: -2, target: 12 },
+    Impossible: { mod: -4, target: 14 }
   }
 });
 
