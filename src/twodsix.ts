@@ -45,7 +45,7 @@ import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTra
 import { TwodsixCombatantData, TwodsixCombatData } from "./module/data/combat";
 import { TwodsixActiveEffectConfig } from "./module/sheets/TwodsixActiveEffectConfig";
 
-//import { TWODSIX } from "./module/config";
+import { TWODSIX } from "./module/config";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
 // @ts-expect-error Dynamic hook file imports are not typed.
@@ -73,6 +73,8 @@ Hooks.once('init', async function () {
     TwodsixDiceRoll,
     TwodsixRollSettings
   };
+  // Add custom constants for configuration.
+  CONFIG.TWODSIX = TWODSIX;
 
   // Active Effects
   CONFIG.ActiveEffect.phases = {
