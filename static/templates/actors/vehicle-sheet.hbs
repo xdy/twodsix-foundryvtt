@@ -123,10 +123,10 @@
             {{else iff settings.showHullAndArmor "===" 'detailedArmor'}}
               {{> "systems/twodsix/templates/actors/parts/vehicle/vehicle-detailed-armor.hbs"}}
             {{else iff settings.showHullAndArmor "===" 'armorOnly'}}
-              <span>{{localize "TWODSIX.Vehicle.ArmorHull"}}</span>
+              <span>{{localize "TWODSIX.Vehicle.ArmorHull"}}</span><br>
               <span class="vehicle-armor-name">
                 <textarea type="text" name="system.damageStats.armorLabel" value="{{actor.system.damageStats.armorLabel}}">{{~actor.system.damageStats.armorLabel~}}</textarea>
-              </span>
+              </span><br>
             {{else}}
               <fieldset>
                 <legend>{{localize "TWODSIX.Vehicle.Thresholds"}}</legend>
