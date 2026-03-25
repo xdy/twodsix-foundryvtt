@@ -75,6 +75,9 @@ importers:
       glob:
         specifier: ^13.0.6
         version: 13.0.6
+      js-yaml:
+        specifier: ^4.1.1
+        version: 4.1.1
       marked:
         specifier: ^17.0.5
         version: 17.0.5
