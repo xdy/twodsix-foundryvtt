@@ -1,14 +1,13 @@
-
-import { rollup } from 'rollup';
+import {blue, blueBright, cyan, green, red, yellow} from 'yoctocolors';
+import {rollup} from 'rollup';
 import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
-import chalk from 'chalk';
+import {hideBin} from 'yargs/helpers';
 import fs from 'fs-extra';
 import gulp from 'gulp';
 import path from 'path';
 import rollupConfig from './rollup.config.js';
 import semver from 'semver';
-import { spawn } from 'child_process';
+import {spawn} from 'child_process';
 
 const argv = yargs(hideBin(process.argv)).argv;
 
@@ -42,10 +41,10 @@ const getDownloadURL = (version) => `https://host/path/to/${version}.zip`;
  * Build the distributable JavaScript code
  */
 let buildStatus = {
-  js: { success: false, files: 0 },
-  styles: { success: false, files: 0 },
-  static: { success: false, files: 0 },
-  packs: { success: false, packs: 0 },
+  js: {success: false, files: 0},
+  styles: {success: false, files: 0},
+  static: {success: false, files: 0},
+  packs: {success: false, packs: 0},
   errors: [],
   warnings: []
 };
@@ -62,11 +61,11 @@ async function buildCode() {
     }
     buildStatus.js.success = true;
     buildStatus.js.files = jsFiles;
-    console.log(chalk.green('✅ JavaScript build completed successfully'));
+    console.log(green('✅ JavaScript build completed successfully'));
   } catch (err) {
     buildStatus.js.success = false;
     buildStatus.errors.push('JavaScript build failed');
-    console.error(chalk.red('❌ JavaScript build failed:'), err);
+    console.error(red('❌ JavaScript build failed:'), err);
     throw err;
   }
 }
@@ -87,18 +86,18 @@ function buildStyles() {
         }
         buildStatus.styles.success = true;
         buildStatus.styles.files = cssFiles;
-        console.log(chalk.green('✅ Styles build completed successfully'));
+        console.log(green('✅ Styles build completed successfully'));
       })
       .on('error', (err) => {
         buildStatus.styles.success = false;
         buildStatus.errors.push('Styles build failed');
-        console.error(chalk.red('❌ Styles build failed:'), err);
+        console.error(red('❌ Styles build failed:'), err);
         throw err;
       });
   } catch (err) {
     buildStatus.styles.success = false;
     buildStatus.errors.push('Styles build failed (sync)');
-    console.error(chalk.red('❌ Styles build failed (sync):'), err);
+    console.error(red('❌ Styles build failed (sync):'), err);
     throw err;
   }
 }
@@ -107,7 +106,7 @@ function buildStyles() {
  * Build packs from JSON source files
  */
 async function buildPacks() {
-  console.log(chalk.yellow('Building packs from JSON source files...'));
+  console.log(yellow('Building packs from JSON source files...'));
 
   return new Promise((resolve, reject) => {
     const buildProcess = spawn('pnpm', ['run', 'packs:build'], {
@@ -116,16 +115,16 @@ async function buildPacks() {
 
     buildProcess.on('close', (code) => {
       if (code === 0) {
-        console.log(chalk.green('✅ Pack building completed successfully'));
+        console.log(green('✅ Pack building completed successfully'));
         resolve();
       } else {
-        console.error(chalk.red('❌ Pack building failed with code:', code));
+        console.error(red('❌ Pack building failed with code:', code));
         reject(new Error(`Pack building failed with code ${code}`));
       }
     });
 
     buildProcess.on('error', (err) => {
-      console.error(chalk.red('❌ Failed to start pack building process:', err));
+      console.error(red('❌ Failed to start pack building process:', err));
       reject(err);
     });
   });
@@ -146,11 +145,11 @@ async function copyStaticFiles() {
     }
     buildStatus.static.success = true;
     buildStatus.static.files = staticCount;
-    console.log(chalk.green('✅ Static files copied successfully'));
+    console.log(green('✅ Static files copied successfully'));
   } catch (err) {
     buildStatus.static.success = false;
     buildStatus.errors.push('Copying static files failed');
-    console.error(chalk.red('❌ Copying static files failed:'), err);
+    console.error(red('❌ Copying static files failed:'), err);
     throw err;
   }
 }
@@ -164,22 +163,22 @@ async function copyPacks() {
     const packsTarget = `${distDirectory}/packs`;
 
     if (fs.existsSync(packsSource)) {
-      console.log(chalk.blue(`Copying built packs from ${packsSource} to ${packsTarget}`));
+      console.log(blue(`Copying built packs from ${packsSource} to ${packsTarget}`));
       await fs.copy(packsSource, packsTarget);
       // Count packs
       const packDirs = await fs.readdir(packsSource);
       buildStatus.packs.success = true;
       buildStatus.packs.packs = packDirs.length;
-      console.log(chalk.green('✅ Packs copied successfully'));
+      console.log(green('✅ Packs copied successfully'));
     } else {
       buildStatus.packs.success = false;
       buildStatus.warnings.push(`No built packs found at ${packsSource}`);
-      console.log(chalk.yellow(`Warning: No built packs found at ${packsSource}`));
+      console.log(yellow(`Warning: No built packs found at ${packsSource}`));
     }
   } catch (err) {
     buildStatus.packs.success = false;
     buildStatus.errors.push('Copying packs failed');
-    console.error(chalk.red('❌ Copying packs failed:'), err);
+    console.error(red('❌ Copying packs failed:'), err);
     throw err;
   }
 }
@@ -201,6 +200,7 @@ function buildWatch() {
 
 /********************/
 /*      CLEAN       */
+
 /********************/
 
 /**
@@ -210,17 +210,18 @@ async function clean() {
   try {
     if (fs.existsSync(distDirectory)) {
       await fs.emptyDir(distDirectory);
-      console.log(chalk.yellow(`Emptied ${distDirectory}`));
+      console.log(yellow(`Emptied ${distDirectory}`));
     }
   } catch (err) {
     buildStatus.errors.push('Clean task failed');
-    console.error(chalk.red('❌ Clean task failed:'), err);
+    console.error(red('❌ Clean task failed:'), err);
     throw err;
   }
 }
 
 /********************/
 /*       LINK       */
+
 /********************/
 
 /**
@@ -249,7 +250,7 @@ async function linkUserData() {
   if (fs.existsSync(path.resolve(staticDirectory, 'system.json'))) {
     destinationDirectory = 'systems';
   } else {
-    throw new Error(`Could not find ${chalk.blueBright('system.json')}`);
+    throw new Error(`Could not find ${blueBright('system.json')}`);
   }
 
   const linkDirectory = path.resolve(getDataPath(), destinationDirectory, systemName);
@@ -257,10 +258,10 @@ async function linkUserData() {
 
   // Always remove the existing directory or symlink before creating the new symlink
   if (fs.existsSync(linkDirectory)) {
-    console.log(chalk.yellow(`Removing existing build or link at ${chalk.blueBright(linkDirectory)}.`));
+    console.log(yellow(`Removing existing build or link at ${blueBright(linkDirectory)}.`));
     await fs.remove(linkDirectory);
   }
-  console.log(chalk.green(`Linking dist to ${chalk.blueBright(linkDirectory)}.`));
+  console.log(green(`Linking dist to ${blueBright(linkDirectory)}.`));
   await fs.ensureDir(path.resolve(linkDirectory, '..'));
   // Use 'junction' on Windows to avoid admin/Developer Mode requirements for directory symlinks
   const symlinkType = process.platform === 'win32' ? 'junction' : 'dir';
@@ -269,6 +270,7 @@ async function linkUserData() {
 
 /********************/
 /*    VERSIONING    */
+
 /********************/
 
 /**
@@ -305,7 +307,7 @@ function bumpVersion(cb) {
   const manifest = getManifest();
 
   if (!manifest) {
-    cb(Error(chalk.red('Manifest JSON not found')));
+    cb(Error(red('Manifest JSON not found')));
   }
 
   try {
@@ -320,11 +322,11 @@ function bumpVersion(cb) {
     const targetVersion = getTargetVersion(currentVersion, release);
 
     if (!targetVersion) {
-      return cb(new Error(chalk.red('Error: Incorrect version arguments')));
+      return cb(new Error(red('Error: Incorrect version arguments')));
     }
 
     if (targetVersion === currentVersion) {
-      return cb(new Error(chalk.red('Error: Target version is identical to current version')));
+      return cb(new Error(red('Error: Target version is identical to current version')));
     }
 
     console.log(`Updating version number to '${targetVersion}'`);
@@ -351,25 +353,25 @@ function bumpVersion(cb) {
 async function buildSummary() {
   // Wait a moment for all async .on('end') events
   await new Promise(res => setTimeout(res, 200));
-  console.log(chalk.cyan('\n==================== Build Summary ===================='));
-  console.log(`${buildStatus.js.success ? chalk.green('✅') : chalk.red('❌')} JavaScript build: ${buildStatus.js.success ? 'Success' : 'Failed'} (${buildStatus.js.files} files)`);
-  console.log(`${buildStatus.styles.success ? chalk.green('✅') : chalk.red('❌')} Styles build: ${buildStatus.styles.success ? 'Success' : 'Failed'} (${buildStatus.styles.files} files)`);
-  console.log(`${buildStatus.static.success ? chalk.green('✅') : chalk.red('❌')} Static files copied: ${buildStatus.static.success ? 'Success' : 'Failed'} (${buildStatus.static.files} folders/files)`);
-  console.log(`${buildStatus.packs.success ? chalk.green('✅') : chalk.red('❌')} Packs built/copied: ${buildStatus.packs.success ? 'Success' : 'Failed'} (${buildStatus.packs.packs} packs)`);
+  console.log(cyan('\n==================== Build Summary ===================='));
+  console.log(`${buildStatus.js.success ? green('✅') : red('❌')} JavaScript build: ${buildStatus.js.success ? 'Success' : 'Failed'} (${buildStatus.js.files} files)`);
+  console.log(`${buildStatus.styles.success ? green('✅') : red('❌')} Styles build: ${buildStatus.styles.success ? 'Success' : 'Failed'} (${buildStatus.styles.files} files)`);
+  console.log(`${buildStatus.static.success ? green('✅') : red('❌')} Static files copied: ${buildStatus.static.success ? 'Success' : 'Failed'} (${buildStatus.static.files} folders/files)`);
+  console.log(`${buildStatus.packs.success ? green('✅') : red('❌')} Packs built/copied: ${buildStatus.packs.success ? 'Success' : 'Failed'} (${buildStatus.packs.packs} packs)`);
   if (buildStatus.errors.length > 0) {
-    console.log(chalk.red('Errors:'));
+    console.log(red('Errors:'));
     buildStatus.errors.forEach(e => console.log('  -', e));
   }
   if (buildStatus.warnings.length > 0) {
-    console.log(chalk.yellow('Warnings:'));
+    console.log(yellow('Warnings:'));
     buildStatus.warnings.forEach(w => console.log('  -', w));
   }
-  console.log(chalk.cyan('-------------------------------------------------------'));
-  console.log(`📁 Output: ${chalk.blueBright(distDirectory)}`);
-  console.log(`📁 Packs: ${chalk.blueBright(distDirectory + '/packs')}`);
-  console.log(chalk.cyan('=======================================================\n'));
+  console.log(cyan('-------------------------------------------------------'));
+  console.log(`📁 Output: ${blueBright(distDirectory)}`);
+  console.log(`📁 Packs: ${blueBright(distDirectory + '/packs')}`);
+  console.log(cyan('=======================================================\n'));
   if (buildStatus.errors.length === 0) {
-    console.log(chalk.green('Next: You can now run `pnpm run link` to symlink to Foundry VTT.'));
+    console.log(green('Next: You can now run `pnpm run link` to symlink to Foundry VTT.'));
   }
 }
 
@@ -377,11 +379,4 @@ const execBuild = gulp.parallel(buildCode, buildStyles, copyStaticFiles);
 const execBuildWithPacks = gulp.series(buildPacks, gulp.parallel(execBuild, copyPacks), buildSummary);
 
 const build = gulp.series(clean, execBuildWithPacks);
-
-// Develop build: skips wiki journal generation by setting SKIP_WIKI
-function developBuild(done) {
-  process.env.SKIP_WIKI = 'true';
-  return build(done);
-}
-
-export { build, buildPacks, buildWatch, clean, linkUserData as link, bumpVersion, developBuild };
+export {build, buildPacks, buildWatch, clean, linkUserData as link, bumpVersion};

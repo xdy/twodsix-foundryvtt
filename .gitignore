@@ -10,7 +10,6 @@ icons/\!dox/
 npm-debug.log
 coverage/
 debug/
-docs/
 node_modules/
 dist/
 
