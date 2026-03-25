@@ -43,6 +43,7 @@ import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
 // @ts-ignore
+
 hookScriptFiles.forEach((hookFile:string) => import(`./module/hooks/${hookFile}.ts`));
 
 Hooks.once('init', async function () {

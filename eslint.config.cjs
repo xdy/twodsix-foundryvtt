@@ -1,20 +1,8 @@
-// ESLint Flat Config (ESLint v9+)
-// Migrated ignores from .eslintignore and legacy rules via FlatCompat
-
-// Note: Requires devDependencies: @eslint/eslintrc and @eslint/js
-// Run: pnpm add -D @eslint/eslintrc @eslint/js
-
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { FlatCompat } = require('@eslint/eslintrc');
+// ESLint Flat Config (ESLint v10+)
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const js = require('@eslint/js');
-
-// FlatCompat v3+ (with ESLint v9) requires passing base configs
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const tsPlugin = require('@typescript-eslint/eslint-plugin');
 
 module.exports = [
   // Files/paths to ignore (replaces .eslintignore)
@@ -26,15 +14,14 @@ module.exports = [
       '*.iml',
       '/.vscode',
       'icons/!dox/',
-      '/node_modules/',
       '.DS_Store',
       '**.env',
       'npm-debug.log',
       // Folders
+      'node_modules/',
       'coverage/',
       'debug/',
       'docs/',
-      'node_modules/',
       'dist/',
       // Project-specific
       'foundryconfig.json',
@@ -46,28 +33,13 @@ module.exports = [
     ],
   },
 
-  // Convert legacy .eslintrc.yml settings using FlatCompat to keep behavior
-  ...compat.config({
-    env: {
-      jquery: true,
-      browser: true,
-      es2020: true,
-    },
-    extends: [
-      'eslint:recommended',
-      'plugin:@typescript-eslint/recommended',
-      'eslint-config-prettier',
-      'plugin:prettier/recommended',
-      '@typhonjs-fvtt/eslint-config-foundry.js',
-    ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      ecmaVersion: 2020,
-      sourceType: 'module',
-      // Must be an absolute path for ESLint v9 + @typescript-eslint
-      tsconfigRootDir: __dirname,
-    },
-    plugins: ['prettier', '@typescript-eslint'],
+  js.configs.recommended,
+
+  // TypeScript ESLint recommended (flat config format in v8+)
+  ...tsPlugin.configs['flat/recommended'],
+
+  // Project-specific config
+  {
     rules: {
       // Fvtt support
       'no-shadow': 'off',
@@ -75,13 +47,12 @@ module.exports = [
         'error',
         { builtinGlobals: true, hoist: 'all', allow: ['event'] },
       ],
-      // The following rule should be turned on later
+      // The following rules should be turned on later
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       'no-undef': 'off',
 
       // Personal preferences
-      'prettier/prettier': 'error',
       semi: 'warn',
       curly: 'warn',
       'brace-style': 1,
@@ -90,6 +61,8 @@ module.exports = [
       'eol-last': ['error', 'always'],
       'key-spacing': ['error'],
       '@typescript-eslint/ban-ts-comment': ['warn'],
+      'no-useless-assignment': 'off',
+      'preserve-caught-error': 'off',
     },
-  }),
+  },
 ];
