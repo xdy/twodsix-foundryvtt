@@ -3,7 +3,7 @@
 
 import TwodsixActor from "../entities/TwodsixActor";
 import { calcModFor } from "./sheetUtils";
-import {Traveller} from "../../types/template";
+import type {Traveller} from "../../types/template";
 import { getDamageCharacteristics } from "./actorDamage";
 
 /**

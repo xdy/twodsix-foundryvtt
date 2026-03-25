@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
+import type { ShipPosition, ShipPositionActorIds, Ship } from "../../types/template";
 import { getDataFromDropEvent, getDocFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";

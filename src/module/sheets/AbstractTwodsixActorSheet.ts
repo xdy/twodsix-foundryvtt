@@ -4,7 +4,7 @@
 import TwodsixItem, { onRollDamage }  from "../entities/TwodsixItem";
 import {getDataFromDropEvent, getDocFromDropData, isDisplayableSkill, openPDFLink, getDamageTypes, getRangeTypes, openJournalEntry, deleteReference, changeReference, calcModFor } from "../utils/sheetUtils";
 import TwodsixActor from "../entities/TwodsixActor";
-import {Skills, Component} from "../../types/template";
+import type {Skills, Component} from "../../types/template";
 import {onPasteStripFormatting} from "../sheets/AbstractTwodsixItemSheet";
 import { getRollTypeSelectObject } from "../utils/sheetUtils";
 import { simplifySkillName, sortObj } from "../utils/utils";

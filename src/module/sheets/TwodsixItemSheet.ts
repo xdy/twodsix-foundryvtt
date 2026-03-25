@@ -5,11 +5,11 @@ import { AbstractTwodsixItemSheet, onPasteStripFormatting } from "./AbstractTwod
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import { openPDFLink, openJournalEntry, getDifficultiesSelectObject, getRollTypeSelectObject, getConsumableOptions, getRangeTypes, deleteReference, deletePDFLink, addPDFLink, changeReference } from "../utils/sheetUtils";
-import { Component} from "src/types/template";
+import type { Component } from "src/types/template";
 import { getDamageTypes } from "../utils/sheetUtils";
 import { getCharacteristicList } from "../utils/TwodsixRollSettings";
 import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
-import { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
+import type { Context } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/abstract/document.mjs";
 import TwodsixActor from "../entities/TwodsixActor";
 
 /**

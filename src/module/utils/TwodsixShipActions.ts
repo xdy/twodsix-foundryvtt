@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import { Component} from "src/types/template";
-import { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
+import type { Component} from "src/types/template";
+import type { AvailableShipActionData, AvailableShipActions, ExtraData } from "../../types/twodsix";
 import { TWODSIX } from "../config";
 import TwodsixItem from "../entities/TwodsixItem";
 import TwodsixActor from "../entities/TwodsixActor";
 import { confirmRollFormula} from "./sheetUtils";
 import { TwodsixRollSettings, getInitialSettingsFromFormula } from "./TwodsixRollSettings";
-import { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
+import type { DICE_ROLL_MODES } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
 
 export class TwodsixShipActions {
   public static availableMethods = <AvailableShipActions>{

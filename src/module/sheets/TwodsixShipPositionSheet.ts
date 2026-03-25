@@ -5,8 +5,8 @@ import { TWODSIX } from "../config";
 import { getDataFromDropEvent, getDocFromDropData } from "../utils/sheetUtils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
 import { AbstractTwodsixItemSheet } from "./AbstractTwodsixItemSheet";
-import { Ship, ShipAction, ShipPosition, ShipPositionActorIds, Skills } from "../../types/template";
-import { TwodsixShipPositionSheetData } from "src/types/twodsix";
+import type { Ship, ShipAction, ShipPosition, ShipPositionActorIds, Skills } from "../../types/template";
+import type { TwodsixShipPositionSheetData } from "src/types/twodsix";
 
 export class TwodsixShipPositionSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixItemSheet) {
 

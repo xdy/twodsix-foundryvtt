@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
-import { Animal } from "src/types/template";
+import type { Animal } from "src/types/template";
 
 export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
 

@@ -4,7 +4,7 @@
 import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
 import { TWODSIX } from "../config";
 import TwodsixActor from "../entities/TwodsixActor";
-import { Consumable, Skills } from "../../types/template";
+import type { Consumable, Skills } from "../../types/template";
 import TwodsixItem  from "../entities/TwodsixItem";
 
 export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {

@@ -420,7 +420,7 @@ export function getRollTypeSelectObject(): object {
  * @returns {object} An object with the difficulty type key and localized label (value) pairs
  * @export
  */
-export function getDifficultiesSelectObject(difficultyList?:any = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')]): object {
+export function getDifficultiesSelectObject(difficultyList:any = TWODSIX.DIFFICULTIES[game.settings.get('twodsix', 'difficultyListUsed')]): object {
   const returnObj = {};
   const useTargetDiff:boolean = game.settings.get('twodsix', 'difficultiesAsTargetNumber');
   Object.keys(difficultyList).forEach((key) => {
