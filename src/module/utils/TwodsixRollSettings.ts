@@ -1,12 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
-import {CE_DIFFICULTIES, CEL_DIFFICULTIES, TWODSIX} from "../config";
+import type {CE_DIFFICULTIES, CEL_DIFFICULTIES} from "../config";
+import {TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
 import {getDifficultiesSelectObject, getRollTypeSelectObject} from "./sheetUtils";
 import { getKeyByValue } from "./utils";
-import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Gear, Skills} from "../../types/template";
+import type {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
+import type {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";

@@ -2,7 +2,7 @@
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
 
 export default async function migrateWorld(version:string):Promise<void> {
-  //@ts-ignore
+  // @ts-expect-error: migrationFileNames is defined globally via rollup
   await migrationFileNames.sort().reduce(async (prev, migrationName) => {
     await prev;
     if (migrationName > version) {

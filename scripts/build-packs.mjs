@@ -258,6 +258,10 @@ async function generateWikiJournal() {
 
   // Proceed with the existing pack compilation logic
   for (const packDir of packDirs) {
+    if (SKIP_WIKI && packDir === 'wiki-journal') {
+      console.log(`\nSkipping compilation of pack: ${packDir}`);
+      continue;
+    }
     const sourcePath = path.join(PACKS_SRC_DIR, packDir);
     const outputPath = path.join(PACKS_OUTPUT_DIR, packDir);
 

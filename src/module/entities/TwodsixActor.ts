@@ -9,7 +9,7 @@ import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
 import { roundToMaxDecimals, simplifySkillName, sortByItemName } from "../utils/utils";
 import TwodsixItem from "./TwodsixItem";
 import { getDamageCharacteristics, getParryValue, stackArmorValues, Stats } from "../utils/actorDamage";
-import {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
+import type {Characteristic, Component, Gear, Ship, Skills, Traveller} from "../../types/template";
 import { getCharShortName } from "../utils/utils";
 import { applyToAllActors } from "../utils/migration-utils";
 import { TwodsixShipActions } from "../utils/TwodsixShipActions";
