@@ -36,7 +36,6 @@ declare global {
 
   interface DocumentClassConfig {
     Actor:typeof _TwodsixActor;
-    // @ts-expect-error: circular reference
     Item:typeof _TwodsixItem;
   }
 
@@ -189,16 +188,16 @@ declare global {
   interface TwodsixShipSheetData extends Record<string, unknown> {
     dtypes:["String", "Number", "Boolean"];
     settings:TwodsixShipSheetSettings;
-    shipPositions:Item[];
-    storage:Collection<Item>;
+    shipPositions:InstanceType<typeof _TwodsixItem>[];
+    storage:Collection<InstanceType<typeof _TwodsixItem>>;
     richText:any;
   }
 
   interface TwodsixVehicleSheetData extends Record<string, unknown> {
     dtypes:["String", "Number", "Boolean"];
     settings:TwodsixVehicleSheetSettings;
-    shipPositions:Item[];
-    storage:Collection<Item>;
+    shipPositions:InstanceType<typeof _TwodsixItem>[];
+    storage:Collection<InstanceType<typeof _TwodsixItem>>;
   }
 
   interface TwodsixSpaceObjectSheetData extends Record<string, unknown> {
@@ -227,7 +226,7 @@ declare global {
 
   interface TwodsixShipPositionSheetData extends Record<string, unknown> {
     availableActions:AvailableShipActions;
-    components:Item[];
+    components:InstanceType<typeof _TwodsixItem>[];
     sortedActions:ShipAction[];
     hasShipActor:boolean;
     actors?:_TwodsixActor[];
