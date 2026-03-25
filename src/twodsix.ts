@@ -14,33 +14,45 @@ import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombat from "./module/entities/TwodsixCombat";
 import TwodsixCombatant from "./module/entities/TwodsixCombatant";
-import {TwodsixTravellerSheet, TwodsixNPCSheet} from "./module/sheets/TwodsixTravellerSheet";
+import {TwodsixNPCSheet, TwodsixTravellerSheet} from "./module/sheets/TwodsixTravellerSheet";
 import {TwodsixShipSheet} from "./module/sheets/TwodsixShipSheet";
 import {TwodsixShipPositionSheet} from "./module/sheets/TwodsixShipPositionSheet";
 import {TwodsixItemSheet} from "./module/sheets/TwodsixItemSheet";
 import registerHandlebarsHelpers from "./module/handlebars";
-import {registerSettings} from "./module/settings";
-import {switchCss} from "./module/settings";
+import {registerSettings, switchCss} from "./module/settings";
 import "./module/migration";
 import {rollItemMacro} from "./module/utils/rollItemMacro";
-import { TwodsixVehicleSheet } from "./module/sheets/TwodsixVehicleSheet";
-import { TwodsixAnimalSheet} from "./module/sheets/TwodsixAnimalSheet";
-import { TwodsixRobotSheet } from "./module/sheets/TwodsixRobotSheet";
-import { TwodsixSpaceObjectSheet } from "./module/sheets/TwodsixSpaceObjectSheet";
+import {TwodsixVehicleSheet} from "./module/sheets/TwodsixVehicleSheet";
+import {TwodsixAnimalSheet} from "./module/sheets/TwodsixAnimalSheet";
+import {TwodsixRobotSheet} from "./module/sheets/TwodsixRobotSheet";
+import {TwodsixSpaceObjectSheet} from "./module/sheets/TwodsixSpaceObjectSheet";
 import { TwodsixWorldSheet } from "./module/sheets/TwodsixWorldSheet";
 import { WorldData } from "./module/data/world";
-import { TwodsixDiceRoll } from "./module/utils/TwodsixDiceRoll";
-import { TwodsixRollSettings } from "./module/utils/TwodsixRollSettings";
-import { addCustomEnrichers } from "./module/utils/enrichers";
-import {TravellerData, AnimalData, RobotData} from "./module/data/characters";
-import { ShipData, SpaceObjectData, VehicleData } from "./module/data/vehicles";
-import { ArmorData, AugmentData, ComponentData, ComputerData, ConsumableData, JunkStorageData, ShipPositionData, SkillData, SpellData, TraitData, WeaponData, PsiAbilityData } from "./module/data/item";
-import { GearData } from "./module/data/item-base";
-import { TwodsixActiveEffect } from "./module/entities/TwodsixActiveEffect";
-import { TwodsixBattleSheet } from "./module/sheets/TwodsixBattleSheet";
-import { TwodsixGamePause } from "./module/entities/TwodsixGamePause";
-import { TwodsixChatLog, TwodsixChatPopout } from "./module/entities/TwodsixChat";
-import { TwodsixTokenRuler } from "./module/utils/TwodsixTokenRuler";
+import {TwodsixDiceRoll} from "./module/utils/TwodsixDiceRoll";
+import {TwodsixRollSettings} from "./module/utils/TwodsixRollSettings";
+import {addCustomEnrichers} from "./module/utils/enrichers";
+import {AnimalData, RobotData, TravellerData} from "./module/data/characters";
+import {ShipData, SpaceObjectData, VehicleData} from "./module/data/vehicles";
+import {
+  ArmorData,
+  AugmentData,
+  ComponentData,
+  ComputerData,
+  ConsumableData,
+  JunkStorageData,
+  PsiAbilityData,
+  ShipPositionData,
+  SkillData,
+  SpellData,
+  TraitData,
+  WeaponData
+} from "./module/data/item";
+import {GearData} from "./module/data/item-base";
+import {TwodsixActiveEffect} from "./module/entities/TwodsixActiveEffect";
+import {TwodsixBattleSheet} from "./module/sheets/TwodsixBattleSheet";
+import {TwodsixGamePause} from "./module/entities/TwodsixGamePause";
+import {TwodsixChatLog, TwodsixChatPopout} from "./module/entities/TwodsixChat";
+import {TwodsixTokenRuler} from "./module/utils/TwodsixTokenRuler";
 import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTracker";
 import { TwodsixCombatantData, TwodsixCombatData } from "./module/data/combat";
 import { TwodsixActiveEffectConfig } from "./module/sheets/TwodsixActiveEffectConfig";
@@ -87,6 +99,7 @@ Hooks.once('init', async function () {
 
   foundry.applications.apps.DocumentSheetConfig.unregisterSheet(ActiveEffect, 'core', foundry.applications.sheets.ActiveEffectConfig);
   foundry.applications.apps.DocumentSheetConfig.registerSheet(ActiveEffect, 'twodsix', TwodsixActiveEffectConfig, { makeDefault: true });
+
 
   // Actor
   CONFIG.Actor.documentClass = TwodsixActor;
@@ -184,8 +197,16 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   //Items.unregisterSheet("core", ItemSheet);
   const baseItemTypes = Object.keys(CONFIG.Item.dataModels).filter(ot => ot !== 'ship_position');
-  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {types: baseItemTypes, makeDefault: true, label: "TWODSIX.SheetTypes.ItemSheet"});
-  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {types: ["ship_position"], makeDefault: true, label: "TWODSIX.SheetTypes.ShipPositionSheet"});
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixItemSheet, {
+    types: baseItemTypes,
+    makeDefault: true,
+    label: "TWODSIX.SheetTypes.ItemSheet"
+  });
+  foundry.documents.collections.Items.registerSheet("twodsix", TwodsixShipPositionSheet, {
+    types: ["ship_position"],
+    makeDefault: true,
+    label: "TWODSIX.SheetTypes.ShipPositionSheet"
+  });
 
   //Extend ActiveEffects class with custom overrides
   CONFIG.ActiveEffect.documentClass = TwodsixActiveEffect;
@@ -214,7 +235,11 @@ Hooks.once('init', async function () {
       {urls: ["systems/twodsix/fonts/Asap-Regular.woff2", "systems/twodsix/fonts/Asap-Regular.ttf"]},
       {urls: ["systems/twodsix/fonts/Asap-Bold.woff2", "systems/twodsix/fonts/Asap-Bold.ttf"], weight: 700},
       {urls: ["systems/twodsix/fonts/Asap-Italic.woff2", "systems/twodsix/fonts/Asap-Italic.ttf"], style: "italic"},
-      {urls: ["systems/twodsix/fonts/Asap-BoldItalic.woff2", "systems/twodsix/fonts/Asap-BoldItalic.ttf"], style: "italic", weight: 700}
+      {
+        urls: ["systems/twodsix/fonts/Asap-BoldItalic.woff2", "systems/twodsix/fonts/Asap-BoldItalic.ttf"],
+        style: "italic",
+        weight: 700
+      }
     ]
   };
   CONFIG.fontDefinitions["Rye"] = {
@@ -282,6 +307,6 @@ Hooks.once('init', async function () {
   CONFIG.Token.rulerClass = TwodsixTokenRuler;
 });
 
-Hooks.once('devModeReady', ({ registerPackageDebugFlag }) => {
+Hooks.once('devModeReady', ({registerPackageDebugFlag}) => {
   registerPackageDebugFlag('twodsix');
 });

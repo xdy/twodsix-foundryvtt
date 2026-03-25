@@ -1,32 +1,53 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
+    "allowUmdGlobalAccess": true,
+    "baseUrl": ".",
+    "removeComments": false,
+    "alwaysStrict": true,
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "target": "ES2020",
-    "lib": ["DOM", "ES2020"],
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "outDir": ".typescript-build",
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "types": [
-      "jquery",
       "@league-of-foundry-developers/foundry-vtt-types",
       "fs-extra",
       "node"
     ],
-    "esModuleInterop": true,
-    "moduleResolution": "bundler",
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
-    "allowUmdGlobalAccess": true,
     "noImplicitAny": false,
-    "baseUrl": ".",
-    "paths": {
-      "@client/*": ["foundry/client/*"],
-      "@common/*": ["foundry/common/*"]
-    },
-    "removeComments": false,
-    "resolveJsonModule": true,
-    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strict": true,
     "strictNullChecks": true,
+    "verbatimModuleSyntax": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noUncheckedIndexedAccess": true,
+    "noUncheckedSideEffectImports": true,
+    "useUnknownInCatchVariables": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitOverride": true,
+    "allowJs": true,
+    "isolatedModules": true,
     "skipLibCheck": true,
-    "ignoreDeprecations": "6.0"
+    "incremental": true,
+    "paths": {
+      "@client/*": ["./foundry/client/*"],
+      "@common/*": ["./foundry/common/*"]
+    }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "foundry", "dist", "build"]
+  "include": [
+    "src",
+    "foundry/client/global.d.mts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "**/node_modules/*"
+  ]
 }

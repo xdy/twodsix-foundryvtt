@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck This turns off *all* typechecking, make sure to remove this once foundry-vtt-types are updated to cover v10.
-import { Traveller } from "src/types/template";
+import type { Traveller } from "src/types/template";
 
 Hooks.once("dragRuler.ready", (SpeedProvider) => {
   class TwodsixSpeedProvider extends SpeedProvider {

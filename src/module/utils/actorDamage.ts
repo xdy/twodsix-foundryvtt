@@ -4,7 +4,7 @@
 import TwodsixActor from "../entities/TwodsixActor";
 import TwodsixItem from "../entities/TwodsixItem";
 import { calcModFor } from "./sheetUtils";
-import {Traveller} from "../../types/template";
+import type {Traveller} from "../../types/template";
 import { getDamageTypes } from "./sheetUtils";
 import { TwodsixRollSettings } from "./TwodsixRollSettings";
 import { TWODSIX } from "../config";

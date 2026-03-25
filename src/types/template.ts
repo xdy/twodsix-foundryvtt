@@ -755,7 +755,7 @@ export interface PsiAbility extends LinkTemplate, TargetTemplate {
   damage:string;
   rangeBand:string;
   range:string;
-  psiCost:integer;
+  psiCost:number;
   damageType:string;
 }
 

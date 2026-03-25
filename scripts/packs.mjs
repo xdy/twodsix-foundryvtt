@@ -9,12 +9,12 @@ const __dirname = path.dirname(__filename);
 
 const command = process.argv[2];
 
-function runScript(scriptName, description) {
+function runScript(scriptName, description, env = process.env) {
   console.log(`\n🚀 ${description}...`);
   const scriptPath = path.join(__dirname, scriptName);
 
   return new Promise((resolve, reject) => {
-    const child = spawn('node', [scriptPath], { stdio: 'inherit' });
+    const child = spawn('node', [scriptPath], { stdio: 'inherit', env });
 
     child.on('close', (code) => {
       if (code === 0) {
@@ -41,8 +41,9 @@ Usage: node scripts/packs.mjs <command>
 
 Commands:
   extract   Extract binary packs to JSON source files (packs-src/)
-  build     Compile JSON source files to binary packs (static/packs/)
-  rebuild   Extract then build (useful for cleaning up)
+  build         Compile JSON source files to binary packs (static/packs/)
+  build-no-wiki Compile JSON source files to binary packs (skipping wiki generation)
+  rebuild       Extract then build (useful for cleaning up)
   help      Show this help message
 
 Examples:
@@ -64,6 +65,10 @@ async function main() {
 
       case 'build':
         await runScript('build-packs.mjs', 'Building binary packs from JSON source');
+        break;
+
+      case 'build-no-wiki':
+        await runScript('build-packs.mjs', 'Building binary packs from JSON source (skipping wiki)', { ...process.env, SKIP_WIKI: 'true' });
         break;
 
       case 'rebuild':
