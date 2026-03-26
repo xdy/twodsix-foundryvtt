@@ -1,12 +1,12 @@
 blockExoticSubdeps: true
 ignoredBuiltDependencies:
   - classic-level
-  - '@league-of-foundry-developers/foundry-vtt-types'
   - '@parcel/watcher'
   - postinstall-postinstall
 minimumReleaseAge: 4320
 onlyBuiltDependencies:
   - esbuild
+  - '@league-of-foundry-developers/foundry-vtt-types'
 peerDependencyRules:
   allowedVersions:
     "@pixi/basis>@pixi/assets": "*"
