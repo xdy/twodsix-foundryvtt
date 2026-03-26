@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "moduleResolution": "bundler",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "types": [
+      "@league-of-foundry-developers/foundry-vtt-types"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@client/*": [
+        "foundry/client/*"
+      ],
+      "@common/*": [
+        "foundry/common/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

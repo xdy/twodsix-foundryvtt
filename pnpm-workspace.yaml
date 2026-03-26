@@ -16,3 +16,4 @@ peerDependencyRules:
     - "@pixi/particle-emitter"
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 10080
+

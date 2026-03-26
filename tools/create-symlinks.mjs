@@ -89,7 +89,7 @@ if (fs.existsSync("foundryconfig.json")) {
   }
 
   console.log("\n✓ Symlinks created successfully!");
-  console.log("You may need to restart VS Code to see IntelliSense improvements.");
+  console.log("You may need to restart your IDE (VS Code or IntelliJ IDEA) to see IntelliSense improvements.");
 } else {
   console.log("⚠ foundryconfig.json not found.");
   console.log("Please copy foundryconfig.example.json to foundryconfig.json");

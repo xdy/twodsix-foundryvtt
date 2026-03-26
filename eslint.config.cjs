@@ -1,8 +1,5 @@
 // ESLint Flat Config (ESLint v10+)
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const js = require('@eslint/js');
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const tsPlugin = require('@typescript-eslint/eslint-plugin');
 
 module.exports = [
   // Ignore patterns MUST be first
@@ -37,22 +34,17 @@ module.exports = [
 
   js.configs.recommended,
 
-  // TypeScript ESLint recommended (flat config format in v8+)
-  ...tsPlugin.configs['flat/recommended'],
-
   // Project-specific config
   {
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+    },
     rules: {
       // Fvtt support
       'no-shadow': 'off',
-      '@typescript-eslint/no-shadow': [
-        'error',
-        { builtinGlobals: true, hoist: 'all', allow: ['event'] },
-      ],
-      // The following rules should be turned on later
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-vars': 'off',
       'no-undef': 'off',
+      'no-unused-vars': 'off',
 
       // Personal preferences
       semi: 'warn',
@@ -62,7 +54,6 @@ module.exports = [
       'no-trailing-spaces': ['error'],
       'eol-last': ['error', 'always'],
       'key-spacing': ['error'],
-      '@typescript-eslint/ban-ts-comment': ['warn'],
       'no-useless-assignment': 'off',
       'preserve-caught-error': 'off',
     },

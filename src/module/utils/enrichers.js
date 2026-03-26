@@ -1,0 +1,350 @@
+import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
+
+/** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
+/** @typedef {import("@client/documents/roll-table.mjs").RollTable} RollTable */
+import { getInitialSettingsFromFormula, TwodsixRollSettings } from "./TwodsixRollSettings";
+
+// Adapted from https://github.com/pafvel/dragonbane/blob/master/modules/journal.js
+
+// Add custom enrichers during init phase
+/**
+ * @returns {void}
+ */
+export function addCustomEnrichers() {
+  CONFIG.TextEditor.enrichers.push(
+    {
+      id: 'displayTable',
+      pattern: /@DisplayTable\[(.+?)\](?:{(.+?)})?/gm,
+      enricher: enrichDisplayTable,
+    },
+    {
+      id: 'rollTable',
+      pattern: /@Table\[(.+?)\](?:{(.+?)})?/gm,
+      enricher: rollTable,
+      onRender: addTableRollListener
+    },
+    {
+      id: 'rollSkill',
+      pattern: /@SkillRoll(?:\[(.*?)\])?(?:{(.*?)})?/gm,
+      enricher: rollSkill,
+      onRender: addSkillRollListener
+    },
+    {
+      id: 'itemList',
+      pattern: /@ItemList\s?(.+)/gm,
+      enricher: itemList,
+      onRender: addItemListTransfer
+    }
+  );
+}
+
+/**
+ * @param {HTMLElement} enrichedContent
+ * @returns {void}
+ */
+function addTableRollListener(enrichedContent) {
+  enrichedContent.querySelector('.table-roll')?.addEventListener('click', handleTableRoll);
+}
+
+/**
+ * @param {HTMLElement} enrichedContent
+ * @returns {void}
+ */
+function addSkillRollListener(enrichedContent) {
+  enrichedContent.querySelector('.skill-roll')?.addEventListener('click', handleSkillRoll);
+}
+
+/**
+ * @param {HTMLElement} enrichedContent
+ * @returns {void}
+ */
+function addItemListTransfer(enrichedContent) {
+  const link = enrichedContent.querySelector('.item-list');
+  if (link) {
+    link.addEventListener('dragstart', (ev) => {
+      ev.dataTransfer.setData('text/plain', JSON.stringify(link.dataset));
+    });
+  }
+}
+
+/**
+ * Convert a rollTable link in a journal entry with a nice format of the table based on roll table name or uuid.
+ * @param {any} match   An array matching the RegEx expression. Match[0] is the unernriched JE string.  Match[1] is the table name or UUID.  Match[2] is the user entered table label.
+ * @param {any} options Options to the roll action
+ * @returns {Promise<HTMLDivElement>} The displayed html element for the enriched RollTable reference
+ */
+async function enrichDisplayTable(match, options) {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
+  const table = findTable(match[1], options);
+  const tableName = match[2] ?? table?.name;
+  const a = document.createElement("div");
+  if (table) {
+    a.classList.add("display-table");
+    const html = displayTable(match[1], table, tableName);
+    a.innerHTML = await foundry.applications.ux.TextEditor.implementation.enrichHTML(html, {secrets: table.isOwner});
+  } else {
+    a.dataset.tableId = match[1];
+    if (match[2]) {
+      a.dataset.tableName = match[2];
+    }
+    a.classList.add("content-link");
+    a.classList.add("broken");
+    a.innerHTML = `<i class="fas fa-unlink"></i> ${tableName}`;
+  }
+  return a;
+}
+
+/**
+ * A rollable link in a journal entry to a RollTable.
+ * @param {string} match   An array matching the RegEx expression. Match[0] is the unernriched JE string.  Match[1] is the table name or UUID.  Match[2] is the user entered table label.
+ * @param {string} options Options to the roll action
+ * @returns {HTMLAnchorElement} The rolltable in an html format
+ */
+async function rollTable(match, options) {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
+  const table = findTable(match[1], options);
+  const tableName = match[2] ?? table?.name;
+  const a = document.createElement("a");
+  if (table) {
+    a.classList.add("inline-roll");
+    a.classList.add("table-roll");
+    a.dataset.tableId = table.uuid;
+    a.dataset.tableName = table.name;
+    a.innerHTML = `<i class="fas fa-dice"></i><i class="fas fa-th-list"></i> ${tableName}`;
+  } else {
+    a.dataset.tableId = match[1];
+    if (match[2]) {
+      a.dataset.tableName = match[2];
+    }
+    a.classList.add("content-link");
+    a.classList.add("broken");
+    a.innerHTML = `<i class="fas fa-unlink"></i> ${tableName}`;
+  }
+  return a;
+}
+
+/**
+ * A rollable link in a skill.
+ * @param {string} match   An array matching the RegEx expression. Match[0] is the unenriched JE string.  Match[1] is the skill name.  Match[2] is the user entered skill label.
+ * @param {string} options Options to the roll action
+ * @returns {HTMLAnchorElement} The rolltable in an html format
+ */
+async function rollSkill(match, options) {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
+  const skillName = match[1] || "";
+  const descrip = match[2] || match[1];
+  const a = document.createElement("a");
+  a.classList.add("inline-roll");
+  a.classList.add("skill-roll");
+  a.dataset.parseString = skillName;
+  a.innerHTML = `<i class="fa-solid fa-dice"></i> ${descrip}`;
+  return a;
+}
+
+/**
+ * A list of items.
+ * @param {string} match   An array matching the RegEx expression. Match[0] is the unenriched JE string.  Match[1] is the delimitted list of items.
+ * @param {string} options Options to the roll action
+ * @returns {HTMLAnchorElement} The rolltable in an html format
+ */
+async function itemList(match, options) {
+  if (options.relativeTo?.getFlag('twodsix', 'disableEnrichment')) {
+    return; // Don't enrich
+  }
+  const itemRef = match[1].split(",").map(str => str.trim());
+  const a = document.createElement("a");
+  a.classList.add("item-list");
+  a.classList.add("content-link");
+  a.setAttribute("draggable", true);
+  a.dataset.parseString = itemRef.join(', ');
+  a.dataset.type = 'ItemList';
+  const list = [];
+  for (const strRef of itemRef) {
+    if (foundry.utils.parseUuid(strRef)?.id) {
+      const tempName = fromUuidSync(strRef)?.name;
+      list.push(tempName ? tempName : `<i class="fa-solid fa-link-slash"></i>`);
+    } else {
+      list.push(strRef);
+    }
+  }
+  a.innerHTML = `<i class="fa-solid fa-box-open"></i> ${list.join(', ')}`;
+  return a;
+}
+
+/**
+ * Convert a rollTable link in a journal entry with a nice format of the table based on roll table name or uuid.
+ * @param {string} uuid   The rolltable UUID.
+ * @param {string} tableName The string name of the table
+ * @returns {string} The rolltable in an html format
+ */
+function displayTable(uuid, table, tableName) {
+  if (!table) {
+    return "";
+  }
+
+  // Rollable table in roll column header
+  let html = `
+  <table>
+      <caption class="table-caption">${tableName}</caption>
+      <tr>
+          <th style="text-transform: uppercase; text-align: left;">@Table[${uuid}]{${table.formula}}</th>
+          <th style="text-align: left;">${game.i18n.localize("TWODSIX.Table.TableResults")}</th>
+      </tr>`;
+
+  for (const result of table.results) {
+    html += `
+      <tr>
+          <td>${result.range[0]}`;
+    if (result.range[1] !== result.range[0]) {
+      html += ` - ${result.range[1]}`;
+    }
+    if (result.documentCollection === "RollTable") {
+      const subTable = findTable(result.text);
+      if (subTable?.uuid !== table.uuid) {
+        let subTableName = result.text;
+        if (subTableName.startsWith(table.name)) {
+          subTableName = subTableName.slice(table.name.length);
+          if (subTableName.startsWith(" - ")) {
+            subTableName = subTableName.slice(3);
+          }
+        }
+        html += `</td>
+                  <td>${subTable?.description} @UUID[RollTable.${result.documentId}]{${subTableName}}</td>
+              </tr>`;
+      } else {
+        html += `</td>
+                  <td>${result.text}</td>
+              </tr>`;
+      }
+    } else if (result.documentCollection === "Item" && result.documentId) {
+      html += `</td>
+              <td>@UUID[Item.${result.documentId}]{${result.text}}</td>
+          </tr>`;
+    } else {
+      html += `</td>
+              <td>${result.text}</td>
+          </tr>`;
+    }
+  }
+  html += `</table>`;
+  return html;
+}
+
+/**
+ * Finds a RollTable document based on either the RollTable name or uuid.
+ * @param {string} tableName   The rolltable UUID or name.
+ * @param {any} options The optional find strings
+ * @returns {RollTable} The RollTable document
+ */
+function findTable(tableName, options) {
+  const table = game.tables.find(i => i.name.toLowerCase() === tableName.toLowerCase()) || fromUuidSync(tableName);
+  const noWarn = options?.noWarnings ?? game.settings.get('twodsix', 'suppressTableWarnings');
+  if (!table) {
+    if (!noWarn) {
+      sendWarning("TWODSIX.Warnings.tableNotFound", {id: tableName});
+    }
+    return null;
+  }
+  if (!(table instanceof RollTable)) {
+    if (!noWarn) {
+      sendWarning("TWODSIX.Warnings.typeMismatch", {id: tableName});
+    }
+    return null;
+  }
+  return table;
+}
+
+/**
+ * @param {string} msg
+ * @param {object} [params]
+ * @returns {void}
+ */
+function sendWarning(msg, params) {
+  if (!params) {
+    return ui.notifications.warn(msg, {localize: true});
+  } else {
+    return ui.notifications.warn(game.i18n.format(msg, params));
+  }
+}
+
+/**
+ * Make a roll from a RollTable from a clickable link in JournalEntry.
+ * @param {Event} event   The click event.
+ * @returns {Promise<void>}
+ */
+export async function handleTableRoll(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  const tableId = event.currentTarget.dataset.tableId;
+  const tableName = event.currentTarget.dataset.tableName;
+  const table = fromUuidSync(tableId) || findTable(tableName);
+  if (table) {
+    if (event.type === "click") { // left click
+      table.draw();
+    } else { // right click
+      table.sheet.render({force: true});
+    }
+  }
+}
+
+/**
+ * Make a roll from a skill formula using a clickable link in JournalEntry.
+ * @param {Event} event   The click event.
+ * @returns {Promise<void>}
+ */
+export async function handleSkillRoll(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  const parseString = event.currentTarget.dataset.parseString;
+  const actorToUse = getControlledTraveller();
+  if (actorToUse) {
+    const parsedValues = getInitialSettingsFromFormula(parseString, actorToUse);
+    if (parsedValues) {
+      if (!parsedValues.skillRoll) {
+        actorToUse.characteristicRoll({
+          rollModifiers: parsedValues.rollModifiers,
+          difficulty: parsedValues.difficulty
+        }, true);
+      } else {
+        const skill = parsedValues.skill;
+        if (event.type === "click") { // left click
+          delete parsedValues.skill;
+          const settings = await TwodsixRollSettings.create(true, parsedValues, skill, undefined, actorToUse);
+          if (!settings.shouldRoll) {
+            return;
+          }
+          await skill.skillRoll(false, settings);
+        } else { // right click
+          skill.sheet.render({force: true});
+        }
+      }
+    }
+  } else {
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
+  }
+}
+
+/**
+ * Finds a Skill Item document based on either the name or uuid.
+ * @param {string} skillName   The skill name or UUID.
+ * @param {any} options The optional find strings
+ * @returns {TwodsixItem} The RollTable document
+ */
+/*function findSkill(skillName:string): TwodsixItem {
+  const actorToUse = getControlledTraveller();
+  if (actorToUse) {
+    let skill = actorToUse.itemTypes.skills?.find(i => i.name.toLowerCase() == skillName.toLowerCase()) || fromUuidSync(skillName);
+    if (!skill) {
+      skill = actorToUse.getUntrainedSkill();
+    }
+    return skill;
+  } else {
+    ui.notifications.warn("TWODSIX.Warnings.NoActorSelected", {localize: true});
+  }
+}*/

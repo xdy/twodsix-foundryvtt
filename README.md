@@ -72,7 +72,7 @@ pnpm run build
 ```
 pnpm run build:watch
 ```
-- Lint TypeScript source:
+- Lint source:
 ```
 pnpm run lint
 ```
