@@ -1,18 +1,18 @@
-§ignoredBuiltDependencies:
-  - '@parcel/watcher'
-  - postinstall-postinstall
+blockExoticSubdeps: true
+ignoredBuiltDependencies:
   - classic-level
   - '@league-of-foundry-developers/foundry-vtt-types'
+  - '@parcel/watcher'
+  - postinstall-postinstall
+minimumReleaseAge: 4320
 onlyBuiltDependencies:
   - esbuild
-blockExoticSubdeps: true
-minimumReleaseAge: 4320
-trustPolicy: no-downgrade
-trustPolicyIgnoreAfter: 10080
 peerDependencyRules:
+  allowedVersions:
+    "@pixi/basis>@pixi/assets": "*"
+    "@pixi/basis>@pixi/core": "*"
   ignoreMissing:
     - "@pixi/compressed-textures"
     - "@pixi/particle-emitter"
-  allowedVersions:
-    "@pixi/basis>@pixi/core": "*"
-    "@pixi/basis>@pixi/assets": "*"
+trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 10080
