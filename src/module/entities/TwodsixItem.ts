@@ -5,14 +5,13 @@ import {TwodsixDiceRoll} from "../utils/TwodsixDiceRoll";
 import {TwodsixRollSettings} from "../utils/TwodsixRollSettings";
 import TwodsixActor from "./TwodsixActor";
 //import {DICE_ROLL_MODES} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/constants.mjs";
-import {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
-import { confirmRollFormula } from "../utils/sheetUtils";
-import { getCharacteristicFromDisplayLabel } from "../utils/utils";
+import type {Consumable, Gear, Skills, UsesConsumables, Weapon} from "../../types/template";
+import {confirmRollFormula, getDamageTypes} from "../utils/sheetUtils";
+import {getCharacteristicFromDisplayLabel} from "../utils/utils";
 import ItemTemplate from "../utils/ItemTemplate";
-import { getDamageTypes } from "../utils/sheetUtils";
-import { TWODSIX } from "../config";
-import { applyAllStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
-import { getTargetStatusModifiers} from "../utils/targetModifiers";
+import {TWODSIX} from "../config";
+import {applyAllStatusEffects, checkForDamageStat} from "../utils/showStatusIcons";
+import {getTargetStatusModifiers} from "../utils/targetModifiers";
 
 /**
  * Extend the base Item entity
@@ -29,7 +28,7 @@ export default class TwodsixItem extends Item {
    * @returns {Promise<boolean|void>}   A return value of false indicates the creation operation should be cancelled.
    * @protected
    */
-  async _preCreate(data, options, user): Promise <void> {
+  async _preCreate(data, options, user):Promise<void> {
     await super._preCreate(data, options, user);
     const updates = {};
     if ((this.img === "" || this.img === foundry.documents.BaseItem.DEFAULT_ICON)) {
@@ -74,7 +73,7 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    if (this.type === 'weapon'  && !Object.keys(data.system ?? {}).includes('damage')) {
+    if (this.type === 'weapon' && !Object.keys(data.system ?? {}).includes('damage')) {
       Object.assign(updates, {"system.damage": game.settings.get('twodsix', 'defaultWeaponDamage')});
     }
 
@@ -89,7 +88,7 @@ export default class TwodsixItem extends Item {
   async _onCreate(data:object, options:object, userId:string) {
     await super._onCreate(data, options, userId);
     if (game.user?.id === userId) {
-      const owningActor: TwodsixActor = this.actor;
+      const owningActor:TwodsixActor = this.actor;
       if (owningActor) {
         const createdHasEffects = !!(data.effects && data.effects.length > 0);
         const createdType = data.type;
@@ -102,10 +101,10 @@ export default class TwodsixItem extends Item {
    * Perform follow-up operations after a Document of this type is deleted.
    * If a `trait` with ActiveEffects is removed from a traveller, ensure encumbrance is re-evaluated.
    */
-  async _onDelete(options: object, userId: string) {
+  async _onDelete(options:object, userId:string) {
     await super._onDelete(options, userId);
     if (game.user?.id === userId) {
-      const owningActor: TwodsixActor = this.actor;
+      const owningActor:TwodsixActor = this.actor;
       if (owningActor) {
         const deletedHasEffects = !!(this.effects?.contents?.length > 0);
         const deletedType = this.type;
@@ -126,7 +125,7 @@ export default class TwodsixItem extends Item {
   async _onUpdate(changed:object, options:object, userId:string) {
     await super._onUpdate(changed, options, userId);
     if (game.user?.id === userId) {
-      const owningActor: TwodsixActor = this.actor;
+      const owningActor:TwodsixActor = this.actor;
       let needsEncumbrance = false;
       let needsWounded = false;
       if (owningActor) {
@@ -148,14 +147,14 @@ export default class TwodsixItem extends Item {
           }
         }
         if (needsEncumbrance || needsWounded) {
-          await applyAllStatusEffects(owningActor, { encumbrance: needsEncumbrance, wounded: needsWounded });
+          await applyAllStatusEffects(owningActor, {encumbrance: needsEncumbrance, wounded: needsWounded});
         }
       }
     }
 
     //Update item tab list if TL Changed
     if (game.settings.get('twodsix', 'showTLonItemsTab')) {
-      if([...TWODSIX.WeightlessItems, "ship_position"].includes(this.type)) {
+      if ([...TWODSIX.WeightlessItems, "ship_position"].includes(this.type)) {
         return;
       } else if (this.isEmbedded || this.inCompendium) {
         return;
@@ -172,7 +171,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} hasEffects
    * @param {string} itemType
    */
-  private static async _maybeTriggerItemStatusChecks(owningActor: TwodsixActor, hasEffects: boolean, itemType: string) {
+  private static async _maybeTriggerItemStatusChecks(owningActor:TwodsixActor, hasEffects:boolean, itemType:string) {
     if (!owningActor || owningActor._applyingStatusEffects) {
       return;
     }
@@ -180,7 +179,7 @@ export default class TwodsixItem extends Item {
     const woundedCheck = game.settings.get('twodsix', 'useWoundedStatusIndicators') && ["traveller", "animal", "robot"].includes(owningActor.type);
     const isRelevantItem = ![...TWODSIX.WeightlessItems, 'ship_position'].includes(itemType);
     if ((hasEffects || isRelevantItem) && (encumbranceCheck || woundedCheck)) {
-      await applyAllStatusEffects(owningActor, { encumbrance: encumbranceCheck, wounded: woundedCheck });
+      await applyAllStatusEffects(owningActor, {encumbrance: encumbranceCheck, wounded: woundedCheck});
     }
   }
 
@@ -202,7 +201,7 @@ export default class TwodsixItem extends Item {
   /**
    * Augment the basic item data with additional dynamic data.
    */
-  prepareDerivedData(): void {
+  prepareDerivedData():void {
     super.prepareDerivedData();
     this.system.canProcess = (this.type === "consumable" && ["processor", "suite"].includes(this.system.subtype));
     if (![...TWODSIX.WeightlessItems, "ship_position"].includes(this.type)) {
@@ -210,8 +209,8 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  private sortByName(a: TwodsixItem, b: TwodsixItem): number {
-    return a.name.localeCompare(b.name, game.i18n.lang, { sensitivity: 'base' });
+  private sortByName(a:TwodsixItem, b:TwodsixItem):number {
+    return a.name.localeCompare(b.name, game.i18n.lang, {sensitivity: 'base'});
   }
 
   /**
@@ -231,7 +230,7 @@ export default class TwodsixItem extends Item {
     if (gear.consumables?.length > 0 && this.actor) {
       const allConsumables = gear.consumables
         .map(id => this.actor.items.get(id))
-        .filter((item): item is TwodsixItem => item != null);
+        .filter((item):item is TwodsixItem => item != null);
       gear.consumableData = allConsumables.filter((item) => !item?.system.isAttachment) ?? [];
       if (gear.consumableData.length > 0) {
         gear.consumableData.sort(this.sortByName);
@@ -278,7 +277,7 @@ export default class TwodsixItem extends Item {
    * @param showInChat Whehter to show attack in chat
    * @param overrideSettings settings to override default roll parameters from Item
    */
-  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true, overrideSettings?: any ):Promise<void> {
+  public async performAttack(attackType:string, showThrowDialog:boolean, rateOfFireCE:number, showInChat = true, overrideSettings?:any):Promise<void> {
     if (this.type !== "weapon") {
       return;
     }
@@ -286,7 +285,7 @@ export default class TwodsixItem extends Item {
 
     // Set skill
     let skill:TwodsixItem | undefined = undefined;
-    if(weapon.skill || overrideSettings?.skillName) {
+    if (weapon.skill || overrideSettings?.skillName) {
       if (overrideSettings?.skillName && overrideSettings?.skillName !== "---") {
         skill = this.actor?.items.getName(overrideSettings?.skillName);
       } else {
@@ -318,14 +317,19 @@ export default class TwodsixItem extends Item {
     if (isAOE) {
       // Switch back to token control after region placement for user convenience
       if (canvas.tokens && typeof canvas.tokens.activate === 'function') {
-        canvas.tokens.activate({ tool: 'select' });
+        canvas.tokens.activate({tool: 'select'});
       }
       // Targeting is now handled within the region placement workflow; no redundant call here.
     }
 
     // Get fire mode parameters
-    const { weaponType, isAutoFull, usedAmmo, numberOfAttacks } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE, skill);
-    const useCTBands: boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
+    const {
+      weaponType,
+      isAutoFull,
+      usedAmmo,
+      numberOfAttacks
+    } = this.getFireModeParams(rateOfFireCE, attackType, tmpSettings, isAOE, skill);
+    const useCTBands:boolean = game.settings.get('twodsix', 'rangeModifierType') === 'CT_Bands';
 
     // Define Targets
     const targetTokens = Array.from(game.user.targets);
@@ -333,7 +337,10 @@ export default class TwodsixItem extends Item {
 
     // Get target Modifiers
     if (targetTokens.length === 0 && useCTBands) {
-      Object.assign(tmpSettings.rollModifiers, {armorModifier: 0, armorLabel: game.i18n.localize('TWODSIX.Ship.Unknown')});
+      Object.assign(tmpSettings.rollModifiers, {
+        armorModifier: 0,
+        armorLabel: game.i18n.localize('TWODSIX.Ship.Unknown')
+      });
     } else if (targetTokens.length === 1) {
       // Get Single Target Dodge Parry information
       const dodgeParryInfo = this.getDodgeParryValues(targetTokens[0], isAOE);
@@ -353,7 +360,10 @@ export default class TwodsixItem extends Item {
 
     //Get weapons range modifier for roll dialog - note, values only apply if single target, otherwise empty or undefined returned.
     if (controlledTokens?.length === 1) {
-      const { rangeModifier, rangeLabel } = this.calculateRangeAndLabel(controlledTokens, targetTokens, weaponType, isAutoFull, tmpSettings);
+      const {
+        rangeModifier,
+        rangeLabel
+      } = this.calculateRangeAndLabel(controlledTokens, targetTokens, weaponType, isAutoFull, tmpSettings);
       Object.assign(tmpSettings.rollModifiers, {
         weaponsRange: rangeModifier,
         rangeLabel: rangeLabel
@@ -392,7 +402,7 @@ export default class TwodsixItem extends Item {
    * Initializes the default settings for an attack roll.
    * @returns {object} The default attack roll settings.
    */
-  private initializeAttackSettings(): any {
+  private initializeAttackSettings():any {
     return {
       rollType: "Normal",
       bonusDamage: "0",
@@ -402,21 +412,22 @@ export default class TwodsixItem extends Item {
       }
     };
   }
+
   /**
    * Consumes ammunition for a weapon attack.
    * @param {TwodsixItem} itemUsed The item being used system data.
    * @param {number} usedAmmo The amount of ammunition to consume.
    * @returns {Promise<boolean>} Whether the ammunition was successfully consumed.
    */
-  private async consumeAmmo(itemUsed: any, usedAmmo: number): Promise<boolean> {
-    const magazine: TwodsixItem | undefined = itemUsed.system.useConsumableForAttack ? this.actor?.items.get(itemUsed.system.useConsumableForAttack) : undefined;
+  private async consumeAmmo(itemUsed:any, usedAmmo:number):Promise<boolean> {
+    const magazine:TwodsixItem | undefined = itemUsed.system.useConsumableForAttack ? this.actor?.items.get(itemUsed.system.useConsumableForAttack) : undefined;
     if (magazine) {
       try {
         await magazine.consume(usedAmmo);
       } catch (err) {
         if (err.name === "NoAmmoError") {
           if (this.type === 'weapon') {
-            ui.notifications.error("TWODSIX.Errors.NoAmmo", { localize: true });
+            ui.notifications.error("TWODSIX.Errors.NoAmmo", {localize: true});
           } else {
             ui.notifications.error("TWODSIX.Errors.EmptyConsumable", {localize: true});
           }
@@ -443,16 +454,16 @@ export default class TwodsixItem extends Item {
    * @returns {Promise<void>} A promise that resolves when all attack rolls and damage handling are complete.
    */
   private async executeAttackRolls(
-    numberOfAttacks: number,
-    targetedTokens: Token[],
-    controlledTokens: Token[],
-    weaponType: string,
-    isAutoFull: boolean,
-    settings: TwodsixRollSettings,
-    showInChat: boolean,
-    isAOE: boolean,
-    attackType: string
-  ): Promise<void> {
+    numberOfAttacks:number,
+    targetedTokens:Token[],
+    controlledTokens:Token[],
+    weaponType:string,
+    isAutoFull:boolean,
+    settings:TwodsixRollSettings,
+    showInChat:boolean,
+    isAOE:boolean,
+    attackType:string
+  ):Promise<void> {
     const targetModifiers = [...settings.rollModifiers.targetModifier];
     Object.assign(settings.flags, {attackType: attackType ?? ""});
     for (let i = 0; i < numberOfAttacks; i++) {
@@ -483,14 +494,14 @@ export default class TwodsixItem extends Item {
    * @param {any[]} targetModifiers - A list of target-specific modifiers to apply.
    */
   private updateRollModifiers(
-    settings: TwodsixRollSettings,
-    targetToken: Token,
-    controlledTokens: Token[],
-    weaponType: string,
-    isAutoFull: boolean,
-    isAOE: boolean,
-    targetModifiers: any[]
-  ): void {
+    settings:TwodsixRollSettings,
+    targetToken:Token,
+    controlledTokens:Token[],
+    weaponType:string,
+    isAutoFull:boolean,
+    isAOE:boolean,
+    targetModifiers:any[]
+  ):void {
     // Update dodge/parry modifiers
     const dodgeParryInfo = this.getDodgeParryValues(targetToken, isAOE);
     Object.assign(settings.rollModifiers, dodgeParryInfo);
@@ -505,19 +516,19 @@ export default class TwodsixItem extends Item {
     if (controlledTokens.length === 1 && targetToken) {
       const targetRange = canvas.grid.measurePath([controlledTokens[0], targetToken]).distance;
       const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
-      Object.assign(settings.rollModifiers, { weaponsRange: rangeData.rangeModifier });
-      Object.assign(settings, { rollType: rangeData.rollType });
+      Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
+      Object.assign(settings, {rollType: rangeData.rollType});
     }
 
     // Update target modifiers based on statuses or overrides
     if (targetModifiers.length > 0) {
-      Object.assign(settings.rollModifiers, { targetModifier: targetModifiers });
+      Object.assign(settings.rollModifiers, {targetModifier: targetModifiers});
     } else {
-      Object.assign(settings.rollModifiers, { targetModifier: getTargetStatusModifiers(targetToken.actor) });
+      Object.assign(settings.rollModifiers, {targetModifier: getTargetStatusModifiers(targetToken.actor)});
     }
   }
 
-  private getAppliedStatuses(targetTokens: Token[]): any[] {
+  private getAppliedStatuses(targetTokens:Token[]):any[] {
     if (targetTokens.length === 1) {
       return getTargetStatusModifiers(targetTokens[0].actor);
     }
@@ -534,11 +545,11 @@ export default class TwodsixItem extends Item {
    * @param {boolean} showInChat Whehter to show attack in chat
    * @returns {Promise<void>}
    */
-  private async handleDamageRoll(roll: TwodsixDiceRoll, settings: TwodsixRollSettings, targetTokens: Token[], attackIndex: number, isAOE: boolean, showInChat:boolean): Promise<void> {
+  private async handleDamageRoll(roll:TwodsixDiceRoll, settings:TwodsixRollSettings, targetTokens:Token[], attackIndex:number, isAOE:boolean, showInChat:boolean):Promise<void> {
     const addEffect = game.settings.get('twodsix', 'addEffectToDamage');
     let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
     if (settings.bonusDamage !== "0" && settings.bonusDamage !== "") {
-      totalBonusDamage += (addEffect ? ` + `: ``) + `${settings.bonusDamage}`;
+      totalBonusDamage += (addEffect ? ` + ` : ``) + `${settings.bonusDamage}`;
     }
 
     const damagePayload = await this.rollDamage(settings.messageMode, totalBonusDamage, showInChat, false, roll.effect) || null;
@@ -562,22 +573,22 @@ export default class TwodsixItem extends Item {
    * @param {TwodsixItem} skill Skill used for attack
    * @returns {object} { weaponType, isAutoFull, usedAmmo, numberOfAttacks }
    */
-  private getFireModeParams( rateOfFireCE: number, attackType: string, tmpSettings: object, isAOE:boolean, skill:TwodsixItem): object {
+  private getFireModeParams(rateOfFireCE:number, attackType:string, tmpSettings:object, isAOE:boolean, skill:TwodsixItem):object {
     const ruleSet = game.settings.get('twodsix', 'ruleset');
     const weapon:Weapon = <Weapon>this.system;
     let numberOfAttacks = 1;
     let bonusDamage = "0";
     let isAutoFull = false;
-    let skillLevelMax: number | undefined = undefined;
+    let skillLevelMax:number | undefined = undefined;
     const rof = parseInt(weapon.rateOfFire, 10);
-    const rateOfFire: number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
+    const rateOfFire:number = rateOfFireCE ?? (!isNaN(rof) ? rof : 1);
     if (attackType !== 'single' && !rateOfFire) {
       ui.notifications.error("TWODSIX.Errors.NoROFForAttack", {localize: true});
     }
 
     let usedAmmo = rateOfFire;
     let weaponTypeOverride = "";
-    const autoFireRules: string = game.settings.get('twodsix', 'autofireRulesUsed');
+    const autoFireRules:string = game.settings.get('twodsix', 'autofireRulesUsed');
 
     switch (attackType) {
       case "single":
@@ -604,19 +615,19 @@ export default class TwodsixItem extends Item {
         }
         break;
       case "burst-attack-dm":
-        Object.assign(tmpSettings.rollModifiers, { rof: TwodsixItem.burstAttackDM(rateOfFire) });
+        Object.assign(tmpSettings.rollModifiers, {rof: TwodsixItem.burstAttackDM(rateOfFire)});
         break;
       case "burst-bonus-damage":
         bonusDamage = TwodsixItem.burstBonusDamage(rateOfFire);
         break;
       case "double-tap":
         //Need to assign as bonus damage or rof bonus depending on rules
-        if ( ['CD', 'CLU'].includes(ruleSet)) {
+        if (['CD', 'CLU'].includes(ruleSet)) {
           bonusDamage = "1d6";
         } else if (['AC', 'CEL'].includes(ruleSet)) {
           bonusDamage = "1";
         } else {
-          Object.assign(tmpSettings.rollModifiers, { rof: 1 });
+          Object.assign(tmpSettings.rollModifiers, {rof: 1});
         }
         usedAmmo = 2;
         break;
@@ -627,13 +638,13 @@ export default class TwodsixItem extends Item {
       case "fan":
         numberOfAttacks = 3;
         usedAmmo = numberOfAttacks;
-        Object.assign(tmpSettings.rollModifiers, { rof: skill?.system.value > 2 ? -1 : -2 });
+        Object.assign(tmpSettings.rollModifiers, {rof: skill?.system.value > 2 ? -1 : -2});
         break;
     }
-    Object.assign(tmpSettings, { bonusDamage: bonusDamage });
-    Object.assign(tmpSettings.rollModifiers, { skillLevelMax: skillLevelMax });
-    const weaponType: string = weaponTypeOverride || weapon.rangeBand;
-    return { weaponType, isAutoFull, usedAmmo, numberOfAttacks };
+    Object.assign(tmpSettings, {bonusDamage: bonusDamage});
+    Object.assign(tmpSettings.rollModifiers, {skillLevelMax: skillLevelMax});
+    const weaponType:string = weaponTypeOverride || weapon.rangeBand;
+    return {weaponType, isAutoFull, usedAmmo, numberOfAttacks};
   }
 
   /**
@@ -644,7 +655,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
    * @returns {object} {rangeModifier: rangeModifier, rollType: rollType}
    */
-  public getRangeModifier(range:number, weaponBand: string, isAutoFull:boolean): object {
+  public getRangeModifier(range:number, weaponBand:string, isAutoFull:boolean):object {
     let rangeModifier = 0;
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
@@ -653,12 +664,12 @@ export default class TwodsixItem extends Item {
     // Validate weapon range
     if (typeof this.system.range !== 'string') {
       // check for bad migration
-      if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)){
+      if (typeof this.system.range === 'number' && !['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(rangeModifierType)) {
         console.warn("Bad weapon system.range value - should be string");
       } else {
         console.warn("Invalid weapon system.range value:", this.system.range);
       }
-      return { rangeModifier: 0, rollType: 'Normal' };
+      return {rangeModifier: 0, rollType: 'Normal'};
     }
 
     const rangeValues = this.system.range?.split('/', 2).map((s:string) => parseFloat(s));
@@ -680,7 +691,7 @@ export default class TwodsixItem extends Item {
       // Handle within melee range
       if (range > (rangeModifierType === 'singleBand' ? rangeValues[0] : rangeValues[1] ?? rangeValues[0])) {
         rangeModifier = INFEASIBLE;
-      } else if (game.settings.get('twodsix', 'termForAdvantage').toLowerCase() === this.system.meleeRangeModifier.toLowerCase()){
+      } else if (game.settings.get('twodsix', 'termForAdvantage').toLowerCase() === this.system.meleeRangeModifier.toLowerCase()) {
         rollType = 'Advantage';
       } else if (game.settings.get('twodsix', 'termForDisadvantage').toLowerCase() === this.system.meleeRangeModifier.toLowerCase()) {
         rollType = 'Disadvantage';
@@ -726,7 +737,7 @@ export default class TwodsixItem extends Item {
       if (magazine?.system.ammoRangeModifier !== "" && magazine?.system.ammoRangeModifier !== "0") {
         const modifierVal = parseFloat(magazine.system.ammoRangeModifier);
         if (!isNaN(modifierVal)) {
-          returnValue =  1 + (modifierVal / 100);
+          returnValue = 1 + (modifierVal / 100);
         }
       }
     }
@@ -739,7 +750,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} isAOE Is an area-of-effect attack (cannot be dodged)
    * @returns {object} {dodgeParry: dodgeParryModifier, dodgeParryLabel: skillName}
    */
-  public getDodgeParryValues(target: Token, isAOE:boolean): object {
+  public getDodgeParryValues(target:Token, isAOE:boolean):object {
     let dodgeParryModifier = 0;
     let skillName = "";
     if (game.settings.get("twodsix", "useDodgeParry") && target && !isAOE) {
@@ -755,10 +766,10 @@ export default class TwodsixItem extends Item {
    * A method to determine whether weapon is a melee weapon.
    * @returns {boolean} Whether item is a melee weapon
    */
-  public isMeleeWeapon(): boolean {
+  public isMeleeWeapon():boolean {
     if (this.type !== 'weapon') {
       return false;
-    } else if (this.system.weaponType.toLowerCase()=== 'melee' || this.system.range.toLowerCase() === 'melee') {
+    } else if (this.system.weaponType.toLowerCase() === 'melee' || this.system.range.toLowerCase() === 'melee') {
       //explicit override
       return true;
     } else {
@@ -792,20 +803,20 @@ export default class TwodsixItem extends Item {
    * @param {number} rateOfFire The weapon rate of fire (needed for CU)
    * @returns {number} The DM for the actor firing the weapon used
    */
-  public getWeaponsHandlingMod(rateOfFire:number): number {
+  public getWeaponsHandlingMod(rateOfFire:number):number {
     // Handle CU special case of auto fire affecting recoil
     let rofOffset = 0;
     if (game.settings.get('twodsix', 'ruleset') === 'CU') {
-      if ( rateOfFire === 4) {
+      if (rateOfFire === 4) {
         rofOffset = 1;
-      } else if (rateOfFire >= 10 ) {
+      } else if (rateOfFire >= 10) {
         rofOffset = 2;
       }
     }
 
     let weaponHandlingMod = 0;
     const re = new RegExp(/^(\w+)\s+([0-9]+)-?\/(.+)\s+([0-9]+)\+?\/(.+)/gm);
-    const parsedResult: RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
+    const parsedResult:RegExpMatchArray | null = re.exec(this.system.handlingModifiers);
     if (parsedResult) {
       const checkCharacteristic = getCharacteristicFromDisplayLabel(parsedResult[1], this.actor);
       if (checkCharacteristic) {
@@ -827,7 +838,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} showInChat Whether to show attack in chat
    * @returns {TwodsixDiceRoll | void} Results of dice roll, if made
    */
-  public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat: boolean = true):Promise<TwodsixDiceRoll | void> {
+  public async skillRoll(showThrowDialog:boolean, tmpSettings?:TwodsixRollSettings, showInChat:boolean = true):Promise<TwodsixDiceRoll | void> {
     let skill:TwodsixItem | null = null;
     let item:TwodsixItem | undefined;
     let workingActor:TwodsixActor = this.actor;
@@ -839,7 +850,7 @@ export default class TwodsixItem extends Item {
       item = undefined;
     } else if (this.type === "spell") {
       const skillList = `${game.settings.get("twodsix", "sorcerySkill")}|` + this.system?.associatedSkillName;
-      skill =  <TwodsixItem>(workingActor.getBestSkill(skillList, false));
+      skill = <TwodsixItem>(workingActor.getBestSkill(skillList, false));
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       item = this;
     } else if (this.type === "component") {
@@ -855,7 +866,7 @@ export default class TwodsixItem extends Item {
 
     if (!skill) {
       skill = workingActor?.getUntrainedSkill();
-      if(!skill) {
+      if (!skill) {
         ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
         return;
       }
@@ -864,12 +875,12 @@ export default class TwodsixItem extends Item {
     //TODO Refactor. This is an ugly fix for weapon attacks, when settings are first created, then skill rolls are made, creating new settings, so multiplying bonuses.
     if (!tmpSettings) {
       const workingSettings = {};
-      if(this.type === "spell") {
+      if (this.type === "spell") {
         // Spells under SOC and Barbaric have a sequential difficulty class based on spell level.  Create an override to system difficulties.
         Object.assign(workingSettings, {difficulties: {}});
         for (let i = 1; i <= game.settings.get("twodsix", "maxSpellLevel"); i++) {
           const levelKey = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + i;
-          Object.assign(workingSettings.difficulties, {[levelKey]: {mod: -i, target: i+6}});
+          Object.assign(workingSettings.difficulties, {[levelKey]: {mod: -i, target: i + 6}});
         }
         const level = game.i18n.localize("TWODSIX.Items.Spells.Level") + " " + (this.system.value > Object.keys(workingSettings.difficulties).length ? Object.keys(workingSettings.difficulties).length : this.system.value);
         Object.assign(workingSettings, {difficulty: workingSettings.difficulties[level]});
@@ -908,14 +919,14 @@ export default class TwodsixItem extends Item {
    * @param {number} diceRollEffect Results effect of psionic skill check
    * @returns {number|undefined} The number of psi points used or undefined if selection cancelled
    */
-  async processPsiPoints(diceRollEffect:number): Promise<number|undefined> {
+  async processPsiPoints(diceRollEffect:number):Promise<number | undefined> {
     let psiCost:number;
-    if(diceRollEffect < 0) {
+    if (diceRollEffect < 0) {
       psiCost = Math.min(1, this.system.psiCost);
     } else {
       try {
         psiCost = await foundry.applications.api.DialogV2.prompt({
-          window: { title: "TWODSIX.Items.Psionics.PsiCost" },
+          window: {title: "TWODSIX.Items.Psionics.PsiCost"},
           content: `<input name="psiCost" value="${this.system.psiCost}" type="number" min="1" max="10" step="1" autofocus>`,
           ok: {
             label: "TWODSIX.Items.Psionics.UsePoints",
@@ -927,7 +938,7 @@ export default class TwodsixItem extends Item {
         return;
       }
 
-      if(isNaN(psiCost) || psiCost <= 0) {
+      if (isNaN(psiCost) || psiCost <= 0) {
         ui.notifications.warn("TWODSIX.Warnings.PsiUsageGTZero", {localize: true});
         return;
       }
@@ -946,7 +957,7 @@ export default class TwodsixItem extends Item {
     if (this.system.features) {
       msg += `<div>${game.i18n.localize("TWODSIX.Items.Component.Features")}: ${this.system.features}</div>`;
     }
-    ChatMessage.create({ content: msg, speaker: ChatMessage.getSpeaker({ actor: this.actor }) });
+    ChatMessage.create({content: msg, speaker: ChatMessage.getSpeaker({actor: this.actor})});
   }
 
   /**
@@ -956,7 +967,7 @@ export default class TwodsixItem extends Item {
    * @param {number} rollEffect the effect of the skill roll,used for damage calcs if necessary
    * @private
    */
-  private async sendPsiUseToChat(pointsUsed:number, messageMode:string , rollEffect:number=0):Promise<void> {
+  private async sendPsiUseToChat(pointsUsed:number, messageMode:string, rollEffect:number = 0):Promise<void> {
     const picture = this.img;
     const capType = game.i18n.localize(`TYPES.Item.${this.type}`).capitalize();
     let msg = `<div style="display: inline-flex;"><img src="${picture}" alt="" class="chat-image"></img><span style="padding-left: 1ch;">`
@@ -977,11 +988,11 @@ export default class TwodsixItem extends Item {
     const messageContent = {
       content: msg,
       flags: flags,
-      speaker: ChatMessage.getSpeaker({ actor: this.actor })
+      speaker: ChatMessage.getSpeaker({actor: this.actor})
     };
 
     if (messageMode !== 'public') {
-      const showToUsers = game.users.filter((user)=> user.isGM || (game.userId === user.id));
+      const showToUsers = game.users.filter((user) => user.isGM || (game.userId === user.id));
       Object.assign(messageContent, {whisper: showToUsers});
     }
 
@@ -993,7 +1004,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  public async doSkillTalentRoll(showThrowDiag: boolean, tmpSettings?:TwodsixRollSettings): Promise<void> {
+  public async doSkillTalentRoll(showThrowDiag:boolean, tmpSettings?:TwodsixRollSettings):Promise<void> {
     if (this.type === "psiAbility") {
       if (['core', 'alternate'].includes(game.settings.get('twodsix', 'showAlternativeCharacteristics'))) {
         ui.notifications.warn("TWODSIX.Warnings.NotUsingPsiStrength", {localize: true});
@@ -1010,8 +1021,8 @@ export default class TwodsixItem extends Item {
    * @param {boolean} showTrowDiag  Whether to show the throw dialog or not
    * @private
    */
-  private async doPsiAction(showThrowDiag: boolean): Promise<void> {
-    let psiCost: number|undefined;
+  private async doPsiAction(showThrowDiag:boolean):Promise<void> {
+    let psiCost:number | undefined;
     let rollEffect = 0;
     let messageMode = "gm";
     if ((<TwodsixActor>this.actor).system.characteristics.psionicStrength.current <= 0) {
@@ -1035,8 +1046,8 @@ export default class TwodsixItem extends Item {
         await this.sendPsiUseToChat(psiCost, messageMode, rollEffect);
 
         // Roll damage and post, if necessary
-        if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit") && rollEffect >=0 ) {
-          const bonusDamage:string = game.settings.get("twodsix", "addEffectToDamage") && rollEffect !== 0 ?  ` ${rollEffect}` : ``;
+        if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit") && rollEffect >= 0) {
+          const bonusDamage:string = game.settings.get("twodsix", "addEffectToDamage") && rollEffect !== 0 ? ` ${rollEffect}` : ``;
           const damagePayload = await this.rollDamage(messageMode || game.settings.get('core', 'messageMode'), bonusDamage, true, showThrowDiag, rollEffect);
           if (damagePayload?.damageValue > 0) {
             const targetTokens = Array.from(game.user.targets);
@@ -1097,14 +1108,14 @@ export default class TwodsixItem extends Item {
       let shipWeaponType = "";
       let shipWeaponLabel = "";
       const isArmament = (this.type === 'component' && ['armament', 'ammo'].includes(this.system?.subtype));
-      if ( isArmament) {
+      if (isArmament) {
         shipWeaponType = this.system.shipWeaponType || "";
-        shipWeaponLabel = TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')][this.system.shipWeaponType]|| "unknown";
+        shipWeaponLabel = TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')][this.system.shipWeaponType] || "unknown";
       }
 
       const contentData = {};
       const flavor = `${game.i18n.localize("TWODSIX.Rolls.DamageUsing")} ${this.name}`;
-      const canBeBlocked = game.settings.get('twodsix', 'ruleset') === 'CU'  && damageType === 'melee';
+      const canBeBlocked = game.settings.get('twodsix', 'ruleset') === 'CU' && damageType === 'melee';
       const canBeParried = canBeBlocked && ['personal', 'close'].includes(this.system.rangeBand);
       Object.assign(contentData, {
         flavor: flavor,
@@ -1250,7 +1261,7 @@ export default class TwodsixItem extends Item {
    * A function to resolve autofire mode when a weapon is fired without selecting mode.
    * Through an NPC sheet or macro, typically.
    */
-  public async resolveUnknownAutoMode(showThrowDialog:boolean=true, tmpSettings?:any) {
+  public async resolveUnknownAutoMode(showThrowDialog:boolean = true, tmpSettings?:any) {
     let attackType = 'single';
     let rof:number;
     const modes = ((<Weapon>this.system).rateOfFire ?? "").split(/[-/]/);
@@ -1302,11 +1313,11 @@ export default class TwodsixItem extends Item {
     }
   }
 
-  public shouldShowCELAutoFireDialog(): boolean {
-    const rateOfFire: string = (<Weapon>this.system).rateOfFire;
+  public shouldShowCELAutoFireDialog():boolean {
+    const rateOfFire:string = (<Weapon>this.system).rateOfFire;
     return (
       /*(game.settings.get('twodsix', 'autofireRulesUsed') === TWODSIX.RULESETS.CEL.key) && */
-      (Number(rateOfFire) > 1  || (this.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')))
+      (Number(rateOfFire) > 1 || (this.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')))
     );
   }
 
@@ -1328,9 +1339,10 @@ export default class TwodsixItem extends Item {
     if (consumableLeft >= 0) {
       await this.update({"system.currentCount": consumableLeft}, {});
     } else {
-      throw { name: 'NoAmmoError' };
+      throw {name: 'NoAmmoError'};
     }
   }
+
   /**
    * A function refill selected consumbles from inventory.
    */
@@ -1354,6 +1366,7 @@ export default class TwodsixItem extends Item {
       }
     }
   }
+
   /**
    * A method for returning the weapons-armor modifier based on target and weapon type used - Classic Traveller
    * @param {Token} targetToken Token for target
@@ -1361,12 +1374,12 @@ export default class TwodsixItem extends Item {
    * @param {boolean} isAuto is full auto fire
    * @returns {object} Object of {armorModifier:number, armorLabel:string}
    */
-  public getWeaponArmorValues(targetToken:Token, weaponType:string, isAuto:boolean): object {
+  public getWeaponArmorValues(targetToken:Token, weaponType:string, isAuto:boolean):object {
     let armorModifier = 0;
     let armorLabel = "";
     if (weaponType !== 'none') {
       const targetActor = targetToken?.actor;
-      const lookupRow = weaponType === 'custom' ? this.getCustomArmorMod(isAuto): CT_Armor_Table[weaponType];
+      const lookupRow = weaponType === 'custom' ? this.getCustomArmorMod(isAuto) : CT_Armor_Table[weaponType];
       if (targetActor && lookupRow) {
         if (targetActor.type === 'traveller') {
           const wornArmor = targetActor.itemTypes.armor.filter((armor:TwodsixItem) => armor.system.equipped === 'equipped');
@@ -1393,7 +1406,7 @@ export default class TwodsixItem extends Item {
       }
     }
     armorLabel = game.i18n.localize(armorLabel !== "" ? TWODSIX.CT_ARMOR_TYPES[armorLabel] : 'TWODSIX.Ship.Unknown');
-    return {armorModifier: armorModifier, armorLabel: armorLabel };
+    return {armorModifier: armorModifier, armorLabel: armorLabel};
   }
 
   /**
@@ -1412,6 +1425,7 @@ export default class TwodsixItem extends Item {
       combat: parseCustomCTValue(this.system.customCT.armor.combat, isAuto)
     };
   }
+
   /**
    * A method for returning range modifier based on RangeTable constant
    * @param {string} weaponBand   Weapon's range description, (.e.g., close quarters, thrown, rifle)
@@ -1420,7 +1434,7 @@ export default class TwodsixItem extends Item {
    * @param {boolean} isAuto Is full automatic fire
    * @returns {number} Range Modifier
    */
-  public getRangeBandModifier(weaponBand: string, targetDistanceBand: string, isAuto:boolean, range:number): number {
+  public getRangeBandModifier(weaponBand:string, targetDistanceBand:string, isAuto:boolean, range:number):number {
     const rangeSettings = game.settings.get('twodsix', 'rangeModifierType');
     let returnVal = 0;
     if (targetDistanceBand !== 'unknown' && weaponBand !== 'none') {
@@ -1446,7 +1460,7 @@ export default class TwodsixItem extends Item {
             break;
           }
           case 'CT_Bands': {
-            const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto): CT_Range_Table[weaponBand];
+            const lookupRow = (weaponBand === 'custom') ? this.getCustomRangeMod(isAuto) : CT_Range_Table[weaponBand];
             returnVal = lookupRow[targetDistanceBand] || 0;
             break;
           }
@@ -1475,6 +1489,7 @@ export default class TwodsixItem extends Item {
       veryLong: parseCustomCTValue(this.system.customCT.range.veryLong, isAuto)
     };
   }
+
   /**
    * A method for drawing a measured template for an item action - accounting for consumables
    * having attachements with AOE's
@@ -1483,12 +1498,12 @@ export default class TwodsixItem extends Item {
     let returnValue = false;
     const magazine:TwodsixItem | undefined = this.system.useConsumableForAttack ? this.actor?.items.get(this.system.useConsumableForAttack) : undefined;
     const itemForAOE:TwodsixItem = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
-    if ( itemForAOE.system.target?.type !== "none" ) {
+    if (itemForAOE.system.target?.type !== "none") {
       returnValue = true;
       try {
         const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
         if (itemTemplate) {
-          const regionDoc: RegionDocument = await itemTemplate.drawPreview();
+          const regionDoc:RegionDocument = await itemTemplate.drawPreview();
           if (regionDoc && game.settings.get('twodsix', 'autoTargetAOE')) {
             ItemTemplate.targetTokensForPlacedRegion(regionDoc);
           }
@@ -1497,7 +1512,7 @@ export default class TwodsixItem extends Item {
         }
       } catch (err) {
         ui.notifications.error("TWODSIX.Errors.CantPlaceTemplate", {localize: true});
-        console.log ("Template error: ", err);
+        console.log("Template error: ", err);
       }
     }
     return returnValue;
@@ -1513,10 +1528,13 @@ export default class TwodsixItem extends Item {
     if (foundry.utils.hasProperty(this.system, key)) {
       if (Roll.validate(this.system[key])) {
         try {
-          const replacedFormula = Roll.replaceFormulaData(this.system[key], this.actor?.getRollData(), {missing: "0", warn: true});
+          const replacedFormula = Roll.replaceFormulaData(this.system[key], this.actor?.getRollData(), {
+            missing: "0",
+            warn: true
+          });
           returnValue += replacedFormula ? Roll.safeEval(replacedFormula) : 0;
         } catch (error) {
-          console.log ('Invalid formula', error);
+          console.log('Invalid formula', error);
           ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidFormula") + this.name);
         }
       }
@@ -1536,12 +1554,12 @@ export default class TwodsixItem extends Item {
    * @property {string} rangeLabel - The label describing the range of the attack.
    */
   private calculateRangeAndLabel(
-    controlledTokens: Token[],
-    targetTokens: Token[],
-    weaponType: string,
-    isAutoFull: boolean,
-    tmpSettings: any
-  ): { rangeModifier: number; rangeLabel: string } {
+    controlledTokens:Token[],
+    targetTokens:Token[],
+    weaponType:string,
+    isAutoFull:boolean,
+    tmpSettings:any
+  ):{ rangeModifier:number; rangeLabel:string } {
     let rangeLabel = "";
     let rangeModifier = 0;
     const isQualitativeBands = ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
@@ -1553,7 +1571,7 @@ export default class TwodsixItem extends Item {
       rangeModifier = rangeData.rangeModifier;
 
       if (rangeData.rollType !== tmpSettings.rollType) {
-        Object.assign(tmpSettings, { rollType: tmpSettings.rollType === 'Normal' ? rangeData.rollType : 'Normal' });
+        Object.assign(tmpSettings, {rollType: tmpSettings.rollType === 'Normal' ? rangeData.rollType : 'Normal'});
       }
 
       if (isQualitativeBands) {
@@ -1564,10 +1582,10 @@ export default class TwodsixItem extends Item {
         const ammoMultiplier = this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
         const effectiveRange = (<string>this.system.range)
           .split("/")
-          .map((str) => (parseFloat(str) * ammoMultiplier).toLocaleString(game.i18n.lang, { maximumFractionDigits: 1 }))
+          .map((str) => (parseFloat(str) * ammoMultiplier).toLocaleString(game.i18n.lang, {maximumFractionDigits: 1}))
           .join('/')
-          .replace('NaN', game.i18n.localize((this.isMeleeWeapon() ? "TWODSIX.DamageType.Melee": "TWODSIX.Ship.Unknown")));
-        rangeLabel = `${effectiveRange} @ ${targetRange.toLocaleString(game.i18n.lang, { maximumFractionDigits: 1 })}${canvas.scene.grid.units}`;
+          .replace('NaN', game.i18n.localize((this.isMeleeWeapon() ? "TWODSIX.DamageType.Melee" : "TWODSIX.Ship.Unknown")));
+        rangeLabel = `${effectiveRange} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})}${canvas.scene.grid.units}`;
       }
     } else if (targetTokens.length === 0) {
       rangeLabel = isQualitativeBands && this.system.rangeBand === 'none'
@@ -1575,14 +1593,14 @@ export default class TwodsixItem extends Item {
         : game.i18n.localize("TWODSIX.Ship.Unknown");
     }
 
-    return { rangeModifier, rangeLabel };
+    return {rangeModifier, rangeLabel};
   }
 
   /**
    * Checks if this component is a J-Drive (Jump Drive) based on name and label settings.
    * @returns {boolean}
    */
-  isJDriveComponent(): boolean {
+  isJDriveComponent():boolean {
     if (this.type !== "component") {
       return false;
     }
@@ -1598,7 +1616,7 @@ export default class TwodsixItem extends Item {
    * Checks if this component is an M-Drive (Maneuver Drive) based on name and label settings.
    * @returns {boolean}
    */
-  isMDriveComponent(): boolean {
+  isMDriveComponent():boolean {
     if (this.type !== "component") {
       return false;
     }
@@ -1621,7 +1639,7 @@ function parseCustomCTValue(inputString:string, isAuto:boolean):number {
   const parsedInput = inputString.split("/");
   let returnVal = 0;
   if (parsedInput.length > 0) {
-    returnVal = parseInt(parsedInput[isAuto? 1:0]);
+    returnVal = parseInt(parsedInput[isAuto ? 1 : 0]);
     if (isNaN(returnVal) && isAuto) { // base case where no slash and auto is default, e.g. submachinegun
       returnVal = parseInt(parsedInput[0]);
     }
@@ -1672,6 +1690,7 @@ export async function onRollDamage(ev:Event, target:HTMLElement):Promise<void> {
   await item.rollDamage(item.type === 'psiAbility' ? "gmroll" : game.settings.get('core', 'messageMode'), bonusDamageFormula, true, showFormulaDialog);
 
 }
+
 /**
  * A function for simplifying the dice results of a multipart roll formula.
  *
@@ -1693,20 +1712,23 @@ export function getDiceResults(inputRoll:Roll) {
  * @param {TwodsixItem } item     Item making the roll
  * @returns {number}              The resulting roll value.
  */
-export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem): number {
+export function getValueFromRollFormula(rollFormula:string, item:TwodsixItem):number {
   let returnValue = 0;
   if (Roll.validate(rollFormula)) {
     try {
-      returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData(), {missing: "0", warn: true})) ?? 0;
+      returnValue = Roll.safeEval(Roll.replaceFormulaData(rollFormula, item.actor?.getRollData(), {
+        missing: "0",
+        warn: true
+      })) ?? 0;
     } catch (error) {
-      console.log ('Invalid formula', error);
+      console.log('Invalid formula', error);
       ui.notifications.warn(game.i18n.localize("TWODSIX.Warnings.InvalidFormula") + item.name);
     }
   }
   return returnValue;
 }
 
-async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
+async function promptForCELROF(weapon:TwodsixItem):Promise<string> {
   if (weapon.system.doubleTap && game.settings.get('twodsix', 'ShowDoubleTap')) {
     return await foundry.applications.api.DialogV2.wait({
       window: {title: "TWODSIX.Dialogs.ROFPickerTitle"},
@@ -1748,10 +1770,10 @@ async function promptForCELROF(weapon: TwodsixItem): Promise<string> {
   }
 }
 
-async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
+async function promptAndAttackForCE(modes:string[], item:TwodsixItem):void {
   const buttons = [];
 
-  for ( const mode of modes) {
+  for (const mode of modes) {
     const number = Number(mode);
     const attackDM = TwodsixItem.burstAttackDM(number);
     const bonusDamage = TwodsixItem.burstBonusDamage(number);
@@ -1765,8 +1787,8 @@ async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
           item.performAttack("single", true, 1);
         }
       });
-    } else if (number > 1){
-      let key = game.i18n.localize("TWODSIX.Rolls.AttackDM")+ ' +' + attackDM;
+    } else if (number > 1) {
+      let key = game.i18n.localize("TWODSIX.Rolls.AttackDM") + ' +' + attackDM;
       buttons.push({
         action: `burst${number}`,
         label: key,
@@ -1794,7 +1816,7 @@ async function promptAndAttackForCE(modes: string[], item: TwodsixItem):void {
   });
 }
 
-async function promptForCTROF(modes: string[]): Promise<string> {
+async function promptForCTROF(modes:string[]):Promise<string> {
   if (parseInt(modes[0]) === 0) {
     return 'auto-full';
   } else {
@@ -1817,7 +1839,7 @@ async function promptForCTROF(modes: string[]): Promise<string> {
   }
 }
 
-async function promptForRIDERROF(weapon: TwodsixItem): Promise<string> {
+async function promptForRIDERROF(weapon:TwodsixItem):Promise<string> {
   const buttons = [{
     action: "single",
     label: "TWODSIX.Dialogs.ROFSingle",
@@ -1851,14 +1873,14 @@ async function promptForRIDERROF(weapon: TwodsixItem): Promise<string> {
  * @param {number} range    The range in meters
  * @returns {string}        The resulting range band
  */
-function getRangeBand(range: number):string {
+function getRangeBand(range:number):string {
   //Convert ft to m if necessay
   const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
   const units = canvas.scene.grid.units.toLowerCase();
   if (units === 'ft' || units === 'feet') {
     range /= 3.28;
   }
-  if ( rangeModifierType === 'CE_Bands') {
+  if (rangeModifierType === 'CE_Bands') {
     if (range < 1.5) {
       return 'personal';
     } else if (range <= 3) {
@@ -1892,7 +1914,7 @@ function getRangeBand(range: number):string {
     } else {
       return 'unknown';
     }
-  } else if ( rangeModifierType === 'CU_Bands') {
+  } else if (rangeModifierType === 'CU_Bands') {
     if (range < 1.5) {
       return 'personal';
     } else if (range <= 3) {
@@ -1919,92 +1941,132 @@ function getRangeBand(range: number):string {
 // CE SRD Range Table Cepheus Engine SRD Table https://www.orffenspace.com/cepheus-srd/personal-combat.html#range.
 const INFEASIBLE = -99;
 const CE_Range_Table = Object.freeze({
-  closeQuarters: { personal: 0, close: -2, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  extendedReach: { personal: -2, close: 0, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  thrown: { personal: INFEASIBLE, close: 0, short: -2, medium: -2, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  pistol: { personal: -2, close: 0, short: 0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  rifle: { personal: -4, close: -2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4 },
-  shotgun: { personal: -2, close: 0, short: -2, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  assaultWeapon: { personal: -2, close: 0, short: 0, medium: 0, long: -2, veryLong: -4, distant: -6 },
-  rocket: { personal: -4, close: -2, short: -2, medium: 0, long: 0, veryLong: -2, distant: -4 }
+  closeQuarters: {
+    personal: 0,
+    close: -2,
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  extendedReach: {
+    personal: -2,
+    close: 0,
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  thrown: {
+    personal: INFEASIBLE,
+    close: 0,
+    short: -2,
+    medium: -2,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  pistol: {personal: -2, close: 0, short: 0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE},
+  rifle: {personal: -4, close: -2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4},
+  shotgun: {personal: -2, close: 0, short: -2, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE},
+  assaultWeapon: {personal: -2, close: 0, short: 0, medium: 0, long: -2, veryLong: -4, distant: -6},
+  rocket: {personal: -4, close: -2, short: -2, medium: 0, long: 0, veryLong: -2, distant: -4}
 });
 
 // From Combat Data Sheet pg 427 Cepheus Universal
 const CU_Range_Table = Object.freeze({
-  personal: { personal: 0, close: -1, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  close: { personal: -1, close: 0, short: INFEASIBLE, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  short: { personal: 2, close: 2, short: 0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE },
-  medium: { personal: 2, close: 2, short: 0, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
-  shotgun: { personal: 2, close: 2, short: 1, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE },
-  long: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4 },
-  veryLong: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: -2 },
-  distant: { personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: 0 },
+  personal: {
+    personal: 0,
+    close: -1,
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  close: {
+    personal: -1,
+    close: 0,
+    short: INFEASIBLE,
+    medium: INFEASIBLE,
+    long: INFEASIBLE,
+    veryLong: INFEASIBLE,
+    distant: INFEASIBLE
+  },
+  short: {personal: 2, close: 2, short: 0, medium: -2, long: -4, veryLong: INFEASIBLE, distant: INFEASIBLE},
+  medium: {personal: 2, close: 2, short: 0, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE},
+  shotgun: {personal: 2, close: 2, short: 1, medium: 0, long: -2, veryLong: -4, distant: INFEASIBLE},
+  long: {personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: -2, distant: -4},
+  veryLong: {personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: -2},
+  distant: {personal: 2, close: 2, short: 0, medium: 0, long: 0, veryLong: 0, distant: 0},
 });
 
 //Classic Traveller Range Modifiers from https://www.drivethrurpg.com/product/355200/Classic-Traveller-Facsimile-Edition puls errat corrections from
 // CONSOLIDATED CT ERRATA, v0.7 (06/01/12)
 const CT_Range_Table = Object.freeze({
-  hands: { close: 2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  claws: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  teeth: { close: 2, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  horns: { close: -1, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  hooves: { close: -1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  stinger: { close: 4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  thrasher: { close: 5, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  club: { close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  dagger: { close: 1, short: -1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  blade: { close: 1, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  foil: { close: -1, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  cutlass: { close: -4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  sword: { close: -2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  broadsword: { close: -8, short: 3, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  bayonet: { close: -1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  spear: { close: -2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  halberd: { close: 0, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  pike: { close: -4, short: 4, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  cudgel: { close: 0, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE },
-  bodyPistol: { close: 2, short: 1, medium: -6, long: INFEASIBLE, veryLong: INFEASIBLE },
-  autoPistol: { close: 1, short: 2, medium: -4, long: -6, veryLong: INFEASIBLE },
-  revolver: { close: 1, short: 2, medium: -3, long: -5, veryLong: INFEASIBLE },
-  carbine: { close: -4, short: 1, medium: -2, long: -4, veryLong: -5 },
-  rifle: { close: -4, short: 1, medium: 0, long: -1, veryLong: -3 },
-  autoRifle: { close: -8, short: 0, medium: 2, long: 1, veryLong: -2 },
-  shotgun: { close: -8, short: 1, medium: 3, long: -6, veryLong: INFEASIBLE },
-  submachinegun: { close: -4, short: 3, medium: 3, long: -3, veryLong: -9 },
-  laserCarbine: { close: -2, short: 1, medium: 1, long: 1, veryLong: 0 },
-  laserRifle: { close: -4, short: 2, medium: 2, long: 2, veryLong: 1 }
+  hands: {close: 2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  claws: {close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  teeth: {close: 2, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  horns: {close: -1, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  hooves: {close: -1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  stinger: {close: 4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  thrasher: {close: 5, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  club: {close: 1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  dagger: {close: 1, short: -1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  blade: {close: 1, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  foil: {close: -1, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  cutlass: {close: -4, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  sword: {close: -2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  broadsword: {close: -8, short: 3, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  bayonet: {close: -1, short: 2, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  spear: {close: -2, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  halberd: {close: 0, short: 1, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  pike: {close: -4, short: 4, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  cudgel: {close: 0, short: 0, medium: INFEASIBLE, long: INFEASIBLE, veryLong: INFEASIBLE},
+  bodyPistol: {close: 2, short: 1, medium: -6, long: INFEASIBLE, veryLong: INFEASIBLE},
+  autoPistol: {close: 1, short: 2, medium: -4, long: -6, veryLong: INFEASIBLE},
+  revolver: {close: 1, short: 2, medium: -3, long: -5, veryLong: INFEASIBLE},
+  carbine: {close: -4, short: 1, medium: -2, long: -4, veryLong: -5},
+  rifle: {close: -4, short: 1, medium: 0, long: -1, veryLong: -3},
+  autoRifle: {close: -8, short: 0, medium: 2, long: 1, veryLong: -2},
+  shotgun: {close: -8, short: 1, medium: 3, long: -6, veryLong: INFEASIBLE},
+  submachinegun: {close: -4, short: 3, medium: 3, long: -3, veryLong: -9},
+  laserCarbine: {close: -2, short: 1, medium: 1, long: 1, veryLong: 0},
+  laserRifle: {close: -4, short: 2, medium: 2, long: 2, veryLong: 1}
 });
 
 const CT_Armor_Table = Object.freeze({
-  hands: { nothing: 1, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -1, combat: -6 },
-  claws: { nothing: 3, jack: 0, mesh: 0, cloth: 1, reflec: -1, ablat: -3, combat: -7 },
-  teeth: { nothing: 2, jack: 1, mesh: -1, cloth: 0, reflec: -2, ablat: -4, combat: -7 },
-  horns: { nothing: 2, jack: 1, mesh: 0, cloth: -1, reflec: 2, ablat: -2, combat: -5 },
-  hooves: { nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: 3, ablat: 2, combat: -6 },
-  stinger: { nothing: 4, jack: 3, mesh: 0, cloth: 1, reflec: 2, ablat: 0, combat: -6 },
-  thrasher: { nothing: 7, jack: 7, mesh: 4, cloth: 4, reflec: 7, ablat: 4, combat: 0 },
-  club: { nothing: 0, jack: 0, mesh: -2, cloth: -3, reflec: 0, ablat: -2, combat: -7 },
-  dagger: { nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7 },
-  blade: { nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7 },
-  foil: { nothing: 2, jack: 0, mesh: -4, cloth: -3, reflec: 2, ablat: -2, combat: -6 },
-  cutlass: { nothing: 4, jack: 3, mesh: -2, cloth: -3, reflec: 4, ablat: -2, combat: -6 },
-  sword: { nothing: 3, jack: 3, mesh: -3, cloth: -3, reflec: 3, ablat: -2, combat: -6 },
-  broadsword: { nothing: 5, jack: 5, mesh: 1, cloth: 0, reflec: 5, ablat: 1, combat: -4 },
-  bayonet: { nothing: 2, jack: 1, mesh: 0, cloth: -1, reflec: 2, ablat: -2, combat: -6 },
-  spear: { nothing: 1, jack: 0, mesh: -2, cloth: -2, reflec: -1, ablat: -3, combat: -6 },
-  halberd: { nothing: 4, jack: 3, mesh: -2, cloth: -3, reflec: 4, ablat: -2, combat: -5 },
-  pike: { nothing: 1, jack: 0, mesh: -2, cloth: -2, reflec: -1, ablat: -3, combat: -6 },
-  cudgel: { nothing: 0, jack: 0, mesh: -2, cloth: -3, reflec: 0, ablat: -2, combat: -7 },
-  bodyPistol: { nothing: 0, jack: 0, mesh: -2, cloth: -4, reflec: -4, ablat: -2, combat: -7 },
-  autoPistol: { nothing: 1, jack: 1, mesh: -1, cloth: -3, reflec: 1, ablat: -1, combat: -5 },
-  revolver: {nothing: 1, jack: 1, mesh: -1, cloth: -3, reflec: 1, ablat: -1, combat: -5 },
-  carbine: { nothing: 2, jack: 2, mesh: 0, cloth: -3, reflec: 2, ablat: -1, combat: -5 },
-  rifle: { nothing: 3, jack: 3, mesh: 0, cloth: -3, reflec: 2, ablat: 1, combat: -5 },
-  autoRifle: { nothing: 6, jack: 6, mesh: 2, cloth: -1, reflec: 6, ablat: 3, combat: -3 },
-  shotgun: { nothing: 5, jack: 5, mesh: -1, cloth: -3, reflec: 5, ablat: 2, combat: -5 },
-  submachinegun: { nothing: 5, jack: 5, mesh: 0, cloth: -3, reflec: 5, ablat: 2, combat: -4 },
-  laserCarbine: { nothing: 2, jack: 2, mesh: 1, cloth: 1, reflec: -8, ablat: -7, combat: -6 },
-  laserRifle: { nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: -8, ablat: -7, combat: -6 }
+  hands: {nothing: 1, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -1, combat: -6},
+  claws: {nothing: 3, jack: 0, mesh: 0, cloth: 1, reflec: -1, ablat: -3, combat: -7},
+  teeth: {nothing: 2, jack: 1, mesh: -1, cloth: 0, reflec: -2, ablat: -4, combat: -7},
+  horns: {nothing: 2, jack: 1, mesh: 0, cloth: -1, reflec: 2, ablat: -2, combat: -5},
+  hooves: {nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: 3, ablat: 2, combat: -6},
+  stinger: {nothing: 4, jack: 3, mesh: 0, cloth: 1, reflec: 2, ablat: 0, combat: -6},
+  thrasher: {nothing: 7, jack: 7, mesh: 4, cloth: 4, reflec: 7, ablat: 4, combat: 0},
+  club: {nothing: 0, jack: 0, mesh: -2, cloth: -3, reflec: 0, ablat: -2, combat: -7},
+  dagger: {nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7},
+  blade: {nothing: 0, jack: -1, mesh: -4, cloth: -4, reflec: 0, ablat: -2, combat: -7},
+  foil: {nothing: 2, jack: 0, mesh: -4, cloth: -3, reflec: 2, ablat: -2, combat: -6},
+  cutlass: {nothing: 4, jack: 3, mesh: -2, cloth: -3, reflec: 4, ablat: -2, combat: -6},
+  sword: {nothing: 3, jack: 3, mesh: -3, cloth: -3, reflec: 3, ablat: -2, combat: -6},
+  broadsword: {nothing: 5, jack: 5, mesh: 1, cloth: 0, reflec: 5, ablat: 1, combat: -4},
+  bayonet: {nothing: 2, jack: 1, mesh: 0, cloth: -1, reflec: 2, ablat: -2, combat: -6},
+  spear: {nothing: 1, jack: 0, mesh: -2, cloth: -2, reflec: -1, ablat: -3, combat: -6},
+  halberd: {nothing: 4, jack: 3, mesh: -2, cloth: -3, reflec: 4, ablat: -2, combat: -5},
+  pike: {nothing: 1, jack: 0, mesh: -2, cloth: -2, reflec: -1, ablat: -3, combat: -6},
+  cudgel: {nothing: 0, jack: 0, mesh: -2, cloth: -3, reflec: 0, ablat: -2, combat: -7},
+  bodyPistol: {nothing: 0, jack: 0, mesh: -2, cloth: -4, reflec: -4, ablat: -2, combat: -7},
+  autoPistol: {nothing: 1, jack: 1, mesh: -1, cloth: -3, reflec: 1, ablat: -1, combat: -5},
+  revolver: {nothing: 1, jack: 1, mesh: -1, cloth: -3, reflec: 1, ablat: -1, combat: -5},
+  carbine: {nothing: 2, jack: 2, mesh: 0, cloth: -3, reflec: 2, ablat: -1, combat: -5},
+  rifle: {nothing: 3, jack: 3, mesh: 0, cloth: -3, reflec: 2, ablat: 1, combat: -5},
+  autoRifle: {nothing: 6, jack: 6, mesh: 2, cloth: -1, reflec: 6, ablat: 3, combat: -3},
+  shotgun: {nothing: 5, jack: 5, mesh: -1, cloth: -3, reflec: 5, ablat: 2, combat: -5},
+  submachinegun: {nothing: 5, jack: 5, mesh: 0, cloth: -3, reflec: 5, ablat: 2, combat: -4},
+  laserCarbine: {nothing: 2, jack: 2, mesh: 1, cloth: 1, reflec: -8, ablat: -7, combat: -6},
+  laserRifle: {nothing: 3, jack: 3, mesh: 2, cloth: 2, reflec: -8, ablat: -7, combat: -6}
 });
 
 /**
@@ -2013,7 +2075,7 @@ const CT_Armor_Table = Object.freeze({
  * @param {number} rateOfFire The fire rate (rounds used)
  * @returns {number} The number of attacks
  */
-function getNumberOfAttacks(autoFireRulesUsed:string, rateOfFire:number): number {
+function getNumberOfAttacks(autoFireRulesUsed:string, rateOfFire:number):number {
   let returnValue = rateOfFire;
   switch (autoFireRulesUsed) {
     case 'CT':

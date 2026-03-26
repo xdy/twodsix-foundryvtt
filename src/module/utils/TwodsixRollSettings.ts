@@ -6,7 +6,7 @@ import {TWODSIX} from "../config";
 import type TwodsixItem from "../entities/TwodsixItem";
 import {getDifficultiesSelectObject, getRollTypeSelectObject} from "./sheetUtils";
 import { getKeyByValue } from "./utils";
-import {Gear, Skills} from "../../types/template";
+import type {Gear, Skills} from "../../types/template";
 import TwodsixActor from "../entities/TwodsixActor";
 import { simplifySkillName } from "./utils";
 import { addSign, getCharacteristicFromDisplayLabel } from "./utils";
