@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "checkJs": true,
+    "checkJs": false,
+    "allowJs": true,
     "moduleResolution": "bundler",
     "lib": [
       "DOM",

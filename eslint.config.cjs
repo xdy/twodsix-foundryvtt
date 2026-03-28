@@ -34,6 +34,23 @@ module.exports = [
 
   js.configs.recommended,
 
+  // TypeScript-specific rules only for TS files
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    plugins: {
+      '@typescript-eslint': require('@typescript-eslint/eslint-plugin'),
+    },
+    languageOptions: {
+      parser: require('@typescript-eslint/parser'),
+    },
+    rules: {
+      // Place your TypeScript rules here, e.g.:
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      // ...other TS rules...
+    },
+  },
+
   // Project-specific config
   {
     languageOptions: {
