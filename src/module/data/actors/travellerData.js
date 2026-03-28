@@ -1,9 +1,11 @@
-import { TwodsixActorBaseData } from "./character-base";
-import { makeSecondaryArmorField, makeValueField, migrateStringToNumber } from "./commonSchemaUtils";
-
-const fields = foundry.data.fields;
-const requiredInteger = {required: true, nullable: false, integer: true};
-const requiredBlankString = {required: true, blank: true, initial: ""};
+import {
+  fields,
+  makeValueField,
+  migrateStringToNumber,
+  requiredBlankString,
+  requiredInteger
+} from '../commonSchemaUtils.js';
+import { TwodsixActorBaseData } from './character-base.js';
 
 export class TravellerData extends TwodsixActorBaseData {
   static defineSchema() {
@@ -82,43 +84,3 @@ export class TravellerData extends TwodsixActorBaseData {
   }
 }
 
-export class AnimalData extends TwodsixActorBaseData {
-  static defineSchema() {
-    const schema = super.defineSchema();
-
-    schema.homeWorld = new fields.StringField({...requiredBlankString});
-    schema.species = new fields.StringField({...requiredBlankString});
-    schema.animalType = new fields.SchemaField({
-      niche: new fields.StringField({required: true, blank: false, initial: "herbivore"}),
-      subtype: new fields.StringField({required: true, blank: false, initial: "filter"})
-    });
-    schema.location = new fields.StringField({required: true, blank: false, initial: "plains"});
-    schema.size = new fields.StringField({...requiredBlankString});
-    schema.numberAppearing = new fields.StringField({required: true, blank: false, initial: "1d6"});
-    schema.reaction = new fields.SchemaField({
-      attack: new fields.NumberField({...requiredInteger, initial: 9}),
-      flee: new fields.NumberField({...requiredInteger, initial: 6})
-    });
-    schema.moraleDM = new fields.StringField({...requiredBlankString});
-
-    schema.secondaryArmor = makeSecondaryArmorField();
-    return schema;
-  }
-}
-
-export class RobotData extends TwodsixActorBaseData {
-  static defineSchema() {
-    const schema = super.defineSchema();
-
-    schema.size = new fields.StringField({...requiredBlankString});
-    schema.locomotionType = new fields.StringField({...requiredBlankString});
-    schema.locomotionType = new fields.StringField({...requiredBlankString});
-    schema.price = new fields.StringField({...requiredBlankString});
-    schema.chassis = new fields.StringField({...requiredBlankString});
-    schema.techLevel = new fields.NumberField({...requiredInteger, initial: 0});
-    schema.operationalTime = new fields.StringField({...requiredBlankString});
-    schema.secondaryArmor = makeSecondaryArmorField();
-    schema.maxBuildPoints = new fields.NumberField({...requiredInteger, initial: 0});
-    return schema;
-  }
-}

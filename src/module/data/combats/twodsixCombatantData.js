@@ -1,17 +1,4 @@
-
-const fields = foundry.data.fields;
-const requiredInteger = { required: true, nullable: false, integer: true };
-const requiredBlankString = { required: true, blank: true, initial: "" };
-
-export class TwodsixCombatData extends foundry.abstract.TypeDataModel {
-  static defineSchema() {
-    const schema = {};
-    schema.currentPhase = new fields.StringField({...requiredBlankString });
-    schema.phaseIndex = new fields.NumberField({...requiredInteger, initial: 0});
-    schema.isSpaceCombat = new fields.BooleanField({ required: true, initial: false});
-    return schema;
-  }
-}
+import { fields, requiredBlankString, requiredInteger } from '../commonSchemaUtils.js';
 
 export class TwodsixCombatantData extends foundry.abstract.TypeDataModel {
   static defineSchema() {

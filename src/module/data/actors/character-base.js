@@ -1,11 +1,14 @@
-import { TWODSIX } from "../config";
-import { makeResourceField, makeValueField, migrateStringToStringArray } from "./commonSchemaUtils";
+import { TWODSIX } from '../../config.js';
+import {
+  fields,
+  makeResourceField,
+  makeValueField,
+  migrateStringToStringArray,
+  requiredBlankString,
+  requiredInteger
+} from '../commonSchemaUtils.js';
 
 /** @typedef {import("@common/abstract/data.mjs").DataSchema} DataSchema */
-
-const fields = foundry.data.fields;
-const requiredInteger = {required: true, nullable: false, integer: true};
-const requiredBlankString = {required: true, blank: true, initial: ""};
 
 export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
   /**

@@ -1,6 +1,8 @@
-import { parseLocaleNumber } from "../hooks/updateFinances";
+import { parseLocaleNumber } from '../hooks/updateFinances';
 
-const fields = foundry.data.fields;
+export const fields = foundry.data.fields;
+export const requiredInteger = {required: true, nullable: false, integer: true};
+export const requiredBlankString = {required: true, blank: true, initial: ""};
 
 /**
  * Data structure for character's resources.

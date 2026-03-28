@@ -8,6 +8,25 @@
  */
 
 
+import { AnimalData } from './module/data/actors/animalData.js';
+import { RobotData } from './module/data/actors/robotData.js';
+import { TwodsixCombatData } from './module/data/combats/twodsixCombatData.js';
+import { ArmorData } from './module/data/items/armorData.js';
+import { AugmentData } from './module/data/items/augmentData.js';
+import { ComponentData } from './module/data/items/componentData.js';
+import { ComputerData } from './module/data/items/computerData.js';
+import { ConsumableData } from './module/data/items/consumableData.js';
+import { GearData } from './module/data/items/gear-data.js';
+import { JunkStorageData } from './module/data/items/junkStorageData.js';
+import { PsiAbilityData } from './module/data/items/psiAbilityData.js';
+import { ShipPositionData } from './module/data/items/shipPositionData.js';
+import { SkillData } from './module/data/items/skillData.js';
+import { SpellData } from './module/data/items/spellData.js';
+import { TraitData } from './module/data/items/traitData.js';
+import { WeaponData } from './module/data/items/weaponData.js';
+import { ShipData } from './module/data/vehicles/shipData.js';
+import { SpaceObjectData } from './module/data/vehicles/spaceObjectData.js';
+import { VehicleData } from './module/data/vehicles/vehicleData.js';
 import TwodsixActor from "./module/entities/TwodsixActor";
 import TwodsixItem from "./module/entities/TwodsixItem";
 import TwodsixCombat from "./module/entities/TwodsixCombat";
@@ -29,30 +48,14 @@ import { WorldData } from "./module/data/world";
 import {TwodsixDiceRoll} from "./module/utils/TwodsixDiceRoll";
 import {TwodsixRollSettings} from "./module/utils/TwodsixRollSettings";
 import {addCustomEnrichers} from "./module/utils/enrichers";
-import {AnimalData, RobotData, TravellerData} from "./module/data/characters";
-import {ShipData, SpaceObjectData, VehicleData} from "./module/data/vehicles";
-import {
-  ArmorData,
-  AugmentData,
-  ComponentData,
-  ComputerData,
-  ConsumableData,
-  JunkStorageData,
-  PsiAbilityData,
-  ShipPositionData,
-  SkillData,
-  SpellData,
-  TraitData,
-  WeaponData
-} from "./module/data/item";
-import {GearData} from "./module/data/item-base";
+import {TravellerData} from "./module/data/actors/travellerData.js";
 import {TwodsixActiveEffect} from "./module/entities/TwodsixActiveEffect";
 import {TwodsixBattleSheet} from "./module/sheets/TwodsixBattleSheet";
 import {TwodsixGamePause} from "./module/entities/TwodsixGamePause";
 import {TwodsixChatLog, TwodsixChatPopout} from "./module/entities/TwodsixChat";
 import {TwodsixTokenRuler} from "./module/utils/TwodsixTokenRuler";
 import TwodsixCombatTracker from "./module/applications/sidebar/TwodsixCombatTracker";
-import { TwodsixCombatantData, TwodsixCombatData } from "./module/data/combat";
+import { TwodsixCombatantData } from "./module/data/combats/twodsixCombatantData.js";
 import { TwodsixActiveEffectConfig } from "./module/sheets/TwodsixActiveEffectConfig";
 
 import { TWODSIX } from "./module/config";
