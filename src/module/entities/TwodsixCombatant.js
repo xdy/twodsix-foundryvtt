@@ -1,4 +1,4 @@
-import { DEFAULT_ACTION_BUDGET } from "./TwodsixCombat";
+import { DEFAULT_ACTION_BUDGET } from './TwodsixCombat';
 
 /**
  * @typedef {import("./_module.mjs").TwodsixActor} TwodsixActor

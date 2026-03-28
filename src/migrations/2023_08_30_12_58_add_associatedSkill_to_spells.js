@@ -1,5 +1,4 @@
-
-import { applyToAllItems } from "../module/utils/migration-utils";
+import { applyToAllItems } from '../module/utils/migration-utils';
 
 async function refactorSpellSkill(item) {
   if (item.system.associatedSkillName === "" && item.type === 'spell') {

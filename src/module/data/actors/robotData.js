@@ -7,7 +7,6 @@ export class RobotData extends TwodsixActorBaseData {
 
     schema.size = new fields.StringField({...requiredBlankString});
     schema.locomotionType = new fields.StringField({...requiredBlankString});
-    schema.locomotionType = new fields.StringField({...requiredBlankString});
     schema.price = new fields.StringField({...requiredBlankString});
     schema.chassis = new fields.StringField({...requiredBlankString});
     schema.techLevel = new fields.NumberField({...requiredInteger, initial: 0});

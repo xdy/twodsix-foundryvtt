@@ -1,4 +1,4 @@
-import { TWODSIX } from "../config";
+import { TWODSIX } from '../config';
 
 /**
  * @param {Event} event

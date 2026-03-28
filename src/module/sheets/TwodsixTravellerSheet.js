@@ -1,8 +1,8 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
-import { TWODSIX } from "../config";
-import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import { TWODSIX } from '../config';
+import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
@@ -152,29 +152,10 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
       return;
     }
-
     if (target) {
       const li = target.closest(".item");
       const itemSelected = this.actor.items.get(li.dataset.itemId);
-      const newSuspendedState = getNewEquippedState(itemSelected);
-
-      //change equipped state
-      const itemUpdates = [];
-      itemUpdates.push({_id: itemSelected.id, "system.equipped": newSuspendedState});
-
-      // Sync associated consumables equipped state - need to gate due to race condition
-      for (const consumeableID of itemSelected.system.consumables) {
-        const consumableSelected = await itemSelected.actor.items.get(consumeableID);
-        if (consumableSelected) {
-          itemUpdates.push({_id: consumableSelected.id, "system.equipped": newSuspendedState});
-        }
-      }
-      await this.actor.updateEmbeddedDocuments("Item", itemUpdates);
-
-      //check for equipping more than one armor with nonstackable
-      if (this.actor.system.layersWorn > 1 && this.actor.system.wearingNonstackable && itemSelected.type === 'armor') {
-        ui.notifications.warn("TWODSIX.Warnings.WearingMultipleLayers", {localize: true});
-      }
+      await this.actor.toggleItemEquipped(itemSelected);
     }
   }
 
@@ -399,42 +380,3 @@ export class TwodsixNPCSheet extends foundry.applications.api.HandlebarsApplicat
   };
 }
 
-/**
- * Determine the new equipped state after toggling.
- * @param {TwodsixItem} itemSelected   The item to change the equipped state.
- * @returns {string} The new equipped state based on old one ans display setting
- */
-function getNewEquippedState(itemSelected) {
-  const currentState = itemSelected.system.equipped;
-  if (!currentState) {
-    return 'backpack';
-  } else {
-    switch (game.settings.get('twodsix', 'equippedToggleStates')) {
-      case 'all':
-        return {
-          'vehicle': 'ship',
-          'ship': 'base',
-          'base': 'backpack',
-          'backpack': 'equipped',
-          'equipped': 'vehicle'
-        }[currentState];
-      case 'core':
-        return {
-          'vehicle': 'backpack',
-          'ship': 'backpack',
-          'base': 'backpack',
-          'backpack': 'equipped',
-          'equipped': 'backpack'
-        }[currentState];
-      case 'default':
-      default:
-        return {
-          'vehicle': 'backpack',
-          'ship': 'backpack',
-          'base': 'backpack',
-          'backpack': 'equipped',
-          'equipped': 'ship'
-        }[currentState];
-    }
-  }
-}

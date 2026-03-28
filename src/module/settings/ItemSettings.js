@@ -1,5 +1,5 @@
-import AdvancedSettings from "./AdvancedSettings";
-import {booleanSetting, stringSetting} from "./settingsUtils";
+import AdvancedSettings from './AdvancedSettings';
+import { booleanSetting, stringSetting } from './settingsUtils';
 
 export default class ItemSettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {

@@ -8,8 +8,16 @@ import {
 import { TwodsixActorBaseData } from './character-base.js';
 
 export class TravellerData extends TwodsixActorBaseData {
+  static hasEncumbranceTracking = true;
+
   static defineSchema() {
     const schema = super.defineSchema();
+
+    // Override primaryArmor to add persisted:false `base` sub-field used in _prepareActorDerivedData
+    schema.primaryArmor = new fields.SchemaField({
+      value: new fields.NumberField({required: true, integer: false, initial: 0}),
+      base: new fields.NumberField({required: true, integer: false, initial: 0}, {persisted: false})
+    });
     schema.homeWorld = new fields.StringField({...requiredBlankString});
     schema.nationality = new fields.StringField({...requiredBlankString});
     schema.primaryLanguage = new fields.StringField({...requiredBlankString});
@@ -59,8 +67,66 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.xpNotes = new fields.HTMLField({...requiredBlankString});
     schema.displaySkillGroup = new fields.ObjectField({required: true, initial: {}});
 
+    // Computed armor fields — derived in TravellerActor._prepareActorDerivedData, never persisted
+    schema.layersWorn = new fields.NumberField({...requiredInteger, initial: 0}, {persisted: false});
+    schema.wearingNonstackable = new fields.BooleanField({required: true, initial: false}, {persisted: false});
+    schema.reflectOn = new fields.BooleanField({required: true, initial: false}, {persisted: false});
+    schema.protectionTypes = new fields.StringField({...requiredBlankString}, {persisted: false});
+    schema.totalArmor = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}, {persisted: false});
+
     return schema;
   }
+
+  // ── Finance field helpers ────────────────────────────────────────────────────
+
+  /**
+   * Lookup the first letter of units and determine magnitude.
+   * @param {string} units - The units string (e.g., 'M', 'k', 'G').
+   * @returns {number} - The numeric multiplier for the units.
+   */
+  static getMultiplier(units) {
+    switch (units[0]) {
+      case 'G':
+        return 1e+9;
+      case 'M':
+        return 1e+6;
+      case 'k':
+      case 'K':
+        return 1e+3;
+      default:
+        return 1;
+    }
+  }
+
+  /**
+   * Parse a finance text field into separate value and units.
+   * @param {string} financeString - The finance string to parse.
+   * @returns {Record<string, any> | undefined} - Object with keys num and units, or undefined if parsing fails.
+   */
+  static getParsedFinanceText(financeString) {
+    const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.\-+]*)(?<sp>\s*)(?<units>.*?)$/);
+    const parsedResult = re.exec(financeString);
+    return parsedResult?.groups;
+  }
+
+  /**
+   * Convert a number to a localized string with optional units.
+   * @param {number} newValue - The new value to format.
+   * @param {string} [units] - Optional units for the number, e.g. 'M' or 'k'.
+   * @returns {string} - The localized number as a string, with units if provided.
+   */
+  static convertNumberToFormattedText(newValue, units) {
+    const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
+    if (units) {
+      newValue /= TravellerData.getMultiplier(units);
+    }
+    return ''.concat(
+      newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}),
+      (units ? ' ' + units : '')
+    );
+  }
+
+  // ── Migration ────────────────────────────────────────────────────────────────
 
   /**
    * @param {object} source

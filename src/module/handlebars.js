@@ -1,7 +1,7 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
 import { TWODSIX } from './config';
-import TwodsixItem from './entities/TwodsixItem';
+import { WeaponItem } from './entities/items/WeaponItem';
 import { getCharacteristicList } from './utils/TwodsixRollSettings';
 import { simplifySkillName } from './utils/utils';
 
@@ -126,12 +126,12 @@ export default function registerHandlebarsHelpers() {
 
   Handlebars.registerHelper('twodsix_burstAttackDM', (burstSize) => {
     const number = Number(burstSize);
-    return TwodsixItem.burstAttackDM(number);
+    return WeaponItem.burstAttackDM(number);
   });
 
   Handlebars.registerHelper('twodsix_burstBonusDamage', (burstSize) => {
     const number = Number(burstSize);
-    return TwodsixItem.burstBonusDamage(number);
+    return WeaponItem.burstBonusDamage(number);
   });
 
   Handlebars.registerHelper('twodsix_filterSkills', (skill) => {

@@ -1,3 +1,4 @@
+import { calcModFor } from '../../utils/sheetUtils.js';
 import { makeCharacteristicField } from '../actors/character-base.js';
 import { fields, makeResourceField, requiredBlankString, requiredInteger } from '../commonSchemaUtils.js';
 import { makeCrewField, TwodsixVehicleBaseData } from './vehicles-base.js';
@@ -73,6 +74,20 @@ export class ShipData extends TwodsixVehicleBaseData {
     schema.combatPosition = new fields.NumberField({...requiredInteger, initial: 0});
     schema.characteristics = new fields.SchemaField({morale: makeCharacteristicField("morale", "MOR")});
     return schema;
+  }
+
+  /**
+   * Compute derived characteristic fields (current, mod) from persisted values.
+   * @override
+   */
+  prepareDerivedData() {
+    if (!this.characteristics) {
+      return;
+    }
+    for (const characteristic of Object.values(this.characteristics)) {
+      characteristic.current = characteristic.value - characteristic.damage;
+      characteristic.mod = calcModFor(characteristic.current);
+    }
   }
 
   /**

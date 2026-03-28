@@ -1,10 +1,10 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
-import TwodsixItem from "../entities/TwodsixItem";
-import { getDataFromDropEvent, getDocFromDropData } from "../utils/sheetUtils";
-import { TwodsixShipActions } from "../utils/TwodsixShipActions";
-import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
-import { TwodsixShipPositionSheet } from "./TwodsixShipPositionSheet";
+import TwodsixItem from '../entities/TwodsixItem';
+import { getDataFromDropEvent, getDocFromDropData } from '../utils/sheetUtils';
+import { TwodsixShipActions } from '../utils/TwodsixShipActions';
+import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
+import { TwodsixShipPositionSheet } from './TwodsixShipPositionSheet';
 
 export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
@@ -294,27 +294,9 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
     context.dtypes = ["String", "Number", "Boolean"];
-    if ((this.actor.system).shipPositionActorIds) {
-      context.shipPositions = (this.actor).itemTypes.ship_position.map((shipPosition) => {
-        const shipPositionActorIds = Object?.entries((this.actor.system).shipPositionActorIds)?.filter(([, shipPositionId]) => shipPositionId === shipPosition.id);
-        if (shipPositionActorIds?.length > 0) {
-          const actorIds = shipPositionActorIds.map(([actorId,]) => actorId);
-          (shipPosition.system).actors = actorIds.map(actorId => game.actors?.get(actorId)).filter(x => x !== undefined);
-        } else {
-          (shipPosition.system).actors = [];
-        }
-        const actions = (shipPosition.system).actions ?? [];
-        (shipPosition.system).sortedActions = Object.entries(actions).map(([id, ret]) => {
-          ret.id = id;
-          return ret;
-        });
-        (shipPosition.system).sortedActions?.sort((a, b) => (a.order > b.order) ? 1 : -1);
-        return shipPosition;
-      });
-      context.shipPositions.sort((a, b) => (a.system).order - (b.system).order);
-    } else {
-      context.shipPositions = [];
-    }
+    context.shipPositions = this.actor.itemTypes.ship_position
+      .slice()
+      .sort((a, b) => a.system.order - b.system.order);
 
     const useShipAutoCalc = game.settings.get('twodsix', 'useShipAutoCalcs');
     const showCost = game.settings.get('twodsix', 'showCost') && useShipAutoCalc;

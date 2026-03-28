@@ -1,6 +1,5 @@
-
-import { renderDamageDialog, destroyDamageDialog } from "../utils/actorDamage";
-import { destroyHealingDialog, renderHealingDialog } from "../utils/actorHealing";
+import { destroyDamageDialog, renderDamageDialog } from '../utils/actorDamage';
+import { destroyHealingDialog, renderHealingDialog } from '../utils/actorHealing';
 
 Hooks.on('createDamageDialog', renderDamageDialog);
 Hooks.on('destroyDamageDialog', destroyDamageDialog);

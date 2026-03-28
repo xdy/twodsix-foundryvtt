@@ -1,8 +1,8 @@
 //Assorted utility functions likely to be helpful when displaying characters
-import { TWODSIX } from "../config";
-import { advantageDisadvantageTerm } from "../i18n";
-import { camelCase } from "../settings/settingsUtils";
-import { simplifySkillName } from "./utils";
+import { TWODSIX } from '../config';
+import { advantageDisadvantageTerm } from '../i18n';
+import { camelCase } from '../settings/settingsUtils';
+import { simplifySkillName } from './utils';
 
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 

@@ -1,6 +1,6 @@
-import { stackArmorValues } from "../utils/actorDamage";
-import { applyAllStatusEffects, checkForDamageStat } from "../utils/showStatusIcons";
-import { cleanSystemReferences } from "../utils/utils";
+import { stackArmorValues } from '../utils/actorDamage';
+import { applyAllStatusEffects, checkForDamageStat } from '../utils/showStatusIcons';
+import { cleanSystemReferences } from '../utils/utils';
 
 /** @typedef {import("@client/documents/active-effect.mjs").ActiveEffect} ActiveEffect */
 /** @typedef {import("@client/documents/actor.mjs").Actor} Actor */

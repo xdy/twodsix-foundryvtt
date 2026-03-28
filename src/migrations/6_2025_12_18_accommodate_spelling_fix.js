@@ -11,7 +11,7 @@
  * - Logging is included for embedded item updates.
  */
 
-import { applyToAllActors, applyToAllItems } from "../module/utils/migration-utils";
+import { applyToAllActors, applyToAllItems } from '../module/utils/migration-utils';
 
 function migrateAccommodationSpelling(item) {
   if (item.type === 'component' && item.system.subtype === 'accomodations') {

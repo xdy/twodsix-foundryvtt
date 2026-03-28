@@ -1,6 +1,5 @@
-
-import { TWODSIX } from "../module/config";
-import { applyToAllActors } from "../module/utils/migration-utils";
+import { TWODSIX } from '../module/config';
+import { applyToAllActors } from '../module/utils/migration-utils';
 
 async function refactorConditions(actor) {
   const encumberedEffect = actor.effects.find(eff => [game.i18n.localize(TWODSIX.effectType.encumbered), "Encumbered"].includes(eff.name));

@@ -1,6 +1,5 @@
-
-import { camelCase } from "../module/settings/settingsUtils";
-import { applyToAllItems } from "../module/utils/migration-utils";
+import { camelCase } from '../module/settings/settingsUtils';
+import { applyToAllItems } from '../module/utils/migration-utils';
 
 async function refactorDamageTypes(item) {
   if (["weapon", "armor", "consumable"].includes(item.type)) {

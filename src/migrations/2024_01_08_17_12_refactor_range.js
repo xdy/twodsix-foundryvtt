@@ -1,4 +1,4 @@
-import { applyToAllItems, applyToAllActors } from "../module/utils/migration-utils";
+import { applyToAllActors, applyToAllItems } from '../module/utils/migration-utils';
 
 export async function refactorRange(item) {
   if (item.type === 'weapon') {

@@ -252,7 +252,7 @@ export class TwodsixRollSettings {
       rollTypes: getRollTypeSelectObject(),
       difficulty: getKeyByValue(this.difficulties, this.difficulty),
       difficultyList: getDifficultiesSelectObject(this.difficulties),
-      skillsList: (skill?.actor)?.getSkillNameList(),
+      skillsList: (skill?.actor)?.getSkillNameList() ?? {},
       messageMode: this.messageMode,
       messageModes: CONFIG.ChatMessage.modes,
       characteristicList: _getTranslatedCharacteristicList(skill?.actor),

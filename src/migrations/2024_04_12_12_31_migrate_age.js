@@ -1,4 +1,4 @@
-import { applyToAllActors } from "../module/utils/migration-utils";
+import { applyToAllActors } from '../module/utils/migration-utils';
 
 async function convertAgeToNumber(actor) {
   if (actor.type === 'traveller') {

@@ -1,12 +1,10 @@
-import RulesetSettings from "./settings/RulesetSettings";
-import ItemSettings from "./settings/ItemSettings";
-import DisplaySettings from "./settings/DisplaySettings";
-import DebugSettings from "./settings/DebugSettings";
-
-import {TWODSIX} from "./config";
-import TwodsixActor from "./entities/TwodsixActor";
-import { booleanSetting, stringChoiceSetting, stringSetting } from "./settings/settingsUtils";
-
+import { TWODSIX } from './config';
+import TwodsixActor from './entities/TwodsixActor';
+import DebugSettings from './settings/DebugSettings';
+import DisplaySettings from './settings/DisplaySettings';
+import ItemSettings from './settings/ItemSettings';
+import RulesetSettings from './settings/RulesetSettings';
+import { booleanSetting, stringChoiceSetting, stringSetting } from './settings/settingsUtils';
 
 
 export const registerSettings = function() {

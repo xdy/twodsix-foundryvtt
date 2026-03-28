@@ -1,7 +1,7 @@
-import { TWODSIX } from "../config";
-import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
-import { TwodsixDiceRoll } from "../utils/TwodsixDiceRoll";
-import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
+import { TWODSIX } from '../config';
+import { getControlledTraveller } from '../sheets/TwodsixVehicleSheet';
+import { TwodsixDiceRoll } from '../utils/TwodsixDiceRoll';
+import { TwodsixRollSettings } from '../utils/TwodsixRollSettings';
 
 /** @typedef {import("@client/documents/actor.mjs").Actor} Actor */
 

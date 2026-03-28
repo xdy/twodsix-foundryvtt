@@ -1,7 +1,7 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
 //Liberally adapted from "hey-catch" by Mana#4176
-import { getDocFromDropData } from "../utils/sheetUtils";
+import { getDocFromDropData } from '../utils/sheetUtils';
 
 Hooks.on('dropCanvasData', (canvasObject, dropData) => {
   if ((['damageItem', 'ActiveEffect', 'Folder', 'ItemList'].includes(dropData.type) || (dropData.type === "Item" && !game.modules.get("item-piles")?.active)) && game.settings.get("twodsix", "allowDropOnIcon")) {

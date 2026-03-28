@@ -1,6 +1,6 @@
-import { TWODSIX } from "../config";
-import { confirmRollFormula } from "./sheetUtils";
-import { getInitialSettingsFromFormula, TwodsixRollSettings } from "./TwodsixRollSettings";
+import { TWODSIX } from '../config';
+import { confirmRollFormula } from './sheetUtils';
+import { getInitialSettingsFromFormula, TwodsixRollSettings } from './TwodsixRollSettings';
 
 export class TwodsixShipActions {
   /** @type {object} */

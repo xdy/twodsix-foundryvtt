@@ -1,8 +1,8 @@
-import { getControlledTraveller } from "../sheets/TwodsixVehicleSheet";
+import { getControlledTraveller } from '../sheets/TwodsixVehicleSheet';
 
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 /** @typedef {import("@client/documents/roll-table.mjs").RollTable} RollTable */
-import { getInitialSettingsFromFormula, TwodsixRollSettings } from "./TwodsixRollSettings";
+import { getInitialSettingsFromFormula, TwodsixRollSettings } from './TwodsixRollSettings';
 
 // Adapted from https://github.com/pafvel/dragonbane/blob/master/modules/journal.js
 

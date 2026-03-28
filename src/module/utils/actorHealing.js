@@ -1,6 +1,6 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
-import { getDamageCharacteristics } from "./actorDamage";
-import { calcModFor } from "./sheetUtils";
+import { getDamageCharacteristics } from './actorDamage';
+import { calcModFor } from './sheetUtils';
 
 /**
  * This class handles an individual attribute, such as strength and dexterity

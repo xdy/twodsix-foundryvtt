@@ -1,8 +1,8 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
-import { TWODSIX } from "../config";
-import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
-import TwodsixItem from "../entities/TwodsixItem";
+import { TWODSIX } from '../config';
+import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
+import TwodsixItem from '../entities/TwodsixItem';
 import {
   addPDFLink,
   changeReference,
@@ -15,9 +15,9 @@ import {
   getRollTypeSelectObject,
   openJournalEntry,
   openPDFLink
-} from "../utils/sheetUtils";
-import { getCharacteristicList } from "../utils/TwodsixRollSettings";
-import { AbstractTwodsixItemSheet, onPasteStripFormatting } from "./AbstractTwodsixItemSheet";
+} from '../utils/sheetUtils';
+import { getCharacteristicList } from '../utils/TwodsixRollSettings';
+import { AbstractTwodsixItemSheet, onPasteStripFormatting } from './AbstractTwodsixItemSheet';
 
 /**
  * Extend the basic AbstractTwodsixItemSheet
@@ -432,17 +432,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @returns {Promise<void>}
    */
   async _changeName(ev) {
-    //Only needed for skills on an actor
-    if (this.item.type !== "skills" || !this.item.actor) {
-      return;
-    }
-    ev.preventDefault();
-    const newName = (this.item.actor).generateUniqueSkillName(ev.target.value);
-    if (newName !== ev.target.value) {
-      console.log("TWODSIX: replacing skill name with unique value");
-      ev.target.value = newName;
-      await this.item.update({"name": newName});
-    }
+    // Name uniqueness for skills is now enforced in SkillItem._preUpdate.
+    // No extra logic needed here — the form submitOnChange will trigger the update.
   }
 
   /**
@@ -452,45 +443,14 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   async _changeSubtype(ev) {
     ev.preventDefault(); //Needed?
     const chosenSubtype = ev.target.value;
-    await this.item.update({"system.subtype": chosenSubtype}); //for some reason this update must happen first
-    if (this.item.type === "component") {
-      const updates = {};
-      /*Update default image if using system images*/
-      const componentImagePath = "systems/twodsix/assets/icons/components/";
-      if (this.item.img.includes(componentImagePath)) {
-        Object.assign(updates, {"img": componentImagePath + chosenSubtype + ".svg"});
-      }
-      /*Prevent cargo or ammo from using %hull weight*/
-      const anComponent = this.item.system;
-      if (anComponent.weightIsPct && ["cargo", "ammo"].includes(chosenSubtype)) {
-        Object.assign(updates, {"system.weightIsPct": false});
-      }
-      /*Unset isBaseHull if not hull component*/
-      if (chosenSubtype !== "hull" && anComponent.isBaseHull) {
-        Object.assign(updates, {"system.isBaseHull": false});
-      }
-      /*Unset hardened if fuel, cargo, ammo, storage, vehicle*/
-      if (["fuel", "cargo", "ammo", "storage", "vehicle"].includes(chosenSubtype)) {
-        Object.assign(updates, {"system.hardened": false});
-      }
-
-      //Reset pricing basis for ammo if necessary
-      if (["ammo"].includes(chosenSubtype) && !["perUnit", "perCompTon"].includes(anComponent.pricingBasis)) {
-        Object.assign(updates, {"system.pricingBasis": "perUnit"});
-      }
-
-      if (!foundry.utils.isEmpty(updates)) {
-        await this.item.update(updates);
-      }
-    } else if (this.item.type === "consumable") {
-      if (["software", "processor", "suite"].includes(this.item.system.subtype)) {
-        await this.item.update({"system.isAttachment": true});
-      }
-      if (this.item.actor) {
-        const parentItem = this.item.actor.items.find(it => it.system.consumables?.includes(this.item.id));
-        if (parentItem) {
-          parentItem.sheet.render(false);
-        }
+    // Component constraints (image, weightIsPct, isBaseHull, hardened, pricingBasis) and
+    // consumable isAttachment are now enforced in ComponentItem._preUpdate / ConsumableItem._preUpdate.
+    await this.item.update({"system.subtype": chosenSubtype});
+    // Re-render the parent item sheet if this is a consumable so its attachments list refreshes.
+    if (this.item.type === "consumable" && this.item.actor) {
+      const parentItem = this.item.actor.items.find(it => it.system.consumables?.includes(this.item.id));
+      if (parentItem) {
+        parentItem.sheet.render(false);
       }
     }
   }
@@ -559,27 +519,15 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @returns {Promise<void>}
    */
   async _changeIsBaseHull() {
-    const anComponent = this.item.system;
-    const newValue = !anComponent.isBaseHull;
-
-    await this.item.update({"system.isBaseHull": newValue});
-    /*Unset isWeightPct if changing to base hull*/
-    if (newValue && anComponent.weightIsPct) {
-      await this.item.update({"system.weightIsPct": false});
-    }
+    // The isBaseHull → weightIsPct: false constraint is now enforced in ComponentItem._preUpdate.
+    await this.item.update({"system.isBaseHull": !this.item.system.isBaseHull});
   }
 
   /**
    * @returns {void}
    */
   _changeNonstackable() {
-    if (this.item.actor) {
-      const newValue = !this.item.system.nonstackable;
-      //check for having more than one equipped armor when changing to nonstackable
-      if (this.item.actor.system.layersWorn > 1 && newValue && this.item.system.equipped === 'equipped') {
-        ui.notifications.warn("TWODSIX.Warnings.WearingMultipleLayers", {localize: true});
-      }
-    }
+    // Warning for multiple layers is now emitted in ArmorItem._preUpdate.
   }
 
   /**

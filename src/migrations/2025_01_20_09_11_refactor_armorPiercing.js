@@ -1,4 +1,4 @@
-import { applyToAllItems, applyToAllActors } from "../module/utils/migration-utils";
+import { applyToAllActors, applyToAllItems } from '../module/utils/migration-utils';
 
 async function refactorArmorPiercing(item) {
   if (foundry.utils.hasProperty(item.system, 'armorPiercing')) {

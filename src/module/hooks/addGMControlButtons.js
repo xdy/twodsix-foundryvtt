@@ -1,7 +1,7 @@
-import { TWODSIX } from "../config";
-import { getDifficultiesSelectObject, getRollTypeSelectObject } from "../utils/sheetUtils";
-import { _genUntranslatedCharacteristicList } from "../utils/TwodsixRollSettings";
-import { simplifySkillName, sortObj } from "../utils/utils";
+import { TWODSIX } from '../config';
+import { getDifficultiesSelectObject, getRollTypeSelectObject } from '../utils/sheetUtils';
+import { _genUntranslatedCharacteristicList } from '../utils/TwodsixRollSettings';
+import { simplifySkillName, sortObj } from '../utils/utils';
 
 Hooks.on("getSceneControlButtons", (controls) => {
   if (game.user.isGM) {

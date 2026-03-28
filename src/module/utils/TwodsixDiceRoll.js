@@ -1,11 +1,11 @@
-import { TWODSIX } from "../config";
+import { TWODSIX } from '../config';
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
-import { advanceTime } from "../hooks/timeIntegration";
-import { advantageDisadvantageTerm } from "../i18n";
-import Crit from "./crit";
-import { TwodsixRollSettings } from "./TwodsixRollSettings";
-import { addSign, capitalizeFirstLetter, getKeyByValue, simplifySkillName } from "./utils";
+import { advanceTime } from '../hooks/timeIntegration';
+import { advantageDisadvantageTerm } from '../i18n';
+import Crit from './crit';
+import { TwodsixRollSettings } from './TwodsixRollSettings';
+import { addSign, capitalizeFirstLetter, getKeyByValue, simplifySkillName } from './utils';
 
 export class TwodsixDiceRoll {
   /** @type {TwodsixRollSettings} */
@@ -84,7 +84,8 @@ export class TwodsixDiceRoll {
 
     // Add skill modifier
     if (this.skill) {
-      let skillValue = this.actor.system.skills[simplifySkillName(this.skill.name)];
+      let name = simplifySkillName(this.skill.name);
+      let skillValue = this.actor.system.skills[name];
       if (this.rollSettings.rollModifiers.skillLevelMax) {
         skillValue = Math.min(skillValue, this.rollSettings.rollModifiers.skillLevelMax);
       }

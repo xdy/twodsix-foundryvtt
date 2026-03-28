@@ -1,6 +1,6 @@
-import { TWODSIX } from "../config";
-import { getDataFromDropEvent, getDocFromDropData, isDisplayableSkill } from "../utils/sheetUtils";
-import { sortByItemName } from "../utils/utils";
+import { TWODSIX } from '../config';
+import { getDataFromDropEvent, getDocFromDropData, isDisplayableSkill } from '../utils/sheetUtils';
+import { sortByItemName } from '../utils/utils';
 
 /**
  * Extend the basic ItemSheetV2 with some very simple modifications

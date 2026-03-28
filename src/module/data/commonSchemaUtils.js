@@ -1,5 +1,3 @@
-import { parseLocaleNumber } from '../hooks/updateFinances';
-
 export const fields = foundry.data.fields;
 export const requiredInteger = {required: true, nullable: false, integer: true};
 export const requiredBlankString = {required: true, blank: true, initial: ""};
@@ -44,6 +42,26 @@ export function makeSecondaryArmorField(initialValue = 0, schemaOptions = {}) {
     value: new fields.NumberField({required: true, integer: false, initial: initialValue}),
     protectionTypes: new fields.ArrayField(new fields.StringField({blank: false}))
   }, schemaOptions);
+}
+
+/**
+ * Parse a localized number string to a float.
+ * @param {string} stringNumber - The localized number string.
+ * @returns {number} - The float value of the localized number.
+ */
+export function parseLocaleNumber(stringNumber) {
+  if (stringNumber) {
+    const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
+    const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
+
+    return parseFloat(
+      stringNumber
+        .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
+        .replace(new RegExp('\\' + decimalSeparator), '.')
+    );
+  } else {
+    return NaN;
+  }
 }
 
 /**

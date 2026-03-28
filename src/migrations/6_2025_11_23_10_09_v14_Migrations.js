@@ -1,7 +1,6 @@
 //import { TwodsixActiveEffect } from "../module/entities/TwodsixActiveEffect";
-import TwodsixActor from "../module/entities/TwodsixActor";
 //import TwodsixItem from "../module/entities/TwodsixItem";
-import { applyToAllActors, applyToAllItems } from "../module/utils/migration-utils";
+import { applyToAllActors, applyToAllItems } from '../module/utils/migration-utils';
 import { cleanSystemReferences } from '../module/utils/utils';
 
 /**

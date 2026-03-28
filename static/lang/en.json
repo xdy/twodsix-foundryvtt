@@ -2368,6 +2368,7 @@
       "TargetMustBeSVG": "The editSVG action is available only for SVG elements.",
       "FileInvalidImageExtension": "Invalid image file extension. Allowed types: jpg, jpeg, png, webp, gif, svg, avif, apng, bmp, ico, tif, tiff, jfif, pjpeg, pjp.",
       "NoSkillForSkillRoll": "You tried to perform a skill roll without specifying a skill",
+      "NoActorForSkillRoll": "You tried to perform a skill roll without an actor",
       "NoCharacteristicForRoll": "You tried to perform a characteristics roll without specifying a characteristic",
       "NoROFForAttack": "Rate of fire must be specified for this attack",
       "TooFewToReload": "Too few _NAME_ to _REFILL_ACTION_",

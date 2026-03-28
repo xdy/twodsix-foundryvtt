@@ -1,5 +1,4 @@
-
-import { TWODSIX } from "../config";
+import { TWODSIX } from '../config';
 
 /**
  * Parses the string setting 'targetDMList' into an object and saves the object to TWODSIX.TARGET_DM.

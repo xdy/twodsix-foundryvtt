@@ -1,15 +1,15 @@
-
-import { applyToAllActors} from "../module/utils/migration-utils";
-import { getParsedFinanceText, parseLocaleNumber, getMultiplier } from "../module/hooks/updateFinances";
+import { TravellerData } from '../module/data/actors/travellerData';
+import { parseLocaleNumber } from '../module/data/commonSchemaUtils.js';
+import { applyToAllActors } from '../module/utils/migration-utils';
 
 async function migrateFinanceValues(actor) {
   if (["traveller"].includes(actor.type)) {
     const updates = {};
     for (const financeField in actor.system.finances) {
       if (financeField !== "financial-notes") {
-        const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
+        const parsedText = TravellerData.getParsedFinanceText(actor.system.finances[financeField]);
         if (parsedText) {
-          const newValue = parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units);
+          const newValue = parseLocaleNumber(parsedText.num) * TravellerData.getMultiplier(parsedText.units);
           Object.assign(updates, {[financeField]: newValue});
         }
       }

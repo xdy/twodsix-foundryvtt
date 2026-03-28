@@ -1,4 +1,6 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
+import { TravellerData } from '../data/actors/travellerData.js';
+import { parseLocaleNumber } from '../data/commonSchemaUtils.js';
 
 /**
  * Update the finances for a traveller actor based on the provided financeDiff.
@@ -46,27 +48,27 @@ function updateFinanceValues(actor, update, financeDiff) {
       const isDelta = ["+", "-"].includes(update.system.finances[financeField][0]);
 
       if (isDelta) {
-        const delta = getParsedFinanceText(update.system.finances[financeField]);
+        const delta = TravellerData.getParsedFinanceText(update.system.finances[financeField]);
         foundry.utils.mergeObject(updateMods, {
           financeValues: {
-            [financeField]: actor.system.financeValues[financeField] + (parseFloat(delta.num) * getMultiplier(delta.units))
+            [financeField]: actor.system.financeValues[financeField] + (parseFloat(delta.num) * TravellerData.getMultiplier(delta.units))
           }
         });
-        const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
+        const parsedText = TravellerData.getParsedFinanceText(actor.system.finances[financeField]);
         foundry.utils.mergeObject(updateMods, {
           finances: {
-            [financeField]: convertNumberToFormatedText(
+            [financeField]: TravellerData.convertNumberToFormattedText(
               updateMods.financeValues[financeField],
-              (getMultiplier(parsedText.units) > getMultiplier(delta.units) ? parsedText.units : delta.units)
+              (TravellerData.getMultiplier(parsedText.units) > TravellerData.getMultiplier(delta.units) ? parsedText.units : delta.units)
             )
           }
         });
       } else {
-        const parsedText = getParsedFinanceText(update.system.finances[financeField]);
+        const parsedText = TravellerData.getParsedFinanceText(update.system.finances[financeField]);
         if (parsedText) {
           foundry.utils.mergeObject(updateMods, {
             financeValues: {
-              [financeField]: parseLocaleNumber(parsedText.num) * getMultiplier(parsedText.units)
+              [financeField]: parseLocaleNumber(parsedText.num) * TravellerData.getMultiplier(parsedText.units)
             }
           });
         }
@@ -85,78 +87,12 @@ function updateFinanceValues(actor, update, financeDiff) {
 function updateFinanceText(actor, update, financeDiff) {
   const financeTextUpdates = {};
   for (const financeField in financeDiff.financeValues) {
-    const parsedText = getParsedFinanceText(actor.system.finances[financeField]);
+    const parsedText = TravellerData.getParsedFinanceText(actor.system.finances[financeField]);
     const newValue = financeDiff.financeValues[financeField];
     foundry.utils.mergeObject(financeTextUpdates, {
-      [financeField]: convertNumberToFormatedText(newValue, parsedText.units)
+      [financeField]: TravellerData.convertNumberToFormattedText(newValue, parsedText.units)
     });
   }
   foundry.utils.mergeObject(update.system, {finances: financeTextUpdates});
 }
 
-/**
- * Convert a number to a localized string with optional units.
- * @param {number} newValue - The new value to format.
- * @param {string} [units] - Optional units for the number, e.g. 'M' or 'k'.
- * @returns {string} - The localized number as a string, with units if provided.
- */
-function convertNumberToFormatedText(newValue, units) {
-  const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
-  if (units) {
-    newValue /= getMultiplier(units);
-  }
-  return ''.concat(
-    newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}),
-    (units ? ' ' + units : '')
-  );
-}
-
-/**
- * Parse a localized number string to a float.
- * @param {string} stringNumber - The localized number string.
- * @returns {number} - The float value of the localized number.
- */
-export function parseLocaleNumber(stringNumber) {
-  if (stringNumber) {
-    const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
-    const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
-
-    return parseFloat(
-      stringNumber
-        .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
-        .replace(new RegExp('\\' + decimalSeparator), '.')
-    );
-  } else {
-    return NaN;
-  }
-}
-
-/**
- * Parse a finance text field into separate value and units.
- * @param {string} financeString - The finance string to parse.
- * @returns {Record<string, any> | undefined} - Object with keys num and units, or undefined if parsing fails.
- */
-export function getParsedFinanceText(financeString) {
-  const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.\-+]*)(?<sp>\s*)(?<units>.*?)$/);
-  const parsedResult = re.exec(financeString);
-  return parsedResult?.groups;
-}
-
-/**
- * Lookup the first letter of units and determine magnitude.
- * @param {string} units - The units string (e.g., 'M', 'k', 'G').
- * @returns {number} - The numeric multiplier for the units.
- */
-export function getMultiplier(units) {
-  switch (units[0]) {
-    case 'G':
-      return 1e+9;
-    case 'M':
-      return 1e+6;
-    case 'k':
-    case 'K':
-      return 1e+3;
-    default:
-      return 1;
-  }
-}

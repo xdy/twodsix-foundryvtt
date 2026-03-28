@@ -1,6 +1,13 @@
-import AdvancedSettings from "./AdvancedSettings";
-import {booleanSetting, colorSetting, stringChoiceSetting, stringSetting, numberSetting, arrayChoiceSetting} from "./settingsUtils";
-import {TWODSIX} from "../config";
+import { TWODSIX } from '../config';
+import AdvancedSettings from './AdvancedSettings';
+import {
+  arrayChoiceSetting,
+  booleanSetting,
+  colorSetting,
+  numberSetting,
+  stringChoiceSetting,
+  stringSetting
+} from './settingsUtils';
 
 export default class DisplaySettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {

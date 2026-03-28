@@ -1,4 +1,4 @@
-import { TwodsixShipSheet } from "./TwodsixShipSheet";
+import { TwodsixShipSheet } from './TwodsixShipSheet';
 
 export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsApplicationMixin(TwodsixShipSheet) {
   static DEFAULT_OPTIONS = {

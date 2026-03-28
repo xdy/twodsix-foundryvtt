@@ -14,7 +14,7 @@
  *
  */
 
-import { applyToAllActors } from "../module/utils/migration-utils";
+import { applyToAllActors } from '../module/utils/migration-utils';
 
 function migrateShipData(actor) {
   if (actor.type === 'ship') {

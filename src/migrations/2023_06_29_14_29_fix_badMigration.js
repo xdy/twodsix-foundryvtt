@@ -1,5 +1,4 @@
-
-import { applyToAllActors} from "../module/utils/migration-utils";
+import { applyToAllActors } from '../module/utils/migration-utils';
 
 async function radProtectionObject(actor) {
   if (["traveller", "animal", "robot"].includes(actor.type)) {

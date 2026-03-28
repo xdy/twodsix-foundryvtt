@@ -1,5 +1,4 @@
-
-import { applyToAllActors, applyToAllItems } from "../module/utils/migration-utils";
+import { applyToAllActors, applyToAllItems } from '../module/utils/migration-utils';
 
 async function refactorLinkedEffects(actor) {
   if (["traveller", "animal", "robot"].includes(actor.type)) {

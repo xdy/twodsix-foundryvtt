@@ -1,7 +1,7 @@
-import { TWODSIX } from "../config";
+import { TWODSIX } from '../config';
 
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
-import { getDamageCharacteristics } from "./actorDamage";
+import { getDamageCharacteristics } from './actorDamage';
 
 // =====================
 // 1. Main API (Exports)

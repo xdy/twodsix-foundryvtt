@@ -1,4 +1,4 @@
-import Crit from "../utils/crit";
+import Crit from '../utils/crit';
 
 /**
  * @param {*} s

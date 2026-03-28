@@ -1,4 +1,4 @@
-import { TWODSIX } from "../config";
+import { TWODSIX } from '../config';
 
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 

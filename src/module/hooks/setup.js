@@ -1,4 +1,4 @@
-import {TwodsixSystem} from "../TwodsixSystem";
+import { TwodsixSystem } from '../TwodsixSystem';
 
 Hooks.once('setup', async function () {
   // Do anything after initialization but before ready

@@ -1,8 +1,8 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
-import { TwodsixRollSettings } from "../utils/TwodsixRollSettings";
-import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import { TwodsixRollSettings } from '../utils/TwodsixRollSettings';
+import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
 

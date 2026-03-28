@@ -1,11 +1,11 @@
-import migrateWorld from "../migration";
-import {createItemMacro} from "../utils/createItemMacro";
-import { applyToAllActors } from "../utils/migration-utils";
-import { correctMissingUntrainedSkill } from "../entities/TwodsixActor";
-import { setDocumentPartials, updateStatusIcons } from "../settings/DisplaySettings";
-import { switchCss } from "../settings";
-import { generateTargetDMObject } from "../utils/targetModifiers";
-import { TWODSIX } from "../config";
+import { TWODSIX } from '../config';
+import { correctMissingUntrainedSkill } from '../entities/TwodsixActor';
+import migrateWorld from '../migration';
+import { switchCss } from '../settings';
+import { setDocumentPartials, updateStatusIcons } from '../settings/DisplaySettings';
+import { createItemMacro } from '../utils/createItemMacro';
+import { applyToAllActors } from '../utils/migration-utils';
+import { generateTargetDMObject } from '../utils/targetModifiers';
 
 Hooks.once("ready", async function () {
   //Prevent a conflict with Twodsix conditions

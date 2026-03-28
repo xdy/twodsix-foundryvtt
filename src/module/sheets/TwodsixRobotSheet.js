@@ -1,4 +1,4 @@
-import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixRobotSheet extends AbstractTwodsixActorSheet {
 

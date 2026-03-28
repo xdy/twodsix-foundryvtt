@@ -1,6 +1,5 @@
-
-import { TWODSIX } from "../module/config";
-import { applyToAllItems } from "../module/utils/migration-utils";
+import { TWODSIX } from '../module/config';
+import { applyToAllItems } from '../module/utils/migration-utils';
 
 async function refactorRangeBands(item) {
   if (item.type === 'weapon') {

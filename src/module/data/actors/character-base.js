@@ -1,4 +1,6 @@
 import { TWODSIX } from '../../config.js';
+import { calcModFor } from '../../utils/sheetUtils.js';
+import { getCharShortName } from '../../utils/utils.js';
 import {
   fields,
   makeResourceField,
@@ -11,6 +13,8 @@ import {
 /** @typedef {import("@common/abstract/data.mjs").DataSchema} DataSchema */
 
 export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
+  static hasEncumbranceTracking = false;
+
   /**
    * @returns {DataSchema}
    */
@@ -100,6 +104,23 @@ export class TwodsixActorBaseData extends foundry.abstract.TypeDataModel {
     schema.bio = new fields.HTMLField({...requiredBlankString});
 
     return schema;
+  }
+
+  /**
+   * Compute derived characteristic fields (current, mod, displayShortLabel) from persisted values.
+   * @override
+   */
+  prepareDerivedData() {
+    if (!this.characteristics) {
+      return;
+    }
+    for (const characteristic of Object.values(this.characteristics)) {
+      characteristic.current = characteristic.value - characteristic.damage;
+      characteristic.mod = calcModFor(characteristic.current);
+      if (characteristic.displayShortLabel === "") {
+        characteristic.displayShortLabel = getCharShortName(characteristic.shortLabel);
+      }
+    }
   }
 
   /**

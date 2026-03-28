@@ -1,9 +1,9 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
-import { TWODSIX } from "../config";
-import { TwodsixActiveEffect } from "../entities/TwodsixActiveEffect";
-import { onRollDamage } from "../entities/TwodsixItem";
+import { TWODSIX } from '../config';
+import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
+import { onRollDamage } from '../entities/TwodsixItem';
 import {
   calcModFor,
   changeReference,
@@ -16,10 +16,10 @@ import {
   isDisplayableSkill,
   openJournalEntry,
   openPDFLink
-} from "../utils/sheetUtils";
-import { simplifySkillName, sortObj } from "../utils/utils";
-import { onPasteStripFormatting } from "./AbstractTwodsixItemSheet.js";
-import { TwodsixActiveEffectConfig } from "./TwodsixActiveEffectConfig";
+} from '../utils/sheetUtils';
+import { getKeyByValue, simplifySkillName, sortObj } from '../utils/utils';
+import { onPasteStripFormatting } from './AbstractTwodsixItemSheet.js';
+import { TwodsixActiveEffectConfig } from './TwodsixActiveEffectConfig';
 
 /**
  * Extend the basic ActorSheetV2 with common functions for all Twodsix actors
@@ -527,14 +527,8 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
 
     if (!isShipLike) {
       context.untrainedSkill = (this.actor).getUntrainedSkill();
-      if (!context.untrainedSkill) {
-        //NEED TO HAVE CHECKS FOR MISSING UNTRAINED SKILL
-        const existingSkill = this.actor.itemTypes.skills?.find(sk => (sk.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained")) || sk.getFlag("twodsix", "untrainedSkill"));
-        if (existingSkill) {
-          context.untrainedSkill = existingSkill;
-        } else {
-          ui.notifications.warn("TWODSIX.Warnings.MissingUntrainedSkill", {localize: true});
-        }
+      if (!context.untrainedSkill && this.actor.items.size > 0) {
+        ui.notifications.warn("TWODSIX.Warnings.MissingUntrainedSkill", {localize: true});
       }
 
       //Prepare characteristic display values
@@ -1167,7 +1161,7 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
     if (!characteristic || characteristic === "NONE") {
       displayCharacteristic = game.i18n.localize("TWODSIX.Items.Skills.NONE");
     } else {
-      const charKey = characteristic === "NONE" ? undefined : (typeof TWODSIX !== "undefined" && TWODSIX.CHARACTERISTICS ? Object.keys(TWODSIX.CHARACTERISTICS).find(key => TWODSIX.CHARACTERISTICS[key] === characteristic) : undefined);
+      const charKey = getKeyByValue(TWODSIX.CHARACTERISTICS, characteristic);
       const characteristicElement = charKey ? actor.system.characteristics[charKey] : undefined;
       if (characteristicElement) {
         mod = characteristicElement.mod;
@@ -1180,7 +1174,8 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
     skill.system.displayCharMod = displayCharacteristic;
 
     // Compute adjustedSkillValue as in the original helper: no untrained override
-    const adjValue = actor.system.skills[simplifySkillName(skill.name)];
+    const simplifiedName = simplifySkillName(skill.name);
+    const adjValue = actor.system.skills?.[simplifiedName];
     skill.system.adjustedSkillValue = adjValue !== skill.system.value ? adjValue : `&#8212;`;
 
     // For skillTotal, always add the characteristic modifier if present, even for untrained override
@@ -1191,7 +1186,7 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
       !game.settings.get("twodsix", "hideUntrainedSkills") &&
       actor.system.untrainedSkill
     ) {
-      const untrainedSkillItem = actor.items.find((i) => i._id === actor.system.untrainedSkill);
+      const untrainedSkillItem = actor.items.get(actor.system.untrainedSkill);
       if (untrainedSkillItem) {
         totalValue = untrainedSkillItem.system.value;
       }

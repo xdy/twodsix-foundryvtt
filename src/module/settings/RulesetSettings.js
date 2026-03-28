@@ -1,9 +1,8 @@
-
-import AdvancedSettings from "./AdvancedSettings";
-import {TWODSIX} from "../config";
-import {booleanSetting, largeStringSetting, numberSetting, stringChoiceSetting, stringSetting} from "./settingsUtils";
-import { refreshWindow } from "./DisplaySettings";
-import { generateTargetDMObject } from "../utils/targetModifiers";
+import { TWODSIX } from '../config';
+import { generateTargetDMObject } from '../utils/targetModifiers';
+import AdvancedSettings from './AdvancedSettings';
+import { refreshWindow } from './DisplaySettings';
+import { booleanSetting, largeStringSetting, numberSetting, stringChoiceSetting, stringSetting } from './settingsUtils';
 
 export default class RulesetSettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
   static create() {

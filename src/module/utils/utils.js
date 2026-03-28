@@ -187,3 +187,30 @@ export function cleanSystemReferences(formula) {
   }
   return formula.replace(/@system\./g, '@');
 }
+
+/**
+ * Assigns a default image to a document if it currently uses a default Foundry icon.
+ * @param {ClientDocument} doc  The Document to update (Actor or Item).
+ * @param {object} updates      The updates object to modify.
+ * @param {object} data         The initial data provided to the creation request.
+ * @param {string} defaultIcon  The system-specific default icon for this document type.
+ * @returns {void}
+ */
+export function assignDefaultImage(doc, updates, data, defaultIcon) {
+  const foundryDefault = doc instanceof Actor ? "icons/svg/mystery-man.svg" : "icons/svg/item-bag.svg";
+  const isDefaultImg = (!data.img || data.img === foundryDefault) && (!doc.img || doc.img === foundryDefault);
+
+  if (defaultIcon && defaultIcon !== foundryDefault && isDefaultImg) {
+    Object.assign(updates, {img: defaultIcon});
+
+    if (doc instanceof Actor) {
+      const tokenSrc = game.settings.get("twodsix", "useSystemDefaultTokenIcon")
+        ? foundryDefault
+        : defaultIcon;
+
+      doc.prototypeToken.updateSource({
+        texture: {src: tokenSrc}
+      });
+    }
+  }
+}

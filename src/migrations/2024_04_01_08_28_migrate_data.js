@@ -1,5 +1,5 @@
-import { parseLocaleNumber } from "../module/hooks/updateFinances";
-import { applyToAllItems, applyToAllActors } from "../module/utils/migration-utils";
+import { parseLocaleNumber } from '../module/data/commonSchemaUtils.js';
+import { applyToAllActors, applyToAllItems } from '../module/utils/migration-utils';
 
 async function convertToNumber(item) {
   const updates  = {system: {}};

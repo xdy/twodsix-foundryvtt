@@ -1,6 +1,6 @@
-import { TWODSIX } from "../config";
-import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from "../utils/TradeGenerator";
-import { AbstractTwodsixActorSheet } from "./AbstractTwodsixActorSheet";
+import { TWODSIX } from '../config';
+import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from '../utils/TradeGenerator';
+import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
   static DEFAULT_OPTIONS = {
