@@ -55,7 +55,7 @@ This repository uses pnpm, managed via Corepack (bundled with Node.js). After in
 
 ```shell
 corepack enable
-corepack prepare pnpm@10.22.0 --activate
+corepack prepare pnpm@latest-10 --activate
 ```
 
 If corepack is not available you can instead install it using 

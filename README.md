@@ -59,7 +59,7 @@ Prerequisites:
 One-time setup (Windows PowerShell/macOS/Linux shell):
 ```
 corepack enable
-corepack prepare pnpm@10.22.0 --activate
+corepack prepare pnpm@latest-10 --activate
 pnpm install
 ```
 
