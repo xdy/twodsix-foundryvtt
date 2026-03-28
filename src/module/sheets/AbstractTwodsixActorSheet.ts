@@ -898,7 +898,6 @@ export abstract class AbstractTwodsixActorSheet extends foundry.applications.api
       await this.actor.createEmbeddedDocuments("ActiveEffect", [{
         name: game.i18n.localize("TWODSIX.ActiveEffects.NewEffect"),
         icon: "icons/svg/aura.svg",
-        origin: "Custom",
         disabled: false,
         description: ""
       }]);
@@ -1203,7 +1202,7 @@ function computeTwodsixTooltip(actor: TwodsixActor, field: string): string {
     const realChanges = effect.changes.filter(ch => ch.key === field);
     if (realChanges.length > 0) {
       const changesStr = realChanges.map(change =>
-        `${modes[change.mode] || ""}(${change.value})`
+        `${modes[change.type] || ""}(${change.value})`
       ).join(", ");
       effectStrings.push(`${effect.name}: ${changesStr}`);
     }

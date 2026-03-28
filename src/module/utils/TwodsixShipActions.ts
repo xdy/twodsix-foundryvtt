@@ -57,7 +57,7 @@ export class TwodsixShipActions {
           title: game.i18n.localize("TWODSIX.Chat.Roll.Types.ShipAction"),
           speaker: speakerData,
           flavor: flavorText,
-          type: CONST.CHAT_MESSAGE_STYLES.OTHER
+          style: CONST.CHAT_MESSAGE_STYLES.OTHER
         });
         return msg;
       }
