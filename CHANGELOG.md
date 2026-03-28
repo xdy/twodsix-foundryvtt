@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.7...v7.0.0) (2026-03-28)
+
+
+### chore
+
+* update for v14 ([#1907](https://github.com/xdy/twodsix-foundryvtt/issues/1907)) ([3ed2814](https://github.com/xdy/twodsix-foundryvtt/commit/3ed2814dbbf6d0389c2c41e2c9f7f4864ed9b85a))
+
+
+### BREAKING CHANGES
+
+* Move to v14 is not backwards compatible and this version must be run on v14+
+
 ## [6.9.7](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.6...v6.9.7) (2025-12-09)
 
 
