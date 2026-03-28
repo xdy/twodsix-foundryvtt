@@ -11,7 +11,7 @@
     "build:watch": "vite build --watch",
     "link": "node scripts/link-project.mjs",
     "link-project": "node scripts/link-project.mjs",
-    "clean": "rm -rf dist",
+    "clean": "node scripts/clean-dist.mjs",
     "bump-version": "node scripts/bump-version.mjs",
     "lint": "eslint ./src --fix && tsc --project tsconfig.json --noEmit",
     "types:generate": "node src/scripts/generate-types.mjs",
