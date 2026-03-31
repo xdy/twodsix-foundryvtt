@@ -99,9 +99,8 @@ Hooks.once('init', async function () {
     "color:rgba(41, 170, 225, 1); font-weight: normal; font-size: 12px;" // Style for the ASCII art
   );
 
-  const systemId = game.system.id;
 
-  game[`${systemId}`] = {
+  game[`twodsix`] = {
     TwodsixActor,
     TwodsixItem,
     TwodsixActiveEffect,
@@ -122,7 +121,7 @@ Hooks.once('init', async function () {
   };
 
   foundry.applications.apps.DocumentSheetConfig.unregisterSheet(CONFIG.ActiveEffect.documentClass, 'core', foundry.applications.sheets.ActiveEffectConfig);
-  foundry.applications.apps.DocumentSheetConfig.registerSheet(CONFIG.ActiveEffect.documentClass, `${systemId}`, TwodsixActiveEffectConfig, { makeDefault: true });
+  foundry.applications.apps.DocumentSheetConfig.registerSheet(CONFIG.ActiveEffect.documentClass, `twodsix`, TwodsixActiveEffectConfig, { makeDefault: true });
 
 
   // Actor
@@ -161,7 +160,7 @@ Hooks.once('init', async function () {
   ];
 
   for (const sheetDef of actorSheetDefinitions) {
-    foundry.documents.collections.Actors.registerSheet(`${systemId}`, sheetDef.class, {
+    foundry.documents.collections.Actors.registerSheet(`twodsix`, sheetDef.class, {
       types: sheetDef.types,
       label: sheetDef.label,
       makeDefault: sheetDef.makeDefault
@@ -239,7 +238,7 @@ Hooks.once('init', async function () {
   ];
 
   for (const sheetDef of itemSheetDefinitions) {
-    foundry.documents.collections.Items.registerSheet(`${systemId}`, sheetDef.class, {
+    foundry.documents.collections.Items.registerSheet(`twodsix`, sheetDef.class, {
       types: sheetDef.types,
       label: sheetDef.label,
       makeDefault: sheetDef.makeDefault
@@ -270,11 +269,11 @@ Hooks.once('init', async function () {
   CONFIG.fontDefinitions["Asap"] = {
     editor: true,
     fonts: [
-      {urls: [`systems/${systemId}/fonts/Asap-Regular.woff2`, `systems/${systemId}/fonts/Asap-Regular.ttf`]},
-      {urls: [`systems/${systemId}/fonts/Asap-Bold.woff2`, `systems/${systemId}/fonts/Asap-Bold.ttf`], weight: 700},
-      {urls: [`systems/${systemId}/fonts/Asap-Italic.woff2`, `systems/${systemId}/fonts/Asap-Italic.ttf`], style: "italic"},
+      {urls: [`systems/twodsix/fonts/Asap-Regular.woff2`, `systems/twodsix/fonts/Asap-Regular.ttf`]},
+      {urls: [`systems/twodsix/fonts/Asap-Bold.woff2`, `systems/twodsix/fonts/Asap-Bold.ttf`], weight: 700},
+      {urls: [`systems/twodsix/fonts/Asap-Italic.woff2`, `systems/twodsix/fonts/Asap-Italic.ttf`], style: "italic"},
       {
-        urls: [`systems/${systemId}/fonts/Asap-BoldItalic.woff2`, `systems/${systemId}/fonts/Asap-BoldItalic.ttf`],
+        urls: [`systems/twodsix/fonts/Asap-BoldItalic.woff2`, `systems/twodsix/fonts/Asap-BoldItalic.ttf`],
         style: "italic",
         weight: 700
       }
@@ -283,7 +282,7 @@ Hooks.once('init', async function () {
   CONFIG.fontDefinitions["Rye"] = {
     editor: true,
     fonts: [
-      {urls: [`systems/${systemId}/fonts/Rye-Regular.ttf`]},
+      {urls: [`systems/twodsix/fonts/Rye-Regular.ttf`]},
     ]
   };
 
@@ -292,8 +291,8 @@ Hooks.once('init', async function () {
 
   /*Register CSS Styles*/
 
-  let sheetName = `systems/${systemId}/styles/`;
-  const themeStyle = game.settings.get(`${systemId}`, 'themeStyle');
+  let sheetName = `systems/twodsix/styles/`;
+  const themeStyle = game.settings.get(`twodsix`, 'themeStyle');
   switch (themeStyle) {
     case "foundry":
       sheetName += "twodsix_basic.css";
@@ -310,14 +309,14 @@ Hooks.once('init', async function () {
   switchCss(sheetName);
 
   if (themeStyle === "classic") {
-    if (game.settings.get(`${systemId}`, 'useModuleFixStyle')) {
-      switchCss(`systems/${systemId}/styles/twodsix_moduleFix.css`);
+    if (game.settings.get(`twodsix`, 'useModuleFixStyle')) {
+      switchCss(`systems/twodsix/styles/twodsix_moduleFix.css`);
     }
     // Set CSS variables on the document root
-    const defaultColor = game.settings.get(`${systemId}`, 'defaultColor');
-    const lightColor = game.settings.get(`${systemId}`, 'lightColor');
-    const battleColor = game.settings.get(`${systemId}`, 'battleColor');
-    const damageColor = game.settings.get(`${systemId}`, 'damageStatColor');
+    const defaultColor = game.settings.get(`twodsix`, 'defaultColor');
+    const lightColor = game.settings.get(`twodsix`, 'lightColor');
+    const battleColor = game.settings.get(`twodsix`, 'battleColor');
+    const damageColor = game.settings.get(`twodsix`, 'damageStatColor');
     document.documentElement.style.setProperty('--s2d6-default-color', defaultColor);
     document.documentElement.style.setProperty('--s2d6-light-color', lightColor);
     document.documentElement.style.setProperty('--s2d6-battle-color', battleColor);

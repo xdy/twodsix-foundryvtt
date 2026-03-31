@@ -161,7 +161,6 @@ const SPACE_COMBAT_PHASE_TYPES = Object.freeze({
   }
 });
 
-//TODO VARIANTS and RULESETS should really be combined/refactored.
 /**
  * Sets of Twodsix settings that best match each supported ruleset.
  */
