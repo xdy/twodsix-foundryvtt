@@ -19,13 +19,13 @@
         <span class="item-name centre">{{getComponentCost item}}</span>
       {{/if}}
       <span class="item-name centre">{{item.system.componentPowerDisplay}}</span>
-      {{#iff item.system.subtype "===" "armament"}}
+      {{#iff item.system.subtype "===" config.COMPONENT_SUBTYPES.ARMAMENT}}
         {{> "systems/twodsix/templates/actors/parts/common/armament-qty.hbs"}}
       {{else}}
         <span class="item-name centre">{{#if item.system.availableQuantity}}{{item.system.availableQuantity}}/{{/if}}{{item.system.quantity}}</span>
       {{/iff}}
       <span class="item-name centre">
-        {{#iff item.system.subtype "===" "armament"}}
+        {{#iff item.system.subtype "===" config.COMPONENT_SUBTYPES.ARMAMENT}}
           {{#if item.system.ammoDamage}}
             {{#iff item.system.ammoDamage "!==" "0"}}<span class="roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.ammoDamage 3}}{{else}}&mdash;{{/iff}}</span>
           {{else}}

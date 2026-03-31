@@ -128,7 +128,7 @@ export class TwodsixShipActions {
     }
 
     const usingCompStr = extra.component ? (game.i18n.localize("TWODSIX.Ship.WhileUsing") + extra.component.name + ` `) : '';
-    if (game.settings.get("twodsix", "automateDamageRollOnHit") && (extra.component?.system)?.subtype === "armament") {
+    if (game.settings.get("twodsix", "automateDamageRollOnHit") && extra.component?.system?.isArmament) {
       if (result.effect >= 0 && extra.component) {
         if (extra.component.system.ammoLink !== "none") {
           const linkedAmmo = extra.ship?.items.get(extra.component.system.ammoLink);

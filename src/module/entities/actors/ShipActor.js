@@ -1,4 +1,4 @@
-import { TWODSIX } from '../../config';
+import { COMPONENT_SUBTYPES, TWODSIX } from '../../config';
 import { updateShipFinances } from '../../hooks/updateFinances';
 import { generateShipDamageReport } from '../../utils/shipDamage';
 import { TwodsixShipActions } from '../../utils/TwodsixShipActions';
@@ -191,9 +191,9 @@ export class ShipActor extends TwodsixVehicleBaseActor {
     this.itemTypes.component.forEach((item) => {
       const anComponent = item.system;
 
-      const isExcludedFromCost = ["fuel", "cargo", "ammo", "vehicle"].includes(anComponent.subtype);
+      const isExcludedFromCost = anComponent.isExcludedFromCost;
       const isOperational = ["operational", "damaged"].includes(anComponent.status);
-      const isBaseHull = anComponent.subtype === "hull" && anComponent.isBaseHull;
+      const isBaseHull = anComponent.subtype === COMPONENT_SUBTYPES.HULL && anComponent.isBaseHull;
 
       const powerForItem = getPower(item);
       item.system.componentPowerDisplay = (item.system.generatesPower ? "+" : "") + powerForItem.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1});
@@ -216,9 +216,8 @@ export class ShipActor extends TwodsixVehicleBaseActor {
       }
     });
 
-    const excludedSubtypes = ["fuel", "cargo", "ammo", "vehicle"];
     this.itemTypes.component
-      .filter((it) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !excludedSubtypes.includes(it.system.subtype))
+      .filter((it) => ["pctHull", "pctHullPerUnit"].includes(it.system.pricingBasis) && !it.system.isExcludedFromCost)
       .forEach((item) => {
         const multiplier = item.system.pricingBasis === "pctHullPerUnit" ? item.system.quantity : 1;
         item.system.installedCost = calcShipStats.cost.baseHullValue * Number(item.system.price) * multiplier / 100;
@@ -301,36 +300,24 @@ export class ShipActor extends TwodsixVehicleBaseActor {
 
     function calculateBandwidth(anComponent) {
       if (game.settings.get("twodsix", "showBandwidth")) {
-        if (anComponent.subtype === "computer") {
+        if (anComponent.contributesBandwidth) {
           calcShipStats.bandwidth.available += anComponent.bandwidth;
-        } else if (anComponent.subtype === "software") {
+        } else if (anComponent.consumesBandwidth) {
           calcShipStats.bandwidth.used += anComponent.bandwidth;
         }
       }
     }
 
     function allocateWeight(anComponent, weightForItem) {
-      switch (anComponent.subtype) {
-        case "vehicle":
-          calcShipStats.weight.vehicles += weightForItem;
-          break;
-        case "cargo":
-        case "ammo":
-          calcShipStats.weight.cargo += weightForItem;
-          break;
-        case "fuel":
-          calcShipStats.weight.fuel += weightForItem;
-          break;
-        case "hull":
-          if (anComponent.isBaseHull) {
-            calcShipStats.weight.baseHull += weightForItem;
-          } else {
-            calcShipStats.weight.systems += weightForItem;
-          }
-          break;
-        default:
+      const category = anComponent.weightCategory;
+      if (category === "hull") {
+        if (anComponent.isBaseHull) {
+          calcShipStats.weight.baseHull += weightForItem;
+        } else {
           calcShipStats.weight.systems += weightForItem;
-          break;
+        }
+      } else {
+        calcShipStats.weight[category] += weightForItem;
       }
     }
 
@@ -338,26 +325,17 @@ export class ShipActor extends TwodsixVehicleBaseActor {
       if (anComponent.generatesPower) {
         calcShipStats.power.max += powerForItem;
       } else {
-        switch (anComponent.subtype) {
-          case 'drive': {
-            if (item.isJDriveComponent()) {
-              calcShipStats.power.jDrive += powerForItem;
-            } else if (item.isMDriveComponent()) {
-              calcShipStats.power.mDrive += powerForItem;
-            } else {
-              calcShipStats.power.systems += powerForItem;
-            }
-            break;
-          }
-          case 'sensor':
-            calcShipStats.power.sensors += powerForItem;
-            break;
-          case 'armament':
-            calcShipStats.power.weapons += powerForItem;
-            break;
-          default:
+        const category = anComponent.powerCategory;
+        if (category === "drive") {
+          if (item.isJDriveComponent()) {
+            calcShipStats.power.jDrive += powerForItem;
+          } else if (item.isMDriveComponent()) {
+            calcShipStats.power.mDrive += powerForItem;
+          } else {
             calcShipStats.power.systems += powerForItem;
-            break;
+          }
+        } else {
+          calcShipStats.power[category] += powerForItem;
         }
       }
     }
@@ -494,7 +472,7 @@ export class ShipActor extends TwodsixVehicleBaseActor {
     }
 
     const existingCargo = this.items.find(
-      (i) => i.type === 'component' && i.system?.subtype === 'cargo' && i.name === cargoName
+      (i) => i.type === 'component' && i.system?.subtype === COMPONENT_SUBTYPES.CARGO && i.name === cargoName
     );
 
     if (existingCargo) {
@@ -510,7 +488,7 @@ export class ShipActor extends TwodsixVehicleBaseActor {
         img: "systems/twodsix/assets/icons/components/cargo.svg",
         type: 'component',
         system: {
-          subtype: 'cargo',
+          subtype: COMPONENT_SUBTYPES.CARGO,
           status: 'operational',
           price: basePrice,
           buyPricePerTon: buyPerTon,

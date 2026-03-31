@@ -545,7 +545,7 @@ export default class TwodsixItem extends Item {
       //Determine Ship Weapon Label
       let shipWeaponType = "";
       let shipWeaponLabel = "";
-      const isArmament = (this.type === 'component' && ['armament', 'ammo'].includes(this.system?.subtype));
+      const isArmament = (this.type === 'component' && this.system?.isWeapon);
       if (isArmament) {
         shipWeaponType = this.system.shipWeaponType || "";
         shipWeaponLabel = TWODSIX.ShipWeaponTypes[game.settings.get('twodsix', 'shipWeaponType')][this.system.shipWeaponType] || "unknown";
@@ -752,7 +752,7 @@ export async function onRollDamage(ev, target) {
   let item = this.actor.items.get(itemId);
 
   //Replace damage item for linked ammo on a ship component
-  if (item.system.subtype === "armament" && item.system.ammoLink && item.system.ammoLink !== "none") {
+  if (item.system.isArmament && item.system.ammoLink && item.system.ammoLink !== "none") {
     const linkedAmmo = this.actor.items.get(item.system.ammoLink);
     if (linkedAmmo) {
       item = linkedAmmo;

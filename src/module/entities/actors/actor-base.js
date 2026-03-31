@@ -1,4 +1,4 @@
-import { TWODSIX } from '../../config';
+import { COMPONENT_SUBTYPES, TWODSIX } from '../../config';
 import { getDamageCharacteristics, getParryValue, stackArmorValues, Stats } from '../../utils/actorDamage';
 import { applyToAllActors } from '../../utils/migration-utils';
 import { getDamageTypes } from '../../utils/sheetUtils';
@@ -763,7 +763,7 @@ export default class TwodsixActor extends Actor {
    * @returns {object|null} Normalized cargoRow object or null if not a cargo component.
    */
   buildCargoRowFromItem(item) {
-    if (!item || item.type !== "component" || item.system?.subtype !== "cargo") {
+    if (!item || item.type !== "component" || item.system?.subtype !== COMPONENT_SUBTYPES.CARGO) {
       return null;
     }
 
@@ -1001,7 +1001,7 @@ export default class TwodsixActor extends Actor {
     };
 
     this.itemTypes.component.filter(
-      (it) => it.system.subtype === 'drive' && !["off", "destroyed"].includes(it.system.status)
+      (it) => it.system.subtype === COMPONENT_SUBTYPES.DRIVE && !["off", "destroyed"].includes(it.system.status)
     ).forEach((drive) => {
       const validRating = parseRating(drive.system.rating);
       if (drive.isMDriveComponent()) {
@@ -1034,7 +1034,7 @@ export function getPower(item) {
     const pf = item.system.powerDraw || 0;
     if (item.system.powerBasis === 'perUnit') {
       let quant = item.system.quantity || 1;
-      if (item.system.subtype === "armament" && item.system.availableQuantity) {
+      if (item.system.isArmament && item.system.availableQuantity) {
         quant = parseInt(item.system.availableQuantity);
       }
       return (quant * pf);

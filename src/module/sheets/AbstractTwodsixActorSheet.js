@@ -1,7 +1,7 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
-import { TWODSIX } from '../config';
+import { COMPONENT_SUBTYPES, TWODSIX } from '../config';
 import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
 import { onRollDamage } from '../entities/TwodsixItem';
 import {
@@ -124,10 +124,10 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
           updates.push(update);
         }
       }
-    } else if (toDeleteItem.system?.subtype === "ammo") {
+    } else if (toDeleteItem.system?.subtype === COMPONENT_SUBTYPES.AMMO) {
       // Reset ammoLink on linked armaments
       const linkedArmaments =
-        this.actor.itemTypes.component?.filter(it => it.system.subtype === "armament" && it.system.ammoLink === toDeleteItem.id) ?? [];
+        this.actor.itemTypes.component?.filter(it => it.system.isArmament && it.system.ammoLink === toDeleteItem.id) ?? [];
       for (const arm of linkedArmaments) {
         updates.push({_id: arm.id, "system.ammoLink": "none"});
       }
@@ -207,7 +207,7 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
     let itemName = game.i18n.localize("TWODSIX.Items.Items.New") + " ";
 
     if (type === "component") {
-      itemName += game.i18n.localize("TWODSIX.Items.Component." + (subtype || "otherInternal"));
+      itemName += game.i18n.localize("TWODSIX.Items.Component." + (subtype || COMPONENT_SUBTYPES.OTHER_INTERNAL));
     } else {
       itemName += game.i18n.localize("TWODSIX.itemTypes." + itemType);
     }
@@ -827,7 +827,7 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
           };
         }
         //replace item damage with linked ammo damage for display
-        if (it.system.subtype === "armament" && it.system.ammoLink !== "none") {
+        if (it.system.isArmament && it.system.ammoLink !== "none") {
           const linkedAmmo = actor.items.get(it.system.ammoLink);
           if (linkedAmmo) {
             it.system.ammoDamage = linkedAmmo.system.damage;
@@ -859,7 +859,7 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
       context.container.allCargo = [...(component.cargo ?? []), ...(component.ammo ?? [])];
       context.summaryStatus = sortObj(summaryStatus);
       context.container.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
-      context.container.nonCargo = actor.itemTypes.component.filter(i => !["cargo", "ammo"].includes(i.system.subtype));
+      context.container.nonCargo = actor.itemTypes.component.filter(i => !i.system.isStoredInCargo);
     } else if (["world"].includes(actor.type)) {
       context.container.allCargo = [...(component.cargo ?? [])];
     } else if (["robot"].includes(actor.type)) {
@@ -1265,7 +1265,7 @@ export function getDisplayOrder(context) {
  * @param {TwodsixActor} actor
  * @returns {void}
  */
-function updateWithItemSpecificValues(itemData, type, subtype = "otherInternal", actor) {
+function updateWithItemSpecificValues(itemData, type, subtype = COMPONENT_SUBTYPES.OTHER_INTERNAL, actor) {
   switch (type) {
     case "skills":
       if (!game.settings.get('twodsix', 'hideUntrainedSkills')) {
@@ -1284,7 +1284,7 @@ function updateWithItemSpecificValues(itemData, type, subtype = "otherInternal",
       }
       break;
     case "component":
-      itemData.system.subtype = subtype || "otherInternal";
+      itemData.system.subtype = subtype || COMPONENT_SUBTYPES.OTHER_INTERNAL;
       if (subtype === "power") {
         itemData.system.generatesPower = true;
       }

@@ -6,12 +6,13 @@ import {
   requiredBlankString,
   requiredInteger
 } from '../commonSchemaUtils.js';
+import { COMPONENT_SUBTYPES } from '../../config.js';
 import { GearData } from './gear-data.js';
 
 export class ComponentData extends GearData {
   static defineSchema() {
     const schema = super.defineSchema();
-    schema.subtype = new fields.StringField({required: true, blank: false, initial: "otherInternal"});
+    schema.subtype = new fields.StringField({required: true, blank: false, initial: COMPONENT_SUBTYPES.OTHER_INTERNAL});
     schema.powerDraw = new fields.NumberField({required: true, nullable: false, integer: false, initial: 0});
     schema.rating = new fields.StringField({...requiredBlankString});
     schema.availableQuantity = new fields.StringField({...requiredBlankString});
@@ -73,9 +74,103 @@ export class ComponentData extends GearData {
     }
     if ("subtype" in source) {
       if (source.subtype === "accomodations") {
-        source.subtype = "accommodations";
+        source.subtype = COMPONENT_SUBTYPES.ACCOMMODATIONS;
       }
     }
     return super.migrateData(source);
+  }
+
+  // ─── Semantic getters ────────────────────────────────────────────────────
+
+  /** True for cargo or ammo — stored in cargo hold rather than as a system. */
+  get isStoredInCargo() {
+    return [COMPONENT_SUBTYPES.CARGO, COMPONENT_SUBTYPES.AMMO].includes(this.subtype);
+  }
+
+  /** True for armament or ammo — participates in weapon attack rolls. */
+  get isWeapon() {
+    return [COMPONENT_SUBTYPES.ARMAMENT, COMPONENT_SUBTYPES.AMMO].includes(this.subtype);
+  }
+
+  /** True only for the armament subtype. */
+  get isArmament() {
+    return this.subtype === COMPONENT_SUBTYPES.ARMAMENT;
+  }
+
+  /** True for armament or mount — can have a popup mount. */
+  get canBePopup() {
+    return [COMPONENT_SUBTYPES.ARMAMENT, COMPONENT_SUBTYPES.MOUNT].includes(this.subtype);
+  }
+
+  /** True for subtypes excluded from ship cost calculations. */
+  get isExcludedFromCost() {
+    return [COMPONENT_SUBTYPES.FUEL, COMPONENT_SUBTYPES.CARGO,
+      COMPONENT_SUBTYPES.AMMO, COMPONENT_SUBTYPES.VEHICLE].includes(this.subtype);
+  }
+
+  /** True for computer — adds available bandwidth. */
+  get contributesBandwidth() {
+    return this.subtype === COMPONENT_SUBTYPES.COMPUTER;
+  }
+
+  /** True for software — consumes bandwidth. */
+  get consumesBandwidth() {
+    return this.subtype === COMPONENT_SUBTYPES.SOFTWARE;
+  }
+
+  /** True when this subtype is allowed to be hardened. */
+  get canBeHardened() {
+    return ![COMPONENT_SUBTYPES.FUEL, COMPONENT_SUBTYPES.CARGO,
+      COMPONENT_SUBTYPES.AMMO, COMPONENT_SUBTYPES.STORAGE,
+      COMPONENT_SUBTYPES.VEHICLE].includes(this.subtype);
+  }
+
+  /** True when weightIsPct must be false for this subtype. */
+  get weightIsPctForbidden() {
+    return [COMPONENT_SUBTYPES.CARGO, COMPONENT_SUBTYPES.AMMO].includes(this.subtype);
+  }
+
+  /** True when hull-based pricing is forbidden for this subtype. */
+  get hullPricingForbidden() {
+    return this.subtype === COMPONENT_SUBTYPES.AMMO;
+  }
+
+  /** Weight bucket name for ship weight calculations. */
+  get weightCategory() {
+    switch (this.subtype) {
+      case COMPONENT_SUBTYPES.VEHICLE: return "vehicles";
+      case COMPONENT_SUBTYPES.CARGO:
+      case COMPONENT_SUBTYPES.AMMO: return "cargo";
+      case COMPONENT_SUBTYPES.FUEL: return "fuel";
+      case COMPONENT_SUBTYPES.HULL: return "hull";
+      default: return "systems";
+    }
+  }
+
+  /** Power bucket name for ship power calculations (non-generators only). */
+  get powerCategory() {
+    switch (this.subtype) {
+      case COMPONENT_SUBTYPES.DRIVE: return "drive";
+      case COMPONENT_SUBTYPES.SENSOR: return "sensors";
+      case COMPONENT_SUBTYPES.ARMAMENT: return "weapons";
+      default: return "systems";
+    }
+  }
+
+  // ─── Static helpers ──────────────────────────────────────────────────────
+
+  /**
+   * Returns constraint flags for a given subtype string.
+   * Used in _preUpdate when the subtype is changing (instance subtype is the old value).
+   */
+  static constraintsForSubtype(subtype) {
+    return {
+      weightIsPctForbidden: [COMPONENT_SUBTYPES.CARGO, COMPONENT_SUBTYPES.AMMO].includes(subtype),
+      canBeHardened: ![COMPONENT_SUBTYPES.FUEL, COMPONENT_SUBTYPES.CARGO,
+        COMPONENT_SUBTYPES.AMMO, COMPONENT_SUBTYPES.STORAGE,
+        COMPONENT_SUBTYPES.VEHICLE].includes(subtype),
+      hullPricingForbidden: subtype === COMPONENT_SUBTYPES.AMMO,
+      isBaseHullAllowed: subtype === COMPONENT_SUBTYPES.HULL,
+    };
   }
 }

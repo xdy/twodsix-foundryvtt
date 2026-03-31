@@ -1236,6 +1236,35 @@ export const ComponentTypes = {
   vehicle: "TWODSIX.Items.Component.vehicle"
 };
 
+/**
+ * Frozen constant keys for all valid component subtypes. Use these instead of raw string literals.
+ */
+export const COMPONENT_SUBTYPES = Object.freeze({
+  ACCOMMODATIONS: "accommodations",
+  AMMO: "ammo",
+  ARMAMENT: "armament",
+  ARMOR: "armor",
+  BRIDGE: "bridge",
+  CARGO: "cargo",
+  COMPUTER: "computer",
+  DOCK: "dock",
+  DRIVE: "drive",
+  DRONE: "drone",
+  ELECTRONICS: "electronics",
+  FUEL: "fuel",
+  HULL: "hull",
+  MOUNT: "mount",
+  OTHER: "other",
+  OTHER_EXTERNAL: "otherExternal",
+  OTHER_INTERNAL: "otherInternal",
+  POWER: "power",
+  SENSOR: "sensor",
+  SHIELD: "shield",
+  SOFTWARE: "software",
+  STORAGE: "storage",
+  VEHICLE: "vehicle",
+});
+
 export const ShipWeaponTypes = {
   CT: {
     pulseLaser: "TWODSIX.Items.Component.PulseLaser",
@@ -1793,6 +1822,7 @@ export const TWODSIX = {
   ComponentStates: ComponentStates,
   DriveTypes: DriveTypes,
   ComponentTypes: ComponentTypes,
+  COMPONENT_SUBTYPES: COMPONENT_SUBTYPES,
   CharacteristicDisplayTypes: CharacteristicDisplayTypes,
   TimeUnits: TimeUnits,
   VehicleProtection: VehicleProtection,

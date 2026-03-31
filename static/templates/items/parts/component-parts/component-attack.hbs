@@ -7,7 +7,7 @@
     <label for="system.radDamage" class="resource-label">{{localize "TWODSIX.Items.Component.RadiationDamage"}}</label>
     <input class="form-input" type="text" name="system.radDamage" value="{{system.radDamage}}"/>
   </div>
-  {{#iff system.subtype "===" "armament"}}
+  {{#iff system.subtype "===" config.COMPONENT_SUBTYPES.ARMAMENT}}
     <div class="item-features">
       <span class="resource-label">{{localize "TWODSIX.Items.Component.FireArc"}}</span>
       <div>
@@ -26,7 +26,7 @@
     <label class="resource-label" for="system.armorPiercing">{{localize "TWODSIX.Items.Weapon.ArmorPiercing"}}</label>
     <input class="form-input" type="text" name="system.armorPiercing" value="{{system.armorPiercing}}">
   </div>
-  {{#iff system.subtype "===" "armament"}}
+  {{#iff system.subtype "===" config.COMPONENT_SUBTYPES.ARMAMENT}}
     <div class="item-rateOfFire">
       <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
       <input class="form-input" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
@@ -36,7 +36,7 @@
     <span class="resource-label">{{localize "TWODSIX.Items.Component.Features"}}</span>
     <input class="form-input" type="text" name="system.features" value="{{system.features}}"/>
   </div>
-  {{#iff system.subtype "===" "armament"}}
+  {{#iff system.subtype "===" config.COMPONENT_SUBTYPES.ARMAMENT}}
     <div class="item-skill">
       <label for = "system.associatedSkillName" class="resource-label">{{localize "TWODSIX.Items.Equipment.AssociatedSkillName"}}</label>
       <input class="form-input" type="text" name="system.associatedSkillName" value="{{system.associatedSkillName}}" />

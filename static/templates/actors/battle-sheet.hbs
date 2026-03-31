@@ -88,7 +88,7 @@
         </div>
         <div class="item-list battle">
           {{#each container.nonCargo as |item id|}}
-            {{#iff item.system.subtype "===" "armament"}}
+            {{#iff item.system.subtype "===" config.COMPONENT_SUBTYPES.ARMAMENT}}
               <div class="grid-columns-single-row item draggable" data-item-id="{{item.id}}">
                 <ol class="ol-no-indent">
                   <li class="battle-weapons">

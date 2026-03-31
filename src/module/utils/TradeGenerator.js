@@ -7,6 +7,8 @@
  */
 
 
+import { COMPONENT_SUBTYPES } from '../config.js';
+
 /**
  * Trade Generation System
  * Implements Cepheus Engine SRD Chapter 7: Trade and Commerce
@@ -884,7 +886,7 @@ export function calculatePrice(basePrice, modifierPercent) {
  */
 export async function createCargoItemsOnActor(actor, tradeInfo) {
   // Clear all existing cargo items on this actor first
-  const existingCargo = actor.items?.filter((i) => i.type === 'component' && i.system?.subtype === 'cargo') || [];
+  const existingCargo = actor.items?.filter((i) => i.type === 'component' && i.system?.subtype === COMPONENT_SUBTYPES.CARGO) || [];
   if (existingCargo.length > 0) {
     const idsToDelete = existingCargo.map((i) => i.id);
     await actor.deleteEmbeddedDocuments('Item', idsToDelete);
@@ -915,7 +917,7 @@ export async function createCargoItemsOnActor(actor, tradeInfo) {
       img: "systems/twodsix/assets/icons/components/cargo.svg",
       type: 'component',
       system: {
-        subtype: 'cargo',
+        subtype: COMPONENT_SUBTYPES.CARGO,
         status: 'operational',
         price: basePrice,
         buyPricePerTon: buyPerTon,

@@ -1,6 +1,6 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
-import { TWODSIX } from './config';
+import { COMPONENT_SUBTYPES, TWODSIX } from './config';
 import { WeaponItem } from './entities/items/WeaponItem';
 import { getCharacteristicList } from './utils/TwodsixRollSettings';
 import { simplifySkillName } from './utils/utils';
@@ -250,7 +250,7 @@ export default function registerHandlebarsHelpers() {
   });
 
   Handlebars.registerHelper('getComponentPrice', (item) => {
-    if (item.system.subtype === "cargo") {
+    if (item.system.subtype === COMPONENT_SUBTYPES.CARGO) {
       return Number(item.system.purchasePrice / 1e6).toLocaleString(game.i18n.lang, {
         minimumFractionDigits: 1,
         maximumFractionDigits: 3
@@ -303,7 +303,7 @@ export default function registerHandlebarsHelpers() {
   });
 
   Handlebars.registerHelper('twodsix_canBePopup', (item) => {
-    return ["armament", "mount"].includes(item.system.subtype);
+    return item.system.canBePopup;
   });
 
   Handlebars.registerHelper('twodsix_canBeEquipped', (item) => {

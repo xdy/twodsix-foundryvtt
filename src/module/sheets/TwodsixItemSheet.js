@@ -1,6 +1,6 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
-import { TWODSIX } from '../config';
+import { COMPONENT_SUBTYPES, TWODSIX } from '../config';
 import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
 import TwodsixItem from '../entities/TwodsixItem';
 import {
@@ -334,7 +334,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     context.config = foundry.utils.duplicate(TWODSIX);
 
     //setup custom drive type labels
-    if (this.item.system.subtype === "drive") {
+    if (this.item.system.subtype === COMPONENT_SUBTYPES.DRIVE) {
       context.config.DriveTypes.jdrive = game.settings.get("twodsix", "jDriveLabel") || TWODSIX.DriveTypes.jdrive;
       context.config.DriveTypes.mdrive = game.settings.get("twodsix", "mDriveLabel") || TWODSIX.DriveTypes.mdrive;
     }
@@ -353,19 +353,19 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
     }
 
-    context.isStoredInCargo = ["cargo", "ammo"].includes(this.item.system.subtype);
-    context.isWeapon = ["armament", "ammo"].includes(this.item.system.subtype);
+    context.isStoredInCargo = this.item.system.isStoredInCargo;
+    context.isWeapon = this.item.system.isWeapon;
 
     //Add ammo list for selectObject
     context.ammoList = {none: game.i18n.localize("TWODSIX.Ship.None")};
-    if (this.item.system.subtype === "armament" && this.item.actor) {
+    if (this.item.system.isArmament && this.item.actor) {
       (this.item.actor).itemTypes.component
-        ?.filter(i => i.system.subtype === "ammo")
+        ?.filter(i => i.system.subtype === COMPONENT_SUBTYPES.AMMO)
         ?.forEach(a => context.ammoList[a.id] = a.name);
     }
 
     //Disable invalid pricing options for ammo
-    if (["ammo"].includes(this.item.system.subtype)) {
+    if (this.item.system.hullPricingForbidden) {
       delete context.config.PricingOptions.perHullTon;
       delete context.config.PricingOptions.per100HullTon;
       delete context.config.PricingOptions.pctHull;
@@ -392,10 +392,10 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     } else if (this.item.type === "component") {
       delete tabs.magazine;
       delete tabs.modifiers;
-      if (["cargo", "ammo"].includes(this.item.system.subtype)) {
+      if (this.item.system.isStoredInCargo) {
         delete tabs.power;
       }
-      if (!["armament", "mount", "ammo"].includes(this.item.system.subtype)) {
+      if (!this.item.system.isWeapon && !this.item.system.canBePopup) {
         delete tabs.attack;
       }
     }

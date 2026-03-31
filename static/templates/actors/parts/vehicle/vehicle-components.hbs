@@ -21,7 +21,7 @@
           <span class="item-name">{{item.name}} <i class= '{{twodsix_getComponentIcon item.system.subtype}}' data-tooltip='{{localize (concat "TWODSIX.Items.Component." item.system.subtype)}}'></i></span>
           <span class="item-name centre">{{#iff item.system.techLevel ">" "0"}}{{item.system.techLevel}}{{else}}&mdash;{{/iff}}</span>
           <span class="item-name centre">{{#iff item.system.rollModifier "!==" ""}}{{item.system.rollModifier}}{{else}}&mdash;{{/iff}}</span>
-          {{#iff item.system.subtype "===" "armament"}}
+          {{#iff item.system.subtype "===" config.COMPONENT_SUBTYPES.ARMAMENT}}
             {{> "systems/twodsix/templates/actors/parts/common/armament-qty.hbs" item=item}}
             <span class="item-name centre"><input disabled style="{{makeFireArc item.system.fireArc.startAngle item.system.fireArc.endAngle}}"/></span>
           {{else}}

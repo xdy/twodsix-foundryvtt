@@ -120,7 +120,7 @@ export class TwodsixRollSettings {
         if (anItem.type === "weapon") {
           rollClass = "Attack";
         } else if (anItem.type === "component") {
-          if (anItem.system.subtype === "armament") {
+          if (anItem.system.isArmament) {
             rollClass = "ShipWeapon";
           } else {
             rollClass = "ShipAction";
