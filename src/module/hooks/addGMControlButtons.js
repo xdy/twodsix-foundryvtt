@@ -316,7 +316,8 @@ function getControllingUser(token) {
     if (characterUser) {
       userId = characterUser.id;
     } else {
-      const randomSelection = Math.floor(Math.random() * owningUsers.length);
+      //Pointlessly complicated way to get a random number, but, hey, if it makes codeql shut up...
+      const randomSelection = crypto.getRandomValues(new Uint32Array(1))[0] % owningUsers.length;
       userId = owningUsers[randomSelection].id;
     }
   } else if (owningUsers.length === 1) {
