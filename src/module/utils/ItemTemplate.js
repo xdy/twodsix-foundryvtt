@@ -87,7 +87,7 @@ export default class ItemTemplate extends foundry.canvas.placeables.Region {
    */
   static generateItemTemplateData(
     template,
-    {grid = canvas.scene?.grid ?? BaseScene.defaultGrid, gridTemplates = false, coneTemplateType = "round"} = {}
+    {grid = canvas.scene?.grid ?? foundry.documents.BaseScene.defaultGrid, gridTemplates = false, coneTemplateType = "round"} = {}
   ) {
     try {
       // Extract raw intent
