@@ -1,6 +1,6 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
-import { COMPONENT_SUBTYPES, TWODSIX } from './config';
+import { COMPONENT_SUBTYPES, CONSUMABLE_SUBTYPES, TWODSIX } from './config';
 import { WeaponItem } from './entities/items/WeaponItem';
 import { getCharacteristicList } from './utils/TwodsixRollSettings';
 import { simplifySkillName } from './utils/utils';
@@ -65,7 +65,7 @@ export default function registerHandlebarsHelpers() {
   });
 
   Handlebars.registerHelper('twodsix_refillText', (subtype, quantity) => {
-    const refillWord = ["magazine", "power_cell"].includes(subtype) ? "Reload" : "Refill";
+    const refillWord = [CONSUMABLE_SUBTYPES.MAGAZINE, CONSUMABLE_SUBTYPES.POWER_CELL].includes(subtype) ? "Reload" : "Refill";
     return `${game.i18n.localize(`TWODSIX.Actor.Items.${refillWord}`)} (${quantity - 1})`;
   });
 
@@ -213,7 +213,7 @@ export default function registerHandlebarsHelpers() {
       let bandwidth = 0;
       if (item.system.attachmentData) {
         for (const attch of item.system.attachmentData) {
-          if (attch.system.subtype === "software" && attch.system.softwareActive) {
+          if (attch.system.isSoftware && attch.system.softwareActive) {
             bandwidth += attch.system.bandwidth;
           }
         }

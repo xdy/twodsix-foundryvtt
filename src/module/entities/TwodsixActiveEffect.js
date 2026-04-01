@@ -26,7 +26,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
     if (this.parent instanceof Item) {
       if (["trait"].includes(this.parent.type)) {
         return false;
-      } else if (["consumable"].includes(this.parent.type) && this.parent.system.subtype === "software" && !this.parent.system.softwareActive) {
+      } else if (["consumable"].includes(this.parent.type) && this.parent.system.isSoftware && !this.parent.system.softwareActive) {
         return true;
       } else if (["storage", "junk"].includes(this.parent.type) || this.parent.system.equipped !== 'equipped') {
         return true;

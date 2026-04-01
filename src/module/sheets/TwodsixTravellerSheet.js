@@ -1,7 +1,7 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
-import { TWODSIX } from '../config';
+import { CONSUMABLE_SUBTYPES, TWODSIX } from '../config';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
@@ -103,7 +103,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       await item.refill();
     } catch (err) {
       if (err.name === "TooLowQuantityError") {
-        const refillAction = ["magazine", "power_cell"].includes((item.system).subtype) ? "Reload" : "Refill";
+        const refillAction = item.system.isReloadable ? "Reload" : "Refill";
         const refillWord = game.i18n.localize(`TWODSIX.Actor.Items.${refillAction}`).toLocaleLowerCase();
         const tooFewString = game.i18n.localize("TWODSIX.Errors.TooFewToReload");
         ui.notifications.error(tooFewString.replace("_NAME_", item.name?.toLocaleLowerCase() || "???").replace("_REFILL_ACTION_", refillWord));
@@ -128,7 +128,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
         name: game.i18n.localize("TWODSIX.Items.Consumable.Types.magazine") + ": " + weaponSelected.name,
         type: "consumable",
         system: {
-          subtype: "magazine",
+          subtype: CONSUMABLE_SUBTYPES.MAGAZINE,
           quantity: 1,
           currentCount: max,
           max,
@@ -179,12 +179,12 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   static async _onToggleConsumable(ev, target) {
     const parentItem = await this.actor.items.get(target.dataset.parentId);
     const consumable = await this.actor.items.get(target.dataset.consumableId);
-    if (parentItem?.type === "weapon" && !["software", "processor", "suite"].includes(consumable.system.subtype)) {
+    if (parentItem?.type === "weapon" && !consumable.system.isAttachmentType) {
       if (parentItem?.system.useConsumableForAttack !== consumable.id) {
         await parentItem.update({'system.useConsumableForAttack': consumable.id});
       }
     } else {
-      if (consumable.system.subtype === "software") {
+      if (consumable.system.isSoftware) {
         await consumable.update({'system.softwareActive': !consumable.system.softwareActive});
       }
     }

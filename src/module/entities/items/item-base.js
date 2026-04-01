@@ -238,7 +238,7 @@ export default class TwodsixItem extends Item {
    * @returns {Promise<void>}
    */
   async addConsumable(consumableId, gear = this.system) {
-    if (gear.consumables != undefined) {
+    if (gear.consumables !== undefined) {
       if (gear.consumables.includes(consumableId)) {
         console.log(`Twodsix | Consumable already exists for item ${this.id}`);
       } else {
@@ -627,7 +627,7 @@ export default class TwodsixItem extends Item {
     let returnValue = 0;
     if (this.system.attachmentData) {
       for (const attach of this.system.attachmentData) {
-        if (attach.system.subtype !== "software" || attach.system.softwareActive) {
+        if (!attach.system.isSoftware || attach.system.softwareActive) {
           if (foundry.utils.hasProperty(attach.system, key)) {
             if (typeof attach.system[key] === 'number') {
               returnValue += attach.system[key];

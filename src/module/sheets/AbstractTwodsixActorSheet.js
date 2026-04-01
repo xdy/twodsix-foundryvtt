@@ -1,7 +1,7 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
-import { COMPONENT_SUBTYPES, TWODSIX } from '../config';
+import { COMPONENT_SUBTYPES, CONSUMABLE_SUBTYPES, TWODSIX } from '../config';
 import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
 import { onRollDamage } from '../entities/TwodsixItem';
 import {
@@ -1300,7 +1300,7 @@ function updateWithItemSpecificValues(itemData, type, subtype = COMPONENT_SUBTYP
       }
       break;
     case "consumable":
-      itemData.system.subtype = "other";
+      itemData.system.subtype = CONSUMABLE_SUBTYPES.OTHER;
       if (subtype === "attachment") {
         itemData.system.isAttachment = true;
         itemData.name = game.i18n.localize("TWODSIX.Items.Equipment.NewAttachment");

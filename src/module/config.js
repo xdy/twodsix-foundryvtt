@@ -1010,6 +1010,22 @@ const ROLLTYPES = Object.freeze({
 
 const WeightlessItems = ["skills", "trait", "spell", "psiAbility"];
 
+/**
+ * Frozen constant keys for all valid consumable subtypes. Use these instead of raw string literals.
+ */
+export const CONSUMABLE_SUBTYPES = Object.freeze({
+  AIR: "air",
+  DRUGS: "drugs",
+  FOOD: "food",
+  FUEL: "fuel",
+  MAGAZINE: "magazine",
+  POWER_CELL: "power_cell",
+  SOFTWARE: "software",
+  PROCESSOR: "processor",
+  SUITE: "suite",
+  OTHER: "other",
+});
+
 const CONSUMABLES = Object.freeze({
   air: "TWODSIX.Items.Consumable.Types.air",
   drugs: "TWODSIX.Items.Consumable.Types.drugs",
@@ -1806,6 +1822,7 @@ export const WorldTravelZones = Object.freeze({
 export const TWODSIX = {
   CHARACTERISTICS: CHARACTERISTICS,
   CONSUMABLES: CONSUMABLES,
+  CONSUMABLE_SUBTYPES: CONSUMABLE_SUBTYPES,
   DIFFICULTY_VARIANTS: DIFFICULTY_VARIANTS,
   AUTOFIRE_VARIANTS: AUTOFIRE_VARIANTS,
   THEME_CHOICES: THEME_CHOICES,

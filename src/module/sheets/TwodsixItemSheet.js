@@ -1,6 +1,7 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
-import { COMPONENT_SUBTYPES, TWODSIX } from '../config';
+import { COMPONENT_SUBTYPES, CONSUMABLE_SUBTYPES, TWODSIX } from '../config';
+import { ConsumableData } from '../data/items/consumableData.js';
 import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
 import TwodsixItem from '../entities/TwodsixItem';
 import {
@@ -186,9 +187,9 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
     const template = 'systems/twodsix/templates/items/dialogs/create-consumable.hbs';
     const consumablesList = foundry.utils.duplicate(TWODSIX.CONSUMABLES);
-    if (this.item.type === "computer" || (this.item.type === "consumable" && ["processor", "suite"].includes(this.item.system.subtype))) {
-      delete consumablesList["processor"];
-      delete consumablesList["suite"];
+    if (this.item.type === "computer" || (this.item.type === "consumable" && this.item.system.isAttachmentType)) {
+      delete consumablesList[CONSUMABLE_SUBTYPES.PROCESSOR];
+      delete consumablesList[CONSUMABLE_SUBTYPES.SUITE];
     }
     const html = await foundry.applications.handlebars.renderTemplate(template, {
       consumables: consumablesList
@@ -217,7 +218,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
                 currentCount: max,
                 max: max,
                 equipped: equippedState,
-                isAttachment: ["processor", "software", "suite"].includes(dialogElement.querySelector('.consumable-subtype')?.value) && this.item.type !== "consumable",
+                isAttachment: ConsumableData.constraintsForSubtype(dialogElement.querySelector('.consumable-subtype')?.value).isAttachmentType && this.item.type !== "consumable",
                 parentName: this.item.name,
                 parentType: this.item.type
               }

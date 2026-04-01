@@ -10,7 +10,7 @@
 
 import TwodsixCombatTracker from './module/applications/sidebar/TwodsixCombatTracker';
 
-import { COMPONENT_SUBTYPES, TWODSIX } from './module/config';
+import { COMPONENT_SUBTYPES, CONSUMABLE_SUBTYPES, TWODSIX } from './module/config';
 import { AnimalData } from './module/data/actors/animalData.js';
 import { RobotData } from './module/data/actors/robotData.js';
 import { TravellerData } from './module/data/actors/travellerData.js';
@@ -46,6 +46,7 @@ import { ComponentItem } from './module/entities/items/ComponentItem';
 import { COMPONENT_SUBTYPE_CLASSES } from './module/entities/items/components/index.js';
 import { ComputerItem } from './module/entities/items/ComputerItem';
 import { ConsumableItem } from './module/entities/items/ConsumableItem';
+import { CONSUMABLE_SUBTYPE_CLASSES } from './module/entities/items/consumables/index.js';
 import { EquipmentItem } from './module/entities/items/EquipmentItem';
 import { JunkItem } from './module/entities/items/JunkItem';
 import { PsiAbilityItem } from './module/entities/items/PsiAbilityItem';
@@ -206,6 +207,11 @@ Hooks.once('init', async function () {
       if (type === "component") {
         const subtype = data?.system?.subtype ?? COMPONENT_SUBTYPES.OTHER_INTERNAL;
         const cls = COMPONENT_SUBTYPE_CLASSES[subtype] ?? COMPONENT_SUBTYPE_CLASSES._default;
+        return new cls(data, context);
+      }
+      if (type === "consumable") {
+        const subtype = data?.system?.subtype ?? CONSUMABLE_SUBTYPES.OTHER;
+        const cls = CONSUMABLE_SUBTYPE_CLASSES[subtype] ?? CONSUMABLE_SUBTYPE_CLASSES._default;
         return new cls(data, context);
       }
       const cls = CONFIG.Item.documentClasses[type] ?? TwodsixItem;
