@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.0...v7.0.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* V14 Compatibility, Introduces ship combat phases. Adds western styled theme. ([fb0b1cb](https://github.com/xdy/twodsix-foundryvtt/commit/fb0b1cb693d5375a94f72ec8702a8e9f9e002e57))
+
 # [7.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.7...v7.0.0) (2026-03-28)
 
 
