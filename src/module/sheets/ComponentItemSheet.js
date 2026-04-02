@@ -5,8 +5,12 @@ export class ComponentItemSheet extends TwodsixItemSheet {
   getApplicableTabs(tabs) {
     delete tabs.magazine;
     delete tabs.modifiers;
-    if (this.item.system.isStoredInCargo) delete tabs.power;
-    if (!this.item.system.isWeapon && !this.item.system.canBePopup) delete tabs.attack;
+    if (this.item.system.isStoredInCargo) {
+      delete tabs.power;
+    }
+    if (!this.item.system.isWeapon && !this.item.system.canBePopup) {
+      delete tabs.attack;
+    }
     delete tabs.chargenRuleset;
     delete tabs.career;
     return tabs;

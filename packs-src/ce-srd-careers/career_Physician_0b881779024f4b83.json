@@ -1,0 +1,123 @@
+{
+  "_id": "0b881779024f4b83",
+  "name": "Physician",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "edu",
+      "target": 6
+    },
+    "surv": {
+      "char": "int",
+      "target": 4
+    },
+    "comm": {
+      "char": "int",
+      "target": 5
+    },
+    "adv": {
+      "char": "edu",
+      "target": 8
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Intern",
+        "skill": "Medicine",
+        "level": 1
+      },
+      {
+        "title": "Resident",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Senior Resident",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Chief Resident",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Attending Physician",
+        "skill": "Admin",
+        "level": 1
+      },
+      {
+        "title": "Service Chief",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Hospital Administrator",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "+1 Int",
+      "+1 Edu",
+      "Gun Combat"
+    ],
+    "service": [
+      "Admin",
+      "Computer",
+      "Mechanics",
+      "Medicine",
+      "Leadership",
+      "Sciences"
+    ],
+    "specialist": [
+      "Computer",
+      "Carousing",
+      "Electronics",
+      "Medicine",
+      "Medicine",
+      "Sciences"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Jack o' Trades",
+      "Linguistics",
+      "Medicine",
+      "Sciences"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Edu",
+      "+1 Int",
+      "High Passage",
+      "Explorers' Society",
+      "High Passage",
+      "+1 Soc"
+    ],
+    "cash": [
+      2000,
+      10000,
+      20000,
+      20000,
+      50000,
+      100000,
+      100000
+    ],
+    "description": "Individual that is skilled in the science of medicine and is trained and licensed to treat sick and injured people."
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "_key": "!items!0b881779024f4b83"
+}

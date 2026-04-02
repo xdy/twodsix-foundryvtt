@@ -1,0 +1,156 @@
+{
+  "_id": "b3e4f1a2c9d57e80",
+  "name": "CE Chargen Ruleset",
+  "type": "chargen_ruleset",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "description": "<p>Cepheus Engine SRD character generation ruleset tables.</p>",
+    "agingTable": [
+      {"physStr": 2, "physDex": 2, "physEnd": 2, "mental": 1, "noEffect": false},
+      {"physStr": 2, "physDex": 2, "physEnd": 2, "mental": 0, "noEffect": false},
+      {"physStr": 2, "physDex": 2, "physEnd": 1, "mental": 0, "noEffect": false},
+      {"physStr": 2, "physDex": 1, "physEnd": 1, "mental": 0, "noEffect": false},
+      {"physStr": 1, "physDex": 1, "physEnd": 1, "mental": 0, "noEffect": false},
+      {"physStr": 1, "physDex": 1, "physEnd": 0, "mental": 0, "noEffect": false},
+      {"physStr": 1, "physDex": 0, "physEnd": 0, "mental": 0, "noEffect": false},
+      {"physStr": 0, "physDex": 0, "physEnd": 0, "mental": 0, "noEffect": true}
+    ],
+    "mishapDesc": [
+      null,
+      "Injured in action.",
+      "Honorably discharged.",
+      "Honorably discharged after legal battle. Cr10,000 debt added.",
+      "Dishonorably discharged. Benefits lost.",
+      "Dishonorably discharged; 4 extra years in prison. Benefits lost.",
+      "Medically discharged. Roll on injury table."
+    ],
+    "injuryDesc": [
+      null,
+      "Nearly killed.",
+      "Severely injured.",
+      "Missing eye or limb. STR or DEX -2.",
+      "Scarred. One physical characteristic -2.",
+      "Injured. One physical characteristic -1.",
+      "Lightly injured. No permanent effect."
+    ],
+    "draftTable": [
+      null,
+      "Aerospace Defense",
+      "Marine",
+      "Maritime Defense",
+      "Navy",
+      "Scout",
+      "Surface Defense"
+    ],
+    "cascadeSkills": [
+      {
+        "skill": "Gun Combat",
+        "specializations": [
+          "Gun Combat (Slug Rifle)",
+          "Gun Combat (Slug Pistol)",
+          "Gun Combat (Energy Rifle)",
+          "Gun Combat (Energy Pistol)",
+          "Gun Combat (Shotguns)",
+          "Gun Combat (Archery)"
+        ]
+      },
+      {
+        "skill": "Melee Combat",
+        "specializations": [
+          "Melee Combat (Blades)",
+          "Melee Combat (Bludgeoning)",
+          "Melee Combat (Natural Weapons)",
+          "Melee Combat (Unarmed)"
+        ]
+      },
+      {
+        "skill": "Vehicle",
+        "specializations": [
+          "Vehicle (Wheeled)",
+          "Vehicle (Tracked)",
+          "Vehicle (Grav)",
+          "Vehicle (Mole)"
+        ]
+      },
+      {
+        "skill": "Sciences",
+        "specializations": [
+          "Science (Life Sciences)",
+          "Science (Physical Sciences)",
+          "Science (Social Sciences)",
+          "Science (Space Sciences)"
+        ]
+      },
+      {
+        "skill": "Animals",
+        "specializations": [
+          "Animals (Farming)",
+          "Animals (Riding)",
+          "Animals (Veterinary)",
+          "Animals (Survival)"
+        ]
+      }
+    ],
+    "homeworldDescriptors": [
+      {"descriptor": "No Law",          "skill": "Gun Combat"},
+      {"descriptor": "Low Law",         "skill": "Gun Combat"},
+      {"descriptor": "Medium Law",      "skill": "Gun Combat"},
+      {"descriptor": "High Law",        "skill": "Melee Combat"},
+      {"descriptor": "Agricultural",    "skill": "Animals"},
+      {"descriptor": "Asteroid",        "skill": "Zero-G"},
+      {"descriptor": "Desert",          "skill": "Survival"},
+      {"descriptor": "Fluid Oceans",    "skill": "Watercraft"},
+      {"descriptor": "Garden",          "skill": "Animals"},
+      {"descriptor": "High Technology", "skill": "Computer"},
+      {"descriptor": "High Population", "skill": "Streetwise"},
+      {"descriptor": "Ice-Capped",      "skill": "Zero-G"},
+      {"descriptor": "Industrial",      "skill": "Broker"},
+      {"descriptor": "Low Technology",  "skill": "Survival"},
+      {"descriptor": "Poor",            "skill": "Animals"},
+      {"descriptor": "Rich",            "skill": "Carousing"},
+      {"descriptor": "Water World",     "skill": "Watercraft"},
+      {"descriptor": "Vacuum",          "skill": "Zero-G"}
+    ],
+    "educationSkills": [
+      "Admin",
+      "Advocate",
+      "Animals",
+      "Carousing",
+      "Comms",
+      "Computer",
+      "Electronics",
+      "Engineering",
+      "Life Sciences",
+      "Linguistics",
+      "Mechanics",
+      "Medicine",
+      "Physical Sciences",
+      "Social Sciences",
+      "Space Sciences"
+    ],
+    "skillNameMap": [
+      {"from": "Jack o' Trades",    "to": "Jack of All Trades"},
+      {"from": "Life Sciences",     "to": "Science (Life Sciences)"},
+      {"from": "Physical Sciences", "to": "Science (Physical Sciences)"},
+      {"from": "Social Sciences",   "to": "Science (Social Sciences)"},
+      {"from": "Space Sciences",    "to": "Science (Space Sciences)"}
+    ],
+    "charKeyMap": [
+      {"benefit": "+1 Str", "key": "str"},
+      {"benefit": "+1 Dex", "key": "dex"},
+      {"benefit": "+1 End", "key": "end"},
+      {"benefit": "+1 Int", "key": "int"},
+      {"benefit": "+1 Edu", "key": "edu"},
+      {"benefit": "+1 Soc", "key": "soc"}
+    ]
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.0.1",
+    "coreVersion": "14.359"
+  },
+  "_key": "!items!b3e4f1a2c9d57e80"
+}

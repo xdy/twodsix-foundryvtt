@@ -1,0 +1,170 @@
+{
+  "_id": "b81160e8c85cbcb0",
+  "name": "CU Chargen Ruleset",
+  "type": "chargen_ruleset",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CU",
+    "description": "<p>Cepheus Universal character generation ruleset tables.</p>",
+    "creationModes": ["career", "random", "design"],
+    "agingTable": [
+      {"physStr": 2, "physDex": 2, "physEnd": 2, "mental": 1, "noEffect": false},
+      {"physStr": 2, "physDex": 2, "physEnd": 2, "mental": 0, "noEffect": false},
+      {"physStr": 2, "physDex": 2, "physEnd": 1, "mental": 0, "noEffect": false},
+      {"physStr": 2, "physDex": 1, "physEnd": 1, "mental": 0, "noEffect": false},
+      {"physStr": 1, "physDex": 1, "physEnd": 1, "mental": 0, "noEffect": false},
+      {"physStr": 1, "physDex": 1, "physEnd": 0, "mental": 0, "noEffect": false},
+      {"physStr": 1, "physDex": 0, "physEnd": 0, "mental": 0, "noEffect": false},
+      {"physStr": 0, "physDex": 0, "physEnd": 0, "mental": 0, "noEffect": true}
+    ],
+    "mishapDesc": [null, "", "", "", "", "", ""],
+    "injuryDesc": [null, "", "", "", "", "", ""],
+    "draftTable": [null, "", "", "", "", "", ""],
+    "cascadeSkills": [],
+    "homeworldDescriptors": [],
+    "educationSkills": [],
+    "skillNameMap": [],
+    "charKeyMap": [
+      {"benefit": "+1 Str", "key": "str"},
+      {"benefit": "+1 Dex", "key": "dex"},
+      {"benefit": "+1 End", "key": "end"},
+      {"benefit": "+1 Int", "key": "int"},
+      {"benefit": "+1 Edu", "key": "edu"},
+      {"benefit": "+1 Soc", "key": "soc"}
+    ],
+    "skillCategoryTables": [
+      {
+        "name": "Combat",
+        "entries": ["Tactics", "Gun Combat", "Gun Combat", "Melee Combat", "Heavy Weapons", "Demolitions"]
+      },
+      {
+        "name": "People",
+        "entries": ["Bribery", "Leader", "Carousing", "Admin", "Streetwise", "Forgery"]
+      },
+      {
+        "name": "Space Ops",
+        "entries": ["Gunnery", "Pilot", "Navigation", "Vacc Suit", "Computer", "Medical"]
+      },
+      {
+        "name": "Technical",
+        "entries": ["Comms", "Mechanical", "Electronics", "Computer", "Security", "Engineering"]
+      },
+      {
+        "name": "Civil",
+        "entries": ["Vehicle", "Computer", "Mining", "Medical", "Investigate", "Loader"]
+      },
+      {
+        "name": "Wilderness",
+        "entries": ["Survival", "Navigation", "Leader", "Recon", "Medical", "Vehicle"]
+      },
+      {
+        "name": "Crime",
+        "entries": ["Streetwise", "Forgery", "Melee Combat", "Gun Combat", "Bribery", "Security"]
+      },
+      {
+        "name": "Business",
+        "entries": ["Admin", "Broker", "Carousing", "Forgery", "Broker", "Negotiate"]
+      },
+      {
+        "name": "Low Tech",
+        "entries": ["Riding", "Archery", "Melee Combat", "Recon", "Tactics", "Survival"]
+      },
+      {
+        "name": "Science",
+        "entries": ["Navigation", "Vehicle", "Vacc Suit", "Computer", "Investigate", "Medicine"]
+      }
+    ],
+    "riskFailEvents": [
+      {"threshold": 3,  "description": "You broke the rules to help out an innocent person. Gain a Contact. What did you do? [CONTACT]"},
+      {"threshold": 4,  "description": "You saved lives, but it had to be covered up. You cannot talk about it. Ever."},
+      {"threshold": 5,  "description": "Revolution, war or disaster turns your world and relationships upside down."},
+      {"threshold": 6,  "description": "People in power have been meddling with you, your team and your organisation."},
+      {"threshold": 7,  "description": "Your achievements were sabotaged by a colleague. Gain an Enemy. [ENEMY]"},
+      {"threshold": 8,  "description": "Get into debt of 4x Career Cash, by turning to criminal world. Why did this happen? [DEBT_4X]"},
+      {"threshold": 9,  "description": "Stressful situations cause a mental collapse. Roll 2D6, on 7 or less, lower Int by 1. [INT_CRISIS]"},
+      {"threshold": 10, "description": "Great achievements stolen by a rival group or organisation, taking all the credit."},
+      {"threshold": 11, "description": "You get the blame for a disaster that killed or injured several people."},
+      {"threshold": 12, "description": "Badly injured. Lower Str, Dex or End by 1. How did it happen? Leave the Career. [INJURED_LEAVE]"},
+      {"threshold": 14, "description": "Died in service. [DIED]"}
+    ],
+    "riskSuccessEvents": [
+      {"threshold": 2,  "description": "Betrayed by a close friend, now an Enemy. Gain a useful friend-of-a-friend Contact. [ENEMY][CONTACT]"},
+      {"threshold": 3,  "description": "Gain a useful friend-of-a-friend Contact. [CONTACT]"},
+      {"threshold": 4,  "description": "Romance that continues today, or ended on a good note. Gain a Friend. [FRIEND]"},
+      {"threshold": 5,  "description": "Uncover a dangerous secret about a person or organisation. Gain Bribery-1. [SKILL:Bribery:1]"},
+      {"threshold": 6,  "description": "Gain fame and recognition in your career for deserved actions. Gain +1 Soc. [SOC_PLUS1]"},
+      {"threshold": 7,  "description": "An intense situation was survived with a colleague. Make a Friend. [FRIEND]"},
+      {"threshold": 8,  "description": "Fast dates and partying. Gain Carousing-1. [SKILL:Carousing:1]"},
+      {"threshold": 9,  "description": "Conflict became a part of your life. Gain +1 Str. What was going on? [STR_PLUS1]"},
+      {"threshold": 10, "description": "Make a good Friend in your own career or organization. [FRIEND]"},
+      {"threshold": 11, "description": "Tragic love affair. Roll 1D6: 1-2 They died; 3-4 They Vanished; 5-6 They are still around."},
+      {"threshold": 12, "description": "After an incident you are pushed into a backroom job. Gain Computer-1. [SKILL:Computer:1]"},
+      {"threshold": 13, "description": "Gain a powerful Contact in the organisation. What did you do to gain this contact? [CONTACT]"},
+      {"threshold": 14, "description": "A romance expanded your horizons. Gain +1 Edu. Are you still in love, or is it over? [EDU_PLUS1]"},
+      {"threshold": 15, "description": "You scored big this term. Gain Cr20,000. How did you get this money? [CASH_20000]"},
+      {"threshold": 16, "description": "You are thrown into a crisis and take charge. Gain Leader-1. [SKILL:Leader:1]"},
+      {"threshold": 17, "description": "Caused someone to be humiliated or demoted. Gain an Enemy. [ENEMY]"},
+      {"threshold": 18, "description": "Chance to make it big! Roll 2D6: on 4+ gain automatic promotion and one extra skill roll; on 2-3 you spend this term in prison (lower Soc by 1, gain a criminal Contact). [AUTO_PROMO_OR_PRISON]"}
+    ],
+    "promotionFailEvents": [
+      {"threshold": 3,  "description": "You were second choice, they like you! Gain a Contact and +2 on next term's attempt. [CONTACT][PROMO_BONUS_2]"},
+      {"threshold": 4,  "description": "Something about your personality means you got overlooked. What is it?"},
+      {"threshold": 5,  "description": "Your superior sabotaged your chances, he needs you where you are."},
+      {"threshold": 6,  "description": "A rival got the position you were after, now making your life hell. Gain an Enemy. [ENEMY]"},
+      {"threshold": 7,  "description": "You tried for promotion but failed. C'est la vie."},
+      {"threshold": 8,  "description": "Too many small screw ups this term. What were they?"},
+      {"threshold": 9,  "description": "You're too involved with romance. Gain a romantic Friend. [FRIEND]"},
+      {"threshold": 10, "description": "People around you messed up and made you look bad. What did they do?"},
+      {"threshold": 11, "description": "You broke a lot of rules to get the job done. Too many rules. What was the job?"},
+      {"threshold": 12, "description": "You presided over a disaster and the stigma will stay with you for years. Gain -1 on next term's promotion attempt. [PROMO_PENALTY_1]"}
+    ],
+    "promotionSuccessEvents": [
+      {"threshold": 2,  "description": "A colleague colluded to make you look good. Now this Enemy has a hold over you. [ENEMY]"},
+      {"threshold": 3,  "description": "Your promotion was built on lies and false achievements. Only you know this secret."},
+      {"threshold": 4,  "description": "Promotion means a transfer. Lose one Friend or Contact."},
+      {"threshold": 5,  "description": "You beat a friend to the promotion, they are bitter. Make an Enemy. [ENEMY]"},
+      {"threshold": 6,  "description": "You now owe a favour to a senior officer. Make a note of this."},
+      {"threshold": 7,  "description": "You scraped past, it doesn't look good. You spend this term proving yourself."},
+      {"threshold": 8,  "description": "You did great work, and you've been recognized with promotion! Gain +1 Edu. [EDU_PLUS1]"},
+      {"threshold": 9,  "description": "You won promotion and an award, accolade or fame. What great thing did you do?"},
+      {"threshold": 10, "description": "A senior officer acts as a patron, ally and Contact. [CONTACT]"},
+      {"threshold": 11, "description": "You broke the rules to win big. They had to promote you when they wanted to fire you."},
+      {"threshold": 12, "description": "Gain an extra Benefit roll when you leave the Career. [EXTRA_BENEFIT]"}
+    ],
+    "benefitsTable": [
+      {"threshold": 2,  "description": "+1 Dex [DEX_PLUS1]"},
+      {"threshold": 3,  "description": "+1 Str [STR_PLUS1]"},
+      {"threshold": 4,  "description": "+1 Int [INT_PLUS1]"},
+      {"threshold": 5,  "description": "+1 Soc [SOC_PLUS1]"},
+      {"threshold": 6,  "description": "CASH [CASH]"},
+      {"threshold": 7,  "description": "CASH [CASH]"},
+      {"threshold": 8,  "description": "+1 Edu [EDU_PLUS1]"},
+      {"threshold": 9,  "description": "Weapon or rare/custom piece of equipment (up to Cr5,000) [WEAPON]"},
+      {"threshold": 10, "description": "CASH [CASH]"},
+      {"threshold": 11, "description": "Augment 5 points or CASH [AUGMENT_OR_CASH]"},
+      {"threshold": 12, "description": "Augment 5 points or +1 End [AUGMENT_OR_END]"}
+    ],
+    "leavingTableA": [
+      null,
+      "They don't need you anymore.",
+      "You seek adventure!",
+      "You know a dark secret — and fled.",
+      "The career was crushing you.",
+      "You seek a missing friend or relative.",
+      "New identity to hide from agents or criminals."
+    ],
+    "leavingTableB": [
+      null,
+      "You are bored.",
+      "You seek fortune!",
+      "The job isn't what it was.",
+      "Competition getting harder every year.",
+      "You screwed up and bailed out.",
+      "At war with your colleagues too much."
+    ]
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {"systemId": "twodsix", "systemVersion": "7.0.1", "coreVersion": "14.359"},
+  "_key": "!items!b81160e8c85cbcb0"
+}

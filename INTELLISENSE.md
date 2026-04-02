@@ -17,29 +17,29 @@ pnpm install
 Copy the example configuration file:
 
 ```bash
-cp foundry-config.example.yaml foundry-config.yaml
+cp foundryconfig.example.json foundryconfig.json
 ```
 
-Edit `foundry-config.yaml` and set the `installPath` to your local Foundry VTT installation:
+Edit `foundryconfig.json` and set the `installPath` to your local Foundry VTT installation:
 
 **macOS (Electron app):**
-```yaml
-installPath: "/Applications/FoundryVTT.app/Contents/Resources/app"
+```json
+"installPath": "/Applications/FoundryVTT.app/Contents/Resources/app"
 ```
 
 **macOS (Node.js install):**
-```yaml
-installPath: "/Users/YourUsername/Applications/FoundryVTT"
+```json
+"installPath": "/Users/YourUsername/Applications/FoundryVTT"
 ```
 
 **Windows (Node.js install):**
-```yaml
-installPath: "C:\\Program Files\\Foundry Virtual Tabletop\\Version 13"
+```json
+"installPath": "C:\\Program Files\\Foundry Virtual Tabletop\\Version 13"
 ```
 
 **Windows (Electron install):**
-```yaml
-installPath: "C:\\Users\\YourUsername\\AppData\\Local\\FoundryVTT"
+```json
+"installPath": "C:\\bin\\Foundry14\\App"
 ```
 
 ### 3. Create Symlinks
@@ -106,18 +106,18 @@ function createSelect(options) {
 
 ## Files Added/Modified
 
-- `foundry-config.example.yaml` - Example configuration file
+- `foundryconfig.example.json` - Example configuration file
 - `tools/create-symlinks.mjs` - Script to create symlinks
 - `jsconfig.json` - JS project config with path mappings and includes
 - `package.json` - Added `symlinks` and `postinstall` scripts
 - `.vscode/settings.json` - Excludes `foundry/` from file explorer
 - `eslint.config.cjs` - Ignores `foundry/**/*` files
-- `.gitignore` - Added `foundry-config.yaml`
+- `.gitignore` - Added `foundryconfig.json`
 
 ## Troubleshooting
 
 **IntelliSense not working:**
-1. Make sure you've created `foundry-config.yaml` with the correct path
+1. Make sure you've created `foundryconfig.json` with the correct path
 2. Run `pnpm run symlinks` to verify symlinks are created
 3. Restart VS Code or IntelliJ IDEA
 4. Check that the `foundry/` directory exists in your project root
@@ -127,6 +127,6 @@ function createSelect(options) {
 - Alternatively, run your terminal as Administrator
 
 **Path not found errors:**
-- Verify your `installPath` in `foundry-config.yaml` is correct
+- Verify your `installPath` in `foundryconfig.json` is correct
 - Check if you're using an Electron or Node.js install (paths differ)
 - Ensure Foundry VTT is installed at the specified location
