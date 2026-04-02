@@ -1,0 +1,123 @@
+{
+  "_id": "1b8d8d2d9a8f7a58",
+  "name": "Noble",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "soc",
+      "target": 8
+    },
+    "surv": {
+      "char": "soc",
+      "target": 4
+    },
+    "comm": {
+      "char": "edu",
+      "target": 5
+    },
+    "adv": {
+      "char": "int",
+      "target": 8
+    },
+    "reenlist": 6,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Courtier",
+        "skill": "Carousing",
+        "level": 1
+      },
+      {
+        "title": "Knight",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Baron",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Marquis",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Count",
+        "skill": "Advocate",
+        "level": 1
+      },
+      {
+        "title": "Duke",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Archduke",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Dex",
+      "+1 Int",
+      "+1 Edu",
+      "+1 Soc",
+      "Carousing",
+      "Melee Combat"
+    ],
+    "service": [
+      "Athletics",
+      "Admin",
+      "Carousing",
+      "Leadership",
+      "Gambling",
+      "Vehicle"
+    ],
+    "specialist": [
+      "Computer",
+      "Carousing",
+      "Gun Combat",
+      "Melee Combat",
+      "Liaison",
+      "Animals"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Liaison",
+      "Linguistics",
+      "Medicine",
+      "Sciences"
+    ],
+    "material": [
+      "High Passage",
+      "+1 Edu",
+      "+1 Int",
+      "High Passage",
+      "Explorers' Society",
+      "High Passage",
+      "1D6 Ship Shares"
+    ],
+    "cash": [
+      2000,
+      10000,
+      20000,
+      20000,
+      50000,
+      100000,
+      100000
+    ],
+    "description": "Member of an elite upper class, having high social or political status."
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "_key": "!items!1b8d8d2d9a8f7a58"
+}

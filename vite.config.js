@@ -1,6 +1,6 @@
-import {defineConfig} from 'vite';
 import fs from 'fs';
-import {glob} from 'glob';
+import { glob } from 'glob';
+import { defineConfig } from 'vite';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';
@@ -39,12 +39,14 @@ export default defineConfig(({mode}) => {
         formats: ['es'],
         fileName: () => 'twodsix.bundle.js',
       },
-      rolldownOptions: {
-        output: {
-          keepNames: true,
-          manualChunks: undefined,
-          codeSplitting: false,
+      output: {
+        manualChunks(id) {
+          // Split charGen modules into a separate chunk for lazy loading
+          if (id.includes('/chargen/')) {
+            return 'chargen';
+          }
         },
+        keepNames: true
       },
     },
     plugins: [],

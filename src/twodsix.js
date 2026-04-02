@@ -7,7 +7,6 @@
  * Software License: Apache, see License section of README.md for details
  */
 
-
 import TwodsixCombatTracker from './module/applications/sidebar/TwodsixCombatTracker';
 
 import { COMPONENT_SUBTYPES, CONSUMABLE_SUBTYPES, TWODSIX } from './module/config';
@@ -18,6 +17,8 @@ import { TwodsixCombatantData } from './module/data/combats/twodsixCombatantData
 import { TwodsixCombatData } from './module/data/combats/twodsixCombatData.js';
 import { ArmorData } from './module/data/items/armorData.js';
 import { AugmentData } from './module/data/items/augmentData.js';
+import { CareerData } from './module/data/items/careerData.js';
+import { ChargenRulesetData } from './module/data/items/chargenRulesetData.js';
 import { ComponentData } from './module/data/items/componentData.js';
 import { ComputerData } from './module/data/items/computerData.js';
 import { ConsumableData } from './module/data/items/consumableData.js';
@@ -42,6 +43,8 @@ import { VehicleActor } from './module/entities/actors/VehicleActor';
 import { WorldActor } from './module/entities/actors/WorldActor';
 import { ArmorItem } from './module/entities/items/ArmorItem';
 import { AugmentItem } from './module/entities/items/AugmentItem';
+import { CareerItem } from './module/entities/items/CareerItem';
+import { ChargenRulesetItem } from './module/entities/items/ChargenRulesetItem';
 import { ComponentItem } from './module/entities/items/ComponentItem';
 import { COMPONENT_SUBTYPE_CLASSES } from './module/entities/items/components/index.js';
 import { ComputerItem } from './module/entities/items/ComputerItem';
@@ -64,7 +67,7 @@ import TwodsixCombat from './module/entities/TwodsixCombat';
 import TwodsixCombatant from './module/entities/TwodsixCombatant';
 import { TwodsixGamePause } from './module/entities/TwodsixGamePause';
 import TwodsixItem from './module/entities/TwodsixItem';
-import registerHandlebarsHelpers from './module/handlebars';
+import registerHandlebarsHelpers, { registerCharGenPartials } from './module/handlebars';
 import { registerSettings, switchCss } from './module/settings';
 import './module/migration';
 import { TwodsixActiveEffectConfig } from './module/sheets/TwodsixActiveEffectConfig';
@@ -91,9 +94,9 @@ import { TwodsixRollSettings } from './module/utils/TwodsixRollSettings';
 import { TwodsixTokenRuler } from './module/utils/TwodsixTokenRuler';
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
-await Promise.all(hookScriptFiles.map((hookFile) => import(`./module/hooks/${hookFile}.js`)));
-
 Hooks.once('init', async function () {
+  // Load hook scripts after init so settings are registered first
+  await Promise.all(hookScriptFiles.map((hookFile) => import(`./module/hooks/${hookFile}.js`)));
   console.log(
     `%cTWODSIX | Initializing system\n` +
     `%c
@@ -191,6 +194,8 @@ Hooks.once('init', async function () {
   CONFIG.Item.documentClasses = {
     "armor": ArmorItem,
     "augment": AugmentItem,
+    "career": CareerItem,
+    "chargen_ruleset": ChargenRulesetItem,
     "component": ComponentItem,
     "computer": ComputerItem,
     "consumable": ConsumableItem,
@@ -228,6 +233,8 @@ Hooks.once('init', async function () {
   Object.assign(CONFIG.Item.dataModels, {
     "armor": ArmorData,
     "augment": AugmentData,
+    "career": CareerData,
+    "chargen_ruleset": ChargenRulesetData,
     "component": ComponentData,
     "computer": ComputerData,
     "consumable": ConsumableData,
@@ -331,6 +338,7 @@ Hooks.once('init', async function () {
       sheetName += "twodsix_basic.css";
   }
   switchCss(sheetName);
+  switchCss('systems/twodsix/styles/twodsix_chargen.css');
 
   if (themeStyle === "classic") {
     if (game.settings.get(`twodsix`, 'useModuleFixStyle')) {
@@ -349,6 +357,9 @@ Hooks.once('init', async function () {
 
   // @ts-expect-error Handlebars template loader typing is missing in Foundry types.
   await foundry.applications.handlebars.loadTemplates(handlebarsTemplateFiles);
+
+  // Register character generation partials
+  await registerCharGenPartials();
 
   //Add TL to compendium index
   CONFIG.Item.compendiumIndexFields.push('system.techLevel');

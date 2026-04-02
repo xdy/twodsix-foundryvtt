@@ -1,0 +1,160 @@
+{
+  "_id": "929df47bfb5c90c0",
+  "name": "Spacer",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CU",
+    "description": "Military crewman or officer, member of the interstellar navy or space force.",
+    "riskTarget": 7,
+    "promotionTarget": 8,
+    "preferredChar": "int",
+    "autoSkill": "Vacc Suit",
+    "cashBase": 10000,
+    "skillTable1": "Space Ops",
+    "skillTable2": "Technical",
+    "skillTable2Options": [],
+    "hasCommissioned": true,
+    "officerCashMultiplier": 2,
+    "ranks": [
+      {
+        "title": "Crewman",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Senior Crewman",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Petty Officer",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Senior Petty Officer",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Chief Petty Officer",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Master Chief Petty Officer",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "commissionedRanks": [
+      {
+        "title": "Ensign",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lieutenant",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lieutenant Commander",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Commander",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Admiral",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "qual": {
+      "char": "int",
+      "target": 0
+    },
+    "surv": {
+      "char": "end",
+      "target": 0
+    },
+    "comm": {
+      "char": "soc",
+      "target": 0
+    },
+    "adv": {
+      "char": "edu",
+      "target": 0
+    },
+    "reenlist": 0,
+    "hasCommAdv": false,
+    "personal": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "service": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "specialist": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "advanced": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "material": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "cash": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.0.1",
+    "coreVersion": "14.359"
+  },
+  "_key": "!items!929df47bfb5c90c0"
+}
