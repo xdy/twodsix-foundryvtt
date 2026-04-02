@@ -71,6 +71,12 @@ import { TwodsixActiveEffectConfig } from './module/sheets/TwodsixActiveEffectCo
 import { TwodsixAnimalSheet } from './module/sheets/TwodsixAnimalSheet';
 import { TwodsixBattleSheet } from './module/sheets/TwodsixBattleSheet';
 import { TwodsixItemSheet } from './module/sheets/TwodsixItemSheet';
+import { WeaponItemSheet } from './module/sheets/WeaponItemSheet';
+import { ComponentItemSheet } from './module/sheets/ComponentItemSheet';
+import { ConsumableItemSheet } from './module/sheets/ConsumableItemSheet';
+import { SkillItemSheet } from './module/sheets/SkillItemSheet';
+import { CareerItemSheet } from './module/sheets/CareerItemSheet';
+import { ChargenRulesetItemSheet } from './module/sheets/ChargenRulesetItemSheet';
 import { TwodsixRobotSheet } from './module/sheets/TwodsixRobotSheet';
 import { TwodsixShipPositionSheet } from './module/sheets/TwodsixShipPositionSheet';
 import { TwodsixShipSheet } from './module/sheets/TwodsixShipSheet';
@@ -241,9 +247,16 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   //Should unregister untill appv1 goes away (foundry 16 I think?)
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-  const baseItemTypes = Object.keys(CONFIG.Item.dataModels).filter(ot => !['ship_position'].includes(ot));
+  const specializedItemTypes = ['weapon', 'component', 'consumable', 'skills', 'career', 'chargen_ruleset', 'ship_position'];
+  const baseItemTypes = Object.keys(CONFIG.Item.dataModels).filter(t => !specializedItemTypes.includes(t));
 
   const itemSheetDefinitions = [
+    { class: WeaponItemSheet, types: ["weapon"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
+    { class: ComponentItemSheet, types: ["component"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
+    { class: ConsumableItemSheet, types: ["consumable"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
+    { class: SkillItemSheet, types: ["skills"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
+    { class: CareerItemSheet, types: ["career"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
+    { class: ChargenRulesetItemSheet, types: ["chargen_ruleset"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: TwodsixItemSheet, types: baseItemTypes, label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: TwodsixShipPositionSheet, types: ["ship_position"], label: "TWODSIX.SheetTypes.ShipPositionSheet", makeDefault: true },
   ];
