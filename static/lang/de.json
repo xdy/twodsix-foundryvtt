@@ -524,7 +524,7 @@
         "SustainedHits": "Erleidete Treffer",
         "CargoLocation": "Fracht Standort",
         "Description": "Beschreibung",
-        "accomodations": "Unterkünfte",
+        "accommodations": "Unterkünfte",
         "computer": "Computer",
         "drone": "Drone",
         "otherInternal": "Anderes - Intern",
@@ -680,7 +680,7 @@
         "resultShows": "Resultat zeigt",
         "Roll": "Wurf",
         "Rolling": "Würfeln",
-        "sum": "Summe",
+        "Sum": "Summe",
         "using": "benutzt {characteristic}",
         "With": "mit"
       },
@@ -983,7 +983,7 @@
       "ShipValue": "Schiffswert",
       "MortgagePerMonth": "geschätzte Hypothekenzahlung",
       "MaintenancePerMonth": "Wartungskosten",
-      "CrPerMonth": "Cr/Monat",
+      "CrPerMonth": "Cr / Monat",
       "UseAComponent": "Waffen abfeuern",
       "executeMacro": "Makro",
       "chatPlaceholder": "Chatnachricht",
@@ -1325,7 +1325,7 @@
       "ShippingSize": "Größe"
     },
     "Rolls": {
-      "sum": "Summe",
+      "Sum": "Summe",
       "characteristic": "Charakteristik",
       "ToggleDetails": "Details anzeigen",
       "AdjustedDamage": "Schaden durch Effekt angepasst",

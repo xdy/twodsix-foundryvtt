@@ -30,14 +30,24 @@
       {{selectOptions config.ComponentStates selected = system.status localize = true}}
     </select>
   </div>
+
+  {{#iff system.subtype "===" config.COMPONENT_SUBTYPES.DRIVE}}
+    <div class="item-skill">
+      <label for="system.driveType" class="resource-label">{{localize "TWODSIX.Items.Component.driveType"}}:</label>
+      <select class="select-color" name="system.driveType" value={{system.driveType}}>
+        {{selectOptions config.DriveTypes selected = system.driveType localize = true}}
+      </select>
+    </div>
+  {{/iff}}
+
   <div class="item-hits">
     <label for="system.hits" class="resource-label">{{localize "TWODSIX.Items.Component.SustainedHits"}}</label>
-    <input class="form-input" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{getComponentMaxHits}}"/>
+    <input class="form-input" type="number" name="system.hits" value="{{system.hits}}" step = "1" min = "0" max = "{{settings.maxComponentHits}}"/>
   </div>
 
-  {{#iff system.subtype "!==" "vehicle"}}
-  {{#iff system.subtype "!==" "storage"}}
-  {{#iff system.subtype "!==" "fuel"}}
+  {{#iff system.subtype "!==" config.COMPONENT_SUBTYPES.VEHICLE}}
+  {{#iff system.subtype "!==" config.COMPONENT_SUBTYPES.STORAGE}}
+  {{#iff system.subtype "!==" config.COMPONENT_SUBTYPES.FUEL}}
     <div class = "item-hardened">
       <label for="system.hardened" class="resource-label short-label">{{localize "TWODSIX.Items.Component.Hardened"}}</label>
       <input type="checkbox" class="checkbox" name="system.hardened" {{checked system.hardened}} data-dtype="Boolean" />
@@ -45,19 +55,19 @@
   {{/iff}}{{/iff}}{{/iff}}
 {{/unless}}
 
-{{#iff system.subtype "===" "fuel" }}
+{{#iff system.subtype "===" config.COMPONENT_SUBTYPES.FUEL}}
   <div class="item-refined">
     <label for="system.isRefined" class="resource-label short-label">{{localize "TWODSIX.Items.Component.IsRefined"}}</label>
     <input type="checkbox" class="checkbox" name="system.isRefined"  {{checked system.isRefined}} data-dtype="Boolean" />
   </div>
 {{/iff}}
-{{#iff system.subtype "===" "computer" }}
+{{#iff system.subtype "===" config.COMPONENT_SUBTYPES.COMPUTER}}
   <div class="item-data">
     <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Computer.ProcessingPower"}}</label>
     <input class="form-input" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>
   </div>
 {{/iff}}
-{{#iff system.subtype "===" "software" }}
+{{#iff system.subtype "===" config.COMPONENT_SUBTYPES.SOFTWARE}}
   <div class="item-data">
     <label for="system.bandwidth" class="resource-label short-label">{{localize "TWODSIX.Items.Consumable.Bandwidth"}}</label>
     <input class="form-input" type="number" name="system.bandwidth" value="{{system.bandwidth}}" step = "1" min = "0"/>

@@ -10,13 +10,11 @@ icons/\!dox/
 npm-debug.log
 coverage/
 debug/
-docs/
 node_modules/
 dist/
 
 #This project
 foundryconfig.json
-foundry-config.json
 foundry-config.yaml
 foundry.js
 foundry-esm.js

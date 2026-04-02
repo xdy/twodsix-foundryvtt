@@ -1,0 +1,159 @@
+import { TWODSIX } from '../config';
+import { correctMissingUntrainedSkill } from '../entities/TwodsixActor';
+import migrateWorld from '../migration';
+import { switchCss } from '../settings';
+import { setDocumentPartials, updateStatusIcons } from '../settings/DisplaySettings';
+import { createItemMacro } from '../utils/createItemMacro';
+import { applyToAllActors } from '../utils/migration-utils';
+import { generateTargetDMObject } from '../utils/targetModifiers';
+
+Hooks.once("ready", async function () {
+  //Prevent a conflict with Twodsix conditions
+  if (game.modules.get("combat-utility-belt")?.active) {
+    if (game.settings.get("combat-utility-belt", "removeDefaultEffects")) {
+      await game.settings.set("combat-utility-belt", "removeDefaultEffects", false);
+    }
+  }
+
+  //*Set default damage options localized
+  if (game.settings.get("twodsix", "damageTypeOptions") === ""  && game.settings.get('twodsix', 'ruleset') !== 'CU') {
+    await game.settings.set("twodsix", "damageTypeOptions", game.i18n.localize("TWODSIX.Settings.defaultDamageOptions"));
+  }
+
+  if (!Roll.validate(game.settings.get('twodsix', 'maxEncumbrance'))) {
+    ui.notifications.warn("TWODSIX.Warnings.EncumbranceFormulaInvalid", {localize: true});
+  }
+
+  // Determine whether a system migration is required and feasible
+  let worldVersion = game.settings.get("twodsix", "systemMigrationVersion");
+  if (worldVersion === "null" || worldVersion == null) {
+    worldVersion = "";
+  }
+
+  // Perform the migration
+  if (game.users.activeGM?.isSelf) {
+    await migrateWorld(worldVersion);
+  }
+
+  // Check for missing untrained skills
+  if (game.users.activeGM?.isSelf) {
+    await applyToAllActors(async (actor) => {
+      await correctMissingUntrainedSkill(actor);
+    });
+  }
+
+  // A socket hook proxy
+  game.socket?.on("system.twodsix", (data) => {
+    Hooks.call(data[0], ...data.slice(1));
+  });
+
+  // Handle combat turn advancement for players via socket
+  Hooks.on("twodsix.advanceTurn", async (combatId) => {
+    if (!game.user.isGM) {
+      return;
+    }
+
+    const combat = game.combats.get(combatId);
+    if (!combat) {
+      return;
+    }
+
+    // GM executes the turn advancement with proper permissions and broadcasting
+    await combat.nextTurn();
+  });
+
+  // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
+  Hooks.on("hotbarDrop", (_bar, data, slot) => createItemMacro(data, slot));
+
+  //set status icons
+  if (game.settings.get('twodsix', 'reduceStatusIcons')) {
+    updateStatusIcons();
+  }
+
+  //Customize style for core language
+  switch (game.settings.get('core', 'language')) {
+    case 'en':
+      break;
+    case 'es':
+      switchCss("systems/twodsix/styles/twodsix_es_changes.css");
+      break;
+    case 'de':
+      switchCss("systems/twodsix/styles/twodsix_de_changes.css");
+      break;
+    case 'sv':
+      switchCss("systems/twodsix/styles/twodsix_sv_changes.css");
+      break;
+    case 'fr':
+      switchCss("systems/twodsix/styles/twodsix_fr_changes.css");
+      break;
+    default:
+      break;
+  }
+
+  //Set up custom partial on item tab
+  if (game.settings.get('twodsix', 'showTLonItemsTab')) {
+    setDocumentPartials();
+  }
+
+  //Force colorScheme setting
+  const uiSettings = foundry.utils.duplicate(game.settings.get("core", "uiConfig"));
+  const themeStyle = game.settings.get('twodsix', 'themeStyle');
+  // Only 'foundry' is the standard (light) style; 'classic' and 'western' are dark/custom
+  const useStandardStyle = themeStyle !== 'classic';
+  uiSettings.colorScheme.applications = useStandardStyle ? 'light' : 'dark';
+  uiSettings.colorScheme.interface = useStandardStyle ? 'light' : 'dark';
+  await game.settings.set("core", "uiConfig", uiSettings);
+
+  //Add index
+  for (const pack of game.packs) {
+    if (pack.metadata.type === 'Item') {
+      pack.getIndex({fields: ['system.techLevel']});
+    }
+  }
+
+  //create custom DM List Object
+  generateTargetDMObject();
+
+  //Reset chain bonus if empty string
+  if (game.settings.get('twodsix', 'chainBonus') === "") {
+    const ruleset = game.settings.get('twodsix', 'ruleset');
+    const rulesetChainBonus = TWODSIX.RULESETS[ruleset]?.settings.chainBonus;
+    await game.settings.set('twodsix', 'chainBonus', rulesetChainBonus ?? "");
+  }
+
+  //Check default actor sheet types
+  //checkDefaultActorSheetTypes();
+});
+
+
+
+/**
+ * Check that the default actor sheet type exists in Actors.registeredSheets. If not,
+ * try to find a match in registered sheets.  Also, make migration from TwodsixActorSheet to TwodsixTravellerSheet
+ * @function
+ * @async
+ */
+/*async function checkDefaultActorSheetTypes(): Promise<void> {
+  const defaultSheets = foundry.utils.duplicate(game.settings.get("core", "sheetClasses"));
+  const defaultActorSheets = defaultSheets?.Actor;
+  let changed = false;
+  for (const key in defaultActorSheets) {
+    const sheetClassName = defaultActorSheets[key].substring(8); //"prefixed with twodsix."
+    if (!Actors.registeredSheets.find(sheet => sheet.name === sheetClassName)) {
+      if ((Actors.registeredSheets.find(sheet => sheet.name === '_' + sheetClassName))) {
+        defaultActorSheets[key] = `twodsix._${sheetClassName}`;
+        changed = true;
+      } else if (key === 'traveller' && Actors.registeredSheets.find(sheet => sheet.name === '_TwodsixTravellerSheet')) {
+        defaultActorSheets[key] = `twodsix._TwodsixTravellerSheet`;
+        changed = true;
+      } else if (key === 'traveller' && Actors.registeredSheets.find(sheet => sheet.name === 'TwodsixTravellerSheet')) {
+        defaultActorSheets[key] = `twodsix.TwodsixTravellerSheet`;
+        changed = true;
+      }
+    }
+  }
+  if (changed) {
+    const newSettings = foundry.utils.mergeObject(defaultSheets, {Actor: defaultActorSheets});
+    await game.settings.set('core', 'sheetClasses', newSettings);
+  }
+}*/

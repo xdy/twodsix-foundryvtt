@@ -17,7 +17,7 @@
   </div>
   <section class="item-list">
   {{#each container.trait as |item id|}}
-  <div class="item gear" data-item-id="{{item.id}}">
+  <div class="item gear draggable" data-item-id="{{item.id}}">
     <ol class="ol-no-indent">
       <li class="flexrow" >
         <span class="items-traits">
@@ -26,7 +26,7 @@
           <span class="item-name centre">{{item.system.shortdescr}}
             {{#if @root/settings.showTraitAE}}
             <ul>
-              {{#each item.effects.contents.[0].changes as |change|}}
+              {{#each item.effects.contents.[0].system.changes as |change|}}
               <li>{{change.key}} {{change.type}} {{change.value}}</li>
               {{/each}}
             </ul>
@@ -59,7 +59,7 @@
   </div>
   <section class="item-list">
     {{#each container.psiAbility as |item id|}}
-      <div class="item gear" data-item-id="{{item.id}}">
+      <div class="item gear draggable" data-item-id="{{item.id}}">
         <ol class="ol-no-indent">
           <li class="flexrow" >
             <span class="items-psiAbilities">
@@ -95,7 +95,7 @@
   </div>
   <section class="item-list">
   {{#each container.spell as |item id|}}
-  <div class="item gear" data-item-id="{{item.id}}">
+  <div class="item gear draggable" data-item-id="{{item.id}}">
     <ol class="ol-no-indent">
       <li class="flexrow" >
         <span class="items-spells">

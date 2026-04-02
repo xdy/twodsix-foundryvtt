@@ -944,16 +944,17 @@
           "_id": "GqKhFEBUV8vnMCA9",
           "img": "icons/svg/aura.svg",
           "type": "base",
-          "system": {},
-          "changes": [
-            {
-              "key": "system.primaryArmor.value",
-              "type": "add",
-              "value": 6,
-              "priority": null,
-              "phase": "derived"
-            }
-          ],
+          "system": {
+            "changes": [
+              {
+                "key": "system.primaryArmor.value",
+                "type": "add",
+                "value": 6,
+                "priority": null,
+                "phase": "derived"
+              }
+            ]
+          },
           "duration": {
             "startTime": 42,
             "combat": null,

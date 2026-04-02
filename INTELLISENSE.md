@@ -56,9 +56,12 @@ This will create a `foundry/` directory in your project root with symlinks to:
 - `foundry/lang/` - Foundry's language files
 - `foundry/tsconfig.json` - Foundry's TypeScript configuration
 
-### 4. Restart VS Code
+### 4. Restart Your IDE
 
-After creating the symlinks, restart VS Code to enable the improved IntelliSense.
+After creating the symlinks, restart VS Code or IntelliJ IDEA to enable the improved IntelliSense.
+
+**IntelliJ IDEA Note:**
+IntelliJ IDEA natively supports `jsconfig.json` and will automatically recognize the path aliases and symlinked files. Ensure that the `foundry/` directory is not marked as "Excluded" in your Project Structure (it should be visible in the Project view).
 
 ## What This Provides
 
@@ -71,7 +74,7 @@ After creating the symlinks, restart VS Code to enable the improved IntelliSense
 
 ### Using Foundry Namespaced APIs
 
-```typescript
+```js
 // Full IntelliSense support
 await foundry.applications.api.DialogV2.prompt({
   window: { title: "Example Dialog" },
@@ -81,7 +84,7 @@ await foundry.applications.api.DialogV2.prompt({
 
 ### Using Global Classes
 
-```typescript
+```js
 // Hooks class with full type support
 Hooks.on("init", () => {
   console.log("System initialized");
@@ -93,11 +96,11 @@ const actor = await fromUuid("Actor.abc123");
 
 ### Importing Types
 
-```typescript
+```js
 /** @import {FormSelectOption} from "@client/applications/forms/fields.mjs" */
 
-function createSelect(options: FormSelectOption[]) {
-  // Full IntelliSense for FormSelectOption properties
+function createSelect(options) {
+  // Full IntelliSense for FormSelectOption properties via JSDoc @import
 }
 ```
 
@@ -105,8 +108,7 @@ function createSelect(options: FormSelectOption[]) {
 
 - `foundry-config.example.yaml` - Example configuration file
 - `tools/create-symlinks.mjs` - Script to create symlinks
-- `src/types/foundry-globals.d.ts` - Global type declarations
-- `tsconfig.json` - Updated with path mappings and includes
+- `jsconfig.json` - JS project config with path mappings and includes
 - `package.json` - Added `symlinks` and `postinstall` scripts
 - `.vscode/settings.json` - Excludes `foundry/` from file explorer
 - `eslint.config.cjs` - Ignores `foundry/**/*` files
@@ -117,7 +119,7 @@ function createSelect(options: FormSelectOption[]) {
 **IntelliSense not working:**
 1. Make sure you've created `foundry-config.yaml` with the correct path
 2. Run `pnpm run symlinks` to verify symlinks are created
-3. Restart VS Code
+3. Restart VS Code or IntelliJ IDEA
 4. Check that the `foundry/` directory exists in your project root
 
 **Symlink errors on Windows:**

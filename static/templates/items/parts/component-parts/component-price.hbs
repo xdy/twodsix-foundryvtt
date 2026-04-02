@@ -1,4 +1,4 @@
-{{#iff system.subtype "!==" "cargo"}}
+{{#iff system.subtype "!==" config.COMPONENT_SUBTYPES.CARGO}}
   <div class="item-price">
     <label for = "system.price" class="resource-label short-label">{{localize "TWODSIX.Items.Component.PricingBasis"}}</label>
     <span class="short-label">
@@ -14,8 +14,28 @@
   </div>
 {{else}}
   <div class="item-price">
-    <label for="system.price" class="resource-label">{{localize "TWODSIX.Items.Component.Value"}}</label>
+    <label for="system.price" class="resource-label">{{localize "TWODSIX.Items.Component.BasePrice"}}</label>
     <input class="form-input" type="text" name="system.price" value="{{system.price}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-price">
+    <label for="system.buyPricePerTon" class="resource-label">{{localize "TWODSIX.Items.Component.BuyPricePerTon"}}</label>
+    <input class="form-input" type="text" name="system.buyPricePerTon" value="{{system.buyPricePerTon}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-price">
+    <label for="system.buyPriceMod" class="resource-label">{{localize "TWODSIX.Items.Component.BuyPriceMod"}}</label>
+    <input class="form-input" type="text" name="system.buyPriceMod" value="{{system.buyPriceMod}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-price">
+    <label for="system.sellPricePerTon" class="resource-label">{{localize "TWODSIX.Items.Component.SellPricePerTon"}}</label>
+    <input class="form-input" type="text" name="system.sellPricePerTon" value="{{system.sellPricePerTon}}" data-dtype="Number"/>
+  </div>
+
+  <div class="item-price">
+    <label for="system.sellPriceMod" class="resource-label">{{localize "TWODSIX.Items.Component.SellPriceMod"}}</label>
+    <input class="form-input" type="text" name="system.sellPriceMod" value="{{system.sellPriceMod}}" data-dtype="Number"/>
   </div>
 
   <div class="item-price">

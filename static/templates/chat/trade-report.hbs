@@ -1,0 +1,71 @@
+<div class="trade-generation-report">
+  <h3>{{localize "TWODSIX.Trade.GenerationReport"}} - {{worldData.name}}</h3>
+  <section class="trade-section">
+    <h4>{{localize "TWODSIX.Trade.SupplierInfo"}}</h4>
+    <p>{{supplierInfo}}</p>
+  </section>
+
+  <section class="trade-section">
+    <h4>{{localize "TWODSIX.Trade.GoodsPricingTable"}}</h4>
+    <p class="trade-note">{{localize "TWODSIX.Trade.GoodsPricingTableNote"}}</p>
+    <div class="trade-table-wrap">
+      <table class="trade-table">
+        <thead>
+          <tr>
+            <th>{{localize "TWODSIX.Trade.GoodsColumn"}}</th>
+            <th>{{localize "TWODSIX.Trade.IllegalColumn"}}</th>
+            <th>{{localize "TWODSIX.Trade.QuantityColumn"}}</th>
+            <th>{{localize "TWODSIX.Trade.BuyPriceColumn"}}</th>
+            <th>{{localize "TWODSIX.Trade.BuyModColumn"}}</th>
+            <th>{{localize "TWODSIX.Trade.SellPriceColumn"}}</th>
+            <th>{{localize "TWODSIX.Trade.SellModColumn"}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each rows as |row|}}
+          <tr
+            {{#if row.quantity}}
+              draggable="true"
+              class="trade-cargo-row"
+              data-trade='{{{row._json}}}'
+            {{/if}}
+          >
+            <td><strong>{{localize row.name}}</strong></td>
+            <td>{{row.illegalMark}}</td>
+            <td>{{row.quantity}}</td>
+            <td>{{#if row.buyPrice}}{{row.buyPrice}}{{/if}}</td>
+            <td>{{#if row.buyMod}}{{row.buyMod}}{{/if}}</td>
+            <td>{{#if row.sellPrice}}{{row.sellPrice}}{{/if}}</td>
+            <td>{{#if row.sellMod}}{{row.sellMod}}{{/if}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="trade-section">
+    <h4>{{localize "TWODSIX.Trade.PurchasePricing"}}</h4>
+    <p class="trade-note">{{localize "TWODSIX.Trade.PurchasePricingNote"}}</p>
+    {{#if brokerInfo.useLocalBroker}}
+      <p>{{localize "TWODSIX.Trade.LocalBrokerSkillUsed"}}: {{brokerInfo.effectiveSkill}}{{#if (gt brokerInfo.requestedSkill brokerInfo.starportCap)}} ({{localize "TWODSIX.Trade.CappedAtStarport" cap=brokerInfo.starportCap}}){{/if}}</p>
+      <p>{{localize "TWODSIX.Trade.LocalBrokerCommission"}}: {{brokerInfo.commissionPercent}}%</p>
+    {{else}}
+      <p>{{localize "TWODSIX.Trade.BrokerSkillUsed"}}: {{brokerInfo.effectiveSkill}}</p>
+    {{/if}}
+    <p>{{localize "TWODSIX.Trade.SkillCheck"}}: {{purchaseSkillCheck.result}}</p>
+    <p>{{localize "TWODSIX.Trade.TradeCodeBonus"}}: {{#if (gt purchaseSkillCheck.priceModifier 0)}}+{{/if}}{{purchaseSkillCheck.priceModifier}}</p>
+    <p>{{localize "TWODSIX.Trade.PriceModifier"}}: {{purchaseSkillCheck.percentage}}% {{localize "TWODSIX.Trade.PriceModifierBaseNote"}}</p>
+  </section>
+
+  <section class="trade-section">
+    <h4>{{localize "TWODSIX.Trade.MarketReference"}}</h4>
+    <p class="trade-note">{{localize "TWODSIX.Trade.MarketReferenceNote"}}</p>
+    <p>{{localize "TWODSIX.Trade.SkillCheck"}}: {{saleSkillCheck.result}}</p>
+    <p>{{localize "TWODSIX.Trade.TradeCodeBonus"}}: {{#if (gt saleSkillCheck.priceModifier 0)}}+{{/if}}{{saleSkillCheck.priceModifier}}</p>
+    <p>{{localize "TWODSIX.Trade.PriceModifier"}}: {{saleSkillCheck.percentage}}% {{localize "TWODSIX.Trade.PriceModifierBaseNote"}}</p>
+    {{#if (ne worldData.buyerModifier 0)}}
+    <p>{{localize "TWODSIX.Trade.BuyerModifierApplied"}}: {{#if (gt worldData.buyerModifier 0)}}+{{/if}}{{worldData.buyerModifier}}</p>
+    {{/if}}
+  </section>
+</div>

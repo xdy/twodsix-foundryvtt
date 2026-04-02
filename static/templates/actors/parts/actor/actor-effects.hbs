@@ -14,7 +14,7 @@
   </li>
 
   {{#each effects as |effect|}}
-      <li class="effect effects-container" data-uuid="{{effect.uuid}}">
+    <li class="effect effects-container draggable" data-uuid="{{effect.uuid}}" data-effect-id="{{effect.id}}">
           <div class="item-name">
               <img class="effect-image" src="{{effect.img}}" style="border-color: {{effect.tint.css}} !important;"/>
           </div>

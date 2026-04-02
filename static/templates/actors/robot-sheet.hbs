@@ -55,12 +55,12 @@
       <span class="item-title-npc">{{localize "TWODSIX.Actor.Tabs.Skills"}}</span>
       {{#unless limited}}
       <div style="margin-left: 1ch;">
-      {{#each container.skillsList as |item id|}}
-              <span class="item" data-item-id="{{item.id}}">
+            {{#each container.skillsList as |item id|}}
+              <span class="item draggable" data-item-id="{{item.id}}">
                 <span class="item-name rollable" data-label="{{item.name}}" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll">{{item.name}}</span>
                 <input style="width: 4ch;" type="number"
                   {{disabled (lookup @root.tooltips.skills (skillName item.name))}}
-                  value="{{twodsix_skillTotal ../actor item}}"
+                  value="{{item.system.skillTotal}}"
                   data-tooltip="{{lookup @root.tooltips.skills (skillName item.name)}}"
                   class="item-value-edit" data-action="selectItem"/>
                 <span class="item-controls centre">
@@ -72,7 +72,7 @@
               </span>
       {{/each}}
       {{#if settings.hideUntrainedSkills}}
-      <span class="item" data-item-id="{{untrainedSkill.id}}">
+      <span class="item draggable" data-item-id="{{untrainedSkill.id}}">
           <text class="item-name-nd rollable" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-action="skillTalentRoll"> {{untrainedSkill.name}}</text>
           <input style="width: 3ch;" class="item-value-edit" type="number" value= "{{untrainedSkill.system.value}}" {{#if untrainedSkill.system.value}} name="{{concat 'system.skills.' (skillName untrainedSkill.name)}}"{{/if}} readonly/>
       </span>
@@ -85,8 +85,8 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each container.weapon as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+        {{#each container.weapon as |item id|}}
+          <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name perform-attack" data-tooltip="{{twodsix_invertSkillRollShiftClick}}" data-label="{{item.name}}" data-action="performAttack">{{item.name}}</span>&dash;<span class="item-name centre roll-damage orange" data-action="rollDamage">{{twodsix_limitLength item.system.damage 6}}</span>
               {{#each item.system.consumableData as |consumableData|}}
               {{> "systems/twodsix/templates/actors/parts/actor/actor-npc-consumable.hbs" consumableData}}{{/each}}
@@ -107,8 +107,8 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each container.trait as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+        {{#each container.trait as |item id|}}
+          <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name showChat" data-action="showChat">{{item.name}} </span>
               <span class="item-name centre">{{item.system.value}}</span>
               <span class="item-controls centre">
@@ -128,8 +128,8 @@
       {{#unless limited}}
       <div style="margin-left: 1ch">
         <span >
-         {{#each container.augment as |item id|}}
-            <span class="item" data-item-id="{{item.id}}">
+        {{#each container.augment as |item id|}}
+          <span class="item draggable" data-item-id="{{item.id}}">
               <span class="item-name rollable" data-action="skillTalentRoll">{{item.name}} </span>
               <span class="item-controls centre">
                 <a class="item-control item-edit" data-tooltip='{{localize "TWODSIX.Actor.Items.EditItem"}}' data-action="itemEdit"><i
