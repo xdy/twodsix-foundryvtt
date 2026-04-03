@@ -357,39 +357,40 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
    * @returns {Promise<string>} Selected value
    */
   async _choose(label, options) {
+    const choiceOptions = Array.isArray(options) ? options : [];
     const cursor = this.decisionCursor++;
     if (cursor < this.decisions.length) {
       const v = String(this.decisions[cursor].value);
-      const found = options.find(o => String(o.value) === v);
+      const found = choiceOptions.find(o => String(o.value) === v);
       if (found) {
-        this.rows.push({ label, result: found.label ?? v, active: false, options });
+        this.rows.push({ label, result: found.label ?? v, active: false, options: choiceOptions });
         return v;
       }
 
-      if (options?.length) {
-        const fallback = String(options[0].value);
+      if (choiceOptions.length) {
+        const fallback = String(choiceOptions[0].value);
         this.decisions[cursor] = { type: 'choice', value: fallback };
-        this.rows.push({ label, result: options[0].label ?? fallback, active: false, options });
+        this.rows.push({ label, result: choiceOptions[0].label ?? fallback, active: false, options: choiceOptions });
         console.warn(`CharGenApp | Replayed choice "${v}" is no longer valid for "${label}". Falling back to "${fallback}".`);
         return fallback;
       }
 
-      this.rows.push({ label, result: v, active: false, options });
+      this.rows.push({ label, result: v, active: false, options: choiceOptions });
       console.warn(`CharGenApp | Replayed choice "${v}" is invalid for "${label}" and no options are available.`);
       return v;
     }
 
-    if (this.autoAll && options?.length) {
-      const idx = Math.floor(Math.random() * options.length);
-      const value = String(options[idx].value);
+    if (this.autoAll && choiceOptions.length) {
+      const idx = Math.floor(Math.random() * choiceOptions.length);
+      const value = String(choiceOptions[idx].value);
       this.decisions.push({ type: 'choice', value });
-      const found = options[idx];
-      this.rows.push({ label, result: found?.label ?? value, active: false, options });
+      const found = choiceOptions[idx];
+      this.rows.push({ label, result: found?.label ?? value, active: false, options: choiceOptions });
       this.render();
       return value;
     }
 
-    this.rows.push({ label, result: null, active: true, options });
+    this.rows.push({ label, result: null, active: true, options: choiceOptions });
     this.render();
 
     const value = await new Promise(res => {
@@ -402,7 +403,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
 
     this.decisions.push({ type: 'choice', value });
     const row = this.rows.at(-1);
-    row.result = options.find(o => String(o.value) === String(value))?.label ?? value;
+    row.result = choiceOptions.find(o => String(o.value) === String(value))?.label ?? value;
     row.active = false;
     this.render();
     return value;

@@ -39,8 +39,12 @@ export default defineConfig(({mode}) => {
         formats: ['es'],
         fileName: () => 'twodsix.bundle.js',
       },
-      output: {
-        keepNames: true
+      rolldownOptions: {
+        output: {
+          keepNames: true,
+          manualChunks: undefined,
+          codeSplitting: false,
+        },
       },
     },
     plugins: [],
