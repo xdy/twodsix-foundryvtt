@@ -5,8 +5,8 @@
   "description": "A 2d6 system",
   "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
   "scripts": {
-    "build": "vite build && pnpm run packs:build",
-    "build:develop": "vite build && pnpm run packs:build-no-wiki",
+    "build": "pnpm run packs:build && vite build",
+    "build:develop": "pnpm run packs:build-no-wiki && vite build",
     "packs:build-no-wiki": "node scripts/packs.mjs build-no-wiki",
     "build:watch": "vite build --watch",
     "link": "node scripts/link-project.mjs",
@@ -14,7 +14,6 @@
     "clean": "node scripts/clean-dist.mjs",
     "bump-version": "node scripts/bump-version.mjs",
     "lint": "eslint ./src --fix",
-    "types:generate": "node src/scripts/generate-types.mjs",
     "symlinks": "node ./tools/create-symlinks.mjs",
     "data:copy": "node src/scripts/data_copy.mjs",
     "data:reset": "pnpm run build && node src/scripts/data_reset.mjs -f",
