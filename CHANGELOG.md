@@ -1,3 +1,10 @@
+## [7.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.1...v7.0.2) (2026-04-03)
+
+
+### Bug Fixes
+
+* Update build script ([84335d8](https://github.com/xdy/twodsix-foundryvtt/commit/84335d85c719c59aea62a45e43db5c6efb548e07))
+
 ## [7.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.0...v7.0.1) (2026-04-02)
 
 
