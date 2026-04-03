@@ -463,7 +463,7 @@ form .form-group span.units {
   background-repeat: repeat-x;
   font-family: inherit;
   color: var(--s2d6-default-color);
-  padding: 1ch; /*1ch 0 0 */
+  /*padding: 1ch; /*1ch 0 0 */
   --color-scrollbar: var(--s2d6-default-color);
   --color-scrollbar-border: var(--s2d6-header-border);
   --color-scrollbar-track: var(--s2d6-nav-background);
@@ -4964,6 +4964,11 @@ table.ship-action-table, table.vehicle-stats-table {
   container-type: inline-size;
   container-name: overlap-header;
 }
+
+section.window-content.overlap-header {
+  padding: 1ch;
+}
+
 @container overlap-header (width < 900px) {
   .ship-container {
     font-size: smaller;
