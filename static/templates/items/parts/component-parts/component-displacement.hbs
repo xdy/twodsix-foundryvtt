@@ -1,4 +1,4 @@
-{{#iff system.subtype "===" "hull" }}
+{{#iff system.subtype "===" config.COMPONENT_SUBTYPES.HULL}}
   <div class="item-weight">
     <label for="system.isBaseHull" class="resource-label short-label">{{localize "TWODSIX.Items.Component.isBaseHull"}}</label>
     <input type="checkbox" class="checkbox" name="system.isBaseHull" {{checked system.isBaseHull}} data-dtype="Boolean" />

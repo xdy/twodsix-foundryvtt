@@ -1,0 +1,171 @@
+//import { TwodsixActiveEffect } from "../module/entities/TwodsixActiveEffect";
+//import TwodsixItem from "../module/entities/TwodsixItem";
+import { applyToAllActors, applyToAllItems } from '../module/utils/migration-utils';
+import { cleanSystemReferences } from '../module/utils/utils';
+
+/**
+ * Migrates a document's active effects by:
+ * 1) updating AE phases using the determinePhase method.
+ * 2) cleaning value formula references to remove @system. prefix
+ * 3) migrate custom AE to standard FVTT mode
+ * Processes active effects from actor or item in the world and compendium packs.
+ * @param {Document} doc
+ * @returns {Promise<void>} A promise that resolves when the migration is complete.
+ */
+async function updateActiveEffects(doc) {
+  const isActor = doc.documentName === "Actor";
+  const derivedKeys = isActor
+    ? doc.getDerivedDataKeys()
+    : [".mod", ".skills.", "primaryArmor.", "secondaryArmor.", "encumbrance.value", "radiationProtection."];
+
+  // Only process effects directly owned by this document
+  const effectsList = doc.effects?.contents ?? [];
+
+  if (!effectsList.length) {
+    return;
+  }
+
+  const effectUpdates = [];
+
+  for (const effect of effectsList) {
+    if (!effect.system?.changes || foundry.utils.getType(effect.system?.changes) !== 'Array') {
+      console.log(`No valid changes found for effect: ${effect.name} on ${doc.name}`);
+      continue;
+    }
+
+    let effectChanged = false;
+
+    for (const change of effect.system.changes) {
+      //console.log(`Processing change:`, change);
+
+      if (!change.key || change.value === undefined || change.value === null || change.value === "") {
+        console.warn(`Skipping invalid change:`, change);
+        continue;
+      }
+
+      // Only migrate formulas and types for changes with type === 'custom'
+      if (change.type === "custom" && (typeof change.value === "string" || typeof change.value === "number")) {
+        migrateCustomChange(change);
+        effectChanged = true;
+      }
+
+      const phase = determinePhase(change, derivedKeys, isActor);
+      if (change.phase !== phase) {
+        change.phase = phase;
+        effectChanged = true;
+      }
+    }
+
+    if (effectChanged) {
+      effectUpdates.push({
+        _id: effect.id,
+        'system.changes': effect.system.changes
+      });
+    }
+  }
+
+  // Batch update all effects for this document at once
+  if (effectUpdates.length > 0) {
+    try {
+      await doc.updateEmbeddedDocuments('ActiveEffect', effectUpdates);
+    } catch (error) {
+      console.error(`Failed to update effects for document: ${doc.name}`, error);
+    }
+  }
+}
+
+/**
+ * Determines the phase of a change based on its key, type, and the actor's derived keys.
+ *
+ * @param {object} change - The change object being processed.
+ * @param {TwodsixActor | undefined} actor - The actor associated with the change, if available.
+ * @param {string[]} derivedKeys - A list of derived keys to compare against the change key.
+ * @returns {string} - The phase of the change (e.g., "encumbMax", "custom", "derived", "initial").
+ */
+function determinePhase(change, derivedKeys, isActor) {
+  // Remove leading 'system.' if present
+  const key = change.key.startsWith('system.') ? change.key.slice(7) : change.key;
+  if (key === "encumbrance.max") {
+    return "encumbMax";
+  } else if (change.type === "custom") {
+    return "custom";
+  }
+  let isDerived = false;
+  if (isActor) {
+    // Exact match for actors (full keys)
+    isDerived = derivedKeys.includes(key);
+  } else {
+    // Substring match for items (fallback patterns)
+    isDerived = derivedKeys.some(dkey => key.includes(dkey));
+  }
+  if (isDerived) {
+    return "derived";
+  } else if (typeof change.value === "string" && derivedKeys.some(dkey => change.value.includes(dkey))) {
+    return "derived";
+  } else {
+    return "initial";
+  }
+}
+
+function migrateCustomChange(change) {
+  if (typeof change.value === "number") {
+    change.type = "add";
+    return;
+  }
+
+  if (typeof change.value !== "string") {
+    console.warn(`Skipping change with unsupported value type:`, change);
+    return;
+  }
+
+  change.value = cleanSystemReferences(change.value);
+  const operator = change.value.trim().charAt(0);
+  const operand = change.value.trim().slice(1).trim();
+  const typeMap = {
+    "+": "add",
+    "-": "subtract",
+    "*": "multiply",
+    "=": "override"
+  };
+
+  if (operator === "/") {
+    change.type = "multiply";
+    change.value = `1/(${operand})`;
+  } else if (operator in typeMap) {
+    change.type = typeMap[operator];
+    change.value = operand;
+  } else {
+    console.warn(`Unhandled operator: ${operator} in change value: ${change.value}`);
+    change.type = "custom"; // Fallback to custom type
+  }
+}
+
+export async function migrate() {
+  const validActorTypes = ["traveller", "animal", "robot"];
+  const validItemTypes = ['equipment', 'weapon', 'armor', 'augment', 'tool', 'trait', 'consumable', 'computer'];
+
+  // Process all actors - effects are batched per document via updateEmbeddedDocuments
+  await applyToAllActors(async (actor) => {
+    if (validActorTypes.includes(actor.type)) {
+      await updateActiveEffects(actor);
+      // Also process all embedded items' effects
+      for (const item of actor.items.contents) {
+        if (validItemTypes.includes(item.type)) {
+          await updateActiveEffects(item);
+        }
+      }
+    }
+  });
+
+  // Process all items - effects are batched per document via updateEmbeddedDocuments
+  await applyToAllItems(async (item) => {
+    if (validItemTypes.includes(item.type)) {
+      await updateActiveEffects(item);
+    }
+  });
+
+  console.log("AE Phase Migration Complete");
+  return Promise.resolve();
+}
+
+

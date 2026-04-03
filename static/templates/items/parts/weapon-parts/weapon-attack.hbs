@@ -22,13 +22,20 @@
   </div>
 {{/if}}
 
+{{#if settings.ShowSingleAction}}
+  <div class="item-doubleTap">
+    <label class="resource-label" for="system.isSingleAction">{{localize "TWODSIX.Items.Weapon.isSingleAction"}}</label>
+    <input type="checkbox" class="checkbox" name="system.isSingleAction" {{checked system.isSingleAction}} data-dtype="Boolean"/>
+  </div>
+{{/if}}
+
 {{#if settings.ShowRateOfFire}}
-{{#iff (not system.doubleTap) "||" (not settings.ShowDoubleTap)}}
-    <div class="item-rateOfFire">
-      <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
-      <input class="form-input" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
-    </div>
-{{/iff}}
+  {{#iff (not system.doubleTap) "||" (not settings.ShowDoubleTap)}}
+      <div class="item-rateOfFire">
+        <label class="resource-label" for="system.rateOfFire">{{localize "TWODSIX.Items.Weapon.rateOfFire"}}</label>
+        <input class="form-input" type="text" name="system.rateOfFire" value="{{system.rateOfFire}}">
+      </div>
+  {{/iff}}
 {{/if}}
 
 {{#if settings.ShowRecoil}}

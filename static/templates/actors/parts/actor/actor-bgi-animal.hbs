@@ -1,8 +1,10 @@
 <!-- Biographical Information-->
+{{#unless settings.useRiderData}}
 <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'><i class="fa-solid fa-globe"></i>:<input
         name="system.homeWorld" type="text" value="{{system.homeWorld}}"
         placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();"/>
 </span>
+{{/unless}}
 <span class="bgi-species" data-tooltip='{{localize "TWODSIX.Actor.Species"}}'><i class="fa-solid fa-dna"></i>:
   <input name="system.species" type="text" value="{{system.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"/>
 </span>
@@ -82,8 +84,10 @@
 
   <!-- Characteristic Edit Mode -->
   {{#unless settings.dontShowStatBlock}}
+    {{#if isOwner}}
     <span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
       <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
     </span>
+    {{/if}}
   {{/unless}}
 {{/unless}}

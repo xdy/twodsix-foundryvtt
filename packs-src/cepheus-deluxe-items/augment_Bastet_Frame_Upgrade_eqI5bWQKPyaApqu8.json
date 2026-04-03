@@ -42,14 +42,6 @@
           "sourceId": "CfPLmZMvrEE9uEKD"
         }
       },
-      "changes": [
-        {
-          "key": "system.characteristics.dexterity.value",
-          "mode": 1,
-          "value": "2",
-          "priority": null
-        }
-      ],
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -73,7 +65,17 @@
       "name": "Bastet Frame Upgrade",
       "img": "systems/twodsix/assets/icons/metabolic-accelerator.svg",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "multiply",
+            "phase": "initial",
+            "value": "2",
+            "priority": null
+          }
+        ]
+      },
       "description": "",
       "statuses": [],
       "sort": 0,

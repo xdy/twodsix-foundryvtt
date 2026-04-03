@@ -1,3 +1,50 @@
+## [7.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.1...v7.0.2) (2026-04-03)
+
+
+### Bug Fixes
+
+* Update build script ([84335d8](https://github.com/xdy/twodsix-foundryvtt/commit/84335d85c719c59aea62a45e43db5c6efb548e07))
+
+## [7.0.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.0...v7.0.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* V14 Compatibility, Introduces ship combat phases. Adds western styled theme. ([fb0b1cb](https://github.com/xdy/twodsix-foundryvtt/commit/fb0b1cb693d5375a94f72ec8702a8e9f9e002e57))
+
+# [7.0.0](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.7...v7.0.0) (2026-03-28)
+
+
+### chore
+
+* update for v14 ([#1907](https://github.com/xdy/twodsix-foundryvtt/issues/1907)) ([3ed2814](https://github.com/xdy/twodsix-foundryvtt/commit/3ed2814dbbf6d0389c2c41e2c9f7f4864ed9b85a))
+
+
+### BREAKING CHANGES
+
+* Move to v14 is not backwards compatible and this version must be run on v14+
+
+## [6.9.7](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.6...v6.9.7) (2025-12-09)
+
+
+### Bug Fixes
+
+* omit cargo & ammo listing from component tabs ([#1921](https://github.com/xdy/twodsix-foundryvtt/issues/1921)) ([cf6a22e](https://github.com/xdy/twodsix-foundryvtt/commit/cf6a22e93c5eae2d91d6ca4293d42c027ac543e3))
+
+## [6.9.6](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.5...v6.9.6) (2025-12-08)
+
+
+### Bug Fixes
+
+* make traveller, robot and animal sheets apply ownership ([#1917](https://github.com/xdy/twodsix-foundryvtt/issues/1917)) ([5fc6c9b](https://github.com/xdy/twodsix-foundryvtt/commit/5fc6c9b57b90b07f4cab3cbf44b13f469d04f6c6))
+
+## [6.9.5](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.4...v6.9.5) (2025-11-22)
+
+
+### Bug Fixes
+
+* Fix migration console bug ([#1906](https://github.com/xdy/twodsix-foundryvtt/issues/1906)) ([d4fb2ce](https://github.com/xdy/twodsix-foundryvtt/commit/d4fb2ce1d4cd8cd07ba76c63328734aee81af282))
+
 ## [6.9.4](https://github.com/xdy/twodsix-foundryvtt/compare/v6.9.3...v6.9.4) (2025-11-19)
 
 

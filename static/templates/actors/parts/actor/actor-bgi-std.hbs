@@ -10,11 +10,19 @@
     value="{{system.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
 {{#if settings.showHeroPoints}}
   <span class="bgi-armor bgi-heroPoints" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
-  <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
-   step="1" placeholder="2" /></span>
+    <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
+    step="1" placeholder="2" />
+  </span>
 {{/if}}<br>
-<span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="system.species" type="text"
-    value="{{system.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" /></span><br>
+{{#unless settings.useRiderData}}
+  <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="system.species" type="text"
+    value="{{system.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" />
+  </span>
+{{else}}
+  <span class="bgi-primaryLanguage">{{localize "TWODSIX.Actor.PrimaryLanguage"}}:<input name="system.primaryLanguage" type="text"
+    value="{{system.primaryLanguage}}" placeholder='{{localize "TWODSIX.Actor.PrimaryLanguage"}}' onClick="this.select();" />
+  </span>
+{{/unless}}<br>
 {{#unless settings.useNationality}}
   <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'>{{localize "TWODSIX.Actor.HomeWorld"}}:<input
     name="system.homeWorld" type="text" value="{{system.homeWorld}}"
@@ -49,26 +57,34 @@
         placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.ArmorProtectionTypes') system.protectionTypes}}"/>
       {{/unless}}
     </span>
-    <span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input type="number"
-      value="{{system.radiationProtection.value}}"
-      placeholder='0' disabled data-tooltip="{{tooltips.radiationProtection.value}}"/>
-    </span><br>
+    {{#unless settings.useRiderData}}
+      <span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input type="number"
+        value="{{system.radiationProtection.value}}"
+        placeholder='0' disabled data-tooltip="{{tooltips.radiationProtection.value}}"/>
+      </span>
+    {{/unless}}
+    <br>
   {{/if}}
   <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input style="text-align: right;"
     type="number" value="{{system.encumbrance.value}}" placeholder='0' disabled
     data-tooltip="{{tooltips.encumbrance.value}}"/>/{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' disabled
-    data-tooltip="{{tooltips.encumbrance.max}}"/>{{/if}}</span>
-  <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">{{localize 'TWODSIX.Actor.Rads'}}:<input name="system.radiationDose.value" style="text-align: right;"
-    {{disabled tooltips.radiationDose.value}}
-    type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();"
-    data-tooltip="{{tooltips.radiationDose.value}}"/>
-  </span><br>
+    data-tooltip="{{tooltips.encumbrance.max}}"/>{{/if}}
+  </span>
+  {{#unless settings.useRiderData}}
+    <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">{{localize 'TWODSIX.Actor.Rads'}}:<input name="system.radiationDose.value" style="text-align: right;"
+      {{disabled tooltips.radiationDose.value}}
+      type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();"
+      data-tooltip="{{tooltips.radiationDose.value}}"/>
+    </span>
+  {{/unless}}<br>
 
   <!-- Movement -->
   {{> "systems/twodsix/templates/actors/parts/actor/actor-movement.hbs"}}
 
   <!-- Characteristic Edit Mode -->
+  {{#if isOwner}}
   <span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
     <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
   </span>
+  {{/if}}
 {{/unless}}

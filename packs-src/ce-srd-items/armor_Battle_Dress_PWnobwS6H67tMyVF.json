@@ -52,26 +52,31 @@
         }
       },
       "name": "Battle Dress",
-      "changes": [
-        {
-          "key": "system.characteristics.strength.value",
-          "mode": 2,
-          "value": "4",
-          "priority": null
-        },
-        {
-          "key": "system.characteristics.dexterity.value",
-          "mode": 2,
-          "value": "4",
-          "priority": null
-        },
-        {
-          "key": "skills.Tactics",
-          "mode": 5,
-          "value": "2",
-          "priority": null
-        }
-      ],
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.strength.value",
+            "type": "add",
+            "phase": "initial",
+            "value": "4",
+            "priority": null
+          },
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "phase": "initial",
+            "value": "4",
+            "priority": null
+          },
+          {
+            "key": "system.skills.Tactics",
+            "type": "override",
+            "phase": "derived",
+            "value": "2",
+            "priority": null
+          }
+        ]
+      },
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -96,7 +101,6 @@
       },
       "img": "systems/twodsix/assets/icons/battle-dress.svg",
       "type": "base",
-      "system": {},
       "sort": 0,
       "_key": "!items.effects!PWnobwS6H67tMyVF.rGFRveaZoUElSjXq"
     }

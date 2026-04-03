@@ -209,7 +209,7 @@
       },
       "Component": {
         "componentName": "Komponent",
-        "accomodations": "anpassningar",
+        "accommodations": "anpassningar",
         "armament": "beväpning",
         "armor": "rustning",
         "bridge": "brygga",
@@ -445,7 +445,7 @@
       "ShipValue": "Skeppsvärde",
       "MortgagePerMonth": "Uppskattad Amortering",
       "MaintenancePerMonth": "Underhållskostnad",
-      "CrPerMonth": "Cr/månad",
+      "CrPerMonth": "Cr / månad",
       "SHIPCARGO": "SKEPPSLAST"
     },
     "Vehicle": {
@@ -504,7 +504,7 @@
       "Rolling": "Rullar",
       "With": "med",
       "resultShows": "resultatet är",
-      "sum": "summan",
+      "Sum": "Summan",
       "using": "med {characteristic}",
       "BonusDamage": "Bonusskada",
       "Timeframe": "Tid"

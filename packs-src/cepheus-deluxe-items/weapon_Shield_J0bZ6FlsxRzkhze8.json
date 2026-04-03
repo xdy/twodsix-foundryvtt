@@ -63,14 +63,6 @@
           "sourceId": "W0d6O0JNx1bNEnbz"
         }
       },
-      "changes": [
-        {
-          "key": "system.primaryArmor.value",
-          "mode": 2,
-          "value": "1",
-          "priority": null
-        }
-      ],
       "duration": {
         "startTime": null,
         "seconds": null,
@@ -94,7 +86,17 @@
       "name": "Shield",
       "img": "./systems/twodsix/assets/icons/shield.svg",
       "type": "base",
-      "system": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.primaryArmor.value",
+            "type": "add",
+            "phase": "derived",
+            "value": "1",
+            "priority": null
+          }
+        ]
+      },
       "description": "",
       "statuses": [],
       "sort": 0,

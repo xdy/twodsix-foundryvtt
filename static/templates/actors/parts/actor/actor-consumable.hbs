@@ -34,7 +34,7 @@
        - {{localize "TWODSIX.Items.Computer.ProcessingPower"}}: {{twodsix_getProcessingPower parentItem}}/{{system.bandwidth}}
     {{/if}}
     <span class="item-controls centre">
-      {{#iff system.subtype "===" "software"}}
+      {{#iff system.subtype "===" config.CONSUMABLE_SUBTYPES.SOFTWARE}}
       <a class="consumable-toggle" data-consumable-id="{{consumableId}}" data-parent-id="{{parentId}}" data-action="toggleConsumable"
         {{#if system.softwareActive}}
           style="color: green;" data-tooltip="{{localize 'TWODSIX.Items.Consumable.SoftwareOn'}}"

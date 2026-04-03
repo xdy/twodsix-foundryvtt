@@ -17,7 +17,7 @@ A [Foundry VTT](https://foundryvtt.com/) system for running games using various 
 
 Install by either searching for Twodsix in in [FoundryVTT's](https://foundryvtt.com/) Game Systems tab and clicking Install or by clicking the 'Install System' button in that tab and entering the following as the Manifest URL: https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json
 
-**TAKE A BACKUP** before you switch from any 1.x or 2.x version of Twodsix to a Twodsix 3.x or 4.x version, as that requires Foundry v11. The conversion to v11 is **one-way**. The only way to go back is to restore a backup.
+**TAKE A BACKUP** before you switch from any 1.x or 2.x version of Twodsix to a Twodsix 3.x or 4.x version. The conversion to major Foundry verions is **one-way**. The only way to go back is to restore a backup.  This is particularly important for v14 conversion as many of the data models have change - particularly active effects.
 
 In play - using a number of Foundry modules - it can look something like this:
 
@@ -59,7 +59,7 @@ Prerequisites:
 One-time setup (Windows PowerShell/macOS/Linux shell):
 ```
 corepack enable
-corepack prepare pnpm@10.22.0 --activate
+corepack prepare pnpm@latest-10 --activate
 pnpm install
 ```
 
@@ -72,7 +72,7 @@ pnpm run build
 ```
 pnpm run build:watch
 ```
-- Lint TypeScript source:
+- Lint source:
 ```
 pnpm run lint
 ```
@@ -98,7 +98,7 @@ Project Licensing:
 *  Everything in this project that is not covered by one of the following license exceptions is licensed under the Apache License v2 (see [LICENSE](LICENSE)).
 
 Content Usage and Licensing:
-*  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md](OpenGameLicense.md) for details.
+*  Game system information and mechanics are licensed under the Open Game License, see [OpenGameLicense.md](static/OpenGameLicense.md) for details.
 *  Note:
 * This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises (except for the limited inclusion of Classic Traveller rules, by permission). This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.
 * Cepheus Engine and Samardan Press:tm: are the trademarks of Jason "Flynn" Kemp; I am not affiliated with Jason "Flynn" Kemp or Samardan Press:tm:.    
