@@ -40,12 +40,6 @@ export default defineConfig(({mode}) => {
         fileName: () => 'twodsix.bundle.js',
       },
       output: {
-        manualChunks(id) {
-          // Split charGen modules into a separate chunk for lazy loading
-          if (id.includes('/chargen/')) {
-            return 'chargen';
-          }
-        },
         keepNames: true
       },
     },

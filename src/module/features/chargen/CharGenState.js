@@ -23,45 +23,15 @@ export const CHARACTERISTICS_ROW_TYPE = 'Characteristics';
 export const CharGenConstants = {
   // Age settings
   STARTING_AGE: 18,
-  TERM_DURATION: 4, // Years per term
-
-  // Aging thresholds
-  AGING_START_AGE: 34, // Age when aging effects begin
-  MANDATORY_RETIREMENT_TERMS: 7, // Terms before forced retirement
 
   // Crisis/Medical costs
   CRISIS_COST_MULTIPLIER: 10000, // Cost per point on crisis roll (1d6 * this)
-  LEGAL_DEBT_AMOUNT: 10000, // Mishap result 3 debt
 
   // Pension table (terms served -> annual pension)
   PENSION_ELIGIBILITY_TERMS: 5, // Minimum terms for pension
   PENSION_BASE: 10000, // Base pension per 1000 credits
   PENSION_MAX_TERMS: 8, // Terms at which pension caps
   PENSION_PER_TERM_INCREASE: 2000, // Additional pension per term above base
-
-  // Skill counts
-  DEFAULT_BACKGROUND_SKILLS: 3,
-  MAX_HOMEWORLD_SKILLS: 2,
-
-  // Draft/imprisonment
-  IMPRISONMENT_YEARS: 4,
-
-  // Mishap severity
-  MISHAP_BENEFITS_LOST_THRESHOLD: 4, // mr >= 4 means benefits lost
-
-  // Injuries
-  SEVERELY_INJURED_ROLLS: [2],
-  NEARLY_KILLED_ROLLS: [1],
-
-  // Ship shares
-  SHIP_SHARES_ROLL: '1d6',
-
-  // Minimum characteristic value
-  MIN_CHAR_VALUE: 0,
-  MAX_CHAR_VALUE: 15,
-
-  // Qualification DM per previous career
-  QUAL_DM_PER_PREVIOUS_CAREER: 2,
 
   // Pension formula helper
   // 5 terms -> 10,000; each additional term adds 2,000; caps increase past 8 terms at 2,000/term
@@ -102,7 +72,6 @@ export function freshState() {
     cashBenefits: 0,
     cashRollsUsed: 0,
     materialBenefits: [],
-    chosenWeapons: [],
     log: [],
     died: false,
     termHistory: [],

@@ -48,9 +48,17 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     }
     const careerDocs = await careersPack.getDocuments();
     CU_CAREERS = careerDocs.reduce((acc, doc) => {
-      acc[doc.name] = doc.system; return acc;
+      if (!doc?.name || !doc?.system || typeof doc.system !== 'object') {
+        console.warn(`twodsix | CharGen: skipping invalid CU career entry in ${careersPack.collection}.`, doc);
+        return acc;
+      }
+      acc[doc.name] = doc.system;
+      return acc;
     }, {});
     CU_CAREER_NAMES = Object.keys(CU_CAREERS).sort();
+    if (!CU_CAREER_NAMES.length) {
+      throw new Error(`Failed to load CU career data: no valid careers found in ${careersPack.collection}.`);
+    }
 
     const chargenPackName = `twodsix.${ruleset.toLowerCase()}-srd-chargen-ruleset`;
     const chargenPack = game.packs.get(chargenPackName);
@@ -611,7 +619,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       state.log.push(`── ${careerName}, Term ${termNumber} (age ${ageStart}–${ageStart + 3}) ──`);
       const termEntry = this.startTermHistoryEntry(state, {
         careerName,
-        termInCareer: termNumber,
         totalTerm: state.totalTerms,
         ageStart,
         startedVerb: termNumber === 1 ? 'Began' : 'Continued',
