@@ -16,8 +16,6 @@ let CU_RISK_SUCCESS_EVENTS = [];
 let CU_PROMO_FAIL_EVENTS = [];
 let CU_PROMO_SUCCESS_EVENTS = [];
 let CU_BENEFITS_TABLE = [];     // [{threshold, description}]
-let CU_LEAVING_TABLE_A = [];    // string[7]
-let CU_LEAVING_TABLE_B = [];
 
 /**
  * CU character generation logic.
@@ -38,8 +36,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     CU_PROMO_FAIL_EVENTS = [];
     CU_PROMO_SUCCESS_EVENTS = [];
     CU_BENEFITS_TABLE = [];
-    CU_LEAVING_TABLE_A = [];
-    CU_LEAVING_TABLE_B = [];
   }
 
   async loadData(ruleset) {
@@ -76,10 +72,13 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     CU_PROMO_FAIL_EVENTS   = sortDesc(rd.promotionFailEvents ?? []);
     CU_PROMO_SUCCESS_EVENTS = sortDesc(rd.promotionSuccessEvents ?? []);
     CU_BENEFITS_TABLE      = sortDesc(rd.benefitsTable ?? []);
-    CU_LEAVING_TABLE_A     = rd.leavingTableA ?? [];
-    CU_LEAVING_TABLE_B     = rd.leavingTableB ?? [];
   }
 
+  /**
+   * Run character generation.
+   * @param {CharGenApp} app - The character generation app
+   * @returns {Promise<void>}
+   */
   async run(app) {
     const state = app.charState;
 
@@ -165,7 +164,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       }
 
       // Run terms for this career
-      const careerRecord = await this._runCUCareerTerms(app, careerName, isFirstCareer);
+      const careerRecord = await this._runCUCareerTerms(app, careerName);
       state.careers.push(careerRecord);
       if (!state.previousCareers.includes(careerName)) {
         state.previousCareers.push(careerName);
@@ -500,7 +499,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
   // ─── BENEFITS ─────────────────────────────────────────────────────────────────
 
-  async _cuBenefitRoll(app, careerName, rank) {
+  async _cuBenefitRoll(app, careerName) {
     const state = app.charState;
     const cashBase = CU_CAREERS[careerName]?.cashBase ?? 0;
     const isOfficer = CU_CAREERS[careerName]?.hasCommissioned &&
@@ -565,7 +564,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     state.log.push(`Muster out: ${totalRolls} benefit roll(s) (${careerRecord.terms} terms + ${rankBonus} rank bonus + ${extraBenefitRolls} extra).`);
     for (let i = 0; i < totalRolls; i++) {
       app._log(`Benefit roll ${i + 1}/${totalRolls}`, `(${careerRecord.name}, rank ${rank})`);
-      await this._cuBenefitRoll(app, careerRecord.name, rank);
+      await this._cuBenefitRoll(app, careerRecord.name);
       if (state.died) {
         return;
       }
@@ -577,7 +576,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
   /**
    * Run one career's term loop. Returns the completed career record.
    */
-  async _runCUCareerTerms(app, careerName, isFirstCareer) {
+  async _runCUCareerTerms(app, careerName) {
     const state = app.charState;
     const career = CU_CAREERS[careerName];
 
@@ -601,10 +600,9 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     let promoBonus = 0;       // accumulated DM bonus from promotion fail event
     let promoPenalty = 0;     // accumulated DM penalty from promotion fail event
     let extraBenefitRolls = 0;
-    let mustLeave = false;
     let careerMishap = false;
 
-    while (!mustLeave) {
+    while (true) {
       termNumber++;
       state.totalTerms++;
       state.currentTermInCareer = termNumber;
@@ -678,7 +676,8 @@ export class CUCharGenLogic extends BaseCharGenLogic {
             break;
           }
           if (shouldLeave) {
-            mustLeave = true; careerMishap = true; break;
+            careerMishap = true;
+            break;
           }
         }
       }
@@ -807,7 +806,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       app._log('Remain', `2D6(${remainRoll})+${state.totalTerms} terms=${remainTotal} vs <12 → ${canRemain ? '✓ May continue' : '✗ Must leave'}`);
 
       if (!canRemain) {
-        mustLeave = true;
         state.log.push(`Remain roll failed (${remainTotal} ≥12): leaving ${careerName}.`);
         termEntry.events.push(`Left ${careerName} (remain roll failed).`);
         break;
@@ -822,7 +820,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       );
       if (stay !== 'yes') {
         termEntry.events.push(`Voluntarily left ${careerName}.`);
-        mustLeave = true;
         break;
       }
     }

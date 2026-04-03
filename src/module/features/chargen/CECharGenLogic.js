@@ -116,6 +116,11 @@ export class CECharGenLogic extends BaseCharGenLogic {
     ];
   }
 
+  /**
+   * Run character generation.
+   * @param {CharGenApp} app - The character generation app
+   * @returns {Promise<void>}
+   */
   async run(app) {
     const state = app.charState;
 
@@ -130,10 +135,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
     let isFirstCareer = true;
     let forceRetire = false;
-    while (!forceRetire) {
-      if (state.died) {
-        return;
-      }
+    while (true) {
       const { careerName, drafted } = await this.stepQualification(app);
       if (state.died) {
         return;
@@ -210,9 +212,6 @@ export class CECharGenLogic extends BaseCharGenLogic {
         if (!mustContinue && !wantsToContinue) {
           break;
         }
-      }
-      if (state.died) {
-        return;
       }
       const rankInfo = career.ranks[state.currentRank];
       const currentCareerEntry = {
@@ -307,10 +306,11 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const roll = await app._roll('2d6');
     const mod = calcModFor(state.chars[career.qual?.char ?? 0] ?? 0);
     const total = roll + mod + qualDM;
-    const success = total >= career.qual.target;
+    const success = career.qual ? total >= career.qual.target : true;
+    const qualChar = career.qual?.char?.toUpperCase() ?? 'N/A';
     app._log(
       `Qualification: ${careerName}`,
-      `${roll}${addSign(mod)}(${career.qual.char.toUpperCase()})${qualDM ? addSign(qualDM) + '(DM)' : ''}=${total} vs ${career.qual.target}+ -> ${success ? '✓ Qualified' : '✗ Failed'}`
+      `${roll}${addSign(mod)}(${qualChar})${qualDM ? addSign(qualDM) + '(DM)' : ''}=${total} vs ${career.qual?.target ?? 'N/A'}+ -> ${success ? '✓ Qualified' : '✗ Failed'}`
     );
     state.log.push(success ? `Qualified for ${careerName}.` : `Failed qualification for ${careerName}.`);
     if (success) {
