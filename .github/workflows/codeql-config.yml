@@ -1,0 +1,4 @@
+name: "Custom CodeQL Configuration"
+query-filters:
+  - exclude:
+     id: js/insecure-randomness
