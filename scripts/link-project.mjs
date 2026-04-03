@@ -1,24 +1,11 @@
 import fs from 'fs-extra';
 import path from 'path';
 import {blueBright, green, red, yellow} from 'yoctocolors';
+import {getFoundryPaths} from './foundry-paths.mjs';
 
 const systemName = "twodsix";
 const distDirectory = './dist';
 const staticDirectory = './static';
-
-function getDataPath() {
-  const config = fs.readJSONSync('foundryconfig.json');
-
-  if (config?.dataPath) {
-    const dataDir = path.resolve(config.dataPath);
-    if (!fs.existsSync(dataDir)) {
-      throw new Error(`User Data path invalid: ${dataDir} does not exist`);
-    }
-    return dataDir;
-  } else {
-    throw new Error('No User Data path defined in foundryconfig.json');
-  }
-}
 
 async function linkUserData() {
   let destinationDirectory;
@@ -28,7 +15,8 @@ async function linkUserData() {
     throw new Error(`Could not find system.json in ${staticDirectory}`);
   }
 
-  const linkDirectory = path.resolve(getDataPath(), destinationDirectory, systemName);
+  const {dataDir} = getFoundryPaths({warnOnLegacyParent: true});
+  const linkDirectory = path.resolve(dataDir, destinationDirectory, systemName);
   console.log(`Target link: ${linkDirectory}`);
 
   if (fs.existsSync(linkDirectory)) {
