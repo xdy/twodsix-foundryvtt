@@ -30,6 +30,7 @@ export class BaseCharGenLogic {
   /**
    * Run character generation.
    * @param {CharGenApp} app - The character generation app
+   * @returns {Promise<void>}
    * @abstract
    */
   async run(app) {
@@ -69,38 +70,6 @@ export class BaseCharGenLogic {
   }
 
   /**
-   * Initialize character identity: choose characteristics, optional swap, gender, and name.
-   * @param {CharGenApp} app - The character generation app
-   * @param {Object} options - Options
-   * @param {boolean} [options.allowSwap=false] - Whether to offer characteristic swap
-   */
-  async initializeIdentity(app, { allowSwap = false } = {}) {
-    const state = app.charState;
-
-    // Choose characteristics
-    await app._chooseCharacteristics(app);
-    if (state.died) {
-      return;
-    }
-
-    // Optional characteristic swap
-    if (allowSwap) {
-      const { chooseCharacteristicSwap } = await import('./CharGenUtils.js');
-      await chooseCharacteristicSwap(app);
-      if (state.died) {
-        return;
-      }
-    }
-
-    // Choose gender
-    const { chooseGender } = await import('./CharGenUtils.js');
-    state.gender = await chooseGender(app);
-
-    // Roll name
-    await app._rollName();
-  }
-
-  /**
    * Prompt user to start another career or finish.
    * @param {CharGenApp} app - The character generation app
    * @param {number} totalTerms - Total terms served so far
@@ -121,13 +90,12 @@ export class BaseCharGenLogic {
    * @param {Object} state - Character state
    * @param {Object} options - Term options
    * @param {string} options.careerName - Name of the career
-   * @param {number} options.termInCareer - Term number within this career
    * @param {number} options.totalTerm - Total terms across all careers
    * @param {number} options.ageStart - Starting age for this term
    * @param {string} options.startedVerb - Verb describing how they entered (e.g., 'Became a', 'Stayed a')
    * @returns {Object} The term history entry
    */
-  startTermHistoryEntry(state, { careerName, termInCareer, totalTerm, ageStart, startedVerb }) {
+  startTermHistoryEntry(state, { careerName, totalTerm, ageStart, startedVerb }) {
     const termEntry = {
       term: totalTerm,
       career: careerName,
