@@ -62,10 +62,17 @@ export class CECharGenLogic extends BaseCharGenLogic {
     }
     const careerDocs = await pack.getDocuments();
     CAREERS = careerDocs.reduce((acc, doc) => {
+      if (!doc?.name || !doc?.system || typeof doc.system !== 'object') {
+        console.warn(`twodsix | CharGen: skipping invalid career entry in ${pack.collection}.`, doc);
+        return acc;
+      }
       acc[doc.name] = doc.system;
       return acc;
     }, {});
     CAREER_NAMES = Object.keys(CAREERS).sort();
+    if (!CAREER_NAMES.length) {
+      throw new Error(`Failed to load career data: no valid careers found in ${pack.collection}.`);
+    }
 
     // Load chargen ruleset
     const chargenPackName = `twodsix.${ruleset.toLowerCase()}-chargen-ruleset`;
@@ -165,7 +172,6 @@ export class CECharGenLogic extends BaseCharGenLogic {
         // Term history entry created but not used in this flow
         this.startTermHistoryEntry(state, {
           careerName,
-          termInCareer: state.currentTermInCareer,
           totalTerm: state.totalTerms,
           ageStart,
           startedVerb: verb,
@@ -290,31 +296,44 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepQualification(app) {
     const state = app.charState;
+    const fallbackCareer = CAREERS.Drifter ? 'Drifter' : CAREER_NAMES[0];
+    if (!fallbackCareer) {
+      throw new Error('CharGen qualification failed: no careers are available.');
+    }
     if (state.qualFails) {
       app._log('Qualification', 'Prior crisis — auto-fail. Entering Drifter.');
-      return { careerName: 'Drifter', drafted: false };
+      return { careerName: fallbackCareer, drafted: false };
     }
     const available = CAREER_NAMES.filter(n => n === 'Drifter' || !state.previousCareers.includes(n)).sort((a, b) =>
       a.localeCompare(b)
     );
+    if (!available.length) {
+      app._log('Qualification', `No eligible careers left; defaulting to ${fallbackCareer}.`);
+      return { careerName: fallbackCareer, drafted: false };
+    }
     const qualDM = -2 * state.previousCareers.length;
     const careerName = await app._choose(
       `Choose career${qualDM ? ` (qual DM: ${addSign(qualDM)})` : ''}`,
       available.map(n => ({ value: n, label: n }))
     );
-    const career = CAREERS[careerName];
+    const chosenCareerName = available.includes(careerName) ? careerName : fallbackCareer;
+    const career = CAREERS[chosenCareerName];
+    if (!career) {
+      app._log('Qualification', `Selected career data missing; defaulting to ${fallbackCareer}.`);
+      return { careerName: fallbackCareer, drafted: false };
+    }
     const roll = await app._roll('2d6');
     const mod = calcModFor(state.chars[career.qual?.char ?? 0] ?? 0);
     const total = roll + mod + qualDM;
     const success = career.qual ? total >= career.qual.target : true;
     const qualChar = career.qual?.char?.toUpperCase() ?? 'N/A';
     app._log(
-      `Qualification: ${careerName}`,
+      `Qualification: ${chosenCareerName}`,
       `${roll}${addSign(mod)}(${qualChar})${qualDM ? addSign(qualDM) + '(DM)' : ''}=${total} vs ${career.qual?.target ?? 'N/A'}+ -> ${success ? '✓ Qualified' : '✗ Failed'}`
     );
-    state.log.push(success ? `Qualified for ${careerName}.` : `Failed qualification for ${careerName}.`);
+    state.log.push(success ? `Qualified for ${chosenCareerName}.` : `Failed qualification for ${chosenCareerName}.`);
     if (success) {
-      return { careerName, drafted: false };
+      return { careerName: chosenCareerName, drafted: false };
     }
     const failOpts = [];
     if (!state.hasBeenDrafted) {
@@ -324,14 +343,14 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const failChoice = await app._choose('Qualification failed — choose option', failOpts);
     if (failChoice === 'draft') {
       const dr = await app._roll('1d6');
-      const drafted = DRAFT_TABLE[dr];
+      const drafted = DRAFT_TABLE[dr] && CAREERS[DRAFT_TABLE[dr]] ? DRAFT_TABLE[dr] : fallbackCareer;
       state.hasBeenDrafted = true;
       state.log.push(`Drafted into ${drafted} (1D6=${dr}).`);
       app._log('Draft', `1D6=${dr} -> ${drafted}`);
       return { careerName: drafted, drafted: true };
     }
-    state.log.push('Entered Drifter.');
-    return { careerName: 'Drifter', drafted: false };
+    state.log.push(`Entered ${fallbackCareer}.`);
+    return { careerName: fallbackCareer, drafted: false };
   }
 
   async stepBasicTraining(app, careerName, isFirstCareer) {

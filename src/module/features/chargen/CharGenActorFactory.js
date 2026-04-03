@@ -70,7 +70,7 @@ export async function createCharacterActor(state, charName) {
     state.pension ? `Pension: Cr${state.pension.toLocaleString()}/year` : null,
   ].filter(Boolean).join('\n');
 
-  const detailedSummary = generateDetailedSummary(state, charName);
+  const detailedSummary = generateDetailedSummary(state);
   const rulesetName = CONFIG.TWODSIX.RULESETS[state.ruleset]?.name || 'Cepheus Engine';
   const header = state.died ? 'Epitaph:' : `${rulesetName} generation results:`;
   const bioHtml = await foundry.applications.handlebars.renderTemplate(
@@ -121,7 +121,7 @@ export async function createCharacterActor(state, charName) {
   return actor;
 }
 
-export function generateDetailedSummary(state, charName) {
+export function generateDetailedSummary(state) {
   const chars = ['str', 'dex', 'end', 'int', 'edu', 'soc'];
   const charLabels = ['Str', 'Dex', 'End', 'Int', 'Edu', 'Soc'];
   const header1 = `Age\tGender\t${charLabels.join('\t')}`;

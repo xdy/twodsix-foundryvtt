@@ -6,28 +6,6 @@ import { getCharacteristicList } from './utils/TwodsixRollSettings';
 import { simplifySkillName } from './utils/utils';
 
 /**
- * Register Handlebars partials for character generation UI.
- * @returns {Promise<void>}
- */
-export async function registerCharGenPartials() {
-  const partials = [
-    'systems/twodsix/templates/chargen/char-gen-summary.hbs',
-  ];
-  for (const partialPath of partials) {
-    try {
-      const response = await fetch(partialPath);
-      if (response.ok) {
-        const template = await response.text();
-        const partialName = partialPath.split('/').pop().replace('.hbs', '');
-        Handlebars.registerPartial(partialName, template);
-      }
-    } catch (e) {
-      console.warn(`Failed to register partial ${partialPath}:`, e);
-    }
-  }
-}
-
-/**
  * @returns {void}
  */
 export default function registerHandlebarsHelpers() {

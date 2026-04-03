@@ -329,7 +329,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       isDone: this.isDone,
       autoAll: this.autoAll,
       died: s?.died ?? false,
-      textSummary: this.isDone && s ? generateDetailedSummary(s, this.charName) : '',
+      textSummary: this.isDone && s ? generateDetailedSummary(s) : '',
       summaryHeight: this.summaryHeight,
       scrollFlex: this.isDone ? '0 0 33%' : '1',
     };
@@ -361,7 +361,21 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     if (cursor < this.decisions.length) {
       const v = String(this.decisions[cursor].value);
       const found = options.find(o => String(o.value) === v);
-      this.rows.push({ label, result: found?.label ?? v, active: false, options });
+      if (found) {
+        this.rows.push({ label, result: found.label ?? v, active: false, options });
+        return v;
+      }
+
+      if (options?.length) {
+        const fallback = String(options[0].value);
+        this.decisions[cursor] = { type: 'choice', value: fallback };
+        this.rows.push({ label, result: options[0].label ?? fallback, active: false, options });
+        console.warn(`CharGenApp | Replayed choice "${v}" is no longer valid for "${label}". Falling back to "${fallback}".`);
+        return fallback;
+      }
+
+      this.rows.push({ label, result: v, active: false, options });
+      console.warn(`CharGenApp | Replayed choice "${v}" is invalid for "${label}" and no options are available.`);
       return v;
     }
 

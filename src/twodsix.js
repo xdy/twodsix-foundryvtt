@@ -67,19 +67,18 @@ import TwodsixCombat from './module/entities/TwodsixCombat';
 import TwodsixCombatant from './module/entities/TwodsixCombatant';
 import { TwodsixGamePause } from './module/entities/TwodsixGamePause';
 import TwodsixItem from './module/entities/TwodsixItem';
-import registerHandlebarsHelpers, { registerCharGenPartials } from './module/handlebars';
+import registerHandlebarsHelpers from './module/handlebars';
 import { registerSettings, switchCss } from './module/settings';
 import './module/migration';
+import { CareerItemSheet } from './module/sheets/CareerItemSheet';
+import { ChargenRulesetItemSheet } from './module/sheets/ChargenRulesetItemSheet';
+import { ComponentItemSheet } from './module/sheets/ComponentItemSheet';
+import { ConsumableItemSheet } from './module/sheets/ConsumableItemSheet';
+import { SkillItemSheet } from './module/sheets/SkillItemSheet';
 import { TwodsixActiveEffectConfig } from './module/sheets/TwodsixActiveEffectConfig';
 import { TwodsixAnimalSheet } from './module/sheets/TwodsixAnimalSheet';
 import { TwodsixBattleSheet } from './module/sheets/TwodsixBattleSheet';
 import { TwodsixItemSheet } from './module/sheets/TwodsixItemSheet';
-import { WeaponItemSheet } from './module/sheets/WeaponItemSheet';
-import { ComponentItemSheet } from './module/sheets/ComponentItemSheet';
-import { ConsumableItemSheet } from './module/sheets/ConsumableItemSheet';
-import { SkillItemSheet } from './module/sheets/SkillItemSheet';
-import { CareerItemSheet } from './module/sheets/CareerItemSheet';
-import { ChargenRulesetItemSheet } from './module/sheets/ChargenRulesetItemSheet';
 import { TwodsixRobotSheet } from './module/sheets/TwodsixRobotSheet';
 import { TwodsixShipPositionSheet } from './module/sheets/TwodsixShipPositionSheet';
 import { TwodsixShipSheet } from './module/sheets/TwodsixShipSheet';
@@ -87,6 +86,7 @@ import { TwodsixSpaceObjectSheet } from './module/sheets/TwodsixSpaceObjectSheet
 import { TwodsixNPCSheet, TwodsixTravellerSheet } from './module/sheets/TwodsixTravellerSheet';
 import { TwodsixVehicleSheet } from './module/sheets/TwodsixVehicleSheet';
 import { TwodsixWorldSheet } from './module/sheets/TwodsixWorldSheet';
+import { WeaponItemSheet } from './module/sheets/WeaponItemSheet';
 import { addCustomEnrichers } from './module/utils/enrichers';
 import { rollItemMacro } from './module/utils/rollItemMacro';
 import { TwodsixDiceRoll } from './module/utils/TwodsixDiceRoll';
@@ -357,9 +357,6 @@ Hooks.once('init', async function () {
 
   // @ts-expect-error Handlebars template loader typing is missing in Foundry types.
   await foundry.applications.handlebars.loadTemplates(handlebarsTemplateFiles);
-
-  // Register character generation partials
-  await registerCharGenPartials();
 
   //Add TL to compendium index
   CONFIG.Item.compendiumIndexFields.push('system.techLevel');
