@@ -1,0 +1,87 @@
+{
+  "_id": "49a7c02ac92a973f",
+  "name": "Athlete",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "end",
+      "target": 8
+    },
+    "surv": {
+      "char": "dex",
+      "target": 5
+    },
+    "comm": null,
+    "adv": null,
+    "reenlist": 6,
+    "hasCommAdv": false,
+    "ranks": [
+      {
+        "title": null,
+        "skill": "Athletics",
+        "level": 1
+      }
+    ],
+    "personal": [
+      "+1 Dex",
+      "+1 Int",
+      "+1 Edu",
+      "+1 Soc",
+      "Carousing",
+      "Melee Combat"
+    ],
+    "service": [
+      "Athletics",
+      "Admin",
+      "Carousing",
+      "Computer",
+      "Gambling",
+      "Vehicle"
+    ],
+    "specialist": [
+      "Zero-G",
+      "Athletics",
+      "Athletics",
+      "Computer",
+      "Leadership",
+      "Gambling"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Liaison",
+      "Linguistics",
+      "Medicine",
+      "Sciences"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Int",
+      "Weapon",
+      "High Passage",
+      "Explorers' Society",
+      "High Passage",
+      null
+    ],
+    "cash": [
+      2000,
+      10000,
+      20000,
+      20000,
+      50000,
+      100000,
+      100000
+    ],
+    "description": "Individual that has achieved celebrity status for their proficiency in sports and other forms of physical exercise."
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "_key": "!items!49a7c02ac92a973f"
+}

@@ -1,9 +1,10 @@
-<div class ="item-image-name">
+<div class="item-image-name">
   <table>
     <tr>
       <th>
         <div class="item-img">
-          <img class="item-img" src="{{item.img}}" data-tooltip="{{item.img}}" alt="{{item.name}}" data-edit="img" width="128"
+          <img class="item-img" src="{{item.img}}" data-tooltip="{{item.img}}" alt="{{item.name}}" data-edit="img"
+               width="128"
                height="128" data-action="editImage"/></div>
       </th>
       <th>
@@ -15,6 +16,8 @@
               {{localize "TWODSIX.Items.Skills.SkillName"}}
             {{else iff item.type "===" "trait"}}
               {{localize "TWODSIX.Items.Traits.TraitName"}}
+            {{else iff item.type "===" "career"}}
+              {{localize "TWODSIX.Items.Career.CareerName"}}
             {{else}}
               {{localize "TWODSIX.Items.Equipment.ItemName"}}
             {{/iff}}

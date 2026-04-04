@@ -1,6 +1,6 @@
-import {defineConfig} from 'vite';
 import fs from 'fs';
-import {glob} from 'glob';
+import { glob } from 'glob';
+import { defineConfig } from 'vite';
 
 export default defineConfig(({mode}) => {
   const isProduction = mode === 'production';

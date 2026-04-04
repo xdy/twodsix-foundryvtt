@@ -18,6 +18,10 @@ export default function registerHandlebarsHelpers() {
     return (num1 ?? 0) * (num2 ?? 0);
   });
 
+  Handlebars.registerHelper('add', (num1, num2) => {
+    return (num1 ?? 0) + (num2 ?? 0);
+  });
+
   Handlebars.registerHelper('twodsix_capitalize', (str) => {
     if (typeof str !== 'string') { // this was === before, but seems like it should have been !==
       return '';

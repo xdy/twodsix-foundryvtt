@@ -1,3 +1,22 @@
+# [7.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.2...v7.1.0) (2026-04-04)
+
+
+### Bug Fixes
+
+* addSign bug, add name to app title when set, assorted cleanup. ([ad1cd7a](https://github.com/xdy/twodsix-foundryvtt/commit/ad1cd7ab93ca771893aab4585a3eb72f564787fc))
+* attempt to turn of randomness check of codeql ([1e19626](https://github.com/xdy/twodsix-foundryvtt/commit/1e19626c8785a900f9acc2502b7760df6241f286))
+* Disable code splitting again. Fix a deepseek find. ([224ebd4](https://github.com/xdy/twodsix-foundryvtt/commit/224ebd480f47d7cf56094f5888018b3232b68e1f))
+* Improve handling of death during character generation. ([0bfe801](https://github.com/xdy/twodsix-foundryvtt/commit/0bfe801695e6610aa57ef184c772265a6513b2da))
+* Move several header fields into the table, making them behave like any other decision. ([c9f7b2e](https://github.com/xdy/twodsix-foundryvtt/commit/c9f7b2e2c1cc93352c89bb9ad0d3b71c1d2373fd))
+* Re-add weapon choice, now for both CE and CU ([6b7dcf7](https://github.com/xdy/twodsix-foundryvtt/commit/6b7dcf770d53c65638864df1b3bfb6b9322d5f8e))
+* some style changes to align colors across themes ([f065ba1](https://github.com/xdy/twodsix-foundryvtt/commit/f065ba14d0de2a48d73d2602113e654776e19320))
+* try moving file location ([1af67be](https://github.com/xdy/twodsix-foundryvtt/commit/1af67be286a3cf00de435821b255953b0e2e59ca))
+
+
+### Features
+
+* Add character generation button to the actors tab. Currently supports CE and CU. ([58e38ec](https://github.com/xdy/twodsix-foundryvtt/commit/58e38ec673ac064efef422a5f53390e869e62ec0))
+
 ## [7.0.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.1...v7.0.2) (2026-04-03)
 
 

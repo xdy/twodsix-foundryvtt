@@ -1,0 +1,123 @@
+{
+  "_id": "414e0ce1a1ca4aa3",
+  "name": "Agent",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "soc",
+      "target": 6
+    },
+    "surv": {
+      "char": "int",
+      "target": 6
+    },
+    "comm": {
+      "char": "edu",
+      "target": 7
+    },
+    "adv": {
+      "char": "edu",
+      "target": 6
+    },
+    "reenlist": 6,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Agent",
+        "skill": "Streetwise",
+        "level": 1
+      },
+      {
+        "title": "Special Agent",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Sp. Agent in Charge",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Unit Chief",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Section Chief",
+        "skill": "Admin",
+        "level": 1
+      },
+      {
+        "title": "Assistant Director",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Director",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Dex",
+      "+1 End",
+      "+1 Int",
+      "+1 Edu",
+      "Athletics",
+      "Carousing"
+    ],
+    "service": [
+      "Admin",
+      "Computer",
+      "Streetwise",
+      "Bribery",
+      "Leadership",
+      "Vehicle"
+    ],
+    "specialist": [
+      "Gun Combat",
+      "Melee Combat",
+      "Bribery",
+      "Leadership",
+      "Recon",
+      "Survival"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Liaison",
+      "Linguistics",
+      "Medicine",
+      "Leadership"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Int",
+      "Weapon",
+      "Mid Passage",
+      "+1 Soc",
+      "High Passage",
+      "Explorers' Society"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Individual that secretly collects and reports information on the activities, movements and plans of a political or corporate enemy or competitor. Also known as a spy or intelligence operative."
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "_key": "!items!414e0ce1a1ca4aa3"
+}

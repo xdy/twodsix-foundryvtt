@@ -95,7 +95,7 @@ export class TravellerActor extends CreatureActor {
     }
     if (droppedItem.type === 'skills') {
       return await this._addDroppedSkills(droppedItem);
-    } else if (!["component", "ship_position"].includes(droppedItem.type)) {
+    } else if (!["component", "ship_position", "career", "chargen_ruleset"].includes(droppedItem.type)) {
       return await this._addDroppedEquipment(droppedItem);
     }
     ui.notifications.warn("TWODSIX.Warnings.CantDragOntoActor", {localize: true});

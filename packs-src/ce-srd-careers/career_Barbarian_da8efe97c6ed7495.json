@@ -1,0 +1,87 @@
+{
+  "_id": "da8efe97c6ed7495",
+  "name": "Barbarian",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "end",
+      "target": 5
+    },
+    "surv": {
+      "char": "str",
+      "target": 6
+    },
+    "comm": null,
+    "adv": null,
+    "reenlist": 5,
+    "hasCommAdv": false,
+    "ranks": [
+      {
+        "title": null,
+        "skill": "Melee Combat",
+        "level": 1
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "+1 Int",
+      "Athletics",
+      "Gun Combat"
+    ],
+    "service": [
+      "Mechanics",
+      "Gun Combat",
+      "Melee Combat",
+      "Recon",
+      "Survival",
+      "Animals"
+    ],
+    "specialist": [
+      "Gun Combat",
+      "Jack o' Trades",
+      "Melee Combat",
+      "Recon",
+      "Animals",
+      "Tactics"
+    ],
+    "advanced": [
+      "Advocate",
+      "Linguistics",
+      "Medicine",
+      "Leadership",
+      "Tactics",
+      "Broker"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Int",
+      "Weapon",
+      "Weapon",
+      "+1 End",
+      "Mid Passage",
+      null
+    ],
+    "cash": [
+      0,
+      1000,
+      2000,
+      5000,
+      5000,
+      10000,
+      10000
+    ],
+    "description": "Individual from a primitive world (TL4 or less) capable of surviving on their world without support from a technologically advanced civilization."
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "_key": "!items!da8efe97c6ed7495"
+}

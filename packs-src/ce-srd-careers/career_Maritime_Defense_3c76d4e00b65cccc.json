@@ -1,0 +1,123 @@
+{
+  "_id": "3c76d4e00b65cccc",
+  "name": "Maritime Defense",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "end",
+      "target": 5
+    },
+    "surv": {
+      "char": "end",
+      "target": 5
+    },
+    "comm": {
+      "char": "int",
+      "target": 6
+    },
+    "adv": {
+      "char": "edu",
+      "target": 7
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Seaman",
+        "skill": "Watercraft",
+        "level": 1
+      },
+      {
+        "title": "Ensign",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lieutenant",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lt Commander",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Commander",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Admiral",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "Athletics",
+      "Melee Combat",
+      "Vehicle"
+    ],
+    "service": [
+      "Mechanics",
+      "Gun Combat",
+      "Gunnery",
+      "Melee Combat",
+      "Survival",
+      "Watercraft"
+    ],
+    "specialist": [
+      "Comms",
+      "Electronics",
+      "Gun Combat",
+      "Demolitions",
+      "Recon",
+      "Watercraft"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Jack o' Trades",
+      "Medicine",
+      "Leadership",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Edu",
+      "Weapon",
+      "Mid Passage",
+      "Weapon",
+      "High Passage",
+      "+1 Soc"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Member of a planetary armed military force operating within and on the surface of a world's oceans. Also known as the \"planetary wet navy\"."
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "_key": "!items!3c76d4e00b65cccc"
+}
