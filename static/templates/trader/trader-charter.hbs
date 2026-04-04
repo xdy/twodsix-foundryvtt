@@ -1,0 +1,22 @@
+<form class="st-charter-form">
+  <p>Charter ship space for 2 weeks to <strong>{{destinationName}}</strong>.</p>
+  <div class="form-group">
+    <label>Cargo (tons)</label>
+    <input type="number" name="charterCargo" value="{{freeCargo}}" min="0" max="{{maxCargo}}" />
+    <p class="hint">Available: {{freeCargo}}t / Total: {{maxCargo}}t</p>
+  </div>
+  <div class="form-group">
+    <label>Staterooms</label>
+    <input type="number" name="charterStaterooms" value="{{freeStaterooms}}" min="0" max="{{maxStaterooms}}" />
+    <p class="hint">Available: {{freeStaterooms}} / Total: {{maxStaterooms}}</p>
+  </div>
+  <div class="form-group">
+    <label>Low Berths</label>
+    <input type="number" name="charterLowBerths" value="{{freeLowBerths}}" min="0" max="{{maxLowBerths}}" />
+    <p class="hint">Available: {{freeLowBerths}} / Total: {{maxLowBerths}}</p>
+  </div>
+  <div class="form-group" style="display:flex;gap:16px;margin-top:16px;align-items:center;">
+    <label><input type="radio" name="charterMode" value="available" checked> All currently available</label>
+    <label><input type="radio" name="charterMode" value="all"> All (may evict cargo/passengers)</label>
+  </div>
+</form>

@@ -109,10 +109,27 @@ async function generateTable () {
   });
 }
 
+async function getTable (name) {
+  let t = game.tables.contents.find(x => x.name === name);
+  if (!t) {
+    const pack = game.packs.get('twodsix.twodsix-macros-rolltables');
+    if (pack) {
+      if (!pack.indexed) { await pack.getIndex(); }
+      const entry = pack.index.find(e => e.name === name);
+      if (entry) { t = await pack.getDocument(entry._id); }
+    }
+  }
+  return t;
+}
+
 async function processTradeTable (tableName, trcodes, offset, compendium, starBase) {
   let returnText = '';
   let isAvailable = [];
-  const table = await game.tables.contents.find(t => t.name === tableName);
+  const table = await getTable(tableName);
+  if (!table) {
+    ui.notifications.error(`Trade Macro: required rollable table "${tableName}" not found. Import it from the "twodsix macros rolltables" compendium.`);
+    return '';
+  }
 
   // If random selection, determine trade goods available
   if (tableName.indexOf('Basic') === -1 && RANDOM) {
@@ -270,7 +287,11 @@ async function rollPriceAdjust (offset, type, compendium) {
     console.log('Price Adjustment Table: ', tableName);
   }
 
-  const table = game.tables.contents.find(t => t.name === tableName);
+  const table = await getTable(tableName);
+  if (!table) {
+    ui.notifications.error(`Trade Macro: required rollable table "${tableName}" not found. Import it from the "twodsix macros rolltables" compendium.`);
+    return 1;
+  }
 
   let r = new Roll('2D6+@mod', { mod: offset });
   r = (await r.evaluate()).total;

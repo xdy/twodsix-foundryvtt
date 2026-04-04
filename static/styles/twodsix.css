@@ -5796,3 +5796,16 @@ span.single-line.world-inset {
   background: var(--s2d6-background-nearly-transparent);
   font-weight: 600;
 }
+
+/* ============================================================================
+   SECTION-30: TRADING SETUP
+   ============================================================================ */
+.st-setup-form {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-right: 5px;
+}
+
+.trader-setup .window-content {
+  overflow-y: hidden;
+}

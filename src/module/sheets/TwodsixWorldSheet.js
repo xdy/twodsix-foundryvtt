@@ -1,5 +1,5 @@
 import { TWODSIX } from '../config';
-import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from '../utils/TradeGenerator';
+import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from '../utils/TradeGenerator.js';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
