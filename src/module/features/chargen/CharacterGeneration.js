@@ -18,8 +18,6 @@ export async function startCharacterGeneration() {
   const app = new CharGenApp();
   app.charState = freshState();
 
-  // Name files are lazy-loaded by _rollLanguage() only when needed
-  await app._rollLanguage();
   await app.render({ force: true });
 
   app.run().catch(err => {

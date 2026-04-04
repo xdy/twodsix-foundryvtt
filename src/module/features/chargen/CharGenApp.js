@@ -1,9 +1,11 @@
 // CharGenApp.js — Character generation ApplicationV2 UI class
-import { LanguageType, nameGenerator as nameGen } from '../../utils/nameGenerator.js';
+import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
 import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
 import { CHARACTERISTIC_KEYS, CHARACTERISTIC_LABELS, CHARACTERISTICS_ROW_TYPE, freshState } from './CharGenState.js';
+
+const NAME_ROW_LABEL = 'Name';
 
 /**
  * Character generation Application class extending Foundry's ApplicationV2.
@@ -49,34 +51,6 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   }
 
   /**
-   * Roll a random name based on language type and gender.
-   */
-  async _rollName() {
-    try {
-      this.charName = await nameGen.generateName(
-        this.charState?.languageType,
-        this.charState?.gender === 'Male' ? 'M' : 'F'
-      );
-    } catch (err) {
-      console.warn('CharGenApp | Failed to generate name:', err);
-      this.charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
-    }
-    this.render();
-  }
-
-  /**
-   * Roll a random language type.
-   */
-  async _rollLanguage() {
-    const types = Object.values(LanguageType);
-    const randomType = types[Math.floor(Math.random() * types.length)];
-    if (this.charState) {
-      this.charState.languageType = randomType;
-    }
-    await this._rollName();
-  }
-
-  /**
    * Resolve characteristics as done (manual entry).
    */
   _resolveCharDone() {
@@ -116,7 +90,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   /**
    * Resolve the currently active row with a random choice.
    */
-  _resolveActiveRandomly() {
+  async _resolveActiveRandomly() {
     const row = this.rows.find(r => r.active);
     if (!row || !this.pendingResolve) {
       return;
@@ -128,6 +102,12 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       const r = this.pendingResolve;
       this.pendingResolve = null;
       r('rolled');
+      return;
+    }
+
+    // Handle Name row: generate a fresh random name and continue
+    if (row.label === NAME_ROW_LABEL) {
+      await this._resolveNameRoll();
       return;
     }
 
@@ -180,27 +160,16 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
         this._redo();
       }
     });
-
-    el.querySelector('.cg-name')?.addEventListener('input', e => {
-      this.charName = e.target.value.trim() || game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
-    });
-
-    el.querySelector('.cg-lang-select')?.addEventListener('change', e => {
-      if (this.charState) {
-        this.charState.languageType = parseInt(e.target.value);
-        this._rollName();
-      }
-    });
   }
 
   /**
    * Attach roll button event handlers.
    */
   _attachRollHandlers(el) {
-    el.querySelector('.cg-roll-lang')?.addEventListener('click', () => this._rollLanguage());
-    el.querySelector('.cg-roll-name')?.addEventListener('click', () => this._rollName());
     el.querySelector('.cg-roll-upp')?.addEventListener('click', () => this._resolveCharRoll());
     el.querySelector('.cg-char-done')?.addEventListener('click', () => this._resolveCharDone());
+    el.querySelector('.cg-name-roll')?.addEventListener('click', () => this._resolveNameRoll());
+    el.querySelector('.cg-name-done')?.addEventListener('click', () => this._resolveNameDone());
     el.querySelector('.cg-rand')?.addEventListener('click', () => this._resolveActiveRandomly());
     el.querySelector('.cg-rand-all')?.addEventListener('click', async () => {
       if (this.isDone) {
@@ -260,6 +229,22 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   }
 
   /**
+   * Attach name input handler to enable/disable the Done button.
+   */
+  _attachNameHandlers(el) {
+    const nameInput = el.querySelector('.cg-name-input');
+    const nameDone = el.querySelector('.cg-name-done');
+    if (!nameInput || !nameDone) {
+      return;
+    }
+    const update = () => {
+      nameDone.disabled = !nameInput.value.trim();
+    };
+    nameInput.addEventListener('input', update);
+    update();
+  }
+
+  /**
    * Attach resize handle drag handler for summary panel.
    */
   _attachResizeHandler(el) {
@@ -296,6 +281,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     this._attachChoiceHandlers(el);
     this._attachActionHandlers(el);
     this._attachCharacteristicHandlers(el);
+    this._attachNameHandlers(el);
     this._attachResizeHandler(el);
     this._updateDoneButton();
   }
@@ -312,9 +298,6 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
 
     return {
       charName: this.charName,
-      languages: Object.entries(LanguageType)
-        .map(([label, value]) => ({ label, value, selected: s?.languageType === value }))
-        .sort((a, b) => a.label.localeCompare(b.label)),
       chars,
       upp,
       age: s?.age ?? 18,
@@ -453,6 +436,83 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     row.active = false;
     this.render();
     return value;
+  }
+
+  /**
+   * Handle name choice with editable text field.
+   * Dice button generates a random name and auto-continues.
+   * @returns {Promise<string>} The chosen name
+   */
+  async _chooseName() {
+    const cursor = this.decisionCursor++;
+    if (cursor < this.decisions.length) {
+      const v = String(this.decisions[cursor].value);
+      this.rows.push({ label: NAME_ROW_LABEL, result: v, active: false, options: [] });
+      return v;
+    }
+
+    if (this.autoAll) {
+      const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
+      let name = 'Traveller';
+      try {
+        name = await nameGen.generateName(this.charState?.languageType, genderCode) || name;
+      } catch { /* use fallback */ }
+      this.rows.push({ label: NAME_ROW_LABEL, result: name, active: false, options: [] });
+      this.decisions.push({ type: 'choice', value: name });
+      this.render();
+      return name;
+    }
+
+    this.rows.push({ label: NAME_ROW_LABEL, result: null, active: true, options: [] });
+    this.render();
+
+    const value = await new Promise(res => {
+      this.pendingResolve = res;
+    });
+
+    if (value === CharGenApp.RESTART) {
+      throw CharGenApp.RESTART;
+    }
+
+    this.decisions.push({ type: 'choice', value });
+    const row = this.rows.at(-1);
+    row.result = value;
+    row.active = false;
+    this.render();
+    return value;
+  }
+
+  /**
+   * Resolve the name row by generating a random name and continuing.
+   */
+  async _resolveNameRoll() {
+    if (!this.pendingResolve) {
+      return;
+    }
+    const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
+    let name;
+    try {
+      name = await nameGen.generateName(this.charState?.languageType, genderCode);
+    } catch { /* ignore */ }
+    if (!name) {
+      name = 'Traveller';
+    }
+    const r = this.pendingResolve;
+    this.pendingResolve = null;
+    r(name);
+  }
+
+  /**
+   * Resolve the name row with the current text input value.
+   */
+  _resolveNameDone() {
+    const input = this.element?.querySelector('.cg-name-input');
+    const name = input?.value?.trim() || 'Traveller';
+    const r = this.pendingResolve;
+    this.pendingResolve = null;
+    if (r) {
+      r(name);
+    }
   }
 
   /**

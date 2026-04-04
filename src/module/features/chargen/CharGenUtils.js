@@ -1,4 +1,5 @@
 // CharGenUtils.js — Shared utilities used by multiple ruleset logic files
+import { LanguageType } from '../../utils/nameGenerator.js';
 import { CHARACTERISTIC_KEYS } from './CharGenState.js';
 
 /**
@@ -38,4 +39,28 @@ export async function chooseCharacteristicSwap(app) {
   state.chars[c1] = state.chars[c2];
   state.chars[c2] = tmp;
   app._log('Swap', `${c1.toUpperCase()} ↔ ${c2.toUpperCase()}`);
+}
+
+/**
+ * Present a language selection choice.
+ * @param {CharGenApp} app
+ */
+export async function chooseLanguage(app) {
+  const opts = Object.entries(LanguageType)
+    .map(([label, value]) => ({ label, value: String(value) }))
+    .sort((a, b) => a.label.localeCompare(b.label));
+  const value = await app._choose('Language', opts);
+  if (app.charState) {
+    app.charState.languageType = parseInt(value);
+  }
+}
+
+/**
+ * Present a name choice as an editable text field.
+ * Dice button generates a random name and continues.
+ * @param {CharGenApp} app
+ */
+export async function chooseName(app) {
+  const value = await app._chooseName();
+  app.charName = value;
 }

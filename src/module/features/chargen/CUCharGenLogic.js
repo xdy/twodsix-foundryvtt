@@ -4,7 +4,7 @@ import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
 import { CHARACTERISTIC_KEYS } from './CharGenState.js';
-import { chooseCharacteristicSwap, chooseGender } from './CharGenUtils.js';
+import { chooseCharacteristicSwap, chooseGender, chooseLanguage, chooseName } from './CharGenUtils.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CU pack) ──────────────────────────────────
 
@@ -127,7 +127,8 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
     // 2. Gender & name
     state.gender = await chooseGender(app);
-    await app._rollName();
+    await chooseLanguage(app);
+    await chooseName(app);
 
     // 3. Career loop
     state.cashBenefits += 1000; // CU starting cash
@@ -205,7 +206,8 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
     // 2. Gender & name
     state.gender = await chooseGender(app);
-    await app._rollName();
+    await chooseLanguage(app);
+    await chooseName(app);
 
     // 3. Pick 2 skill category tables
     const tableNames = Object.keys(CU_SKILL_TABLES).sort();
@@ -255,7 +257,8 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
     // 2. Gender & name
     state.gender = await chooseGender(app);
-    await app._rollName();
+    await chooseLanguage(app);
+    await chooseName(app);
 
     // 3. Pick 2 skill category tables
     const tableNames = Object.keys(CU_SKILL_TABLES).sort();
