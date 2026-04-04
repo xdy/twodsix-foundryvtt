@@ -3,7 +3,7 @@ import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
 import { CHARACTERISTIC_KEYS, CharGenConstants } from './CharGenState.js';
-import { chooseGender } from './CharGenUtils.js';
+import { chooseGender, chooseLanguage, chooseName } from './CharGenUtils.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CE pack) ──────────────────────────────────
 
@@ -133,7 +133,8 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
     await app._chooseCharacteristics(app);
     state.gender = await chooseGender(app);
-    await app._rollName();
+    await chooseLanguage(app);
+    await chooseName(app);
 
     await this.stepHomeworld(app);
     if (state.died) {

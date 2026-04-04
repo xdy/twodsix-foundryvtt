@@ -10,22 +10,6 @@
           {{/each}}
         </select>
       </label>
-      <label>Language
-        <button type="button" class="cg-roll-lang cg-btn-icon" title="Random Language" tabindex="-1">
-          <i class="fas fa-dice"></i>
-        </button>
-        <select class="cg-lang-select">
-          {{#each languages}}
-            <option value="{{value}}" {{#if selected}}selected{{/if}}>{{label}}</option>
-          {{/each}}
-        </select>
-      </label>
-      <label>Name
-        <button type="button" class="cg-roll-name cg-btn-icon" title="Random Name" tabindex="-1">
-          <i class="fas fa-dice"></i>
-        </button>
-        <input class="cg-name" type="text" value="{{charName}}">
-      </label>
       <span>Age <strong>{{age}}</strong></span>
       <span>Skills <strong>{{skls}}</strong></span>
       <button type="button" class="cg-rand-all cg-auto-btn" title="Auto-generate (random choices)">
@@ -48,9 +32,12 @@
                     <i class="fas fa-dice-six"></i>
                   </button>
                   {{#each ../chars}}
-                    <input type="number" class="cg-char-input" data-char-key="{{key}}" value="{{value}}" min="1" max="15" placeholder="?">
+                    <input type="number" class="cg-char-input" data-char-key="{{key}}" value="{{value}}" min="1"
+                           max="15" placeholder="?">
                   {{/each}}
-                  <button type="button" class="cg-auto-from-here cg-btn-icon" title="Auto-generate from here" tabindex="-1">
+                  <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; Undo</button>
+                  <button type="button" class="cg-auto-from-here cg-btn-icon" title="Auto-generate from here"
+                          tabindex="-1">
                     <i class="fas fa-dice"></i>
                   </button>
                   <button type="button" class="cg-char-done cg-btn-action" tabindex="-1" disabled>Done</button>
@@ -61,6 +48,26 @@
                     <span class="cg-char-display-item" title="{{key}}">{{value}}</span>
                   {{/each}}
                 </div>
+              {{/if}}
+            </td>
+          </tr>
+        {{else if (eq label 'Name')}}
+          <tr class="{{#if active}}cg-row-active{{/if}}">
+            <td class="cg-td-label{{#if active}}--active{{/if}}">{{label}}</td>
+            <td class="{{#if active}}cg-td-controls{{else}}cg-td-value{{/if}}">
+              {{#if active}}
+                <button type="button" class="cg-name-roll cg-btn-icon" title="Generate Random Name" tabindex="-1">
+                  <i class="fas fa-dice-six"></i>
+                </button>
+                <input type="text" class="cg-name-input" placeholder="Type a name or click dice&hellip;">
+                <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; Undo</button>
+                <button type="button" class="cg-auto-from-here cg-btn-icon" title="Auto-generate from here"
+                        tabindex="-1">
+                  <i class="fas fa-dice"></i>
+                </button>
+                <button type="button" class="cg-name-done cg-btn-action" tabindex="-1" disabled>Done</button>
+              {{else}}
+                {{result}}
               {{/if}}
             </td>
           </tr>
@@ -77,7 +84,7 @@
                   <option value="{{value}}">{{label}}</option>
                 {{/each}}
               </select>
-              <button type="button" class="cg-undo cg-btn-action" tabindex="-1">↩ Undo</button>
+              <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; Undo</button>
               <button type="button" class="cg-auto-from-here cg-btn-icon" title="Auto-generate from here" tabindex="-1">
                 <i class="fas fa-dice"></i>
               </button>
@@ -99,10 +106,9 @@
     <div class="cg-summary-title">{{#if died}}Epitaph{{else}}Character Summary{{/if}}</div>
     <div class="cg-summary-body" style="height: {{summaryHeight}}px">{{textSummary}}</div>
     <div class="cg-footer">
-      <button type="button" class="cg-create cg-create-btn">✓ Create Actor: {{charName}}</button>
-      {{#if autoAll}}
-        <button type="button" class="cg-redo cg-create-btn">↺ Redo</button>
-      {{/if}}
+      <button type="button" class="cg-undo cg-create-btn">&#8617; Undo</button>
+      <button type="button" class="cg-create cg-create-btn">&#10003; Create Actor: {{charName}}</button>
+      <button type="button" class="cg-redo cg-create-btn">&#8634; Reset</button>
     </div>
   {{else}}
     <div class="cg-footer-progress">Generation in progress…</div>
