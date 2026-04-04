@@ -54,6 +54,18 @@ export async function createCharacterActor(state, charName) {
     await actor.createEmbeddedDocuments('Item', itemsToAdd);
   }
 
+  // Add chosen weapons as actual items
+  const weaponsToAdd = [];
+  for (const w of (state.chosenWeapons || [])) {
+    const doc = packDocs.find(d => d.id === w.id);
+    if (doc) {
+      weaponsToAdd.push(doc.toObject());
+    }
+  }
+  if (weaponsToAdd.length) {
+    await actor.createEmbeddedDocuments('Item', weaponsToAdd);
+  }
+
   const upp = ['str', 'dex', 'end', 'int', 'edu', 'soc'].map(k => toHex(state.chars[k] ?? 0)).join('');
   const careerLine = state.careers
     .map(c => `${c.name}${c.rankTitle ? ` (${c.rankTitle})` : ''} ${c.terms} term${c.terms !== 1 ? 's' : ''}`)

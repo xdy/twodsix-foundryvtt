@@ -3,7 +3,7 @@ import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
 import { CHARGEN_DIED, CHARACTERISTIC_KEYS, CharGenConstants } from './CharGenState.js';
-import { chooseGender, chooseLanguage, chooseName } from './CharGenUtils.js';
+import { chooseGender, chooseLanguage, chooseName, chooseWeapon } from './CharGenUtils.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CE pack) ──────────────────────────────────
 
@@ -582,6 +582,8 @@ export class CECharGenLogic extends BaseCharGenLogic {
             state.materialBenefits.push("Explorers' Society");
           }
           state.log.push("Material: Explorers' Society");
+        } else if (benefit === 'Weapon') {
+          await chooseWeapon(app);
         } else {
           state.materialBenefits.push(benefit);
           state.log.push(`Material: ${benefit}`);
