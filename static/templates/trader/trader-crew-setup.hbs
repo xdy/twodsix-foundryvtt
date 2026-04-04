@@ -1,0 +1,53 @@
+<div class="trader-crew-setup">
+  <p class="trader-crew-hint">
+    Assign a crew member to each position. Use <em>Open Character Generation</em> to create
+    new traveller actors first, then click <em>Refresh</em> to see them in the dropdowns.
+    You can also <strong>drag an actor</strong> from the Actors sidebar onto a row.
+  </p>
+  <table class="trader-crew-table">
+    <thead>
+    <tr>
+      <th>Position</th>
+      <th>Salary / mo</th>
+      <th>Actor or manual name</th>
+      <th>Broker skill</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each positions}}
+      <tr class="trader-crew-row" data-position="{{position}}">
+        <td class="trader-crew-pos">{{label}}</td>
+        <td class="trader-crew-salary">Cr{{salary}}</td>
+        <td class="trader-crew-assign">
+          <select class="st-actor-select" data-position="{{position}}">
+            <option value="">— manual entry —</option>
+            {{#each actors}}
+              <option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+            {{/each}}
+          </select>
+          <input class="st-name-input" type="text"
+                 data-position="{{position}}"
+                 value="{{manualName}}"
+                 placeholder="{{label}}"/>
+        </td>
+        <td class="trader-crew-broker">
+          <input class="st-broker-input" type="number"
+                 data-position="{{position}}"
+                 value="{{brokerSkill}}" min="0" max="4"/>
+        </td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+  <div class="trader-crew-footer">
+    <button type="button" class="st-chargen-btn">
+      <i class="fas fa-user-plus"></i> Open Character Generation
+    </button>
+    <button type="button" class="st-refresh-btn">
+      <i class="fas fa-sync"></i> Refresh Actors
+    </button>
+    <button type="button" class="st-confirm-btn">
+      <i class="fas fa-check"></i> Confirm Crew
+    </button>
+  </div>
+</div>

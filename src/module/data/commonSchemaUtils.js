@@ -32,7 +32,7 @@ export function makeValueField(initialValue = 0, schemaOptions = {}) {
 
 /**
  * Produce the schema field for a secondary armor block used by animals/robots.
- * It matches the explicit schema used in `characters.ts` for animals and robots.
+ * It matches the explicit schema used in `characters.js` for animals and robots.
  * @param {number} initialValue
  * @param {object} schemaOptions
  * @returns {foundry.data.fields.SchemaField}

@@ -14,5 +14,5 @@ const date = (new Date(temporaryDate.toUTCString())).toISOString().replace(/[:_t
 
 const templateString = 'export async function migrate():Promise<void> {\n\n\treturn Promise.resolve();\n}';
 
-fs.writeFileSync(`src/migrations/${date}-${migrationName}.ts`, templateString);
-console.log(`Successfully created migration: src/migrations/${date}-${migrationName}.ts`);
+fs.writeFileSync(`src/migrations/${date}-${migrationName}.js`, templateString);
+console.log(`Successfully created migration: src/migrations/${date}-${migrationName}.js`);

@@ -339,6 +339,7 @@ Hooks.once('init', async function () {
   }
   switchCss(sheetName);
   switchCss('systems/twodsix/styles/twodsix_chargen.css');
+  switchCss('systems/twodsix/styles/twodsix_trader.css');
 
   if (themeStyle === "classic") {
     if (game.settings.get(`twodsix`, 'useModuleFixStyle')) {

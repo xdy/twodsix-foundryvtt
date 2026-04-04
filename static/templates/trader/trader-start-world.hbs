@@ -1,0 +1,12 @@
+<form class="st-start-form">
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.StartingWorld'}}</label>
+    <select name="startHex">
+      {{#each worlds}}
+        <option value="{{hex}}" {{#if selected}}selected{{/if}}>
+          {{name}} ({{displayHex}}) — {{uwp}} [{{tradeCodes}}]
+        </option>
+      {{/each}}
+    </select>
+  </div>
+</form>
