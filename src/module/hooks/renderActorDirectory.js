@@ -8,6 +8,9 @@ Hooks.on('renderActorDirectory', (app, html, data) => {
   const element = html[0] ?? html;
   const headerActions = element.querySelector('header.directory-header .header-actions');
   if (headerActions && headerActions.parentNode) {
+    const newDiv = document.createElement('div');
+    newDiv.className = 'header-actions action-buttons char-gen flexrow';
+
     const cgButton = document.createElement('button');
     cgButton.type = 'button';
     cgButton.className = 'character-generation';
@@ -18,6 +21,7 @@ Hooks.on('renderActorDirectory', (app, html, data) => {
       startCharacterGeneration();
     });
 
-    headerActions.parentNode.insertBefore(cgButton, headerActions.nextSibling);
+    newDiv.appendChild(cgButton);
+    headerActions.parentNode.insertBefore(newDiv, headerActions.nextSibling);
   }
 });
