@@ -16,6 +16,7 @@ let CU_RISK_SUCCESS_EVENTS = [];
 let CU_PROMO_FAIL_EVENTS = [];
 let CU_PROMO_SUCCESS_EVENTS = [];
 let CU_BENEFITS_TABLE = [];     // [{threshold, description}]
+let CU_LOADED_RULESET = null;   // Track which ruleset is already loaded
 
 /**
  * CU character generation logic.
@@ -36,9 +37,13 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     CU_PROMO_FAIL_EVENTS = [];
     CU_PROMO_SUCCESS_EVENTS = [];
     CU_BENEFITS_TABLE = [];
+    CU_LOADED_RULESET = null;
   }
 
   async loadData(ruleset) {
+    if (CU_LOADED_RULESET === ruleset && CU_CAREER_NAMES.length) {
+      return; // Already loaded for this ruleset
+    }
     this.resetData();
 
     const careersPackName = `twodsix.${ruleset.toLowerCase()}-srd-careers`;
@@ -80,6 +85,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     CU_PROMO_FAIL_EVENTS   = sortDesc(rd.promotionFailEvents ?? []);
     CU_PROMO_SUCCESS_EVENTS = sortDesc(rd.promotionSuccessEvents ?? []);
     CU_BENEFITS_TABLE      = sortDesc(rd.benefitsTable ?? []);
+    CU_LOADED_RULESET = ruleset;
   }
 
   /**
@@ -117,7 +123,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     const state = app.charState;
 
     // 1. Characteristics
-    await app._chooseCharacteristics(app);
+    await app._chooseCharacteristics();
     if (state.died) {
       return;
     }
@@ -201,7 +207,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     const state = app.charState;
 
     // 1. Characteristics (roll 2D6 each, optional swap)
-    await app._chooseCharacteristics(app);
+    await app._chooseCharacteristics();
     await chooseCharacteristicSwap(app);
 
     // 2. Gender & name
@@ -253,7 +259,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     const state = app.charState;
 
     // 1. Characteristics (manual entry, same as CE path)
-    await app._chooseCharacteristics(app);
+    await app._chooseCharacteristics();
 
     // 2. Gender & name
     state.gender = await chooseGender(app);

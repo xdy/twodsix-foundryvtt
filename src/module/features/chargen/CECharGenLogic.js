@@ -131,7 +131,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
   async run(app) {
     const state = app.charState;
 
-    await app._chooseCharacteristics(app);
+    await app._chooseCharacteristics();
     state.gender = await chooseGender(app);
     await chooseLanguage(app);
     await chooseName(app);

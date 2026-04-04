@@ -397,23 +397,28 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
    * @param {CharGenApp} app - Application instance
    * @returns {Promise<string>} 'rolled' or 'done'
    */
-  async _chooseCharacteristics(app) {
+  async _chooseCharacteristics() {
     const cursor = this.decisionCursor++;
     if (cursor < this.decisions.length) {
-      const v = String(this.decisions[cursor].value);
-      const row = this.rows.at(-1);
-      if (row) {
-        row.active = false;
+      const decision = this.decisions[cursor];
+      // Restore characteristic values from the stored decision
+      if (decision.chars) {
+        for (const k of CHARACTERISTIC_KEYS) {
+          this.charState.chars[k] = decision.chars[k] ?? 0;
+        }
       }
+      const line = this._formatCharacteristicsLine();
+      this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: line, active: false, options: [] });
       this.render();
-      return v;
+      return String(decision.value);
     }
 
     if (this.autoAll) {
-      app._rollCharacteristics();
-      const line = app._formatCharacteristicsLine();
+      this._rollCharacteristics();
+      const line = this._formatCharacteristicsLine();
+      const chars = { ...this.charState.chars };
       this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: line, active: false, options: [] });
-      this.decisions.push({ type: 'choice', value: 'rolled' });
+      this.decisions.push({ type: 'choice', value: 'rolled', chars });
       this.render();
       return 'rolled';
     }
@@ -429,8 +434,9 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       throw CharGenApp.RESTART;
     }
 
-    this.decisions.push({ type: 'choice', value });
-    const line = app._formatCharacteristicsLine();
+    const chars = { ...this.charState.chars };
+    this.decisions.push({ type: 'choice', value, chars });
+    const line = this._formatCharacteristicsLine();
     const row = this.rows.at(-1);
     row.result = line;
     row.active = false;
@@ -506,13 +512,14 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
    * Resolve the name row with the current text input value.
    */
   _resolveNameDone() {
+    if (!this.pendingResolve) {
+      return;
+    }
     const input = this.element?.querySelector('.cg-name-input');
     const name = input?.value?.trim() || 'Traveller';
     const r = this.pendingResolve;
     this.pendingResolve = null;
-    if (r) {
-      r(name);
-    }
+    r(name);
   }
 
   /**
@@ -536,6 +543,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       return;
     }
     this.decisions = this.decisions.slice(0, i);
+    this.autoAll = false;
     const res = this.pendingResolve;
     this.pendingResolve = null;
     if (res) {
@@ -553,6 +561,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     this.decisions = [];
     this.rows = [];
     this.autoAll = false;
+    this.charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
     const ruleset = this.charState.ruleset;
     this.charState = freshState();
     this.charState.ruleset = ruleset;
