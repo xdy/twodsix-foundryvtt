@@ -294,7 +294,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const qualChar = career.qual?.char?.toUpperCase() ?? 'N/A';
     app._log(
       `Qualification: ${chosenCareerName}`,
-      `${roll}${addSign(mod)}(${qualChar})${qualDM ? addSign(qualDM) + '(DM)' : ''}=${total} vs ${career.qual?.target ?? 'N/A'}+ -> ${success ? '✓ Qualified' : '✗ Failed'}`
+      `${roll}${addSign(mod)}(${qualChar})${qualDM ? addSign(qualDM) + '(DM)' : ''}=${total} vs ${career.qual?.target ?? 'N/A'}+ -> ${success ? 'Qualified' : 'Failed'}`
     );
     state.log.push(success ? `Qualified for ${chosenCareerName}.` : `Failed qualification for ${chosenCareerName}.`);
     if (success) {
@@ -347,7 +347,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const survived = !nat2 && total >= career.surv.target;
     app._log(
       'Survival',
-      `${roll}${addSign(mod)}(${career.surv.char.toUpperCase()})=${total} vs ${career.surv.target}+${nat2 ? ' (auto-fail)' : ''} -> ${survived ? '✓ Survived' : '✗ Mishap'}`
+      `${roll}${addSign(mod)}(${career.surv.char.toUpperCase()})=${total} vs ${career.surv.target}+${nat2 ? ' (auto-fail)' : ''} -> ${survived ? 'Survived' : 'Mishap'}`
     );
     state.log.push(survived ? `Survived term in ${careerName}.` : `Mishap in ${careerName}.`);
     const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
@@ -407,7 +407,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const success = total >= career.comm.target;
     app._log(
       'Commission',
-      `${roll}${addSign(mod)}=${total} vs ${career.comm.target}+ -> ${success ? '✓ Commissioned (Rank 1)' : '✗ Failed'}`
+      `${roll}${addSign(mod)}=${total} vs ${career.comm.target}+ -> ${success ? 'Commissioned (Rank 1)' : 'Failed'}`
     );
     state.log.push(success ? `Commissioned. Now ${CAREERS[careerName].ranks[1]?.title ?? 'Rank 1'}.` : 'Commission failed.');
     const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
@@ -447,7 +447,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const newRank = state.currentRank + 1;
     app._log(
       'Advancement',
-      `${roll}${addSign(mod)}=${total} vs ${career.adv.target}+ -> ${success ? `✓ Rank ${newRank}` : '✗ Failed'}`
+      `${roll}${addSign(mod)}=${total} vs ${career.adv.target}+ -> ${success ? `Rank ${newRank}` : 'Failed'}`
     );
     state.log.push(success ? `Advanced to rank ${newRank}.` : 'Advancement failed.');
     const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
@@ -506,7 +506,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const nat12 = roll === 12;
     app._log(
       'Re-enlistment',
-      `${roll} vs ${career.reenlist}+ -> ${nat12 ? '★ Must continue' : success ? '✓ May continue' : '✗ Must leave'}`
+      `${roll} vs ${career.reenlist}+ -> ${nat12 ? '★ Must continue' : success ? 'May continue' : 'Must leave'}`
     );
     if (nat12) {
       state.log.push('Re-enlistment: natural 12, must continue.');
@@ -608,11 +608,11 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const choice = await app._choose(
       `Crisis! Pay Cr${cost.toLocaleString()} for emergency care?`,
       [
-        { value: 'pay', label: `Pay Cr${cost.toLocaleString()} — survive` },
-        { value: 'die', label: 'Refuse — die' },
+        { value: 'plata', label: `Pay Cr${cost.toLocaleString()} — survive` },
+        { value: 'plomo', label: 'Refuse — die' },
       ]
     );
-    if (choice === 'die') {
+    if (choice === 'plomo') {
       app._log('Outcome', 'Character died — generation ended.');
       state.died = true;
       state.log.push('DIED during character generation.');

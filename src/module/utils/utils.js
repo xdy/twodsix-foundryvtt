@@ -82,7 +82,7 @@ export function sortByItemName(itemArray) {
  * @returns {string} the value as string with sign
  */
 export function addSign(value) {
-  return `${value <= 0 ? "" : "+"}${value}`;
+  return value === 0 ? "" : `${value > 0 ? "+" : ""}${value}`;
 }
 
 /**

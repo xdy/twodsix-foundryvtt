@@ -3,7 +3,13 @@ import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
 import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
-import { CHARGEN_DIED, CHARACTERISTIC_KEYS, CHARACTERISTIC_LABELS, CHARACTERISTICS_ROW_TYPE, freshState } from './CharGenState.js';
+import {
+  CHARACTERISTIC_KEYS,
+  CHARACTERISTIC_LABELS,
+  CHARACTERISTICS_ROW_TYPE,
+  CHARGEN_DIED,
+  freshState
+} from './CharGenState.js';
 
 const NAME_ROW_LABEL = 'Name';
 
@@ -303,6 +309,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       upp,
       age: s?.age ?? 18,
       skls: s?.skills?.size ?? 0,
+      totalTerms: s?.totalTerms ?? 0,
       rulesets: Object.values(CONFIG.TWODSIX.RULESETS).map(r => ({
         key: r.key,
         name: r.name,
@@ -466,6 +473,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       } catch { /* use fallback */ }
       this.rows.push({ label: NAME_ROW_LABEL, result: name, active: false, options: [] });
       this.decisions.push({ type: 'choice', value: name });
+      this._updateNameAndTitle(name);
       this.render();
       return name;
     }
@@ -485,8 +493,23 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     const row = this.rows.at(-1);
     row.result = value;
     row.active = false;
+    this._updateNameAndTitle(value);
     this.render();
     return value;
+  }
+
+  /**
+   * Update the character name and window title.
+   * @param {string} name - The new character name
+   */
+  _updateNameAndTitle(name) {
+    this.charName = name;
+    const title = `Character Generation: ${name}`;
+    this.options.window.title = title;
+    const titleEl = this.element?.querySelector('.window-title');
+    if (titleEl) {
+      titleEl.textContent = title;
+    }
   }
 
   /**
@@ -504,6 +527,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     if (!name) {
       name = 'Traveller';
     }
+    this._updateNameAndTitle(name);
     const r = this.pendingResolve;
     this.pendingResolve = null;
     r(name);
@@ -518,6 +542,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     }
     const input = this.element?.querySelector('.cg-name-input');
     const name = input?.value?.trim() || 'Traveller';
+    this._updateNameAndTitle(name);
     const r = this.pendingResolve;
     this.pendingResolve = null;
     r(name);
@@ -599,7 +624,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       const ruleset = this.charState.ruleset;
       const languageType = this.charState.languageType;
       const rulesetName = CONFIG.TWODSIX.RULESETS[ruleset]?.name || 'Cepheus Engine';
-      this.window.title = `${rulesetName} Character Generation`;
+      this.options.window.title = `${rulesetName} Character Generation`;
       this.charState = freshState();
       this.charState.ruleset = ruleset;
       this.charState.languageType = languageType;
