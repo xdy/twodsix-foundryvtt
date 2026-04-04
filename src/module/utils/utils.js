@@ -82,7 +82,7 @@ export function sortByItemName(itemArray) {
  * @returns {string} the value as string with sign
  */
 export function addSign(value) {
-  return `${value <= 0 ? "" : "+"}${value}`;
+  return value === 0 ? "" : `${value > 0 ? "+" : ""}${value}`;
 }
 
 /**
@@ -213,4 +213,14 @@ export function assignDefaultImage(doc, updates, data, defaultIcon) {
       });
     }
   }
+}
+
+/**
+ * Convert an integer 0–15 to its UPP hex character (0–9, A–F).
+ * Used for Universal Personality Profile display.
+ * @param {number} n  Integer in the range 0–15.
+ * @returns {string}  Single character string.
+ */
+export function toHex(n) {
+  return n < 10 ? String(n) : String.fromCharCode(55 + n);
 }

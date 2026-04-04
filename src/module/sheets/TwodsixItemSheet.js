@@ -1,6 +1,6 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
-import { COMPONENT_SUBTYPES, CONSUMABLE_SUBTYPES, TWODSIX } from '../config';
+import { CONSUMABLE_SUBTYPES, TWODSIX } from '../config';
 import { ConsumableData } from '../data/items/consumableData.js';
 import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
 import TwodsixItem from '../entities/TwodsixItem';
@@ -17,7 +17,6 @@ import {
   openJournalEntry,
   openPDFLink
 } from '../utils/sheetUtils';
-import { getCharacteristicList } from '../utils/TwodsixRollSettings';
 import { AbstractTwodsixItemSheet, onPasteStripFormatting } from './AbstractTwodsixItemSheet';
 
 /**
@@ -32,8 +31,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     classes: ["twodsix", "sheet", "item"],
     dragDrop: [{dropSelector: null, dragSelector: ".consumable"}],
     position: {
-      width: 600,
-      height: 700
+      width: 700,
+      height: 900
     },
     window: {
       resizable: true
@@ -75,7 +74,9 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
         {id: "magazine", icon: "fa-solid fa-battery-full", label: "TWODSIX.Items.Weapon.Consumables"},
         {id: "displacement", icon: "fa-solid fa-weight-hanging", label: "TWODSIX.Items.Component.Displacement"},
         {id: "power", icon: "fa-solid fa-bolt", label: "TWODSIX.Items.Component.Power"},
-        {id: "price", icon: "fa-solid fa-coins", label: "TWODSIX.Items.Component.Price"}
+        {id: "price", icon: "fa-solid fa-coins", label: "TWODSIX.Items.Component.Price"},
+        {id: "career", icon: "fa-solid fa-briefcase", label: "TWODSIX.Items.Career.Career"},
+        {id: "chargenRuleset", icon: "fa-solid fa-table-list", label: "TWODSIX.Items.ChargenRuleset.ChargenRuleset"}
       ],
       initial: "description"
     }
@@ -322,58 +323,17 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     };
 
-    if (this.item.type === 'skills') {
-      context.settings.characteristicsList = getCharacteristicList(this.item.actor);
-      //Set characterisitic, making certin it is valid choice
-      if (Object.keys(context.settings.characteristicsList).includes(this.item.system.characteristic)) {
-        context.system.initialCharacteristic = this.item.system.characteristic;
-      } else {
-        context.system.initialCharacteristic = 'NONE';
-      }
-    }
-
     context.config = foundry.utils.duplicate(TWODSIX);
-
-    //setup custom drive type labels
-    if (this.item.system.subtype === COMPONENT_SUBTYPES.DRIVE) {
-      context.config.DriveTypes.jdrive = game.settings.get("twodsix", "jDriveLabel") || TWODSIX.DriveTypes.jdrive;
-      context.config.DriveTypes.mdrive = game.settings.get("twodsix", "mDriveLabel") || TWODSIX.DriveTypes.mdrive;
-    }
-
-    //prevent processor/suite attachements to computers(?)
-    if (this.actor && this.item.type === "consumable") {
-      const onComputer = this.actor.items.find(it => it.type === "computer" && it.system.consumables.includes(this.item.id));
-      if (onComputer) {
-        delete context.config.CONSUMABLES.processor;
-        delete context.config.CONSUMABLES.suite;
-      }
-    }
-
-    // Disable Melee Range DM if designated as Melee weapon
-    if (this.item.type === 'weapon') {
-      context.disableMeleeRangeDM = (typeof this.item.system.range === 'string') ? this.item.system.range.toLowerCase() === 'melee' : false;
-    }
 
     context.isStoredInCargo = this.item.system.isStoredInCargo;
     context.isWeapon = this.item.system.isWeapon;
 
-    //Add ammo list for selectObject
-    context.ammoList = {none: game.i18n.localize("TWODSIX.Ship.None")};
-    if (this.item.system.isArmament && this.item.actor) {
-      (this.item.actor).itemTypes.component
-        ?.filter(i => i.system.subtype === COMPONENT_SUBTYPES.AMMO)
-        ?.forEach(a => context.ammoList[a.id] = a.name);
-    }
-
-    //Disable invalid pricing options for ammo
-    if (this.item.system.hullPricingForbidden) {
-      delete context.config.PricingOptions.perHullTon;
-      delete context.config.PricingOptions.per100HullTon;
-      delete context.config.PricingOptions.pctHull;
-      delete context.config.PricingOptions.pctHullPerUnit;
-    }
-
-    context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, {secrets: this.document.isOwner});
+    context.enrichedDescription = await foundry.applications.ux.TextEditor.implementation.enrichHTML(this.item.system.description, {
+      secrets: this.document.isOwner,
+      relativeTo: this.item,
+      rollData: this.item.getRollData(),
+      async: true
+    });
 
     context.tabs = this.getApplicableTabs(context.tabs);
 
@@ -386,19 +346,18 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @returns {object}
    */
   getApplicableTabs(tabs) {
-    if (this.item.type === "weapon") {
+    if (["armor", "equipment", "tool", "storage", "junk", "trait", "spell", "psiAbility"].includes(this.item.type)) {
+      delete tabs.attack;
+      delete tabs.magazine;
       delete tabs.displacement;
       delete tabs.power;
       delete tabs.price;
-    } else if (this.item.type === "component") {
-      delete tabs.magazine;
-      delete tabs.modifiers;
-      if (this.item.system.isStoredInCargo) {
-        delete tabs.power;
-      }
-      if (!this.item.system.isWeapon && !this.item.system.canBePopup) {
-        delete tabs.attack;
-      }
+      delete tabs.career;
+      delete tabs.chargenRuleset;
+    } else {
+      // augment, computer, unknown types
+      delete tabs.career;
+      delete tabs.chargenRuleset;
     }
     return tabs;
   }
@@ -520,7 +479,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @returns {Promise<void>}
    */
   async _changeIsBaseHull() {
-    // The isBaseHull → weightIsPct: false constraint is now enforced in ComponentItem._preUpdate.
+    // The isBaseHull -> weightIsPct: false constraint is now enforced in ComponentItem._preUpdate.
     await this.item.update({"system.isBaseHull": !this.item.system.isBaseHull});
   }
 
@@ -589,6 +548,8 @@ function getItemIcon(type) {
     trait: 'fa-solid fa-image-portrait',
     equipment: 'fa-solid fa-toolbox',
     tool: 'fa-solid fa-hammer',
+    career: 'fa-solid fa-briefcase',
+    chargen_ruleset: 'fa-solid fa-table-list',
   };
 
   return iconMap[type] || '';

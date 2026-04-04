@@ -858,7 +858,7 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
       context.componentObject = sortObj(component);
       context.container.allCargo = [...(component.cargo ?? []), ...(component.ammo ?? [])];
       context.summaryStatus = sortObj(summaryStatus);
-      context.container.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component"].includes(i.type));
+      context.container.storage = items.filter(i => ![...TWODSIX.WeightlessItems, "ship_position", "component", "career", "chargen_ruleset"].includes(i.type));
       context.container.nonCargo = actor.itemTypes.component.filter(i => !i.system.isStoredInCargo);
     } else if (["world"].includes(actor.type)) {
       context.container.allCargo = [...(component.cargo ?? [])];

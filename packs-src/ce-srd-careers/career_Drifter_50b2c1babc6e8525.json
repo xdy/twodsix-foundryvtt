@@ -1,0 +1,87 @@
+{
+  "_id": "50b2c1babc6e8525",
+  "name": "Drifter",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "dex",
+      "target": 5
+    },
+    "surv": {
+      "char": "end",
+      "target": 5
+    },
+    "comm": null,
+    "adv": null,
+    "reenlist": 5,
+    "hasCommAdv": false,
+    "ranks": [
+      {
+        "title": null,
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "Melee Combat",
+      "Bribery",
+      "Gambling"
+    ],
+    "service": [
+      "Streetwise",
+      "Mechanics",
+      "Gun Combat",
+      "Melee Combat",
+      "Recon",
+      "Vehicle"
+    ],
+    "specialist": [
+      "Electronics",
+      "Melee Combat",
+      "Bribery",
+      "Streetwise",
+      "Gambling",
+      "Recon"
+    ],
+    "advanced": [
+      "Computer",
+      "Engineering",
+      "Jack o' Trades",
+      "Medicine",
+      "Liaison",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Int",
+      "Weapon",
+      "Weapon",
+      "Mid Passage",
+      "Mid Passage",
+      null
+    ],
+    "cash": [
+      0,
+      1000,
+      2000,
+      5000,
+      5000,
+      10000,
+      10000
+    ],
+    "description": "Individual that continually moves from place to place, without any fixed home or job."
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "_key": "!items!50b2c1babc6e8525"
+}

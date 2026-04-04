@@ -4,8 +4,8 @@
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v7.0.2/twodsix.zip",
-  "version": "7.0.2",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v7.1.0/twodsix.zip",
+  "version": "7.1.0",
   "socket": true,
   "background": "systems/twodsix/assets/pause/sunburst.svg",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
@@ -62,7 +62,9 @@
       "component": {"htmlFields": ["description"]},
       "ship_position": {"htmlFields": ["description"]},
       "computer": {"htmlFields": ["description"]},
-      "psiAbility": {"htmlFields": ["description"]}
+      "psiAbility": {"htmlFields": ["description"]},
+      "career": {"htmlFields": ["description"]},
+      "chargen_ruleset": {"htmlFields": ["description"]}
     }
   },
   "languages": [
@@ -177,6 +179,42 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/ce-srd-items",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "ce-srd-careers",
+      "label": "ce srd careers",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-careers",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "ce-srd-chargen-ruleset",
+      "label": "ce srd chargen ruleset",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/ce-srd-chargen-ruleset",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "cu-srd-careers",
+      "label": "cu srd careers",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cu-srd-careers",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "cu-srd-chargen-ruleset",
+      "label": "cu srd chargen ruleset",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cu-srd-chargen-ruleset",
       "entity": "Item",
       "type": "Item"
     },
@@ -362,7 +400,9 @@
       "packs": [
         "ce-srd-gm-screen",
         "ce-srd-items",
-        "ce-srd-roll-tables"
+        "ce-srd-roll-tables",
+        "ce-srd-careers",
+        "ce-srd-chargen-ruleset"
       ]
     },
     {
@@ -421,7 +461,9 @@
       "name": "Cepheus Universal",
       "sorting": "m",
       "packs": [
-        "cepheus-universal-items"
+        "cepheus-universal-items",
+        "cu-srd-careers",
+        "cu-srd-chargen-ruleset"
       ]
     },
     {
