@@ -156,7 +156,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         const canEnter = entryTotal < 12;
         app._log(
           'Second Career Entry',
-          `2D6(${entryRoll})+${state.totalTerms} terms${prefBonus ? '-1(pref)' : ''}${autoSkillBonus ? '-1(autoSkill)' : ''}=${entryTotal} vs <12 → ${canEnter ? '✓ Accepted' : '✗ Rejected'}`
+          `2D6(${entryRoll})+${state.totalTerms} terms${prefBonus ? '-1(pref)' : ''}${autoSkillBonus ? '-1(autoSkill)' : ''}=${entryTotal} vs <12 → ${canEnter ? 'Accepted' : 'Rejected'}`
         );
         if (!canEnter) {
           app._log('Career', 'Entry roll failed — cannot start another career.');
@@ -432,7 +432,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     const roll = await app._roll('2d6');
     const total = roll + endMod;
     const survived = total >= 8;
-    app._log('Aging Crisis', `2D6(${roll})${addSign(endMod)}(END)=${total} vs 8+ → ${survived ? '✓ Survived' : '✗ Died'}`);
+    app._log('Aging Crisis', `2D6(${roll})${addSign(endMod)}(END)=${total} vs 8+ → ${survived ? 'Survived' : 'Died'}`);
 
     if (!survived) {
       state.died = true;
@@ -632,7 +632,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         const riskEffect = riskTotal - riskTarget; // positive = succeeded by N, negative = failed by N
         app._log(
           'Risk',
-          `${riskRoll}${prefMod ? '+1(pref)' : ''}=${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? `✓ Success (Effect: ${addSign(riskEffect)})` : `✗ Fail (Effect: ${addSign(riskEffect)})`}`
+          `${riskRoll}${prefMod ? '+1(pref)' : ''}=${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? `Success (Effect: ${addSign(riskEffect)})` : `Fail (Effect: ${addSign(riskEffect)})`}`
         );
         state.log.push(`Risk: ${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? 'Success' : 'Fail'} (Effect ${addSign(riskEffect)})`);
 
@@ -695,7 +695,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
           if (attempt === 'yes') {
             const commRoll = await app._roll('2d6');
             const commSucceeded = commRoll >= 9;
-            app._log('Commission', `${commRoll} vs 9+ → ${commSucceeded ? '✓ Commissioned' : '✗ Failed'}`);
+            app._log('Commission', `${commRoll} vs 9+ → ${commSucceeded ? 'Commissioned' : 'Failed'}`);
             if (commSucceeded) {
               isCommissioned = true;
               justCommissioned = true;
@@ -719,7 +719,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         const promoEventRoll = (await app._roll('2d6')) + promoEffect;
         app._log(
           'Promotion',
-          `${promoRoll}${promoTotalRoll !== promoRoll ? `(adjusted to ${promoTotalRoll})` : ''} vs ${promoTarget}+ → ${promoSucceeded ? `✓ Promoted (Effect: ${addSign(promoEffect)})` : `✗ No promotion (Effect: ${addSign(promoEffect)})`}`
+          `${promoRoll}${promoTotalRoll !== promoRoll ? `(adjusted to ${promoTotalRoll})` : ''} vs ${promoTarget}+ → ${promoSucceeded ? `Promoted (Effect: ${addSign(promoEffect)})` : `No promotion (Effect: ${addSign(promoEffect)})`}`
         );
         const promoTable = promoSucceeded ? CU_PROMO_SUCCESS_EVENTS : CU_PROMO_FAIL_EVENTS;
         const promoEvent = this._lookupEvent(promoTable, promoEventRoll);
@@ -784,7 +784,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         const remainRoll = await app._roll('2d6');
         const remainTotal = remainRoll + state.totalTerms;
         const canRemain = remainTotal < 12;
-        app._log('Remain', `2D6(${remainRoll})+${state.totalTerms} terms=${remainTotal} vs <12 → ${canRemain ? '✓ May continue' : '✗ Must leave'}`);
+        app._log('Remain', `2D6(${remainRoll})+${state.totalTerms} terms=${remainTotal} vs <12 → ${canRemain ? 'May continue' : 'Must leave'}`);
 
         if (!canRemain) {
           state.log.push(`Remain roll failed (${remainTotal} ≥12): leaving ${careerName}.`);
