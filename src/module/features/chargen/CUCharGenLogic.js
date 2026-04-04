@@ -3,7 +3,7 @@
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
-import { CHARACTERISTIC_KEYS } from './CharGenState.js';
+import { CHARGEN_DIED, CHARACTERISTIC_KEYS } from './CharGenState.js';
 import { chooseCharacteristicSwap, chooseGender, chooseLanguage, chooseName } from './CharGenUtils.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CU pack) ──────────────────────────────────
@@ -124,9 +124,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
     // 1. Characteristics
     await app._chooseCharacteristics();
-    if (state.died) {
-      return;
-    }
 
     // CU allows swapping two characteristics after rolling
     await chooseCharacteristicSwap(app);
@@ -141,10 +138,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     let isFirstCareer = true;
 
     while (true) {
-      if (state.died) {
-        return;
-      }
-
       // Career selection (no qualification roll in CU)
       let careerName;
       if (isFirstCareer) {
@@ -174,26 +167,17 @@ export class CUCharGenLogic extends BaseCharGenLogic {
           CU_CAREER_NAMES.map(n => ({ value: n, label: n }))
         );
       }
-      if (state.died) {
-        return;
-      }
 
-      // Run terms for this career
+      // Run terms for this career; on death it pushes a partial record and re-throws CHARGEN_DIED
       const careerRecord = await this._runCUCareerTerms(app, careerName);
       state.careers.push(careerRecord);
       if (!state.previousCareers.includes(careerName)) {
         state.previousCareers.push(careerName);
       }
       isFirstCareer = false;
-      if (state.died) {
-        return;
-      }
 
       // Muster out
       await this.cuMusterOut(app, careerRecord, careerRecord.extraBenefitRolls);
-      if (state.died) {
-        return;
-      }
 
       // Offer another career
       const another = await this.promptAnotherCareer(app, state.totalTerms);
@@ -350,7 +334,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         state.died = true;
         state.log.push('Died in service.');
         app._log('Outcome', 'Died in service.');
-        return true;
+        throw CHARGEN_DIED;
       }
       if (tag === 'INJURED_LEAVE') {
         const physOpts = [
@@ -361,10 +345,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         const c = await app._choose('Badly injured: choose characteristic to reduce by 1', physOpts);
         state.chars[c]--;
         state.log.push(`Injury: ${c.toUpperCase()} −1. Must leave career.`);
-        await this.cuCheckCrisis(app);
-        if (state.died) {
-          return true;
-        }
+        await this.cuCheckCrisis(app); // throws CHARGEN_DIED on death
         leaveCareer = true;
       } else if (tag === 'DEBT_4X') {
         const cashBase = CU_CAREERS[careerName]?.cashBase ?? 0;
@@ -378,10 +359,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
           state.chars.int = Math.max(0, state.chars.int - 1);
           state.log.push(`Mental collapse: INT −1 (2D6=${roll} ≤7).`);
           app._log('Mental collapse', `INT −1 (${roll})`);
-          await this.cuCheckCrisis(app);
-          if (state.died) {
-            return true;
-          }
+          await this.cuCheckCrisis(app); // throws CHARGEN_DIED on death
         } else {
           app._log('Mental collapse', `No effect (${roll} >7)`);
         }
@@ -459,7 +437,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     if (!survived) {
       state.died = true;
       state.log.push('Died from aging crisis.');
-      return;
+      throw CHARGEN_DIED;
     }
     zero.forEach(k => {
       if ((state.chars[k] ?? 0) <= 0) {
@@ -510,8 +488,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       state.log.push('Aging: no effect.');
       return false;
     }
-    await this.cuCheckCrisis(app);
-    return state.died; // true if crisis was fatal — caller should also check state.died
+    await this.cuCheckCrisis(app); // throws CHARGEN_DIED on death
   }
 
   // ─── BENEFITS ─────────────────────────────────────────────────────────────────
@@ -582,9 +559,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     for (let i = 0; i < totalRolls; i++) {
       app._log(`Benefit roll ${i + 1}/${totalRolls}`, `(${careerRecord.name}, rank ${rank})`);
       await this._cuBenefitRoll(app, careerRecord.name);
-      if (state.died) {
-        return;
-      }
     }
   }
 
@@ -619,239 +593,230 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     let extraBenefitRolls = 0;
     let careerMishap = false;
 
-    while (true) {
-      termNumber++;
-      state.totalTerms++;
-      state.currentTermInCareer = termNumber;
-      const ageStart = state.age;
-      app._log(`${careerName} — Term ${termNumber}`, `Age ${ageStart}–${ageStart + 3}`);
-      state.log.push(`── ${careerName}, Term ${termNumber} (age ${ageStart}–${ageStart + 3}) ──`);
-      const termEntry = this.startTermHistoryEntry(state, {
-        careerName,
-        totalTerm: state.totalTerms,
-        ageStart,
-        startedVerb: termNumber === 1 ? 'Began' : 'Continued',
-      });
+    const buildRecord = () => {
+      const rankList = isCommissioned ? (career.commissionedRanks ?? []) : (career.ranks ?? []);
+      return {
+        name: careerName,
+        terms: termNumber,
+        rank: currentRank,
+        rankTitle: rankList[currentRank - 1]?.title ?? null,
+        commissioned: isCommissioned,
+        mishap: careerMishap,
+        assignment: careerName,
+        benefitsLost: false,
+        extraBenefitRolls,
+      };
+    };
 
-      // ── RISK ──────────────────────────────────────────────────────────────────
-      const riskRoll = await app._roll('2d6');
-      const prefMod = (state.chars[career.preferredChar] ?? 0) >= 10 ? 1 : 0;
-      const riskTotal = riskRoll + prefMod;
-      const riskTarget = career.riskTarget ?? 6;
-      const riskSucceeded = riskTotal >= riskTarget;
-      const riskEffect = riskTotal - riskTarget; // positive = succeeded by N, negative = failed by N
-      app._log(
-        'Risk',
-        `${riskRoll}${prefMod ? '+1(pref)' : ''}=${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? `✓ Success (Effect: ${addSign(riskEffect)})` : `✗ Fail (Effect: ${addSign(riskEffect)})`}`
-      );
-      state.log.push(`Risk: ${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? 'Success' : 'Fail'} (Effect ${addSign(riskEffect)})`);
+    try {
+      while (true) {
+        termNumber++;
+        state.totalTerms++;
+        state.currentTermInCareer = termNumber;
+        const ageStart = state.age;
+        app._log(`${careerName} — Term ${termNumber}`, `Age ${ageStart}–${ageStart + 3}`);
+        state.log.push(`── ${careerName}, Term ${termNumber} (age ${ageStart}–${ageStart + 3}) ──`);
+        const termEntry = this.startTermHistoryEntry(state, {
+          careerName,
+          totalTerm: state.totalTerms,
+          ageStart,
+          startedVerb: termNumber === 1 ? 'Began' : 'Continued',
+        });
 
-      const eventRoll = (await app._roll('2d6')) + riskEffect;
-      const eventTable = riskSucceeded ? CU_RISK_SUCCESS_EVENTS : CU_RISK_FAIL_EVENTS;
-      const event = this._lookupEvent(eventTable, eventRoll);
-      if (event) {
-        const cleanDesc = event.description.replace(/\[.*?\]/g, '').trim();
-        app._log(riskSucceeded ? `Risk Success (${eventRoll})` : `Risk Fail (${eventRoll})`, cleanDesc);
-        state.log.push(`${riskSucceeded ? 'Risk Success' : 'Risk Fail'} (${eventRoll}): ${cleanDesc}`);
-        termEntry.events.push(cleanDesc);
+        // ── RISK ──────────────────────────────────────────────────────────────────
+        const riskRoll = await app._roll('2d6');
+        const prefMod = (state.chars[career.preferredChar] ?? 0) >= 10 ? 1 : 0;
+        const riskTotal = riskRoll + prefMod;
+        const riskTarget = career.riskTarget ?? 6;
+        const riskSucceeded = riskTotal >= riskTarget;
+        const riskEffect = riskTotal - riskTarget; // positive = succeeded by N, negative = failed by N
+        app._log(
+          'Risk',
+          `${riskRoll}${prefMod ? '+1(pref)' : ''}=${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? `✓ Success (Effect: ${addSign(riskEffect)})` : `✗ Fail (Effect: ${addSign(riskEffect)})`}`
+        );
+        state.log.push(`Risk: ${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? 'Success' : 'Fail'} (Effect ${addSign(riskEffect)})`);
 
-        // Special: AUTO_PROMO_OR_PRISON needs context
-        if (event.description.includes('[AUTO_PROMO_OR_PRISON]')) {
-          const subRoll = await app._roll('2d6');
-          if (subRoll >= 4) {
-            app._log('Big chance!', `Roll ${subRoll} ≥4 → auto promotion + extra skill`);
-            state.log.push(`Auto promotion and extra skill roll.`);
-            currentRank = Math.min(5, currentRank + 1);
-            promoBonus += 99; // flag: guaranteed promotion this term (handled inline)
-            // Give extra skill roll immediately
-            await this._rollSkillFromTable(app, career.skillTable1);
-            if (state.died) {
-              break;
+        const eventRoll = (await app._roll('2d6')) + riskEffect;
+        const eventTable = riskSucceeded ? CU_RISK_SUCCESS_EVENTS : CU_RISK_FAIL_EVENTS;
+        const event = this._lookupEvent(eventTable, eventRoll);
+        if (event) {
+          const cleanDesc = event.description.replace(/\[.*?\]/g, '').trim();
+          app._log(riskSucceeded ? `Risk Success (${eventRoll})` : `Risk Fail (${eventRoll})`, cleanDesc);
+          state.log.push(`${riskSucceeded ? 'Risk Success' : 'Risk Fail'} (${eventRoll}): ${cleanDesc}`);
+          termEntry.events.push(cleanDesc);
+
+          // Special: AUTO_PROMO_OR_PRISON needs context
+          if (event.description.includes('[AUTO_PROMO_OR_PRISON]')) {
+            const subRoll = await app._roll('2d6');
+            if (subRoll >= 4) {
+              app._log('Big chance!', `Roll ${subRoll} ≥4 → auto promotion + extra skill`);
+              state.log.push(`Auto promotion and extra skill roll.`);
+              currentRank = Math.min(5, currentRank + 1);
+              promoBonus += 99; // flag: guaranteed promotion this term (handled inline)
+              // Give extra skill roll immediately
+              await this._rollSkillFromTable(app, career.skillTable1);
+            } else {
+              app._log('Prison!', `Roll ${subRoll} <4 → SOC −1, gain criminal Contact`);
+              state.chars.soc = Math.max(0, state.chars.soc - 1);
+              state.contacts.push(`Criminal contact (served time in prison)`);
+              state.log.push(`Imprisoned: SOC −1, gained criminal Contact.`);
+            }
+            // Remove this tag from further processing to avoid double-handling
+            const tags = this._parseTags(event.description).filter(t => t !== 'AUTO_PROMO_OR_PRISON');
+            // Process remaining tags manually
+            for (const tag of tags) {
+              if (tag === 'CONTACT' && cleanDesc) {
+                state.contacts.push(cleanDesc);
+              } else if (tag === 'FRIEND' && cleanDesc) {
+                state.friends.push(cleanDesc);
+              } else if (tag === 'ENEMY' && cleanDesc) {
+                state.enemies.push(cleanDesc);
+              }
             }
           } else {
-            app._log('Prison!', `Roll ${subRoll} <4 → SOC −1, gain criminal Contact`);
-            state.chars.soc = Math.max(0, state.chars.soc - 1);
-            state.contacts.push(`Criminal contact (served time in prison)`);
-            state.log.push(`Imprisoned: SOC −1, gained criminal Contact.`);
-          }
-          // Remove this tag from further processing to avoid double-handling
-          const tags = this._parseTags(event.description).filter(t => t !== 'AUTO_PROMO_OR_PRISON');
-          // Process remaining tags manually
-          for (const tag of tags) {
-            if (tag === 'CONTACT' && cleanDesc) {
-              state.contacts.push(cleanDesc);
-            } else if (tag === 'FRIEND' && cleanDesc) {
-              state.friends.push(cleanDesc);
-            } else if (tag === 'ENEMY' && cleanDesc) {
-              state.enemies.push(cleanDesc);
+            const shouldLeave = await this.applyEventTags(app, event.description, careerName);
+            if (shouldLeave) {
+              careerMishap = true;
+              break;
             }
           }
-        } else {
-          const shouldLeave = await this.applyEventTags(app, event.description, careerName);
-          if (state.died) {
-            break;
-          }
-          if (shouldLeave) {
-            careerMishap = true;
-            break;
+        }
+
+        // ── COMMISSION (military careers, first time, EDU 8+) ─────────────────────
+        let justCommissioned = false;
+        if (!isCommissioned && career.hasCommissioned && currentRank === 0 && state.chars.edu >= 8) {
+          const attempt = await app._choose(
+            'Commission? (9+ required, EDU 8+)',
+            [
+              { value: 'yes', label: 'Yes — attempt Commission (9+)' },
+              { value: 'no',  label: 'No — remain enlisted' },
+            ]
+          );
+          if (attempt === 'yes') {
+            const commRoll = await app._roll('2d6');
+            const commSucceeded = commRoll >= 9;
+            app._log('Commission', `${commRoll} vs 9+ → ${commSucceeded ? '✓ Commissioned' : '✗ Failed'}`);
+            if (commSucceeded) {
+              isCommissioned = true;
+              justCommissioned = true;
+              currentRank = 1;
+              state.log.push(`Commissioned. Now ${career.commissionedRanks?.[0]?.title ?? 'Officer Rank 1'}.`);
+              termEntry.events.push(`Commissioned as ${career.commissionedRanks?.[0]?.title ?? 'Officer Rank 1'}`);
+              app._log('Commission', `Promoted to ${career.commissionedRanks?.[0]?.title ?? 'Officer Rank 1'}`);
+            }
           }
         }
-      }
-      if (state.died) {
-        break;
-      }
 
-      // ── COMMISSION (military careers, first time, EDU 8+) ─────────────────────
-      let justCommissioned = false;
-      if (!isCommissioned && career.hasCommissioned && currentRank === 0 && state.chars.edu >= 8) {
-        const attempt = await app._choose(
-          'Commission? (9+ required, EDU 8+)',
+        // ── PROMOTION ─────────────────────────────────────────────────────────────
+        let justPromoted = false;
+        const promoTarget = career.promotionTarget ?? 6;
+        const promoRoll = await app._roll('2d6');
+        const promoTotalRoll = promoRoll + promoBonus - promoPenalty;
+        const promoSucceeded = promoTotalRoll >= promoTarget || promoBonus >= 99;
+        const promoEffect = promoTotalRoll - promoTarget;
+        promoBonus = 0;
+        promoPenalty = 0;
+        const promoEventRoll = (await app._roll('2d6')) + promoEffect;
+        app._log(
+          'Promotion',
+          `${promoRoll}${promoTotalRoll !== promoRoll ? `(adjusted to ${promoTotalRoll})` : ''} vs ${promoTarget}+ → ${promoSucceeded ? `✓ Promoted (Effect: ${addSign(promoEffect)})` : `✗ No promotion (Effect: ${addSign(promoEffect)})`}`
+        );
+        const promoTable = promoSucceeded ? CU_PROMO_SUCCESS_EVENTS : CU_PROMO_FAIL_EVENTS;
+        const promoEvent = this._lookupEvent(promoTable, promoEventRoll);
+        if (promoEvent) {
+          const cleanDesc = promoEvent.description.replace(/\[.*?\]/g, '').trim();
+          app._log(promoSucceeded ? `Promo Success (${promoEventRoll})` : `Promo Fail (${promoEventRoll})`, cleanDesc);
+          state.log.push(`${promoSucceeded ? 'Promo Success' : 'Promo Fail'} (${promoEventRoll}): ${cleanDesc}`);
+          termEntry.events.push(cleanDesc);
+
+          const promoTags = this._parseTags(promoEvent.description);
+          if (promoTags.includes('PROMO_BONUS_2')) {
+            promoBonus += 2;
+          }
+          if (promoTags.includes('PROMO_PENALTY_1')) {
+            promoPenalty += 1;
+          }
+          if (promoTags.includes('EXTRA_BENEFIT')) {
+            extraBenefitRolls++;
+          }
+          for (const tag of promoTags.filter(t => !['PROMO_BONUS_2', 'PROMO_PENALTY_1', 'EXTRA_BENEFIT'].includes(t))) {
+            await this.applyEventTags(app, `[${tag}]`, careerName);
+          }
+        }
+
+        if (promoSucceeded && !justCommissioned) {
+          const newRank = Math.min(5, currentRank + 1);
+          if (newRank > currentRank) {
+            currentRank = newRank;
+            justPromoted = true;
+            const rankList = isCommissioned ? career.commissionedRanks : career.ranks;
+            const rankTitle = rankList?.[currentRank - 1]?.title ?? `Rank ${currentRank}`;
+            app._log('Promoted', rankTitle);
+            termEntry.events.push(`Promoted to ${rankTitle}`);
+            state.log.push(`Promoted to ${rankTitle}.`);
+          }
+        }
+
+        // ── SKILLS ────────────────────────────────────────────────────────────────
+        const skillRolls = (termNumber === 1 ? 2 : 1)
+          + (justCommissioned ? 1 : 0)
+          + (justPromoted ? 1 : 0);
+        const tableOptions = [
+          { value: career.skillTable1, label: career.skillTable1 },
+          { value: skillTable2,        label: skillTable2 },
+        ].filter((t, i, arr) => t.value && arr.findIndex(x => x.value === t.value) === i);
+        for (let i = 0; i < skillRolls; i++) {
+          let chosenTable = career.skillTable1;
+          if (tableOptions.length > 1) {
+            chosenTable = await app._choose(
+              `Skill roll ${i + 1}/${skillRolls}: choose table`,
+              tableOptions
+            );
+          }
+          await this._rollSkillFromTable(app, chosenTable);
+        }
+
+        // ── AGING ─────────────────────────────────────────────────────────────────
+        await this.cuStepAging(app, termNumber); // throws CHARGEN_DIED on fatal aging
+
+        // ── REMAIN (re-enlistment) ─────────────────────────────────────────────────
+        // Roll 2D6 + totalTerms; result must be UNDER 12 to continue
+        const remainRoll = await app._roll('2d6');
+        const remainTotal = remainRoll + state.totalTerms;
+        const canRemain = remainTotal < 12;
+        app._log('Remain', `2D6(${remainRoll})+${state.totalTerms} terms=${remainTotal} vs <12 → ${canRemain ? '✓ May continue' : '✗ Must leave'}`);
+
+        if (!canRemain) {
+          state.log.push(`Remain roll failed (${remainTotal} ≥12): leaving ${careerName}.`);
+          termEntry.events.push(`Left ${careerName} (remain roll failed).`);
+          break;
+        }
+
+        const stay = await app._choose(
+          `Continue in ${careerName} for another term?`,
           [
-            { value: 'yes', label: 'Yes — attempt Commission (9+)' },
-            { value: 'no',  label: 'No — remain enlisted' },
+            { value: 'yes', label: 'Yes — serve another term' },
+            { value: 'no',  label: 'No — leave now' },
           ]
         );
-        if (attempt === 'yes') {
-          const commRoll = await app._roll('2d6');
-          const commSucceeded = commRoll >= 9;
-          app._log('Commission', `${commRoll} vs 9+ → ${commSucceeded ? '✓ Commissioned' : '✗ Failed'}`);
-          if (commSucceeded) {
-            isCommissioned = true;
-            justCommissioned = true;
-            currentRank = 1;
-            state.log.push(`Commissioned. Now ${career.commissionedRanks?.[0]?.title ?? 'Officer Rank 1'}.`);
-            termEntry.events.push(`Commissioned as ${career.commissionedRanks?.[0]?.title ?? 'Officer Rank 1'}`);
-            app._log('Commission', `Promoted to ${career.commissionedRanks?.[0]?.title ?? 'Officer Rank 1'}`);
-          }
-        }
-      }
-
-      // ── PROMOTION ─────────────────────────────────────────────────────────────
-      let justPromoted = false;
-      const promoTarget = career.promotionTarget ?? 6;
-      const promoRoll = await app._roll('2d6');
-      const promoTotalRoll = promoRoll + promoBonus - promoPenalty;
-      const promoSucceeded = promoTotalRoll >= promoTarget || promoBonus >= 99;
-      const promoEffect = promoTotalRoll - promoTarget;
-      promoBonus = 0;
-      promoPenalty = 0;
-      const promoEventRoll = (await app._roll('2d6')) + promoEffect;
-      app._log(
-        'Promotion',
-        `${promoRoll}${promoTotalRoll !== promoRoll ? `(adjusted to ${promoTotalRoll})` : ''} vs ${promoTarget}+ → ${promoSucceeded ? `✓ Promoted (Effect: ${addSign(promoEffect)})` : `✗ No promotion (Effect: ${addSign(promoEffect)})`}`
-      );
-      const promoTable = promoSucceeded ? CU_PROMO_SUCCESS_EVENTS : CU_PROMO_FAIL_EVENTS;
-      const promoEvent = this._lookupEvent(promoTable, promoEventRoll);
-      if (promoEvent) {
-        const cleanDesc = promoEvent.description.replace(/\[.*?\]/g, '').trim();
-        app._log(promoSucceeded ? `Promo Success (${promoEventRoll})` : `Promo Fail (${promoEventRoll})`, cleanDesc);
-        state.log.push(`${promoSucceeded ? 'Promo Success' : 'Promo Fail'} (${promoEventRoll}): ${cleanDesc}`);
-        termEntry.events.push(cleanDesc);
-
-        const promoTags = this._parseTags(promoEvent.description);
-        if (promoTags.includes('PROMO_BONUS_2')) {
-          promoBonus += 2;
-        }
-        if (promoTags.includes('PROMO_PENALTY_1')) {
-          promoPenalty += 1;
-        }
-        if (promoTags.includes('EXTRA_BENEFIT')) {
-          extraBenefitRolls++;
-        }
-        for (const tag of promoTags.filter(t => !['PROMO_BONUS_2','PROMO_PENALTY_1','EXTRA_BENEFIT'].includes(t))) {
-          const dummy = `[${tag}]`;
-          await this.applyEventTags(app, dummy, careerName);
-          if (state.died) {
-            break;
-          }
-        }
-      }
-      if (state.died) {
-        break;
-      }
-
-      if (promoSucceeded && !justCommissioned) {
-        const newRank = Math.min(5, currentRank + 1);
-        if (newRank > currentRank) {
-          currentRank = newRank;
-          justPromoted = true;
-          const rankList = isCommissioned ? career.commissionedRanks : career.ranks;
-          const rankTitle = rankList?.[currentRank - 1]?.title ?? `Rank ${currentRank}`;
-          app._log('Promoted', rankTitle);
-          termEntry.events.push(`Promoted to ${rankTitle}`);
-          state.log.push(`Promoted to ${rankTitle}.`);
-        }
-      }
-
-      // ── SKILLS ────────────────────────────────────────────────────────────────
-      const skillRolls = (termNumber === 1 ? 2 : 1)
-        + (justCommissioned ? 1 : 0)
-        + (justPromoted ? 1 : 0);
-      const tableOptions = [
-        { value: career.skillTable1, label: career.skillTable1 },
-        { value: skillTable2,        label: skillTable2 },
-      ].filter((t, i, arr) => t.value && arr.findIndex(x => x.value === t.value) === i);
-      for (let i = 0; i < skillRolls; i++) {
-        let chosenTable = career.skillTable1;
-        if (tableOptions.length > 1) {
-          chosenTable = await app._choose(
-            `Skill roll ${i + 1}/${skillRolls}: choose table`,
-            tableOptions
-          );
-        }
-        await this._rollSkillFromTable(app, chosenTable);
-        if (state.died) {
+        if (stay !== 'yes') {
+          termEntry.events.push(`Voluntarily left ${careerName}.`);
           break;
         }
       }
-      if (state.died) {
-        break;
+    } catch (err) {
+      if (err !== CHARGEN_DIED) {
+        throw err;
       }
-
-      // ── AGING ─────────────────────────────────────────────────────────────────
-      const agingFatal = await this.cuStepAging(app, termNumber);
-      if (state.died || agingFatal) {
-        break;
+      // Character died mid-career: save partial record to state then re-throw
+      const record = buildRecord();
+      state.careers.push(record);
+      if (!state.previousCareers.includes(careerName)) {
+        state.previousCareers.push(careerName);
       }
-
-      // ── REMAIN (re-enlistment) ─────────────────────────────────────────────────
-      // Roll 2D6 + totalTerms; result must be UNDER 12 to continue
-      const remainRoll = await app._roll('2d6');
-      const remainTotal = remainRoll + state.totalTerms;
-      const canRemain = remainTotal < 12;
-      app._log('Remain', `2D6(${remainRoll})+${state.totalTerms} terms=${remainTotal} vs <12 → ${canRemain ? '✓ May continue' : '✗ Must leave'}`);
-
-      if (!canRemain) {
-        state.log.push(`Remain roll failed (${remainTotal} ≥12): leaving ${careerName}.`);
-        termEntry.events.push(`Left ${careerName} (remain roll failed).`);
-        break;
-      }
-
-      const stay = await app._choose(
-        `Continue in ${careerName} for another term?`,
-        [
-          { value: 'yes', label: 'Yes — serve another term' },
-          { value: 'no',  label: 'No — leave now' },
-        ]
-      );
-      if (stay !== 'yes') {
-        termEntry.events.push(`Voluntarily left ${careerName}.`);
-        break;
-      }
+      throw CHARGEN_DIED;
     }
 
-    const rankList = isCommissioned ? (career.commissionedRanks ?? []) : (career.ranks ?? []);
-    const rankTitle = rankList[currentRank - 1]?.title ?? null;
-    return {
-      name: careerName,
-      terms: termNumber,
-      rank: currentRank,
-      rankTitle,
-      commissioned: isCommissioned,
-      mishap: careerMishap,
-      assignment: careerName,
-      benefitsLost: false,
-      extraBenefitRolls,
-    };
+    return buildRecord();
   }
 }

@@ -2,7 +2,7 @@
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
-import { CHARACTERISTIC_KEYS, CharGenConstants } from './CharGenState.js';
+import { CHARGEN_DIED, CHARACTERISTIC_KEYS, CharGenConstants } from './CharGenState.js';
 import { chooseGender, chooseLanguage, chooseName } from './CharGenUtils.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CE pack) ──────────────────────────────────
@@ -137,28 +137,16 @@ export class CECharGenLogic extends BaseCharGenLogic {
     await chooseName(app);
 
     await this.stepHomeworld(app);
-    if (state.died) {
-      return;
-    }
 
     let isFirstCareer = true;
     let forceRetire = false;
     while (true) {
       const { careerName, drafted } = await this.stepQualification(app);
-      if (state.died) {
-        return;
-      }
       const career = CAREERS[careerName];
       state.currentRank = 0;
       state.currentTermInCareer = 0;
       await this._applyRankSkill(app, careerName, 0);
-      if (state.died) {
-        return;
-      }
       await this.stepBasicTraining(app, careerName, isFirstCareer);
-      if (state.died) {
-        return;
-      }
       isFirstCareer = false;
       let termBenefitsLost = false;
       let careerMishap = false;
@@ -178,9 +166,6 @@ export class CECharGenLogic extends BaseCharGenLogic {
           startedVerb: verb,
         });
         const { survived, benefitsLost } = await this.stepSurvival(app, careerName);
-        if (state.died) {
-          return;
-        }
         if (!survived) {
           termBenefitsLost = benefitsLost;
           careerMishap = true;
@@ -190,28 +175,13 @@ export class CECharGenLogic extends BaseCharGenLogic {
         let extraRolls = 0;
         if (!drafted || state.currentTermInCareer > 1) {
           const comm = await this.stepCommission(app, careerName);
-          if (state.died) {
-            return;
-          }
           extraRolls += comm.extraRoll;
         }
         const adv = await this.stepAdvancement(app, careerName);
-        if (state.died) {
-          return;
-        }
         extraRolls += adv.extraRoll;
         await this.stepSkillsAndTraining(app, careerName, (career.hasCommAdv ? 1 : 2) + extraRolls);
-        if (state.died) {
-          return;
-        }
         await this.stepAging(app);
-        if (state.died) {
-          return;
-        }
         const { mustContinue, mustRetire, wantsToContinue } = await this.stepReenlistment(app, careerName);
-        if (state.died) {
-          return;
-        }
         if (mustRetire) {
           forceRetire = true;
           break;
@@ -237,17 +207,11 @@ export class CECharGenLogic extends BaseCharGenLogic {
       if (!termBenefitsLost) {
         await this.stepMusterOut(app, state.careers.at(-1));
       }
-      if (state.died) {
-        return;
-      }
       if (forceRetire) {
         app._log('Retirement', '7+ total terms — mandatory retirement.');
         break;
       }
       const another = await this.promptAnotherCareer(app, state.totalTerms);
-      if (state.died) {
-        return;
-      }
       if (another !== 'yes') {
         const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
         if (h) {
@@ -658,7 +622,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       } else {
         state.termHistory.push({ term: 1, career: 'None', events: ['Died before starting a career.'] });
       }
-      return;
+      throw CHARGEN_DIED;
     }
     zero.forEach(c => {
       if ((state.chars[c] ?? 0) <= 0) {

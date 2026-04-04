@@ -3,7 +3,7 @@ import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
 import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
-import { CHARACTERISTIC_KEYS, CHARACTERISTIC_LABELS, CHARACTERISTICS_ROW_TYPE, freshState } from './CharGenState.js';
+import { CHARGEN_DIED, CHARACTERISTIC_KEYS, CHARACTERISTIC_LABELS, CHARACTERISTICS_ROW_TYPE, freshState } from './CharGenState.js';
 
 const NAME_ROW_LABEL = 'Name';
 
@@ -20,6 +20,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   };
 
   static RESTART = Symbol('restart');
+  static DIED = CHARGEN_DIED;
 
   decisions = [];
   decisionCursor = 0;
@@ -612,6 +613,11 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       } catch (err) {
         if (err === CharGenApp.RESTART) {
           continue;
+        }
+        if (err === CharGenApp.DIED) {
+          this.isDone = true;
+          this.render();
+          return;
         }
         throw err;
       }

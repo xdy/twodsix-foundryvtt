@@ -2,6 +2,12 @@
 import { LanguageType } from '../../utils/nameGenerator.js';
 
 /**
+ * Thrown (not returned) when a character dies during generation.
+ * Caught in CharGenApp.run() to end generation cleanly.
+ */
+export const CHARGEN_DIED = Symbol('chargen-died');
+
+/**
  * Standard characteristic keys used throughout character generation.
  */
 export const CHARACTERISTIC_KEYS = ['str', 'dex', 'end', 'int', 'edu', 'soc'];
