@@ -14,7 +14,7 @@
 /* Header bar */
 .cg-header {
   padding: 6px 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--s2d6-header-border, #ccc);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -67,8 +67,8 @@
   justify-content: center;
   width: 36px;
   height: 24px;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
+  background: var(--s2d6-input-background);
+  border: 1px solid var( --s2d6-item-border, --s2d6-default-border, #ddd);
   border-radius: 3px;
   font-weight: bold;
   font-size: 1em;
@@ -86,14 +86,14 @@
 }
 
 /* Decision rows */
-.cg-row-active {
+/*.cg-row-active {
   background: var(--color-warm-1, #fffbe6);
-}
+}*/
 
 .cg-td-label {
   padding: 2px 6px;
-  color: #666;
-  font-size: 0.9em;
+  color: var(--color-text-emphatic, #666);
+  /*font-size: 0.9em;*/
   width: 33%;
 }
 
@@ -129,22 +129,22 @@
 
 .cg-char-done {
   padding: 2px 12px;
-  background: #4a7c59;
+  /*background: #4a7c59;
   color: white;
-  border: 1px solid #3a6c49;
+  border: 1px solid #3a6c49;*/
   border-radius: 3px;
   cursor: pointer;
   font-weight: bold;
 }
 
-.cg-char-done:hover:not(:disabled) {
+/*.cg-char-done:hover:not(:disabled) {
   background: #5a8c69;
-}
+}*/
 
 .cg-char-done:disabled {
-  background: #ccc;
+  /*background: #ccc;
   border-color: #bbb;
-  color: #888;
+  color: #888;*/
   cursor: not-allowed;
 }
 
@@ -168,20 +168,21 @@
 
 .cg-summary-title {
   padding: 4px 10px;
-  background: #ddd;
-  border: 1px solid #ccc;
+  background: var(--s2d6-header-background, --s2d6-default-color);
+  color: var(--s2d6-title-color, #ddd);
+  border: 1px solid var(--s2d6-background-opaque, #ccc);
   margin: 0 10px;
   font-weight: bold;
 }
 
 .cg-summary-body {
   padding: 10px;
-  background: #f0f0f0;
-  border: 1px solid #ccc;
+  /*background: var( --s2d6-input-background, #f0f0f0);*/
+  border: 1px solid var(--s2d6-background-opaque, #ccc);
   margin: 0 10px 10px 10px;
   font-family: monospace;
   white-space: pre-wrap;
-  font-size: 0.9em;
+  /*font-size: 0.9em;*/
   overflow-y: auto;
   flex: 1;
 }
@@ -189,7 +190,7 @@
 /* Footer */
 .cg-footer {
   padding: 8px;
-  border-top: 1px solid #ccc;
+  border-top:  1px solid var(--s2d6-background-opaque, #ccc);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -198,11 +199,15 @@
 
 .cg-footer-progress {
   padding: 4px 8px;
-  color: #888;
+  /*color: #888;*/
   font-size: 0.85em;
 }
 
 .cg-create-btn {
   padding: 6px 20px;
   font-size: 1.1em;
+}
+
+.header-actions.action-buttons.char-gen.flexrow {
+    justify-content: center;
 }
