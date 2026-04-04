@@ -78,6 +78,7 @@ export function freshState() {
     cashBenefits: 0,
     cashRollsUsed: 0,
     materialBenefits: [],
+    chosenWeapons: [],
     log: [],
     died: false,
     termHistory: [],

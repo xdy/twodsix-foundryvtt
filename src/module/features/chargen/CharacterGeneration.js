@@ -10,8 +10,7 @@ import { freshState } from './CharGenState.js';
 export async function startCharacterGeneration() {
   const ruleset = game.settings.get('twodsix', 'ruleset') || 'CE';
 
-  // Pre-load career data for rulesets that need it upfront.
-  // Rulesets that defer loading (e.g. CU) handle it inside their own run function.
+  // Pre-load career data
   await preloadCharGenData(ruleset);
 
   // Create and initialize the app

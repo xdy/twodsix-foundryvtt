@@ -4,7 +4,7 @@ import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
 import { CHARGEN_DIED, CHARACTERISTIC_KEYS } from './CharGenState.js';
-import { chooseCharacteristicSwap, chooseGender, chooseLanguage, chooseName } from './CharGenUtils.js';
+import { chooseCharacteristicSwap, chooseGender, chooseLanguage, chooseName, chooseWeapon } from './CharGenUtils.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CU pack) ──────────────────────────────────
 
@@ -540,8 +540,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
           app._log('Augment', '5 points');
         }
       } else if (tag === 'WEAPON') {
-        state.materialBenefits.push('Weapon or equipment (up to Cr5,000)');
-        app._log('Benefit', 'Weapon or equipment (up to Cr5,000)');
+        await chooseWeapon(app, { maxPrice: 5000 });
       }
     }
   }
