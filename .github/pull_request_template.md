@@ -1,7 +1,7 @@
 * **Please check if the PR fulfills these requirements**
 - [ ] We use semantic versioning (https://github.com/semantic-release/semantic-release to be specific), so follow https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines
 - [ ] Docs have been added / updated (for bug fixes / features)
-
+- [ ] I know of no legal or licensing problems with the changes in this PR. (Specifically, see CONTRIBUTING.md and https://foundryvtt.com/article/ai-policy/)
 
 * **What kind of change does this PR introduce?** (Bug fix, feature, docs update, ...)
 
