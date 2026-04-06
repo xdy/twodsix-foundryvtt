@@ -109,7 +109,6 @@ Content Usage and Licensing:
 * Rules for Classic Traveller (i.e. rules contained in the Classic Traveller Book) used with permission from Far Future Enterprises and Mongoose Publishing.  Those entities have granted limitted permision for Twodsix to incorporate rules mechanics and not ‘background text/lore’ from Classic Traveller - provided that it is done on a non-comerical basis.
 * Alpha Cephei content copyrighted by Corte Real Ltda - used with permission.  
 
-
 Virtual Table Top Platform Licenses:
 *  Foundry VTT support is covered by the following license: [Limited License Agreement for module development](https://foundryvtt.com/article/license/).
 
@@ -120,3 +119,6 @@ Asset licenses:
 * The icons in the static/assets/icons folder as well as the original icons from [https://game-icons.net/](https://game-icons.net/) are provided under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0) license](https://creativecommons.org/licenses/by/3.0/) and were made by numerous authors. The full list of those can be found at: https://game-icons.net/about.html#authors
 * The icon static/assets/pause/sunburst.svg is based on  https://wiki.travellerrpg.com/File:Imperial-Sunburst-Sun-Scouts-wiki.png which is made by [Thomas Jones-Low](https://wiki.travellerrpg.com/Thomas_Jones-Low) which was provided under the terms of the [CC-By-SA](https://creativecommons.org/licenses/by-nc/3.0/) license.
 * Traveller art created with Portrait Workshop™ by Worldspinner™.
+
+Other licenses in the code:
+* The name generation code is based on C# code from the MIT-licensed https://github.com/Grauenwolf/TravellerTools and is thus also MIT-licensed.
