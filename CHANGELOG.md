@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.1.0...v7.1.1) (2026-04-07)
+
+
+### Bug Fixes
+
+* Adjust sheet padding, Trade Dialog Report Sizing, and Rationalize Linking scripts ([#1968](https://github.com/xdy/twodsix-foundryvtt/issues/1968)) ([d92219b](https://github.com/xdy/twodsix-foundryvtt/commit/d92219bf4cc8486e88cb7880134fd62d1bcd7c2d))
+
 # [7.1.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.0.2...v7.1.0) (2026-04-04)
 
 
