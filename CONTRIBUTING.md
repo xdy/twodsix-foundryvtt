@@ -154,6 +154,12 @@ ln -s "$(pwd)/dist" "$(pwd)/foundry/foundry-data-13/Data/systems/twodsix"
 
 As with the app directory, you can name the data directory whatever you want but be aware that it may not be covered by `.gitignore` and you may end up committing it to Git if you're not careful.
 
+If you also use the repo-local helper scripts such as `pnpm run link:system`, `pnpm run data:copy`, or `pnpm run data:reset`, note that `foundryconfig.json` uses a different convention from Foundry's CLI flag here:
+
+- Foundry's `--dataPath` flag should point to the user data root, such as `foundry/foundry-data-13`
+- `foundryconfig.json` `dataPath` should point to the nested `Data` directory inside that root, such as `foundry/foundry-data-13/Data`
+- `foundryconfig.json` `installPath` should point to your Foundry application install and is used by `pnpm run link:intellisense`
+
 #### Launch Foundry VTT
 
 You can now launch Foundry VTT using the following command. As with the app it will ask you to enter your license key and sign an agreement. You will only need to do this the first time you launch. If you are on macOS, see the [note for macOS users](#note-for-macos-users) below about how to work around a system security hiccup you will run into.

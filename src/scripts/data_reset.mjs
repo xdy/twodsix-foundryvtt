@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 import fse from 'fs-extra';
+import path from 'path';
 import readline from 'node:readline';
+import {getFoundryPaths} from '../../scripts/foundry-paths.mjs';
 
 const args = process.argv.slice(2);
 let force = false;
@@ -11,13 +13,14 @@ if (args.indexOf("-f") !== -1) {
 }
 
 const rl = readline.createInterface(process.stdin, process.stdout);
-const destDir = JSON.parse(fse.readFileSync('foundryconfig.json').toString()).dataPath;
+const {dataDir, dataRoot} = getFoundryPaths({warnOnLegacyParent: true});
+const destDir = dataRoot;
 const srcDir = args.length ? args[0] : "sample_data/default";
 const templateDir = "foundry/foundry_template";
 const templateLicensePath = "foundry/license.json";
-const worldPath = destDir + "/Data/worlds/twodsix_dev";
-const systemPath = destDir + "/Data/systems/twodsix";
-const licenseFilePath = destDir + "/Config/license.json";
+const worldPath = path.join(dataDir, 'worlds', 'twodsix_dev');
+const systemPath = path.join(dataDir, 'systems', 'twodsix');
+const licenseFilePath = path.join(destDir, 'Config', 'license.json');
 
 function copy() {
   fse.rmdirSync(destDir, {recursive: true});

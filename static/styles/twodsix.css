@@ -482,7 +482,7 @@ form .form-group span.units {
   background-repeat: repeat-x;
   font-family: inherit;
   color: var(--s2d6-default-color);
-  padding: 1ch; /*1ch 0 0 */
+  /*padding: 1ch; /*1ch 0 0 */
   --color-scrollbar: var(--s2d6-default-color);
   --color-scrollbar-border: var(--s2d6-header-border);
   --color-scrollbar-track: var(--s2d6-nav-background);
@@ -5076,6 +5076,10 @@ table.ship-action-table, table.vehicle-stats-table {
   container-name: overlap-header;
 }
 
+section.window-content.overlap-header {
+  padding: 1ch;
+}
+
 @container overlap-header (width < 900px) {
   .ship-container {
     font-size: smaller;
@@ -5707,9 +5711,12 @@ span.single-line.world-inset {
 .trade-generation-report {
   padding: 1ch;
   line-height: 1.6;
-  max-height: 70vh;
+  max-height: calc(70vh - 40px);
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
+}
+.detached .trade-generation-report {
+  max-height: 85vh;
 }
 
 .trade-generation-report h3 {

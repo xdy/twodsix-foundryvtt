@@ -127,3 +127,31 @@ static/packs/                 # Binary pack files (generated, ignored by git)
 - Only the JSON files in `packs-src/` should be committed to version control
 - The build process ensures binary packs are always up to date with JSON source
 - Use `pnpm run packs:rebuild` if you want to start fresh from JSON source
+
+## Development Paths
+
+Local development scripts use `foundryconfig.json` for two different kinds of paths:
+
+- `installPath` points to the Foundry application installation. This is used by `pnpm run link:intellisense` (alias: `symlinks`) via `tools/create-symlinks.mjs` to create local IntelliSense symlinks in `foundry/`.
+- `dataPath` points to the Foundry user data `Data` directory, the folder that directly contains `systems/`, `worlds/`, and `modules/`. The preferred value is like `/Users/<name>/Library/Application Support/FoundryVTT/Data`.
+
+Scripts that use `dataPath`:
+
+- `pnpm run link:system` (aliases: `link`, `link-project`) links `dist/` into `<dataPath>/systems/twodsix` for live Foundry testing.
+- `pnpm run data:copy` copies the `twodsix_dev` world from `<dataPath>/worlds/` into `sample_data/local/`.
+- `pnpm run data:reset` rebuilds a local Foundry data tree from `foundry/foundry_template`, sample data, and `dist/`.
+
+Compatibility note:
+
+- The shared resolver in `scripts/foundry-paths.mjs` accepts either the preferred `.../FoundryVTT/Data` path or the legacy parent folder `.../FoundryVTT`.
+- If a legacy parent folder is configured, the scripts will continue to work but will print a warning and normalize to the `Data` directory.
+
+Example local config:
+
+```json
+{
+	"dataPath": "/Users/YourUsername/Library/Application Support/FoundryVTT/Data",
+	"systemName": "twodsix",
+	"installPath": "/Users/YourUsername/Applications/FoundryVTT"
+}
+```
