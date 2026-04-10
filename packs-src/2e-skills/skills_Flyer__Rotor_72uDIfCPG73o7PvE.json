@@ -17,7 +17,8 @@
     "reference": "",
     "key": "key",
     "difficulty": "Average",
-    "rolltype": "Normal"
+    "rolltype": "Normal",
+    "groupLabel": "Flyer"
   },
   "flags": {
     "cf": {

@@ -30,6 +30,7 @@ foundry/*
 
 # AI instructions
 .github/copilot-instructions.md
+.claude/
 
 # Pack Management
 
