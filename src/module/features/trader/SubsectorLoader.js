@@ -4,15 +4,10 @@
  * creates World actors, and provides hex distance calculations.
  */
 
-import { SECTOR_WIDTH_IN_SUBSECTORS, } from './TraderConstants.js';
+import { SECTOR_WIDTH_IN_SUBSECTORS, SUBSECTOR_LETTERS } from './TraderConstants.js';
 import { buildGlobalHex, getNeighboringSubsectors, parseUWP } from './TraderUtils.js';
 import { fetchWorlds, loadSubsectorsWithCache } from './TravellerMapAPI.js';
-import {
-  buildSubsectorKey,
-  getCachedWorlds,
-  setCachedWorlds,
-  updateCachedWorldFoundryStatus
-} from './TravellerMapCache.js';
+import { buildSubsectorKey, getCachedWorlds, setCachedWorlds } from './TravellerMapCache.js';
 
 /**
  * Load subsector data with caching support.
@@ -25,8 +20,7 @@ import {
  * @returns {Promise<import('./TraderState.js').WorldData[]>} Parsed world data array
  */
 export async function loadSubsector(sectorName, subsectorLetter, milieu = 'M1105', cacheJournal = null, sectorCoords = null) {
-  const subKey = buildSubsectorKey(sectorName, subsectorLetter);
-  const subsectorKey = `${milieu}:${subKey}`;
+  const subsectorKey = buildSubsectorKey(sectorName, subsectorLetter, milieu);
 
   // Check cache first if journal provided
   if (cacheJournal) {
@@ -42,6 +36,10 @@ export async function loadSubsector(sectorName, subsectorLetter, milieu = 'M1105
           w.sectorName = sectorName;
         }
         w.subsectorKey = subsectorKey; // Tag for later cache update
+        // Ensure UWP fields are populated if they were missing in cache but uwp string exists
+        if (!w.starport && w.uwp) {
+          Object.assign(w, parseUWP(w.uwp));
+        }
       });
       return cachedWorlds;
     }
@@ -53,7 +51,11 @@ export async function loadSubsector(sectorName, subsectorLetter, milieu = 'M1105
 
   // Store in cache if journal provided
   if (cacheJournal && worldDataArray.length > 0) {
-    await setCachedWorlds(cacheJournal, subsectorKey, worldDataArray);
+    // Only cache if they haven't been cached before with this key
+    const existing = await getCachedWorlds(cacheJournal, subsectorKey);
+    if (!existing || existing.length === 0) {
+      await setCachedWorlds(cacheJournal, subsectorKey, worldDataArray);
+    }
   }
 
   return worldDataArray;
@@ -63,11 +65,10 @@ export async function loadSubsector(sectorName, subsectorLetter, milieu = 'M1105
  * Create World actors in Foundry from parsed world data.
  * @param {import('./TraderState.js').WorldData[]} worldDataArray - Parsed world records
  * @param {string} [startGlobalHex] - Global hex of the starting world for distance filtering
- * @param {number} [range] - Jump range for filtering
  * @param {JournalEntry} [cacheJournal] - Optional cache journal to update status
  * @returns {Promise<import('../../entities/TwodsixActor').default[]>} Created/found world Actor documents
  */
-export async function createWorldActors(worldDataArray, startGlobalHex = null, range = null, cacheJournal = null) {
+export async function createWorldActors(worldDataArray, startGlobalHex = null, cacheJournal = null) {
   // Helper to find or create a sector folder
   async function getSectorFolder(sectorName) {
     const folderName = sectorName || 'Unknown Sector';
@@ -78,16 +79,14 @@ export async function createWorldActors(worldDataArray, startGlobalHex = null, r
     return folder;
   }
 
-  // Filter worlds to within the ship's jump capacity of the starting world
-  const filteredWorldData = worldDataArray;
-
   // Build actor creation data and find existing actors
   const actorDataArray = [];
   const finalActors = [];
+  const cacheUpdates = new Map(); // subKey -> Set(hex)
 
   // Group worlds by sector to efficiently find existing actors in those folders
   const worldsBySector = {};
-  for (const w of filteredWorldData) {
+  for (const w of worldDataArray) {
     const sName = w.sectorName || 'Unknown Sector';
     if (!worldsBySector[sName]) {
       worldsBySector[sName] = [];
@@ -111,8 +110,15 @@ export async function createWorldActors(worldDataArray, startGlobalHex = null, r
 
       if (existing) {
         finalActors.push(existing);
+        // Ensure subsectorKey flag is set if missing
+        if (!existing.getFlag('twodsix', 'subsectorKey') && w.subsectorKey) {
+          await existing.setFlag('twodsix', 'subsectorKey', w.subsectorKey);
+        }
         if (cacheJournal && w.subsectorKey) {
-          await updateCachedWorldFoundryStatus(cacheJournal, w.subsectorKey, w.hex || w.globalHex, true);
+          if (!cacheUpdates.has(w.subsectorKey)) {
+            cacheUpdates.set(w.subsectorKey, new Set());
+          }
+          cacheUpdates.get(w.subsectorKey).add(w.hex || w.globalHex);
         }
       } else {
         // Ensure UWP fields are populated (especially if loaded from older minimal cache)
@@ -157,16 +163,48 @@ export async function createWorldActors(worldDataArray, startGlobalHex = null, r
   }
 
   if (actorDataArray.length > 0) {
-    const newActors = await Actor.createDocuments(actorDataArray);
-    finalActors.push(...newActors);
-    if (cacheJournal) {
-      for (const actor of newActors) {
-        const subKey = actor.getFlag('twodsix', 'subsectorKey');
-        if (subKey) {
-          const hex = actor.getFlag('twodsix', 'locationCoordinate');
-          await updateCachedWorldFoundryStatus(cacheJournal, subKey, hex, true);
+    try {
+      const newActors = await Actor.createDocuments(actorDataArray);
+      finalActors.push(...newActors);
+      if (cacheJournal) {
+        for (const actor of newActors) {
+          const subKey = actor.getFlag('twodsix', 'subsectorKey');
+          if (subKey) {
+            const hex = actor.getFlag('twodsix', 'locationCoordinate');
+            if (!cacheUpdates.has(subKey)) {
+              cacheUpdates.set(subKey, new Set());
+            }
+            cacheUpdates.get(subKey).add(hex);
+          }
         }
       }
+    } catch (err) {
+      console.error('Failed to create world actors:', err);
+      ui.notifications.error('Error creating world actors. Check console for details.');
+    }
+  }
+
+  // Batch cache updates
+  if (cacheJournal && cacheUpdates.size > 0) {
+    const { CACHE_KEY_WORLDS, getCachedData, setCachedData } = await import('./TravellerMapCache.js');
+    const allWorlds = await getCachedData(cacheJournal, CACHE_KEY_WORLDS) ?? {};
+    let changed = false;
+
+    for (const [subKey, hexes] of cacheUpdates) {
+      const worlds = allWorlds[subKey];
+      if (worlds) {
+        for (const hex of hexes) {
+          const world = worlds.find(w => w.hex === hex || w.globalHex === hex);
+          if (world && !world.hasFoundryWorld) {
+            world.hasFoundryWorld = true;
+            changed = true;
+          }
+        }
+      }
+    }
+
+    if (changed) {
+      await setCachedData(cacheJournal, CACHE_KEY_WORLDS, allWorlds);
     }
   }
 
@@ -197,17 +235,27 @@ export async function ensureSubsectorNeighborsLoaded(state, sectorName, localHex
 
   const subsectorsToSearch = getNeighboringSubsectors(startSector, localHex, state.sectors);
 
+  // Initialize loaded keys if missing
+  if (!state.loadedSubsectorKeys) {
+    state.loadedSubsectorKeys = [];
+  }
+
   const subsectorsToLoad = [];
   for (const target of subsectorsToSearch) {
-    const subKey = `${target.sectorName}:${target.subX},${target.subY}`;
-    if (state.loadedSubsectorKeys?.includes(subKey)) {
+    const subIndex = target.subY * SECTOR_WIDTH_IN_SUBSECTORS + target.subX;
+    const subLetter = SUBSECTOR_LETTERS[subIndex];
+    if (!subLetter) {
       continue;
     }
 
-    const subs = await loadSubsectorsWithCache(target.sectorName, cacheJournal);
+    const subKey = buildSubsectorKey(target.sectorName, subLetter, milieu);
+    if (state.loadedSubsectorKeys.includes(subKey)) {
+      continue;
+    }
+
+    const subs = await loadSubsectorsWithCache(target.sectorName, cacheJournal, milieu);
     if (subs) {
-      const subIndex = target.subY * SECTOR_WIDTH_IN_SUBSECTORS + target.subX;
-      const sub = subs[subIndex];
+      const sub = subs.find(s => s.letter === subLetter);
       if (sub) {
         subsectorsToLoad.push({
           sectorName: target.sectorName,
@@ -245,7 +293,7 @@ export async function ensureSubsectorNeighborsLoaded(state, sectorName, localHex
   const startSectorCoords = { x: startSector.sx, y: startSector.sy, sx: startSector.sx, sy: startSector.sy };
   const startGlobalHex = buildGlobalHex(startSectorCoords, localHex);
 
-  return createWorldActors(allWorldData, startGlobalHex, range, cacheJournal);
+  return createWorldActors(allWorldData, startGlobalHex, cacheJournal);
 }
 
 /**

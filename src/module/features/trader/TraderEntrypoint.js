@@ -7,7 +7,7 @@
 import { CrewSetupApp } from './CrewSetupApp.js';
 import { createWorldActors, loadSubsector, loadWorldsFromSectors } from './SubsectorLoader.js';
 import { TraderApp } from './TraderApp.js';
-import { DEFAULT_MERCHANT_TRADER, MORTGAGE_DIVISOR, SECTOR_WIDTH_IN_SUBSECTORS } from './TraderConstants.js';
+import { DEFAULT_MERCHANT_TRADER, MORTGAGE_DIVISOR, MORTGAGE_FINANCING_MULTIPLIER, SECTOR_WIDTH_IN_SUBSECTORS } from './TraderConstants.js';
 import { TraderSetupApp } from './TraderSetupApp.js';
 import { freshTraderState } from './TraderState.js';
 import { buildGlobalHex, getNeighboringSubsectors, getWorldCoordinate } from './TraderUtils.js';
@@ -103,7 +103,7 @@ async function ensureGlobalHexForWorlds(worlds, sectors, startSector) {
 async function loadSubsectorData(subsectorsToSearch, setupResult, cacheJournal, startSectorCoords) {
   const subsectorsToLoad = [];
   for (const target of subsectorsToSearch) {
-    const subs = await loadSubsectorsWithCache(target.sectorName, cacheJournal);
+    const subs = await loadSubsectorsWithCache(target.sectorName, cacheJournal, setupResult.milieu);
     if (subs) {
       const subIndex = target.subY * SECTOR_WIDTH_IN_SUBSECTORS + target.subX;
       const sub = subs[subIndex];
@@ -167,7 +167,7 @@ async function findOrFetchStartWorld(worlds, startGlobalHex, setupResult, range,
             w.globalHex = buildGlobalHex(startSectorCoords, w.hex);
           }
         });
-        const extraWorlds = await createWorldActors(directWorlds, startGlobalHex, range, cacheJournal);
+        const extraWorlds = await createWorldActors(directWorlds, startGlobalHex, cacheJournal);
         extraWorlds.forEach(ew => {
           if (!worlds.find(w => w.id === ew.id)) {
             worlds.push(ew);
@@ -180,7 +180,7 @@ async function findOrFetchStartWorld(worlds, startGlobalHex, setupResult, range,
           if (!directWorldData.globalHex && directWorldData.hex) {
             directWorldData.globalHex = buildGlobalHex(startSectorCoords, directWorldData.hex);
           }
-          const extraWorlds = await createWorldActors([directWorldData], startGlobalHex, range, cacheJournal);
+          const extraWorlds = await createWorldActors([directWorldData], startGlobalHex, cacheJournal);
           if (extraWorlds.length > 0) {
             worlds.push(...extraWorlds);
             startWorld = extraWorlds[0];
@@ -246,12 +246,13 @@ function initializeTraderState(setupResult, startWorld, startGlobalHex, sectors,
   state.currentWorldName = startWorld.name;
   state.subsectorName = setupResult.subsectorName;
   state.sectorName = setupResult.sectorName;
+  state.milieu = setupResult.milieu || 'M1105';
   state.cacheJournalName = setupResult.cacheJournalName;
   state.sectors = sectors;
   state.loadedSubsectorKeys = subsectorsToSearch.map(s => `${s.sectorName}:${s.subX},${s.subY}`);
   state.worlds = worlds;
   state.journalEntryId = journal.id;
-  state.journalPageId = page.id;
+  state.journalPageId = page?.id ?? null;
 
   if (setupResult.shipActorId) {
     const shipActor = game.actors.get(setupResult.shipActorId);
@@ -280,7 +281,7 @@ function initializeTraderState(setupResult, startWorld, startGlobalHex, sectors,
         armed,
       };
       state.monthlyPayment = Math.ceil(state.ship.shipCost / MORTGAGE_DIVISOR);
-      state.mortgageRemaining = state.ship.shipCost * 2.2;
+      state.mortgageRemaining = state.ship.shipCost * MORTGAGE_FINANCING_MULTIPLIER;
     }
   }
   state.crew = crew;
@@ -331,7 +332,7 @@ export async function startTrading(existingJournal = null) {
         ui.notifications.error(game.i18n.localize('TWODSIX.Trader.Messages.NoWorldsFound'));
         return;
       }
-      worlds = await createWorldActors(allWorldData, startGlobalHex, range, cacheJournal);
+      worlds = await createWorldActors(allWorldData, startGlobalHex, cacheJournal);
     }
 
     const startWorld = await findOrFetchStartWorld(worlds, startGlobalHex, setupResult, range, cacheJournal, startSectorCoords, sectorsToSearch);
@@ -347,13 +348,15 @@ export async function startTrading(existingJournal = null) {
     const journal = await JournalEntry.create({
       name: setupResult.journalName || `Trader: ${setupResult.subsectorName} — ${new Date().toLocaleDateString()}`,
     });
+
+    app.state = initializeTraderState(setupResult, startWorld, startGlobalHex, sectors, subsectorsToSearch, worlds, journal, null, crew);
+
     const pages = await journal.createEmbeddedDocuments('JournalEntryPage', [{
       name: 'Trade Log',
       type: 'text',
-      text: { content: `<h2>Trading Journey</h2><p>Ship: ${DEFAULT_MERCHANT_TRADER.name} (${DEFAULT_MERCHANT_TRADER.tonnage}t)</p><p>Subsector: ${setupResult.subsectorName}, ${setupResult.sectorName}</p><p>Starting world: ${startWorld.name} (${startWorld.system?.uwp})</p><hr>\n` },
+      text: { content: `<h2>Trading Journey</h2><p>Ship: ${app.state.ship.name || DEFAULT_MERCHANT_TRADER.name} (${app.state.ship.tonnage || DEFAULT_MERCHANT_TRADER.tonnage}t)</p><p>Subsector: ${setupResult.subsectorName}, ${setupResult.sectorName}</p><p>Starting world: ${startWorld.name} (${startWorld.system?.uwp})</p><hr>\n` },
     }]);
-
-    app.state = initializeTraderState(setupResult, startWorld, startGlobalHex, sectors, subsectorsToSearch, worlds, journal, pages[0], crew);
+    app.state.journalPageId = pages[0].id;
     await app._saveState();
 
     ui.notifications.info(game.i18n.format('TWODSIX.Trader.Messages.JourneyStarted', { world: startWorld.name }));

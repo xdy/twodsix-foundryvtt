@@ -40,11 +40,12 @@ async function fetchWithTimeout(url, options = {}) {
  * Fetch with cache wrapper for subsectors.
  * @param {string} sectorName
  * @param {JournalEntry} cacheJournal
+ * @param {string} milieu
  * @returns {Promise<import('./TraderState.js').Subsector[]|null>}
  */
-export async function loadSubsectorsWithCache(sectorName, cacheJournal = null) {
+export async function loadSubsectorsWithCache(sectorName, cacheJournal = null, milieu = 'M1105') {
   if (cacheJournal) {
-    const cached = await getCachedSubsectors(cacheJournal, sectorName);
+    const cached = await getCachedSubsectors(cacheJournal, sectorName, milieu);
     if (cached) {
       return cached;
     }
@@ -52,7 +53,7 @@ export async function loadSubsectorsWithCache(sectorName, cacheJournal = null) {
 
   const subsectors = await fetchSubsectors(sectorName);
   if (cacheJournal && subsectors && subsectors.length > 0) {
-    await setCachedSubsectors(cacheJournal, sectorName, subsectors);
+    await setCachedSubsectors(cacheJournal, sectorName, milieu, subsectors);
   }
   return subsectors;
 }
@@ -72,7 +73,7 @@ export async function fetchWorldWithCache(sectorName, hex, milieu = 'M1105', sec
     // Try each subsector A-P in this sector
     const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
     for (const letter of letters) {
-      const subKey = buildSubsectorKey(sectorName, letter);
+      const subKey = buildSubsectorKey(sectorName, letter, milieu);
       const worlds = await getCachedWorlds(cacheJournal, subKey);
       if (worlds) {
         const found = worlds.find(w => w.hex === hex);

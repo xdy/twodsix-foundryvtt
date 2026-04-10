@@ -37,8 +37,8 @@ export async function accrueMonthlyCosts(app) {
     // Tonnage needed can be fractional: 1 ton per 20 people per month
     const tonsNeeded = peopleCapacity / BULK_LS_CAPACITY;
 
-    const normalSupplies = s.cargo.find(c => c.name === 'TWODSIX.Trader.BulkLSNormal' && c.tons >= tonsNeeded);
-    const luxurySupplies = s.cargo.find(c => c.name === 'TWODSIX.Trader.BulkLSLuxury' && c.tons >= tonsNeeded);
+    const normalSupplies = s.cargo.find(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal') && c.tons >= tonsNeeded);
+    const luxurySupplies = s.cargo.find(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSLuxury') && c.tons >= tonsNeeded);
 
     if (tonsNeeded > 0 && (normalSupplies || luxurySupplies)) {
       const lsOptions = [

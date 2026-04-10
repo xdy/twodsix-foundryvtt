@@ -286,20 +286,6 @@ export function hexDistance(hex1, hex2) {
 }
 
 /**
- * Get all worlds within jump range of a given hex.
- * @param {string} currentHex - Current location hex (global or local)
- * @param {number} jumpRating - Ship's jump rating (parsecs)
- * @param {Actor[]} worlds - All world Actors in subsector
- * @returns {Actor[]} Worlds within range (excluding current)
- */
-export function getWorldsInJumpRange(currentHex, jumpRating, worlds) {
-  return worlds.filter(w => {
-    const targetHex = getWorldCoordinate(w);
-    return targetHex !== currentHex && hexDistance(currentHex, targetHex) <= jumpRating;
-  });
-}
-
-/**
  * Extract refueling options for a world.
  * @param {object} world - World data or Actor
  * @returns {object} {starport, hasGasGiant, hasRefined, hasUnrefined}

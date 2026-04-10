@@ -30,6 +30,7 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
   rows = [];
   pendingResolve = null;
   pendingMaxValue = null;
+  _pendingRemainInPortDays = null;
 
   // ─── Rendering ──────────────────────────────────────────────
 
@@ -37,14 +38,6 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
     try {
       const s = this.state || freshTraderState();
       const formatCr = num => (num ?? 0).toLocaleString(undefined, { minimumFractionDigits: 0 });
-
-      console.log('Twodsix | TraderApp._prepareContext:', {
-        phase: s.phase,
-        rows: this.rows.length,
-        world: s.currentWorldName,
-        hex: s.currentWorldHex,
-        worldsCount: s.worlds?.length
-      });
 
       return {
         ship: s.ship,
@@ -77,15 +70,6 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
     if (!this.element) {
       return;
     }
-    console.log('Twodsix | TraderApp._onRender starting', {
-      elementExists: !!this.element,
-      elementVisible: this.element?.offsetParent !== null,
-      innerHTML_length: this.element?.innerHTML?.length,
-      hasStatusBar: !!this.element?.querySelector('.st-status-bar'),
-      hasScroll: !!this.element?.querySelector('.st-scroll'),
-      hasTable: !!this.element?.querySelector('.st-table'),
-      rowsCount: this.element?.querySelectorAll('.st-table tr').length
-    });
     this._attachChoiceHandler(this.element);
     const scr = this.element.querySelector('.st-scroll');
     if (scr) {
