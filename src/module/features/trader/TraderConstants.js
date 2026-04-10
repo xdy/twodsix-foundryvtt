@@ -84,9 +84,10 @@ export const BULK_LS_CAPACITY = 20;
 // Maintenance: 0.1% of ship cost per year
 export const MAINTENANCE_RATE = 0.001;
 
-// Mortgage: 1/240th of cash price per month, 480 months total
+// Mortgage: 1/240th of cash price per month, 480 months total, 220% total financing cost
 export const MORTGAGE_DIVISOR = 240;
 export const MORTGAGE_TOTAL_MONTHS = 480;
+export const MORTGAGE_FINANCING_MULTIPLIER = 2.2;
 
 // Default 200-ton Merchant Trader TL9
 export const DEFAULT_MERCHANT_TRADER = {

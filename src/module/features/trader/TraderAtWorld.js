@@ -130,7 +130,7 @@ export async function atWorldPhase(app, world, ACTION) {
     }
 
     // Buy/Sell bulk life support: always available at worlds if credits/space/cargo permit
-    const hasBulkInCargo = s.cargo.some(c => c.name === 'TWODSIX.Trader.BulkLSNormal' || c.name === 'TWODSIX.Trader.BulkLSLuxury');
+    const hasBulkInCargo = s.cargo.some(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal') || c.name === game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'));
     if (getFreeCargoSpace(s) > 0 && s.credits >= Math.min(BULK_LS_NORMAL_COST, BULK_LS_LUXURY_COST)) {
       actions.push({ value: ACTION.BUY_BULK_LS, label: game.i18n.localize('TWODSIX.Trader.Actions.BuyBulkLifeSupport') });
     }
@@ -618,12 +618,13 @@ export async function buyBulkLifeSupport(app) {
     s.credits -= totalCost;
     s.totalExpenses += totalCost;
 
-    const existing = s.cargo.find(c => c.name === itemName);
+    const localizedName = game.i18n.localize(itemName);
+    const existing = s.cargo.find(c => c.name === localizedName);
     if (existing) {
       existing.tons += qty;
     } else {
       s.cargo.push({
-        name: itemName,
+        name: localizedName,
         tons: qty,
         purchasePricePerTon: costPerTon,
         purchaseWorld: s.currentWorldName,
@@ -635,7 +636,7 @@ export async function buyBulkLifeSupport(app) {
 
 export async function sellBulkLifeSupport(app) {
   const s = app.state;
-  const bulkCargo = s.cargo.filter(c => c.name === 'TWODSIX.Trader.BulkLSNormal' || c.name === 'TWODSIX.Trader.BulkLSLuxury');
+  const bulkCargo = s.cargo.filter(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal') || c.name === game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'));
 
   if (!bulkCargo.length) {
     await app.logEvent('No bulk life support supplies to sell.');
@@ -645,8 +646,8 @@ export async function sellBulkLifeSupport(app) {
   const options = bulkCargo.map((c, idx) => {
     const isSameWorld = c.purchaseWorld === s.currentWorldName;
     const label = isSameWorld
-      ? `${game.i18n.localize(c.name)} (${c.tons}t) — Cr${c.purchasePricePerTon.toLocaleString()}/t (Refund/Cancel)`
-      : `${game.i18n.localize(c.name)} (${c.tons}t) — Cr${c.purchasePricePerTon.toLocaleString()}/t (100% value)`;
+      ? `${c.name} (${c.tons}t) — Cr${c.purchasePricePerTon.toLocaleString()}/t (Refund/Cancel)`
+      : `${c.name} (${c.tons}t) — Cr${c.purchasePricePerTon.toLocaleString()}/t (100% value)`;
     return {
       value: String(idx),
       label,
@@ -1097,7 +1098,7 @@ export async function chooseDestination(app) {
   }
 
   s.destinationHex = chosen;
-  s.destinationGlobalHex = dest.globalHex || '';
+  s.destinationGlobalHex = dest.globalHex || dest.hex || '';
   s.destinationName = dest.name;
   await app.logEvent(`Selected ${dest.name} as destination.`);
 }
@@ -1125,7 +1126,7 @@ export async function getReachableDestinations(app) {
 
     if (nearbyWorlds.length > 0) {
       await app.logEvent(`No known worlds within jump range! Checking ${s.cacheJournalName}... found ${nearbyWorlds.length} potential destinations.`);
-      const newActors = await createWorldActors(nearbyWorlds, currentHex, s.ship.jumpRating, journal);
+      const newActors = await createWorldActors(nearbyWorlds, currentHex, journal);
       if (newActors.length > 0) {
         for (const na of newActors) {
           if (!s.worlds.find(w => w.id === na.id)) {
@@ -1243,14 +1244,14 @@ export async function otherActivities(app) {
   s.freight = Math.max(0, (s.freight || 0) + result.freightDelta);
 
   if (result.bulkNormalDelta > 0) {
-    s.cargo.push({ name: 'TWODSIX.Trader.BulkLSNormal', tons: result.bulkNormalDelta, purchasePricePerTon: 0, purchaseWorld: s.currentWorldName });
+    s.cargo.push({ name: game.i18n.localize('TWODSIX.Trader.BulkLSNormal'), tons: result.bulkNormalDelta, purchasePricePerTon: 0, purchaseWorld: s.currentWorldName });
   } else if (result.bulkNormalDelta < 0) {
-    removeBulkLifeSupport(s, 'TWODSIX.Trader.BulkLSNormal', -result.bulkNormalDelta);
+    removeBulkLifeSupport(s, game.i18n.localize('TWODSIX.Trader.BulkLSNormal'), -result.bulkNormalDelta);
   }
   if (result.bulkLuxuryDelta > 0) {
-    s.cargo.push({ name: 'TWODSIX.Trader.BulkLSLuxury', tons: result.bulkLuxuryDelta, purchasePricePerTon: 0, purchaseWorld: s.currentWorldName });
+    s.cargo.push({ name: game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'), tons: result.bulkLuxuryDelta, purchasePricePerTon: 0, purchaseWorld: s.currentWorldName });
   } else if (result.bulkLuxuryDelta < 0) {
-    removeBulkLifeSupport(s, 'TWODSIX.Trader.BulkLSLuxury', -result.bulkLuxuryDelta);
+    removeBulkLifeSupport(s, game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'), -result.bulkLuxuryDelta);
   }
 
   s.passengers.high = Math.max(0, s.passengers.high + result.paxDelta.high);

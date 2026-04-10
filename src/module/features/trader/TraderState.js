@@ -8,6 +8,7 @@ import {
   DEFAULT_MERCHANT_TRADER,
   HOURS_PER_DAY,
   MORTGAGE_DIVISOR,
+  MORTGAGE_FINANCING_MULTIPLIER,
   PORT_FEE_DAYS,
   UNSKILLED_PENALTY,
 } from './TraderConstants.js';
@@ -152,6 +153,7 @@ export const OUTCOME = {
  * @property {string} currentWorldName - Current world location name
  * @property {string} subsectorName - Current subsector name
  * @property {string} sectorName - Current sector name
+ * @property {string} milieu - Milieu identifier (e.g. 'M1105')
  * @property {GameDate} gameDate - Current game date
  * @property {string} phase - Current journey phase (from PHASE enum)
  * @property {number} credits - Current cash on hand
@@ -168,6 +170,7 @@ export const OUTCOME = {
  * @property {number} freight - Tons of freight for current trip
  * @property {boolean} hasMail - Whether mail is being carried
  * @property {string} destinationHex - Destination hex string for current trip
+ * @property {string} destinationGlobalHex - Destination global hex coordinate for current trip
  * @property {string} destinationName - Destination name for current trip
  * @property {import('../../entities/actors/WorldActor').default[]} worlds - Subsector world actors
  * @property {Object<string, WorldVisitCacheEntry>} worldVisitCache - Per-world visit state cache
@@ -181,6 +184,7 @@ export const OUTCOME = {
  * @property {number} localBrokerSkill - Skill level of local broker
  * @property {string|null} journalEntryId - Linked journal entry ID
  * @property {string|null} journalPageId - Linked journal page ID
+ * @property {string|null} cacheJournalName - Name of the TravellerMap cache journal
  * @property {Sector[]} sectors - Milieu sector list
  * @property {string[]} loadedSubsectorKeys - Keys of currently loaded subsectors
  * @property {number} maintenanceMonthsSkipped - Months since last maintenance
@@ -203,6 +207,7 @@ export function freshTraderState() {
     currentWorldName: '',
     subsectorName: '',
     sectorName: '',
+    milieu: 'M1105',
     gameDate: { year: 1105, day: 1 },
     phase: PHASE.AT_WORLD,
 
@@ -210,7 +215,7 @@ export function freshTraderState() {
     credits: 0,
     totalRevenue: 0,
     totalExpenses: 0,
-    mortgageRemaining: ship.shipCost * 2.2, // 220% total financing cost
+    mortgageRemaining: ship.shipCost * MORTGAGE_FINANCING_MULTIPLIER,
     monthlyPayment,
     monthsPaid: 0,
     lastPaidMonth: 1, // month number of last cost accrual (start at month 1 to avoid charging immediately)
@@ -235,6 +240,7 @@ export function freshTraderState() {
 
     // Destination for current trip (set when departing)
     destinationHex: '',
+    destinationGlobalHex: '',
     destinationName: '',
 
     // Subsector worlds
@@ -265,6 +271,7 @@ export function freshTraderState() {
     // Journal
     journalEntryId: null,
     journalPageId: null,
+    cacheJournalName: null,
 
     // Loaded data cache
     sectors: [],               // list of all sectors in milieu

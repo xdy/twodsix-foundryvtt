@@ -143,7 +143,7 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
     // Get subsectors for default sector
     try {
       const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
-      this._subsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal);
+      this._subsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal, this._milieu);
       if (!this._subsectors || this._subsectors.length === 0) {
         this._subsectors = getSubsectorsForSector(this._sectors, this._sectorName) || [];
       }
@@ -159,7 +159,7 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
     try {
       const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
       const sector = defaultSector || { name: DEFAULT_SECTOR, x: 0, y: 0 };
-      this._worlds = await loadSubsector(this._sectorName, this._subsectorLetter, DEFAULT_MILIEU, cacheJournal, { x: sector.x, y: sector.y });
+      this._worlds = await loadSubsector(this._sectorName, this._subsectorLetter, this._milieu, cacheJournal, { x: sector.x, y: sector.y });
       this._worlds.sort((a, b) => a.name.localeCompare(b.name));
     } catch (e) {
       console.warn('Failed to fetch worlds:', e);
@@ -225,7 +225,7 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
         this._loadingSubsectors = true;
         this.render();
 
-        this._subsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal) || getSubsectorsForSector(this._sectors, this._sectorName) || [];
+        this._subsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal, this._milieu) || getSubsectorsForSector(this._sectors, this._sectorName) || [];
         if (this._subsectors.length === 0) {
           this._subsectors = SUBSECTOR_LETTERS.map(l => ({ letter: l, name: `${this._sectorName} Subsector ${l}` }));
         }
@@ -258,7 +258,7 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
         try {
           // Fetch subsectors from TravellerMap metadata
           const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
-          let newSubsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal);
+          let newSubsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal, this._milieu);
           if (!newSubsectors || newSubsectors.length === 0) {
             // Get subsectors from cached data or compute
             newSubsectors = getSubsectorsForSector(this._sectors, this._sectorName);

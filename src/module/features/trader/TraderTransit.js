@@ -101,7 +101,7 @@ export async function depart(app) {
   }
 
   s.destinationHex = destHex;
-  s.destinationGlobalHex = dest.globalHex || dest.hex;
+  s.destinationGlobalHex = dest.globalHex || dest.hex || '';
   s.destinationName = dest.name;
   await executeDeparture(app);
 }
@@ -222,7 +222,7 @@ export async function arrivingPhase(app) {
                 s.worlds.push(actor);
               }
             }
-            await app.logEvent(`Discovery! Loading neighboring subsectors revealed ${newWorlds.length} new worlds.`);
+            await app.logEvent(`Discovery! Loading neighboring subsectors revealed ${newWorlds.length} worlds.`);
           }
         } catch (e) {
           console.error('Failed to ensure subsector neighbors loaded:', e);
@@ -240,7 +240,7 @@ export async function arrivingPhase(app) {
           try {
             const reachableWorldsData = await fetchJumpWorlds(sectorName, localHex, s.ship.jumpRating, s.milieu || 'M1105');
             if (reachableWorldsData.length > 0) {
-              const newActors = await createWorldActors(reachableWorldsData, s.currentWorldHex, s.ship.jumpRating, journal);
+              const newActors = await createWorldActors(reachableWorldsData, s.currentWorldHex, journal);
               if (newActors.length > 0) {
                 for (const actor of newActors) {
                   if (!s.worlds.some(w => w.id === actor.id)) {

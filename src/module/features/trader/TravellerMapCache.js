@@ -63,36 +63,49 @@ export function findCacheJournal(journalName) {
   return game.journal.find(j => j.name.toLowerCase() === journalName.toLowerCase());
 }
 
+/** Serializes concurrent creation requests per journal name to prevent duplicate journals. */
+const journalCreationLocks = new Map();
+
 /**
  * Get or create the cache journal.
  * If the journal doesn't exist, create it with the given name.
- * @param {string} journalName
- * @returns {JournalEntry}
+ * Concurrent calls with the same name are serialized so only one journal is created.
+ * @param {string} [journalName]
+ * @returns {Promise<JournalEntry>}
  */
 export async function getOrCreateCacheJournal(journalName) {
-  let journal = findCacheJournal(journalName);
   if (!journalName) {
-    // Default name if none provided
-    journalName = `TraderTravellermapCache ${new Date().toLocaleDateString()}`;
-    // Check if it already exists by default name or flag
-    journal = await getCacheJournal() || findCacheJournal(journalName);
-    if (!journal) {
-      journal = await JournalEntry.create({ name: journalName });
+    journalName = 'TraderTravellermapCache';
+  }
+
+  // Fast path: journal already exists
+  let journal = findCacheJournal(journalName);
+  if (journal) {
+    if (!journal.getFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal')) {
       await journal.setFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal', true);
-      await updateHumanReadableContent(journal);
     }
     return journal;
   }
 
-  if (!journal) {
-    journal = await JournalEntry.create({ name: journalName });
-    await journal.setFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal', true);
-    await updateHumanReadableContent(journal);
-  } else if (!journal.getFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal')) {
-    // Ensure flag is set on existing journal if found by name
-    await journal.setFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal', true);
+  // Slow path: serialize creation so concurrent callers don't each create their own
+  if (!journalCreationLocks.has(journalName)) {
+    journalCreationLocks.set(journalName, (async () => {
+      try {
+        // Re-check inside the lock — a concurrent caller may have created it while we awaited
+        journal = findCacheJournal(journalName);
+        if (!journal) {
+          journal = await JournalEntry.create({ name: journalName });
+          await journal.setFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal', true);
+          await updateHumanReadableContent(journal);
+        }
+        return journal;
+      } finally {
+        journalCreationLocks.delete(journalName);
+      }
+    })());
   }
-  return journal;
+
+  return journalCreationLocks.get(journalName);
 }
 
 /**
@@ -188,25 +201,27 @@ export async function setCachedSectors(journal, milieu, sectors) {
 }
 
 /**
- * Get cached subsectors for a sector (by sector name).
+ * Get cached subsectors for a sector (by sector name and milieu).
  * @param {JournalEntry} journal
  * @param {string} sectorName
+ * @param {string} milieu
  * @returns {Promise<import('./TraderState.js').Subsector[]|null>}
  */
-export async function getCachedSubsectors(journal, sectorName) {
+export async function getCachedSubsectors(journal, sectorName, milieu = 'M1105') {
   const allSubsectors = await getCachedData(journal, CACHE_KEY_SUBSECTORS) ?? {};
-  return allSubsectors[sectorName] ?? null;
+  return allSubsectors[`${milieu}_${sectorName}`] ?? null;
 }
 
 /**
  * Set cached subsectors for a sector.
  * @param {JournalEntry} journal
  * @param {string} sectorName
+ * @param {string} milieu
  * @param {import('./TraderState.js').Subsector[]} subsectors
  */
-export async function setCachedSubsectors(journal, sectorName, subsectors) {
+export async function setCachedSubsectors(journal, sectorName, milieu = 'M1105', subsectors) {
   const existing = await getCachedData(journal, CACHE_KEY_SUBSECTORS) ?? {};
-  existing[sectorName] = subsectors;
+  existing[`${milieu}_${sectorName}`] = subsectors;
   await setCachedData(journal, CACHE_KEY_SUBSECTORS, existing);
 }
 
@@ -302,10 +317,11 @@ export async function updateCachedWorldFoundryStatus(journal, subsectorKey, hex,
  * Build a unique key for subsector worlds cache.
  * @param {string} sectorName
  * @param {string} subsectorLetter
+ * @param {string} milieu
  * @returns {string}
  */
-export function buildSubsectorKey(sectorName, subsectorLetter) {
-  return `${sectorName}_${subsectorLetter}`;
+export function buildSubsectorKey(sectorName, subsectorLetter, milieu = 'M1105') {
+  return `${milieu}_${sectorName}_${subsectorLetter}`;
 }
 
 /**
