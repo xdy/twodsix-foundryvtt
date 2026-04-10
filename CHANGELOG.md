@@ -1,3 +1,10 @@
+## [7.1.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.1.1...v7.1.2) (2026-04-10)
+
+
+### Bug Fixes
+
+* Add group labels to 2e skills ([#1971](https://github.com/xdy/twodsix-foundryvtt/issues/1971)) ([ef51f0d](https://github.com/xdy/twodsix-foundryvtt/commit/ef51f0de408efbaeb56156fb9f84c7fbbfbfe0d7))
+
 ## [7.1.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.1.0...v7.1.1) (2026-04-07)
 
 
