@@ -5,7 +5,7 @@
  * @module TradeGeneratorBroker
  */
 
-import { STARPORT_BROKER_MAX, LOCAL_BROKER_COMMISSION } from './TradeGeneratorConstants.js';
+import { LOCAL_BROKER_COMMISSION, MAX_BROKER_SKILL, STARPORT_BROKER_MAX } from './TradeGeneratorConstants.js';
 
 export function getBrokerInfo(useLocalBroker, traderSkill, localBrokerSkill, starport) {
   if (!useLocalBroker) {
@@ -14,11 +14,10 @@ export function getBrokerInfo(useLocalBroker, traderSkill, localBrokerSkill, sta
       requestedSkill: traderSkill,
       effectiveSkill: traderSkill,
       commissionPercent: 0,
-      starportCap: STARPORT_BROKER_MAX[starport] ?? 0
     };
   }
 
-  const requestedSkill = Math.max(0, Math.min(4, localBrokerSkill));
+  const requestedSkill = Math.max(0, Math.min(MAX_BROKER_SKILL, localBrokerSkill));
   const starportCap = STARPORT_BROKER_MAX[starport] ?? 0;
   const effectiveSkill = Math.min(requestedSkill, starportCap);
   const commissionPercent = LOCAL_BROKER_COMMISSION[effectiveSkill] ?? 0;
@@ -28,7 +27,6 @@ export function getBrokerInfo(useLocalBroker, traderSkill, localBrokerSkill, sta
     requestedSkill,
     effectiveSkill,
     commissionPercent,
-    starportCap
   };
 }
 

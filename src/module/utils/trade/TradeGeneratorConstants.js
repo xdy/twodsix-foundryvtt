@@ -326,6 +326,9 @@ export const STARPORT_BONUSES = {
   "X": 0
 };
 
+// Maximum broker skill level that can be requested
+export const MAX_BROKER_SKILL = 4;
+
 // Local broker caps by starport class (Cepheus SRD)
 export const STARPORT_BROKER_MAX = {
   "A": 4,

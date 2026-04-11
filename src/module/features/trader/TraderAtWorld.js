@@ -36,7 +36,7 @@ import {
   getWorldCache,
   PHASE,
 } from './TraderState.js';
-import { canRefuelAtWorld, getRefuelOptions, getTimestamp, getWorldCoordinate, hexDistance, } from './TraderUtils.js';
+import { canRefuelAtWorld, getRefuelOptions, getWorldCoordinate, hexDistance, traderDebug } from './TraderUtils.js';
 import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './TravellerMapCache.js';
 
 /**
@@ -63,10 +63,10 @@ function getEffectiveBrokerSkillForWorld(s, starport) {
  */
 export async function atWorldPhase(app, world, ACTION) {
   const s = app.state;
-  console.log(`Twodsix | TraderAtWorld | [${getTimestamp()}] atWorldPhase starting`, { world: world?.name, hex: s.currentWorldHex });
+  traderDebug('TraderAtWorld', ` atWorldPhase starting`, { world: world?.name, hex: s.currentWorldHex });
 
   while (s.phase === PHASE.AT_WORLD) {
-    console.log(`Twodsix | TraderAtWorld | [${getTimestamp()}] atWorldPhase loop iteration`, { phase: s.phase, destinationHex: s.destinationHex });
+    traderDebug('TraderAtWorld', ` atWorldPhase loop iteration`, { phase: s.phase, destinationHex: s.destinationHex });
     // Check charter expiry
     if (s.chartered && s.charterExpiryDay && getAbsoluteDay(s.gameDate, s.milieu) >= s.charterExpiryDay) {
       s.chartered = false;
@@ -171,7 +171,7 @@ export async function atWorldPhase(app, world, ACTION) {
       game.i18n.format('TWODSIX.Trader.Prompts.AtWorld', { world: s.currentWorldName }),
       actions
     );
-    console.log(`Twodsix | TraderAtWorld | [${getTimestamp()}] atWorldPhase choice resolved: ${action}`);
+    traderDebug('TraderAtWorld', ` atWorldPhase choice resolved: ${action}`);
 
     if (!action) {
       console.warn('Twodsix | Trader: atWorldPhase - no action selected or choice cancelled.');

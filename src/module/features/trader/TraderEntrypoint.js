@@ -17,7 +17,13 @@ import {
 } from './TraderConstants.js';
 import { TraderSetupApp } from './TraderSetupApp.js';
 import { freshTraderState } from './TraderState.js';
-import { buildGlobalHex, getNeighboringSubsectors, getTimestamp, getWorldCoordinate } from './TraderUtils.js';
+import {
+  buildGlobalHex,
+  getNeighboringSubsectors,
+  getTimestamp,
+  getWorldCoordinate,
+  traderDebug
+} from './TraderUtils.js';
 import { fetchJumpWorlds, fetchSectors, fetchWorldWithCache, loadSubsectorsWithCache } from './TravellerMapAPI.js';
 import { getOrCreateCacheJournal } from './TravellerMapCache.js';
 
@@ -109,7 +115,7 @@ async function ensureGlobalHexForWorlds(worlds, sectors, startSector) {
  * @returns {Promise<{allWorldData: import('./TraderState.js').WorldData[], loadedSubsectorKeys: string[]}>}
  */
 async function loadSubsectorData(subsectorsToSearch, setupResult, cacheJournal, startSectorCoords, progressDialog = null) {
-  console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] loadSubsectorData starting for ${subsectorsToSearch.length} subsectors.`);
+  traderDebug('TraderEntrypoint', `loadSubsectorData starting for ${subsectorsToSearch.length} subsectors.`);
 
   if (progressDialog) {
     progressDialog.updateProgress({
@@ -168,7 +174,7 @@ async function loadSubsectorData(subsectorsToSearch, setupResult, cacheJournal, 
   const neighboringSubsectors = subsectorsToLoad.filter(s => s !== centralSubsector);
 
   // Stage 2: Load world data for the central subsector immediately
-  console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Loading central subsector data: ${centralSubsector.subsectorName}`);
+  traderDebug('TraderEntrypoint', `Loading central subsector data: ${centralSubsector.subsectorName}`);
   if (progressDialog) {
     progressDialog.updateProgress({
       subsectorsTotal: 1, // Only tracking central for now in the dialog
@@ -335,9 +341,9 @@ export async function startTrading(existingJournal = null) {
   // New trading journey setup
   try {
     const setupResult = await showSetupDialog();
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Setup dialog result received:`, setupResult);
+    traderDebug('TraderEntrypoint', `Setup dialog result received:`, setupResult);
     if (!setupResult) {
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Setup cancelled.`);
+      traderDebug('TraderEntrypoint', `Setup cancelled.`);
       return;
     }
 
@@ -348,11 +354,11 @@ export async function startTrading(existingJournal = null) {
     });
     await progressDialog.render({ force: true });
 
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Fetching sectors for milieu ${setupResult.milieu}...`);
+    traderDebug('TraderEntrypoint', `Fetching sectors for milieu ${setupResult.milieu}...`);
     progressDialog.updateProgress({ sectorsTotal: 1, sectorsLoaded: 0, progressText: 'Fetching sectors from TravellerMap API...' });
     const sectors = await fetchSectors(setupResult.milieu);
     progressDialog.updateProgress({ sectorsLoaded: 1, progressText: `Found ${sectors.length} sectors.` });
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Found ${sectors.length} sectors.`);
+    traderDebug('TraderEntrypoint', `Found ${sectors.length} sectors.`);
     const startInfo = getStartSectorAndCoords(setupResult, sectors);
     if (!startInfo) {
       console.error(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Start info not found.`);
@@ -361,22 +367,22 @@ export async function startTrading(existingJournal = null) {
     }
     const { sector: startSector, coords: startSectorCoords } = startInfo;
     const startGlobalHex = buildGlobalHex(startSectorCoords, setupResult.startHex);
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Start Global Hex: ${startGlobalHex}`);
+    traderDebug('TraderEntrypoint', `Start Global Hex: ${startGlobalHex}`);
     const cacheJournal = await getOrCreateCacheJournal(setupResult.cacheJournalName);
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Cache journal obtained: ${cacheJournal?.id}`);
+    traderDebug('TraderEntrypoint', `Cache journal obtained: ${cacheJournal?.id}`);
     const range = getJumpRating(setupResult);
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Jump rating: ${range}`);
+    traderDebug('TraderEntrypoint', `Jump rating: ${range}`);
 
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Finding neighboring subsectors...`);
+    traderDebug('TraderEntrypoint', `Finding neighboring subsectors...`);
     const subsectorsToSearch = getNeighboringSubsectors(startSector, setupResult.startHex, sectors);
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Neighboring subsectors found: ${subsectorsToSearch.length}`);
+    traderDebug('TraderEntrypoint', `Neighboring subsectors found: ${subsectorsToSearch.length}`);
     const sectorsToSearch = [...new Set(subsectorsToSearch.map(s => s.sectorName))];
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Sectors to search: ${sectorsToSearch.join(', ')}`);
+    traderDebug('TraderEntrypoint', `Sectors to search: ${sectorsToSearch.join(', ')}`);
     let worlds = loadWorldsFromSectors(sectorsToSearch);
     let neighboringSubsectors = [];
 
     if (worlds?.length > 0) {
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Found ${worlds.length} existing world actors in folders.`);
+      traderDebug('TraderEntrypoint', `Found ${worlds.length} existing world actors in folders.`);
       progressDialog.updateProgress({
         worldsToCreate: worlds.length,
         worldsCreated: worlds.length,
@@ -384,21 +390,21 @@ export async function startTrading(existingJournal = null) {
       });
       ui.notifications.info(game.i18n.format('TWODSIX.Trader.Messages.UsingCachedWorlds', { subsector: setupResult.subsectorName }));
       await ensureGlobalHexForWorlds(worlds, sectors, startSector);
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Using ${worlds.length} worlds from folders: ${sectorsToSearch.join(', ')}`);
+      traderDebug('TraderEntrypoint', `Using ${worlds.length} worlds from folders: ${sectorsToSearch.join(', ')}`);
       // When using folders, we don't know the exact subkeys unless we inspect every actor,
       // but for simplicity we'll assume we have enough to start.
     } else {
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] No existing world actors found. Loading from API/Cache...`);
+      traderDebug('TraderEntrypoint', `No existing world actors found. Loading from API/Cache...`);
       progressDialog.updateProgress({ progressText: 'No existing world actors found. Loading from API/Cache...' });
       const { allWorldData, loadedSubsectorKeys, neighboringSubsectors: neighbors } = await loadSubsectorData(subsectorsToSearch, setupResult, cacheJournal, startSectorCoords, progressDialog);
       neighboringSubsectors = neighbors;
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Central world data gathered: ${allWorldData.length}`);
+      traderDebug('TraderEntrypoint', `Central world data gathered: ${allWorldData.length}`);
       if (!allWorldData.length) {
         ui.notifications.error(game.i18n.localize('TWODSIX.Trader.Messages.NoWorldsFound'));
         progressDialog.close();
         return;
       }
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Creating world actors...`);
+      traderDebug('TraderEntrypoint', `Creating world actors...`);
       progressDialog.updateProgress({
         worldsToCreate: allWorldData.length,
         worldsCreated: 0,
@@ -410,10 +416,10 @@ export async function startTrading(existingJournal = null) {
         worldsCreated: worlds.length,
         progressText: `Created/found ${worlds.length} world actors.`
       });
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Created/found ${worlds.length} world actors.`);
+      traderDebug('TraderEntrypoint', `Created/found ${worlds.length} world actors.`);
     }
 
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Finding start world...`);
+    traderDebug('TraderEntrypoint', `Finding start world...`);
     progressDialog.updateProgress({ progressText: 'Confirming starting world...' });
     const startWorld = await findOrFetchStartWorld(worlds, startGlobalHex, setupResult, range, cacheJournal, startSectorCoords, sectorsToSearch);
     if (!startWorld) {
@@ -421,22 +427,22 @@ export async function startTrading(existingJournal = null) {
       progressDialog.close();
       return;
     }
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Start world confirmed: ${startWorld.name}`);
+    traderDebug('TraderEntrypoint', `Start world confirmed: ${startWorld.name}`);
 
     progressDialog.updateProgress({ progressText: 'Loading crew configuration...' });
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Showing crew dialog...`);
+    traderDebug('TraderEntrypoint', `Showing crew dialog...`);
     // Close progress dialog before showing next modal dialog
     progressDialog.close();
     progressDialog = null;
 
     const crew = await showCrewDialog(setupResult.shipActorId);
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Crew dialog result received:`, crew);
+    traderDebug('TraderEntrypoint', `Crew dialog result received:`, crew);
     if (!crew) {
-      console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Crew dialog cancelled.`);
+      traderDebug('TraderEntrypoint', `Crew dialog cancelled.`);
       return;
     }
 
-    console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Creating journal entry...`);
+    traderDebug('TraderEntrypoint', `Creating journal entry...`);
     const journal = await JournalEntry.create({
       name: setupResult.journalName || `Trader: ${setupResult.subsectorName} — ${new Date().toLocaleDateString()}`,
     });
@@ -461,7 +467,7 @@ export async function startTrading(existingJournal = null) {
         try {
           const neighborWorldDataResults = await Promise.all(neighboringSubsectors.map(async (sub) => {
             try {
-              console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Background loading subsector: ${sub.subsectorName} (${sub.subsectorLetter}) in ${sub.sectorName}`);
+              traderDebug('TraderEntrypoint', `Background loading subsector: ${sub.subsectorName} (${sub.subsectorLetter}) in ${sub.sectorName}`);
               return await loadSubsector(sub.sectorName, sub.subsectorLetter, setupResult.milieu, cacheJournal, sub.sectorCoords);
             } catch (e) {
               console.warn(`Twodsix | TraderEntrypoint | Failed background load for ${sub.subsectorName}:`, e);
@@ -471,7 +477,7 @@ export async function startTrading(existingJournal = null) {
 
           const neighborWorldData = neighborWorldDataResults.flat();
           if (neighborWorldData.length > 0) {
-            console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Background creation for ${neighborWorldData.length} world actors.`);
+            traderDebug('TraderEntrypoint', `Background creation for ${neighborWorldData.length} world actors.`);
             const newWorlds = await createWorldActors(neighborWorldData, startGlobalHex, cacheJournal);
 
             // Add to app state and update journal
@@ -490,7 +496,7 @@ export async function startTrading(existingJournal = null) {
               });
 
               await app._saveState();
-              console.log(`Twodsix | TraderEntrypoint | [${getTimestamp()}] Background loading complete. Added ${newWorlds.length} worlds.`);
+              traderDebug('TraderEntrypoint', `Background loading complete. Added ${newWorlds.length} worlds.`);
               ui.notifications.info(`Neighboring subsectors loaded (${newWorlds.length} worlds added).`);
             }
           }

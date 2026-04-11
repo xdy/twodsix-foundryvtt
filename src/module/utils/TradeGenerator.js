@@ -41,6 +41,9 @@ function priceWithBroker(pricing, basePrice, capSameWorld, commissionPercent) {
  * @returns TradeGenerationResult with all generated trade data for the world.
  */
 export function generateTradeInformation(worldData) {
+  if (!worldData) {
+    throw new Error('TradeGenerator: worldData is required');
+  }
   const tradeCodes = worldData.tradeCodes || [];
   const starportBonus = STARPORT_BONUSES[worldData.starport] || 0;
   const traderSkill = worldData.traderSkill ?? 0;
@@ -52,8 +55,9 @@ export function generateTradeInformation(worldData) {
 
   const restrictTradeGoodsToCodes = worldData.restrictTradeGoodsToCodes ?? false;
   const includeIllegalGoods = worldData.includeIllegalGoods ?? false;
-  // Normalize zone: treat 'none', empty, or undefined as 'Green'
-  const zone = (worldData.zone && worldData.zone.toLowerCase() !== 'none') ? worldData.zone : 'Green';
+  // Normalize zone to lowercase: treat 'none', empty, or undefined as 'green'
+  const rawZone = (worldData.zone || '').toLowerCase();
+  const zone = (rawZone && rawZone !== 'none') ? rawZone : 'green';
 
   // Get current ruleset from game settings to determine which price table to use
   const ruleset = (game.settings?.get('twodsix', 'ruleset')) || 'CE';
@@ -76,16 +80,20 @@ export function generateTradeInformation(worldData) {
     return purchaseMatch || saleMatch;
   };
 
-  // Simulate supplier finding (good supply situation bonus is 0-2)
+  // Simulate supplier finding (good supply situation bonus is 0-2, reported in UI but not applied to checks)
   const supplierBonus = Math.floor(Math.random() * 3);
 
   // Select which goods are available to buy (D66 roll logic)
   const isBlackMarket = worldData.isBlackMarket ?? false;
-  const numRolls = Math.floor(Math.random() * 6) + 1; // 1-6
+  const numRolls = Math.floor(Math.random() * 6) + 1; // 1D6
   const availableGoodsTonnage = new Map(); // Map of index -> extra multiplier
 
   // SRD D66 table: Roll numRolls times. Ignore 61-65 unless black market.
-  // TRADE_GOODS has 31 items. Indices 24-28 are illegal; index 30 is Unusual Cargo.
+  // D66 maps to 36 entries: 11-16 (1-6), 21-26 (7-12), ... 61-66 (31-36).
+  // Legal goods occupy rolls 1-24, illegal goods 25-29 (D66 61-65), unusual cargo 30+ (D66 66).
+  const D66_TOTAL = 36;
+  const D66_LEGAL_END = 24;    // Rolls 1-24 → legal goods
+  const D66_ILLEGAL_END = 29;  // Rolls 25-29 → illegal goods
   const legalIndices = TRADE_GOODS.map((_, i) => i).filter(i => !TRADE_GOODS[i].illegal && !TRADE_GOODS[i].unusual);
   const illegalIndices = TRADE_GOODS.map((_, i) => i).filter(i => TRADE_GOODS[i].illegal);
 
@@ -100,21 +108,22 @@ export function generateTradeInformation(worldData) {
 
   // Roll 1D6 random goods from the full table (following SRD D66 rules)
   for (let i = 0; i < numRolls; i++) {
-    const roll = Math.floor(Math.random() * 36) + 1; // Simulate D66 index (1-36)
+    const roll = Math.floor(Math.random() * D66_TOTAL) + 1;
     let goodIndex = -1;
-    if (roll <= 24) {
-      goodIndex = legalIndices[roll - 1];
-    } else if (roll <= 29) {
-      // 25-29 (D66 61-65) are illegal
-      if (isBlackMarket || includeIllegalGoods) {
-        goodIndex = illegalIndices[roll - 25];
+    if (roll <= D66_LEGAL_END) {
+      goodIndex = (roll - 1 < legalIndices.length) ? legalIndices[roll - 1] : -1;
+    } else if (roll <= D66_ILLEGAL_END) {
+      const illegalRoll = roll - D66_LEGAL_END - 1;
+      if ((isBlackMarket || includeIllegalGoods) && illegalRoll < illegalIndices.length) {
+        goodIndex = illegalIndices[illegalRoll];
       }
     } else {
-      // 30 (D66 66) is Unusual Cargo
+      // D66 66: Unusual Cargo
       goodIndex = TRADE_GOODS.findIndex(g => g.unusual);
     }
 
-    if (goodIndex !== -1 && restrictTradeGoodsToCodes && !TRADE_GOODS[goodIndex].unusual
+    // Unusual goods intentionally bypass trade code restriction (they are generic/untyped)
+    if (goodIndex !== -1 && restrictTradeGoodsToCodes && !TRADE_GOODS[goodIndex]?.unusual
         && !isTradeCodeMatched(TRADE_GOODS[goodIndex])) {
       goodIndex = -1;
     }
@@ -184,16 +193,13 @@ export function generateTradeInformation(worldData) {
       purchasePriceByName.set(good.name, purchaseAdjusted.price);
     }
 
-    // Add to sale list if not illegal (or if illegal goods are included)
+    // Add to sale list if not illegal (or if illegal goods are included).
+    // Use the uncapped sale price for the sale list (cap only applies to purchase-side goods above).
     if (!good.illegal || includeIllegalGoods) {
       const purchasePrice = purchasePriceByName.get(good.name);
-      // Apply broker commission to the full (uncapped) sale price
-      let salePriceAdjusted = applyBrokerCommission(
-        good.basePrice,
-        pricing.salePrice,
-        commissionPercent
-      ).price;
-      let salePriceModPercentAdjusted = Math.round((salePriceAdjusted / good.basePrice) * 100);
+      const uncappedSale = applyBrokerCommission(good.basePrice, pricing.salePrice, commissionPercent);
+      let salePriceAdjusted = uncappedSale.price;
+      let salePriceModPercentAdjusted = uncappedSale.modPercent;
 
       // Cap sale price at purchase price for same-world resale prevention
       if (capSameWorld && purchasePrice !== undefined && salePriceAdjusted > purchasePrice) {
@@ -409,6 +415,7 @@ export function buildTradeReportRows(tradeInfo) {
         sellCommission
       });
     } catch (e) {
+      console.error('TradeGenerator: Failed to serialize trade report row:', e, row);
       _json = '{}';
     }
 
