@@ -1,105 +1,143 @@
 <form class="other-activities-app">
   <div class="oa-body">
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.Ship"}}</legend>
-    <select name="shipActorId">
-      <option value="">— {{localize "TWODSIX.Trader.OtherActivities.NoChange"}} ({{currentShipName}}) —</option>
-      {{#each ships}}
-        <option value="{{id}}">{{name}}</option>
-      {{/each}}
-    </select>
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.Ship"}}</legend>
+      <select name="shipActorId">
+        <option value="">— {{localize "TWODSIX.Trader.OtherActivities.NoChange"}} ({{currentShipName}}) —</option>
+        {{#each ships}}
+          <option value="{{id}}">{{name}}</option>
+        {{/each}}
+      </select>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.Crew"}}</legend>
-    <table class="oa-crew">
-      <thead>
-        <tr><th>Name</th><th>Position</th><th>Salary</th><th></th></tr>
-      </thead>
-      <tbody>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.Crew"}}</legend>
+      <table class="oa-crew">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
         {{#each crew}}
           <tr>
             <td>{{name}}</td>
             <td>{{position}}</td>
             <td>Cr{{salary}}</td>
-            <td><button type="button" class="oa-remove-crew" data-index="{{@index}}">×</button></td>
+            <td>
+              <button type="button" class="oa-remove-crew" data-index="{{@index}}">×</button>
+            </td>
           </tr>
         {{/each}}
-      </tbody>
-    </table>
-    <div class="oa-add-row">
-      <select class="oa-crew-actor">
-        <option value="">— {{localize "TWODSIX.Trader.OtherActivities.SelectActor"}} —</option>
-        {{#each travellerActors}}
-          <option value="{{id}}">{{name}}</option>
-        {{/each}}
-      </select>
-      <select class="oa-crew-position">
-        {{#each positions}}<option value="{{this}}">{{this}}</option>{{/each}}
-      </select>
-      <button type="button" class="oa-add-crew-btn">{{localize "TWODSIX.Trader.OtherActivities.AddCrew"}}</button>
-    </div>
-  </fieldset>
+        </tbody>
+      </table>
+      <div class="oa-add-row">
+        <select class="oa-crew-actor">
+          <option value="">— {{localize "TWODSIX.Trader.OtherActivities.SelectActor"}} —</option>
+          {{#each travellerActors}}
+            <option value="{{id}}">{{name}}</option>
+          {{/each}}
+        </select>
+        <select class="oa-crew-position">
+          {{#each positions}}
+            <option value="{{this}}">{{this}}</option>{{/each}}
+        </select>
+        <button type="button" class="oa-add-crew-btn">{{localize "TWODSIX.Trader.OtherActivities.AddCrew"}}</button>
+      </div>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.FundsDelta"}} <small>(current: Cr{{currentCredits}})</small></legend>
-    <input type="number" name="creditsDelta" value="0" step="1"/>
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.FundsDelta"}} <small>(current: Cr{{currentCredits}})</small>
+      </legend>
+      <input type="number" name="creditsDelta" value="0" step="1"/>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.Goods"}} <small>(free: {{freeCargo}}t)</small></legend>
-    <table class="oa-goods">
-      <thead>
-        <tr><th>Name</th><th>Tons</th><th>Cr/ton</th><th>World</th><th></th></tr>
-      </thead>
-      <tbody>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.Goods"}} <small>(free: {{freeCargo}}t)</small></legend>
+      <table class="oa-goods">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Tons</th>
+          <th>Cr/ton</th>
+          <th>World</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
         {{#each cargo}}
           <tr>
             <td>{{name}}</td>
             <td>{{tons}}</td>
             <td>{{purchasePricePerTon}}</td>
             <td>{{purchaseWorld}}</td>
-            <td><button type="button" class="oa-remove-cargo" data-index="{{@index}}">×</button></td>
+            <td>
+              <button type="button" class="oa-remove-cargo" data-index="{{@index}}">×</button>
+            </td>
           </tr>
         {{/each}}
-      </tbody>
-    </table>
-    <div class="oa-add-row">
-      <input type="text" class="oa-good-name" placeholder="{{localize 'TWODSIX.Trader.OtherActivities.GoodsName'}}"/>
-      <input type="number" class="oa-good-tons" placeholder="{{localize 'TWODSIX.Trader.OtherActivities.Tons'}}" min="0" step="1"/>
-      <input type="number" class="oa-good-price" placeholder="{{localize 'TWODSIX.Trader.OtherActivities.PricePerTon'}}" min="0" step="1"/>
-      <input type="text" class="oa-good-world" placeholder="{{localize 'TWODSIX.Trader.OtherActivities.PurchaseWorld'}}" value="{{currentWorldName}}"/>
-      <button type="button" class="oa-add-goods-btn">{{localize "TWODSIX.Trader.OtherActivities.AddGoods"}}</button>
-    </div>
-  </fieldset>
+        </tbody>
+      </table>
+      <div class="oa-add-row">
+        <input type="text" class="oa-good-name" placeholder="{{localize 'TWODSIX.Trader.OtherActivities.GoodsName'}}"/>
+        <input type="number" class="oa-good-tons" placeholder="{{localize 'TWODSIX.Trader.OtherActivities.Tons'}}"
+               min="0" step="1"/>
+        <input type="number" class="oa-good-price"
+               placeholder="{{localize 'TWODSIX.Trader.OtherActivities.PricePerTon'}}" min="0" step="1"/>
+        <input type="text" class="oa-good-world"
+               placeholder="{{localize 'TWODSIX.Trader.OtherActivities.PurchaseWorld'}}" value="{{currentWorldName}}"/>
+        <button type="button" class="oa-add-goods-btn">{{localize "TWODSIX.Trader.OtherActivities.AddGoods"}}</button>
+      </div>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.FreightDelta"}} <small>(current: {{currentFreight}}t, free cargo: {{freeCargo}}t)</small></legend>
-    <input type="number" name="freightDelta" value="0" step="1"/>
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.FreightDelta"}} <small>(current: {{currentFreight}}t, free
+        cargo: {{freeCargo}}t)</small></legend>
+      <input type="number" name="freightDelta" value="0" step="1"/>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.BulkLSDelta"}} <small>(free cargo: {{freeCargo}}t)</small></legend>
-    <label>{{localize "TWODSIX.Trader.OtherActivities.BulkNormal"}}: <input type="number" name="bulkNormalDelta" value="0" step="1"/></label>
-    <label>{{localize "TWODSIX.Trader.OtherActivities.BulkLuxury"}}: <input type="number" name="bulkLuxuryDelta" value="0" step="1"/></label>
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.BulkLSDelta"}} <small>(free cargo: {{freeCargo}}t)</small>
+      </legend>
+      <label>{{localize "TWODSIX.Trader.OtherActivities.BulkNormal"}}: <input type="number" name="bulkNormalDelta"
+                                                                              value="0" step="1"/></label>
+      <label>{{localize "TWODSIX.Trader.OtherActivities.BulkLuxury"}}: <input type="number" name="bulkLuxuryDelta"
+                                                                              value="0" step="1"/></label>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.PassengersDelta"}} <small>(free staterooms: {{freeStaterooms}}, free low berths: {{freeLowBerths}})</small></legend>
-    <label>{{localize "TWODSIX.Trader.OtherActivities.High"}}: <input type="number" name="paxHighDelta" value="0" step="1"/></label>
-    <label>{{localize "TWODSIX.Trader.OtherActivities.Middle"}}: <input type="number" name="paxMiddleDelta" value="0" step="1"/></label>
-    <label>{{localize "TWODSIX.Trader.OtherActivities.Low"}}: <input type="number" name="paxLowDelta" value="0" step="1"/></label>
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.PassengersDelta"}} <small>(free staterooms: {{freeStaterooms}},
+        free low berths: {{freeLowBerths}})</small></legend>
+      <label>{{localize "TWODSIX.Trader.OtherActivities.High"}}: <input type="number" name="paxHighDelta" value="0"
+                                                                        step="1"/></label>
+      <label>{{localize "TWODSIX.Trader.OtherActivities.Middle"}}: <input type="number" name="paxMiddleDelta" value="0"
+                                                                          step="1"/></label>
+      <label>{{localize "TWODSIX.Trader.OtherActivities.Low"}}: <input type="number" name="paxLowDelta" value="0"
+                                                                       step="1"/></label>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.Days"}}</legend>
-    <input type="number" name="days" value="0" min="0" step="1" required/>
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.FuelDelta"}} <small>(current: {{currentFuel}}t, refined: {{#if
+        fuelIsRefined}}Yes{{else}}No{{/if}})</small></legend>
+      <label>{{localize "TWODSIX.Trader.OtherActivities.Refined"}}: <input type="number" name="fuelRefinedDelta"
+                                                                           value="0" step="1"/></label>
+      <label>{{localize "TWODSIX.Trader.OtherActivities.Unrefined"}}: <input type="number" name="fuelUnrefinedDelta"
+                                                                             value="0" step="1"/></label>
+    </fieldset>
 
-  <fieldset>
-    <legend>{{localize "TWODSIX.Trader.OtherActivities.Description"}}</legend>
-    <textarea name="description" required rows="3" placeholder="{{localize 'TWODSIX.Trader.OtherActivities.DescriptionPlaceholder'}}"></textarea>
-  </fieldset>
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.Days"}}</legend>
+      <input type="number" name="days" value="0" min="0" step="1" required/>
+    </fieldset>
+
+    <fieldset>
+      <legend>{{localize "TWODSIX.Trader.OtherActivities.Description"}}</legend>
+      <textarea name="description" required rows="3"
+                placeholder="{{localize 'TWODSIX.Trader.OtherActivities.DescriptionPlaceholder'}}"></textarea>
+    </fieldset>
 
   </div>
   <footer class="oa-footer">

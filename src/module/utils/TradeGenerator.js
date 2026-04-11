@@ -7,19 +7,19 @@
  */
 
 import { COMPONENT_SUBTYPES } from '../config.js';
-import { COMMON_GOODS, TRADE_GOODS, STARPORT_BONUSES } from './trade/TradeGeneratorConstants.js';
+import { applyBrokerCommission, getBrokerInfo } from './trade/TradeGeneratorBroker.js';
+import { COMMON_GOODS, STARPORT_BONUSES, TRADE_GOODS } from './trade/TradeGeneratorConstants.js';
 import {
+  calculateGoodPricing,
+  calculatePricesFromChecks,
+  clampCheck,
+  getIllegalGoodsSaleModifier,
   getPriceModifierTable,
   getStarportTrafficModifier,
   getZoneSafetyModifier,
-  getIllegalGoodsSaleModifier,
   rollDice,
-  clampCheck,
-  simulateBrokerCheck,
-  calculateGoodPricing,
-  calculatePricesFromChecks
+  simulateBrokerCheck
 } from './trade/TradeGeneratorPricing.js';
-import { getBrokerInfo, applyBrokerCommission } from './trade/TradeGeneratorBroker.js';
 
 /**
  * Apply capSameWorld and broker commission to a pricing result.
@@ -143,7 +143,6 @@ export function generateTradeInformation(worldData) {
   const saleGoods = [];
   const unusualGoods = [];
   const purchasePriceByName = new Map();
-  const purchasePriceByNamePreCommission = new Map();
   let unusualFound = false;
 
   TRADE_GOODS.forEach((good, index) => {
@@ -183,24 +182,20 @@ export function generateTradeInformation(worldData) {
       });
 
       purchasePriceByName.set(good.name, purchaseAdjusted.price);
-      purchasePriceByNamePreCommission.set(good.name, pricing.purchasePrice);
     }
 
     // Add to sale list if not illegal (or if illegal goods are included)
     if (!good.illegal || includeIllegalGoods) {
       const purchasePrice = purchasePriceByName.get(good.name);
-      const purchasePricePreCommission = purchasePriceByNamePreCommission.get(good.name);
-      const cappedSalePriceForList =
-        capSameWorld && purchasePricePreCommission !== undefined && pricing.salePrice > purchasePricePreCommission
-          ? purchasePricePreCommission
-          : pricing.salePrice;
+      // Apply broker commission to the full (uncapped) sale price
       let salePriceAdjusted = applyBrokerCommission(
         good.basePrice,
-        cappedSalePriceForList,
+        pricing.salePrice,
         commissionPercent
       ).price;
       let salePriceModPercentAdjusted = Math.round((salePriceAdjusted / good.basePrice) * 100);
 
+      // Cap sale price at purchase price for same-world resale prevention
       if (capSameWorld && purchasePrice !== undefined && salePriceAdjusted > purchasePrice) {
         salePriceAdjusted = purchasePrice;
         salePriceModPercentAdjusted = Math.round((salePriceAdjusted / good.basePrice) * 100);
@@ -392,36 +387,45 @@ export function buildTradeReportRows(tradeInfo) {
       });
     });
   }
-  rows.forEach((row) => {
-    row.illegalMark = row.illegal ? "*" : "";
-    // Store canonical numeric values for cargo creation and drag data
-    row.buyPricePerTon = row.buyPrice ?? 0;
-    row.sellPricePerTon = row.sellPrice ?? 0;
-    row.buyPriceMod = row.buyMod ?? 100;
-    row.sellPriceMod = row.sellMod ?? 100;
-    row.buyCommission = row.buyCommission ?? 0;
-    row.sellCommission = row.sellCommission ?? 0;
-    // Format display strings (overwrites raw values used above)
-    row.buyPrice = row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
-    row.buyMod = row.buyMod !== undefined ? `${row.buyMod}%` : "";
-    row.sellPrice = row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "";
-    row.sellMod = row.sellMod !== undefined ? `${row.sellMod}%` : "";
-    // Build drag-data JSON with canonical numeric field names
+  return rows.map((row) => {
+    const buyPricePerTon = row.buyPrice ?? 0;
+    const sellPricePerTon = row.sellPrice ?? 0;
+    const buyPriceMod = row.buyMod ?? 100;
+    const sellPriceMod = row.sellMod ?? 100;
+    const buyCommission = row.buyCommission ?? 0;
+    const sellCommission = row.sellCommission ?? 0;
+
+    let _json;
     try {
-      row._json = JSON.stringify({
+      _json = JSON.stringify({
         name: row.name,
         illegal: row.illegal,
         quantity: row.quantity,
-        buyPricePerTon: row.buyPricePerTon,
-        sellPricePerTon: row.sellPricePerTon,
-        buyPriceMod: row.buyPriceMod,
-        sellPriceMod: row.sellPriceMod,
-        buyCommission: row.buyCommission,
-        sellCommission: row.sellCommission
+        buyPricePerTon,
+        sellPricePerTon,
+        buyPriceMod,
+        sellPriceMod,
+        buyCommission,
+        sellCommission
       });
     } catch (e) {
-      row._json = '{}';
+      _json = '{}';
     }
+
+    return {
+      ...row,
+      illegalMark: row.illegal ? "*" : "",
+      buyPricePerTon,
+      sellPricePerTon,
+      buyPriceMod,
+      sellPriceMod,
+      buyCommission,
+      sellCommission,
+      buyPrice: row.buyPrice !== undefined ? `${formatCr(row.buyPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "",
+      buyMod: row.buyMod !== undefined ? `${row.buyMod}%` : "",
+      sellPrice: row.sellPrice !== undefined ? `${formatCr(row.sellPrice)} ${game.i18n.localize("TWODSIX.Trade.CrPerTon")}` : "",
+      sellMod: row.sellMod !== undefined ? `${row.sellMod}%` : "",
+      _json
+    };
   });
-  return rows;
 }

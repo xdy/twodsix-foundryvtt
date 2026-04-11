@@ -4,6 +4,8 @@
  * Caches sectors list, subsectors per sector, and worlds per subsector.
  */
 
+import { getTimestamp } from './TraderUtils.js';
+
 const CACHE_FLAGS_NAMESPACE = 'twodsix';
 const CACHE_KEY_SECTORS = 'travellerMapSectors';
 const CACHE_KEY_SUBSECTORS = 'travellerMapSubsectors';
@@ -37,18 +39,34 @@ async function compressData(data) {
  * @returns {Promise<any>}
  */
 async function decompressData(base64Data) {
-  const binaryString = atob(base64Data);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
+  try {
+    console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] Decompressing ${base64Data.length} bytes of base64 data...`);
+    const binaryString = atob(base64Data);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const stream = new Blob([bytes]).stream()
+      .pipeThrough(new DecompressionStream('gzip'));
+    const response = new Response(stream);
+    console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] Decompression stream created, awaiting blob...`);
+
+    // Use a timeout for the decompression process which can hang in some environments
+    const blobPromise = response.blob();
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Decompression timed out after 10s')), 10000)
+    );
+    const blob = await Promise.race([blobPromise, timeoutPromise]);
+
+    console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] Blob received, awaiting text...`);
+    const jsonString = await blob.text();
+    console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] Text received (${jsonString.length} chars), parsing JSON...`);
+    return JSON.parse(jsonString);
+  } catch (err) {
+    console.error('Twodsix | TravellerMapCache | decompressData failed:', err);
+    throw err;
   }
-  const stream = new Blob([bytes]).stream()
-    .pipeThrough(new DecompressionStream('gzip'));
-  const response = new Response(stream);
-  const blob = await response.blob();
-  const jsonString = await blob.text();
-  return JSON.parse(jsonString);
 }
 
 /**
@@ -134,6 +152,7 @@ export async function getCachedData(journal, cacheKey) {
   }
   try {
     const data = journal.getFlag(CACHE_FLAGS_NAMESPACE, cacheKey) ?? null;
+    console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] getFlag(${cacheKey}) returned: ${data ? (typeof data === 'string' ? data.length + ' chars' : typeof data) : 'null'}`);
     if (data && typeof data === 'string') {
       return await decompressData(data);
     }
@@ -164,9 +183,12 @@ export async function setCachedData(journal, cacheKey, data) {
 
   const task = writeQueue.get(journal.id).then(async () => {
     try {
+      console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] setCachedData(${cacheKey}) starting...`);
       const compressedData = await compressData(foundry.utils.deepClone(data));
+      console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] setCachedData(${cacheKey}) compressed to ${compressedData.length} chars.`);
       await journal.setFlag(CACHE_FLAGS_NAMESPACE, cacheKey, compressedData);
       await journal.setFlag(CACHE_FLAGS_NAMESPACE, CACHE_KEY_LAST_UPDATED, Date.now());
+      console.log(`Twodsix | TravellerMapCache | [${getTimestamp()}] setCachedData(${cacheKey}) flags set.`);
       await updateHumanReadableContent(journal);
     } catch (e) {
       console.error(`Failed to set cached data for key ${cacheKey}:`, e);

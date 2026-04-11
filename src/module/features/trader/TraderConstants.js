@@ -168,9 +168,21 @@ export const FUEL_CHEAT_MULTIPLIER = 10;
 export const MAINTENANCE_DAMAGE_THRESHOLD = 8;
 export const TRANSIT_BASE_HOURS = 24;
 export const HOURS_PER_DAY = 24;
-export const MARKET_REFRESH_DAYS = 3;
 export const MAIL_CONTRACT_THRESHOLD = 7;
 export const CHEAT_FREE_FUEL_DAYS = 7;
 
 export const UNSKILLED_PENALTY = -3;
+
+// Base year per milieu — used to compute relative month/day offsets
+export const MILIEU_BASE_YEAR = {
+  'M1105': 1105,
+  'M1900': 1900,
+  'M1120': 1120,
+  'M1201': 1201,
+  'M1248': 1248,
+  'IW': -2400,
+  'M0': 0,
+  'M600': 600,
+  'M990': 990,
+};
 

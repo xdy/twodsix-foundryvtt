@@ -310,6 +310,18 @@ export function canRefuelAtWorld(world) {
 }
 
 /**
+ * Get the current timestamp in HH:mm:ss.SSS format.
+ * @returns {string} Formatted timestamp
+ */
+export function getTimestamp() {
+  const now = new Date();
+  return now.getHours().toString().padStart(2, '0') + ':' +
+         now.getMinutes().toString().padStart(2, '0') + ':' +
+         now.getSeconds().toString().padStart(2, '0') + '.' +
+         now.getMilliseconds().toString().padStart(3, '0');
+}
+
+/**
  * Get the location coordinate for a world Actor.
  * Prefers the 'locationCoordinate' flag, falls back to parsing the 'coordinates' system field.
  * @param {Actor|object} world - The world Actor or data object

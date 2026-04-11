@@ -215,7 +215,7 @@ export async function acceptCharter(app) {
   s.charterCargo = cargo;
   s.charterStaterooms = staterooms;
   s.charterLowBerths = lowBerths;
-  s.charterExpiryDay = getAbsoluteDay(s.gameDate) + 14;
+  s.charterExpiryDay = getAbsoluteDay(s.gameDate, s.milieu) + 14;
 
   await app.logEvent(`Ship chartered to ${s.destinationName}. ${cargo}t cargo, ${staterooms} stateroom(s), ${lowBerths} low berth(s). Fee: Cr${fee.toLocaleString()}. Charter expires day ${s.charterExpiryDay}. Credits: Cr${s.credits.toLocaleString()}.`);
 
@@ -231,10 +231,11 @@ export async function acceptCharter(app) {
 
 /**
  * Automatically refuel, picking the best available option.
- * Used by charter to avoid manual refuel interaction.
+ * Uses shared fuel helpers from TraderAtWorld.
  */
 export async function autoRefuel(app, world, jumpFuel) {
   const s = app.state;
+  const { applyFuelPurchase, affordableFuel } = await import('./TraderAtWorld.js');
   const fuelNeeded = Math.min(jumpFuel, s.ship.fuelCapacity) - s.ship.currentFuel;
   if (fuelNeeded <= 0) {
     return;
@@ -246,21 +247,14 @@ export async function autoRefuel(app, world, jumpFuel) {
   if (['A', 'B'].includes(starport)) {
     const fullCost = fuelNeeded * FUEL_COST.refined;
     if (s.credits >= fullCost) {
-      s.credits -= fullCost;
-      s.totalExpenses += fullCost;
-      s.ship.currentFuel += fuelNeeded;
-      s.ship.fuelIsRefined = true;
-      await app.logEvent(`Auto-refueled ${fuelNeeded}t refined fuel for charter departure. Cost: Cr${fullCost.toLocaleString()}.`);
+      const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined, true);
+      await app.logEvent(`Auto-refueled ${fuelNeeded}t refined fuel for charter departure. Cost: Cr${cost.toLocaleString()}.`);
       return;
     } else {
-      const affordable = Math.max(0, Math.floor(s.credits / FUEL_COST.refined));
-      if (affordable > 0) {
-        const cost = affordable * FUEL_COST.refined;
-        s.credits -= cost;
-        s.totalExpenses += cost;
-        s.ship.currentFuel += affordable;
-        s.ship.fuelIsRefined = true;
-        await app.logEvent(`Auto-refueled ${affordable}t refined fuel (partial) for charter departure. Cost: Cr${cost.toLocaleString()}.`);
+      const tons = affordableFuel(s.credits, FUEL_COST.refined);
+      if (tons > 0) {
+        const cost = applyFuelPurchase(s, tons, FUEL_COST.refined, true);
+        await app.logEvent(`Auto-refueled ${tons}t refined fuel (partial) for charter departure. Cost: Cr${cost.toLocaleString()}.`);
       }
     }
   }
@@ -274,21 +268,14 @@ export async function autoRefuel(app, world, jumpFuel) {
   if (['A', 'B', 'C', 'D'].includes(starport)) {
     const fullCost = remainingNeeded * FUEL_COST.unrefined;
     if (s.credits >= fullCost) {
-      s.credits -= fullCost;
-      s.totalExpenses += fullCost;
-      s.ship.currentFuel += remainingNeeded;
-      s.ship.fuelIsRefined = false;
-      await app.logEvent(`Auto-refueled ${remainingNeeded}t unrefined fuel for charter departure. Cost: Cr${fullCost.toLocaleString()}.`);
+      const cost = applyFuelPurchase(s, remainingNeeded, FUEL_COST.unrefined, false);
+      await app.logEvent(`Auto-refueled ${remainingNeeded}t unrefined fuel for charter departure. Cost: Cr${cost.toLocaleString()}.`);
       return;
     } else {
-      const affordable = Math.max(0, Math.floor(s.credits / FUEL_COST.unrefined));
-      if (affordable > 0) {
-        const cost = affordable * FUEL_COST.unrefined;
-        s.credits -= cost;
-        s.totalExpenses += cost;
-        s.ship.currentFuel += affordable;
-        s.ship.fuelIsRefined = false;
-        await app.logEvent(`Auto-refueled ${affordable}t unrefined fuel (partial) for charter departure. Cost: Cr${cost.toLocaleString()}.`);
+      const tons = affordableFuel(s.credits, FUEL_COST.unrefined);
+      if (tons > 0) {
+        const cost = applyFuelPurchase(s, tons, FUEL_COST.unrefined, false);
+        await app.logEvent(`Auto-refueled ${tons}t unrefined fuel (partial) for charter departure. Cost: Cr${cost.toLocaleString()}.`);
       }
     }
   }

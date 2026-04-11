@@ -6,14 +6,26 @@
  * @module TradeGeneratorPricing
  */
 
-import { PRICE_MODIFIERS_CE, PRICE_MODIFIERS_CDEE } from './TradeGeneratorConstants.js';
+import {
+  CDEE_FAMILY_RULESETS,
+  CHECK_MAX,
+  CHECK_MIN,
+  PRICE_MODIFIERS_CDEE,
+  PRICE_MODIFIERS_CE,
+  STARPORT_PURCHASE_MODS,
+  STARPORT_PURCHASE_MODS_CLU,
+  STARPORT_SALE_MODS,
+  STARPORT_SALE_MODS_CLU,
+  TRAFFIC_MOD_RULESETS,
+  ZONE_PURCHASE_MODS,
+  ZONE_SALE_MODS,
+} from './TradeGeneratorConstants.js';
 
 /**
  * Get the appropriate price modifier table for the current ruleset.
  */
 export function getPriceModifierTable(ruleset) {
-  // CDEE, CD, CEL, CLU, and AC use the more conservative table (11-16 differ from CE)
-  if (['CDEE', 'CD', 'CEL', 'CLU', 'AC'].includes(ruleset)) {
+  if (CDEE_FAMILY_RULESETS.includes(ruleset)) {
     return PRICE_MODIFIERS_CDEE;
   }
   // Default to CE for all other rulesets (CE, CT, CEATOM, etc.)
@@ -25,27 +37,18 @@ export function getPriceModifierTable(ruleset) {
  * High traffic = more competition = different price dynamics.
  */
 export function getStarportTrafficModifier(starport, isPurchase, ruleset) {
-  if (!['CDEE', 'CD', 'CLU', 'AC'].includes(ruleset)) {
+  if (!TRAFFIC_MOD_RULESETS.includes(ruleset)) {
     return 0;
   }
 
-  const port = starport.toUpperCase();
+  const port = (starport || 'X').toUpperCase();
 
   if (isPurchase) {
-    // Purchase mods: high traffic = higher purchase prices (more demand)
-    const purchaseMods = {
-      'A': 2, 'B': 1, 'C': 0, 'D': -1, 'E': -2,
-      'X': ruleset === 'CLU' ? -2 : -3
-    };
-    return purchaseMods[port] || 0;
+    const mods = ruleset === 'CLU' ? STARPORT_PURCHASE_MODS_CLU : STARPORT_PURCHASE_MODS;
+    return mods[port] || 0;
   } else {
-    // Sale mods: high traffic = lower sale prices (more sellers)
-    const saleMods = ruleset === 'CLU' ? {
-      'A': -3, 'B': -2, 'C': -1, 'D': 0, 'E': 0, 'X': 1
-    } : {
-      'A': -1, 'B': -2, 'C': 0, 'D': 0, 'E': 0, 'X': 1
-    };
-    return saleMods[port] || 0;
+    const mods = ruleset === 'CLU' ? STARPORT_SALE_MODS_CLU : STARPORT_SALE_MODS;
+    return mods[port] || 0;
   }
 }
 
@@ -54,18 +57,16 @@ export function getStarportTrafficModifier(starport, isPurchase, ruleset) {
  * Dangerous zones = risk premium = higher prices.
  */
 export function getZoneSafetyModifier(zone, isPurchase, ruleset) {
-  if (!['CDEE', 'CD', 'CLU', 'AC'].includes(ruleset)) {
+  if (!TRAFFIC_MOD_RULESETS.includes(ruleset)) {
     return 0;
   }
 
   const safetyZone = (zone || 'Green').toLowerCase();
 
   if (isPurchase) {
-    const mods = { 'green': 0, 'amber': 1, 'red': 3 };
-    return mods[safetyZone] || 0;
+    return ZONE_PURCHASE_MODS[safetyZone] || 0;
   } else {
-    const mods = { 'green': 0, 'amber': 0, 'red': 2 };
-    return mods[safetyZone] || 0;
+    return ZONE_SALE_MODS[safetyZone] || 0;
   }
 }
 
@@ -74,7 +75,7 @@ export function getZoneSafetyModifier(zone, isPurchase, ruleset) {
  * Per CDEE/CLU rules: "DM+1 or DM+2" for illegal sale.
  */
 export function getIllegalGoodsSaleModifier(isIllegal, zone, ruleset) {
-  if (!['CDEE', 'CD', 'CLU', 'AC'].includes(ruleset)) {
+  if (!TRAFFIC_MOD_RULESETS.includes(ruleset)) {
     return 0;
   }
   if (!isIllegal) {
@@ -118,7 +119,7 @@ export function getLargestTradeCodeModifier(codes, modifiers) {
 }
 
 export function clampCheck(value) {
-  return Math.max(2, Math.min(16, value));
+  return Math.max(CHECK_MIN, Math.min(CHECK_MAX, value));
 }
 
 /**

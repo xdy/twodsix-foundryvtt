@@ -3,6 +3,7 @@
  * Logic for actions available while docked at a world.
  */
 
+import { LOCAL_BROKER_COMMISSION, STARPORT_BROKER_MAX } from '../../utils/trade/TradeGeneratorConstants.js';
 import { buildTradeReportRows, generateTradeInformation } from '../../utils/TradeGenerator.js';
 import { createWorldActors } from './SubsectorLoader.js';
 import {
@@ -35,7 +36,8 @@ import {
   getWorldCache,
   PHASE,
 } from './TraderState.js';
-import { canRefuelAtWorld, getRefuelOptions, getWorldCoordinate, hexDistance, } from './TraderUtils.js';
+import { canRefuelAtWorld, getRefuelOptions, getTimestamp, getWorldCoordinate, hexDistance, } from './TraderUtils.js';
+import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './TravellerMapCache.js';
 
 /**
  * Get the best available broker skill (crew vs hired)
@@ -48,13 +50,10 @@ function getEffectiveBrokerSkillForWorld(s, starport) {
   if (!s.useLocalBroker) {
     return crewSkill;
   }
-  // Local brokers are also capped by starport class in this system's logic (see TradeGenerator.js)
-  const maxSkill = { 'A': 4, 'B': 3, 'C': 2, 'D': 1, 'E': 1, 'X': 0 }[starport] || 0;
+  const maxSkill = STARPORT_BROKER_MAX[starport] || 0;
   const hiredSkill = Math.min(s.localBrokerSkill, maxSkill);
   return Math.max(crewSkill, hiredSkill);
 }
-
-import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './TravellerMapCache.js';
 
 /**
  * Main function to handle the AT_WORLD phase loop.
@@ -64,12 +63,12 @@ import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './Trav
  */
 export async function atWorldPhase(app, world, ACTION) {
   const s = app.state;
-  console.log('Twodsix | Trader: atWorldPhase starting', { world: world?.name, hex: s.currentWorldHex });
+  console.log(`Twodsix | TraderAtWorld | [${getTimestamp()}] atWorldPhase starting`, { world: world?.name, hex: s.currentWorldHex });
 
   while (s.phase === PHASE.AT_WORLD) {
-    console.log('Twodsix | Trader: atWorldPhase loop iteration', { phase: s.phase, destinationHex: s.destinationHex });
+    console.log(`Twodsix | TraderAtWorld | [${getTimestamp()}] atWorldPhase loop iteration`, { phase: s.phase, destinationHex: s.destinationHex });
     // Check charter expiry
-    if (s.chartered && s.charterExpiryDay && getAbsoluteDay(s.gameDate) >= s.charterExpiryDay) {
+    if (s.chartered && s.charterExpiryDay && getAbsoluteDay(s.gameDate, s.milieu) >= s.charterExpiryDay) {
       s.chartered = false;
       s.charterCargo = 0;
       s.charterStaterooms = 0;
@@ -172,7 +171,7 @@ export async function atWorldPhase(app, world, ACTION) {
       game.i18n.format('TWODSIX.Trader.Prompts.AtWorld', { world: s.currentWorldName }),
       actions
     );
-    console.log('Twodsix | Trader: atWorldPhase choice resolved:', action);
+    console.log(`Twodsix | TraderAtWorld | [${getTimestamp()}] atWorldPhase choice resolved: ${action}`);
 
     if (!action) {
       console.warn('Twodsix | Trader: atWorldPhase - no action selected or choice cancelled.');
@@ -215,10 +214,6 @@ export async function atWorldPhase(app, world, ACTION) {
         break;
       case ACTION.REFUEL:
         await refuel(app, world);
-        break;
-      case ACTION.REMAIN_IN_PORT:
-        await remainInPort(app, app._pendingRemainInPortDays || 1);
-        app._pendingRemainInPortDays = null;
         break;
       case ACTION.PRIVATE_MESSAGES:
         await takePrivateMessages(app);
@@ -734,7 +729,7 @@ async function searchForTrade(app, world, type) {
   }
 
   // Handle month reset for search penalty
-  const currentMonth = getMonthNumber(s.gameDate);
+  const currentMonth = getMonthNumber(s.gameDate, s.milieu);
   if (cache.lastSearchMonth !== currentMonth) {
     cache.searchAttempts = 0;
     cache.lastSearchMonth = currentMonth;
@@ -804,7 +799,7 @@ async function searchForTrade(app, world, type) {
 export async function hireBroker(app, world) {
   const s = app.state;
   const starport = world?.system?.starport || 'X';
-  const maxSkill = { 'A': 4, 'B': 3, 'C': 2, 'D': 1, 'E': 1, 'X': 0 }[starport] || 0;
+  const maxSkill = STARPORT_BROKER_MAX[starport] || 0;
 
   if (maxSkill <= 0) {
     await app.logEvent(`No local brokers available at this ${starport}-class starport.`);
@@ -813,7 +808,7 @@ export async function hireBroker(app, world) {
 
   const options = [];
   for (let i = 1; i <= maxSkill; i++) {
-    const commission = { 1: 5, 2: 10, 3: 15, 4: 20 }[i];
+    const commission = LOCAL_BROKER_COMMISSION[i];
     options.push({ value: String(i), label: `Skill-${i} Broker (${commission}% commission)` });
   }
   options.push({ value: '0', label: 'Do not hire (use own skill)' });
@@ -823,7 +818,7 @@ export async function hireBroker(app, world) {
   if (chosen > 0) {
     s.useLocalBroker = true;
     s.localBrokerSkill = chosen;
-    const commission = { 1: 5, 2: 10, 3: 15, 4: 20 }[chosen];
+    const commission = LOCAL_BROKER_COMMISSION[chosen];
     await app.logEvent(`Hired local Skill-${chosen} broker. They will take a ${commission}% commission on all trades.`);
     const cache = getWorldCache(s);
     cache.tradeInfo = null;
@@ -837,6 +832,32 @@ export async function hireBroker(app, world) {
 }
 
 // ─── Refuel ──────────────────────────────────────────────────
+
+/**
+ * Apply a fuel purchase to the ship state.
+ * @param {object} s - Trader state
+ * @param {number} tons - Tons of fuel to add
+ * @param {number} costPerTon - Cost per ton
+ * @param {boolean} isRefined - Whether the fuel is refined
+ */
+export function applyFuelPurchase(s, tons, costPerTon, isRefined) {
+  const cost = tons * costPerTon;
+  s.credits -= cost;
+  s.totalExpenses += cost;
+  s.ship.currentFuel += tons;
+  s.ship.fuelIsRefined = isRefined;
+  return cost;
+}
+
+/**
+ * Calculate how many tons of fuel can be afforded at the given cost.
+ * @param {number} credits - Available credits
+ * @param {number} costPerTon - Cost per ton
+ * @returns {number} Affordable tons (floored)
+ */
+export function affordableFuel(credits, costPerTon) {
+  return Math.max(0, Math.floor(credits / costPerTon));
+}
 
 export async function refuel(app, world) {
   const s = app.state;
@@ -856,7 +877,7 @@ export async function refuel(app, world) {
     if (s.credits >= fullCost) {
       options.push({ value: 'refined', label: `Refined fuel (${fuelNeeded}t) — Cr${fullCost.toLocaleString()}` });
     } else {
-      const affordable = Math.max(0, Math.floor(s.credits / FUEL_COST.refined));
+      const affordable = affordableFuel(s.credits, FUEL_COST.refined);
       if (affordable > 0) {
         options.push({
           value: 'refined_partial',
@@ -866,12 +887,12 @@ export async function refuel(app, world) {
     }
   }
 
-  if (['A', 'B', 'C','D'].includes(starport)) {
+  if (['A', 'B', 'C', 'D'].includes(starport)) {
     const fullCost = fuelNeeded * FUEL_COST.unrefined;
     if (s.credits >= fullCost) {
       options.push({ value: 'unrefined', label: `Unrefined fuel (${fuelNeeded}t) — Cr${fullCost.toLocaleString()}` });
     } else {
-      const affordable = Math.max(0, Math.floor(s.credits / FUEL_COST.unrefined));
+      const affordable = affordableFuel(s.credits, FUEL_COST.unrefined);
       if (affordable > 0) {
         options.push({
           value: 'unrefined_partial',
@@ -892,12 +913,12 @@ export async function refuel(app, world) {
     if (s.credits >= cheatCost) {
       options.push({
         value: 'cheat',
-        label: `CHEAT: Ask your gm if you can buy unrefined fuel at extortionate cost. Somehow. (${fuelNeeded}t) — Cr${cheatCost.toLocaleString()} (${FUEL_CHEAT_MULTIPLIER}x price)`,
+        label: game.i18n.format('TWODSIX.Trader.Cheat.BuyFuel', { tons: fuelNeeded, cost: cheatCost.toLocaleString(), multiplier: FUEL_CHEAT_MULTIPLIER }),
       });
     }
     options.push({
       value: 'cheat_free',
-      label: `CHEAT: Ask your gm if you can spend a week begging, scrounging and stealing enough fuel to fill the tank. Somehow. (${fuelNeeded}t) — Free (takes ${CHEAT_FREE_FUEL_DAYS} days, unrefined)`,
+      label: game.i18n.format('TWODSIX.Trader.Cheat.ScroungeFuel', { tons: fuelNeeded, days: CHEAT_FREE_FUEL_DAYS }),
     });
   }
 
@@ -913,35 +934,19 @@ export async function refuel(app, world) {
   }
 
   if (choice === 'refined') {
-    const cost = fuelNeeded * FUEL_COST.refined;
-    s.credits -= cost;
-    s.totalExpenses += cost;
-    s.ship.currentFuel = s.ship.fuelCapacity;
-    s.ship.fuelIsRefined = true;
+    const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined, true);
     await app.logEvent(`Purchased ${fuelNeeded}t refined fuel. Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`);
   } else if (choice === 'refined_partial') {
-    const affordable = Math.max(0, Math.floor(s.credits / FUEL_COST.refined));
-    const cost = affordable * FUEL_COST.refined;
-    s.credits -= cost;
-    s.totalExpenses += cost;
-    s.ship.currentFuel += affordable;
-    s.ship.fuelIsRefined = true;
-    await app.logEvent(`Purchased ${affordable}t refined fuel (partial load). Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}. Fuel: ${s.ship.currentFuel}/${s.ship.fuelCapacity}t.`);
+    const tons = affordableFuel(s.credits, FUEL_COST.refined);
+    const cost = applyFuelPurchase(s, tons, FUEL_COST.refined, true);
+    await app.logEvent(`Purchased ${tons}t refined fuel (partial load). Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}. Fuel: ${s.ship.currentFuel}/${s.ship.fuelCapacity}t.`);
   } else if (choice === 'unrefined') {
-    const cost = fuelNeeded * FUEL_COST.unrefined;
-    s.credits -= cost;
-    s.totalExpenses += cost;
-    s.ship.currentFuel = s.ship.fuelCapacity;
-    s.ship.fuelIsRefined = false;
+    const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.unrefined, false);
     await app.logEvent(`Purchased ${fuelNeeded}t unrefined fuel. Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`);
   } else if (choice === 'unrefined_partial') {
-    const affordable = Math.max(0, Math.floor(s.credits / FUEL_COST.unrefined));
-    const cost = affordable * FUEL_COST.unrefined;
-    s.credits -= cost;
-    s.totalExpenses += cost;
-    s.ship.currentFuel += affordable;
-    s.ship.fuelIsRefined = false;
-    await app.logEvent(`Purchased ${affordable}t unrefined fuel (partial load). Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}. Fuel: ${s.ship.currentFuel}/${s.ship.fuelCapacity}t.`);
+    const tons = affordableFuel(s.credits, FUEL_COST.unrefined);
+    const cost = applyFuelPurchase(s, tons, FUEL_COST.unrefined, false);
+    await app.logEvent(`Purchased ${tons}t unrefined fuel (partial load). Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}. Fuel: ${s.ship.currentFuel}/${s.ship.fuelCapacity}t.`);
   } else if (choice === 'gasgiant') {
     const skimTime = Math.ceil(fuelNeeded / FUEL_SKIM_RATE) * (await app._roll('1d6'));
     s.ship.currentFuel = s.ship.fuelCapacity;
@@ -949,11 +954,7 @@ export async function refuel(app, world) {
     advanceDate(s.gameDate, skimTime);
     await app.logEvent(`Skimmed ${fuelNeeded}t fuel from gas giant. Time: ${skimTime} hours. Fuel is unrefined.`);
   } else if (choice === 'cheat') {
-    const cost = fuelNeeded * FUEL_COST.refined * FUEL_CHEAT_MULTIPLIER;
-    s.credits -= cost;
-    s.totalExpenses += cost;
-    s.ship.currentFuel = s.ship.fuelCapacity;
-    s.ship.fuelIsRefined = false;
+    const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined * FUEL_CHEAT_MULTIPLIER, false);
     await app.logEvent(`CHEAT: Magically refueled ${fuelNeeded}t at ${world?.name || 'unknown world'}. Cost: Cr${cost.toLocaleString()}. Fuel is unrefined. Credits: Cr${s.credits.toLocaleString()}.`);
   } else if (choice === 'cheat_free') {
     s.ship.currentFuel = s.ship.fuelCapacity;
@@ -962,31 +963,6 @@ export async function refuel(app, world) {
     await app.logEvent(`CHEAT: Scrounged ${fuelNeeded}t fuel at ${world?.name || 'unknown world'}. Took ${CHEAT_FREE_FUEL_DAYS} days. Fuel is unrefined.`);
   }
   await accruePortFees(app);
-}
-
-export async function remainInPort(app, days) {
-  const s = app.state;
-  const cache = getWorldCache(s);
-  const currentDay = getAbsoluteDay(s.gameDate);
-  const daysSinceLastRoll = currentDay - (s.lastRollDay || 1);
-
-  advanceDate(s.gameDate, days * HOURS_PER_DAY);
-  await accruePortFees(app);
-
-  if (daysSinceLastRoll >= 7) {
-    cache.passengers = null;
-    cache.freight = null;
-    cache.tradeInfo = null;
-    cache.foundSupplier = false;
-    cache.foundBuyer = false;
-    cache.foundBlackMarketSupplier = false;
-    cache.foundOnlineSupplier = false;
-    cache.noGoodsAvailable = false;
-    s.lastRollDay = currentDay;
-    await app.logEvent(`Remained in port for ${days} day(s) at ${s.currentWorldName}. 1 week passed since last market roll — markets and searches refreshed.`);
-  } else {
-    await app.logEvent(`Remained in port for ${days} day(s) at ${s.currentWorldName}. Markets not refreshed (need at least 7 days since last roll, only ${daysSinceLastRoll} passed).`);
-  }
 }
 
 export async function takePrivateMessages(app) {
@@ -1017,7 +993,7 @@ export async function takePrivateMessages(app) {
 export async function accruePortFees(app) {
   const s = app.state;
   const cache = getWorldCache(s);
-  const currentDay = getAbsoluteDay(s.gameDate);
+  const currentDay = getAbsoluteDay(s.gameDate, s.milieu);
   const daysSpent = currentDay - cache.arrivalDay + 1;
 
   if (daysSpent > cache.portFeesPaidDays) {
@@ -1046,7 +1022,7 @@ export async function chooseDestination(app) {
     options.unshift({ value: 'clear', label: game.i18n.localize('TWODSIX.Trader.Actions.ClearDestination') });
   }
 
-  const chosen = await app._choose(game.i18n.localize('TWODSIX.Trader.Prompts.ChooseDestination'), options);
+  const chosen = await app._choose(game.i18n.localize('TWODSIX.Trader.Prompts.ChooseDestination'), options, null);
 
   if (chosen === 'clear') {
     if (cache.privateMessageAccepted && cache.privateMessageCredits > 0) {
@@ -1257,6 +1233,32 @@ export async function otherActivities(app) {
   s.passengers.high = Math.max(0, s.passengers.high + result.paxDelta.high);
   s.passengers.middle = Math.max(0, s.passengers.middle + result.paxDelta.middle);
   s.passengers.low = Math.max(0, s.passengers.low + result.paxDelta.low);
+
+  if (result.fuelDelta) {
+    const refined = result.fuelDelta.refined || 0;
+    const unrefined = result.fuelDelta.unrefined || 0;
+    if (refined !== 0 || unrefined !== 0) {
+      const currentFuel = s.ship.currentFuel || 0;
+      const fuelIsRefined = s.ship.fuelIsRefined ?? true;
+      const newAmount = Math.max(0, currentFuel + refined + unrefined);
+
+      // Have to do something, this is something:
+      // unrefined fuel makes the whole tank unrefined.
+      // adding refined to empty makes it refined.
+      // adding refined to unrefined stays unrefined.
+      let newRefined = fuelIsRefined;
+      if (unrefined > 0) {
+        newRefined = false;
+      } else if (currentFuel === 0 && refined > 0) {
+        newRefined = true;
+      } else if (newAmount === 0) {
+        newRefined = true;
+      }
+
+      s.ship.currentFuel = newAmount;
+      s.ship.fuelIsRefined = newRefined;
+    }
+  }
 
   if (result.days > 0) {
     advanceDate(s.gameDate, result.days * HOURS_PER_DAY);

@@ -182,6 +182,13 @@ export async function arrivingPhase(app) {
     const hex = getWorldCoordinate(w);
     return hex === s.destinationHex || hex === s.destinationGlobalHex;
   });
+
+  if (!arrivedWorld) {
+    ui.notifications.error(`Twodsix | Trader: Could not find destination world: ${s.destinationName} (${s.destinationHex})`);
+    s.phase = PHASE.AT_WORLD;
+    return;
+  }
+
   s.currentWorldHex = getWorldCoordinate(arrivedWorld) || s.destinationGlobalHex || s.destinationHex;
   s.currentWorldName = s.destinationName;
   s.destinationHex = '';
@@ -198,7 +205,7 @@ export async function arrivingPhase(app) {
   await app.logEvent(`Arrived at ${s.currentWorldName} ${worldInfo}. In-system transit: ${Math.round(transitHours / HOURS_PER_DAY)} day(s).`);
 
   // Mark world as visited in cache and on actor
-  if (arrivedWorld) {
+  if (arrivedWorld && typeof arrivedWorld.getFlag === 'function') {
     const subKey = arrivedWorld.getFlag('twodsix', 'subsectorKey');
     if (subKey && s.cacheJournalName) {
       const journal = await getOrCreateCacheJournal(s.cacheJournalName);
@@ -248,7 +255,7 @@ export async function arrivingPhase(app) {
                   }
                 }
                 const newNames = newActors.filter(a => a.name !== s.currentWorldName).map(a => a.name).join(', ');
-                await app.logEvent(`Discovery! Higher jump range (${s.ship.jumpRating}) revealed ${newActors.length} new potential destinations: ${newNames}.`);
+                await app.logEvent(`Discovery! Higher jump range (${s.ship.jumpRating}) revealed this list of potential destinations: ${newNames}.`);
               }
             }
           } catch (e) {
@@ -257,8 +264,10 @@ export async function arrivingPhase(app) {
         }
       }
     }
+  } else if (arrivedWorld) {
+    // This case should be handled by the !arrivedWorld check above, but might as well keep it.
+    console.warn('Twodsix | Trader: arrivedWorld found but is not an Actor document', arrivedWorld);
   }
-
   // Deliver passengers
   const paxRev = s.passengers.high * PASSENGER_REVENUE.high
     + s.passengers.middle * PASSENGER_REVENUE.middle
@@ -296,7 +305,7 @@ export async function arrivingPhase(app) {
   await app.logEvent(`Credits: Cr${s.credits.toLocaleString()}. Cargo: ${getUsedCargoSpace(s)}/${s.ship.cargoCapacity}t.`);
 
   // Check charter expiry on arrival
-  if (s.chartered && s.charterExpiryDay && getAbsoluteDay(s.gameDate) >= s.charterExpiryDay) {
+  if (s.chartered && s.charterExpiryDay && getAbsoluteDay(s.gameDate, s.milieu) >= s.charterExpiryDay) {
     s.chartered = false;
     s.charterCargo = 0;
     s.charterStaterooms = 0;

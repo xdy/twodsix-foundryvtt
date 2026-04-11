@@ -17,19 +17,28 @@ import {
   MORTGAGE_DIVISOR,
   SUBSECTOR_LETTERS
 } from './TraderConstants.js';
-import { getWorldCoordinate } from './TraderUtils.js';
+import { getTimestamp, getWorldCoordinate } from './TraderUtils.js';
 import { fetchSectors, getSubsectorsForSector, loadSubsectorsWithCache } from './TravellerMapAPI.js';
 import { getCachedSectors, getOrCreateCacheJournal, setCachedSectors } from './TravellerMapCache.js';
 
 /**
  * ApplicationV2 for initial setup of a trading journey.
  */
-export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
+export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicationMixin(
+  foundry.applications.api.ApplicationV2
+) {
   static DEFAULT_OPTIONS = {
     id: 'trader-setup',
+    tag: 'form',
     classes: ['twodsix', 'trader-setup'],
     window: { title: 'TWODSIX.Trader.Setup.Title', resizable: true },
     position: { width: 600, height: 600 },
+  };
+
+  static PARTS = {
+    main: {
+      template: 'systems/twodsix/templates/trader/trader-setup.hbs',
+    },
   };
 
   constructor(options = {}) {
@@ -74,10 +83,12 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
 
   async _prepareContext(_options) {
     if (this._sectors.length === 0) {
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Initial sectors not loaded, starting _initialLoad...`);
       await this._initialLoad();
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] _initialLoad complete. Sectors: ${this._sectors.length}, Subsectors: ${this._subsectors.length}, Worlds: ${this._worlds.length}`);
     }
 
-    return {
+    const context = {
       journalName: this._journalName,
       defaultJournalName: this._defaultJournalName,
       cacheJournalName: this._cacheJournalName,
@@ -111,6 +122,8 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
       isConfirming: this._isConfirming,
       isConfirmDisabled: this._isConfirming || !this._startHex,
     };
+    console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] context keys: ${Object.keys(context).length}, worlds: ${context.worlds.length}, ships: ${context.ships.length}`);
+    return context;
   }
 
   async _initialLoad() {
@@ -123,15 +136,20 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
 
     // Fetch or load sectors
     try {
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Fetching sectors...`);
       const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Cache journal obtained: ${cacheJournal?.id}`);
       this._sectors = await getCachedSectors(cacheJournal, DEFAULT_MILIEU) || [];
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Cached sectors: ${this._sectors.length}`);
 
       if (this._sectors.length === 0) {
+        console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Cache miss for sectors (${DEFAULT_MILIEU}), fetching from API...`);
         this._sectors = await fetchSectors(DEFAULT_MILIEU);
         if (cacheJournal && this._sectors.length > 0) {
           await setCachedSectors(cacheJournal, DEFAULT_MILIEU, this._sectors);
         }
       }
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Received/loaded ${this._sectors.length} sectors.`);
     } catch (e) {
       console.warn('Failed to fetch sectors from TravellerMap API:', e);
       this._sectors = [{ name: DEFAULT_SECTOR }];
@@ -142,11 +160,15 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
 
     // Get subsectors for default sector
     try {
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Loading subsectors for ${this._sectorName}...`);
       const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Cache journal for subsectors obtained: ${cacheJournal?.id}`);
       this._subsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal, this._milieu);
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Subsectors from loadSubsectorsWithCache: ${this._subsectors?.length}`);
       if (!this._subsectors || this._subsectors.length === 0) {
         this._subsectors = getSubsectorsForSector(this._sectors, this._sectorName) || [];
       }
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Loaded ${this._subsectors.length} subsectors.`);
     } catch (e) {
       console.warn('Failed to get subsectors:', e);
     }
@@ -157,10 +179,16 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
 
     // Get worlds for default subsector
     try {
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Loading worlds for ${this._sectorName} ${this._subsectorLetter}...`);
       const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Cache journal for worlds obtained: ${cacheJournal?.id}`);
       const sector = defaultSector || { name: DEFAULT_SECTOR, x: 0, y: 0 };
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Calling loadSubsector...`);
       this._worlds = await loadSubsector(this._sectorName, this._subsectorLetter, this._milieu, cacheJournal, { x: sector.x, y: sector.y });
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] loadSubsector returned ${this._worlds?.length} worlds.`);
       this._worlds.sort((a, b) => a.name.localeCompare(b.name));
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Worlds sorted.`);
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Loaded ${this._worlds.length} worlds.`);
     } catch (e) {
       console.warn('Failed to fetch worlds:', e);
     }
@@ -169,22 +197,10 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
     this._startHex = defaultWorld?.hex || DEFAULT_WORLD_HEX;
   }
 
-  async _renderHTML(ctx, _opts) {
-    const html = await foundry.applications.handlebars.renderTemplate(
-      'systems/twodsix/templates/trader/trader-setup.hbs',
-      ctx
-    );
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div;
-  }
-
-  _replaceHTML(result, content, _opts) {
-    content.innerHTML = result.innerHTML;
-  }
 
   async _onRender(_ctx, _opts) {
     const el = this.element;
+    console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] _onRender: template: ${this.constructor.PARTS.main.template}, DOM nodes: ${el.querySelectorAll('*').length}`);
 
     // Journal name change
     el.querySelector('[name=journalName]')?.addEventListener('input', (e) => {
@@ -327,6 +343,15 @@ export class TraderSetupApp extends foundry.applications.api.ApplicationV2 {
         return;
       }
       this._isConfirming = true;
+      console.log(`Twodsix | TraderSetupApp | [${getTimestamp()}] Confirming setup...`, {
+        journalName: this._journalName,
+        shipActorId: this._shipActorId,
+        milieu: this._milieu,
+        sectorName: this._sectorName,
+        subsectorName: this._subsectorName,
+        startHex: this._startHex,
+        startingCredits: this._startingCredits
+      });
       this.render();
       try {
         this._confirm();

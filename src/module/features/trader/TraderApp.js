@@ -4,10 +4,9 @@
  * Follows the same pattern as CharGenApp for decision tracking, _choose/_roll/_log.
  */
 
-import { DAYS_PER_MONTH, MARKET_REFRESH_DAYS } from './TraderConstants.js';
-import { ACTION, RESTART } from './TraderLogic.js';
+import { RESTART } from './TraderLogic.js';
 import { formatGameDate, freshTraderState, getUsedCargoSpace } from './TraderState.js';
-import { getWorldCoordinate } from './TraderUtils.js';
+import { getTimestamp, getWorldCoordinate } from './TraderUtils.js';
 
 
 export class TraderApp extends foundry.applications.api.HandlebarsApplicationMixin(
@@ -30,7 +29,6 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
   rows = [];
   pendingResolve = null;
   pendingMaxValue = null;
-  _pendingRemainInPortDays = null;
 
   // ─── Rendering ──────────────────────────────────────────────
 
@@ -39,7 +37,7 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
       const s = this.state || freshTraderState();
       const formatCr = num => (num ?? 0).toLocaleString(undefined, { minimumFractionDigits: 0 });
 
-      return {
+      const context = {
         ship: s.ship,
         currentWorldName: s.currentWorldName || game.i18n.localize('TWODSIX.Trader.App.Unknown'),
         currentWorldUwp: this._getCurrentWorldUwp(),
@@ -60,6 +58,8 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
         charterStaterooms: s.charterStaterooms || 0,
         charterLowBerths: s.charterLowBerths || 0,
       };
+      console.log(`Twodsix | TraderApp | [${getTimestamp()}] context keys: ${Object.keys(context).length}, rows: ${context.rows.length}`);
+      return context;
     } catch (err) {
       console.error('Twodsix | TraderApp._prepareContext failed:', err);
       return { loading: true, rows: [] };
@@ -70,6 +70,7 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
     if (!this.element) {
       return;
     }
+    console.log(`Twodsix | TraderApp | [${getTimestamp()}] _onRender: template: ${this.constructor.PARTS.main.template}, DOM nodes: ${this.element.querySelectorAll('*').length}`);
     this._attachChoiceHandler(this.element);
     const scr = this.element.querySelector('.st-scroll');
     if (scr) {
@@ -98,71 +99,7 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
         r(String(maxVal));
       }
     }, { once: true });
-
-    // Handle remain-in-port UI
-    this._attachRemainInPortHandler(el);
   }
-
-  /**
-   * Attach handlers for the remain-in-port UI.
-   * The UI has +/- buttons and an execute button that can trigger remain-in-port action.
-   */
-  _attachRemainInPortHandler(el) {
-    const remainSection = el.querySelector('.st-remain-port');
-    if (!remainSection) {
-      return;
-    }
-
-    const input = remainSection.querySelector('.st-remain-input');
-    const minusBtn = remainSection.querySelector('.st-remain-minus');
-    const plusBtn = remainSection.querySelector('.st-remain-plus');
-    const executeBtn = remainSection.querySelector('.st-remain-execute');
-
-    // Decrease days
-    minusBtn?.addEventListener('click', () => {
-      const current = parseInt(input.value) || 1;
-      input.value = Math.max(1, current - 1);
-    }, { once: true });
-
-    // Increase days
-    plusBtn?.addEventListener('click', () => {
-      const current = parseInt(input.value) || 1;
-      input.value = Math.min(DAYS_PER_MONTH, current + 1);
-    }, { once: true });
-
-    // Execute remain in port
-    executeBtn?.addEventListener('click', async () => {
-      const days = parseInt(input.value) || 1;
-      if (days < 1 || days > DAYS_PER_MONTH) {
-        return;
-      }
-
-      // Show confirmation dialog
-      const confirmed = await foundry.applications.api.DialogV2.confirm({
-        window: { title: game.i18n.localize('TWODSIX.Trader.App.RemainInPortConfirmTitle') },
-        content: game.i18n.format('TWODSIX.Trader.App.RemainInPortConfirmContent', {
-          days: days,
-          refresh: MARKET_REFRESH_DAYS,
-        }),
-        ok: { label: game.i18n.localize('TWODSIX.Trader.App.YesRemainInPort') },
-        cancel: { label: game.i18n.localize('Cancel') },
-      });
-
-      if (!confirmed) {
-        return;
-      }
-
-      // If there's a pending choice, resolve it with the remainInPort action
-      if (this.pendingResolve) {
-        this._pendingRemainInPortDays = days;
-        const r = this.pendingResolve;
-        this.pendingResolve = null;
-        this.pendingMaxValue = null;
-        r(ACTION.REMAIN_IN_PORT);
-      }
-    }, { once: true });
-  }
-
 
   _getCurrentWorldUwp() {
     try {
@@ -187,18 +124,19 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
    * @param {string} label - Display label for the choice
    * @param {Array<{value: string, label: string}>} options - Available options
    * @param {number|null} [maxValue=null] - Optional max value for "To capacity" button
+   * @param {string} [placeholder='TWODSIX.Trader.Actions.ChooseAction'] - Optional i18n key for dropdown placeholder
    * @returns {Promise<string>} Selected value
    */
-  async _choose(label, options, maxValue = null) {
+  async _choose(label, options, maxValue = null, placeholder = 'TWODSIX.Trader.Actions.ChooseAction') {
     const choiceOptions = Array.isArray(options) ? options : [];
 
     if (!choiceOptions.length) {
-      this.rows.push({ label, result: game.i18n.localize('TWODSIX.Trader.App.NoOptions'), active: false, options: [], maxValue: null });
+      this.rows.push({ label, result: game.i18n.localize('TWODSIX.Trader.App.NoOptions'), active: false, options: [], maxValue: null, placeholder });
       this.render();
       return '';
     }
 
-    const row = { label, result: null, active: true, options: choiceOptions, maxValue };
+    const row = { label, result: null, active: true, options: choiceOptions, maxValue, placeholder };
     this.rows.push(row);
     this.pendingMaxValue = maxValue;
     this.render();
@@ -262,6 +200,13 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
     if (saved) {
       this.state = foundry.utils.deepClone(saved);
       this.state.journalEntryId = journalEntry.id;
+
+      // Re-hydrate worlds with actual Actor documents
+      if (Array.isArray(this.state.worlds)) {
+        this.state.worlds = this.state.worlds
+          .map(w => game.actors.get(w.id || w._id))
+          .filter(a => !!a);
+      }
     }
   }
 

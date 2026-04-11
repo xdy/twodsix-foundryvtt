@@ -7,6 +7,7 @@ import {
   DAYS_PER_YEAR,
   DEFAULT_MERCHANT_TRADER,
   HOURS_PER_DAY,
+  MILIEU_BASE_YEAR,
   MORTGAGE_DIVISOR,
   MORTGAGE_FINANCING_MULTIPLIER,
   PORT_FEE_DAYS,
@@ -340,21 +341,32 @@ export function getFreeLowBerths(state) {
 }
 
 /**
+ * Get the base year for a milieu code.
+ * @param {string} milieu - Milieu code (e.g. 'M1105')
+ * @returns {number} Base year for the milieu
+ */
+export function getMilieuBaseYear(milieu) {
+  return MILIEU_BASE_YEAR[milieu] ?? 1105;
+}
+
+/**
  * Calculate the game month number from a game date.
  * @param {GameDate} gameDate - The game date
+ * @param {string} [milieu='M1105'] - Milieu code for base year lookup
  * @returns {number} Absolute month number (for cost accrual tracking)
  */
-export function getMonthNumber(gameDate) {
-  return (gameDate.year - 1105) * 12 + Math.ceil(gameDate.day / 30);
+export function getMonthNumber(gameDate, milieu = 'M1105') {
+  return (gameDate.year - getMilieuBaseYear(milieu)) * 12 + Math.ceil(gameDate.day / 30);
 }
 
 /**
  * Calculate the absolute day number from a game date.
  * @param {GameDate} gameDate - The game date
+ * @param {string} [milieu='M1105'] - Milieu code for base year lookup
  * @returns {number} Absolute day number (for tracking days since last roll)
  */
-export function getAbsoluteDay(gameDate) {
-  return (gameDate.year - 1105) * DAYS_PER_YEAR + gameDate.day;
+export function getAbsoluteDay(gameDate, milieu = 'M1105') {
+  return (gameDate.year - getMilieuBaseYear(milieu)) * DAYS_PER_YEAR + gameDate.day;
 }
 
 /**
@@ -369,10 +381,10 @@ export function getTotalCrewSalary(crew) {
 /**
  * Get the best broker skill among crew members.
  * @param {CrewMember[]} crew - Crew array from state
- * @returns {number} Highest broker skill level
+ * @returns {number} Highest broker skill level, or UNSKILLED_PENALTY if none
  */
 export function getCrewBrokerSkill(crew) {
-  return crew.reduce((best, c) => Math.max(best, c.brokerSkill || 0), 0);
+  return crew.reduce((best, c) => Math.max(best, c.brokerSkill || UNSKILLED_PENALTY), UNSKILLED_PENALTY);
 }
 
 
@@ -403,7 +415,7 @@ export function getWorldCache(state) {
   const hex = state.currentWorldHex;
   if (!state.worldVisitCache[hex]) {
     state.worldVisitCache[hex] = {
-      arrivalDay: getAbsoluteDay(state.gameDate),
+      arrivalDay: getAbsoluteDay(state.gameDate, state.milieu),
       portFeesPaidDays: PORT_FEE_DAYS,
       passengers: null,   // null = not yet rolled this visit
       freight: null,
@@ -417,7 +429,7 @@ export function getWorldCache(state) {
       foundBlackMarketSupplier: false,
       foundOnlineSupplier: false,
       searchAttempts: 0,
-      lastSearchMonth: getMonthNumber(state.gameDate),
+      lastSearchMonth: getMonthNumber(state.gameDate, state.milieu),
       priceRejectedUntil: 0,
       noGoodsAvailable: false,
     };
