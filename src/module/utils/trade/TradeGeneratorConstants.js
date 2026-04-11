@@ -344,3 +344,36 @@ export const LOCAL_BROKER_COMMISSION = {
   3: 15,
   4: 20
 };
+
+// Rulesets that use the CDEE-family price modifier table
+export const CDEE_FAMILY_RULESETS = ['CDEE', 'CD', 'CEL', 'CLU', 'AC'];
+
+// Rulesets that apply starport traffic and zone safety modifiers (subset of CDEE family, excludes CEL)
+export const TRAFFIC_MOD_RULESETS = ['CDEE', 'CD', 'CLU', 'AC'];
+
+// Starport traffic modifiers for purchase prices
+export const STARPORT_PURCHASE_MODS = {
+  'A': 2, 'B': 1, 'C': 0, 'D': -1, 'E': -2, 'X': -3
+};
+
+// Starport traffic modifiers for sale prices (general)
+export const STARPORT_SALE_MODS = {
+  'A': -1, 'B': -2, 'C': 0, 'D': 0, 'E': 0, 'X': 1
+};
+
+// Starport traffic modifiers for CLU ruleset (differs from general)
+export const STARPORT_PURCHASE_MODS_CLU = {
+  'A': 2, 'B': 1, 'C': 0, 'D': -1, 'E': -2, 'X': -2
+};
+
+export const STARPORT_SALE_MODS_CLU = {
+  'A': -3, 'B': -2, 'C': -1, 'D': 0, 'E': 0, 'X': 1
+};
+
+// Zone safety modifiers
+export const ZONE_PURCHASE_MODS = { 'green': 0, 'amber': 1, 'red': 3 };
+export const ZONE_SALE_MODS = { 'green': 0, 'amber': 0, 'red': 2 };
+
+// Skill check clamp range
+export const CHECK_MIN = 2;
+export const CHECK_MAX = 16;

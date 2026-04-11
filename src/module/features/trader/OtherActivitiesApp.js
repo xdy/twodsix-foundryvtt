@@ -91,6 +91,8 @@ export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
       freeCargo: getFreeCargoSpace(this._state),
       freeStaterooms: getFreeStaterooms(this._state),
       freeLowBerths: getFreeLowBerths(this._state),
+      currentFuel: this._state.ship?.currentFuel ?? 0,
+      fuelIsRefined: this._state.ship?.fuelIsRefined ?? false,
     };
 
     const html = await foundry.applications.handlebars.renderTemplate(
@@ -265,10 +267,16 @@ export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
     const paxHighDelta = num('paxHighDelta');
     const paxMiddleDelta = num('paxMiddleDelta');
     const paxLowDelta = num('paxLowDelta');
+    const fuelRefinedDelta = num('fuelRefinedDelta');
+    const fuelUnrefinedDelta = num('fuelUnrefinedDelta');
     const newShipActorId = el.querySelector('[name=shipActorId]')?.value || null;
 
     const cap = this._capacity();
     const errors = [];
+    const workingFuel = Math.max(0, (this._state.ship?.currentFuel ?? 0) + fuelRefinedDelta + fuelUnrefinedDelta);
+    if (workingFuel > (this._state.ship?.fuelCapacity ?? 0)) {
+      errors.push(game.i18n.format('TWODSIX.Trader.OtherActivities.NotEnoughFuelSpace', { free: (this._state.ship?.fuelCapacity ?? 0) - (this._state.ship?.currentFuel ?? 0) }));
+    }
     if (cap.freeCargo < 0) {
       errors.push(game.i18n.format('TWODSIX.Trader.OtherActivities.NotEnoughCargoSpace', { free: cap.freeCargo }));
     }
@@ -329,6 +337,13 @@ export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
     paxLine(paxMiddleDelta, 'middle');
     paxLine(paxLowDelta, 'low');
 
+    if (fuelRefinedDelta !== 0) {
+      parts.push(`${fuelRefinedDelta > 0 ? 'Added' : 'Removed'} ${Math.abs(fuelRefinedDelta)} tons of refined fuel.`);
+    }
+    if (fuelUnrefinedDelta !== 0) {
+      parts.push(`${fuelUnrefinedDelta > 0 ? 'Added' : 'Removed'} ${Math.abs(fuelUnrefinedDelta)} tons of unrefined fuel.`);
+    }
+
     const summary = `Other activity: ${parts.join(' ')}`;
 
     const result = {
@@ -343,6 +358,7 @@ export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
       bulkNormalDelta,
       bulkLuxuryDelta,
       paxDelta: { high: paxHighDelta, middle: paxMiddleDelta, low: paxLowDelta },
+      fuelDelta: { refined: fuelRefinedDelta, unrefined: fuelUnrefinedDelta },
     };
     if (this._resolve) {
       this._resolve(result);

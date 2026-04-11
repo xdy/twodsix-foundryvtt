@@ -1819,13 +1819,13 @@
         "ProceedWithJump": "Proceed with jump",
         "ProcessArrival": "Process arrival",
         "Depart": "Depart",
+        "ChooseAction": "— Choose —",
         "ChooseDestination": "Choose Destination",
         "ChooseDestinationCurrent": "Choose Destination (current: {destination})",
         "ClearDestination": "— Clear destination —",
         "ChooseDifferent": "Choose a different destination",
         "EnableIllegal": "Enable Black Market contacts",
         "DisableIllegal": "Disable Black Market contacts",
-        "RemainInPort": "Remain in port for 3 days (re-roll freight & passengers)",
         "PrivateMessages": "(If available, ask your GM) Take private messages",
         "AcceptCharter": "(If available, ask your GM) Accept charter to {destination} (Cr{fee})",
         "PayMaintenance": "Pay maintenance (Cr{cost})",
@@ -1877,6 +1877,9 @@
         "High": "High",
         "Middle": "Middle",
         "Low": "Low",
+        "FuelDelta": "Fuel change (tons)",
+        "Refined": "Refined",
+        "Unrefined": "Unrefined",
         "Days": "Days spent",
         "Description": "Description (required)",
         "DescriptionPlaceholder": "e.g. Fought the Chamax Horde",
@@ -1886,6 +1889,7 @@
         "NotEnoughCargoSpace": "Not enough cargo space (free: {free} t).",
         "NotEnoughStaterooms": "Not enough free staterooms.",
         "NotEnoughLowBerths": "Not enough free low berths.",
+        "NotEnoughFuelSpace": "Not enough fuel tank space (needed: {free} t).",
         "CapacityExceeded": "Cannot commit: ship capacity exceeded."
       },
       "Resume": {
@@ -1906,12 +1910,18 @@
         "LoadingTrader": "Initializing trading journey...",
         "Unknown": "Unknown",
         "NoOptions": "(no options)",
-        "ToCapacity": "To capacity",
-        "RemainInPort": "Remain in port:",
-        "Execute": "Execute",
-        "RemainInPortConfirmTitle": "Remain in Port",
-        "RemainInPortConfirmContent": "<p>Advance time by {days} day(s)?</p><p>Markets will refresh if more than {refresh} days have passed since the last roll.</p>",
-        "YesRemainInPort": "Yes, remain in port"
+        "ToCapacity": "To capacity"
+      },
+      "Progress": {
+        "Title": "Trading Journey Progress",
+        "Sectors": "Sectors",
+        "Subsectors": "Subsectors",
+        "WorldsLoading": "Worlds loading from TravellerMap",
+        "WorldsCreated": "Worlds created in Foundry"
+      },
+      "Cheat": {
+        "BuyFuel": "CHEAT: Ask your GM if you can buy unrefined fuel at extortionate cost. Somehow. ({tons}t) — Cr{cost} ({multiplier}x price)",
+        "ScroungeFuel": "CHEAT: Ask your GM if you can spend a week begging, scrounging and stealing enough fuel to fill the tank. Somehow. ({tons}t) — Free (takes {days} days, unrefined)"
       }
     },
     "Resource": {

@@ -16,7 +16,7 @@ import { getMonthNumber, getTotalCrewSalary, OUTCOME } from './TraderState.js';
 
 export async function accrueMonthlyCosts(app) {
   const s = app.state;
-  const currentMonth = getMonthNumber(s.gameDate);
+  const currentMonth = getMonthNumber(s.gameDate, s.milieu);
 
   if (currentMonth <= s.lastPaidMonth) {
     return;

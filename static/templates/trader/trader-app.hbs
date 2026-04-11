@@ -20,15 +20,6 @@
     </div>
   </div>
 
-  {{#if (eq phase 'AT_WORLD')}}
-    <div class="st-remain-port">
-      <span class="st-remain-label">{{localize "TWODSIX.Trader.App.RemainInPort"}}</span>
-      <button type="button" class="st-remain-btn st-remain-minus" data-action="decrease">−</button>
-      <input type="number" class="st-remain-input" value="1" min="1" max="30"/>
-      <button type="button" class="st-remain-btn st-remain-plus" data-action="increase">+</button>
-      <button type="button" class="st-remain-execute">{{localize "TWODSIX.Trader.App.Execute"}}</button>
-    </div>
-  {{/if}}
 
   <div class="st-scroll">
     {{#if loading}}
@@ -45,7 +36,7 @@
             <td class="st-td-controls">
               {{#if options.length}}
                 <select class="st-select">
-                  <option value="">— {{localize "TWODSIX.Trader.Actions.ChooseDestination"}} —</option>
+                  <option value="">{{localize placeholder}}</option>
                   {{#each options}}
                     <option value="{{value}}">{{label}}</option>
                   {{/each}}
