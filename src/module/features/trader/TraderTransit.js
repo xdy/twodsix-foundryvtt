@@ -206,7 +206,7 @@ export async function arrivingPhase(app) {
   await app.logEvent(`Arrived at ${s.currentWorldName} ${worldInfo}. In-system transit: ${Math.round(transitHours / HOURS_PER_DAY)} day(s).`);
 
   // Mark world as visited in cache and on actor
-  if (arrivedWorld && typeof arrivedWorld.getFlag === 'function') {
+  if (typeof arrivedWorld.getFlag === 'function') {
     const subKey = arrivedWorld.getFlag('twodsix', 'subsectorKey');
     if (subKey && s.cacheJournalName) {
       const journal = await getOrCreateCacheJournal(s.cacheJournalName);
@@ -265,8 +265,8 @@ export async function arrivingPhase(app) {
         }
       }
     }
-  } else if (arrivedWorld) {
-    // This case should be handled by the !arrivedWorld check above, but might as well keep it.
+  } else {
+    // This case should be handled by the arrivedWorld check above, but might as well keep it.
     console.warn('Twodsix | Trader: arrivedWorld found but is not an Actor document', arrivedWorld);
   }
   // Deliver passengers

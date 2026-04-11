@@ -396,7 +396,7 @@ export async function startTrading(existingJournal = null) {
     } else {
       traderDebug('TraderEntrypoint', `No existing world actors found. Loading from API/Cache...`);
       progressDialog.updateProgress({ progressText: 'No existing world actors found. Loading from API/Cache...' });
-      const { allWorldData, loadedSubsectorKeys, neighboringSubsectors: neighbors } = await loadSubsectorData(subsectorsToSearch, setupResult, cacheJournal, startSectorCoords, progressDialog);
+      const { allWorldData, neighboringSubsectors: neighbors } = await loadSubsectorData(subsectorsToSearch, setupResult, cacheJournal, startSectorCoords, progressDialog);
       neighboringSubsectors = neighbors;
       traderDebug('TraderEntrypoint', `Central world data gathered: ${allWorldData.length}`);
       if (!allWorldData.length) {
