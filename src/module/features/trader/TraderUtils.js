@@ -183,6 +183,7 @@ export function parseHex(hex) {
     return [col, row];
   }
   // Descriptive format: "Sector Name 1910" -> "1910"
+  // Note: assumes sector names don't end with a 4-digit number (safe for known Traveller sectors)
   let h = hex;
   if (hex.includes(' ')) {
     const parts = hex.split(' ');
@@ -319,6 +320,18 @@ export function getTimestamp() {
          now.getMinutes().toString().padStart(2, '0') + ':' +
          now.getSeconds().toString().padStart(2, '0') + '.' +
          now.getMilliseconds().toString().padStart(3, '0');
+}
+
+/**
+ * Log a debug message for the Trader feature. Only logs when game.modules debug mode is active.
+ * Set `CONFIG.debug.twodsixTrader = true` in the browser console to enable.
+ * @param {string} prefix - Module prefix (e.g. "SubsectorLoader")
+ * @param {...any} args - Message and data to log
+ */
+export function traderDebug(prefix, ...args) {
+  if (CONFIG.debug?.twodsixTrader) {
+    console.log(`Twodsix | ${prefix} | [${getTimestamp()}]`, ...args);
+  }
 }
 
 /**

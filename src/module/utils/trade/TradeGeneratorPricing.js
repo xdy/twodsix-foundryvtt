@@ -155,6 +155,7 @@ export function calculatePricesFromChecks(basePrice, purchaseCheck, saleCheck, r
     salePriceData,
     purchasePrice,
     salePrice,
+    purchasePriceModPercent: purchasePriceData.purchase,
     salePriceModPercent: salePriceData.sale
   };
 }

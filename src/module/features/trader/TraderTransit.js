@@ -185,7 +185,8 @@ export async function arrivingPhase(app) {
 
   if (!arrivedWorld) {
     ui.notifications.error(`Twodsix | Trader: Could not find destination world: ${s.destinationName} (${s.destinationHex})`);
-    s.phase = PHASE.AT_WORLD;
+    await app.logEvent(`Error: Destination world ${s.destinationName} (${s.destinationHex}) not found in world list. Game over.`);
+    s.gameOver = true;
     return;
   }
 

@@ -8,7 +8,7 @@ import { atWorldPhase } from './TraderAtWorld.js';
 import { accrueMonthlyCosts, checkGameEnd } from './TraderMonthly.js';
 import { getCurrentWorld, OUTCOME, PHASE, } from './TraderState.js';
 import { arrivingPhase, inTransitPhase } from './TraderTransit.js';
-import { getTimestamp } from './TraderUtils.js';
+import { traderDebug } from './TraderUtils.js';
 
 export const RESTART = Symbol('restart');
 
@@ -42,7 +42,7 @@ export const ACTION = {
  */
 export async function runTradeLoop(app) {
   const s = app.state;
-  console.log(`Twodsix | TraderLogic | [${getTimestamp()}] runTradeLoop starting`, { phase: s.phase, world: s.currentWorldName, worlds: s.worlds?.length });
+  traderDebug('TraderLogic', `runTradeLoop starting`, { phase: s.phase, world: s.currentWorldName, worlds: s.worlds?.length });
 
   try {
     // Log initial state if this is a fresh trading journey

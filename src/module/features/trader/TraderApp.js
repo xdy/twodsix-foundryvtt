@@ -6,7 +6,7 @@
 
 import { RESTART } from './TraderLogic.js';
 import { formatGameDate, freshTraderState, getUsedCargoSpace } from './TraderState.js';
-import { getTimestamp, getWorldCoordinate } from './TraderUtils.js';
+import { getWorldCoordinate, traderDebug } from './TraderUtils.js';
 
 
 export class TraderApp extends foundry.applications.api.HandlebarsApplicationMixin(
@@ -58,7 +58,7 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
         charterStaterooms: s.charterStaterooms || 0,
         charterLowBerths: s.charterLowBerths || 0,
       };
-      console.log(`Twodsix | TraderApp | [${getTimestamp()}] context keys: ${Object.keys(context).length}, rows: ${context.rows.length}`);
+      traderDebug('TraderApp', ` context keys: ${Object.keys(context).length}, rows: ${context.rows.length}`);
       return context;
     } catch (err) {
       console.error('Twodsix | TraderApp._prepareContext failed:', err);
@@ -70,7 +70,7 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
     if (!this.element) {
       return;
     }
-    console.log(`Twodsix | TraderApp | [${getTimestamp()}] _onRender: template: ${this.constructor.PARTS.main.template}, DOM nodes: ${this.element.querySelectorAll('*').length}`);
+    traderDebug('TraderApp', ` _onRender: template: ${this.constructor.PARTS.main.template}, DOM nodes: ${this.element.querySelectorAll('*').length}`);
     this._attachChoiceHandler(this.element);
     const scr = this.element.querySelector('.st-scroll');
     if (scr) {

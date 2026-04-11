@@ -5,7 +5,7 @@
  */
 
 import { SECTOR_WIDTH_IN_SUBSECTORS, SUBSECTOR_LETTERS } from './TraderConstants.js';
-import { buildGlobalHex, getNeighboringSubsectors, getTimestamp, parseUWP } from './TraderUtils.js';
+import { buildGlobalHex, getNeighboringSubsectors, parseUWP, traderDebug } from './TraderUtils.js';
 import { fetchWorlds, loadSubsectorsWithCache } from './TravellerMapAPI.js';
 import { buildSubsectorKey, getCachedWorlds, setCachedWorlds } from './TravellerMapCache.js';
 
@@ -24,11 +24,11 @@ export async function loadSubsector(sectorName, subsectorLetter, milieu = 'M1105
 
   // Check cache first if journal provided
   if (cacheJournal) {
-    console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Checking cache for subKey: ${subsectorKey}`);
+    traderDebug('SubsectorLoader', `Checking cache for subKey: ${subsectorKey}`);
     const cachedWorlds = await getCachedWorlds(cacheJournal, subsectorKey);
-    console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Cache check for ${subsectorKey} returned ${cachedWorlds ? cachedWorlds.length : 'null/undefined'} results.`);
+    traderDebug('SubsectorLoader', `Cache check for ${subsectorKey} returned ${cachedWorlds ? cachedWorlds.length : 'null/undefined'} results.`);
     if (cachedWorlds && cachedWorlds.length > 0) {
-      console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Using cached worlds for ${sectorName} ${subsectorLetter}: ${cachedWorlds.length} worlds found.`);
+      traderDebug('SubsectorLoader', `Using cached worlds for ${sectorName} ${subsectorLetter}: ${cachedWorlds.length} worlds found.`);
       // Ensure globalHex and sectorName are added/updated on cached worlds
       cachedWorlds.forEach(w => {
         if (!w.globalHex && w.hex && sectorCoords) {
@@ -48,25 +48,16 @@ export async function loadSubsector(sectorName, subsectorLetter, milieu = 'M1105
   }
 
   // Fetch from API
-  console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Cache miss for ${sectorName} ${subsectorLetter}. Fetching from API...`);
+  traderDebug('SubsectorLoader', `Cache miss for ${sectorName} ${subsectorLetter}. Fetching from API...`);
   const worldDataArray = await fetchWorlds(sectorName, subsectorLetter, milieu, sectorCoords);
   worldDataArray.forEach(w => w.subsectorKey = subsectorKey);
 
-  // Store in cache if journal provided
+  // Store in cache if journal provided (check first to avoid overwriting)
   if (cacheJournal && worldDataArray.length > 0) {
-    console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Caching ${worldDataArray.length} worlds for ${sectorName} ${subsectorLetter} under key ${subsectorKey}.`);
-    // Only cache if they haven't been cached before with this key
-    console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Re-checking cache before setting for ${subsectorKey}...`);
     const existing = await getCachedWorlds(cacheJournal, subsectorKey);
-    console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Final cache re-check for ${subsectorKey} returned ${existing ? existing.length : 'null/undefined'} results.`);
     if (!existing || existing.length === 0) {
-      console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Calling setCachedWorlds for ${subsectorKey}...`);
+      traderDebug('SubsectorLoader', `Caching ${worldDataArray.length} worlds for ${sectorName} ${subsectorLetter} under key ${subsectorKey}.`);
       await setCachedWorlds(cacheJournal, subsectorKey, worldDataArray);
-      console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] setCachedWorlds call returned for ${subsectorKey}.`);
-
-      // Final verification
-      const verify = await getCachedWorlds(cacheJournal, subsectorKey);
-      console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] VERIFY cache for ${subsectorKey}: ${verify ? verify.length : 'null/undefined'} worlds.`);
     }
   }
 
@@ -193,6 +184,7 @@ export async function createWorldActors(worldDataArray, startGlobalHex = null, c
     } catch (err) {
       console.error('Failed to create world actors:', err);
       ui.notifications.error('Error creating world actors. Check console for details.');
+      return finalActors;
     }
   }
 
@@ -281,15 +273,15 @@ export async function ensureSubsectorNeighborsLoaded(state, sectorName, localHex
   }
 
   if (subsectorsToLoad.length === 0) {
-    console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] All required subsectors already loaded for ${sectorName} ${localHex}.`);
+    traderDebug('SubsectorLoader', `All required subsectors already loaded for ${sectorName} ${localHex}.`);
     return [];
   }
 
-  console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Loading ${subsectorsToLoad.length} neighboring subsectors...`);
+  traderDebug('SubsectorLoader', `Loading ${subsectorsToLoad.length} neighboring subsectors...`);
   let allWorldData = [];
   for (const sub of subsectorsToLoad) {
     try {
-      console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Loading subsector: ${sub.sectorName} ${sub.subsectorLetter} (${sub.subsectorName})...`);
+      traderDebug('SubsectorLoader', `Loading subsector: ${sub.sectorName} ${sub.subsectorLetter} (${sub.subsectorName})...`);
       const subData = await loadSubsector(sub.sectorName, sub.subsectorLetter, milieu, cacheJournal, sub.sectorCoords);
       allWorldData = allWorldData.concat(subData);
       if (!state.loadedSubsectorKeys.includes(sub.subKey)) {
@@ -301,11 +293,11 @@ export async function ensureSubsectorNeighborsLoaded(state, sectorName, localHex
   }
 
   if (!allWorldData.length) {
-    console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] No world data found in any of the ${subsectorsToLoad.length} subsectors.`);
+    traderDebug('SubsectorLoader', `No world data found in any of the ${subsectorsToLoad.length} subsectors.`);
     return [];
   }
 
-  console.log(`Twodsix | SubsectorLoader | [${getTimestamp()}] Total worlds gathered from ${subsectorsToLoad.length} subsectors: ${allWorldData.length}. Creating actors...`);
+  traderDebug('SubsectorLoader', `Total worlds gathered from ${subsectorsToLoad.length} subsectors: ${allWorldData.length}. Creating actors...`);
   // Determine starting global hex for the center of these subsectors (optional, but good for context)
   const startSectorCoords = { x: startSector.sx, y: startSector.sy, sx: startSector.sx, sy: startSector.sy };
   const startGlobalHex = buildGlobalHex(startSectorCoords, localHex);
