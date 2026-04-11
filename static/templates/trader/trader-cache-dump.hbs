@@ -1,0 +1,54 @@
+<div>
+  <h2>TravellerMap Cache</h2>
+  <p><em>Note: This text is a human-readable and non-editable dump of the current cached data. Do not edit this journal
+    entry directly. Deleting this journal empties the cache.</em></p>
+  {{#if lastUpdated}}
+    <p><strong>Last Updated:</strong> {{lastUpdated}}</p>
+  {{/if}}
+
+  {{#if milieux.length}}
+    <h3>Sectors by Milieu</h3>
+    {{#each milieux}}
+      <details>
+        <summary>{{name}} ({{sectors.length}} sectors)</summary>
+        <ul>
+          {{#each sectors}}
+            <li>{{name}} ({{abbreviation}})</li>
+          {{/each}}
+        </ul>
+      </details>
+    {{/each}}
+  {{/if}}
+
+  {{#if sectors.length}}
+    <h3>Cached Subsectors by Sector</h3>
+    {{#each sectors}}
+      <details>
+        <summary>{{name}} ({{subsectors.length}} subsectors)</summary>
+        <ul>
+          {{#each subsectors}}
+            <li>[{{letter}}] {{name}} {{#if worldCount}}({{worldCount}} worlds cached){{/if}}</li>
+          {{/each}}
+        </ul>
+      </details>
+    {{/each}}
+  {{/if}}
+
+  {{#if subsectors.length}}
+    <h3>Cached Worlds by Subsector</h3>
+    {{#each subsectors}}
+      <details>
+        <summary>{{key}} ({{worlds.length}} worlds)</summary>
+        <p>
+          {{#each worlds}}
+            {{hex}} {{name}}{{#unless @last}}, {{/unless}}
+          {{/each}}
+        </p>
+      </details>
+    {{/each}}
+  {{/if}}
+
+  {{#unless hasAnyData}}
+    <p>The cache is currently empty.</p>
+  {{/unless}}
+</div>

@@ -16,6 +16,7 @@ export class WorldData extends foundry.abstract.TypeDataModel {
     schema.government = new fields.StringField({ ...requiredBlankString });
     schema.lawLevel = new fields.StringField({ ...requiredBlankString });
     schema.techLevel = new fields.StringField({ ...requiredBlankString });
+    schema.coordinates = new fields.StringField({ ...requiredBlankString });
     schema.allegiance = new fields.StringField({ ...requiredBlankString });
     //schema.bases = new fields.StringField({ ...requiredBlankString });
     schema.features = new fields.ArrayField(new fields.StringField({blank: false}));

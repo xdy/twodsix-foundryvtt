@@ -1,0 +1,43 @@
+<div class="progress-dialog-content">
+  {{#if label}}
+    <p class="progress-label"><b>{{label}}</b></p>
+  {{/if}}
+
+  <div class="progress-stats">
+    {{#if displaySectors}}
+      <p class="sector-progress">
+        {{localize "TWODSIX.Trader.Progress.Sectors"}}: {{sectorsLoaded}} / {{sectorsTotal}}
+      </p>
+    {{/if}}
+
+    {{#if displaySubsectors}}
+      <p class="subsector-progress">
+        {{localize "TWODSIX.Trader.Progress.Subsectors"}}: {{subsectorsLoaded}} / {{subsectorsTotal}}
+      </p>
+    {{/if}}
+
+    {{#if displayWorlds}}
+      {{#if worldsTotal}}
+        <p class="world-progress">
+          {{localize "TWODSIX.Trader.Progress.WorldsLoading"}}: {{worldsLoaded}} / {{worldsTotal}}
+        </p>
+      {{/if}}
+      {{#if worldsToCreate}}
+        <p class="world-creation-progress">
+          {{localize "TWODSIX.Trader.Progress.WorldsCreated"}}: {{worldsCreated}} / {{worldsToCreate}}
+        </p>
+      {{/if}}
+    {{/if}}
+  </div>
+
+  {{#if progressText}}
+    <div class="progress-text-container">
+      <hr>
+      <p class="progress-text">{{progressText}}</p>
+    </div>
+  {{/if}}
+
+  <div class="progress-spinner-container">
+    <i class="fas fa-spinner fa-spin"></i>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<form class="st-setup-form" autocomplete="off">
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.JournalName'}}</label>
+    <input type="text" name="journalName"
+           value="{{#if journalName}}{{journalName}}{{else}}{{defaultJournalName}}{{/if}}"/>
+    <p class="hint">{{localize 'TWODSIX.Trader.Setup.JournalNameHint'}}</p>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.CacheJournalName'}}</label>
+    <input type="text" name="cacheJournalName" value="{{cacheJournalName}}"/>
+    <p class="hint">{{localize 'TWODSIX.Trader.Setup.CacheJournalNameHint'}}</p>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.Ship'}}</label>
+    <select name="shipActorId">
+      <option value="" {{#unless shipActorId}}selected{{/unless}}>— {{localize 'TWODSIX.Trader.Setup.DefaultShip'}}—
+      </option>
+      {{#each ships as |s|}}
+        <option value="{{s.id}}" {{#if s.selected}}selected{{/if}}>{{s.name}} (Jump-{{s.jumpRating}})</option>
+      {{/each}}
+    </select>
+    <p class="hint">{{localize 'TWODSIX.Trader.Setup.ShipHint'}}</p>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.Milieu'}}</label>
+    <select name="milieu">
+      {{#each milieus as |m|}}
+        <option value="{{m.code}}" {{#if m.selected}}selected{{/if}}>{{m.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.Sector'}}</label>
+    {{#if loadingSectors}}
+      <div class="st-sector-loading-indicator"><i class="fas fa-spinner fa-spin"></i> {{localize
+        'TWODSIX.Trader.Setup.LoadingSectors'}}</div>
+    {{/if}}
+    <select name="sectorName" {{#if loadingSectors}}disabled{{/if}}>
+      {{#each sectors as |s|}}
+        <option value="{{s.encodedName}}" {{#if s.selected}}selected{{/if}}>{{s.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.Subsector'}}</label>
+    {{#if loadingSubsectors}}
+      <div class="st-subsector-loading-indicator"><i class="fas fa-spinner fa-spin"></i> {{localize
+        'TWODSIX.Trader.Setup.LoadingSubsectors'}}</div>
+    {{/if}}
+    <select name="subsectorName" {{#if loadingSubsectors}}disabled{{/if}}>
+      {{#each subsectors as |s|}}
+        <option value="{{s.name}}" {{#if s.selected}}selected{{/if}}>{{s.name}} ({{s.letter}})</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.World'}}</label>
+    {{#if loadingWorlds}}
+      <div class="st-world-loading-indicator"><i class="fas fa-spinner fa-spin"></i> {{localize
+        'TWODSIX.Trader.Setup.LoadingWorlds'}}</div>
+    {{/if}}
+    <select name="startHex" {{#if loadingWorlds}}disabled{{/if}}>
+      {{#each worlds as |w|}}
+        <option value="{{w.hex}}" {{#if w.selected}}selected{{/if}}>{{w.name}} ({{w.hex}}) — {{w.uwp}} [{{w.tradeCodes}}
+          ]
+        </option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.StartingCredits'}}</label>
+    <input type="number" name="startingCredits"
+           value="{{#if startingCredits}}{{startingCredits}}{{else}}{{defaultStartingCredits}}{{/if}}" min="0"
+           step="1000"/>
+    <p class="hint">{{localize 'TWODSIX.Trader.Setup.StartingCreditsHint'}}</p>
+  </div>
+  <footer class="sheet-footer">
+    <button type="submit" class="st-confirm-btn" {{#if isConfirmDisabled}}disabled{{/if}}>
+      <i class="fas {{#if isConfirming}}fa-spinner fa-spin{{else}}fa-check{{/if}}"></i> {{localize
+      'TWODSIX.Trader.Setup.Confirm'}}
+    </button>
+  </footer>
+</form>
