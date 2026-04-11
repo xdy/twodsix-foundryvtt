@@ -184,8 +184,8 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
       traderDebug('TraderSetupApp', ` Cache journal for worlds obtained: ${cacheJournal?.id}`);
       const sector = defaultSector || { name: DEFAULT_SECTOR, x: 0, y: 0 };
       traderDebug('TraderSetupApp', ` Calling loadSubsector...`);
-      this._worlds = await loadSubsector(this._sectorName, this._subsectorLetter, this._milieu, cacheJournal, { x: sector.x, y: sector.y });
-      traderDebug('TraderSetupApp', ` loadSubsector returned ${this._worlds?.length} worlds.`);
+      this._worlds = await loadSubsector(this._sectorName, this._subsectorLetter, this._milieu, cacheJournal, { x: sector.x, y: sector.y }) || [];
+      traderDebug('TraderSetupApp', ` loadSubsector returned ${this._worlds.length} worlds.`);
       this._worlds.sort((a, b) => a.name.localeCompare(b.name));
       traderDebug('TraderSetupApp', ` Worlds sorted.`);
       traderDebug('TraderSetupApp', ` Loaded ${this._worlds.length} worlds.`);
