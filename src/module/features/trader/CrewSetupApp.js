@@ -1,5 +1,6 @@
 import { startCharacterGeneration } from '../chargen/CharacterGeneration.js';
 import { CREW_SALARIES, DEFAULT_CREW } from './TraderConstants.js';
+import { getTraderRuleset } from './TraderRulesetRegistry.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -28,11 +29,15 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
   constructor(options = {}) {
     super(options);
     this._shipActorId = options.shipActorId || '';
+    this._ruleset = options.ruleset || 'CE';
     this._rows = this._buildInitialRows();
   }
 
   /** Build the initial crew rows from the selected ship's positions, or fall back to DEFAULT_CREW. */
   _buildInitialRows() {
+    const ruleset = getTraderRuleset(this._ruleset);
+    const skillNames = ruleset.getRelevantSkillNames();
+
     if (this._shipActorId) {
       const shipActor = game.actors?.get(this._shipActorId);
       const positions = shipActor?.itemTypes?.ship_position ?? [];
@@ -47,14 +52,20 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
           const assigned = pos.system?.actors?.[0];
           let manualName = '';
           let actorId = '';
-          let brokerSkill = 0;
+          const skills = {};
+          skillNames.forEach(s => {
+            skills[s.toLowerCase()] = 0;
+          });
+
           if (assigned) {
             actorId = assigned.id;
             manualName = assigned.name;
-            const brokerItem = assigned.items?.find(i =>
-              i.type === 'skill' && i.name.toLowerCase() === 'broker'
-            );
-            brokerSkill = brokerItem?.system?.value ?? 0;
+            skillNames.forEach(sName => {
+              const item = assigned.items?.find(i =>
+                i.type === 'skill' && i.name.toLowerCase() === sName.toLowerCase()
+              );
+              skills[sName.toLowerCase()] = item?.system?.value ?? 0;
+            });
           }
           return {
             position: positionKey,
@@ -62,19 +73,33 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
             salary,
             manualName,
             actorId,
-            brokerSkill,
+            skills,
+            // legacy fields
+            brokerSkill: skills.broker ?? 0,
+            streetwiseSkill: skills.streetwise ?? 0,
+            computersSkill: skills.computers ?? 0,
           };
         });
       }
     }
-    return DEFAULT_CREW.map(c => ({
-      position: c.position,
-      label: c.position.charAt(0).toUpperCase() + c.position.slice(1),
-      salary: c.salary,
-      manualName: '',
-      actorId: '',
-      brokerSkill: 0,
-    }));
+    return DEFAULT_CREW.map(c => {
+      const skills = {};
+      skillNames.forEach(s => {
+        skills[s.toLowerCase()] = 0;
+      });
+      return {
+        position: c.position,
+        label: c.position.charAt(0).toUpperCase() + c.position.slice(1),
+        salary: c.salary,
+        manualName: '',
+        actorId: '',
+        skills,
+        // legacy fields
+        brokerSkill: 0,
+        streetwiseSkill: 0,
+        computersSkill: 0,
+      };
+    });
   }
 
   /** Return a promise that resolves to the crew array or null. */
@@ -89,10 +114,19 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
     const actors = game.actors.filter(a => a.type === 'traveller')
       .sort((a, b) => a.name.localeCompare(b.name));
 
+    const ruleset = getTraderRuleset(this._ruleset);
+    const skillNames = ruleset.getRelevantSkillNames();
+
     return {
+      skillNames: skillNames.map(s => ({ name: s, label: s })),
       positions: this._rows.map(r => ({
         ...r,
         actors: actors.map(a => ({ id: a.id, name: a.name, selected: a.id === r.actorId })),
+        skillList: skillNames.map(sName => ({
+          name: sName,
+          key: sName.toLowerCase(),
+          value: r.skills[sName.toLowerCase()] ?? 0
+        }))
       })),
     };
   }
@@ -100,7 +134,7 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
   async _onRender(_ctx, _opts) {
     const el = this.element;
 
-    // Actor dropdown -> auto-fill name and broker skill from actor
+    // Actor dropdown -> auto-fill name and skills from actor
     el.querySelectorAll('.st-actor-select').forEach(sel => {
       sel.addEventListener('change', e => {
         const pos = e.target.dataset.position;
@@ -113,15 +147,28 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
           const actor = game.actors.get(e.target.value);
           if (actor) {
             row.manualName = actor.name;
-            // Read broker skill from actor items
-            const brokerItem = actor.items.find(i =>
-              i.type === 'skill' && i.name.toLowerCase() === 'broker'
-            );
-            row.brokerSkill = brokerItem?.system?.value ?? 0;
+            // Read skills from actor items
+            const ruleset = getTraderRuleset(this._ruleset);
+            const skillNames = ruleset.getRelevantSkillNames();
+            skillNames.forEach(sName => {
+              const item = actor.items.find(i =>
+                i.type === 'skill' && i.name.toLowerCase() === sName.toLowerCase()
+              );
+              row.skills[sName.toLowerCase()] = item?.system?.value ?? 0;
+            });
+            // legacy fields
+            row.brokerSkill = row.skills.broker ?? 0;
+            row.streetwiseSkill = row.skills.streetwise ?? 0;
+            row.computersSkill = row.skills.computers ?? 0;
           }
         } else {
           row.manualName = '';
+          Object.keys(row.skills).forEach(k => {
+            row.skills[k] = 0;
+          });
           row.brokerSkill = 0;
+          row.streetwiseSkill = 0;
+          row.computersSkill = 0;
         }
         this.render();
       });
@@ -138,13 +185,25 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
       });
     });
 
-    // Broker skill input
-    el.querySelectorAll('.st-broker-input').forEach(input => {
+    // Skill input
+    el.querySelectorAll('.st-skill-input').forEach(input => {
       input.addEventListener('change', e => {
         const pos = e.target.dataset.position;
+        const skillKey = e.target.dataset.skill;
         const row = this._rows.find(r => r.position === pos);
-        if (row) {
-          row.brokerSkill = parseInt(e.target.value) || 0;
+        if (row && row.skills) {
+          const val = parseInt(e.target.value) || 0;
+          row.skills[skillKey] = val;
+          // legacy sync
+          if (skillKey === 'broker') {
+            row.brokerSkill = val;
+          }
+          if (skillKey === 'streetwise') {
+            row.streetwiseSkill = val;
+          }
+          if (skillKey === 'computers') {
+            row.computersSkill = val;
+          }
         }
       });
     });
@@ -182,10 +241,18 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
         }
         row.actorId = actor.id;
         row.manualName = actor.name;
-        const brokerItem = actor.items.find(i =>
-          i.type === 'skill' && i.name.toLowerCase() === 'broker'
-        );
-        row.brokerSkill = brokerItem?.system?.value ?? 0;
+        const ruleset = getTraderRuleset(this._ruleset);
+        const skillNames = ruleset.getRelevantSkillNames();
+        skillNames.forEach(sName => {
+          const item = actor.items.find(i =>
+            i.type === 'skill' && i.name.toLowerCase() === sName.toLowerCase()
+          );
+          row.skills[sName.toLowerCase()] = item?.system?.value ?? 0;
+        });
+        // legacy fields
+        row.brokerSkill = row.skills.broker ?? 0;
+        row.streetwiseSkill = row.skills.streetwise ?? 0;
+        row.computersSkill = row.skills.computers ?? 0;
         this.render();
       });
     });
@@ -216,7 +283,10 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
         position: r.position,
         salary: r.salary,
         actorId: r.actorId || null,
+        skills: r.skills,
         brokerSkill: r.brokerSkill,
+        streetwiseSkill: r.streetwiseSkill,
+        computersSkill: r.computersSkill,
       };
     });
     if (this._resolve) {

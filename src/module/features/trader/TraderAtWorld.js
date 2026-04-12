@@ -3,7 +3,7 @@
  * Logic for actions available while docked at a world.
  */
 
-import { LOCAL_BROKER_COMMISSION, STARPORT_BROKER_MAX } from '../../utils/trade/TradeGeneratorConstants.js';
+import { LOCAL_BROKER_COMMISSION } from '../../utils/trade/TradeGeneratorConstants.js';
 import { buildTradeReportRows, generateTradeInformation } from '../../utils/TradeGenerator.js';
 import { createWorldActors } from './SubsectorLoader.js';
 import {
@@ -20,15 +20,12 @@ import {
   MAIL_PAYMENT,
   PASSENGER_AVAILABILITY,
   PASSENGER_REVENUE,
-  PORT_FEE_BASE,
-  STARPORT_SUPPLIER_BONUS
+  PORT_FEE_BASE
 } from './TraderConstants.js';
+import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import {
   advanceDate,
   getAbsoluteDay,
-  getCrewBrokerSkill,
-  getCrewComputersSkill,
-  getCrewStreetwiseSkill,
   getFreeCargoSpace,
   getFreeLowBerths,
   getFreeStaterooms,
@@ -46,11 +43,12 @@ import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './Trav
  * @returns {number}
  */
 function getEffectiveBrokerSkillForWorld(s, starport) {
-  const crewSkill = getCrewBrokerSkill(s.crew);
+  const ruleset = getTraderRuleset(s.ruleset);
+  const crewSkill = ruleset.getPriceRollSkill(s.crew);
   if (!s.useLocalBroker) {
     return crewSkill;
   }
-  const maxSkill = STARPORT_BROKER_MAX[starport] || 0;
+  const maxSkill = ruleset.getBrokerMaxSkill(starport);
   const hiredSkill = Math.min(s.localBrokerSkill, maxSkill);
   return Math.max(crewSkill, hiredSkill);
 }
@@ -74,7 +72,7 @@ export async function atWorldPhase(app, world, ACTION) {
       s.charterStaterooms = 0;
       s.charterLowBerths = 0;
       s.charterExpiryDay = null;
-      await app.logEvent('Charter period has ended. Ship space is now available.');
+      await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.CharterEnded'));
     }
 
     const cache = getWorldCache(s);
@@ -221,7 +219,7 @@ export async function atWorldPhase(app, world, ACTION) {
       case ACTION.TOGGLE_ILLEGAL:
         s.includeIllegalGoods = !s.includeIllegalGoods;
         cache.tradeInfo = null; // Invalidate trade info
-        await app.logEvent(s.includeIllegalGoods ? 'Black market contacts activated. Illegal goods may now be available.' : 'Black market contacts deactivated.');
+        await app.logEvent(s.includeIllegalGoods ? game.i18n.localize('TWODSIX.Trader.Log.BlackMarketActivated') : game.i18n.localize('TWODSIX.Trader.Log.BlackMarketDeactivated'));
         break;
       case ACTION.CHARTER: {
         const { acceptCharter } = await import('./TraderCharter.js');
@@ -255,16 +253,18 @@ export async function seekPassengers(app, world) {
       middle: Math.max(0, await app._roll(avail.middle)),
       low: Math.max(0, await app._roll(avail.low)),
     };
-    await app.logEvent(
-      `Passenger market: ${cache.passengers.high} high, ${cache.passengers.middle} middle, `
-      + `${cache.passengers.low} low available at ${s.currentWorldName}.`
-    );
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PassengerMarket", {
+      high: cache.passengers.high,
+      mid: cache.passengers.middle,
+      low: cache.passengers.low,
+      world: s.currentWorldName
+    }));
   }
 
   const { high: highAvail, middle: midAvail, low: lowAvail } = cache.passengers;
 
   if (highAvail === 0 && midAvail === 0 && lowAvail === 0) {
-    await app.logEvent('No passengers are available at this port.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoPassengersAvailable'));
     return;
   }
 
@@ -296,7 +296,11 @@ async function bookPassengerClass(app, classKey, available, capacity, revenuePer
       s.passengers[classKey] += count;
       cache.passengers[classKey] -= count;
       const rev = count * revenuePerHead;
-      await app.logEvent(`Booked ${count} ${classKey} passenger(s). Revenue on delivery: Cr${rev.toLocaleString()}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.BookedPassengers", {
+        count: count,
+        type: classKey,
+        revenue: rev.toLocaleString()
+      }));
     }
   }
 }
@@ -318,7 +322,10 @@ export async function seekFreight(app, world) {
   const freeSpace = getFreeCargoSpace(s);
 
   if (available === 0 || freeSpace === 0) {
-    await app.logEvent(`No freight available (${available} tons offered, ${freeSpace} tons free cargo space).`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.NoFreightAvailable", {
+      offered: available,
+      free: freeSpace
+    }));
     return;
   }
 
@@ -342,7 +349,10 @@ export async function seekFreight(app, world) {
   if (tons > 0) {
     s.freight += tons;
     cache.freight -= tons;
-    await app.logEvent(`Loaded ${tons} tons of freight. Revenue on delivery: Cr${(tons * FREIGHT_RATE).toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.LoadedFreight", {
+      tons: tons,
+      revenue: (tons * FREIGHT_RATE).toLocaleString()
+    }));
   }
 }
 
@@ -351,13 +361,13 @@ export async function seekFreight(app, world) {
 export async function seekMail(app) {
   const s = app.state;
   if (s.hasMail) {
-    await app.logEvent('Already carrying mail for this trip.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.AlreadyCarryingMail'));
     return;
   }
 
   const cache = getWorldCache(s);
   if (cache.mailChecked) {
-    await app.logEvent('Already checked for mail contracts this visit — no new contracts available.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.AlreadyCheckedMail'));
     return;
   }
 
@@ -366,9 +376,9 @@ export async function seekMail(app) {
   cache.mailChecked = true;
   if (roll >= MAIL_CONTRACT_THRESHOLD) {
     s.hasMail = true;
-    await app.logEvent(`Mail contract secured! Cr${MAIL_PAYMENT.toLocaleString()} on delivery. (5 tons reserved)`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MailContractSecured", { revenue: MAIL_PAYMENT.toLocaleString() }));
   } else {
-    await app.logEvent('No mail contracts available at this time.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoMailAvailable'));
   }
 }
 
@@ -379,13 +389,14 @@ export function getTradeInfo(app, world) {
   const s = app.state;
   const cache = getWorldCache(s);
   if (!cache.tradeInfo) {
+    const ruleset = getTraderRuleset(s.ruleset);
     const worldData = {
       name: world?.name || s.currentWorldName,
       tradeCodes: world?.system?.tradeCodes?.split(/\s+/) || [],
       starport: world?.system?.starport || 'X',
       zone: world?.system?.travelZone || 'Green',
       population: world?.system?.population || 0,
-      traderSkill: getCrewBrokerSkill(s.crew),
+      traderSkill: ruleset.getPriceRollSkill(s.crew),
       useLocalBroker: s.useLocalBroker,
       localBrokerSkill: s.localBrokerSkill,
       supplierModifier: 0,
@@ -394,7 +405,7 @@ export function getTradeInfo(app, world) {
       includeIllegalGoods: cache.foundBlackMarketSupplier || s.includeIllegalGoods || false,
       isBlackMarket: cache.foundBlackMarketSupplier,
     };
-    cache.tradeInfo = generateTradeInformation(worldData);
+    cache.tradeInfo = generateTradeInformation(worldData, ruleset.getCommonGoodsDMs());
   }
   return cache.tradeInfo;
 }
@@ -422,7 +433,7 @@ export async function buyGoods(app, world) {
 
   if (!buyable.length) {
     cache.noGoodsAvailable = true;
-    await app.logEvent('No affordable goods available from suppliers.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoAffordableGoods'));
     return;
   }
 
@@ -461,7 +472,7 @@ export async function buyGoods(app, world) {
     const commission = qty * (good.buyCommission || 0);
     const totalCost = cost + commission;
     if (s.credits < totalCost) {
-      await app.logEvent(`Insufficient credits to cover purchase price and broker commission (Total needed: Cr${totalCost.toLocaleString()}).`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.InsufficientCreditsBroker", { total: totalCost.toLocaleString() }));
       return;
     }
     s.credits -= totalCost;
@@ -473,12 +484,21 @@ export async function buyGoods(app, world) {
       purchaseWorld: s.currentWorldName,
       commissionPaid: commission,
     });
-    let logMsg = `Bought ${qty}t ${game.i18n.localize(good.name)} at Cr${good.buyPricePerTon.toLocaleString()}/t.`;
-    if (commission > 0) {
-      logMsg += ` Paid Cr${commission.toLocaleString()} broker commission.`;
+    let logMsg = game.i18n.format("TWODSIX.Trader.Log.BoughtGoods", {
+      qty: qty,
+      type: game.i18n.localize(good.name),
+      price: good.buyPricePerTon.toLocaleString(),
+      total: totalCost.toLocaleString()
+    });
+    await app.logEvent(logMsg + ` Credits: Cr${s.credits.toLocaleString()}.`);
+
+    const ruleset = getTraderRuleset(s.ruleset);
+    if (ruleset.shouldRollCargoTag()) {
+      await ruleset.rollCargoTag(app);
     }
-    logMsg += ` Total: Cr${totalCost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`;
-    await app.logEvent(logMsg);
+    if (ruleset.shouldRollProblemWithDeal()) {
+      await ruleset.rollProblemWithDeal(app);
+    }
   }
 }
 
@@ -488,7 +508,7 @@ export async function sellGoods(app, world) {
   const s = app.state;
 
   if (!s.cargo.length) {
-    await app.logEvent('No cargo to sell.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoCargoToSell'));
     return;
   }
 
@@ -541,7 +561,7 @@ export async function sellGoods(app, world) {
   const cargo = s.cargo[idx];
   if (!cargo || sellOptions.find(o => o.value === chosenIdx)?.salePrice === undefined) {
     if (cargo) {
-      await app.logEvent(`No buyer found for ${game.i18n.localize(cargo.name)}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.NoBuyerFound", { good: game.i18n.localize(cargo.name) }));
     }
     return;
   }
@@ -575,7 +595,7 @@ export async function buyBulkLifeSupport(app) {
   const freeSpace = getFreeCargoSpace(s);
 
   if (freeSpace <= 0) {
-    await app.logEvent('No free cargo space for bulk supplies.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoFreeCargoSpaceBulk'));
     return;
   }
 
@@ -625,7 +645,12 @@ export async function buyBulkLifeSupport(app) {
         purchaseWorld: s.currentWorldName,
       });
     }
-    await app.logEvent(`Bought ${qty}t ${game.i18n.localize(itemName)} at Cr${costPerTon.toLocaleString()}/t. Total: Cr${totalCost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.BoughtBulk", {
+      qty: qty,
+      type: game.i18n.localize(itemName),
+      price: costPerTon.toLocaleString(),
+      total: totalCost.toLocaleString()
+    }) + ` Credits: Cr${s.credits.toLocaleString()}.`);
   }
 }
 
@@ -634,7 +659,7 @@ export async function sellBulkLifeSupport(app) {
   const bulkCargo = s.cargo.filter(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal') || c.name === game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'));
 
   if (!bulkCargo.length) {
-    await app.logEvent('No bulk life support supplies to sell.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoBulkSuppliesToSell'));
     return;
   }
 
@@ -710,18 +735,17 @@ export async function findSupplier(app, world) {
 /** Unified search logic for suppliers and buyers. */
 async function searchForTrade(app, world, type) {
   const s = app.state;
+  const ruleset = getTraderRuleset(s.ruleset);
   const cache = getWorldCache(s);
   const starport = world?.system?.starport || 'X';
   const worldTL = parseInt(world?.system?.uwp?.substring(8, 9), 16) || 0;
 
   // Options for search method
-  const options = [
-    { value: 'standard', label: 'Standard (Broker skill, 1D6 days)' },
-    { value: 'blackmarket', label: 'Black Market (Streetwise skill, 1D6 days)' },
-  ];
-  if (worldTL >= 8) {
-    options.push({ value: 'online', label: 'Online (Computers skill, 1D6 hours, TL 8+)' });
-  }
+  const methods = ruleset.getSearchMethods(worldTL, starport);
+  const options = methods.map(m => ({
+    value: m,
+    label: `${m.charAt(0).toUpperCase() + m.slice(1)} (${game.i18n.localize(ruleset.getSearchSkillLabel(m))}, 1D6 days)`
+  }));
 
   const method = await app._choose(`Find ${type}: Choose search method`, options);
   if (!method) {
@@ -741,31 +765,36 @@ async function searchForTrade(app, world, type) {
   let skill = 0;
   let timeHours = 0;
   let bonus = 0;
-  let skillName = '';
+  let skillName = game.i18n.localize(ruleset.getSearchSkillLabel(method));
 
-  if (method === 'standard') {
-    skill = getEffectiveBrokerSkillForWorld(s, starport);
-    bonus = STARPORT_SUPPLIER_BONUS[starport] || 0;
-    timeHours = (await app._roll('1D6')) * HOURS_PER_DAY;
-    skillName = 'Broker';
-  } else if (method === 'blackmarket') {
-    skill = getCrewStreetwiseSkill(s.crew);
-    bonus = STARPORT_SUPPLIER_BONUS[starport] || 0;
-    timeHours = (await app._roll('1D6')) * HOURS_PER_DAY;
-    skillName = 'Streetwise';
-  } else if (method === 'online') {
-    skill = getCrewComputersSkill(s.crew);
+  if (method === 'online') {
+    skill = ruleset.getSearchSkillLevel(s.crew, method);
     bonus = 0;
     timeHours = await app._roll('1D6');
-    skillName = 'Computers';
+  } else {
+    skill = ruleset.getSearchSkillLevel(s.crew, method);
+    if (method === 'standard') {
+      // For standard search, we might be using a hired broker
+      skill = getEffectiveBrokerSkillForWorld(s, starport);
+    }
+    bonus = ruleset.getSearchStarportBonus(starport);
+    timeHours = (await app._roll('1D6')) * HOURS_PER_DAY;
   }
 
   advanceDate(s.gameDate, timeHours);
-  const timeStr = timeHours >= HOURS_PER_DAY ? `${Math.floor(timeHours / HOURS_PER_DAY)} day(s)` : `${timeHours} hour(s)`;
-  await app.logEvent(`Searching for ${type}s via ${method} method... ${timeStr} pass.`);
+  const localizedType = game.i18n.localize(`TWODSIX.Trader.Search.${type.charAt(0).toUpperCase() + type.slice(1)}`);
+  const localizedMethod = game.i18n.localize(`TWODSIX.Trader.Search.Method.${method}`);
+  const timeStr = timeHours >= HOURS_PER_DAY
+    ? game.i18n.format("TWODSIX.Trader.Time.Days", { days: Math.floor(timeHours / HOURS_PER_DAY) })
+    : game.i18n.format("TWODSIX.Trader.Time.Hours", { hours: timeHours });
+  await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.Searching", {
+    type: localizedType,
+    method: localizedMethod,
+    timeStr
+  }));
 
   const checkRoll = await app._roll(`2D6+${skill}+${bonus}${penalty !== 0 ? penalty : ''}`);
-  const success = checkRoll >= 8;
+  const success = checkRoll >= ruleset.getSearchThreshold();
 
   if (success) {
     if (type === 'supplier') {
@@ -776,56 +805,74 @@ async function searchForTrade(app, world, type) {
       if (method === 'online') {
         cache.foundOnlineSupplier = true;
       }
+      if (method === 'private') {
+        cache.foundPrivateSupplier = true;
+      }
     } else {
       cache.foundBuyer = true;
+      if (method === 'private') {
+        cache.foundPrivateBuyer = true;
+      }
     }
 
-    let msg = `${type.charAt(0).toUpperCase() + type.slice(1)}s found! (${skillName} skill-${skill}`;
-    if (bonus > 0) {
-      msg += `, Starport ${starport} bonus +${bonus}`;
+    const details = [];
+    details.push(game.i18n.format("TWODSIX.Trader.Search.DetailSkill", { skillName, skill }));
+    if (bonus !== 0) {
+      details.push(game.i18n.format("TWODSIX.Trader.Search.DetailStarport", {
+        starport,
+        bonus: (bonus > 0 ? '+' : '') + bonus
+      }));
     }
     if (penalty < 0) {
-      msg += `, Search penalty ${penalty}`;
+      details.push(game.i18n.format("TWODSIX.Trader.Search.DetailPenalty", { penalty }));
     }
-    msg += ')';
-    await app.logEvent(msg);
+
+    const key = type === 'supplier' ? "TWODSIX.Trader.Search.SuppliersFound" : "TWODSIX.Trader.Search.BuyersFound";
+    await app.logEvent(game.i18n.format(key, { details: details.join(', ') }));
 
     cache.tradeInfo = null;
   } else {
-    await app.logEvent(`Failed to find any ${type}s using the ${method} method.`);
+    const localizedType = game.i18n.localize(`TWODSIX.Trader.Search.${type.charAt(0).toUpperCase() + type.slice(1)}`);
+    const localizedMethod = game.i18n.localize(`TWODSIX.Trader.Search.Method.${method}`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.SearchFailed", {
+      type: localizedType,
+      method: localizedMethod
+    }));
   }
 }
 
 export async function hireBroker(app, world) {
   const s = app.state;
+  const ruleset = getTraderRuleset(s.ruleset);
   const starport = world?.system?.starport || 'X';
-  const maxSkill = STARPORT_BROKER_MAX[starport] || 0;
+  const maxSkill = ruleset.getBrokerMaxSkill(starport);
 
   if (maxSkill <= 0) {
-    await app.logEvent(`No local brokers available at this ${starport}-class starport.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.NoBrokersAvailable", { starport }));
     return;
   }
 
   const options = [];
   for (let i = 1; i <= maxSkill; i++) {
-    const commission = LOCAL_BROKER_COMMISSION[i];
+    const commission = ruleset.getBrokerCommission(i);
     options.push({ value: String(i), label: `Skill-${i} Broker (${commission}% commission)` });
   }
   options.push({ value: '0', label: 'Do not hire (use own skill)' });
 
-  const chosen = parseInt(await app._choose(`Hire a local broker (Starport ${starport} max skill: ${maxSkill})`, options));
+  const prompt = game.i18n.format("TWODSIX.Trader.Prompts.HireBroker", { starport, maxSkill });
+  const chosen = parseInt(await app._choose(prompt, options));
 
   if (chosen > 0) {
     s.useLocalBroker = true;
     s.localBrokerSkill = chosen;
-    const commission = LOCAL_BROKER_COMMISSION[chosen];
-    await app.logEvent(`Hired local Skill-${chosen} broker. They will take a ${commission}% commission on all trades.`);
+    const commission = ruleset.getBrokerCommission(chosen);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.HiredBroker", { skill: chosen, commission }));
     const cache = getWorldCache(s);
     cache.tradeInfo = null;
   } else {
     s.useLocalBroker = false;
     s.localBrokerSkill = 0;
-    await app.logEvent('Decided to handle trades personally.');
+    await app.logEvent(game.i18n.localize("TWODSIX.Trader.Log.HandlePersonally"));
     const cache = getWorldCache(s);
     cache.tradeInfo = null;
   }
@@ -864,7 +911,7 @@ export async function refuel(app, world) {
   const fuelNeeded = s.ship.fuelCapacity - s.ship.currentFuel;
 
   if (fuelNeeded <= 0) {
-    await app.logEvent('Fuel tanks are already full.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.FuelFull'));
     return;
   }
 
@@ -929,38 +976,70 @@ export async function refuel(app, world) {
     options
   );
 
-  if (choice === 'none') {
-    return;
-  }
-
   if (choice === 'refined') {
     const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined, true);
-    await app.logEvent(`Purchased ${fuelNeeded}t refined fuel. Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuel", {
+      tons: fuelNeeded,
+      quality: "refined",
+      cost: cost.toLocaleString(),
+      credits: s.credits.toLocaleString()
+    }));
   } else if (choice === 'refined_partial') {
     const tons = affordableFuel(s.credits, FUEL_COST.refined);
     const cost = applyFuelPurchase(s, tons, FUEL_COST.refined, true);
-    await app.logEvent(`Purchased ${tons}t refined fuel (partial load). Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}. Fuel: ${s.ship.currentFuel}/${s.ship.fuelCapacity}t.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuelPartial", {
+      tons,
+      quality: "refined",
+      cost: cost.toLocaleString(),
+      credits: s.credits.toLocaleString(),
+      current: s.ship.currentFuel,
+      capacity: s.ship.fuelCapacity
+    }));
   } else if (choice === 'unrefined') {
     const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.unrefined, false);
-    await app.logEvent(`Purchased ${fuelNeeded}t unrefined fuel. Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuel", {
+      tons: fuelNeeded,
+      quality: "unrefined",
+      cost: cost.toLocaleString(),
+      credits: s.credits.toLocaleString()
+    }));
   } else if (choice === 'unrefined_partial') {
     const tons = affordableFuel(s.credits, FUEL_COST.unrefined);
     const cost = applyFuelPurchase(s, tons, FUEL_COST.unrefined, false);
-    await app.logEvent(`Purchased ${tons}t unrefined fuel (partial load). Cost: Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}. Fuel: ${s.ship.currentFuel}/${s.ship.fuelCapacity}t.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuelPartial", {
+      tons,
+      quality: "unrefined",
+      cost: cost.toLocaleString(),
+      credits: s.credits.toLocaleString(),
+      current: s.ship.currentFuel,
+      capacity: s.ship.fuelCapacity
+    }));
   } else if (choice === 'gasgiant') {
     const skimTime = Math.ceil(fuelNeeded / FUEL_SKIM_RATE) * (await app._roll('1d6'));
     s.ship.currentFuel = s.ship.fuelCapacity;
     s.ship.fuelIsRefined = false;
     advanceDate(s.gameDate, skimTime);
-    await app.logEvent(`Skimmed ${fuelNeeded}t fuel from gas giant. Time: ${skimTime} hours. Fuel is unrefined.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.SkimmedFuel", {
+      tons: fuelNeeded,
+      time: skimTime
+    }));
   } else if (choice === 'cheat') {
     const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined * FUEL_CHEAT_MULTIPLIER, false);
-    await app.logEvent(`CHEAT: Magically refueled ${fuelNeeded}t at ${world?.name || 'unknown world'}. Cost: Cr${cost.toLocaleString()}. Fuel is unrefined. Credits: Cr${s.credits.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CheatRefueled", {
+      tons: fuelNeeded,
+      world: world?.name || 'unknown world',
+      cost: cost.toLocaleString(),
+      credits: s.credits.toLocaleString()
+    }));
   } else if (choice === 'cheat_free') {
     s.ship.currentFuel = s.ship.fuelCapacity;
     s.ship.fuelIsRefined = false;
     advanceDate(s.gameDate, CHEAT_FREE_FUEL_DAYS * HOURS_PER_DAY);
-    await app.logEvent(`CHEAT: Scrounged ${fuelNeeded}t fuel at ${world?.name || 'unknown world'}. Took ${CHEAT_FREE_FUEL_DAYS} days. Fuel is unrefined.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CheatScrounged", {
+      tons: fuelNeeded,
+      world: world?.name || 'unknown world',
+      days: CHEAT_FREE_FUEL_DAYS
+    }));
   }
   await accruePortFees(app);
 }
@@ -970,7 +1049,7 @@ export async function takePrivateMessages(app) {
   const cache = getWorldCache(s);
 
   if (cache.privateMessageAccepted) {
-    await app.logEvent('Private messages already accepted this visit. Cannot accept again.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.PrivateMessagesAlreadyAccepted'));
     return;
   }
 
@@ -987,7 +1066,11 @@ export async function takePrivateMessages(app) {
   cache.privateMessageAccepted = true;
   cache.privateMessageCredits = honorarium;
 
-  await app.logEvent(`${crewName} was approached to carry private messages. Honorarium: Cr${honorarium.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`);
+  await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PrivateMessagesAccepted", {
+    name: crewName,
+    honorarium: honorarium.toLocaleString(),
+    credits: s.credits.toLocaleString()
+  }));
 }
 
 export async function accruePortFees(app) {
@@ -1002,7 +1085,11 @@ export async function accruePortFees(app) {
     s.credits -= cost;
     s.totalExpenses += cost;
     cache.portFeesPaidDays = daysSpent;
-    await app.logEvent(`Additional port fees for ${extraDays} extra day(s): Cr${cost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.AdditionalPortFees", {
+      days: extraDays,
+      cost: cost.toLocaleString(),
+      credits: s.credits.toLocaleString()
+    }));
   }
 }
 
@@ -1014,7 +1101,7 @@ export async function chooseDestination(app) {
   const { reachable, options } = await getReachableDestinations(app);
 
   if (!reachable.length) {
-    await app.logEvent('No worlds within jump range!');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoWorldsInRange'));
     return;
   }
 
@@ -1027,7 +1114,7 @@ export async function chooseDestination(app) {
   if (chosen === 'clear') {
     if (cache.privateMessageAccepted && cache.privateMessageCredits > 0) {
       const confirm = await app._choose(
-        `Changing destination will forfeit the private message payment (Cr${cache.privateMessageCredits.toLocaleString()}). Continue?`,
+        game.i18n.format('TWODSIX.Trader.Log.ChangeDestForfeit', { credits: cache.privateMessageCredits.toLocaleString() }),
         [
           { value: 'confirm', label: 'Yes, clear destination and forfeit payment' },
           { value: 'cancel', label: 'Cancel' },
@@ -1041,7 +1128,7 @@ export async function chooseDestination(app) {
       s.totalRevenue -= forfeitedCredits;
       cache.privateMessageAccepted = false;
       cache.privateMessageCredits = 0;
-      await app.logEvent(`Destination cleared. Private message payment forfeited: Cr${forfeitedCredits.toLocaleString()}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.DestinationClearedForfeited", { credits: forfeitedCredits.toLocaleString() }));
     }
     s.destinationHex = '';
     s.destinationName = '';
@@ -1070,13 +1157,13 @@ export async function chooseDestination(app) {
     const forfeitedCredits = cache.privateMessageCredits;
     cache.privateMessageAccepted = false;
     cache.privateMessageCredits = 0;
-    await app.logEvent(`Private message payment forfeited: Cr${forfeitedCredits.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PrivateMessageForfeited", { credits: forfeitedCredits.toLocaleString() }));
   }
 
   s.destinationHex = chosen;
   s.destinationGlobalHex = dest.globalHex || dest.hex || '';
   s.destinationName = dest.name;
-  await app.logEvent(`Selected ${dest.name} as destination.`);
+  await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.DestinationSelected", { world: dest.name }));
 }
 
 export async function getReachableDestinations(app) {

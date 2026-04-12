@@ -38,9 +38,10 @@ function priceWithBroker(pricing, basePrice, capSameWorld, commissionPercent) {
 /**
  * Generate trade information for a world, including available goods, prices, and summary info.
  * @param worldData - Data about the world and trade context (trade codes, starport, modifiers, etc.)
+ * @param {object} [commonGoodsDMs] - Optional DM table for common goods
  * @returns TradeGenerationResult with all generated trade data for the world.
  */
-export function generateTradeInformation(worldData) {
+export function generateTradeInformation(worldData, commonGoodsDMs = null) {
   if (!worldData) {
     throw new Error('TradeGenerator: worldData is required');
   }
@@ -229,7 +230,17 @@ export function generateTradeInformation(worldData) {
   // Also roll for common goods (no trade-code DMs, just base checks)
   const commonGoodsRolled = COMMON_GOODS.map((good) => {
     const rolledQuantity = rollDice(good.quantity);
-    const pricing = calculatePricesFromChecks(good.basePrice, basePurchaseCheck, baseSaleCheck, ruleset);
+    let pricing;
+    if (commonGoodsDMs && commonGoodsDMs[good.name]) {
+      const dms = commonGoodsDMs[good.name];
+      const purchaseDM = dms.purchaseDM || 0;
+      const saleDM = dms.saleDM || 0;
+      const purchaseCheck = clampCheck(basePurchaseCheck + purchaseDM - saleDM);
+      const saleCheck = clampCheck(baseSaleCheck + saleDM - purchaseDM);
+      pricing = calculatePricesFromChecks(good.basePrice, purchaseCheck, saleCheck, ruleset);
+    } else {
+      pricing = calculatePricesFromChecks(good.basePrice, basePurchaseCheck, baseSaleCheck, ruleset);
+    }
     const { purchaseAdjusted, saleAdjusted } = priceWithBroker(pricing, good.basePrice, capSameWorld, commissionPercent);
 
     return {

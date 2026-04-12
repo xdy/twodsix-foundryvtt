@@ -320,6 +320,7 @@ function initializeTraderState(setupResult, startWorld, startGlobalHex, sectors,
       state.mortgageRemaining = state.ship.shipCost * MORTGAGE_FINANCING_MULTIPLIER;
     }
   }
+  state.ruleset = setupResult.ruleset || 'CE';
   state.crew = crew;
   state.credits = setupResult.startingCredits;
   return state;
@@ -435,7 +436,7 @@ export async function startTrading(existingJournal = null) {
     progressDialog.close();
     progressDialog = null;
 
-    const crew = await showCrewDialog(setupResult.shipActorId);
+    const crew = await showCrewDialog(setupResult.shipActorId, setupResult.ruleset);
     traderDebug('TraderEntrypoint', `Crew dialog result received:`, crew);
     if (!crew) {
       traderDebug('TraderEntrypoint', `Crew dialog cancelled.`);
@@ -535,10 +536,12 @@ async function showSetupDialog() {
 
 /**
  * Show the crew setup dialog and return a promise resolving to the crew array.
+ * @param {string} shipActorId
+ * @param {string} ruleset
  * @returns {Promise<Array|null>}
  */
-async function showCrewDialog(shipActorId) {
-  const app = new CrewSetupApp({ shipActorId });
+async function showCrewDialog(shipActorId, ruleset) {
+  const app = new CrewSetupApp({ shipActorId, ruleset });
   const resultPromise = app.awaitResult();
   await app.render({ force: true });
   return resultPromise;

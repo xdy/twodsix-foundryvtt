@@ -10,7 +10,9 @@
       <th>Position</th>
       <th>Salary / mo</th>
       <th>Actor or manual name</th>
-      <th>Broker skill</th>
+      {{#each skillNames}}
+        <th>{{label}}</th>
+      {{/each}}
     </tr>
     </thead>
     <tbody>
@@ -30,11 +32,14 @@
                  value="{{manualName}}"
                  placeholder="{{label}}"/>
         </td>
-        <td class="trader-crew-broker">
-          <input class="st-broker-input" type="number"
-                 data-position="{{position}}"
-                 value="{{brokerSkill}}" min="0" max="4"/>
-        </td>
+        {{#each skillList}}
+          <td class="trader-crew-skill">
+            <input class="st-skill-input" type="number"
+                   data-position="{{../position}}"
+                   data-skill="{{key}}"
+                   value="{{value}}" min="0" max="4"/>
+          </td>
+        {{/each}}
       </tr>
     {{/each}}
     </tbody>
