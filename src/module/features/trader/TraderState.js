@@ -104,6 +104,7 @@ export const OUTCOME = {
  * @property {string} subsectorName - Selected subsector name
  * @property {string} startHex - Starting world hex
  * @property {string} milieu - Milieu identifier
+ * @property {string} [ruleset] - Selected trader ruleset
  * @property {string} [shipActorId] - Optional ship Actor id
  * @property {string} [cacheJournalName] - Cache journal name
  * @property {string} [journalName] - Trade journal name
@@ -125,6 +126,7 @@ export const OUTCOME = {
  * @property {number} [brokerSkill] - Broker skill level
  * @property {number} [streetwiseSkill] - Streetwise skill level
  * @property {number} [computersSkill] - Computers skill level
+ * @property {Object<string, number>} [skills] - Generic skills map
  */
 
 /**
@@ -142,6 +144,8 @@ export const OUTCOME = {
  * @property {boolean} foundBuyer - Whether a standard buyer has been found
  * @property {boolean} foundBlackMarketSupplier - Whether a black market supplier has been found
  * @property {boolean} foundOnlineSupplier - Whether an online supplier has been found
+ * @property {boolean} foundPrivateSupplier - Whether a private supplier has been found
+ * @property {boolean} foundPrivateBuyer - Whether a private buyer has been found
  * @property {number} searchAttempts - Total number of search attempts made at this port
  * @property {number} lastSearchMonth - Month number of the last search attempt
  * @property {number} priceRejectedUntil - Absolute day number until which prices are frozen (price rejection cooldown)
@@ -155,6 +159,7 @@ export const OUTCOME = {
  * @property {string} subsectorName - Current subsector name
  * @property {string} sectorName - Current sector name
  * @property {string} milieu - Milieu identifier (e.g. 'M1105')
+ * @property {string} ruleset - Trader ruleset key (e.g. 'CE')
  * @property {GameDate} gameDate - Current game date
  * @property {string} phase - Current journey phase (from PHASE enum)
  * @property {number} credits - Current cash on hand
@@ -209,6 +214,7 @@ export function freshTraderState() {
     subsectorName: '',
     sectorName: '',
     milieu: 'M1105',
+    ruleset: 'CE',
     gameDate: { year: 1105, day: 1 },
     phase: PHASE.AT_WORLD,
 
@@ -384,7 +390,7 @@ export function getTotalCrewSalary(crew) {
  * @returns {number} Highest broker skill level, or UNSKILLED_PENALTY if none
  */
 export function getCrewBrokerSkill(crew) {
-  return crew.reduce((best, c) => Math.max(best, c.brokerSkill || UNSKILLED_PENALTY), UNSKILLED_PENALTY);
+  return getCrewSkill(crew, 'Broker');
 }
 
 
@@ -394,7 +400,7 @@ export function getCrewBrokerSkill(crew) {
  * @returns {number} Highest streetwise skill level
  */
 export function getCrewStreetwiseSkill(crew) {
-  return crew.reduce((best, c) => Math.max(best, c.streetwiseSkill || UNSKILLED_PENALTY), UNSKILLED_PENALTY);
+  return getCrewSkill(crew, 'Streetwise');
 }
 
 /**
@@ -403,7 +409,31 @@ export function getCrewStreetwiseSkill(crew) {
  * @returns {number} Highest computers skill level
  */
 export function getCrewComputersSkill(crew) {
-  return crew.reduce((best, c) => Math.max(best, c.computersSkill || UNSKILLED_PENALTY), UNSKILLED_PENALTY);
+  return getCrewSkill(crew, 'Computers');
+}
+
+/**
+ * Get the best skill level for a named skill among crew members.
+ * @param {CrewMember[]} crew - Crew array from state
+ * @param {string} skillName - Skill name
+ * @returns {number} Highest skill level, or UNSKILLED_PENALTY if none
+ */
+export function getCrewSkill(crew, skillName) {
+  const skillKey = skillName.toLowerCase();
+  return crew.reduce((best, c) => {
+    const val = c.skills?.[skillKey] ?? _getLegacySkillValue(c, skillKey);
+    return Math.max(best, val ?? UNSKILLED_PENALTY);
+  }, UNSKILLED_PENALTY);
+}
+
+/** @private */
+function _getLegacySkillValue(crewMember, skillKey) {
+  switch (skillKey) {
+    case 'broker': return crewMember.brokerSkill;
+    case 'streetwise': return crewMember.streetwiseSkill;
+    case 'computers': return crewMember.computersSkill;
+    default: return undefined;
+  }
 }
 
 /**
@@ -428,6 +458,8 @@ export function getWorldCache(state) {
       foundBuyer: false,
       foundBlackMarketSupplier: false,
       foundOnlineSupplier: false,
+      foundPrivateSupplier: false,
+      foundPrivateBuyer: false,
       searchAttempts: 0,
       lastSearchMonth: getMonthNumber(state.gameDate, state.milieu),
       priceRejectedUntil: 0,

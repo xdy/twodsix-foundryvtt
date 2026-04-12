@@ -360,8 +360,11 @@ export const STARPORT_PURCHASE_MODS = {
 };
 
 // Starport traffic modifiers for sale prices (general)
+//TODO Ask marvin where the original values below came from (not CE it doesn't use it, and not CDEE it has the new values)
+//'A': -1, 'B': -2, 'C': 0, 'D': 0, 'E': 0, 'X': 1
+//TODO STARPORT_SALE_MODS are the same as for _CLU it seems
 export const STARPORT_SALE_MODS = {
-  'A': -1, 'B': -2, 'C': 0, 'D': 0, 'E': 0, 'X': 1
+  'A': -3, 'B': -2, 'C': -1, 'D': 0, 'E': 0, 'X': 1
 };
 
 // Starport traffic modifiers for CLU ruleset (differs from general)

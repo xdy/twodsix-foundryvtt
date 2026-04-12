@@ -63,7 +63,10 @@ export async function accrueMonthlyCosts(app) {
           s.cargo.splice(s.cargo.indexOf(supplies), 1);
         }
         actualLifeSupportCost = 0;
-        await app.logEvent(`Used ${tonsNeeded}t of ${lsChoice} bulk life support supplies.`);
+        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.UsedBulkSupplies", {
+          tons: tonsNeeded,
+          type: lsChoice
+        }));
       }
     }
 
@@ -93,12 +96,21 @@ export async function accrueMonthlyCosts(app) {
 
         s.credits -= repairCost;
         s.totalExpenses += repairCost;
-        await app.logEvent(
-          `Maintenance skipped! Ship suffers ${hits} hit(s) of system degradation (rolled ${damageRoll}+${s.maintenanceMonthsSkipped}=${damageTotal}). `
-          + `Emergency repair cost: Cr${repairCost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`
-        );
+        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MaintenanceSkippedDamage", {
+          hits: hits,
+          roll: damageRoll,
+          skipped: s.maintenanceMonthsSkipped,
+          total: damageTotal,
+          repairCost: repairCost.toLocaleString(),
+          credits: s.credits.toLocaleString()
+        }));
       } else {
-        await app.logEvent(`Maintenance skipped this month (rolled ${damageRoll}+${s.maintenanceMonthsSkipped}=${damageTotal}, need ${MAINTENANCE_DAMAGE_THRESHOLD}+). No damage... yet.`);
+        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MaintenanceSkippedNoDamage", {
+          roll: damageRoll,
+          skipped: s.maintenanceMonthsSkipped,
+          total: damageTotal,
+          threshold: MAINTENANCE_DAMAGE_THRESHOLD
+        }));
       }
     } else {
       s.maintenanceMonthsSkipped = 0;
@@ -110,13 +122,17 @@ export async function accrueMonthlyCosts(app) {
     s.totalExpenses += totalCost;
     s.monthsPaid++;
 
-    await app.logEvent(
-      `Monthly costs (month ${s.monthsPaid}): Crew Cr${crewCost.toLocaleString()}, `
-      + `Life support Cr${actualLifeSupportCost.toLocaleString()}${actualLifeSupportCost === 0 && (lifeSupportCost > 0) ? ' (covered by bulk)' : ''}, `
-      + `Maintenance Cr${actualMaintenanceCost.toLocaleString()}${skipChoice === 'skip' ? ' (skipped)' : ''}, `
-      + `Mortgage Cr${mortgageCost.toLocaleString()}. `
-      + `Total: Cr${totalCost.toLocaleString()}. Credits: Cr${s.credits.toLocaleString()}.`
-    );
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MonthlyCostsSummary", {
+      month: s.monthsPaid,
+      crew: crewCost.toLocaleString(),
+      ls: actualLifeSupportCost.toLocaleString(),
+      lsExtra: (actualLifeSupportCost === 0 && (lifeSupportCost > 0)) ? game.i18n.localize('TWODSIX.Trader.Log.MonthlyCostsLSExtra') : '',
+      maint: actualMaintenanceCost.toLocaleString(),
+      maintExtra: (skipChoice === 'skip') ? game.i18n.localize('TWODSIX.Trader.Log.MonthlyCostsMaintExtra') : '',
+      mortgage: mortgageCost.toLocaleString(),
+      total: totalCost.toLocaleString(),
+      credits: s.credits.toLocaleString()
+    }));
   }
 }
 

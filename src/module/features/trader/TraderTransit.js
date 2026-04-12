@@ -12,6 +12,7 @@ import {
   PORT_FEE_BASE,
   TRANSIT_BASE_HOURS
 } from './TraderConstants.js';
+import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import { advanceDate, getAbsoluteDay, getCurrentWorld, getUsedCargoSpace, PHASE, } from './TraderState.js';
 import { canRefuelAtWorld, getWorldCoordinate, } from './TraderUtils.js';
 import { fetchJumpWorlds } from './TravellerMapAPI.js';
@@ -30,10 +31,10 @@ export async function depart(app) {
     const { refuel } = await import('./TraderAtWorld.js');
     const world = getCurrentWorld(s);
     const choice = await app._choose(
-      `Insufficient fuel! Need ${jumpFuel}t for jump, have ${s.ship.currentFuel}t.`,
+      game.i18n.format('TWODSIX.Trader.Log.InsufficientFuel', { need: jumpFuel, have: s.ship.currentFuel }),
       [
-        { value: 'refuel', label: 'Refuel now before departing' },
-        { value: 'cancel', label: 'Cancel departure' },
+        { value: 'refuel', label: game.i18n.localize('TWODSIX.Trader.Actions.Refuel') },
+        { value: 'cancel', label: game.i18n.localize('Cancel') },
       ]
     );
     if (choice === 'refuel') {
@@ -50,7 +51,7 @@ export async function depart(app) {
   const { getReachableDestinations } = await import('./TraderAtWorld.js');
   const { reachable, options: destOptions } = await getReachableDestinations(app);
   if (!reachable.length) {
-    await app.logEvent('No worlds within jump range! Consider increasing jump rating or refueling.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoWorldsInRangeConsider'));
     return;
   }
 
@@ -61,7 +62,7 @@ export async function depart(app) {
     const confirmChoice = await app._choose(
       game.i18n.format('TWODSIX.Trader.Prompts.ConfirmDestination', { destination: s.destinationName }),
       [
-        { value: 'confirm', label: `Depart for ${s.destinationName}` },
+        { value: 'confirm', label: game.i18n.format('TWODSIX.Trader.Log.Departure', { destination: s.destinationName }) },
         { value: 'change', label: game.i18n.localize('TWODSIX.Trader.Actions.ChooseDifferent') },
       ]
     );
@@ -85,14 +86,17 @@ export async function depart(app) {
 
   if (!destCanRefuel && fuelAfterJump < jumpFuel) {
     const confirmOptions = [
-      { value: 'confirm', label: 'Proceed anyway (DANGER: may get stranded!)' },
-      { value: 'cancel', label: 'Cancel departure and refuel first' },
+      { value: 'confirm', label: game.i18n.localize('Confirm') },
+      { value: 'cancel', label: game.i18n.localize('Cancel') },
     ];
     const dw = dest?.system;
     const confirm = await app._choose(
-      `WARNING: ${dest.name} has no refueling facilities (Class ${dw?.starport || 'X'} starport, no gas giants). ` +
-      `After this jump you'll have ${fuelAfterJump}t fuel remaining, but need ${jumpFuel}t for another jump. ` +
-      `You may get stranded!`,
+      game.i18n.format('TWODSIX.Trader.Log.WarningNoFuelAtDest', {
+        world: dest.name,
+        starport: dw?.starport || 'X',
+        remaining: fuelAfterJump,
+        need: jumpFuel
+      }),
       confirmOptions
     );
     if (confirm === 'cancel') {
@@ -127,12 +131,16 @@ export async function executeDeparture(app) {
   const freightRev = s.freight * FREIGHT_RATE;
   const mailRev = s.hasMail ? MAIL_PAYMENT : 0;
 
-  await app.logEvent(
-    `Departed ${s.currentWorldName} for ${s.destinationName}. `
-    + `Passengers: ${s.passengers.high}H/${s.passengers.middle}M/${s.passengers.low}L. `
-    + `Freight: ${s.freight}t. ${s.hasMail ? 'Carrying mail. ' : ''}`
-    + `Expected delivery revenue: Cr${(paxRev + freightRev + mailRev).toLocaleString()}.`
-  );
+  await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.DepartedFor', {
+    origin: s.currentWorldName,
+    destination: s.destinationName,
+    high: s.passengers.high,
+    mid: s.passengers.middle,
+    low: s.passengers.low,
+    freight: s.freight,
+    mail: s.hasMail ? 'Carrying mail. ' : '',
+    revenue: (paxRev + freightRev + mailRev).toLocaleString()
+  }));
 }
 
 // ─── IN_TRANSIT Phase ────────────────────────────────────────
@@ -153,13 +161,17 @@ export async function inTransitPhase(app) {
   advanceDate(s.gameDate, jumpHours);
 
   const jumpDays = Math.round(jumpHours / HOURS_PER_DAY * 10) / 10;
-  await app.logEvent(`In jump space for ${jumpDays} days. Fuel consumed: ${jumpFuel}t. Remaining: ${s.ship.currentFuel}t.`);
+  await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.InJumpSpace", {
+    days: jumpDays,
+    fuel: jumpFuel,
+    remaining: s.ship.currentFuel
+  }));
 
   // Unrefined fuel risk
   if (!s.ship.fuelIsRefined) {
     const fuelRoll = await app._roll('2D6');
     if (fuelRoll <= 4) {
-      await app.logEvent('Unrefined fuel caused a rough jump! Minor damage sustained, but arrived safely.');
+      await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.RoughJump'));
     }
   }
 
@@ -185,7 +197,10 @@ export async function arrivingPhase(app) {
 
   if (!arrivedWorld) {
     ui.notifications.error(`Twodsix | Trader: Could not find destination world: ${s.destinationName} (${s.destinationHex})`);
-    await app.logEvent(`Error: Destination world ${s.destinationName} (${s.destinationHex}) not found in world list. Game over.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.DestinationNotFound", {
+      name: s.destinationName,
+      hex: s.destinationHex
+    }));
     s.gameOver = true;
     return;
   }
@@ -203,7 +218,16 @@ export async function arrivingPhase(app) {
   const transitHours = TRANSIT_BASE_HOURS + await app._roll('8d6');
   advanceDate(s.gameDate, transitHours);
 
-  await app.logEvent(`Arrived at ${s.currentWorldName} ${worldInfo}. In-system transit: ${Math.round(transitHours / HOURS_PER_DAY)} day(s).`);
+  await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.ArrivalWithTransit", {
+    world: s.currentWorldName,
+    info: worldInfo,
+    days: Math.round(transitHours / HOURS_PER_DAY)
+  }));
+
+  const ruleset = getTraderRuleset(s.ruleset);
+  if (ruleset.shouldCheckSmuggling(s.cargo, world)) {
+    await ruleset.doSmugglingCheck(app, world);
+  }
 
   // Mark world as visited in cache and on actor
   if (typeof arrivedWorld.getFlag === 'function') {
@@ -214,7 +238,7 @@ export async function arrivingPhase(app) {
       if (!wasVisited) {
         await updateCachedWorldVisitedStatus(journal, subKey, s.currentWorldHex, true);
         await arrivedWorld.setFlag('twodsix', 'isVisited', true);
-        await app.logEvent(`First time visiting ${s.currentWorldName} in this trading session! The local tourist board sends a brochure!`);
+        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.FirstTimeVisit", { world: s.currentWorldName }));
       }
 
       // Ensure neighbors of the arrived world's subsector are loaded
@@ -230,7 +254,7 @@ export async function arrivingPhase(app) {
                 s.worlds.push(actor);
               }
             }
-            await app.logEvent(`Discovery! Loading neighboring subsectors revealed ${newWorlds.length} worlds.`);
+            await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.DiscoveryNeighbors", { count: newWorlds.length }));
           }
         } catch (e) {
           console.error('Failed to ensure subsector neighbors loaded:', e);
@@ -256,7 +280,10 @@ export async function arrivingPhase(app) {
                   }
                 }
                 const newNames = newActors.filter(a => a.name !== s.currentWorldName).map(a => a.name).join(', ');
-                await app.logEvent(`Discovery! Higher jump range (${s.ship.jumpRating}) revealed this list of potential destinations: ${newNames}.`);
+                await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.DiscoveryJumpRange", {
+                  jump: s.ship.jumpRating,
+                  names: newNames
+                }));
               }
             }
           } catch (e) {
@@ -276,7 +303,7 @@ export async function arrivingPhase(app) {
   if (paxRev > 0) {
     s.credits += paxRev;
     s.totalRevenue += paxRev;
-    await app.logEvent(`Delivered passengers. Revenue: Cr${paxRev.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PaxRevenue", { revenue: paxRev.toLocaleString() }));
   }
 
   // Deliver freight
@@ -284,14 +311,17 @@ export async function arrivingPhase(app) {
     const freightRev = s.freight * FREIGHT_RATE;
     s.credits += freightRev;
     s.totalRevenue += freightRev;
-    await app.logEvent(`Delivered ${s.freight}t freight. Revenue: Cr${freightRev.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.FreightRevenue", {
+      tons: s.freight,
+      revenue: freightRev.toLocaleString()
+    }));
   }
 
   // Deliver mail
   if (s.hasMail) {
     s.credits += MAIL_PAYMENT;
     s.totalRevenue += MAIL_PAYMENT;
-    await app.logEvent(`Delivered mail. Revenue: Cr${MAIL_PAYMENT.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MailRevenue", { revenue: MAIL_PAYMENT.toLocaleString() }));
   }
 
   // Clear trip bookings
@@ -303,7 +333,11 @@ export async function arrivingPhase(app) {
   s.credits -= PORT_FEE_BASE;
   s.totalExpenses += PORT_FEE_BASE;
 
-  await app.logEvent(`Credits: Cr${s.credits.toLocaleString()}. Cargo: ${getUsedCargoSpace(s)}/${s.ship.cargoCapacity}t.`);
+  await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CreditsCargoStatus", {
+    credits: s.credits.toLocaleString(),
+    used: getUsedCargoSpace(s),
+    capacity: s.ship.cargoCapacity
+  }));
 
   // Check charter expiry on arrival
   if (s.chartered && s.charterExpiryDay && getAbsoluteDay(s.gameDate, s.milieu) >= s.charterExpiryDay) {
@@ -312,7 +346,7 @@ export async function arrivingPhase(app) {
     s.charterStaterooms = 0;
     s.charterLowBerths = 0;
     s.charterExpiryDay = null;
-    await app.logEvent('Charter period has ended. Ship space is now available.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.CharterEnded'));
   }
 
   // Clear the visit cache so all market rolls are fresh for this new world

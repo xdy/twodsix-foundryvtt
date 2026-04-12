@@ -17,6 +17,7 @@ import {
   MORTGAGE_DIVISOR,
   SUBSECTOR_LETTERS
 } from './TraderConstants.js';
+import { TRADER_SUPPORTED_RULESETS } from './TraderRulesetRegistry.js';
 import { getWorldCoordinate, traderDebug } from './TraderUtils.js';
 import { fetchSectors, getSubsectorsForSector, loadSubsectorsWithCache } from './TravellerMapAPI.js';
 import { getCachedSectors, getOrCreateCacheJournal, setCachedSectors } from './TravellerMapCache.js';
@@ -60,6 +61,11 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     this._startHex = DEFAULT_WORLD_HEX;
     this._startingCredits = this._defaultStartingCredits;
 
+    this._ruleset = game.settings.get('twodsix', 'ruleset') || 'CE';
+    if (!TRADER_SUPPORTED_RULESETS.includes(this._ruleset)) {
+      this._ruleset = 'CE';
+    }
+
     this._sectors = [];
     this._subsectors = [];
     this._worlds = [];
@@ -98,6 +104,8 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
       subsectorName: this._subsectorName,
       subsectorLetter: this._subsectorLetter,
       startHex: this._startHex,
+      ruleset: this._ruleset,
+      supportedRulesets: TRADER_SUPPORTED_RULESETS.map(r => ({ key: r, selected: r === this._ruleset })),
       startingCredits: this._startingCredits,
       defaultStartingCredits: this._defaultStartingCredits,
       milieus: MILIEUS.map(m => ({ ...m, selected: m.code === this._milieu })),
@@ -215,6 +223,12 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     // Ship actor change
     el.querySelector('[name=shipActorId]')?.addEventListener('change', (e) => {
       this._shipActorId = e.target.value;
+    });
+
+    // Ruleset change
+    el.querySelector('[name=ruleset]')?.addEventListener('change', (e) => {
+      this._ruleset = e.target.value;
+      this.render();
     });
 
     // Milieu change -> reload sectors
@@ -349,6 +363,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
         milieu: this._milieu,
         sectorName: this._sectorName,
         subsectorName: this._subsectorName,
+        ruleset: this._ruleset,
         startHex: this._startHex,
         startingCredits: this._startingCredits
       });
@@ -400,6 +415,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
         sectorName: this._sectorName,
         subsectorLetter: this._subsectorLetter,
         subsectorName: this._subsectorName,
+        ruleset: this._ruleset,
         startHex: this._startHex,
         startingCredits: this._startingCredits,
       });

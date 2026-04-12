@@ -48,7 +48,10 @@ export async function runTradeLoop(app) {
     if (s.phase === PHASE.AT_WORLD && (!app.rows || !app.rows.length)) {
       const credits = s.credits ?? 0;
       const worldName = s.currentWorldName || 'Unknown';
-      await app.logEvent(`Docked at ${worldName}. Starting credits: Cr${credits.toLocaleString()}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.Docked", {
+        world: worldName,
+        credits: credits.toLocaleString()
+      }));
     }
 
     while (!s.gameOver) {
@@ -57,7 +60,7 @@ export async function runTradeLoop(app) {
           const world = getCurrentWorld(s);
           if (!world) {
             console.error('Twodsix | Trader: atWorldPhase failed to find current world!', s.currentWorldHex);
-            await app.logEvent(`Error: Location ${s.currentWorldHex} not found in world list! Unable to proceed.`);
+            await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.WorldNotFound", { hex: s.currentWorldHex }));
             s.gameOver = true;
             break;
           }
@@ -95,8 +98,8 @@ export async function runTradeLoop(app) {
 
   // Game over man!
   if (s.outcome === OUTCOME.PAID_OFF) {
-    await app.logEvent('The ship mortgage is fully paid off! The Free Trader is yours. Congratulations!');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.MortgagePaid'));
   } else {
-    await app.logEvent('Unable to cover expenses. The bank has repossessed the ship. Game over...');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.Repossessed'));
   }
 }

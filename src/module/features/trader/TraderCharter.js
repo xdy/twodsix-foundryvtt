@@ -108,7 +108,12 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
       const revenue = lot.tons * salePrice;
       s.credits += revenue;
       s.totalRevenue += revenue;
-      await app.logEvent(`Charter eviction: sold ${lot.tons}t ${game.i18n.localize(lot.name)} at Cr${salePrice.toLocaleString()}/t. Revenue: Cr${revenue.toLocaleString()}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionSold", {
+        tons: lot.tons,
+        good: game.i18n.localize(lot.name),
+        price: salePrice.toLocaleString(),
+        revenue: revenue.toLocaleString()
+      }));
       s.cargo.splice(0, 1);
     }
   }
@@ -121,7 +126,10 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
     s.freight -= evicted;
     s.credits -= refund;
     s.totalRevenue -= refund;
-    await app.logEvent(`Charter eviction: dumped ${evicted}t freight. Refunded Cr${refund.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionDumped", {
+      tons: evicted,
+      refund: refund.toLocaleString()
+    }));
   }
 
   // --- Evict high passengers (staterooms) ---
@@ -134,7 +142,11 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
       s.passengers.high -= highEvict;
       s.credits -= refund;
       s.totalRevenue -= refund;
-      await app.logEvent(`Charter eviction: evicted ${highEvict} high passenger(s). Refunded Cr${refund.toLocaleString()}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionPax", {
+        count: highEvict,
+        type: 'high',
+        refund: refund.toLocaleString()
+      }));
     }
 
     const remainingNeeded = stateroomsNeeded - highEvict;
@@ -145,7 +157,11 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
         s.passengers.middle -= midEvict;
         s.credits -= refund;
         s.totalRevenue -= refund;
-        await app.logEvent(`Charter eviction: evicted ${midEvict} middle passenger(s). Refunded Cr${refund.toLocaleString()}.`);
+        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionPax", {
+          count: midEvict,
+          type: 'middle',
+          refund: refund.toLocaleString()
+        }));
       }
     }
   }
@@ -158,7 +174,11 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
     s.passengers.low -= lowEvict;
     s.credits -= refund;
     s.totalRevenue -= refund;
-    await app.logEvent(`Charter eviction: evicted ${lowEvict} low passenger(s). Refunded Cr${refund.toLocaleString()}.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionPax", {
+      count: lowEvict,
+      type: 'low',
+      refund: refund.toLocaleString()
+    }));
   }
 }
 
@@ -177,7 +197,7 @@ export async function acceptCharter(app) {
 
   // Validate at least some space is being chartered
   if (cargo <= 0 && staterooms <= 0 && lowBerths <= 0) {
-    await app.logEvent('No space selected for charter.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.CharterNoSpace'));
     return;
   }
 
@@ -217,7 +237,15 @@ export async function acceptCharter(app) {
   s.charterLowBerths = lowBerths;
   s.charterExpiryDay = getAbsoluteDay(s.gameDate, s.milieu) + 14;
 
-  await app.logEvent(`Ship chartered to ${s.destinationName}. ${cargo}t cargo, ${staterooms} stateroom(s), ${lowBerths} low berth(s). Fee: Cr${fee.toLocaleString()}. Charter expires day ${s.charterExpiryDay}. Credits: Cr${s.credits.toLocaleString()}.`);
+  await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterStarted", {
+    destination: s.destinationName,
+    cargo: cargo,
+    staterooms: staterooms,
+    lowBerths: lowBerths,
+    fee: fee.toLocaleString(),
+    day: s.charterExpiryDay,
+    credits: s.credits.toLocaleString()
+  }));
 
   // 7. Auto-refuel if needed
   const jumpFuel = Math.ceil(s.ship.tonnage * s.ship.jumpRating * 0.1);
@@ -248,13 +276,19 @@ export async function autoRefuel(app, world, jumpFuel) {
     const fullCost = fuelNeeded * FUEL_COST.refined;
     if (s.credits >= fullCost) {
       const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined, true);
-      await app.logEvent(`Auto-refueled ${fuelNeeded}t refined fuel for charter departure. Cost: Cr${cost.toLocaleString()}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterAutoRefuelRefined", {
+        tons: fuelNeeded,
+        cost: cost.toLocaleString()
+      }));
       return;
     } else {
       const tons = affordableFuel(s.credits, FUEL_COST.refined);
       if (tons > 0) {
         const cost = applyFuelPurchase(s, tons, FUEL_COST.refined, true);
-        await app.logEvent(`Auto-refueled ${tons}t refined fuel (partial) for charter departure. Cost: Cr${cost.toLocaleString()}.`);
+        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterAutoRefuelRefinedPartial", {
+          tons: tons,
+          cost: cost.toLocaleString()
+        }));
       }
     }
   }
@@ -269,13 +303,19 @@ export async function autoRefuel(app, world, jumpFuel) {
     const fullCost = remainingNeeded * FUEL_COST.unrefined;
     if (s.credits >= fullCost) {
       const cost = applyFuelPurchase(s, remainingNeeded, FUEL_COST.unrefined, false);
-      await app.logEvent(`Auto-refueled ${remainingNeeded}t unrefined fuel for charter departure. Cost: Cr${cost.toLocaleString()}.`);
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterAutoRefuelUnrefined", {
+        tons: remainingNeeded,
+        cost: cost.toLocaleString()
+      }));
       return;
     } else {
       const tons = affordableFuel(s.credits, FUEL_COST.unrefined);
       if (tons > 0) {
         const cost = applyFuelPurchase(s, tons, FUEL_COST.unrefined, false);
-        await app.logEvent(`Auto-refueled ${tons}t unrefined fuel (partial) for charter departure. Cost: Cr${cost.toLocaleString()}.`);
+        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterAutoRefuelUnrefinedPartial", {
+          tons: tons,
+          cost: cost.toLocaleString()
+        }));
       }
     }
   }
@@ -291,12 +331,15 @@ export async function autoRefuel(app, world, jumpFuel) {
     s.ship.currentFuel += finalRemaining;
     s.ship.fuelIsRefined = false;
     advanceDate(s.gameDate, skimTime);
-    await app.logEvent(`Auto-refueled ${finalRemaining}t from gas giant for charter departure. Time: ${skimTime} hours.`);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterAutoRefuelGasGiant", {
+      tons: finalRemaining,
+      time: skimTime
+    }));
     return;
   }
 
   if (s.ship.currentFuel < jumpFuel) {
-    await app.logEvent('WARNING: Unable to fully refuel for charter departure! Proceeding with insufficient fuel.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.CharterWarningFuel'));
   }
 }
 
