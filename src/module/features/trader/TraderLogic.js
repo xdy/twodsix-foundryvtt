@@ -4,13 +4,12 @@
  * Implements AT_WORLD, IN_TRANSIT, and ARRIVING phases with CE SRD mechanics.
  */
 
+import { RESTART } from '../DecisionApp.js';
 import { atWorldPhase } from './TraderAtWorld.js';
 import { accrueMonthlyCosts, checkGameEnd } from './TraderMonthly.js';
 import { getCurrentWorld, OUTCOME, PHASE, } from './TraderState.js';
 import { arrivingPhase, inTransitPhase } from './TraderTransit.js';
 import { traderDebug } from './TraderUtils.js';
-
-export const RESTART = Symbol('restart');
 
 /**
  * Action identifiers for the AT_WORLD phase.

@@ -1,4 +1,4 @@
-// CharGenApp.js — Character generation ApplicationV2 UI class
+// CharGenApp.js — Character generation UI class extending DecisionApp
 import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
@@ -10,14 +10,15 @@ import {
   CHARGEN_DIED,
   freshState
 } from './CharGenState.js';
+import { DecisionApp } from '../DecisionApp.js';
 
 const NAME_ROW_LABEL = 'Name';
 
 /**
- * Character generation Application class extending Foundry's ApplicationV2.
- * Handles the UI, user interactions, and decision tracking.
+ * Character generation Application class extending DecisionApp.
+ * Handles the UI, user interactions, and decision tracking with undo/redo.
  */
-export class CharGenApp extends foundry.applications.api.ApplicationV2 {
+export class CharGenApp extends DecisionApp {
   static DEFAULT_OPTIONS = {
     id: 'char-gen',
     classes: ['twodsix', 'char-gen'],
@@ -25,18 +26,78 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     position: { width: 900, height: 1024 },
   };
 
-  static RESTART = Symbol('restart');
+  static PARTS = {
+    main: {
+      template: 'systems/twodsix/templates/chargen/char-gen.hbs',
+    },
+  };
+
   static DIED = CHARGEN_DIED;
 
   decisions = [];
   decisionCursor = 0;
-  rows = [];
   charState = null;
-  pendingResolve = null;
   isDone = false;
   charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
   autoAll = false;
   summaryHeight = 0;
+
+  // ─── Rendering ──────────────────────────────────────────────
+
+  _getScrollSelector() {
+    return '.cg-scroll';
+  }
+
+  async _prepareContext(_options) {
+    if (this.isDone && this.summaryHeight === 0) {
+      const appHeight = this.position.height || 1024;
+      this.summaryHeight = Math.floor(appHeight * 0.6);
+    }
+
+    const s = this.charState;
+    const ruleset = s?.ruleset ?? 'CE';
+    const chars = CHARACTERISTIC_KEYS.map((k, i) => ({
+      key: k,
+      label: CHARACTERISTIC_LABELS[i],
+      value: s?.chars[k] ?? 0,
+    }));
+    const upp = s ? CHARACTERISTIC_KEYS.map(k => toHex(s.chars[k] ?? 0)).join('') : '------';
+
+    return {
+      charName: this.charName,
+      chars,
+      upp,
+      age: s?.age ?? 18,
+      skls: s?.skills?.size ?? 0,
+      totalTerms: s?.totalTerms ?? 0,
+      rulesets: Object.values(CONFIG.TWODSIX.RULESETS).map(r => ({
+        key: r.key,
+        name: r.name,
+        selected: r.key === ruleset,
+        disabled: !CHARGEN_SUPPORTED_RULESETS.has(r.key),
+      })),
+      rows: this.rows,
+      isDone: this.isDone,
+      autoAll: this.autoAll,
+      died: s?.died ?? false,
+      textSummary: this.isDone && s ? generateDetailedSummary(s) : '',
+      summaryHeight: this.summaryHeight,
+      scrollFlex: this.isDone ? '0 0 33%' : '1',
+    };
+  }
+
+  // ─── Event Handlers ─────────────────────────────────────────
+
+  _attachHandlers(el) {
+    this._attachHeaderHandlers(el);
+    this._attachRollHandlers(el);
+    this._attachChoiceHandlers(el);
+    this._attachActionHandlers(el);
+    this._attachCharacteristicHandlers(el);
+    this._attachNameHandlers(el);
+    this._attachResizeHandler(el);
+    this._updateDoneButton();
+  }
 
   /**
    * Roll random characteristic values (2d6 for each).
@@ -80,20 +141,6 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     }
   }
 
-  async _renderHTML(_ctx, _opts) {
-    if (this.isDone && this.summaryHeight === 0) {
-      const appHeight = this.position.height || 1024;
-      this.summaryHeight = Math.floor(appHeight * 0.6);
-    }
-    const html = await foundry.applications.handlebars.renderTemplate(
-      'systems/twodsix/templates/chargen/char-gen.hbs',
-      this._buildContext()
-    );
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div;
-  }
-
   /**
    * Resolve the currently active row with a random choice.
    */
@@ -127,14 +174,6 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     const r = this.pendingResolve;
     this.pendingResolve = null;
     r(value);
-  }
-
-  _replaceHTML(result, content, _opts) {
-    content.innerHTML = result.innerHTML;
-    const scr = content.querySelector('.cg-scroll');
-    if (scr) {
-      scr.scrollTop = scr.scrollHeight;
-    }
   }
 
   _updateDoneButton() {
@@ -236,7 +275,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   }
 
   /**
-   * Attach name input handler to enable/disable the Done button.
+   * Attach name handler to enable/disable the Done button.
    */
   _attachNameHandlers(el) {
     const nameInput = el.querySelector('.cg-name-input');
@@ -281,53 +320,10 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     });
   }
 
-  async _onRender(_ctx, _opts) {
-    const el = this.element;
-    this._attachHeaderHandlers(el);
-    this._attachRollHandlers(el);
-    this._attachChoiceHandlers(el);
-    this._attachActionHandlers(el);
-    this._attachCharacteristicHandlers(el);
-    this._attachNameHandlers(el);
-    this._attachResizeHandler(el);
-    this._updateDoneButton();
-  }
-
-  _buildContext() {
-    const s = this.charState;
-    const ruleset = s?.ruleset ?? 'CE';
-    const chars = CHARACTERISTIC_KEYS.map((k, i) => ({
-      key: k,
-      label: CHARACTERISTIC_LABELS[i],
-      value: s?.chars[k] ?? 0,
-    }));
-    const upp = s ? CHARACTERISTIC_KEYS.map(k => toHex(s.chars[k] ?? 0)).join('') : '------';
-
-    return {
-      charName: this.charName,
-      chars,
-      upp,
-      age: s?.age ?? 18,
-      skls: s?.skills?.size ?? 0,
-      totalTerms: s?.totalTerms ?? 0,
-      rulesets: Object.values(CONFIG.TWODSIX.RULESETS).map(r => ({
-        key: r.key,
-        name: r.name,
-        selected: r.key === ruleset,
-        disabled: !CHARGEN_SUPPORTED_RULESETS.has(r.key),
-      })),
-      rows: this.rows,
-      isDone: this.isDone,
-      autoAll: this.autoAll,
-      died: s?.died ?? false,
-      textSummary: this.isDone && s ? generateDetailedSummary(s) : '',
-      summaryHeight: this.summaryHeight,
-      scrollFlex: this.isDone ? '0 0 33%' : '1',
-    };
-  }
+  // ─── Decision Tracking ──────────────────────────────────────
 
   /**
-   * Roll dice and track the decision.
+   * Roll dice and track the decision for replay.
    * @param {string} formula - Dice formula to roll
    * @returns {Promise<number>} Roll result
    */
@@ -336,13 +332,13 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     if (cursor < this.decisions.length) {
       return this.decisions[cursor].value;
     }
-    const v = (await new Roll(formula).evaluate()).total;
+    const v = await super._roll(formula);
     this.decisions.push({ type: 'roll', value: v });
     return v;
   }
 
   /**
-   * Present a choice to the user and track the decision.
+   * Present a choice to the user with replay and auto-all support.
    * @param {string} label - Choice label
    * @param {Array} options - Available options with value and label
    * @returns {Promise<string>} Selected value
@@ -350,6 +346,8 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   async _choose(label, options) {
     const choiceOptions = Array.isArray(options) ? options : [];
     const cursor = this.decisionCursor++;
+
+    // Replay path: use stored decision
     if (cursor < this.decisions.length) {
       const v = String(this.decisions[cursor].value);
       const found = choiceOptions.find(o => String(o.value) === v);
@@ -371,6 +369,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       return v;
     }
 
+    // Auto-all path: pick randomly
     if (this.autoAll && choiceOptions.length) {
       const idx = Math.floor(Math.random() * choiceOptions.length);
       const value = String(choiceOptions[idx].value);
@@ -381,28 +380,15 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       return value;
     }
 
-    this.rows.push({ label, result: null, active: true, options: choiceOptions });
-    this.render();
-
-    const value = await new Promise(res => {
-      this.pendingResolve = res;
-    });
-
-    if (value === CharGenApp.RESTART) {
-      throw CharGenApp.RESTART;
-    }
-
+    // Interactive path: delegate to base class
+    this.decisionCursor--; // base class doesn't use cursor; undo the increment
+    const value = await super._choose(label, choiceOptions);
     this.decisions.push({ type: 'choice', value });
-    const row = this.rows.at(-1);
-    row.result = choiceOptions.find(o => String(o.value) === String(value))?.label ?? value;
-    row.active = false;
-    this.render();
     return value;
   }
 
   /**
    * Handle characteristics choice with special UI handling.
-   * @param {CharGenApp} app - Application instance
    * @returns {Promise<string>} 'rolled' or 'done'
    */
   async _chooseCharacteristics() {
@@ -548,14 +534,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     r(name);
   }
 
-  /**
-   * Add a log entry to the UI.
-   * @param {string} label - Row label
-   * @param {string} result - Row result
-   */
-  _log(label, result) {
-    this.rows.push({ label, result: String(result ?? ''), active: false, options: [] });
-  }
+  // ─── Undo / Redo ───────────────────────────────────────────
 
   /**
    * Undo the last choice decision.
@@ -601,9 +580,8 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     }
   }
 
-  /**
-   * Create the character actor and close the app.
-   */
+  // ─── Actor Creation ─────────────────────────────────────────
+
   async _onCreateActor() {
     if (!this.isDone || !this.charState) {
       return;
@@ -613,6 +591,8 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     ui.notifications.info(game.i18n.format('TWODSIX.CharGen.Messages.CharacterCreated', { name: this.charName }));
     this.close();
   }
+
+  // ─── Main Loop ──────────────────────────────────────────────
 
   /**
    * Main generation loop with restart handling.

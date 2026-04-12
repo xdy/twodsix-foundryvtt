@@ -1,17 +1,14 @@
 /**
  * TraderApp.js
- * ApplicationV2 UI class for the trade journey.
- * Follows the same pattern as CharGenApp for decision tracking, _choose/_roll/_log.
+ * ApplicationV2 UI class for the trade journey, extending DecisionApp.
  */
 
-import { RESTART } from './TraderLogic.js';
+import { DecisionApp, RESTART } from '../DecisionApp.js';
 import { formatGameDate, freshTraderState, getUsedCargoSpace } from './TraderState.js';
 import { getWorldCoordinate, traderDebug } from './TraderUtils.js';
 
 
-export class TraderApp extends foundry.applications.api.HandlebarsApplicationMixin(
-  foundry.applications.api.ApplicationV2
-) {
+export class TraderApp extends DecisionApp {
   static DEFAULT_OPTIONS = {
     id: 'trader',
     classes: ['twodsix', 'trade'],
@@ -26,11 +23,13 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
   };
 
   state = null;
-  rows = [];
-  pendingResolve = null;
   pendingMaxValue = null;
 
   // ─── Rendering ──────────────────────────────────────────────
+
+  _getScrollSelector() {
+    return '.st-scroll';
+  }
 
   async _prepareContext(_options) {
     try {
@@ -67,18 +66,13 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
   }
 
   async _onRender(_ctx, _opts) {
-    if (!this.element) {
-      return;
-    }
-    traderDebug('TraderApp', ` _onRender: template: ${this.constructor.PARTS.main.template}, DOM nodes: ${this.element.querySelectorAll('*').length}`);
-    this._attachChoiceHandler(this.element);
-    const scr = this.element.querySelector('.st-scroll');
-    if (scr) {
-      scr.scrollTop = scr.scrollHeight;
+    await super._onRender(_ctx, _opts);
+    if (this.element) {
+      traderDebug('TraderApp', ` _onRender: template: ${this.constructor.PARTS.main.template}, DOM nodes: ${this.element.querySelectorAll('*').length}`);
     }
   }
 
-  _attachChoiceHandler(el) {
+  _attachHandlers(el) {
     // Handle dropdown selection
     el.querySelector('.st-select')?.addEventListener('change', e => {
       if (e.target.value && this.pendingResolve) {
@@ -120,7 +114,7 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
   // ─── Decision Tracking ──────────────────────────────────────
 
   /**
-   * Present a choice to the user. Returns the selected value.
+   * Present a choice to the user with trader-specific maxValue and placeholder support.
    * @param {string} label - Display label for the choice
    * @param {Array<{value: string, label: string}>} options - Available options
    * @param {number|null} [maxValue=null] - Optional max value for "To capacity" button
@@ -136,41 +130,8 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
       return '';
     }
 
-    const row = { label, result: null, active: true, options: choiceOptions, maxValue, placeholder };
-    this.rows.push(row);
     this.pendingMaxValue = maxValue;
-    this.render();
-
-    const value = await new Promise(res => {
-      this.pendingResolve = res;
-    });
-
-    if (value === RESTART) {
-      throw RESTART;
-    }
-
-    row.result = choiceOptions.find(o => String(o.value) === String(value))?.label ?? value;
-    row.active = false;
-    this.render();
-    return value;
-  }
-
-  /**
-   * Roll dice using Foundry's Roll API.
-   * @param {string} formula - Dice formula (e.g. "2D6", "3D6*5")
-   * @returns {Promise<number>} Roll result
-   */
-  async _roll(formula) {
-    return (await new Roll(formula).evaluate()).total;
-  }
-
-  /**
-   * Add a log entry (non-interactive row).
-   * @param {string} label - Row label (e.g. date)
-   * @param {string} result - Row content
-   */
-  _log(label, result) {
-    this.rows.push({ label, result: String(result ?? ''), active: false, options: [] });
+    return super._choose(label, choiceOptions, { maxValue, placeholder });
   }
 
   // ─── State Persistence ──────────────────────────────────────
@@ -242,18 +203,6 @@ export class TraderApp extends foundry.applications.api.HandlebarsApplicationMix
     this._log(dateStr, text);
     await this._appendToJournal(`<p><strong>${dateStr}.</strong> ${text}</p>\n`);
     this.render();
-  }
-
-  /**
-   * Actions to take when the application is closed.
-   */
-  async close(options = {}) {
-    if (this.pendingResolve) {
-      const r = this.pendingResolve;
-      this.pendingResolve = null;
-      r(RESTART);
-    }
-    return super.close(options);
   }
 
   // ─── Trader Loop ──────────────────────────────────────────────

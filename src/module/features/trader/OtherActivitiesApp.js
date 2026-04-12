@@ -8,6 +8,8 @@
 import { CREW_SALARIES } from './TraderConstants.js';
 import { getFreeCargoSpace, getFreeLowBerths, getFreeStaterooms } from './TraderState.js';
 
+const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+
 /**
  * Build a ship state object from a ship Actor. Mirrors the inline logic in
  * TraderEntrypoint.initializeTraderState so the two stay in sync.
@@ -41,12 +43,18 @@ export function buildShipFromActor(shipActor, baseShip) {
   };
 }
 
-export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
+export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: 'trader-other-activities',
     classes: ['twodsix', 'trader-other-activities'],
     window: { title: 'TWODSIX.Trader.OtherActivities.Title', resizable: true },
     position: { width: 760, height: 'auto' },
+  };
+
+  static PARTS = {
+    main: {
+      template: 'systems/twodsix/templates/trader/other-activities.hbs',
+    },
   };
 
   _resolve = null;
@@ -69,7 +77,7 @@ export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
     });
   }
 
-  async _renderHTML(_ctx, _opts) {
+  async _prepareContext(_options) {
     const ships = game.actors.filter(a => a.type === 'ship')
       .sort((a, b) => a.name.localeCompare(b.name))
       .map(a => ({ id: a.id, name: a.name }));
@@ -78,7 +86,7 @@ export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
       .map(a => ({ id: a.id, name: a.name }));
     const positions = Object.keys(CREW_SALARIES);
 
-    const context = {
+    return {
       ships,
       travellerActors,
       positions,
@@ -94,18 +102,6 @@ export class OtherActivitiesApp extends foundry.applications.api.ApplicationV2 {
       currentFuel: this._state.ship?.currentFuel ?? 0,
       fuelIsRefined: this._state.ship?.fuelIsRefined ?? false,
     };
-
-    const html = await foundry.applications.handlebars.renderTemplate(
-      'systems/twodsix/templates/trader/other-activities.hbs',
-      context
-    );
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div;
-  }
-
-  _replaceHTML(result, content, _opts) {
-    content.innerHTML = result.innerHTML;
   }
 
   async _onRender(_ctx, _opts) {
