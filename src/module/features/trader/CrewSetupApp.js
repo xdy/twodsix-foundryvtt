@@ -1,17 +1,25 @@
 import { startCharacterGeneration } from '../chargen/CharacterGeneration.js';
 import { CREW_SALARIES, DEFAULT_CREW } from './TraderConstants.js';
 
+const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
+
 /**
  * ApplicationV2 crew-setup dialog.
  * Stays open while the player generates actors via chargen in a separate window.
  * Resolves a promise with the final crew array when the player clicks Confirm.
  */
-export class CrewSetupApp extends foundry.applications.api.ApplicationV2 {
+export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: 'trader-crew-setup',
     classes: ['twodsix', 'trader-crew'],
     window: { title: 'Crew Setup', resizable: false },
     position: { width: 640, height: 'auto' },
+  };
+
+  static PARTS = {
+    main: {
+      template: 'systems/twodsix/templates/trader/trader-crew-setup.hbs',
+    },
   };
 
   _resolve = null;
@@ -77,30 +85,16 @@ export class CrewSetupApp extends foundry.applications.api.ApplicationV2 {
     });
   }
 
-  async _renderHTML(_ctx, _opts) {
+  async _prepareContext(_options) {
     const actors = game.actors.filter(a => a.type === 'traveller')
       .sort((a, b) => a.name.localeCompare(b.name));
 
-    const context = {
+    return {
       positions: this._rows.map(r => ({
         ...r,
         actors: actors.map(a => ({ id: a.id, name: a.name, selected: a.id === r.actorId })),
       })),
     };
-
-    const html = await foundry.applications.handlebars.renderTemplate(
-      'systems/twodsix/templates/trader/trader-crew-setup.hbs',
-      context
-    );
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div;
-  }
-
-  _replaceHTML(result, content, _opts) {
-    content.innerHTML = result.innerHTML;
-    // Note: ApplicationV2 handles standard replacement, but this custom override
-    // is kept if specific DOM preservation/transition logic is needed later.
   }
 
   async _onRender(_ctx, _opts) {
