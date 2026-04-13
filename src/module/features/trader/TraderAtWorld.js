@@ -3,7 +3,6 @@
  * Logic for actions available while docked at a world.
  */
 
-import { LOCAL_BROKER_COMMISSION } from '../../utils/trade/TradeGeneratorConstants.js';
 import { buildTradeReportRows, generateTradeInformation } from '../../utils/TradeGenerator.js';
 import { createWorldActors } from './SubsectorLoader.js';
 import {
@@ -33,7 +32,15 @@ import {
   getWorldCache,
   PHASE,
 } from './TraderState.js';
-import { canRefuelAtWorld, getRefuelOptions, getWorldCoordinate, hexDistance, traderDebug, isLocalMode, collectWorldsFromFolder } from './TraderUtils.js';
+import {
+  canRefuelAtWorld,
+  collectWorldsFromFolder,
+  getRefuelOptions,
+  getWorldCoordinate,
+  hexDistance,
+  isLocalMode,
+  traderDebug
+} from './TraderUtils.js';
 import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './TravellerMapCache.js';
 
 /**
