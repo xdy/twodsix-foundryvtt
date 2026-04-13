@@ -14,7 +14,7 @@ import {
 } from './TraderConstants.js';
 import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import { advanceDate, getAbsoluteDay, getCurrentWorld, getUsedCargoSpace, PHASE, } from './TraderState.js';
-import { canRefuelAtWorld, getWorldCoordinate, } from './TraderUtils.js';
+import { canRefuelAtWorld, getWorldCoordinate, isLocalMode } from './TraderUtils.js';
 import { fetchJumpWorlds } from './TravellerMapAPI.js';
 import {
   getOrCreateCacheJournal,
@@ -232,7 +232,7 @@ export async function arrivingPhase(app) {
   // Mark world as visited in cache and on actor
   if (typeof arrivedWorld.getFlag === 'function') {
     const subKey = arrivedWorld.getFlag('twodsix', 'subsectorKey');
-    if (subKey && s.cacheJournalName) {
+    if (subKey && s.cacheJournalName && !isLocalMode(s)) {
       const journal = await getOrCreateCacheJournal(s.cacheJournalName);
       const wasVisited = arrivedWorld.getFlag('twodsix', 'isVisited');
       if (!wasVisited) {

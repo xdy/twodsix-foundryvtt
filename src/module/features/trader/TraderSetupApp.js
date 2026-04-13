@@ -77,13 +77,11 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     this._isConfirming = false;
 
     this._resolve = null;
-    this._reject = null;
   }
 
   async awaitResult() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       this._resolve = resolve;
-      this._reject = reject;
     });
   }
 
