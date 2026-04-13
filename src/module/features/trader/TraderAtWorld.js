@@ -33,7 +33,7 @@ import {
   getWorldCache,
   PHASE,
 } from './TraderState.js';
-import { canRefuelAtWorld, getRefuelOptions, getWorldCoordinate, hexDistance, traderDebug } from './TraderUtils.js';
+import { canRefuelAtWorld, getRefuelOptions, getWorldCoordinate, hexDistance, traderDebug, isLocalMode, collectWorldsFromFolder } from './TraderUtils.js';
 import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './TravellerMapCache.js';
 
 /**
@@ -1171,7 +1171,7 @@ export async function getReachableDestinations(app) {
   const currentHex = s.currentWorldHex;
   let { reachable, options } = buildDestinationOptions(s);
 
-  if (reachable.length === 0 && s.cacheJournalName) {
+  if (reachable.length === 0 && s.cacheJournalName && !isLocalMode(s)) {
     const journal = await getOrCreateCacheJournal(s.cacheJournalName);
     const allWorldsCache = await getCachedData(journal, CACHE_KEY_WORLDS) ?? {};
     const nearbyWorlds = [];
@@ -1188,7 +1188,7 @@ export async function getReachableDestinations(app) {
     }
 
     if (nearbyWorlds.length > 0) {
-      await app.logEvent(`No known worlds within jump range! Checking ${s.cacheJournalName}... found ${nearbyWorlds.length} potential destinations.`);
+      await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.NoWorldsInRangeJournal', { journal: s.cacheJournalName, count: nearbyWorlds.length }));
       const newActors = await createWorldActors(nearbyWorlds, currentHex, journal);
       if (newActors.length > 0) {
         for (const na of newActors) {
@@ -1199,6 +1199,23 @@ export async function getReachableDestinations(app) {
         const result = buildDestinationOptions(s);
         reachable = result.reachable;
         options = result.options;
+      }
+    }
+  }
+
+  if (reachable.length === 0 && isLocalMode(s) && s.rootFolderId) {
+    const rootFolder = game.folders.get(s.rootFolderId);
+    if (rootFolder) {
+      const worlds = collectWorldsFromFolder(rootFolder);
+      if (worlds.length !== s.worlds.length) {
+        s.worlds = worlds;
+        const result = buildDestinationOptions(s);
+        reachable = result.reachable;
+        options = result.options;
+        if (reachable.length > 0) {
+          await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.NoWorldsInRangeLocal', { count: reachable.length }));
+        }
+        await app._saveState();
       }
     }
   }

@@ -1948,6 +1948,7 @@
         "DestinationClearedForfeited": "Destination cleared. Private message payment forfeited: Cr{credits}.",
         "DestinationSelected": "Selected {world} as destination.",
         "NoWorldsInRangeJournal": "No known worlds within jump range! Checking {journal}... found {count} worlds.",
+        "NoWorldsInRangeLocal": "No known worlds within jump range! Rescanning folder... found {count} worlds.",
         "Docked": "Docked at {world}. Starting credits: Cr{credits}.",
         "WorldNotFound": "Error: Location {hex} not found in world list! Unable to proceed.",
         "MortgagePaid": "The ship mortgage is fully paid off! The Free Trader is yours. Congratulations!",
@@ -2119,6 +2120,24 @@
       "Cheat": {
         "BuyFuel": "CHEAT: Ask your GM if you can buy unrefined fuel at extortionate cost. Somehow. ({tons}t) — Cr{cost} ({multiplier}x price)",
         "ScroungeFuel": "CHEAT: Ask your GM if you can spend a week begging, scrounging and stealing enough fuel to fill the tank. Somehow. ({tons}t) — Free (takes {days} days, unrefined)"
+      },
+      "WorldSource": {
+        "Title": "World Source",
+        "Prompt": "Choose how to load worlds for trading:",
+        "Travellermap": "Use Travellermap.com",
+        "Local": "Use existing Foundry sectors"
+      },
+      "LocalSetup": {
+        "RootFolder": "World Folder",
+        "RootFolderHint": "Select a folder containing sector subfolders with world actors.",
+        "StartingWorld": "Starting World",
+        "NoWorldsFound": "No world actors found in the selected folder. Create Actor folders named after sectors and add world-type actors (with UWP and coordinates) inside them.",
+        "NoWorldsFoundShort": "No world actors found in the selected folder.",
+        "SelectFolder": "Select Folder",
+        "Title": "Local Trading Setup",
+        "RootFolderNotFound": "Root folder not found",
+        "StartingWorldNotFound": "Starting world not found",
+        "SetupFailed": "Local trading setup failed: {error}"
       }
     },
     "Resource": {

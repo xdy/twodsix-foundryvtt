@@ -142,6 +142,7 @@ export const MILIEUS = [
   { code: 'M990', name: 'Milieu 990' },
 ];
 export const DEFAULT_MILIEU = 'M1105';
+export const TRAVELLERMAP_ROOT_FOLDER_NAME = 'Travellermap Sectors';
 export const DEFAULT_SECTOR = 'Spinward Marches';
 export const DEFAULT_SUBSECTOR_LETTER = 'C';
 export const DEFAULT_SUBSECTOR_NAME = 'Regina';

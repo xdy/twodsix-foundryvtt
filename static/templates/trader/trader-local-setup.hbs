@@ -1,0 +1,66 @@
+<form class="st-setup-form" autocomplete="off">
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.JournalName'}}</label>
+    <input type="text" name="journalName"
+           value="{{#if journalName}}{{journalName}}{{else}}{{defaultJournalName}}{{/if}}"/>
+    <p class="hint">{{localize 'TWODSIX.Trader.Setup.JournalNameHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.Ship'}}</label>
+    <select name="shipActorId">
+      <option value="" {{#unless shipActorId}}selected{{/unless}}>— {{localize 'TWODSIX.Trader.Setup.DefaultShip'}}—
+      </option>
+      {{#each ships as |s|}}
+        <option value="{{s.id}}" {{#if s.selected}}selected{{/if}}>{{s.name}} (Jump-{{s.jumpRating}})</option>
+      {{/each}}
+    </select>
+    <p class="hint">{{localize 'TWODSIX.Trader.Setup.ShipHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.Ruleset'}}</label>
+    <select name="ruleset">
+      {{#each supportedRulesets as |r|}}
+        <option value="{{r.key}}" {{#if r.selected}}selected{{/if}}>{{r.key}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.LocalSetup.RootFolder'}}</label>
+    <select name="rootFolderId">
+      <option value="">— {{localize 'TWODSIX.Trader.LocalSetup.SelectFolder'}} —</option>
+      {{#each folders as |f|}}
+        <option value="{{f.id}}" {{#if f.selected}}selected{{/if}}>{{f.name}}</option>
+      {{/each}}
+    </select>
+    <p class="hint">{{localize 'TWODSIX.Trader.LocalSetup.RootFolderHint'}}</p>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.LocalSetup.StartingWorld'}}</label>
+    <select name="startWorldId" {{#unless worlds.length}}disabled{{/unless}}>
+      {{#each worlds as |w|}}
+        <option value="{{w.id}}" {{#if w.selected}}selected{{/if}}>{{w.name}} ({{w.system.coordinates}}) — {{w.system.uwp}} [{{w.system.tradeCodes}}]
+        </option>
+      {{else}}
+        <option value="">{{localize 'TWODSIX.Trader.LocalSetup.NoWorldsFoundShort'}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>{{localize 'TWODSIX.Trader.Setup.StartingCredits'}}</label>
+    <input type="number" name="startingCredits"
+           value="{{#if startingCredits}}{{startingCredits}}{{else}}{{defaultStartingCredits}}{{/if}}" min="0"
+           step="1000"/>
+    <p class="hint">{{localize 'TWODSIX.Trader.Setup.StartingCreditsHint'}}</p>
+  </div>
+
+  <footer class="sheet-footer">
+    <button type="submit" class="st-confirm-btn" {{#if isConfirmDisabled}}disabled{{/if}}>
+      <i class="fas fa-check"></i> {{localize 'TWODSIX.Trader.Setup.Confirm'}}
+    </button>
+  </footer>
+</form>

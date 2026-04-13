@@ -4,8 +4,8 @@
  * creates World actors, and provides hex distance calculations.
  */
 
-import { SECTOR_WIDTH_IN_SUBSECTORS, SUBSECTOR_LETTERS } from './TraderConstants.js';
-import { buildGlobalHex, getNeighboringSubsectors, parseUWP, traderDebug } from './TraderUtils.js';
+import { SECTOR_WIDTH_IN_SUBSECTORS, SUBSECTOR_LETTERS, TRAVELLERMAP_ROOT_FOLDER_NAME } from './TraderConstants.js';
+import { buildGlobalHex, collectWorldsFromFolder, getNeighboringSubsectors, parseUWP, traderDebug } from './TraderUtils.js';
 import { fetchWorlds, loadSubsectorsWithCache } from './TravellerMapAPI.js';
 import { buildSubsectorKey, getCachedWorlds, setCachedWorlds } from './TravellerMapCache.js';
 
@@ -75,9 +75,13 @@ export async function createWorldActors(worldDataArray, startGlobalHex = null, c
   // Helper to find or create a sector folder
   async function getSectorFolder(sectorName) {
     const folderName = sectorName || 'Unknown Sector';
-    let folder = game.folders.find(f => f.name === folderName && f.type === 'Actor');
+    let rootFolder = game.folders.find(f => f.name === TRAVELLERMAP_ROOT_FOLDER_NAME && f.type === 'Actor' && !f.folder);
+    if (!rootFolder) {
+      rootFolder = await Folder.create({ name: TRAVELLERMAP_ROOT_FOLDER_NAME, type: 'Actor' });
+    }
+    let folder = game.folders.find(f => f.name === folderName && f.type === 'Actor' && f.folder === rootFolder.id);
     if (!folder) {
-      folder = await Folder.create({ name: folderName, type: 'Actor' });
+      folder = await Folder.create({ name: folderName, type: 'Actor', folder: rootFolder.id });
     }
     return folder;
   }
@@ -311,12 +315,8 @@ export async function ensureSubsectorNeighborsLoaded(state, sectorName, localHex
  * @returns {import('../../entities/TwodsixActor').default[]} World Actor documents
  */
 export function loadWorldsFromSectors(sectorNames) {
-  let allWorlds = [];
-  for (const name of sectorNames) {
-    const folder = game.folders.find(f => f.name === name && f.type === 'Actor');
-    if (folder) {
-      allWorlds = allWorlds.concat(folder.contents);
-    }
-  }
-  return allWorlds;
+  return sectorNames.flatMap(name => {
+    const folders = game.folders.filter(f => f.name === name && f.type === 'Actor');
+    return folders.flatMap(folder => collectWorldsFromFolder(folder));
+  });
 }

@@ -109,6 +109,9 @@ export const OUTCOME = {
  * @property {string} [cacheJournalName] - Cache journal name
  * @property {string} [journalName] - Trade journal name
  * @property {number} [startingCredits] - Starting credits override
+ * @property {string} [worldSource] - 'travellermap' or 'local'
+ * @property {string} [rootFolderId] - Root folder ID for local mode
+ * @property {string} [startWorldId] - Starting world actor ID for local mode
  */
 
 /**
@@ -160,6 +163,8 @@ export const OUTCOME = {
  * @property {string} sectorName - Current sector name
  * @property {string} milieu - Milieu identifier (e.g. 'M1105')
  * @property {string} ruleset - Trader ruleset key (e.g. 'CE')
+ * @property {string} worldSource - World data source ('travellermap' or 'local')
+ * @property {string|null} rootFolderId - Root folder ID for local mode
  * @property {GameDate} gameDate - Current game date
  * @property {string} phase - Current journey phase (from PHASE enum)
  * @property {number} credits - Current cash on hand
@@ -217,6 +222,8 @@ export function freshTraderState() {
     ruleset: 'CE',
     gameDate: { year: 1105, day: 1 },
     phase: PHASE.AT_WORLD,
+    worldSource: 'travellermap',
+    rootFolderId: null,
 
     // Finances
     credits: 0,

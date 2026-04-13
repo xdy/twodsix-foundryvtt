@@ -19,6 +19,7 @@ import { TraderSetupApp } from './TraderSetupApp.js';
 import { freshTraderState } from './TraderState.js';
 import {
   buildGlobalHex,
+  collectWorldsFromFolder,
   getNeighboringSubsectors,
   getTimestamp,
   getWorldCoordinate,
@@ -76,6 +77,23 @@ function getJumpRating(setupResult) {
     }
   }
   return Math.max(jumpRating, 1);
+}
+
+/**
+ * Applies ship information to the trader state based on a ship actor.
+ * @param {import('./TraderState.js').TraderState} state - The trader state to update
+ * @param {string} shipActorId - The ID of the ship actor
+ */
+function applyShipToState(state, shipActorId) {
+  if (!shipActorId) {
+    return;
+  }
+  const shipActor = game.actors.get(shipActorId);
+  if (shipActor) {
+    state.ship = buildShipFromActor(shipActor, state.ship);
+    state.monthlyPayment = Math.ceil(state.ship.shipCost / MORTGAGE_DIVISOR);
+    state.mortgageRemaining = state.ship.shipCost * MORTGAGE_FINANCING_MULTIPLIER;
+  }
 }
 
 /**
@@ -312,18 +330,91 @@ function initializeTraderState(setupResult, startWorld, startGlobalHex, sectors,
   state.journalEntryId = journal.id;
   state.journalPageId = page?.id ?? null;
 
-  if (setupResult.shipActorId) {
-    const shipActor = game.actors.get(setupResult.shipActorId);
-    if (shipActor) {
-      state.ship = buildShipFromActor(shipActor, state.ship);
-      state.monthlyPayment = Math.ceil(state.ship.shipCost / MORTGAGE_DIVISOR);
-      state.mortgageRemaining = state.ship.shipCost * MORTGAGE_FINANCING_MULTIPLIER;
-    }
-  }
+  applyShipToState(state, setupResult.shipActorId);
+
   state.ruleset = setupResult.ruleset || 'CE';
   state.crew = crew;
   state.credits = setupResult.startingCredits;
   return state;
+}
+
+/**
+ * Start trading using local Foundry world actors.
+ * @param {TraderApp} app
+ */
+async function startTradingLocal(app) {
+  try {
+    const { TraderLocalSetupApp } = await import('./TraderLocalSetupApp.js');
+    const setupApp = new TraderLocalSetupApp();
+    const resultPromise = setupApp.awaitResult();
+    await setupApp.render({ force: true });
+    const setupResult = await resultPromise;
+
+    if (!setupResult) {
+      return;
+    }
+
+    // Load all worlds from root folder
+    const rootFolder = game.folders.get(setupResult.rootFolderId);
+    if (!rootFolder) {
+      ui.notifications.error(game.i18n.localize('TWODSIX.Trader.LocalSetup.RootFolderNotFound'));
+      return;
+    }
+
+    const worlds = collectWorldsFromFolder(rootFolder);
+
+    if (worlds.length === 0) {
+      ui.notifications.warn(game.i18n.localize('TWODSIX.Trader.LocalSetup.NoWorldsFound'));
+      return;
+    }
+
+    const startWorld = worlds.find(w => w.id === setupResult.startWorldId);
+    if (!startWorld) {
+      ui.notifications.error(game.i18n.localize('TWODSIX.Trader.LocalSetup.StartingWorldNotFound'));
+      return;
+    }
+
+    const crew = await showCrewDialog(setupResult.shipActorId, setupResult.ruleset);
+    if (!crew) {
+      return;
+    }
+
+    const journal = await JournalEntry.create({
+      name: setupResult.journalName || `Trader: Local — ${new Date().toLocaleDateString()}`,
+    });
+
+    const state = freshTraderState();
+    state.worldSource = 'local';
+    state.rootFolderId = setupResult.rootFolderId;
+    state.currentWorldHex = getWorldCoordinate(startWorld);
+    state.currentWorldName = startWorld.name;
+    state.worlds = worlds;
+    state.credits = setupResult.startingCredits;
+    state.ruleset = setupResult.ruleset || 'CE';
+    state.crew = crew;
+    state.journalEntryId = journal.id;
+
+    applyShipToState(state, setupResult.shipActorId);
+
+    app.state = state;
+    const pages = await journal.createEmbeddedDocuments('JournalEntryPage', [{
+      name: 'Trade Log',
+      type: 'text',
+      text: { content: `<h2>Local Trading Journey</h2><p>Ship: ${app.state.ship.name}</p><p>Starting world: ${startWorld.name}</p><hr>\n` },
+    }]);
+    app.state.journalPageId = pages[0].id;
+
+    await app._saveState();
+    ui.notifications.info(game.i18n.format('TWODSIX.Trader.Messages.JourneyStarted', { world: startWorld.name }));
+    await app.render({ force: true });
+
+    // Let the first render finish before starting the loop
+    await new Promise(r => setTimeout(r, 100));
+    app.run();
+  } catch (err) {
+    console.error('Local trading setup failed:', err);
+    ui.notifications.error(game.i18n.format('TWODSIX.Trader.LocalSetup.SetupFailed', { error: err.message }));
+  }
 }
 
 /**
@@ -335,6 +426,35 @@ export async function startTrading(existingJournal = null) {
 
   if (await handleExistingJournal(app, existingJournal)) {
     return;
+  }
+
+  // Choose world source
+  const source = await foundry.applications.api.DialogV2.wait({
+    window: { title: game.i18n.localize('TWODSIX.Trader.WorldSource.Title') },
+    content: `<p>${game.i18n.localize('TWODSIX.Trader.WorldSource.Prompt')}</p>`,
+    buttons: [
+      {
+        action: 'travellermap',
+        icon: 'fas fa-globe',
+        label: game.i18n.localize('TWODSIX.Trader.WorldSource.Travellermap'),
+        callback: (event, button) => button.action
+      },
+      {
+        action: 'local',
+        icon: 'fas fa-folder-open',
+        label: game.i18n.localize('TWODSIX.Trader.WorldSource.Local'),
+        callback: (event, button) => button.action
+      }
+    ],
+    defaultButton: 'travellermap'
+  });
+
+  if (!source) {
+    return;
+  }
+
+  if (source === 'local') {
+    return startTradingLocal(app);
   }
 
   let progressDialog = null;

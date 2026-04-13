@@ -352,3 +352,25 @@ export function getWorldCoordinate(world) {
   // Fallback to system coordinates
   return world.system?.coordinates || world.hex || '';
 }
+
+/**
+ * Check if the trader is running in local mode (no travellermap.com connection).
+ * @param {import('./TraderState.js').TraderState} state - Trader state
+ * @returns {boolean} True if in local mode
+ */
+export function isLocalMode(state) {
+  return state.worldSource === 'local';
+}
+
+/**
+ * Recursively collect all world actors from a folder and its subfolders.
+ * @param {Folder} rootFolder - The root folder to start from
+ * @returns {Actor[]} Array of world actors
+ */
+export function collectWorldsFromFolder(rootFolder) {
+  if (!rootFolder) {
+    return [];
+  }
+  const allFolders = [rootFolder, ...rootFolder.getSubfolders(true)];
+  return allFolders.flatMap(f => f.contents.filter(a => a.type === 'world'));
+}
