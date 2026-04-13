@@ -18,7 +18,6 @@ import { TwodsixCombatData } from './module/data/combats/twodsixCombatData.js';
 import { ArmorData } from './module/data/items/armorData.js';
 import { AugmentData } from './module/data/items/augmentData.js';
 import { CareerData } from './module/data/items/careerData.js';
-import { ChargenRulesetData } from './module/data/items/chargenRulesetData.js';
 import { ComponentData } from './module/data/items/componentData.js';
 import { ComputerData } from './module/data/items/computerData.js';
 import { ConsumableData } from './module/data/items/consumableData.js';
@@ -44,7 +43,6 @@ import { WorldActor } from './module/entities/actors/WorldActor';
 import { ArmorItem } from './module/entities/items/ArmorItem';
 import { AugmentItem } from './module/entities/items/AugmentItem';
 import { CareerItem } from './module/entities/items/CareerItem';
-import { ChargenRulesetItem } from './module/entities/items/ChargenRulesetItem';
 import { ComponentItem } from './module/entities/items/ComponentItem';
 import { COMPONENT_SUBTYPE_CLASSES } from './module/entities/items/components/index.js';
 import { ComputerItem } from './module/entities/items/ComputerItem';
@@ -71,7 +69,6 @@ import registerHandlebarsHelpers from './module/handlebars';
 import { registerSettings, switchCss } from './module/settings';
 import './module/migration';
 import { CareerItemSheet } from './module/sheets/CareerItemSheet';
-import { ChargenRulesetItemSheet } from './module/sheets/ChargenRulesetItemSheet';
 import { ComponentItemSheet } from './module/sheets/ComponentItemSheet';
 import { ConsumableItemSheet } from './module/sheets/ConsumableItemSheet';
 import { SkillItemSheet } from './module/sheets/SkillItemSheet';
@@ -195,7 +192,6 @@ Hooks.once('init', async function () {
     "armor": ArmorItem,
     "augment": AugmentItem,
     "career": CareerItem,
-    "chargen_ruleset": ChargenRulesetItem,
     "component": ComponentItem,
     "computer": ComputerItem,
     "consumable": ConsumableItem,
@@ -234,7 +230,6 @@ Hooks.once('init', async function () {
     "armor": ArmorData,
     "augment": AugmentData,
     "career": CareerData,
-    "chargen_ruleset": ChargenRulesetData,
     "component": ComponentData,
     "computer": ComputerData,
     "consumable": ConsumableData,
@@ -254,7 +249,7 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   //Should unregister untill appv1 goes away (foundry 16 I think?)
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-  const specializedItemTypes = ['weapon', 'component', 'consumable', 'skills', 'career', 'chargen_ruleset', 'ship_position'];
+  const specializedItemTypes = ['weapon', 'component', 'consumable', 'skills', 'career', 'ship_position'];
   const baseItemTypes = Object.keys(CONFIG.Item.dataModels).filter(t => !specializedItemTypes.includes(t));
 
   const itemSheetDefinitions = [
@@ -263,7 +258,6 @@ Hooks.once('init', async function () {
     { class: ConsumableItemSheet, types: ["consumable"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: SkillItemSheet, types: ["skills"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: CareerItemSheet, types: ["career"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
-    { class: ChargenRulesetItemSheet, types: ["chargen_ruleset"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: TwodsixItemSheet, types: baseItemTypes, label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: TwodsixShipPositionSheet, types: ["ship_position"], label: "TWODSIX.SheetTypes.ShipPositionSheet", makeDefault: true },
   ];

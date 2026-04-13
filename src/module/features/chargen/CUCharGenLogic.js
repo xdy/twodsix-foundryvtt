@@ -3,89 +3,47 @@
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
-import { CHARGEN_DIED, CHARACTERISTIC_KEYS } from './CharGenState.js';
-import { chooseCharacteristicSwap, chooseGender, chooseLanguage, chooseName, chooseWeapon } from './CharGenUtils.js';
+import { CHARGEN_DIED } from './CharGenState.js';
+import { chooseCharacteristicSwap, chooseWeapon } from './CharGenUtils.js';
+import {
+  CU_BENEFITS_TABLE as CU_BENEFITS_TABLE_CONST,
+  CU_PROMO_FAIL_EVENTS as CU_PROMO_FAIL_EVENTS_CONST,
+  CU_PROMO_SUCCESS_EVENTS as CU_PROMO_SUCCESS_EVENTS_CONST,
+  CU_RISK_FAIL_EVENTS as CU_RISK_FAIL_EVENTS_CONST,
+  CU_RISK_SUCCESS_EVENTS as CU_RISK_SUCCESS_EVENTS_CONST,
+  CU_SKILL_CATEGORY_TABLES
+} from './CUCharGenConstants.js';
+import { PHYS_OPTS } from './SharedCharGenConstants.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CU pack) ──────────────────────────────────
-
-let CU_CAREERS = {};
-let CU_CAREER_NAMES = [];
-let CU_SKILL_TABLES = {};       // {tableName: string[6]}
-let CU_RISK_FAIL_EVENTS = [];   // [{threshold, description}] sorted desc
-let CU_RISK_SUCCESS_EVENTS = [];
-let CU_PROMO_FAIL_EVENTS = [];
-let CU_PROMO_SUCCESS_EVENTS = [];
-let CU_BENEFITS_TABLE = [];     // [{threshold, description}]
-let CU_LOADED_RULESET = null;   // Track which ruleset is already loaded
 
 /**
  * CU character generation logic.
  * Extends BaseCharGenLogic with Cepheus Universal-specific rules.
  */
 export class CUCharGenLogic extends BaseCharGenLogic {
-  constructor() {
-    super();
-  }
-
   resetData() {
     super.resetData();
-    CU_CAREERS = {};
-    CU_CAREER_NAMES = [];
-    CU_SKILL_TABLES = {};
-    CU_RISK_FAIL_EVENTS = [];
-    CU_RISK_SUCCESS_EVENTS = [];
-    CU_PROMO_FAIL_EVENTS = [];
-    CU_PROMO_SUCCESS_EVENTS = [];
-    CU_BENEFITS_TABLE = [];
-    CU_LOADED_RULESET = null;
+    this.careers = {};
+    this.careerNames = [];
+    this.skillTables = {};
+    this.riskFailEvents = [];
+    this.riskSuccessEvents = [];
+    this.promoFailEvents = [];
+    this.promoSuccessEvents = [];
+    this.benefitsTable = [];
   }
 
-  async loadData(ruleset) {
-    if (CU_LOADED_RULESET === ruleset && CU_CAREER_NAMES.length) {
-      return; // Already loaded for this ruleset
-    }
-    this.resetData();
+  _assignRulesetConstants(careers, careerNames, ruleset) {
+    this.careers = careers;
+    this.careerNames = careerNames;
 
-    const careersPackName = `twodsix.${ruleset.toLowerCase()}-srd-careers`;
-    const careersPack = game.packs.get(careersPackName);
-    if (!careersPack) {
-      throw new Error(`Failed to load CU career data: ${careersPackName} not found.`);
-    }
-    const careerDocs = await careersPack.getDocuments();
-    CU_CAREERS = careerDocs.reduce((acc, doc) => {
-      if (!doc?.name || !doc?.system || typeof doc.system !== 'object') {
-        console.warn(`twodsix | CharGen: skipping invalid CU career entry in ${careersPack.collection}.`, doc);
-        return acc;
-      }
-      acc[doc.name] = doc.system;
-      return acc;
-    }, {});
-    CU_CAREER_NAMES = Object.keys(CU_CAREERS).sort();
-    if (!CU_CAREER_NAMES.length) {
-      throw new Error(`Failed to load CU career data: no valid careers found in ${careersPack.collection}.`);
-    }
-
-    const chargenPackName = `twodsix.${ruleset.toLowerCase()}-srd-chargen-ruleset`;
-    const chargenPack = game.packs.get(chargenPackName);
-    if (!chargenPack) {
-      throw new Error(`Failed to load CU chargen ruleset: ${chargenPackName} not found.`);
-    }
-    const chargenDocs = await chargenPack.getDocuments();
-    const rulesetItem = chargenDocs.find(d => d.system.ruleset === ruleset) ?? chargenDocs[0];
-    if (!rulesetItem) {
-      throw new Error(`Failed to find CU chargen ruleset item in ${chargenPackName}.`);
-    }
-    const rd = rulesetItem.system;
-
-    CU_SKILL_TABLES = Object.fromEntries((rd.skillCategoryTables ?? []).map(t => [t.name, t.entries]));
-
-    const sortDesc = arr => [...arr].sort((a, b) => b.threshold - a.threshold);
-    CU_RISK_FAIL_EVENTS    = sortDesc(rd.riskFailEvents ?? []);
-    CU_RISK_SUCCESS_EVENTS = sortDesc(rd.riskSuccessEvents ?? []);
-    CU_PROMO_FAIL_EVENTS   = sortDesc(rd.promotionFailEvents ?? []);
-    CU_PROMO_SUCCESS_EVENTS = sortDesc(rd.promotionSuccessEvents ?? []);
-    CU_BENEFITS_TABLE      = sortDesc(rd.benefitsTable ?? []);
-    CU_LOADED_RULESET = ruleset;
+    this.skillTables = CU_SKILL_CATEGORY_TABLES;
+    this.riskFailEvents = CU_RISK_FAIL_EVENTS_CONST;
+    this.riskSuccessEvents = CU_RISK_SUCCESS_EVENTS_CONST;
+    this.promoFailEvents = CU_PROMO_FAIL_EVENTS_CONST;
+    this.promoSuccessEvents = CU_PROMO_SUCCESS_EVENTS_CONST;
+    this.benefitsTable = CU_BENEFITS_TABLE_CONST;
   }
 
   /**
@@ -120,20 +78,15 @@ export class CUCharGenLogic extends BaseCharGenLogic {
   // ─── MODE ENTRY POINTS ──────────────────────────────────────────────────────
 
   async runCareerMode(app) {
-    const state = app.charState;
-
-    // 1. Characteristics
-    await app._chooseCharacteristics();
-
-    // CU allows swapping two characteristics after rolling
-    await chooseCharacteristicSwap(app);
-
-    // 2. Gender & name
-    state.gender = await chooseGender(app);
-    await chooseLanguage(app);
-    await chooseName(app);
+    await this.stepIdentity(app, {
+      characteristicsStep: async (app) => {
+        await app._chooseCharacteristics();
+        await chooseCharacteristicSwap(app);
+      },
+    });
 
     // 3. Career loop
+    const state = app.charState;
     state.cashBenefits += 1000; // CU starting cash
     let isFirstCareer = true;
 
@@ -143,12 +96,12 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       if (isFirstCareer) {
         careerName = await app._choose(
           'Choose your career',
-          CU_CAREER_NAMES.map(n => ({ value: n, label: n }))
+          this.careerNames.map(n => ({ value: n, label: n }))
         );
       } else {
         // Second+ career: Remain roll with bonuses
         const prevCareer = state.careers.at(-1);
-        const prevCareerData = CU_CAREERS[prevCareer?.name];
+        const prevCareerData = this.careers[prevCareer?.name];
         const prefBonus = prevCareerData && (state.chars[prevCareerData.preferredChar] ?? 0) >= 10 ? 1 : 0;
         const autoSkillBonus = prevCareerData && state.skills.has(prevCareerData.autoSkill) ? 1 : 0;
         const entryRoll = await app._roll('2d6');
@@ -164,12 +117,12 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         }
         careerName = await app._choose(
           'Choose your next career',
-          CU_CAREER_NAMES.map(n => ({ value: n, label: n }))
+          this.careerNames.map(n => ({ value: n, label: n }))
         );
       }
 
       // Run terms for this career; on death it pushes a partial record and re-throws CHARGEN_DIED
-      const careerRecord = await this._runCUCareerTerms(app, careerName);
+      const careerRecord = await this._runCareerTerms(app, careerName);
       state.careers.push(careerRecord);
       if (!state.previousCareers.includes(careerName)) {
         state.previousCareers.push(careerName);
@@ -177,7 +130,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       isFirstCareer = false;
 
       // Muster out
-      await this.cuMusterOut(app, careerRecord, careerRecord.extraBenefitRolls);
+      await this.musterOut(app, careerRecord, careerRecord.extraBenefitRolls);
 
       // Offer another career
       const another = await this.promptAnotherCareer(app, state.totalTerms);
@@ -188,19 +141,16 @@ export class CUCharGenLogic extends BaseCharGenLogic {
   }
 
   async runRandomMode(app) {
-    const state = app.charState;
-
-    // 1. Characteristics (roll 2D6 each, optional swap)
-    await app._chooseCharacteristics();
-    await chooseCharacteristicSwap(app);
-
-    // 2. Gender & name
-    state.gender = await chooseGender(app);
-    await chooseLanguage(app);
-    await chooseName(app);
+    await this.stepIdentity(app, {
+      characteristicsStep: async (app) => {
+        await app._chooseCharacteristics();
+        await chooseCharacteristicSwap(app);
+      },
+    });
 
     // 3. Pick 2 skill category tables
-    const tableNames = Object.keys(CU_SKILL_TABLES).sort();
+    const state = app.charState;
+    const tableNames = Object.keys(this.skillTables).sort();
     const tableOptions = tableNames.map(n => ({ value: n, label: n }));
 
     const rollOrPick = await app._choose(
@@ -240,18 +190,11 @@ export class CUCharGenLogic extends BaseCharGenLogic {
   }
 
   async runDesignMode(app) {
-    const state = app.charState;
-
-    // 1. Characteristics (manual entry, same as CE path)
-    await app._chooseCharacteristics();
-
-    // 2. Gender & name
-    state.gender = await chooseGender(app);
-    await chooseLanguage(app);
-    await chooseName(app);
+    await this.stepIdentity(app);
 
     // 3. Pick 2 skill category tables
-    const tableNames = Object.keys(CU_SKILL_TABLES).sort();
+    const state = app.charState;
+    const tableNames = Object.keys(this.skillTables).sort();
     const tableOptions = tableNames.map(n => ({ value: n, label: n }));
     const table1 = await app._choose('First skill table', tableOptions);
     const table2 = await app._choose('Second skill table', tableOptions.filter(o => o.value !== table1));
@@ -260,7 +203,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     // 4. Choose 6 skills from selected tables
     state.cashBenefits += 1000;
     for (const tableName of [table1, table2]) {
-      const entries = (CU_SKILL_TABLES[tableName] ?? []).filter(Boolean);
+      const entries = (this.skillTables[tableName] ?? []).filter(Boolean);
       const opts = [...new Set(entries)].sort().map(s => ({ value: s, label: s }));
       if (!opts.length) {
         continue;
@@ -281,29 +224,10 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     return table.find(e => roll >= e.threshold) ?? null;
   }
 
-  /** Parse simple mechanic tags from description strings like [SKILL:Bribery:1] */
-  _parseTags(description) {
-    const tags = [];
-    const regex = /\[([^\]]+)\]/g;
-    let m;
-    while ((m = regex.exec(description)) !== null) {
-      tags.push(m[1]);
-    }
-    return tags;
-  }
-
   // ─── SKILL HELPERS ───────────────────────────────────────────────────────────
 
-  async _addSkill(app, skillName, level) {
-    const state = app.charState;
-    const cur = state.skills.has(skillName) ? state.skills.get(skillName) : -Infinity;
-    if (cur < level) {
-      state.skills.set(skillName, level);
-    }
-  }
-
   async _rollSkillFromTable(app, tableName) {
-    const entries = CU_SKILL_TABLES[tableName];
+    const entries = this.skillTables[tableName];
     if (!entries?.length) {
       return;
     }
@@ -330,6 +254,10 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     let leaveCareer = false;
 
     for (const tag of tags) {
+      if (await this._applyCommonTag(app, tag, description)) {
+        continue;
+      }
+
       if (tag === 'DIED') {
         state.died = true;
         state.log.push('Died in service.');
@@ -337,18 +265,13 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         throw CHARGEN_DIED;
       }
       if (tag === 'INJURED_LEAVE') {
-        const physOpts = [
-          { value: 'str', label: 'Strength −1' },
-          { value: 'dex', label: 'Dexterity −1' },
-          { value: 'end', label: 'Endurance −1' },
-        ];
-        const c = await app._choose('Badly injured: choose characteristic to reduce by 1', physOpts);
+        const c = await app._choose('Badly injured: choose physical characteristic to reduce by 1', PHYS_OPTS);
         state.chars[c]--;
         state.log.push(`Injury: ${c.toUpperCase()} −1. Must leave career.`);
-        await this.cuCheckCrisis(app); // throws CHARGEN_DIED on death
+        await this.checkCrisis(app); // throws CHARGEN_DIED on death
         leaveCareer = true;
       } else if (tag === 'DEBT_4X') {
-        const cashBase = CU_CAREERS[careerName]?.cashBase ?? 0;
+        const cashBase = this.careers[careerName]?.cashBase ?? 0;
         const debt = 4 * cashBase;
         state.medicalDebt += debt;
         state.log.push(`Debt: Cr${debt.toLocaleString()} added.`);
@@ -359,57 +282,14 @@ export class CUCharGenLogic extends BaseCharGenLogic {
           state.chars.int = Math.max(0, state.chars.int - 1);
           state.log.push(`Mental collapse: INT −1 (2D6=${roll} ≤7).`);
           app._log('Mental collapse', `INT −1 (${roll})`);
-          await this.cuCheckCrisis(app); // throws CHARGEN_DIED on death
+          await this.checkCrisis(app); // throws CHARGEN_DIED on death
         } else {
           app._log('Mental collapse', `No effect (${roll} >7)`);
         }
-      } else if (tag === 'STR_PLUS1') {
-        state.chars.str++;
-        app._log('Characteristic', 'STR +1');
-      } else if (tag === 'DEX_PLUS1') {
-        state.chars.dex++;
-        app._log('Characteristic', 'DEX +1');
-      } else if (tag === 'END_PLUS1') {
-        state.chars.end++;
-        app._log('Characteristic', 'END +1');
-      } else if (tag === 'INT_PLUS1') {
-        state.chars.int++;
-        app._log('Characteristic', 'INT +1');
-      } else if (tag === 'EDU_PLUS1') {
-        state.chars.edu++;
-        app._log('Characteristic', 'EDU +1');
-      } else if (tag === 'SOC_PLUS1') {
-        state.chars.soc++;
-        app._log('Characteristic', 'SOC +1');
-      } else if (tag.startsWith('SKILL:')) {
-        const parts = tag.split(':');
-        const skillName = parts[1];
-        const level = parseInt(parts[2]) || 1;
-        await this._addSkill(app, skillName, level);
-        app._log('Skill', `${skillName}-${level}`);
-        state.log.push(`Gained ${skillName}-${level}.`);
       } else if (tag === 'CASH_20000') {
         state.cashBenefits += 20000;
         state.log.push('Cash: +Cr20,000.');
         app._log('Cash', '+Cr20,000');
-      } else if (tag === 'CONTACT') {
-        const desc = description.split('[')[0].trim();
-        if (desc) {
-          state.contacts.push(desc);
-          app._log('Contact', desc.slice(0, 60));
-        }
-      } else if (tag === 'FRIEND') {
-        const desc = description.split('[')[0].trim();
-        if (desc) {
-          state.friends.push(desc);
-          app._log('Friend', desc.slice(0, 60));
-        }
-      } else if (tag === 'ENEMY') {
-        const desc = description.split('[')[0].trim();
-        if (desc) {
-          state.enemies.push(desc);
-          app._log('Enemy', desc.slice(0, 60));
-        }
       }
       // PROMO_BONUS_2 / PROMO_PENALTY_1 / EXTRA_BENEFIT handled by caller
       // AUTO_PROMO_OR_PRISON handled by caller (needs context)
@@ -420,13 +300,8 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
   // ─── CRISIS CHECK ─────────────────────────────────────────────────────────────
 
-  async cuCheckCrisis(app) {
+  async _handleCrisis(app, zeroChars) {
     const state = app.charState;
-    const zero = CHARACTERISTIC_KEYS.filter(k => (state.chars[k] ?? 0) <= 0);
-    if (!zero.length) {
-      return;
-    }
-
     // CU crisis: roll 2D6 + END modifier >= 8 to survive
     const endMod = calcModFor(state.chars.end ?? 0);
     const roll = await app._roll('2d6');
@@ -439,7 +314,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       state.log.push('Died from aging crisis.');
       throw CHARGEN_DIED;
     }
-    zero.forEach(k => {
+    zeroChars.forEach(k => {
       if ((state.chars[k] ?? 0) <= 0) {
         state.chars[k] = 1;
       }
@@ -447,14 +322,9 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     state.log.push('Survived aging crisis — must leave career.');
   }
 
-  // CU uses different crisis rules than CE base
-  async checkCrisis(app) {
-    return this.cuCheckCrisis(app);
-  }
-
   // ─── CU AGING ─────────────────────────────────────────────────────────────────
 
-  async cuStepAging(app, termNumber) {
+  async stepAging(app, termNumber) {
     const state = app.charState;
     state.age += 4;
     if (termNumber < 4) {
@@ -468,19 +338,13 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
     if (roll <= threshold2) {
       const pts = 2;
-      const c = await app._choose(`Aging: reduce characteristic by ${pts}`, [
-        { value: 'str', label: `Strength −${pts}` },
-        { value: 'dex', label: `Dexterity −${pts}` },
-        { value: 'end', label: `Endurance −${pts}` },
-      ]);
+      const dynamicOpts = PHYS_OPTS.map(o => ({ ...o, label: `${o.label} −${pts}` }));
+      const c = await app._choose('Aging: reduce physical characteristic', dynamicOpts);
       state.chars[c] -= pts;
       state.log.push(`Aging: ${c.toUpperCase()} −${pts}.`);
     } else if (roll <= threshold1) {
-      const c = await app._choose('Aging: reduce characteristic by 1', [
-        { value: 'str', label: 'Strength −1' },
-        { value: 'dex', label: 'Dexterity −1' },
-        { value: 'end', label: 'Endurance −1' },
-      ]);
+      const dynamicOpts = PHYS_OPTS.map(o => ({ ...o, label: `${o.label} −1` }));
+      const c = await app._choose('Aging: reduce physical characteristic', dynamicOpts);
       state.chars[c]--;
       state.log.push(`Aging: ${c.toUpperCase()} −1.`);
     } else {
@@ -488,21 +352,21 @@ export class CUCharGenLogic extends BaseCharGenLogic {
       state.log.push('Aging: no effect.');
       return false;
     }
-    await this.cuCheckCrisis(app); // throws CHARGEN_DIED on death
+    await this.checkCrisis(app); // throws CHARGEN_DIED on death
   }
 
   // ─── BENEFITS ─────────────────────────────────────────────────────────────────
 
-  async _cuBenefitRoll(app, careerName) {
+  async _benefitRoll(app, careerName) {
     const state = app.charState;
-    const cashBase = CU_CAREERS[careerName]?.cashBase ?? 0;
-    const isOfficer = CU_CAREERS[careerName]?.hasCommissioned &&
+    const cashBase = this.careers[careerName]?.cashBase ?? 0;
+    const isOfficer = this.careers[careerName]?.hasCommissioned &&
       state.careers.length > 0 && state.careers.at(-1)?.commissioned;
-    const cashMultiplier = isOfficer ? (CU_CAREERS[careerName]?.officerCashMultiplier ?? 1) : 1;
+    const cashMultiplier = isOfficer ? (this.careers[careerName]?.officerCashMultiplier ?? 1) : 1;
     const effectiveCash = cashBase * cashMultiplier;
 
     const roll = await app._roll('2d6');
-    const event = this._lookupEvent(CU_BENEFITS_TABLE, roll);
+    const event = this._lookupEvent(this.benefitsTable, roll);
     if (!event) {
       app._log(`Benefit (${roll})`, 'No entry found.');
       return;
@@ -513,20 +377,14 @@ export class CUCharGenLogic extends BaseCharGenLogic {
 
     const tags = this._parseTags(desc);
     for (const tag of tags) {
+      if (await this._applyCommonTag(app, tag, desc)) {
+        continue;
+      }
+
       if (tag === 'CASH' || tag === 'AUGMENT_OR_CASH') {
         state.cashBenefits += effectiveCash;
         state.cashRollsUsed++;
         app._log('Cash', `+Cr${effectiveCash.toLocaleString()}`);
-      } else if (tag === 'STR_PLUS1') {
-        state.chars.str++; app._log('Characteristic', 'STR +1');
-      } else if (tag === 'DEX_PLUS1')   {
-        state.chars.dex++; app._log('Characteristic', 'DEX +1');
-      } else if (tag === 'INT_PLUS1')   {
-        state.chars.int++; app._log('Characteristic', 'INT +1');
-      } else if (tag === 'EDU_PLUS1')   {
-        state.chars.edu++; app._log('Characteristic', 'EDU +1');
-      } else if (tag === 'SOC_PLUS1')   {
-        state.chars.soc++; app._log('Characteristic', 'SOC +1');
       } else if (tag === 'AUGMENT_OR_END') {
         const choice = await app._choose('Benefit: Augment 5 pts or +1 End?', [
           { value: 'augment', label: 'Augment (5 points)' },
@@ -545,7 +403,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     }
   }
 
-  async cuMusterOut(app, careerRecord, extraBenefitRolls) {
+  async musterOut(app, careerRecord, extraBenefitRolls) {
     const state = app.charState;
     const rank = careerRecord.rank;
     const rankBonus = rank >= 5 ? 3 : rank >= 3 ? 2 : rank >= 1 ? 1 : 0;
@@ -557,7 +415,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     state.log.push(`Muster out: ${totalRolls} benefit roll(s) (${careerRecord.terms} terms + ${rankBonus} rank bonus + ${extraBenefitRolls} extra).`);
     for (let i = 0; i < totalRolls; i++) {
       app._log(`Benefit roll ${i + 1}/${totalRolls}`, `(${careerRecord.name}, rank ${rank})`);
-      await this._cuBenefitRoll(app, careerRecord.name);
+      await this._benefitRoll(app, careerRecord.name);
     }
   }
 
@@ -566,12 +424,12 @@ export class CUCharGenLogic extends BaseCharGenLogic {
   /**
    * Run one career's term loop. Returns the completed career record.
    */
-  async _runCUCareerTerms(app, careerName) {
+  async _runCareerTerms(app, careerName) {
     const state = app.charState;
-    const career = CU_CAREERS[careerName];
+    const career = this.careers[careerName];
 
     // Auto skill (level 1)
-    await this._addSkill(app, career.autoSkill, 1);
+    await this.setSkillAtLeast(app, career.autoSkill, 1);
     app._log('Auto Skill', `${career.autoSkill}-1`);
     state.log.push(`Auto Skill: ${career.autoSkill}-1`);
 
@@ -613,8 +471,8 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         state.totalTerms++;
         state.currentTermInCareer = termNumber;
         const ageStart = state.age;
-        app._log(`${careerName} — Term ${termNumber}`, `Age ${ageStart}–${ageStart + 3}`);
-        state.log.push(`── ${careerName}, Term ${termNumber} (age ${ageStart}–${ageStart + 3}) ──`);
+        app._log(game.i18n.format('TWODSIX.CharGen.Events.TermLog', { career: careerName, term: termNumber }), game.i18n.format('TWODSIX.CharGen.Events.AgeLog', { start: ageStart, end: ageStart + 3 }));
+        state.log.push(game.i18n.format('TWODSIX.CharGen.Events.TermHeader', { career: careerName, term: termNumber, start: ageStart, end: ageStart + 3 }));
         const termEntry = this.startTermHistoryEntry(state, {
           careerName,
           totalTerm: state.totalTerms,
@@ -636,7 +494,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         state.log.push(`Risk: ${riskTotal} vs ${riskTarget}+ → ${riskSucceeded ? 'Success' : 'Fail'} (Effect ${addSign(riskEffect)})`);
 
         const eventRoll = (await app._roll('2d6')) + riskEffect;
-        const eventTable = riskSucceeded ? CU_RISK_SUCCESS_EVENTS : CU_RISK_FAIL_EVENTS;
+        const eventTable = riskSucceeded ? this.riskSuccessEvents : this.riskFailEvents;
         const event = this._lookupEvent(eventTable, eventRoll);
         if (event) {
           const cleanDesc = event.description.replace(/\[.*?\]/g, '').trim();
@@ -720,7 +578,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
           'Promotion',
           `${promoRoll}${promoTotalRoll !== promoRoll ? `(adjusted to ${promoTotalRoll})` : ''} vs ${promoTarget}+ → ${promoSucceeded ? `Promoted (Effect: ${addSign(promoEffect)})` : `No promotion (Effect: ${addSign(promoEffect)})`}`
         );
-        const promoTable = promoSucceeded ? CU_PROMO_SUCCESS_EVENTS : CU_PROMO_FAIL_EVENTS;
+        const promoTable = promoSucceeded ? this.promoSuccessEvents : this.promoFailEvents;
         const promoEvent = this._lookupEvent(promoTable, promoEventRoll);
         if (promoEvent) {
           const cleanDesc = promoEvent.description.replace(/\[.*?\]/g, '').trim();
@@ -776,7 +634,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         }
 
         // ── AGING ─────────────────────────────────────────────────────────────────
-        await this.cuStepAging(app, termNumber); // throws CHARGEN_DIED on fatal aging
+        await this.stepAging(app, termNumber); // throws CHARGEN_DIED on fatal aging
 
         // ── REMAIN (re-enlistment) ─────────────────────────────────────────────────
         // Roll 2D6 + totalTerms; result must be UNDER 12 to continue

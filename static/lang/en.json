@@ -113,6 +113,12 @@
         "NoEffect": "No effect."
       },
       "Events": {
+        "Began": "Began",
+        "Continued": "Continued",
+        "TermStart": "{verb} {career} at age {age}",
+        "TermLog": "{career} — Term {term}",
+        "AgeLog": "Age {start}–{end}",
+        "TermHeader": "── {career}, Term {term} (age {start}–{end}) ──",
         "DiedDuringGen": "Character died — generation ended.",
         "SurvivedCrisis": "Survived crisis. Medical debt +Cr{amount}.",
         "CrisisSurvived": "Crisis survived",
@@ -155,6 +161,29 @@
       "Aging": {
         "ReduceCharBy": "Aging: reduce characteristic by {amount}",
         "ReduceMentalBy": "Aging: reduce mental characteristic by 1"
+      },
+      "OptionalRules": {
+        "Prompt": "Choose Optional Rules",
+        "SwitchingCareers": "Career Switching (multi-career path)",
+        "AgingTech": "Aging and Technology (TL-based DM)",
+        "IronMan": "Iron Man (fatal injuries)",
+        "SkillLimits": "Skill Limits (max level 3)",
+        "IgnoreLimit": "Ignore limit",
+        "PickDifferent": "Pick a different skill",
+        "SkipSkill": "Skip this skill gain",
+        "YesRecommended": "Yes (recommended)",
+        "No": "No",
+        "SwitchCareer": "Switch career",
+        "Finish": "Finish",
+        "ChooseTL": "Choose Technology Level (TL) for aging DM",
+        "TL8Below": "TL 8 or below (DM+0)",
+        "TL9to11": "TL 9-11 (DM+1)",
+        "TL12to14": "TL 12-14 (DM+2)",
+        "TL15Plus": "TL 15+ (DM+3)",
+        "SummaryActiveRules": "Active Optional Rules:",
+        "SummaryCareerChanges": "Career Changes:",
+        "SummaryBenefitReduction": "Benefits reduction applied due to career switching.",
+        "ChooseMusterCareer": "Choose career for muster out roll"
       }
     },
     "ActiveEffects": {
@@ -960,28 +989,6 @@
         "CUMilitaryOptions": "Military Options",
         "HasCommissioned": "Has Officer Track?",
         "OfficerCashMultiplier": "Officer Cash Multiplier"
-      },
-      "ChargenRuleset": {
-        "ChargenRuleset": "Chargen Ruleset",
-        "AssignChargenRuleset": "Assign Chargen Ruleset",
-        "Ruleset": "Ruleset",
-        "AgingTable": "Aging Table",
-        "NoEffect": "No Effect (1+)",
-        "MishapTable": "Mishap Table",
-        "InjuryTable": "Injury Table",
-        "DraftTable": "Draft Table",
-        "CascadeSkills": "Cascade Skills",
-        "CascadeSkill": "Skill",
-        "Specializations": "Specializations",
-        "HomeworldDescriptors": "Homeworld Descriptors",
-        "Descriptor": "Descriptor",
-        "EducationSkills": "Education Skills",
-        "SkillNameMap": "Skill Name Map",
-        "SkillNameFrom": "From",
-        "SkillNameTo": "To",
-        "CharKeyMap": "Characteristic Key Map",
-        "Benefit": "Benefit",
-        "Key": "Char Key"
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -3028,8 +3035,6 @@
       "ship_position": "Ship Position",
       "career": "Career",
       "careerPl": "Careers",
-      "chargen_ruleset": "Chargen Ruleset",
-      "chargen_rulesetPl": "Chargen Rulesets",
       "backpackPl": "Backpacks",
       "containerPl": "Containers",
       "consumablePl": "Consumables",

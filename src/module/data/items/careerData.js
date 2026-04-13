@@ -68,6 +68,13 @@ export class CareerData extends TwodsixItemBaseData {
       level: new fields.NumberField({required: true, integer: true, initial: 0})
     }), {initial: []});
 
+    // CDEE (Cepheus Deluxe Enhanced Edition) specific fields
+    schema.eventTable = new fields.ArrayField(new fields.SchemaField({
+      roll: new fields.NumberField({required: true, integer: true}),
+      description: new fields.StringField({required: true, blank: true})
+    }), {initial: []});
+    schema.isMilitary = new fields.BooleanField({required: false, initial: false});
+
     return schema;
   }
 }

@@ -1,0 +1,139 @@
+{
+  "_id": "d6b1f3e0845e510f",
+  "_key": "!items!d6b1f3e0845e510f",
+  "name": "Navy",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": true,
+    "service": [
+      "Zero-G",
+      "Repair",
+      "Computers",
+      "Gunnery",
+      "Gun Combat",
+      "Athletics"
+    ],
+    "specialist": [
+      "Piloting",
+      "Carousing",
+      "Melee Combat",
+      "Leadership",
+      "Engineering",
+      "Survival"
+    ],
+    "advanced": [
+      "Science",
+      "Admin",
+      "Medicine",
+      "Tactics",
+      "Jack of All Trades",
+      "Liaison"
+    ],
+    "ranks": [
+      {
+        "title": "Starhand",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Ensign",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Lieutenant",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lt. Commander",
+        "skill": "Tactics",
+        "level": 1
+      },
+      {
+        "title": "Commander",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Commodore",
+        "skill": "SOC",
+        "level": 1
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      5000,
+      10000,
+      20000,
+      50000
+    ],
+    "material": [
+      "Low Passage",
+      "+1 EDU",
+      "Weapon",
+      "Mid Passage",
+      "+1 SOC",
+      "High Passage"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the [INJURY] table."
+      },
+      {
+        "roll": 3,
+        "description": "Gambling Ring. Risk a Benefit roll. [CHECK:Carousing:8] or [CHECK:Streetwise:8]. Success: [BENEFIT_ROLL]. Fail: lose roll."
+      },
+      {
+        "roll": 4,
+        "description": "Cybered! The Navy pays for advanced cybernetic implants. Gain Cr10000 worth of cybernetics."
+      },
+      {
+        "roll": 5,
+        "description": "Ship Destroyed. Try to save shipmates: [CHECK:DEX:8] or [CHECK:Repair:8]. Success: [CONTACT] and [BENEFIT_DM:2]. Fail: [INJURY]."
+      },
+      {
+        "roll": 6,
+        "description": "Advanced Training. [CHECK:EDU:8]. Success: gain one level of existing skill."
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the [LIFE_EVENT] table."
+      },
+      {
+        "roll": 8,
+        "description": "Naval Battle. [CHECK:Gunnery:8] or [CHECK:Piloting:8]. Success: [CHOOSE_SKILL:Computer,Gunnery,Engineering,Piloting]. Fail: [INJURY]."
+      },
+      {
+        "roll": 9,
+        "description": "Mutiny. Gain [ENEMY] mutineer and [BENEFIT_DM:2]."
+      },
+      {
+        "roll": 10,
+        "description": "Xenomorphs! [CHECK:Gun Combat:8] or [CHECK:Melee Combat:8]. Fail: [INJURY]. Success: [SKILL:Zero-G:1]."
+      },
+      {
+        "roll": 11,
+        "description": "Electronic Warfare. Gain level in [SKILL:Computer:1]."
+      },
+      {
+        "roll": 12,
+        "description": "Advancement. [RANK_UP] and [FREE_SKILL]."
+      }
+    ]
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  }
+}
