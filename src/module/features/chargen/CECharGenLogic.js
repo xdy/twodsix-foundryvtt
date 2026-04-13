@@ -2,125 +2,57 @@
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
-import { CHARGEN_DIED, CHARACTERISTIC_KEYS, CharGenConstants } from './CharGenState.js';
-import { chooseGender, chooseLanguage, chooseName, chooseWeapon } from './CharGenUtils.js';
+import {
+  CE_AGING_TABLE,
+  CE_CASCADE_SKILLS,
+  CE_DRAFT_TABLE,
+  CE_EDUCATION_SKILLS,
+  CE_HOMEWORLD_DESCRIPTORS,
+  CE_INJURY_DESC,
+  CE_MISHAP_DESC,
+  CE_SKILL_NAME_MAP
+} from './CECharGenConstants.js';
+import { CHARGEN_DIED, CharGenConstants } from './CharGenState.js';
+import { chooseWeapon } from './CharGenUtils.js';
+import { MENT_OPTS, PHYS_OPTS, resolveCharKey } from './SharedCharGenConstants.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CE pack) ──────────────────────────────────
-
-let CAREERS = {};
-let CAREER_NAMES = [];
-let AGING_TABLE = [];
-let MISHAP_DESC = {};
-let INJURY_DESC = {};
-let DRAFT_TABLE = {};
-let CASCADE_SKILLS = {};
-let HOMEWORLD_DESCRIPTORS = {};
-let EDUCATION_SKILLS = [];
-let SKILL_NAME_MAP = {};
-let CHAR_KEY_MAP = {};
-let PHYS_OPTS = [];
-let MENT_OPTS = [];
 
 /**
  * CE character generation logic.
  * Extends BaseCharGenLogic with Cepheus Engine-specific rules.
  */
 export class CECharGenLogic extends BaseCharGenLogic {
-  constructor() {
-    super();
-  }
-
   resetData() {
     super.resetData();
-    CAREERS = {};
-    CAREER_NAMES = [];
-    AGING_TABLE = [];
-    MISHAP_DESC = {};
-    INJURY_DESC = {};
-    DRAFT_TABLE = {};
-    CASCADE_SKILLS = {};
-    HOMEWORLD_DESCRIPTORS = {};
-    EDUCATION_SKILLS = [];
-    SKILL_NAME_MAP = {};
-    CHAR_KEY_MAP = {};
-    PHYS_OPTS = [];
-    MENT_OPTS = [];
+    this.careers = {};
+    this.careerNames = [];
+    this.agingTable = [];
+    this.mishapDesc = {};
+    this.injuryDesc = {};
+    this.draftTable = {};
+    this.homeworldDescriptors = {};
+    this.educationSkills = [];
   }
 
-  async loadData(ruleset) {
-    this.resetData();
+  _getCareerPackOptions(ruleset) {
+    return {
+      careersFallbackPackName: 'twodsix.ce-srd-careers',
+    };
+  }
 
-    const packName = `twodsix.${ruleset.toLowerCase()}-careers`;
-    const fallbackPackName = 'twodsix.ce-srd-careers';
-    const requestedPack = game.packs.get(packName);
-    if (!requestedPack && ruleset !== 'CE') {
-      console.warn(`twodsix | CharGen: pack "${packName}" not found — falling back to CE careers.`);
-    }
-    let pack = requestedPack || game.packs.get(fallbackPackName);
-    if (!pack) {
-      throw new Error(`Failed to load career data: ${packName} or ${fallbackPackName} not found.`);
-    }
-    const careerDocs = await pack.getDocuments();
-    CAREERS = careerDocs.reduce((acc, doc) => {
-      if (!doc?.name || !doc?.system || typeof doc.system !== 'object') {
-        console.warn(`twodsix | CharGen: skipping invalid career entry in ${pack.collection}.`, doc);
-        return acc;
-      }
-      acc[doc.name] = doc.system;
-      return acc;
-    }, {});
-    CAREER_NAMES = Object.keys(CAREERS).sort();
-    if (!CAREER_NAMES.length) {
-      throw new Error(`Failed to load career data: no valid careers found in ${pack.collection}.`);
-    }
+  _assignRulesetConstants(careers, careerNames, ruleset) {
+    this.careers = careers;
+    this.careerNames = careerNames;
 
-    // Load chargen ruleset
-    const chargenPackName = `twodsix.${ruleset.toLowerCase()}-chargen-ruleset`;
-    const chargenFallbackPackName = 'twodsix.ce-srd-chargen-ruleset';
-    const requestedChargenPack = game.packs.get(chargenPackName);
-    if (!requestedChargenPack && ruleset !== 'CE') {
-      console.warn(`twodsix | CharGen: pack "${chargenPackName}" not found — falling back to CE chargen ruleset.`);
-    }
-    const chargenPack = requestedChargenPack || game.packs.get(chargenFallbackPackName);
-    if (!chargenPack) {
-      throw new Error(`Failed to load chargen ruleset: ${chargenPackName} not found.`);
-    }
-    const chargenDocs = await chargenPack.getDocuments();
-    const chargenItem = chargenDocs.find(d => d.system.ruleset === ruleset) ?? chargenDocs[0];
-    if (!chargenItem) {
-      throw new Error(`Failed to find chargen ruleset in ${chargenPackName}.`);
-    }
-    const rulesetData = chargenItem.system;
-
-    AGING_TABLE = rulesetData.agingTable.map(row =>
-      row.noEffect ? null : { phys: [row.physStr, row.physDex, row.physEnd], mental: row.mental }
-    );
-    MISHAP_DESC = rulesetData.mishapDesc;
-    INJURY_DESC = rulesetData.injuryDesc;
-    DRAFT_TABLE = rulesetData.draftTable;
-    CASCADE_SKILLS = Object.fromEntries(
-      rulesetData.cascadeSkills.map(({ skill, specializations }) => [skill, specializations])
-    );
-    HOMEWORLD_DESCRIPTORS = Object.fromEntries(
-      rulesetData.homeworldDescriptors.map(({ descriptor, skill }) => [descriptor, skill])
-    );
-    EDUCATION_SKILLS = rulesetData.educationSkills;
-    SKILL_NAME_MAP = Object.fromEntries(
-      rulesetData.skillNameMap.map(({ from, to }) => [from, to])
-    );
-    CHAR_KEY_MAP = Object.fromEntries(
-      rulesetData.charKeyMap.map(({ benefit, key }) => [benefit, key])
-    );
-    PHYS_OPTS = [
-      { value: 'str', label: 'Strength' },
-      { value: 'dex', label: 'Dexterity' },
-      { value: 'end', label: 'Endurance' },
-    ];
-    MENT_OPTS = [
-      { value: 'int', label: 'Intelligence' },
-      { value: 'edu', label: 'Education' },
-      { value: 'soc', label: 'Social Standing' },
-    ];
+    this.agingTable = CE_AGING_TABLE;
+    this.mishapDesc = CE_MISHAP_DESC;
+    this.injuryDesc = CE_INJURY_DESC;
+    this.draftTable = CE_DRAFT_TABLE;
+    this.cascadeSkills = CE_CASCADE_SKILLS;
+    this.homeworldDescriptors = CE_HOMEWORLD_DESCRIPTORS;
+    this.educationSkills = CE_EDUCATION_SKILLS;
+    this.skillNameMap = CE_SKILL_NAME_MAP;
   }
 
   /**
@@ -129,12 +61,9 @@ export class CECharGenLogic extends BaseCharGenLogic {
    * @returns {Promise<void>}
    */
   async run(app) {
+    await this.loadData(app.charState.ruleset);
     const state = app.charState;
-
-    await app._chooseCharacteristics();
-    state.gender = await chooseGender(app);
-    await chooseLanguage(app);
-    await chooseName(app);
+    await this.stepIdentity(app);
 
     await this.stepHomeworld(app);
 
@@ -142,7 +71,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     let forceRetire = false;
     while (true) {
       const { careerName, drafted } = await this.stepQualification(app);
-      const career = CAREERS[careerName];
+      const career = this.careers[careerName];
       state.currentRank = 0;
       state.currentTermInCareer = 0;
       await this._applyRankSkill(app, careerName, 0);
@@ -155,9 +84,9 @@ export class CECharGenLogic extends BaseCharGenLogic {
         state.currentTermInCareer++;
         const ageStart = state.age;
         const ageEnd = state.age + 3;
-        app._log(`${careerName} — Term ${state.currentTermInCareer}`, `Age ${ageStart}–${ageEnd}`);
-        state.log.push(`── ${careerName}, Term ${state.currentTermInCareer} (age ${ageStart}–${ageEnd}) ──`);
-        const verb = state.currentTermInCareer > 1 ? 'Stayed a' : 'Became a';
+        app._log(game.i18n.format('TWODSIX.CharGen.Events.TermLog', { career: careerName, term: state.currentTermInCareer }), game.i18n.format('TWODSIX.CharGen.Events.AgeLog', { start: ageStart, end: ageEnd }));
+        state.log.push(game.i18n.format('TWODSIX.CharGen.Events.TermHeader', { career: careerName, term: state.currentTermInCareer, start: ageStart, end: ageEnd }));
+        const verb = state.currentTermInCareer > 1 ? 'Continued' : 'Began';
         // Term history entry created but not used in this flow
         this.startTermHistoryEntry(state, {
           careerName,
@@ -238,21 +167,21 @@ export class CECharGenLogic extends BaseCharGenLogic {
     }
     const total = Math.max(1, 3 + calcModFor(state.chars.edu ?? 0));
     state.log.push(`Background skills: ${total}`);
-    const hwKeys = Object.keys(HOMEWORLD_DESCRIPTORS);
+    const hwKeys = Object.keys(this.homeworldDescriptors);
     const hwCount = Math.min(2, total);
     for (let i = 0; i < hwCount; i++) {
       const desc = await app._choose(
         `Homeworld descriptor ${i + 1}/${hwCount}`,
-        hwKeys.sort().map(k => ({ value: k, label: `${k} -> ${HOMEWORLD_DESCRIPTORS[k]}` }))
+        hwKeys.sort().map(k => ({ value: k, label: `${k} -> ${this.homeworldDescriptors[k]}` }))
       );
-      await this._addSkillAtLevel(app, HOMEWORLD_DESCRIPTORS[desc], 0);
+      await this._addSkillAtLevel(app, this.homeworldDescriptors[desc], 0);
       state.homeworldDescriptors.push(desc);
-      state.log.push(`Background (${desc}): ${HOMEWORLD_DESCRIPTORS[desc]}-0`);
+      state.log.push(`Background (${desc}): ${this.homeworldDescriptors[desc]}-0`);
     }
     for (let i = 0; i < total - hwCount; i++) {
       const sk = await app._choose(
         `Education background skill ${i + 1}/${total - hwCount}`,
-        EDUCATION_SKILLS.sort().map(s => ({ value: s, label: s }))
+        this.educationSkills.sort().map(s => ({ value: s, label: s }))
       );
       await this._addSkillAtLevel(app, sk, 0);
       state.log.push(`Background (education): ${sk}-0`);
@@ -261,7 +190,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepQualification(app) {
     const state = app.charState;
-    const fallbackCareer = CAREERS.Drifter ? 'Drifter' : CAREER_NAMES[0];
+    const fallbackCareer = this.careers.Drifter ? 'Drifter' : this.careerNames[0];
     if (!fallbackCareer) {
       throw new Error('CharGen qualification failed: no careers are available.');
     }
@@ -269,7 +198,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       app._log('Qualification', 'Prior crisis — auto-fail. Entering Drifter.');
       return { careerName: fallbackCareer, drafted: false };
     }
-    const available = CAREER_NAMES.filter(n => n === 'Drifter' || !state.previousCareers.includes(n)).sort((a, b) =>
+    const available = this.careerNames.filter(n => n === 'Drifter' || !state.previousCareers.includes(n)).sort((a, b) =>
       a.localeCompare(b)
     );
     if (!available.length) {
@@ -282,7 +211,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       available.map(n => ({ value: n, label: n }))
     );
     const chosenCareerName = available.includes(careerName) ? careerName : fallbackCareer;
-    const career = CAREERS[chosenCareerName];
+    const career = this.careers[chosenCareerName];
     if (!career) {
       app._log('Qualification', `Selected career data missing; defaulting to ${fallbackCareer}.`);
       return { careerName: fallbackCareer, drafted: false };
@@ -308,7 +237,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     const failChoice = await app._choose('Qualification failed — choose option', failOpts);
     if (failChoice === 'draft') {
       const dr = await app._roll('1d6');
-      const drafted = DRAFT_TABLE[dr] && CAREERS[DRAFT_TABLE[dr]] ? DRAFT_TABLE[dr] : fallbackCareer;
+      const drafted = this.draftTable[dr] && this.careers[this.draftTable[dr]] ? this.draftTable[dr] : fallbackCareer;
       state.hasBeenDrafted = true;
       state.log.push(`Drafted into ${drafted} (1D6=${dr}).`);
       app._log('Draft', `1D6=${dr} -> ${drafted}`);
@@ -320,7 +249,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepBasicTraining(app, careerName, isFirstCareer) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     if (isFirstCareer) {
       for (const sk of career.service.sort()) {
         await this._addSkillAtLevel(app, sk, 0);
@@ -339,7 +268,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepSurvival(app, careerName) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     const roll = await app._roll('2d6');
     const mod = calcModFor(state.chars[career.surv.char] ?? 0);
     const total = roll + mod;
@@ -358,10 +287,10 @@ export class CECharGenLogic extends BaseCharGenLogic {
       return { survived: true, benefitsLost: false };
     }
     const mr = await app._roll('1d6');
-    app._log(`Mishap (${mr})`, MISHAP_DESC[mr]);
-    state.log.push(`Mishap ${mr}: ${MISHAP_DESC[mr]}`);
+    app._log(`Mishap (${mr})`, this.mishapDesc[mr]);
+    state.log.push(`Mishap ${mr}: ${this.mishapDesc[mr]}`);
     if (h) {
-      h.events.push(MISHAP_DESC[mr]);
+      h.events.push(this.mishapDesc[mr]);
     }
     const benefitsLost = mr >= 4;
     if (mr === 5) {
@@ -387,7 +316,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepCommission(app, careerName) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     if (!career.comm || state.currentRank !== 0) {
       return { succeeded: false, extraRoll: 0 };
     }
@@ -409,10 +338,10 @@ export class CECharGenLogic extends BaseCharGenLogic {
       'Commission',
       `${roll}${addSign(mod)}=${total} vs ${career.comm.target}+ -> ${success ? 'Commissioned (Rank 1)' : 'Failed'}`
     );
-    state.log.push(success ? `Commissioned. Now ${CAREERS[careerName].ranks[1]?.title ?? 'Rank 1'}.` : 'Commission failed.');
+    state.log.push(success ? `Commissioned. Now ${this.careers[careerName].ranks[1]?.title ?? 'Rank 1'}.` : 'Commission failed.');
     const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
     if (success && h) {
-      h.events.push(`Promoted to ${CAREERS[careerName].ranks[1]?.title || careerName} rank 1`);
+      h.events.push(`Promoted to ${this.careers[careerName].ranks[1]?.title || careerName} rank 1`);
     } else if (!success && h) {
       h.events.push('Attempt at commission failed.');
     }
@@ -426,7 +355,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepAdvancement(app, careerName) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     if (!career.adv || state.currentRank < 1) {
       return { succeeded: false, extraRoll: 0 };
     }
@@ -452,7 +381,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     state.log.push(success ? `Advanced to rank ${newRank}.` : 'Advancement failed.');
     const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
     if (success && h) {
-      h.events.push(`Promoted to ${CAREERS[careerName].ranks[newRank]?.title || careerName} rank ${newRank}`);
+      h.events.push(`Promoted to ${this.careers[careerName].ranks[newRank]?.title || careerName} rank ${newRank}`);
     }
     if (!success) {
       return { succeeded: false, extraRoll: 0 };
@@ -464,7 +393,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepSkillsAndTraining(app, careerName, numRolls) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     const canAdv = state.chars.edu >= 8;
     for (let i = 0; i < numRolls; i++) {
       const tables = [
@@ -500,7 +429,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepReenlistment(app, careerName) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     const roll = await app._roll('2d6');
     const success = roll >= career.reenlist;
     const nat12 = roll === 12;
@@ -533,7 +462,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepMusterOut(app, careerRecord) {
     const state = app.charState;
-    const career = CAREERS[careerRecord.name];
+    const career = this.careers[careerRecord.name];
     const billableTerms = careerRecord.mishap ? careerRecord.terms - 1 : careerRecord.terms;
     const rankBonus = careerRecord.rank >= 4 ? careerRecord.rank - 3 : 0;
     const totalRolls = billableTerms + rankBonus;
@@ -570,8 +499,9 @@ export class CECharGenLogic extends BaseCharGenLogic {
           continue;
         }
         app._log(`Material (${roll}${matDM ? '+' + matDM : ''}=${adjRoll})`, benefit);
-        if (CHAR_KEY_MAP[benefit]) {
-          state.chars[CHAR_KEY_MAP[benefit]]++;
+        const charKey = resolveCharKey(benefit);
+        if (charKey) {
+          state.chars[charKey]++;
           state.log.push(`Material: ${benefit}`);
         } else if (benefit === '1D6 Ship Shares') {
           const count = await app._roll('1d6');
@@ -600,12 +530,8 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   // ─── CE CRISIS CHECK ─────────────────────────────────────────────────────────
 
-  async checkCrisis(app) {
+  async _handleCrisis(app, zeroChars) {
     const state = app.charState;
-    const zero = CHARACTERISTIC_KEYS.filter(c => (state.chars[c] ?? 0) <= 0);
-    if (!zero.length) {
-      return;
-    }
     const cost = (await app._roll('1d6')) * CharGenConstants.CRISIS_COST_MULTIPLIER;
     const choice = await app._choose(
       `Crisis! Pay Cr${cost.toLocaleString()} for emergency care?`,
@@ -626,7 +552,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       }
       throw CHARGEN_DIED;
     }
-    zero.forEach(c => {
+    zeroChars.forEach(c => {
       if ((state.chars[c] ?? 0) <= 0) {
         state.chars[c] = 1;
       }
@@ -637,58 +563,10 @@ export class CECharGenLogic extends BaseCharGenLogic {
     app._log('Crisis survived', `Medical debt +Cr${cost.toLocaleString()}`);
   }
 
-  // ─── PRIVATE HELPERS ─────────────────────────────────────────────────────────
-
-  async _pickSpecialization(app, name) {
-    return app._choose(
-      `Specialize: ${name}`,
-      CASCADE_SKILLS[name].sort().map(s => ({ value: s, label: s }))
-    );
-  }
-
-  async _resolveSkillName(app, raw) {
-    if (SKILL_NAME_MAP[raw]) {
-      return SKILL_NAME_MAP[raw];
-    }
-    if (raw in CASCADE_SKILLS) {
-      return this._pickSpecialization(app, raw);
-    }
-    return raw;
-  }
-
-  async _addSkillAtLevel(app, rawName, level) {
-    const name = await this._resolveSkillName(app, rawName);
-    if (!name) {
-      return;
-    }
-    await this.setSkillAtLeast(app, name, level);
-  }
-
-  async _addOrImproveSkill(app, rawName) {
-    const name = await this._resolveSkillName(app, rawName);
-    if (!name) {
-      return;
-    }
-    await this.improveSkill(app, name);
-  }
-
-  async _applyTableEntry(app, entry) {
-    const state = app.charState;
-    if (CHAR_KEY_MAP[entry]) {
-      state.chars[CHAR_KEY_MAP[entry]]++;
-      app._log('Characteristic', entry);
-    } else {
-      const before = state.skills.get(SKILL_NAME_MAP[entry] ?? entry) ?? -1;
-      await this._addOrImproveSkill(app, entry);
-      const displayName = SKILL_NAME_MAP[entry] ?? entry;
-      app._log('Skill', `${displayName}-${state.skills.get(displayName) ?? (before + 1)}`);
-    }
-  }
-
   async _applyInjury(app, roll) {
     const state = app.charState;
-    app._log(`Injury (${roll})`, INJURY_DESC[roll]);
-    state.log.push(`Injury (${roll}): ${INJURY_DESC[roll]}`);
+    app._log(`Injury (${roll})`, this.injuryDesc[roll]);
+    state.log.push(`Injury (${roll}): ${this.injuryDesc[roll]}`);
     if (roll === 6) {
       return;
     }
@@ -732,7 +610,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
   async _applyAgingEffect(app, result) {
     const state = app.charState;
     const idx = Math.min(7, Math.max(0, result + 6));
-    const entry = AGING_TABLE[idx];
+    const entry = this.agingTable[idx];
     if (!entry) {
       app._log('Aging effect', 'No effect.');
       return;
@@ -751,7 +629,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async _applyRankSkill(app, careerName, rank) {
     const state = app.charState;
-    const r = CAREERS[careerName].ranks[rank];
+    const r = this.careers[careerName].ranks[rank];
     if (r?.skill) {
       await this._addSkillAtLevel(app, r.skill, r.level);
       state.log.push(`Rank ${rank} skill: ${r.skill}-${r.level}`);

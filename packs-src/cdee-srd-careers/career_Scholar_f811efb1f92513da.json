@@ -1,0 +1,139 @@
+{
+  "_id": "f811efb1f92513da",
+  "_key": "!items!f811efb1f92513da",
+  "name": "Scholar",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": false,
+    "service": [
+      "Admin",
+      "Computers",
+      "Repair",
+      "Liaison",
+      "Investigation",
+      "Science"
+    ],
+    "specialist": [
+      "Survival",
+      "Language",
+      "Carousing",
+      "Engineering",
+      "Jack of All Trades",
+      "Medicine"
+    ],
+    "advanced": [
+      "Piloting",
+      "Zero-G",
+      "Animals",
+      "Recon",
+      "Athletics",
+      "Leadership"
+    ],
+    "ranks": [
+      {
+        "title": "Student",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Researcher",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Research Adjunct",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Assistant Professor",
+        "skill": "Liaison",
+        "level": 1
+      },
+      {
+        "title": "Associate Professor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Professor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Distinguished Professor",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      20000,
+      20000,
+      50000
+    ],
+    "material": [
+      "Contact",
+      "+1 EDU",
+      "+1 INT",
+      "Mid Passage",
+      "+1 SOC",
+      "Research Vessel"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the [INJURY] table."
+      },
+      {
+        "roll": 3,
+        "description": "Cybered! Your academic institute pays for advanced cybernetic implants. Gain Cr6000 worth of cybernetics."
+      },
+      {
+        "roll": 4,
+        "description": "Breakthrough! You make a breakthrough in your research. Gain [BENEFIT_DM:2] to one Benefit roll."
+      },
+      {
+        "roll": 5,
+        "description": "Field Work. Gain a level in [CHOOSE_SKILL:Survival,Repair]."
+      },
+      {
+        "roll": 6,
+        "description": "Immoral Research. Accept: [CHOOSE_SKILL:Science,Deception,Medicine]. Refuse: nothing. Blow whistle: [ENEMY]."
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the [LIFE_EVENT] table."
+      },
+      {
+        "roll": 8,
+        "description": "Confidential Project. Silent: [CHOOSE_SKILL:Science,Liaison,Medicine]. Sell: [BENEFIT_ROLL] and [ENEMY]."
+      },
+      {
+        "roll": 9,
+        "description": "Plagiarism. Exploit: [BENEFIT_ROLL] and [ENEMY]. Avoid: integrity."
+      },
+      {
+        "roll": 10,
+        "description": "Talent Grab. Escape: [CHECK:DEX:8] or [INJURY]. Jump ship: [BENEFIT_ROLL] and [ENEMY]."
+      },
+      {
+        "roll": 11,
+        "description": "Mentor. Gain a [CONTACT]."
+      },
+      {
+        "roll": 12,
+        "description": "Advancement. [RANK_UP] and [FREE_SKILL]."
+      }
+    ]
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "_id": "fe74ac9493cc2e29",
+  "_key": "!items!fe74ac9493cc2e29",
+  "name": "Merchant",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": false,
+    "service": [
+      "Steward",
+      "Repair",
+      "Liaison",
+      "Carousing",
+      "Admin",
+      "Zero-G"
+    ],
+    "specialist": [
+      "Gun Combat",
+      "Melee Combat",
+      "Piloting",
+      "Gunnery",
+      "Streetwise",
+      "Stealth"
+    ],
+    "advanced": [
+      "Medicine",
+      "Science",
+      "Survival",
+      "Language",
+      "Engineering",
+      "Computers"
+    ],
+    "ranks": [
+      {
+        "title": "Crewmember",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Deck Cadet",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Fourth Officer",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Third Officer",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Second Officer",
+        "skill": "Piloting",
+        "level": 1
+      },
+      {
+        "title": "First Officer",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      2000,
+      10000,
+      20000,
+      30000,
+      40000,
+      50000
+    ],
+    "material": [
+      "Low Passage",
+      "+1 EDU",
+      "Weapon",
+      "Contact",
+      "High Passage",
+      "Trader"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the [INJURY] table."
+      },
+      {
+        "roll": 3,
+        "description": "Cybered! A good trade deal or corporate favor earns you Cr6000 worth of cybernetic implants."
+      },
+      {
+        "roll": 4,
+        "description": "Smuggler. Accept: [CHECK:Admin:8] or [CHECK:Streetwise:8]. Success: gain level of skill and [BENEFIT_ROLL]. Fail: [ENEMY]."
+      },
+      {
+        "roll": 5,
+        "description": "Risky Business. Risk any number of Benefits. [CHECK:Admin:8] or [CHECK:Streetwise:8]. Success: gain half again as many. Fail: lose all risked. Either way, gain level of skill."
+      },
+      {
+        "roll": 6,
+        "description": "Good Deal. Gain a [BENEFIT_DM:1] on a Benefit roll."
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the [LIFE_EVENT] table."
+      },
+      {
+        "roll": 8,
+        "description": "Legal Trouble. [CHECK:Admin:8]. Success: gain [CHOOSE_SKILL:Admin,Liaison]. Fail: [PRISON]."
+      },
+      {
+        "roll": 9,
+        "description": "Advanced Training. [CHECK:EDU:8]. Success: [CHOOSE_SKILL:Admin,Engineering,Computer,Piloting,Zero-G]."
+      },
+      {
+        "roll": 10,
+        "description": "Pirate Raid. [CHECK:Gun Combat:8] or [CHECK:Gunnery:8] or [CHECK:DEX:10]. Fail: [INJURY]. Success: [BENEFIT_ROLL]."
+      },
+      {
+        "roll": 11,
+        "description": "Xenomorphs! [CHECK:Gun Combat:8] or [CHECK:Melee Combat:8]. Fail: [INJURY]. Success: [SKILL:Survival:1]."
+      },
+      {
+        "roll": 12,
+        "description": "Advancement. [RANK_UP] and [FREE_SKILL]."
+      }
+    ]
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  }
+}

@@ -1,6 +1,12 @@
 // CharGenApp.js — Character generation UI class extending DecisionApp
 import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
+import { DecisionApp } from '../DecisionApp.js';
+import {
+  CDEE_POINT_BUY_MAXIMUM_VALUE,
+  CDEE_POINT_BUY_MINIMUM_VALUE,
+  CDEE_POINTBUY_MAX_POINTS
+} from './CDEECharGenConstants.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
 import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
 import {
@@ -10,7 +16,6 @@ import {
   CHARGEN_DIED,
   freshState
 } from './CharGenState.js';
-import { DecisionApp } from '../DecisionApp.js';
 
 const NAME_ROW_LABEL = 'Name';
 
@@ -56,6 +61,9 @@ export class CharGenApp extends DecisionApp {
 
     const s = this.charState;
     const ruleset = s?.ruleset ?? 'CE';
+    const isPointBuy = s?.creationMode === 'pointbuy';
+    const totalChars = isPointBuy ? CHARACTERISTIC_KEYS.reduce((acc, k) => acc + (s?.chars[k] ?? 0), 0) : 0;
+
     const chars = CHARACTERISTIC_KEYS.map((k, i) => ({
       key: k,
       label: CHARACTERISTIC_LABELS[i],
@@ -67,6 +75,8 @@ export class CharGenApp extends DecisionApp {
       charName: this.charName,
       chars,
       upp,
+      isPointBuy,
+      remainingPoints: CDEE_POINTBUY_MAX_POINTS - totalChars,
       age: s?.age ?? 18,
       skls: s?.skills?.size ?? 0,
       totalTerms: s?.totalTerms ?? 0,
@@ -104,8 +114,23 @@ export class CharGenApp extends DecisionApp {
    */
   _rollCharacteristics() {
     if (this.charState) {
-      for (const k of CHARACTERISTIC_KEYS) {
-        this.charState.chars[k] = Math.floor(Math.random() * 6) + Math.floor(Math.random() * 6) + 2;
+      if (this.charState.creationMode === 'pointbuy') {
+        // Reset all to a minimum of 2
+        for (const k of CHARACTERISTIC_KEYS) {
+          this.charState.chars[k] = CDEE_POINT_BUY_MINIMUM_VALUE;
+        }
+        let remaining = CDEE_POINTBUY_MAX_POINTS - (CDEE_POINT_BUY_MINIMUM_VALUE * CHARACTERISTIC_KEYS.length);
+        while (remaining > 0) {
+          const k = CHARACTERISTIC_KEYS[Math.floor(Math.random() * CHARACTERISTIC_KEYS.length)];
+          if (this.charState.chars[k] < CDEE_POINT_BUY_MAXIMUM_VALUE) {
+            this.charState.chars[k]++;
+            remaining--;
+          }
+        }
+      } else {
+        for (const k of CHARACTERISTIC_KEYS) {
+          this.charState.chars[k] = Math.floor(Math.random() * 6) + Math.floor(Math.random() * 6) + CDEE_POINT_BUY_MINIMUM_VALUE;
+        }
       }
     }
   }
@@ -186,14 +211,28 @@ export class CharGenApp extends DecisionApp {
     if (!inputs) {
       return;
     }
+
+    const isPointBuy = this.charState?.creationMode === 'pointbuy';
     let allValid = true;
+    let total = 0;
     inputs.forEach(input => {
       const val = parseInt(input.value);
       if (isNaN(val) || val < 1 || val > 15) {
         allValid = false;
       }
+      total += val || 0;
     });
+
+    if (isPointBuy && total !== CDEE_POINTBUY_MAX_POINTS) {
+      allValid = false;
+    }
     doneBtn.disabled = !allValid;
+
+    const pointsEl = el?.querySelector('.cg-point-buy-total');
+    if (pointsEl && isPointBuy) {
+      pointsEl.textContent = `Points: ${CDEE_POINTBUY_MAX_POINTS - total} / ${CDEE_POINTBUY_MAX_POINTS}`;
+      pointsEl.style.color = (total > CDEE_POINTBUY_MAX_POINTS) ? 'red' : 'inherit';
+    }
   }
 
   /**
@@ -341,30 +380,31 @@ export class CharGenApp extends DecisionApp {
    * Present a choice to the user with replay and auto-all support.
    * @param {string} label - Choice label
    * @param {Array} options - Available options with value and label
+   * @param {Object} [rowExtras={}] - Additional row properties
    * @returns {Promise<string>} Selected value
    */
-  async _choose(label, options) {
+  async _choose(label, options, rowExtras = {}) {
     const choiceOptions = Array.isArray(options) ? options : [];
     const cursor = this.decisionCursor++;
 
     // Replay path: use stored decision
     if (cursor < this.decisions.length) {
-      const v = String(this.decisions[cursor].value);
-      const found = choiceOptions.find(o => String(o.value) === v);
+      const v = this.decisions[cursor].value;
+      const found = choiceOptions.find(o => String(o.value) === String(v));
       if (found) {
-        this.rows.push({ label, result: found.label ?? v, active: false, options: choiceOptions });
-        return v;
+        this.rows.push({ label, result: found.label ?? String(v), active: false, options: choiceOptions });
+        return found.value;
       }
 
       if (choiceOptions.length) {
-        const fallback = String(choiceOptions[0].value);
+        const fallback = choiceOptions[0].value;
         this.decisions[cursor] = { type: 'choice', value: fallback };
-        this.rows.push({ label, result: choiceOptions[0].label ?? fallback, active: false, options: choiceOptions });
+        this.rows.push({ label, result: choiceOptions[0].label ?? String(fallback), active: false, options: choiceOptions });
         console.warn(`CharGenApp | Replayed choice "${v}" is no longer valid for "${label}". Falling back to "${fallback}".`);
         return fallback;
       }
 
-      this.rows.push({ label, result: v, active: false, options: choiceOptions });
+      this.rows.push({ label, result: String(v), active: false, options: choiceOptions });
       console.warn(`CharGenApp | Replayed choice "${v}" is invalid for "${label}" and no options are available.`);
       return v;
     }
@@ -372,17 +412,16 @@ export class CharGenApp extends DecisionApp {
     // Auto-all path: pick randomly
     if (this.autoAll && choiceOptions.length) {
       const idx = Math.floor(Math.random() * choiceOptions.length);
-      const value = String(choiceOptions[idx].value);
+      const value = choiceOptions[idx].value;
       this.decisions.push({ type: 'choice', value });
       const found = choiceOptions[idx];
-      this.rows.push({ label, result: found?.label ?? value, active: false, options: choiceOptions });
+      this.rows.push({ label, result: found?.label ?? String(value), active: false, options: choiceOptions });
       this.render();
       return value;
     }
 
     // Interactive path: delegate to base class
-    this.decisionCursor--; // base class doesn't use cursor; undo the increment
-    const value = await super._choose(label, choiceOptions);
+    const value = await super._choose(label, choiceOptions, rowExtras);
     this.decisions.push({ type: 'choice', value });
     return value;
   }
@@ -452,11 +491,7 @@ export class CharGenApp extends DecisionApp {
     }
 
     if (this.autoAll) {
-      const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
-      let name = 'Traveller';
-      try {
-        name = await nameGen.generateName(this.charState?.languageType, genderCode) || name;
-      } catch { /* use fallback */ }
+      const name = await this._generateRandomName();
       this.rows.push({ label: NAME_ROW_LABEL, result: name, active: false, options: [] });
       this.decisions.push({ type: 'choice', value: name });
       this._updateNameAndTitle(name);
@@ -499,20 +534,27 @@ export class CharGenApp extends DecisionApp {
   }
 
   /**
+   * Internal helper to generate a random name based on gender and language.
+   * @returns {Promise<string>}
+   * @private
+   */
+  async _generateRandomName() {
+    const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
+    let name = 'Traveller';
+    try {
+      name = await nameGen.generateName(this.charState?.languageType, genderCode) || name;
+    } catch { /* use fallback */ }
+    return name;
+  }
+
+  /**
    * Resolve the name row by generating a random name and continuing.
    */
   async _resolveNameRoll() {
     if (!this.pendingResolve) {
       return;
     }
-    const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
-    let name;
-    try {
-      name = await nameGen.generateName(this.charState?.languageType, genderCode);
-    } catch { /* ignore */ }
-    if (!name) {
-      name = 'Traveller';
-    }
+    const name = await this._generateRandomName();
     this._updateNameAndTitle(name);
     const r = this.pendingResolve;
     this.pendingResolve = null;

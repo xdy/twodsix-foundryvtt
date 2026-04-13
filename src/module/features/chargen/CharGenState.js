@@ -83,11 +83,22 @@ export function freshState() {
     died: false,
     termHistory: [],
     homeworldDescriptors: [],
+    optionalRules: {
+      switchingCareers: false,
+      agingTech: false,
+      ironMan: false,
+      skillLimits: false,
+    },
+    careerChanges: 0,
     // CU-specific state
     creationMode: null,
     friends: [],
     enemies: [],
     contacts: [],
+    // CDEE-specific state
+    traits: [],           // Selected trait names/ids
+    prisonTerms: 0,       // Prison terms served (don't count for benefits)
+    benefitDMs: [],       // Accumulated [{index, dm}] from events
   };
 }
 

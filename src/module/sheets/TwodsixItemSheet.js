@@ -549,7 +549,6 @@ function getItemIcon(type) {
     equipment: 'fa-solid fa-toolbox',
     tool: 'fa-solid fa-hammer',
     career: 'fa-solid fa-briefcase',
-    chargen_ruleset: 'fa-solid fa-table-list',
   };
 
   return iconMap[type] || '';

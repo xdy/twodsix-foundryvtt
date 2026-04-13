@@ -54,10 +54,11 @@ export class DecisionApp extends HandlebarsApplicationMixin(ApplicationV2) {
       throw RESTART;
     }
 
-    row.result = choiceOptions.find(o => String(o.value) === String(value))?.label ?? value;
+    const found = choiceOptions.find(o => String(o.value) === String(value));
+    row.result = found?.label ?? value;
     row.active = false;
     this.render();
-    return value;
+    return found ? found.value : value;
   }
 
   /**
