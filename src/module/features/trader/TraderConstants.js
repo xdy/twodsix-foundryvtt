@@ -100,7 +100,7 @@ export const DEFAULT_MERCHANT_TRADER = {
   staterooms: 10,
   lowBerths: 20,
   armed: false,
-  shipCost: 37080000,  // MCr 37.08
+  shipCostMcr: 37.08,
 };
 
 // Charter rates (CE SRD: 2-week block pricing)

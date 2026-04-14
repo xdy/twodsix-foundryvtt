@@ -3,7 +3,11 @@
  * Logic for departure, in-transit, and arriving phases.
  */
 
-import { createWorldActors, ensureSubsectorNeighborsLoaded } from './SubsectorLoader.js';
+import {
+  createWorldActors,
+  ensureSubsectorNeighborsLoaded,
+  getReachableWorlds
+} from './SubsectorLoader.js';
 import {
   FREIGHT_RATE,
   HOURS_PER_DAY,
@@ -15,7 +19,6 @@ import {
 import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import { advanceDate, getAbsoluteDay, getCurrentWorld, getUsedCargoSpace, PHASE, } from './TraderState.js';
 import { canRefuelAtWorld, getWorldCoordinate, isLocalMode } from './TraderUtils.js';
-import { fetchJumpWorlds } from './TravellerMapAPI.js';
 import {
   getOrCreateCacheJournal,
   updateCachedWorldMaxJump,
@@ -270,16 +273,14 @@ export async function arrivingPhase(app) {
         // Reachable worlds discovery
         if (sectorName && localHex) {
           try {
-            const reachableWorldsData = await fetchJumpWorlds(sectorName, localHex, s.ship.jumpRating, s.milieu || 'M1105');
-            if (reachableWorldsData.length > 0) {
-              const newActors = await createWorldActors(reachableWorldsData, s.currentWorldHex, journal);
-              if (newActors.length > 0) {
-                for (const actor of newActors) {
-                  if (!s.worlds.some(w => w.id === actor.id)) {
-                    s.worlds.push(actor);
-                  }
-                }
-                const newNames = newActors.filter(a => a.name !== s.currentWorldName).map(a => a.name).join(', ');
+            const beforeCount = s.worlds.length;
+            await getReachableWorlds(s, journal);
+            const afterCount = s.worlds.length;
+
+            if (afterCount > beforeCount) {
+              const newlyDiscovered = s.worlds.slice(beforeCount);
+              const newNames = newlyDiscovered.filter(a => a.name !== s.currentWorldName).map(a => a.name).join(', ');
+              if (newNames) {
                 await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.DiscoveryJumpRange", {
                   jump: s.ship.jumpRating,
                   names: newNames

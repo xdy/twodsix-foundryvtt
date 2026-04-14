@@ -1,22 +1,7 @@
-import AdvancedSettings from './AdvancedSettings';
 import { CHARGEN_SUPPORTED_RULESETS } from '../features/chargen/CharGenRegistry';
+import AdvancedSettings from './AdvancedSettings';
 
 export default class CustomCareerSourcesSettings extends foundry.applications.api.HandlebarsApplicationMixin(AdvancedSettings) {
-  constructor(object, options) {
-    super(object, {}, options);
-    this.rulesetSources = foundry.utils.duplicate(game.settings.get('twodsix', 'customCareerSources'));
-    // Ensure all supported rulesets are present
-    for (const ruleset of CHARGEN_SUPPORTED_RULESETS) {
-      if (!this.rulesetSources[ruleset]) {
-        this.rulesetSources[ruleset] = { compendiums: [], folders: [] };
-      }
-    }
-  }
-
-  static create() {
-    return CustomCareerSourcesSettings;
-  }
-
   /** @override */
   static DEFAULT_OPTIONS = {
     classes: ['twodsix'],
@@ -43,57 +28,30 @@ export default class CustomCareerSourcesSettings extends foundry.applications.ap
     },
     tag: 'form'
   };
-
   static PARTS = {
     main: {
       template: 'systems/twodsix/templates/misc/custom-career-sources.hbs',
       scrollable: ['']
     }
   };
-
   /** @override */
   tabGroups = {
     primary: 'CE'
   };
 
-  /** @override */
-  getTabs(initialTab) {
-    const tabs = {};
+  constructor(object, options) {
+    super(object, {}, options);
+    this.rulesetSources = foundry.utils.duplicate(game.settings.get('twodsix', 'customCareerSources'));
+    // Ensure all supported rulesets are present
     for (const ruleset of CHARGEN_SUPPORTED_RULESETS) {
-      tabs[ruleset] = {
-        id: ruleset,
-        group: 'primary',
-        label: ruleset,
-        active: initialTab === ruleset,
-        cssClass: initialTab === ruleset ? 'active' : ''
-      };
+      if (!this.rulesetSources[ruleset]) {
+        this.rulesetSources[ruleset] = { compendiums: [], folders: [] };
+      }
     }
-    return tabs;
   }
 
-  /** @override */
-  async _prepareContext(options) {
-    const context = await super._prepareContext(options);
-    context.tabs = this.getTabs(this.tabGroups.primary);
-    context.rulesetSources = this.rulesetSources;
-
-    context.compendiumOptions = game.packs
-      .filter(p => p.metadata.type === 'Item')
-      .map(p => ({
-        id: p.collection,
-        label: `${p.metadata.label} (${p.metadata.packageName})`
-      }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-
-    context.folderOptions = game.folders
-      .filter(f => f.type === 'Item')
-      .map(f => ({
-        id: f.id,
-        label: f.name
-      }))
-      .sort((a, b) => a.label.localeCompare(b.label));
-
-    return context;
+  static create() {
+    return CustomCareerSourcesSettings;
   }
 
   static async onSubmit(event, form, formData) {
@@ -135,6 +93,46 @@ export default class CustomCareerSourcesSettings extends foundry.applications.ap
     this._updateFromForm();
     this.rulesetSources[ruleset][type].splice(parseInt(index), 1);
     await this.render();
+  }
+
+  /** @override */
+  getTabs(initialTab) {
+    const tabs = {};
+    for (const ruleset of CHARGEN_SUPPORTED_RULESETS) {
+      tabs[ruleset] = {
+        id: ruleset,
+        group: 'primary',
+        label: ruleset,
+        active: initialTab === ruleset,
+        cssClass: initialTab === ruleset ? 'active' : ''
+      };
+    }
+    return tabs;
+  }
+
+  /** @override */
+  async _prepareContext(options) {
+    const context = await super._prepareContext(options);
+    context.tabs = this.getTabs(this.tabGroups.primary);
+    context.rulesetSources = this.rulesetSources;
+
+    context.compendiumOptions = game.packs
+      .filter(p => p.metadata.type === 'Item')
+      .map(p => ({
+        id: p.collection,
+        label: `${p.metadata.label} (${p.metadata.packageName})`
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    context.folderOptions = game.folders
+      .filter(f => f.type === 'Item')
+      .map(f => ({
+        id: f.id,
+        label: f.name
+      }))
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    return context;
   }
 
   _updateFromForm() {

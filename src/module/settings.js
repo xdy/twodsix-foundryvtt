@@ -1,11 +1,11 @@
 import { TWODSIX } from './config';
 import TwodsixActor from './entities/TwodsixActor';
+import { CHARGEN_SUPPORTED_RULESETS } from './features/chargen/CharGenRegistry';
+import CustomCareerSourcesSettings from './settings/CustomCareerSourcesSettings';
 import DebugSettings from './settings/DebugSettings';
 import DisplaySettings from './settings/DisplaySettings';
 import ItemSettings from './settings/ItemSettings';
 import RulesetSettings from './settings/RulesetSettings';
-import CustomCareerSourcesSettings from './settings/CustomCareerSourcesSettings';
-import { CHARGEN_SUPPORTED_RULESETS } from './features/chargen/CharGenRegistry';
 import { booleanSetting, stringChoiceSetting, stringSetting } from './settings/settingsUtils';
 
 

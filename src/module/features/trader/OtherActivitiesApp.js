@@ -7,6 +7,7 @@
 
 import { CREW_SALARIES } from './TraderConstants.js';
 import { getFreeCargoSpace, getFreeLowBerths, getFreeStaterooms } from './TraderState.js';
+import { parseCurrencyToMcr } from './TraderUtils.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
@@ -28,6 +29,14 @@ export function buildShipFromActor(shipActor, baseShip) {
     .filter(i => /low berth|cryoberth/i.test(i.name))
     .reduce((sum, i) => sum + (i.system?.quantity ?? 0), 0);
   const armed = components.some(i => i.system?.subtype === 'armament');
+
+  // Prioritize raw numeric calculation from ShipActor
+  let costMcr = parseCurrencyToMcr(sys.calcShipStats?.cost?.total, true);
+  if (costMcr === 0) {
+    const rawValue = sys.shipValue || sys.cost || "0";
+    costMcr = parseCurrencyToMcr(rawValue, true);
+  }
+
   return {
     ...baseShip,
     name: shipActor.name,
@@ -36,7 +45,7 @@ export function buildShipFromActor(shipActor, baseShip) {
     tonnage: sys.mass?.max ?? baseShip.tonnage,
     cargoCapacity: sys.weightStats?.cargo ?? baseShip.cargoCapacity,
     fuelCapacity: sys.shipStats?.fuel?.max ?? baseShip.fuelCapacity,
-    shipCost: parseInt(sys.shipValue) || baseShip.shipCost,
+    shipCostMcr: costMcr || baseShip.shipCostMcr || parseCurrencyToMcr(baseShip.shipCost, true) || 0,
     ...(staterooms > 0 && { staterooms }),
     ...(lowBerths > 0 && { lowBerths }),
     armed,
