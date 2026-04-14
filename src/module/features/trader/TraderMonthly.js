@@ -13,6 +13,7 @@ import {
   MORTGAGE_TOTAL_MONTHS
 } from './TraderConstants.js';
 import { getMonthNumber, getTotalCrewSalary, OUTCOME } from './TraderState.js';
+import { parseCurrencyToMcr } from './TraderUtils.js';
 
 export async function accrueMonthlyCosts(app) {
   const s = app.state;
@@ -28,8 +29,9 @@ export async function accrueMonthlyCosts(app) {
 
     const crewCost = getTotalCrewSalary(s.crew);
     const lifeSupportCost = s.ship.staterooms * LIFE_SUPPORT.stateroom + s.ship.lowBerths * LIFE_SUPPORT.lowBerth;
-    const maintenanceCost = Math.ceil(s.ship.shipCost * MAINTENANCE_RATE / 12);
-    const mortgageCost = Math.ceil(s.ship.shipCost / MORTGAGE_DIVISOR);
+    const shipCostMcr = Number(s.ship.shipCostMcr ?? parseCurrencyToMcr(s.ship.shipCost, true)) || 0;
+    const maintenanceCost = Math.ceil(shipCostMcr * 1000000 * MAINTENANCE_RATE / 12);
+    const mortgageCost = Math.ceil(shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
 
     // Life Support supplies logic
     let actualLifeSupportCost = lifeSupportCost;
@@ -120,6 +122,7 @@ export async function accrueMonthlyCosts(app) {
 
     s.credits -= totalCost;
     s.totalExpenses += totalCost;
+    s.mortgageRemaining = Math.max(0, s.mortgageRemaining - mortgageCost);
     s.monthsPaid++;
 
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MonthlyCostsSummary", {

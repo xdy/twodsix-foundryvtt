@@ -5,9 +5,96 @@
  */
 
 import { SECTOR_WIDTH_IN_SUBSECTORS, SUBSECTOR_LETTERS, TRAVELLERMAP_ROOT_FOLDER_NAME } from './TraderConstants.js';
-import { buildGlobalHex, collectWorldsFromFolder, getNeighboringSubsectors, parseUWP, traderDebug } from './TraderUtils.js';
-import { fetchWorlds, loadSubsectorsWithCache } from './TravellerMapAPI.js';
-import { buildSubsectorKey, getCachedWorlds, setCachedWorlds } from './TravellerMapCache.js';
+import {
+  buildGlobalHex,
+  collectWorldsFromFolder,
+  deduplicateWorlds,
+  getLocalHex,
+  getNeighboringSubsectors,
+  getWorldCoordinate,
+  hexDistance,
+  isLocalMode,
+  parseUWP,
+  traderDebug,
+  worldsInJumpRange
+} from './TraderUtils.js';
+import { fetchJumpWorlds, fetchWorlds, loadSubsectorsWithCache } from './TravellerMapAPI.js';
+import {
+  buildSubsectorKey,
+  CACHE_KEY_WORLDS,
+  getCachedData,
+  getCachedWorlds,
+  getOrCreateCacheJournal,
+  setCachedWorlds
+} from './TravellerMapCache.js';
+
+/**
+ * Internal cache for folder creation promises to prevent race conditions during concurrent imports.
+ * @type {Map<string, Promise<Folder>>}
+ * @private
+ */
+const _folderPromises = new Map();
+
+/**
+ * Robustly find or create the root TravellerMap folder.
+ * @returns {Promise<Folder>}
+ * @private
+ */
+async function getRootFolder() {
+  const rootName = TRAVELLERMAP_ROOT_FOLDER_NAME;
+  const findRoot = () => game.folders.find(f => f.name === rootName && f.type === 'Actor');
+
+  const root = findRoot();
+  if (root) {
+    return root;
+  }
+
+  // Use a promise-based lock
+  if (_folderPromises.has(rootName)) {
+    return _folderPromises.get(rootName);
+  }
+
+  const promise = Folder.create({ name: rootName, type: 'Actor' });
+  _folderPromises.set(rootName, promise);
+  try {
+    return await promise;
+  } finally {
+    _folderPromises.delete(rootName);
+  }
+}
+
+/**
+ * Robustly find or create a sector-specific folder under the TravellerMap root.
+ * @param {string} sectorName
+ * @returns {Promise<Folder>}
+ * @private
+ */
+async function getSectorFolder(sectorName) {
+  const rootFolder = await getRootFolder();
+  const folderName = sectorName || 'Unknown Sector';
+
+  // Try to find under root first, then anywhere
+  const findSector = () => game.folders.find(f => f.name === folderName && f.type === 'Actor' && f.folder === rootFolder.id) ||
+                         game.folders.find(f => f.name === folderName && f.type === 'Actor');
+
+  const sector = findSector();
+  if (sector) {
+    return sector;
+  }
+
+  const cacheKey = `${rootFolder.id}:${folderName}`;
+  if (_folderPromises.has(cacheKey)) {
+    return _folderPromises.get(cacheKey);
+  }
+
+  const promise = Folder.create({ name: folderName, type: 'Actor', folder: rootFolder.id });
+  _folderPromises.set(cacheKey, promise);
+  try {
+    return await promise;
+  } finally {
+    _folderPromises.delete(cacheKey);
+  }
+}
 
 /**
  * Load subsector data with caching support.
@@ -72,28 +159,17 @@ export async function loadSubsector(sectorName, subsectorLetter, milieu = 'M1105
  * @returns {Promise<import('../../entities/TwodsixActor').default[]>} Created/found world Actor documents
  */
 export async function createWorldActors(worldDataArray, startGlobalHex = null, cacheJournal = null) {
-  // Helper to find or create a sector folder
-  async function getSectorFolder(sectorName) {
-    const folderName = sectorName || 'Unknown Sector';
-    let rootFolder = game.folders.find(f => f.name === TRAVELLERMAP_ROOT_FOLDER_NAME && f.type === 'Actor' && !f.folder);
-    if (!rootFolder) {
-      rootFolder = await Folder.create({ name: TRAVELLERMAP_ROOT_FOLDER_NAME, type: 'Actor' });
-    }
-    let folder = game.folders.find(f => f.name === folderName && f.type === 'Actor' && f.folder === rootFolder.id);
-    if (!folder) {
-      folder = await Folder.create({ name: folderName, type: 'Actor', folder: rootFolder.id });
-    }
-    return folder;
-  }
-
   // Build actor creation data and find existing actors
   const actorDataArray = [];
   const finalActors = [];
   const cacheUpdates = new Map(); // subKey -> Set(hex)
 
+  // Deduplicate worldDataArray by name and hex/globalHex to avoid duplicate actors
+  const uniqueWorldData = deduplicateWorlds(worldDataArray);
+
   // Group worlds by sector to efficiently find existing actors in those folders
   const worldsBySector = {};
-  for (const w of worldDataArray) {
+  for (const w of uniqueWorldData) {
     const sName = w.sectorName || 'Unknown Sector';
     if (!worldsBySector[sName]) {
       worldsBySector[sName] = [];
@@ -103,7 +179,8 @@ export async function createWorldActors(worldDataArray, startGlobalHex = null, c
 
   for (const [sectorName, worlds] of Object.entries(worldsBySector)) {
     const folder = await getSectorFolder(sectorName);
-    const existingActors = folder.contents;
+    const allMatchingFolders = game.folders.filter(f => f.name === (sectorName || 'Unknown Sector') && f.type === 'Actor');
+    const existingActors = allMatchingFolders.flatMap(f => f.contents);
 
     for (const w of worlds) {
       const hex = w.globalHex || w.hex;
@@ -315,8 +392,90 @@ export async function ensureSubsectorNeighborsLoaded(state, sectorName, localHex
  * @returns {import('../../entities/TwodsixActor').default[]} World Actor documents
  */
 export function loadWorldsFromSectors(sectorNames) {
-  return sectorNames.flatMap(name => {
+  const worlds = sectorNames.flatMap(name => {
     const folders = game.folders.filter(f => f.name === name && f.type === 'Actor');
     return folders.flatMap(folder => collectWorldsFromFolder(folder));
   });
+  return deduplicateWorlds(worlds);
+}
+
+/**
+ * Consolidated way to find worlds within jump range.
+ * Tries fetchJumpWorlds (API) first. If it returns no worlds (and it's not a local worlds trading journey)
+ * it falls back to checking the Journal cache and then finally filtering local actors.
+ * @param {import('./TraderState.js').TraderState} s - TraderState
+ * @param {JournalEntry} [journal] - Optional cache journal
+ * @returns {Promise<import('../../entities/TwodsixActor').default[]>}
+ */
+export async function getReachableWorlds(s, journal = null) {
+  const currentHex = s.currentWorldHex;
+  const jump = s.ship.jumpRating;
+
+  if (!isLocalMode(s)) {
+    let sectorName = s.sectorName;
+    let localHex = getLocalHex(currentHex);
+
+    const currentWorld = s.worlds.find(w => getWorldCoordinate(w) === currentHex);
+    if (currentWorld) {
+      const coordParts = currentWorld.system?.coordinates?.split(' ') || [];
+      const sName = coordParts.slice(0, -1).join(' ') || '';
+      if (sName) {
+        sectorName = sName;
+      }
+      localHex = coordParts.at(-1) || currentWorld.getFlag('twodsix', 'locationCoordinate') || localHex;
+    }
+
+    if (sectorName && localHex) {
+      try {
+        const reachableWorldsData = await fetchJumpWorlds(sectorName, localHex, jump, s.milieu || 'M1105');
+        if (reachableWorldsData.length > 0) {
+          const newActors = await createWorldActors(reachableWorldsData, currentHex, journal);
+          if (newActors.length > 0) {
+            for (const actor of newActors) {
+              if (!s.worlds.some(w => w.id === actor.id)) {
+                s.worlds.push(actor);
+              }
+            }
+            // Found via API, return current reachable worlds
+            return worldsInJumpRange(currentHex, jump, s.worlds);
+          }
+        }
+      } catch (e) {
+        console.error('Trader: Failed to fetch reachable worlds from API:', e);
+      }
+    }
+
+    // 2. Fallback to Journal Cache if API failed/returned nothing
+    if (s.cacheJournalName) {
+      const cacheJournal = journal || await getOrCreateCacheJournal(s.cacheJournalName);
+      if (cacheJournal) {
+        const allWorldsCache = await getCachedData(cacheJournal, CACHE_KEY_WORLDS) ?? {};
+        const nearbyWorlds = [];
+        for (const subKey in allWorldsCache) {
+          const worlds = allWorldsCache[subKey];
+          for (const w of worlds) {
+            const targetHex = w.globalHex || w.hex;
+            if (targetHex !== currentHex && hexDistance(currentHex, targetHex) <= jump) {
+              w.subsectorKey = subKey;
+              nearbyWorlds.push(w);
+            }
+          }
+        }
+        if (nearbyWorlds.length > 0) {
+          const newActors = await createWorldActors(nearbyWorlds, currentHex, cacheJournal);
+          if (newActors.length > 0) {
+            for (const na of newActors) {
+              if (!s.worlds.find(w => w.id === na.id)) {
+                s.worlds.push(na);
+              }
+            }
+            return worldsInJumpRange(currentHex, jump, s.worlds);
+          }
+        }
+      }
+    }
+  }
+
+  // 3. Fallback/Local mode: filter state.worlds
+  return worldsInJumpRange(currentHex, jump, s.worlds);
 }

@@ -18,7 +18,7 @@ import {
   SUBSECTOR_LETTERS
 } from './TraderConstants.js';
 import { TRADER_SUPPORTED_RULESETS } from './TraderRulesetRegistry.js';
-import { getWorldCoordinate, traderDebug } from './TraderUtils.js';
+import { deduplicateWorlds, getWorldCoordinate, traderDebug } from './TraderUtils.js';
 import { fetchSectors, getSubsectorsForSector, loadSubsectorsWithCache } from './TravellerMapAPI.js';
 import { getCachedSectors, getOrCreateCacheJournal, setCachedSectors } from './TravellerMapCache.js';
 
@@ -46,7 +46,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     super(options);
     this.options.window.title = game.i18n.localize(this.options.window.title);
 
-    const monthlyPayment = Math.ceil(DEFAULT_MERCHANT_TRADER.shipCost / MORTGAGE_DIVISOR);
+    const monthlyPayment = Math.ceil(DEFAULT_MERCHANT_TRADER.shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
     const totalMonthlyCrew = DEFAULT_CREW.reduce((s, c) => s + c.salary, 0);
     this._defaultStartingCredits = (monthlyPayment + totalMonthlyCrew) * 2;
     this._defaultJournalName = `Trader journal start ${new Date().toLocaleDateString()}`;
@@ -110,15 +110,16 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
       sectors: this._sectors.map(s => ({ ...s, encodedName: encodeURIComponent(s.name), selected: s.name === this._sectorName })),
       subsectors: this._subsectors.map(s => ({ ...s, selected: s.name === this._subsectorName })),
       worlds: this._worlds.map(w => {
-        const hex = getWorldCoordinate(w);
+        const coord = getWorldCoordinate(w);
         const uwp = w.system?.uwp || w.uwp;
         const tradeCodes = w.system?.tradeCodes || (Array.isArray(w.tradeCodes) ? w.tradeCodes.join(' ') : w.tradeCodes);
+        const hex = w.hex; // Always use local hex for the option value
         return {
           ...w,
           hex,
           uwp,
           tradeCodes,
-          selected: hex === this._startHex
+          selected: hex === this._startHex || coord === this._startHex
         };
       }),
       ships: this._ships.map(s => ({ ...s, selected: s.id === this._shipActorId })),
@@ -190,7 +191,8 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
       traderDebug('TraderSetupApp', ` Cache journal for worlds obtained: ${cacheJournal?.id}`);
       const sector = defaultSector || { name: DEFAULT_SECTOR, x: 0, y: 0 };
       traderDebug('TraderSetupApp', ` Calling loadSubsector...`);
-      this._worlds = await loadSubsector(this._sectorName, this._subsectorLetter, this._milieu, cacheJournal, { x: sector.x, y: sector.y }) || [];
+      const worldDataArray = await loadSubsector(this._sectorName, this._subsectorLetter, this._milieu, cacheJournal, { x: sector.x, y: sector.y }) || [];
+      this._worlds = deduplicateWorlds(worldDataArray);
       traderDebug('TraderSetupApp', ` loadSubsector returned ${this._worlds.length} worlds.`);
       this._worlds.sort((a, b) => a.name.localeCompare(b.name));
       traderDebug('TraderSetupApp', ` Worlds sorted.`);
@@ -391,7 +393,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     try {
       const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
       const worldDataArray = await loadSubsector(sectorName, subsectorLetter, milieu, cacheJournal, { x: sector.x, y: sector.y });
-      this._worlds = worldDataArray;
+      this._worlds = deduplicateWorlds(worldDataArray);
       this._worlds.sort((a, b) => a.name.localeCompare(b.name));
     } catch (e) {
       console.error('Failed to fetch worlds:', e);

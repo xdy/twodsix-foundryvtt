@@ -81,6 +81,61 @@ export function buildFeatures(bases, gasGiants, belts) {
 }
 
 /**
+ * Best-effort parse a currency string (potentially with locale-specific separators)
+ * and return it as a number in MCr.
+ * @param {string|number} val - The raw value to parse
+ * @param {boolean} [isShipValue=true] - If true, starship-scale values (small numbers) are treated as MCr.
+ * @returns {number} Value in MCr
+ */
+export function parseCurrencyToMcr(val, isShipValue = true) {
+  if (val === null || val === undefined) {
+    return 0;
+  }
+  if (typeof val === 'number') {
+    // If it's a number and large, it's likely Credits.
+    if (val > 100000) {
+      return val / 1000000;
+    }
+    return val;
+  }
+
+  const str = val.toString().trim();
+  if (!str) {
+    return 0;
+  }
+
+  // Remove currency symbols and other non-numeric stuff, but keep dots and commas.
+  const cleaned = str.replace(/[^0-9.,]/g, '');
+
+  // In many locales, dot is thousands, comma is decimal. In others, vice versa.
+  // Standard Foundry toLocaleString with 1 fraction digit usually looks like "37,080,000.0" or "37.1".
+
+  // If there's only one dot/comma and it's followed by exactly 1-2 digits at the end,
+  // and the number is otherwise small, it's likely a decimal for MCr.
+  // e.g. "37.1" or "37,1"
+
+  const parts = cleaned.split(/[.,]/);
+  if (parts.length > 1) {
+    // Check if it's all 3-digit groups (thousands separators)
+    const allThousand = parts.slice(1).every(p => p.length === 3);
+    if (allThousand && parts[0].length <= 3) {
+      const num = parseInt(parts.join(''), 10);
+      return (num > 100000 && isShipValue) ? num / 1000000 : num;
+    }
+
+    // Otherwise, all but the last are thousands, last is decimal
+    const wholePart = parts.slice(0, -1).join('');
+    const decimalPart = parts[parts.length - 1];
+    const num = parseFloat(wholePart + '.' + decimalPart);
+    return (num > 100000 && isShipValue) ? num / 1000000 : num;
+  }
+
+  // No separators.
+  const num = parseInt(cleaned, 10) || 0;
+  return (num > 100000 && isShipValue) ? num / 1000000 : num;
+}
+
+/**
  * Parse tab-delimited Traveller Map API response into world records.
  * @param {string} rawText - Tab-delimited text from the API
  * @param {string} [sectorName] - Optional name of the sector
@@ -149,6 +204,9 @@ export function parseTabDelimited(rawText, sectorName = null, sectorCoords = nul
  * @returns {string} Global hex coordinate "GXGY"
  */
 export function buildGlobalHex(sectorCoords, localHex) {
+  if (localHex && typeof localHex === 'string' && localHex.includes(',')) {
+    return localHex; // Already a global hex
+  }
   const [hx, hy] = parseHex(localHex);
   const sx = sectorCoords.x ?? sectorCoords.sx ?? 0;
   const sy = sectorCoords.y ?? sectorCoords.sy ?? 0;
@@ -217,7 +275,8 @@ export function getSubsectorIndices(localHex) {
  * @returns {import('./TraderState.js').SubsectorSearchEntry[]} Array of subsector targets
  */
 export function getNeighboringSubsectors(startSector, localHex, allSectors) {
-  const [startSubX, startSubY] = getSubsectorIndices(localHex);
+  const startHex = getLocalHex(localHex);
+  const [startSubX, startSubY] = getSubsectorIndices(startHex);
   const results = [];
 
   for (let dx = -1; dx <= 1; dx++) {
@@ -335,6 +394,41 @@ export function traderDebug(prefix, ...args) {
 }
 
 /**
+ * Extract the 4-digit local hex coordinate from any coordinate string.
+ * Handles "XXYY", "Sector Name XXYY", and "GX,GY" (by conversion if possible).
+ * @param {string} coord - Coordinate string
+ * @returns {string} 4-digit hex string or empty string
+ */
+export function getLocalHex(coord) {
+  if (!coord || typeof coord !== 'string') {
+    return '';
+  }
+  if (coord.includes(',')) {
+    // Global hex "GX,GY"
+    const parts = coord.split(',').map(n => parseInt(n, 10));
+    if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+      const gx = parts[0];
+      const gy = parts[1];
+      const hx = ((gx % SECTOR_WIDTH_IN_HEXES) + SECTOR_WIDTH_IN_HEXES) % SECTOR_WIDTH_IN_HEXES + 1;
+      const hy = ((gy % SECTOR_HEIGHT_IN_HEXES) + SECTOR_HEIGHT_IN_HEXES) % SECTOR_HEIGHT_IN_HEXES + 1;
+      return `${hx.toString().padStart(2, '0')}${hy.toString().padStart(2, '0')}`;
+    }
+  }
+  if (coord.includes(' ')) {
+    const parts = coord.trim().split(/\s+/);
+    const last = parts[parts.length - 1];
+    if (last.length === 4 && !isNaN(parseInt(last, 10))) {
+      return last;
+    }
+  }
+  const digits = coord.trim();
+  if (digits.length === 4 && !isNaN(parseInt(digits, 10))) {
+    return digits;
+  }
+  return '';
+}
+
+/**
  * Get the location coordinate for a world Actor.
  * Prefers the 'locationCoordinate' flag, falls back to parsing the 'coordinates' system field.
  * @param {Actor|object} world - The world Actor or data object
@@ -350,7 +444,29 @@ export function getWorldCoordinate(world) {
     return flag;
   }
   // Fallback to system coordinates
-  return world.system?.coordinates || world.hex || '';
+  return world.system?.coordinates || world.globalHex || world.hex || '';
+}
+
+/**
+ * Deduplicate an array of worlds (Actors or data objects) by name and coordinate.
+ * @param {Actor[]|object[]} worlds - Array of world objects
+ * @returns {Actor[]|object[]} Deduplicated array
+ */
+export function deduplicateWorlds(worlds) {
+  if (!Array.isArray(worlds)) {
+    return [];
+  }
+  const unique = [];
+  const seen = new Set();
+  for (const w of worlds) {
+    const coord = getWorldCoordinate(w);
+    const key = `${w.name}|${coord}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(w);
+    }
+  }
+  return unique;
 }
 
 /**
@@ -373,4 +489,21 @@ export function collectWorldsFromFolder(rootFolder) {
   }
   const allFolders = [rootFolder, ...rootFolder.getSubfolders(true)];
   return allFolders.flatMap(f => f.contents.filter(a => a.type === 'world'));
+}
+
+/**
+ * Filter worlds within jump range.
+ * @param {string} currentHex - The hex to measure from
+ * @param {number} jumpRating - Maximum distance in parsecs
+ * @param {import('../../entities/TwodsixActor').default[]} worlds - Array of world Actors
+ * @returns {import('../../entities/TwodsixActor').default[]} Worlds within range
+ */
+export function worldsInJumpRange(currentHex, jumpRating, worlds) {
+  if (!currentHex || !Array.isArray(worlds)) {
+    return [];
+  }
+  return worlds.filter(w => {
+    const targetHex = getWorldCoordinate(w);
+    return targetHex && targetHex !== currentHex && hexDistance(currentHex, targetHex) <= jumpRating;
+  });
 }

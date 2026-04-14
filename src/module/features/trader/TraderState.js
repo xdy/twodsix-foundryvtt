@@ -174,7 +174,7 @@ export const OUTCOME = {
  * @property {number} monthlyPayment - Calculated monthly ship payment
  * @property {number} monthsPaid - Total number of mortgage payments made
  * @property {number} lastPaidMonth - Month number of last cost accrual
- * @property {{currentFuel: number, fuelIsRefined: boolean, fuelCapacity: number, shipCost: number, staterooms: number, lowBerths: number, cargoCapacity: number}} ship - Ship stats and current state
+ * @property {{currentFuel: number, fuelIsRefined: boolean, fuelCapacity: number, shipCostMcr: number, staterooms: number, lowBerths: number, cargoCapacity: number}} ship - Ship stats and current state
  * @property {CrewMember[]} crew - Current crew list
  * @property {CargoItem[]} cargo - Current cargo inventory
  * @property {{high: number, middle: number, low: number}} passengers - Booked passengers for current trip
@@ -205,12 +205,25 @@ export const OUTCOME = {
  */
 
 /**
+ * Updates mortgage-related fields in the state based on current ship cost.
+ * @param {TraderState} state - The trader state to update
+ */
+export function updateMortgageFromShip(state) {
+  if (!state.ship) {
+    return;
+  }
+  const cost = (Number(state.ship.shipCostMcr) || 0) * 1000000;
+  state.monthlyPayment = Math.ceil(cost / MORTGAGE_DIVISOR);
+  state.mortgageRemaining = cost * MORTGAGE_FINANCING_MULTIPLIER;
+}
+
+/**
  * Create a fresh trading journey state.
  * @returns {TraderState} Initial trading journey state
  */
 export function freshTraderState() {
   const ship = { ...DEFAULT_MERCHANT_TRADER };
-  const monthlyPayment = Math.ceil(ship.shipCost / MORTGAGE_DIVISOR);
+  const monthlyPayment = Math.ceil(ship.shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
 
   return {
     // Location & time
@@ -229,7 +242,7 @@ export function freshTraderState() {
     credits: 0,
     totalRevenue: 0,
     totalExpenses: 0,
-    mortgageRemaining: ship.shipCost * MORTGAGE_FINANCING_MULTIPLIER,
+    mortgageRemaining: ship.shipCostMcr * 1000000 * MORTGAGE_FINANCING_MULTIPLIER,
     monthlyPayment,
     monthsPaid: 0,
     lastPaidMonth: 1, // month number of last cost accrual (start at month 1 to avoid charging immediately)

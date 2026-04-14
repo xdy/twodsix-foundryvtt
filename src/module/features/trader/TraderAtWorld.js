@@ -4,7 +4,7 @@
  */
 
 import { buildTradeReportRows, generateTradeInformation } from '../../utils/TradeGenerator.js';
-import { createWorldActors } from './SubsectorLoader.js';
+import { getReachableWorlds } from './SubsectorLoader.js';
 import {
   BULK_LS_LUXURY_COST,
   BULK_LS_NORMAL_COST,
@@ -31,17 +31,19 @@ import {
   getMonthNumber,
   getWorldCache,
   PHASE,
+  updateMortgageFromShip,
 } from './TraderState.js';
 import {
   canRefuelAtWorld,
   collectWorldsFromFolder,
+  deduplicateWorlds,
   getRefuelOptions,
   getWorldCoordinate,
   hexDistance,
   isLocalMode,
-  traderDebug
+  traderDebug,
+  worldsInJumpRange
 } from './TraderUtils.js';
-import { CACHE_KEY_WORLDS, getCachedData, getOrCreateCacheJournal } from './TravellerMapCache.js';
 
 /**
  * Get the best available broker skill (crew vs hired)
@@ -1175,40 +1177,8 @@ export async function chooseDestination(app) {
 
 export async function getReachableDestinations(app) {
   const s = app.state;
-  const currentHex = s.currentWorldHex;
-  let { reachable, options } = buildDestinationOptions(s);
-
-  if (reachable.length === 0 && s.cacheJournalName && !isLocalMode(s)) {
-    const journal = await getOrCreateCacheJournal(s.cacheJournalName);
-    const allWorldsCache = await getCachedData(journal, CACHE_KEY_WORLDS) ?? {};
-    const nearbyWorlds = [];
-
-    for (const subKey in allWorldsCache) {
-      const worlds = allWorldsCache[subKey];
-      for (const w of worlds) {
-        const targetHex = w.globalHex || w.hex;
-        if (targetHex !== currentHex && hexDistance(currentHex, targetHex) <= s.ship.jumpRating) {
-          w.subsectorKey = subKey;
-          nearbyWorlds.push(w);
-        }
-      }
-    }
-
-    if (nearbyWorlds.length > 0) {
-      await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.NoWorldsInRangeJournal', { journal: s.cacheJournalName, count: nearbyWorlds.length }));
-      const newActors = await createWorldActors(nearbyWorlds, currentHex, journal);
-      if (newActors.length > 0) {
-        for (const na of newActors) {
-          if (!s.worlds.find(w => w.id === na.id)) {
-            s.worlds.push(na);
-          }
-        }
-        const result = buildDestinationOptions(s);
-        reachable = result.reachable;
-        options = result.options;
-      }
-    }
-  }
+  const reachable = await getReachableWorlds(s);
+  const { options } = buildDestinationOptions(s, reachable);
 
   if (reachable.length === 0 && isLocalMode(s) && s.rootFolderId) {
     const rootFolder = game.folders.get(s.rootFolderId);
@@ -1217,12 +1187,13 @@ export async function getReachableDestinations(app) {
       if (worlds.length !== s.worlds.length) {
         s.worlds = worlds;
         const result = buildDestinationOptions(s);
-        reachable = result.reachable;
-        options = result.options;
-        if (reachable.length > 0) {
-          await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.NoWorldsInRangeLocal', { count: reachable.length }));
+        const reachable2 = result.reachable;
+        const options2 = result.options;
+        if (reachable2.length > 0) {
+          await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.NoWorldsInRangeLocal', { count: reachable2.length }));
         }
         await app._saveState();
+        return { reachable: reachable2, options: options2 };
       }
     }
   }
@@ -1230,10 +1201,14 @@ export async function getReachableDestinations(app) {
   return { reachable, options };
 }
 
-export function buildDestinationOptions(state) {
+export function buildDestinationOptions(state, reachableWorlds = null) {
   const currentHex = state.currentWorldHex;
-  const reachable = worldsInJumpRange(currentHex, state.ship.jumpRating, state.worlds);
-  const options = reachable.map(w => {
+  const reachable = reachableWorlds ?? worldsInJumpRange(currentHex, state.ship.jumpRating, state.worlds);
+
+  // Deduplicate reachable worlds by name and coordinate for cleaner UI
+  const uniqueReachable = deduplicateWorlds(reachable);
+
+  const options = uniqueReachable.map(w => {
     const targetHex = getWorldCoordinate(w);
     const displayHex = w.system?.coordinates || targetHex;
     const dist = hexDistance(currentHex, targetHex);
@@ -1243,15 +1218,7 @@ export function buildDestinationOptions(state) {
       label: `${w.name} (${displayHex}) — ${w.system?.uwp} [${w.system?.tradeCodes}] — ${dist} parsec(s)${refuelNote}`,
     };
   });
-  return { reachable, options };
-}
-
-/** Internal helper for worlds in jump range. */
-function worldsInJumpRange(currentHex, jumpRating, worlds) {
-  return worlds.filter(w => {
-    const targetHex = getWorldCoordinate(w);
-    return targetHex !== currentHex && hexDistance(currentHex, targetHex) <= jumpRating;
-  });
+  return { reachable: uniqueReachable, options };
 }
 
 // ─── Other Activities ─────────────────────────────────────────
@@ -1313,6 +1280,7 @@ export async function otherActivities(app) {
         currentFuel: Math.min(s.ship.currentFuel ?? 0, rebuilt.fuelCapacity ?? 0),
         fuelIsRefined: s.ship.fuelIsRefined,
       };
+      updateMortgageFromShip(s);
     }
   }
 

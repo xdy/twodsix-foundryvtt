@@ -9,17 +9,13 @@ import { buildShipFromActor } from './OtherActivitiesApp.js';
 import { ProgressDialog } from './ProgressDialog.js';
 import { createWorldActors, loadSubsector, loadWorldsFromSectors } from './SubsectorLoader.js';
 import { TraderApp } from './TraderApp.js';
-import {
-  DEFAULT_MERCHANT_TRADER,
-  MORTGAGE_DIVISOR,
-  MORTGAGE_FINANCING_MULTIPLIER,
-  SECTOR_WIDTH_IN_SUBSECTORS
-} from './TraderConstants.js';
+import { DEFAULT_MERCHANT_TRADER, SECTOR_WIDTH_IN_SUBSECTORS } from './TraderConstants.js';
 import { TraderSetupApp } from './TraderSetupApp.js';
-import { freshTraderState } from './TraderState.js';
+import { freshTraderState, updateMortgageFromShip } from './TraderState.js';
 import {
   buildGlobalHex,
   collectWorldsFromFolder,
+  getLocalHex,
   getNeighboringSubsectors,
   getTimestamp,
   getWorldCoordinate,
@@ -91,8 +87,7 @@ function applyShipToState(state, shipActorId) {
   const shipActor = game.actors.get(shipActorId);
   if (shipActor) {
     state.ship = buildShipFromActor(shipActor, state.ship);
-    state.monthlyPayment = Math.ceil(state.ship.shipCost / MORTGAGE_DIVISOR);
-    state.mortgageRemaining = state.ship.shipCost * MORTGAGE_FINANCING_MULTIPLIER;
+    updateMortgageFromShip(state);
   }
 }
 
@@ -228,9 +223,11 @@ async function loadSubsectorData(subsectorsToSearch, setupResult, cacheJournal, 
  */
 async function findOrFetchStartWorld(worlds, startGlobalHex, setupResult, range, cacheJournal, startSectorCoords, sectorsToSearch) {
   const startHex = setupResult.startHex;
+  const localStartHex = getLocalHex(startHex);
   let startWorld = worlds?.find(w => {
     const hex = getWorldCoordinate(w);
-    return hex === startGlobalHex || hex === startHex;
+    // Be robust: match global or local hex
+    return hex === startGlobalHex || getLocalHex(hex) === localStartHex;
   });
 
   if (!startWorld) {

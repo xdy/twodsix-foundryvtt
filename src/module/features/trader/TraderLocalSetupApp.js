@@ -3,13 +3,9 @@
  * ApplicationV2 for initial setup of a local trading journey (no Travellermap).
  */
 
-import {
-  DEFAULT_CREW,
-  DEFAULT_MERCHANT_TRADER,
-  MORTGAGE_DIVISOR
-} from './TraderConstants.js';
+import { DEFAULT_CREW, DEFAULT_MERCHANT_TRADER, MORTGAGE_DIVISOR } from './TraderConstants.js';
 import { TRADER_SUPPORTED_RULESETS } from './TraderRulesetRegistry.js';
-import { collectWorldsFromFolder } from './TraderUtils.js';
+import { collectWorldsFromFolder, deduplicateWorlds } from './TraderUtils.js';
 
 /**
  * ApplicationV2 for initial setup of a local trading journey.
@@ -35,7 +31,7 @@ export class TraderLocalSetupApp extends foundry.applications.api.HandlebarsAppl
     super(options);
     this.options.window.title = game.i18n.localize(this.options.window.title);
 
-    const monthlyPayment = Math.ceil(DEFAULT_MERCHANT_TRADER.shipCost / MORTGAGE_DIVISOR);
+    const monthlyPayment = Math.ceil(DEFAULT_MERCHANT_TRADER.shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
     const totalMonthlyCrew = DEFAULT_CREW.reduce((s, c) => s + c.salary, 0);
     this._defaultStartingCredits = (monthlyPayment + totalMonthlyCrew) * 2;
     this._defaultJournalName = `Trader journal local ${new Date().toLocaleDateString()}`;
@@ -128,7 +124,7 @@ export class TraderLocalSetupApp extends foundry.applications.api.HandlebarsAppl
 
     const worlds = collectWorldsFromFolder(rootFolder);
 
-    this._worlds = worlds
+    this._worlds = deduplicateWorlds(worlds)
       .map(w => ({
         id: w.id,
         name: w.name,
