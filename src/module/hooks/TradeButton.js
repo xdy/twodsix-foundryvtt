@@ -8,6 +8,9 @@ Hooks.on('renderJournalDirectory', (app, html, data) => {
   const element = html[0] ?? html;
   const headerActions = element.querySelector('header.directory-header .header-actions');
   if (headerActions && headerActions.parentNode) {
+    const newDiv = document.createElement('div');
+    newDiv.className = 'header-actions action-buttons trade-journey flexrow';
+
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'trade-journey';
@@ -59,7 +62,7 @@ Hooks.on('renderJournalDirectory', (app, html, data) => {
         }
       }
     });
-
-    headerActions.parentNode.insertBefore(btn, headerActions.nextSibling);
+    newDiv.appendChild(btn);
+    headerActions.parentNode.insertBefore(newDiv, headerActions.nextSibling);
   }
 });
