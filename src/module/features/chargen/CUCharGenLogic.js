@@ -248,54 +248,91 @@ export class CUCharGenLogic extends BaseCharGenLogic {
    * Apply mechanical effects encoded in event description tags.
    * Returns true if the event forces leaving the career.
    */
-  async applyEventTags(app, description, careerName) {
-    const state = app.charState;
-    const tags = this._parseTags(description);
-    let leaveCareer = false;
-
-    for (const tag of tags) {
-      if (await this._applyCommonTag(app, tag, description)) {
-        continue;
-      }
-
-      if (tag === 'DIED') {
-        state.died = true;
-        state.log.push('Died in service.');
-        app._log('Outcome', 'Died in service.');
-        throw CHARGEN_DIED;
-      }
-      if (tag === 'INJURED_LEAVE') {
-        const c = await app._choose('Badly injured: choose physical characteristic to reduce by 1', PHYS_OPTS);
-        state.chars[c]--;
-        state.log.push(`Injury: ${c.toUpperCase()} −1. Must leave career.`);
-        await this.checkCrisis(app); // throws CHARGEN_DIED on death
-        leaveCareer = true;
-      } else if (tag === 'DEBT_4X') {
-        const cashBase = this.careers[careerName]?.cashBase ?? 0;
-        const debt = 4 * cashBase;
-        state.medicalDebt += debt;
-        state.log.push(`Debt: Cr${debt.toLocaleString()} added.`);
-        app._log('Debt', `+Cr${debt.toLocaleString()}`);
-      } else if (tag === 'INT_CRISIS') {
-        const roll = await app._roll('2d6');
-        if (roll <= 7) {
-          state.chars.int = Math.max(0, state.chars.int - 1);
-          state.log.push(`Mental collapse: INT −1 (2D6=${roll} ≤7).`);
-          app._log('Mental collapse', `INT −1 (${roll})`);
-          await this.checkCrisis(app); // throws CHARGEN_DIED on death
-        } else {
-          app._log('Mental collapse', `No effect (${roll} >7)`);
-        }
-      } else if (tag === 'CASH_20000') {
-        state.cashBenefits += 20000;
-        state.log.push('Cash: +Cr20,000.');
-        app._log('Cash', '+Cr20,000');
-      }
-      // PROMO_BONUS_2 / PROMO_PENALTY_1 / EXTRA_BENEFIT handled by caller
-      // AUTO_PROMO_OR_PRISON handled by caller (needs context)
-      // WEAPON / AUGMENT_OR_CASH / AUGMENT_OR_END handled in benefits
+  _humanizeTag(tag) {
+    if (tag === 'DIED') {
+      return 'Died';
     }
-    return leaveCareer;
+    if (tag === 'INJURED_LEAVE') {
+      return 'Injured (must leave)';
+    }
+    if (tag === 'DEBT_4X') {
+      return 'Medical Debt';
+    }
+    if (tag === 'INT_CRISIS') {
+      return 'Mental Crisis';
+    }
+    if (tag === 'CASH_20000') {
+      return 'Cr20,000';
+    }
+    if (tag === 'AUTO_PROMO_OR_PRISON') {
+      return 'Auto-Promo or Prison';
+    }
+    if (tag === 'PROMO_BONUS_2') {
+      return 'Promo Bonus +2';
+    }
+    if (tag === 'PROMO_PENALTY_1') {
+      return 'Promo Penalty −1';
+    }
+    if (tag === 'EXTRA_BENEFIT') {
+      return 'Extra Benefit';
+    }
+    if (tag === 'CAREER_END') {
+      return 'Career Ends';
+    }
+    if (tag === 'CASH') {
+      return 'Cash';
+    }
+    if (tag === 'AUGMENT_OR_CASH') {
+      return 'Augment or Cash';
+    }
+    if (tag === 'AUGMENT_OR_END') {
+      return 'Augment or END +1';
+    }
+    if (tag === 'WEAPON') {
+      return 'Weapon';
+    }
+    return super._humanizeTag(tag);
+  }
+
+  async _applyRulesetTag(app, tag, description, careerName) {
+    const state = app.charState;
+    if (tag === 'DIED') {
+      state.died = true;
+      state.log.push('Died in service.');
+      app._log('Outcome', 'Died in service.');
+      throw CHARGEN_DIED;
+    }
+    if (tag === 'INJURED_LEAVE') {
+      const c = await app._choose('Badly injured: choose physical characteristic to reduce by 1', PHYS_OPTS);
+      state.chars[c]--;
+      state.log.push(`Injury: ${c.toUpperCase()} −1. Must leave career.`);
+      await this.checkCrisis(app); // throws CHARGEN_DIED on death
+      return true; // leaveCareer
+    } else if (tag === 'DEBT_4X') {
+      const cashBase = this.careers[careerName]?.cashBase ?? 0;
+      const debt = 4 * cashBase;
+      state.medicalDebt += debt;
+      state.log.push(`Debt: Cr${debt.toLocaleString()} added.`);
+      app._log('Debt', `+Cr${debt.toLocaleString()}`);
+    } else if (tag === 'INT_CRISIS') {
+      const roll = await app._roll('2d6');
+      if (roll <= 7) {
+        state.chars.int = Math.max(0, state.chars.int - 1);
+        state.log.push(`Mental collapse: INT −1 (2D6=${roll} ≤7).`);
+        app._log('Mental collapse', `INT −1 (${roll})`);
+        await this.checkCrisis(app); // throws CHARGEN_DIED on death
+      } else {
+        app._log('Mental collapse', `No effect (${roll} >7)`);
+      }
+    } else if (tag === 'CASH_20000') {
+      state.cashBenefits += 20000;
+      state.log.push('Cash: +Cr20,000.');
+      app._log('Cash', '+Cr20,000');
+    }
+    // PROMO_BONUS_2 / PROMO_PENALTY_1 / EXTRA_BENEFIT handled by caller
+    // AUTO_PROMO_OR_PRISON handled by caller (needs context)
+    // WEAPON / AUGMENT_OR_CASH / AUGMENT_OR_END handled in benefits
+    return false;
   }
 
   // ─── CRISIS CHECK ─────────────────────────────────────────────────────────────
@@ -497,9 +534,10 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         const eventTable = riskSucceeded ? this.riskSuccessEvents : this.riskFailEvents;
         const event = this._lookupEvent(eventTable, eventRoll);
         if (event) {
-          const cleanDesc = event.description.replace(/\[.*?\]/g, '').trim();
+          const cleanDesc = this._humanizeTaggedDescription(event.description);
           app._log(riskSucceeded ? `Risk Success (${eventRoll})` : `Risk Fail (${eventRoll})`, cleanDesc);
           state.log.push(`${riskSucceeded ? 'Risk Success' : 'Risk Fail'} (${eventRoll}): ${cleanDesc}`);
+          const riskLogBefore = state.log.length;
           termEntry.events.push(cleanDesc);
 
           // Special: AUTO_PROMO_OR_PRISON needs context
@@ -533,9 +571,15 @@ export class CUCharGenLogic extends BaseCharGenLogic {
           } else {
             const shouldLeave = await this.applyEventTags(app, event.description, careerName);
             if (shouldLeave) {
+              for (const outcome of state.log.slice(riskLogBefore)) {
+                termEntry.events.push(`  ${outcome}`);
+              }
               careerMishap = true;
               break;
             }
+          }
+          for (const outcome of state.log.slice(riskLogBefore)) {
+            termEntry.events.push(`  ${outcome}`);
           }
         }
 
@@ -581,23 +625,30 @@ export class CUCharGenLogic extends BaseCharGenLogic {
         const promoTable = promoSucceeded ? this.promoSuccessEvents : this.promoFailEvents;
         const promoEvent = this._lookupEvent(promoTable, promoEventRoll);
         if (promoEvent) {
-          const cleanDesc = promoEvent.description.replace(/\[.*?\]/g, '').trim();
+          const cleanDesc = this._humanizeTaggedDescription(promoEvent.description);
           app._log(promoSucceeded ? `Promo Success (${promoEventRoll})` : `Promo Fail (${promoEventRoll})`, cleanDesc);
           state.log.push(`${promoSucceeded ? 'Promo Success' : 'Promo Fail'} (${promoEventRoll}): ${cleanDesc}`);
+          const promoLogBefore = state.log.length;
           termEntry.events.push(cleanDesc);
 
           const promoTags = this._parseTags(promoEvent.description);
           if (promoTags.includes('PROMO_BONUS_2')) {
             promoBonus += 2;
+            state.log.push('Next promotion roll: +2 bonus.');
           }
           if (promoTags.includes('PROMO_PENALTY_1')) {
             promoPenalty += 1;
+            state.log.push('Next promotion roll: −1 penalty.');
           }
           if (promoTags.includes('EXTRA_BENEFIT')) {
             extraBenefitRolls++;
+            state.log.push('Gained an extra benefit roll.');
           }
           for (const tag of promoTags.filter(t => !['PROMO_BONUS_2', 'PROMO_PENALTY_1', 'EXTRA_BENEFIT'].includes(t))) {
             await this.applyEventTags(app, `[${tag}]`, careerName);
+          }
+          for (const outcome of state.log.slice(promoLogBefore)) {
+            termEntry.events.push(`  ${outcome}`);
           }
         }
 

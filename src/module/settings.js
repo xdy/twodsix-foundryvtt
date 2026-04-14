@@ -4,6 +4,8 @@ import DebugSettings from './settings/DebugSettings';
 import DisplaySettings from './settings/DisplaySettings';
 import ItemSettings from './settings/ItemSettings';
 import RulesetSettings from './settings/RulesetSettings';
+import CustomCareerSourcesSettings from './settings/CustomCareerSourcesSettings';
+import { CHARGEN_SUPPORTED_RULESETS } from './features/chargen/CharGenRegistry';
 import { booleanSetting, stringChoiceSetting, stringSetting } from './settings/settingsUtils';
 
 
@@ -12,6 +14,7 @@ export const registerSettings = function() {
   ItemSettings.registerMenu(ItemSettings.create(), "itemSettings", "bars");
   DisplaySettings.registerMenu(DisplaySettings.create(), "displaySettings", "tv");
   DebugSettings.registerMenu(DebugSettings.create(), "debugSettings", "flask");
+  CustomCareerSourcesSettings.registerMenu(CustomCareerSourcesSettings.create(), "customCareerSources", "user-plus");
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
@@ -36,6 +39,19 @@ export const registerSettings = function() {
   booleanSetting('transferDroppedItems', false, true);
   booleanSetting('autoAddUnarmed', false, true);
   booleanSetting('NoDuplicatesOnHotbar', false, true, "client");
+
+  const customCareerSourcesDefault = {};
+  for (const ruleset of CHARGEN_SUPPORTED_RULESETS) {
+    customCareerSourcesDefault[ruleset] = { compendiums: [], folders: [] };
+  }
+  game.settings.register("twodsix", "customCareerSources", {
+    name: "Custom Career Sources",
+    scope: "world",
+    config: false,
+    type: Object,
+    default: customCareerSourcesDefault
+  });
+
   //Store default partials for items and compendium tab - hidden
   stringSetting('defaultItemPartial', foundry.applications.sidebar.tabs.ItemDirectory._entryPartial, false, "client");
   stringSetting('defaultCompendiumPartial', foundry.applications.sidebar.apps.Compendium._entryPartial, false, "client");

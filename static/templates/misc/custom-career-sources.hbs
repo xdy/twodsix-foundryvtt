@@ -1,0 +1,68 @@
+<div class="standard-form scrollable">
+  {{> "systems/twodsix/templates/misc/navigation-tabs.hbs"}}
+  <section class="sheet-body auto-height">
+    {{#each tabs as |tab|}}
+      <div class="tab {{tab.cssClass}}" data-group="primary" data-tab="{{tab.id}}">
+        {{#with (lookup ../rulesetSources tab.id) as |source|}}
+          {{!-- Compendiums Section --}}
+          <fieldset>
+            <legend>{{localize "TWODSIX.Settings.customCareerSources.compendiumsHeader"}}</legend>
+            <div class="form-group-stack">
+              {{#each source.compendiums as |collection index|}}
+                <div class="form-group">
+                  <select name="customCareerSources.{{tab.id}}.compendiums.{{index}}">
+                    {{selectOptions ../../../compendiumOptions selected=collection valueAttr="id" labelAttr="label" blank=(localize "TWODSIX.Settings.customCareerSources.none")}}
+                  </select>
+                  <button type="button" class="flex0" data-action="removeRow" data-ruleset="{{tab.id}}" data-type="compendiums" data-index="{{index}}" title="{{localize 'TWODSIX.Settings.customCareerSources.remove'}}">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              {{else}}
+                <p class="notes">{{localize "TWODSIX.Settings.customCareerSources.none"}}</p>
+              {{/each}}
+            </div>
+            <div class="form-footer">
+              <button type="button" data-action="addCompendium" data-ruleset="{{tab.id}}">
+                <i class="fa-solid fa-plus"></i> {{localize "TWODSIX.Settings.customCareerSources.addCompendium"}}
+              </button>
+            </div>
+          </fieldset>
+
+          {{!-- Folders Section --}}
+          <fieldset>
+            <legend>{{localize "TWODSIX.Settings.customCareerSources.foldersHeader"}}</legend>
+            <div class="form-group-stack">
+              {{#each source.folders as |folderId index|}}
+                <div class="form-group">
+                  <select name="customCareerSources.{{tab.id}}.folders.{{index}}">
+                    {{selectOptions ../../../folderOptions selected=folderId valueAttr="id" labelAttr="label" blank=(localize "TWODSIX.Settings.customCareerSources.none")}}
+                  </select>
+                  <button type="button" class="flex0" data-action="removeRow" data-ruleset="{{tab.id}}" data-type="folders" data-index="{{index}}" title="{{localize 'TWODSIX.Settings.customCareerSources.remove'}}">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              {{else}}
+                <p class="notes">{{localize "TWODSIX.Settings.customCareerSources.none"}}</p>
+              {{/each}}
+            </div>
+            <div class="form-footer">
+              <button type="button" data-action="addFolder" data-ruleset="{{tab.id}}">
+                <i class="fa-solid fa-plus"></i> {{localize "TWODSIX.Settings.customCareerSources.addFolder"}}
+              </button>
+            </div>
+          </fieldset>
+        {{/with}}
+      </div>
+    {{/each}}
+  </section>
+
+  <footer class="form-footer">
+    {{#each buttons as |button|}}
+      <button type="{{button.type}}" {{#if button.name}}name="{{button.name}}"{{/if}} class="{{button.cssClass}}"
+              {{#if button.action}}data-action="{{button.action}}"{{/if}} {{#if button.disabled}}disabled{{/if}}>
+          {{#if button.icon}}<i class="{{button.icon}}" inert></i>{{/if}}
+          {{#if button.label}}<label>{{localize button.label}}</label>{{/if}}
+      </button>
+    {{/each}}
+  </footer>
+</div>

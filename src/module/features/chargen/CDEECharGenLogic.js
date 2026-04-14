@@ -170,11 +170,15 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         const roll = await app._roll('2d6');
         const event = (career.eventTable || []).find(e => e.roll === roll);
         if (event) {
-          const cleanDesc = event.description.replace(/\[.*?\]/g, '').trim();
+          const cleanDesc = this._humanizeTaggedDescription(event.description);
           app._log(`Event (${roll})`, cleanDesc);
           state.log.push(`Event (${roll}): ${cleanDesc}`);
           termEntry.events.push(cleanDesc);
+          const logBefore = state.log.length;
           await this.applyEventTags(app, event.description, careerName);
+          for (const outcome of state.log.slice(logBefore)) {
+            termEntry.events.push(`  ${outcome}`);
+          }
         }
 
         if (term % 2 === 0) {
@@ -358,45 +362,74 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     }
   }
 
-  async applyEventTags(app, description, careerName) {
-    const state = app.charState;
-    const tags = this._parseTags(description);
-
-    for (const tag of tags) {
-      if (await this._applyCommonTag(app, tag, description)) {
-        continue;
-      }
-
-      if (tag.startsWith('CHOOSE_SKILL:')) {
-        const skills = tag.split(':')[1].split(',');
-        const sk = await app._choose('Event: pick one skill', skills.map(s => ({ value: s, label: s })));
-        await this._addOrImproveSkill(app, sk, skills);
-      } else if (tag.startsWith('CHECK:')) {
-        const parts = tag.split(':');
-        const skill = parts[1];
-        const target = parseInt(parts[2]) || 8;
-        const roll = await app._roll('2d6');
-        const mod = calcModFor(state.skills.get(skill) ?? -1);
-        const total = roll + mod;
-        const success = total >= target;
-        app._log('Event Check', `${skill} ${target}+: ${roll}${addSign(mod)}=${total} → ${success ? 'Success' : 'Fail'}`);
-      } else if (tag === 'INJURY') {
-        await this.stepInjury(app);
-      } else if (tag === 'LIFE_EVENT') {
-        await this.stepLifeEvent(app);
-      } else if (tag === 'PRISON') {
-        await this.stepPrison(app);
-      } else if (tag === 'RANK_UP') {
-        state.currentRank++;
-      } else if (tag.startsWith('BENEFIT_DM:')) {
-        state.benefitDMs.push(parseInt(tag.split(':')[1]));
-      } else if (tag === 'FREE_SKILL') {
-        // Mock selection for now
-        app._log('Free Skill', 'Gain any one skill at level 1.');
-      } else if (tag === 'BENEFIT_ROLL') {
-        state.benefitDMs.push(0); // Mock extra benefit roll by adding a 0 DM
-      }
+  _humanizeTag(tag) {
+    if (tag.startsWith('CHECK:')) {
+      const parts = tag.split(':');
+      return `${parts[1]} ${parts[2] ?? 8}+`;
     }
+    if (tag.startsWith('CHOOSE_SKILL:')) {
+      return tag.split(':')[1].split(',').join(' or ');
+    }
+    if (tag === 'INJURY') {
+      return 'Injury';
+    }
+    if (tag === 'LIFE_EVENT') {
+      return 'Life Event';
+    }
+    if (tag === 'PRISON') {
+      return 'Prison';
+    }
+    if (tag === 'RANK_UP') {
+      return 'Rank Up';
+    }
+    if (tag.startsWith('BENEFIT_DM:')) {
+      return `Benefit DM ${tag.split(':')[1]}`;
+    }
+    if (tag === 'FREE_SKILL') {
+      return 'Free Skill';
+    }
+    if (tag === 'BENEFIT_ROLL') {
+      return 'Benefit Roll';
+    }
+    return super._humanizeTag(tag);
+  }
+
+  async _applyRulesetTag(app, tag, description, careerName) {
+    const state = app.charState;
+    if (tag.startsWith('CHOOSE_SKILL:')) {
+      const skills = tag.split(':')[1].split(',');
+      const sk = await app._choose('Event: pick one skill', skills.map(s => ({ value: s, label: s })));
+      await this._addOrImproveSkill(app, sk, skills);
+    } else if (tag.startsWith('CHECK:')) {
+      const parts = tag.split(':');
+      const skill = parts[1];
+      const target = parseInt(parts[2]) || 8;
+      const roll = await app._roll('2d6');
+      const mod = calcModFor(state.skills.get(skill) ?? -1);
+      const total = roll + mod;
+      const success = total >= target;
+      app._log('Event Check', `${skill} ${target}+: ${roll}${addSign(mod)}=${total} → ${success ? 'Success' : 'Fail'}`);
+      state.log.push(`Check ${skill} ${target}+: ${success ? 'Success' : 'Fail'}.`);
+    } else if (tag === 'INJURY') {
+      await this.stepInjury(app);
+    } else if (tag === 'LIFE_EVENT') {
+      await this.stepLifeEvent(app);
+    } else if (tag === 'PRISON') {
+      await this.stepPrison(app);
+    } else if (tag === 'RANK_UP') {
+      state.currentRank++;
+      state.log.push('Early promotion: rank increased.');
+    } else if (tag.startsWith('BENEFIT_DM:')) {
+      state.benefitDMs.push(parseInt(tag.split(':')[1]));
+    } else if (tag === 'FREE_SKILL') {
+      // Mock selection for now
+      app._log('Free Skill', 'Gain any one skill at level 1.');
+      state.log.push('Gain any one skill at level 1.');
+    } else if (tag === 'BENEFIT_ROLL') {
+      state.benefitDMs.push(0);  // Mock extra benefit roll by adding a 0 DM
+      state.log.push('Gained an extra benefit roll.');
+    }
+    return false;
   }
 
   async stepInjury(app) {
