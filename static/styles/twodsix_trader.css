@@ -255,3 +255,7 @@
   flex: 0 0 auto;
   width: auto;
 }
+
+.header-actions.action-buttons.trade-journey.flexrow {
+  justify-content: center;
+}
