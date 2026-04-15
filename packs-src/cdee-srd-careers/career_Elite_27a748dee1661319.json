@@ -103,7 +103,24 @@
       },
       {
         "roll": 6,
-        "description": "Conspiracy. Refuse: [ENEMY]. Accept: [CHECK:Deception:8] or [CHECK:Liaison:8]. Success: [CHOOSE_SKILL:Carousing,Liaison,Deception]. Fail: [CHECK:Admin:10] or [PRISON]."
+        "description": "Conspiracy. Refuse: [ENEMY]. Accept:",
+        "checks": [
+          {
+            "skill": "Deception",
+            "target": 8
+          },
+          {
+            "skill": "Liaison",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Carousing,Liaison,Deception]"
+        ],
+        "onFail": [
+          "[CHECK:Admin:10]",
+          "[PRISON]"
+        ]
       },
       {
         "roll": 7,
@@ -111,7 +128,20 @@
       },
       {
         "roll": 8,
-        "description": "Corporate Infighting. Refuse: [CONTACT] and [ENEMY]. Attempt discredit: [CHECK:Liaison:8] or [CHECK:SOC:8]. Success: [CONTACT]. Fail: reduce SOC by 1."
+        "description": "Corporate Infighting. Refuse: [CONTACT] and [ENEMY]. Attempt discredit:",
+        "checks": [
+          {
+            "skill": "Liaison",
+            "target": 8
+          },
+          {
+            "skill": "SOC",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT]"
+        ]
       },
       {
         "roll": 9,

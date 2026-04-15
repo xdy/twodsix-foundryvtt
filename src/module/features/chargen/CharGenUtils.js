@@ -1,6 +1,128 @@
 // CharGenUtils.js — Shared utilities used by multiple ruleset logic files
 import { LanguageType } from '../../utils/nameGenerator.js';
 import { CHARACTERISTIC_KEYS } from './CharGenState.js';
+import { ALL_CHAR_OPTS } from './SharedCharGenConstants.js';
+
+const CHAR_LABEL_I18N = {
+  str: 'TWODSIX.CharGen.Physical.Strength',
+  dex: 'TWODSIX.CharGen.Physical.Dexterity',
+  end: 'TWODSIX.CharGen.Physical.Endurance',
+  int: 'TWODSIX.CharGen.Mental.Intelligence',
+  edu: 'TWODSIX.CharGen.Mental.Education',
+  soc: 'TWODSIX.CharGen.Mental.SocialStanding',
+};
+
+/**
+ * Physical characteristic options for _choose prompts (localized labels).
+ * @returns {{ value: string, label: string }[]}
+ */
+export function localizedPhysicalOpts() {
+  return [
+    { value: 'str', label: game.i18n.localize(CHAR_LABEL_I18N.str) },
+    { value: 'dex', label: game.i18n.localize(CHAR_LABEL_I18N.dex) },
+    { value: 'end', label: game.i18n.localize(CHAR_LABEL_I18N.end) },
+  ];
+}
+
+/**
+ * Mental characteristic options for _choose prompts (localized labels).
+ * @returns {{ value: string, label: string }[]}
+ */
+export function localizedMentalOpts() {
+  return [
+    { value: 'int', label: game.i18n.localize(CHAR_LABEL_I18N.int) },
+    { value: 'edu', label: game.i18n.localize(CHAR_LABEL_I18N.edu) },
+    { value: 'soc', label: game.i18n.localize(CHAR_LABEL_I18N.soc) },
+  ];
+}
+
+/**
+ * All six characteristics with localized full names (for assignment UIs).
+ * @returns {{ value: string, label: string }[]}
+ */
+export function localizedAllCharOptsForAssignment() {
+  return ALL_CHAR_OPTS.map(o => ({
+    value: o.value,
+    label: game.i18n.localize(CHAR_LABEL_I18N[o.value]),
+  }));
+}
+
+/**
+ * Build choice rows from string values (optional sort).
+ * @param {string[]} strings
+ * @param {{ sort?: boolean }} [opts]
+ * @returns {{ value: string, label: string }[]}
+ */
+export function optionsFromStrings(strings, { sort = true } = {}) {
+  const arr = sort ? [...strings].sort((a, b) => a.localeCompare(b)) : [...strings];
+  return arr.map(s => ({ value: s, label: s }));
+}
+
+/**
+ * Career names as choice rows (sorted).
+ * @param {string[]} names
+ * @returns {{ value: string, label: string }[]}
+ */
+export function optionsFromCareerNames(names) {
+  return [...names].sort((a, b) => a.localeCompare(b)).map(n => ({ value: n, label: n }));
+}
+
+/**
+ * Assign each characteristic in `charOpts` a distinct value from the shrinking `remainingValues` pool.
+ * @param {CharGenApp} app
+ * @param {{ value: string, label: string }[]} charOpts
+ * @param {number[]} remainingValues - mutable copy recommended; values are removed as assigned
+ * @param {(opt: { value: string, label: string }, index: number) => string} promptFor - row label for each pick
+ */
+export async function assignCharacteristicPoolFromChoices(app, charOpts, remainingValues, promptFor) {
+  const state = app.charState;
+  const values = [...remainingValues];
+  for (let i = 0; i < charOpts.length; i++) {
+    const opt = charOpts[i];
+    const selection = await app._choose(
+      promptFor(opt, i),
+      values.map(v => ({ value: String(v), label: String(v) })),
+    );
+    const val = parseInt(selection, 10);
+    state.chars[opt.value] = val;
+    const idx = values.indexOf(val);
+    if (idx !== -1) {
+      values.splice(idx, 1);
+    }
+  }
+}
+
+/**
+ * @param {Object} state - charState
+ * @param {string} skillName
+ * @returns {number} Traveller-style level (-1 = untrained UI sentinel)
+ */
+export function getSkillLevel(state, skillName) {
+  return state.skills.has(skillName) ? state.skills.get(skillName) : -1;
+}
+
+/**
+ * Level after one "improve skill" step (from -1 to 1, else +1).
+ * @param {number} current
+ * @returns {number}
+ */
+export function nextLevelAfterImprove(current) {
+  return current < 0 ? 1 : current + 1;
+}
+
+/**
+ * Apply one improve step if the new level would not exceed `max`.
+ * @returns {boolean} true if skill was increased
+ */
+export function improveSkillCappedInState(state, skillName, { max = 3 } = {}) {
+  const cur = getSkillLevel(state, skillName);
+  const next = nextLevelAfterImprove(cur);
+  if (next > max) {
+    return false;
+  }
+  state.skills.set(skillName, next);
+  return true;
+}
 
 /**
  * Present a gender selection choice.
@@ -8,10 +130,10 @@ import { CHARACTERISTIC_KEYS } from './CharGenState.js';
  * @returns {Promise<string>} 'Male', 'Female', or 'Other'
  */
 export async function chooseGender(app) {
-  return app._choose('Select Gender', [
-    { value: 'Male',   label: 'Male' },
-    { value: 'Female', label: 'Female' },
-    { value: 'Other',  label: 'Other' },
+  return app._choose(game.i18n.localize('TWODSIX.CharGen.Gender.SelectGender'), [
+    { value: 'Male', label: game.i18n.localize('TWODSIX.CharGen.Gender.Male') },
+    { value: 'Female', label: game.i18n.localize('TWODSIX.CharGen.Gender.Female') },
+    { value: 'Other', label: game.i18n.localize('TWODSIX.CharGen.Gender.Other') },
   ]);
 }
 
@@ -21,20 +143,17 @@ export async function chooseGender(app) {
  * @param {CharGenApp} app
  */
 export async function chooseCharacteristicSwap(app) {
-  const swap = await app._choose(
-    'Swap two characteristics?',
-    [
-      { value: 'yes', label: 'Yes — swap two values' },
-      { value: 'no',  label: 'No — keep as rolled' },
-    ]
-  );
+  const swap = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.SwapCharacteristics'), [
+    { value: 'yes', label: game.i18n.localize('TWODSIX.CharGen.Options.YesSwapTwoValues') },
+    { value: 'no', label: game.i18n.localize('TWODSIX.CharGen.Options.NoKeepAsRolled') },
+  ]);
   if (swap !== 'yes') {
     return;
   }
   const state = app.charState;
   const charOpts = CHARACTERISTIC_KEYS.map(k => ({ value: k, label: `${k.toUpperCase()}: ${state.chars[k]}` }));
-  const c1 = await app._choose('Swap: first characteristic', charOpts);
-  const c2 = await app._choose('Swap: second characteristic', charOpts.filter(o => o.value !== c1));
+  const c1 = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.SwapFirstChar'), charOpts);
+  const c2 = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.SwapSecondChar'), charOpts.filter(o => o.value !== c1));
   const tmp = state.chars[c1];
   state.chars[c1] = state.chars[c2];
   state.chars[c2] = tmp;
@@ -49,7 +168,7 @@ export async function chooseLanguage(app) {
   const opts = Object.entries(LanguageType)
     .map(([label, value]) => ({ label, value: String(value) }))
     .sort((a, b) => a.label.localeCompare(b.label));
-  const value = await app._choose('Language', opts);
+  const value = await app._choose(game.i18n.localize('TWODSIX.CharGen.App.Language'), opts);
   if (app.charState) {
     app.charState.languageType = parseInt(value);
   }
@@ -63,6 +182,19 @@ export async function chooseLanguage(app) {
 export async function chooseName(app) {
   const value = await app._chooseName();
   app.charName = value;
+}
+
+/**
+ * Ask whether to serve another term in the current career.
+ * @param {CharGenApp} app
+ * @param {string} careerName
+ * @returns {Promise<string>} 'yes' or 'no'
+ */
+export async function promptContinueInCareer(app, careerName) {
+  return app._choose(game.i18n.format('TWODSIX.CharGen.Steps.Reenlistment', { career: careerName }), [
+    { value: 'yes', label: game.i18n.localize('TWODSIX.CharGen.Options.YesServeAnother') },
+    { value: 'no', label: game.i18n.localize('TWODSIX.CharGen.Options.NoLeave') },
+  ]);
 }
 
 /**
@@ -96,7 +228,7 @@ export async function chooseWeapon(app, { maxPrice = null } = {}) {
 
   // Filter by character's combat skills (fall back to all if no matching skills)
   const combatSkills = [...state.skills.keys()].filter(
-    s => s.startsWith('Gun Combat') || s.startsWith('Melee Combat')
+    s => s.startsWith('Gun Combat') || s.startsWith('Melee Combat'),
   );
   if (combatSkills.length > 0) {
     const parentGroups = [...new Set(combatSkills.map(s => s.split('(')[0].trim()))];
@@ -119,12 +251,18 @@ export async function chooseWeapon(app, { maxPrice = null } = {}) {
   if (state.chosenWeapons.length > 0) {
     const uniqueSkills = [...new Set(state.chosenWeapons.map(w => w.skill).filter(Boolean))];
     for (const skillName of uniqueSkills) {
-      options.push({ value: `SKILL:${skillName}`, label: `Skill: ${skillName} +1` });
+      options.push({
+        value: `SKILL:${skillName}`,
+        label: game.i18n.format('TWODSIX.CharGen.Steps.WeaponSkillPlusOne', { name: skillName }),
+      });
     }
   }
 
   for (const w of weaponDocs) {
-    options.push({ value: `WEAPON:${w._id}`, label: `Weapon: ${w.name}` });
+    options.push({
+      value: `WEAPON:${w._id}`,
+      label: game.i18n.format('TWODSIX.CharGen.Steps.WeaponWithName', { name: w.name }),
+    });
   }
   options.sort((a, b) => a.label.localeCompare(b.label));
 
@@ -135,7 +273,7 @@ export async function chooseWeapon(app, { maxPrice = null } = {}) {
     return;
   }
 
-  const choice = await app._choose('Choose weapon benefit', options);
+  const choice = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.ChooseWeaponBenefit'), options);
 
   if (choice.startsWith('SKILL:')) {
     const skillName = choice.substring(6);

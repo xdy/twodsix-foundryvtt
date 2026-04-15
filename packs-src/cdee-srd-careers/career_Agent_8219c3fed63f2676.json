@@ -95,11 +95,40 @@
       },
       {
         "roll": 4,
-        "description": "Dangerous Mission. [CHECK:Recon:8] or [CHECK:Streetwise:8] or [CHECK:Gun Combat:8]. Success: [BENEFIT_ROLL]. Fail: [INJURY]."
+        "description": "Dangerous Mission",
+        "checks": [
+          {
+            "skill": "Recon",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 5,
-        "description": "Specialist Training. [CHECK:EDU:8]. Success: [FREE_SKILL]."
+        "description": "Specialist Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[FREE_SKILL]"
+        ]
       },
       {
         "roll": 6,
@@ -111,15 +140,50 @@
       },
       {
         "roll": 8,
-        "description": "Undercover. [CHECK:Streetwise:8] or [CHECK:Deception:8]. Success: pick one skill from Rogue specialist table."
+        "description": "Undercover",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Deception",
+            "target": 8
+          }
+        ]
       },
       {
         "roll": 9,
-        "description": "Trusted Informant. [CHECK:Streetwise:8]. Success: [CONTACT]."
+        "description": "Trusted Informant",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT]"
+        ]
       },
       {
         "roll": 10,
-        "description": "Kidnapping Rescue. [CHECK:Investigation:8] or [CHECK:Stealth:8]. Success: [CONTACT:Hostage VIP]. Fail: [INJURY]."
+        "description": "Kidnapping Rescue",
+        "checks": [
+          {
+            "skill": "Investigation",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT:Hostage VIP]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 11,

@@ -91,7 +91,23 @@
       },
       {
         "roll": 3,
-        "description": "Gambling Ring. Risk a Benefit roll. [CHECK:Carousing:8] or [CHECK:Streetwise:8]. Success: [BENEFIT_ROLL]. Fail: lose roll."
+        "description": "Gambling Ring. Risk a Benefit roll",
+        "checks": [
+          {
+            "skill": "Carousing",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[LOSE_BENEFIT_ROLL]"
+        ]
       },
       {
         "roll": 4,
@@ -99,11 +115,37 @@
       },
       {
         "roll": 5,
-        "description": "Ship Destroyed. Try to save shipmates: [CHECK:DEX:8] or [CHECK:Repair:8]. Success: [CONTACT] and [BENEFIT_DM:2]. Fail: [INJURY]."
+        "description": "Ship Destroyed. Try to save shipmates:",
+        "checks": [
+          {
+            "skill": "DEX",
+            "target": 8
+          },
+          {
+            "skill": "Repair",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT]",
+          "[BENEFIT_DM:2]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 6,
-        "description": "Advanced Training. [CHECK:EDU:8]. Success: gain one level of existing skill."
+        "description": "Advanced Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[FREE_SKILL]"
+        ]
       },
       {
         "roll": 7,
@@ -111,7 +153,23 @@
       },
       {
         "roll": 8,
-        "description": "Naval Battle. [CHECK:Gunnery:8] or [CHECK:Piloting:8]. Success: [CHOOSE_SKILL:Computer,Gunnery,Engineering,Piloting]. Fail: [INJURY]."
+        "description": "Naval Battle",
+        "checks": [
+          {
+            "skill": "Gunnery",
+            "target": 8
+          },
+          {
+            "skill": "Piloting",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Computer,Gunnery,Engineering,Piloting]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 9,
@@ -119,7 +177,23 @@
       },
       {
         "roll": 10,
-        "description": "Xenomorphs! [CHECK:Gun Combat:8] or [CHECK:Melee Combat:8]. Fail: [INJURY]. Success: [SKILL:Zero-G:1]."
+        "description": "Xenomorphs!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Zero-G:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 11,

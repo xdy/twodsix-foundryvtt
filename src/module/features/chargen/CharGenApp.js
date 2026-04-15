@@ -3,10 +3,10 @@ import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
 import { DecisionApp } from '../DecisionApp.js';
 import {
-  CDEE_POINT_BUY_MAXIMUM_VALUE,
-  CDEE_POINT_BUY_MINIMUM_VALUE,
-  CDEE_POINTBUY_MAX_POINTS
-} from './CDEECharGenConstants.js';
+  getCharacteristicsUiRules,
+  rollPointBuyCharacteristics,
+  rollRandomCharacteristics,
+} from './characteristicsRules.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
 import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
 import {
@@ -61,7 +61,8 @@ export class CharGenApp extends DecisionApp {
 
     const s = this.charState;
     const ruleset = s?.ruleset ?? 'CE';
-    const isPointBuy = s?.creationMode === 'pointbuy';
+    const charRules = getCharacteristicsUiRules(ruleset, s?.creationMode ?? null);
+    const isPointBuy = charRules.isPointBuy;
     const totalChars = isPointBuy ? CHARACTERISTIC_KEYS.reduce((acc, k) => acc + (s?.chars[k] ?? 0), 0) : 0;
 
     const chars = CHARACTERISTIC_KEYS.map((k, i) => ({
@@ -76,7 +77,10 @@ export class CharGenApp extends DecisionApp {
       chars,
       upp,
       isPointBuy,
-      remainingPoints: CDEE_POINTBUY_MAX_POINTS - totalChars,
+      remainingPoints: charRules.pointBuyTargetTotal != null ? charRules.pointBuyTargetTotal - totalChars : 0,
+      charInputMin: charRules.inputMin,
+      charInputMax: charRules.inputMax,
+      pointBuyTotal: charRules.pointBuyTargetTotal ?? 0,
       age: s?.age ?? 18,
       skls: s?.skills?.size ?? 0,
       totalTerms: s?.totalTerms ?? 0,
@@ -111,27 +115,17 @@ export class CharGenApp extends DecisionApp {
 
   /**
    * Roll random characteristic values (2d6 for each).
+   * @returns {Promise<void>}
    */
-  _rollCharacteristics() {
-    if (this.charState) {
-      if (this.charState.creationMode === 'pointbuy') {
-        // Reset all to a minimum of 2
-        for (const k of CHARACTERISTIC_KEYS) {
-          this.charState.chars[k] = CDEE_POINT_BUY_MINIMUM_VALUE;
-        }
-        let remaining = CDEE_POINTBUY_MAX_POINTS - (CDEE_POINT_BUY_MINIMUM_VALUE * CHARACTERISTIC_KEYS.length);
-        while (remaining > 0) {
-          const k = CHARACTERISTIC_KEYS[Math.floor(Math.random() * CHARACTERISTIC_KEYS.length)];
-          if (this.charState.chars[k] < CDEE_POINT_BUY_MAXIMUM_VALUE) {
-            this.charState.chars[k]++;
-            remaining--;
-          }
-        }
-      } else {
-        for (const k of CHARACTERISTIC_KEYS) {
-          this.charState.chars[k] = Math.floor(Math.random() * 6) + Math.floor(Math.random() * 6) + CDEE_POINT_BUY_MINIMUM_VALUE;
-        }
-      }
+  async _rollCharacteristics() {
+    if (!this.charState) {
+      return;
+    }
+    const rules = getCharacteristicsUiRules(this.charState.ruleset ?? 'CE', this.charState.creationMode ?? null);
+    if (rules.isPointBuy) {
+      await rollPointBuyCharacteristics(this.charState.chars, CHARACTERISTIC_KEYS);
+    } else {
+      await rollRandomCharacteristics(this.charState.chars, CHARACTERISTIC_KEYS);
     }
   }
 
@@ -157,8 +151,8 @@ export class CharGenApp extends DecisionApp {
   /**
    * Resolve characteristics by rolling random values.
    */
-  _resolveCharRoll() {
-    this._rollCharacteristics();
+  async _resolveCharRoll() {
+    await this._rollCharacteristics();
     const r = this.pendingResolve;
     this.pendingResolve = null;
     if (r) {
@@ -177,7 +171,7 @@ export class CharGenApp extends DecisionApp {
 
     // Handle characteristics row specially (has empty options array)
     if (row.label === CHARACTERISTICS_ROW_TYPE) {
-      this._rollCharacteristics();
+      await this._rollCharacteristics();
       const r = this.pendingResolve;
       this.pendingResolve = null;
       r('rolled');
@@ -194,7 +188,7 @@ export class CharGenApp extends DecisionApp {
       return;
     }
 
-    const idx = Math.floor(Math.random() * row.options.length);
+    const idx = (await new Roll(`1d${row.options.length}`).roll()).total - 1;
     const value = String(row.options[idx].value);
     const r = this.pendingResolve;
     this.pendingResolve = null;
@@ -212,26 +206,27 @@ export class CharGenApp extends DecisionApp {
       return;
     }
 
-    const isPointBuy = this.charState?.creationMode === 'pointbuy';
+    const rules = getCharacteristicsUiRules(this.charState?.ruleset ?? 'CE', this.charState?.creationMode ?? null);
+    const isPointBuy = rules.isPointBuy;
     let allValid = true;
     let total = 0;
     inputs.forEach(input => {
       const val = parseInt(input.value);
-      if (isNaN(val) || val < 1 || val > 15) {
+      if (isNaN(val) || val < rules.inputMin || val > rules.inputMax) {
         allValid = false;
       }
       total += val || 0;
     });
 
-    if (isPointBuy && total !== CDEE_POINTBUY_MAX_POINTS) {
+    if (isPointBuy && rules.pointBuyTargetTotal != null && total !== rules.pointBuyTargetTotal) {
       allValid = false;
     }
     doneBtn.disabled = !allValid;
 
     const pointsEl = el?.querySelector('.cg-point-buy-total');
-    if (pointsEl && isPointBuy) {
-      pointsEl.textContent = `Points: ${CDEE_POINTBUY_MAX_POINTS - total} / ${CDEE_POINTBUY_MAX_POINTS}`;
-      pointsEl.style.color = (total > CDEE_POINTBUY_MAX_POINTS) ? 'red' : 'inherit';
+    if (pointsEl && isPointBuy && rules.pointBuyTargetTotal != null) {
+      pointsEl.textContent = `Points: ${rules.pointBuyTargetTotal - total} / ${rules.pointBuyTargetTotal}`;
+      pointsEl.style.color = total > rules.pointBuyTargetTotal ? 'red' : 'inherit';
     }
   }
 
@@ -251,18 +246,18 @@ export class CharGenApp extends DecisionApp {
    * Attach roll button event handlers.
    */
   _attachRollHandlers(el) {
-    el.querySelector('.cg-roll-upp')?.addEventListener('click', () => this._resolveCharRoll());
+    el.querySelector('.cg-roll-upp')?.addEventListener('click', () => void this._resolveCharRoll());
     el.querySelector('.cg-char-done')?.addEventListener('click', () => this._resolveCharDone());
     el.querySelector('.cg-name-roll')?.addEventListener('click', () => this._resolveNameRoll());
     el.querySelector('.cg-name-done')?.addEventListener('click', () => this._resolveNameDone());
-    el.querySelector('.cg-rand')?.addEventListener('click', () => this._resolveActiveRandomly());
+    el.querySelector('.cg-rand')?.addEventListener('click', () => void this._resolveActiveRandomly());
     el.querySelector('.cg-rand-all')?.addEventListener('click', async () => {
       if (this.isDone) {
         this._redo();
         return;
       }
       this.autoAll = true;
-      this._resolveActiveRandomly();
+      await this._resolveActiveRandomly();
     });
   }
 
@@ -300,7 +295,8 @@ export class CharGenApp extends DecisionApp {
       if (this.charState) {
         const key = e.target.dataset.charKey;
         const val = parseInt(e.target.value) || 0;
-        this.charState.chars[key] = Math.max(0, Math.min(15, val));
+        const r = getCharacteristicsUiRules(this.charState.ruleset ?? 'CE', this.charState.creationMode ?? null);
+        this.charState.chars[key] = Math.max(r.inputMin, Math.min(r.inputMax, val));
       }
     };
 
@@ -411,7 +407,7 @@ export class CharGenApp extends DecisionApp {
 
     // Auto-all path: pick randomly
     if (this.autoAll && choiceOptions.length) {
-      const idx = Math.floor(Math.random() * choiceOptions.length);
+      const idx = (await new Roll(`1d${choiceOptions.length}`).roll()).total - 1;
       const value = choiceOptions[idx].value;
       this.decisions.push({ type: 'choice', value });
       const found = choiceOptions[idx];
@@ -447,7 +443,7 @@ export class CharGenApp extends DecisionApp {
     }
 
     if (this.autoAll) {
-      this._rollCharacteristics();
+      await this._rollCharacteristics();
       const line = this._formatCharacteristicsLine();
       const chars = { ...this.charState.chars };
       this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: line, active: false, options: [] });

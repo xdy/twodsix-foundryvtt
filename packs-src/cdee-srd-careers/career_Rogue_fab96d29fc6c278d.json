@@ -99,7 +99,19 @@
       },
       {
         "roll": 5,
-        "description": "Look at You, Hacker! [CHECK:Computer:8]. Success: [BENEFIT_ROLL]. Fail: [PRISON]."
+        "description": "Look at You, Hacker!",
+        "checks": [
+          {
+            "skill": "Computer",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[PRISON]"
+        ]
       },
       {
         "roll": 6,
@@ -111,15 +123,70 @@
       },
       {
         "roll": 8,
-        "description": "Heist! [CHECK:Computer:8] or [CHECK:Stealth:8] or [CHECK:Streetwise:8]. Success: [BENEFIT_ROLL]. Fail: [PRISON]."
+        "description": "Heist!",
+        "checks": [
+          {
+            "skill": "Computer",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[PRISON]"
+        ]
       },
       {
         "roll": 9,
-        "description": "Gang War! [CHECK:Gun Combat:8] or [CHECK:Melee Combat:8]. Success: [SKILL:Streetwise:1]. Fail: [INJURY]. Always: [ENEMY]."
+        "description": "Gang War!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Streetwise:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "always": [
+          "[ENEMY]"
+        ]
       },
       {
         "roll": 10,
-        "description": "Gambling Ring. Risk 1 benefit. [CHECK:Carousing:8] or [CHECK:Streetwise:8]. Success: [BENEFIT_ROLL]. Fail: lose roll."
+        "description": "Gambling Ring. Risk 1 benefit",
+        "checks": [
+          {
+            "skill": "Carousing",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[LOSE_BENEFIT_ROLL]"
+        ]
       },
       {
         "roll": 11,
