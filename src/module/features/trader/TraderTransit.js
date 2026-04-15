@@ -3,11 +3,7 @@
  * Logic for departure, in-transit, and arriving phases.
  */
 
-import {
-  createWorldActors,
-  ensureSubsectorNeighborsLoaded,
-  getReachableWorlds
-} from './SubsectorLoader.js';
+import { ensureSubsectorNeighborsLoaded, getReachableWorlds } from './SubsectorLoader.js';
 import {
   FREIGHT_RATE,
   HOURS_PER_DAY,
