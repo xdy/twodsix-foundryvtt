@@ -95,11 +95,40 @@
       },
       {
         "roll": 4,
-        "description": "Explosion. [CHECK:Zero-G:8]. Success: [SKILL:Demolitions:1]. Fail: [INJURY]."
+        "description": "Explosion",
+        "checks": [
+          {
+            "skill": "Zero-G",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Demolitions:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 5,
-        "description": "Protection Racket. Pay: lose one Benefit roll. Resist: [CHECK:Gun Combat:8] or [CHECK:Melee Combat:8]. Success: [SKILL:Streetwise:1] and [ENEMY:Pirate]. Fail: [INJURY]."
+        "description": "Protection Racket. Pay: lose one Benefit roll. Resist:",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Streetwise:1]",
+          "[ENEMY:Pirate]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 6,
@@ -111,7 +140,16 @@
       },
       {
         "roll": 8,
-        "description": "Drone Operations. [CHECK:Computer:8]. Success: [BENEFIT_ROLL]."
+        "description": "Drone Operations",
+        "checks": [
+          {
+            "skill": "Computer",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ]
       },
       {
         "roll": 9,
@@ -119,11 +157,36 @@
       },
       {
         "roll": 10,
-        "description": "Investment. [CHECK:Admin:8]. Success: [BENEFIT_ROLL]."
+        "description": "Investment",
+        "checks": [
+          {
+            "skill": "Admin",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ]
       },
       {
         "roll": 11,
-        "description": "Cyberterrorism. [CHECK:Gun Combat:8] or [CHECK:Computer:8]. Success: gain a level of [SKILL:Computer:1]. Fail: [INJURY]."
+        "description": "Cyberterrorism",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Computer",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Computer:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 12,

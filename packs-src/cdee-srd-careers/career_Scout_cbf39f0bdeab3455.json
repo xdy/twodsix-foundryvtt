@@ -91,7 +91,23 @@
       },
       {
         "roll": 3,
-        "description": "Ambushed. Run: [CHECK:Piloting:8] or [INJURY]. Fight: [CHECK:Gunnery:8]. Success: [BENEFIT_DM:1]. Fail: [INJURY]."
+        "description": "Ambushed. Run:",
+        "checks": [
+          {
+            "skill": "Piloting",
+            "target": 8
+          },
+          {
+            "skill": "Gunnery",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_DM:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 4,
@@ -115,11 +131,44 @@
       },
       {
         "roll": 9,
-        "description": "Rescue Mission. [CHECK:Engineering:8] or [CHECK:Medicine:8]. Success: level in skill and [CONTACT]. Fail: [ENEMY]."
+        "description": "Rescue Mission",
+        "checks": [
+          {
+            "skill": "Engineering",
+            "target": 8
+          },
+          {
+            "skill": "Medicine",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[FREE_SKILL]",
+          "[CONTACT]"
+        ],
+        "onFail": [
+          "[ENEMY]"
+        ]
       },
       {
         "roll": 10,
-        "description": "Xenomorphs! [CHECK:Gun Combat:8] or [CHECK:Melee Combat:8]. Fail: [INJURY]. Success: [SKILL:Survival:1]."
+        "description": "Xenomorphs!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Survival:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 11,

@@ -95,11 +95,41 @@
       },
       {
         "roll": 4,
-        "description": "Smuggler. Accept: [CHECK:Admin:8] or [CHECK:Streetwise:8]. Success: gain level of skill and [BENEFIT_ROLL]. Fail: [ENEMY]."
+        "description": "Smuggler. Accept:",
+        "checks": [
+          {
+            "skill": "Admin",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[FREE_SKILL]",
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[ENEMY]"
+        ]
       },
       {
         "roll": 5,
-        "description": "Risky Business. Risk any number of Benefits. [CHECK:Admin:8] or [CHECK:Streetwise:8]. Success: gain half again as many. Fail: lose all risked. Either way, gain level of skill."
+        "description": "Risky Business. Risk any number of Benefits",
+        "checks": [
+          {
+            "skill": "Admin",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onFail": [
+          "[FREE_SKILL]"
+        ]
       },
       {
         "roll": 6,
@@ -111,19 +141,76 @@
       },
       {
         "roll": 8,
-        "description": "Legal Trouble. [CHECK:Admin:8]. Success: gain [CHOOSE_SKILL:Admin,Liaison]. Fail: [PRISON]."
+        "description": "Legal Trouble",
+        "checks": [
+          {
+            "skill": "Admin",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Admin,Liaison]"
+        ],
+        "onFail": [
+          "[PRISON]"
+        ]
       },
       {
         "roll": 9,
-        "description": "Advanced Training. [CHECK:EDU:8]. Success: [CHOOSE_SKILL:Admin,Engineering,Computer,Piloting,Zero-G]."
+        "description": "Advanced Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Admin,Engineering,Computer,Piloting,Zero-G]"
+        ]
       },
       {
         "roll": 10,
-        "description": "Pirate Raid. [CHECK:Gun Combat:8] or [CHECK:Gunnery:8] or [CHECK:DEX:10]. Fail: [INJURY]. Success: [BENEFIT_ROLL]."
+        "description": "Pirate Raid",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Gunnery",
+            "target": 8
+          },
+          {
+            "skill": "DEX",
+            "target": 10
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 11,
-        "description": "Xenomorphs! [CHECK:Gun Combat:8] or [CHECK:Melee Combat:8]. Fail: [INJURY]. Success: [SKILL:Survival:1]."
+        "description": "Xenomorphs!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Survival:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 12,

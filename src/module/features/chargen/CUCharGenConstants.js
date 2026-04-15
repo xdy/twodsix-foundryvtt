@@ -11,6 +11,79 @@ export const CU_SKILL_CATEGORY_TABLES = {
   'Science': ['Navigation', 'Vehicle', 'Vacc Suit', 'Computer', 'Investigate', 'Medicine']
 };
 
+export const CU_DESIGN_CAREERS = {
+  Agent: {
+    description: 'A law enforcer, secret agent, spy or police officer.',
+    autoSkill: 'Investigate',
+    otherSkills: ['Gun Combat', 'Melee Combat', 'Computer', 'Streetwise', 'Medical', 'Security', 'Ground Vehicle'],
+  },
+  Belter: {
+    description: 'An asteroid miner, pioneer, prospector or colonial roughneck.',
+    autoSkill: 'Vacc Suit',
+    otherSkills: ['Mining', 'Mechanical', 'Comms', 'Ground Vehicle', 'Loader', 'Navigation', 'Melee Combat'],
+  },
+  Citizen: {
+    description: 'A colonist or civilian, representing one of many occupations.',
+    autoSkill: 'Vehicle',
+    otherSkills: ['Mechanical', 'Agriculture', 'Carousing', 'Leader', 'Medical', 'Computer', 'Loader'],
+  },
+  Explorer: {
+    description: 'A survey scout, deep space explorer, first-in mission specialist.',
+    autoSkill: 'Survival',
+    otherSkills: ['Pilot', 'Navigation', 'Vehicle', 'Comms', 'Investigate', 'Leader', 'Gun Combat'],
+  },
+  Fixer: {
+    description: 'A deal-maker, middle-man, executive, sleazy lawyer, street fixer.',
+    autoSkill: 'Broker',
+    otherSkills: ['Admin', 'Computer', 'Carousing', 'Forgery', 'Bribery', 'Leader', 'Vehicle'],
+  },
+  Marine: {
+    description: 'Mobile infantry, space marines, ship’s troops or star commandos.',
+    autoSkill: 'Gun Combat',
+    otherSkills: ['Melee Combat', 'Vacc Suit', 'Ground Vehicle', 'Recon', 'Heavy Weapons', 'Demolitions', 'Tactics'],
+  },
+  Mercenary: {
+    description: 'Ground-based infantry, either regular army or mercenaries.',
+    autoSkill: 'Gun Combat',
+    otherSkills: ['Melee Combat', 'Bribery', 'Ground Vehicle', 'Recon', 'Heavy Weapons', 'Demolitions', 'Tactics'],
+  },
+  Merchant: {
+    description: 'Interstellar truckers, haulage crews, making money between the stars.',
+    autoSkill: 'Vacc Suit',
+    otherSkills: ['Pilot', 'Navigation', 'Engineering', 'Computer', 'Comms', 'Loader', 'Broker'],
+  },
+  Rogue: {
+    description: 'A criminal, thief, gang-member or saboteur.',
+    autoSkill: 'Streetwise',
+    otherSkills: ['Security', 'Gun Combat', 'Melee Combat', 'Bribery', 'Forgery', 'Ground Vehicle', 'Demolitions'],
+  },
+  Primitive: {
+    description: 'Inhabitant of a low tech, primitive world, barbarian, savage.',
+    autoSkill: 'Survival',
+    otherSkills: ['Riding', 'Leader', 'Archery', 'Melee Combat', 'Recon', 'Tactics', 'Carousing'],
+  },
+  Spacer: {
+    description: 'Military crewman or officer, member of the interstellar navy or space force.',
+    autoSkill: 'Vacc Suit',
+    otherSkills: ['Pilot', 'Gunnery', 'Navigation', 'Engineering', 'Computer', 'Comms', 'Medical'],
+  },
+  Scavenger: {
+    description: 'A post-apocalyptic road warrior, survivor or resistance fighter.',
+    autoSkill: 'Ground Vehicle',
+    otherSkills: ['Navigation', 'Leader', 'Gun Combat', 'Melee Combat', 'Survival', 'Broker', 'Mechanical'],
+  },
+  Scientist: {
+    description: 'Anything from a doctor to a geologist, physicist to bioweapon expert.',
+    autoSkill: 'Investigate',
+    otherSkills: ['Computer', 'Vehicle', 'Admin', 'Comms', 'Survival', 'Navigation', 'Medical'],
+  },
+  Technician: {
+    description: 'A gearhead, engineer, hacker, mechanic, cyborg technician, etc.',
+    autoSkill: 'Computer',
+    otherSkills: ['Mechanical', 'Electronics', 'Engineering', 'Comms', 'Vehicle', 'Vacc Suit', 'Security'],
+  },
+};
+
 export const CU_RISK_FAIL_EVENTS = [
   { threshold: 14, description: 'Died in service. [DIED]' },
   { threshold: 12, description: 'Badly injured. Lower Str, Dex or End by 1. How did it happen? Leave the Career. [INJURED_LEAVE]' },
@@ -28,18 +101,18 @@ export const CU_RISK_FAIL_EVENTS = [
 export const CU_RISK_SUCCESS_EVENTS = [
   { threshold: 18, description: 'Chance to make it big! Roll 2D6: on 4+ gain automatic promotion and one extra skill roll; on 2-3 you spend this term in prison (lower Soc by 1, gain a criminal Contact). [AUTO_PROMO_OR_PRISON]' },
   { threshold: 17, description: 'Caused someone to be humiliated or demoted. Gain an Enemy. [ENEMY]' },
-  { threshold: 16, description: 'You are thrown into a crisis and take charge. Gain Leader-1. [SKILL:Leader-1]' },
+  { threshold: 16, description: 'You are thrown into a crisis and take charge. Gain Leader-1. [SKILL:Leader:1]' },
   { threshold: 15, description: 'You scored big this term. Gain Cr20,000. How did you get this money? [CASH_20000]' },
   { threshold: 14, description: 'A romance expanded your horizons. Gain +1 Edu. Are you still in love, or is it over? [EDU_PLUS1]' },
   { threshold: 13, description: 'Gain a powerful Contact in the organisation. What did you do to gain this contact? [CONTACT]' },
-  { threshold: 12, description: 'After an incident you are pushed into a backroom job. Gain Computer-1. [SKILL:Computer-1]' },
+  { threshold: 12, description: 'After an incident you are pushed into a backroom job. Gain Computer-1. [SKILL:Computer:1]' },
   { threshold: 11, description: 'Tragic love affair. Roll 1D6: 1-2 They died; 3-4 They Vanished; 5-6 They are still around.' },
   { threshold: 10, description: 'Make a good Friend in your own career or organization. [FRIEND]' },
   { threshold: 9, description: 'Conflict became a part of your life. Gain +1 Str. What was going on? [STR_PLUS1]' },
-  { threshold: 8, description: 'Fast dates and partying. Gain Carousing-1. [SKILL:Carousing-1]' },
+  { threshold: 8, description: 'Fast dates and partying. Gain Carousing-1. [SKILL:Carousing:1]' },
   { threshold: 7, description: 'An intense situation was survived with a colleague. Make a Friend. [FRIEND]' },
   { threshold: 6, description: 'Gain fame and recognition in your career for deserved actions. Gain +1 Soc. [SOC_PLUS1]' },
-  { threshold: 5, description: 'Uncover a dangerous secret about a person or organisation. Gain Bribery-1. [SKILL:Bribery-1]' },
+  { threshold: 5, description: 'Uncover a dangerous secret about a person or organisation. Gain Bribery-1. [SKILL:Bribery:1]' },
   { threshold: 4, description: 'Romance that continues today, or ended on a good note. Gain a Friend. [FRIEND]' },
   { threshold: 3, description: 'Gain a useful friend-of-a-friend Contact. [CONTACT]' },
   { threshold: 2, description: 'Betrayed by a close friend, now an Enemy. Gain a useful friend-of-a-friend Contact. [ENEMY][CONTACT]' }

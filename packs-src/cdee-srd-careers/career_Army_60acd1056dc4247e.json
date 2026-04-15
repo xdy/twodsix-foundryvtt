@@ -103,7 +103,19 @@
       },
       {
         "roll": 6,
-        "description": "Budget Cuts. [CHECK:Admin:8]. Success: [CONTACT:Commander]. Fail: [ENEMY:Government Official]."
+        "description": "Budget Cuts",
+        "checks": [
+          {
+            "skill": "Admin",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT:Commander]"
+        ],
+        "onFail": [
+          "[ENEMY:Government Official]"
+        ]
       },
       {
         "roll": 7,
@@ -111,7 +123,23 @@
       },
       {
         "roll": 8,
-        "description": "Police Action. [CHECK:DEX:8] or [CHECK:END:8]. Success: gain [CHOOSE_SKILL:Liaison,Recon,Leadership,Tactics]. Fail: [INJURY]."
+        "description": "Police Action",
+        "checks": [
+          {
+            "skill": "DEX",
+            "target": 8
+          },
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Liaison,Recon,Leadership,Tactics]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 9,
@@ -119,7 +147,19 @@
       },
       {
         "roll": 10,
-        "description": "Bug Hunt! [CHECK:Gun Combat:8]. Success: gain [CHOOSE_SKILL:Animals,Survival]. Fail: [INJURY]."
+        "description": "Bug Hunt!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Animals,Survival]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 11,

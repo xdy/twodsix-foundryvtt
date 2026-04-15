@@ -95,11 +95,47 @@
       },
       {
         "roll": 4,
-        "description": "Xenomorphs! [CHECK:Gun Combat:8] or [CHECK:Science:8]. Fail: [INJURY]. Success: [SKILL:Survival:1]."
+        "description": "Xenomorphs!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Science",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[SKILL:Survival:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 5,
-        "description": "Crime. Avoid: [ENEMY:Gang Leader]. Join: [CHECK:Admin:8] or [CHECK:Stealth:8] or [CHECK:Streetwise:8]. Success: [BENEFIT_ROLL]. Fail: [PRISON]."
+        "description": "Crime. Avoid: [ENEMY:Gang Leader]. Join:",
+        "checks": [
+          {
+            "skill": "Admin",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[PRISON]"
+        ]
       },
       {
         "roll": 6,
@@ -119,11 +155,47 @@
       },
       {
         "roll": 10,
-        "description": "Industrial Accident. [CHECK:Repair:8] or [CHECK:Science:8]. Success: [CONTACT]. Fail: lose one Benefit roll."
+        "description": "Industrial Accident",
+        "checks": [
+          {
+            "skill": "Repair",
+            "target": 8
+          },
+          {
+            "skill": "Science",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT]"
+        ],
+        "onFail": [
+          "[LOSE_BENEFIT_ROLL]"
+        ]
       },
       {
         "roll": 11,
-        "description": "Underground Politics. Turn them in: [BENEFIT_ROLL] and [ENEMY:Leader]. Join: [CHECK:Demolitions:8] or [CHECK:Stealth:8] or [CHECK:Streetwise:8]. Success: [CONTACT:Leader]. Fail: [PRISON]."
+        "description": "Underground Politics. Turn them in: [BENEFIT_ROLL] and [ENEMY:Leader]. Join:",
+        "checks": [
+          {
+            "skill": "Demolitions",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT:Leader]"
+        ],
+        "onFail": [
+          "[PRISON]"
+        ]
       },
       {
         "roll": 12,

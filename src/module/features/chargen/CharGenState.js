@@ -73,6 +73,8 @@ export function freshState() {
     hasBeenDrafted: false,
     previousCareers: [],
     qualFails: false,
+    retired: false,          // set when character retires (5+ terms or mandatory); used for cash-benefit DM
+    retireFromCareer: false, // set by crisis survival to force exit from current career term-loop
     medicalDebt: 0,
     pension: 0,
     cashBenefits: 0,
@@ -98,8 +100,24 @@ export function freshState() {
     // CDEE-specific state
     traits: [],           // Selected trait names/ids
     prisonTerms: 0,       // Prison terms served (don't count for benefits)
-    benefitDMs: [],       // Accumulated [{index, dm}] from events
+    benefitDMs: [],       // Accumulated DM values for muster-out rolls
+    extraBenefitRolls: 0, // Additional muster-out rolls from BENEFIT_ROLL events
   };
+}
+
+/**
+ * Adjust a characteristic value, clamped to [min, max].
+ * Default min=0 lets a value reach 0 so crisis detection still fires;
+ * callers that want to raise a char should pass max=15 (the PC hard cap).
+ * @param {Object} state - charState
+ * @param {string} key   - characteristic key e.g. 'str'
+ * @param {number} delta - positive or negative adjustment
+ * @param {Object} opts
+ * @param {number} [opts.min=0]  - floor (0 to allow crisis detection)
+ * @param {number} [opts.max=15] - ceiling (CE/CU hard cap is 15)
+ */
+export function adjustChar(state, key, delta, { min = 0, max = 15 } = {}) {
+  state.chars[key] = Math.min(max, Math.max(min, (state.chars[key] ?? 0) + delta));
 }
 
 /**

@@ -38,13 +38,13 @@ export const CDEE_PRISON_EVENTS = [
   { roll: 2, description: 'Sickness or Injury. Roll on the [INJURY] table.' },
   { roll: 3, description: 'Escape Attempt: you attempt a daring, foolhardy escape! [CHECK:Deception:10] or [CHECK:Stealth:10] or [CHECK:Admin:10]. Succeed: escape to Rogue. Fail: [INJURY] and another term in [PRISON].' },
   { roll: 4, description: 'Gang Recruitment: Agree: [CONTACT:Criminal]. Refuse: [CHECK:Melee Combat:8]. Succeed: [CONTACT:Law Enforcement]. Fail: [INJURY] and [CONTACT:Law Enforcement].' },
-  { roll: 5, description: 'Smuggling: [CHECK:Streetwise:8]. Succeed: [BENEFIT_ROLL]. Fail: lose one Benefit roll.' },
+  { roll: 5, description: 'Smuggling: [CHECK:Streetwise:8]. Succeed: [BENEFIT_ROLL]. Fail: [LOSE_BENEFIT_ROLL].' },
   { roll: 6, description: 'Forced Labor: Gain [SKILL:Athletics:1].' },
   { roll: 7, description: 'Cell Mates: Gain a [CONTACT].' },
   { roll: 8, description: 'Prison Riot! [CHECK:Melee Combat:8] or [CHECK:Stealth:8] or [CHECK:Liaison:8] to avoid [INJURY]. Either way, gain a level in the skill you rolled.' },
   { roll: 9, description: 'Study. Gain [EDU_PLUS1].' },
   { roll: 10, description: 'Assault a Guard: [CHECK:Melee Combat:8]. Succeed: [SKILL:Streetwise:1] and [CONTACT:Criminal]. Fail: [INJURY].' },
-  { threshold: 11, description: 'Experimentation. [CHECK:END:8]. Succeed: gain [TRAIT:Hard to Kill]. Fail: [END_MINUS1].' },
+  { roll: 11, description: 'Experimentation. [CHECK:END:8]. Succeed: gain [TRAIT:Hard to Kill]. Fail: [END_MINUS1].' },
   { roll: 12, description: 'Paroled for good behavior! Gain one career skill and resume career.' }
 ];
 

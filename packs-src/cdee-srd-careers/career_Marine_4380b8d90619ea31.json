@@ -91,11 +91,32 @@
       },
       {
         "roll": 3,
-        "description": "Special Forces. [CHECK:END:8]. Success: [CHOOSE_SKILL:Computer,Demolitions,Recon]. Fail: [BENEFIT_DM:-1]."
+        "description": "Special Forces",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Computer,Demolitions,Recon]"
+        ],
+        "onFail": [
+          "[BENEFIT_DM:-1]"
+        ]
       },
       {
         "roll": 4,
-        "description": "Advanced Training. [CHECK:EDU:8]. Success: [FREE_SKILL]."
+        "description": "Advanced Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[FREE_SKILL]"
+        ]
       },
       {
         "roll": 5,
@@ -103,7 +124,23 @@
       },
       {
         "roll": 6,
-        "description": "Counterterrorism. [CHECK:Gun Combat:8] or [CHECK:Stealth:8]. Success: [BENEFIT_DM:4]. Fail: [INJURY]."
+        "description": "Counterterrorism",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_DM:4]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 7,
@@ -111,7 +148,19 @@
       },
       {
         "roll": 8,
-        "description": "Bug Hunt! [CHECK:Gun Combat:8]. Success: [CHOOSE_SKILL:Animals,Survival]. Fail: [INJURY]."
+        "description": "Bug Hunt!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Animals,Survival]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 9,
@@ -119,7 +168,23 @@
       },
       {
         "roll": 10,
-        "description": "Boarding Action. [CHECK:Melee Combat:8] or [CHECK:Gun Combat:8]. Success: [CHOOSE_SKILL:Zero-G,Tactics,Leadership]. Fail: [INJURY]."
+        "description": "Boarding Action",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Zero-G,Tactics,Leadership]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
       },
       {
         "roll": 11,
