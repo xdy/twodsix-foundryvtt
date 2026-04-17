@@ -13,9 +13,11 @@
       <span>{{localize "TWODSIX.CharGen.App.Age"}} <strong>{{age}}</strong></span>
       <span>{{localize "TWODSIX.CharGen.App.Terms"}} <strong>{{totalTerms}}</strong></span>
       <span>{{localize "TWODSIX.CharGen.App.SkillsCount"}} <strong>{{skls}}</strong></span>
-      <button type="button" class="cg-rand-all cg-auto-btn" title="{{localize "TWODSIX.CharGen.App.RandomAll"}}">
-        <i class="fas fa-dice"></i> {{localize "TWODSIX.CharGen.App.RandomAll"}}
-      </button>
+      {{#if showChargenRandomRoll}}
+        <button type="button" class="cg-rand-all cg-auto-btn" title="{{localize "TWODSIX.CharGen.App.RandomAll"}}">
+          <i class="fas fa-dice"></i> {{localize "TWODSIX.CharGen.App.RandomAll"}}
+        </button>
+      {{/if}}
     </div>
   </div>
 
@@ -43,13 +45,17 @@
                     <span class="cg-point-buy-total">{{localize "TWODSIX.CharGen.App.Points"}}: {{../remainingPoints}}
                       / {{../pointBuyTotal}}</span>
                   {{/if}}
-                  <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; {{localize
-                    "TWODSIX.CharGen.App.Undo"}}</button>
-                  <button type="button" class="cg-auto-from-here cg-btn-icon"
-                          title="{{localize "TWODSIX.CharGen.App.AutoFromHere"}}"
-                          tabindex="-1">
-                    <i class="fas fa-dice"></i>
-                  </button>
+                  {{#if ../showChargenUndo}}
+                    <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; {{localize
+                      "TWODSIX.CharGen.App.Undo"}}</button>
+                  {{/if}}
+                  {{#if ../showChargenRandomRoll}}
+                    <button type="button" class="cg-auto-from-here cg-btn-icon"
+                            title="{{localize "TWODSIX.CharGen.App.AutoFromHere"}}"
+                            tabindex="-1">
+                      <i class="fas fa-dice"></i>
+                    </button>
+                  {{/if}}
                   <button type="button" class="cg-char-done cg-btn-action" tabindex="-1" disabled>{{localize
                     "TWODSIX.CharGen.App.CharDone"}}</button>
                 </div>
@@ -74,13 +80,17 @@
                 </button>
                 <input type="text" class="cg-name-input"
                        placeholder="{{localize "TWODSIX.CharGen.App.NamePlaceholder"}}">
-                <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; {{localize
-                  "TWODSIX.CharGen.App.Undo"}}</button>
-                <button type="button" class="cg-auto-from-here cg-btn-icon"
-                        title="{{localize "TWODSIX.CharGen.App.AutoFromHere"}}"
-                        tabindex="-1">
-                  <i class="fas fa-dice"></i>
-                </button>
+                {{#if ../showChargenUndo}}
+                  <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; {{localize
+                    "TWODSIX.CharGen.App.Undo"}}</button>
+                {{/if}}
+                {{#if ../showChargenRandomRoll}}
+                  <button type="button" class="cg-auto-from-here cg-btn-icon"
+                          title="{{localize "TWODSIX.CharGen.App.AutoFromHere"}}"
+                          tabindex="-1">
+                    <i class="fas fa-dice"></i>
+                  </button>
+                {{/if}}
                 <button type="button" class="cg-name-done cg-btn-action" tabindex="-1" disabled>{{localize
                   "TWODSIX.CharGen.App.CharDone"}}</button>
               {{else}}
@@ -92,22 +102,28 @@
           <tr class="cg-row-active">
             <td class="cg-td-label--active">{{label}}</td>
             <td class="cg-td-controls">
-              <button type="button" class="cg-rand cg-btn-icon" title="{{localize "TWODSIX.CharGen.App.Random"}}"
-                      tabindex="-1">
-                <i class="fas fa-dice-six"></i>
-              </button>
+              {{#if ../showChargenRandomRoll}}
+                <button type="button" class="cg-rand cg-btn-icon" title="{{localize "TWODSIX.CharGen.App.Random"}}"
+                        tabindex="-1">
+                  <i class="fas fa-dice-six"></i>
+                </button>
+              {{/if}}
               <select class="cg-select">
                 <option value="">{{localize "TWODSIX.CharGen.App.ChooseOption"}}</option>
                 {{#each options}}
                   <option value="{{value}}">{{label}}</option>
                 {{/each}}
               </select>
-              <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; {{localize
-                "TWODSIX.CharGen.App.Undo"}}</button>
-              <button type="button" class="cg-auto-from-here cg-btn-icon"
-                      title="{{localize "TWODSIX.CharGen.App.AutoFromHere"}}" tabindex="-1">
-                <i class="fas fa-dice"></i>
-              </button>
+              {{#if ../showChargenUndo}}
+                <button type="button" class="cg-undo cg-btn-action" tabindex="-1">&#8617; {{localize
+                  "TWODSIX.CharGen.App.Undo"}}</button>
+              {{/if}}
+              {{#if ../showChargenRandomRoll}}
+                <button type="button" class="cg-auto-from-here cg-btn-icon"
+                        title="{{localize "TWODSIX.CharGen.App.AutoFromHere"}}" tabindex="-1">
+                  <i class="fas fa-dice"></i>
+                </button>
+              {{/if}}
             </td>
           </tr>
         {{else}}
@@ -127,9 +143,11 @@
       "TWODSIX.CharGen.App.CharacterSummary"}}{{/if}}</div>
     <div class="cg-summary-body" style="height: {{summaryHeight}}px">{{textSummary}}</div>
     <div class="cg-footer">
-      <button type="button" class="cg-undo cg-create-btn">&#8617; {{localize "TWODSIX.CharGen.App.Undo"}}</button>
-      <button type="button" class="cg-create cg-create-btn">&#10003; {{localize "TWODSIX.CharGen.App.CreateActor"}}
-        : {{charName}}</button>
+      {{#if showChargenUndo}}
+        <button type="button" class="cg-undo cg-create-btn">&#8617; {{localize "TWODSIX.CharGen.App.Undo"}}</button>
+      {{/if}}
+      <button type="button" class="cg-create cg-create-btn">&#10003;
+        {{localize "TWODSIX.CharGen.App.CreateActor"}}: {{charName}}</button>
       <button type="button" class="cg-redo cg-create-btn">&#8634; {{localize "TWODSIX.CharGen.App.Redo"}}</button>
     </div>
   {{else}}

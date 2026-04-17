@@ -1,0 +1,23 @@
+{
+  "_id": "c2eb6d3d55be1ef4",
+  "name": "Surgeon",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character specializes in the advanced arts of healing. When performing Trauma Surgery, the surgeon rolls with Advantage.",
+    "prereq": "Healing",
+    "shortdescr": "Advantage on Trauma Surgery throws.",
+    "subtype": "",
+    "key": "surgeon",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!c2eb6d3d55be1ef4"
+}

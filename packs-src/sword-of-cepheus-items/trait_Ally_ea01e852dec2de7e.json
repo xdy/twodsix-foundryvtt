@@ -1,0 +1,23 @@
+{
+  "_id": "ea01e852dec2de7e",
+  "name": "Ally",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character has highly useful connections. Gain 1d3+1 Allies (see the Character Generation chapter).",
+    "prereq": "",
+    "shortdescr": "Gain 1d3+1 Allies.",
+    "subtype": "",
+    "key": "ally",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!ea01e852dec2de7e"
+}

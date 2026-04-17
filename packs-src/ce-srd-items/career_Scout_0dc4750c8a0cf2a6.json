@@ -1,0 +1,92 @@
+{
+  "_id": "0dc4750c8a0cf2a6",
+  "name": "Scout",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "int",
+      "target": 6
+    },
+    "surv": {
+      "char": "end",
+      "target": 7
+    },
+    "comm": null,
+    "adv": null,
+    "reenlist": 6,
+    "hasCommAdv": false,
+    "ranks": [
+      {
+        "title": null,
+        "skill": "Piloting",
+        "level": 1
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "Jack o' Trades",
+      "+1 Edu",
+      "Melee Combat"
+    ],
+    "service": [
+      "Comms",
+      "Electronics",
+      "Gun Combat",
+      "Gunnery",
+      "Recon",
+      "Piloting"
+    ],
+    "specialist": [
+      "Engineering",
+      "Gunnery",
+      "Demolitions",
+      "Navigation",
+      "Medicine",
+      "Vehicle"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Linguistics",
+      "Medicine",
+      "Navigation",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Edu",
+      "Weapon",
+      "Mid Passage",
+      "Explorers' Society",
+      "Courier Vessel",
+      null
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Member of an interplanetary exploratory service, surveying unfamiliar territory in space.",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!0dc4750c8a0cf2a6"
+}

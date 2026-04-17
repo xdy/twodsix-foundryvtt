@@ -10,6 +10,7 @@
       <span class="st-status-item"><i class="fas fa-globe"></i> {{currentWorldName}}
         {{#if currentWorldUwp}}({{currentWorldUwp}}){{/if}}</span>
       <span class="st-status-item"><i class="fas fa-calendar"></i> {{dateStr}}</span>
+      <span class="st-status-item"><i class="fas fa-book"></i> {{localize "TWODSIX.Trader.App.RulesetLabel"}}: {{rulesetLabel}}</span>
     </div>
     <div class="st-status-row">
       <span class="st-status-item"><i class="fas fa-coins"></i> Cr{{creditsStr}}</span>
@@ -66,7 +67,7 @@
 
   {{#if gameOver}}
     <div class="st-footer">
-      <div class="st-outcome">
+      <div class="st-outcome" data-testid="outcome">
         {{#if (eq outcome 'PAID_OFF')}}
           <i class="fas fa-trophy"></i> {{localize "TWODSIX.Trader.App.OutcomePaidOff"}}
         {{else}}
@@ -75,6 +76,37 @@
       </div>
     </div>
   {{else}}
+    {{#if undoInProgress}}
+      <div class="st-action-bar">
+        <span>{{localize "TWODSIX.Trader.App.Undoing"}}</span>
+      </div>
+    {{/if}}
+    {{#if showUndo}}
+      <div class="st-action-bar">
+        <button type="button" class="st-undo" data-testid="undo" {{#unless canUndo}}disabled{{/unless}} {{#if
+          undoInProgress}}disabled{{/if}}>{{localize
+          "TWODSIX.Trader.App.Undo"}}</button>
+        {{#if showRandomRoll}}
+          {{#unless rollTillBankruptcyActive}}
+            <button type="button" class="st-rand" data-testid="random-roll">{{localize "TWODSIX.Trader.App.RandomRoll"}}</button>
+            <button type="button" class="st-roll-till-bankrupt" data-testid="roll-till-bankrupt">{{localize
+              "TWODSIX.Trader.App.RollTillBankrupt"}}</button>
+          {{else}}
+            <button type="button" class="st-stop-roll-till" data-testid="stop-roll-till">{{localize "TWODSIX.Trader.App.StopRollingRandom"}}</button>
+          {{/unless}}
+        {{/if}}
+      </div>
+    {{else if showRandomRoll}}
+      <div class="st-action-bar">
+        {{#unless rollTillBankruptcyActive}}
+          <button type="button" class="st-rand" data-testid="random-roll">{{localize "TWODSIX.Trader.App.RandomRoll"}}</button>
+          <button type="button" class="st-roll-till-bankrupt" data-testid="roll-till-bankrupt">{{localize
+            "TWODSIX.Trader.App.RollTillBankrupt"}}</button>
+        {{else}}
+          <button type="button" class="st-stop-roll-till" data-testid="stop-roll-till">{{localize "TWODSIX.Trader.App.StopRollingRandom"}}</button>
+        {{/unless}}
+      </div>
+    {{/if}}
     <div class="st-footer-progress">
       {{#if (eq phase 'AT_WORLD')}}{{localize "TWODSIX.Trader.App.PhaseDocked" world=currentWorldName}}
       {{else if (eq phase 'IN_TRANSIT')}}{{localize "TWODSIX.Trader.App.PhaseInTransit"}}

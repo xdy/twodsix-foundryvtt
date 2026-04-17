@@ -1,0 +1,23 @@
+{
+  "_id": "b2621654c693e8b6",
+  "name": "Hardy",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is particularly hardy and resistant to injury. Reduce the damage of the first (and only the first) successful attack on the character in a given battle by 2d6.",
+    "prereq": "END 9+",
+    "shortdescr": "First attack damage in a battle reduced by 2d6.",
+    "subtype": "",
+    "key": "hardy",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!b2621654c693e8b6"
+}

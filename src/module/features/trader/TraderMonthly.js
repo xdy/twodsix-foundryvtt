@@ -3,39 +3,48 @@
  * Logic for monthly cost accrual and journey end checks.
  */
 
+import { forceSellAllSellableCargo, hasSellableCargoAtWorld } from './atWorld/atWorldTrade.js';
 import {
   BANKRUPTCY_LIMIT,
   BULK_LS_CAPACITY,
   BULK_LS_CARGO_ID,
-  LIFE_SUPPORT,
   MAINTENANCE_DAMAGE_THRESHOLD,
   MAINTENANCE_RATE,
-  MORTGAGE_DIVISOR,
   MORTGAGE_TOTAL_MONTHS
 } from './TraderConstants.js';
-import { addExpense, getMonthNumber, getTotalCrewSalary, OUTCOME } from './TraderState.js';
+import { getTraderRuleset } from './TraderRulesetRegistry.js';
+import {
+  addExpense,
+  addRevenue,
+  getCostPeriodNumber,
+  getCurrentWorld,
+  getTotalCrewSalary,
+  normalizeFreightState,
+  OUTCOME,
+  PHASE
+} from './TraderState.js';
 import { parseCurrencyToMcr } from './TraderUtils.js';
 
 export async function accrueMonthlyCosts(app) {
   const s = app.state;
-  const currentMonth = getMonthNumber(s.gameDate, s.milieu);
+  const currentMonth = getCostPeriodNumber(s);
 
   if (currentMonth <= s.lastPaidMonth) {
     return;
   }
 
-  // Pay for each month that's passed
+  // Pay for each cost period that has passed
   while (s.lastPaidMonth < currentMonth) {
     s.lastPaidMonth++;
 
     const crewCost = getTotalCrewSalary(s.crew);
-    const lifeSupportCost = s.ship.staterooms * LIFE_SUPPORT.stateroom + s.ship.lowBerths * LIFE_SUPPORT.lowBerth;
+    const ruleset = getTraderRuleset(s.ruleset);
+    const lifeSupportCost = ruleset.calculateLifeSupportCost(s);
     const shipCostMcr = Number(s.ship.shipCostMcr ?? parseCurrencyToMcr(s.ship.shipCost, true)) || 0;
     const maintenanceCost = Math.ceil(shipCostMcr * 1000000 * MAINTENANCE_RATE / 12);
-    const mortgageCost = Math.ceil(shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
+    const mortgageCost = Math.ceil(shipCostMcr * 1000000 / ruleset.getMortgageDivisor());
 
     // Life Support supplies logic
-    let actualLifeSupportCost = lifeSupportCost;
     const peopleCapacity = s.ship.staterooms * 2 + s.ship.lowBerths;
     // Tonnage needed can be fractional: 1 ton per 20 people per month
     const tonsNeeded = peopleCapacity / BULK_LS_CAPACITY;
@@ -49,34 +58,15 @@ export async function accrueMonthlyCosts(app) {
       (c.cargoId === BULK_LS_CARGO_ID.LUXURY || c.name === luxuryName) && c.tons >= tonsNeeded
     );
 
-    if (tonsNeeded > 0 && (normalSupplies || luxurySupplies)) {
-      const lsOptions = [
-        { value: 'credits', label: `Pay credits: Cr${lifeSupportCost.toLocaleString()}` },
-      ];
-      if (normalSupplies) {
-        lsOptions.push({ value: 'normal', label: `Use ${tonsNeeded}t of normal supplies (${normalSupplies.tons}t available)` });
-      }
-      if (luxurySupplies) {
-        lsOptions.push({ value: 'luxury', label: `Use ${tonsNeeded}t of luxury supplies (${luxurySupplies.tons}t available)` });
-      }
-
-      const lsChoice = await app._choose(
-        game.i18n.localize('TWODSIX.Trader.Prompts.LifeSupportOptions'),
-        lsOptions
-      );
-
-      if (lsChoice === 'normal' || lsChoice === 'luxury') {
-        const supplies = lsChoice === 'normal' ? normalSupplies : luxurySupplies;
-        supplies.tons = Math.max(0, supplies.tons - tonsNeeded);
-        if (supplies.tons < 0.001) {
-          s.cargo.splice(s.cargo.indexOf(supplies), 1);
-        }
-        actualLifeSupportCost = 0;
-        await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.UsedBulkSupplies", {
-          tons: tonsNeeded,
-          type: lsChoice
-        }));
-      }
+    const lifeSupportResolution = await ruleset.resolveLifeSupportPayment(app, s, {
+      lifeSupportCost,
+      tonsNeeded,
+      normalSupplies,
+      luxurySupplies,
+    });
+    let actualLifeSupportCost = Number(lifeSupportResolution?.actualLifeSupportCost);
+    if (!Number.isFinite(actualLifeSupportCost) || actualLifeSupportCost < 0) {
+      actualLifeSupportCost = lifeSupportCost;
     }
 
     // Offer to skip maintenance
@@ -144,8 +134,9 @@ export async function accrueMonthlyCosts(app) {
   }
 }
 
-export function checkGameEnd(app) {
+export async function checkGameEnd(app) {
   const s = app.state;
+  const ruleset = getTraderRuleset(s.ruleset);
 
   // Paid off: 480 mortgage payments made
   if (s.monthsPaid >= MORTGAGE_TOTAL_MONTHS) {
@@ -154,9 +145,69 @@ export function checkGameEnd(app) {
     return;
   }
 
-  // Bankrupt: negative credits and no cargo to sell
-  if (s.credits < - BANKRUPTCY_LIMIT && s.cargo.length === 0) {
-    s.gameOver = true;
-    s.outcome = OUTCOME.BANKRUPT;
+  const insolvent = s.credits < -BANKRUPTCY_LIMIT;
+  // Emergency safety nets should run only during insolvency handling.
+  if (insolvent) {
+    const insolvencyPolicy = ruleset.getInsolvencyPolicy(s);
+    const canTakeEmergencyActions = !insolvencyPolicy.requireDocked || s.phase === PHASE.AT_WORLD;
+
+    // Strict physical policy: freight can only be settled while docked.
+    // Never pay freight during IN_TRANSIT / ARRIVING.
+    if (insolvencyPolicy.forceFreightPayout && canTakeEmergencyActions) {
+      normalizeFreightState(s);
+      if (s.freight > 0) {
+        const freightLots = Array.isArray(s.freightLots) ? s.freightLots : [];
+        const freightRevenue = freightLots.length > 0
+          ? freightLots.reduce((sum, lot) => sum + (lot.tons * (lot.rate || ruleset.getFreightRate())), 0)
+          : s.freight * ruleset.getFreightRate();
+        addRevenue(s, freightRevenue);
+        s.freight = 0;
+        s.freightLots = [];
+        await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.ForcedFreightPayout', {
+          revenue: freightRevenue.toLocaleString(),
+          credits: s.credits.toLocaleString(),
+        }));
+      }
+    }
+
+    // Liquidate only while docked at a world; never in transit/arriving.
+    if (insolvencyPolicy.forceCargoLiquidation && canTakeEmergencyActions && s.credits < -BANKRUPTCY_LIMIT && s.cargo.length > 0) {
+      const world = getCurrentWorld(s);
+      if (world) {
+        await forceSellAllSellableCargo(app, world);
+      }
+    }
+  }
+
+  // Bankrupt only when docked: defer repossession checks until next port.
+  // At port, game ends once still insolvent and nothing sellable remains.
+  if (s.phase === PHASE.AT_WORLD && s.credits < -BANKRUPTCY_LIMIT) {
+    const world = getCurrentWorld(s);
+    const hasSellableCargo = world ? hasSellableCargoAtWorld(app, world) : false;
+    if (!hasSellableCargo) {
+      s.gameOver = true;
+      s.outcome = OUTCOME.BANKRUPT;
+      return;
+    }
+  }
+
+  // Runway warning only after bankruptcy checks and only once per paid month.
+  if (s.monthsPaid > 0 && s.lastRunwayWarningMonth !== s.monthsPaid) {
+    const crewCost = getTotalCrewSalary(s.crew);
+    const lifeSupportCost = ruleset.calculateLifeSupportCost(s);
+    const shipCostMcr = Number(s.ship.shipCostMcr ?? parseCurrencyToMcr(s.ship.shipCost, true)) || 0;
+    const maintenanceCost = Math.ceil(shipCostMcr * 1000000 * MAINTENANCE_RATE / 12);
+    const mortgageCost = Math.ceil(shipCostMcr * 1000000 / ruleset.getMortgageDivisor());
+    const nextMonthRecurring = crewCost + lifeSupportCost + maintenanceCost + mortgageCost;
+    const projectedNoIncomeCredits = s.credits - nextMonthRecurring;
+    if (projectedNoIncomeCredits < -BANKRUPTCY_LIMIT) {
+      const requiredProfit = Math.max(0, (-BANKRUPTCY_LIMIT) - projectedNoIncomeCredits);
+      await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.BankruptcyRunwayWarning', {
+        shortfall: requiredProfit.toLocaleString(),
+        projected: projectedNoIncomeCredits.toLocaleString(),
+        threshold: BANKRUPTCY_LIMIT.toLocaleString(),
+      }));
+      s.lastRunwayWarningMonth = s.monthsPaid;
+    }
   }
 }

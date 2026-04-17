@@ -46,6 +46,29 @@
         "ChooseOption": "— choose —",
         "NamePlaceholder": "Type a name or click dice..."
       },
+      "Resume": {
+        "Label": "Start new character or resume a saved session",
+        "NewSession": "New character generation session",
+        "Go": "Go"
+      },
+      "Session": {
+        "DefaultJournalName": "Character generation — {date}",
+        "LogPageName": "Session",
+        "LogIntro": "This journal entry stores an in-progress or completed character generation session.",
+        "SessionStarted": "Session started",
+        "SessionStartedDetail": "({date}) · Ruleset: {ruleset}",
+        "JournalRoll": "Dice roll: {value}",
+        "JournalRollWithQuestion": "{question}: {value}",
+        "JournalChoice": "Choice: {value}",
+        "JournalChoiceWithQuestion": "{question}: {value}",
+        "JournalCharacteristics": "Characteristics set: UPP {upp}",
+        "JournalCharacteristicsWithQuestion": "{question}: UPP {upp}",
+        "JournalUndo": "Undo: last choice was removed.",
+        "JournalNameQuestion": "Name",
+        "JournalDone": "Generation complete",
+        "JournalDoneDied": "Character died during generation",
+        "JournalNameComplete": "{name}: Character generation"
+      },
       "Chars": {
         "STR": "STR",
         "DEX": "DEX",
@@ -192,6 +215,9 @@
         "one": "term",
         "many": "terms"
       },
+      "EventReport": {
+        "AutoHandledSuffixWithItems": " AUTOMATICALLY HANDLED ({items})"
+      },
       "Warnings": {
         "sourceNotFound": "Chargen: source '{id}' not found — skipping",
         "rulesetMismatch": "Chargen: career '{name}' ruleset '{ruleset}' does not match requested ruleset '{requested}'"
@@ -263,6 +289,7 @@
         "CharacterCreated": "Character \"{name}\" created!",
         "PriorCrisisAutoFail": "Prior crisis — auto-fail. Entering Drifter.",
         "BackgroundSkills": "Background skills: {count}",
+        "VoluntarilyLeftCareer": "Voluntarily left {career}",
         "RetirementMandatory": "7+ total terms — mandatory retirement.",
         "Imprisoned": "Imprisoned +4 years.",
         "Natural12Continue": "Re-enlistment: natural 12, must continue.",
@@ -311,16 +338,140 @@
       "Output": {
         "MaterialBenefits": "Material Benefits",
         "MedicalDebt": "Medical Debt",
+        "ChargenNotes": "Chargen notes",
         "Enemy": "ENEMY",
+        "Ally": "ALLY",
         "Friend": "FRIEND",
         "Contact": "CONTACT"
       },
+      "SOC": {
+        "CurrencyAbbreviation": "GP",
+        "CurrencyFull": "Gold Pieces",
+        "Steps": {
+          "CharMethod": "SOC: characteristic generation method",
+          "CharMethodArray": "Standard array [10, 9, 8, 7, 6, 5]",
+          "CharMethodRoll": "Roll or enter 2D6 characteristics",
+          "CharMethodPointBuy": "Point-buy ({points} points)",
+          "ChooseBackground": "Choose SOC background",
+          "BackgroundSkillPick": "{background}: choose one background skill at level 1",
+          "ChooseTotalTerms": "SOC: choose total career terms",
+          "TermCountLabel": "{n} {termWord}",
+          "FirstTermServiceSkill": "First term: choose one Service skill at level 1",
+          "SkillChoicePrompt": "SOC term {term}: skill choice {current}/{total}",
+          "IncreaseCharPlus1": "Increase characteristic by +1",
+          "ChooseSkillFromTable": "Choose skill from {table}",
+          "CareerEventPrompt": "{career}: career event",
+          "SelectCareerEvent": "{career}: select career event",
+          "ChooseLifeEventTable": "Choose Life Event table",
+          "ChooseCriminalWorkCheck": "Choose criminal-work check"
+        },
+        "Options": {
+          "CareerEventRoll": "Roll 2D6 for career event",
+          "CareerEventSelect": "Select career event",
+          "CharacteristicPlus1": "Characteristic +1",
+          "MusterCash": "Cash",
+          "MusterMaterial": "Material benefit",
+          "MusterSkill": "Spend benefit on +1 skill level",
+          "SkillPackageNone": "None",
+          "TraitEnterLater": "Record trait later on the actor sheet"
+        },
+        "Logs": {
+          "BackgroundSkill": "Background ({background}): {skill}-1",
+          "ServiceSkillsLine": "Service skills: {skill}-1, others at 0.",
+          "GainedSkill": "Gained {name}-{level}.",
+          "CharPlus1": "{char} +1.",
+          "AgeNow": "Age now {age}.",
+          "AgingReduce": "Aging effect: reducing characteristics.",
+          "AgingCrisisDetail": "2D6={roll} vs 6+ → {outcome}",
+          "SurvivedCrisis": "Survived aging crisis; affected characteristics set to 1 and career ends.",
+          "DiedCrisis": "DIED during aging crisis.",
+          "MusterHeader": "— SOC muster out benefits (total rolls: {n}) —",
+          "MusterCashLine": "Cash (roll {roll}{dm}): {amount} {currency}",
+          "MusterMaterialLine": "Material (roll {roll}{dm}): {benefit}",
+          "BenefitSkillLine": "Benefit skill: {skill} +1.",
+          "BenefitSkillUnavailable": "Benefit skill: no eligible skills remain; skip.",
+          "SkillPackageLine": "Skill Package ({pack}): {skill}-1.",
+          "LifeEventLine": "Life Event ({table}, {roll}): {headline}",
+          "UnusualEventLine": "Unusual Event ({roll}): {headline}",
+          "EventLine": "Event ({roll}): {text}",
+          "EventShortLabel": "Event ({roll})",
+          "Trait": "Trait",
+          "TraitSelected": "Trait {name} selected"
+        },
+        "Muster": {
+          "BenefitPrompt": "SOC muster out benefit {current}/{total}",
+          "ChooseCareer": "Choose career for muster out roll",
+          "CareerOption": "{name} ({terms} terms)",
+          "BenefitSkillPrompt": "Benefit skill: choose a skill to raise by +1",
+          "SkillPackageTitle": "Select SOC Skill Package",
+          "SkillPackagePick": "{pack}: choose one skill at level 1"
+        },
+        "Traits": {
+          "SelectPrompt": "Select Trait {current}/{total}"
+        },
+        "SkillCap": {
+          "ReducePrompt": "SOC skill cap INT+EDU={cap}; reduce skill ({total}/{cap})"
+        },
+        "Aging": {
+          "LogLine": "{roll}{speciesDm}-{terms} terms = {result} (age {age})",
+          "SpeciesDmSuffix": "{dm}(species)"
+        },
+        "Tag": {
+          "CheckLabel": "{skill} {target}+",
+          "Ally": "Ally",
+          "AllyTyped": "Ally: {label}",
+          "EnemyTyped": "Enemy: {label}",
+          "LifeEvent": "Life Event",
+          "LifeEventTyped": "Life Event: {name}",
+          "UnusualEvent": "Unusual Event",
+          "Injury": "Injury",
+          "ExtraBenefitRoll": "Extra Benefit Roll",
+          "LoseBenefitRoll": "Lose Benefit Roll",
+          "LoseAllBenefitRolls": "Lost all accrued Benefit rolls",
+          "InjuryReducePhys2": "Injury: reduce physical characteristic by 2"
+        },
+        "Species": {
+          "ChooseMode": "SOC: species and career type",
+          "ModeHuman": "Human (background skill; standard trait count)",
+          "ModeSpeciesCareer": "Non-human — species career (no background; one fewer trait)",
+          "ModeHybrid": "Non-human — human career with species abilities (human career events; no background; one fewer trait)",
+          "ModeRevenant": "Revenant (human career and background; undead modifiers after mustering out)",
+          "ChooseSpecies": "Choose species",
+          "ChooseCareer": "Choose SOC career",
+          "LogHuman": "Species: Human.",
+          "LogRevenantIntro": "Species: Revenant (SRD — apply stat modifiers after mustering out).",
+          "LogRevenantMods": "Revenant: applied +2 END, −2 SOC (after mustering out).",
+          "LogSpeciesHeader": "Species: {name}",
+          "LogHybridTradeoff": "Hybrid: using human career skill tables, mustering out, and events (not species-specific events).",
+          "LogNoBackground": "No background skill (species is background): {species}.",
+          "LogCentaurDice": "Centaur: rolled +{dStr} STR and +{dEnd} END from 1d6 each.",
+          "LogAppliedMods": "Applied species characteristic modifiers.",
+          "NonHuman": "Non-human",
+          "NoCareersInPool": "No SOC careers found for this species mode. Rebuild packs or check compendium.",
+          "SpeciesCareerMissingFromPack": "SOC: species career \"{career}\" was not found in your loaded careers compendium. Rebuild packs or enable the SOC careers pack.",
+          "GnomeSpellTitle": "Gnome starting spell",
+          "GnomeSpellPrompt": "Gnome spell {current} of {max}",
+          "GnomeSpellOk": "OK",
+          "GnomeSpellsDeferred": "Gnome starting spells: record 3 spells on the actor sheet.",
+          "GnomeSpellsLine": "Gnome starting spells: {list}"
+        }
+      },
+      "Species": {
+        "Choose": "Choose a Species",
+        "Human": "Human",
+        "LogPicked": "Species: {name}.",
+        "LogPickedHuman": "Species: {name}."
+      },
       "Errors": {
         "ActorCreateFailed": "Failed to create character actor: {error}",
+        "ActorCreateUnsupportedRuleset": "Cannot create actor: character generation is not registered for ruleset \"{ruleset}\".",
+        "RulesetDowngraded": "Character generation ruleset \"{ruleset}\" is not available; session was switched to Cepheus Engine (CE).",
+        "RulesetNotSupported": "Character generation is not available for the selected ruleset \"{ruleset}\". Choose CE, CU, CDEE, or SOC in world settings, register support via the twodsix.registerCharGen hook.",
         "RunFailed": "Character generation error: {error}"
       },
       "WindowTitle": "{ruleset} Character Generation",
       "DefaultRulesetName": "Cepheus Engine",
+      "LogImprovedCheckSkill": "Improved {skill} (from the career event check).",
       "Summary": {
         "ActorLine": "{name}   {upp}   {ageLabel} {age}",
         "CareerMoneyLine": "{careers}   Cr{cash}{debt}",
@@ -337,12 +488,16 @@
         "SectionSkills": "Skills",
         "SectionTraits": "Traits",
         "CareerTableHeader": "Career\tAssignment\tTitle\tRank\tTerms",
-        "HistoryTableHeader": "Term\tHistory"
+        "HistoryTableHeader": "Term\tHistory",
+        "StructuredEventsHeading": "Career events (structured)"
       },
       "Tag": {
         "Contact": "Contact",
         "Friend": "Friend",
+        "Ally": "Ally",
         "Enemy": "Enemy",
+        "GainedSocial": "Gained {label}.",
+        "ImproveCheckSkill": "+1 to the skill you rolled for the check",
         "Unknown": "[{tag}]"
       },
       "Outcome": {
@@ -350,6 +505,68 @@
         "Fail": "Fail",
         "Survived": "Survived",
         "Died": "Died"
+      },
+      "Checks": {
+        "ChooseCheck": "Which check do you attempt?",
+        "RawCheckChoiceLabel": "{formula} vs {target}+ (no DM)",
+        "RawCheckSummary": "{formula}({total}) vs {target}+ — {outcome}",
+        "RawCheckLog": "Raw check",
+        "RawCheckDetail": "{formula}={total} vs {target}+ — {outcome}",
+        "InjuryWorstPrompt": "Two injury rolls were made. Which result applies? (Lower effect is worse; you may pick any.)",
+        "InjuryWorstOption": "Roll {index}: {desc}",
+        "InjuryWorstOfHuman": "Injury (worst of {n})",
+        "NamedTableMissing": "Chargen table “{id}” is not defined for this ruleset.",
+        "NamedTableLine": "{id} ({roll}): {headline}",
+        "PickCareerColumn": "Pick one skill from the career’s {column} list (no qualification check).",
+        "CareerColumnMissing": "Career “{career}” has no “{column}” skill list.",
+        "TableRollHuman": "Table roll: {id}",
+        "PickCareerColumnHuman": "Pick from {column} table"
+      },
+      "Branches": {
+        "DefaultPrompt": "Choose how this resolves:",
+        "HalflingArrestedPrompt": "Arrested: after losing a Benefit roll, what happens?",
+        "HalflingLawyer": "Hire representation (Ally: lawyer)",
+        "HalflingCharges": "Face charges (Enemy: authorities)",
+        "ThievesGuildPrompt": "The thieves’ guild makes an offer. What do you do?",
+        "ThievesGuildAccept": "Accept (lose Benefit roll, SOC +1)",
+        "ThievesGuildRefuse": "Refuse (Enemy: thieves’ guild)",
+        "CDEEEliteConspiracyPrompt": "A conspiracy against a dominant corporation: do you refuse the invitation or accept?",
+        "CDEEEliteConspiracyRefuse": "Refuse (gain an Enemy)",
+        "CDEEEliteConspiracyAccept": "Accept (then roll Deception 8+ or Liaison 8+)",
+        "CDEEEliteCorporateInfightingPrompt": "Corporate infighting: do you support the questionable executive, or attempt to discredit them?",
+        "CDEEEliteCorporateSupportExec": "Refuse to discredit — support the exec (gain a Contact and an Enemy)",
+        "CDEEEliteCorporateDiscredit": "Attempt to discredit (Liaison 8+ or SOC 8+)",
+        "CDEEScholarImmoralResearchPrompt": "Immoral research: how do you respond?",
+        "CDEEScholarImmoralAccept": "Accept (gain a level in Science, Deception, or Medicine)",
+        "CDEEScholarImmoralRefuse": "Refuse (no skill; walk away)",
+        "CDEEScholarImmoralWhistle": "Blow the whistle (the project lead becomes an Enemy)",
+        "CDEEScholarConfidentialPrompt": "Confidential project: keep silent or sell the results?",
+        "CDEEScholarConfidentialSilent": "Keep quiet (gain Science, Liaison, or Medicine)",
+        "CDEEScholarConfidentialSell": "Sell to a rival (extra Benefit roll; the organization becomes an Enemy)",
+        "CDEEScholarPlagiarismPrompt": "Plagiarism: exploit the opportunity or walk away?",
+        "CDEEScholarPlagiarismExploit": "Exploit (extra Benefit roll; the victim becomes an Enemy)",
+        "CDEEScholarPlagiarismAvoid": "Avoid (integrity only; no mechanical benefit)",
+        "CDEEScholarTalentGrabPrompt": "Talent grab: try to escape or go along?",
+        "CDEEScholarTalentGrabEscape": "Try to escape (DEX 8+ to avoid Injury)",
+        "CDEEScholarTalentGrabJumpShip": "Jump ship (extra Benefit roll; former employer becomes an Enemy)",
+        "CDEERogueRatPrompt": "Inform on a rival criminal: betray them or stay silent?",
+        "CDEERogueRatBetray": "Betray to authorities (extra Benefit roll; they become an Enemy)",
+        "CDEERogueRatSilent": "Stay silent (the rivalry ends; they become a Contact)",
+        "CDEERogueCaughtPrompt": "Caught by authorities: defend yourself in court or hire a lawyer?",
+        "CDEERogueCaughtDefend": "Defend yourself (Admin 8+ or Prison)",
+        "CDEERogueCaughtLawyer": "Hire a lawyer (lose one Benefit roll; gain Lawyer as a Contact)",
+        "CDEEColonistCrimePrompt": "A criminal gang: avoid the offer or join in?",
+        "CDEEColonistCrimeAvoid": "Avoid (the gang leader becomes an Enemy)",
+        "CDEEColonistCrimeJoin": "Join (Admin, Stealth, or Streetwise 8+ for an extra Benefit; fail = Prison)",
+        "CDEEColonistStrifePrompt": "Colonial strife: join the rebels or stay clear?",
+        "CDEEColonistStrifeStayAway": "Stay away (no skill; no risk)",
+        "CDEEColonistStrifeJoin": "Join rebels (Gun Combat or Demolitions; then Gun Combat 8+ or Injury)",
+        "CDEEColonistUndergroundPrompt": "Underground politics: turn them in or join?",
+        "CDEEColonistUndergroundTurnIn": "Turn them in (Benefit roll; escaped leader becomes an Enemy)",
+        "CDEEColonistUndergroundJoin": "Join (Demolitions, Stealth, or Streetwise 8+ for the leader as Contact; fail = Prison)",
+        "CDEEMerchantSmugglerPrompt": "Smuggling offer: accept the job or decline?",
+        "CDEEMerchantSmugglerRefuse": "Decline (no effect)",
+        "CDEEMerchantSmugglerAccept": "Accept (Admin or Streetwise 8+; success = +1 to that skill + extra Benefit; fail = Enemy)"
       },
       "ListOr": " or ",
       "TermCountOption": "{count} {termWord}",
@@ -392,6 +609,28 @@
         "ReportBenefitDM": "Benefit DM +{dm}",
         "ReportExtraBenefitRoll": "Extra benefit roll",
         "ReportLostBenefitRoll": "Lost benefit roll",
+        "BenefitGamble": {
+          "OptionalRiskPrompt": "Gambling ring: risk one muster-out benefit roll on this check?",
+          "OptionalRiskPromptPrison": "Prison smuggling: risk one muster-out benefit roll on Streetwise 8+?",
+          "RiskYes": "Yes — stake 1 benefit roll",
+          "RiskNo": "No — decline (no check; no benefit change)",
+          "NoRollsToRisk": "No benefit rolls available to stake; cannot gamble.",
+          "DeclinedOptional": "Declined to stake a benefit roll (no check).",
+          "ChooseRiskCount": "Risky business ({career}): how many benefit rolls do you stake? You have {prospective} total now (0–{max}).",
+          "StakeZero": "0 — stake nothing (still roll Admin or Streetwise for skill only)",
+          "StakeN": "{n} — stake {n} roll(s)",
+          "StakedCount": "Staked {n} benefit roll(s).",
+          "OptionalWon": "Won the gamble: +1 extra benefit roll.",
+          "OptionalLost": "Lost the gamble: −1 benefit roll.",
+          "MultiSuccess": "Success: gained {gained} extra benefit roll(s) (½ of {staked}, rounded up).",
+          "MultiFail": "Failed: lost {staked} staked benefit roll(s).",
+          "LogDeltaPlus": "+{n} extra muster roll(s)",
+          "LogDeltaMinus": "−{n} muster roll(s)",
+          "StateDeltaPlus": "Extra muster-out rolls: +{n}.",
+          "StateDeltaMinus": "Muster-out rolls: −{n}.",
+          "ReportPlus": "+{n} benefit roll(s)",
+          "ReportMinus": "−{n} benefit roll(s)"
+        },
         "ReportCrAmount": "Cr{amount}",
         "ReportFreeSkill": "Free skill: {name}-1",
         "ReportGainedTrait": "Gained trait: {name}",
@@ -709,6 +948,9 @@
         }
       },
       "Species": "Species",
+      "SpeciesEdit": "Edit species",
+      "SpeciesClear": "Clear species",
+      "SpeciesReadonly": "Species is controlled by the species item on this actor; edit or delete the species item to change this field.",
       "Tabs": {
         "Finances": "Finances",
         "Info": "Info",
@@ -1231,6 +1473,23 @@
         "DeleteTrait": "Delete Trait",
         "ShortDescAndEffects": "Short description and list of effects"
       },
+      "Species": {
+        "SpeciesName": "Species Name",
+        "AssignSpecies": "Assign Species",
+        "AlreadyHasSpecies": "Actor already has a species ({name}). Use only one species per actor.",
+        "Homeworld": "Homeworld",
+        "Ruleset": "Ruleset",
+        "AgingRollBonus": "Aging Roll Bonus",
+        "GrantedTraitNames": "Granted Trait Names",
+        "AbilityLines": "Ability Lines",
+        "AllowedCareers": "Allowed Careers",
+        "TraitNamePlaceholder": "Trait name",
+        "AbilityLinePlaceholder": "Ability description",
+        "CareerPlaceholder": "Career name",
+        "AddRow": "Add row",
+        "RemoveRow": "Remove row",
+        "Traits": "Traits"
+      },
       "Career": {
         "Career": "Career",
         "AssignCareer": "Assign Career",
@@ -1272,7 +1531,10 @@
         "SkillTable2Options": "Table 2 Choices",
         "CUMilitaryOptions": "Military Options",
         "HasCommissioned": "Has Officer Track?",
-        "OfficerCashMultiplier": "Officer Cash Multiplier"
+        "OfficerCashMultiplier": "Officer Cash Multiplier",
+        "ChargenExtensionsEditor": "Chargen extensions (JSON object)",
+        "ChargenExtensionsHint": "Optional structured data for third-party character generation. Must be a JSON object (not an array). Invalid JSON is not saved.",
+        "ChargenExtensionsInvalidJson": "Chargen extensions must be valid JSON representing an object."
       },
       "Tool": {
         "Bonus": "Bonus"
@@ -1998,6 +2260,7 @@
       },
       "TradeGoods": {
         "AdvancedElectronics": "Advanced Electronics",
+        "AdvancedRawMaterials": "Advanced Raw Materials",
         "AdvancedManufacturedGoods": "Advanced Manufactured Goods",
         "AgriculturalEquipment": "Agricultural Equipment",
         "AnimalProducts": "Animal Products",
@@ -2031,7 +2294,46 @@
         "IllicitPharmaceuticals": "Illicit Pharmaceuticals",
         "MedicalResearchMaterial": "Medical Research Material",
         "MilitaryEquipment": "Military Equipment",
-        "PersonalWeaponsAndArmor": "Personal Weapons & Armor"
+        "PersonalWeaponsAndArmor": "Personal Weapons & Armor",
+        "UnusualCargo": "Unusual Cargo"
+      },
+      "MGT2E": {
+        "CommonElectronics": "Common Electronics",
+        "CommonIndustrialGoods": "Common Industrial Goods",
+        "CommonManufacturedGoods": "Common Manufactured Goods",
+        "CommonRawMaterials": "Common Raw Materials",
+        "CommonConsumables": "Common Consumables",
+        "CommonOre": "Common Ore",
+        "AdvancedElectronics": "Advanced Electronics",
+        "AdvancedMachineParts": "Advanced Machine Parts",
+        "AdvancedManufacturedGoods": "Advanced Manufactured Goods",
+        "AdvancedWeapons": "Advanced Weapons",
+        "AdvancedVehicles": "Advanced Vehicles",
+        "Biochemicals": "Biochemicals",
+        "CrystalsAndGems": "Crystals & Gems",
+        "Cybernetics": "Cybernetics",
+        "LiveAnimals": "Live Animals",
+        "LuxuryConsumables": "Luxury Consumables",
+        "LuxuryGoods": "Luxury Goods",
+        "MedicalSupplies": "Medical Supplies",
+        "Petrochemicals": "Petrochemicals",
+        "Pharmaceuticals": "Pharmaceuticals",
+        "Polymers": "Polymers",
+        "PreciousMetals": "Precious Metals",
+        "Radioactives": "Radioactives",
+        "Robots": "Robots",
+        "Spices": "Spices",
+        "Textiles": "Textiles",
+        "UncommonOre": "Uncommon Ore",
+        "UncommonRawMaterials": "Uncommon Raw Materials",
+        "Wood": "Wood",
+        "Vehicles": "Vehicles",
+        "IllegalBiochemicals": "Illegal Biochemicals",
+        "IllegalCybernetics": "Illegal Cybernetics",
+        "IllegalDrugs": "Illegal Drugs",
+        "IllegalLuxuries": "Illegal Luxuries",
+        "IllegalWeapons": "Illegal Weapons",
+        "Exotics": "Exotic Cargo"
       },
       "AvailableGoods": "Available Goods (Buy Prices)",
       "AvailableGoodsNote": "YOU PAY suppliers these prices to buy goods from this world.",
@@ -2073,6 +2375,9 @@
       "ClipboardFailed": "Failed to copy to clipboard."
     },
     "Trader": {
+      "MGT2E": {
+        "BrokerInformerEvent": "The local broker is secretly an informer or agent (MGT2E p.242)."
+      },
       "CDEE": {
         "Problem": {
           "Title": "Problem with the deal",
@@ -2140,6 +2445,13 @@
           "Cursed": "Cursed"
         }
       },
+      "Rulesets": {
+        "CE": "Cepheus Engine",
+        "CEL": "Cepheus Light",
+        "CLU": "Cepheus Light Upgraded",
+        "CDEE": "Cepheus Deluxe Enhanced Edition",
+        "Other": "Other"
+      },
       "Search": {
         "SuppliersFound": "Suppliers found! ({details})",
         "BuyersFound": "Buyers found! ({details})",
@@ -2154,12 +2466,20 @@
           "online": "Online",
           "corporate": "Corporate",
           "private": "Private"
-        }
+        },
+        "MethodDuration1D6Days": "1D6 days",
+        "MethodDuration1D6Hours": "1D6 hours"
       },
       "Log": {
+        "TradeLoopErrorLabel": "Error",
+        "TradeLoopErrorDetail": "An error occurred: {message}. Please check the console (F12) for details.",
         "Searching": "Searching for {type}s via {method} method... {timeStr} pass.",
         "SearchFailed": "Failed to find any {type}s using the {method} method.",
+        "SearchMethodNotAvailable": "The {method} search method is not available at this world.",
         "NoBrokersAvailable": "No local brokers available at this {starport}-class starport.",
+        "BrokerAlreadyHired": "A local Skill-{skill} broker is already active. Dismiss them before hiring another.",
+        "ForcedCargoLiquidation": "Emergency liquidation: sold {lots} cargo lot(s) for net Cr{revenue}. Credits: Cr{credits}.",
+        "ForcedFreightPayout": "Emergency freight settlement: received Cr{revenue}. Credits: Cr{credits}.",
         "HiredBroker": "Hired local Skill-{skill} broker. They will take a {commission}% commission on all trades.",
         "HandlePersonally": "Decided to handle trades personally.",
         "NoAffordableGoods": "No affordable goods available from suppliers.",
@@ -2191,9 +2511,10 @@
         "DiscoveryJumpRange": "Discovery! Higher jump range ({jump}) revealed this list of potential destinations: {names}.",
         "InsufficientFuel": "Insufficient fuel! Need {need}t for jump, have {have}t.",
         "WarningNoFuelAtDest": "WARNING: {world} has no refueling facilities (Class {starport} starport, no gas giants). After this jump you'll have {remaining}t fuel remaining, but need {need}t for another jump. You may get stranded!",
-        "DepartedFor": "Departed {origin} for {destination}. Passengers: {high}H/{mid}M/{low}L. Freight: {freight}t. {mail}Expected delivery revenue: Cr{revenue}.",
+        "DepartedFor": "Departed {origin} for {destination}. Passengers: {high}H/{mid}M/{steerage}S/{low}L. Freight: {freight}t. {mail}Expected delivery revenue: Cr{revenue}.",
         "SmugglingSuccess": "Successfully smuggled illegal goods past Law Level {law} authorities.",
         "SmugglingFailure": "Smuggling detected! The Law Level {law} authorities have confiscated illegal goods and issued a fine.",
+        "SmugglingHarassment": "Illegal cargo attracted Law Level {law} police harassment. Resolve avoidance with Streetwise or Admin.",
         "CargoTag": "Cargo Tag: {tag}",
         "ProblemWithDeal": "Problem with the deal: {problem}",
         "CreditsCargoStatus": "Credits: Cr{credits}. Cargo: {used}/{capacity}t.",
@@ -2201,13 +2522,14 @@
         "MaintenanceSkippedDamage": "Maintenance skipped! Ship suffers {hits} hit(s) of system degradation (rolled {roll}+{skipped}={total}). Emergency repair cost: Cr{repairCost}. Credits: Cr{credits}.",
         "MaintenanceSkippedNoDamage": "Maintenance skipped this month (rolled {roll}+{skipped}={total}, need {threshold}+). No damage... yet.",
         "MonthlyCostsSummary": "Monthly costs (month {month}): Crew Cr{crew}, Life support Cr{ls}{lsExtra}, Maintenance Cr{maint}{maintExtra}, Mortgage Cr{mortgage}. Total: Cr{total}. Credits: Cr{credits}.",
+        "BankruptcyRunwayWarning": "Warning: at current burn rate, no-income projection next month is Cr{projected} (bankruptcy threshold Cr-{threshold}). Minimum profit needed next month to avoid bankruptcy: Cr{shortfall}.",
         "MonthlyCostsLSExtra": " (covered by bulk)",
         "MonthlyCostsMaintExtra": " (skipped)",
         "BlackMarketActivated": "Black market contacts activated. Illegal goods may now be available.",
         "BlackMarketDeactivated": "Black market contacts deactivated.",
         "NoPassengersAvailable": "No passengers are available at this port.",
         "BookedPassengers": "Booked {count} {type} passenger(s). Revenue on delivery: Cr{revenue}.",
-        "PassengerMarket": "Passenger market: {high} high, {mid} middle, {low} low available at {world}.",
+        "PassengerMarket": "Passenger market: {high} high, {mid} middle, {steerage} steerage, {low} low available at {world}.",
         "NoFreightAvailable": "No freight available ({offered} tons offered, {free} tons free cargo space).",
         "LoadedFreight": "Loaded {tons} tons of freight. Revenue on delivery: Cr{revenue}.",
         "MailContractSecured": "Mail contract secured! Cr{revenue} on delivery. (5 tons required).",
@@ -2219,9 +2541,17 @@
         "InsufficientCreditsBroker": "Insufficient credits to cover purchase price and broker commission (Total needed: Cr{total}).",
         "BoughtGoods": "Bought {qty}t {type} at Cr{price} per ton. Total cost: Cr{total}.",
         "NoBuyerFound": "No buyer found for {good}.",
+        "NoBuyerFoundAtPort": "No buyer found at this port",
+        "IllegalSalesBlocked": "Illegal sales blocked by police harassment",
         "NoCargoToSell": "No cargo to sell.",
         "SoldGoods": "Sold {qty}t {type} at Cr{price} per ton. Total: Cr{total}.",
+        "SellOptionSameWorld": " — Cr{price}/t (Full Refund/Cancel)",
+        "SellOptionWithProfitAfterCommission": " — Cr{price}/t [{profit}/t after commission]",
+        "TransactionCancelledRefunded": "Transaction cancelled (Refunded)",
+        "CancelledPurchase": "Cancelled purchase of {qty}t {type} at Cr{price}/t.",
+        "BrokerCommissionPaid": " Paid Cr{commission} broker commission.",
         "NoFreeCargoSpaceBulk": "No free cargo space for bulk supplies.",
+        "BulkLifeSupportDisabled": "Bulk life support is not available under the current ruleset.",
         "NoBulkSuppliesToSell": "No bulk life support supplies to sell.",
         "SoldBulkSupplies": "Sold {qty}t {type} at Cr{price} per ton. Total: Cr{total}.",
         "NetRevenueCredits": " Net Revenue: Cr{revenue}. {profitStr}. Credits: Cr{credits}.",
@@ -2288,12 +2618,16 @@
         "HireBroker": "Hire a local broker (Starport {starport} max skill: {maxSkill})",
         "FindTradeMethod": "Find {type}: choose search method",
         "AtWorld": "At {world} — Choose action",
-        "BuyBulkLS": "Select type of life support supplies to buy (Cr54,000/t normal, Cr72,000/t luxury)",
+        "BuyBulkLS": "Select type of life support supplies to buy",
         "SellBulkLS": "Select bulk supplies to sell (100% value)",
         "LifeSupportOptions": "Life Support Options",
+        "LifeSupportPayCredits": "Pay credits: Cr{cost}",
+        "LifeSupportUseNormalBulk": "Use {tons}t of normal supplies ({available}t available)",
+        "LifeSupportUseLuxuryBulk": "Use {tons}t of luxury supplies ({available}t available)",
         "UseBulkLS": "Use {tons}t of {type} supplies instead of paying Cr{cost}?",
         "HighPassengers": "High passengers to book",
         "MiddlePassengers": "Middle passengers to book",
+        "SteeragePassengers": "Steerage passengers to book",
         "LowPassengers": "Low passengers to book",
         "Freight": "Freight available: {available}t (free space: {freeSpace}t)",
         "BuyGoods": "Select goods to purchase",
@@ -2320,6 +2654,7 @@
         "BuyBulkLifeSupport": "Buy Bulk Life Support Supplies",
         "SellBulkLifeSupport": "Sell Bulk Life Support Supplies",
         "HireBroker": "Hire local Broker",
+        "HireIllegalBroker": "Hire local Illegal Broker",
         "HireBrokerSkill": "Skill-{skill} broker ({commission}% commission)",
         "HireBrokerNone": "Do not hire (use own skill)",
         "FindSupplier": "Find a Supplier",
@@ -2385,6 +2720,7 @@
         "PassengersDelta": "Passenger change",
         "High": "High",
         "Middle": "Middle",
+        "Steerage": "Steerage",
         "Low": "Low",
         "FuelDelta": "Fuel change (tons)",
         "Refined": "Refined",
@@ -2413,7 +2749,7 @@
         "AttemptingSingleWorldFetch": "Attempting to fetch the starting world directly...",
         "JourneyStarted": "Trading journey started at {world}!",
         "UsingCachedWorlds": "Using existing {subsector} subsector worlds (skipping download).",
-        "DefaultJournalName": "Trader: {subsector} — {date}",
+        "JournalName": "Trading: {world} #{serial} - start {date}",
         "TradeLogPageName": "Trade Log",
         "TradingJourneyHeader": "Trading Journey",
         "ShipLabel": "Ship",
@@ -2422,7 +2758,8 @@
         "LoadingNeighboringSubsectors": "Loading {count} neighboring subsectors in the background...",
         "NeighboringSubsectorsLoaded": "Neighboring subsectors loaded ({count} worlds added).",
         "SetupFailed": "Trading journey setup failed: {error}",
-        "GenericCrewMember": "a crew member"
+        "GenericCrewMember": "a crew member",
+        "TradeLoopError": "Trading journey encountered an error: {message}"
       },
       "App": {
         "Title": "Trader",
@@ -2430,6 +2767,11 @@
         "Unknown": "Unknown",
         "NoOptions": "(no options)",
         "ToCapacity": "To capacity",
+        "Undo": "Undo last choice",
+        "Undoing": "Undoing...",
+        "RandomRoll": "Random",
+        "RollTillBankrupt": "Roll randomly until bankruptcy",
+        "StopRollingRandom": "Stop rolling",
         "CharteredStatus": "Chartered: {cargo}t, {staterooms} SR, {lowBerths} LB",
         "CargoStatus": "Cargo: {used}/{capacity}t",
         "FuelStatusRefined": "Fuel: {current}/{capacity}t (R)",
@@ -2440,7 +2782,8 @@
         "OutcomeBankrupt": "Bankrupt. The ship has been repossessed.",
         "PhaseDocked": "Docked at {world}",
         "PhaseInTransit": "In jump space...",
-        "PhaseArriving": "Arriving at {destination}"
+        "PhaseArriving": "Arriving at {destination}",
+        "RulesetLabel": "Ruleset"
       },
       "CrewSetup": {
         "Hint": "Assign a crew member to each position. Use Open Character Generation to create new traveller actors first, then click Refresh to see them in the dropdowns. You can also drag an actor from the Actors sidebar onto a row.",
@@ -2678,9 +3021,16 @@
           "intro": "Item Settings",
           "name": "Item Settings"
         },
-        "customCareerSources": {
-          "name": "Custom Career Sources",
-          "hint": "Configure additional compendiums and world folders for career items, per ruleset."
+        "charGenSettings": {
+          "name": "Character Generation Settings",
+          "hint": "Session journal, undo and random-roll controls for character generation, and custom career compendiums and folders per ruleset.",
+          "intro": "Character generation"
+        },
+        "traderSettings": {
+          "hint": "Configure trader rules and custom trader rule presets.",
+          "intro": "Trader Rules",
+          "modified": "modified",
+          "name": "Trader Settings"
         },
         "rulesetSettings": {
           "hint": "Configure the ruleset settings.",
@@ -2947,6 +3297,148 @@
         "hint": "Overrides the default Foundry behavior of copying on drag-drop to transfering items (items removed from source actor) when drag-dropping equipment between actors.",
         "name": "Transfer rather than copy dropped equipment on actors"
       },
+      "traderEnableUndo": {
+        "hint": "Enable an undo button in the Trader app. Visibility is still restricted by the minimum role setting.",
+        "name": "Enable undo in Trader"
+      },
+      "traderUndoMinRole": {
+        "hint": "Minimum user role required to see and use Trader undo controls.",
+        "name": "Trader undo minimum role"
+      },
+      "traderEnableRandomRoll": {
+        "hint": "Enable a random-choice button in the Trader app. Visibility is still restricted by the minimum role setting.",
+        "name": "Enable random roll in Trader"
+      },
+      "traderRandomRollMinRole": {
+        "hint": "Minimum user role required to see and use Trader random controls.",
+        "name": "Trader random roll minimum role"
+      },
+      "traderRuleset": {
+        "hint": "Preset used by the Trader app. Choose a ruleset preset, a saved custom preset, or Other for a freely mixed configuration.",
+        "name": "Trader ruleset"
+      },
+      "traderRulesetSourceGetSearchMethods": {
+        "hint": "Ruleset source for available supplier/buyer search methods.",
+        "name": "Search methods source"
+      },
+      "traderRulesetSourceGetSearchSkillLevel": {
+        "hint": "Ruleset source for calculating search skill levels.",
+        "name": "Search skill level source"
+      },
+      "traderRulesetSourceGetSearchSkillLabel": {
+        "hint": "Ruleset source for search skill labels.",
+        "name": "Search skill label source"
+      },
+      "traderRulesetSourceGetSearchStarportBonus": {
+        "hint": "Ruleset source for starport search bonuses.",
+        "name": "Search starport bonus source"
+      },
+      "traderRulesetSourceGetSearchThreshold": {
+        "hint": "Ruleset source for the target number used by supplier/buyer search rolls.",
+        "name": "Search threshold source"
+      },
+      "traderRulesetSourceGetSearchPenaltyPolicy": {
+        "hint": "Ruleset source for the penalty policy applied to repeated search attempts.",
+        "name": "Search penalty policy source"
+      },
+      "traderRulesetSourceGetPriceRollSkill": {
+        "hint": "Ruleset source for the crew skill used in price negotiation rolls.",
+        "name": "Price roll skill source"
+      },
+      "traderRulesetSourceResolveEffectiveNegotiatorSkill": {
+        "hint": "Ruleset source for resolving the effective skill of the negotiator.",
+        "name": "Negotiator skill source"
+      },
+      "traderRulesetSourceNormalizeLocalBrokerResult": {
+        "hint": "Ruleset source for normalizing local broker hiring results.",
+        "name": "Local broker normalization source"
+      },
+      "traderRulesetSourceShouldResetLocalBrokerOnArrival": {
+        "hint": "Ruleset source for deciding whether the local broker resets on arrival at a new world.",
+        "name": "Broker reset policy source"
+      },
+      "traderRulesetSourceGetCommonGoodsDMs": {
+        "hint": "Ruleset source for common goods purchase and sale DMs.",
+        "name": "Common goods DMs source"
+      },
+      "traderRulesetSourceGetBrokerMaxSkill": {
+        "hint": "Ruleset source for the maximum local broker skill by starport.",
+        "name": "Broker max skill source"
+      },
+      "traderRulesetSourceGetBrokerCommission": {
+        "hint": "Ruleset source for broker commission by skill level.",
+        "name": "Broker commission source"
+      },
+      "traderRulesetSourceGetInsolvencyPolicy": {
+        "hint": "Ruleset source for determining what happens when the ship cannot pay its debts.",
+        "name": "Insolvency policy source"
+      },
+      "traderRulesetSourceResolveLifeSupportPayment": {
+        "hint": "Ruleset source for resolving life support cost payments.",
+        "name": "Life support payment source"
+      },
+      "traderRulesetSourceShouldCheckSmuggling": {
+        "hint": "Ruleset source for deciding whether smuggling checks are required.",
+        "name": "Smuggling check trigger source"
+      },
+      "traderRulesetSourceDoSmugglingCheck": {
+        "hint": "Ruleset source for resolving smuggling checks.",
+        "name": "Smuggling check resolution source"
+      },
+      "traderRulesetSourceShouldRollCargoTag": {
+        "hint": "Ruleset source for deciding whether newly purchased cargo gets a cargo tag.",
+        "name": "Cargo tag trigger source"
+      },
+      "traderRulesetSourceRollCargoTag": {
+        "hint": "Ruleset source for rolling and logging cargo tags.",
+        "name": "Cargo tag roll source"
+      },
+      "traderRulesetSourceShouldRollProblemWithDeal": {
+        "hint": "Ruleset source for deciding whether a deal problem roll is made.",
+        "name": "Deal problem trigger source"
+      },
+      "traderRulesetSourceRollProblemWithDeal": {
+        "hint": "Ruleset source for rolling and logging deal problems.",
+        "name": "Deal problem roll source"
+      },
+      "traderRulesetSourceGetRelevantSkillNames": {
+        "hint": "Ruleset source for the skills shown during trader crew setup.",
+        "name": "Relevant crew skills source"
+      },
+      "traderCustomPresets": {
+        "copy": "Copy",
+        "copyFrom": "Copy from",
+        "copyHint": "Copy a built-in or saved preset into the editable settings below. The active preset remains Other until saved or matched.",
+        "copyMissing": "The selected trader preset could not be found.",
+        "delete": "Delete",
+        "deleted": "Deleted trader preset \"{name}\".",
+        "header": "Custom Trader Presets",
+        "name": "Custom preset name",
+        "nameRequired": "Enter a name before saving a trader preset.",
+        "save": "Save",
+        "saved": "Saved trader preset \"{name}\".",
+        "saveHint": "Save the current source selections as a named preset stored on this world."
+      },
+      "chargenSessionJournal": {
+        "hint": "When enabled, character generation creates a journal entry in the \"Character generation journals\" folder for session logs and resume data. When disabled, no journal is created and progress is not saved to a journal.",
+        "name": "Character generation session journal"
+      },
+      "chargenEnableUndo": {
+        "hint": "Enable undo controls in the Character Generation app. Visibility is still restricted by the minimum role setting.",
+        "name": "Enable undo in character generation"
+      },
+      "chargenUndoMinRole": {
+        "hint": "Minimum user role required to see and use character generation undo controls.",
+        "name": "Character generation undo minimum role"
+      },
+      "chargenEnableRandomRoll": {
+        "hint": "Enable random-choice and auto-from-here controls in the Character Generation app. Visibility is still restricted by the minimum role setting.",
+        "name": "Enable random roll in character generation"
+      },
+      "chargenRandomRollMinRole": {
+        "hint": "Minimum user role required to see and use character generation random roll controls (including Random All).",
+        "name": "Character generation random roll minimum role"
+      },
       "allowDragDropOfListsActor" : {
         "hint": "Allow items in lists for Actors (i.e. Travellers, Animals, and Robots) to be moved by drag and drop rather than sorting alphabetically.",
         "name":"Allow Drag-Drop in Actor Lists"
@@ -3055,7 +3547,10 @@
         "token": "Token",
         "actor": "Actor",
         "dragDrop": "Drag & Drop",
-        "style": "Style"
+        "style": "Style",
+        "search": "Search",
+        "broker": "Broker",
+        "events": "Events"
       },
       "useMaxArmorValue": {
         "hint": "Use the maximum armor value to determine protection if more than one armor layer is being worn.  The default (false) adds all the armor values for each layer worn. WARNING: Requires all clients to reload when setting changed.",
@@ -3275,7 +3770,8 @@
       "computer": "computer",
       "unknown": "unknown",
       "ship_position": "position",
-      "psiAbility": "psionic ability"
+      "psiAbility": "psionic ability",
+      "species": "species"
     },
     "SheetTypes" : {
       "TravellerSheet": "Traveller Sheet",
@@ -3397,6 +3893,7 @@
       "weapon": "Weapon",
       "armor": "Armor",
       "skill": "Skill",
+      "species": "Species",
       "component": "Component",
       "computer": "Computer",
       "augment": "Augment",
@@ -3408,6 +3905,7 @@
       "ship_position": "Ship Position",
       "career": "Career",
       "careerPl": "Careers",
+      "speciesPl": "Species",
       "backpackPl": "Backpacks",
       "containerPl": "Containers",
       "consumablePl": "Consumables",
@@ -3481,4 +3979,3 @@
     }
   }
 }
-

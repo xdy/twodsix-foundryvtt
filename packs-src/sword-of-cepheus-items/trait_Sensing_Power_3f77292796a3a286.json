@@ -1,0 +1,23 @@
+{
+  "_id": "3f77292796a3a286",
+  "name": "Sensing Power",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character has a \"sixth sense\" related to magic. They immediately feel when someone casts a spell within 30m, even if the caster is concealed, and can tell if someone used magic within the location in the past 24 hours.",
+    "prereq": "Sorcery",
+    "shortdescr": "Detect spellcasting within 30m; sense past magic within 24h.",
+    "subtype": "",
+    "key": "sensing_power",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!3f77292796a3a286"
+}

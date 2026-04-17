@@ -1,0 +1,23 @@
+{
+  "_id": "2c4645fc4b55a3a9",
+  "name": "Combat Readiness",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is quick to act and react in combat. Gain a +1 modifier to all Initiative throws.",
+    "prereq": "Archery or Melee Combat",
+    "shortdescr": "+1 modifier to all Initiative throws.",
+    "subtype": "",
+    "key": "combat_readiness",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!2c4645fc4b55a3a9"
+}

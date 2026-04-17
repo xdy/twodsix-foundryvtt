@@ -1,0 +1,26 @@
+{
+  "_id": "72d0bc26e264f406",
+  "name": "Athletics",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "STR",
+    "type": "skills",
+    "description": "The ability to exert oneself physically. You may add the Athletics skill to appropriate physical characteristic rolls. This skill is never rolled unskilled.<ul><li>Climbing a rough cliff without tools: Athletics/STR 8+</li><li>Running a marathon: Athletics/END 10+</li><li>Propping up a boulder to prevent a cave collapse: Athletics/STR 12+</li><li>Walking a tightrope: Athletics/DEX 10+</li></ul>",
+    "shortdescr": "Physical exertion; add to appropriate physical characteristic rolls. Never unskilled.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!72d0bc26e264f406"
+}

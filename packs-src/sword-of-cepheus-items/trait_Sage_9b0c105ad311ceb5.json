@@ -1,0 +1,23 @@
+{
+  "_id": "9b0c105ad311ceb5",
+  "name": "Sage",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is an expert in a particular area of knowledge, such as astronomy, history, or mathematics. When making a throw related to that area of knowledge, the sage gains Advantage.",
+    "prereq": "EDU 9+",
+    "shortdescr": "Advantage on throws for a specific knowledge area.",
+    "subtype": "",
+    "key": "sage",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!9b0c105ad311ceb5"
+}

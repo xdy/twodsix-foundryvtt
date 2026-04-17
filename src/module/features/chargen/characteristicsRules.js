@@ -1,9 +1,6 @@
 // characteristicsRules.js — Ruleset-aware characteristic UI / roll rules for CharGenApp
-import {
-  CDEE_POINT_BUY_MAXIMUM_VALUE,
-  CDEE_POINT_BUY_MINIMUM_VALUE,
-  CDEE_POINTBUY_MAX_POINTS,
-} from './CDEECharGenConstants.js';
+import { getCharGenRegistryEntry } from './CharGenRegistry.js';
+import { DEFAULT_CHARACTERISTICS_UI_RULES } from './chargenUiDefaults.js';
 
 /**
  * @typedef {Object} CharacteristicsUiRules
@@ -15,18 +12,17 @@ import {
 
 /**
  * UI / roll rules for the characteristic row on the CharGen sheet.
+ * Resolved from {@link CharGenRegistry} so new rulesets do not branch here.
  * @param {string} ruleset - TWODSIX ruleset key (e.g. CE, CDEE, CU)
  * @param {string|null} creationMode - e.g. CDEE 'pointbuy' | 'array' | CU mode strings
  * @returns {CharacteristicsUiRules}
  */
 export function getCharacteristicsUiRules(ruleset, creationMode) {
-  const isCdeePointBuy = ruleset === 'CDEE' && creationMode === 'pointbuy';
-  return {
-    isPointBuy: isCdeePointBuy,
-    inputMin: isCdeePointBuy ? CDEE_POINT_BUY_MINIMUM_VALUE : 1,
-    inputMax: isCdeePointBuy ? CDEE_POINT_BUY_MAXIMUM_VALUE : 15,
-    pointBuyTargetTotal: isCdeePointBuy ? CDEE_POINTBUY_MAX_POINTS : null,
-  };
+  const entry = getCharGenRegistryEntry(ruleset);
+  if (entry?.resolveCharacteristicsUiRules) {
+    return entry.resolveCharacteristicsUiRules(creationMode ?? null);
+  }
+  return { ...DEFAULT_CHARACTERISTICS_UI_RULES };
 }
 
 /**
@@ -42,23 +38,15 @@ export async function rollRandomCharacteristics(chars, keys) {
 }
 
 /**
- * CDEE point-buy random fill: start at minimum, distribute remaining points randomly up to max.
+ * Point-buy random fill: delegated to the active ruleset registry entry when defined.
  * @param {Record<string, number>} chars - state.chars (mutated)
  * @param {string[]} keys
+ * @param {{ ruleset: string, creationMode?: string|null }} opts
  * @returns {Promise<void>}
  */
-export async function rollPointBuyCharacteristics(chars, keys) {
-  for (const k of keys) {
-    chars[k] = CDEE_POINT_BUY_MINIMUM_VALUE;
-  }
-  let remaining =
-    CDEE_POINTBUY_MAX_POINTS - CDEE_POINT_BUY_MINIMUM_VALUE * keys.length;
-  while (remaining > 0) {
-    const idx = (await new Roll(`1d${keys.length}`).roll()).total - 1;
-    const k = keys[idx];
-    if (chars[k] < CDEE_POINT_BUY_MAXIMUM_VALUE) {
-      chars[k]++;
-      remaining--;
-    }
+export async function rollPointBuyCharacteristics(chars, keys, { ruleset, creationMode = null } = {}) {
+  const entry = getCharGenRegistryEntry(ruleset);
+  if (entry?.rollPointBuyCharacteristics) {
+    await entry.rollPointBuyCharacteristics(chars, keys, creationMode);
   }
 }

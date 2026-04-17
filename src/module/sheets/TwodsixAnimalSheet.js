@@ -1,3 +1,4 @@
+import { enrichContextFields } from '../utils/sheetUtils';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
@@ -53,13 +54,7 @@ export class TwodsixAnimalSheet extends foundry.applications.api.HandlebarsAppli
    */
   async _prepareContext(options) {
     const context = await super._prepareContext(options);
-    if (game.settings.get('twodsix', 'useProseMirror')) {
-      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
-      context.richText = {
-        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
-        notes: await TextEditorImp.enrichHTML(context.system.notes, {secrets: this.document.isOwner})
-      };
-    }
+    await enrichContextFields(this.document, context, ['description', 'notes']);
 
     // Add relevant data from system settings
     Object.assign(context.settings, {

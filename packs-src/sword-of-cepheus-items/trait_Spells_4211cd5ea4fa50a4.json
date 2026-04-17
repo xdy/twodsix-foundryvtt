@@ -1,0 +1,23 @@
+{
+  "_id": "4211cd5ea4fa50a4",
+  "name": "Spells",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/spell-book.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character gains two additional spells, above and beyond those granted by their Sorcery skill itself. Add the spells to the character's Codex and Repertoire.",
+    "prereq": "Sorcery",
+    "shortdescr": "Gain two additional spells.",
+    "subtype": "",
+    "key": "spells",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!4211cd5ea4fa50a4"
+}

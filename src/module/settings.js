@@ -1,20 +1,21 @@
 import { TWODSIX } from './config';
 import TwodsixActor from './entities/TwodsixActor';
 import { CHARGEN_SUPPORTED_RULESETS } from './features/chargen/CharGenRegistry';
-import CustomCareerSourcesSettings from './settings/CustomCareerSourcesSettings';
+import CharGenSettings from './settings/CharGenSettings';
 import DebugSettings from './settings/DebugSettings';
 import DisplaySettings from './settings/DisplaySettings';
 import ItemSettings from './settings/ItemSettings';
 import RulesetSettings from './settings/RulesetSettings';
 import { booleanSetting, stringChoiceSetting, stringSetting } from './settings/settingsUtils';
-
+import TraderSettings from './settings/TraderSettings';
 
 export const registerSettings = function() {
   RulesetSettings.registerMenu(RulesetSettings.create(), "rulesetSettings", "gavel");
   ItemSettings.registerMenu(ItemSettings.create(), "itemSettings", "bars");
   DisplaySettings.registerMenu(DisplaySettings.create(), "displaySettings", "tv");
+  TraderSettings.registerMenu(TraderSettings.create(), "traderSettings", "scale-balanced");
   DebugSettings.registerMenu(DebugSettings.create(), "debugSettings", "flask");
-  CustomCareerSourcesSettings.registerMenu(CustomCareerSourcesSettings.create(), "customCareerSources", "user-plus");
+  CharGenSettings.registerMenu(CharGenSettings.create(), 'charGenSettings', 'user-plus');
 
   const rulesetOptions = Object.entries(TWODSIX.RULESETS).map(([id, ruleset]) => {
     return [id, ruleset["name"]];
@@ -39,7 +40,6 @@ export const registerSettings = function() {
   booleanSetting('transferDroppedItems', false, true);
   booleanSetting('autoAddUnarmed', false, true);
   booleanSetting('NoDuplicatesOnHotbar', false, true, "client");
-
   const customCareerSourcesDefault = {};
   for (const ruleset of CHARGEN_SUPPORTED_RULESETS) {
     customCareerSourcesDefault[ruleset] = { compendiums: [], folders: [] };
@@ -55,6 +55,10 @@ export const registerSettings = function() {
   //Store default partials for items and compendium tab - hidden
   stringSetting('defaultItemPartial', foundry.applications.sidebar.tabs.ItemDirectory._entryPartial, false, "client");
   stringSetting('defaultCompendiumPartial', foundry.applications.sidebar.apps.Compendium._entryPartial, false, "client");
+
+  // Journal folder IDs — stored to avoid hardcoded-name collisions across languages and modules.
+  stringSetting('chargenJournalFolderId', '', false, 'world');
+  stringSetting('traderJournalFolderId', '', false, 'world');
 
   function _onHideUntrainedSkillsChange(setting) {
     if (!setting) {

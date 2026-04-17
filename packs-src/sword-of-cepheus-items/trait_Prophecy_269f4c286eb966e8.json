@@ -1,0 +1,23 @@
+{
+  "_id": "269f4c286eb966e8",
+  "name": "Prophecy",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character dreams and feels the past and the future. The Referee should make these visions both cryptic and, occasionally, useful. Furthermore, once per week, the character can enter into a Prophetic Trance (as per the spell) without requiring a Sorcery throw or risking a mishap.",
+    "prereq": "Religion",
+    "shortdescr": "Cryptic visions; weekly Prophetic Trance without mishap.",
+    "subtype": "",
+    "key": "prophecy",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!269f4c286eb966e8"
+}

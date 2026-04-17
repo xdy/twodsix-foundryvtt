@@ -1,0 +1,248 @@
+{
+  "_id": "0231a2762afdf66b",
+  "name": "Scholar",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Govern",
+      "Craft",
+      "Healing",
+      "Liaison",
+      "Insight",
+      "Natural Phil."
+    ],
+    "specialist": [
+      "Alchemy",
+      "Govern",
+      "Healing",
+      "Natural Phil.",
+      "Carousing",
+      "Carousing"
+    ],
+    "advanced": [
+      "Religion",
+      "Alchemy",
+      "Artifice",
+      "Battle",
+      "Jack o’Trades",
+      "Natural Phil."
+    ],
+    "cash": [
+      10,
+      50,
+      50,
+      100,
+      100,
+      200
+    ],
+    "material": [
+      "+2 EDU",
+      "Ally",
+      "Instrument",
+      "Holding",
+      "+1 SOC",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Attacked. DEX 8+ or Injury.",
+        "checks": [
+          {
+            "skill": "DEX",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Valuable. INT 8+ for extra Benefit.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Danger. DEX or Insight 8+: gain Insight, Natural Philosophy, or Healing and Benefit; fail: Injury twice.",
+        "checks": [
+          {
+            "skill": "DEX",
+            "target": 8
+          },
+          {
+            "skill": "Insight",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Insight:1",
+              "SKILL:Natural Philosophy:1",
+              "SKILL:Healing:1"
+            ]
+          },
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY",
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Criminal Work. Decline for Enemy, or accept and test Insight, Healing, or Natural Philosophy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "ENEMY",
+              "SCHOLAR_CRIME"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Famous. Gain +1 SOC.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Cheating. Deception or Govern 8+ for +1 on two Benefits and Enemy; fail loses Benefit and Enemy.",
+        "checks": [
+          {
+            "skill": "Deception",
+            "target": 8
+          },
+          {
+            "skill": "Govern",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_DM:1",
+          "BENEFIT_DM:1",
+          "ENEMY"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL",
+          "ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Nobles. Gain +1 SOC or a noble Ally.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SOC_PLUS1",
+              "ALLY:Noble"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Magic. Gain Alchemy, Artifice, Religion, or Sorcery.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Alchemy:1",
+              "SKILL:Artifice:1",
+              "SKILL:Religion:1",
+              "SKILL:Sorcery:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 12,
+        "description": "Reward. Gain +1 SOC.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!0231a2762afdf66b"
+}

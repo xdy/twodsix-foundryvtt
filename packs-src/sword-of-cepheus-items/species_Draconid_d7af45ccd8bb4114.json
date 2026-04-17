@@ -1,0 +1,79 @@
+{
+  "_id": "d7af45ccd8bb4114",
+  "name": "Draconid",
+  "type": "species",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 STR, −2 DEX.",
+      "Advantage to resist fire; breath weapon (2d6 fire cone, 1/day); flight 5m/action with rest rules per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Draconid"
+    },
+    "shortdescr": "Dragon-human hybrids created by sorcerers, rare and terrifying on the battlefield.",
+    "description": "Born from the magical manipulation of dragon eggs by ambitious sorcerers searching for the perfect shock-troops and bodyguards, Draconids blend human and dragon blood and carry the soul of a dragon. The original Draconids escaped from their masters and bred amongst themselves and with lizardfolk. Now, they roam the world. Only a few Draconids still exist, despite their best attempts at reproduction. The Draconids inherited the humanoid shape and mortality of their human progenitors, but also the magnificent reptilian might of their dragon blood and soul. They are terrifying on the battlefield, and often make powerful sorcerers."
+  },
+  "effects": [
+    {
+      "_id": "d7af45ccd8bb4114ef",
+      "name": "Draconid Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.strength.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!d7af45ccd8bb4114.d7af45ccd8bb4114ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!d7af45ccd8bb4114"
+}

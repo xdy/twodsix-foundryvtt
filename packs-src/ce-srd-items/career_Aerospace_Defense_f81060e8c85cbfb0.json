@@ -1,0 +1,128 @@
+{
+  "_id": "f81060e8c85cbfb0",
+  "name": "Aerospace Defense",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "end",
+      "target": 5
+    },
+    "surv": {
+      "char": "dex",
+      "target": 5
+    },
+    "comm": {
+      "char": "edu",
+      "target": 6
+    },
+    "adv": {
+      "char": "edu",
+      "target": 7
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Airman",
+        "skill": "Aircraft",
+        "level": 1
+      },
+      {
+        "title": "Flight Officer",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Flight Lieutenant",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Squadron Leader",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Wing Commander",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Group Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Air Commodore",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "Athletics",
+      "Melee Combat",
+      "Vehicle"
+    ],
+    "service": [
+      "Electronics",
+      "Gun Combat",
+      "Gunnery",
+      "Melee Combat",
+      "Survival",
+      "Aircraft"
+    ],
+    "specialist": [
+      "Comms",
+      "Gravitics",
+      "Gun Combat",
+      "Gunnery",
+      "Recon",
+      "Piloting"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Jack o' Trades",
+      "Medicine",
+      "Leadership",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Edu",
+      "Weapon",
+      "Mid Passage",
+      "Weapon",
+      "High Passage",
+      "+1 Soc"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Member of a planetary armed military force operating within a world's atmosphere and close orbit. Also known as the \"planetary air force\".",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!f81060e8c85cbfb0"
+}

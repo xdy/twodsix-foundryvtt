@@ -120,18 +120,3 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
 function comparePositions(a, b) {
   return a.system.order - b.system.order;
 }
-
-/*function getActionIcon(actionType) {
-  switch (actionType) {
-    case TWODSIX.SHIP_ACTION_TYPE.skillRoll:
-      return `<i class="fa-solid fa-dice-d6"></i>`;
-    case TWODSIX.SHIP_ACTION_TYPE.chatMessage:
-      return `<i class="fa-solid fa-comment"></i>`;
-    case TWODSIX.SHIP_ACTION_TYPE.fireEnergyWeapons:
-      return `<i class="fa-solid fa-crosshairs"></i>`;
-    case TWODSIX.SHIP_ACTION_TYPE.executeMacro:
-      return `<i class="fa-solid fa-code"></i>`;
-    default:
-      return "";
-  }
-}*/

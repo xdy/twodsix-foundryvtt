@@ -1,0 +1,128 @@
+{
+  "_id": "0ca2d5ac9ad0041b",
+  "name": "Technician",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "edu",
+      "target": 6
+    },
+    "surv": {
+      "char": "dex",
+      "target": 4
+    },
+    "comm": {
+      "char": "edu",
+      "target": 5
+    },
+    "adv": {
+      "char": "int",
+      "target": 8
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Technician",
+        "skill": "Computer",
+        "level": 1
+      },
+      {
+        "title": "Team Lead",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Supervisor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Manager",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Director",
+        "skill": "Admin",
+        "level": 1
+      },
+      {
+        "title": "Vice-President",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Executive Officer",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "+1 Int",
+      "+1 Edu",
+      "Gun Combat"
+    ],
+    "service": [
+      "Admin",
+      "Computer",
+      "Mechanics",
+      "Medicine",
+      "Electronics",
+      "Sciences"
+    ],
+    "specialist": [
+      "Computer",
+      "Electronics",
+      "Gravitics",
+      "Linguistics",
+      "Engineering",
+      "Animals"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Jack o' Trades",
+      "Linguistics",
+      "Medicine",
+      "Sciences"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Edu",
+      "+1 Int",
+      "Mid Passage",
+      "Mid Passage",
+      "High Passage",
+      "+1 Soc"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Individual that is skilled in mechanical or industrial techniques or in a particular technical field.",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!0ca2d5ac9ad0041b"
+}

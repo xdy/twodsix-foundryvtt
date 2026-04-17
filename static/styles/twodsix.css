@@ -164,7 +164,7 @@ p span, p {
 }
 
 select {
-  height: 3ch;
+  min-height: 3ch;
   background-color: var(--s2d6-background-semi-opaque);
   color: var(--s2d6-light-color);
   font-family: inherit;
@@ -729,6 +729,10 @@ h2 {
   margin-bottom: 2ch;
 }
 
+.vehicle-tab {
+  height: 100%;
+}
+
 .vehicle-photo, .space-object-photo {
   text-align: center;
   z-index: 0;
@@ -745,8 +749,9 @@ h2 {
 .vehicle-content-container {
   display: grid;
   height: 100%;
+  height: -webkit-fill-available;
   grid-template-columns: 30% 36% 30%;
-  grid-template-rows: 81% 19%;
+  grid-template-rows: 5fr 1fr;
   gap: 2%;
   /*position: relative;*/
   grid-template-areas:
@@ -758,7 +763,7 @@ h2 {
   display: grid;
   height: 100%;
   grid-template-columns: 18em 18em;
-  grid-template-rows: 22em 8em;
+  grid-template-rows: 23em 8em;
   gap: 16px;
   position: relative;
   grid-template-areas:
@@ -835,7 +840,7 @@ h2 {
   /* Use module standard content background/text so traits list doesn't inherit header styling */
   background-color: var(--s2d6-background-opaque);
   color: var(--s2d6-default-color);
-  height: min-content;
+  /*height: min-content;*/
 }
 
 .vehicle-armor {
@@ -916,7 +921,7 @@ h2 {
 }
 
 .vehicle-inset {
-  margin: 1ch 2ch;
+  margin: 1ch 2ch 0 2ch;
 }
 
 .components-stored {
@@ -1171,6 +1176,20 @@ img.condition-icon {
   width: 7em;
   border: none;
 }
+.species-clear {
+  cursor: pointer;
+  color: var(--color-level-warning);
+}
+.species-edit {
+  cursor: pointer;
+  color: var(--color-text-hyperlink);
+}
+.species-clear.grey,
+.species-edit.grey {
+  opacity: 0.25;
+  cursor: default;
+  pointer-events: none;
+}
 
 .bgi-primaryLanguage input {
   width: 10em;
@@ -1210,6 +1229,7 @@ img.condition-icon {
   background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
+  height: 2ch;
 }
 
 .bgi-type select {
@@ -1217,6 +1237,7 @@ img.condition-icon {
   background-color: var(--s2d6-background-transparent);
   border: none;
   font-size: smaller;
+  height: 2ch;
 }
 
 .bgi-location select {
@@ -4702,6 +4723,7 @@ multi-select.actor-sheet {
 
 multi-select.actor-sheet select {
   width: 2ch;
+  height: 2ch;
 }
 
 /* file picker updates*/

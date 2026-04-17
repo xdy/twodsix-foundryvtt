@@ -1,0 +1,256 @@
+{
+  "_id": "460322217a7aa9f3",
+  "name": "The Insectoid",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Sneak",
+      "Liaison",
+      "Govern",
+      "Survival",
+      "Streetwise",
+      "Deception"
+    ],
+    "specialist": [
+      "Archery",
+      "Scout",
+      "Athletics",
+      "Melee",
+      "Insight",
+      "Watercraft"
+    ],
+    "advanced": [
+      "Carousing",
+      "Religion",
+      "Healing",
+      "Craft",
+      "Leadership",
+      "Riding"
+    ],
+    "cash": [
+      25,
+      50,
+      50,
+      100,
+      150,
+      200
+    ],
+    "material": [
+      "+1 DEX",
+      "Thieves’ Tools",
+      "Weapon",
+      "Ally",
+      "Ally",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Petty Theft. Streetwise 8+ or Sneak 8+; fail: lose Benefit; success: Benefit.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Sneak",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Traveler. INT 8+ or Sneak 8+; success: Survival, Streetwise, or Deception; fail: lose Benefit.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          },
+          {
+            "skill": "Sneak",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Survival:1",
+              "SKILL:Streetwise:1",
+              "SKILL:Deception:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Underworld Life. Criminal Ally or Streetwise.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "ALLY:Criminal",
+              "SKILL:Streetwise:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Trade Caravan. Govern 8+ or Liaison 8+; fail: nothing; success: Benefit and Ally.",
+        "checks": [
+          {
+            "skill": "Govern",
+            "target": 8
+          },
+          {
+            "skill": "Liaison",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL",
+          "ALLY:Far destination"
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "The Bug Life.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Contraband. Streetwise 8+; success: extra Benefit; fail: lose Benefit. Streetwise.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "always": [
+          "SKILL:Streetwise:1"
+        ],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Thieves’ Guild. Accept: lose Benefit, SOC+1; refuse: Enemy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "LOSE_BENEFIT_AND_SOC",
+              "ENEMY:Thieves’ guild"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 10,
+        "description": "Robbery. Streetwise 8+ or Archery 8+; fail: lose Benefit and Injury; success: Streetwise.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Archery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Streetwise:1"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL",
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Nest Mother. Nest mother (Ally)",
+        "checks": [],
+        "always": [
+          "[ALLY:Nest mother]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Achievement.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!460322217a7aa9f3"
+}

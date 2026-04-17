@@ -1,0 +1,23 @@
+{
+  "_id": "f7f52bb913dbc135",
+  "name": "Beast Friendship",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is well-versed in the natural world. The character gains Advantage when using the Animals or Natural Philosophy skill to identify flora or fauna. Furthermore, the character may take animals as loyal \"retainers\" with a morale modifier of +2.",
+    "prereq": "Animals",
+    "shortdescr": "Advantage on Animals/Natural Philosophy ID, animal retainer morale +2.",
+    "subtype": "",
+    "key": "beast_friendship",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!f7f52bb913dbc135"
+}

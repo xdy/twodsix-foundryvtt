@@ -1,12 +1,5 @@
 <form class="st-setup-form" autocomplete="off">
   <div class="form-group">
-    <label>{{localize 'TWODSIX.Trader.Setup.JournalName'}}</label>
-    <input type="text" name="journalName"
-           value="{{#if journalName}}{{journalName}}{{else}}{{defaultJournalName}}{{/if}}"/>
-    <p class="hint">{{localize 'TWODSIX.Trader.Setup.JournalNameHint'}}</p>
-  </div>
-
-  <div class="form-group">
     <label>{{localize 'TWODSIX.Trader.Setup.Ship'}}</label>
     <select name="shipActorId">
       <option value="" {{#unless shipActorId}}selected{{/unless}}>— {{localize 'TWODSIX.Trader.Setup.DefaultShip'}}—
@@ -22,7 +15,7 @@
     <label>{{localize 'TWODSIX.Trader.Setup.Ruleset'}}</label>
     <select name="ruleset">
       {{#each supportedRulesets as |r|}}
-        <option value="{{r.key}}" {{#if r.selected}}selected{{/if}}>{{r.key}}</option>
+        <option value="{{r.key}}" {{#if r.selected}}selected{{/if}}>{{r.label}}</option>
       {{/each}}
     </select>
   </div>
@@ -42,7 +35,8 @@
     <label>{{localize 'TWODSIX.Trader.LocalSetup.StartingWorld'}}</label>
     <select name="startWorldId" {{#unless worlds.length}}disabled{{/unless}}>
       {{#each worlds as |w|}}
-        <option value="{{w.id}}" {{#if w.selected}}selected{{/if}}>{{w.name}} ({{w.system.coordinates}}) — {{w.system.uwp}} [{{w.system.tradeCodes}}]
+        <option value="{{w.id}}" {{#if w.selected}}selected{{/if}}>{{w.name}} ({{w.system.coordinates}})
+          — {{w.system.uwp}} [{{w.system.tradeCodes}}]
         </option>
       {{else}}
         <option value="">{{localize 'TWODSIX.Trader.LocalSetup.NoWorldsFoundShort'}}</option>

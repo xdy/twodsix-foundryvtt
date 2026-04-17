@@ -94,6 +94,17 @@
   flex-shrink: 0;
 }
 
+.st-action-bar {
+  display: flex;
+  gap: 8px;
+  padding: 4px 8px 0;
+  flex-shrink: 0;
+}
+
+.st-action-bar button {
+  width: auto;
+}
+
 .st-outcome {
   font-size: 1.2em;
   font-weight: bold;

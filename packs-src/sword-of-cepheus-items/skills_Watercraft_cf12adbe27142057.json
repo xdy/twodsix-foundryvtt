@@ -1,0 +1,26 @@
+{
+  "_id": "cf12adbe27142057",
+  "name": "Watercraft",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/watercraft.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Controlling and using boats and ships, including navigation.<ul><li>Plotting a faster course to shave time off a long voyage: Watercraft/EDU 10+</li><li>Maintaining a vessel to keep it seaworthy: Watercraft/INT 8+</li><li>Predicting a coming storm: Watercraft/EDU 12+</li><li>Navigating rapids, shoals, or other dangerous waters: Watercraft/DEX 10+</li></ul>",
+    "shortdescr": "Controlling boats and ships, navigation, and seamanship.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!cf12adbe27142057"
+}

@@ -1,0 +1,92 @@
+{
+  "_id": "c55a46887562b76d",
+  "name": "Belter",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "int",
+      "target": 4
+    },
+    "surv": {
+      "char": "dex",
+      "target": 7
+    },
+    "comm": null,
+    "adv": null,
+    "reenlist": 5,
+    "hasCommAdv": false,
+    "ranks": [
+      {
+        "title": null,
+        "skill": "Zero-G",
+        "level": 1
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "Zero-G",
+      "Melee Combat",
+      "Gambling"
+    ],
+    "service": [
+      "Comms",
+      "Demolitions",
+      "Gun Combat",
+      "Gunnery",
+      "Prospecting",
+      "Piloting"
+    ],
+    "specialist": [
+      "Zero-G",
+      "Computer",
+      "Electronics",
+      "Prospecting",
+      "Sciences",
+      "Vehicle"
+    ],
+    "advanced": [
+      "Advocate",
+      "Engineering",
+      "Medicine",
+      "Navigation",
+      "Comms",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Int",
+      "Weapon",
+      "Mid Passage",
+      "1D6 Ship Shares",
+      "High Passage",
+      null
+    ],
+    "cash": [
+      1000,
+      5000,
+      5000,
+      5000,
+      10000,
+      20000,
+      50000
+    ],
+    "description": "Individual that explores asteroid belts in search of mineral deposits and salvageable material for profit.",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!c55a46887562b76d"
+}

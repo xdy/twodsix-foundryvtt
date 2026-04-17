@@ -1,0 +1,23 @@
+{
+  "_id": "4940745635ce17ee",
+  "name": "Runner",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character walks and runs very quickly. The character may add an extra d6 meters per combat action spent moving. The random die roll for movement rate is meant to represent the fact that the terrain may not be easy to traverse.",
+    "prereq": "DEX 9+",
+    "shortdescr": "+1d6m per move action.",
+    "subtype": "",
+    "key": "runner",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!4940745635ce17ee"
+}

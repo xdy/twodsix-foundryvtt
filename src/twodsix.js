@@ -8,7 +8,6 @@
  */
 
 import TwodsixCombatTracker from './module/applications/sidebar/TwodsixCombatTracker';
-
 import { COMPONENT_SUBTYPES, CONSUMABLE_SUBTYPES, TWODSIX } from './module/config';
 import { AnimalData } from './module/data/actors/animalData.js';
 import { RobotData } from './module/data/actors/robotData.js';
@@ -26,6 +25,7 @@ import { JunkStorageData } from './module/data/items/junkStorageData.js';
 import { PsiAbilityData } from './module/data/items/psiAbilityData.js';
 import { ShipPositionData } from './module/data/items/shipPositionData.js';
 import { SkillData } from './module/data/items/skillData.js';
+import { SpeciesData } from './module/data/items/speciesData.js';
 import { SpellData } from './module/data/items/spellData.js';
 import { TraitData } from './module/data/items/traitData.js';
 import { WeaponData } from './module/data/items/weaponData.js';
@@ -53,6 +53,7 @@ import { JunkItem } from './module/entities/items/JunkItem';
 import { PsiAbilityItem } from './module/entities/items/PsiAbilityItem';
 import { ShipPositionItem } from './module/entities/items/ShipPositionItem';
 import { SkillItem } from './module/entities/items/SkillItem';
+import { SpeciesItem } from './module/entities/items/SpeciesItem';
 import { SpellItem } from './module/entities/items/SpellItem';
 import { StorageItem } from './module/entities/items/StorageItem';
 import { ToolItem } from './module/entities/items/ToolItem';
@@ -65,6 +66,18 @@ import TwodsixCombat from './module/entities/TwodsixCombat';
 import TwodsixCombatant from './module/entities/TwodsixCombatant';
 import { TwodsixGamePause } from './module/entities/TwodsixGamePause';
 import TwodsixItem from './module/entities/TwodsixItem';
+import { BaseCharGenLogic } from './module/features/chargen/BaseCharGenLogic.js';
+import { CE_INJURY_DESC } from './module/features/chargen/rulesets/ce/CECharGenConstants.js';
+import { initializeCharGenRegistry } from './module/features/chargen/CharGenRegistry.js';
+import { CHARGEN_DIED, CharGenConstants, getChargenOverlayBucket } from './module/features/chargen/CharGenState.js';
+import {
+  localizedPhysicalOpts,
+  optionsFromCareerNames,
+  optionsFromStrings,
+  promptContinueInCareer,
+} from './module/features/chargen/CharGenUtils.js';
+import { BaseTraderRuleset, SEARCH_METHOD } from './module/features/trader/BaseTraderRuleset.js';
+import { initializeTraderRulesetRegistry } from './module/features/trader/TraderRulesetRegistry.js';
 import registerHandlebarsHelpers from './module/handlebars';
 import { registerSettings, switchCss } from './module/settings';
 import './module/migration';
@@ -72,6 +85,7 @@ import { CareerItemSheet } from './module/sheets/CareerItemSheet';
 import { ComponentItemSheet } from './module/sheets/ComponentItemSheet';
 import { ConsumableItemSheet } from './module/sheets/ConsumableItemSheet';
 import { SkillItemSheet } from './module/sheets/SkillItemSheet';
+import { SpeciesItemSheet } from './module/sheets/SpeciesItemSheet';
 import { TwodsixActiveEffectConfig } from './module/sheets/TwodsixActiveEffectConfig';
 import { TwodsixAnimalSheet } from './module/sheets/TwodsixAnimalSheet';
 import { TwodsixBattleSheet } from './module/sheets/TwodsixBattleSheet';
@@ -86,9 +100,11 @@ import { TwodsixWorldSheet } from './module/sheets/TwodsixWorldSheet';
 import { WeaponItemSheet } from './module/sheets/WeaponItemSheet';
 import { addCustomEnrichers } from './module/utils/enrichers';
 import { rollItemMacro } from './module/utils/rollItemMacro';
+import { calcModFor } from './module/utils/sheetUtils.js';
 import { TwodsixDiceRoll } from './module/utils/TwodsixDiceRoll';
 import { TwodsixRollSettings } from './module/utils/TwodsixRollSettings';
 import { TwodsixTokenRuler } from './module/utils/TwodsixTokenRuler';
+import { addSign } from './module/utils/utils.js';
 //import { addChatMessageContextOptions } from "./module/hooks/addChatContext";
 
 Hooks.once('init', async function () {
@@ -114,7 +130,28 @@ Hooks.once('init', async function () {
     TwodsixActiveEffect,
     rollItemMacro,
     TwodsixDiceRoll,
-    TwodsixRollSettings
+    TwodsixRollSettings,
+    compat: {
+      chargen: {
+        BaseCharGenLogic,
+        CHARGEN_DIED,
+        CharGenConstants,
+        CE_INJURY_DESC,
+        getChargenOverlayBucket,
+        localizedPhysicalOpts,
+        optionsFromCareerNames,
+        optionsFromStrings,
+        promptContinueInCareer,
+      },
+      trader: {
+        BaseTraderRuleset,
+        SEARCH_METHOD,
+      },
+      utils: {
+        calcModFor,
+        addSign,
+      },
+    },
   };
   // Add custom constants for configuration.
   CONFIG.TWODSIX = TWODSIX;
@@ -200,6 +237,7 @@ Hooks.once('init', async function () {
     "psiAbility": PsiAbilityItem,
     "ship_position": ShipPositionItem,
     "skills": SkillItem,
+    "species": SpeciesItem,
     "spell": SpellItem,
     "storage": StorageItem,
     "tool": ToolItem,
@@ -238,6 +276,7 @@ Hooks.once('init', async function () {
     "psiAbility": PsiAbilityData,
     "ship_position": ShipPositionData,
     "skills": SkillData,
+    "species": SpeciesData,
     "spell": SpellData,
     "storage": JunkStorageData,
     "tool": GearData,
@@ -249,7 +288,7 @@ Hooks.once('init', async function () {
   foundry.documents.collections.Items.unregisterSheet("core", foundry.applications.sheets.ItemSheetV2);
   //Should unregister untill appv1 goes away (foundry 16 I think?)
   foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
-  const specializedItemTypes = ['weapon', 'component', 'consumable', 'skills', 'career', 'ship_position'];
+  const specializedItemTypes = ['weapon', 'component', 'consumable', 'skills', 'career', 'species', 'ship_position'];
   const baseItemTypes = Object.keys(CONFIG.Item.dataModels).filter(t => !specializedItemTypes.includes(t));
 
   const itemSheetDefinitions = [
@@ -258,6 +297,7 @@ Hooks.once('init', async function () {
     { class: ConsumableItemSheet, types: ["consumable"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: SkillItemSheet, types: ["skills"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: CareerItemSheet, types: ["career"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
+    { class: SpeciesItemSheet, types: ["species"], label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: TwodsixItemSheet, types: baseItemTypes, label: "TWODSIX.SheetTypes.ItemSheet", makeDefault: true },
     { class: TwodsixShipPositionSheet, types: ["ship_position"], label: "TWODSIX.SheetTypes.ShipPositionSheet", makeDefault: true },
   ];
@@ -280,6 +320,9 @@ Hooks.once('init', async function () {
   CONFIG.Combatant.dataModels = TwodsixCombatantData;
 
   registerHandlebarsHelpers();
+
+  initializeCharGenRegistry();
+  initializeTraderRulesetRegistry();
 
   registerSettings();
 

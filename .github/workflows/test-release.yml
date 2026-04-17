@@ -6,15 +6,18 @@ on:
   push:
     branches: [ master]
 
+permissions:
+  contents: read
+
 #TODO Parse out these, for now they're hardcoded.
 env:
   package_type: system
-  node_version: 22
+  node_version: 24
 
 jobs:
   test:
     # Run tests on pull requests
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'xdy/twodsix-foundryvtt')
     runs-on: ubuntu-latest
 
     steps:
@@ -24,14 +27,14 @@ jobs:
           submodules: 'true'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5
         with:
           run_install: false
 
       - name: Install Node.js
         uses: actions/setup-node@v6
         with:
-          node-version:  22
+          node-version:  24
           cache: 'pnpm'
 
       - name: Install
@@ -45,20 +48,24 @@ jobs:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
     runs-on: ubuntu-latest
     ## Waits for test jobs for each Node.js version to complete
-    #needs: [test]
+    needs: [test]
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           submodules: 'true'
 
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5
         name: Install pnpm
         with:
           run_install: false
 
       - name: Install Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: 22
           cache: 'pnpm'
@@ -77,38 +84,38 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm dlx semantic-release
+        run: pnpm exec semantic-release
 
       - name: Send Webhook Notification
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-        run: bash src/scripts/discord.sh $WEBHOOK_URL
+        run: bash src/scripts/discord.sh -- "$WEBHOOK_URL"
         shell: bash
 
       - name: Get Module ID
         id: moduleID
-        uses: notiz-dev/github-action-json-property@release
+        uses: notiz-dev/github-action-json-property@a5a9c668b16513c737c3e1f8956772c99c73f6e8 # release
         with:
           path: "./dist/${{ env.package_type }}.json"
           prop_path: "id"
 
       - name: Get mininum
         id: minimum
-        uses: notiz-dev/github-action-json-property@release
+        uses: notiz-dev/github-action-json-property@a5a9c668b16513c737c3e1f8956772c99c73f6e8 # release
         with:
           path: "./dist/${{ env.package_type }}.json"
           prop_path: "compatibility.minimum"
 
       - name: Get verified
         id: verified
-        uses: notiz-dev/github-action-json-property@release
+        uses: notiz-dev/github-action-json-property@a5a9c668b16513c737c3e1f8956772c99c73f6e8 # release
         with:
           path: "./dist/${{ env.package_type }}.json"
           prop_path: "compatibility.verified"
 
       - name: get-npm-version
         id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
+        uses: martinbeentjes/npm-get-version-action@3cf273023a0dda27efcd3164bdfb51908dd46a5b # v1.3.1
 
       - name: Get tag
         run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV

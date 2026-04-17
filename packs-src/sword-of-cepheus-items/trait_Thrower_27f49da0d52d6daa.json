@@ -1,0 +1,23 @@
+{
+  "_id": "27f49da0d52d6daa",
+  "name": "Thrower",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is especially adept at throwing knives and other thrown weapons. Effective range for the character's knife and other thrown weapons becomes STRx2, and maximum range becomes STRx3.",
+    "prereq": "",
+    "shortdescr": "Thrown weapon range: STRx2 effective, STRx3 maximum.",
+    "subtype": "",
+    "key": "thrower",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!27f49da0d52d6daa"
+}

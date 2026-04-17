@@ -23,8 +23,13 @@ export class TwodsixActiveEffect extends ActiveEffect {
    * @override
    */
   get isSuppressed() {
+    // Check if effect has expired
+    if (this.duration.expired) {
+      return true;
+    }
+
     if (this.parent instanceof Item) {
-      if (["trait"].includes(this.parent.type)) {
+      if (["trait", "species"].includes(this.parent.type)) {
         return false;
       } else if (["consumable"].includes(this.parent.type) && this.parent.system.isSoftware && !this.parent.system.softwareActive) {
         return true;

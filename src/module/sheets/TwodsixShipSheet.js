@@ -1,7 +1,8 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 
+import { TWODSIX } from '../config';
 import TwodsixItem from '../entities/TwodsixItem';
-import { getDataFromDropEvent, getDocFromDropData } from '../utils/sheetUtils';
+import { enrichContextFields, getDataFromDropEvent, getDocFromDropData } from '../utils/sheetUtils';
 import { TwodsixShipActions } from '../utils/TwodsixShipActions';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 import { TwodsixShipPositionSheet } from './TwodsixShipPositionSheet';
@@ -23,7 +24,6 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       submitOnClose: true
     },
     dragDrop: [
-      //{dropSelector: ".ship-positions-list", dragSelector: ".drag"}, UNKNOWN NEED
       {dropSelector: ".ship-position-box", dragSelector: ".ship-position-actor-token"},
       {dragSelector: ".item", dropSelector: null}
     ],
@@ -227,12 +227,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       }
       const type = target.dataset.type;
       if (type === "status") {
-        const stateTransitions = {
-          "operational": "damaged",
-          "damaged": "destroyed",
-          "destroyed": "off",
-          "off": "operational"
-        };
+        const stateTransitions = TWODSIX.COMPONENT_STATE_TRANSITIONS;
         const newState = ev.shiftKey ? (itemSelected.system.status === "off" ? "operational" : "off") : stateTransitions[itemSelected.system.status];
         itemSelected.update({"system.status": newState});
       } else if (type === "popup") {
@@ -271,7 +266,6 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
   static _onDeckplanUnlink() {
     if ((this.actor.system)?.deckPlan) {
       this.actor.update({"system.deckPlan": ""});
-      ;
     }
   }
 
@@ -309,7 +303,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       useShipAutoCalc,
       showComponentSummaryIcons: game.settings.get('twodsix', 'showComponentSummaryIcons'),
       allowDragDropOfListsShip: game.settings.get('twodsix', 'allowDragDropOfListsShip'),
-      //maxComponentHits: game.settings.get('twodsix', 'maxComponentHits'),
+
       mDriveLabel: game.settings.get('twodsix', 'mDriveLabel') || "TWODSIX.Ship.MDrive",
       jDriveLabel: game.settings.get('twodsix', 'jDriveLabel') || "TWODSIX.Ship.JDrive",
       showComponentRating: game.settings.get('twodsix', 'showComponentRating'),
@@ -323,14 +317,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       useMCr: game.settings.get('twodsix', 'showCommonFundsMCr')
     });
 
-    if (context.settings.useProseMirror) {
-      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
-      context.richText = {
-        cargo: await TextEditorImp.enrichHTML(this.actor.system.cargo, {secrets: this.document.isOwner}),
-        financeNotes: await TextEditorImp.enrichHTML(this.actor.system.financeNotes, {secrets: this.document.isOwner}),
-        notes: await TextEditorImp.enrichHTML(this.actor.system.notes, {secrets: this.document.isOwner})
-      };
-    }
+    await enrichContextFields(this.document, context, ['cargo', 'financeNotes', 'notes']);
 
     return context;
   }
@@ -360,9 +347,9 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
       const actor = game.actors?.get(ev.target.dataset.id);
       ev.dataTransfer.setData("text/plain", JSON.stringify({
         "type": "Actor",
-        "data": actor,  //Not Certain if this should be system instead
-        "actorId": actor?.id, //Why did this refer to ship actor previously?
-        "id": actor?.id, //Necesssary?
+        "data": actor,
+        "actorId": actor?.id,
+        "id": actor?.id,
         "uuid": actor?.uuid
       }));
     } else if (ev.target?.classList.contains("ship-position-action")) {

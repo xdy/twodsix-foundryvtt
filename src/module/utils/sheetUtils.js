@@ -523,3 +523,25 @@ export function getRangeTypes(labelType = 'short') {
       return {};
   }
 }
+
+/**
+ * Enrich multiple system fields as ProseMirror HTML for a document's sheet context.
+ * Skips enrichment when the `useProseMirror` setting is disabled.
+ *
+ * @param {Document} document  The document whose fields should be enriched (must have `isOwner` and `system`).
+ * @param {object} context     The sheet context object to augment with `context.richText`.
+ * @param {string[]} fields    Array of system property paths to enrich (e.g. `["description", "notes"]`).
+ * @returns {Promise<void>}
+ */
+export async function enrichContextFields(document, context, fields) {
+  if (!game.settings.get('twodsix', 'useProseMirror')) {
+    return;
+  }
+  const TE = foundry.applications.ux.TextEditor.implementation;
+  const secrets = document.isOwner;
+  context.richText = {};
+  for (const field of fields) {
+    const raw = foundry.utils.getProperty(context.system, field) ?? '';
+    context.richText[field] = await TE.enrichHTML(raw, { secrets });
+  }
+}

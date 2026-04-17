@@ -1,0 +1,52 @@
+{{!-- Item Sheet Navigation --}}
+{{> "systems/twodsix/templates/misc/navigation-tabs.hbs"}}
+
+{{!-- Item Sheet Body --}}
+<section class="sheet-body auto-height">
+  <section class="tab {{tabs.description.cssClass}}" data-group="primary" data-tab="description">
+    <div class="item-short">
+      <label for="system.shortdescr" class="resource-label">{{localize
+        "TWODSIX.Items.Equipment.ShortDescription"}}</label>
+      <input class="form-input" type="text" name="system.shortdescr" value="{{system.shortdescr}}"/>
+    </div>
+
+    <div class="item-descr">
+      <span class="resource-label">{{localize "TWODSIX.Items.Equipment.Description"}}</span>
+      <prose-mirror name="system.description" data-document-u-u-i-d="{{item.uuid}}"
+                    value="{{system.description}}" collaborate="true" toggled="true">
+        {{{enrichedDescription}}}
+      </prose-mirror>
+    </div>
+
+    <div class="item-homeworld">
+      <label for="system.homeworld" class="resource-label">{{localize "TWODSIX.Items.Species.Homeworld"}}</label>
+      <input class="form-input" type="text" name="system.homeworld" value="{{system.homeworld}}"/>
+    </div>
+
+    {{#if speciesRulesets.length}}
+      <div class="item-ruleset">
+        <label for="system.ruleset" class="resource-label">{{localize "TWODSIX.Items.Species.Ruleset"}}</label>
+        <select class="form-input" name="system.ruleset">
+          {{#each speciesRulesets}}
+            <option value="{{this.key}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+          <option value="" {{#unless item.system.ruleset}}selected{{/unless}}>—</option>
+        </select>
+      </div>
+    {{/if}}
+
+    <div class="item-aging">
+      <label for="system.agingRollBonus" class="resource-label">{{localize
+        "TWODSIX.Items.Species.AgingRollBonus"}}</label>
+      <input class="form-input" type="number" name="system.agingRollBonus" value="{{system.agingRollBonus}}"
+             data-dtype="Number"/>
+    </div>
+
+    {{> "systems/twodsix/templates/items/parts/reference-footer.hbs"}}
+  </section>
+
+  <section class="tab {{tabs.traits.cssClass}}" data-group="primary" data-tab="traits">
+    {{> "systems/twodsix/templates/items/parts/species-body.hbs"}}
+    {{#if settings.useItemAEs}}{{> "systems/twodsix/templates/items/parts/footer.hbs"}}{{/if}}
+  </section>
+</section>

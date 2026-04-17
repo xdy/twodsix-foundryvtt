@@ -1,0 +1,26 @@
+{
+  "_id": "1712bd03343b5508",
+  "name": "Liaison",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "SOC",
+    "type": "skills",
+    "description": "The art and practice of negotiation and diplomacy in a myriad of social situations. This skill covers diplomatic meetings, haggling with merchants, or diffusing a situation before blades start flashing.<ul><li>Getting a good deal in the marketplace: Liaison/INT 8+ (or Opposed)</li><li>Negotiating a fair surrender when you've won: Liaison/SOC 8+</li><li>When you've lost: Liaison/SOC 12+</li><li>Stopping a fight from breaking out: Liaison/SOC 10+</li><li>Negotiating a business contract: Liaison/INT 10+</li></ul>",
+    "shortdescr": "Negotiation and diplomacy; haggling, diffusing situations.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!1712bd03343b5508"
+}

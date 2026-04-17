@@ -1,0 +1,56 @@
+{{!-- Granted Trait Names --}}
+<fieldset>
+  <legend class="resource-label">
+    {{localize "TWODSIX.Items.Species.GrantedTraitNames"}}
+    <a class="item-control" data-species-add-row="grantedTraitNames"
+       data-tooltip="{{localize "TWODSIX.Items.Species.AddRow"}}"><i class="fa-solid fa-plus"></i></a>
+  </legend>
+  <div class="species-trait-names">
+    {{#each system.grantedTraitNames}}
+      <div class="species-array-row" style="display:flex; gap:4px; align-items:center;">
+        <input class="form-input" type="text" name="system.grantedTraitNames.{{@index}}" value="{{this}}"
+               placeholder="{{localize "TWODSIX.Items.Species.TraitNamePlaceholder"}}"/>
+        <a class="item-control" data-species-remove-row="grantedTraitNames" data-index="{{@index}}"
+           data-tooltip="{{localize "TWODSIX.Items.Species.RemoveRow"}}"><i class="fa-solid fa-trash"></i></a>
+      </div>
+    {{/each}}
+  </div>
+</fieldset>
+
+{{!-- Ability Lines --}}
+<fieldset>
+  <legend class="resource-label">
+    {{localize "TWODSIX.Items.Species.AbilityLines"}}
+    <a class="item-control" data-species-add-row="abilityLines"
+       data-tooltip="{{localize "TWODSIX.Items.Species.AddRow"}}"><i class="fa-solid fa-plus"></i></a>
+  </legend>
+  <div class="species-ability-lines">
+    {{#each system.abilityLines}}
+      <div class="species-array-row" style="display:flex; gap:4px; align-items:center;">
+        <input class="form-input" type="text" name="system.abilityLines.{{@index}}" value="{{this}}"
+               placeholder="{{localize "TWODSIX.Items.Species.AbilityLinePlaceholder"}}"/>
+        <a class="item-control" data-species-remove-row="abilityLines" data-index="{{@index}}"
+           data-tooltip="{{localize "TWODSIX.Items.Species.RemoveRow"}}"><i class="fa-solid fa-trash"></i></a>
+      </div>
+    {{/each}}
+  </div>
+</fieldset>
+
+{{!-- Allowed Careers --}}
+<fieldset>
+  <legend class="resource-label">
+    {{localize "TWODSIX.Items.Species.AllowedCareers"}}
+    <a class="item-control" data-species-add-row="allowedCareers"
+       data-tooltip="{{localize "TWODSIX.Items.Species.AddRow"}}"><i class="fa-solid fa-plus"></i></a>
+  </legend>
+  <div class="species-allowed-careers">
+    {{#each system.allowedCareers}}
+      <div class="species-array-row" style="display:flex; gap:4px; align-items:center;">
+        <input class="form-input" type="text" name="system.allowedCareers.{{@index}}" value="{{this}}"
+               placeholder="{{localize "TWODSIX.Items.Species.CareerPlaceholder"}}"/>
+        <a class="item-control" data-species-remove-row="allowedCareers" data-index="{{@index}}"
+           data-tooltip="{{localize "TWODSIX.Items.Species.RemoveRow"}}"><i class="fa-solid fa-trash"></i></a>
+      </div>
+    {{/each}}
+  </div>
+</fieldset>

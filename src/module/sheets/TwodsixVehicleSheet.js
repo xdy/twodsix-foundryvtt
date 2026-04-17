@@ -1,6 +1,8 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
+import { TWODSIX } from '../config';
+import { enrichContextFields } from '../utils/sheetUtils';
 import { TwodsixRollSettings } from '../utils/TwodsixRollSettings';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
@@ -57,12 +59,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
   static _onToggleComponent(ev, target) {
     if (target) {
       const vehicleSystem = target.dataset.key;
-      const stateTransitions = {
-        "operational": "damaged",
-        "damaged": "destroyed",
-        "destroyed": "off",
-        "off": "operational"
-      };
+      const stateTransitions = TWODSIX.COMPONENT_STATE_TRANSITIONS;
       if (vehicleSystem) {
         const newState = ev.shiftKey ? ((this.actor.system).systemStatus[vehicleSystem] === "off" ? "operational" : "off") : stateTransitions[(this.actor.system).systemStatus[vehicleSystem]];
         this.actor.update({[`system.systemStatus.${vehicleSystem}`]: newState});
@@ -132,12 +129,7 @@ export class TwodsixVehicleSheet extends foundry.applications.api.HandlebarsAppl
       maxComponentHits: game.settings.get('twodsix', 'maxComponentHits')
     });
 
-    if (game.settings.get('twodsix', 'useProseMirror')) {
-      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
-      context.richText = {
-        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
-      };
-    }
+    await enrichContextFields(this.document, context, ['description']);
 
     return context;
   }
@@ -169,4 +161,3 @@ export function getControlledTraveller() {
     }
   }
 }
-

@@ -1,0 +1,22 @@
+{
+  "name": "Traits",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "pJvEYeYTcgmMjP1m",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13",
+    "systemId": "twodsix",
+    "systemVersion": "7.2.2",
+    "createdTime": 1777666731523,
+    "modifiedTime": 1777666731523,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!pJvEYeYTcgmMjP1m"
+}

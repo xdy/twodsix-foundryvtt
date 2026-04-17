@@ -4,6 +4,7 @@
  * Caches sectors list, subsectors per sector, and worlds per subsector.
  */
 
+import { getOrCreateTwodsixJournalFolder, TWODSIX_JOURNAL_FOLDER_TRADER, } from '../../utils/journalFolders.js';
 import { traderDebug } from './TraderUtils.js';
 
 const CACHE_FLAGS_NAMESPACE = 'twodsix';
@@ -85,6 +86,20 @@ export function findCacheJournal(journalName) {
 const journalCreationLocks = new Map();
 
 /**
+ * Ensure a journal document lives under the Trader journals folder.
+ * @param {JournalEntry} journal
+ */
+async function ensureCacheJournalInTraderFolder(journal) {
+  if (!journal) {
+    return;
+  }
+  const folderId = await getOrCreateTwodsixJournalFolder(TWODSIX_JOURNAL_FOLDER_TRADER);
+  if (journal.folder !== folderId) {
+    await journal.update({ folder: folderId });
+  }
+}
+
+/**
  * Get or create the cache journal.
  * If the journal doesn't exist, create it with the given name.
  * Concurrent calls with the same name are serialized so only one journal is created.
@@ -102,6 +117,7 @@ export async function getOrCreateCacheJournal(journalName) {
     if (!journal.getFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal')) {
       await journal.setFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal', true);
     }
+    await ensureCacheJournalInTraderFolder(journal);
     return journal;
   }
 
@@ -112,9 +128,12 @@ export async function getOrCreateCacheJournal(journalName) {
         // Re-check inside the lock — a concurrent caller may have created it while we awaited
         journal = findCacheJournal(journalName);
         if (!journal) {
-          journal = await JournalEntry.create({ name: journalName });
+          const folderId = await getOrCreateTwodsixJournalFolder(TWODSIX_JOURNAL_FOLDER_TRADER);
+          journal = await JournalEntry.create({ name: journalName, folder: folderId });
           await journal.setFlag(CACHE_FLAGS_NAMESPACE, 'isCacheJournal', true);
           await updateHumanReadableContent(journal);
+        } else {
+          await ensureCacheJournalInTraderFolder(journal);
         }
         return journal;
       } finally {

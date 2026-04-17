@@ -1,0 +1,22 @@
+{
+  "name": "Careers",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "oo82ilfbvRWNkStZ",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13",
+    "systemId": "twodsix",
+    "systemVersion": "7.2.2",
+    "createdTime": 1777666731503,
+    "modifiedTime": 1777666731503,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!oo82ilfbvRWNkStZ"
+}

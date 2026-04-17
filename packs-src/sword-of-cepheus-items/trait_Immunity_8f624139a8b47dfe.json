@@ -1,0 +1,23 @@
+{
+  "_id": "8f624139a8b47dfe",
+  "name": "Immunity",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is particularly resistant to toxins and pathogens. When making a throw to resist poison or disease, the character throws with Advantage. When a healer treats this character for poison or disease, they too make the Healing throw with Advantage.",
+    "prereq": "END 9+",
+    "shortdescr": "Advantage vs poison and disease resistance.",
+    "subtype": "",
+    "key": "immunity",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!8f624139a8b47dfe"
+}

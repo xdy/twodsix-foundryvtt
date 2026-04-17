@@ -6,8 +6,8 @@
 //   leaveCareer — whether the event forces leaving the career
 //   allAutoHandled — true when every mechanical effect was purely automatic
 //
-// Phase 1: shape introduced alongside legacy pipeline (CharGenActorFactory still uses
-// the log-delta approach). Phase 4 switches CharGenActorFactory to consume EventReports.
+// Serialized reports accumulate on `state.chargenEventReports` (see CharGenState); actor bio
+// merges {@link eventReportToPlaintextLines} alongside the legacy `state.log` stream.
 
 /**
  * Create a fresh EventReport for one event invocation.
@@ -35,6 +35,25 @@ export function reportAutoHandled(report, label) {
     return;
   }
   report._autoHandledItems.push(label);
+}
+
+/**
+ * Build the standard auto-handled suffix, including details when available.
+ * @param {EventReport|Array<string>|null} reportOrItems
+ * @returns {string}
+ */
+export function formatAutoHandledSuffix(reportOrItems) {
+  const items = Array.isArray(reportOrItems)
+    ? reportOrItems
+    : Array.isArray(reportOrItems?._autoHandledItems)
+      ? reportOrItems._autoHandledItems
+      : [];
+  const uniqueItems = [...new Set(items.filter(Boolean))];
+  return uniqueItems.length
+    ? game.i18n.format('TWODSIX.CharGen.EventReport.AutoHandledSuffixWithItems', {
+      items: uniqueItems.join('; '),
+    })
+    : '';
 }
 
 /**
@@ -77,4 +96,79 @@ export function reportLeaveCareer(report) {
     return;
   }
   report.leaveCareer = true;
+}
+
+/**
+ * Flatten an EventReport to human-readable lines for journals, bios, or tests (Phase 4 pipeline).
+ * Uses `headline` as callers left it (often already includes {@link formatAutoHandledSuffix}).
+ * @param {ReturnType<typeof createEventReport>|null|undefined} report
+ * @returns {string[]}
+ */
+export function eventReportToPlaintextLines(report) {
+  if (!report?.headline) {
+    return [];
+  }
+  const lines = [report.headline];
+  for (const row of report.subRows ?? []) {
+    lines.push(`  ${row}`);
+  }
+  return lines;
+}
+
+/**
+ * Persist-safe shape for {@link createEventReport} (no functions; `_autoHandledItems` as plain list).
+ * @param {ReturnType<typeof createEventReport>|null|undefined} report
+ * @returns {object|null}
+ */
+export function serializeEventReport(report) {
+  if (!report?.headline) {
+    return null;
+  }
+  return {
+    headline: report.headline,
+    subRows: [...(report.subRows ?? [])],
+    leaveCareer: !!report.leaveCareer,
+    allAutoHandled: report.allAutoHandled !== false,
+    autoHandledItems: [...(report._autoHandledItems ?? [])],
+  };
+}
+
+/**
+ * @param {object|null|undefined} data
+ * @returns {ReturnType<typeof createEventReport>|null}
+ */
+export function eventReportFromSerialized(data) {
+  if (!data?.headline) {
+    return null;
+  }
+  const r = createEventReport(data.headline);
+  r.subRows = Array.isArray(data.subRows) ? [...data.subRows] : [];
+  r.leaveCareer = !!data.leaveCareer;
+  r.allAutoHandled = data.allAutoHandled !== false;
+  r._autoHandledItems = Array.isArray(data.autoHandledItems) ? [...data.autoHandledItems] : [];
+  return r;
+}
+
+/**
+ * Flatten all serialized career event reports on state into one plaintext block.
+ * @param {object} state - charState
+ * @returns {string}
+ */
+export function formatChargenEventReportsPlaintext(state) {
+  const raw = state?.chargenEventReports;
+  if (!Array.isArray(raw) || !raw.length) {
+    return '';
+  }
+  const blocks = [];
+  for (const item of raw) {
+    const r = eventReportFromSerialized(item);
+    if (!r) {
+      continue;
+    }
+    const lines = eventReportToPlaintextLines(r);
+    if (lines.length) {
+      blocks.push(lines.join('\n'));
+    }
+  }
+  return blocks.join('\n\n');
 }

@@ -1,0 +1,23 @@
+{
+  "_id": "2264ec978e3bdaf0",
+  "name": "Ghost",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is experienced in using the cover of darkness to their advantage. When sneaking in darkness conditions — wherever the -2 penalty to hit due to darkness would apply — the ghost makes Sneak skill throws with Advantage.",
+    "prereq": "Sneak",
+    "shortdescr": "Advantage on Sneak throws in darkness.",
+    "subtype": "",
+    "key": "ghost",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!2264ec978e3bdaf0"
+}

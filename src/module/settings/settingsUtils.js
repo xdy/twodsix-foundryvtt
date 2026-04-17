@@ -145,6 +145,21 @@ export function colorSetting(
 }
 
 /**
+ * Build a choice map of user role numeric values to capitalized names.
+ * Used by multiple settings panels (CharGen, Trader) for role-gated permissions.
+ * @returns {Record<string, string>}
+ */
+export function buildUserRoleChoices() {
+  return Object.entries(CONST.USER_ROLES)
+    .sort(([, a], [, b]) => a - b)
+    .reduce((choices, [name, value]) => {
+      const label = name.charAt(0) + name.slice(1).toLowerCase();
+      choices[String(value)] = label;
+      return choices;
+    }, {});
+}
+
+/**
  * Function to return a camel case version of a string
  * @param {string} string to be converted
  * @returns {string} a camel case version of input string

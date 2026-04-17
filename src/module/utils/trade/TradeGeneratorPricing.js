@@ -24,7 +24,10 @@ import {
 /**
  * Get the appropriate price modifier table for the current ruleset.
  */
-export function getPriceModifierTable(ruleset) {
+export function getPriceModifierTable(ruleset, customTable = null) {
+  if (customTable && typeof customTable === 'object') {
+    return customTable;
+  }
   if (CDEE_FAMILY_RULESETS.includes(ruleset)) {
     return PRICE_MODIFIERS_CDEE;
   }
@@ -122,12 +125,48 @@ export function clampCheck(value) {
   return Math.max(CHECK_MIN, Math.min(CHECK_MAX, value));
 }
 
+export function clampCheckForRuleset(value, ruleset, clampRange = null) {
+  if (clampRange && Number.isFinite(clampRange.min) && Number.isFinite(clampRange.max)) {
+    return Math.max(clampRange.min, Math.min(clampRange.max, value));
+  }
+  return clampCheck(value);
+}
+
 /**
- * Simulate a Broker skill check result (2d6 + skill + modifiers), clamped to 2-16.
+ * Parse a price-roll dice expression like '2d6' or '3d6' into a numeric dice count.
+ * Defaults to 2 for unrecognised input.
+ * @param {string} expr
+ * @returns {number}
  */
-export function simulateBrokerCheck(traderSkill = 0, modifier = 0, trafficMod = 0, zoneMod = 0) {
-  const dice = Math.floor(Math.random() * 6) + 1 + Math.floor(Math.random() * 6) + 1;
-  return clampCheck(dice + traderSkill + modifier + trafficMod + zoneMod);
+export function parsePriceRollDiceCount(expr) {
+  const match = String(expr || '').toLowerCase().match(/^(\d+)d6$/);
+  if (!match) {
+    return 2;
+  }
+  const count = Number.parseInt(match[1], 10);
+  return Number.isFinite(count) && count > 0 ? count : 2;
+}
+
+/**
+ * Simulate a Broker skill check result (Nd6 + skill + modifiers), clamped per ruleset.
+ * The dice count is ruleset-controlled via `priceRollDice` ('2d6' or '3d6'); defaults to 2D6.
+ * @param {number} [traderSkill=0]
+ * @param {number} [modifier=0]
+ * @param {number} [trafficMod=0]
+ * @param {number} [zoneMod=0]
+ * @param {object} [options]
+ * @param {string} [options.ruleset='CE']
+ * @param {{min: number, max: number}|null} [options.clampRange=null]
+ * @param {string} [options.priceRollDice='2d6']
+ * @returns {number}
+ */
+export function simulateBrokerCheck(traderSkill = 0, modifier = 0, trafficMod = 0, zoneMod = 0, { ruleset = 'CE', clampRange = null, priceRollDice = '2d6' } = {}) {
+  const numDice = parsePriceRollDiceCount(priceRollDice);
+  let dice = 0;
+  for (let i = 0; i < numDice; i++) {
+    dice += Math.floor(Math.random() * 6) + 1;
+  }
+  return clampCheckForRuleset(dice + traderSkill + modifier + trafficMod + zoneMod, ruleset, clampRange);
 }
 
 /**
@@ -138,13 +177,38 @@ export function calculatePrice(basePrice, modifierPercent) {
 }
 
 /**
+ * Look up a price-table row for a given check value, applying the ruleset offset
+ * and falling back to the "neutral" key if the check is out of range.
+ * @param {Record<number, {purchase: number, sale: number}>} table
+ * @param {number} check
+ * @param {number} offset - Added to `check` before lookup (key = check + offset)
+ * @returns {{purchase: number, sale: number}}
+ */
+export function lookupPriceModifier(table, check, offset = 0) {
+  const indexedKey = check + offset;
+  if (table[indexedKey]) {
+    return table[indexedKey];
+  }
+  const fallbackKey = 8 + offset;
+  return table[fallbackKey] || table[8];
+}
+
+/**
  * Calculate purchase and sale prices from skill check results.
  * Used for both trade goods (with DMs) and common goods (no DMs).
+ * @param {number} basePrice
+ * @param {number} purchaseCheck
+ * @param {number} saleCheck
+ * @param {string} ruleset
+ * @param {object} [options]
+ * @param {object|null} [options.customPriceTable=null]
+ * @param {number} [options.priceTableOffset=0]
+ * @returns {{purchaseCheck: number, saleCheck: number, purchasePriceData: object, salePriceData: object, purchasePrice: number, salePrice: number, purchasePriceModPercent: number, salePriceModPercent: number}}
  */
-export function calculatePricesFromChecks(basePrice, purchaseCheck, saleCheck, ruleset) {
-  const priceModifiers = getPriceModifierTable(ruleset);
-  const purchasePriceData = priceModifiers[purchaseCheck] || priceModifiers[8];
-  const salePriceData = priceModifiers[saleCheck] || priceModifiers[8];
+export function calculatePricesFromChecks(basePrice, purchaseCheck, saleCheck, ruleset, { customPriceTable = null, priceTableOffset = 0 } = {}) {
+  const priceModifiers = getPriceModifierTable(ruleset, customPriceTable);
+  const purchasePriceData = lookupPriceModifier(priceModifiers, purchaseCheck, priceTableOffset);
+  const salePriceData = lookupPriceModifier(priceModifiers, saleCheck, priceTableOffset);
   const purchasePrice = calculatePrice(basePrice, purchasePriceData.purchase);
   const salePrice = calculatePrice(basePrice, salePriceData.sale);
 
@@ -163,10 +227,11 @@ export function calculatePricesFromChecks(basePrice, purchaseCheck, saleCheck, r
 /**
  * Calculate purchase and sale prices for a good given base checks.
  */
-export function calculateGoodPricing(good, tradeCodes, basePurchaseCheck, baseSaleCheck, ruleset) {
+export function calculateGoodPricing(good, tradeCodes, basePurchaseCheck, baseSaleCheck, ruleset, pricingOverrides = {}) {
+  const { clampRange = null, customPriceTable = null, priceTableOffset = 0 } = pricingOverrides;
   const purchaseDM = getLargestTradeCodeModifier(tradeCodes, good.purchaseDM);
   const saleDM = getLargestTradeCodeModifier(tradeCodes, good.saleDM);
-  const purchaseCheck = clampCheck(basePurchaseCheck + purchaseDM - saleDM);
-  const saleCheck = clampCheck(baseSaleCheck + saleDM - purchaseDM);
-  return calculatePricesFromChecks(good.basePrice, purchaseCheck, saleCheck, ruleset);
+  const purchaseCheck = clampCheckForRuleset(basePurchaseCheck + purchaseDM - saleDM, ruleset, clampRange);
+  const saleCheck = clampCheckForRuleset(baseSaleCheck + saleDM - purchaseDM, ruleset, clampRange);
+  return calculatePricesFromChecks(good.basePrice, purchaseCheck, saleCheck, ruleset, { customPriceTable, priceTableOffset });
 }

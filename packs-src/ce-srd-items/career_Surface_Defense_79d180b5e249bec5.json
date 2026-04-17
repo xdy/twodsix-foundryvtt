@@ -1,0 +1,128 @@
+{
+  "_id": "79d180b5e249bec5",
+  "name": "Surface Defense",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "end",
+      "target": 5
+    },
+    "surv": {
+      "char": "edu",
+      "target": 5
+    },
+    "comm": {
+      "char": "end",
+      "target": 6
+    },
+    "adv": {
+      "char": "edu",
+      "target": 7
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Private",
+        "skill": "Gun Combat",
+        "level": 1
+      },
+      {
+        "title": "Lieutenant",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Major",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Lt Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "General",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "Athletics",
+      "Melee Combat",
+      "Vehicle"
+    ],
+    "service": [
+      "Mechanics",
+      "Gun Combat",
+      "Gunnery",
+      "Melee Combat",
+      "Recon",
+      "Battle Dress"
+    ],
+    "specialist": [
+      "Comms",
+      "Demolitions",
+      "Gun Combat",
+      "Melee Combat",
+      "Survival",
+      "Vehicle"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Jack o' Trades",
+      "Medicine",
+      "Leadership",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Int",
+      "Weapon",
+      "Mid Passage",
+      "Weapon",
+      "High Passage",
+      "+1 Soc"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Member of a planetary armed military force operating on the non-hydrographic surface of a world. Also known as the \"planetary army\".",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!79d180b5e249bec5"
+}
