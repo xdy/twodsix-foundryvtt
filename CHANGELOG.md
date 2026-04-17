@@ -1,3 +1,33 @@
+# [7.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.1.2...v7.2.0) (2026-04-17)
+
+
+### Bug Fixes
+
+* A few more magic values -> constants, some error handling, but mostly default debug logging in trade to off. (Set `CONFIG.debug.twodsixTrader = true` in the browser console to enable.) ([f55b8ae](https://github.com/xdy/twodsix-foundryvtt/commit/f55b8ae7676fa9e5ee8f1609d143865c12ef042a))
+* Cleanup ([9ba0ff6](https://github.com/xdy/twodsix-foundryvtt/commit/9ba0ff66a3d5f92758b3f41d2700a7a54a982bb3))
+* Cleanup, bug fixes and i18n ([8e61936](https://github.com/xdy/twodsix-foundryvtt/commit/8e61936e60a3c11d837276dc618e476abc36ff29))
+* Deepscan ([2e07082](https://github.com/xdy/twodsix-foundryvtt/commit/2e07082c4ca6cb88a910b523bde5dee5b4e4d0db))
+* Deepscan ([3de3c7e](https://github.com/xdy/twodsix-foundryvtt/commit/3de3c7e2e749792bee5070dc682da1d8c3b50f78))
+* Deepscan. ([dae16f3](https://github.com/xdy/twodsix-foundryvtt/commit/dae16f3eda7b81dd1b6fabc5f6e4f5766fcea1ec))
+* Extract common functionality in trader and chargen to shared base class DecisionApp. ([8385257](https://github.com/xdy/twodsix-foundryvtt/commit/838525753c53ada466cf5ca30b6c7abade96b2a3))
+* Fixes subsector loading and travellermap cache, remove dead code, mortgage magic number -> constant, journal creation locking to avoid race condition, remove debug logging, store localized name of cargo instead of i18n string, use Milieu for *all* caches, not just sectors. ([e2075c5](https://github.com/xdy/twodsix-foundryvtt/commit/e2075c5ce51bc4fd44bce85e8ff4eb9a5c22ce66))
+* Refactor fuel handling (incl adding to Other Activities), add milieu awareness to date calculations, clean up redundancy in trade modifiers, standardize broker commission logic, improve journal write handling, remove remain at port, add lots of logging, more handling of edge cases and errors, improve rendering, rehydrate cached worlds on resuming trade journey, show progress dialog and do more work in the background so the trading journey starts faster. ([c24a471](https://github.com/xdy/twodsix-foundryvtt/commit/c24a4711df82039c21652000f9d740f979d9444a))
+* some style issues ([df63871](https://github.com/xdy/twodsix-foundryvtt/commit/df638713cbb20613edcb12489f412d3c6492eb3b))
+* Tag handling wasn't robust enough, handle more tags. Implement more (and fix parts of) of cdee and cu chargen. Lots of i18n. ([0461bba](https://github.com/xdy/twodsix-foundryvtt/commit/0461bbabc044f7beaf43c8493b7618b4d4f63ab3))
+* trade button position ([445c2b9](https://github.com/xdy/twodsix-foundryvtt/commit/445c2b9451567af560e2c37158a5fc76615f9a06))
+* Trading fixes (mortgage, maintenance, duplicate worlds in range) ([0ce851f](https://github.com/xdy/twodsix-foundryvtt/commit/0ce851feaacc888d8e55cb742f4ddd051c79d015))
+* Update dependencies ([2960388](https://github.com/xdy/twodsix-foundryvtt/commit/29603885fa19c7192ea3b437a5bc09b9435b7ba5))
+* update sector drawing macros to v14 API ([a8e9cab](https://github.com/xdy/twodsix-foundryvtt/commit/a8e9cab089c1c8471df30fe741e0343cd636154a))
+
+
+### Features
+
+* Add support for CDEE to character generation (previously supported only CE and CU). Also move chargen ruleset to a constant class just like in trader as having it as part of the data model is not worth it (includes migration). ([3ffd444](https://github.com/xdy/twodsix-foundryvtt/commit/3ffd4440cf9ed4ae6e175e74d5e3f37b3dec078a))
+* Add support for CDEE to trading. Add lots of i18n. ([92f1e70](https://github.com/xdy/twodsix-foundryvtt/commit/92f1e70ed9b7a2c63a4be8ba7c1cb05dd109402a))
+* Implement local trading mode (using only existing foundry worlds), Nest Travellermap sector folders under a root folder. ([2ed6ec5](https://github.com/xdy/twodsix-foundryvtt/commit/2ed6ec5917f7ab73753c644c7a0ed0e39c3e75c3))
+* Initial implementation of trade procedure based on CE SRD (including cargo, fuel, maintenance, mortage, black market goods, etc). Includes fetching worlds from travellermap.com and creates world actors as needed in sector folders (caches travellermap data in a local journal), basic integration with ship actors (it only reads from them so any final results need to be updated manually), produces a journal with a log of what happened, basic support for non-trade activities, etc. ([9538033](https://github.com/xdy/twodsix-foundryvtt/commit/9538033f78c7ece61f880adec23f0a828b142843))
+* Support custom careers in chargen, from items in compendiums or folders. ([2d413aa](https://github.com/xdy/twodsix-foundryvtt/commit/2d413aa9e708ce7aa09c1544d501f69f501923bf))
+
 ## [7.1.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.1.1...v7.1.2) (2026-04-10)
 
 
