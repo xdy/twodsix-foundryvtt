@@ -1,25 +1,56 @@
 // CharGenApp.js — Character generation UI class extending DecisionApp
-import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
+import { LanguageType, nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
 import { DecisionApp } from '../DecisionApp.js';
+import { DecisionHistoryStore } from '../DecisionHistoryStore.js';
+import { findReplayChoiceOption } from '../decisionReplayChoiceMatch.js';
 import {
   getCharacteristicsUiRules,
   rollPointBuyCharacteristics,
   rollRandomCharacteristics,
 } from './characteristicsRules.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
-import { CharGenDecisionStore } from './CharGenDecisionStore.js';
-import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
+import {
+  dispatchCharGen,
+  getChargenRulesetDisplayName,
+  getChargenRulesetPickerItems,
+  isChargenRulesetSupported,
+  normalizeChargenRulesetOrCe,
+} from './CharGenRegistry.js';
+import { CharGenSessionJournal } from './CharGenSessionJournal.js';
 import {
   CHARACTERISTIC_KEYS,
   CHARACTERISTIC_LABELS,
   CHARACTERISTICS_ROW_TYPE,
   CHARGEN_DIED,
   CHARGEN_ROW_TYPES,
+  CHARGEN_SESSION_VERSION,
   deserializeCharGenState,
   freshState,
-  NAME_ROW_LABEL
+  NAME_ROW_LABEL,
 } from './CharGenState.js';
+
+/**
+ * Validate characteristic input values against ruleset constraints.
+ * Pure function — no DOM, no side effects.
+ * @param {number[]} values - Parsed input values
+ * @param {object} rules - Characteristic UI rules (inputMin, inputMax, isPointBuy, pointBuyTargetTotal)
+ * @returns {{ allValid: boolean, total: number }}
+ */
+function validateCharacteristicValues(values, rules) {
+  let allValid = true;
+  let total = 0;
+  for (const val of values) {
+    if (isNaN(val) || val < rules.inputMin || val > rules.inputMax) {
+      allValid = false;
+    }
+    total += val;
+  }
+  if (rules.isPointBuy && rules.pointBuyTargetTotal != null && total !== rules.pointBuyTargetTotal) {
+    allValid = false;
+  }
+  return { allValid, total };
+}
 
 /**
  * Character generation Application class extending DecisionApp.
@@ -29,7 +60,7 @@ export class CharGenApp extends DecisionApp {
   static DEFAULT_OPTIONS = {
     id: 'char-gen',
     classes: ['twodsix', 'char-gen'],
-    window: { title: game.i18n.localize('TWODSIX.CharGen.App.Title'), resizable: true },
+    window: { title: 'TWODSIX.CharGen.App.Title', resizable: true },
     position: { width: 900, height: 1024 },
   };
 
@@ -41,14 +72,30 @@ export class CharGenApp extends DecisionApp {
 
   static DIED = CHARGEN_DIED;
 
-  decisionStore = new CharGenDecisionStore();
+  decisionStore = new DecisionHistoryStore();
   charState = null;
   isDone = false;
   charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
   autoAll = false;
   summaryHeight = 0;
+  _runPromise = null;
+
+  /** Set when `createCharacterActor` succeeds this session (journal is kept on close). */
+  _foundryActorCreated = false;
+  /** Journal persistence, debounced saves, and human-readable log lines. */
+  sessionJournal = new CharGenSessionJournal(this);
+
+  constructor(...args) {
+    super(...args);
+    this.options.window.title = game.i18n.localize(this.options.window.title);
+  }
 
   // ─── Rendering ──────────────────────────────────────────────
+
+  /** @returns {ReturnType<typeof getCharacteristicsUiRules>} */
+  _charUiRules() {
+    return getCharacteristicsUiRules(this.charState?.ruleset ?? 'CE', this.charState?.creationMode ?? null);
+  }
 
   _getScrollSelector() {
     return '.cg-scroll';
@@ -62,7 +109,7 @@ export class CharGenApp extends DecisionApp {
 
     const s = this.charState;
     const ruleset = s?.ruleset ?? 'CE';
-    const charRules = getCharacteristicsUiRules(ruleset, s?.creationMode ?? null);
+    const charRules = this._charUiRules();
     const isPointBuy = charRules.isPointBuy;
     const totalChars = isPointBuy ? CHARACTERISTIC_KEYS.reduce((acc, k) => acc + (s?.chars[k] ?? 0), 0) : 0;
 
@@ -85,11 +132,11 @@ export class CharGenApp extends DecisionApp {
       age: s?.age ?? 18,
       skls: s?.skills?.size ?? 0,
       totalTerms: s?.totalTerms ?? 0,
-      rulesets: Object.values(CONFIG.TWODSIX.RULESETS).map(r => ({
+      rulesets: getChargenRulesetPickerItems().map(r => ({
         key: r.key,
         name: r.name,
         selected: r.key === ruleset,
-        disabled: !CHARGEN_SUPPORTED_RULESETS.has(r.key),
+        disabled: r.disabled,
       })),
       rows: this.rows,
       isDone: this.isDone,
@@ -98,7 +145,25 @@ export class CharGenApp extends DecisionApp {
       textSummary: this.isDone && s ? generateDetailedSummary(s) : '',
       summaryHeight: this.summaryHeight,
       scrollFlex: this.isDone ? '0 0 33%' : '1',
+      showChargenUndo: this._canShowChargenUndo(),
+      showChargenRandomRoll: this._canShowChargenRandomRoll(),
     };
+  }
+
+  _canShowChargenUndo() {
+    if (!game.settings.get('twodsix', 'chargenEnableUndo')) {
+      return false;
+    }
+    const minRole = Number(game.settings.get('twodsix', 'chargenUndoMinRole') ?? CONST.USER_ROLES.PLAYER);
+    return Number(game.user?.role ?? -1) >= minRole;
+  }
+
+  _canShowChargenRandomRoll() {
+    if (!game.settings.get('twodsix', 'chargenEnableRandomRoll')) {
+      return false;
+    }
+    const minRole = Number(game.settings.get('twodsix', 'chargenRandomRollMinRole') ?? CONST.USER_ROLES.PLAYER);
+    return Number(game.user?.role ?? -1) >= minRole;
   }
 
   // ─── Event Handlers ─────────────────────────────────────────
@@ -122,9 +187,12 @@ export class CharGenApp extends DecisionApp {
     if (!this.charState) {
       return;
     }
-    const rules = getCharacteristicsUiRules(this.charState.ruleset ?? 'CE', this.charState.creationMode ?? null);
+    const rules = this._charUiRules();
     if (rules.isPointBuy) {
-      await rollPointBuyCharacteristics(this.charState.chars, CHARACTERISTIC_KEYS);
+      await rollPointBuyCharacteristics(this.charState.chars, CHARACTERISTIC_KEYS, {
+        ruleset: this.charState.ruleset ?? 'CE',
+        creationMode: this.charState.creationMode ?? null,
+      });
     } else {
       await rollRandomCharacteristics(this.charState.chars, CHARACTERISTIC_KEYS);
     }
@@ -165,6 +233,9 @@ export class CharGenApp extends DecisionApp {
    * Resolve the currently active row with a random choice.
    */
   async _resolveActiveRandomly() {
+    if (!this._canShowChargenRandomRoll()) {
+      return;
+    }
     const row = this.rows.find(r => r.active);
     if (!row || !this.pendingResolve) {
       return;
@@ -207,25 +278,13 @@ export class CharGenApp extends DecisionApp {
       return;
     }
 
-    const rules = getCharacteristicsUiRules(this.charState?.ruleset ?? 'CE', this.charState?.creationMode ?? null);
-    const isPointBuy = rules.isPointBuy;
-    let allValid = true;
-    let total = 0;
-    inputs.forEach(input => {
-      const val = parseInt(input.value);
-      if (isNaN(val) || val < rules.inputMin || val > rules.inputMax) {
-        allValid = false;
-      }
-      total += val || 0;
-    });
-
-    if (isPointBuy && rules.pointBuyTargetTotal != null && total !== rules.pointBuyTargetTotal) {
-      allValid = false;
-    }
+    const rules = this._charUiRules();
+    const values = Array.from(inputs).map(input => parseInt(input.value) || 0);
+    const { allValid, total } = validateCharacteristicValues(values, rules);
     doneBtn.disabled = !allValid;
 
     const pointsEl = el?.querySelector('.cg-point-buy-total');
-    if (pointsEl && isPointBuy && rules.pointBuyTargetTotal != null) {
+    if (pointsEl && rules.isPointBuy && rules.pointBuyTargetTotal != null) {
       pointsEl.textContent = `${game.i18n.localize('TWODSIX.CharGen.App.Points')}: ${rules.pointBuyTargetTotal - total} / ${rules.pointBuyTargetTotal}`;
       pointsEl.style.color = total > rules.pointBuyTargetTotal ? 'red' : 'inherit';
     }
@@ -238,7 +297,7 @@ export class CharGenApp extends DecisionApp {
     el.querySelector('.cg-ruleset')?.addEventListener('change', e => {
       if (this.charState) {
         this.charState.ruleset = e.target.value;
-        this._redo();
+        void this._redo();
       }
     });
   }
@@ -254,7 +313,7 @@ export class CharGenApp extends DecisionApp {
     el.querySelector('.cg-rand')?.addEventListener('click', () => void this._resolveActiveRandomly());
     el.querySelector('.cg-rand-all')?.addEventListener('click', async () => {
       if (this.isDone) {
-        this._redo();
+        void this._redo();
         return;
       }
       this.autoAll = true;
@@ -279,8 +338,8 @@ export class CharGenApp extends DecisionApp {
    * Attach action button handlers (undo, redo, auto, create).
    */
   _attachActionHandlers(el) {
-    el.querySelector('.cg-undo')?.addEventListener('click', () => this._undo());
-    el.querySelector('.cg-redo')?.addEventListener('click', () => this._redo());
+    el.querySelector('.cg-undo')?.addEventListener('click', () => void this._undo());
+    el.querySelector('.cg-redo')?.addEventListener('click', () => void this._redo());
     el.querySelector('.cg-auto-from-here')?.addEventListener('click', () => {
       this.autoAll = true;
       this._resolveActiveRandomly();
@@ -296,7 +355,7 @@ export class CharGenApp extends DecisionApp {
       if (this.charState) {
         const key = e.target.dataset.charKey;
         const val = parseInt(e.target.value) || 0;
-        const r = getCharacteristicsUiRules(this.charState.ruleset ?? 'CE', this.charState.creationMode ?? null);
+        const r = this._charUiRules();
         this.charState.chars[key] = Math.max(r.inputMin, Math.min(r.inputMax, val));
       }
     };
@@ -364,12 +423,19 @@ export class CharGenApp extends DecisionApp {
    * @returns {Promise<number>} Roll result
    */
   async _roll(formula) {
-    const { decision } = this.decisionStore.next();
+    const { index, decision } = this.decisionStore.next();
     if (decision) {
-      return decision.value;
+      if (decision.type === 'roll' && Number.isFinite(Number(decision.value))) {
+        return Number(decision.value);
+      }
+      console.warn(
+        `CharGenApp | Replay expected roll for "${formula}" but found ${decision.type}; truncating decision history at index ${index}.`,
+      );
+      this.decisionStore.truncate(index);
     }
     const v = await super._roll(formula);
-    this.decisionStore.push({ type: 'roll', value: v });
+    this.decisionStore.push({ type: 'roll', value: v, question: String(formula ?? '') });
+    this.sessionJournal.scheduleSave();
     return v;
   }
 
@@ -381,13 +447,21 @@ export class CharGenApp extends DecisionApp {
    * @returns {Promise<string>} Selected value
    */
   async _choose(label, options, rowExtras = {}) {
-    const choiceOptions = Array.isArray(options) ? options : [];
+    const { preserveOptionOrder = false, ...restRowExtras } = rowExtras;
+    let choiceOptions = Array.isArray(options) ? options.map(o => ({ ...o })) : [];
+    if (!preserveOptionOrder && choiceOptions.length > 1) {
+      const lang = game.i18n?.lang ?? 'en';
+      choiceOptions.sort((a, b) =>
+        String(a.label ?? a.value).localeCompare(String(b.label ?? b.value), lang, { sensitivity: 'base' }),
+      );
+    }
     const { index, decision } = this.decisionStore.next();
 
     // Replay path: use stored decision
     if (decision) {
       const v = decision.value;
-      const found = choiceOptions.find(o => String(o.value) === String(v));
+      const found =
+        findReplayChoiceOption(choiceOptions, v) ?? choiceOptions.find(o => String(o.value) === String(v));
       if (found) {
         this.rows.push({
           label,
@@ -401,7 +475,7 @@ export class CharGenApp extends DecisionApp {
 
       if (choiceOptions.length) {
         const fallback = choiceOptions[0].value;
-        this.decisionStore.replace(index, { type: 'choice', value: fallback });
+        this.decisionStore.replace(index, { type: 'choice', value: fallback, question: label });
         this.rows.push({
           label,
           rowType: CHARGEN_ROW_TYPES.CHOICE,
@@ -410,6 +484,7 @@ export class CharGenApp extends DecisionApp {
           options: choiceOptions,
         });
         console.warn(`CharGenApp | Replayed choice "${v}" is no longer valid for "${label}". Falling back to "${fallback}".`);
+        this.sessionJournal.scheduleSave();
         return fallback;
       }
 
@@ -419,10 +494,10 @@ export class CharGenApp extends DecisionApp {
     }
 
     // Auto-all path: pick randomly
-    if (this.autoAll && choiceOptions.length) {
+    if (this.autoAll && this._canShowChargenRandomRoll() && choiceOptions.length) {
       const idx = (await new Roll(`1d${choiceOptions.length}`).roll()).total - 1;
       const value = choiceOptions[idx].value;
-      this.decisionStore.push({ type: 'choice', value });
+      this.decisionStore.push({ type: 'choice', value, question: label });
       const found = choiceOptions[idx];
       this.rows.push({
         label,
@@ -432,12 +507,14 @@ export class CharGenApp extends DecisionApp {
         options: choiceOptions
       });
       this.render();
+      this.sessionJournal.scheduleSave();
       return value;
     }
 
     // Interactive path: delegate to base class
-    const value = await super._choose(label, choiceOptions, { rowType: CHARGEN_ROW_TYPES.CHOICE, ...rowExtras });
-    this.decisionStore.push({ type: 'choice', value });
+    const value = await super._choose(label, choiceOptions, { rowType: CHARGEN_ROW_TYPES.CHOICE, ...restRowExtras });
+    this.decisionStore.push({ type: 'choice', value, question: label });
+    this.sessionJournal.scheduleSave();
     return value;
   }
 
@@ -466,7 +543,7 @@ export class CharGenApp extends DecisionApp {
       return String(decision.value);
     }
 
-    if (this.autoAll) {
+    if (this.autoAll && this._canShowChargenRandomRoll()) {
       await this._rollCharacteristics();
       const line = this._formatCharacteristicsLine();
       const chars = { ...this.charState.chars };
@@ -477,8 +554,14 @@ export class CharGenApp extends DecisionApp {
         active: false,
         options: []
       });
-      this.decisionStore.push({ type: 'choice', value: 'rolled', chars });
+      this.decisionStore.push({
+        type: 'choice',
+        value: 'rolled',
+        chars,
+        question: game.i18n.localize('TWODSIX.CharGen.App.Characteristics'),
+      });
       this.render();
+      this.sessionJournal.scheduleSave();
       return 'rolled';
     }
 
@@ -500,12 +583,18 @@ export class CharGenApp extends DecisionApp {
     }
 
     const chars = { ...this.charState.chars };
-    this.decisionStore.push({ type: 'choice', value, chars });
+    this.decisionStore.push({
+      type: 'choice',
+      value,
+      chars,
+      question: game.i18n.localize('TWODSIX.CharGen.App.Characteristics'),
+    });
     const line = this._formatCharacteristicsLine();
     const row = this.rows.at(-1);
     row.result = line;
     row.active = false;
     this.render();
+    this.sessionJournal.scheduleSave();
     return value;
   }
 
@@ -528,7 +617,7 @@ export class CharGenApp extends DecisionApp {
       return v;
     }
 
-    if (this.autoAll) {
+    if (this.autoAll && this._canShowChargenRandomRoll()) {
       const name = await this._generateRandomName();
       this.rows.push({
         label: NAME_ROW_LABEL,
@@ -537,9 +626,14 @@ export class CharGenApp extends DecisionApp {
         active: false,
         options: []
       });
-      this.decisionStore.push({ type: 'choice', value: name });
+      this.decisionStore.push({
+        type: 'choice',
+        value: name,
+        question: game.i18n.localize('TWODSIX.CharGen.Session.JournalNameQuestion'),
+      });
       this._updateNameAndTitle(name);
       this.render();
+      this.sessionJournal.scheduleSave();
       return name;
     }
 
@@ -560,12 +654,17 @@ export class CharGenApp extends DecisionApp {
       throw CharGenApp.RESTART;
     }
 
-    this.decisionStore.push({ type: 'choice', value });
+    this.decisionStore.push({
+      type: 'choice',
+      value,
+      question: game.i18n.localize('TWODSIX.CharGen.Session.JournalNameQuestion'),
+    });
     const row = this.rows.at(-1);
     row.result = value;
     row.active = false;
     this._updateNameAndTitle(value);
     this.render();
+    this.sessionJournal.scheduleSave();
     return value;
   }
 
@@ -575,8 +674,8 @@ export class CharGenApp extends DecisionApp {
    */
   _updateNameAndTitle(name) {
     this.charName = name;
-    const title = `Character Generation: ${name}`;
-    this.options.window.title = title;
+    this._syncWindowTitleForRuleset();
+    const title = this.options.window.title;
     const titleEl = this.element?.querySelector('.window-title');
     if (titleEl) {
       titleEl.textContent = title;
@@ -626,30 +725,126 @@ export class CharGenApp extends DecisionApp {
     r(name);
   }
 
+  // ─── Session persistence (journal) ────────────────────────
+  // Implemented by this.sessionJournal (CharGenSessionJournal.js).
+
+  _syncWindowTitleForRuleset() {
+    const ruleset = this.charState?.ruleset ?? 'CE';
+    const rulesetName = getChargenRulesetDisplayName(ruleset);
+    this.options.window.title = game.i18n.format('TWODSIX.CharGen.WindowTitle', { ruleset: rulesetName });
+  }
+
+  /**
+   * Restore persisted session from a journal entry.
+   * @param {JournalEntry} journalEntry
+   */
+  loadState(journalEntry) {
+    const j = this.sessionJournal;
+    j.boundDisposable = false;
+    const saved = journalEntry.getFlag('twodsix', 'charGenSession');
+    j.entryId = journalEntry.id;
+    j.pageId = saved?.journalPageId ?? null;
+
+    if (!saved || typeof saved !== 'object') {
+      this.charState = deserializeCharGenState(freshState());
+      this.decisionStore.resetAll();
+      this.charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
+      this.isDone = false;
+      this.autoAll = false;
+      j.loggedDecisionCount = 0;
+      this._syncWindowTitleForRuleset();
+      return;
+    }
+    if (saved._schemaVersion !== CHARGEN_SESSION_VERSION) {
+      console.warn(
+        `twodsix | CharGen session schema mismatch (${saved._schemaVersion ?? 'unknown'} -> ${CHARGEN_SESSION_VERSION}); loading best-effort.`,
+      );
+    }
+
+    if (saved.checkpointState && (saved.isDone || saved.died)) {
+      this.charState = deserializeCharGenState(saved.checkpointState);
+      const rs = this.charState.ruleset;
+      if (!isChargenRulesetSupported(rs)) {
+        ui.notifications.warn(game.i18n.format('TWODSIX.CharGen.Errors.RulesetDowngraded', { ruleset: rs }));
+        this.charState.ruleset = normalizeChargenRulesetOrCe(rs);
+      }
+      this.charName = saved.charName || game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
+      this.isDone = !!(saved.isDone || saved.died);
+      this.autoAll = !!saved.autoAll;
+      this.decisionStore.decisions = Array.isArray(saved.decisions) ? foundry.utils.deepClone(saved.decisions) : [];
+      this.decisionStore.resetCursor();
+      j.loggedDecisionCount = this.decisionStore.decisions.length;
+      this._syncWindowTitleForRuleset();
+      return;
+    }
+
+    const base = deserializeCharGenState(freshState());
+    const savedRs = saved.ruleset ?? 'CE';
+    if (!isChargenRulesetSupported(savedRs)) {
+      ui.notifications.warn(game.i18n.format('TWODSIX.CharGen.Errors.RulesetDowngraded', { ruleset: savedRs }));
+    }
+    base.ruleset = normalizeChargenRulesetOrCe(savedRs);
+    base.languageType = saved.languageType ?? LanguageType.Humaniti;
+    this.charState = base;
+    this.charName = saved.charName || game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
+    this.autoAll = !!saved.autoAll;
+    this.isDone = false;
+    this.decisionStore.decisions = Array.isArray(saved.decisions) ? foundry.utils.deepClone(saved.decisions) : [];
+    this.decisionStore.resetCursor();
+    j.loggedDecisionCount = this.decisionStore.decisions.length;
+    this._syncWindowTitleForRuleset();
+  }
+
+  /** @inheritdoc */
+  async close(options = {}) {
+    await this.sessionJournal.flushSave();
+    const journalId = this.sessionJournal.entryId;
+    const actorCreated = this._foundryActorCreated;
+    const disposableJournal = this.sessionJournal.boundDisposable;
+    const result = await super.close(options);
+    if (disposableJournal && !actorCreated && journalId) {
+      await this.sessionJournal.deleteAbandoned(journalId);
+    }
+    this.sessionJournal.destroy();
+    return result;
+  }
+
   // ─── Undo / Redo ───────────────────────────────────────────
 
   /**
    * Undo the last choice decision.
    */
-  _undo() {
+  async _undo() {
+    if (!this._canShowChargenUndo()) {
+      return;
+    }
     if (!this.decisionStore.undoLastChoice()) {
       return;
     }
+    this.sessionJournal.loggedDecisionCount = this.decisionStore.decisions.length;
+    await this.sessionJournal.appendUndoLine();
     this.autoAll = false;
+    this.sessionJournal.scheduleSave();
     const res = this.pendingResolve;
     this.pendingResolve = null;
     if (res) {
       res(CharGenApp.RESTART);
     } else {
-      this.run();
+      void this.run();
     }
   }
 
   /**
    * Redo (restart) the generation from the beginning, resetting to manual mode.
    */
-  _redo() {
+  async _redo() {
+    await this.sessionJournal.flushSave();
+    const journalId = this.sessionJournal.entryId;
+    if (this.sessionJournal.boundDisposable && !this._foundryActorCreated && journalId) {
+      await this.sessionJournal.deleteAbandoned(journalId);
+    }
     this.summaryHeight = 0;
+    this.sessionJournal.clearBinding();
     this.decisionStore.resetAll();
     this.rows = [];
     this.autoAll = false;
@@ -663,7 +858,7 @@ export class CharGenApp extends DecisionApp {
     if (res) {
       res(CharGenApp.RESTART);
     } else {
-      this.run();
+      void this.run();
     }
   }
 
@@ -676,6 +871,7 @@ export class CharGenApp extends DecisionApp {
     try {
       const { createCharacterActor } = await import('./CharGenActorFactory.js');
       await createCharacterActor(this.charState, this.charName);
+      this._foundryActorCreated = true;
       ui.notifications.info(game.i18n.format('TWODSIX.CharGen.Messages.CharacterCreated', { name: this.charName }));
       this.close();
     } catch (err) {
@@ -696,30 +892,48 @@ export class CharGenApp extends DecisionApp {
    * Main generation loop with restart handling.
    */
   async run() {
+    if (this._runPromise) {
+      return this._runPromise;
+    }
+    this._runPromise = this._runLoop();
+    try {
+      return await this._runPromise;
+    } finally {
+      this._runPromise = null;
+    }
+  }
+
+  async _runLoop() {
     while (true) {
       this.decisionStore.resetCursor();
       this.rows = [];
       const ruleset = this.charState.ruleset;
       const languageType = this.charState.languageType;
-      const rulesetName = CONFIG.TWODSIX.RULESETS[ruleset]?.name
-        || game.i18n.localize('TWODSIX.CharGen.DefaultRulesetName');
-      this.options.window.title = game.i18n.format('TWODSIX.CharGen.WindowTitle', { ruleset: rulesetName });
       this.charState = deserializeCharGenState(freshState());
       this.charState.ruleset = ruleset;
       this.charState.languageType = languageType;
       this.isDone = false;
+      this._syncWindowTitleForRuleset();
+      await this.sessionJournal.ensureJournal();
 
       try {
         await dispatchCharGen(this, ruleset);
         this.isDone = true;
+        await this.sessionJournal.flushSave();
+        await this.sessionJournal.renameEntryToCharacterName(this.charName);
+        await this.sessionJournal.appendCompletionMilestone({ died: false, charName: this.charName });
         this.render();
         return;
       } catch (err) {
         if (err === CharGenApp.RESTART) {
+          await this.sessionJournal.flushSave();
           continue;
         }
         if (err === CharGenApp.DIED) {
           this.isDone = true;
+          await this.sessionJournal.flushSave();
+          await this.sessionJournal.renameEntryToCharacterName(this.charName);
+          await this.sessionJournal.appendCompletionMilestone({ died: true, charName: this.charName });
           this.render();
           return;
         }

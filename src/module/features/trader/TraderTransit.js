@@ -3,15 +3,15 @@
  * Logic for departure, in-transit, and arriving phases.
  */
 
-import { ensureSubsectorNeighborsLoaded, getReachableWorlds } from './SubsectorLoader.js';
 import {
-  FREIGHT_RATE,
-  HOURS_PER_DAY,
-  MAIL_PAYMENT,
-  PASSENGER_REVENUE,
-  PORT_FEE_BASE,
-  TRANSIT_BASE_HOURS
-} from './TraderConstants.js';
+  accruePortFees,
+  getDestinationCoordinateAliases,
+  getReachableDestinations,
+  refuel,
+  runOtherActivitiesLoop,
+} from './atWorldBridge.js';
+import { ensureSubsectorNeighborsLoaded, getReachableWorlds } from './SubsectorLoader.js';
+import { HOURS_PER_DAY, TRANSIT_BASE_HOURS } from './TraderConstants.js';
 import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import {
   addExpense,
@@ -20,6 +20,9 @@ import {
   getAbsoluteDay,
   getCurrentWorld,
   getUsedCargoSpace,
+  normalizeFreightState,
+  normalizePassengers,
+  persistWorldHistory,
   PHASE,
 } from './TraderState.js';
 import { canRefuelAtWorld, getWorldCoordinate, isLocalMode } from './TraderUtils.js';
@@ -31,11 +34,11 @@ import {
 
 export async function depart(app) {
   const s = app.state;
+  const previousDestinationAliases = new Set([s.destinationHex, s.destinationGlobalHex].filter(Boolean));
 
   // Check fuel
   const jumpFuel = Math.ceil(s.ship.tonnage * s.ship.jumpRating * 0.1);
   if (s.ship.currentFuel < jumpFuel) {
-    const { refuel } = await import('./TraderAtWorld.js');
     const world = getCurrentWorld(s);
     const choice = await app._choose(
       game.i18n.format('TWODSIX.Trader.Log.InsufficientFuel', { need: jumpFuel, have: s.ship.currentFuel }),
@@ -54,8 +57,6 @@ export async function depart(app) {
     }
   }
 
-  // Get reachable worlds
-  const { getReachableDestinations } = await import('./TraderAtWorld.js');
   const { reachable, options: destOptions } = await getReachableDestinations(app);
   if (!reachable.length) {
     await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoWorldsInRangeConsider'));
@@ -65,26 +66,40 @@ export async function depart(app) {
   let destHex;
 
   // If destination already chosen, offer to confirm or change
-  if (s.destinationHex && reachable.find(w => getWorldCoordinate(w) === s.destinationHex)) {
+  if (s.destinationHex && reachable.find(w => getDestinationCoordinateAliases(w).includes(s.destinationHex))) {
+    const destinationHex = s.destinationHex;
     const confirmChoice = await app._choose(
       game.i18n.format('TWODSIX.Trader.Prompts.ConfirmDestination', { destination: s.destinationName }),
       [
-        { value: 'confirm', label: game.i18n.format('TWODSIX.Trader.Log.Departure', { destination: s.destinationName }) },
+        {
+          value: 'confirm',
+          label: game.i18n.format('TWODSIX.Trader.Log.Departure', { destination: s.destinationName }),
+          aliases: [destinationHex],
+          matchCoordinateLike: true,
+        },
         { value: 'change', label: game.i18n.localize('TWODSIX.Trader.Actions.ChooseDifferent') },
+        ...destOptions.map(option => ({ ...option, replayOnly: true })),
       ]
     );
     if (confirmChoice === 'confirm') {
-      destHex = s.destinationHex;
-    } else {
+      destHex = destinationHex;
+    } else if (confirmChoice === 'change') {
       destHex = await app._choose(game.i18n.localize('TWODSIX.Trader.Prompts.Destination'), destOptions);
+    } else {
+      destHex = confirmChoice;
     }
   } else {
     destHex = await app._choose(game.i18n.localize('TWODSIX.Trader.Prompts.Destination'), destOptions);
   }
 
-  const dest = reachable.find(w => getWorldCoordinate(w) === destHex);
+  const dest = reachable.find(w => getDestinationCoordinateAliases(w).includes(destHex));
   if (!dest) {
     return;
+  }
+  const canonicalDestination = getWorldCoordinate(dest) || destHex;
+  const destinationChanged = !previousDestinationAliases.has(canonicalDestination);
+  if (destinationChanged) {
+    await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.DestinationSelected', { world: dest.name }));
   }
 
   // Check if destination has no refueling options - warn player
@@ -111,10 +126,16 @@ export async function depart(app) {
     }
   }
 
-  s.destinationHex = destHex;
+  s.destinationHex = canonicalDestination;
   s.destinationGlobalHex = dest.globalHex || dest.hex || '';
   s.destinationName = dest.name;
   await executeDeparture(app);
+}
+
+function getPassengerRevenue(passengers, rates) {
+  return Object.entries(passengers).reduce((total, [key, count]) => {
+    return total + (count * (rates[key] || 0));
+  }, 0);
 }
 
 /**
@@ -122,28 +143,39 @@ export async function depart(app) {
  */
 export async function executeDeparture(app) {
   const s = app.state;
-  const { accruePortFees } = await import('./TraderAtWorld.js');
 
   // Advance time for loading/prep (1D6 hours)
   const prepTime = await app._roll('1d6');
   advanceDate(s.gameDate, prepTime);
   await accruePortFees(app);
 
+  // Persist long-lived per-world fields before leaving (e.g. search-attempt history,
+  // so DM-1/attempt penalties survive returning to the same world same month).
+  persistWorldHistory(s);
+
   s.phase = PHASE.IN_TRANSIT;
 
   // Tally expected revenue for log
-  const paxRev = s.passengers.high * PASSENGER_REVENUE.high
-    + s.passengers.middle * PASSENGER_REVENUE.middle
-    + s.passengers.low * PASSENGER_REVENUE.low;
-  const freightRev = s.freight * FREIGHT_RATE;
-  const mailRev = s.hasMail ? MAIL_PAYMENT : 0;
+  const ruleset = getTraderRuleset(s.ruleset);
+  normalizeFreightState(s);
+  const passengerRevenue = ruleset.getPassengerRevenue();
+  const passengers = normalizePassengers(s.passengers);
+  const paxRev = getPassengerRevenue(passengers, passengerRevenue);
+  const freightLots = Array.isArray(s.freightLots) ? s.freightLots : [];
+  const freightRev = freightLots.length > 0
+    ? freightLots.reduce((sum, lot) => sum + (lot.tons * (lot.rate || ruleset.getFreightRate())), 0)
+    : s.freight * ruleset.getFreightRate();
+  const mailRev = s.hasMail
+    ? (Math.max(1, Number(s.mailContainers) || 1) * (Number(s.mailPaymentPerContainer) || ruleset.getMailPayment()))
+    : 0;
 
   await app.logEvent(game.i18n.format('TWODSIX.Trader.Log.DepartedFor', {
     origin: s.currentWorldName,
     destination: s.destinationName,
-    high: s.passengers.high,
-    mid: s.passengers.middle,
-    low: s.passengers.low,
+    high: passengers.high,
+    mid: passengers.middle,
+    steerage: passengers.steerage,
+    low: passengers.low,
     freight: s.freight,
     mail: s.hasMail ? 'Carrying mail. ' : '',
     revenue: (paxRev + freightRev + mailRev).toLocaleString()
@@ -155,8 +187,6 @@ export async function executeDeparture(app) {
 export async function inTransitPhase(app) {
   const s = app.state;
 
-  // Allow other activities before the jump resolves
-  const { runOtherActivitiesLoop } = await import('./TraderAtWorld.js');
   await runOtherActivitiesLoop(app, game.i18n.localize('TWODSIX.Trader.Actions.ProceedWithJump'));
 
   // Consume fuel
@@ -190,16 +220,15 @@ export async function inTransitPhase(app) {
 export async function arrivingPhase(app) {
   const s = app.state;
 
-  // Allow other activities before arrival is processed
-  const { runOtherActivitiesLoop } = await import('./TraderAtWorld.js');
   await runOtherActivitiesLoop(app, game.i18n.localize('TWODSIX.Trader.Actions.ProcessArrival'));
 
   const { getWorldCache } = await import('./TraderState.js');
 
   // Move to destination
+  const destinationAliases = new Set([s.destinationHex, s.destinationGlobalHex].filter(Boolean));
   const arrivedWorld = s.worlds.find(w => {
-    const hex = getWorldCoordinate(w);
-    return hex === s.destinationHex || hex === s.destinationGlobalHex;
+    const aliases = getDestinationCoordinateAliases(w);
+    return aliases.some(alias => destinationAliases.has(alias));
   });
 
   if (!arrivedWorld) {
@@ -302,17 +331,21 @@ export async function arrivingPhase(app) {
     console.warn('Twodsix | Trader: arrivedWorld found but is not an Actor document', arrivedWorld);
   }
   // Deliver passengers
-  const paxRev = s.passengers.high * PASSENGER_REVENUE.high
-    + s.passengers.middle * PASSENGER_REVENUE.middle
-    + s.passengers.low * PASSENGER_REVENUE.low;
+  const passengerRevenue = ruleset.getPassengerRevenue();
+  const passengers = normalizePassengers(s.passengers);
+  const paxRev = getPassengerRevenue(passengers, passengerRevenue);
   if (paxRev > 0) {
     addRevenue(s, paxRev);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PaxRevenue", { revenue: paxRev.toLocaleString() }));
   }
 
   // Deliver freight
+  normalizeFreightState(s);
   if (s.freight > 0) {
-    const freightRev = s.freight * FREIGHT_RATE;
+    const freightLots = Array.isArray(s.freightLots) ? s.freightLots : [];
+    const freightRev = freightLots.length > 0
+      ? freightLots.reduce((sum, lot) => sum + (lot.tons * (lot.rate || ruleset.getFreightRate())), 0)
+      : s.freight * ruleset.getFreightRate();
     addRevenue(s, freightRev);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.FreightRevenue", {
       tons: s.freight,
@@ -322,17 +355,24 @@ export async function arrivingPhase(app) {
 
   // Deliver mail
   if (s.hasMail) {
-    addRevenue(s, MAIL_PAYMENT);
-    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MailRevenue", { revenue: MAIL_PAYMENT.toLocaleString() }));
+    const mailPayment = Math.max(1, Number(s.mailContainers) || 1) * (Number(s.mailPaymentPerContainer) || ruleset.getMailPayment());
+    addRevenue(s, mailPayment);
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MailRevenue", { revenue: mailPayment.toLocaleString() }));
   }
 
   // Clear trip bookings
-  s.passengers = { high: 0, middle: 0, low: 0 };
+  s.passengers = { high: 0, middle: 0, steerage: 0, low: 0 };
   s.freight = 0;
+  s.freightLots = [];
   s.hasMail = false;
+  s.mailContainers = 0;
+  s.mailPaymentPerContainer = 0;
 
-  // Port fees
-  addExpense(s, PORT_FEE_BASE);
+  // Arrival port fee (ruleset-controlled)
+  const arrivalPortFee = ruleset.getArrivalPortFee(world);
+  if (arrivalPortFee > 0) {
+    addExpense(s, arrivalPortFee);
+  }
 
   await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CreditsCargoStatus", {
     credits: s.credits.toLocaleString(),
@@ -350,7 +390,16 @@ export async function arrivingPhase(app) {
     await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.CharterEnded'));
   }
 
-  // Clear the visit cache so all market rolls are fresh for this new world
+  if (ruleset.shouldResetLocalBrokerOnArrival()) {
+    // Reset hired local broker — brokers are tied to a specific world, not the ship.
+    // (Without this, a broker hired on world A would silently apply at world B.)
+    s.useLocalBroker = false;
+    s.localBrokerSkill = 0;
+    s.localBrokerIllegal = false;
+  }
+
+  // Clear the visit cache so all market rolls are fresh for this new world.
+  // (worldHistory is preserved separately and re-applied by getWorldCache.)
   s.worldVisitCache = {};
   getWorldCache(s); // Initialize tracker for the new world
   s.phase = PHASE.AT_WORLD;

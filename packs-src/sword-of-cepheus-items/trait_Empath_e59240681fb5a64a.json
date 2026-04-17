@@ -1,0 +1,23 @@
+{
+  "_id": "e59240681fb5a64a",
+  "name": "Empath",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/psychic-waves.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character can easily read another person's emotions. This may or may not be an innate magical ability. Whenever trying to determine an NPC's emotional state, or find out if an NPC is lying, the empath makes an opposed Insight/INT throw with Advantage. This also applies to games of chance and bluffing, such as poker, where \"reading\" the rival is a central aspect to the game.",
+    "prereq": "",
+    "shortdescr": "Advantage on Insight/INT to read emotions or detect lies.",
+    "subtype": "",
+    "key": "empath",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!e59240681fb5a64a"
+}

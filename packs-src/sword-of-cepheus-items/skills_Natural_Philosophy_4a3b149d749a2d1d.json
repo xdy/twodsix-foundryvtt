@@ -1,0 +1,26 @@
+{
+  "_id": "4a3b149d749a2d1d",
+  "name": "Natural Philosophy",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "The study of nature and technology.<ul><li>Predicting the weather: Natural Philosophy/EDU 12+</li><li>Knowing an esoteric scientific principle like the volume of gas increases as its temperature increases: Natural Philosophy/EDU 8+</li><li>Understanding a creature's place in the local ecology based on its fossilized teeth: Natural Philosophy/EDU 10+</li><li>Designing a working glider: Natural Philosophy/EDU 12+</li><li>Predicting a solar eclipse: Natural Philosophy/EDU 12+</li></ul>",
+    "shortdescr": "Study of nature, science, and technology.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!4a3b149d749a2d1d"
+}

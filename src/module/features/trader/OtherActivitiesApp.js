@@ -6,51 +6,18 @@
  */
 
 import { CREW_SALARIES } from './TraderConstants.js';
-import { getFreeCargoSpace, getFreeLowBerths, getFreeStaterooms } from './TraderState.js';
-import { parseCurrencyToMcr } from './TraderUtils.js';
+import {
+  getFreeCargoSpace,
+  getFreeLowBerths,
+  getFreeStaterooms,
+  getPassengerStateroomUsage,
+  normalizePassengers,
+} from './TraderState.js';
 
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
-/**
- * Build a ship state object from a ship Actor. Mirrors the inline logic in
- * TraderEntrypoint.initializeTraderState so the two stay in sync.
- * @param {Actor} shipActor
- * @param {object} baseShip - Existing state.ship to inherit fields from
- * @returns {object}
- */
-export function buildShipFromActor(shipActor, baseShip) {
-  const sys = shipActor.system;
-  const components = shipActor.itemTypes?.component ?? [];
-  const accommodations = components.filter(i => i.system?.subtype === 'accommodations');
-  const staterooms = accommodations
-    .filter(i => /stateroom/i.test(i.name))
-    .reduce((sum, i) => sum + (i.system?.quantity ?? 0), 0);
-  const lowBerths = accommodations
-    .filter(i => /low berth|cryoberth/i.test(i.name))
-    .reduce((sum, i) => sum + (i.system?.quantity ?? 0), 0);
-  const armed = components.some(i => i.system?.subtype === 'armament');
-
-  // Prioritize raw numeric calculation from ShipActor
-  let costMcr = parseCurrencyToMcr(sys.calcShipStats?.cost?.total, true);
-  if (costMcr === 0) {
-    const rawValue = sys.shipValue || sys.cost || "0";
-    costMcr = parseCurrencyToMcr(rawValue, true);
-  }
-
-  return {
-    ...baseShip,
-    name: shipActor.name,
-    jumpRating: sys.shipStats?.drives?.jDrive?.rating ?? baseShip.jumpRating,
-    maneuverRating: sys.shipStats?.drives?.mDrive?.rating ?? baseShip.maneuverRating,
-    tonnage: sys.mass?.max ?? baseShip.tonnage,
-    cargoCapacity: sys.weightStats?.cargo ?? baseShip.cargoCapacity,
-    fuelCapacity: sys.shipStats?.fuel?.max ?? baseShip.fuelCapacity,
-    shipCostMcr: costMcr || baseShip.shipCostMcr || parseCurrencyToMcr(baseShip.shipCost, true) || 0,
-    ...(staterooms > 0 && { staterooms }),
-    ...(lowBerths > 0 && { lowBerths }),
-    armed,
-  };
-}
+/** @deprecated Import from ./shipFromActor.js — re-exported for backward compatibility. */
+export { buildShipFromActor } from './shipFromActor.js';
 
 export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
@@ -209,6 +176,7 @@ export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2
       bulkL: num('bulkLuxuryDelta'),
       high: num('paxHighDelta'),
       middle: num('paxMiddleDelta'),
+      steerage: num('paxSteerageDelta'),
       low: num('paxLowDelta'),
     };
   }
@@ -220,7 +188,8 @@ export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2
     const staterooms = ship.staterooms ?? 0;
     const lowBerths = ship.lowBerths ?? 0;
 
-    const baseUsedCargo = (s.hasMail ? 5 : 0) + (s.charterCargo || 0);
+    const mailContainers = s.hasMail ? Math.max(1, Number(s.mailContainers) || 1) : 0;
+    const baseUsedCargo = (mailContainers * 5) + (s.charterCargo || 0);
     const baseUsedStaterooms = (s.charterStaterooms || 0);
     const baseUsedLow = (s.charterLowBerths || 0);
 
@@ -230,10 +199,15 @@ export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2
     const workingBulk = Math.max(0, d.bulkN) + Math.max(0, d.bulkL);
     const usedCargo = baseUsedCargo + workingCargoTons + workingFreight + workingBulk;
 
-    const workingHigh = Math.max(0, s.passengers.high + d.high);
-    const workingMid = Math.max(0, s.passengers.middle + d.middle);
-    const workingLow = Math.max(0, s.passengers.low + d.low);
-    const usedStaterooms = baseUsedStaterooms + this._crew.length + workingHigh + workingMid;
+    const currentPassengers = normalizePassengers(s.passengers);
+    const workingPassengers = {
+      high: Math.max(0, currentPassengers.high + d.high),
+      middle: Math.max(0, currentPassengers.middle + d.middle),
+      steerage: Math.max(0, currentPassengers.steerage + d.steerage),
+      low: Math.max(0, currentPassengers.low + d.low),
+    };
+    const usedStaterooms = baseUsedStaterooms + this._crew.length + getPassengerStateroomUsage(workingPassengers);
+    const workingLow = workingPassengers.low;
     const usedLow = baseUsedLow + workingLow;
 
     return {
@@ -271,6 +245,7 @@ export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2
     const bulkLuxuryDelta = num('bulkLuxuryDelta');
     const paxHighDelta = num('paxHighDelta');
     const paxMiddleDelta = num('paxMiddleDelta');
+    const paxSteerageDelta = num('paxSteerageDelta');
     const paxLowDelta = num('paxLowDelta');
     const fuelRefinedDelta = num('fuelRefinedDelta');
     const fuelUnrefinedDelta = num('fuelUnrefinedDelta');
@@ -340,6 +315,7 @@ export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2
     };
     paxLine(paxHighDelta, 'high');
     paxLine(paxMiddleDelta, 'middle');
+    paxLine(paxSteerageDelta, 'steerage');
     paxLine(paxLowDelta, 'low');
 
     if (fuelRefinedDelta !== 0) {
@@ -362,7 +338,7 @@ export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2
       freightDelta,
       bulkNormalDelta,
       bulkLuxuryDelta,
-      paxDelta: { high: paxHighDelta, middle: paxMiddleDelta, low: paxLowDelta },
+      paxDelta: { high: paxHighDelta, middle: paxMiddleDelta, steerage: paxSteerageDelta, low: paxLowDelta },
       fuelDelta: { refined: fuelRefinedDelta, unrefined: fuelUnrefinedDelta },
     };
     if (this._resolve) {

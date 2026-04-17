@@ -5,8 +5,9 @@
  */
 
 import { CrewSetupApp } from './CrewSetupApp.js';
-import { buildShipFromActor } from './OtherActivitiesApp.js';
+import { createTraderJournalEntry } from './entrypoint/traderJournalHelpers.js';
 import { ProgressDialog } from './ProgressDialog.js';
+import { buildShipFromActor } from './shipFromActor.js';
 import {
   createWorldActors,
   loadSubsector,
@@ -14,6 +15,7 @@ import {
   mergeLoadedSubsectorKeysFromActors
 } from './SubsectorLoader.js';
 import { TraderApp } from './TraderApp.js';
+import { TRADER_RULESET_DEFINITIONS } from './TraderRulesetRegistry.js';
 import { loadNeighboringSubsectorsInBackground } from './TraderBackgroundLoader.js';
 import { DEFAULT_MERCHANT_TRADER, SECTOR_WIDTH_IN_SUBSECTORS } from './TraderConstants.js';
 import { TraderSetupApp } from './TraderSetupApp.js';
@@ -28,7 +30,7 @@ import {
   traderDebug
 } from './TraderUtils.js';
 import { fetchJumpWorlds, fetchSectors, fetchWorldWithCache, loadSubsectorsWithCache } from './TravellerMapAPI.js';
-import { getOrCreateCacheJournal } from './TravellerMapCache.js';
+import { buildSubsectorKey, getOrCreateCacheJournal } from './TravellerMapCache.js';
 
 /**
  * Handles resuming an existing trading journey from a journal entry.
@@ -162,7 +164,7 @@ async function identifySubsectorsForTrader(subsectorsToSearch, setupResult, cach
             subsectorLetter: subLetter,
             subsectorName: sub.name,
             sectorCoords: { x: target.sx, y: target.sy, sx: target.sx, sy: target.sy },
-            subKey: `${target.sectorName}:${subLetter}:${setupResult.milieu || 'M1105'}`
+            subKey: buildSubsectorKey(target.sectorName, subLetter, setupResult.milieu || 'M1105')
           };
         }
       }
@@ -177,7 +179,7 @@ async function identifySubsectorsForTrader(subsectorsToSearch, setupResult, cach
 
   if (subsectorsToLoad.length === 0) {
     console.warn('Twodsix | TraderEntrypoint | No subsectors identified for loading, falling back to setup default.');
-    const fallbackKey = `${setupResult.sectorName}:${setupResult.subsectorLetter}:${setupResult.milieu || 'M1105'}`;
+    const fallbackKey = buildSubsectorKey(setupResult.sectorName, setupResult.subsectorLetter, setupResult.milieu || 'M1105');
     subsectorsToLoad.push({
       sectorName: setupResult.sectorName,
       subsectorLetter: setupResult.subsectorLetter,
@@ -386,10 +388,10 @@ function initializeTraderState(setupResult, startWorld, startGlobalHex, sectors,
   state.worlds = worlds;
   state.journalEntryId = journal.id;
   state.journalPageId = page?.id ?? null;
+  state.ruleset = setupResult.ruleset || 'CE';
 
   applyShipToState(state, setupResult.shipActorId);
 
-  state.ruleset = setupResult.ruleset || 'CE';
   state.crew = crew;
   state.credits = setupResult.startingCredits;
   return state;
@@ -436,9 +438,7 @@ async function startTradingLocal(app) {
       return;
     }
 
-    const journal = await JournalEntry.create({
-      name: setupResult.journalName || `Trader: Local — ${new Date().toLocaleDateString()}`,
-    });
+    const journal = await createTraderJournalEntry(startWorld.name);
 
     const state = freshTraderState();
     state.worldSource = 'local';
@@ -454,14 +454,17 @@ async function startTradingLocal(app) {
     applyShipToState(state, setupResult.shipActorId);
 
     app.state = state;
+    const localRulesetName = TRADER_RULESET_DEFINITIONS[setupResult.ruleset]
+      ? game.i18n.localize(TRADER_RULESET_DEFINITIONS[setupResult.ruleset].label)
+      : (setupResult.ruleset || 'CE');
     const pages = await journal.createEmbeddedDocuments('JournalEntryPage', [{
       name: 'Trade Log',
       type: 'text',
-      text: { content: `<h2>Local Trading Journey</h2><p>Ship: ${app.state.ship.name}</p><p>Starting world: ${startWorld.name}</p><hr>\n` },
+      text: { content: `<h2>Local Trading Journey</h2><p>Ship: ${app.state.ship.name}</p><p>Starting world: ${startWorld.name}</p><p>Ruleset: ${localRulesetName}</p><hr>\n` },
     }]);
     app.state.journalPageId = pages[0].id;
 
-    await app._saveState();
+    await app.flushSave();
     ui.notifications.info(game.i18n.format('TWODSIX.Trader.Messages.JourneyStarted', { world: startWorld.name }));
     await app.render({ force: true });
 
@@ -482,6 +485,14 @@ export async function startTrading(existingJournal = null) {
   const app = new TraderApp();
 
   if (await handleExistingJournal(app, existingJournal)) {
+    return;
+  }
+
+  if (!game.user?.isGM) {
+    const gmOnlyMessage = game.i18n.has('TWODSIX.Trader.Messages.GMOnlyStart')
+      ? game.i18n.localize('TWODSIX.Trader.Messages.GMOnlyStart')
+      : 'Only GM can start trading journeys.';
+    ui.notifications.error(gmOnlyMessage);
     return;
   }
 
@@ -636,12 +647,7 @@ export async function startTrading(existingJournal = null) {
     }
 
     traderDebug('TraderEntrypoint', `Creating journal entry...`);
-    const journal = await JournalEntry.create({
-      name: setupResult.journalName || game.i18n.format('TWODSIX.Trader.Messages.DefaultJournalName', {
-        subsector: setupResult.subsectorName,
-        date: new Date().toLocaleDateString(),
-      }),
-    });
+    const journal = await createTraderJournalEntry(startWorld.name);
 
     loadedSubsectorKeysInitial = mergeLoadedSubsectorKeysFromActors(loadedSubsectorKeysInitial, worlds);
     app.state = initializeTraderState(setupResult, startWorld, startGlobalHex, sectors, worlds, journal, null, loadedSubsectorKeysInitial, crew);
@@ -649,6 +655,10 @@ export async function startTrading(existingJournal = null) {
     const shipLabel = game.i18n.localize('TWODSIX.Trader.Messages.ShipLabel');
     const subsectorLabel = game.i18n.localize('TWODSIX.Trader.Messages.SubsectorLabel');
     const startingWorldLabel = game.i18n.localize('TWODSIX.Trader.Messages.StartingWorldLabel');
+    const rulesetLabelKey = game.i18n.localize('TWODSIX.Trader.App.RulesetLabel');
+    const rulesetDisplayName = TRADER_RULESET_DEFINITIONS[setupResult.ruleset]
+      ? game.i18n.localize(TRADER_RULESET_DEFINITIONS[setupResult.ruleset].label)
+      : (setupResult.ruleset || 'CE');
     const pages = await journal.createEmbeddedDocuments('JournalEntryPage', [{
       name: game.i18n.localize('TWODSIX.Trader.Messages.TradeLogPageName'),
       type: 'text',
@@ -656,11 +666,12 @@ export async function startTrading(existingJournal = null) {
         content: `<h2>${game.i18n.localize('TWODSIX.Trader.Messages.TradingJourneyHeader')}</h2>`
           + `<p>${shipLabel}: ${app.state.ship.name || DEFAULT_MERCHANT_TRADER.name} (${app.state.ship.tonnage || DEFAULT_MERCHANT_TRADER.tonnage}t)</p>`
           + `<p>${subsectorLabel}: ${setupResult.subsectorName}, ${setupResult.sectorName}</p>`
-          + `<p>${startingWorldLabel}: ${startWorld.name} (${startWorld.system?.uwp})</p><hr>\n`,
+          + `<p>${startingWorldLabel}: ${startWorld.name} (${startWorld.system?.uwp})</p>`
+          + `<p>${rulesetLabelKey}: ${rulesetDisplayName}</p><hr>\n`,
       },
     }]);
     app.state.journalPageId = pages[0].id;
-    await app._saveState();
+    await app.flushSave();
 
     ui.notifications.info(game.i18n.format('TWODSIX.Trader.Messages.JourneyStarted', { world: startWorld.name }));
     await app.render({ force: true });
@@ -695,7 +706,7 @@ export async function startTrading(existingJournal = null) {
 
 /**
  * Show the initial setup dialog for sector/subsector selection with cascading dropdowns.
- * @returns {Promise<object|null>} {journalName, cacheJournalName, sectorName, subsectorLetter, subsectorName, startingCredits} or null
+ * @returns {Promise<object|null>} {cacheJournalName, sectorName, subsectorLetter, subsectorName, startingCredits} or null
  */
 async function showSetupDialog() {
   ui.notifications.info(game.i18n.localize('TWODSIX.Trader.Messages.LoadingSetup'));

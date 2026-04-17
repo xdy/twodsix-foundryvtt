@@ -4,6 +4,7 @@
  */
 
 import {
+  FUEL_COST,
   SECTOR_HEIGHT_IN_HEXES,
   SECTOR_HEIGHT_IN_SUBSECTORS,
   SECTOR_WIDTH_IN_HEXES,
@@ -367,6 +368,27 @@ export function getRefuelOptions(world) {
 export function canRefuelAtWorld(world) {
   const { hasGasGiant, hasUnrefined } = getRefuelOptions(world);
   return hasUnrefined || hasGasGiant;
+}
+
+/**
+ * Check whether a ship can refuel at a world with the current credits.
+ * Gas giant refueling is free; starport fuel must be affordable.
+ * @param {Actor|object} world - World Actor document or plain data object
+ * @param {object} state - Trader state with credits
+ * @param {number} [fuelTons=1] - Tons of fuel that must be affordable
+ * @returns {boolean} True if refueling is available and affordable
+ */
+export function canAffordRefuelAtWorld(world, state, fuelTons = 1) {
+  if (!canRefuelAtWorld(world)) {
+    return false;
+  }
+  const { hasGasGiant, hasUnrefined, hasRefined } = getRefuelOptions(world);
+  if (hasGasGiant) {
+    return true;
+  }
+  const cheapestFuelCost = hasUnrefined ? FUEL_COST.unrefined : (hasRefined ? FUEL_COST.refined : Infinity);
+  const tons = Math.max(1, Math.ceil(Number(fuelTons) || 1));
+  return Number(state?.credits ?? 0) >= cheapestFuelCost * tons;
 }
 
 /**

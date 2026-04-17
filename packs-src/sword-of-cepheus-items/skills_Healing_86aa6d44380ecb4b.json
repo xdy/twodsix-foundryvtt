@@ -1,0 +1,26 @@
+{
+  "_id": "86aa6d44380ecb4b",
+  "name": "Healing",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/medic.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Training in the art of healing, from diagnosis to binding wounds to surgery.<ul><li>Cure poisons and diseases: see the Environmental Hazards chapter</li><li>Care for the wounded: see the Damage section of the Personal Combat chapter</li></ul>",
+    "shortdescr": "Diagnosis, binding wounds, surgery, and treating poison/disease.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!86aa6d44380ecb4b"
+}

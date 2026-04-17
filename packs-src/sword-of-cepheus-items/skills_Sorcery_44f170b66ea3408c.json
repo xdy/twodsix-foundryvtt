@@ -1,0 +1,26 @@
+{
+  "_id": "44f170b66ea3408c",
+  "name": "Sorcery",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Meddling in the dark arts of magic.<ul><li>Identifying a spell from a tome: Sorcery/EDU 8+</li><li>Identifying the important parts of a specific ritual to disrupt it: Sorcery/INT 8+</li></ul>",
+    "shortdescr": "The dark arts of magic; spellcasting, rituals, and arcane knowledge.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!44f170b66ea3408c"
+}

@@ -1,3 +1,7 @@
+/**
+ * Shared chargen constants used by multiple rulesets when SRD tables match (e.g. CE / CDEE / SOC aging bands).
+ * Do not dedupe tables that differ by edition—only reference here when values are intentionally identical.
+ */
 export const SHARED_AGING_TABLE = [
   { phys: [2, 2, 2], mental: 1 },
   { phys: [2, 2, 2], mental: 0 },

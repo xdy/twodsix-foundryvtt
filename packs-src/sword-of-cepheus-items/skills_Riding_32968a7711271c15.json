@@ -1,0 +1,26 @@
+{
+  "_id": "32968a7711271c15",
+  "name": "Riding",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "DEX",
+    "type": "skills",
+    "description": "Using animals for transportation, from riding a horse to driving a chariot to riding an elephant or dinosaur.<ul><li>Leaping from a moving chariot without being injured: Riding/DEX 10+</li><li>Making a mount leap over a large obstacle or ravine: Riding/INT 8+</li></ul>",
+    "shortdescr": "Riding horses, chariots, elephants, dinosaurs and other mounts.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!32968a7711271c15"
+}

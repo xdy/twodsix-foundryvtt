@@ -1,0 +1,278 @@
+{
+  "_id": "35012e2954e16b5d",
+  "name": "The Halfling",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Sneak",
+      "Scout",
+      "Carousing",
+      "Animals",
+      "Streetwise",
+      "Steward"
+    ],
+    "specialist": [
+      "Archery",
+      "Liaison",
+      "Craft",
+      "Deception",
+      "Melee",
+      "Jack o’Trades"
+    ],
+    "advanced": [
+      "Natural Phil.",
+      "Religion",
+      "Healing",
+      "Insight",
+      "Leadership",
+      "Athletics"
+    ],
+    "cash": [
+      50,
+      50,
+      100,
+      150,
+      200,
+      300
+    ],
+    "material": [
+      "+2 DEX",
+      "Thieves’ Tools",
+      "Ally",
+      "Ally",
+      "Weapon",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Arrested. Lose Benefit; then Ally (lawyer) or Enemy (charges).",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [],
+        "branchPrompt": "TWODSIX.CharGen.Branches.HalflingArrestedPrompt",
+        "branchChoices": [
+          {
+            "value": "lawyer",
+            "labelKey": "TWODSIX.CharGen.Branches.HalflingLawyer",
+            "always": [
+              "LOSE_BENEFIT_ROLL"
+            ],
+            "effects": [
+              "ALLY:Lawyer"
+            ]
+          },
+          {
+            "value": "charges",
+            "labelKey": "TWODSIX.CharGen.Branches.HalflingCharges",
+            "always": [
+              "LOSE_BENEFIT_ROLL"
+            ],
+            "effects": [
+              "ENEMY:Authorities"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 4,
+        "description": "Odd Jobs. INT 8+ or Streetwise 8+; fail: lose Benefit; success: Animals or Craft.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Craft:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Cookery. END−1 and Carousing.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "and",
+            "tags": [
+              "END_MINUS1",
+              "SKILL:Carousing:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Petty Theft. Streetwise 8+ or Sneak 8+; fail: lose Benefit; success: Benefit.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Sneak",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "The Good Life. Lose Benefit, gain Ally.",
+        "checks": [],
+        "always": [
+          "[ALLY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "and",
+            "tags": [
+              "LOSE_BENEFIT_ROLL",
+              "ALLY"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Contraband. Streetwise 8+; success: extra Benefit; fail: lose Benefit. Streetwise.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "always": [
+          "SKILL:Streetwise:1"
+        ],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Trolls. Sneak 8+; fail: lose Benefit; success: extra Benefit.",
+        "checks": [
+          {
+            "skill": "Sneak",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Thieves’ Guild. Accept: lose Benefit, SOC+1; refuse: Enemy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [],
+        "branchPrompt": "TWODSIX.CharGen.Branches.ThievesGuildPrompt",
+        "branchChoices": [
+          {
+            "value": "accept",
+            "labelKey": "TWODSIX.CharGen.Branches.ThievesGuildAccept",
+            "effects": [
+              "LOSE_BENEFIT_AND_SOC"
+            ]
+          },
+          {
+            "value": "refuse",
+            "labelKey": "TWODSIX.CharGen.Branches.ThievesGuildRefuse",
+            "effects": [
+              "ENEMY:Thieves’ guild"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 12,
+        "description": "Achievement.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!35012e2954e16b5d"
+}

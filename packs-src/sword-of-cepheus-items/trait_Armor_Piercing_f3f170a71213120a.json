@@ -1,0 +1,23 @@
+{
+  "_id": "f3f170a71213120a",
+  "name": "Armor Piercing",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to hit weak spots in the enemy's armor in melee combat. When attacking in melee, if the to-hit throw's Effect is +6 or better, ignore the target's armor.",
+    "prereq": "Melee Combat",
+    "shortdescr": "Effect +6 in melee ignores target armor.",
+    "subtype": "",
+    "key": "armor_piercing",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!f3f170a71213120a"
+}

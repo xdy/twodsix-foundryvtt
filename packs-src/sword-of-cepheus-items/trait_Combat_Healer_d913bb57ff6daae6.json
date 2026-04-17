@@ -1,0 +1,23 @@
+{
+  "_id": "d913bb57ff6daae6",
+  "name": "Combat Healer",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is trained in combat Healing and capable of bringing wounded comrades back to fighting condition. As an action in combat, the combat healer may throw Healing/INT 8+ to immediately revive an unconscious character with Wounds. The revived character will still be wounded and prone. However, they will be able to act in the following combat round.",
+    "prereq": "Healing",
+    "shortdescr": "Healing/INT 8+ to revive unconscious character in combat.",
+    "subtype": "",
+    "key": "combat_healer",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!d913bb57ff6daae6"
+}

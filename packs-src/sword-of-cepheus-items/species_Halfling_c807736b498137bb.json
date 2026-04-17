@@ -1,0 +1,79 @@
+{
+  "_id": "c807736b498137bb",
+  "name": "Halfling",
+  "type": "species",
+  "img": "icons/svg/bones.svg",
+  "system": {
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 DEX, −2 END.",
+      "Sneak/Surprise advantage; reaction +2 / intimidation −2; pickpocket Sneak advantage; stature weapon limits per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Halfling"
+    },
+    "shortdescr": "Jolly pastoral residents of shires, lovers of food, wine, and Pipe Weed.",
+    "description": "Halflings are typically the jolly residents of pastoral shires, or the often-larcenous denizens of towns and cities. Halflings are short in stature, sport hairy feet, and normally profess a deep love for Pipe Weed. Halflings love fine food, fine wine, and abstaining from adventure. Occasionally, a halfling leaves their idyllic life in the countryside, or a life of petty theft in the city, to seek high adventures, often in the company of dwarves and sorcerers."
+  },
+  "effects": [
+    {
+      "_id": "c807736b498137bbef",
+      "name": "Halfling Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.endurance.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!c807736b498137bb.c807736b498137bbef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!c807736b498137bb"
+}

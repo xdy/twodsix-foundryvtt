@@ -1,0 +1,234 @@
+{
+  "_id": "79b5c9cf8f11bf99",
+  "name": "Commoner",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Animals",
+      "Riding",
+      "Craft",
+      "Streetwise",
+      "Athletics",
+      "Carousing"
+    ],
+    "specialist": [
+      "Steward",
+      "Liaison",
+      "Carousing",
+      "Craft",
+      "Watercraft",
+      "Jack o’Trades"
+    ],
+    "advanced": [
+      "Religion",
+      "Healing",
+      "Leadership",
+      "Liaison",
+      "Govern",
+      "Animals"
+    ],
+    "cash": [
+      10,
+      10,
+      20,
+      50,
+      100,
+      200
+    ],
+    "material": [
+      "+1 STR",
+      "Hound",
+      "Ally",
+      "Weapon",
+      "Mount",
+      "Freehold"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Criminals. Streetwise or Carousing 8+: Ally; fail: lose Benefit.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Carousing",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "ALLY"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Hard Times. END 8+ or Injury.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Stolen Goods. Accept: Streetwise 8+ for 1d6x10 GP, fail loses Benefit; either way Streetwise. Refuse: Enemy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "STOLEN_GOODS",
+              "ENEMY"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Conscripted. Gain Scout, Melee Combat, Archery, or Athletics; END 8+ or Injury.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Scout:1",
+              "SKILL:Melee Combat:1",
+              "SKILL:Archery:1",
+              "SKILL:Athletics:1"
+            ]
+          }
+        ],
+        "onSuccess": [],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Travel. Gain Riding, Survival, or a Language.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Riding:1",
+              "SKILL:Survival:1",
+              "SKILL:Language:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Adventurers. Gain Melee Combat or Carousing.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Melee Combat:1",
+              "SKILL:Carousing:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 10,
+        "description": "Apprenticed. Gain Craft. Craft-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Craft:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Lucky. +1 on one Benefit roll.",
+        "checks": [],
+        "always": [
+          "[BENEFIT_DM:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Fame. You gain one point of Social Standing.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!79b5c9cf8f11bf99"
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "d2a534d0531029ca",
+  "name": "Rain of Arrows",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character has mastered the bow and can perform amazing feats of arms with it. When an arrow shot by the character does enough damage to cause an enemy to fall unconscious or die, the archer may immediately attack another enemy with the same bow. The character can only use this ability to gain one extra archery attack per combat round.",
+    "prereq": "Archery",
+    "shortdescr": "Kill with arrow grants one bonus attack same round.",
+    "subtype": "",
+    "key": "rain_of_arrows",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!d2a534d0531029ca"
+}

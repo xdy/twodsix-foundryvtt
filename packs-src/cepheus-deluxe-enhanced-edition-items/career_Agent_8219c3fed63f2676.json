@@ -1,0 +1,266 @@
+{
+  "_id": "8219c3fed63f2676",
+  "name": "Agent",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": false,
+    "service": [
+      "Investigation",
+      "Admin",
+      "Computers",
+      "Streetwise",
+      "Carousing",
+      "Stealth"
+    ],
+    "specialist": [
+      "Deception",
+      "Gun Combat",
+      "Grav Vehicles",
+      "Athletics",
+      "Driving",
+      "Recon"
+    ],
+    "advanced": [
+      "Pilot",
+      "Language",
+      "Liaison",
+      "Science",
+      "Medicine",
+      "Leadership"
+    ],
+    "ranks": [
+      {
+        "title": "Agent",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Special Agent",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Sp. Agent in Charge",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Unit Chief",
+        "skill": "Admin",
+        "level": 1
+      },
+      {
+        "title": "Section Chief",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Assistant Director",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Director",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000
+    ],
+    "material": [
+      "Low Passage",
+      "+1 INT",
+      "Weapon",
+      "Mid Passage",
+      "+1 SOC",
+      "High Passage"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the Injury table.",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Cybered! Your employer pays for advanced cybernetic implants. Gain Cr8000 worth of cybernetics.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Dangerous Mission",
+        "checks": [
+          {
+            "skill": "Recon",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Specialist Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[FREE_SKILL]"
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Labor Dispute. Try to avoid bloodshed: Union Leader (Contact). Doom the movement: extra Benefit roll and Union Leader (Enemy).",
+        "checks": [],
+        "always": [
+          "[CONTACT:Union Leader]",
+          "[BENEFIT_ROLL]",
+          "[ENEMY:Union Leader]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the Life Events table.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Undercover",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Deception",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Trusted Informant",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[CONTACT]"
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Kidnapping Rescue",
+        "checks": [
+          {
+            "skill": "Investigation",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[CONTACT:Hostage VIP]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Mentor. Gain Leadership, Admin (choose one) and a Contact.",
+        "checks": [],
+        "always": [
+          "[CHOOSE_SKILL:Leadership,Admin]",
+          "[CONTACT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Conspiracy. Promotion and free skill.",
+        "checks": [],
+        "always": [
+          "[RANK_UP]",
+          "[FREE_SKILL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  },
+  "folder": "kwM2V003wYcmPFtP",
+  "effects": [],
+  "_key": "!items!8219c3fed63f2676"
+}

@@ -3,6 +3,11 @@
 <pre style="font-family:monospace;white-space:pre-wrap">{{detailedSummary}}</pre>
 <hr>
 <pre style="font-family:monospace;white-space:pre">{{summary}}</pre>
+{{#if hasStructuredEventLog}}
+  <hr>
+  <p><strong>{{localize "TWODSIX.CharGen.Summary.StructuredEventsHeading"}}</strong></p>
+  <pre style="font-family:monospace;white-space:pre-wrap">{{structuredEventLog}}</pre>
+{{/if}}
 <hr>
 {{#each log}}
   <p>{{this}}</p>

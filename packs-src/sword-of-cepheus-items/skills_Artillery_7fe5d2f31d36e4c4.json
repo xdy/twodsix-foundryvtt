@@ -1,0 +1,26 @@
+{
+  "_id": "7fe5d2f31d36e4c4",
+  "name": "Artillery",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/heavy-weapons-artillery.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "The use of siege engines such as ballistae and catapults. In higher-tech settings, this also covers the use of primitive cannons.<ul><li>Setting up a siege engine in a secure location: Artillery/INT 8+</li><li>Attempt counter-battery fire: Artillery/EDU 10+</li></ul>",
+    "shortdescr": "Use of siege engines, ballistae, catapults, and primitive cannons.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!7fe5d2f31d36e4c4"
+}

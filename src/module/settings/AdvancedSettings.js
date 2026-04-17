@@ -8,6 +8,26 @@ export default class AdvancedSettings extends foundry.applications.api.Handlebar
   }
 
   /**
+   * Persist top-level form keys that correspond to registered `twodsix` settings.
+   * Ignores submit/cancel, optional UI-only names, and anything not registered (avoids stray form fields).
+   * @param {Record<string, unknown>} expanded - Output of `foundry.utils.expandObject(formData.object)`
+   * @param {string[]} [excludeKeys=[]] - Keys already saved elsewhere (e.g. normalized objects)
+   * @returns {Promise<void>}
+   */
+  static async persistRegisteredTwodsixSettings(expanded, excludeKeys = []) {
+    const skip = new Set(['submit', 'cancel', ...excludeKeys]);
+    for (const [key, value] of Object.entries(expanded)) {
+      if (skip.has(key)) {
+        continue;
+      }
+      if (!game.settings.settings.has(`twodsix.${key}`)) {
+        continue;
+      }
+      await game.settings.set('twodsix', key, value);
+    }
+  }
+
+  /**
    * Process form submission for the sheet
    * @this {MyApplication}                      The handler is called with the application as its bound scope
    * @param {SubmitEvent} event                   The originating form submission event
@@ -16,13 +36,9 @@ export default class AdvancedSettings extends foundry.applications.api.Handlebar
    * @returns {Promise<void>}
    */
   static async onSubmit(event, form, formData) {
-    if (event.type === "submit") {
-      const settings = foundry.utils.expandObject(formData.object);
-      for (const [key, value] of Object.entries(settings)) {
-        if (key !== "submit" && key !== "cancel") {
-          await game.settings.set("twodsix", key, value);
-        }
-      }
+    if (event.type === 'submit') {
+      const expanded = foundry.utils.expandObject(formData.object);
+      await AdvancedSettings.persistRegisteredTwodsixSettings(expanded);
     }
   }
 

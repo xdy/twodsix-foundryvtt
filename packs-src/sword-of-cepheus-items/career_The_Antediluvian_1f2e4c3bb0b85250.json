@@ -1,0 +1,236 @@
+{
+  "_id": "1f2e4c3bb0b85250",
+  "name": "The Antediluvian",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Natural Phil.",
+      "Archery",
+      "Alchemy",
+      "Melee",
+      "Artifice",
+      "Sorcery"
+    ],
+    "specialist": [
+      "Deception",
+      "Healing",
+      "Leadership",
+      "Insight",
+      "Liaison",
+      "Craft"
+    ],
+    "advanced": [
+      "Govern",
+      "Religion",
+      "Healing",
+      "Carouse",
+      "Sneak",
+      "Athletics"
+    ],
+    "cash": [
+      50,
+      50,
+      100,
+      150,
+      200,
+      300
+    ],
+    "material": [
+      "+1 INT",
+      "Magic Item",
+      "Magic Item",
+      "Spell",
+      "Spell",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Ancient Enemy. Sorcery 8+ or Melee Combat 8+; fail: Injury and Enemy; success: extra Benefit.",
+        "checks": [
+          {
+            "skill": "Sorcery",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY_AND_ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "High Sorcery. Sorcery 8+; fail: injury (Sorcery Mishap — Referee); success: one spell.",
+        "checks": [
+          {
+            "skill": "Sorcery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "MATERIAL:Spell"
+        ],
+        "onFail": [
+          "TABLE_ROLL:sorceryMishap"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Heirloom. Magic Item. Magic Item",
+        "checks": [],
+        "always": [
+          "[MATERIAL:Magic Item]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Adventure. END 8+ or Sorcery 8+; success: Animals, Survival, or Riding; fail: Injury. Extra Benefit either way.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          },
+          {
+            "skill": "Sorcery",
+            "target": 8
+          }
+        ],
+        "always": [
+          "BENEFIT_ROLL"
+        ],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Survival:1",
+              "SKILL:Riding:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Research. Insight 8+; fail: injury (Mishap); success: Magic Item.",
+        "checks": [
+          {
+            "skill": "Insight",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "MATERIAL:Magic Item"
+        ],
+        "onFail": [
+          "TABLE_ROLL:sorceryMishap"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Demon. Sorcery 8+; fail: Enemy (demon); success: Ally (demon).",
+        "checks": [
+          {
+            "skill": "Sorcery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "ALLY:Demon"
+        ],
+        "onFail": [
+          "ENEMY:Demon"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Counsellor. Noble hires you.",
+        "checks": [],
+        "always": [
+          "[ALLY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Religion. Religion-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Religion:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Achievement.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!1f2e4c3bb0b85250"
+}

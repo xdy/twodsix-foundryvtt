@@ -1,0 +1,23 @@
+{
+  "_id": "b453fd57ba21679d",
+  "name": "Rider",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is trained in riding animals, earthly and alien beasts alike. When making a throw to remain mounted on an animal, or when rolling for Position in a chase, the rider gains Advantage.",
+    "prereq": "Riding",
+    "shortdescr": "Advantage to remain mounted and on Position in chase.",
+    "subtype": "",
+    "key": "rider",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!b453fd57ba21679d"
+}

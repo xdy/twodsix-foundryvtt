@@ -1,0 +1,79 @@
+{
+  "_id": "da6a64f252e68242",
+  "name": "Goblin",
+  "type": "species",
+  "img": "icons/svg/biohazard.svg",
+  "system": {
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 DEX, −2 SOC.",
+      "Sneak/Surprise advantage underground or urban; +1 DM on Position to flee; stature weapon limits per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Goblin"
+    },
+    "shortdescr": "Nasty, brutish, short underground humanoids; cowardly alone but brave in numbers.",
+    "description": "Some say that the wretched goblins are distantly related to gnomes – a theory which is highly offensive to both species. Whatever their origin, goblins are nasty, brutish, and short humanoids who dwell mostly underground. They have a reputation for being cowardly as individuals but brave once they outnumber their foes. Individual goblins, of course, can behave nobly or cruelly, regardless of the stereotypes others have of their species. While the archetypal goblin habitat is underground or in abandoned ruins, many goblins have migrated to cities, where they excel in peddling, salvage, and theft."
+  },
+  "effects": [
+    {
+      "_id": "da6a64f252e68242ef",
+      "name": "Goblin Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.socialStanding.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!da6a64f252e68242.da6a64f252e68242ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!da6a64f252e68242"
+}

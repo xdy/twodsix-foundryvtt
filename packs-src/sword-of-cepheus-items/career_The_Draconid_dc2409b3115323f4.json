@@ -1,0 +1,234 @@
+{
+  "_id": "dc2409b3115323f4",
+  "name": "The Draconid",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Melee",
+      "Archery",
+      "Survival",
+      "Battle",
+      "Scout",
+      "Athletics"
+    ],
+    "specialist": [
+      "Craft",
+      "Artifice",
+      "Battle",
+      "Liaison",
+      "Animals",
+      "Riding"
+    ],
+    "advanced": [
+      "Govern",
+      "Religion",
+      "Healing",
+      "Alchemy",
+      "Leadership",
+      "Sorcery"
+    ],
+    "cash": [
+      100,
+      100,
+      150,
+      200,
+      300,
+      500
+    ],
+    "material": [
+      "+1 STR",
+      "+1 END",
+      "Weapon",
+      "Ally",
+      "Armor",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Warlord. Battle 8+; fail: lose Benefit; success: Leadership.",
+        "checks": [
+          {
+            "skill": "Battle",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Leadership:1"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Art of War. Battle-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Battle:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Beast Rider. Animals or Riding.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Riding:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Battle. Melee Combat 8+ or Archery 8+; fail: Injury; success: Benefit roll.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Archery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Duel. Melee Combat 8+; fail: Enemy; success: Ally.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "ALLY"
+        ],
+        "onFail": [
+          "ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Gambling. 2d6 8+ (luck, no DM); fail: lose Benefit; success: gain Benefit.",
+        "checks": [
+          {
+            "type": "raw",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Trade. Craft-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Craft:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Dragon Hunt. Melee Combat 8+ or Archery 8+; fail: two Injuries (worse); success: two extra Benefits.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Archery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL",
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY_WORST_OF:2"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Heritage.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!dc2409b3115323f4"
+}

@@ -1,12 +1,17 @@
 // CharGenState.js — Character generation state management
 import { LanguageType } from '../../utils/nameGenerator.js';
+import { serializeEventReport } from './EventReport.js';
 
 /**
  * Thrown (not returned) when a character dies during generation.
  * Caught in CharGenApp.run() to end generation cleanly.
  */
 export const CHARGEN_DIED = Symbol('chargen-died');
-export const CHARGEN_STATE_VERSION = 1;
+/** Bumped when persisted chargen state shape changes (see {@link migrateLegacyChargenFields}). */
+export const CHARGEN_STATE_VERSION = 3;
+
+/** Version for `JournalEntry` flag `twodsix.charGenSession` snapshots. */
+export const CHARGEN_SESSION_VERSION = 1;
 
 /**
  * Standard characteristic keys used throughout character generation.
@@ -36,6 +41,61 @@ export const CHARGEN_ROW_TYPES = {
 };
 
 /**
+ * Default objects merged into `state.chargenOverlay.<key>` when that bucket is first accessed
+ * or when {@link ensureChargenOverlay} runs. Third-party rulesets can call
+ * {@link registerChargenOverlayBucketDefaults} during `init` to register their namespace
+ * (use a **lowercase** key, typically the ruleset registry key lowercased).
+ * @type {Record<string, object>}
+ */
+const CHARGEN_OVERLAY_BUCKET_DEFAULTS = {
+  cdee: { prisonTerms: 0 },
+  soc: { chargenSpecies: null, chargenNotes: [] },
+  cu: {},
+};
+
+/**
+ * Merge or replace default field values for a chargen overlay bucket (e.g. `mybook`).
+ * Call from `Hooks.once('init', …, { order })` after twodsix init if you register a new ruleset.
+ * @param {string} overlayKey - Lowercase namespace (e.g. `'soc'`, `'mybook'`)
+ * @param {object} partialDefaults - Shallow-merged into existing defaults for that key
+ */
+export function registerChargenOverlayBucketDefaults(overlayKey, partialDefaults) {
+  const k = String(overlayKey || '').toLowerCase();
+  if (!k) {
+    return;
+  }
+  CHARGEN_OVERLAY_BUCKET_DEFAULTS[k] = foundry.utils.mergeObject(
+    CHARGEN_OVERLAY_BUCKET_DEFAULTS[k] ?? {},
+    partialDefaults ?? {},
+    { inplace: false },
+  );
+}
+
+function _createFreshChargenOverlay() {
+  const o = {};
+  for (const [key, defaults] of Object.entries(CHARGEN_OVERLAY_BUCKET_DEFAULTS)) {
+    o[key] = foundry.utils.deepClone(defaults);
+  }
+  return o;
+}
+
+/**
+ * Append a structured career EventReport (see {@link createEventReport} in EventReport.js) to state.
+ * @param {object} state - charState
+ * @param {object} report - mutable report object from {@link import('./EventReport.js').createEventReport}
+ */
+export function appendChargenEventReport(state, report) {
+  const row = serializeEventReport(report);
+  if (!row) {
+    return;
+  }
+  if (!Array.isArray(state.chargenEventReports)) {
+    state.chargenEventReports = [];
+  }
+  state.chargenEventReports.push(row);
+}
+
+/**
  * Character generation constants.
  * These can be overridden by ruleset-specific configurations in the future.
  */
@@ -48,22 +108,15 @@ export const CharGenConstants = {
 
   // Pension table (terms served -> annual pension)
   PENSION_ELIGIBILITY_TERMS: 5, // Minimum terms for pension
-  PENSION_BASE: 10000, // Base pension per 1000 credits
-  PENSION_MAX_TERMS: 8, // Terms at which pension caps
-  PENSION_PER_TERM_INCREASE: 2000, // Additional pension per term above base
+  PENSION_BASE: 10000, // Base pension per year at 5 terms
+  PENSION_PER_TERM_INCREASE: 2000, // Additional pension per term above minimum
 
-  // Pension formula helper
-  // 5 terms -> 10,000; each additional term adds 2,000; caps increase past 8 terms at 2,000/term
+  // Pension formula: 5 terms -> 10,000; each additional term adds 2,000 indefinitely.
   getPensionForTerms(billableTerms) {
     if (billableTerms < this.PENSION_ELIGIBILITY_TERMS) {
       return 0;
     }
-    const base = this.PENSION_BASE; // 10,000 for 5 terms
-    if (billableTerms <= this.PENSION_MAX_TERMS) {
-      return base + (billableTerms - this.PENSION_ELIGIBILITY_TERMS) * this.PENSION_PER_TERM_INCREASE;
-    }
-    return base + (this.PENSION_MAX_TERMS - this.PENSION_ELIGIBILITY_TERMS) * this.PENSION_PER_TERM_INCREASE
-      + (billableTerms - this.PENSION_MAX_TERMS) * this.PENSION_PER_TERM_INCREASE;
+    return this.PENSION_BASE + (billableTerms - this.PENSION_ELIGIBILITY_TERMS) * this.PENSION_PER_TERM_INCREASE;
   },
 };
 
@@ -79,6 +132,7 @@ export function freshState() {
     age: CharGenConstants.STARTING_AGE,
     gender: 'Male',
     skills: new Map(),
+    joat: 0,
     careers: [],
     languageType: LanguageType.Humaniti,
     currentRank: 0,
@@ -109,14 +163,90 @@ export function freshState() {
     // CU-specific state
     creationMode: null,
     friends: [],
+    allies: [],
     enemies: [],
     contacts: [],
-    // CDEE-specific state
-    traits: [],           // Selected trait names/ids
-    prisonTerms: 0,       // Prison terms served (don't count for benefits)
+    traits: [],           // Selected trait names/ids (CDEE, SOC, …)
     benefitDMs: [],       // Accumulated DM values for muster-out rolls
     extraBenefitRolls: 0, // Additional muster-out rolls from BENEFIT_ROLL events
+    /** Serialized {@link import('./EventReport.js').serializeEventReport} rows for actor bio / export. */
+    chargenEventReports: [],
+    /**
+     * Ruleset-scoped chargen fields (serialization-friendly).
+     * Legacy flat `prisonTerms` / `chargenSpecies` / `chargenNotes` are migrated in {@link deserializeCharGenState}.
+     */
+    chargenOverlay: _createFreshChargenOverlay(),
   };
+}
+
+/**
+ * Ensure `state.chargenOverlay` exists with per-ruleset buckets (lowercase keys: cdee, soc, cu, …).
+ * @param {object} state
+ * @returns {object}
+ */
+export function ensureChargenOverlay(state) {
+  if (!state.chargenOverlay || typeof state.chargenOverlay !== 'object') {
+    state.chargenOverlay = _createFreshChargenOverlay();
+  }
+  for (const [key, defaults] of Object.entries(CHARGEN_OVERLAY_BUCKET_DEFAULTS)) {
+    state.chargenOverlay[key] = foundry.utils.mergeObject(
+      foundry.utils.deepClone(defaults),
+      state.chargenOverlay[key] ?? {},
+      { inplace: false },
+    );
+  }
+  if (!Array.isArray(state.chargenOverlay.soc?.chargenNotes)) {
+    state.chargenOverlay.soc.chargenNotes = [];
+  }
+  return state.chargenOverlay;
+}
+
+/**
+ * Returns the overlay object for a ruleset namespace, creating an empty object if missing.
+ * Use lowercase keys matching {@link CharGenRegistry} keys where possible (`cdee`, `soc`, `cu`).
+ * @param {object} state
+ * @param {string} overlayKey
+ * @returns {object}
+ */
+export function getChargenOverlayBucket(state, overlayKey) {
+  const o = ensureChargenOverlay(state);
+  const k = String(overlayKey || '').toLowerCase();
+  if (!k) {
+    return o;
+  }
+  if (!o[k] || typeof o[k] !== 'object') {
+    o[k] = {};
+  }
+  return o[k];
+}
+
+/**
+ * Notes for actor sheet output (SOC species lines, etc.).
+ * @param {object} state
+ * @returns {string[]}
+ */
+export function getChargenNotesForActor(state) {
+  return ensureChargenOverlay(state).soc.chargenNotes ?? [];
+}
+
+/**
+ * Copy v1 flat fields into `chargenOverlay` and remove deprecated top-level keys.
+ * @param {object} state
+ */
+export function migrateLegacyChargenFields(state) {
+  const overlay = ensureChargenOverlay(state);
+  if (Object.prototype.hasOwnProperty.call(state, 'prisonTerms') && state.prisonTerms != null) {
+    overlay.cdee.prisonTerms = Number(state.prisonTerms) || 0;
+    delete state.prisonTerms;
+  }
+  if (Object.prototype.hasOwnProperty.call(state, 'chargenSpecies')) {
+    overlay.soc.chargenSpecies = state.chargenSpecies ?? null;
+    delete state.chargenSpecies;
+  }
+  if (Object.prototype.hasOwnProperty.call(state, 'chargenNotes')) {
+    overlay.soc.chargenNotes = Array.isArray(state.chargenNotes) ? [...state.chargenNotes] : [];
+    delete state.chargenNotes;
+  }
 }
 
 /**
@@ -128,6 +258,7 @@ export function serializeCharGenState(state) {
   const snapshot = foundry.utils.deepClone(state ?? freshState());
   snapshot._schemaVersion = CHARGEN_STATE_VERSION;
   snapshot.skills = Array.from((state?.skills ?? new Map()).entries());
+  migrateLegacyChargenFields(snapshot);
   return snapshot;
 }
 
@@ -148,10 +279,22 @@ export function deserializeCharGenState(saved) {
     merged.skills = new Map(savedSkills.entries());
   } else if (Array.isArray(savedSkills)) {
     merged.skills = new Map(savedSkills);
+  } else if (savedSkills != null && typeof savedSkills === 'object' && !Array.isArray(savedSkills)) {
+    console.warn(
+      'twodsix | CharGen deserialization: skills is a plain object instead of Map or array; treating as empty.',
+    );
+    merged.skills = new Map();
   } else {
     merged.skills = new Map();
   }
   merged._schemaVersion = CHARGEN_STATE_VERSION;
+  if (!Array.isArray(merged.chargenEventReports)) {
+    merged.chargenEventReports = [];
+  }
+  if (!Array.isArray(merged.allies)) {
+    merged.allies = [];
+  }
+  migrateLegacyChargenFields(merged);
   return merged;
 }
 

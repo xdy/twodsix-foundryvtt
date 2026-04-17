@@ -1,0 +1,79 @@
+{
+  "_id": "7521c9526e0946b3",
+  "name": "Revenant",
+  "type": "species",
+  "img": "icons/svg/skull.svg",
+  "system": {
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "Undead revenant: apply +2 END, −2 SOC after human career and mustering out (SRD).",
+      "No sleep; +1 DM vs paralysis/mind-numbing; no Rebirth; no breathe; immune disease/poison; healing magic damages; undead spell vulnerability; feeding healing; −2 reaction except +2 to intimidate; no natural healing—feed to heal; no XP advance per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": null
+    },
+    "shortdescr": "Free-willed undead driven by an unfulfilled mission, must consume flesh to exist.",
+    "description": "Some say that death brings final rest and respite to mortals. However, some spirits cannot rest, and death is not necessarily final. Drawn to the living world by an oath unfulfilled or a mortal sin unconfessed, revenants emerge from the grave to set right the wrongs of their former lives. Most revenants are evil undead, acting in vile ways to pursue the crimes they committed while living. A few, however, evade the dark grasp of the Dread Gods and retain their free will. Some even retain the moral codes they held during their mortal lives. Revenants are free-willed undead. They must consume the blood and flesh of living, or recently dead, sentient beings to exist. A revenant has a mission, its overriding purpose for coming back from the afterlife. Revenge, Justice, Redemption—these are the sorts of things that drive revenants."
+  },
+  "effects": [
+    {
+      "_id": "7521c9526e0946b3ef",
+      "name": "Revenant Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.endurance.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.socialStanding.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!7521c9526e0946b3.7521c9526e0946b3ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!7521c9526e0946b3"
+}

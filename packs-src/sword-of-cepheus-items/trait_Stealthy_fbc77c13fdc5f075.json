@@ -1,0 +1,23 @@
+{
+  "_id": "fbc77c13fdc5f075",
+  "name": "Stealthy",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is particularly adept at moving unseen and unheard in certain environments, such as forests, urban settings, or underground. When making Sneak or Surprise throws in their favored terrain, the character gains Advantage. The specific terrain should be chosen when this Trait is selected.",
+    "prereq": "Sneak",
+    "shortdescr": "Advantage on Sneak or Surprise in specific terrain.",
+    "subtype": "",
+    "key": "stealthy",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!fbc77c13fdc5f075"
+}

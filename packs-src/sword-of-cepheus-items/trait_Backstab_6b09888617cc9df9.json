@@ -1,0 +1,23 @@
+{
+  "_id": "6b09888617cc9df9",
+  "name": "Backstab",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/backstab.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to deliver a lethal blow to an unsuspecting victim. When attacking an unaware target in melee, gain Advantage, and add 1d6 to the attack's total damage.",
+    "prereq": "Melee Combat",
+    "shortdescr": "Advantage + 1d6 extra damage vs unaware melee targets.",
+    "subtype": "",
+    "key": "backstab",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!6b09888617cc9df9"
+}

@@ -1,0 +1,80 @@
+{
+  "_id": "a4241d727f7e41a9",
+  "name": "Elf",
+  "type": "species",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 DEX, −2 STR.",
+      "+2 DM on aging rolls.",
+      "Advantage to Sneak and Surprise in nature; sleep/ghoul immunity; +1 DM vs hostile spells; +1 DM visual perception per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 2,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Elf"
+    },
+    "shortdescr": "Long-lived fey forest-dwellers, graceful and steeped in arcane knowledge.",
+    "description": "Another important species in Nordic myth and classic fantasy tales, elves are the fey beings of the forest, long-lived, and graceful. Elves are supernatural creatures, steeped in sorcery and arcane knowledge. They tend to be enigmatic, and in some tales, they are not above replacing human children with their own, or bewitching mortals for their own alien purposes. On the other hand, they are often staunch allies of humanity and dwarvenkind against Chaos and Darkness."
+  },
+  "effects": [
+    {
+      "_id": "a4241d727f7e41a9ef",
+      "name": "Elf Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.strength.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!a4241d727f7e41a9.a4241d727f7e41a9ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!a4241d727f7e41a9"
+}
