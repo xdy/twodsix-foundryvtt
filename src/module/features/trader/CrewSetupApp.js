@@ -13,7 +13,7 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: 'trader-crew-setup',
     classes: ['twodsix', 'trader-crew'],
-    window: { title: 'Crew Setup', resizable: false },
+    window: { title: 'TWODSIX.Trader.Setup.CrewTitle', resizable: false },
     position: { width: 640, height: 'auto' },
   };
 

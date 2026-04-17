@@ -80,6 +80,10 @@ export const PORT_FEE_DAYS = 6;
 export const BULK_LS_NORMAL_COST = 54000;
 export const BULK_LS_LUXURY_COST = 72000;
 export const BULK_LS_CAPACITY = 20;
+export const BULK_LS_CARGO_ID = {
+  NORMAL: 'bulk_ls_normal',
+  LUXURY: 'bulk_ls_luxury',
+};
 
 // Maintenance: 0.1% of ship cost per year
 export const MAINTENANCE_RATE = 0.001;

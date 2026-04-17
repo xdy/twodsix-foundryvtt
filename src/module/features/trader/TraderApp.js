@@ -4,7 +4,14 @@
  */
 
 import { DecisionApp, RESTART } from '../DecisionApp.js';
-import { formatGameDate, freshTraderState, getUsedCargoSpace } from './TraderState.js';
+import { mergeLoadedSubsectorKeysFromActors } from './SubsectorLoader.js';
+import {
+  deserializeTraderState,
+  formatGameDate,
+  freshTraderState,
+  getUsedCargoSpace,
+  serializeTraderState
+} from './TraderState.js';
 import { getWorldCoordinate, traderDebug } from './TraderUtils.js';
 
 
@@ -24,6 +31,8 @@ export class TraderApp extends DecisionApp {
 
   state = null;
   pendingMaxValue = null;
+  _saveQueue = Promise.resolve();
+  _saveRequestId = 0;
 
   // ─── Rendering ──────────────────────────────────────────────
 
@@ -140,16 +149,32 @@ export class TraderApp extends DecisionApp {
    * Save current state to JournalEntry flags.
    */
   async _saveState() {
-    if (!this.state?.journalEntryId) {
-      console.warn('Twodsix | TraderApp._saveState: No journalEntryId in state.');
-      return;
-    }
-    const journal = game.journal.get(this.state.journalEntryId);
-    if (!journal) {
-      console.warn('Twodsix | TraderApp._saveState: JournalEntry not found:', this.state.journalEntryId);
-      return;
-    }
-    await journal.setFlag('twodsix', 'tradeState', foundry.utils.deepClone(this.state));
+    const snapshot = serializeTraderState(this.state);
+    const requestId = ++this._saveRequestId;
+
+    this._saveQueue = this._saveQueue.then(async () => {
+      // A newer save request exists, so skip this stale snapshot.
+      if (requestId < this._saveRequestId) {
+        return;
+      }
+
+      if (!snapshot?.journalEntryId) {
+        console.warn('Twodsix | TraderApp._saveState: No journalEntryId in state.');
+        return;
+      }
+
+      const journal = game.journal.get(snapshot.journalEntryId);
+      if (!journal) {
+        console.warn('Twodsix | TraderApp._saveState: JournalEntry not found:', snapshot.journalEntryId);
+        return;
+      }
+
+      await journal.setFlag('twodsix', 'tradeState', snapshot);
+    }).catch(err => {
+      console.error('Twodsix | TraderApp._saveState failed:', err);
+    });
+
+    return this._saveQueue;
   }
 
   /**
@@ -159,7 +184,7 @@ export class TraderApp extends DecisionApp {
   loadState(journalEntry) {
     const saved = journalEntry.getFlag('twodsix', 'tradeState');
     if (saved) {
-      this.state = foundry.utils.deepClone(saved);
+      this.state = deserializeTraderState(saved);
       this.state.journalEntryId = journalEntry.id;
 
       // Re-hydrate worlds with actual Actor documents
@@ -167,6 +192,9 @@ export class TraderApp extends DecisionApp {
         this.state.worlds = this.state.worlds
           .map(w => game.actors.get(w.id || w._id))
           .filter(a => !!a);
+        // Older saves pre-filled loadedSubsectorKeys for the full 3x3 grid; rebuild from actor flags
+        // so ensureSubsectorNeighborsLoaded can still backfill missing subsectors.
+        this.state.loadedSubsectorKeys = mergeLoadedSubsectorKeysFromActors([], this.state.worlds);
       }
     }
   }

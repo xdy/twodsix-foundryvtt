@@ -28,6 +28,8 @@ export const OUTCOME = {
   BANKRUPT: 'BANKRUPT',
 };
 
+export const TRADER_STATE_VERSION = 1;
+
 /**
  * @typedef {object} SectorCoordinates
  * @property {number} [x] - Sector X coordinate (alias of sx)
@@ -91,6 +93,7 @@ export const OUTCOME = {
 
 /**
  * @typedef {object} CargoItem
+ * @property {string} [cargoId] - Stable cargo identifier for system-defined goods
  * @property {string} name - Trade good name
  * @property {number} tons - Tons of cargo
  * @property {number} purchasePricePerTon - Purchase price per ton in credits
@@ -226,6 +229,7 @@ export function freshTraderState() {
   const monthlyPayment = Math.ceil(ship.shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
 
   return {
+    _schemaVersion: TRADER_STATE_VERSION,
     // Location & time
     currentWorldHex: '',
     currentWorldName: '',
@@ -302,7 +306,9 @@ export function freshTraderState() {
 
     // Loaded data cache
     sectors: [],               // list of all sectors in milieu
-    loadedSubsectorKeys: [],   // e.g. ["Spinward Marches:C", ...]
+    // Subsector cache keys for which world data actually exists (central load, actor flags, background load).
+    // Not the full 3x3 grid of interest — that list lives only during setup in getNeighboringSubsectors.
+    loadedSubsectorKeys: [],   // e.g. ["Spinward Marches:C:M1105", ...]
 
     // Maintenance tracking
     maintenanceMonthsSkipped: 0,
@@ -314,6 +320,35 @@ export function freshTraderState() {
     gameOver: false,
     outcome: null,
   };
+}
+
+/**
+ * Serialize state for persistence in Journal flags.
+ * Keeps references minimal and versioned.
+ * @param {TraderState} state
+ * @returns {object}
+ */
+export function serializeTraderState(state) {
+  const snapshot = foundry.utils.deepClone(state ?? freshTraderState());
+  snapshot._schemaVersion = TRADER_STATE_VERSION;
+  snapshot.worlds = (snapshot.worlds ?? []).map(w => ({ id: w?.id ?? w?._id })).filter(w => !!w.id);
+  return snapshot;
+}
+
+/**
+ * Deserialize persisted state into a normalized runtime shape.
+ * @param {object} saved
+ * @returns {TraderState}
+ */
+export function deserializeTraderState(saved) {
+  const base = freshTraderState();
+  const merged = foundry.utils.mergeObject(base, foundry.utils.deepClone(saved ?? {}), {
+    inplace: false,
+    insertKeys: true,
+    overwrite: true,
+  });
+  merged._schemaVersion = TRADER_STATE_VERSION;
+  return merged;
 }
 
 /**
@@ -402,6 +437,45 @@ export function getAbsoluteDay(gameDate, milieu = 'M1105') {
  */
 export function getTotalCrewSalary(crew) {
   return crew.reduce((sum, c) => sum + (c.salary || 0), 0);
+}
+
+/**
+ * Add revenue and update bookkeeping.
+ * @param {TraderState} state - Trade state
+ * @param {number} amount - Revenue amount in credits
+ * @returns {number} Applied amount
+ */
+export function addRevenue(state, amount) {
+  const applied = Math.max(0, Number(amount) || 0);
+  state.credits += applied;
+  state.totalRevenue += applied;
+  return applied;
+}
+
+/**
+ * Remove previously counted revenue and adjust credits/bookkeeping.
+ * @param {TraderState} state - Trade state
+ * @param {number} amount - Revenue amount to remove
+ * @returns {number} Applied amount
+ */
+export function subtractRevenue(state, amount) {
+  const applied = Math.max(0, Number(amount) || 0);
+  state.credits -= applied;
+  state.totalRevenue -= applied;
+  return applied;
+}
+
+/**
+ * Add expense and update bookkeeping.
+ * @param {TraderState} state - Trade state
+ * @param {number} amount - Expense amount in credits
+ * @returns {number} Applied amount
+ */
+export function addExpense(state, amount) {
+  const applied = Math.max(0, Number(amount) || 0);
+  state.credits -= applied;
+  state.totalExpenses += applied;
+  return applied;
 }
 
 /**

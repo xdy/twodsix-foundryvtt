@@ -2,7 +2,6 @@
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic, stripMechanicTags } from './BaseCharGenLogic.js';
-import { reportAutoHandled, reportSubRow } from './EventReport.js';
 import {
   CDEE_AGING_TABLE,
   CDEE_CASCADE_SKILLS,
@@ -17,7 +16,7 @@ import {
   CDEE_ZERO_LEVEL_CIVILIAN,
   CDEE_ZERO_LEVEL_MILITARY
 } from './CDEECharGenConstants.js';
-import { CHARACTERISTIC_KEYS, CHARGEN_DIED, adjustChar } from './CharGenState.js';
+import { adjustChar, CHARACTERISTIC_KEYS, CHARGEN_DIED } from './CharGenState.js';
 import {
   assignCharacteristicPoolFromChoices,
   getSkillLevel,
@@ -26,6 +25,7 @@ import {
   optionsFromCareerNames,
   optionsFromStrings,
 } from './CharGenUtils.js';
+import { reportAutoHandled, reportSubRow } from './EventReport.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CDEE pack) ────────────────────────────────
 
@@ -83,14 +83,15 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     ]);
     state.creationMode = charMethod;
 
-    if (charMethod === 'array') {
+    const skipIdentityCharacteristics = charMethod === 'array';
+    if (skipIdentityCharacteristics) {
       await this.stepCDEECharacteristicsArray(app);
-    } else {
-      await app._chooseCharacteristics();
     }
 
     // 2. Identity
-    await this.stepIdentity(app);
+    await this.stepIdentity(app, {
+      characteristicsStep: skipIdentityCharacteristics ? async () => {} : null,
+    });
 
     await this.stepOptionalRules(app);
 
@@ -118,7 +119,13 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       const remainingTerms = 7 - state.totalTerms;
       const termOptions = [];
       for (let i = 1; i <= remainingTerms; i++) {
-        termOptions.push({ value: i, label: `${i} term${i > 1 ? 's' : ''}` });
+        termOptions.push({
+          value: i,
+          label: game.i18n.format('TWODSIX.CharGen.TermCountOption', {
+            count: i,
+            termWord: game.i18n.localize(i > 1 ? 'TWODSIX.CharGen.TermWord.many' : 'TWODSIX.CharGen.TermWord.one'),
+          }),
+        });
       }
       const selection = await app._choose(
         game.i18n.format('TWODSIX.CharGen.Steps.CDEEChooseTermsInCareer', { career: careerName, max: remainingTerms }),
@@ -133,7 +140,12 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         for (const sk of zeroSkills) {
           await this._addSkillAtLevel(app, sk, 0);
         }
-        state.log.push(`Zero-level skills (${career.isMilitary ? 'Military' : 'Civilian'}): ${zeroSkills.join(', ')}`);
+        state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.ZeroLevelSkills', {
+          branch: game.i18n.localize(
+            career.isMilitary ? 'TWODSIX.CharGen.CDEE.BranchMilitary' : 'TWODSIX.CharGen.CDEE.BranchCivilian',
+          ),
+          skills: zeroSkills.join(', '),
+        }));
       } else {
         // Subsequent careers: pick ONE service skill at level 0
         const sk = await app._choose(
@@ -141,13 +153,15 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
           optionsFromStrings(career.service),
         );
         await this._addSkillAtLevel(app, sk, 0);
-        state.log.push(`New career (${careerName}) basic training: ${sk}-0`);
+        state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.NewCareerBasicTraining', { career: careerName, skill: sk }));
       }
 
       // 7. Career term loop
+      let termsServedInCareer = 0;
       for (let term = 1; term <= numTerms; term++) {
         state.totalTerms++;
         state.currentTermInCareer = term;
+        termsServedInCareer++;
         const ageStart = state.age;
         const { termEntry } = this.logTermStart(app, {
           careerName,
@@ -164,7 +178,7 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
           for (const sk of career.service) {
             await this._addSkillAtLevel(app, sk, sk === mainSkill ? 1 : 0);
           }
-          state.log.push(`Service skills: ${mainSkill}-1, others at 0.`);
+          state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.ServiceSkillsMain', { skill: mainSkill }));
           await this.stepSkillsAndTraining(app, careerName, 2, { term: 1 });
         } else if (term <= 3) {
           await this.stepSkillsAndTraining(app, careerName, 2);
@@ -182,11 +196,22 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
           state.currentRank++;
           const rankInfo = career.ranks[state.currentRank];
           if (rankInfo) {
-            app._log('Rank Increase', `Now ${rankInfo.title || `Rank ${state.currentRank}`}`);
-            state.log.push(`Rank increased to ${state.currentRank} (${rankInfo.title || 'no title'}).`);
+            app._log(
+              game.i18n.localize('TWODSIX.CharGen.CDEE.LogRankIncrease'),
+              rankInfo.title
+                ? game.i18n.format('TWODSIX.CharGen.CDEE.LogRankNowTitle', { title: rankInfo.title })
+                : game.i18n.format('TWODSIX.CharGen.CDEE.LogRankNumber', { rank: state.currentRank }),
+            );
+            state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.RankIncreased', {
+              rank: state.currentRank,
+              title: rankInfo.title || game.i18n.localize('TWODSIX.CharGen.CDEE.NoTitle'),
+            }));
             if (rankInfo.skill) {
               await this._addSkillAtLevel(app, rankInfo.skill, rankInfo.level);
-              state.log.push(`Rank skill: ${rankInfo.skill}-${rankInfo.level}`);
+              state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.RankSkill', {
+                skill: rankInfo.skill,
+                level: rankInfo.level,
+              }));
             }
           }
         }
@@ -199,7 +224,7 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         // crisis survival forces retirement from this career at end of the current term
         if (state.retireFromCareer) {
           state.retireFromCareer = false; // reset for any future career
-          state.log.push(`Left ${careerName} after crisis — must retire.`);
+          state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.LeftCareerAfterCrisis', { career: careerName }));
           break;
         }
       }
@@ -210,7 +235,7 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
 
       const careerRecord = {
         name: careerName,
-        terms: numTerms,
+        terms: termsServedInCareer,
         rank: state.currentRank,
         mishap: false,
       };
@@ -267,7 +292,7 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       [...hw.skills].sort().map(s => ({ value: s, label: `${s}-1` })),
     );
     await this._addSkillAtLevel(app, skill, 1);
-    state.log.push(`Homeworld: ${type}, Skill: ${skill}-1`);
+    state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.HomeworldLog', { type, skill }));
   }
 
   async stepSkillsAndTraining(app, careerName, numRolls, { term = 0 } = {}) {
@@ -303,7 +328,12 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         }));
         const c = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.CDEEIncreaseCharPlus1'), opts);
         adjustChar(app.charState, c, 1); // M1: capped at 15
-        app._log('Characteristic', `${c.toUpperCase()} +1`);
+        app._log(
+          game.i18n.localize('TWODSIX.CharGen.CDEE.LogCharacteristic'),
+          game.i18n.format('TWODSIX.CharGen.CDEE.CharacteristicPlusOne', {
+            char: game.i18n.localize(`TWODSIX.CharGen.Chars.${c.toUpperCase()}`),
+          }),
+        );
       } else {
         // M7: build option list upfront; for term 1 filter out skills already at level 2
         let skills = career[tbl].sort();
@@ -332,7 +362,7 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     state.age += 4;
     // aging begins at end of 4th term OR when age reaches 34, whichever comes first
     if (state.totalTerms < 4 && state.age < 34) {
-      state.log.push(`Age now ${state.age}.`);
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.AgeNow', { age: state.age }));
       return;
     }
     let agingDM = 0;
@@ -347,13 +377,23 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     }
     const roll = await app._roll('2d6');
     const result = roll - state.totalTerms + agingDM;
-    app._log('Aging', `${roll}−${state.totalTerms} terms${agingDM ? addSign(agingDM) : ''}=${result} (age ${state.age})`);
+    app._log(
+      game.i18n.localize('TWODSIX.CharGen.CDEE.LogAging'),
+      game.i18n.format('TWODSIX.CharGen.CDEE.AgingRollLog', {
+        roll,
+        terms: state.totalTerms,
+        agingDM: agingDM ? addSign(agingDM) : '',
+        result,
+        ageLabel: game.i18n.localize('TWODSIX.CharGen.App.Age'),
+        age: state.age,
+      }),
+    );
 
     if (result <= 0) {
       const idx = Math.min(7, Math.max(0, result + 6));
       const entry = this.agingTable[idx];
       if (entry) {
-        state.log.push('Aging effect: reducing characteristics.');
+        state.log.push(game.i18n.localize('TWODSIX.CharGen.CDEE.AgingEffectReducing'));
         await this.applyAgingEntryReductions(app, entry, {
           physPromptFormatKey: 'TWODSIX.CharGen.Aging.ReducePhysicalCharBy',
         });
@@ -368,16 +408,26 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     const roll = await app._roll('2d6');
     const total = roll + endMod;
     const success = total >= 6;
-    app._log('Crisis', `2D6(${roll})${addSign(endMod)}(END)=${total} vs 6+ → ${success ? 'Survived' : 'Died'}`);
+    app._log(
+      game.i18n.localize('TWODSIX.CharGen.CDEE.LogCrisis'),
+      game.i18n.format('TWODSIX.CharGen.CDEE.CrisisRoll', {
+        roll,
+        endMod: addSign(endMod),
+        total,
+        outcome: game.i18n.localize(
+          success ? 'TWODSIX.CharGen.Outcome.Survived' : 'TWODSIX.CharGen.Outcome.Died',
+        ),
+      }),
+    );
 
     if (success) {
       zeroChars.forEach(c => (state.chars[c] = 1));
       // flag that the character must leave this career at the end of the term
       state.retireFromCareer = true;
-      state.log.push('Survived crisis — must retire from current career.');
+      state.log.push(game.i18n.localize('TWODSIX.CharGen.CDEE.SurvivedCrisisRetire'));
     } else {
       state.died = true;
-      state.log.push('DIED during aging crisis.');
+      state.log.push(game.i18n.localize('TWODSIX.CharGen.CDEE.DiedAgingCrisis'));
       throw CHARGEN_DIED;
     }
   }
@@ -388,48 +438,53 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       return `${parts[1]} ${parts[2] ?? 8}+`;
     }
     if (tag.startsWith('CHOOSE_SKILL:')) {
-      return tag.split(':')[1].split(',').join(' or ');
+      const or = game.i18n.localize('TWODSIX.CharGen.ListOr');
+      return tag.split(':')[1].split(',').join(or);
     }
     if (tag === 'INJURY') {
-      return 'Injury';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagInjury');
     }
     if (tag === 'LIFE_EVENT') {
-      return 'Life Event';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagLifeEvent');
     }
     if (tag === 'UNUSUAL_EVENT') {
-      return 'Unusual Event';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagUnusualEvent');
     }
     if (tag === 'PRISON') {
-      return 'Prison';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagPrison');
     }
     if (tag === 'RANK_UP') {
-      return 'Rank Up';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagRankUp');
     }
     if (tag.startsWith('BENEFIT_DM:')) {
-      return `Benefit DM ${tag.split(':')[1]}`;
+      return game.i18n.format('TWODSIX.CharGen.CDEE.TagBenefitDM', { n: tag.split(':')[1] });
     }
     if (tag === 'FREE_SKILL') {
-      return 'Free Skill';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagFreeSkill');
     }
     if (tag === 'BENEFIT_ROLL') {
-      return 'Extra Benefit Roll';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagExtraBenefitRoll');
     }
     if (tag === 'LOSE_BENEFIT_ROLL') {
-      return 'Lose Benefit Roll';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagLoseBenefitRoll');
     }
     if (tag.startsWith('TRAIT:')) {
-      return `Trait: ${tag.slice(6)}`;
+      return game.i18n.format('TWODSIX.CharGen.CDEE.TagTraitNamed', { name: tag.slice(6) });
     }
     if (tag === 'TRAIT') {
-      return 'Free Trait';
+      return game.i18n.localize('TWODSIX.CharGen.CDEE.TagFreeTrait');
     }
     if (tag.startsWith('CASH:')) {
       const amt = parseInt(tag.split(':')[1], 10);
-      return `Cr${isNaN(amt) ? '?' : amt.toLocaleString()}`;
+      return isNaN(amt)
+        ? game.i18n.localize('TWODSIX.CharGen.CDEE.TagCashUnknown')
+        : game.i18n.format('TWODSIX.CharGen.CDEE.TagCash', { amount: amt.toLocaleString() });
     }
     if (tag.startsWith('CYBERNETICS:')) {
       const amt = parseInt(tag.split(':')[1], 10);
-      return `Cybernetics (Cr${isNaN(amt) ? '?' : amt.toLocaleString()})`;
+      return isNaN(amt)
+        ? game.i18n.localize('TWODSIX.CharGen.CDEE.TagCyberneticsUnknown')
+        : game.i18n.format('TWODSIX.CharGen.CDEE.TagCybernetics', { amount: amt.toLocaleString() });
     }
     return super._humanizeTag(tag);
   }
@@ -442,13 +497,19 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       const skills = tag.split(':')[1].split(',');
       const sk = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.CDEEEventPickSkill'), optionsFromStrings(skills, { sort: false }));
       await this._addOrImproveSkill(app, sk, skills);
-      reportSubRow(report, `Chose skill: ${sk}`);
+      reportSubRow(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportChoseSkill', { skill: sk }));
     } else if (tag.startsWith('CHECK:')) {
       const parts = tag.split(':');
       const skill = parts[1];
       const target = parseInt(parts[2]) || 8;
       const { success } = await this._rollSkillOrCharCheck(app, skill, target, { abbreviatedStateLog: true });
-      reportSubRow(report, `Check ${skill} ${target}+: ${success ? 'Success' : 'Fail'}`);
+      reportSubRow(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportCheck', {
+        skill,
+        target,
+        outcome: game.i18n.localize(
+          success ? 'TWODSIX.CharGen.Outcome.Success' : 'TWODSIX.CharGen.Outcome.Fail',
+        ),
+      }));
     } else if (tag === 'INJURY') {
       await this.stepInjury(app, report);
     } else if (tag === 'LIFE_EVENT') {
@@ -459,29 +520,41 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       await this.stepPrison(app, report);
     } else if (tag === 'RANK_UP') {
       state.currentRank++;
-      app._log('Rank Up', `Now rank ${state.currentRank}`);
-      state.log.push(`Early promotion: rank increased to ${state.currentRank}.`);
-      reportAutoHandled(report, `Rank ${state.currentRank}`);
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogRankUp'),
+        game.i18n.format('TWODSIX.CharGen.CDEE.LogRankNow', { rank: state.currentRank }),
+      );
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateEarlyPromotion', { rank: state.currentRank }));
+      reportAutoHandled(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportRank', { rank: state.currentRank }));
     } else if (tag.startsWith('BENEFIT_DM:')) {
       const dm = parseInt(tag.split(':')[1]);
       state.benefitDMs.push(dm);
-      app._log('Benefit DM', `+${dm} on a muster-out roll`);
-      state.log.push(`Benefit DM: +${dm} on next muster-out roll.`);
-      reportAutoHandled(report, `Benefit DM +${dm}`);
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogBenefitDM'),
+        game.i18n.format('TWODSIX.CharGen.CDEE.LogBenefitDMDetail', { dm }),
+      );
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateBenefitDMNext', { dm }));
+      reportAutoHandled(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportBenefitDM', { dm }));
     } else if (tag === 'FREE_SKILL') {
       await this.stepFreeSkill(app, careerName, report);
     } else if (tag === 'BENEFIT_ROLL') {
       state.extraBenefitRolls++;
-      app._log('Benefit Roll', 'Gained an extra muster-out roll');
-      state.log.push('Gained an extra benefit roll.');
-      reportAutoHandled(report, 'Extra benefit roll');
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogBenefitRoll'),
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogExtraMusterRoll'),
+      );
+      state.log.push(game.i18n.localize('TWODSIX.CharGen.CDEE.StateGainedExtraRoll'));
+      reportAutoHandled(report, game.i18n.localize('TWODSIX.CharGen.CDEE.ReportExtraBenefitRoll'));
     } else if (tag === 'LOSE_BENEFIT_ROLL') {
       // Floor: can't go further into debt than the total rolls ever earned (1 base + terms per career)
       const totalEarnedRolls = state.careers.reduce((acc, c) => acc + (1 + c.terms), 0);
       state.extraBenefitRolls = Math.max(state.extraBenefitRolls - 1, -totalEarnedRolls);
-      app._log('Benefit Roll', 'Lost a muster-out roll');
-      state.log.push('Lost one benefit roll.');
-      reportAutoHandled(report, 'Lost benefit roll');
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogBenefitRoll'),
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogLostMusterRoll'),
+      );
+      state.log.push(game.i18n.localize('TWODSIX.CharGen.CDEE.StateLostRoll'));
+      reportAutoHandled(report, game.i18n.localize('TWODSIX.CharGen.CDEE.ReportLostBenefitRoll'));
     } else if (tag === 'TRAIT') {
       await this.stepPickTrait(app, report);
     } else if (tag.startsWith('TRAIT:')) {
@@ -491,16 +564,21 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       const amt = parseInt(tag.split(':')[1], 10);
       if (!isNaN(amt)) {
         state.cashBenefits += amt;
-        app._log('Cash', `+Cr${amt.toLocaleString()}`);
-        state.log.push(`Cash: +Cr${amt.toLocaleString()}.`);
-        reportAutoHandled(report, `Cr${amt.toLocaleString()}`);
+        app._log(
+          game.i18n.localize('TWODSIX.CharGen.CDEE.LogCash'),
+          game.i18n.format('TWODSIX.CharGen.CDEE.LogCashPlus', { amount: amt.toLocaleString() }),
+        );
+        state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateCashGain', { amount: amt.toLocaleString() }));
+        reportAutoHandled(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportCrAmount', { amount: amt.toLocaleString() }));
       }
     } else if (tag.startsWith('CYBERNETICS:')) {
       const amt = parseInt(tag.split(':')[1], 10);
-      const label = isNaN(amt) ? 'Cybernetics' : `Cybernetics (Cr${amt.toLocaleString()})`;
+      const label = isNaN(amt)
+        ? game.i18n.localize('TWODSIX.CharGen.CDEE.TagCyberneticsUnknown')
+        : game.i18n.format('TWODSIX.CharGen.CDEE.TagCybernetics', { amount: amt.toLocaleString() });
       state.materialBenefits.push(label);
-      app._log('Cybernetics', label);
-      state.log.push(`Gained: ${label}.`);
+      app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogCybernetics'), label);
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateGainedItem', { label }));
       reportAutoHandled(report, label);
     }
     return false;
@@ -521,15 +599,18 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     }
     const opts = optionsFromStrings([...allSkills]);
     if (!opts.length) {
-      app._log('Free Skill', 'No skills available.');
+      app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogFreeSkill'), game.i18n.localize('TWODSIX.CharGen.CDEE.LogNoSkillsAvailable'));
       return;
     }
     const chosen = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.CDEEFreeSkillPick'), opts);
     const name = await this._addSkillAtLevel(app, chosen, 1);
     if (name) {
-      app._log('Free Skill', `${name}-1`);
-      state.log.push(`Free skill: ${name}-1.`);
-      reportSubRow(report, `Free skill: ${name}-1`);
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogFreeSkill'),
+        game.i18n.format('TWODSIX.CharGen.CDEE.LogFreeSkillGain', { name }),
+      );
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateFreeSkill', { name }));
+      reportSubRow(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportFreeSkill', { name }));
     }
   }
 
@@ -540,13 +621,13 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     const state = app.charState;
     const traitPack = game.packs.get(this.traitPackName) || game.packs.get('twodsix.cepheus-deluxe-items');
     if (!traitPack) {
-      app._log('Trait', 'Trait pack not found.');
+      app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogTrait'), game.i18n.localize('TWODSIX.CharGen.CDEE.LogTraitPackNotFound'));
       return;
     }
     const docs = await traitPack.getDocuments();
     const available = docs.filter(d => d.type === 'trait').sort((a, b) => a.name.localeCompare(b.name));
     if (!available.length) {
-      app._log('Trait', 'No traits available.');
+      app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogTrait'), game.i18n.localize('TWODSIX.CharGen.CDEE.LogNoTraitsAvailable'));
       return;
     }
     const chosen = await app._choose(
@@ -554,9 +635,9 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       available.map(t => ({ value: t.name, label: t.name })),
     );
     state.traits.push(chosen);
-    app._log('Trait', chosen);
-    state.log.push(`Gained trait: ${chosen}.`);
-    reportSubRow(report, `Gained trait: ${chosen}`);
+    app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogTrait'), chosen);
+    state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateGainedTrait', { name: chosen }));
+    reportSubRow(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportGainedTrait', { name: chosen }));
   }
 
   /**
@@ -567,9 +648,9 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     if (!state.traits.includes(traitName)) {
       state.traits.push(traitName);
     }
-    app._log('Trait', traitName);
-    state.log.push(`Gained trait: ${traitName}.`);
-    reportAutoHandled(report, `Trait: ${traitName}`);
+    app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogTrait'), traitName);
+    state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateGainedTrait', { name: traitName }));
+    reportAutoHandled(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportTraitNamed', { name: traitName }));
   }
 
   /**
@@ -580,19 +661,28 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     const roll = await app._roll('1d6');
     const entry = this.unusualEvents[roll - 1];
     if (!entry) {
-      app._log('Unusual Event', `Roll ${roll}: (no entry)`);
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogUnusualEvent'),
+        game.i18n.format('TWODSIX.CharGen.CDEE.LogUnusualEventNoEntry', { roll }),
+      );
       return;
     }
-    app._log(`Unusual Event (${roll})`, entry);
-    state.log.push(`Unusual Event (${roll}): ${entry}`);
-    reportSubRow(report, `Unusual Event (${roll}): ${this._humanizeTaggedDescription(entry)}`);
+    app._log(`${game.i18n.localize('TWODSIX.CharGen.CDEE.TagUnusualEvent')} (${roll})`, entry);
+    state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateUnusualEvent', { roll, entry }));
+    reportSubRow(report, game.i18n.format('TWODSIX.CharGen.CDEE.ReportUnusualEvent', {
+      roll,
+      text: this._humanizeTaggedDescription(entry),
+    }));
     await this.applyEventTags(app, entry);
   }
 
   async stepInjury(app, parentReport = null) {
     const state = app.charState;
     if (state.optionalRules.ironMan) {
-      app._log('Iron Man', 'Injury is fatal!');
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogIronMan'),
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogInjuryFatal'),
+      );
       state.died = true;
       throw CHARGEN_DIED;
     }
@@ -600,10 +690,20 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     const endMod = calcModFor(state.chars.end ?? 0);
     const effect = roll + endMod - 6;
     const entry = this.injuryTable.find(e => e.effect === effect) || this.injuryTable[0];
-    app._log('Injury', `2D6(${roll})${addSign(endMod)}(END) vs 6+: Effect ${addSign(effect)} → ${entry.description}`);
-    state.log.push(`Injury: ${entry.description}`);
-    reportSubRow(parentReport, `Injury: ${this._humanizeTaggedDescription(entry.description)}`);
-    await this.applyEventTags(app, entry.description);
+    app._log(
+      game.i18n.localize('TWODSIX.CharGen.CDEE.LogInjury'),
+      game.i18n.format('TWODSIX.CharGen.CDEE.LogInjuryDetail', {
+        roll,
+        endMod: addSign(endMod),
+        effect: addSign(effect),
+        description: entry.description,
+      }),
+    );
+    state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateInjury', { description: entry.description }));
+    reportSubRow(parentReport, game.i18n.format('TWODSIX.CharGen.CDEE.ReportInjury', {
+      text: this._humanizeTaggedDescription(entry.description),
+    }));
+    await this.applyEventTags(app, entry);
     await this.checkCrisis(app);
   }
 
@@ -611,9 +711,12 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     const roll = await app._roll('2d6');
     const event = this.lifeEvents.find(e => e.roll === roll);
     if (event) {
-      app._log('Life Event', event.description);
-      reportSubRow(parentReport, `Life Event (${roll}): ${this._humanizeTaggedDescription(event.description)}`);
-      await this.applyEventTags(app, event.description);
+      app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogLifeEvent'), event.description);
+      reportSubRow(parentReport, game.i18n.format('TWODSIX.CharGen.CDEE.ReportLifeEvent', {
+        roll,
+        text: this._humanizeTaggedDescription(event.description),
+      }));
+      await this.applyEventTags(app, event);
     }
   }
 
@@ -625,14 +728,17 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       optionsFromStrings(this.prisonSkills, { sort: false }),
     );
     await this._addOrImproveSkill(app, sk);
-    reportSubRow(parentReport, `Prison term — skill: ${sk}`);
+    reportSubRow(parentReport, game.i18n.format('TWODSIX.CharGen.CDEE.ReportPrisonSkill', { skill: sk }));
 
     const roll = await app._roll('2d6');
     const event = this.prisonEvents.find(e => e.roll === roll);
     if (event) {
-      app._log('Prison Event', event.description);
-      reportSubRow(parentReport, `Prison Event (${roll}): ${this._humanizeTaggedDescription(event.description)}`);
-      await this.applyEventTags(app, event.description);
+      app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogPrisonEvent'), event.description);
+      reportSubRow(parentReport, game.i18n.format('TWODSIX.CharGen.CDEE.ReportPrisonEvent', {
+        roll,
+        text: this._humanizeTaggedDescription(event.description),
+      }));
+      await this.applyEventTags(app, event);
     }
   }
 
@@ -651,11 +757,12 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       // ── Structured event: resolve check(s), apply conditional branches ──────
       const { success, checkSummary } = await this._resolveChecks(app, event.checks);
       const baseHeadline = `${event.description} ${checkSummary}.`;
-      app._log(`Event (${rollResult})`, baseHeadline);
-      state.log.push(`Event (${rollResult}): ${baseHeadline}`);
+      const eventLabel = game.i18n.format('TWODSIX.CharGen.CDEE.EventLogLabel', { roll: rollResult });
+      app._log(eventLabel, baseHeadline);
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateEvent', { roll: rollResult, text: baseHeadline }));
 
       let allAuto = true;
-      const logBefore = state.log.length;
+      const subRows = [];
 
       // Apply 'always' tags first
       for (const tagExpr of (event.always || [])) {
@@ -663,6 +770,7 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         if (!r.allAutoHandled) {
           allAuto = false;
         }
+        subRows.push(...r.subRows);
       }
       // Apply branch tags
       const branchTags = success ? (event.onSuccess || []) : (event.onFail || []);
@@ -671,29 +779,32 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         if (!r.allAutoHandled) {
           allAuto = false;
         }
+        subRows.push(...r.subRows);
       }
 
-      const displayHeadline = allAuto ? `${baseHeadline} AUTOMATICALLY HANDLED` : baseHeadline;
+      const autoSuffix = game.i18n.localize('TWODSIX.CharGen.CDEE.AutoHandledSuffix');
+      const displayHeadline = allAuto ? `${baseHeadline}${autoSuffix}` : baseHeadline;
       termEntry.events.push(displayHeadline);
       if (!allAuto) {
-        for (const outcome of state.log.slice(logBefore)) {
-          termEntry.events.push(`  ${outcome}`);
+        for (const subRow of subRows) {
+          termEntry.events.push(`  ${subRow}`);
         }
       }
     } else {
       // ── Legacy prose event ────────────────────────────────────────────────
-      const logBefore = state.log.length;
-      const report = await this.applyEventTags(app, event.description, careerName);
+      const report = await this.applyEventTags(app, event, careerName);
       // Strip tag placeholders from headline so they aren't doubled when auto-handled
+      const autoSuffix = game.i18n.localize('TWODSIX.CharGen.CDEE.AutoHandledSuffix');
       const cleanHeadline = report.allAutoHandled
-        ? `${stripMechanicTags(event.description)} AUTOMATICALLY HANDLED`
+        ? `${stripMechanicTags(event.description)}${autoSuffix}`
         : report.headline;
-      app._log(`Event (${rollResult})`, cleanHeadline);
-      state.log.push(`Event (${rollResult}): ${cleanHeadline}`);
+      const eventLabel = game.i18n.format('TWODSIX.CharGen.CDEE.EventLogLabel', { roll: rollResult });
+      app._log(eventLabel, cleanHeadline);
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateEvent', { roll: rollResult, text: cleanHeadline }));
       termEntry.events.push(cleanHeadline);
       if (!report.allAutoHandled) {
-        for (const outcome of state.log.slice(logBefore)) {
-          termEntry.events.push(`  ${outcome}`);
+        for (const subRow of report.subRows) {
+          termEntry.events.push(`  ${subRow}`);
         }
       }
     }
@@ -716,12 +827,33 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     const mod = calcModFor(rawVal);
     const total = roll + mod;
     const success = total >= target;
-    const checkSummary = `Check ${skill} ${target}+: ${roll}${addSign(mod)}=${total} → ${success ? 'Success' : 'Fail'}`;
-    app._log('Event Check', `${skill} ${target}+: ${roll}${addSign(mod)}=${total} → ${success ? 'Success' : 'Fail'}`);
+    const outcome = success
+      ? game.i18n.localize('TWODSIX.CharGen.Outcome.Success')
+      : game.i18n.localize('TWODSIX.CharGen.Outcome.Fail');
+    const modSign = addSign(mod);
+    const checkSummary = game.i18n.format('TWODSIX.CharGen.CDEE.EventCheckSummary', {
+      skill,
+      target,
+      roll,
+      modSign,
+      total,
+      outcome,
+    });
+    app._log(
+      game.i18n.localize('TWODSIX.CharGen.CDEE.LogEventCheck'),
+      game.i18n.format('TWODSIX.CharGen.CDEE.EventCheckDetail', {
+        skill,
+        target,
+        roll,
+        modSign,
+        total,
+        outcome,
+      }),
+    );
     state.log.push(
       abbreviatedStateLog
-        ? `Check ${skill} ${target}+: ${success ? 'Success' : 'Fail'}.`
-        : `${checkSummary}.`,
+        ? game.i18n.format('TWODSIX.CharGen.CDEE.StateCheckAbbrev', { skill, target, outcome })
+        : game.i18n.format('TWODSIX.CharGen.CDEE.StateCheckFull', { summary: checkSummary }),
     );
     return { success, checkSummary };
   }
@@ -760,19 +892,36 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     totalRolls += state.extraBenefitRolls;
     totalRolls = Math.max(0, totalRolls);
 
-    app._log('Muster Out', `Total benefit rolls: ${totalRolls}`);
-    state.log.push(`── Muster Out Benefits (total rolls: ${totalRolls}) ──`);
+    app._log(
+      game.i18n.localize('TWODSIX.CharGen.CDEE.LogMusterOut'),
+      game.i18n.format('TWODSIX.CharGen.CDEE.LogTotalBenefitRolls', { n: totalRolls }),
+    );
+    state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateMusterHeader', { n: totalRolls }));
 
     for (let i = 0; i < totalRolls; i++) {
-      let careerName = state.careers[0].name;
+      let careerRecordIdx = 0;
       if (state.careers.length > 1) {
-        careerName = await app._choose(
+        const selected = await app._choose(
           game.i18n.localize('TWODSIX.CharGen.OptionalRules.ChooseMusterCareer'),
-          state.careers.map(c => ({ value: c.name, label: c.name }))
+          state.careers.map((c, idx) => {
+            const termWord = c.terms === 1
+              ? game.i18n.localize('TWODSIX.CharGen.TermWord.one')
+              : game.i18n.localize('TWODSIX.CharGen.TermWord.many');
+            return {
+              value: String(idx),
+              label: game.i18n.format('TWODSIX.CharGen.CDEE.MusterCareerOption', {
+                name: c.name,
+                terms: c.terms,
+                termWord,
+              }),
+            };
+          }),
         );
+        careerRecordIdx = Math.max(0, parseInt(selected, 10) || 0);
       }
+      const careerRecord = state.careers[careerRecordIdx];
+      const careerName = careerRecord.name;
       const career = this.careers[careerName];
-      const careerRecord = state.careers.find(c => c.name === careerName);
 
       const opts = [
         { value: 'cash', label: game.i18n.localize('TWODSIX.CharGen.Options.Cash') },
@@ -790,11 +939,19 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       if (choice === 'rank') {
         careerRecord.rank++;
         const rankInfo = career.ranks[careerRecord.rank];
-        app._log('Rank Purchased', `Now ${rankInfo?.title || `Rank ${careerRecord.rank}`} in ${careerName}`);
+        const titleLabel = rankInfo?.title
+          ?? game.i18n.format('TWODSIX.CharGen.CDEE.LogRankNumber', { rank: careerRecord.rank });
+        app._log(
+          game.i18n.localize('TWODSIX.CharGen.CDEE.LogRankPurchased'),
+          game.i18n.format('TWODSIX.CharGen.CDEE.LogRankPurchasedDetail', { title: titleLabel, career: careerName }),
+        );
         if (rankInfo?.skill) {
           await this._addOrImproveSkill(app, rankInfo.skill);
         }
-        state.log.push(`Purchased rank ${careerRecord.rank} in ${careerName} with benefit roll.`);
+        state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StatePurchasedRank', {
+          rank: careerRecord.rank,
+          career: careerName,
+        }));
         continue;
       }
 
@@ -808,7 +965,15 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         const roll2d6 = await app._roll('2d6');
         const best = roll2d6 + Math.max(carousingMod, socMod);
         cashDM = best >= 10 ? 1 : -1;
-        app._log('Cash DM Roll', `2D6(${roll2d6})+${Math.max(carousingMod, socMod)}=${best} vs 10+ → DM${addSign(cashDM)}`);
+        app._log(
+          game.i18n.localize('TWODSIX.CharGen.CDEE.LogCashDMRoll'),
+          game.i18n.format('TWODSIX.CharGen.CDEE.LogCashDMRollDetail', {
+            roll: roll2d6,
+            mod: Math.max(carousingMod, socMod),
+            best,
+            dm: addSign(cashDM),
+          }),
+        );
       }
 
       const roll1d6 = await app._roll('1d6');
@@ -817,11 +982,17 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       if (choice === 'cash') {
         const amt = career.cash[finalRoll - 1];
         state.cashBenefits += amt;
-        state.log.push(`Cash (roll ${roll1d6}${addSign(dm + cashDM)}): Cr${amt.toLocaleString()}`);
+        state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateCashRoll', {
+          detail: `${roll1d6}${addSign(dm + cashDM)}`,
+          amount: amt.toLocaleString(),
+        }));
       } else {
         const benefit = career.material[finalRoll - 1];
         await this.applySharedMaterialBenefit(app, benefit, 'cdee');
-        state.log.push(`Material (roll ${roll1d6}${addSign(dm)}): ${benefit}`);
+        state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateMaterialRoll', {
+          detail: `${roll1d6}${addSign(dm)}`,
+          benefit,
+        }));
       }
     }
   }
@@ -840,7 +1011,7 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
     for (const sk of pkg.skills) {
       await this._addOrImproveSkill(app, sk);
     }
-    state.log.push(`Selected Skill Package: ${pkgName}`);
+    state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateSkillPackage', { name: pkgName }));
   }
 
   async stepTraitSelection(app, numTerms) {
@@ -852,7 +1023,10 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
 
     const traitPack = game.packs.get(this.traitPackName) || game.packs.get('twodsix.cepheus-deluxe-items');
     if (!traitPack) {
-      app._log('Error', `Trait pack ${this.traitPackName} not found.`);
+      app._log(
+        game.i18n.localize('TWODSIX.CharGen.CDEE.LogError'),
+        game.i18n.format('TWODSIX.CharGen.CDEE.LogTraitPackMissing', { pack: this.traitPackName }),
+      );
       return;
     }
     const docs = await traitPack.getDocuments();
@@ -864,8 +1038,8 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         availableTraits.map(t => ({ value: t.name, label: t.name })),
       );
       state.traits.push(traitName);
-      app._log('Trait', traitName);
-      state.log.push(`Selected Trait: ${traitName}`);
+      app._log(game.i18n.localize('TWODSIX.CharGen.CDEE.LogTrait'), traitName);
+      state.log.push(game.i18n.format('TWODSIX.CharGen.CDEE.StateSelectedTrait', { name: traitName }));
     }
   }
 
@@ -918,7 +1092,10 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
       } else if (choice === 'other') {
         const alts = (alternativeSkills || Array.from(state.skills.keys())).filter(s => s !== name);
         if (alts.length === 0) {
-          app._log('Skill Limit', 'No alternative skills available.');
+          app._log(
+            game.i18n.localize('TWODSIX.CharGen.CDEE.LogSkillLimit'),
+            game.i18n.localize('TWODSIX.CharGen.CDEE.LogNoAlternativeSkills'),
+          );
           return;
         }
         const other = await app._choose(
@@ -927,7 +1104,10 @@ export class CDEECharGenLogic extends BaseCharGenLogic {
         );
         await this._addOrImproveSkill(app, other, alts);
       } else {
-        app._log('Skill Limit', `Skipped gaining ${name}`);
+        app._log(
+          game.i18n.localize('TWODSIX.CharGen.CDEE.LogSkillLimit'),
+          game.i18n.format('TWODSIX.CharGen.CDEE.LogSkippedSkillGain', { name }),
+        );
       }
     } else {
       await super._addOrImproveSkill(app, name);

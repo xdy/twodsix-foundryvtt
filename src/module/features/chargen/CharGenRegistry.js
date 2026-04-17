@@ -26,7 +26,7 @@ const cdeeLogic = new CDEECharGenLogic();
  */
 export const CHARGEN_REGISTRY = {
   CE: { logic: ceLogic, needsPreload: true },
-  CU: { logic: cuLogic, needsPreload: true },
+  CU: { logic: cuLogic, needsPreload: false },
   CDEE: { logic: cdeeLogic, needsPreload: true },
 };
 

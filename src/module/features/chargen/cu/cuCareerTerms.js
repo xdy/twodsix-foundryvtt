@@ -1,6 +1,6 @@
 // cuCareerTerms.js — CU term-by-term career loop (extracted from CUCharGenLogic)
 import { addSign } from '../../../utils/utils.js';
-import { CHARGEN_DIED, adjustChar } from '../CharGenState.js';
+import { adjustChar, CHARGEN_DIED } from '../CharGenState.js';
 import { optionsFromStrings, promptContinueInCareer } from '../CharGenUtils.js';
 
 /**
@@ -110,7 +110,7 @@ export async function runCUCareerTerms(logic, app, careerName) {
             termEntry.events.push(`  ${outcome}`);
           }
         } else {
-          const eventReport = await logic.applyEventTags(app, event.description, careerName);
+          const eventReport = await logic.applyEventTags(app, event, careerName);
           const headline = eventReport.allAutoHandled ? `${cleanDesc} AUTOMATICALLY HANDLED` : cleanDesc;
           termEntry.events.push(headline);
           for (const subRow of eventReport.subRows) {

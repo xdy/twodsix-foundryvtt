@@ -13,7 +13,15 @@ import {
   TRANSIT_BASE_HOURS
 } from './TraderConstants.js';
 import { getTraderRuleset } from './TraderRulesetRegistry.js';
-import { advanceDate, getAbsoluteDay, getCurrentWorld, getUsedCargoSpace, PHASE, } from './TraderState.js';
+import {
+  addExpense,
+  addRevenue,
+  advanceDate,
+  getAbsoluteDay,
+  getCurrentWorld,
+  getUsedCargoSpace,
+  PHASE,
+} from './TraderState.js';
 import { canRefuelAtWorld, getWorldCoordinate, isLocalMode } from './TraderUtils.js';
 import {
   getOrCreateCacheJournal,
@@ -298,16 +306,14 @@ export async function arrivingPhase(app) {
     + s.passengers.middle * PASSENGER_REVENUE.middle
     + s.passengers.low * PASSENGER_REVENUE.low;
   if (paxRev > 0) {
-    s.credits += paxRev;
-    s.totalRevenue += paxRev;
+    addRevenue(s, paxRev);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PaxRevenue", { revenue: paxRev.toLocaleString() }));
   }
 
   // Deliver freight
   if (s.freight > 0) {
     const freightRev = s.freight * FREIGHT_RATE;
-    s.credits += freightRev;
-    s.totalRevenue += freightRev;
+    addRevenue(s, freightRev);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.FreightRevenue", {
       tons: s.freight,
       revenue: freightRev.toLocaleString()
@@ -316,8 +322,7 @@ export async function arrivingPhase(app) {
 
   // Deliver mail
   if (s.hasMail) {
-    s.credits += MAIL_PAYMENT;
-    s.totalRevenue += MAIL_PAYMENT;
+    addRevenue(s, MAIL_PAYMENT);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MailRevenue", { revenue: MAIL_PAYMENT.toLocaleString() }));
   }
 
@@ -327,8 +332,7 @@ export async function arrivingPhase(app) {
   s.hasMail = false;
 
   // Port fees
-  s.credits -= PORT_FEE_BASE;
-  s.totalExpenses += PORT_FEE_BASE;
+  addExpense(s, PORT_FEE_BASE);
 
   await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CreditsCargoStatus", {
     credits: s.credits.toLocaleString(),

@@ -4,8 +4,10 @@
  */
 
 import { buildTradeReportRows, generateTradeInformation } from '../../utils/TradeGenerator.js';
+import { SEARCH_METHOD } from './BaseTraderRuleset.js';
 import { getReachableWorlds } from './SubsectorLoader.js';
 import {
+  BULK_LS_CARGO_ID,
   BULK_LS_LUXURY_COST,
   BULK_LS_NORMAL_COST,
   CHEAT_FREE_FUEL_DAYS,
@@ -23,6 +25,8 @@ import {
 } from './TraderConstants.js';
 import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import {
+  addExpense,
+  addRevenue,
   advanceDate,
   getAbsoluteDay,
   getFreeCargoSpace,
@@ -31,6 +35,7 @@ import {
   getMonthNumber,
   getWorldCache,
   PHASE,
+  subtractRevenue,
   updateMortgageFromShip,
 } from './TraderState.js';
 import {
@@ -63,6 +68,90 @@ function getEffectiveBrokerSkillForWorld(s, starport) {
 }
 
 /**
+ * Build the action list for the current AT_WORLD step.
+ * @param {import('./TraderApp.js').TraderApp} app
+ * @param {import('../../entities/TwodsixActor').default} world
+ * @param {Record<string, string>} ACTION
+ * @param {ReturnType<typeof getWorldCache>} cache
+ * @returns {Promise<Array<{value: string, label: string}>>}
+ */
+async function buildAtWorldActions(app, world, ACTION, cache) {
+  const s = app.state;
+  const actions = [];
+
+  if (s.destinationHex) {
+    actions.push({ value: ACTION.CHOOSE_DESTINATION, label: game.i18n.format('TWODSIX.Trader.Actions.ChooseDestinationCurrent', { destination: s.destinationName }) });
+  } else {
+    actions.push({ value: ACTION.CHOOSE_DESTINATION, label: game.i18n.localize('TWODSIX.Trader.Actions.ChooseDestination') });
+  }
+
+  actions.push({ value: ACTION.HIRE_BROKER, label: game.i18n.localize('TWODSIX.Trader.Actions.HireBroker') });
+
+  if (!cache.foundSupplier) {
+    actions.push({ value: ACTION.FIND_SUPPLIER, label: game.i18n.localize('TWODSIX.Trader.Actions.FindSupplier') });
+  }
+  if (s.cargo.length > 0 && !cache.foundBuyer) {
+    actions.push({ value: ACTION.FIND_BUYER, label: game.i18n.localize('TWODSIX.Trader.Actions.FindBuyer') });
+  }
+
+  const paxMarketEmpty = cache.passengers !== null
+    && cache.passengers.high === 0 && cache.passengers.middle === 0 && cache.passengers.low === 0;
+  const paxShipFull = getFreeStaterooms(s) <= 0 && getFreeLowBerths(s) <= 0;
+  if (cache.foundSupplier && !paxMarketEmpty && !paxShipFull) {
+    actions.push({ value: ACTION.PASSENGERS, label: game.i18n.localize('TWODSIX.Trader.Actions.SeekPassengers') });
+  }
+
+  const freightMarketEmpty = cache.freight !== null && cache.freight === 0;
+  if (cache.foundSupplier && !freightMarketEmpty && getFreeCargoSpace(s) > 0) {
+    actions.push({ value: ACTION.FREIGHT, label: game.i18n.localize('TWODSIX.Trader.Actions.SeekFreight') });
+  }
+
+  if (cache.foundSupplier && s.ship.armed && getFreeCargoSpace(s) >= 5) {
+    actions.push({ value: ACTION.MAIL, label: game.i18n.localize('TWODSIX.Trader.Actions.SeekMail') });
+  }
+  if (cache.foundSupplier && getFreeCargoSpace(s) > 0 && s.credits > 0 && !cache.noGoodsAvailable) {
+    actions.push({ value: ACTION.BUY, label: game.i18n.localize('TWODSIX.Trader.Actions.BuyGoods') });
+  }
+  if (cache.foundBuyer && s.cargo.length > 0) {
+    actions.push({ value: ACTION.SELL, label: game.i18n.localize('TWODSIX.Trader.Actions.SellGoods') });
+  }
+
+  const hasBulkInCargo = s.cargo.some(c => getBulkLifeSupportCargoId(c) !== null);
+  if (getFreeCargoSpace(s) > 0 && s.credits >= Math.min(BULK_LS_NORMAL_COST, BULK_LS_LUXURY_COST)) {
+    actions.push({ value: ACTION.BUY_BULK_LS, label: game.i18n.localize('TWODSIX.Trader.Actions.BuyBulkLifeSupport') });
+  }
+  if (hasBulkInCargo) {
+    actions.push({ value: ACTION.SELL_BULK_LS, label: game.i18n.localize('TWODSIX.Trader.Actions.SellBulkLifeSupport') });
+  }
+
+  if (s.ship.currentFuel < s.ship.fuelCapacity) {
+    const refuelNote = canRefuelAtWorld(world) ? "" : " ⚠️";
+    actions.push({ value: ACTION.REFUEL, label: game.i18n.localize('TWODSIX.Trader.Actions.Refuel') + refuelNote });
+  }
+
+  if (s.destinationHex && !cache.privateMessagesTaken) {
+    actions.push({ value: ACTION.PRIVATE_MESSAGES, label: game.i18n.localize('TWODSIX.Trader.Actions.PrivateMessages') });
+  }
+
+  const illegalLabel = s.includeIllegalGoods ? 'TWODSIX.Trader.Actions.DisableIllegal' : 'TWODSIX.Trader.Actions.EnableIllegal';
+  actions.push({ value: ACTION.TOGGLE_ILLEGAL, label: game.i18n.localize(illegalLabel) });
+
+  if (s.destinationHex && !s.chartered) {
+    const { computeCharterFee } = await import('./TraderCharter.js');
+    const charterFee = computeCharterFee(s);
+    actions.push({
+      value: ACTION.CHARTER,
+      label: game.i18n.format('TWODSIX.Trader.Actions.AcceptCharter', { destination: s.destinationName, fee: charterFee.toLocaleString() }),
+    });
+  }
+
+  actions.push({ value: ACTION.OTHER_ACTIVITIES, label: game.i18n.localize('TWODSIX.Trader.Actions.OtherActivities') });
+  actions.push({ value: ACTION.DEPART, label: game.i18n.localize('TWODSIX.Trader.Actions.Depart') });
+
+  return actions;
+}
+
+/**
  * Main function to handle the AT_WORLD phase loop.
  * @param {import('./TraderApp.js').TraderApp} app - The application instance
  * @param {import('../../entities/TwodsixActor').default} world - Current world actor
@@ -86,93 +175,7 @@ export async function atWorldPhase(app, world, ACTION) {
 
     const cache = getWorldCache(s);
 
-    // Build available actions
-    const actions = [];
-
-    // Choose destination (always available, at top)
-    if (s.destinationHex) {
-      actions.push({ value: ACTION.CHOOSE_DESTINATION, label: game.i18n.format('TWODSIX.Trader.Actions.ChooseDestinationCurrent', { destination: s.destinationName }) });
-    } else {
-      actions.push({ value: ACTION.CHOOSE_DESTINATION, label: game.i18n.localize('TWODSIX.Trader.Actions.ChooseDestination') });
-    }
-
-    // Local Broker
-    actions.push({ value: ACTION.HIRE_BROKER, label: game.i18n.localize('TWODSIX.Trader.Actions.HireBroker') });
-
-    // Find Supplier/Buyer
-    if (!cache.foundSupplier) {
-      actions.push({ value: ACTION.FIND_SUPPLIER, label: game.i18n.localize('TWODSIX.Trader.Actions.FindSupplier') });
-    }
-
-    if (s.cargo.length > 0 && !cache.foundBuyer) {
-      actions.push({ value: ACTION.FIND_BUYER, label: game.i18n.localize('TWODSIX.Trader.Actions.FindBuyer') });
-    }
-
-    // Passengers: hide if market was checked and is empty, or if ship has no berth/stateroom capacity
-    const paxMarketEmpty = cache.passengers !== null
-      && cache.passengers.high === 0 && cache.passengers.middle === 0 && cache.passengers.low === 0;
-    const paxShipFull = getFreeStaterooms(s) <= 0 && getFreeLowBerths(s) <= 0;
-    if (cache.foundSupplier && !paxMarketEmpty && !paxShipFull) {
-      actions.push({ value: ACTION.PASSENGERS, label: game.i18n.localize('TWODSIX.Trader.Actions.SeekPassengers') });
-    }
-
-    // Freight: hide if market was checked and is empty, or if there is no free cargo space
-    const freightMarketEmpty = cache.freight !== null && cache.freight === 0;
-    if (cache.foundSupplier && !freightMarketEmpty && getFreeCargoSpace(s) > 0) {
-      actions.push({ value: ACTION.FREIGHT, label: game.i18n.localize('TWODSIX.Trader.Actions.SeekFreight') });
-    }
-
-    if (cache.foundSupplier && s.ship.armed && getFreeCargoSpace(s) >= 5) {
-      actions.push({ value: ACTION.MAIL, label: game.i18n.localize('TWODSIX.Trader.Actions.SeekMail') });
-    }
-
-    // Buy goods: hide if no cargo space, no credits, or market previously found empty
-    if (cache.foundSupplier && getFreeCargoSpace(s) > 0 && s.credits > 0 && !cache.noGoodsAvailable) {
-      actions.push({ value: ACTION.BUY, label: game.i18n.localize('TWODSIX.Trader.Actions.BuyGoods') });
-    }
-
-    if (cache.foundBuyer && s.cargo.length > 0) {
-      actions.push({ value: ACTION.SELL, label: game.i18n.localize('TWODSIX.Trader.Actions.SellGoods') });
-    }
-
-    // Buy/Sell bulk life support: always available at worlds if credits/space/cargo permit
-    const hasBulkInCargo = s.cargo.some(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal') || c.name === game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'));
-    if (getFreeCargoSpace(s) > 0 && s.credits >= Math.min(BULK_LS_NORMAL_COST, BULK_LS_LUXURY_COST)) {
-      actions.push({ value: ACTION.BUY_BULK_LS, label: game.i18n.localize('TWODSIX.Trader.Actions.BuyBulkLifeSupport') });
-    }
-    if (hasBulkInCargo) {
-      actions.push({ value: ACTION.SELL_BULK_LS, label: game.i18n.localize('TWODSIX.Trader.Actions.SellBulkLifeSupport') });
-    }
-
-    // Refuel: hide if tanks are already full
-    if (s.ship.currentFuel < s.ship.fuelCapacity) {
-      const refuelNote = canRefuelAtWorld(world) ? "" : " ⚠️";
-      actions.push({ value: ACTION.REFUEL, label: game.i18n.localize('TWODSIX.Trader.Actions.Refuel') + refuelNote });
-    }
-
-    // Private messages: once per world visit, requires destination
-    if (s.destinationHex && !cache.privateMessagesTaken) {
-      actions.push({ value: ACTION.PRIVATE_MESSAGES, label: game.i18n.localize('TWODSIX.Trader.Actions.PrivateMessages') });
-    }
-
-    // Toggle illegal goods
-    const illegalLabel = s.includeIllegalGoods ? 'TWODSIX.Trader.Actions.DisableIllegal' : 'TWODSIX.Trader.Actions.EnableIllegal';
-    actions.push({ value: ACTION.TOGGLE_ILLEGAL, label: game.i18n.localize(illegalLabel) });
-
-    // Accept charter: requires destination and not currently chartered
-    if (s.destinationHex && !s.chartered) {
-      // Lazy load computeCharterFee to avoid circular dependency
-      const { computeCharterFee } = await import('./TraderCharter.js');
-      const charterFee = computeCharterFee(s);
-      actions.push({
-        value: ACTION.CHARTER,
-        label: game.i18n.format('TWODSIX.Trader.Actions.AcceptCharter', { destination: s.destinationName, fee: charterFee.toLocaleString() }),
-      });
-    }
-
-    actions.push({ value: ACTION.OTHER_ACTIVITIES, label: game.i18n.localize('TWODSIX.Trader.Actions.OtherActivities') });
-
-    actions.push({ value: ACTION.DEPART, label: game.i18n.localize('TWODSIX.Trader.Actions.Depart') });
+    const actions = await buildAtWorldActions(app, world, ACTION, cache);
 
     const action = await app._choose(
       game.i18n.format('TWODSIX.Trader.Prompts.AtWorld', { world: s.currentWorldName }),
@@ -247,6 +250,35 @@ export async function atWorldPhase(app, world, ACTION) {
   }
 }
 
+/**
+ * Resolve a numeric choice safely with fallback to 0.
+ * @param {import('./TraderApp.js').TraderApp} app
+ * @param {string} prompt
+ * @param {Array<{value: string, label: string}>} options
+ * @param {string|number|null} [maxValue=null]
+ * @returns {Promise<number>}
+ */
+async function chooseIntOption(app, prompt, options, maxValue = null) {
+  const raw = await app._choose(prompt, options, maxValue);
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function getBulkLifeSupportCargoId(cargoItem) {
+  if (cargoItem?.cargoId) {
+    return cargoItem.cargoId;
+  }
+  const normalName = game.i18n.localize('TWODSIX.Trader.BulkLSNormal');
+  const luxuryName = game.i18n.localize('TWODSIX.Trader.BulkLSLuxury');
+  if (cargoItem?.name === normalName) {
+    return BULK_LS_CARGO_ID.NORMAL;
+  }
+  if (cargoItem?.name === luxuryName) {
+    return BULK_LS_CARGO_ID.LUXURY;
+  }
+  return null;
+}
+
 // ─── Seek Passengers ──────────────────────────────────────────
 
 export async function seekPassengers(app, world) {
@@ -300,7 +332,7 @@ async function bookPassengerClass(app, classKey, available, capacity, revenuePer
     for (let i = 0; i <= maxBook; i++) {
       options.push({ value: String(i), label: `${i} ${classKey} passengers (Cr${(i * revenuePerHead).toLocaleString()})` });
     }
-    const count = parseInt(await app._choose(game.i18n.localize(promptKey), options, maxBook));
+    const count = await chooseIntOption(app, game.i18n.localize(promptKey), options, maxBook);
     if (count > 0) {
       s.passengers[classKey] += count;
       cache.passengers[classKey] -= count;
@@ -349,11 +381,11 @@ export async function seekFreight(app, world) {
     options.push({ value: String(maxTons), label: `${maxTons} tons (Cr${(maxTons * FREIGHT_RATE).toLocaleString()})` });
   }
 
-  const tons = parseInt(await app._choose(
+  const tons = await chooseIntOption(app,
     game.i18n.format('TWODSIX.Trader.Prompts.Freight', { available, freeSpace }),
     options,
     maxTons
-  ));
+  );
 
   if (tons > 0) {
     s.freight += tons;
@@ -425,12 +457,12 @@ export async function buyGoods(app, world) {
   const freeSpace = getFreeCargoSpace(s);
 
   if (freeSpace <= 0) {
-    await app.logEvent('No free cargo space for speculative goods.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoCargoSpaceSpeculative'));
     return;
   }
 
   if (s.credits <= 0) {
-    await app.logEvent('Insufficient credits to purchase goods.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.InsufficientCreditsSpeculative'));
     return;
   }
 
@@ -470,11 +502,11 @@ export async function buyGoods(app, world) {
     qtyOptions.push({ value: String(i), label: `${i} tons — Cr${(i * good.buyPricePerTon).toLocaleString()}` });
   }
 
-  const qty = parseInt(await app._choose(
+  const qty = await chooseIntOption(app,
     game.i18n.format('TWODSIX.Trader.Prompts.BuyQuantity', { good: game.i18n.localize(good.name) }),
     qtyOptions,
     maxTons
-  ));
+  );
 
   if (qty > 0) {
     const cost = qty * good.buyPricePerTon;
@@ -484,8 +516,7 @@ export async function buyGoods(app, world) {
       await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.InsufficientCreditsBroker", { total: totalCost.toLocaleString() }));
       return;
     }
-    s.credits -= totalCost;
-    s.totalExpenses += totalCost;
+    addExpense(s, totalCost);
     s.cargo.push({
       name: good.name,
       tons: qty,
@@ -566,7 +597,7 @@ export async function sellGoods(app, world) {
     return;
   }
 
-  const idx = parseInt(chosenIdx);
+  const idx = Number.parseInt(chosenIdx, 10);
   const cargo = s.cargo[idx];
   if (!cargo || sellOptions.find(o => o.value === chosenIdx)?.salePrice === undefined) {
     if (cargo) {
@@ -584,8 +615,7 @@ export async function sellGoods(app, world) {
   const cost = cargo.tons * cargo.purchasePricePerTon;
   const profit = netRevenue - cost;
 
-  s.credits += netRevenue;
-  s.totalRevenue += netRevenue;
+  addRevenue(s, netRevenue);
   s.cargo.splice(idx, 1);
 
   const profitStr = isSameWorld ? 'Transaction cancelled (Refunded)' : (profit >= 0 ? `Profit: Cr${profit.toLocaleString()}` : `Loss: Cr${Math.abs(profit).toLocaleString()}`);
@@ -631,30 +661,31 @@ export async function buyBulkLifeSupport(app) {
     qtyOptions.push({ value: String(i), label: `${i} tons — Cr${(i * costPerTon).toLocaleString()}` });
   }
 
-  const qty = parseInt(await app._choose(
+  const qty = await chooseIntOption(app,
     game.i18n.format('TWODSIX.Trader.Prompts.BuyQuantity', { good: game.i18n.localize(itemName) }),
     qtyOptions,
     maxTons
-  ));
+  );
 
   if (qty > 0) {
     const totalCost = qty * costPerTon;
-    s.credits -= totalCost;
-    s.totalExpenses += totalCost;
+    addExpense(s, totalCost);
 
     const localizedName = game.i18n.localize(itemName);
-    const existing = s.cargo.find(c => c.name === localizedName);
+    const cargoId = type === 'normal' ? BULK_LS_CARGO_ID.NORMAL : BULK_LS_CARGO_ID.LUXURY;
+    const existing = s.cargo.find(c => getBulkLifeSupportCargoId(c) === cargoId);
     if (existing) {
       existing.tons += qty;
     } else {
       s.cargo.push({
+        cargoId,
         name: localizedName,
         tons: qty,
         purchasePricePerTon: costPerTon,
         purchaseWorld: s.currentWorldName,
       });
     }
-    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.BoughtBulk", {
+    await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.BoughtGoods", {
       qty: qty,
       type: game.i18n.localize(itemName),
       price: costPerTon.toLocaleString(),
@@ -665,7 +696,7 @@ export async function buyBulkLifeSupport(app) {
 
 export async function sellBulkLifeSupport(app) {
   const s = app.state;
-  const bulkCargo = s.cargo.filter(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal') || c.name === game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'));
+  const bulkCargo = s.cargo.filter(c => getBulkLifeSupportCargoId(c) !== null);
 
   if (!bulkCargo.length) {
     await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.NoBulkSuppliesToSell'));
@@ -690,7 +721,8 @@ export async function sellBulkLifeSupport(app) {
     return;
   }
 
-  const originalCargoIdx = s.cargo.indexOf(bulkCargo[parseInt(chosenIdx)]);
+  const chosenBulkIdx = Number.parseInt(chosenIdx, 10);
+  const originalCargoIdx = s.cargo.indexOf(bulkCargo[chosenBulkIdx]);
   const cargo = s.cargo[originalCargoIdx];
 
   const qtyOptions = [];
@@ -713,8 +745,7 @@ export async function sellBulkLifeSupport(app) {
 
   if (qty > 0) {
     const revenue = qty * cargo.purchasePricePerTon;
-    s.credits += revenue;
-    s.totalRevenue += revenue;
+    addRevenue(s, revenue);
 
     if (qty === cargo.tons) {
       s.cargo.splice(originalCargoIdx, 1);
@@ -756,7 +787,12 @@ async function searchForTrade(app, world, type) {
     label: `${m.charAt(0).toUpperCase() + m.slice(1)} (${game.i18n.localize(ruleset.getSearchSkillLabel(m))}, 1D6 days)`
   }));
 
-  const method = await app._choose(`Find ${type}: Choose search method`, options);
+  const method = await app._choose(
+    game.i18n.format('TWODSIX.Trader.Prompts.FindTradeMethod', {
+      type: game.i18n.localize(`TWODSIX.Trader.Search.${type.charAt(0).toUpperCase() + type.slice(1)}`)
+    }),
+    options
+  );
   if (!method) {
     return;
   }
@@ -776,13 +812,13 @@ async function searchForTrade(app, world, type) {
   let bonus = 0;
   let skillName = game.i18n.localize(ruleset.getSearchSkillLabel(method));
 
-  if (method === 'online') {
+  if (method === SEARCH_METHOD.ONLINE) {
     skill = ruleset.getSearchSkillLevel(s.crew, method);
     bonus = 0;
     timeHours = await app._roll('1D6');
   } else {
     skill = ruleset.getSearchSkillLevel(s.crew, method);
-    if (method === 'standard') {
+    if (method === SEARCH_METHOD.STANDARD) {
       // For standard search, we might be using a hired broker
       skill = getEffectiveBrokerSkillForWorld(s, starport);
     }
@@ -808,18 +844,18 @@ async function searchForTrade(app, world, type) {
   if (success) {
     if (type === 'supplier') {
       cache.foundSupplier = true;
-      if (method === 'blackmarket') {
+      if (method === SEARCH_METHOD.BLACK_MARKET) {
         cache.foundBlackMarketSupplier = true;
       }
-      if (method === 'online') {
+      if (method === SEARCH_METHOD.ONLINE) {
         cache.foundOnlineSupplier = true;
       }
-      if (method === 'private') {
+      if (method === SEARCH_METHOD.PRIVATE) {
         cache.foundPrivateSupplier = true;
       }
     } else {
       cache.foundBuyer = true;
-      if (method === 'private') {
+      if (method === SEARCH_METHOD.PRIVATE) {
         cache.foundPrivateBuyer = true;
       }
     }
@@ -864,12 +900,15 @@ export async function hireBroker(app, world) {
   const options = [];
   for (let i = 1; i <= maxSkill; i++) {
     const commission = ruleset.getBrokerCommission(i);
-    options.push({ value: String(i), label: `Skill-${i} Broker (${commission}% commission)` });
+    options.push({
+      value: String(i),
+      label: game.i18n.format('TWODSIX.Trader.Actions.HireBrokerSkill', { skill: i, commission })
+    });
   }
-  options.push({ value: '0', label: 'Do not hire (use own skill)' });
+  options.push({ value: '0', label: game.i18n.localize('TWODSIX.Trader.Actions.HireBrokerNone') });
 
   const prompt = game.i18n.format("TWODSIX.Trader.Prompts.HireBroker", { starport, maxSkill });
-  const chosen = parseInt(await app._choose(prompt, options));
+  const chosen = await chooseIntOption(app, prompt, options);
 
   if (chosen > 0) {
     s.useLocalBroker = true;
@@ -898,8 +937,7 @@ export async function hireBroker(app, world) {
  */
 export function applyFuelPurchase(s, tons, costPerTon, isRefined) {
   const cost = tons * costPerTon;
-  s.credits -= cost;
-  s.totalExpenses += cost;
+  addExpense(s, cost);
   s.ship.currentFuel += tons;
   s.ship.fuelIsRefined = isRefined;
   return cost;
@@ -931,13 +969,23 @@ export async function refuel(app, world) {
   if (['A', 'B'].includes(starport)) {
     const fullCost = fuelNeeded * FUEL_COST.refined;
     if (s.credits >= fullCost) {
-      options.push({ value: 'refined', label: `Refined fuel (${fuelNeeded}t) — Cr${fullCost.toLocaleString()}` });
+      options.push({
+        value: 'refined',
+        label: game.i18n.format('TWODSIX.Trader.Prompts.RefuelRefinedOption', {
+          needed: fuelNeeded,
+          cost: fullCost.toLocaleString(),
+        }),
+      });
     } else {
       const affordable = affordableFuel(s.credits, FUEL_COST.refined);
       if (affordable > 0) {
         options.push({
           value: 'refined_partial',
-          label: `Refined fuel — WARNING: can only afford ${affordable}t of ${fuelNeeded}t needed (Cr${(affordable * FUEL_COST.refined).toLocaleString()})`,
+          label: game.i18n.format('TWODSIX.Trader.Prompts.RefuelRefinedPartialOption', {
+            affordable,
+            needed: fuelNeeded,
+            cost: (affordable * FUEL_COST.refined).toLocaleString(),
+          }),
         });
       }
     }
@@ -946,13 +994,23 @@ export async function refuel(app, world) {
   if (['A', 'B', 'C', 'D'].includes(starport)) {
     const fullCost = fuelNeeded * FUEL_COST.unrefined;
     if (s.credits >= fullCost) {
-      options.push({ value: 'unrefined', label: `Unrefined fuel (${fuelNeeded}t) — Cr${fullCost.toLocaleString()}` });
+      options.push({
+        value: 'unrefined',
+        label: game.i18n.format('TWODSIX.Trader.Prompts.RefuelUnrefinedOption', {
+          needed: fuelNeeded,
+          cost: fullCost.toLocaleString(),
+        }),
+      });
     } else {
       const affordable = affordableFuel(s.credits, FUEL_COST.unrefined);
       if (affordable > 0) {
         options.push({
           value: 'unrefined_partial',
-          label: `Unrefined fuel — WARNING: can only afford ${affordable}t of ${fuelNeeded}t needed (Cr${(affordable * FUEL_COST.unrefined).toLocaleString()})`,
+          label: game.i18n.format('TWODSIX.Trader.Prompts.RefuelUnrefinedPartialOption', {
+            affordable,
+            needed: fuelNeeded,
+            cost: (affordable * FUEL_COST.unrefined).toLocaleString(),
+          }),
         });
       }
     }
@@ -960,7 +1018,10 @@ export async function refuel(app, world) {
 
   // Gas giant (free, unrefined)
   if (hasGasGiant) {
-    options.push({ value: 'gasgiant', label: `Skim gas giant (${fuelNeeded}t) — Free (unrefined)` });
+    options.push({
+      value: 'gasgiant',
+      label: game.i18n.format('TWODSIX.Trader.Prompts.RefuelGasGiantOption', { needed: fuelNeeded }),
+    });
   }
 
   // CHEAT option
@@ -989,7 +1050,7 @@ export async function refuel(app, world) {
     const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined, true);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuel", {
       tons: fuelNeeded,
-      quality: "refined",
+      quality: game.i18n.localize('TWODSIX.Trader.OtherActivities.Refined'),
       cost: cost.toLocaleString(),
       credits: s.credits.toLocaleString()
     }));
@@ -998,7 +1059,7 @@ export async function refuel(app, world) {
     const cost = applyFuelPurchase(s, tons, FUEL_COST.refined, true);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuelPartial", {
       tons,
-      quality: "refined",
+      quality: game.i18n.localize('TWODSIX.Trader.OtherActivities.Refined'),
       cost: cost.toLocaleString(),
       credits: s.credits.toLocaleString(),
       current: s.ship.currentFuel,
@@ -1008,7 +1069,7 @@ export async function refuel(app, world) {
     const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.unrefined, false);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuel", {
       tons: fuelNeeded,
-      quality: "unrefined",
+      quality: game.i18n.localize('TWODSIX.Trader.OtherActivities.Unrefined'),
       cost: cost.toLocaleString(),
       credits: s.credits.toLocaleString()
     }));
@@ -1017,7 +1078,7 @@ export async function refuel(app, world) {
     const cost = applyFuelPurchase(s, tons, FUEL_COST.unrefined, false);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PurchasedFuelPartial", {
       tons,
-      quality: "unrefined",
+      quality: game.i18n.localize('TWODSIX.Trader.OtherActivities.Unrefined'),
       cost: cost.toLocaleString(),
       credits: s.credits.toLocaleString(),
       current: s.ship.currentFuel,
@@ -1036,7 +1097,7 @@ export async function refuel(app, world) {
     const cost = applyFuelPurchase(s, fuelNeeded, FUEL_COST.refined * FUEL_CHEAT_MULTIPLIER, false);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CheatRefueled", {
       tons: fuelNeeded,
-      world: world?.name || 'unknown world',
+      world: world?.name || game.i18n.localize('TWODSIX.Trader.App.Unknown'),
       cost: cost.toLocaleString(),
       credits: s.credits.toLocaleString()
     }));
@@ -1046,7 +1107,7 @@ export async function refuel(app, world) {
     advanceDate(s.gameDate, CHEAT_FREE_FUEL_DAYS * HOURS_PER_DAY);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CheatScrounged", {
       tons: fuelNeeded,
-      world: world?.name || 'unknown world',
+      world: world?.name || game.i18n.localize('TWODSIX.Trader.App.Unknown'),
       days: CHEAT_FREE_FUEL_DAYS
     }));
   }
@@ -1066,12 +1127,14 @@ export async function takePrivateMessages(app) {
 
   const roll = await app._roll('2D6');
   const honorarium = roll * 10;
-  const crewIndex = (await app._roll('1d' + s.crew.length)) - 1;
-  const crewMember = s.crew[crewIndex];
-  const crewName = crewMember?.name || 'a crew member';
+  let crewName = game.i18n.localize('TWODSIX.Trader.Messages.GenericCrewMember');
+  if (s.crew.length > 0) {
+    const crewIndex = (await app._roll(`1d${s.crew.length}`)) - 1;
+    const crewMember = s.crew[crewIndex];
+    crewName = crewMember?.name || crewName;
+  }
 
-  s.credits += honorarium;
-  s.totalRevenue += honorarium;
+  addRevenue(s, honorarium);
   cache.privateMessageAccepted = true;
   cache.privateMessageCredits = honorarium;
 
@@ -1091,8 +1154,7 @@ export async function accruePortFees(app) {
   if (daysSpent > cache.portFeesPaidDays) {
     const extraDays = daysSpent - cache.portFeesPaidDays;
     const cost = extraDays * PORT_FEE_BASE;
-    s.credits -= cost;
-    s.totalExpenses += cost;
+    addExpense(s, cost);
     cache.portFeesPaidDays = daysSpent;
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.AdditionalPortFees", {
       days: extraDays,
@@ -1125,23 +1187,22 @@ export async function chooseDestination(app) {
       const confirm = await app._choose(
         game.i18n.format('TWODSIX.Trader.Log.ChangeDestForfeit', { credits: cache.privateMessageCredits.toLocaleString() }),
         [
-          { value: 'confirm', label: 'Yes, clear destination and forfeit payment' },
-          { value: 'cancel', label: 'Cancel' },
+          { value: 'confirm', label: game.i18n.localize('TWODSIX.Trader.Actions.ClearDestinationConfirm') },
+          { value: 'cancel', label: game.i18n.localize('Cancel') },
         ]
       );
       if (confirm === 'cancel') {
         return;
       }
       const forfeitedCredits = cache.privateMessageCredits;
-      s.credits -= forfeitedCredits;
-      s.totalRevenue -= forfeitedCredits;
+      subtractRevenue(s, forfeitedCredits);
       cache.privateMessageAccepted = false;
       cache.privateMessageCredits = 0;
       await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.DestinationClearedForfeited", { credits: forfeitedCredits.toLocaleString() }));
     }
     s.destinationHex = '';
     s.destinationName = '';
-    await app.logEvent('Destination cleared.');
+    await app.logEvent(game.i18n.localize('TWODSIX.Trader.Log.DestinationCleared'));
     return;
   }
 
@@ -1152,18 +1213,17 @@ export async function chooseDestination(app) {
 
   if (cache.privateMessageAccepted && cache.privateMessageCredits > 0 && s.destinationHex !== chosen) {
     const confirm = await app._choose(
-      `Changing destination will forfeit the private message payment (Cr${cache.privateMessageCredits.toLocaleString()}). Continue?`,
+      game.i18n.format('TWODSIX.Trader.Log.ChangeDestForfeit', { credits: cache.privateMessageCredits.toLocaleString() }),
       [
-        { value: 'confirm', label: 'Yes, change destination and forfeit payment' },
-        { value: 'cancel', label: 'Cancel' },
+        { value: 'confirm', label: game.i18n.localize('TWODSIX.Trader.Actions.ChangeDestinationConfirm') },
+        { value: 'cancel', label: game.i18n.localize('Cancel') },
       ]
     );
     if (confirm === 'cancel') {
       return;
     }
-    s.credits -= cache.privateMessageCredits;
-    s.totalRevenue -= cache.privateMessageCredits;
     const forfeitedCredits = cache.privateMessageCredits;
+    subtractRevenue(s, forfeitedCredits);
     cache.privateMessageAccepted = false;
     cache.privateMessageCredits = 0;
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.PrivateMessageForfeited", { credits: forfeitedCredits.toLocaleString() }));
@@ -1248,8 +1308,11 @@ export async function runOtherActivitiesLoop(app, continueLabel) {
 
 function removeBulkLifeSupport(s, name, tons) {
   let remaining = tons;
+  const cargoId = name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal')
+    ? BULK_LS_CARGO_ID.NORMAL
+    : BULK_LS_CARGO_ID.LUXURY;
   for (let i = s.cargo.length - 1; i >= 0 && remaining > 0; i--) {
-    if (s.cargo[i].name === name) {
+    if (s.cargo[i].name === name || s.cargo[i].cargoId === cargoId) {
       const take = Math.min(s.cargo[i].tons, remaining);
       s.cargo[i].tons -= take;
       remaining -= take;
@@ -1288,23 +1351,34 @@ export async function otherActivities(app) {
   s.cargo = result.newCargo;
 
   if (result.creditsDelta !== 0) {
-    s.credits += result.creditsDelta;
     if (result.creditsDelta > 0) {
-      s.totalRevenue += result.creditsDelta;
+      addRevenue(s, result.creditsDelta);
     } else {
-      s.totalExpenses += -result.creditsDelta;
+      addExpense(s, -result.creditsDelta);
     }
   }
 
   s.freight = Math.max(0, (s.freight || 0) + result.freightDelta);
 
   if (result.bulkNormalDelta > 0) {
-    s.cargo.push({ name: game.i18n.localize('TWODSIX.Trader.BulkLSNormal'), tons: result.bulkNormalDelta, purchasePricePerTon: 0, purchaseWorld: s.currentWorldName });
+    s.cargo.push({
+      cargoId: BULK_LS_CARGO_ID.NORMAL,
+      name: game.i18n.localize('TWODSIX.Trader.BulkLSNormal'),
+      tons: result.bulkNormalDelta,
+      purchasePricePerTon: 0,
+      purchaseWorld: s.currentWorldName
+    });
   } else if (result.bulkNormalDelta < 0) {
     removeBulkLifeSupport(s, game.i18n.localize('TWODSIX.Trader.BulkLSNormal'), -result.bulkNormalDelta);
   }
   if (result.bulkLuxuryDelta > 0) {
-    s.cargo.push({ name: game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'), tons: result.bulkLuxuryDelta, purchasePricePerTon: 0, purchaseWorld: s.currentWorldName });
+    s.cargo.push({
+      cargoId: BULK_LS_CARGO_ID.LUXURY,
+      name: game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'),
+      tons: result.bulkLuxuryDelta,
+      purchasePricePerTon: 0,
+      purchaseWorld: s.currentWorldName
+    });
   } else if (result.bulkLuxuryDelta < 0) {
     removeBulkLifeSupport(s, game.i18n.localize('TWODSIX.Trader.BulkLSLuxury'), -result.bulkLuxuryDelta);
   }

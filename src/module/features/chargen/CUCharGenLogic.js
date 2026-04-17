@@ -3,23 +3,14 @@
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
-import { reportAutoHandled } from './EventReport.js';
-import { CHARGEN_DIED, adjustChar } from './CharGenState.js';
+import { adjustChar, CHARGEN_DIED } from './CharGenState.js';
 import {
   chooseCharacteristicSwap,
   improveSkillCappedInState,
   localizedPhysicalOpts,
   optionsFromCareerNames,
-  optionsFromStrings,
 } from './CharGenUtils.js';
-import {
-  CU_BENEFITS_TABLE as CU_BENEFITS_TABLE_CONST,
-  CU_PROMO_FAIL_EVENTS as CU_PROMO_FAIL_EVENTS_CONST,
-  CU_PROMO_SUCCESS_EVENTS as CU_PROMO_SUCCESS_EVENTS_CONST,
-  CU_RISK_FAIL_EVENTS as CU_RISK_FAIL_EVENTS_CONST,
-  CU_RISK_SUCCESS_EVENTS as CU_RISK_SUCCESS_EVENTS_CONST,
-  CU_SKILL_CATEGORY_TABLES
-} from './CUCharGenConstants.js';
+import { runCUCareerTerms } from './cu/cuCareerTerms.js';
 import {
   cuApplyDesignBonusSkill,
   cuApplyDesignCash,
@@ -28,8 +19,17 @@ import {
   cuStepDesignCharacteristicsString,
   cuStepDesignRank,
 } from './cu/cuDesignSteps.js';
-import { runCUCareerTerms } from './cu/cuCareerTerms.js';
 import { cuBenefitRoll, cuMusterOut } from './cu/cuMusterBenefits.js';
+import {
+  CU_BENEFITS_TABLE as CU_BENEFITS_TABLE_CONST,
+  CU_PROMO_FAIL_EVENTS as CU_PROMO_FAIL_EVENTS_CONST,
+  CU_PROMO_SUCCESS_EVENTS as CU_PROMO_SUCCESS_EVENTS_CONST,
+  CU_RISK_FAIL_EVENTS as CU_RISK_FAIL_EVENTS_CONST,
+  CU_RISK_SUCCESS_EVENTS as CU_RISK_SUCCESS_EVENTS_CONST,
+  CU_SKILL_CATEGORY_TABLES,
+  CU_SKILL_NAME_MAP
+} from './CUCharGenConstants.js';
+import { reportAutoHandled } from './EventReport.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CU pack) ──────────────────────────────────
 
@@ -60,6 +60,7 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     this.promoFailEvents = CU_PROMO_FAIL_EVENTS_CONST;
     this.promoSuccessEvents = CU_PROMO_SUCCESS_EVENTS_CONST;
     this.benefitsTable = CU_BENEFITS_TABLE_CONST;
+    this.skillNameMap = CU_SKILL_NAME_MAP;
   }
 
   /**
@@ -148,7 +149,6 @@ export class CUCharGenLogic extends BaseCharGenLogic {
     });
 
     // 3. Pick 2 skill category tables
-    const state = app.charState;
     const tableNames = Object.keys(this.skillTables).sort();
     const tableOptions = tableNames.map(n => ({ value: n, label: n }));
 

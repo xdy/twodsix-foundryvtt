@@ -82,3 +82,25 @@ export const CDEE_POINT_BUY_MINIMUM_VALUE = 2;
 //Not actually stated anywhere, but I think it's RAI
 export const CDEE_POINT_BUY_MAXIMUM_VALUE = 15;
 
+function _extractMechanicTags(description) {
+  const tags = [];
+  const regex = /\[([^\]]+)\]/g;
+  let match;
+  while ((match = regex.exec(description)) !== null) {
+    tags.push(match[1]);
+  }
+  return tags;
+}
+
+function _withStructuredEffects(table) {
+  return table.map(entry => ({
+    ...entry,
+    effects: _extractMechanicTags(entry.description),
+  }));
+}
+
+for (const table of [CDEE_LIFE_EVENTS, CDEE_PRISON_EVENTS, CDEE_INJURY_TABLE]) {
+  const structured = _withStructuredEffects(table);
+  table.splice(0, table.length, ...structured);
+}
+

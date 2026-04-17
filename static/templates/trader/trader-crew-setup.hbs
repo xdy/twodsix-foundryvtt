@@ -1,15 +1,13 @@
 <div class="trader-crew-setup">
   <p class="trader-crew-hint">
-    Assign a crew member to each position. Use <em>Open Character Generation</em> to create
-    new traveller actors first, then click <em>Refresh</em> to see them in the dropdowns.
-    You can also <strong>drag an actor</strong> from the Actors sidebar onto a row.
+    {{localize "TWODSIX.Trader.CrewSetup.Hint"}}
   </p>
   <table class="trader-crew-table">
     <thead>
     <tr>
-      <th>Position</th>
-      <th>Salary / mo</th>
-      <th>Actor or manual name</th>
+      <th>{{localize "TWODSIX.Trader.CrewSetup.Position"}}</th>
+      <th>{{localize "TWODSIX.Trader.CrewSetup.SalaryPerMonth"}}</th>
+      <th>{{localize "TWODSIX.Trader.CrewSetup.ActorOrManualName"}}</th>
       {{#each skillNames}}
         <th>{{label}}</th>
       {{/each}}
@@ -22,7 +20,7 @@
         <td class="trader-crew-salary">Cr{{salary}}</td>
         <td class="trader-crew-assign">
           <select class="st-actor-select" data-position="{{position}}">
-            <option value="">— manual entry —</option>
+            <option value="">{{localize "TWODSIX.Trader.CrewSetup.ManualEntry"}}</option>
             {{#each actors}}
               <option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>
             {{/each}}
@@ -46,13 +44,13 @@
   </table>
   <div class="trader-crew-footer">
     <button type="button" class="st-chargen-btn">
-      <i class="fas fa-user-plus"></i> Open Character Generation
+      <i class="fas fa-user-plus"></i> {{localize "TWODSIX.Trader.CrewSetup.OpenCharacterGeneration"}}
     </button>
     <button type="button" class="st-refresh-btn">
-      <i class="fas fa-sync"></i> Refresh Actors
+      <i class="fas fa-sync"></i> {{localize "TWODSIX.Trader.CrewSetup.RefreshActors"}}
     </button>
     <button type="button" class="st-confirm-btn">
-      <i class="fas fa-check"></i> Confirm Crew
+      <i class="fas fa-check"></i> {{localize "TWODSIX.Trader.CrewSetup.ConfirmCrew"}}
     </button>
   </div>
 </div>
