@@ -1,15 +1,13 @@
 // cuDesignSteps.js — CU “design” creation path (characteristic strings, age, career skills, rank, cash, bonus skill).
-// Extracted from CUCharGenLogic to keep the main class smaller; methods delegate back to the logic instance where needed.
-import { CU_DESIGN_CAREERS } from '../CUCharGenConstants.js';
 import {
   assignCharacteristicPoolFromChoices,
   improveSkillCappedInState,
   localizedAllCharOptsForAssignment,
 } from '../CharGenUtils.js';
+// Extracted from CUCharGenLogic to keep the main class smaller; methods delegate back to the logic instance where needed.
+import { CU_DESIGN_CAREERS } from '../CUCharGenConstants.js';
 
 export async function cuStepDesignCharacteristicsString(_logic, app) {
-  const state = app.charState;
-
   const selection = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.CUChooseCharacteristicString'), [
     { value: 'A', label: game.i18n.localize('TWODSIX.CharGen.Steps.CUCharStringOptionA') },
     { value: 'B', label: game.i18n.localize('TWODSIX.CharGen.Steps.CUCharStringOptionB') },
