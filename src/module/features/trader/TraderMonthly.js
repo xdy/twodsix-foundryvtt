@@ -6,13 +6,14 @@
 import {
   BANKRUPTCY_LIMIT,
   BULK_LS_CAPACITY,
+  BULK_LS_CARGO_ID,
   LIFE_SUPPORT,
   MAINTENANCE_DAMAGE_THRESHOLD,
   MAINTENANCE_RATE,
   MORTGAGE_DIVISOR,
   MORTGAGE_TOTAL_MONTHS
 } from './TraderConstants.js';
-import { getMonthNumber, getTotalCrewSalary, OUTCOME } from './TraderState.js';
+import { addExpense, getMonthNumber, getTotalCrewSalary, OUTCOME } from './TraderState.js';
 import { parseCurrencyToMcr } from './TraderUtils.js';
 
 export async function accrueMonthlyCosts(app) {
@@ -39,8 +40,14 @@ export async function accrueMonthlyCosts(app) {
     // Tonnage needed can be fractional: 1 ton per 20 people per month
     const tonsNeeded = peopleCapacity / BULK_LS_CAPACITY;
 
-    const normalSupplies = s.cargo.find(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSNormal') && c.tons >= tonsNeeded);
-    const luxurySupplies = s.cargo.find(c => c.name === game.i18n.localize('TWODSIX.Trader.BulkLSLuxury') && c.tons >= tonsNeeded);
+    const normalName = game.i18n.localize('TWODSIX.Trader.BulkLSNormal');
+    const luxuryName = game.i18n.localize('TWODSIX.Trader.BulkLSLuxury');
+    const normalSupplies = s.cargo.find(c =>
+      (c.cargoId === BULK_LS_CARGO_ID.NORMAL || c.name === normalName) && c.tons >= tonsNeeded
+    );
+    const luxurySupplies = s.cargo.find(c =>
+      (c.cargoId === BULK_LS_CARGO_ID.LUXURY || c.name === luxuryName) && c.tons >= tonsNeeded
+    );
 
     if (tonsNeeded > 0 && (normalSupplies || luxurySupplies)) {
       const lsOptions = [
@@ -96,8 +103,7 @@ export async function accrueMonthlyCosts(app) {
         const hits = hitRoll <= 3 ? 1 : hitRoll <= 5 ? 2 : 3;
         const repairCost = hits * 10000;
 
-        s.credits -= repairCost;
-        s.totalExpenses += repairCost;
+        addExpense(s, repairCost);
         await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.MaintenanceSkippedDamage", {
           hits: hits,
           roll: damageRoll,
@@ -120,8 +126,7 @@ export async function accrueMonthlyCosts(app) {
 
     const totalCost = crewCost + actualLifeSupportCost + actualMaintenanceCost + mortgageCost;
 
-    s.credits -= totalCost;
-    s.totalExpenses += totalCost;
+    addExpense(s, totalCost);
     s.mortgageRemaining = Math.max(0, s.mortgageRemaining - mortgageCost);
     s.monthsPaid++;
 

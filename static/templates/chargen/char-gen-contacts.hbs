@@ -1,0 +1,13 @@
+{{#if hasContacts}}
+  <p>
+    {{#each enemies}}
+      <strong>{{localize "TWODSIX.CharGen.Output.Enemy"}}:</strong> {{this}}<br>
+    {{/each}}
+    {{#each friends}}
+      <strong>{{localize "TWODSIX.CharGen.Output.Friend"}}:</strong> {{this}}<br>
+    {{/each}}
+    {{#each contacts}}
+      <strong>{{localize "TWODSIX.CharGen.Output.Contact"}}:</strong> {{this}}<br>
+    {{/each}}
+  </p>
+{{/if}}

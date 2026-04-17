@@ -164,6 +164,29 @@ export async function getCachedData(journal, cacheKey) {
 }
 
 const writeQueue = new Map();
+const pendingSummaryUpdates = new Map();
+const CACHE_SUMMARY_DEBOUNCE_MS = 1500;
+
+function scheduleHumanReadableUpdate(journal) {
+  if (!journal?.id) {
+    return;
+  }
+  const existingTimer = pendingSummaryUpdates.get(journal.id);
+  if (existingTimer) {
+    clearTimeout(existingTimer);
+  }
+
+  const timer = setTimeout(async () => {
+    pendingSummaryUpdates.delete(journal.id);
+    try {
+      await updateHumanReadableContent(journal);
+    } catch (e) {
+      console.error('Failed to update cache summary content:', e);
+    }
+  }, CACHE_SUMMARY_DEBOUNCE_MS);
+
+  pendingSummaryUpdates.set(journal.id, timer);
+}
 
 /**
  * Store data in the cache journal.
@@ -189,7 +212,7 @@ export async function setCachedData(journal, cacheKey, data) {
       await journal.setFlag(CACHE_FLAGS_NAMESPACE, cacheKey, compressedData);
       await journal.setFlag(CACHE_FLAGS_NAMESPACE, CACHE_KEY_LAST_UPDATED, Date.now());
       traderDebug('TravellerMapCache', `setCachedData(${cacheKey}) flags set.`);
-      await updateHumanReadableContent(journal);
+      scheduleHumanReadableUpdate(journal);
     } catch (e) {
       console.error(`Failed to set cached data for key ${cacheKey}:`, e);
     }

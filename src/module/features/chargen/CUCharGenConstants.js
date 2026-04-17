@@ -158,3 +158,43 @@ export const CU_BENEFITS_TABLE = [
   { threshold: 3, description: '+1 Str [STR_PLUS1]' },
   { threshold: 2, description: '+1 Dex [DEX_PLUS1]' }
 ];
+
+/**
+ * Alias map used by chargen logic to canonicalize synonymous CU skill labels.
+ * Canonical values are chosen to match item names used by compendiums.
+ */
+export const CU_SKILL_NAME_MAP = {
+  Leader: 'Leadership',
+  Pilot: 'Piloting',
+  Medical: 'Medicine',
+  Vehicle: 'Ground Vehicle',
+};
+
+function _extractMechanicTags(description) {
+  const tags = [];
+  const regex = /\[([^\]]+)\]/g;
+  let match;
+  while ((match = regex.exec(description)) !== null) {
+    tags.push(match[1]);
+  }
+  return tags;
+}
+
+function _withStructuredEffects(table) {
+  return table.map(entry => ({
+    ...entry,
+    effects: _extractMechanicTags(entry.description),
+  }));
+}
+
+// Preserve prose for UI while providing a structured mechanics contract for logic.
+for (const table of [
+  CU_RISK_FAIL_EVENTS,
+  CU_RISK_SUCCESS_EVENTS,
+  CU_PROMO_FAIL_EVENTS,
+  CU_PROMO_SUCCESS_EVENTS,
+  CU_BENEFITS_TABLE,
+]) {
+  const structured = _withStructuredEffects(table);
+  table.splice(0, table.length, ...structured);
+}

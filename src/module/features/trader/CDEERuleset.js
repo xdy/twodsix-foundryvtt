@@ -2,7 +2,7 @@
  * CDEERuleset.js
  * Cepheus Deluxe Enhanced Edition (CDEE) trader ruleset logic.
  */
-import { BaseTraderRuleset } from './BaseTraderRuleset.js';
+import { BaseTraderRuleset, SEARCH_METHOD } from './BaseTraderRuleset.js';
 import {
   CDEE_BROKER_TABLE,
   CDEE_CARGO_TAGS,
@@ -14,24 +14,24 @@ import {
 export class CDEERuleset extends BaseTraderRuleset {
   /** @override */
   getSearchMethods(worldTL, starport) {
-    return ['corporate', 'blackMarket', 'private'];
+    return [SEARCH_METHOD.CORPORATE, SEARCH_METHOD.BLACK_MARKET, SEARCH_METHOD.PRIVATE];
   }
 
   /** @override */
   getSearchSkillLevel(crew, method) {
     switch (method) {
-      case 'corporate': {
+      case SEARCH_METHOD.CORPORATE: {
         const liaison = this.getCrewSkill(crew, 'Liaison');
         const intDM = 0; // TODO Get from actor
         const socDM = 0;
         return liaison + Math.max(intDM, socDM);
       }
-      case 'blackMarket': {
+      case SEARCH_METHOD.BLACK_MARKET: {
         const streetwise = this.getCrewSkill(crew, 'Streetwise');
         const intDM = 0; // TODO Get from actor
         return streetwise + intDM;
       }
-      case 'private': {
+      case SEARCH_METHOD.PRIVATE: {
         const carousing = this.getCrewSkill(crew, 'Carousing');
         const socDM = 0; // TODO Get from actor
         return carousing + socDM;
@@ -43,9 +43,9 @@ export class CDEERuleset extends BaseTraderRuleset {
   /** @override */
   getSearchSkillLabel(method) {
     switch (method) {
-      case 'corporate': return 'TWODSIX.Items.Skill.Liaison';
-      case 'blackMarket': return 'TWODSIX.Items.Skill.Streetwise';
-      case 'private': return 'TWODSIX.Items.Skill.Carousing';
+      case SEARCH_METHOD.CORPORATE: return 'TWODSIX.Items.Skill.Liaison';
+      case SEARCH_METHOD.BLACK_MARKET: return 'TWODSIX.Items.Skill.Streetwise';
+      case SEARCH_METHOD.PRIVATE: return 'TWODSIX.Items.Skill.Carousing';
       default: return 'TWODSIX.Items.Skill.Unskilled';
     }
   }

@@ -36,6 +36,22 @@ import {
 const _folderPromises = new Map();
 
 /**
+ * Determine whether a subsector has already been loaded.
+ * Supports legacy key format ("Sector:subX,subY") for old saved states.
+ * @param {import('./TraderState.js').TraderState} state
+ * @param {string} canonicalKey
+ * @param {import('./TraderState.js').SubsectorSearchEntry} target
+ * @returns {boolean}
+ */
+function hasLoadedSubsectorKey(state, canonicalKey, target) {
+  if (!Array.isArray(state.loadedSubsectorKeys)) {
+    return false;
+  }
+  const legacyKey = `${target.sectorName}:${target.subX},${target.subY}`;
+  return state.loadedSubsectorKeys.includes(canonicalKey) || state.loadedSubsectorKeys.includes(legacyKey);
+}
+
+/**
  * Robustly find or create the root TravellerMap folder.
  * @returns {Promise<Folder>}
  * @private
@@ -334,7 +350,7 @@ export async function ensureSubsectorNeighborsLoaded(state, sectorName, localHex
     }
 
     const subKey = buildSubsectorKey(target.sectorName, subLetter, milieu);
-    if (state.loadedSubsectorKeys.includes(subKey)) {
+    if (hasLoadedSubsectorKey(state, subKey, target)) {
       continue;
     }
 
@@ -400,6 +416,25 @@ export function loadWorldsFromSectors(sectorNames) {
 }
 
 /**
+ * Merge canonical subsector cache keys from world actors (twodsix.subsectorKey flag).
+ * Used so loadedSubsectorKeys only reflects subsectors that actually have data/actors,
+ * not the full 3x3 grid of interest.
+ * @param {string[]|null|undefined} baseKeys
+ * @param {import('../../entities/TwodsixActor').default[]} worlds
+ * @returns {string[]}
+ */
+export function mergeLoadedSubsectorKeysFromActors(baseKeys, worlds) {
+  const set = new Set(baseKeys || []);
+  for (const w of worlds || []) {
+    const k = typeof w.getFlag === 'function' ? w.getFlag('twodsix', 'subsectorKey') : null;
+    if (k) {
+      set.add(k);
+    }
+  }
+  return [...set];
+}
+
+/**
  * Consolidated way to find worlds within jump range.
  * Tries fetchJumpWorlds (API) first. If it returns no worlds (and it's not a local worlds trading journey)
  * it falls back to checking the Journal cache and then finally filtering local actors.
@@ -417,28 +452,32 @@ export async function getReachableWorlds(s, journal = null) {
 
     const currentWorld = s.worlds.find(w => getWorldCoordinate(w) === currentHex);
     if (currentWorld) {
-      const coordParts = currentWorld.system?.coordinates?.split(' ') || [];
-      const sName = coordParts.slice(0, -1).join(' ') || '';
+      const coordParts = (currentWorld.system?.coordinates?.trim() || '').split(/\s+/) || [];
+      const sName = coordParts.length >= 2 ? coordParts.slice(0, -1).join(' ') : '';
+      const lastPart = coordParts.length >= 2 ? coordParts.at(-1) : '';
+      const fromCoords = (lastPart?.length === 4 && !isNaN(parseInt(lastPart, 10))) ? lastPart : '';
       if (sName) {
         sectorName = sName;
       }
-      localHex = coordParts.at(-1) || currentWorld.getFlag('twodsix', 'locationCoordinate') || localHex;
+      const flagCoord = currentWorld.getFlag('twodsix', 'locationCoordinate') || '';
+      localHex = fromCoords || getLocalHex(flagCoord) || getLocalHex(currentHex);
     }
 
     if (sectorName && localHex) {
       try {
-        const reachableWorldsData = await fetchJumpWorlds(sectorName, localHex, jump, s.milieu || 'M1105');
+        const sectorRow = s.sectors?.find(sec => sec.name === sectorName);
+        const sectorCoords = sectorRow
+          ? { x: sectorRow.sx, y: sectorRow.sy, sx: sectorRow.sx, sy: sectorRow.sy }
+          : null;
+        const reachableWorldsData = await fetchJumpWorlds(sectorName, localHex, jump, s.milieu || 'M1105', sectorCoords);
         if (reachableWorldsData.length > 0) {
           const newActors = await createWorldActors(reachableWorldsData, currentHex, journal);
-          if (newActors.length > 0) {
-            for (const actor of newActors) {
-              if (!s.worlds.some(w => w.id === actor.id)) {
-                s.worlds.push(actor);
-              }
+          for (const actor of newActors) {
+            if (!s.worlds.some(w => w.id === actor.id)) {
+              s.worlds.push(actor);
             }
-            // Found via API, return current reachable worlds
-            return worldsInJumpRange(currentHex, jump, s.worlds);
           }
+          return worldsInJumpRange(currentHex, jump, s.worlds);
         }
       } catch (e) {
         console.error('Trader: Failed to fetch reachable worlds from API:', e);
@@ -463,14 +502,12 @@ export async function getReachableWorlds(s, journal = null) {
         }
         if (nearbyWorlds.length > 0) {
           const newActors = await createWorldActors(nearbyWorlds, currentHex, cacheJournal);
-          if (newActors.length > 0) {
-            for (const na of newActors) {
-              if (!s.worlds.find(w => w.id === na.id)) {
-                s.worlds.push(na);
-              }
+          for (const na of newActors) {
+            if (!s.worlds.find(w => w.id === na.id)) {
+              s.worlds.push(na);
             }
-            return worldsInJumpRange(currentHex, jump, s.worlds);
           }
+          return worldsInJumpRange(currentHex, jump, s.worlds);
         }
       }
     }

@@ -6,6 +6,9 @@ Hooks.on('renderJournalDirectory', (app, html, data) => {
   }
 
   const element = html[0] ?? html;
+  if (element.querySelector('.header-actions.trade-journey')) {
+    return;
+  }
   const headerActions = element.querySelector('header.directory-header .header-actions');
   if (headerActions && headerActions.parentNode) {
     const newDiv = document.createElement('div');

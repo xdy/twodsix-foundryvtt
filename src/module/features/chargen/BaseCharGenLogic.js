@@ -1,5 +1,5 @@
 // BaseCharGenLogic.js — Abstract base class for character generation logic
-import { CHARACTERISTIC_KEYS, adjustChar } from './CharGenState.js';
+import { adjustChar, CHARACTERISTIC_KEYS } from './CharGenState.js';
 import {
   chooseGender,
   chooseLanguage,
@@ -9,7 +9,7 @@ import {
   localizedPhysicalOpts,
   optionsFromStrings,
 } from './CharGenUtils.js';
-import { createEventReport, reportAutoHandled, reportLeaveCareer, reportSubRow } from './EventReport.js';
+import { createEventReport, reportAutoHandled, reportLeaveCareer } from './EventReport.js';
 import { resolveCharKey } from './SharedCharGenConstants.js';
 
 /**
@@ -329,6 +329,7 @@ export class BaseCharGenLogic {
             ruleset: docRuleset,
             requested: ruleset
           }));
+          continue;
         }
 
         if (!careerGroups.has(doc.name)) {
@@ -384,7 +385,8 @@ export class BaseCharGenLogic {
     const charMatch = tag.match(/^(STR|DEX|END|INT|EDU|SOC)_(PLUS|MINUS)(-?\d+)$/);
     if (charMatch) {
       const sign = charMatch[2] === 'PLUS' ? '+' : '−';
-      return `${charMatch[1]} ${sign}${charMatch[3]}`;
+      const charLabel = game.i18n.localize(`TWODSIX.CharGen.Chars.${charMatch[1]}`);
+      return `${charLabel} ${sign}${charMatch[3]}`;
     }
 
     // SKILL:Name:level  (canonical)  or legacy SKILL:Name-level  (two-part with hyphen)
@@ -394,17 +396,17 @@ export class BaseCharGenLogic {
     }
 
     if (tag === 'CONTACT') {
-      return 'Contact';
+      return game.i18n.localize('TWODSIX.CharGen.Tag.Contact');
     }
     if (tag === 'FRIEND') {
-      return 'Friend';
+      return game.i18n.localize('TWODSIX.CharGen.Tag.Friend');
     }
     if (tag === 'ENEMY') {
-      return 'Enemy';
+      return game.i18n.localize('TWODSIX.CharGen.Tag.Enemy');
     }
 
     // Unknown — preserve bracketed so it's visible but not confusingly blank
-    return `[${tag}]`;
+    return game.i18n.format('TWODSIX.CharGen.Tag.Unknown', { tag });
   }
 
   /**
@@ -514,14 +516,16 @@ export class BaseCharGenLogic {
 
       while (i < parts.length && parts[i].type === 'text' && i + 1 < parts.length && parts[i + 1].type === 'tag') {
         const bridge = parts[i].value.trim().toLowerCase();
-        if (bridge === 'or') {
+        const bridgeIsOr = /^(?:\W*or\W*)$/i.test(bridge);
+        const bridgeIsAnd = /^(?:\W*and\W*)$/i.test(bridge);
+        if (bridgeIsOr) {
           if (connector === 'and') {
             break;
           }
           connector = 'or';
           groupTags.push(parts[i + 1].value);
           i += 2;
-        } else if (bridge === 'and') {
+        } else if (bridgeIsAnd) {
           if (connector === 'or') {
             break;
           }
@@ -538,13 +542,51 @@ export class BaseCharGenLogic {
   }
 
   /**
+   * Build normalized mechanical groups for an event.
+   * Supports:
+   * - legacy prose strings with bracket tags and textual connectors
+   * - structured event objects with `effects` (array of tags or grouped descriptors)
+   */
+  _getEventMechanics(eventOrDescription) {
+    if (typeof eventOrDescription === 'string') {
+      return this._parseTagGroups(eventOrDescription);
+    }
+    const effects = Array.isArray(eventOrDescription?.effects) ? eventOrDescription.effects : null;
+    if (!effects) {
+      const desc = String(eventOrDescription?.description ?? '');
+      return this._parseTagGroups(desc);
+    }
+
+    const groups = [];
+    for (const effect of effects) {
+      if (typeof effect === 'string') {
+        groups.push({ tags: [effect], connector: 'single' });
+        continue;
+      }
+      if (!effect || typeof effect !== 'object') {
+        continue;
+      }
+      const tags = Array.isArray(effect.tags) ? effect.tags.filter(Boolean) : [];
+      if (!tags.length) {
+        continue;
+      }
+      const connector = effect.connector === 'or' || effect.connector === 'and' ? effect.connector : 'single';
+      groups.push({ tags, connector });
+    }
+    return groups;
+  }
+
+  /**
    * Apply all tags in a description, respecting 'or' (user picks one) and 'and' (apply all).
    * Returns an EventReport; callers should check report.leaveCareer instead of the raw boolean.
    * Subclasses implement the ruleset-specific tag logic in _applyRulesetTag.
    */
-  async applyEventTags(app, description, careerName) {
+  async applyEventTags(app, eventOrDescription, careerName) {
+    const description = typeof eventOrDescription === 'string'
+      ? eventOrDescription
+      : String(eventOrDescription?.description ?? '');
     const report = createEventReport(this._humanizeTaggedDescription(description));
-    const groups = this._parseTagGroups(description);
+    const groups = this._getEventMechanics(eventOrDescription);
 
     for (const group of groups) {
       if (group.connector === 'or') {

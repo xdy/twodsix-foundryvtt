@@ -12,7 +12,14 @@ import {
   FUEL_SKIM_RATE,
   PASSENGER_REVENUE
 } from './TraderConstants.js';
-import { advanceDate, getAbsoluteDay, getFreeCargoSpace, getFreeLowBerths, getFreeStaterooms, } from './TraderState.js';
+import {
+  addRevenue,
+  advanceDate,
+  getAbsoluteDay,
+  getFreeCargoSpace,
+  getFreeLowBerths,
+  getFreeStaterooms,
+} from './TraderState.js';
 import { getRefuelOptions, } from './TraderUtils.js';
 
 /**
@@ -43,16 +50,20 @@ export async function showCharterDialog(app) {
   );
 
   return foundry.applications.api.DialogV2.prompt({
-    window: { title: 'Charter Ship' },
+    window: { title: game.i18n.localize('TWODSIX.Trader.Charter.Title') },
     content,
     ok: {
-      label: 'Accept Charter',
+      label: game.i18n.localize('TWODSIX.Trader.Charter.Accept'),
       callback: (event, button) => {
+        const parseNonNegativeInt = (value) => {
+          const parsed = Number.parseInt(value, 10);
+          return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+        };
         const form = button.closest('.dialog-content')?.querySelector('form') ?? button.form;
         return {
-          cargo: Math.min(maxCargo, Math.max(0, parseInt(form.querySelector('[name=charterCargo]').value) || 0)),
-          staterooms: Math.min(maxStaterooms, Math.max(0, parseInt(form.querySelector('[name=charterStaterooms]').value) || 0)),
-          lowBerths: Math.min(maxLowBerths, Math.max(0, parseInt(form.querySelector('[name=charterLowBerths]').value) || 0)),
+          cargo: Math.min(maxCargo, parseNonNegativeInt(form.querySelector('[name=charterCargo]').value)),
+          staterooms: Math.min(maxStaterooms, parseNonNegativeInt(form.querySelector('[name=charterStaterooms]').value)),
+          lowBerths: Math.min(maxLowBerths, parseNonNegativeInt(form.querySelector('[name=charterLowBerths]').value)),
           mode: form.querySelector('[name=charterMode]:checked').value,
         };
       },
@@ -211,13 +222,18 @@ export async function acceptCharter(app) {
     || lowBerths > getFreeLowBerths(s);
 
   // 4. Confirmation
-  let confirmMsg = `Charter ${cargo}t cargo, ${staterooms} stateroom(s), ${lowBerths} low berth(s) for 2 weeks. Fee: Cr${fee.toLocaleString()}.`;
+  let confirmMsg = game.i18n.format('TWODSIX.Trader.Charter.Confirm', {
+    cargo,
+    staterooms,
+    lowBerths,
+    fee: fee.toLocaleString()
+  });
   if (needsEviction) {
-    confirmMsg += ' WARNING: This will evict current passengers/freight and force-sell speculative cargo to make room.';
+    confirmMsg += ` ${game.i18n.localize('TWODSIX.Trader.Charter.EvictionWarning')}`;
   }
   const confirmed = await app._choose(confirmMsg, [
-    { value: 'confirm', label: 'Accept charter' },
-    { value: 'cancel', label: 'Cancel' },
+    { value: 'confirm', label: game.i18n.localize('TWODSIX.Trader.Charter.Accept') },
+    { value: 'cancel', label: game.i18n.localize('Cancel') },
   ]);
   if (confirmed === 'cancel') {
     return;
@@ -229,8 +245,7 @@ export async function acceptCharter(app) {
   }
 
   // 6. Apply charter state
-  s.credits += fee;
-  s.totalRevenue += fee;
+  addRevenue(s, fee);
   s.chartered = true;
   s.charterCargo = cargo;
   s.charterStaterooms = staterooms;

@@ -2,6 +2,7 @@
 // Shared by all rulesets; ruleset-specific fields (e.g. CU contacts) are read from state if present.
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { toHex } from '../../utils/utils.js';
+import { renderCharGenBio, renderCharGenContacts, renderCharGenNotes } from './CharGenOutputRenderer.js';
 
 export async function createCharacterActor(state, charName) {
   let packDocs = [];
@@ -14,6 +15,7 @@ export async function createCharacterActor(state, charName) {
   } catch (e) {
     console.warn(`twodsix | Failed to load items from ${packName} pack.`, e);
   }
+  const itemIndexes = _buildItemIndexes(packDocs);
 
   const actor = await Actor.create({
     name: charName,
@@ -38,12 +40,12 @@ export async function createCharacterActor(state, charName) {
     },
   });
 
-  const itemsToAdd = _buildSkillItems(state, packDocs);
+  const itemsToAdd = _buildSkillItems(state, itemIndexes.skillByName);
   if (itemsToAdd.length) {
     await actor.createEmbeddedDocuments('Item', itemsToAdd);
   }
 
-  const weaponsToAdd = _buildWeaponItems(state, packDocs);
+  const weaponsToAdd = _buildWeaponItems(state, itemIndexes.byId);
   if (weaponsToAdd.length) {
     await actor.createEmbeddedDocuments('Item', weaponsToAdd);
   }
@@ -59,26 +61,43 @@ export async function createCharacterActor(state, charName) {
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([n, l]) => _formatSkillLine(n, l))
     .join(', ');
-  const traitLine = state.traits?.length ? `Traits: ${state.traits.join(', ')}` : null;
+  const traitLine = state.traits?.length
+    ? game.i18n.format('TWODSIX.CharGen.Summary.TraitsPrefix', { list: state.traits.join(', ') })
+    : null;
+  const debtSuffix = state.medicalDebt
+    ? game.i18n.format('TWODSIX.CharGen.Summary.DebtInline', { amount: state.medicalDebt.toLocaleString() })
+    : '';
   const summary = [
-    `${charName}   ${upp}   Age ${state.age}`,
-    `${careerLine}   Cr${state.cashBenefits.toLocaleString()}${state.medicalDebt ? ` (Debt: Cr${state.medicalDebt.toLocaleString()})` : ''}`,
-    skillLine || '(no skills)',
+    game.i18n.format('TWODSIX.CharGen.Summary.ActorLine', {
+      name: charName,
+      upp,
+      ageLabel: game.i18n.localize('TWODSIX.CharGen.App.Age'),
+      age: state.age,
+    }),
+    game.i18n.format('TWODSIX.CharGen.Summary.CareerMoneyLine', {
+      careers: careerLine,
+      cash: state.cashBenefits.toLocaleString(),
+      debt: debtSuffix,
+    }),
+    skillLine || game.i18n.localize('TWODSIX.CharGen.Summary.NoSkills'),
     traitLine,
-    state.materialBenefits.length ? `Benefits: ${state.materialBenefits.join(', ')}` : null,
-    state.pension ? `Pension: Cr${state.pension.toLocaleString()}/year` : null,
+    state.materialBenefits.length
+      ? game.i18n.format('TWODSIX.CharGen.Summary.BenefitsPrefix', { list: state.materialBenefits.join(', ') })
+      : null,
+    state.pension
+      ? game.i18n.format('TWODSIX.CharGen.Summary.PensionPrefix', { amount: state.pension.toLocaleString() })
+      : null,
   ].filter(Boolean).join('\n');
 
   const detailedSummary = generateDetailedSummary(state);
-  const rulesetName = CONFIG.TWODSIX.RULESETS[state.ruleset]?.name || 'Cepheus Engine';
-  const header = state.died ? 'Epitaph:' : `${rulesetName} generation results:`;
-  const bioHtml = await foundry.applications.handlebars.renderTemplate(
-    'systems/twodsix/templates/chargen/char-gen-bio.hbs',
-    { header, detailedSummary, summary, log: state.log }
-  );
-
-  const notesHtml = _buildNotesHtml(state);
-  const contactsHtml = _buildContactsHtml(state);
+  const rulesetName = CONFIG.TWODSIX.RULESETS[state.ruleset]?.name
+    || game.i18n.localize('TWODSIX.CharGen.DefaultRulesetName');
+  const header = state.died
+    ? game.i18n.localize('TWODSIX.CharGen.Summary.BioHeaderEpitaph')
+    : game.i18n.format('TWODSIX.CharGen.Summary.BioHeaderResults', { ruleset: rulesetName });
+  const bioHtml = await renderCharGenBio(header, detailedSummary, summary, state.log);
+  const notesHtml = await renderCharGenNotes(state);
+  const contactsHtml = await renderCharGenContacts(state);
 
   await actor.update({ 'system.bio': bioHtml, 'system.notes': notesHtml, 'system.contacts': contactsHtml });
 
@@ -103,8 +122,17 @@ export async function createCharacterActor(state, charName) {
 
 export function generateDetailedSummary(state) {
   const chars = ['str', 'dex', 'end', 'int', 'edu', 'soc'];
-  const charLabels = ['Str', 'Dex', 'End', 'Int', 'Edu', 'Soc'];
-  const header1 = `Age\tGender\t${charLabels.join('\t')}`;
+  const charLabels = chars.map(k => game.i18n.localize(`TWODSIX.CharGen.Chars.${k.toUpperCase()}`));
+  const header1 = game.i18n.format('TWODSIX.CharGen.Summary.DetailedHeaderRow', {
+    age: game.i18n.localize('TWODSIX.CharGen.App.Age'),
+    gender: game.i18n.localize('TWODSIX.CharGen.Summary.ColumnGender'),
+    str: charLabels[0],
+    dex: charLabels[1],
+    end: charLabels[2],
+    int: charLabels[3],
+    edu: charLabels[4],
+    soc: charLabels[5],
+  });
   const vals = chars.map(k => {
     const v = state.chars[k] ?? 0;
     const mod = calcModFor(v);
@@ -113,7 +141,7 @@ export function generateDetailedSummary(state) {
   const row1 = `${state.age}\t${state.gender}\t${vals.join('\t')}`;
 
   const activeRules = Object.entries(state.optionalRules || {})
-    .filter(([_, enabled]) => String(enabled) === 'true')
+    .filter(([_, enabled]) => enabled === true)
     .map(([key, _]) => game.i18n.localize(`TWODSIX.CharGen.OptionalRules.${key.charAt(0).toUpperCase() + key.slice(1)}`))
     .join(', ');
 
@@ -122,11 +150,11 @@ export function generateDetailedSummary(state) {
     .map(([n, l]) => _formatSkillLine(n, l, ' '))
     .join('\n');
   const traitList = (state.traits || []).join('\n');
-  const careerHeader = `Career\tAssignment\tTitle\tRank\tTerms`;
+  const careerHeader = game.i18n.localize('TWODSIX.CharGen.Summary.CareerTableHeader');
   const careerRows = state.careers
     .map(c => `${c.name}\t${c.assignment || ''}\t${c.rankTitle || ''}\t${c.rank}\t${c.terms}`)
     .join('\n');
-  const historyHeader = `Term\tHistory`;
+  const historyHeader = game.i18n.localize('TWODSIX.CharGen.Summary.HistoryTableHeader');
   const historyRows = state.termHistory.map(h => h.events.map(e => `${h.term}\t${e}`).join('\n')).join('\n');
 
   const lines = [
@@ -144,19 +172,19 @@ export function generateDetailedSummary(state) {
     lines.push('');
   }
 
+  const none = game.i18n.localize('TWODSIX.CharGen.Summary.None');
   lines.push(
-    'Skills',
-    skillList || '(none)',
+    game.i18n.localize('TWODSIX.CharGen.Summary.SectionSkills'),
+    skillList || none,
     '',
-    'Traits',
-    traitList || '(none)',
+    game.i18n.localize('TWODSIX.CharGen.Summary.SectionTraits'),
+    traitList || none,
     '',
-    'CareerHeader',
     careerHeader,
-    careerRows || '(none)',
+    careerRows || none,
     '',
     historyHeader,
-    historyRows || '(none)',
+    historyRows || none,
   );
 
   return lines.join('\n');
@@ -164,10 +192,25 @@ export function generateDetailedSummary(state) {
 
 /** ─── HELPERS ─────────────────────────────────────────────────────────── */
 
-function _buildSkillItems(state, packDocs) {
+function _buildItemIndexes(packDocs) {
+  const byId = new Map();
+  const skillByName = new Map();
+  for (const doc of packDocs) {
+    if (!doc) {
+      continue;
+    }
+    byId.set(String(doc.id), doc);
+    if (doc.type === 'skills') {
+      skillByName.set(doc.name, doc);
+    }
+  }
+  return { byId, skillByName };
+}
+
+function _buildSkillItems(state, skillByName) {
   const itemsToAdd = [];
   for (const [skillName, level] of state.skills) {
-    const pack = packDocs.find(i => i.name === skillName && i.type === 'skills');
+    const pack = skillByName.get(skillName);
     if (pack) {
       const obj = pack.toObject();
       obj.system.value = level;
@@ -180,10 +223,10 @@ function _buildSkillItems(state, packDocs) {
   return itemsToAdd;
 }
 
-function _buildWeaponItems(state, packDocs) {
+function _buildWeaponItems(state, itemById) {
   const weaponsToAdd = [];
   for (const w of (state.chosenWeapons || [])) {
-    const doc = packDocs.find(d => d.id === w.id);
+    const doc = itemById.get(String(w.id));
     if (doc) {
       weaponsToAdd.push(doc.toObject());
     }
@@ -197,8 +240,11 @@ async function _buildTraitItems(state) {
   const traitPack = game.packs.get(traitPackName) || game.packs.get('twodsix.cepheus-deluxe-items');
   if (traitPack && state.traits?.length) {
     const traitDocs = await traitPack.getDocuments();
+    const traitByName = new Map(
+      traitDocs.filter(d => d.type === 'trait').map(d => [d.name, d]),
+    );
     for (const traitName of state.traits) {
-      const trait = traitDocs.find(d => d.name === traitName && d.type === 'trait');
+      const trait = traitByName.get(traitName);
       if (trait) {
         traitsToAdd.push(trait.toObject());
       } else {
@@ -207,34 +253,6 @@ async function _buildTraitItems(state) {
     }
   }
   return traitsToAdd;
-}
-
-function _buildNotesHtml(state) {
-  let notesHtml = state.materialBenefits.length
-    ? `<p><strong>Material Benefits:</strong> ${state.materialBenefits.join(', ')}</p>`
-    : '';
-  if (state.medicalDebt > 0) {
-    notesHtml += `<p><strong>Medical Debt:</strong> Cr${state.medicalDebt.toLocaleString()}</p>`;
-  }
-  return notesHtml;
-}
-
-function _buildContactsHtml(state) {
-  if (!state.enemies?.length && !state.friends?.length && !state.contacts?.length) {
-    return '';
-  }
-  let html = '<p>';
-  if (state.enemies?.length) {
-    html += state.enemies.map(e => `<strong>ENEMY:</strong> ${e}<br>`).join('');
-  }
-  if (state.friends?.length) {
-    html += state.friends.map(f => `<strong>FRIEND:</strong> ${f}<br>`).join('');
-  }
-  if (state.contacts?.length) {
-    html += state.contacts.map(c => `<strong>CONTACT:</strong> ${c}<br>`).join('');
-  }
-  html += '</p>';
-  return html;
 }
 
 function _formatCareerLine(c) {

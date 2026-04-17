@@ -3,6 +3,14 @@
  * Abstract base class for trader ruleset logic.
  * Default implementations are compatible with Cepheus Engine (CE).
  */
+export const SEARCH_METHOD = {
+  STANDARD: 'standard',
+  BLACK_MARKET: 'blackMarket',
+  ONLINE: 'online',
+  CORPORATE: 'corporate',
+  PRIVATE: 'private',
+};
+
 export class BaseTraderRuleset {
   /**
    * Get available search method options for finding suppliers/buyers.
@@ -11,9 +19,9 @@ export class BaseTraderRuleset {
    * @returns {string[]} List of search method keys
    */
   getSearchMethods(worldTL, starport) {
-    const methods = ['standard', 'blackMarket'];
+    const methods = [SEARCH_METHOD.STANDARD, SEARCH_METHOD.BLACK_MARKET];
     if (worldTL >= 8) {
-      methods.push('online');
+      methods.push(SEARCH_METHOD.ONLINE);
     }
     return methods;
   }
@@ -26,9 +34,9 @@ export class BaseTraderRuleset {
    */
   getSearchSkillLevel(crew, method) {
     switch (method) {
-      case 'standard': return this.getCrewSkill(crew, 'Broker');
-      case 'blackMarket': return this.getCrewSkill(crew, 'Streetwise');
-      case 'online': return this.getCrewSkill(crew, 'Computers');
+      case SEARCH_METHOD.STANDARD: return this.getCrewSkill(crew, 'Broker');
+      case SEARCH_METHOD.BLACK_MARKET: return this.getCrewSkill(crew, 'Streetwise');
+      case SEARCH_METHOD.ONLINE: return this.getCrewSkill(crew, 'Computers');
       default: return -3; // UNSKILLED_PENALTY
     }
   }
@@ -40,9 +48,9 @@ export class BaseTraderRuleset {
    */
   getSearchSkillLabel(method) {
     switch (method) {
-      case 'standard': return 'TWODSIX.Items.Skill.Broker';
-      case 'blackMarket': return 'TWODSIX.Items.Skill.Streetwise';
-      case 'online': return 'TWODSIX.Items.Skill.Computers';
+      case SEARCH_METHOD.STANDARD: return 'TWODSIX.Items.Skill.Broker';
+      case SEARCH_METHOD.BLACK_MARKET: return 'TWODSIX.Items.Skill.Streetwise';
+      case SEARCH_METHOD.ONLINE: return 'TWODSIX.Items.Skill.Computers';
       default: return 'TWODSIX.Items.Skill.Unskilled';
     }
   }

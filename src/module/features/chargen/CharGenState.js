@@ -6,6 +6,7 @@ import { LanguageType } from '../../utils/nameGenerator.js';
  * Caught in CharGenApp.run() to end generation cleanly.
  */
 export const CHARGEN_DIED = Symbol('chargen-died');
+export const CHARGEN_STATE_VERSION = 1;
 
 /**
  * Standard characteristic keys used throughout character generation.
@@ -18,9 +19,21 @@ export const CHARACTERISTIC_KEYS = ['str', 'dex', 'end', 'int', 'edu', 'soc'];
 export const CHARACTERISTIC_LABELS = ['STR', 'DEX', 'END', 'INT', 'EDU', 'SOC'];
 
 /**
- * Magic string constant for the characteristics row type.
+ * Human-readable labels used in the decision log UI.
  */
 export const CHARACTERISTICS_ROW_TYPE = 'Characteristics';
+export const NAME_ROW_LABEL = 'Name';
+
+/**
+ * Stable row-type identifiers used by app logic and templates.
+ * Keep behavior keyed to these values (not display labels) so localization or
+ * wording changes do not alter control-flow semantics.
+ */
+export const CHARGEN_ROW_TYPES = {
+  CHOICE: 'choice',
+  CHARACTERISTICS: 'characteristics',
+  NAME: 'name',
+};
 
 /**
  * Character generation constants.
@@ -60,6 +73,7 @@ export const CharGenConstants = {
  */
 export function freshState() {
   return {
+    _schemaVersion: CHARGEN_STATE_VERSION,
     ruleset: 'CE',
     chars: { str: 0, dex: 0, end: 0, int: 0, edu: 0, soc: 0 },
     age: CharGenConstants.STARTING_AGE,
@@ -103,6 +117,42 @@ export function freshState() {
     benefitDMs: [],       // Accumulated DM values for muster-out rolls
     extraBenefitRolls: 0, // Additional muster-out rolls from BENEFIT_ROLL events
   };
+}
+
+/**
+ * Serialize chargen state to a persistence-safe shape.
+ * @param {object} state
+ * @returns {object}
+ */
+export function serializeCharGenState(state) {
+  const snapshot = foundry.utils.deepClone(state ?? freshState());
+  snapshot._schemaVersion = CHARGEN_STATE_VERSION;
+  snapshot.skills = Array.from((state?.skills ?? new Map()).entries());
+  return snapshot;
+}
+
+/**
+ * Deserialize persisted chargen state into a normalized runtime shape.
+ * @param {object|null|undefined} saved
+ * @returns {object}
+ */
+export function deserializeCharGenState(saved) {
+  const base = freshState();
+  const merged = foundry.utils.mergeObject(base, foundry.utils.deepClone(saved ?? {}), {
+    inplace: false,
+    insertKeys: true,
+    overwrite: true,
+  });
+  const savedSkills = saved?.skills;
+  if (savedSkills instanceof Map) {
+    merged.skills = new Map(savedSkills.entries());
+  } else if (Array.isArray(savedSkills)) {
+    merged.skills = new Map(savedSkills);
+  } else {
+    merged.skills = new Map();
+  }
+  merged._schemaVersion = CHARGEN_STATE_VERSION;
+  return merged;
 }
 
 /**

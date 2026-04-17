@@ -8,16 +8,18 @@ import {
   rollRandomCharacteristics,
 } from './characteristicsRules.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
+import { CharGenDecisionStore } from './CharGenDecisionStore.js';
 import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
 import {
   CHARACTERISTIC_KEYS,
   CHARACTERISTIC_LABELS,
   CHARACTERISTICS_ROW_TYPE,
   CHARGEN_DIED,
-  freshState
+  CHARGEN_ROW_TYPES,
+  deserializeCharGenState,
+  freshState,
+  NAME_ROW_LABEL
 } from './CharGenState.js';
-
-const NAME_ROW_LABEL = 'Name';
 
 /**
  * Character generation Application class extending DecisionApp.
@@ -39,8 +41,7 @@ export class CharGenApp extends DecisionApp {
 
   static DIED = CHARGEN_DIED;
 
-  decisions = [];
-  decisionCursor = 0;
+  decisionStore = new CharGenDecisionStore();
   charState = null;
   isDone = false;
   charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
@@ -170,7 +171,7 @@ export class CharGenApp extends DecisionApp {
     }
 
     // Handle characteristics row specially (has empty options array)
-    if (row.label === CHARACTERISTICS_ROW_TYPE) {
+    if (row.rowType === CHARGEN_ROW_TYPES.CHARACTERISTICS) {
       await this._rollCharacteristics();
       const r = this.pendingResolve;
       this.pendingResolve = null;
@@ -179,7 +180,7 @@ export class CharGenApp extends DecisionApp {
     }
 
     // Handle Name row: generate a fresh random name and continue
-    if (row.label === NAME_ROW_LABEL) {
+    if (row.rowType === CHARGEN_ROW_TYPES.NAME) {
       await this._resolveNameRoll();
       return;
     }
@@ -225,7 +226,7 @@ export class CharGenApp extends DecisionApp {
 
     const pointsEl = el?.querySelector('.cg-point-buy-total');
     if (pointsEl && isPointBuy && rules.pointBuyTargetTotal != null) {
-      pointsEl.textContent = `Points: ${rules.pointBuyTargetTotal - total} / ${rules.pointBuyTargetTotal}`;
+      pointsEl.textContent = `${game.i18n.localize('TWODSIX.CharGen.App.Points')}: ${rules.pointBuyTargetTotal - total} / ${rules.pointBuyTargetTotal}`;
       pointsEl.style.color = total > rules.pointBuyTargetTotal ? 'red' : 'inherit';
     }
   }
@@ -363,12 +364,12 @@ export class CharGenApp extends DecisionApp {
    * @returns {Promise<number>} Roll result
    */
   async _roll(formula) {
-    const cursor = this.decisionCursor++;
-    if (cursor < this.decisions.length) {
-      return this.decisions[cursor].value;
+    const { decision } = this.decisionStore.next();
+    if (decision) {
+      return decision.value;
     }
     const v = await super._roll(formula);
-    this.decisions.push({ type: 'roll', value: v });
+    this.decisionStore.push({ type: 'roll', value: v });
     return v;
   }
 
@@ -381,26 +382,38 @@ export class CharGenApp extends DecisionApp {
    */
   async _choose(label, options, rowExtras = {}) {
     const choiceOptions = Array.isArray(options) ? options : [];
-    const cursor = this.decisionCursor++;
+    const { index, decision } = this.decisionStore.next();
 
     // Replay path: use stored decision
-    if (cursor < this.decisions.length) {
-      const v = this.decisions[cursor].value;
+    if (decision) {
+      const v = decision.value;
       const found = choiceOptions.find(o => String(o.value) === String(v));
       if (found) {
-        this.rows.push({ label, result: found.label ?? String(v), active: false, options: choiceOptions });
+        this.rows.push({
+          label,
+          rowType: CHARGEN_ROW_TYPES.CHOICE,
+          result: found.label ?? String(v),
+          active: false,
+          options: choiceOptions,
+        });
         return found.value;
       }
 
       if (choiceOptions.length) {
         const fallback = choiceOptions[0].value;
-        this.decisions[cursor] = { type: 'choice', value: fallback };
-        this.rows.push({ label, result: choiceOptions[0].label ?? String(fallback), active: false, options: choiceOptions });
+        this.decisionStore.replace(index, { type: 'choice', value: fallback });
+        this.rows.push({
+          label,
+          rowType: CHARGEN_ROW_TYPES.CHOICE,
+          result: choiceOptions[0].label ?? String(fallback),
+          active: false,
+          options: choiceOptions,
+        });
         console.warn(`CharGenApp | Replayed choice "${v}" is no longer valid for "${label}". Falling back to "${fallback}".`);
         return fallback;
       }
 
-      this.rows.push({ label, result: String(v), active: false, options: choiceOptions });
+      this.rows.push({ label, rowType: CHARGEN_ROW_TYPES.CHOICE, result: String(v), active: false, options: choiceOptions });
       console.warn(`CharGenApp | Replayed choice "${v}" is invalid for "${label}" and no options are available.`);
       return v;
     }
@@ -409,16 +422,22 @@ export class CharGenApp extends DecisionApp {
     if (this.autoAll && choiceOptions.length) {
       const idx = (await new Roll(`1d${choiceOptions.length}`).roll()).total - 1;
       const value = choiceOptions[idx].value;
-      this.decisions.push({ type: 'choice', value });
+      this.decisionStore.push({ type: 'choice', value });
       const found = choiceOptions[idx];
-      this.rows.push({ label, result: found?.label ?? String(value), active: false, options: choiceOptions });
+      this.rows.push({
+        label,
+        rowType: CHARGEN_ROW_TYPES.CHOICE,
+        result: found?.label ?? String(value),
+        active: false,
+        options: choiceOptions
+      });
       this.render();
       return value;
     }
 
     // Interactive path: delegate to base class
-    const value = await super._choose(label, choiceOptions, rowExtras);
-    this.decisions.push({ type: 'choice', value });
+    const value = await super._choose(label, choiceOptions, { rowType: CHARGEN_ROW_TYPES.CHOICE, ...rowExtras });
+    this.decisionStore.push({ type: 'choice', value });
     return value;
   }
 
@@ -427,9 +446,8 @@ export class CharGenApp extends DecisionApp {
    * @returns {Promise<string>} 'rolled' or 'done'
    */
   async _chooseCharacteristics() {
-    const cursor = this.decisionCursor++;
-    if (cursor < this.decisions.length) {
-      const decision = this.decisions[cursor];
+    const { decision } = this.decisionStore.next();
+    if (decision) {
       // Restore characteristic values from the stored decision
       if (decision.chars) {
         for (const k of CHARACTERISTIC_KEYS) {
@@ -437,7 +455,13 @@ export class CharGenApp extends DecisionApp {
         }
       }
       const line = this._formatCharacteristicsLine();
-      this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: line, active: false, options: [] });
+      this.rows.push({
+        label: CHARACTERISTICS_ROW_TYPE,
+        rowType: CHARGEN_ROW_TYPES.CHARACTERISTICS,
+        result: line,
+        active: false,
+        options: []
+      });
       this.render();
       return String(decision.value);
     }
@@ -446,13 +470,25 @@ export class CharGenApp extends DecisionApp {
       await this._rollCharacteristics();
       const line = this._formatCharacteristicsLine();
       const chars = { ...this.charState.chars };
-      this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: line, active: false, options: [] });
-      this.decisions.push({ type: 'choice', value: 'rolled', chars });
+      this.rows.push({
+        label: CHARACTERISTICS_ROW_TYPE,
+        rowType: CHARGEN_ROW_TYPES.CHARACTERISTICS,
+        result: line,
+        active: false,
+        options: []
+      });
+      this.decisionStore.push({ type: 'choice', value: 'rolled', chars });
       this.render();
       return 'rolled';
     }
 
-    this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: null, active: true, options: [] });
+    this.rows.push({
+      label: CHARACTERISTICS_ROW_TYPE,
+      rowType: CHARGEN_ROW_TYPES.CHARACTERISTICS,
+      result: null,
+      active: true,
+      options: []
+    });
     this.render();
 
     const value = await new Promise(res => {
@@ -464,7 +500,7 @@ export class CharGenApp extends DecisionApp {
     }
 
     const chars = { ...this.charState.chars };
-    this.decisions.push({ type: 'choice', value, chars });
+    this.decisionStore.push({ type: 'choice', value, chars });
     const line = this._formatCharacteristicsLine();
     const row = this.rows.at(-1);
     row.result = line;
@@ -479,23 +515,41 @@ export class CharGenApp extends DecisionApp {
    * @returns {Promise<string>} The chosen name
    */
   async _chooseName() {
-    const cursor = this.decisionCursor++;
-    if (cursor < this.decisions.length) {
-      const v = String(this.decisions[cursor].value);
-      this.rows.push({ label: NAME_ROW_LABEL, result: v, active: false, options: [] });
+    const { decision } = this.decisionStore.next();
+    if (decision) {
+      const v = String(decision.value);
+      this.rows.push({
+        label: NAME_ROW_LABEL,
+        rowType: CHARGEN_ROW_TYPES.NAME,
+        result: v,
+        active: false,
+        options: []
+      });
       return v;
     }
 
     if (this.autoAll) {
       const name = await this._generateRandomName();
-      this.rows.push({ label: NAME_ROW_LABEL, result: name, active: false, options: [] });
-      this.decisions.push({ type: 'choice', value: name });
+      this.rows.push({
+        label: NAME_ROW_LABEL,
+        rowType: CHARGEN_ROW_TYPES.NAME,
+        result: name,
+        active: false,
+        options: []
+      });
+      this.decisionStore.push({ type: 'choice', value: name });
       this._updateNameAndTitle(name);
       this.render();
       return name;
     }
 
-    this.rows.push({ label: NAME_ROW_LABEL, result: null, active: true, options: [] });
+    this.rows.push({
+      label: NAME_ROW_LABEL,
+      rowType: CHARGEN_ROW_TYPES.NAME,
+      result: null,
+      active: true,
+      options: []
+    });
     this.render();
 
     const value = await new Promise(res => {
@@ -506,7 +560,7 @@ export class CharGenApp extends DecisionApp {
       throw CharGenApp.RESTART;
     }
 
-    this.decisions.push({ type: 'choice', value });
+    this.decisionStore.push({ type: 'choice', value });
     const row = this.rows.at(-1);
     row.result = value;
     row.active = false;
@@ -578,14 +632,9 @@ export class CharGenApp extends DecisionApp {
    * Undo the last choice decision.
    */
   _undo() {
-    let i = this.decisions.length - 1;
-    while (i >= 0 && this.decisions[i].type !== 'choice') {
-      i--;
-    }
-    if (i < 0) {
+    if (!this.decisionStore.undoLastChoice()) {
       return;
     }
-    this.decisions = this.decisions.slice(0, i);
     this.autoAll = false;
     const res = this.pendingResolve;
     this.pendingResolve = null;
@@ -601,12 +650,12 @@ export class CharGenApp extends DecisionApp {
    */
   _redo() {
     this.summaryHeight = 0;
-    this.decisions = [];
+    this.decisionStore.resetAll();
     this.rows = [];
     this.autoAll = false;
     this.charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
     const ruleset = this.charState.ruleset;
-    this.charState = freshState();
+    this.charState = deserializeCharGenState(freshState());
     this.charState.ruleset = ruleset;
     this.isDone = false;
     const res = this.pendingResolve;
@@ -624,10 +673,21 @@ export class CharGenApp extends DecisionApp {
     if (!this.isDone || !this.charState) {
       return;
     }
-    const { createCharacterActor } = await import('./CharGenActorFactory.js');
-    await createCharacterActor(this.charState, this.charName);
-    ui.notifications.info(game.i18n.format('TWODSIX.CharGen.Messages.CharacterCreated', { name: this.charName }));
-    this.close();
+    try {
+      const { createCharacterActor } = await import('./CharGenActorFactory.js');
+      await createCharacterActor(this.charState, this.charName);
+      ui.notifications.info(game.i18n.format('TWODSIX.CharGen.Messages.CharacterCreated', { name: this.charName }));
+      this.close();
+    } catch (err) {
+      console.error('twodsix | CharGen actor creation failed', {
+        error: err,
+        ruleset: this.charState?.ruleset,
+        terms: this.charState?.totalTerms,
+        name: this.charName,
+      });
+      const msg = err?.message || String(err);
+      ui.notifications.error(game.i18n.format('TWODSIX.CharGen.Errors.ActorCreateFailed', { error: msg }));
+    }
   }
 
   // ─── Main Loop ──────────────────────────────────────────────
@@ -637,13 +697,14 @@ export class CharGenApp extends DecisionApp {
    */
   async run() {
     while (true) {
-      this.decisionCursor = 0;
+      this.decisionStore.resetCursor();
       this.rows = [];
       const ruleset = this.charState.ruleset;
       const languageType = this.charState.languageType;
-      const rulesetName = CONFIG.TWODSIX.RULESETS[ruleset]?.name || 'Cepheus Engine';
-      this.options.window.title = `${rulesetName} Character Generation`;
-      this.charState = freshState();
+      const rulesetName = CONFIG.TWODSIX.RULESETS[ruleset]?.name
+        || game.i18n.localize('TWODSIX.CharGen.DefaultRulesetName');
+      this.options.window.title = game.i18n.format('TWODSIX.CharGen.WindowTitle', { ruleset: rulesetName });
+      this.charState = deserializeCharGenState(freshState());
       this.charState.ruleset = ruleset;
       this.charState.languageType = languageType;
       this.isDone = false;
