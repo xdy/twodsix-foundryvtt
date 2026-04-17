@@ -1,0 +1,244 @@
+{
+  "_id": "61861ddf0d86ac7b",
+  "name": "The Goblin",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Sneak",
+      "Scout",
+      "Archery",
+      "Animals",
+      "Streetwise",
+      "Deception"
+    ],
+    "specialist": [
+      "Melee",
+      "Battle",
+      "Riding",
+      "Craft",
+      "Carousing",
+      "Jack o’Trades"
+    ],
+    "advanced": [
+      "Natural Phil.",
+      "Religion",
+      "Healing",
+      "Leadership",
+      "Insight",
+      "Artillery"
+    ],
+    "cash": [
+      25,
+      50,
+      50,
+      100,
+      150,
+      250
+    ],
+    "material": [
+      "+2 DEX",
+      "Thieves’ Tools",
+      "Weapon",
+      "Ally",
+      "Armor",
+      "Weapon"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Sewage. END 8+; fail: END−1; success: Streetwise.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Streetwise:1"
+        ],
+        "onFail": [
+          "END_MINUS1"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Wolf Rider. Riding-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Riding:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Underworld Life. Criminal Ally or Streetwise.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "ALLY:Criminal",
+              "SKILL:Streetwise:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Petty Theft. Streetwise 8+ or Sneak 8+; fail: lose Benefit; success: Benefit.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Sneak",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Scavenging. END 8+; fail: END−1; success: extra Benefit.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "END_MINUS1"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Fencing. Streetwise 8+; success: extra Benefit; fail: lose Benefit. Streetwise either way.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "always": [
+          "SKILL:Streetwise:1"
+        ],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Thieves’ Guild. Accept: lose Benefit, SOC+1; refuse: Enemy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "LOSE_BENEFIT_AND_SOC",
+              "ENEMY:Thieves’ guild"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Troll. Streetwise 8+; fail: Injury; success: Ally (troll).",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "ALLY:Troll"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Shaman. INT 8+; fail: Enemy; success: Sorcery.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Sorcery:1"
+        ],
+        "onFail": [
+          "ENEMY:Shaman"
+        ],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!61861ddf0d86ac7b"
+}

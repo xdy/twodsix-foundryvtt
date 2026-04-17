@@ -1,0 +1,23 @@
+{
+  "_id": "7ea07bfb71c1ecce",
+  "name": "Blind Fighting",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/hidden.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to fight in darkness, using their other senses to compensate for any impairment to vision. When fighting in melee combat, the character suffers no negative modifier to hit for fighting in dim light and only a -1 modifier for fighting in total darkness.",
+    "prereq": "Melee Combat",
+    "shortdescr": "No melee penalty in dim light, only -1 in total darkness.",
+    "subtype": "",
+    "key": "blind_fighting",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!7ea07bfb71c1ecce"
+}

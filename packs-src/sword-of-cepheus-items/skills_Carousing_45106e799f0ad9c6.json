@@ -1,0 +1,26 @@
+{
+  "_id": "45106e799f0ad9c6",
+  "name": "Carousing",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/carousing.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "SOC",
+    "type": "skills",
+    "description": "The art of mingling in social settings to achieve your goals. Also covers gambling.<ul><li>Gathering information in a bar or party: Carouse/INT 8+</li><li>Engaging in scintillating conversation to impress a diplomat: Carouse/SOC 8+</li><li>Drinking someone under the table: Carouse/END (Opposed)</li><li>Winning at cards: Gambling/SOC 8+</li><li>Singing or Dancing to impress or earn a living: Carouse/INT or Carouse/SOC 8+</li></ul>",
+    "shortdescr": "Social mingling to achieve goals; also covers gambling.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!45106e799f0ad9c6"
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "8e4e732ba4438cfe",
+  "name": "Familiar",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character gains a special intelligent animal bound to them by magic. The familiar is capable of speaking to its owner and is at least as smart as a young child. Familiars should have specific abilities based on species, at the Referee's discretion. A character may not have more than one familiar.",
+    "prereq": "Sorcery",
+    "shortdescr": "Gain an intelligent animal familiar bound by magic.",
+    "subtype": "",
+    "key": "familiar",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!8e4e732ba4438cfe"
+}

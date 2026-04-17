@@ -1,0 +1,87 @@
+{
+  "_id": "6128898d60314b5a",
+  "name": "Dwarf",
+  "type": "species",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "deltas": {
+      "str": 0,
+      "dex": -2,
+      "end": 2,
+      "int": 0,
+      "edu": 0,
+      "soc": 0
+    },
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 END, −2 DEX.",
+      "Advantage vs poison, disease, and fear; darkvision rules; advantage vs magic; cannot learn Sorcery (Alchemy/Artifice allowed); Craft/EDU 6+ masonry knowledge per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Dwarf"
+    },
+    "shortdescr": "Bearded, stocky subterranean dwellers, hardy craftsmen and warriors.",
+    "description": "Bearded, short and stocky, Dwarves are a mainstay of Nordic myth and classic fantasy literature. These dwellers of subterranean warrens and mines are hardy and tough, but also hard-working and sometimes greedy. A dwarf lives to work, to fight, and to party – equally at home in the mine or workshop, the battlefield, or the mead hall. Dwarves make great craftsmen and warriors, stout friends, and relentless enemies."
+  },
+  "effects": [
+    {
+      "_id": "6128898d60314b5aef",
+      "name": "Dwarf Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.endurance.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!6128898d60314b5a.6128898d60314b5aef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!6128898d60314b5a"
+}

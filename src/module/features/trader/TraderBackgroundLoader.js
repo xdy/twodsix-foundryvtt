@@ -61,7 +61,7 @@ export async function loadNeighboringSubsectorsInBackground(
     });
     app.state.loadedSubsectorKeys = mergeLoadedSubsectorKeysFromActors(app.state.loadedSubsectorKeys, app.state.worlds);
 
-    await app._saveState();
+    await app.flushSave();
     traderDebug('TraderBackgroundLoader', `Background loading complete. Added ${newWorlds.length} worlds.`);
     ui.notifications.info(game.i18n.format('TWODSIX.Trader.Messages.NeighboringSubsectorsLoaded', {
       count: newWorlds.length,

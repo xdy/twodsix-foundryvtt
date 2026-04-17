@@ -1,0 +1,89 @@
+{
+  "_id": "31e47541adb19918",
+  "name": "Antediluvian",
+  "type": "species",
+  "img": "icons/svg/statue.svg",
+  "system": {
+    "deltas": {
+      "str": 0,
+      "dex": 0,
+      "end": -2,
+      "int": 2,
+      "edu": 0,
+      "soc": 0
+    },
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 INT, −2 END (SRD CON mapped to END).",
+      "+4 DM on aging rolls.",
+      "+2 DM on reaction rolls vs demons and chaotic supernatural beings.",
+      "+4 DM to resist illusions and charm/enthrall effects.",
+      "Species abilities: see Sword of Cepheus SRD (Non-Human Careers)."
+    ],
+    "agingRollBonus": 4,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Antediluvian"
+    },
+    "shortdescr": "Pre-human ancient race steeped in sorcery, last remnants of a crumbled civilization.",
+    "description": "Eons before humanity rose to prominence, powerful and vast civilizations held sway. Alien and deeply steeped in the Arcane, these Antediluvian ancients reached heights of civilization undreamed of by contemporary humans. But hubris and avarice turned to decadence, and decadence begat decay. The magnificent edifices of these pre-human civilizations have long since crumbled to dust. Now, only ruins remain of their former glory. The last of these dying races still linger in the world dominated by humanity, wandering the land as shadows of their past. However, stricken as they are with the same inevitable doom of their dead civilization, Antediluvians still possess many of its secrets, especially those of high sorcery."
+  },
+  "effects": [
+    {
+      "_id": "31e47541adb19918ef",
+      "name": "Antediluvian Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.endurance.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.intelligence.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!31e47541adb19918.31e47541adb19918ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!31e47541adb19918"
+}

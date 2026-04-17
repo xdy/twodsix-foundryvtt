@@ -1,0 +1,26 @@
+{
+  "_id": "e16ecebe7d31b0f0",
+  "name": "Steward",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "SOC",
+    "type": "skills",
+    "description": "Pertaining to the care and serving of guests, passengers, and others who expect a certain level of quality service.<ul><li>Cooking a fine meal: Steward/INT 8+</li><li>Knowing what the etiquette is for greeting a noble: Steward/SOC 8+</li><li>Performing an elaborate tea service: Steward/SOC 10+</li></ul>",
+    "shortdescr": "Care and serving of guests, cooking, and etiquette.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!e16ecebe7d31b0f0"
+}

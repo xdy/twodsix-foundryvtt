@@ -1,0 +1,23 @@
+{
+  "_id": "3699998092d76d98",
+  "name": "Berserker",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/enrage.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character can become enraged when injured in combat, attacking with blind rage. When injured in combat, assuming the character remains conscious, they may elect to unleash their rage. This grants a +1 modifier to hit and a +2 modifier to damage in melee combat, but also grants the character's enemies a +1 modifier to hit them. This lasts until the end of that combat encounter. The character may go berserk in any combat encounters in which they suffer new damage.",
+    "prereq": "END 9+",
+    "shortdescr": "When injured: +1 to hit, +2 melee damage, enemies +1 to hit you.",
+    "subtype": "",
+    "key": "berserker",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!3699998092d76d98"
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "ca196cf69245d3ee",
+  "name": "Trade",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is skilled in a particular trade, such as masonry, carpentry, or blacksmithing. This does not replicate any skill but may enhance certain aspects of a skill. When making a throw related to this trade, the character gains Advantage.",
+    "prereq": "",
+    "shortdescr": "Advantage on throws for a specific trade.",
+    "subtype": "",
+    "key": "trade",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!ca196cf69245d3ee"
+}

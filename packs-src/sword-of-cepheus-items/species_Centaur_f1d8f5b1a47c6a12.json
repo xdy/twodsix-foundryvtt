@@ -1,0 +1,82 @@
+{
+  "_id": "f1d8f5b1a47c6a12",
+  "name": "Centaur",
+  "type": "species",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "deltas": {
+      "str": 0,
+      "dex": -2,
+      "end": 0,
+      "int": 0,
+      "edu": 0,
+      "soc": 0
+    },
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "Large: roll 1d6 add to STR and roll 1d6 add to END (after chargen assignment), then −2 DEX.",
+      "STR 12+ may use two-handed melee one-handed; movement and terrain limits per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Centaur",
+      "centaurStrEndDice": true
+    },
+    "shortdescr": "Half-human half-horse beings, 2.5m tall, feared in battle and respected for intellect.",
+    "description": "Centaurs are beings with the upper body of a human and the lower body and legs of a large horse. Centaurs have several sub-species, distinguishable by coloration and size. The typical centaur stands 170cm at the base of the human back and a full 2.5 meters at full height. Females tend to be slightly smaller than males. A centaur weighs about 600kg and is considered a Large creature. Centaurs prefer to live in open plains or light forests where their large size works to their advantage. Centaurs are feared in battle and respected for their learning and intellect."
+  },
+  "effects": [
+    {
+      "_id": "f1d8f5b1a47c6a12ef",
+      "name": "Centaur Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!f1d8f5b1a47c6a12.f1d8f5b1a47c6a12ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!f1d8f5b1a47c6a12"
+}

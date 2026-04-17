@@ -1,0 +1,23 @@
+{
+  "_id": "4b4a7cd2f1229a57",
+  "name": "Packrat",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/backpack.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to pack and carry equipment efficiently. The packrat is unencumbered when carrying up to twice their STR in items, and up to three times their STR when carrying a Heavy Load.",
+    "prereq": "",
+    "shortdescr": "Unencumbered up to double STR; triple STR for heavy load.",
+    "subtype": "",
+    "key": "packrat",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!4b4a7cd2f1229a57"
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "50f23ffa3232d742",
+  "name": "Merchant",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to get the best deals for goods and services. Any item the character purchases costs only 90% of its list price, and any item the character sells goes for 110% of its base price. If both the seller and the buyer have this Trait, make an opposed Liaison/SOC or Streetwise/INT (as appropriate) throw to determine who gets the bonus.",
+    "prereq": "Liaison or Streetwise",
+    "shortdescr": "Buy at 90% list price, sell at 110% base price.",
+    "subtype": "",
+    "key": "merchant",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!50f23ffa3232d742"
+}

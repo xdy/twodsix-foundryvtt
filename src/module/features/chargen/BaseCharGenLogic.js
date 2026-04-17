@@ -1,5 +1,8 @@
 // BaseCharGenLogic.js — Abstract base class for character generation logic
-import { adjustChar, CHARACTERISTIC_KEYS } from './CharGenState.js';
+import { calcModFor } from '../../utils/sheetUtils.js';
+import { addSign, simplifySkillName } from '../../utils/utils.js';
+import { adjustChar, appendChargenEventReport, CHARACTERISTIC_KEYS, getChargenOverlayBucket, } from './CharGenState.js';
+import { eventUsesStructuredResolve } from './chargenStructuredEvent.js';
 import {
   chooseGender,
   chooseLanguage,
@@ -9,8 +12,22 @@ import {
   localizedPhysicalOpts,
   optionsFromStrings,
 } from './CharGenUtils.js';
-import { createEventReport, reportAutoHandled, reportLeaveCareer } from './EventReport.js';
+import { createEventReport, formatAutoHandledSuffix, reportAutoHandled, reportLeaveCareer } from './EventReport.js';
 import { resolveCharKey } from './SharedCharGenConstants.js';
+import { loadSpeciesChoicesForRuleset } from './SpeciesRegistry.js';
+
+/** Uppercase characteristic keys for structured career events: 2d6 + DM vs target. */
+export const CHAR_GEN_EVENT_CHAR_CHECKS = new Set(['STR', 'DEX', 'END', 'INT', 'EDU', 'SOC']);
+
+/**
+ * Detect Jack-of-All-Trades skill name regardless of spacing, hyphens, or casing.
+ * Matches: "Jack of All Trades", "Jack-of-All-Trades", "Jack of all trades", "jackofalltrades", etc.
+ * @param {string} name - Resolved skill name
+ * @returns {boolean}
+ */
+export function isJoatSkillName(name) {
+  return simplifySkillName(name).toLowerCase() === 'jackofalltrades';
+}
 
 /**
  * Abstract base class for character generation logic.
@@ -75,6 +92,40 @@ export class BaseCharGenLogic {
     throw new Error('run must be implemented by subclass');
   }
 
+  /**
+   * Raw dice vs target (no characteristic or skill DM). For career events, gambling, etc.
+   * @param {*} app - CharGenApp
+   * @param {{ type: 'raw', formula?: string, target: number }} check
+   * @returns {Promise<{ success: boolean, checkSummary: string, total: number }>}
+   */
+  async rollRawDiceCheck(app, check) {
+    const formula = check?.formula || '2d6';
+    const rawT = Number(check?.target);
+    const target = Number.isFinite(rawT) ? rawT : 8;
+    const total = await app._roll(formula);
+    const success = total >= target;
+    const checkSummary = game.i18n.format('TWODSIX.CharGen.Checks.RawCheckSummary', {
+      formula,
+      total,
+      target,
+      outcome: success
+        ? game.i18n.localize('TWODSIX.CharGen.Outcome.Success')
+        : game.i18n.localize('TWODSIX.CharGen.Outcome.Fail'),
+    });
+    app._log(
+      game.i18n.localize('TWODSIX.CharGen.Checks.RawCheckLog'),
+      game.i18n.format('TWODSIX.CharGen.Checks.RawCheckDetail', {
+        formula,
+        total,
+        target,
+        outcome: success
+          ? game.i18n.localize('TWODSIX.CharGen.Outcome.Success')
+          : game.i18n.localize('TWODSIX.CharGen.Outcome.Fail'),
+      }),
+    );
+    app.charState.log.push(checkSummary);
+    return { success, checkSummary, total };
+  }
 
   // ─── SHARED HELPERS ─────────────────────────────────────────────────────────
 
@@ -87,6 +138,10 @@ export class BaseCharGenLogic {
    */
   async setSkillAtLeast(app, skillName, level, skillMap = null) {
     const state = app.charState;
+    if (isJoatSkillName(skillName)) {
+      state.joat = Math.max(state.joat ?? 0, level);
+      return;
+    }
     const skills = skillMap ?? state.skills;
     const cur = skills.has(skillName) ? skills.get(skillName) : -Infinity;
     if (cur < level) {
@@ -102,6 +157,10 @@ export class BaseCharGenLogic {
    */
   async improveSkill(app, skillName, skillMap = null) {
     const state = app.charState;
+    if (isJoatSkillName(skillName)) {
+      state.joat = (state.joat ?? 0) + 1;
+      return;
+    }
     const skills = skillMap ?? state.skills;
     const cur = skills.has(skillName) ? skills.get(skillName) : -1;
     skills.set(skillName, cur < 0 ? 1 : cur + 1);
@@ -257,6 +316,84 @@ export class BaseCharGenLogic {
   }
 
   /**
+   * Generic species/ancestry chargen step.
+   *
+   * Loads species choices from the ruleset's registered species pack
+   * ({@link import('./SpeciesRegistry.js').loadSpeciesChoicesForRuleset}), prompts the user to pick one
+   * (with an optional Human/no-species default), queues granted trait names onto `state.traits` so
+   * {@link import('./CharGenActorFactory.js').createCharacterActor} embeds them, and stores the
+   * selection on `state.chargenOverlay[<overlayKey>].species` so
+   * {@link import('./CharGenActorFactory.js').createCharacterActor} can also embed the species item.
+   *
+   * Subclasses opt in by `await this.stepSpecies(app)` from `run()`. CU's SOC path keeps its own
+   * legacy `stepSOCSpeciesPath` and does not invoke this generic step.
+   *
+   * @param {*} app
+   * @param {object} [opts]
+   * @param {boolean} [opts.allowHuman=true] - Include a "Human" / no-species option in the prompt
+   * @param {string|null} [opts.overlayKey] - Lowercase chargen overlay namespace (defaults to `state.ruleset.toLowerCase()`)
+   * @returns {Promise<void>}
+   */
+  async stepSpecies(app, { allowHuman = true, overlayKey = null } = {}) {
+    const state = app.charState;
+    const ruleset = state.ruleset;
+    const overlayNs = (overlayKey || String(ruleset ?? '').toLowerCase()).trim();
+    const choices = await loadSpeciesChoicesForRuleset(ruleset);
+    if (!choices.length) {
+      return;
+    }
+
+    const humanLabel = game.i18n.localize('TWODSIX.CharGen.Species.Human');
+    const promptOpts = [];
+    if (allowHuman) {
+      promptOpts.push({ value: '', label: humanLabel });
+    }
+    for (const c of choices) {
+      promptOpts.push({ value: c.id, label: c.name });
+    }
+    const pickedId = await app._choose(
+      game.i18n.localize('TWODSIX.CharGen.Species.Choose'),
+      promptOpts,
+      { preserveOptionOrder: true },
+    );
+    if (!pickedId) {
+      app._log('Species', humanLabel);
+      state.log.push(game.i18n.format('TWODSIX.CharGen.Species.LogPickedHuman', { name: humanLabel }));
+      return;
+    }
+
+    const sp = choices.find(c => c.id === pickedId);
+    if (!sp) {
+      return;
+    }
+
+    for (const traitName of sp.grantedTraitNames || []) {
+      if (traitName && !state.traits.includes(traitName)) {
+        state.traits.push(traitName);
+      }
+    }
+
+    const bucket = getChargenOverlayBucket(state, overlayNs);
+    if (!Array.isArray(bucket.chargenNotes)) {
+      bucket.chargenNotes = [];
+    }
+    bucket.species = {
+      id: sp.id,
+      name: sp.name,
+      packId: sp.packId,
+      grantedTraitNames: [...(sp.grantedTraitNames ?? [])],
+    };
+
+    app._log('Species', sp.name);
+    state.log.push(game.i18n.format('TWODSIX.CharGen.Species.LogPicked', { name: sp.name }));
+    for (const line of sp.abilityLines || []) {
+      const formatted = `${sp.name}: ${line}`;
+      state.log.push(formatted);
+      bucket.chargenNotes.push(formatted);
+    }
+  }
+
+  /**
    * Load career data from compendiums.
    * @param {string} ruleset - Ruleset key (e.g., 'CE', 'CU')
    * @param {Object} opts - Load options
@@ -283,7 +420,13 @@ export class BaseCharGenLogic {
     });
 
     // 2. Custom sources from settings
-    const config = game.settings.get('twodsix', 'customCareerSources')[ruleset] || { compendiums: [], folders: [] };
+    const rawCustomSources = game.settings.get('twodsix', 'customCareerSources');
+    const customSourcesByRuleset = rawCustomSources && typeof rawCustomSources === 'object' ? rawCustomSources : {};
+    const rulesetConfig = customSourcesByRuleset?.[ruleset];
+    const config = {
+      compendiums: Array.isArray(rulesetConfig?.compendiums) ? rulesetConfig.compendiums : [],
+      folders: Array.isArray(rulesetConfig?.folders) ? rulesetConfig.folders : [],
+    };
 
     // Compendiums
     for (const id of config.compendiums) {
@@ -381,30 +524,10 @@ export class BaseCharGenLogic {
    * @protected
    */
   _humanizeTag(tag) {
-    // Characteristic modifiers: STR_PLUS1, DEX_MINUS2, STR_PLUS-6, etc.
-    const charMatch = tag.match(/^(STR|DEX|END|INT|EDU|SOC)_(PLUS|MINUS)(-?\d+)$/);
-    if (charMatch) {
-      const sign = charMatch[2] === 'PLUS' ? '+' : '−';
-      const charLabel = game.i18n.localize(`TWODSIX.CharGen.Chars.${charMatch[1]}`);
-      return `${charLabel} ${sign}${charMatch[3]}`;
+    const localized = baseHumanizeMechanicTag(tag);
+    if (localized != null) {
+      return localized;
     }
-
-    // SKILL:Name:level  (canonical)  or legacy SKILL:Name-level  (two-part with hyphen)
-    if (tag.startsWith('SKILL:')) {
-      const { skillName, level } = _parseSkillTag(tag);
-      return `${skillName}-${level}`;
-    }
-
-    if (tag === 'CONTACT') {
-      return game.i18n.localize('TWODSIX.CharGen.Tag.Contact');
-    }
-    if (tag === 'FRIEND') {
-      return game.i18n.localize('TWODSIX.CharGen.Tag.Friend');
-    }
-    if (tag === 'ENEMY') {
-      return game.i18n.localize('TWODSIX.CharGen.Tag.Enemy');
-    }
-
     // Unknown — preserve bracketed so it's visible but not confusingly blank
     return game.i18n.format('TWODSIX.CharGen.Tag.Unknown', { tag });
   }
@@ -420,38 +543,27 @@ export class BaseCharGenLogic {
   }
 
   /**
-   * Strip all bracket tags from a description, leaving only the narrative prose.
-   * Used to build the "AUTOMATICALLY HANDLED" headline variant where the tag text
-   * would otherwise be doubled with the humanized form.
-   * @param {string} description - Raw description with bracket tags
-   * @returns {string} Narrative-only string, trimmed and cleaned
-   */
-  _stripTaggedDescription(description) {
-    return stripMechanicTags(description);
-  }
-
-  /**
    * Apply one material muster-out benefit line shared by CE and CDEE (characteristic bump, weapon, or generic string).
    * @param {CharGenApp} app
    * @param {string} benefit
-   * @param {'ce'|'cdee'} logStyle - CE logs `Material: …` per branch; CDEE defers to caller for a single summary line
+   * @param {'verbose'|'silent'} logStyle - `verbose`: push `Material: …` per line; `silent`: caller logs a single summary
    */
   async applySharedMaterialBenefit(app, benefit, logStyle) {
     const state = app.charState;
     const charKey = resolveCharKey(benefit);
     if (charKey) {
       adjustChar(state, charKey, 1);
-      if (logStyle === 'ce') {
+      if (logStyle === 'verbose') {
         state.log.push(`Material: ${benefit}`);
       }
       return;
     }
-    if (benefit === 'Weapon') {
+    if (benefit === 'Weapon' || benefit === 'Gun') {
       await chooseWeapon(app);
       return;
     }
     state.materialBenefits.push(benefit);
-    if (logStyle === 'ce') {
+    if (logStyle === 'verbose') {
       state.log.push(`Material: ${benefit}`);
     }
   }
@@ -470,11 +582,15 @@ export class BaseCharGenLogic {
   ) {
     const state = app.charState;
     for (const amt of entry.phys.filter(n => n > 0)) {
-      const c = await app._choose(game.i18n.format(physPromptFormatKey, { amount: amt }), localizedPhysicalOpts());
+      const c = await app._choose(game.i18n.format(physPromptFormatKey, { amount: amt }), localizedPhysicalOpts(), {
+        preserveOptionOrder: true,
+      });
       state.chars[c] -= amt;
     }
     if (entry.mental > 0) {
-      const c = await app._choose(game.i18n.localize('TWODSIX.CharGen.Aging.ReduceMentalBy'), localizedMentalOpts());
+      const c = await app._choose(game.i18n.localize('TWODSIX.CharGen.Aging.ReduceMentalBy'), localizedMentalOpts(), {
+        preserveOptionOrder: true,
+      });
       state.chars[c]--;
     }
     await this.checkCrisis(app);
@@ -483,9 +599,9 @@ export class BaseCharGenLogic {
   /**
    * Tokenize a description into tag groups connected by 'or' or 'and'.
    * Returns an array of { tags: string[], connector: 'single'|'or'|'and' }.
-   * 'or' groups → user chooses one tag to apply.
-   * 'and' groups → all tags in the group are applied.
-   * 'single' groups → the one tag is applied.
+   * 'or' groups -> user chooses one tag to apply.
+   * 'and' groups -> all tags in the group are applied.
+   * 'single' groups -> the one tag is applied.
    */
   _parseTagGroups(description) {
     const parts = [];
@@ -542,6 +658,84 @@ export class BaseCharGenLogic {
   }
 
   /**
+   * Infer missing `[CONTACT]` / `[FRIEND]` / `[ENEMY]` / `[ALLY]` from common English SRD phrasing
+   * when compendium rows omit bracket tags. Skips when the same mechanic is already bracket-tagged
+   * (including typed `CONTACT:…`) or when `ALLY_ROLL` handles allies so we never double-apply ALLY.
+   *
+   * **Limitation:** The regex patterns target canonical Traveller / Cepheus SRD prose. Custom
+   * compendiums with non-standard wording may not trigger inference — contributors should prefer
+   * explicit bracket tags for reliability.
+   * @param {string} description
+   * @returns {string}
+   */
+  _ensureInferredSocialTags(description) {
+    const d = String(description ?? '');
+    const t = d.trimEnd();
+    if (!t.trim()) {
+      return d;
+    }
+    const parsed = this._parseTags(t);
+    const hasMechanic = prefix =>
+      parsed.some(x => x === prefix || x.startsWith(`${prefix}:`));
+    /** SOC / tables that grant allies via dice — do not also infer plain `[ALLY]` from prose. */
+    const hasAllyRollOrBracketAlly = parsed.some(
+      x => x === 'ALLY' || x.startsWith('ALLY:') || x.startsWith('ALLY_ROLL'),
+    );
+    const inferred = [];
+    const addInferred = token => {
+      if (inferred.includes(token)) {
+        return;
+      }
+      inferred.push(token);
+    };
+
+    if (!hasMechanic('CONTACT')) {
+      if (
+        /\bgain\s+(?:a|an|the)\s+(?:[\w'-]+\s+){0,6}contact\b/i.test(t)
+        || /\bgain\s+them\s+as\s+a\s+contact\b/i.test(t)
+        || /\b(?:acquire|obtain)\s+(?:a|an|the)\s+(?:[\w'-]+\s+){0,4}contact\b/i.test(t)
+      ) {
+        addInferred('[CONTACT]');
+      }
+    }
+
+    if (!hasMechanic('FRIEND')) {
+      if (
+        /\bgain\s+(?:a|an|the)\s+(?:romantic\s+)?friend\b/i.test(t)
+        || /\bmake\s+(?:a|an)\s+(?:good\s+)?friend\b/i.test(t)
+      ) {
+        addInferred('[FRIEND]');
+      }
+    }
+
+    if (!hasMechanic('ENEMY')) {
+      if (
+        /\bgain\s+(?:a|an|the)\s+enemy\b/i.test(t)
+        || /\bmake\s+(?:a|an)\s+enemy\b/i.test(t)
+        || /\bgain\s+(?:a|an)\s+rival\b/i.test(t)
+      ) {
+        addInferred('[ENEMY]');
+      }
+    }
+
+    if (!hasMechanic('ALLY') && !hasAllyRollOrBracketAlly) {
+      if (
+        /\bgain\s+(?:an?\s+)?ally\b/i.test(t)
+        || /\byou\s+gain\s+an?\s+important\s+friend\s+or\s+lover\b/i.test(t)
+        || /\byou\s+form\s+a\s+close\s+relationship\b/i.test(t)
+        || /\bform\s+a\s+close\s+(?:relationship|bond)\b/i.test(t)
+      ) {
+        addInferred('[ALLY]');
+      }
+    }
+
+    if (!inferred.length) {
+      return d;
+    }
+    return `${t} ${inferred.join(' ')}`;
+  }
+
+  /**
    * Build normalized mechanical groups for an event.
    * Supports:
    * - legacy prose strings with bracket tags and textual connectors
@@ -549,12 +743,16 @@ export class BaseCharGenLogic {
    */
   _getEventMechanics(eventOrDescription) {
     if (typeof eventOrDescription === 'string') {
-      return this._parseTagGroups(eventOrDescription);
+      return this._parseTagGroups(this._ensureInferredSocialTags(eventOrDescription));
     }
-    const effects = Array.isArray(eventOrDescription?.effects) ? eventOrDescription.effects : null;
+    const effects = Array.isArray(eventOrDescription?.tags)
+      ? [eventOrDescription]
+      : Array.isArray(eventOrDescription?.effects)
+        ? eventOrDescription.effects
+        : null;
     if (!effects) {
       const desc = String(eventOrDescription?.description ?? '');
-      return this._parseTagGroups(desc);
+      return this._parseTagGroups(this._ensureInferredSocialTags(desc));
     }
 
     const groups = [];
@@ -580,8 +778,12 @@ export class BaseCharGenLogic {
    * Apply all tags in a description, respecting 'or' (user picks one) and 'and' (apply all).
    * Returns an EventReport; callers should check report.leaveCareer instead of the raw boolean.
    * Subclasses implement the ruleset-specific tag logic in _applyRulesetTag.
+   * Structured career events (checks, branches, onSuccess/onFail) delegate to {@link #_resolveEvent}.
    */
-  async applyEventTags(app, eventOrDescription, careerName) {
+  async applyEventTags(app, eventOrDescription, careerName, { recordInState = true, eventCtx = {} } = {}) {
+    if (eventUsesStructuredResolve(eventOrDescription)) {
+      return this._resolveEvent(app, eventOrDescription, careerName || '', { recordInState });
+    }
     const description = typeof eventOrDescription === 'string'
       ? eventOrDescription
       : String(eventOrDescription?.description ?? '');
@@ -592,23 +794,243 @@ export class BaseCharGenLogic {
       if (group.connector === 'or') {
         const choices = group.tags.map(t => ({ value: t, label: this._humanizeTag(t) }));
         const chosen = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.ChooseOneFromTags'), choices);
-        if (await this._applySingleTag(app, chosen, description, careerName, report)) {
+        if (await this._applySingleTag(app, chosen, description, careerName, report, eventCtx)) {
           reportLeaveCareer(report);
         }
       } else {
         for (const tag of group.tags) {
-          if (await this._applySingleTag(app, tag, description, careerName, report)) {
+          if (await this._applySingleTag(app, tag, description, careerName, report, eventCtx)) {
             reportLeaveCareer(report);
           }
         }
       }
     }
+    if (recordInState) {
+      const stored = report.allAutoHandled
+        ? { ...report, headline: `${report.headline}${formatAutoHandledSuffix(report)}`.trim() }
+        : report;
+      appendChargenEventReport(app.charState, stored);
+    }
     return report;
   }
 
+  /**
+   * Normalize a structured event fragment (string tag, prose, or grouped tags) for {@link applyEventTags}.
+   * @param {string|object} piece
+   * @returns {string|object}
+   * @protected
+   */
+  _coerceEventPiece(piece) {
+    if (typeof piece !== 'string') {
+      if (piece?.tags?.length) {
+        return {
+          description: piece.tags.map(tag => `[${tag}]`).join(piece.connector === 'or' ? ' or ' : ' and '),
+          effects: [piece],
+        };
+      }
+      return piece;
+    }
+    if (piece.includes('[')) {
+      return piece;
+    }
+    return { description: `[${piece}]`, effects: [piece] };
+  }
+
+  /**
+   * @param {{ type?: string, formula?: string, target?: number, skill?: string }} c
+   * @protected
+   */
+  _labelForEventCheck(c) {
+    if (c?.type === 'raw') {
+      const formula = c.formula || '2d6';
+      const rawT = Number(c.target);
+      const target = Number.isFinite(rawT) ? rawT : 8;
+      return game.i18n.format('TWODSIX.CharGen.Checks.RawCheckChoiceLabel', { formula, target });
+    }
+    const skill = c?.skill ?? '';
+    const target = c?.target ?? 8;
+    return `${skill} ${target}+`;
+  }
+
+  /**
+   * When an event lists multiple checks (player picks one to roll).
+   * @param {string} [options.promptKey='TWODSIX.CharGen.Checks.ChooseCheck'] - i18n key for the choice dialog
+   * @protected
+   */
+  async _chooseCheck(app, checks, { promptKey = 'TWODSIX.CharGen.Checks.ChooseCheck' } = {}) {
+    if (checks.length === 1) {
+      return checks[0];
+    }
+    const chosen = await app._choose(
+      game.i18n.localize(promptKey),
+      checks.map((c, i) => ({
+        value: c.type === 'raw' ? `raw:${i}` : c.skill,
+        label: this._labelForEventCheck(c),
+      })),
+      { preserveOptionOrder: true },
+    );
+    const rawIdx = String(chosen).startsWith('raw:') ? parseInt(String(chosen).slice(4), 10) : NaN;
+    if (!Number.isNaN(rawIdx) && checks[rawIdx]?.type === 'raw') {
+      return checks[rawIdx];
+    }
+    return checks.find(c => c.type !== 'raw' && c.skill === chosen) || checks[0];
+  }
+
+  /**
+   * Run one event check: raw dice vs TN, or skill/characteristic + DM vs TN.
+   * @param {*} app
+   * @param {{ type?: 'raw', formula?: string, target?: number, skill?: string }} check
+   * @param {object} [ctx] - Event-scoped context; sets `ctx.lastCheckSkill` for IMPROVE_CHECK_SKILL
+   * @returns {Promise<{ success: boolean, checkSummary?: string, total?: number }>}
+   * @protected
+   */
+  async _rollEventCheck(app, check, ctx) {
+    if (check?.type === 'raw') {
+      return this.rollRawDiceCheck(app, check);
+    }
+    return this._rollSkillOrCharCheck(app, check.skill, check.target, ctx);
+  }
+
+  /**
+   * 2d6 + characteristic or skill DM vs target. Sets `ctx.lastCheckSkill` for tags like IMPROVE_CHECK_SKILL.
+   * CDEE overrides with different logging and optional abbreviated state log.
+   * @param {*} app
+   * @param {string} skill
+   * @param {number} target
+   * @param {object} [ctx] - Event-scoped context; sets `ctx.lastCheckSkill` for IMPROVE_CHECK_SKILL
+   * @returns {Promise<{ success: boolean, checkSummary: string }>}
+   * @protected
+   */
+  /**
+   * DM for 2d6 + DM vs TN event checks. CDEE overrides to use characteristic-style DMs on skill levels (incl. untrained).
+   * @protected
+   */
+  _eventCheckDm(state, { isCharCheck, resolvedSkill }) {
+    if (isCharCheck) {
+      return calcModFor(state.chars[resolvedSkill] ?? 0);
+    }
+    return Math.max(0, state.skills.get(resolvedSkill) ?? 0);
+  }
+
+  async _rollSkillOrCharCheck(app, skill, target, ctx) {
+    const state = app.charState;
+    const roll = await app._roll('2d6');
+    const normalized = String(skill).toUpperCase();
+    const isCharCheck = CHAR_GEN_EVENT_CHAR_CHECKS.has(normalized);
+    const resolvedSkill = isCharCheck ? normalized.toLowerCase() : await this._resolveSkillName(app, skill);
+    const mod = this._eventCheckDm(state, { isCharCheck, resolvedSkill });
+    const total = roll + mod;
+    const success = total >= target;
+    if (ctx && typeof ctx === 'object' && !('abbreviatedStateLog' in ctx)) {
+      ctx.lastCheckSkill = isCharCheck ? normalized : resolvedSkill;
+    }
+    app._log('Event Check', `${skill} ${target}+: ${roll}${addSign(mod)}=${total} -> ${success ? 'Success' : 'Fail'}`);
+    state.log.push(`Check ${skill} ${target}+: ${success ? 'Success' : 'Fail'}.`);
+    return { success, checkSummary: `${skill} ${target}+: ${roll}${addSign(mod)}=${total}` };
+  }
+
+  /**
+   * Resolve a structured career event: optional {@link branchChoices}, optional {@link checks},
+   * then apply `always`, success/fail branches, and root `effects` when there are no checks.
+   * @param {*} app
+   * @param {object} event
+   * @param {string} careerName
+   * @returns {Promise<{ headline: string, subRows: string[], allAutoHandled: boolean, leaveCareer: boolean, _autoHandledItems: unknown[] }>}
+   */
+  async _resolveEvent(app, event, careerName, { recordInState = true } = {}) {
+    const hadBranchChoices = (event.branchChoices?.length ?? 0) > 0;
+    const ev = { ...event };
+    delete ev.branchChoices;
+    delete ev.branchPrompt;
+
+    if (event.branchChoices?.length) {
+      const prompt =
+        typeof event.branchPrompt === 'string' && event.branchPrompt.startsWith('TWODSIX.')
+          ? game.i18n.localize(event.branchPrompt)
+          : (event.branchPrompt || game.i18n.localize('TWODSIX.CharGen.Branches.DefaultPrompt'));
+      const opts = event.branchChoices.map(b => ({
+        value: String(b.value),
+        label: b.labelKey ? game.i18n.localize(b.labelKey) : (b.label || String(b.value)),
+      }));
+      const chosen = await app._choose(prompt, opts);
+      const branch = event.branchChoices.find(b => String(b.value) === String(chosen)) || event.branchChoices[0];
+      for (const k of ['always', 'checks', 'onSuccess', 'onFail', 'effects', 'benefitGamble']) {
+        if (k in branch) {
+          ev[k] = branch[k];
+        }
+      }
+    }
+
+    const report = createEventReport(this._humanizeTaggedDescription(event.description));
+    const gambleCtx = await this._prepareBenefitGambleBeforeEventChecks(app, ev, careerName, report);
+    const eventCtx = {};
+
+    let success = true;
+    let checkSummarySuffix = '';
+    if (ev.checks?.length && !gambleCtx?.skipEventChecks) {
+      const check = await this._chooseCheck(app, ev.checks);
+      const result = await this._rollEventCheck(app, check, eventCtx);
+      success = result.success;
+      if (result.checkSummary) {
+        checkSummarySuffix = ` ${result.checkSummary}.`;
+      }
+    }
+
+    report.headline = `${report.headline}${checkSummarySuffix}`.trim();
+
+    await this._finalizeBenefitGambleAfterEventChecks(app, ev, success, gambleCtx, careerName, report);
+
+    const pieces = [];
+    pieces.push(...(ev.always || []));
+    pieces.push(...(success ? ev.onSuccess || [] : ev.onFail || []));
+    if (!ev.checks?.length) {
+      pieces.push(...(ev.effects || []));
+      if (pieces.length === 0 && !hadBranchChoices) {
+        pieces.push(ev);
+      }
+    }
+
+    for (const piece of pieces) {
+      const pieceReport = await this.applyEventTags(app, this._coerceEventPiece(piece), careerName, { recordInState: false, eventCtx });
+      if (!pieceReport.allAutoHandled) {
+        report.allAutoHandled = false;
+      }
+      report.subRows.push(...pieceReport.subRows);
+      report._autoHandledItems.push(...(pieceReport._autoHandledItems || []));
+      if (pieceReport.leaveCareer) {
+        report.leaveCareer = true;
+      }
+    }
+    if (recordInState) {
+      const stored = report.allAutoHandled
+        ? { ...report, headline: `${report.headline}${formatAutoHandledSuffix(report)}`.trim() }
+        : report;
+      appendChargenEventReport(app.charState, stored);
+    }
+    return report;
+  }
+
+  /**
+   * Optional structured-event hook: prompt for benefit-roll stakes before event checks (CDEE gambling events).
+   * Return context consumed by {@link BaseCharGenLogic#_finalizeBenefitGambleAfterEventChecks}.
+   * @protected
+   * @returns {Promise<object|null>}
+   */
+  async _prepareBenefitGambleBeforeEventChecks(_app, _ev, _careerName, _report) {
+    return null;
+  }
+
+  /**
+   * Optional structured-event hook: apply benefit stake resolution after checks (CDEE).
+   * @protected
+   */
+  async _finalizeBenefitGambleAfterEventChecks(_app, _ev, _success, _gambleCtx, _careerName, _report) {
+    // default no-op
+  }
+
   /** Apply a single tag. Tries common tags first, then delegates to _applyRulesetTag. */
-  async _applySingleTag(app, tag, description, careerName, report = null) {
-    if (await this._applyCommonTag(app, tag, description, report)) {
+  async _applySingleTag(app, tag, description, careerName, report = null, eventCtx = {}) {
+    if (await this._applyCommonTag(app, tag, description, report, eventCtx)) {
       return false;
     }
     return this._applyRulesetTag(app, tag, description, careerName, report);
@@ -652,9 +1074,14 @@ export class BaseCharGenLogic {
   /**
    * Apply tags common across rulesets.
    * Handles SKILL, Characteristics (via helper), CONTACT, FRIEND, ENEMY (and typed variants).
+   * @param {*} app
+   * @param {string} tag
+   * @param {string} description
+   * @param {object|null} report
+   * @param {object} eventCtx - Event-scoped context with `lastCheckSkill`
    * @protected
    */
-  async _applyCommonTag(app, tag, description = '', report = null) {
+  async _applyCommonTag(app, tag, description = '', report = null, eventCtx = {}) {
     // 1. Characteristics
     if (this._applyCharacteristicTag(app, tag, report)) {
       return true;
@@ -673,21 +1100,88 @@ export class BaseCharGenLogic {
       return true;
     }
 
-    // 3. Social / Narrative tags — exact match (CONTACT, FRIEND, ENEMY) or typed (CONTACT:Type, etc.)
+    // Improve the skill (or specialization) used for the preceding career-event check (e.g. Smuggler Admin/Streetwise).
+    if (tag === 'IMPROVE_CHECK_SKILL') {
+      const sk = eventCtx.lastCheckSkill;
+      if (sk && !CHAR_GEN_EVENT_CHAR_CHECKS.has(String(sk).toUpperCase())) {
+        await this._addOrImproveSkill(app, sk);
+        const label = `${sk} +1`;
+        app._log('Skill', label);
+        app.charState.log.push(game.i18n.format('TWODSIX.CharGen.LogImprovedCheckSkill', { skill: sk }));
+        reportAutoHandled(report, label);
+      }
+      return true;
+    }
+
+    if (tag === 'SHIP_SHARE') {
+      app.charState.materialBenefits.push('Ship Share');
+      app.charState.log.push('Material: Ship Share');
+      app._log('Material', 'Ship Share');
+      reportAutoHandled(report, 'Ship Share');
+      return true;
+    }
+    if (tag.startsWith('SHIP_SHARE:') || tag.startsWith('SHIP_SHARES:')) {
+      const raw = tag.split(':')[1] ?? '';
+      let count = Number.parseInt(raw, 10);
+      if (!Number.isFinite(count)) {
+        if (/^1d$/i.test(raw)) {
+          count = await app._roll('1d6');
+        } else if (/^2d$/i.test(raw)) {
+          count = await app._roll('2d6');
+        } else {
+          count = 1;
+        }
+      }
+      const safeCount = Math.max(0, count);
+      for (let i = 0; i < safeCount; i++) {
+        app.charState.materialBenefits.push('Ship Share');
+      }
+      app.charState.log.push(`Material: ${safeCount} Ship Share(s)`);
+      app._log('Material', `${safeCount} Ship Share(s)`);
+      reportAutoHandled(report, `${safeCount} Ship Share(s)`);
+      return true;
+    }
+
+    // 3. Social / Narrative tags — CONTACT, FRIEND, ENEMY, ALLY (and typed variants)
     const socialBase = _parseSocialTag(tag);
     if (socialBase) {
       const { base, typedLabel } = socialBase;
-      const list = base.toLowerCase() + 's';
+      const list =
+        base === 'CONTACT'
+          ? 'contacts'
+          : base === 'ENEMY'
+            ? 'enemies'
+            : base === 'ALLY'
+              ? 'allies'
+              : 'friends';
       const descPrefix = description.split('[')[0].trim();
-      const entryText = typedLabel || descPrefix;
+      // Standalone tags like "[CONTACT]" (used in CDEE structured onSuccess) have no prose prefix;
+      // still record an entry so actor Contacts / friends / enemies are populated.
+      const entryText = typedLabel || descPrefix
+        || game.i18n.localize(
+          base === 'ALLY'
+            ? 'TWODSIX.CharGen.Tag.Ally'
+            : base === 'FRIEND'
+              ? 'TWODSIX.CharGen.Tag.Friend'
+              : base === 'ENEMY'
+                ? 'TWODSIX.CharGen.Tag.Enemy'
+                : 'TWODSIX.CharGen.Tag.Contact',
+        );
       if (entryText && app.charState[list] != null) {
         app.charState[list].push(entryText);
-        const humanLabel = typedLabel
-          ? `${base.charAt(0) + base.slice(1).toLowerCase()}: ${typedLabel}`
-          : base.charAt(0) + base.slice(1).toLowerCase();
-        app._log(base.charAt(0) + base.slice(1).toLowerCase(), entryText.slice(0, 60));
-        app.charState.log.push(`Gained ${humanLabel}.`);
-        reportAutoHandled(report, humanLabel);
+        const roleKey =
+          base === 'ALLY'
+            ? 'TWODSIX.CharGen.Tag.Ally'
+            : base === 'FRIEND'
+              ? 'TWODSIX.CharGen.Tag.Friend'
+              : base === 'ENEMY'
+                ? 'TWODSIX.CharGen.Tag.Enemy'
+                : 'TWODSIX.CharGen.Tag.Contact';
+        const roleLabel = game.i18n.localize(roleKey);
+        const humanLabel = typedLabel ? `${roleLabel}: ${typedLabel}` : roleLabel;
+        app._log(roleLabel, entryText.slice(0, 60));
+        app.charState.log.push(game.i18n.format('TWODSIX.CharGen.Tag.GainedSocial', { label: humanLabel }));
+        reportAutoHandled(report, typedLabel ? `${roleLabel}: ${typedLabel}` : roleLabel);
       }
       return true;
     }
@@ -702,25 +1196,72 @@ export class BaseCharGenLogic {
     );
   }
 
-  async _resolveSkillName(app, raw) {
-    if (this.skillNameMap[raw]) {
-      return this.skillNameMap[raw];
+  _splitAlternativeSkillNames(raw) {
+    const source = String(raw ?? '').trim();
+    if (!source) {
+      return [];
     }
-    if (raw in this.cascadeSkills) {
-      return this._pickSpecialization(app, raw);
-    }
-    return raw;
+    return source
+      .split(/\s*(?:\/|\bor\b)\s*/i)
+      .map(v => v.trim())
+      .filter(Boolean);
   }
 
+  async _resolveSingleSkillName(app, raw) {
+    const name = String(raw ?? '').trim();
+    if (!name) {
+      return null;
+    }
+    if (this.skillNameMap[name]) {
+      return this.skillNameMap[name];
+    }
+    if (name in this.cascadeSkills) {
+      return this._pickSpecialization(app, name);
+    }
+    return name;
+  }
+
+  async _resolveSkillName(app, raw) {
+    const options = this._splitAlternativeSkillNames(raw);
+    if (options.length > 1) {
+      const choice = await app._choose(
+        `Choose one: ${String(raw ?? '').trim()}`,
+        optionsFromStrings(options, { sort: false }),
+        { preserveOptionOrder: true },
+      );
+      return this._resolveSingleSkillName(app, choice);
+    }
+    return this._resolveSingleSkillName(app, raw);
+  }
+
+  /**
+   * Resolve cascades/specializations and set the skill to at least `level`.
+   * @param {*} app
+   * @param {string} rawName
+   * @param {number} level
+   * @returns {Promise<string|null>} Resolved skill name, or null if unresolved
+   */
   async _addSkillAtLevel(app, rawName, level) {
     const name = await this._resolveSkillName(app, rawName);
     if (!name) {
       return null;
     }
+    if (isJoatSkillName(name)) {
+      const state = app.charState;
+      state.joat = Math.max(state.joat ?? 0, level);
+      return name;
+    }
     await this.setSkillAtLeast(app, name, level);
     return name;
   }
 
+  /**
+   * Resolve cascades/specializations and improve the skill by one step (see {@link #improveSkill}).
+   * CDEE/SOC may override for cascade alternatives or richer return values for logging.
+   * @param {*} app
+   * @param {string} rawName
+   * @returns {Promise<void|{ name: string, level: number }|undefined>} Base implementation returns nothing
+   */
   async _addOrImproveSkill(app, rawName) {
     const name = await this._resolveSkillName(app, rawName);
     if (!name) {
@@ -731,6 +1272,10 @@ export class BaseCharGenLogic {
 
   async _applyTableEntry(app, entry) {
     const state = app.charState;
+    // Try underscore characteristic format first (e.g. INT_PLUS1, DEX_PLUS1 from career personal development tables)
+    if (this._applyCharacteristicTag(app, entry)) {
+      return;
+    }
     const charKey = resolveCharKey(entry);
     if (charKey) {
       adjustChar(state, charKey, 1); // capped at 15
@@ -750,37 +1295,20 @@ export class BaseCharGenLogic {
 // ─── MODULE-LEVEL HELPERS ─────────────────────────────────────────────────────
 
 /**
- * Strip all bracket mechanic tags from a description, leaving narrative prose only.
- * @param {string} description
- * @returns {string}
- */
-export function stripMechanicTags(description) {
-  return description
-    .replace(/\[([^\]]+)\]/g, '')
-    .replace(/\s{2,}/g, ' ')
-    .replace(/\s+\./g, '.')
-    .trim()
-    .replace(/\.+$/, '');
-}
-
-/**
  * Parse a SKILL tag into { skillName, level }.
- * Supports canonical three-part form SKILL:Name:Level and legacy two-part SKILL:Name-Level.
- * Emits a one-time console.warn for the legacy form to aid migration.
+ * Canonical: `SKILL:Name:Level`. Legacy two-part `SKILL:Name-Level` (e.g. Bribery-1) is still parsed for
+ * older world/custom compendiums; bundled packs use the canonical form only.
  */
 export function _parseSkillTag(tag) {
   const parts = tag.split(':');
-  // Canonical: SKILL:Name:Level
   if (parts.length >= 3) {
     return { skillName: parts[1], level: parseInt(parts[2], 10) || 1 };
   }
-  // Legacy: SKILL:Name-Level  (e.g. SKILL:Bribery-1)
   const raw = parts[1] ?? '';
   const hyphenIdx = raw.lastIndexOf('-');
   if (hyphenIdx > 0) {
     const maybeLevel = parseInt(raw.slice(hyphenIdx + 1), 10);
-    if (!isNaN(maybeLevel)) {
-      console.warn(`twodsix | CharGen: legacy SKILL tag format "[${tag}]" — use "[SKILL:${raw.slice(0, hyphenIdx)}:${maybeLevel}]" instead.`);
+    if (!Number.isNaN(maybeLevel)) {
       return { skillName: raw.slice(0, hyphenIdx), level: maybeLevel };
     }
   }
@@ -790,9 +1318,15 @@ export function _parseSkillTag(tag) {
 /**
  * Detect social tags (CONTACT, FRIEND, ENEMY) in plain or typed form.
  * Returns null if the tag is not a social tag.
- * Returns { base: 'CONTACT'|'FRIEND'|'ENEMY', typedLabel: string|null }.
+ * Returns { base: 'CONTACT'|'FRIEND'|'ENEMY'|'ALLY', typedLabel: string|null }.
  */
 export function _parseSocialTag(tag) {
+  if (tag === 'ALLY' || tag.startsWith('ALLY:')) {
+    return {
+      base: 'ALLY',
+      typedLabel: tag.startsWith('ALLY:') ? tag.slice(5).trim() || null : null,
+    };
+  }
   for (const base of ['CONTACT', 'FRIEND', 'ENEMY']) {
     if (tag === base) {
       return { base, typedLabel: null };
@@ -801,5 +1335,91 @@ export function _parseSocialTag(tag) {
       return { base, typedLabel: tag.slice(base.length + 1).trim() || null };
     }
   }
+  return null;
+}
+
+/**
+ * Humanize one mechanic tag using only rules shared by every ruleset (characteristics,
+ * SKILL:*, CONTACT/FRIEND/ENEMY including typed forms). Used by {@link BaseCharGenLogic#_humanizeTag}.
+ * Subclass-specific tags return null here.
+ * @param {string} tag - Bracket contents, e.g. `CONTACT`, `SKILL:Admin:1`, `SOC_MINUS1`
+ * @returns {string|null} Localized label, or null if not a shared tag
+ */
+export function baseHumanizeMechanicTag(tag) {
+  if (tag == null || tag === '') {
+    return null;
+  }
+  const i18n = game?.i18n;
+
+  const charMatch = tag.match(/^(STR|DEX|END|INT|EDU|SOC)_(PLUS|MINUS)(-?\d+)$/);
+  if (charMatch) {
+    const sign = charMatch[2] === 'PLUS' ? '+' : '−';
+    if (i18n) {
+      const charLabel = i18n.localize(`TWODSIX.CharGen.Chars.${charMatch[1]}`);
+      return `${charLabel} ${sign}${charMatch[3]}`;
+    }
+    return `${charMatch[1]} ${sign}${charMatch[3]}`;
+  }
+
+  if (tag.startsWith('SKILL:')) {
+    const { skillName, level } = _parseSkillTag(tag);
+    return `${skillName}-${level}`;
+  }
+
+  if (tag.startsWith('BENEFIT_DM:')) {
+    const n = tag.slice('BENEFIT_DM:'.length);
+    if (i18n) {
+      return i18n.format('TWODSIX.CharGen.CDEE.TagBenefitDM', { n });
+    }
+    return `Benefit DM +${n}`;
+  }
+
+  if (tag.startsWith('CHOOSE_SKILL:')) {
+    const list = tag.slice('CHOOSE_SKILL:'.length);
+    const or = i18n ? i18n.localize('TWODSIX.CharGen.ListOr') : ' or ';
+    return list.split(',').join(or);
+  }
+
+  if (tag === 'IMPROVE_CHECK_SKILL') {
+    return i18n ? i18n.localize('TWODSIX.CharGen.Tag.ImproveCheckSkill') : '+1 checked skill';
+  }
+  if (tag === 'SHIP_SHARE') {
+    return i18n ? i18n.localize('TWODSIX.CharGen.Tag.ShipShare') : 'Ship Share';
+  }
+  if (tag.startsWith('SHIP_SHARE:') || tag.startsWith('SHIP_SHARES:')) {
+    const raw = tag.split(':')[1] ?? '1';
+    if (/^\d+$/u.test(raw)) {
+      const n = Number.parseInt(raw, 10);
+      return `${n} Ship Share(s)`;
+    }
+    if (/^1d$/i.test(raw)) {
+      return '1D Ship Shares';
+    }
+    if (/^2d$/i.test(raw)) {
+      return '2D Ship Shares';
+    }
+    return 'Ship Shares';
+  }
+
+  const soc = _parseSocialTag(tag);
+  if (soc) {
+    if (!i18n) {
+      return soc.typedLabel ? `${soc.base}: ${soc.typedLabel}` : soc.base;
+    }
+    const baseKey =
+      soc.base === 'ALLY'
+        ? 'TWODSIX.CharGen.Tag.Ally'
+        : soc.base === 'FRIEND'
+          ? 'TWODSIX.CharGen.Tag.Friend'
+          : soc.base === 'ENEMY'
+            ? 'TWODSIX.CharGen.Tag.Enemy'
+            : 'TWODSIX.CharGen.Tag.Contact';
+    const baseLabel = i18n.localize(baseKey);
+    if (soc.typedLabel) {
+      return `${baseLabel}: ${soc.typedLabel}`;
+    }
+    return baseLabel;
+  }
+
   return null;
 }

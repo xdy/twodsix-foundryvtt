@@ -12,11 +12,13 @@ import { COMMON_GOODS, STARPORT_BONUSES, TRADE_GOODS } from './trade/TradeGenera
 import {
   calculateGoodPricing,
   calculatePricesFromChecks,
-  clampCheck,
+  clampCheckForRuleset,
   getIllegalGoodsSaleModifier,
+  getLargestTradeCodeModifier,
   getPriceModifierTable,
   getStarportTrafficModifier,
   getZoneSafetyModifier,
+  lookupPriceModifier,
   rollDice,
   simulateBrokerCheck
 } from './trade/TradeGeneratorPricing.js';
@@ -39,9 +41,10 @@ function priceWithBroker(pricing, basePrice, capSameWorld, commissionPercent) {
  * Generate trade information for a world, including available goods, prices, and summary info.
  * @param worldData - Data about the world and trade context (trade codes, starport, modifiers, etc.)
  * @param {object} [commonGoodsDMs] - Optional DM table for common goods
+ * @param {object} [rulesetOptions] - Ruleset-specific trade tables and modifiers
  * @returns TradeGenerationResult with all generated trade data for the world.
  */
-export function generateTradeInformation(worldData, commonGoodsDMs = null) {
+export function generateTradeInformation(worldData, commonGoodsDMs = null, rulesetOptions = {}) {
   if (!worldData) {
     throw new Error('TradeGenerator: worldData is required');
   }
@@ -60,13 +63,32 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
   const rawZone = (worldData.zone || '').toLowerCase();
   const zone = (rawZone && rawZone !== 'none') ? rawZone : 'green';
 
-  // Get current ruleset from game settings to determine which price table to use
-  const ruleset = (game.settings?.get('twodsix', 'ruleset')) || 'CE';
-  const priceTable = getPriceModifierTable(ruleset);
+  const commonGoods = rulesetOptions.commonGoods || COMMON_GOODS;
+  const tradeGoods = rulesetOptions.tradeGoods || TRADE_GOODS;
+  const availableTradeGoodsModifier = rulesetOptions.availableTradeGoodsModifier ?? 0;
+  const ruleset = rulesetOptions.priceRuleset || (game.settings?.get('twodsix', 'ruleset')) || 'CE';
+  const customPriceTable = rulesetOptions.priceModifierTable ?? null;
+  const checkClampRange = rulesetOptions.checkClampRange ?? null;
+  const priceRollDice = rulesetOptions.priceRollDice ?? '2d6';
+  const priceTableOffset = rulesetOptions.priceTableOffset ?? 0;
+  const supplierBrokerSkill = rulesetOptions.supplierBrokerSkill ?? 0;
+  const buyerBrokerSkill = rulesetOptions.buyerBrokerSkill ?? 0;
+  const localBrokerNegotiationBonus = rulesetOptions.localBrokerNegotiationBonus ?? 0;
+  const priceTable = getPriceModifierTable(ruleset, customPriceTable);
 
-  const brokerInfo = getBrokerInfo(useLocalBroker, traderSkill, localBrokerSkill, worldData.starport);
+  const brokerInfo = getBrokerInfo(useLocalBroker, traderSkill, localBrokerSkill, worldData.starport, {
+    maxSkill: rulesetOptions.brokerMaxSkill,
+    commissionPercent: useLocalBroker ? rulesetOptions.brokerCommission : 0,
+  });
   const effectiveBrokerSkill = brokerInfo.effectiveSkill;
   const commissionPercent = brokerInfo.commissionPercent;
+  // Combined "advantage" the trader has over the counterparty:
+  //   + trader/local broker skill (already in `effectiveBrokerSkill`)
+  //   - assumed counterparty broker skill
+  // Apply once at the base-check level so per-good DM math stays untouched.
+  const negotiationModifier = useLocalBroker ? localBrokerNegotiationBonus : 0;
+  const supplierAdjustment = -supplierModifier - supplierBrokerSkill + negotiationModifier;
+  const buyerAdjustment = -buyerMod - buyerBrokerSkill + negotiationModifier;
 
   // Calculate traffic and zone modifiers for this world
   const purchaseTrafficMod = getStarportTrafficModifier(worldData.starport, true, ruleset);
@@ -84,48 +106,37 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
   // Simulate supplier finding (good supply situation bonus is 0-2, reported in UI but not applied to checks)
   const supplierBonus = Math.floor(Math.random() * 3);
 
-  // Select which goods are available to buy (D66 roll logic)
+  // Select which goods are available to buy.
+  // Each ruleset provides its own trade-goods table (tradeGoods).
+  // Goods are selected uniformly from the table; illegal goods filtered out unless via black market or includeIllegalGoods.
   const isBlackMarket = worldData.isBlackMarket ?? false;
-  const numRolls = Math.floor(Math.random() * 6) + 1; // 1D6
+  const numRolls = Math.max(1, Math.floor(Math.random() * 6) + 1 + availableTradeGoodsModifier); // 1D6 + ruleset DM
   const availableGoodsTonnage = new Map(); // Map of index -> extra multiplier
 
-  // SRD D66 table: Roll numRolls times. Ignore 61-65 unless black market.
-  // D66 maps to 36 entries: 11-16 (1-6), 21-26 (7-12), ... 61-66 (31-36).
-  // Legal goods occupy rolls 1-24, illegal goods 25-29 (D66 61-65), unusual cargo 30+ (D66 66).
-  const D66_TOTAL = 36;
-  const D66_LEGAL_END = 24;    // Rolls 1-24 → legal goods
-  const D66_ILLEGAL_END = 29;  // Rolls 25-29 → illegal goods
-  const legalIndices = TRADE_GOODS.map((_, i) => i).filter(i => !TRADE_GOODS[i].illegal && !TRADE_GOODS[i].unusual);
-  const illegalIndices = TRADE_GOODS.map((_, i) => i).filter(i => TRADE_GOODS[i].illegal);
+  // Flat indices into the ruleset-provided trade-goods table.
+  // CE-family rulesets use a uniform selection (not weighted D66) so any good can be rolled.
+  const goodsIndices = tradeGoods.map((_, i) => i);
+  const illegalIndices = tradeGoods.map((_, i) => i).filter(i => tradeGoods[i].illegal);
 
-  // Black market suppliers stock illegal goods that match the world's trade codes.
+  // Black market suppliers can offer the full illegal table; trade codes still affect prices.
   if (isBlackMarket) {
     illegalIndices.forEach(idx => {
-      if (isTradeCodeMatched(TRADE_GOODS[idx])) {
-        availableGoodsTonnage.set(idx, (availableGoodsTonnage.get(idx) || 0) + 1);
-      }
+      availableGoodsTonnage.set(idx, (availableGoodsTonnage.get(idx) || 0) + 1);
     });
   }
 
-  // Roll 1D6 random goods from the full table (following SRD D66 rules)
+  // Roll random goods from the full table (uniform selection from ruleset goods list).
   for (let i = 0; i < numRolls; i++) {
-    const roll = Math.floor(Math.random() * D66_TOTAL) + 1;
-    let goodIndex = -1;
-    if (roll <= D66_LEGAL_END) {
-      goodIndex = (roll - 1 < legalIndices.length) ? legalIndices[roll - 1] : -1;
-    } else if (roll <= D66_ILLEGAL_END) {
-      const illegalRoll = roll - D66_LEGAL_END - 1;
-      if ((isBlackMarket || includeIllegalGoods) && illegalRoll < illegalIndices.length) {
-        goodIndex = illegalIndices[illegalRoll];
-      }
-    } else {
-      // D66 66: Unusual Cargo
-      goodIndex = TRADE_GOODS.findIndex(g => g.unusual);
+    const roll = Math.floor(Math.random() * goodsIndices.length);
+    let goodIndex = goodsIndices[roll] ?? -1;
+    const good = tradeGoods[goodIndex];
+    if (good?.illegal && !isBlackMarket && !includeIllegalGoods) {
+      goodIndex = -1;
     }
 
     // Unusual goods intentionally bypass trade code restriction (they are generic/untyped)
-    if (goodIndex !== -1 && restrictTradeGoodsToCodes && !TRADE_GOODS[goodIndex]?.unusual
-        && !isTradeCodeMatched(TRADE_GOODS[goodIndex])) {
+    if (goodIndex !== -1 && restrictTradeGoodsToCodes && !tradeGoods[goodIndex]?.unusual
+        && !isTradeCodeMatched(tradeGoods[goodIndex])) {
       goodIndex = -1;
     }
 
@@ -134,18 +145,22 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
     }
   }
 
-  // Base purchase/sale checks (2d6 + trader skill - opponent skill + situational + traffic + zone)
+  // Base purchase/sale checks (Nd6 + trader skill - opponent skill + situational + traffic + zone)
+  // N is ruleset-controlled (2 for CE-family).
+  const brokerOptions = { ruleset, clampRange: checkClampRange, priceRollDice };
   const basePurchaseCheck = simulateBrokerCheck(
     effectiveBrokerSkill,
-    -supplierModifier,
+    supplierAdjustment,
     purchaseTrafficMod,
-    purchaseZoneMod
+    purchaseZoneMod,
+    brokerOptions,
   );
   const baseSaleCheck = simulateBrokerCheck(
     effectiveBrokerSkill,
-    -buyerMod,
+    buyerAdjustment,
     saleTrafficMod,
-    saleZoneMod
+    saleZoneMod,
+    brokerOptions,
   );
 
   // Single pass through all goods to build both lists
@@ -155,7 +170,7 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
   const purchasePriceByName = new Map();
   let unusualFound = false;
 
-  TRADE_GOODS.forEach((good, index) => {
+  tradeGoods.forEach((good, index) => {
     const tonnageMultiplier = availableGoodsTonnage.get(index) || 0;
     const isAvailable = tonnageMultiplier > 0;
     if (good.unusual) {
@@ -168,9 +183,13 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
 
     // For illegal goods, add bonus to sale check
     const illegalSaleMod = good.illegal ? getIllegalGoodsSaleModifier(good.illegal, zone, ruleset) : 0;
-    const adjustedSaleCheck = clampCheck(baseSaleCheck + illegalSaleMod);
+    const adjustedSaleCheck = clampCheckForRuleset(baseSaleCheck + illegalSaleMod, ruleset, checkClampRange);
 
-    const pricing = calculateGoodPricing(good, tradeCodes, basePurchaseCheck, adjustedSaleCheck, ruleset);
+    const pricing = calculateGoodPricing(good, tradeCodes, basePurchaseCheck, adjustedSaleCheck, ruleset, {
+      clampRange: checkClampRange,
+      customPriceTable,
+      priceTableOffset,
+    });
     const { purchaseAdjusted, saleAdjusted } = priceWithBroker(pricing, good.basePrice, capSameWorld, commissionPercent);
 
     if (isAvailable) {
@@ -201,23 +220,26 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
       const uncappedSale = applyBrokerCommission(good.basePrice, pricing.salePrice, commissionPercent);
       let salePriceAdjusted = uncappedSale.price;
       let salePriceModPercentAdjusted = uncappedSale.modPercent;
+      let saleCommissionAdjusted = uncappedSale.commission;
 
       // Cap sale price at purchase price for same-world resale prevention
       if (capSameWorld && purchasePrice !== undefined && salePriceAdjusted > purchasePrice) {
         salePriceAdjusted = purchasePrice;
         salePriceModPercentAdjusted = Math.round((salePriceAdjusted / good.basePrice) * 100);
+        saleCommissionAdjusted = Math.max(0, salePriceAdjusted - good.basePrice);
       }
 
       saleGoods.push({
         good,
         salePrice: salePriceAdjusted,
-        salePriceModPercent: salePriceModPercentAdjusted
+        salePriceModPercent: salePriceModPercentAdjusted,
+        saleCommission: saleCommissionAdjusted
       });
     }
   });
 
   // Supplier/port bonuses are reported for future supplier-finding rules.
-  const availableGoodsCount = Array.from(availableGoodsTonnage.keys()).filter((index) => !TRADE_GOODS[index]?.unusual).length;
+  const availableGoodsCount = Array.from(availableGoodsTonnage.keys()).filter((index) => !tradeGoods[index]?.unusual).length;
   let supplierInfo = game.i18n.format("TWODSIX.Trade.SupplierInfoSummary", {
     count: availableGoodsCount,
     starportBonus,
@@ -228,18 +250,22 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
   }
 
   // Also roll for common goods (no trade-code DMs, just base checks)
-  const commonGoodsRolled = COMMON_GOODS.map((good) => {
+  const commonGoodsRolled = commonGoods.map((good) => {
     const rolledQuantity = rollDice(good.quantity);
     let pricing;
     if (commonGoodsDMs && commonGoodsDMs[good.name]) {
       const dms = commonGoodsDMs[good.name];
-      const purchaseDM = dms.purchaseDM || 0;
-      const saleDM = dms.saleDM || 0;
-      const purchaseCheck = clampCheck(basePurchaseCheck + purchaseDM - saleDM);
-      const saleCheck = clampCheck(baseSaleCheck + saleDM - purchaseDM);
-      pricing = calculatePricesFromChecks(good.basePrice, purchaseCheck, saleCheck, ruleset);
+      const purchaseDM = typeof dms.purchaseDM === 'number'
+        ? dms.purchaseDM
+        : getLargestTradeCodeModifier(tradeCodes, dms.purchaseDM);
+      const saleDM = typeof dms.saleDM === 'number'
+        ? dms.saleDM
+        : getLargestTradeCodeModifier(tradeCodes, dms.saleDM);
+      const purchaseCheck = clampCheckForRuleset(basePurchaseCheck + purchaseDM - saleDM, ruleset, checkClampRange);
+      const saleCheck = clampCheckForRuleset(baseSaleCheck + saleDM - purchaseDM, ruleset, checkClampRange);
+      pricing = calculatePricesFromChecks(good.basePrice, purchaseCheck, saleCheck, ruleset, { customPriceTable, priceTableOffset });
     } else {
-      pricing = calculatePricesFromChecks(good.basePrice, basePurchaseCheck, baseSaleCheck, ruleset);
+      pricing = calculatePricesFromChecks(good.basePrice, basePurchaseCheck, baseSaleCheck, ruleset, { customPriceTable, priceTableOffset });
     }
     const { purchaseAdjusted, saleAdjusted } = priceWithBroker(pricing, good.basePrice, capSameWorld, commissionPercent);
 
@@ -259,19 +285,19 @@ export function generateTradeInformation(worldData, commonGoodsDMs = null) {
     goods: rolledGoods,
     saleGoods,
     unusualGoods,
-    commonGoods: COMMON_GOODS,
+    commonGoods,
     commonGoodsRolled,
     supplierInfo,
     brokerInfo,
     purchaseSkillCheck: {
       result: basePurchaseCheck,
       priceModifier: 0, // Per-good DMs applied individually, not factored into base check
-      percentage: priceTable[basePurchaseCheck]?.purchase || priceTable[8].purchase
+      percentage: lookupPriceModifier(priceTable, basePurchaseCheck, priceTableOffset).purchase,
     },
     saleSkillCheck: {
       result: baseSaleCheck,
       priceModifier: 0, // No trade-code DMs for sale base check (applied per good)
-      percentage: priceTable[baseSaleCheck]?.sale || priceTable[8].sale
+      percentage: lookupPriceModifier(priceTable, baseSaleCheck, priceTableOffset).sale,
     }
   };
 }

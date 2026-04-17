@@ -1,0 +1,258 @@
+{
+  "_id": "000e0e165bc65eae",
+  "name": "The Elf",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Archery",
+      "Insight",
+      "Sneak",
+      "Scout",
+      "Athletics",
+      "Melee"
+    ],
+    "specialist": [
+      "Alchemy",
+      "Liaison",
+      "Sorcery",
+      "Craft",
+      "Deception",
+      "Carouse"
+    ],
+    "advanced": [
+      "Govern",
+      "Religion",
+      "Healing",
+      "Artifice",
+      "Leadership",
+      "Battle"
+    ],
+    "cash": [
+      25,
+      50,
+      100,
+      100,
+      150,
+      300
+    ],
+    "material": [
+      "+1 INT",
+      "Spell",
+      "Weapon",
+      "Freehold",
+      "Familiar",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Trolls. Sorcery 8+ or Melee Combat 8+; fail: Injury; success: extra Benefit.",
+        "checks": [
+          {
+            "skill": "Sorcery",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "High Sorcery. Sorcery 8+; fail: Injury (Mishap); success: one spell.",
+        "checks": [
+          {
+            "skill": "Sorcery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "MATERIAL:Spell"
+        ],
+        "onFail": [
+          "TABLE_ROLL:sorceryMishap"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Artifact. Magic Item",
+        "checks": [],
+        "always": [
+          "[MATERIAL:Magic Item]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Adventure. END 8+ or Sorcery 8+; success: Animals, Survival, or Riding; fail: Injury. Extra Benefit.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          },
+          {
+            "skill": "Sorcery",
+            "target": 8
+          }
+        ],
+        "always": [
+          "BENEFIT_ROLL"
+        ],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Survival:1",
+              "SKILL:Riding:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Hunting. Archery 8+ or Survival 8+; fail: Injury; success: Animals or Sneak.",
+        "checks": [
+          {
+            "skill": "Archery",
+            "target": 8
+          },
+          {
+            "skill": "Survival",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Sneak:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Beauty of Nature. Animals or Survival.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Survival:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 10,
+        "description": "Commerce. Deception or Liaison.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Deception:1",
+              "SKILL:Liaison:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Exploration. Scout 8+; fail: Injury; success: Survival.",
+        "checks": [
+          {
+            "skill": "Scout",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Survival:1"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "The Fey. Sorcery-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Sorcery:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!000e0e165bc65eae"
+}

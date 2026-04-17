@@ -1,5 +1,7 @@
 import { TWODSIX } from '../config';
+import { getTraderRuleset } from '../features/trader/TraderRulesetRegistry.js';
 import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from '../utils/TradeGenerator.js';
+import { enrichContextFields } from '../utils/sheetUtils';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
@@ -166,7 +168,12 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       buyerModifier: buyerModifier
     };
 
-    const tradeInfo = generateTradeInformation(worldData);
+    const ruleset = getTraderRuleset();
+    const tradeInfo = generateTradeInformation(
+      worldData,
+      ruleset.getCommonGoodsDMs(),
+      ruleset.getTradeGenerationOptions(worldData.starport, worldData.localBrokerSkill),
+    );
     tradeInfo.worldData = worldData;
 
     // Build and format trade report rows using TradeGenerator utility
@@ -297,17 +304,9 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       }
     }
 
-    if (game.settings.get('twodsix', 'useProseMirror')) {
-      const TextEditorImp = foundry.applications.ux.TextEditor.implementation;
-      context.richText = {
-        description: await TextEditorImp.enrichHTML(context.system.description, {secrets: this.document.isOwner}),
-        climate: await TextEditorImp.enrichHTML(context.system.climate, {secrets: this.document.isOwner}),
-        hazards: await TextEditorImp.enrichHTML(context.system.hazards, {secrets: this.document.isOwner}),
-        specialRules: await TextEditorImp.enrichHTML(context.system.specialRules, {secrets: this.document.isOwner}),
-        adventureHooks: await TextEditorImp.enrichHTML(context.system.adventureHooks, {secrets: this.document.isOwner}),
-        notes: await TextEditorImp.enrichHTML(context.system.notes, {secrets: this.document.isOwner}),
-      };
-    }
+    await enrichContextFields(this.document, context, [
+      'description', 'climate', 'hazards', 'specialRules', 'adventureHooks', 'notes'
+    ]);
     return context;
   }
 }

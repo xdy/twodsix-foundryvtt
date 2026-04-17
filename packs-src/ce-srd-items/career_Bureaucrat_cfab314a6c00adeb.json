@@ -1,0 +1,128 @@
+{
+  "_id": "cfab314a6c00adeb",
+  "name": "Bureaucrat",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "soc",
+      "target": 6
+    },
+    "surv": {
+      "char": "edu",
+      "target": 4
+    },
+    "comm": {
+      "char": "soc",
+      "target": 5
+    },
+    "adv": {
+      "char": "int",
+      "target": 8
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Assistant",
+        "skill": "Admin",
+        "level": 1
+      },
+      {
+        "title": "Clerk",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Supervisor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Manager",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Chief",
+        "skill": "Advocate",
+        "level": 1
+      },
+      {
+        "title": "Director",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Minister",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Dex",
+      "+1 End",
+      "+1 Int",
+      "+1 Edu",
+      "Athletics",
+      "Carousing"
+    ],
+    "service": [
+      "Admin",
+      "Computer",
+      "Carousing",
+      "Bribery",
+      "Leadership",
+      "Vehicle"
+    ],
+    "specialist": [
+      "Admin",
+      "Computer",
+      "Perception",
+      "Leadership",
+      "Steward",
+      "Vehicle"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Liaison",
+      "Linguistics",
+      "Medicine",
+      "Admin"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Edu",
+      "+1 Int",
+      "Mid Passage",
+      "Mid Passage",
+      "High Passage",
+      "+1 Soc"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Official in a government department, charged with following the details of administrative process.",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!cfab314a6c00adeb"
+}

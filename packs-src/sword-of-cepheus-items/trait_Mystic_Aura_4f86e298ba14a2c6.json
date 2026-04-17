@@ -1,0 +1,23 @@
+{
+  "_id": "4f86e298ba14a2c6",
+  "name": "Mystic Aura",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character projects their magical power in an awe-inspiring manner. When making a reaction throw to impress or intimidate other people, the character throws with Advantage. On a natural roll of 12, the target is so impressed that they act as though they were enthralled (per the Enthrall spell) when in the sorcerer's presence.",
+    "prereq": "Sorcery",
+    "shortdescr": "Advantage on reaction to impress or intimidate.",
+    "subtype": "",
+    "key": "mystic_aura",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!4f86e298ba14a2c6"
+}

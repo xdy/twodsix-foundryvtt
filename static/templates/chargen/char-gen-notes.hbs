@@ -4,3 +4,8 @@
 {{#if hasMedicalDebt}}
   <p><strong>{{localize "TWODSIX.CharGen.Output.MedicalDebt"}}:</strong> Cr{{medicalDebtFormatted}}</p>
 {{/if}}
+{{#if hasChargenNotes}}
+  <p><strong>{{localize "TWODSIX.CharGen.Output.ChargenNotes"}}:</strong></p>
+  <ul>{{#each chargenNotes}}
+    <li>{{this}}</li>{{/each}}</ul>
+{{/if}}

@@ -1,0 +1,255 @@
+{
+  "_id": "cbf39f0bdeab3455",
+  "name": "Scout",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": false,
+    "service": [
+      "Piloting",
+      "Repair",
+      "Computers",
+      "Gun Combat",
+      "Zero-G",
+      "Survival"
+    ],
+    "specialist": [
+      "Gunnery",
+      "Athletics",
+      "Recon",
+      "Science",
+      "Investigation",
+      "Stealth"
+    ],
+    "advanced": [
+      "Admin",
+      "Grav Vehicles",
+      "Medicine",
+      "Tactics",
+      "Engineering",
+      "Jack of All Trades"
+    ],
+    "ranks": [
+      {
+        "title": "Scout",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Scout",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Scout",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Scout",
+        "skill": "Science",
+        "level": 1
+      },
+      {
+        "title": "Senior Scout",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Senior Scout",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Senior Scout",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000
+    ],
+    "material": [
+      "Low Passage",
+      "+1 INT",
+      "Weapon",
+      "Mid Passage",
+      "Space suit",
+      "Scout Ship"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the Injury table.",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Ambushed. Run:",
+        "checks": [
+          {
+            "skill": "Piloting",
+            "target": 8
+          },
+          {
+            "skill": "Gunnery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[BENEFIT_DM:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Cybered! Your employers pay for advanced cybernetic implants. Gain Cr6000 worth of cybernetics.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Survey Duty. Gain one of Animals, Admin, Science (choose one).",
+        "checks": [],
+        "always": [
+          "[CHOOSE_SKILL:Animals,Admin,Science]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Exemplary Service. Gain DM+1 to a Benefit roll.",
+        "checks": [],
+        "always": [
+          "[BENEFIT_DM:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Deep Space Travel. Gain one of Engineering, Computer, Piloting, Zero-G (choose one).",
+        "checks": [],
+        "always": [
+          "[CHOOSE_SKILL:Engineering,Computer,Piloting,Zero-G]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Life Event. Roll on the Life Events table.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Rescue Mission",
+        "checks": [
+          {
+            "skill": "Engineering",
+            "target": 8
+          },
+          {
+            "skill": "Medicine",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[IMPROVE_CHECK_SKILL]",
+          "[CONTACT]"
+        ],
+        "onFail": [
+          "[ENEMY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Xenomorphs!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[SKILL:Survival:1]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Courier Duty. Gain Liaison, Steward (choose one) or a Megacorp (Contact).",
+        "checks": [],
+        "always": [
+          "[CHOOSE_SKILL:Liaison,Steward]",
+          "[CONTACT:Megacorp]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Bonanza! Gain extra Benefit roll and free skill.",
+        "checks": [],
+        "always": [
+          "[BENEFIT_ROLL]",
+          "[FREE_SKILL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  },
+  "folder": "kwM2V003wYcmPFtP",
+  "effects": [],
+  "_key": "!items!cbf39f0bdeab3455"
+}

@@ -1,0 +1,33 @@
+<fieldset>
+  <legend>{{localize "TWODSIX.Settings.traderCustomPresets.header"}}</legend>
+  <div class="form-group">
+    <label>{{localize "TWODSIX.Settings.traderCustomPresets.copyFrom"}}</label>
+    <div class="form-fields">
+      <select name="copyFromTraderPreset">
+        {{selectOptions controls.copyChoices localize=true}}
+      </select>
+      <button type="button" data-action="copyFromPreset">
+        <i class="fa-solid fa-copy"></i>
+        {{localize "TWODSIX.Settings.traderCustomPresets.copy"}}
+      </button>
+    </div>
+    <p class="hint">{{localize "TWODSIX.Settings.traderCustomPresets.copyHint"}}</p>
+  </div>
+  <div class="form-group">
+    <label>{{localize "TWODSIX.Settings.traderCustomPresets.name"}}</label>
+    <div class="form-fields">
+      <input type="text" name="traderCustomPresetName" value="{{controls.name}}" data-dtype="String">
+      <button type="button" data-action="savePreset">
+        <i class="fa-solid fa-floppy-disk"></i>
+        {{localize "TWODSIX.Settings.traderCustomPresets.save"}}
+      </button>
+      {{#if controls.canDelete}}
+        <button type="button" data-action="deletePreset">
+          <i class="fa-solid fa-trash"></i>
+          {{localize "TWODSIX.Settings.traderCustomPresets.delete"}}
+        </button>
+      {{/if}}
+    </div>
+    <p class="hint">{{localize "TWODSIX.Settings.traderCustomPresets.saveHint"}}</p>
+  </div>
+</fieldset>

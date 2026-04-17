@@ -37,7 +37,7 @@ const _folderPromises = new Map();
 
 /**
  * Determine whether a subsector has already been loaded.
- * Supports legacy key format ("Sector:subX,subY") for old saved states.
+ * Supports legacy key formats ("Sector:subX,subY" and "Sector:Letter:Milieu") for old saved states.
  * @param {import('./TraderState.js').TraderState} state
  * @param {string} canonicalKey
  * @param {import('./TraderState.js').SubsectorSearchEntry} target
@@ -47,8 +47,13 @@ function hasLoadedSubsectorKey(state, canonicalKey, target) {
   if (!Array.isArray(state.loadedSubsectorKeys)) {
     return false;
   }
+  const subLetter = SUBSECTOR_LETTERS[target.subY * SECTOR_WIDTH_IN_SUBSECTORS + target.subX];
+  const [milieu = 'M1105'] = String(canonicalKey).split('_');
+  const legacyLetterKey = `${target.sectorName}:${subLetter}:${milieu}`;
   const legacyKey = `${target.sectorName}:${target.subX},${target.subY}`;
-  return state.loadedSubsectorKeys.includes(canonicalKey) || state.loadedSubsectorKeys.includes(legacyKey);
+  return state.loadedSubsectorKeys.includes(canonicalKey)
+    || state.loadedSubsectorKeys.includes(legacyKey)
+    || state.loadedSubsectorKeys.includes(legacyLetterKey);
 }
 
 /**

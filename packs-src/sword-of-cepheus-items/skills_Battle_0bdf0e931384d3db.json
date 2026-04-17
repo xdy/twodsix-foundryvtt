@@ -1,0 +1,26 @@
+{
+  "_id": "0bdf0e931384d3db",
+  "name": "Battle",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/tactics.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "Tactical planning and decision making, whether on the ground or in the sea.<ul><li>Drawing up complex siege or battle plans: Battle/INT 10+</li><li>Understanding an enemy attack to be a diversion: Battle/INT 10+ (or opposed Battle/INT rolls)</li></ul>",
+    "shortdescr": "Tactical planning and decision making, on land or at sea.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!0bdf0e931384d3db"
+}

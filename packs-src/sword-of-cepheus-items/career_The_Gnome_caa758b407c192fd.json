@@ -1,0 +1,249 @@
+{
+  "_id": "caa758b407c192fd",
+  "name": "The Gnome",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Craft",
+      "Alchemy",
+      "Sneak",
+      "Scout",
+      "Deception",
+      "Sorcery"
+    ],
+    "specialist": [
+      "Archery",
+      "Artillery",
+      "Melee",
+      "Jack o’Trades",
+      "Insight",
+      "Carouse"
+    ],
+    "advanced": [
+      "Govern",
+      "Religion",
+      "Healing",
+      "Artifice",
+      "Leadership",
+      "Liaison"
+    ],
+    "cash": [
+      50,
+      100,
+      150,
+      200,
+      300,
+      500
+    ],
+    "material": [
+      "+1 INT",
+      "Spell",
+      "Weapon",
+      "Spell",
+      "Spell",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Trolls. Sorcery 8+ or Melee Combat 8+; fail: Injury; success: extra Benefit.",
+        "checks": [
+          {
+            "skill": "Sorcery",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Adventure. END 8+ or Sorcery 8+; success: Animals, Survival, or Riding; fail: Injury. Extra Benefit.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          },
+          {
+            "skill": "Sorcery",
+            "target": 8
+          }
+        ],
+        "always": [
+          "BENEFIT_ROLL"
+        ],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Survival:1",
+              "SKILL:Riding:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Exploration. Scout 8+; fail: Injury; success: Survival.",
+        "checks": [
+          {
+            "skill": "Scout",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Survival:1"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Tinkering. Craft-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Craft:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Prank. Deception 8+; fail: Enemy; success: Ally.",
+        "checks": [
+          {
+            "skill": "Deception",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "ALLY"
+        ],
+        "onFail": [
+          "ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Drink and be Merry. Carousing or Streetwise.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Carousing:1",
+              "SKILL:Streetwise:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 10,
+        "description": "Alchemy. Alchemy 8+; fail: lose Benefit; success: Ally (alchemist).",
+        "checks": [
+          {
+            "skill": "Alchemy",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "ALLY:Alchemist"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "High Sorcery. Sorcery 8+; fail: Injury (Mishap); success: one spell.",
+        "checks": [
+          {
+            "skill": "Sorcery",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "MATERIAL:Spell"
+        ],
+        "onFail": [
+          "TABLE_ROLL:sorceryMishap"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Mad Tinkering. Magic Item",
+        "checks": [],
+        "always": [
+          "[MATERIAL:Magic Item]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!caa758b407c192fd"
+}

@@ -5,8 +5,6 @@
 
 import { loadSubsector } from './SubsectorLoader.js';
 import {
-  DEFAULT_CREW,
-  DEFAULT_MERCHANT_TRADER,
   DEFAULT_MILIEU,
   DEFAULT_SECTOR,
   DEFAULT_SUBSECTOR_LETTER,
@@ -14,10 +12,10 @@ import {
   DEFAULT_WORLD_HEX,
   DEFAULT_WORLD_NAME,
   MILIEUS,
-  MORTGAGE_DIVISOR,
   SUBSECTOR_LETTERS
 } from './TraderConstants.js';
-import { TRADER_SUPPORTED_RULESETS } from './TraderRulesetRegistry.js';
+import { getDefaultTraderRulesetKey, getTraderPresetOptions, } from './TraderRulesetRegistry.js';
+import { computeTraderDefaultStartingCredits, resolveTraderSetupRulesetKey } from './traderSetupDefaults.js';
 import { deduplicateWorlds, getWorldCoordinate, traderDebug } from './TraderUtils.js';
 import { fetchSectors, getSubsectorsForSector, loadSubsectorsWithCache } from './TravellerMapAPI.js';
 import { getCachedSectors, getOrCreateCacheJournal, setCachedSectors } from './TravellerMapCache.js';
@@ -33,7 +31,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     tag: 'form',
     classes: ['twodsix', 'trader-setup'],
     window: { title: 'TWODSIX.Trader.Setup.Title', resizable: true },
-    position: { width: 600, height: 600 },
+    position: { width: 600, height: 620 },
   };
 
   static PARTS = {
@@ -46,25 +44,18 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     super(options);
     this.options.window.title = game.i18n.localize(this.options.window.title);
 
-    const monthlyPayment = Math.ceil(DEFAULT_MERCHANT_TRADER.shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
-    const totalMonthlyCrew = DEFAULT_CREW.reduce((s, c) => s + c.salary, 0);
-    this._defaultStartingCredits = (monthlyPayment + totalMonthlyCrew) * 2;
-    this._defaultJournalName = `Trader journal start ${new Date().toLocaleDateString()}`;
     this._cacheJournalName = `TraderTravellermapCache`;
 
-    this._journalName = this._defaultJournalName;
     this._shipActorId = '';
     this._milieu = DEFAULT_MILIEU;
     this._sectorName = DEFAULT_SECTOR;
     this._subsectorName = DEFAULT_SUBSECTOR_NAME;
     this._subsectorLetter = DEFAULT_SUBSECTOR_LETTER;
     this._startHex = DEFAULT_WORLD_HEX;
-    this._startingCredits = this._defaultStartingCredits;
 
-    this._ruleset = game.settings.get('twodsix', 'ruleset') || 'CE';
-    if (!TRADER_SUPPORTED_RULESETS.includes(this._ruleset)) {
-      this._ruleset = 'CE';
-    }
+    this._ruleset = resolveTraderSetupRulesetKey(getDefaultTraderRulesetKey());
+    this._defaultStartingCredits = computeTraderDefaultStartingCredits(this._ruleset);
+    this._startingCredits = this._defaultStartingCredits;
 
     this._sectors = [];
     this._subsectors = [];
@@ -75,6 +66,8 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     this._loadingSubsectors = false;
     this._loadingWorlds = false;
     this._isConfirming = false;
+    this._activeRequestToken = 0;
+    this._isClosed = false;
 
     this._resolve = null;
   }
@@ -93,8 +86,6 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     }
 
     const context = {
-      journalName: this._journalName,
-      defaultJournalName: this._defaultJournalName,
       cacheJournalName: this._cacheJournalName,
       shipActorId: this._shipActorId,
       milieu: this._milieu,
@@ -103,7 +94,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
       subsectorLetter: this._subsectorLetter,
       startHex: this._startHex,
       ruleset: this._ruleset,
-      supportedRulesets: TRADER_SUPPORTED_RULESETS.map(r => ({ key: r, selected: r === this._ruleset })),
+      supportedRulesets: getTraderPresetOptions().map(r => ({ ...r, selected: r.key === this._ruleset })),
       startingCredits: this._startingCredits,
       defaultStartingCredits: this._defaultStartingCredits,
       milieus: MILIEUS.map(m => ({ ...m, selected: m.code === this._milieu })),
@@ -210,11 +201,6 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     const el = this.element;
     traderDebug('TraderSetupApp', ` _onRender: template: ${this.constructor.PARTS.main.template}, DOM nodes: ${el.querySelectorAll('*').length}`);
 
-    // Journal name change
-    el.querySelector('[name=journalName]')?.addEventListener('input', (e) => {
-      this._journalName = e.target.value.trim();
-    });
-
     // Cache journal name change
     el.querySelector('[name=cacheJournalName]')?.addEventListener('input', (e) => {
       this._cacheJournalName = e.target.value.trim();
@@ -233,15 +219,25 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
 
     // Milieu change -> reload sectors
     el.querySelector('[name=milieu]')?.addEventListener('change', async (e) => {
+      const requestToken = ++this._activeRequestToken;
       this._milieu = e.target.value;
       this._loadingSectors = true;
       this.render();
 
       try {
         const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
+        if (this._isClosed || requestToken !== this._activeRequestToken) {
+          return;
+        }
         this._sectors = await getCachedSectors(cacheJournal, this._milieu) || [];
+        if (this._isClosed || requestToken !== this._activeRequestToken) {
+          return;
+        }
         if (this._sectors.length === 0) {
           this._sectors = await fetchSectors(this._milieu);
+          if (this._isClosed || requestToken !== this._activeRequestToken) {
+            return;
+          }
           if (cacheJournal && this._sectors.length > 0) {
             await setCachedSectors(cacheJournal, this._milieu, this._sectors);
           }
@@ -256,6 +252,9 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
         this.render();
 
         this._subsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal, this._milieu) || getSubsectorsForSector(this._sectors, this._sectorName) || [];
+        if (this._isClosed || requestToken !== this._activeRequestToken) {
+          return;
+        }
         if (this._subsectors.length === 0) {
           this._subsectors = SUBSECTOR_LETTERS.map(l => ({ letter: l, name: `${this._sectorName} Subsector ${l}` }));
         }
@@ -263,18 +262,24 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
         this._subsectorName = this._subsectors[0]?.name;
 
         await this._loadWorldsForSubsector();
+        if (this._isClosed || requestToken !== this._activeRequestToken) {
+          return;
+        }
         this._startHex = this._worlds[0]?.hex || '';
       } catch (err) {
         console.error('Failed to reload sectors for milieu:', err);
       } finally {
-        this._loadingSectors = false;
-        this._loadingSubsectors = false;
-        this.render();
+        if (requestToken === this._activeRequestToken) {
+          this._loadingSectors = false;
+          this._loadingSubsectors = false;
+          this.render();
+        }
       }
     });
 
     // Sector change -> reload subsectors and worlds
     el.querySelector('[name=sectorName]')?.addEventListener('change', async (e) => {
+      const requestToken = ++this._activeRequestToken;
       const sectorVal = e.target.value;
       const decoded = decodeURIComponent(sectorVal);
       this._sectorName = decoded;
@@ -288,7 +293,13 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
         try {
           // Fetch subsectors from TravellerMap metadata
           const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
+          if (this._isClosed || requestToken !== this._activeRequestToken) {
+            return;
+          }
           let newSubsectors = await loadSubsectorsWithCache(this._sectorName, cacheJournal, this._milieu);
+          if (this._isClosed || requestToken !== this._activeRequestToken) {
+            return;
+          }
           if (!newSubsectors || newSubsectors.length === 0) {
             // Get subsectors from cached data or compute
             newSubsectors = getSubsectorsForSector(this._sectors, this._sectorName);
@@ -305,6 +316,9 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
 
           // Load worlds for the first subsector
           await this._loadWorldsForSubsector();
+          if (this._isClosed || requestToken !== this._activeRequestToken) {
+            return;
+          }
 
           // Reset to first world
           if (this._worlds.length > 0) {
@@ -315,14 +329,17 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
         } catch (err) {
           console.error('Failed to reload subsectors for sector:', err);
         } finally {
-          this._loadingSubsectors = false;
-          this.render();
+          if (requestToken === this._activeRequestToken) {
+            this._loadingSubsectors = false;
+            this.render();
+          }
         }
       }
     });
 
     // Subsector name change (user can pick a different subsector by name)
     el.querySelector('[name=subsectorName]')?.addEventListener('change', async (e) => {
+      const requestToken = ++this._activeRequestToken;
       this._subsectorName = e.target.value;
       // Find the letter for this subsector name
       const subsector = this._subsectors.find(s => s.name === this._subsectorName);
@@ -330,6 +347,9 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
         this._subsectorLetter = subsector.letter;
       }
       await this._loadWorldsForSubsector();
+      if (this._isClosed || requestToken !== this._activeRequestToken) {
+        return;
+      }
 
       // Reset to first world
       if (this._worlds.length > 0) {
@@ -347,7 +367,8 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
 
     // Credits change
     el.querySelector('[name=startingCredits]')?.addEventListener('input', (e) => {
-      this._startingCredits = parseInt(e.target.value) || this._defaultStartingCredits;
+      const parsed = Number.parseInt(e.target.value, 10);
+      this._startingCredits = Number.isFinite(parsed) ? Math.max(0, parsed) : this._defaultStartingCredits;
     });
 
     // Confirm button
@@ -358,7 +379,6 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
       }
       this._isConfirming = true;
       traderDebug('TraderSetupApp', ` Confirming setup...`, {
-        journalName: this._journalName,
         shipActorId: this._shipActorId,
         milieu: this._milieu,
         sectorName: this._sectorName,
@@ -380,6 +400,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
   }
 
   async _loadWorldsForSubsector() {
+    const requestToken = this._activeRequestToken;
     const sectorName = this._sectorName;
     const subsectorLetter = this._subsectorLetter;
     const milieu = this._milieu;
@@ -392,7 +413,13 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
     // Try cache first and load through loadSubsector for unified logic
     try {
       const cacheJournal = await getOrCreateCacheJournal(this._cacheJournalName);
+      if (this._isClosed || requestToken !== this._activeRequestToken) {
+        return;
+      }
       const worldDataArray = await loadSubsector(sectorName, subsectorLetter, milieu, cacheJournal, { x: sector.x, y: sector.y });
+      if (this._isClosed || requestToken !== this._activeRequestToken) {
+        return;
+      }
       this._worlds = deduplicateWorlds(worldDataArray);
       this._worlds.sort((a, b) => a.name.localeCompare(b.name));
     } catch (e) {
@@ -400,15 +427,16 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
       ui.notifications.error(game.i18n.localize('TWODSIX.Trader.Setup.CacheError'));
       this._worlds = [];
     } finally {
-      this._loadingWorlds = false;
-      this.render();
+      if (requestToken === this._activeRequestToken) {
+        this._loadingWorlds = false;
+        this.render();
+      }
     }
   }
 
   _confirm() {
     if (this._resolve) {
       this._resolve({
-        journalName: this._journalName || this._defaultJournalName,
         cacheJournalName: this._cacheJournalName || '',
         shipActorId: this._shipActorId || '',
         milieu: this._milieu,
@@ -425,6 +453,7 @@ export class TraderSetupApp extends foundry.applications.api.HandlebarsApplicati
   }
 
   async close(options = {}) {
+    this._isClosed = true;
     if (this._resolve) {
       this._resolve(null);
       this._resolve = null;

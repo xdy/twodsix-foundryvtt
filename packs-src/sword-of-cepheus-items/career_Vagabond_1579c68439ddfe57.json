@@ -1,0 +1,245 @@
+{
+  "_id": "1579c68439ddfe57",
+  "name": "Vagabond",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Survival",
+      "Streetwise",
+      "Melee",
+      "Deception",
+      "Sneak",
+      "Scout"
+    ],
+    "specialist": [
+      "Liaison",
+      "Craft",
+      "Jack o’Trades",
+      "Animals",
+      "Athletics",
+      "Riding"
+    ],
+    "advanced": [
+      "Watercraft",
+      "Insight",
+      "Leadership",
+      "Govern",
+      "Healing",
+      "Natural Phil."
+    ],
+    "cash": [
+      10,
+      20,
+      30,
+      30,
+      100,
+      200
+    ],
+    "material": [
+      "Weapon",
+      "Hound",
+      "Ally",
+      "Weapon",
+      "Ally",
+      "Mount"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Beggar. END 8+ or Injury.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Traveller. INT or Deception 8+: Survival, Streetwise, or Deception; fail loses Benefit.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          },
+          {
+            "skill": "Deception",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Survival:1",
+              "SKILL:Streetwise:1",
+              "SKILL:Deception:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Foreigners. Gain an Ally or Language.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "ALLY",
+              "SKILL:Language:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Tramp. INT 8+ for Watercraft.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Watercraft:1"
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Work. END or INT 8+: Craft or Steward.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          },
+          {
+            "skill": "INT",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Craft:1",
+              "SKILL:Steward:1"
+            ]
+          }
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Unskilled Labor. END 8+: +1 END.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "END_PLUS1"
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Thief. Gain Deception, Sneak, or Craft.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Deception:1",
+              "SKILL:Sneak:1",
+              "SKILL:Craft:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Scavenger. Gain a Magic Item. Magic Item",
+        "checks": [],
+        "always": [
+          "[MATERIAL:Magic Item]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Legend. Gain one Benefit. Extra Benefit roll",
+        "checks": [],
+        "always": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!1579c68439ddfe57"
+}

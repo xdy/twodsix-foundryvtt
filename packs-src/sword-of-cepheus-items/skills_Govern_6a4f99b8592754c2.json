@@ -1,0 +1,26 @@
+{
+  "_id": "6a4f99b8592754c2",
+  "name": "Govern",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "The skill to handle ruling a kingdom or city state, bureaucracies, and the law.<ul><li>Understanding the local laws to avoid legal entanglements: Govern/EDU 8+</li><li>Reading a merchant's ledgers to learn about a business venture: Govern/EDU 8+</li><li>Knowing who to bribe to get things done at the palace: Govern/SOC 8+</li></ul>",
+    "shortdescr": "Ruling kingdoms, bureaucracies, and handling the law.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!6a4f99b8592754c2"
+}

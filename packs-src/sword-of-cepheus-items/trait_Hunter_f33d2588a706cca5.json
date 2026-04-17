@@ -1,0 +1,23 @@
+{
+  "_id": "f33d2588a706cca5",
+  "name": "Hunter",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is an expert in ambushing prey, both animal and sentient. The hunter throws with Advantage when making a Surprise throw from ambush.",
+    "prereq": "Scout",
+    "shortdescr": "Advantage on Surprise throws from ambush.",
+    "subtype": "",
+    "key": "hunter",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!f33d2588a706cca5"
+}

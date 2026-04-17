@@ -1,0 +1,134 @@
+{
+  "_id": "0a6d867ba253014a",
+  "name": "Belter",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CU",
+    "description": "An asteroid miner, pioneer, prospector or colonial roughneck.",
+    "riskTarget": 7,
+    "promotionTarget": 6,
+    "preferredChar": "str",
+    "autoSkill": "Mining",
+    "cashBase": 20000,
+    "skillTable1": "Space Ops",
+    "skillTable2": "Civil",
+    "skillTable2Options": [],
+    "hasCommissioned": false,
+    "officerCashMultiplier": 1,
+    "ranks": [
+      {
+        "title": "Miner",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Senior Miner",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Supervisor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Team Leader",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Superintendent",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "General Manager",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "commissionedRanks": [],
+    "qual": {
+      "char": "int",
+      "target": 0
+    },
+    "surv": {
+      "char": "end",
+      "target": 0
+    },
+    "comm": {
+      "char": "soc",
+      "target": 0
+    },
+    "adv": {
+      "char": "edu",
+      "target": 0
+    },
+    "reenlist": 0,
+    "hasCommAdv": false,
+    "personal": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "service": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "specialist": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "advanced": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "material": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "cash": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.0.1",
+    "coreVersion": "14.359"
+  },
+  "folder": "Ha2ErlLDwxlOynyp",
+  "_key": "!items!0a6d867ba253014a"
+}
