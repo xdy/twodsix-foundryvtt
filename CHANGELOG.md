@@ -1,3 +1,10 @@
+## [7.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.2.0...v7.2.1) (2026-04-29)
+
+
+### Bug Fixes
+
+* Adjust layout of characteristic values on traveller sheet ([#1983](https://github.com/xdy/twodsix-foundryvtt/issues/1983)) ([a40f8fe](https://github.com/xdy/twodsix-foundryvtt/commit/a40f8fe1bdd09d8cbab898c601f94c52c5f7aabd))
+
 # [7.2.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.1.2...v7.2.0) (2026-04-17)
 
 
