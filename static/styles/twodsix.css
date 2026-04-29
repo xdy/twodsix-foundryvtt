@@ -1527,7 +1527,7 @@ span.stat-ability {
   /* margin: -0.3em; */
   /* position: relative; */
   /* left: 0.8ch; */
-  top: -6ch;
+  top: -3.35rem;
 }
 
 input[data-tooltip *="("] {
@@ -1543,7 +1543,7 @@ span.stat-modifier {
   /* margin: -6px; */
   position: relative;
   left: 3.8ch;
-  top: -9ch;
+  top: -5.35rem;
 }
 
 span.stat-modifier-table {
@@ -1560,7 +1560,7 @@ span.stat-ability-table input, span.stat-modifier-table input {
 
 span.stat-damage {
   position: relative;
-  top: -9.5ch;
+  top: -6rem;
   left: 2ch;
 }
 
