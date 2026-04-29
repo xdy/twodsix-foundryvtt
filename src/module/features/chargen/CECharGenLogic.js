@@ -2,125 +2,61 @@
 import { calcModFor } from '../../utils/sheetUtils.js';
 import { addSign } from '../../utils/utils.js';
 import { BaseCharGenLogic } from './BaseCharGenLogic.js';
-import { CHARGEN_DIED, CHARACTERISTIC_KEYS, CharGenConstants } from './CharGenState.js';
-import { chooseGender, chooseLanguage, chooseName, chooseWeapon } from './CharGenUtils.js';
+import {
+  CE_AGING_TABLE,
+  CE_CASCADE_SKILLS,
+  CE_DRAFT_TABLE,
+  CE_EDUCATION_SKILLS,
+  CE_HOMEWORLD_DESCRIPTORS,
+  CE_INJURY_DESC,
+  CE_MISHAP_DESC,
+  CE_SKILL_NAME_MAP
+} from './CECharGenConstants.js';
+import { CHARGEN_DIED, CharGenConstants } from './CharGenState.js';
+import {
+  localizedPhysicalOpts,
+  optionsFromCareerNames,
+  optionsFromStrings,
+  promptContinueInCareer,
+} from './CharGenUtils.js';
 
 // ─── MODULE-LEVEL DATA (loaded from CE pack) ──────────────────────────────────
-
-let CAREERS = {};
-let CAREER_NAMES = [];
-let AGING_TABLE = [];
-let MISHAP_DESC = {};
-let INJURY_DESC = {};
-let DRAFT_TABLE = {};
-let CASCADE_SKILLS = {};
-let HOMEWORLD_DESCRIPTORS = {};
-let EDUCATION_SKILLS = [];
-let SKILL_NAME_MAP = {};
-let CHAR_KEY_MAP = {};
-let PHYS_OPTS = [];
-let MENT_OPTS = [];
 
 /**
  * CE character generation logic.
  * Extends BaseCharGenLogic with Cepheus Engine-specific rules.
  */
 export class CECharGenLogic extends BaseCharGenLogic {
-  constructor() {
-    super();
-  }
-
   resetData() {
     super.resetData();
-    CAREERS = {};
-    CAREER_NAMES = [];
-    AGING_TABLE = [];
-    MISHAP_DESC = {};
-    INJURY_DESC = {};
-    DRAFT_TABLE = {};
-    CASCADE_SKILLS = {};
-    HOMEWORLD_DESCRIPTORS = {};
-    EDUCATION_SKILLS = [];
-    SKILL_NAME_MAP = {};
-    CHAR_KEY_MAP = {};
-    PHYS_OPTS = [];
-    MENT_OPTS = [];
+    this.careers = {};
+    this.careerNames = [];
+    this.agingTable = [];
+    this.mishapDesc = {};
+    this.injuryDesc = {};
+    this.draftTable = {};
+    this.homeworldDescriptors = {};
+    this.educationSkills = [];
   }
 
-  async loadData(ruleset) {
-    this.resetData();
+  _getCareerPackOptions(ruleset) {
+    return {
+      careersFallbackPackName: 'twodsix.ce-srd-careers',
+    };
+  }
 
-    const packName = `twodsix.${ruleset.toLowerCase()}-careers`;
-    const fallbackPackName = 'twodsix.ce-srd-careers';
-    const requestedPack = game.packs.get(packName);
-    if (!requestedPack && ruleset !== 'CE') {
-      console.warn(`twodsix | CharGen: pack "${packName}" not found — falling back to CE careers.`);
-    }
-    let pack = requestedPack || game.packs.get(fallbackPackName);
-    if (!pack) {
-      throw new Error(`Failed to load career data: ${packName} or ${fallbackPackName} not found.`);
-    }
-    const careerDocs = await pack.getDocuments();
-    CAREERS = careerDocs.reduce((acc, doc) => {
-      if (!doc?.name || !doc?.system || typeof doc.system !== 'object') {
-        console.warn(`twodsix | CharGen: skipping invalid career entry in ${pack.collection}.`, doc);
-        return acc;
-      }
-      acc[doc.name] = doc.system;
-      return acc;
-    }, {});
-    CAREER_NAMES = Object.keys(CAREERS).sort();
-    if (!CAREER_NAMES.length) {
-      throw new Error(`Failed to load career data: no valid careers found in ${pack.collection}.`);
-    }
+  _assignRulesetConstants(careers, careerNames, ruleset) {
+    this.careers = careers;
+    this.careerNames = careerNames;
 
-    // Load chargen ruleset
-    const chargenPackName = `twodsix.${ruleset.toLowerCase()}-chargen-ruleset`;
-    const chargenFallbackPackName = 'twodsix.ce-srd-chargen-ruleset';
-    const requestedChargenPack = game.packs.get(chargenPackName);
-    if (!requestedChargenPack && ruleset !== 'CE') {
-      console.warn(`twodsix | CharGen: pack "${chargenPackName}" not found — falling back to CE chargen ruleset.`);
-    }
-    const chargenPack = requestedChargenPack || game.packs.get(chargenFallbackPackName);
-    if (!chargenPack) {
-      throw new Error(`Failed to load chargen ruleset: ${chargenPackName} not found.`);
-    }
-    const chargenDocs = await chargenPack.getDocuments();
-    const chargenItem = chargenDocs.find(d => d.system.ruleset === ruleset) ?? chargenDocs[0];
-    if (!chargenItem) {
-      throw new Error(`Failed to find chargen ruleset in ${chargenPackName}.`);
-    }
-    const rulesetData = chargenItem.system;
-
-    AGING_TABLE = rulesetData.agingTable.map(row =>
-      row.noEffect ? null : { phys: [row.physStr, row.physDex, row.physEnd], mental: row.mental }
-    );
-    MISHAP_DESC = rulesetData.mishapDesc;
-    INJURY_DESC = rulesetData.injuryDesc;
-    DRAFT_TABLE = rulesetData.draftTable;
-    CASCADE_SKILLS = Object.fromEntries(
-      rulesetData.cascadeSkills.map(({ skill, specializations }) => [skill, specializations])
-    );
-    HOMEWORLD_DESCRIPTORS = Object.fromEntries(
-      rulesetData.homeworldDescriptors.map(({ descriptor, skill }) => [descriptor, skill])
-    );
-    EDUCATION_SKILLS = rulesetData.educationSkills;
-    SKILL_NAME_MAP = Object.fromEntries(
-      rulesetData.skillNameMap.map(({ from, to }) => [from, to])
-    );
-    CHAR_KEY_MAP = Object.fromEntries(
-      rulesetData.charKeyMap.map(({ benefit, key }) => [benefit, key])
-    );
-    PHYS_OPTS = [
-      { value: 'str', label: 'Strength' },
-      { value: 'dex', label: 'Dexterity' },
-      { value: 'end', label: 'Endurance' },
-    ];
-    MENT_OPTS = [
-      { value: 'int', label: 'Intelligence' },
-      { value: 'edu', label: 'Education' },
-      { value: 'soc', label: 'Social Standing' },
-    ];
+    this.agingTable = CE_AGING_TABLE;
+    this.mishapDesc = CE_MISHAP_DESC;
+    this.injuryDesc = CE_INJURY_DESC;
+    this.draftTable = CE_DRAFT_TABLE;
+    this.cascadeSkills = CE_CASCADE_SKILLS;
+    this.homeworldDescriptors = CE_HOMEWORLD_DESCRIPTORS;
+    this.educationSkills = CE_EDUCATION_SKILLS;
+    this.skillNameMap = CE_SKILL_NAME_MAP;
   }
 
   /**
@@ -129,12 +65,9 @@ export class CECharGenLogic extends BaseCharGenLogic {
    * @returns {Promise<void>}
    */
   async run(app) {
+    await this.loadData(app.charState.ruleset);
     const state = app.charState;
-
-    await app._chooseCharacteristics();
-    state.gender = await chooseGender(app);
-    await chooseLanguage(app);
-    await chooseName(app);
+    await this.stepIdentity(app);
 
     await this.stepHomeworld(app);
 
@@ -142,7 +75,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
     let forceRetire = false;
     while (true) {
       const { careerName, drafted } = await this.stepQualification(app);
-      const career = CAREERS[careerName];
+      const career = this.careers[careerName];
       state.currentRank = 0;
       state.currentTermInCareer = 0;
       await this._applyRankSkill(app, careerName, 0);
@@ -154,16 +87,11 @@ export class CECharGenLogic extends BaseCharGenLogic {
         state.totalTerms++;
         state.currentTermInCareer++;
         const ageStart = state.age;
-        const ageEnd = state.age + 3;
-        app._log(`${careerName} — Term ${state.currentTermInCareer}`, `Age ${ageStart}–${ageEnd}`);
-        state.log.push(`── ${careerName}, Term ${state.currentTermInCareer} (age ${ageStart}–${ageEnd}) ──`);
-        const verb = state.currentTermInCareer > 1 ? 'Stayed a' : 'Became a';
-        // Term history entry created but not used in this flow
-        this.startTermHistoryEntry(state, {
+        this.logTermStart(app, {
           careerName,
+          termInCareer: state.currentTermInCareer,
           totalTerm: state.totalTerms,
           ageStart,
-          startedVerb: verb,
         });
         const { survived, benefitsLost } = await this.stepSurvival(app, careerName);
         if (!survived) {
@@ -213,46 +141,65 @@ export class CECharGenLogic extends BaseCharGenLogic {
       }
       const another = await this.promptAnotherCareer(app, state.totalTerms);
       if (another !== 'yes') {
-        const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
+        const h = this.findTermEntry(state, careerName, state.totalTerms);
         if (h) {
           h.events.push(`Voluntarily left ${careerName}`);
         }
         break;
       }
     }
+    // settle outstanding medical/legal debt from cash benefits
+    this.stepSettleDebt(app);
   }
 
   // ─── CE-SPECIFIC STEPS ────────────────────────────────────────────────────────
 
   async stepHomeworld(app) {
     const state = app.charState;
-    const doHW = await app._choose(
-      'Homeworld background skills?',
-      [
-        { value: 'yes', label: 'Yes — pick homeworld descriptors' },
-        { value: 'no', label: 'No — skip' },
-      ]
-    );
-    if (doHW !== 'yes') {
-      return;
-    }
+    const doHW = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.HomeworldBackground'), [
+      { value: 'yes', label: game.i18n.localize('TWODSIX.CharGen.Options.YesPickHomeworld') },
+      { value: 'no', label: game.i18n.localize('TWODSIX.CharGen.Options.NoSkipHomeworldEducation') },
+    ]);
     const total = Math.max(1, 3 + calcModFor(state.chars.edu ?? 0));
     state.log.push(`Background skills: ${total}`);
-    const hwKeys = Object.keys(HOMEWORLD_DESCRIPTORS);
+
+    if (doHW !== 'yes') {
+      // No homeworld chosen: all slots come from the education list
+      for (let i = 0; i < total; i++) {
+        const sk = await app._choose(
+          game.i18n.format('TWODSIX.CharGen.Steps.EducationBackgroundSkillNTotal', { current: i + 1, total }),
+          optionsFromStrings(this.educationSkills),
+        );
+        await this._addSkillAtLevel(app, sk, 0);
+        state.log.push(`Background (education): ${sk}-0`);
+      }
+      return;
+    }
+
+    const hwKeys = Object.keys(this.homeworldDescriptors);
     const hwCount = Math.min(2, total);
     for (let i = 0; i < hwCount; i++) {
       const desc = await app._choose(
-        `Homeworld descriptor ${i + 1}/${hwCount}`,
-        hwKeys.sort().map(k => ({ value: k, label: `${k} -> ${HOMEWORLD_DESCRIPTORS[k]}` }))
+        game.i18n.format('TWODSIX.CharGen.Steps.HomeworldDescriptorNTotal', { current: i + 1, max: hwCount }),
+        hwKeys.sort().map(k => ({
+          value: k,
+          label: game.i18n.format('TWODSIX.CharGen.Steps.HomeworldDescriptorWithSkill', {
+            descriptor: k,
+            skill: this.homeworldDescriptors[k],
+          }),
+        })),
       );
-      await this._addSkillAtLevel(app, HOMEWORLD_DESCRIPTORS[desc], 0);
+      await this._addSkillAtLevel(app, this.homeworldDescriptors[desc], 0);
       state.homeworldDescriptors.push(desc);
-      state.log.push(`Background (${desc}): ${HOMEWORLD_DESCRIPTORS[desc]}-0`);
+      state.log.push(`Background (${desc}): ${this.homeworldDescriptors[desc]}-0`);
     }
     for (let i = 0; i < total - hwCount; i++) {
       const sk = await app._choose(
-        `Education background skill ${i + 1}/${total - hwCount}`,
-        EDUCATION_SKILLS.sort().map(s => ({ value: s, label: s }))
+        game.i18n.format('TWODSIX.CharGen.Steps.EducationBackgroundSkillNTotal', {
+          current: i + 1,
+          total: total - hwCount,
+        }),
+        optionsFromStrings(this.educationSkills),
       );
       await this._addSkillAtLevel(app, sk, 0);
       state.log.push(`Background (education): ${sk}-0`);
@@ -261,7 +208,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepQualification(app) {
     const state = app.charState;
-    const fallbackCareer = CAREERS.Drifter ? 'Drifter' : CAREER_NAMES[0];
+    const fallbackCareer = this.careers.Drifter ? 'Drifter' : this.careerNames[0];
     if (!fallbackCareer) {
       throw new Error('CharGen qualification failed: no careers are available.');
     }
@@ -269,7 +216,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       app._log('Qualification', 'Prior crisis — auto-fail. Entering Drifter.');
       return { careerName: fallbackCareer, drafted: false };
     }
-    const available = CAREER_NAMES.filter(n => n === 'Drifter' || !state.previousCareers.includes(n)).sort((a, b) =>
+    const available = this.careerNames.filter(n => n === 'Drifter' || !state.previousCareers.includes(n)).sort((a, b) =>
       a.localeCompare(b)
     );
     if (!available.length) {
@@ -277,12 +224,14 @@ export class CECharGenLogic extends BaseCharGenLogic {
       return { careerName: fallbackCareer, drafted: false };
     }
     const qualDM = -2 * state.previousCareers.length;
-    const careerName = await app._choose(
-      `Choose career${qualDM ? ` (qual DM: ${addSign(qualDM)})` : ''}`,
-      available.map(n => ({ value: n, label: n }))
-    );
+    const careerLabel =
+      qualDM === 0
+        ? game.i18n.localize('TWODSIX.CharGen.Steps.ChooseCareer')
+        : game.i18n.localize('TWODSIX.CharGen.Steps.ChooseCareer') +
+          game.i18n.format('TWODSIX.CharGen.Steps.ChooseCareerQualDmSuffix', { dm: addSign(qualDM) });
+    const careerName = await app._choose(careerLabel, optionsFromCareerNames(available));
     const chosenCareerName = available.includes(careerName) ? careerName : fallbackCareer;
-    const career = CAREERS[chosenCareerName];
+    const career = this.careers[chosenCareerName];
     if (!career) {
       app._log('Qualification', `Selected career data missing; defaulting to ${fallbackCareer}.`);
       return { careerName: fallbackCareer, drafted: false };
@@ -302,13 +251,13 @@ export class CECharGenLogic extends BaseCharGenLogic {
     }
     const failOpts = [];
     if (!state.hasBeenDrafted) {
-      failOpts.push({ value: 'draft', label: 'Submit to Draft' });
+      failOpts.push({ value: 'draft', label: game.i18n.localize('TWODSIX.CharGen.Options.SubmitToDraft') });
     }
-    failOpts.push({ value: 'drifter', label: 'Enter Drifter career' });
-    const failChoice = await app._choose('Qualification failed — choose option', failOpts);
+    failOpts.push({ value: 'drifter', label: game.i18n.localize('TWODSIX.CharGen.Options.EnterDrifter') });
+    const failChoice = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.QualificationFailed'), failOpts);
     if (failChoice === 'draft') {
       const dr = await app._roll('1d6');
-      const drafted = DRAFT_TABLE[dr] && CAREERS[DRAFT_TABLE[dr]] ? DRAFT_TABLE[dr] : fallbackCareer;
+      const drafted = this.draftTable[dr] && this.careers[this.draftTable[dr]] ? this.draftTable[dr] : fallbackCareer;
       state.hasBeenDrafted = true;
       state.log.push(`Drafted into ${drafted} (1D6=${dr}).`);
       app._log('Draft', `1D6=${dr} -> ${drafted}`);
@@ -320,7 +269,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepBasicTraining(app, careerName, isFirstCareer) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     if (isFirstCareer) {
       for (const sk of career.service.sort()) {
         await this._addSkillAtLevel(app, sk, 0);
@@ -329,8 +278,8 @@ export class CECharGenLogic extends BaseCharGenLogic {
       app._log('Basic training', 'All service skills at 0');
     } else {
       const sk = await app._choose(
-        'Basic training: pick one service skill (level 0)',
-        career.service.sort().map(s => ({ value: s, label: s }))
+        game.i18n.localize('TWODSIX.CharGen.Steps.BasicTraining'),
+        optionsFromStrings(career.service),
       );
       await this._addSkillAtLevel(app, sk, 0);
       state.log.push(`Basic training: ${sk}-0`);
@@ -339,7 +288,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepSurvival(app, careerName) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     const roll = await app._roll('2d6');
     const mod = calcModFor(state.chars[career.surv.char] ?? 0);
     const total = roll + mod;
@@ -350,7 +299,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       `${roll}${addSign(mod)}(${career.surv.char.toUpperCase()})=${total} vs ${career.surv.target}+${nat2 ? ' (auto-fail)' : ''} -> ${survived ? 'Survived' : 'Mishap'}`
     );
     state.log.push(survived ? `Survived term in ${careerName}.` : `Mishap in ${careerName}.`);
-    const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
+    const h = this.findTermEntry(state, careerName, state.totalTerms);
     if (!survived && h) {
       h.events.push(`Mishap in ${careerName}.`);
     }
@@ -358,10 +307,10 @@ export class CECharGenLogic extends BaseCharGenLogic {
       return { survived: true, benefitsLost: false };
     }
     const mr = await app._roll('1d6');
-    app._log(`Mishap (${mr})`, MISHAP_DESC[mr]);
-    state.log.push(`Mishap ${mr}: ${MISHAP_DESC[mr]}`);
+    app._log(`Mishap (${mr})`, this.mishapDesc[mr]);
+    state.log.push(`Mishap ${mr}: ${this.mishapDesc[mr]}`);
     if (h) {
-      h.events.push(MISHAP_DESC[mr]);
+      h.events.push(this.mishapDesc[mr]);
     }
     const benefitsLost = mr >= 4;
     if (mr === 5) {
@@ -385,98 +334,139 @@ export class CECharGenLogic extends BaseCharGenLogic {
     return { survived: false, benefitsLost };
   }
 
-  async stepCommission(app, careerName) {
+  /**
+   * Shared 2D6 + characteristic DM roll for commission and advancement (CE).
+   * @returns {Promise<{ succeeded: boolean, extraRoll: number }>}
+   */
+  async _ceAttemptStatRoll(app, careerName, {
+    choosePrompt,
+    logLabel,
+    statChar,
+    target,
+    buildAppLogOutcome,
+    stateLogLine,
+    pushTermHistory,
+    onSuccess,
+  }) {
     const state = app.charState;
-    const career = CAREERS[careerName];
-    if (!career.comm || state.currentRank !== 0) {
-      return { succeeded: false, extraRoll: 0 };
-    }
-    const attempt = await app._choose(
-      `Commission? (${career.comm.char.toUpperCase()} ${career.comm.target}+)`,
-      [
-        { value: 'yes', label: 'Yes — attempt commission' },
-        { value: 'no', label: 'No — skip' },
-      ]
-    );
+    const attempt = await app._choose(choosePrompt, [
+      {
+        value: 'yes',
+        label: game.i18n.localize(
+          logLabel === 'Commission'
+            ? 'TWODSIX.CharGen.Options.YesAttemptCommission'
+            : 'TWODSIX.CharGen.Options.YesAttemptAdvancement',
+        ),
+      },
+      {
+        value: 'no',
+        label: game.i18n.localize(
+          logLabel === 'Commission'
+            ? 'TWODSIX.CharGen.Options.NoSkipCommission'
+            : 'TWODSIX.CharGen.Options.NoSkipAdvancement',
+        ),
+      },
+    ]);
     if (attempt !== 'yes') {
       return { succeeded: false, extraRoll: 0 };
     }
     const roll = await app._roll('2d6');
-    const mod = calcModFor(state.chars[career.comm.char] ?? 0);
+    const mod = calcModFor(state.chars[statChar] ?? 0);
     const total = roll + mod;
-    const success = total >= career.comm.target;
-    app._log(
-      'Commission',
-      `${roll}${addSign(mod)}=${total} vs ${career.comm.target}+ -> ${success ? 'Commissioned (Rank 1)' : 'Failed'}`
-    );
-    state.log.push(success ? `Commissioned. Now ${CAREERS[careerName].ranks[1]?.title ?? 'Rank 1'}.` : 'Commission failed.');
-    const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
-    if (success && h) {
-      h.events.push(`Promoted to ${CAREERS[careerName].ranks[1]?.title || careerName} rank 1`);
-    } else if (!success && h) {
-      h.events.push('Attempt at commission failed.');
-    }
+    const success = total >= target;
+    app._log(logLabel, `${roll}${addSign(mod)}=${total} vs ${target}+ -> ${buildAppLogOutcome(success)}`);
+    state.log.push(stateLogLine(success));
+    const h = this.findTermEntry(state, careerName, state.totalTerms);
+    pushTermHistory(success, h);
     if (!success) {
       return { succeeded: false, extraRoll: 0 };
     }
-    state.currentRank = 1;
-    await this._applyRankSkill(app, careerName, 1);
+    await onSuccess();
     return { succeeded: true, extraRoll: 1 };
+  }
+
+  async stepCommission(app, careerName) {
+    const state = app.charState;
+    const career = this.careers[careerName];
+    if (!career.comm || state.currentRank !== 0) {
+      return { succeeded: false, extraRoll: 0 };
+    }
+    return this._ceAttemptStatRoll(app, careerName, {
+      choosePrompt: game.i18n.format('TWODSIX.CharGen.Steps.CommissionWithTarget', {
+        char: career.comm.char.toUpperCase(),
+        target: career.comm.target,
+      }),
+      logLabel: 'Commission',
+      statChar: career.comm.char,
+      target: career.comm.target,
+      buildAppLogOutcome: success => (success ? 'Commissioned (Rank 1)' : 'Failed'),
+      stateLogLine: success =>
+        success ? `Commissioned. Now ${this.careers[careerName].ranks[1]?.title ?? 'Rank 1'}.` : 'Commission failed.',
+      pushTermHistory: (success, h) => {
+        if (success && h) {
+          h.events.push(`Promoted to ${this.careers[careerName].ranks[1]?.title || careerName} rank 1`);
+        } else if (!success && h) {
+          h.events.push('Attempt at commission failed.');
+        }
+      },
+      onSuccess: async () => {
+        state.currentRank = 1;
+        await this._applyRankSkill(app, careerName, 1);
+      },
+    });
   }
 
   async stepAdvancement(app, careerName) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     if (!career.adv || state.currentRank < 1) {
       return { succeeded: false, extraRoll: 0 };
     }
-    const attempt = await app._choose(
-      `Advancement? (${career.adv.char.toUpperCase()} ${career.adv.target}+, rank ${state.currentRank})`,
-      [
-        { value: 'yes', label: 'Yes — attempt advancement' },
-        { value: 'no', label: 'No — skip' },
-      ]
-    );
-    if (attempt !== 'yes') {
-      return { succeeded: false, extraRoll: 0 };
-    }
-    const roll = await app._roll('2d6');
-    const mod = calcModFor(state.chars[career.adv.char] ?? 0);
-    const total = roll + mod;
-    const success = total >= career.adv.target;
     const newRank = state.currentRank + 1;
-    app._log(
-      'Advancement',
-      `${roll}${addSign(mod)}=${total} vs ${career.adv.target}+ -> ${success ? `Rank ${newRank}` : 'Failed'}`
-    );
-    state.log.push(success ? `Advanced to rank ${newRank}.` : 'Advancement failed.');
-    const h = state.termHistory.find(th => th.career === careerName && th.term === state.totalTerms);
-    if (success && h) {
-      h.events.push(`Promoted to ${CAREERS[careerName].ranks[newRank]?.title || careerName} rank ${newRank}`);
-    }
-    if (!success) {
-      return { succeeded: false, extraRoll: 0 };
-    }
-    state.currentRank = newRank;
-    await this._applyRankSkill(app, careerName, newRank);
-    return { succeeded: true, extraRoll: 1 };
+    return this._ceAttemptStatRoll(app, careerName, {
+      choosePrompt: game.i18n.format('TWODSIX.CharGen.Steps.AdvancementWithTargetRank', {
+        char: career.adv.char.toUpperCase(),
+        target: career.adv.target,
+        rank: state.currentRank,
+      }),
+      logLabel: 'Advancement',
+      statChar: career.adv.char,
+      target: career.adv.target,
+      buildAppLogOutcome: success => (success ? `Rank ${newRank}` : 'Failed'),
+      stateLogLine: success => (success ? `Advanced to rank ${newRank}.` : 'Advancement failed.'),
+      pushTermHistory: (success, h) => {
+        if (success && h) {
+          h.events.push(`Promoted to ${this.careers[careerName].ranks[newRank]?.title || careerName} rank ${newRank}`);
+        }
+      },
+      onSuccess: async () => {
+        state.currentRank = newRank;
+        await this._applyRankSkill(app, careerName, newRank);
+      },
+    });
   }
 
   async stepSkillsAndTraining(app, careerName, numRolls) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     const canAdv = state.chars.edu >= 8;
     for (let i = 0; i < numRolls; i++) {
       const tables = [
-        { value: 'personal', label: 'Personal Development' },
-        { value: 'service', label: 'Service Skills' },
-        { value: 'specialist', label: 'Specialist Skills' },
+        { value: 'personal', label: game.i18n.localize('TWODSIX.CharGen.Skills.PersonalDevelopment') },
+        { value: 'service', label: game.i18n.localize('TWODSIX.CharGen.Skills.ServiceSkills') },
+        { value: 'specialist', label: game.i18n.localize('TWODSIX.CharGen.Skills.SpecialistSkills') },
       ];
       if (canAdv) {
-        tables.push({ value: 'advanced', label: `Advanced Education (Edu ${state.chars.edu})` });
+        tables.push({
+          value: 'advanced',
+          label: game.i18n.format('TWODSIX.CharGen.Skills.AdvancedEducationWithScore', { edu: state.chars.edu }),
+        });
       }
       tables.sort((a, b) => a.label.localeCompare(b.label));
-      const tbl = await app._choose(`Skills & Training roll ${i + 1}/${numRolls}`, tables);
+      const tbl = await app._choose(
+        game.i18n.format('TWODSIX.CharGen.Steps.SkillsAndTrainingRollNTotal', { current: i + 1, total: numRolls }),
+        tables,
+      );
       const dr = await app._roll('1d6');
       const entry = career[tbl][dr - 1];
       app._log(`  Table: ${tables.find(t => t.value === tbl).label}, roll ${dr}`, entry);
@@ -500,7 +490,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
 
   async stepReenlistment(app, careerName) {
     const state = app.charState;
-    const career = CAREERS[careerName];
+    const career = this.careers[careerName];
     const roll = await app._roll('2d6');
     const success = roll >= career.reenlist;
     const nat12 = roll === 12;
@@ -513,6 +503,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       return { mustContinue: true, mustRetire: false, wantsToContinue: true };
     }
     if (state.totalTerms >= 7) {
+      state.retired = true;
       state.log.push('Mandatory retirement (7+ terms).');
       return { mustContinue: false, mustRetire: true, wantsToContinue: false };
     }
@@ -520,20 +511,14 @@ export class CECharGenLogic extends BaseCharGenLogic {
       state.log.push(`Re-enlistment failed; leaving ${careerName}.`);
       return { mustContinue: false, mustRetire: false, wantsToContinue: false };
     }
-    const stay = await app._choose(
-      `Continue in ${careerName} for another term?`,
-      [
-        { value: 'yes', label: 'Yes — serve another term' },
-        { value: 'no', label: 'No — leave' },
-      ]
-    );
+    const stay = await promptContinueInCareer(app, careerName);
     state.log.push(stay === 'yes' ? `Continuing in ${careerName}.` : `Leaving ${careerName}.`);
     return { mustContinue: false, mustRetire: false, wantsToContinue: stay === 'yes' };
   }
 
   async stepMusterOut(app, careerRecord) {
     const state = app.charState;
-    const career = CAREERS[careerRecord.name];
+    const career = this.careers[careerRecord.name];
     const billableTerms = careerRecord.mishap ? careerRecord.terms - 1 : careerRecord.terms;
     const rankBonus = careerRecord.rank >= 4 ? careerRecord.rank - 3 : 0;
     const totalRolls = billableTerms + rankBonus;
@@ -542,26 +527,37 @@ export class CECharGenLogic extends BaseCharGenLogic {
       return;
     }
     const matDM = careerRecord.rank >= 5 ? 1 : 0;
-    state.log.push(`Muster out: ${totalRolls} roll(s). Mat. DM: ${addSign(matDM)}`);
+    // CE SRD: characters with Gambling skill or who have retired get +1 on cash rolls
+    const cashBonusDM = (state.retired || state.skills.has('Gambling')) ? 1 : 0;
+    state.log.push(`Muster out: ${totalRolls} roll(s). Mat. DM: ${addSign(matDM)}${cashBonusDM ? '. Cash DM: +1 (Gambling/retired)' : ''}`);
     for (let i = 0; i < totalRolls; i++) {
       const cashLeft = 3 - state.cashRollsUsed;
       const btns = [];
       if (cashLeft > 0) {
-        btns.push({ value: 'cash', label: `Cash (${cashLeft} remaining)` });
+        btns.push({
+          value: 'cash',
+          label: game.i18n.format('TWODSIX.CharGen.Options.CashRemaining', { remaining: cashLeft }),
+        });
       }
-      btns.push({ value: 'material', label: 'Material benefit' });
+      btns.push({ value: 'material', label: game.i18n.localize('TWODSIX.CharGen.Options.MaterialBenefit') });
       btns.sort((a, b) => a.label.localeCompare(b.label));
       const choice = await app._choose(
-        `Muster out ${i + 1}/${totalRolls} (${careerRecord.name}, rank ${careerRecord.rank})`,
-        btns
+        game.i18n.format('TWODSIX.CharGen.Steps.MusterOutRollN', {
+          current: i + 1,
+          total: totalRolls,
+          career: careerRecord.name,
+          rank: careerRecord.rank,
+        }),
+        btns,
       );
       const roll = await app._roll('1d6');
       if (choice === 'cash') {
-        const amt = career.cash[roll - 1];
+        const adjRoll = Math.min(career.cash.length, roll + cashBonusDM);
+        const amt = career.cash[adjRoll - 1];
         state.cashBenefits += amt;
         state.cashRollsUsed++;
-        state.log.push(`Cash (1D6=${roll}): Cr${amt.toLocaleString()}`);
-        app._log(`Cash (${roll})`, `Cr${amt.toLocaleString()}`);
+        state.log.push(`Cash (1D6=${roll}${cashBonusDM ? '+1' : ''}=${adjRoll}): Cr${amt.toLocaleString()}`);
+        app._log(`Cash (${adjRoll})`, `Cr${amt.toLocaleString()}`);
       } else {
         const adjRoll = Math.min(7, roll + matDM);
         const benefit = career.material[adjRoll - 1];
@@ -570,10 +566,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
           continue;
         }
         app._log(`Material (${roll}${matDM ? '+' + matDM : ''}=${adjRoll})`, benefit);
-        if (CHAR_KEY_MAP[benefit]) {
-          state.chars[CHAR_KEY_MAP[benefit]]++;
-          state.log.push(`Material: ${benefit}`);
-        } else if (benefit === '1D6 Ship Shares') {
+        if (benefit === '1D6 Ship Shares') {
           const count = await app._roll('1d6');
           state.materialBenefits.push(`${count} Ship Share(s)`);
           state.log.push(`Material: ${count} Ship Share(s)`);
@@ -582,38 +575,31 @@ export class CECharGenLogic extends BaseCharGenLogic {
             state.materialBenefits.push("Explorers' Society");
           }
           state.log.push("Material: Explorers' Society");
-        } else if (benefit === 'Weapon') {
-          await chooseWeapon(app);
         } else {
-          state.materialBenefits.push(benefit);
-          state.log.push(`Material: ${benefit}`);
+          await this.applySharedMaterialBenefit(app, benefit, 'ce');
         }
       }
     }
     const pension = CharGenConstants.getPensionForTerms(billableTerms);
-    if (pension > 0 && state.pension === 0) {
-      state.pension = pension;
-      state.log.push(`Pension: Cr${state.pension.toLocaleString()}/year`);
-      app._log('Pension', `Cr${state.pension.toLocaleString()}/year`);
+    if (pension > 0) {
+      state.retired = true;
+      if (state.pension === 0) {
+        state.pension = pension;
+        state.log.push(`Pension: Cr${state.pension.toLocaleString()}/year`);
+        app._log('Pension', `Cr${state.pension.toLocaleString()}/year`);
+      }
     }
   }
 
   // ─── CE CRISIS CHECK ─────────────────────────────────────────────────────────
 
-  async checkCrisis(app) {
+  async _handleCrisis(app, zeroChars) {
     const state = app.charState;
-    const zero = CHARACTERISTIC_KEYS.filter(c => (state.chars[c] ?? 0) <= 0);
-    if (!zero.length) {
-      return;
-    }
     const cost = (await app._roll('1d6')) * CharGenConstants.CRISIS_COST_MULTIPLIER;
-    const choice = await app._choose(
-      `Crisis! Pay Cr${cost.toLocaleString()} for emergency care?`,
-      [
-        { value: 'plata', label: `Pay Cr${cost.toLocaleString()} — survive` },
-        { value: 'plomo', label: 'Refuse — die' },
-      ]
-    );
+    const choice = await app._choose(game.i18n.format('TWODSIX.CharGen.Steps.CrisisPayEmergency', { amount: cost.toLocaleString() }), [
+      { value: 'plata', label: game.i18n.format('TWODSIX.CharGen.Options.PaySurvive', { amount: cost.toLocaleString() }) },
+      { value: 'plomo', label: game.i18n.localize('TWODSIX.CharGen.Options.RefuseDie') },
+    ]);
     if (choice === 'plomo') {
       app._log('Outcome', 'Character died — generation ended.');
       state.died = true;
@@ -626,7 +612,7 @@ export class CECharGenLogic extends BaseCharGenLogic {
       }
       throw CHARGEN_DIED;
     }
-    zero.forEach(c => {
+    zeroChars.forEach(c => {
       if ((state.chars[c] ?? 0) <= 0) {
         state.chars[c] = 1;
       }
@@ -637,91 +623,49 @@ export class CECharGenLogic extends BaseCharGenLogic {
     app._log('Crisis survived', `Medical debt +Cr${cost.toLocaleString()}`);
   }
 
-  // ─── PRIVATE HELPERS ─────────────────────────────────────────────────────────
-
-  async _pickSpecialization(app, name) {
-    return app._choose(
-      `Specialize: ${name}`,
-      CASCADE_SKILLS[name].sort().map(s => ({ value: s, label: s }))
-    );
-  }
-
-  async _resolveSkillName(app, raw) {
-    if (SKILL_NAME_MAP[raw]) {
-      return SKILL_NAME_MAP[raw];
-    }
-    if (raw in CASCADE_SKILLS) {
-      return this._pickSpecialization(app, raw);
-    }
-    return raw;
-  }
-
-  async _addSkillAtLevel(app, rawName, level) {
-    const name = await this._resolveSkillName(app, rawName);
-    if (!name) {
-      return;
-    }
-    await this.setSkillAtLeast(app, name, level);
-  }
-
-  async _addOrImproveSkill(app, rawName) {
-    const name = await this._resolveSkillName(app, rawName);
-    if (!name) {
-      return;
-    }
-    await this.improveSkill(app, name);
-  }
-
-  async _applyTableEntry(app, entry) {
-    const state = app.charState;
-    if (CHAR_KEY_MAP[entry]) {
-      state.chars[CHAR_KEY_MAP[entry]]++;
-      app._log('Characteristic', entry);
-    } else {
-      const before = state.skills.get(SKILL_NAME_MAP[entry] ?? entry) ?? -1;
-      await this._addOrImproveSkill(app, entry);
-      const displayName = SKILL_NAME_MAP[entry] ?? entry;
-      app._log('Skill', `${displayName}-${state.skills.get(displayName) ?? (before + 1)}`);
-    }
-  }
-
   async _applyInjury(app, roll) {
     const state = app.charState;
-    app._log(`Injury (${roll})`, INJURY_DESC[roll]);
-    state.log.push(`Injury (${roll}): ${INJURY_DESC[roll]}`);
+    app._log(`Injury (${roll})`, this.injuryDesc[roll]);
+    state.log.push(`Injury (${roll}): ${this.injuryDesc[roll]}`);
     if (roll === 6) {
       return;
     }
     if (roll === 5) {
-      const c = await app._choose('Injured: reduce characteristic by 1', PHYS_OPTS);
+      const c = await app._choose(game.i18n.localize('TWODSIX.CharGen.Injuries.Injured'), localizedPhysicalOpts());
       state.chars[c]--;
     } else if (roll === 4) {
-      const c = await app._choose('Scarred: reduce characteristic by 2', PHYS_OPTS);
+      const c = await app._choose(game.i18n.localize('TWODSIX.CharGen.Injuries.Scarred'), localizedPhysicalOpts());
       state.chars[c] -= 2;
     } else if (roll === 3) {
-      const c = await app._choose('Missing part: STR or DEX −2', [
-        { value: 'str', label: 'Strength −2' },
-        { value: 'dex', label: 'Dexterity −2' },
+      const c = await app._choose(game.i18n.localize('TWODSIX.CharGen.Injuries.MissingPart'), [
+        { value: 'str', label: game.i18n.localize('TWODSIX.CharGen.Options.StrengthMinus2') },
+        { value: 'dex', label: game.i18n.localize('TWODSIX.CharGen.Options.DexterityMinus2') },
       ]);
       state.chars[c] -= 2;
     } else if (roll === 2) {
-      const c = await app._choose('Severely injured: reduce characteristic by 1D6', PHYS_OPTS);
+      const c = await app._choose(game.i18n.localize('TWODSIX.CharGen.Injuries.SeverelyInjured'), localizedPhysicalOpts());
       state.chars[c] -= await app._roll('1d6');
     } else {
-      const c1 = await app._choose('Nearly killed: reduce characteristic by 1D6', PHYS_OPTS);
+      const c1 = await app._choose(game.i18n.localize('TWODSIX.CharGen.Injuries.NearlyKilled'), localizedPhysicalOpts());
       state.chars[c1] -= await app._roll('1d6');
       const others = ['str', 'dex', 'end'].filter(c => c !== c1);
-      const mode = await app._choose('Nearly killed: distribute remaining penalties', [
-        { value: 'split', label: `${others[0].toUpperCase()} and ${others[1].toUpperCase()} each −2` },
-        { value: 'one', label: 'One takes −4' },
+      const mode = await app._choose(game.i18n.localize('TWODSIX.CharGen.Injuries.DistributeRemaining'), [
+        {
+          value: 'split',
+          label: game.i18n.format('TWODSIX.CharGen.Injuries.SplitPenalty', {
+            stat1: others[0].toUpperCase(),
+            stat2: others[1].toUpperCase(),
+          }),
+        },
+        { value: 'one', label: game.i18n.localize('TWODSIX.CharGen.Injuries.OneTakes') },
       ]);
       if (mode === 'split') {
         state.chars[others[0]] -= 2;
         state.chars[others[1]] -= 2;
       } else {
         const c2 = await app._choose(
-          'Nearly killed: which takes −4',
-          others.map(c => ({ value: c, label: c.toUpperCase() + ' −4' }))
+          game.i18n.localize('TWODSIX.CharGen.Injuries.WhichTakes'),
+          others.map(c => ({ value: c, label: `${c.toUpperCase()} −4` })),
         );
         state.chars[c2] -= 4;
       }
@@ -732,26 +676,18 @@ export class CECharGenLogic extends BaseCharGenLogic {
   async _applyAgingEffect(app, result) {
     const state = app.charState;
     const idx = Math.min(7, Math.max(0, result + 6));
-    const entry = AGING_TABLE[idx];
+    const entry = this.agingTable[idx];
     if (!entry) {
       app._log('Aging effect', 'No effect.');
       return;
     }
     state.log.push(`Aging roll ${result}: reducing characteristics.`);
-    for (const amt of entry.phys.filter(n => n > 0)) {
-      const c = await app._choose(`Aging: reduce characteristic by ${amt}`, PHYS_OPTS);
-      state.chars[c] -= amt;
-    }
-    if (entry.mental > 0) {
-      const c = await app._choose('Aging: reduce mental characteristic by 1', MENT_OPTS);
-      state.chars[c]--;
-    }
-    await this.checkCrisis(app);
+    await this.applyAgingEntryReductions(app, entry);
   }
 
   async _applyRankSkill(app, careerName, rank) {
     const state = app.charState;
-    const r = CAREERS[careerName].ranks[rank];
+    const r = this.careers[careerName].ranks[rank];
     if (r?.skill) {
       await this._addSkillAtLevel(app, r.skill, r.level);
       state.log.push(`Rank ${rank} skill: ${r.skill}-${r.level}`);

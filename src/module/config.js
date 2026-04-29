@@ -1603,8 +1603,7 @@ export const ITEM_TYPE_SELECT = {
   spell: "TWODSIX.Items.Items.AssignSpell",
   tool: "TWODSIX.Items.Items.AssignTool",
   weapon: "TWODSIX.Items.Items.AssignWeapon",
-  career: "TWODSIX.Items.Career.AssignCareer",
-  chargen_ruleset: "TWODSIX.Items.ChargenRuleset.AssignChargenRuleset"
+  career: "TWODSIX.Items.Career.AssignCareer"
 };
 
 export const CU_DAMAGE_TYPES = {

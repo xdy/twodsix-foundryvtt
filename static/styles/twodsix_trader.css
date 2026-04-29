@@ -1,0 +1,261 @@
+/* ── Trade Journey UI ───────────────────────────────────────────────────── */
+
+.trade .window-content {
+  padding: 0;
+}
+
+.st-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 0.9em;
+}
+
+.st-status-bar {
+  padding: 6px 8px;
+  border-bottom: 1px solid #ccc;
+  background: var(--s2d6-input-background);
+  flex-shrink: 0;
+}
+
+.st-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+
+.st-status-item {
+  white-space: nowrap;
+}
+
+.st-scroll {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.st-loading-message {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.2em;
+  color: #666;
+}
+
+.st-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/*.st-row-active {*/
+/*  background: var(--s2d6-input-background);*/
+/*}*/
+
+.st-td-label {
+  max-width: 50%;
+  padding: 2px 6px;
+  color: #666;
+  font-size: 0.85em;
+  white-space: normal;
+  vertical-align: top;
+}
+
+.st-td-label--active {
+  max-width: 25%;
+  padding: 2px 6px;
+  font-weight: bold;
+  white-space: normal;
+  vertical-align: middle;
+  color: var(--color-text-emphatic, #666);
+}
+
+.st-td-value {
+  padding: 2px 6px;
+}
+
+.st-td-controls {
+  padding: 2px 6px;
+}
+
+.st-td-controls .st-select {
+  min-width: 200px;
+}
+
+.st-footer {
+  padding: 8px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.st-footer-progress {
+  padding: 4px 8px;
+  color: #888;
+  font-size: 0.85em;
+  flex-shrink: 0;
+}
+
+.st-outcome {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 8px;
+}
+
+/* ── Crew Setup Dialog ────────────────────────────────────────────────────── */
+
+.trader-crew .window-content {
+  padding: 8px;
+}
+
+.trader-crew-hint {
+  margin: 0 0 8px;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.trader-crew-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+.trader-crew-table th {
+  text-align: left;
+  padding: 3px 6px;
+  border-bottom: 1px solid #ccc;
+  font-size: 0.85em;
+  color: #555;
+}
+
+.trader-crew-table td {
+  padding: 4px 6px;
+  vertical-align: middle;
+}
+
+.trader-crew-pos {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.trader-crew-salary {
+  white-space: nowrap;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.trader-crew-assign {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.st-actor-select {
+  flex: 1;
+  min-width: 140px;
+}
+
+.st-name-input {
+  flex: 1;
+  min-width: 100px;
+}
+
+.trader-crew-broker input {
+  width: 50px;
+}
+
+.trader-crew-row {
+  transition: background-color 0.1s;
+}
+
+.trader-crew-row.st-drag-over {
+  background-color: #d4edff;
+  outline: 2px dashed #4a90d9;
+  outline-offset: -2px;
+}
+
+.trader-crew-footer {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 6px;
+  border-top: 1px solid #ccc;
+}
+
+/* ── Remain in Port UI ───────────────────────────────────────────────────── */
+
+.st-remain-port {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--s2d6-input-background);
+  border-bottom: 1px solid #ccc;
+  flex-shrink: 0;
+}
+
+.st-remain-label {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.st-remain-input {
+  width: 50px;
+  text-align: center;
+  padding: 2px 4px;
+  font-size: 0.9em;
+}
+
+.st-remain-btn {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.st-remain-execute {
+  padding: 4px 12px;
+  font-size: 0.9em;
+}
+
+/* ── Charter Status ──────────────────────────────────────────────────────── */
+
+.st-chartered {
+  color: #8b4513;
+  font-weight: bold;
+}
+
+/* ── Other Activities Dialog ─────────────────────────────────────────────── */
+
+.other-activities-app {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+
+.other-activities-app .oa-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.other-activities-app .oa-footer {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px solid var(--color-border-light-tertiary, #999);
+}
+
+.other-activities-app .oa-footer button {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.header-actions.action-buttons.trade-journey.flexrow {
+  justify-content: center;
+}

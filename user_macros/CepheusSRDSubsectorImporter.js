@@ -2,7 +2,7 @@
 // SRD and https://travellermap.com/doc/secondsurvey#uwp
 // GEnie / SEC Format for input
 // using the generator https://www.orffenspace.com/cepheus-srd/tools/subsector-generator.html
-//updated for v13
+//updated for v14
 //
 // Fields used
 // 1-13: Name
@@ -190,8 +190,8 @@ async function newPlanet (parse, newJournal, topLabel) {
   const returnTiles = [];
   for (let i = 0; i < parse.markers.length; ++i) {
     returnTiles.push({
-      x: Math.round(iconPos.x + iconSize / 2 + smFontSize / 4),
-      y: Math.round(iconPos.y + smFontSize * (i - 0.5 * parse.markers.length)),
+      x: Math.round(iconPos.x + iconSize / 2 + smFontSize / 2),
+      y: Math.round(iconPos.y + smFontSize * (i - (parse.markers.length - 1)/2)),
       z: 20,
       width: smFontSize,
       height: smFontSize,
@@ -204,8 +204,8 @@ async function newPlanet (parse, newJournal, topLabel) {
 
   // add planet icon again incase notes are turned off
   returnTiles.push({
-    x: Math.round(iconPos.x - iconSize / 2),
-    y: Math.round(iconPos.y - iconSize / 2),
+    x: Math.round(iconPos.x),
+    y: Math.round(iconPos.y),
     z: 20,
     width: iconSize,
     height: iconSize,
@@ -343,7 +343,7 @@ function getUWPparameter (value, tableName) {
   const table = game.tables.contents.find(t => t.name === tableName);
 
   if (item < table.results.size) {
-    const details = table.results._source[item].text;
+    const details = table.results._source[item].description;
     return (`<td style="padding-right:5px">${tableName} (${value})</td><td>${details}</td>`);
   } else {
     return (`<td style="padding-right:5px">${tableName} (${value})</td><td>UNKNOWN TABLE ITEM</td>`);

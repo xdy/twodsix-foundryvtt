@@ -148,7 +148,7 @@ p span, p {
   user-select: text;
   border: 1px solid var(--s2d6-background-transparent);
   border-radius: 0;
-  height: 3ch;
+  min-height: 3ch;
 }
 
 .application input {
@@ -482,7 +482,7 @@ form .form-group span.units {
   background-repeat: repeat-x;
   font-family: inherit;
   color: var(--s2d6-default-color);
-  padding: 1ch; /*1ch 0 0 */
+  /*padding: 1ch; /*1ch 0 0 */
   --color-scrollbar: var(--s2d6-default-color);
   --color-scrollbar-border: var(--s2d6-header-border);
   --color-scrollbar-track: var(--s2d6-nav-background);
@@ -5076,6 +5076,10 @@ table.ship-action-table, table.vehicle-stats-table {
   container-name: overlap-header;
 }
 
+section.window-content.overlap-header {
+  padding: 1ch;
+}
+
 @container overlap-header (width < 900px) {
   .ship-container {
     font-size: smaller;
@@ -5621,11 +5625,11 @@ code {
   min-height: 33vh;
 }
 
-.world-inset /*, .twodsix-world-sheet .single-line.world-inset*/
-{
+.world-inset /*, .twodsix-world-sheet .single-line.world-inset*/ {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 1ch;
+  margin-top: 1ch;
 }
 
 .actor-editor.environment-box {
@@ -5648,6 +5652,10 @@ span.single-line.world-inset {
 
 .world-description .actor-editor {
   margin: 0 2ch 2ch 2ch;
+}
+
+.world-description div[contenteditable] {
+    min-height: 29vh;
 }
 
 .world-img {
@@ -5707,9 +5715,12 @@ span.single-line.world-inset {
 .trade-generation-report {
   padding: 1ch;
   line-height: 1.6;
-  max-height: 70vh;
+  max-height: calc(70vh - 40px);
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
+}
+.detached .trade-generation-report {
+  max-height: 85vh;
 }
 
 .trade-generation-report h3 {
@@ -5788,4 +5799,17 @@ span.single-line.world-inset {
 .trade-generation-report .trade-table th {
   background: var(--s2d6-background-nearly-transparent);
   font-weight: 600;
+}
+
+/* ============================================================================
+   SECTION-30: TRADING SETUP
+   ============================================================================ */
+.st-setup-form {
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-right: 5px;
+}
+
+.trader-setup .window-content {
+  overflow-y: hidden;
 }

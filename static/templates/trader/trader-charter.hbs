@@ -1,0 +1,24 @@
+<form class="st-charter-form">
+  <p>{{localize "TWODSIX.Trader.Charter.Form.Description"}} <strong>{{destinationName}}</strong>.</p>
+  <div class="form-group">
+    <label>{{localize "TWODSIX.Trader.Charter.Form.CargoLabel"}}</label>
+    <input type="number" name="charterCargo" value="{{freeCargo}}" min="0" max="{{maxCargo}}"/>
+    <p class="hint">{{localize "TWODSIX.Trader.Charter.Form.CargoHint" free=freeCargo max=maxCargo}}</p>
+  </div>
+  <div class="form-group">
+    <label>{{localize "TWODSIX.Trader.Charter.Form.StateroomLabel"}}</label>
+    <input type="number" name="charterStaterooms" value="{{freeStaterooms}}" min="0" max="{{maxStaterooms}}"/>
+    <p class="hint">{{localize "TWODSIX.Trader.Charter.Form.StateroomHint" free=freeStaterooms max=maxStaterooms}}</p>
+  </div>
+  <div class="form-group">
+    <label>{{localize "TWODSIX.Trader.Charter.Form.LowBerthLabel"}}</label>
+    <input type="number" name="charterLowBerths" value="{{freeLowBerths}}" min="0" max="{{maxLowBerths}}"/>
+    <p class="hint">{{localize "TWODSIX.Trader.Charter.Form.LowBerthHint" free=freeLowBerths max=maxLowBerths}}</p>
+  </div>
+  <div class="form-group" style="display:flex;gap:16px;margin-top:16px;align-items:center;">
+    <label><input type="radio" name="charterMode" value="available" checked> {{localize
+      "TWODSIX.Trader.Charter.Form.ModeAvailable"}}</label>
+    <label><input type="radio" name="charterMode" value="all"> {{localize "TWODSIX.Trader.Charter.Form.ModeAll"}}
+    </label>
+  </div>
+</form>

@@ -17,7 +17,8 @@
     "reference": "",
     "key": "key",
     "difficulty": "Routine",
-    "rolltype": "Normal"
+    "rolltype": "Normal",
+    "groupLabel": "Animals"
   },
   "flags": {
     "cf": {

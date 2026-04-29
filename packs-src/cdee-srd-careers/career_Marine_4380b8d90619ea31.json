@@ -1,0 +1,204 @@
+{
+  "_id": "4380b8d90619ea31",
+  "_key": "!items!4380b8d90619ea31",
+  "name": "Marine",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": true,
+    "service": [
+      "Gun Combat",
+      "Heavy Weapon",
+      "Athletics",
+      "Gunnery",
+      "Melee Combat",
+      "Zero-G"
+    ],
+    "specialist": [
+      "Carousing",
+      "Repair",
+      "Demolitions",
+      "Recon",
+      "Tactics",
+      "Stealth"
+    ],
+    "advanced": [
+      "Survival",
+      "Admin",
+      "Computers",
+      "Piloting",
+      "Medicine",
+      "Engineering"
+    ],
+    "ranks": [
+      {
+        "title": "Trooper",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lieutenant",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Major",
+        "skill": "Tactics",
+        "level": 1
+      },
+      {
+        "title": "Lt. Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Brigadier",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      5000,
+      10000,
+      20000,
+      50000
+    ],
+    "material": [
+      "+1 EDU",
+      "Weapon",
+      "Mid Passage",
+      "+1 SOC",
+      "High Passage",
+      "Explorer’s Society"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the [INJURY] table."
+      },
+      {
+        "roll": 3,
+        "description": "Special Forces",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Computer,Demolitions,Recon]"
+        ],
+        "onFail": [
+          "[BENEFIT_DM:-1]"
+        ]
+      },
+      {
+        "roll": 4,
+        "description": "Advanced Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[FREE_SKILL]"
+        ]
+      },
+      {
+        "roll": 5,
+        "description": "Cybered! The Corps pays for advanced cybernetic implants. Gain Cr10000 worth of cybernetics."
+      },
+      {
+        "roll": 6,
+        "description": "Counterterrorism",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_DM:4]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the [LIFE_EVENT] table."
+      },
+      {
+        "roll": 8,
+        "description": "Bug Hunt!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Animals,Survival]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Labor Dispute. Try to avoid bloodshed: [CONTACT:Union Leader]. go in with guns blazing: [BENEFIT_ROLL] and [ENEMY:Union Leader]."
+      },
+      {
+        "roll": 10,
+        "description": "Boarding Action",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Zero-G,Tactics,Leadership]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Political Ally. Gain [BENEFIT_DM:2] and a [CONTACT]."
+      },
+      {
+        "roll": 12,
+        "description": "Advancement. [RANK_UP] and [FREE_SKILL]."
+      }
+    ]
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  }
+}

@@ -68,7 +68,7 @@
   width: 36px;
   height: 24px;
   background: var(--s2d6-input-background);
-  border: 1px solid var( --s2d6-item-border, --s2d6-default-border, #ddd);
+  border: 1px solid var(--s2d6-item-border, --s2d6-default-border, #ddd);
   border-radius: 3px;
   font-weight: bold;
   font-size: 1em;
@@ -190,7 +190,7 @@
 /* Footer */
 .cg-footer {
   padding: 8px;
-  border-top:  1px solid var(--s2d6-background-opaque, #ccc);
+  border-top: 1px solid var(--s2d6-background-opaque, #ccc);
   text-align: center;
   display: flex;
   justify-content: center;
@@ -209,5 +209,5 @@
 }
 
 .header-actions.action-buttons.char-gen.flexrow {
-    justify-content: center;
+  justify-content: center;
 }

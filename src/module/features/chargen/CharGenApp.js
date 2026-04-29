@@ -1,23 +1,31 @@
-// CharGenApp.js — Character generation ApplicationV2 UI class
+// CharGenApp.js — Character generation UI class extending DecisionApp
 import { nameGenerator as nameGen } from '../../utils/nameGenerator.js';
 import { toHex } from '../../utils/utils.js';
+import { DecisionApp } from '../DecisionApp.js';
+import {
+  getCharacteristicsUiRules,
+  rollPointBuyCharacteristics,
+  rollRandomCharacteristics,
+} from './characteristicsRules.js';
 import { generateDetailedSummary } from './CharGenActorFactory.js';
+import { CharGenDecisionStore } from './CharGenDecisionStore.js';
 import { CHARGEN_SUPPORTED_RULESETS, dispatchCharGen } from './CharGenRegistry.js';
 import {
   CHARACTERISTIC_KEYS,
   CHARACTERISTIC_LABELS,
   CHARACTERISTICS_ROW_TYPE,
   CHARGEN_DIED,
-  freshState
+  CHARGEN_ROW_TYPES,
+  deserializeCharGenState,
+  freshState,
+  NAME_ROW_LABEL
 } from './CharGenState.js';
 
-const NAME_ROW_LABEL = 'Name';
-
 /**
- * Character generation Application class extending Foundry's ApplicationV2.
- * Handles the UI, user interactions, and decision tracking.
+ * Character generation Application class extending DecisionApp.
+ * Handles the UI, user interactions, and decision tracking with undo/redo.
  */
-export class CharGenApp extends foundry.applications.api.ApplicationV2 {
+export class CharGenApp extends DecisionApp {
   static DEFAULT_OPTIONS = {
     id: 'char-gen',
     classes: ['twodsix', 'char-gen'],
@@ -25,27 +33,100 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     position: { width: 900, height: 1024 },
   };
 
-  static RESTART = Symbol('restart');
+  static PARTS = {
+    main: {
+      template: 'systems/twodsix/templates/chargen/char-gen.hbs',
+    },
+  };
+
   static DIED = CHARGEN_DIED;
 
-  decisions = [];
-  decisionCursor = 0;
-  rows = [];
+  decisionStore = new CharGenDecisionStore();
   charState = null;
-  pendingResolve = null;
   isDone = false;
   charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
   autoAll = false;
   summaryHeight = 0;
 
+  // ─── Rendering ──────────────────────────────────────────────
+
+  _getScrollSelector() {
+    return '.cg-scroll';
+  }
+
+  async _prepareContext(_options) {
+    if (this.isDone && this.summaryHeight === 0) {
+      const appHeight = this.position.height || 1024;
+      this.summaryHeight = Math.floor(appHeight * 0.6);
+    }
+
+    const s = this.charState;
+    const ruleset = s?.ruleset ?? 'CE';
+    const charRules = getCharacteristicsUiRules(ruleset, s?.creationMode ?? null);
+    const isPointBuy = charRules.isPointBuy;
+    const totalChars = isPointBuy ? CHARACTERISTIC_KEYS.reduce((acc, k) => acc + (s?.chars[k] ?? 0), 0) : 0;
+
+    const chars = CHARACTERISTIC_KEYS.map((k, i) => ({
+      key: k,
+      label: CHARACTERISTIC_LABELS[i],
+      value: s?.chars[k] ?? 0,
+    }));
+    const upp = s ? CHARACTERISTIC_KEYS.map(k => toHex(s.chars[k] ?? 0)).join('') : '------';
+
+    return {
+      charName: this.charName,
+      chars,
+      upp,
+      isPointBuy,
+      remainingPoints: charRules.pointBuyTargetTotal != null ? charRules.pointBuyTargetTotal - totalChars : 0,
+      charInputMin: charRules.inputMin,
+      charInputMax: charRules.inputMax,
+      pointBuyTotal: charRules.pointBuyTargetTotal ?? 0,
+      age: s?.age ?? 18,
+      skls: s?.skills?.size ?? 0,
+      totalTerms: s?.totalTerms ?? 0,
+      rulesets: Object.values(CONFIG.TWODSIX.RULESETS).map(r => ({
+        key: r.key,
+        name: r.name,
+        selected: r.key === ruleset,
+        disabled: !CHARGEN_SUPPORTED_RULESETS.has(r.key),
+      })),
+      rows: this.rows,
+      isDone: this.isDone,
+      autoAll: this.autoAll,
+      died: s?.died ?? false,
+      textSummary: this.isDone && s ? generateDetailedSummary(s) : '',
+      summaryHeight: this.summaryHeight,
+      scrollFlex: this.isDone ? '0 0 33%' : '1',
+    };
+  }
+
+  // ─── Event Handlers ─────────────────────────────────────────
+
+  _attachHandlers(el) {
+    this._attachHeaderHandlers(el);
+    this._attachRollHandlers(el);
+    this._attachChoiceHandlers(el);
+    this._attachActionHandlers(el);
+    this._attachCharacteristicHandlers(el);
+    this._attachNameHandlers(el);
+    this._attachResizeHandler(el);
+    this._updateDoneButton();
+  }
+
   /**
    * Roll random characteristic values (2d6 for each).
+   * @returns {Promise<void>}
    */
-  _rollCharacteristics() {
-    if (this.charState) {
-      for (const k of CHARACTERISTIC_KEYS) {
-        this.charState.chars[k] = Math.floor(Math.random() * 6) + Math.floor(Math.random() * 6) + 2;
-      }
+  async _rollCharacteristics() {
+    if (!this.charState) {
+      return;
+    }
+    const rules = getCharacteristicsUiRules(this.charState.ruleset ?? 'CE', this.charState.creationMode ?? null);
+    if (rules.isPointBuy) {
+      await rollPointBuyCharacteristics(this.charState.chars, CHARACTERISTIC_KEYS);
+    } else {
+      await rollRandomCharacteristics(this.charState.chars, CHARACTERISTIC_KEYS);
     }
   }
 
@@ -71,27 +152,13 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   /**
    * Resolve characteristics by rolling random values.
    */
-  _resolveCharRoll() {
-    this._rollCharacteristics();
+  async _resolveCharRoll() {
+    await this._rollCharacteristics();
     const r = this.pendingResolve;
     this.pendingResolve = null;
     if (r) {
       r('rolled');
     }
-  }
-
-  async _renderHTML(_ctx, _opts) {
-    if (this.isDone && this.summaryHeight === 0) {
-      const appHeight = this.position.height || 1024;
-      this.summaryHeight = Math.floor(appHeight * 0.6);
-    }
-    const html = await foundry.applications.handlebars.renderTemplate(
-      'systems/twodsix/templates/chargen/char-gen.hbs',
-      this._buildContext()
-    );
-    const div = document.createElement('div');
-    div.innerHTML = html;
-    return div;
   }
 
   /**
@@ -104,8 +171,8 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     }
 
     // Handle characteristics row specially (has empty options array)
-    if (row.label === CHARACTERISTICS_ROW_TYPE) {
-      this._rollCharacteristics();
+    if (row.rowType === CHARGEN_ROW_TYPES.CHARACTERISTICS) {
+      await this._rollCharacteristics();
       const r = this.pendingResolve;
       this.pendingResolve = null;
       r('rolled');
@@ -113,7 +180,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     }
 
     // Handle Name row: generate a fresh random name and continue
-    if (row.label === NAME_ROW_LABEL) {
+    if (row.rowType === CHARGEN_ROW_TYPES.NAME) {
       await this._resolveNameRoll();
       return;
     }
@@ -122,19 +189,11 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       return;
     }
 
-    const idx = Math.floor(Math.random() * row.options.length);
+    const idx = (await new Roll(`1d${row.options.length}`).roll()).total - 1;
     const value = String(row.options[idx].value);
     const r = this.pendingResolve;
     this.pendingResolve = null;
     r(value);
-  }
-
-  _replaceHTML(result, content, _opts) {
-    content.innerHTML = result.innerHTML;
-    const scr = content.querySelector('.cg-scroll');
-    if (scr) {
-      scr.scrollTop = scr.scrollHeight;
-    }
   }
 
   _updateDoneButton() {
@@ -147,14 +206,29 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     if (!inputs) {
       return;
     }
+
+    const rules = getCharacteristicsUiRules(this.charState?.ruleset ?? 'CE', this.charState?.creationMode ?? null);
+    const isPointBuy = rules.isPointBuy;
     let allValid = true;
+    let total = 0;
     inputs.forEach(input => {
       const val = parseInt(input.value);
-      if (isNaN(val) || val < 1 || val > 15) {
+      if (isNaN(val) || val < rules.inputMin || val > rules.inputMax) {
         allValid = false;
       }
+      total += val || 0;
     });
+
+    if (isPointBuy && rules.pointBuyTargetTotal != null && total !== rules.pointBuyTargetTotal) {
+      allValid = false;
+    }
     doneBtn.disabled = !allValid;
+
+    const pointsEl = el?.querySelector('.cg-point-buy-total');
+    if (pointsEl && isPointBuy && rules.pointBuyTargetTotal != null) {
+      pointsEl.textContent = `${game.i18n.localize('TWODSIX.CharGen.App.Points')}: ${rules.pointBuyTargetTotal - total} / ${rules.pointBuyTargetTotal}`;
+      pointsEl.style.color = total > rules.pointBuyTargetTotal ? 'red' : 'inherit';
+    }
   }
 
   /**
@@ -173,18 +247,18 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
    * Attach roll button event handlers.
    */
   _attachRollHandlers(el) {
-    el.querySelector('.cg-roll-upp')?.addEventListener('click', () => this._resolveCharRoll());
+    el.querySelector('.cg-roll-upp')?.addEventListener('click', () => void this._resolveCharRoll());
     el.querySelector('.cg-char-done')?.addEventListener('click', () => this._resolveCharDone());
     el.querySelector('.cg-name-roll')?.addEventListener('click', () => this._resolveNameRoll());
     el.querySelector('.cg-name-done')?.addEventListener('click', () => this._resolveNameDone());
-    el.querySelector('.cg-rand')?.addEventListener('click', () => this._resolveActiveRandomly());
+    el.querySelector('.cg-rand')?.addEventListener('click', () => void this._resolveActiveRandomly());
     el.querySelector('.cg-rand-all')?.addEventListener('click', async () => {
       if (this.isDone) {
         this._redo();
         return;
       }
       this.autoAll = true;
-      this._resolveActiveRandomly();
+      await this._resolveActiveRandomly();
     });
   }
 
@@ -222,7 +296,8 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       if (this.charState) {
         const key = e.target.dataset.charKey;
         const val = parseInt(e.target.value) || 0;
-        this.charState.chars[key] = Math.max(0, Math.min(15, val));
+        const r = getCharacteristicsUiRules(this.charState.ruleset ?? 'CE', this.charState.creationMode ?? null);
+        this.charState.chars[key] = Math.max(r.inputMin, Math.min(r.inputMax, val));
       }
     };
 
@@ -236,7 +311,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   }
 
   /**
-   * Attach name input handler to enable/disable the Done button.
+   * Attach name handler to enable/disable the Done button.
    */
   _attachNameHandlers(el) {
     const nameInput = el.querySelector('.cg-name-input');
@@ -281,134 +356,98 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     });
   }
 
-  async _onRender(_ctx, _opts) {
-    const el = this.element;
-    this._attachHeaderHandlers(el);
-    this._attachRollHandlers(el);
-    this._attachChoiceHandlers(el);
-    this._attachActionHandlers(el);
-    this._attachCharacteristicHandlers(el);
-    this._attachNameHandlers(el);
-    this._attachResizeHandler(el);
-    this._updateDoneButton();
-  }
-
-  _buildContext() {
-    const s = this.charState;
-    const ruleset = s?.ruleset ?? 'CE';
-    const chars = CHARACTERISTIC_KEYS.map((k, i) => ({
-      key: k,
-      label: CHARACTERISTIC_LABELS[i],
-      value: s?.chars[k] ?? 0,
-    }));
-    const upp = s ? CHARACTERISTIC_KEYS.map(k => toHex(s.chars[k] ?? 0)).join('') : '------';
-
-    return {
-      charName: this.charName,
-      chars,
-      upp,
-      age: s?.age ?? 18,
-      skls: s?.skills?.size ?? 0,
-      totalTerms: s?.totalTerms ?? 0,
-      rulesets: Object.values(CONFIG.TWODSIX.RULESETS).map(r => ({
-        key: r.key,
-        name: r.name,
-        selected: r.key === ruleset,
-        disabled: !CHARGEN_SUPPORTED_RULESETS.has(r.key),
-      })),
-      rows: this.rows,
-      isDone: this.isDone,
-      autoAll: this.autoAll,
-      died: s?.died ?? false,
-      textSummary: this.isDone && s ? generateDetailedSummary(s) : '',
-      summaryHeight: this.summaryHeight,
-      scrollFlex: this.isDone ? '0 0 33%' : '1',
-    };
-  }
+  // ─── Decision Tracking ──────────────────────────────────────
 
   /**
-   * Roll dice and track the decision.
+   * Roll dice and track the decision for replay.
    * @param {string} formula - Dice formula to roll
    * @returns {Promise<number>} Roll result
    */
   async _roll(formula) {
-    const cursor = this.decisionCursor++;
-    if (cursor < this.decisions.length) {
-      return this.decisions[cursor].value;
+    const { decision } = this.decisionStore.next();
+    if (decision) {
+      return decision.value;
     }
-    const v = (await new Roll(formula).evaluate()).total;
-    this.decisions.push({ type: 'roll', value: v });
+    const v = await super._roll(formula);
+    this.decisionStore.push({ type: 'roll', value: v });
     return v;
   }
 
   /**
-   * Present a choice to the user and track the decision.
+   * Present a choice to the user with replay and auto-all support.
    * @param {string} label - Choice label
    * @param {Array} options - Available options with value and label
+   * @param {Object} [rowExtras={}] - Additional row properties
    * @returns {Promise<string>} Selected value
    */
-  async _choose(label, options) {
+  async _choose(label, options, rowExtras = {}) {
     const choiceOptions = Array.isArray(options) ? options : [];
-    const cursor = this.decisionCursor++;
-    if (cursor < this.decisions.length) {
-      const v = String(this.decisions[cursor].value);
-      const found = choiceOptions.find(o => String(o.value) === v);
+    const { index, decision } = this.decisionStore.next();
+
+    // Replay path: use stored decision
+    if (decision) {
+      const v = decision.value;
+      const found = choiceOptions.find(o => String(o.value) === String(v));
       if (found) {
-        this.rows.push({ label, result: found.label ?? v, active: false, options: choiceOptions });
-        return v;
+        this.rows.push({
+          label,
+          rowType: CHARGEN_ROW_TYPES.CHOICE,
+          result: found.label ?? String(v),
+          active: false,
+          options: choiceOptions,
+        });
+        return found.value;
       }
 
       if (choiceOptions.length) {
-        const fallback = String(choiceOptions[0].value);
-        this.decisions[cursor] = { type: 'choice', value: fallback };
-        this.rows.push({ label, result: choiceOptions[0].label ?? fallback, active: false, options: choiceOptions });
+        const fallback = choiceOptions[0].value;
+        this.decisionStore.replace(index, { type: 'choice', value: fallback });
+        this.rows.push({
+          label,
+          rowType: CHARGEN_ROW_TYPES.CHOICE,
+          result: choiceOptions[0].label ?? String(fallback),
+          active: false,
+          options: choiceOptions,
+        });
         console.warn(`CharGenApp | Replayed choice "${v}" is no longer valid for "${label}". Falling back to "${fallback}".`);
         return fallback;
       }
 
-      this.rows.push({ label, result: v, active: false, options: choiceOptions });
+      this.rows.push({ label, rowType: CHARGEN_ROW_TYPES.CHOICE, result: String(v), active: false, options: choiceOptions });
       console.warn(`CharGenApp | Replayed choice "${v}" is invalid for "${label}" and no options are available.`);
       return v;
     }
 
+    // Auto-all path: pick randomly
     if (this.autoAll && choiceOptions.length) {
-      const idx = Math.floor(Math.random() * choiceOptions.length);
-      const value = String(choiceOptions[idx].value);
-      this.decisions.push({ type: 'choice', value });
+      const idx = (await new Roll(`1d${choiceOptions.length}`).roll()).total - 1;
+      const value = choiceOptions[idx].value;
+      this.decisionStore.push({ type: 'choice', value });
       const found = choiceOptions[idx];
-      this.rows.push({ label, result: found?.label ?? value, active: false, options: choiceOptions });
+      this.rows.push({
+        label,
+        rowType: CHARGEN_ROW_TYPES.CHOICE,
+        result: found?.label ?? String(value),
+        active: false,
+        options: choiceOptions
+      });
       this.render();
       return value;
     }
 
-    this.rows.push({ label, result: null, active: true, options: choiceOptions });
-    this.render();
-
-    const value = await new Promise(res => {
-      this.pendingResolve = res;
-    });
-
-    if (value === CharGenApp.RESTART) {
-      throw CharGenApp.RESTART;
-    }
-
-    this.decisions.push({ type: 'choice', value });
-    const row = this.rows.at(-1);
-    row.result = choiceOptions.find(o => String(o.value) === String(value))?.label ?? value;
-    row.active = false;
-    this.render();
+    // Interactive path: delegate to base class
+    const value = await super._choose(label, choiceOptions, { rowType: CHARGEN_ROW_TYPES.CHOICE, ...rowExtras });
+    this.decisionStore.push({ type: 'choice', value });
     return value;
   }
 
   /**
    * Handle characteristics choice with special UI handling.
-   * @param {CharGenApp} app - Application instance
    * @returns {Promise<string>} 'rolled' or 'done'
    */
   async _chooseCharacteristics() {
-    const cursor = this.decisionCursor++;
-    if (cursor < this.decisions.length) {
-      const decision = this.decisions[cursor];
+    const { decision } = this.decisionStore.next();
+    if (decision) {
       // Restore characteristic values from the stored decision
       if (decision.chars) {
         for (const k of CHARACTERISTIC_KEYS) {
@@ -416,22 +455,40 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
         }
       }
       const line = this._formatCharacteristicsLine();
-      this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: line, active: false, options: [] });
+      this.rows.push({
+        label: CHARACTERISTICS_ROW_TYPE,
+        rowType: CHARGEN_ROW_TYPES.CHARACTERISTICS,
+        result: line,
+        active: false,
+        options: []
+      });
       this.render();
       return String(decision.value);
     }
 
     if (this.autoAll) {
-      this._rollCharacteristics();
+      await this._rollCharacteristics();
       const line = this._formatCharacteristicsLine();
       const chars = { ...this.charState.chars };
-      this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: line, active: false, options: [] });
-      this.decisions.push({ type: 'choice', value: 'rolled', chars });
+      this.rows.push({
+        label: CHARACTERISTICS_ROW_TYPE,
+        rowType: CHARGEN_ROW_TYPES.CHARACTERISTICS,
+        result: line,
+        active: false,
+        options: []
+      });
+      this.decisionStore.push({ type: 'choice', value: 'rolled', chars });
       this.render();
       return 'rolled';
     }
 
-    this.rows.push({ label: CHARACTERISTICS_ROW_TYPE, result: null, active: true, options: [] });
+    this.rows.push({
+      label: CHARACTERISTICS_ROW_TYPE,
+      rowType: CHARGEN_ROW_TYPES.CHARACTERISTICS,
+      result: null,
+      active: true,
+      options: []
+    });
     this.render();
 
     const value = await new Promise(res => {
@@ -443,7 +500,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     }
 
     const chars = { ...this.charState.chars };
-    this.decisions.push({ type: 'choice', value, chars });
+    this.decisionStore.push({ type: 'choice', value, chars });
     const line = this._formatCharacteristicsLine();
     const row = this.rows.at(-1);
     row.result = line;
@@ -458,27 +515,41 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
    * @returns {Promise<string>} The chosen name
    */
   async _chooseName() {
-    const cursor = this.decisionCursor++;
-    if (cursor < this.decisions.length) {
-      const v = String(this.decisions[cursor].value);
-      this.rows.push({ label: NAME_ROW_LABEL, result: v, active: false, options: [] });
+    const { decision } = this.decisionStore.next();
+    if (decision) {
+      const v = String(decision.value);
+      this.rows.push({
+        label: NAME_ROW_LABEL,
+        rowType: CHARGEN_ROW_TYPES.NAME,
+        result: v,
+        active: false,
+        options: []
+      });
       return v;
     }
 
     if (this.autoAll) {
-      const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
-      let name = 'Traveller';
-      try {
-        name = await nameGen.generateName(this.charState?.languageType, genderCode) || name;
-      } catch { /* use fallback */ }
-      this.rows.push({ label: NAME_ROW_LABEL, result: name, active: false, options: [] });
-      this.decisions.push({ type: 'choice', value: name });
+      const name = await this._generateRandomName();
+      this.rows.push({
+        label: NAME_ROW_LABEL,
+        rowType: CHARGEN_ROW_TYPES.NAME,
+        result: name,
+        active: false,
+        options: []
+      });
+      this.decisionStore.push({ type: 'choice', value: name });
       this._updateNameAndTitle(name);
       this.render();
       return name;
     }
 
-    this.rows.push({ label: NAME_ROW_LABEL, result: null, active: true, options: [] });
+    this.rows.push({
+      label: NAME_ROW_LABEL,
+      rowType: CHARGEN_ROW_TYPES.NAME,
+      result: null,
+      active: true,
+      options: []
+    });
     this.render();
 
     const value = await new Promise(res => {
@@ -489,7 +560,7 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
       throw CharGenApp.RESTART;
     }
 
-    this.decisions.push({ type: 'choice', value });
+    this.decisionStore.push({ type: 'choice', value });
     const row = this.rows.at(-1);
     row.result = value;
     row.active = false;
@@ -513,20 +584,27 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
   }
 
   /**
+   * Internal helper to generate a random name based on gender and language.
+   * @returns {Promise<string>}
+   * @private
+   */
+  async _generateRandomName() {
+    const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
+    let name = 'Traveller';
+    try {
+      name = await nameGen.generateName(this.charState?.languageType, genderCode) || name;
+    } catch { /* use fallback */ }
+    return name;
+  }
+
+  /**
    * Resolve the name row by generating a random name and continuing.
    */
   async _resolveNameRoll() {
     if (!this.pendingResolve) {
       return;
     }
-    const genderCode = this.charState?.gender === 'Male' ? 'M' : 'F';
-    let name;
-    try {
-      name = await nameGen.generateName(this.charState?.languageType, genderCode);
-    } catch { /* ignore */ }
-    if (!name) {
-      name = 'Traveller';
-    }
+    const name = await this._generateRandomName();
     this._updateNameAndTitle(name);
     const r = this.pendingResolve;
     this.pendingResolve = null;
@@ -548,27 +626,15 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     r(name);
   }
 
-  /**
-   * Add a log entry to the UI.
-   * @param {string} label - Row label
-   * @param {string} result - Row result
-   */
-  _log(label, result) {
-    this.rows.push({ label, result: String(result ?? ''), active: false, options: [] });
-  }
+  // ─── Undo / Redo ───────────────────────────────────────────
 
   /**
    * Undo the last choice decision.
    */
   _undo() {
-    let i = this.decisions.length - 1;
-    while (i >= 0 && this.decisions[i].type !== 'choice') {
-      i--;
-    }
-    if (i < 0) {
+    if (!this.decisionStore.undoLastChoice()) {
       return;
     }
-    this.decisions = this.decisions.slice(0, i);
     this.autoAll = false;
     const res = this.pendingResolve;
     this.pendingResolve = null;
@@ -584,12 +650,12 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
    */
   _redo() {
     this.summaryHeight = 0;
-    this.decisions = [];
+    this.decisionStore.resetAll();
     this.rows = [];
     this.autoAll = false;
     this.charName = game.i18n.localize('TWODSIX.CharGen.App.NewCharacter');
     const ruleset = this.charState.ruleset;
-    this.charState = freshState();
+    this.charState = deserializeCharGenState(freshState());
     this.charState.ruleset = ruleset;
     this.isDone = false;
     const res = this.pendingResolve;
@@ -601,31 +667,44 @@ export class CharGenApp extends foundry.applications.api.ApplicationV2 {
     }
   }
 
-  /**
-   * Create the character actor and close the app.
-   */
+  // ─── Actor Creation ─────────────────────────────────────────
+
   async _onCreateActor() {
     if (!this.isDone || !this.charState) {
       return;
     }
-    const { createCharacterActor } = await import('./CharGenActorFactory.js');
-    await createCharacterActor(this.charState, this.charName);
-    ui.notifications.info(game.i18n.format('TWODSIX.CharGen.Messages.CharacterCreated', { name: this.charName }));
-    this.close();
+    try {
+      const { createCharacterActor } = await import('./CharGenActorFactory.js');
+      await createCharacterActor(this.charState, this.charName);
+      ui.notifications.info(game.i18n.format('TWODSIX.CharGen.Messages.CharacterCreated', { name: this.charName }));
+      this.close();
+    } catch (err) {
+      console.error('twodsix | CharGen actor creation failed', {
+        error: err,
+        ruleset: this.charState?.ruleset,
+        terms: this.charState?.totalTerms,
+        name: this.charName,
+      });
+      const msg = err?.message || String(err);
+      ui.notifications.error(game.i18n.format('TWODSIX.CharGen.Errors.ActorCreateFailed', { error: msg }));
+    }
   }
+
+  // ─── Main Loop ──────────────────────────────────────────────
 
   /**
    * Main generation loop with restart handling.
    */
   async run() {
     while (true) {
-      this.decisionCursor = 0;
+      this.decisionStore.resetCursor();
       this.rows = [];
       const ruleset = this.charState.ruleset;
       const languageType = this.charState.languageType;
-      const rulesetName = CONFIG.TWODSIX.RULESETS[ruleset]?.name || 'Cepheus Engine';
-      this.options.window.title = `${rulesetName} Character Generation`;
-      this.charState = freshState();
+      const rulesetName = CONFIG.TWODSIX.RULESETS[ruleset]?.name
+        || game.i18n.localize('TWODSIX.CharGen.DefaultRulesetName');
+      this.options.window.title = game.i18n.format('TWODSIX.CharGen.WindowTitle', { ruleset: rulesetName });
+      this.charState = deserializeCharGenState(freshState());
       this.charState.ruleset = ruleset;
       this.charState.languageType = languageType;
       this.isDone = false;

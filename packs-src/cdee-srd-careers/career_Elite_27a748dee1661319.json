@@ -1,0 +1,169 @@
+{
+  "_id": "27a748dee1661319",
+  "_key": "!items!27a748dee1661319",
+  "name": "Elite",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": false,
+    "service": [
+      "Admin",
+      "Liaison",
+      "Carousing",
+      "Computers",
+      "Grav Vehicles",
+      "Deception"
+    ],
+    "specialist": [
+      "Leadership",
+      "Melee Combat",
+      "Athletics",
+      "Steward",
+      "Watercraft",
+      "Streetwise"
+    ],
+    "advanced": [
+      "Medicine",
+      "Sciences",
+      "Aircraft",
+      "Animals",
+      "Piloting",
+      "Computers"
+    ],
+    "ranks": [
+      {
+        "title": "Analyst",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Supervisor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Manager",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Director",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Managing Director",
+        "skill": "Admin",
+        "level": 1
+      },
+      {
+        "title": "Vice President",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "President",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      2000,
+      10000,
+      20000,
+      40000,
+      50000,
+      100000
+    ],
+    "material": [
+      "Contact",
+      "+1 EDU",
+      "+1 SOC",
+      "High Passage",
+      "Yacht",
+      "Explorer’s Society"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the [INJURY] table."
+      },
+      {
+        "roll": 3,
+        "description": "Celebrity Status. Gain one level of [CHOOSE_SKILL:Carousing,Liaison,Steward]."
+      },
+      {
+        "roll": 4,
+        "description": "Cybered! Your patrons pay for advanced cybernetic implants. Gain Cr10000 worth of cybernetics."
+      },
+      {
+        "roll": 5,
+        "description": "Inheritance. Gain an extra [BENEFIT_ROLL]."
+      },
+      {
+        "roll": 6,
+        "description": "Conspiracy. Refuse: [ENEMY]. Accept:",
+        "checks": [
+          {
+            "skill": "Deception",
+            "target": 8
+          },
+          {
+            "skill": "Liaison",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Carousing,Liaison,Deception]"
+        ],
+        "onFail": [
+          "[CHECK:Admin:10]",
+          "[PRISON]"
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the [LIFE_EVENT] table."
+      },
+      {
+        "roll": 8,
+        "description": "Corporate Infighting. Refuse: [CONTACT] and [ENEMY]. Attempt discredit:",
+        "checks": [
+          {
+            "skill": "Liaison",
+            "target": 8
+          },
+          {
+            "skill": "SOC",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT]"
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Acclaimed Leadership. Gain [ENEMY] and [BENEFIT_DM:2] on next Benefit throw."
+      },
+      {
+        "roll": 10,
+        "description": "Interstellar Tour. Gain [CHOOSE_SKILL:Piloting,Animals,Zero-G]."
+      },
+      {
+        "roll": 11,
+        "description": "Alliance. Gain a [CONTACT] and either [SKILL:Leadership:1] or [BENEFIT_DM:2] on next Benefit throw."
+      },
+      {
+        "roll": 12,
+        "description": "Advancement. [RANK_UP] and [FREE_SKILL]."
+      }
+    ]
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "_id": "8219c3fed63f2676",
+  "_key": "!items!8219c3fed63f2676",
+  "name": "Agent",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": false,
+    "service": [
+      "Investigation",
+      "Admin",
+      "Computers",
+      "Streetwise",
+      "Carousing",
+      "Stealth"
+    ],
+    "specialist": [
+      "Deception",
+      "Gun Combat",
+      "Grav Vehicles",
+      "Athletics",
+      "Driving",
+      "Recon"
+    ],
+    "advanced": [
+      "Pilot",
+      "Language",
+      "Liaison",
+      "Science",
+      "Medicine",
+      "Leadership"
+    ],
+    "ranks": [
+      {
+        "title": "Agent",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Special Agent",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Sp. Agent in Charge",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Unit Chief",
+        "skill": "Admin",
+        "level": 1
+      },
+      {
+        "title": "Section Chief",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Assistant Director",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Director",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000
+    ],
+    "material": [
+      "Low Passage",
+      "+1 INT",
+      "Weapon",
+      "Mid Passage",
+      "+1 SOC",
+      "High Passage"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the [INJURY] table."
+      },
+      {
+        "roll": 3,
+        "description": "Cybered! Your employer pays for advanced cybernetic implants. Gain Cr8000 worth of cybernetics."
+      },
+      {
+        "roll": 4,
+        "description": "Dangerous Mission",
+        "checks": [
+          {
+            "skill": "Recon",
+            "target": 8
+          },
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
+      },
+      {
+        "roll": 5,
+        "description": "Specialist Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[FREE_SKILL]"
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Labor Dispute. Try to avoid bloodshed: [CONTACT:Union Leader]. doom the movement: [BENEFIT_ROLL] and [ENEMY:Union Leader]."
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the [LIFE_EVENT] table."
+      },
+      {
+        "roll": 8,
+        "description": "Undercover",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Deception",
+            "target": 8
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Trusted Informant",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT]"
+        ]
+      },
+      {
+        "roll": 10,
+        "description": "Kidnapping Rescue",
+        "checks": [
+          {
+            "skill": "Investigation",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          }
+        ],
+        "onSuccess": [
+          "[CONTACT:Hostage VIP]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Mentor. Gain [CHOOSE_SKILL:Leadership,Admin] and a [CONTACT]."
+      },
+      {
+        "roll": 12,
+        "description": "Conspiracy. [RANK_UP] and [FREE_SKILL]."
+      }
+    ]
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  }
+}

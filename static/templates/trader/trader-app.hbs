@@ -1,0 +1,85 @@
+<div class="st-app">
+  <div class="st-status-bar">
+    <div class="st-status-row">
+      <span class="st-status-item"><i class="fas fa-rocket"></i> <strong>{{ship.name}}</strong></span>
+      {{#if chartered}}
+        <span class="st-status-item st-chartered"><i class="fas fa-file-contract"></i> {{localize
+          "TWODSIX.Trader.App.CharteredStatus" cargo=charterCargo staterooms=charterStaterooms
+          lowBerths=charterLowBerths}}</span>
+      {{/if}}
+      <span class="st-status-item"><i class="fas fa-globe"></i> {{currentWorldName}}
+        {{#if currentWorldUwp}}({{currentWorldUwp}}){{/if}}</span>
+      <span class="st-status-item"><i class="fas fa-calendar"></i> {{dateStr}}</span>
+    </div>
+    <div class="st-status-row">
+      <span class="st-status-item"><i class="fas fa-coins"></i> Cr{{creditsStr}}</span>
+      <span class="st-status-item"><i class="fas fa-box"></i> {{localize
+        "TWODSIX.Trader.App.CargoStatus" used=usedCargo capacity=ship.cargoCapacity}}</span>
+      <span class="st-status-item"><i class="fas fa-gas-pump"></i> {{#if ship.fuelIsRefined}}{{localize
+        "TWODSIX.Trader.App.FuelStatusRefined" current=ship.currentFuel capacity=ship.fuelCapacity}}{{else}}{{localize
+        "TWODSIX.Trader.App.FuelStatusUnrefined" current=ship.currentFuel capacity=ship.fuelCapacity}}{{/if}}</span>
+      <span class="st-status-item"><i class="fas fa-users"></i> {{localize
+        "TWODSIX.Trader.App.PassengerStatus" count=totalPassengers}}</span>
+      <span class="st-status-item"><i class="fas fa-truck"></i> {{localize
+        "TWODSIX.Trader.App.FreightStatus" tons=freight}}</span>
+    </div>
+  </div>
+
+
+  <div class="st-scroll">
+    {{#if loading}}
+      <div class="st-loading-message">
+        <i class="fas fa-spinner fa-spin"></i> {{localize "TWODSIX.Trader.App.LoadingTrader"}}
+      </div>
+    {{/if}}
+    <table class="st-table">
+      <tbody>
+      {{#each rows}}
+        {{#if active}}
+          <tr class="st-row-active">
+            <td class="st-td-label--active">{{label}}</td>
+            <td class="st-td-controls">
+              {{#if options.length}}
+                <select class="st-select">
+                  <option value="">{{localize placeholder}}</option>
+                  {{#each options}}
+                    <option value="{{value}}">{{label}}</option>
+                  {{/each}}
+                </select>
+                {{#if maxValue}}
+                  <button type="button" class="st-to-capacity-btn" data-value="{{maxValue}}">{{localize
+                    "TWODSIX.Trader.App.ToCapacity"}}</button>
+                {{/if}}
+              {{/if}}
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td class="st-td-label">{{label}}</td>
+            <td class="st-td-value">{{{result}}}</td>
+          </tr>
+        {{/if}}
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{#if gameOver}}
+    <div class="st-footer">
+      <div class="st-outcome">
+        {{#if (eq outcome 'PAID_OFF')}}
+          <i class="fas fa-trophy"></i> {{localize "TWODSIX.Trader.App.OutcomePaidOff"}}
+        {{else}}
+          <i class="fas fa-skull-crossbones"></i> {{localize "TWODSIX.Trader.App.OutcomeBankrupt"}}
+        {{/if}}
+      </div>
+    </div>
+  {{else}}
+    <div class="st-footer-progress">
+      {{#if (eq phase 'AT_WORLD')}}{{localize "TWODSIX.Trader.App.PhaseDocked" world=currentWorldName}}
+      {{else if (eq phase 'IN_TRANSIT')}}{{localize "TWODSIX.Trader.App.PhaseInTransit"}}
+      {{else}}{{localize "TWODSIX.Trader.App.PhaseArriving" destination=destinationName}}
+      {{/if}}
+    </div>
+  {{/if}}
+</div>

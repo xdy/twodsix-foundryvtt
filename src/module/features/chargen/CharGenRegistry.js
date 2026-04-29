@@ -6,8 +6,9 @@
 // To add a new ruleset:
 //   1. Import its logic class here
 //   2. Add an entry to CHARGEN_REGISTRY with the logic instance and needsPreload flag
-//   3. If the ruleset uses preloading, set needsPreload: true; otherwise false
+//   3. If the ruleset uses career data preloading, set needsPreload: true; otherwise false
 
+import { CDEECharGenLogic } from './CDEECharGenLogic.js';
 import { CECharGenLogic } from './CECharGenLogic.js';
 import { CUCharGenLogic } from './CUCharGenLogic.js';
 
@@ -15,6 +16,7 @@ import { CUCharGenLogic } from './CUCharGenLogic.js';
 
 const ceLogic = new CECharGenLogic();
 const cuLogic = new CUCharGenLogic();
+const cdeeLogic = new CDEECharGenLogic();
 
 // ─── REGISTRY ──────────────────────────────────────────────────────────────────
 
@@ -25,6 +27,7 @@ const cuLogic = new CUCharGenLogic();
 export const CHARGEN_REGISTRY = {
   CE: { logic: ceLogic, needsPreload: true },
   CU: { logic: cuLogic, needsPreload: false },
+  CDEE: { logic: cdeeLogic, needsPreload: true },
 };
 
 /**

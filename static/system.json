@@ -4,8 +4,8 @@
   "url": "https://github.com/xdy/twodsix-foundryvtt/",
   "manifest": "https://github.com/xdy/twodsix-foundryvtt/releases/latest/download/system.json",
   "readme": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/README.md",
-  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v7.1.0/twodsix.zip",
-  "version": "7.1.0",
+  "download": "https://github.com/xdy/twodsix-foundryvtt/releases/download/v7.2.0/twodsix.zip",
+  "version": "7.2.0",
   "socket": true,
   "background": "systems/twodsix/assets/pause/sunburst.svg",
   "changelog": "https://raw.githubusercontent.com/xdy/twodsix-foundryvtt/master/CHANGELOG.md",
@@ -26,7 +26,7 @@
   "compatibility":
     {
       "minimum": "14",
-      "verified": "14.359"
+      "verified": "14.360"
     },
   "description": "Twodsix: A system for use with the Cepheus Engine Core Rules, Traveller (unofficial), and other similar games. <br/>This Product is derived from the Traveller System Reference Document and other Open Gaming Content made available by the Open Gaming License, and does not contain closed content from products published by either Mongoose Publishing or Far Future Enterprises. This Product is not affiliated with either Mongoose Publishing or Far Future Enterprises, and it makes no claim to or challenge to any trademarks held by either entity. The use of the Traveller System Reference Document does not convey the endorsement of this Product by either Mongoose Publishing or Far Future Enterprises as a product of either of their product lines.<br/>Cepheus Engine and Samardan Press™ are the trademarks of Jason \"Flynn\" Kemp; we are not affiliated with Jason \"Flynn\" Kemp or Samardan Press™.<br/> See the files OpenGameLicense.md and LICENSE for license details.<br/>",
   "esmodules": [
@@ -63,8 +63,7 @@
       "ship_position": {"htmlFields": ["description"]},
       "computer": {"htmlFields": ["description"]},
       "psiAbility": {"htmlFields": ["description"]},
-      "career": {"htmlFields": ["description"]},
-      "chargen_ruleset": {"htmlFields": ["description"]}
+      "career": {"htmlFields": ["description"]}
     }
   },
   "languages": [
@@ -192,15 +191,6 @@
       "type": "Item"
     },
     {
-      "name": "ce-srd-chargen-ruleset",
-      "label": "ce srd chargen ruleset",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-srd-chargen-ruleset",
-      "entity": "Item",
-      "type": "Item"
-    },
-    {
       "name": "cu-srd-careers",
       "label": "cu srd careers",
       "system": "twodsix",
@@ -210,11 +200,11 @@
       "type": "Item"
     },
     {
-      "name": "cu-srd-chargen-ruleset",
-      "label": "cu srd chargen ruleset",
+      "name": "cdee-srd-careers",
+      "label": "CDEE SRD Careers",
       "system": "twodsix",
       "module": "twodsix",
-      "path": "./packs/cu-srd-chargen-ruleset",
+      "path": "./packs/cdee-srd-careers",
       "entity": "Item",
       "type": "Item"
     },
@@ -401,8 +391,7 @@
         "ce-srd-gm-screen",
         "ce-srd-items",
         "ce-srd-roll-tables",
-        "ce-srd-careers",
-        "ce-srd-chargen-ruleset"
+        "ce-srd-careers"
       ]
     },
     {
@@ -429,7 +418,8 @@
         "cepheus-deluxe-items",
         "cepheus-deluxe-actors",
         "cepheus-deluxe-tables",
-        "cepheus-deluxe-gm-screen"
+        "cepheus-deluxe-gm-screen",
+        "cdee-srd-careers"
       ]
     },
     {
@@ -462,8 +452,7 @@
       "sorting": "m",
       "packs": [
         "cepheus-universal-items",
-        "cu-srd-careers",
-        "cu-srd-chargen-ruleset"
+        "cu-srd-careers"
       ]
     },
     {

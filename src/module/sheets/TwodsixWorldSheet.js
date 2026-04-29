@@ -1,5 +1,5 @@
 import { TWODSIX } from '../config';
-import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from '../utils/TradeGenerator';
+import { buildTradeReportRows, createCargoItemsOnActor, generateTradeInformation } from '../utils/TradeGenerator.js';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
 export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplicationMixin(AbstractTwodsixActorSheet) {
@@ -225,8 +225,8 @@ export class TwodsixWorldSheet extends foundry.applications.api.HandlebarsApplic
       }
     ];
     await foundry.applications.api.DialogV2.wait({
-      window: {title: game.i18n.localize("TWODSIX.Trade.GenerationReport"), icon: "fa-solid fa-coins"},
-      position: {width: 700},
+      window: {title: game.i18n.localize("TWODSIX.Trade.GenerationReport"), icon: "fa-solid fa-coins", resizable: true},
+      position: {width: 700, height: 'auto'},
       content: tradeReport,
       buttons: buttons,
       rejectClose: false,

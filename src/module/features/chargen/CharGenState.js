@@ -6,6 +6,7 @@ import { LanguageType } from '../../utils/nameGenerator.js';
  * Caught in CharGenApp.run() to end generation cleanly.
  */
 export const CHARGEN_DIED = Symbol('chargen-died');
+export const CHARGEN_STATE_VERSION = 1;
 
 /**
  * Standard characteristic keys used throughout character generation.
@@ -18,9 +19,21 @@ export const CHARACTERISTIC_KEYS = ['str', 'dex', 'end', 'int', 'edu', 'soc'];
 export const CHARACTERISTIC_LABELS = ['STR', 'DEX', 'END', 'INT', 'EDU', 'SOC'];
 
 /**
- * Magic string constant for the characteristics row type.
+ * Human-readable labels used in the decision log UI.
  */
 export const CHARACTERISTICS_ROW_TYPE = 'Characteristics';
+export const NAME_ROW_LABEL = 'Name';
+
+/**
+ * Stable row-type identifiers used by app logic and templates.
+ * Keep behavior keyed to these values (not display labels) so localization or
+ * wording changes do not alter control-flow semantics.
+ */
+export const CHARGEN_ROW_TYPES = {
+  CHOICE: 'choice',
+  CHARACTERISTICS: 'characteristics',
+  NAME: 'name',
+};
 
 /**
  * Character generation constants.
@@ -60,6 +73,7 @@ export const CharGenConstants = {
  */
 export function freshState() {
   return {
+    _schemaVersion: CHARGEN_STATE_VERSION,
     ruleset: 'CE',
     chars: { str: 0, dex: 0, end: 0, int: 0, edu: 0, soc: 0 },
     age: CharGenConstants.STARTING_AGE,
@@ -73,6 +87,8 @@ export function freshState() {
     hasBeenDrafted: false,
     previousCareers: [],
     qualFails: false,
+    retired: false,          // set when character retires (5+ terms or mandatory); used for cash-benefit DM
+    retireFromCareer: false, // set by crisis survival to force exit from current career term-loop
     medicalDebt: 0,
     pension: 0,
     cashBenefits: 0,
@@ -83,12 +99,75 @@ export function freshState() {
     died: false,
     termHistory: [],
     homeworldDescriptors: [],
+    optionalRules: {
+      switchingCareers: false,
+      agingTech: false,
+      ironMan: false,
+      skillLimits: false,
+    },
+    careerChanges: 0,
     // CU-specific state
     creationMode: null,
     friends: [],
     enemies: [],
     contacts: [],
+    // CDEE-specific state
+    traits: [],           // Selected trait names/ids
+    prisonTerms: 0,       // Prison terms served (don't count for benefits)
+    benefitDMs: [],       // Accumulated DM values for muster-out rolls
+    extraBenefitRolls: 0, // Additional muster-out rolls from BENEFIT_ROLL events
   };
+}
+
+/**
+ * Serialize chargen state to a persistence-safe shape.
+ * @param {object} state
+ * @returns {object}
+ */
+export function serializeCharGenState(state) {
+  const snapshot = foundry.utils.deepClone(state ?? freshState());
+  snapshot._schemaVersion = CHARGEN_STATE_VERSION;
+  snapshot.skills = Array.from((state?.skills ?? new Map()).entries());
+  return snapshot;
+}
+
+/**
+ * Deserialize persisted chargen state into a normalized runtime shape.
+ * @param {object|null|undefined} saved
+ * @returns {object}
+ */
+export function deserializeCharGenState(saved) {
+  const base = freshState();
+  const merged = foundry.utils.mergeObject(base, foundry.utils.deepClone(saved ?? {}), {
+    inplace: false,
+    insertKeys: true,
+    overwrite: true,
+  });
+  const savedSkills = saved?.skills;
+  if (savedSkills instanceof Map) {
+    merged.skills = new Map(savedSkills.entries());
+  } else if (Array.isArray(savedSkills)) {
+    merged.skills = new Map(savedSkills);
+  } else {
+    merged.skills = new Map();
+  }
+  merged._schemaVersion = CHARGEN_STATE_VERSION;
+  return merged;
+}
+
+/**
+ * Adjust a characteristic value, clamped to [min, max].
+ * Default min=0 lets a value reach 0 so crisis detection still fires;
+ * callers that want to raise a char should pass max=15 (the PC hard cap).
+ * @param {Object} state - charState
+ * @param {string} key   - characteristic key e.g. 'str'
+ * @param {number} delta - positive or negative adjustment
+ * @param {Object} opts
+ * @param {number} [opts.min=0]  - floor (0 to allow crisis detection)
+ * @param {number} [opts.max=15] - ceiling (CE/CU hard cap is 15)
+ */
+export function adjustChar(state, key, delta, { min = 0, max = 15 } = {}) {
+  state.chars[key] = Math.min(max, Math.max(min, (state.chars[key] ?? 0) + delta));
 }
 
 /**

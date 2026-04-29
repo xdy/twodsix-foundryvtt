@@ -24,7 +24,8 @@
     "rolltype": "Normal",
     "trainingNotes": "",
     "name": "Skill Name",
-    "reference": ""
+    "reference": "",
+    "groupLabel": "Tactics"
   },
   "flags": {
     "cf": {
