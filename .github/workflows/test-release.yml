@@ -9,7 +9,7 @@ on:
 #TODO Parse out these, for now they're hardcoded.
 env:
   package_type: system
-  node_version: 22
+  node_version: 24
 
 jobs:
   test:
@@ -31,7 +31,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v6
         with:
-          node-version:  22
+          node-version:  24
           cache: 'pnpm'
 
       - name: Install
