@@ -2753,6 +2753,8 @@ notes-container > div[contenteditable] {
   align-items: center;
   justify-content: space-between;
   text-align: left;
+  gap: 1ch;
+  padding: 0 1ch;
 }
 
 .ship-stat-finance input {
