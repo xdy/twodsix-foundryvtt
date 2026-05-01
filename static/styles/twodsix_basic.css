@@ -2412,6 +2412,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   min-height: 14ch;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .ship-position-add-position {
