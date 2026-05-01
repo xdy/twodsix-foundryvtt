@@ -1,3 +1,10 @@
+## [7.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.2.1...v7.2.2) (2026-05-01)
+
+
+### Bug Fixes
+
+* ship sheet adjustments for v14 ([#1986](https://github.com/xdy/twodsix-foundryvtt/issues/1986)) ([456bbc9](https://github.com/xdy/twodsix-foundryvtt/commit/456bbc990dd2b0d9b2ffdfca342d4e87378717eb))
+
 ## [7.2.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.2.0...v7.2.1) (2026-04-29)
 
 
