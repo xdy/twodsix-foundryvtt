@@ -2241,6 +2241,8 @@ img.ship-mask-bg {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: 1ch;
+  padding: 1ch;
 }
 
 .ship-stat input, .ship-stat-finance input {
@@ -2331,6 +2333,7 @@ a.ship-positions-tab, a.ship-crew-tab, a.ship-storage-tab, a.ship-component-tab,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 /*
 a.ship-positions-tab:hover, a.ship-crew-tab:hover, a.ship-component-tab:hover, a.ship-storage-tab:hover, a.ship-cargo-tab:hover, a.ship-finance-tab:hover, a.ship-notes-tab:hover {
