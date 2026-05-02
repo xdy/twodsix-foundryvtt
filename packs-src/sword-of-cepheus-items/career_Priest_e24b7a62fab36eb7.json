@@ -1,0 +1,245 @@
+{
+  "_id": "e24b7a62fab36eb7",
+  "name": "Priest",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Religion",
+      "Liaison",
+      "Leadership",
+      "Govern",
+      "Streetwise",
+      "Steward"
+    ],
+    "specialist": [
+      "Religion",
+      "Survival",
+      "Craft",
+      "Alchemy",
+      "Animals",
+      "Riding"
+    ],
+    "advanced": [
+      "Leadership",
+      "Deception",
+      "Natural Phil.",
+      "Healing",
+      "Insight",
+      "Sorcery"
+    ],
+    "cash": [
+      10,
+      10,
+      20,
+      50,
+      50,
+      100
+    ],
+    "material": [
+      "Holy Symbol",
+      "+1 INT",
+      "Mount",
+      "+1 SOC",
+      "Magic Item",
+      "Holding"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Dark Arts. INT 8+: gain Sorcery, Religion, or Natural Philosophy; fail: Injury.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Sorcery:1",
+              "SKILL:Religion:1",
+              "SKILL:Natural Philosophy:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Holy War. Melee Combat or Athletics 8+ or Injury; improve skill rolled either way.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Athletics",
+            "target": 8
+          }
+        ],
+        "always": [
+          "IMPROVE_CHECK_SKILL"
+        ],
+        "onSuccess": [],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Conversion. Lose this term's Benefit. Lose one Benefit roll",
+        "checks": [],
+        "always": [
+          "[LOSE_BENEFIT_ROLL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Pilgrimage. EDU 8+ for Survival, Streetwise, or Steward.",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Survival:1",
+              "SKILL:Streetwise:1",
+              "SKILL:Steward:1"
+            ]
+          }
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Secret Knowledge. Reveal for extra Benefit and Enemy, or keep secret for Ally.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "BENEFIT_ROLL_AND_ENEMY",
+              "ALLY"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Purge Heretics. Gain Insight, Sneak, or Scout, and an Enemy.",
+        "checks": [],
+        "always": [
+          "[ENEMY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Insight:1",
+              "SKILL:Sneak:1",
+              "SKILL:Scout:1"
+            ]
+          },
+          "ENEMY"
+        ]
+      },
+      {
+        "roll": 10,
+        "description": "Recruiting. Gain Carousing, Healing, or Streetwise.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Carousing:1",
+              "SKILL:Healing:1",
+              "SKILL:Streetwise:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Miracle. Gain +1 SOC and a Holy Symbol.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]",
+          "[MATERIAL:Holy Symbol]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Divine Blessing. Gain Religion. Religion-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Religion:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!e24b7a62fab36eb7"
+}

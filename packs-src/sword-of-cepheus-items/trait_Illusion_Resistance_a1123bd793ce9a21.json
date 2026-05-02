@@ -1,0 +1,23 @@
+{
+  "_id": "a1123bd793ce9a21",
+  "name": "Illusion Resistance",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/spell-book.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is hard to fool by magic means. The character throws with Advantage when attempting to resist illusion spells and magical effects. At the Referee's discretion, this Trait might also help in opposed throws against the Deception skill in certain situations.",
+    "prereq": "INT 9+",
+    "shortdescr": "Advantage to resist illusions and magical effects.",
+    "subtype": "",
+    "key": "illusion_resistance",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!a1123bd793ce9a21"
+}

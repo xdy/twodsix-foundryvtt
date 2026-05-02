@@ -1,0 +1,22 @@
+{
+  "name": "Skills",
+  "sorting": "a",
+  "folder": null,
+  "type": "Item",
+  "_id": "G6BACFCpRS1q0Bzc",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "coreVersion": "13",
+    "systemId": "twodsix",
+    "systemVersion": "7.2.2",
+    "createdTime": 1777666731483,
+    "modifiedTime": 1777666731483,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!G6BACFCpRS1q0Bzc"
+}

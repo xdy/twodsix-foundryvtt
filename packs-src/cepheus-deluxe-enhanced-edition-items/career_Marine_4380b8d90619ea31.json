@@ -1,0 +1,264 @@
+{
+  "_id": "4380b8d90619ea31",
+  "name": "Marine",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": true,
+    "service": [
+      "Gun Combat",
+      "Heavy Weapon",
+      "Athletics",
+      "Gunnery",
+      "Melee Combat",
+      "Zero-G"
+    ],
+    "specialist": [
+      "Carousing",
+      "Repair",
+      "Demolitions",
+      "Recon",
+      "Tactics",
+      "Stealth"
+    ],
+    "advanced": [
+      "Survival",
+      "Admin",
+      "Computers",
+      "Piloting",
+      "Medicine",
+      "Engineering"
+    ],
+    "ranks": [
+      {
+        "title": "Trooper",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lieutenant",
+        "skill": "Leadership",
+        "level": 1
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Major",
+        "skill": "Tactics",
+        "level": 1
+      },
+      {
+        "title": "Lt. Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Brigadier",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      5000,
+      10000,
+      20000,
+      50000
+    ],
+    "material": [
+      "+1 EDU",
+      "Weapon",
+      "Mid Passage",
+      "+1 SOC",
+      "High Passage",
+      "Explorer’s Society"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the Injury table.",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Special Forces",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Computer,Demolitions,Recon]"
+        ],
+        "onFail": [
+          "[BENEFIT_DM:-1]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Advanced Training",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[FREE_SKILL]"
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Cybered! The Corps pays for advanced cybernetic implants. Gain Cr10000 worth of cybernetics.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Counterterrorism",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          },
+          {
+            "skill": "Stealth",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[BENEFIT_DM:4]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the Life Events table.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Bug Hunt!",
+        "checks": [
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Animals,Survival]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Labor Dispute. Try to avoid bloodshed: Union Leader (Contact). Go in with guns blazing: extra Benefit roll and Union Leader (Enemy).",
+        "checks": [],
+        "always": [
+          "[CONTACT:Union Leader]",
+          "[BENEFIT_ROLL]",
+          "[ENEMY:Union Leader]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Boarding Action",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Gun Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "[CHOOSE_SKILL:Zero-G,Tactics,Leadership]"
+        ],
+        "onFail": [
+          "[INJURY]"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Political Ally. Gain DM+2 to a Benefit roll and a Contact.",
+        "checks": [],
+        "always": [
+          "[BENEFIT_DM:2]",
+          "[CONTACT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Advancement. Promotion and free skill.",
+        "checks": [],
+        "always": [
+          "[RANK_UP]",
+          "[FREE_SKILL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  },
+  "folder": "kwM2V003wYcmPFtP",
+  "effects": [],
+  "_key": "!items!4380b8d90619ea31"
+}

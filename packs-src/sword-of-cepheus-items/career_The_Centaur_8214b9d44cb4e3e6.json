@@ -1,0 +1,234 @@
+{
+  "_id": "8214b9d44cb4e3e6",
+  "name": "The Centaur",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Archery",
+      "Athletics",
+      "Carousing",
+      "Melee",
+      "Scout",
+      "Survival"
+    ],
+    "specialist": [
+      "Animals",
+      "Liaison",
+      "Melee",
+      "Sneak",
+      "Riding",
+      "Sorcery"
+    ],
+    "advanced": [
+      "Religion",
+      "Healing",
+      "Govern",
+      "Natural Phil.",
+      "Craft",
+      "Carouse"
+    ],
+    "cash": [
+      10,
+      50,
+      50,
+      100,
+      200,
+      500
+    ],
+    "material": [
+      "Ally",
+      "+1 EDU",
+      "+1 INT",
+      "Barding",
+      "Weapon",
+      "Holding"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Badly hurt. Roll twice on Injury, take worse.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          "INJURY_WORST_OF:2"
+        ]
+      },
+      {
+        "roll": 3,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Skirmish. Melee Combat 8+ or Archery 8+; success: skill used +1; fail: lose Benefit. Either way.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Archery",
+            "target": 8
+          }
+        ],
+        "always": [
+          "ENEMY"
+        ],
+        "onSuccess": [
+          "IMPROVE_CHECK_SKILL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Academic. EDU+1 and one pick from Advanced Education (even if EDU would not qualify).",
+        "checks": [],
+        "always": [
+          "EDU_PLUS1"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          "PICK_CAREER_COLUMN:advanced"
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Travel. Athletics, Language, Survival, or Liaison.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Athletics:1",
+              "SKILL:Language:1",
+              "SKILL:Survival:1",
+              "SKILL:Liaison:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Merchant. Language or Melee Combat.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Language:1",
+              "SKILL:Melee Combat:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Scout. Melee Combat 8+ or Liaison 8+; fail: two Injuries (higher); success: skill +1. And Enemy.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          },
+          {
+            "skill": "Liaison",
+            "target": 8
+          }
+        ],
+        "always": [
+          "ALLY",
+          "ENEMY"
+        ],
+        "onSuccess": [
+          "IMPROVE_CHECK_SKILL"
+        ],
+        "onFail": [
+          "INJURY_WORST_OF:2"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Counsellor.",
+        "checks": [],
+        "always": [
+          "[ALLY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Magic. Alchemy, Artifice, or Sorcery.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Alchemy:1",
+              "SKILL:Artifice:1",
+              "SKILL:Sorcery:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 12,
+        "description": "Achievement.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!8214b9d44cb4e3e6"
+}

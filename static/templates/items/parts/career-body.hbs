@@ -1,0 +1,391 @@
+<div class="career-ruleset-selector" style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+  <label style="font-weight: bold;">{{localize "TWODSIX.Items.Career.Ruleset"}}:</label>
+  <select name="system.ruleset">
+    {{#each careerRulesets}}
+      <option value="{{this.key}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+    {{/each}}
+  </select>
+</div>
+
+<div class="career-grid">
+
+  {{!-- CE-specific fields --}}
+  {{#if (eq item.system.ruleset "CE")}}
+    <div class="career-check-group">
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.Checks"}}</span>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 120px;">{{localize "TWODSIX.Items.Career.Qualification"}}:</label>
+        <select name="system.qual.char" style="width: 70px;">
+          {{#each settings.characteristicsList}}
+            <option value="{{@key}}" {{#if (eq ../item.system.qual.char @key)}}selected{{/if}}>{{this}}</option>
+          {{/each}}
+        </select>
+        <input type="number" name="system.qual.target" value="{{item.system.qual.target}}" style="width: 60px;"/>
+      </div>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 120px;">{{localize "TWODSIX.Items.Career.Survival"}}:</label>
+        <select name="system.surv.char" style="width: 70px;">
+          {{#each settings.characteristicsList}}
+            <option value="{{@key}}" {{#if (eq ../item.system.surv.char @key)}}selected{{/if}}>{{this}}</option>
+          {{/each}}
+        </select>
+        <input type="number" name="system.surv.target" value="{{item.system.surv.target}}" style="width: 60px;"/>
+      </div>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 120px;">{{localize "TWODSIX.Items.Career.Commission"}}:</label>
+        <select name="system.comm.char" style="width: 70px;">
+          {{#each settings.characteristicsList}}
+            <option value="{{@key}}" {{#if (eq ../item.system.comm.char @key)}}selected{{/if}}>{{this}}</option>
+          {{/each}}
+        </select>
+        <input type="number" name="system.comm.target" value="{{item.system.comm.target}}" style="width: 60px;"/>
+      </div>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 120px;">{{localize "TWODSIX.Items.Career.Advancement"}}:</label>
+        <select name="system.adv.char" style="width: 70px;">
+          {{#each settings.characteristicsList}}
+            <option value="{{@key}}" {{#if (eq ../item.system.adv.char @key)}}selected{{/if}}>{{this}}</option>
+          {{/each}}
+        </select>
+        <input type="number" name="system.adv.target" value="{{item.system.adv.target}}" style="width: 60px;"/>
+      </div>
+      <div class="career-check">
+        <label>{{localize "TWODSIX.Items.Career.Reenlist"}}:</label>
+        <input type="number" name="system.reenlist" value="{{item.system.reenlist}}"/>
+      </div>
+      <div class="career-check">
+        <label>{{localize "TWODSIX.Items.Career.HasCommAdv"}}:</label>
+        <input type="checkbox" name="system.hasCommAdv" {{checked item.system.hasCommAdv}}/>
+      </div>
+    </div>
+
+    <div class="career-tables">
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.SkillTables"}}</span>
+      <div class="skill-table">
+        <label>{{localize "TWODSIX.Items.Career.Personal"}}:</label>
+        {{#each item.system.personal}}
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+            <input type="text" name="system.personal.{{@index}}" value="{{this}}"/>
+          </div>
+        {{/each}}
+      </div>
+      <div class="skill-table">
+        <label>{{localize "TWODSIX.Items.Career.Service"}}:</label>
+        {{#each item.system.service}}
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+            <input type="text" name="system.service.{{@index}}" value="{{this}}"/>
+          </div>
+        {{/each}}
+      </div>
+      <div class="skill-table">
+        <label>{{localize "TWODSIX.Items.Career.Specialist"}}:</label>
+        {{#each item.system.specialist}}
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+            <input type="text" name="system.specialist.{{@index}}" value="{{this}}"/>
+          </div>
+        {{/each}}
+      </div>
+      <div class="skill-table">
+        <label>{{localize "TWODSIX.Items.Career.Advanced"}}:</label>
+        {{#each item.system.advanced}}
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+            <input type="text" name="system.advanced.{{@index}}" value="{{this}}"/>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{!-- CU-specific fields --}}
+  {{#if (eq item.system.ruleset "CU")}}
+    <div class="career-check-group">
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.CURiskPromotion"}}</span>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.RiskTarget"}}:</label>
+        <select name="system.riskTarget" style="width: 80px;">
+          <option value="" {{#unless item.system.riskTarget}}selected{{/unless}}>—</option>
+          <option value="5" {{#if (eq item.system.riskTarget 5)}}selected{{/if}}>5+</option>
+          <option value="6" {{#if (eq item.system.riskTarget 6)}}selected{{/if}}>6+</option>
+          <option value="7" {{#if (eq item.system.riskTarget 7)}}selected{{/if}}>7+</option>
+        </select>
+      </div>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.PromotionTarget"}}:</label>
+        <select name="system.promotionTarget" style="width: 80px;">
+          <option value="" {{#unless item.system.promotionTarget}}selected{{/unless}}>—</option>
+          <option value="6" {{#if (eq item.system.promotionTarget 6)}}selected{{/if}}>6+</option>
+          <option value="8" {{#if (eq item.system.promotionTarget 8)}}selected{{/if}}>8+</option>
+          <option value="9" {{#if (eq item.system.promotionTarget 9)}}selected{{/if}}>9+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="career-check-group">
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.CUCareerInfo"}}</span>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.PreferredChar"}}:</label>
+        <select name="system.preferredChar" style="width: 70px;">
+          <option value="" {{#unless item.system.preferredChar}}selected{{/unless}}>—</option>
+          {{#each settings.characteristicsList}}
+            <option value="{{@key}}"
+                    {{#if (eq ../item.system.preferredChar @key)}}selected{{/if}}>{{this}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.AutoSkill"}}:</label>
+        <input type="text" name="system.autoSkill" value="{{item.system.autoSkill}}" style="flex: 1;"/>
+      </div>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.CashBase"}}:</label>
+        <input type="number" name="system.cashBase" value="{{item.system.cashBase}}" style="width: 80px;"/>
+      </div>
+    </div>
+
+    <div class="career-tables">
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.CUSkillTables"}}</span>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.SkillTable1"}}:</label>
+        <select name="system.skillTable1" style="flex: 1;">
+          <option value="" {{#unless item.system.skillTable1}}selected{{/unless}}>—</option>
+          {{#each cuSkillTableOptions}}
+            <option value="{{this.value}}"
+                    {{#if (eq ../item.system.skillTable1 this.value)}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.SkillTable2"}}:</label>
+        <select name="system.skillTable2" style="flex: 1;">
+          <option value="" {{#unless item.system.skillTable2}}selected{{/unless}}>—</option>
+          {{#each cuSkillTableOptions}}
+            <option value="{{this.value}}"
+                    {{#if (eq ../item.system.skillTable2 this.value)}}selected{{/if}}>{{this.label}}</option>
+          {{/each}}
+          <option value="choice" {{#if (eq item.system.skillTable2 "choice")}}selected{{/if}}>{{localize
+            "TWODSIX.Items.Career.SkillTable2Choice"}}</option>
+        </select>
+      </div>
+      {{#if (eq item.system.skillTable2 "choice")}}
+        <div style="margin-top: 4px;">
+          <label>{{localize "TWODSIX.Items.Career.SkillTable2Options"}}:</label>
+          {{#each item.system.skillTable2Options}}
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+              <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+              <input type="text" name="system.skillTable2Options.{{@index}}" value="{{this}}" style="flex: 1;"/>
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="career-check-group">
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.CUMilitaryOptions"}}</span>
+      <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+        <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.HasCommissioned"}}:</label>
+        <input type="checkbox" name="system.hasCommissioned" {{checked item.system.hasCommissioned}}/>
+      </div>
+      {{#if item.system.hasCommissioned}}
+        <div class="career-check" style="display: flex; align-items: center; gap: 8px;">
+          <label style="min-width: 140px;">{{localize "TWODSIX.Items.Career.OfficerCashMultiplier"}}:</label>
+          <input type="number" name="system.officerCashMultiplier" value="{{item.system.officerCashMultiplier}}"
+                 style="width: 60px;"/>
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
+
+  {{!-- Ranks: shown for both CE and CU --}}
+  <div class="career-ranks">
+    {{#if (eq item.system.ruleset "CU")}}
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.EnlistedRanks"}}</span>
+    {{else}}
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.Ranks"}}</span>
+    {{/if}}
+    <div class="ranks-list">
+      {{#each item.system.ranks}}
+        <div class="rank-entry" style="display: flex; align-items: center; gap: 8px;">
+          <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+          <input type="text" name="system.ranks.{{@index}}.title" value="{{this.title}}"
+                 placeholder="{{localize 'TWODSIX.Items.Career.RankTitlePlaceholder'}}"
+                 style="flex: 1; min-width: 120px;"/>
+          <input type="text" name="system.ranks.{{@index}}.skill" value="{{this.skill}}"
+                 placeholder="{{localize 'TWODSIX.Items.Career.SkillPlaceholder'}}"
+                 style="flex: 1; min-width: 120px;"/>
+          <input type="text" name="system.ranks.{{@index}}.level" value="{{this.level}}"
+                 placeholder="{{localize 'TWODSIX.Items.Career.LvlPlaceholder'}}" style="width: 40px;"/>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+
+  {{!-- CU commissioned ranks --}}
+  {{#if (eq item.system.ruleset "CU")}}
+    {{#if item.system.hasCommissioned}}
+      <div class="career-ranks">
+        <span class="resource-label">{{localize "TWODSIX.Items.Career.CommissionedRanks"}}</span>
+        <div class="ranks-list">
+          {{#each item.system.commissionedRanks}}
+            <div class="rank-entry" style="display: flex; align-items: center; gap: 8px;">
+              <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+              <input type="text" name="system.commissionedRanks.{{@index}}.title" value="{{this.title}}"
+                     placeholder="{{localize 'TWODSIX.Items.Career.RankTitlePlaceholder'}}"
+                     style="flex: 1; min-width: 120px;"/>
+              <input type="text" name="system.commissionedRanks.{{@index}}.skill" value="{{this.skill}}"
+                     placeholder="{{localize 'TWODSIX.Items.Career.SkillPlaceholder'}}"
+                     style="flex: 1; min-width: 120px;"/>
+              <input type="text" name="system.commissionedRanks.{{@index}}.level" value="{{this.level}}"
+                     placeholder="{{localize 'TWODSIX.Items.Career.LvlPlaceholder'}}" style="width: 40px;"/>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+  {{/if}}
+
+  {{!-- CE-only muster out benefits --}}
+  {{#if (eq item.system.ruleset "CE")}}
+    <div class="career-benefits">
+      <span class="resource-label">{{localize "TWODSIX.Items.Career.MusterOut"}}</span>
+      <div class="benefits-grid">
+        <div class="material-benefits">
+          <label>{{localize "TWODSIX.Items.Career.Material"}}:</label>
+          {{#each item.system.material}}
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+              <input type="text" name="system.material.{{@index}}" value="{{this}}"/>
+            </div>
+          {{/each}}
+        </div>
+        <div class="cash-benefits">
+          <label>{{localize "TWODSIX.Items.Career.Cash"}}:</label>
+          {{#each item.system.cash}}
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+              <input type="number" name="system.cash.{{@index}}" value="{{this}}"/>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  <details class="career-table-details" style="margin-top: 12px;">
+    <summary><strong>Tables & Ranks</strong></summary>
+
+    <div class="career-events" style="margin-top: 8px;">
+      <span class="resource-label">Event Table</span>
+      {{#each eventTableRows}}
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+          <span style="min-width: 24px; font-weight: bold;">{{this.roll}}.</span>
+          <input type="hidden" name="system.eventTable.{{@index}}.roll" value="{{this.roll}}"/>
+          <input type="text" name="system.eventTable.{{@index}}.description" value="{{this.description}}"
+                 placeholder="Event description" style="flex:1;"/>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="career-mishaps" style="margin-top: 8px;">
+      <span class="resource-label">Mishap Table</span>
+      {{#each mishapTableRows}}
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+          <span style="min-width: 24px; font-weight: bold;">{{this.roll}}.</span>
+          <input type="hidden" name="system.mishapTable.{{@index}}.roll" value="{{this.roll}}"/>
+          <input type="text" name="system.mishapTable.{{@index}}.description" value="{{this.description}}"
+                 placeholder="Mishap description" style="flex:1;"/>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="career-assignments" style="margin-top: 8px;">
+      <span class="resource-label">Assignment Table</span>
+      {{#each assignmentRows}}
+        <div data-career-assignment-row data-roll="{{this.roll}}"
+             style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+          <span style="min-width: 24px; font-weight: bold;">{{this.roll}}.</span>
+          <input type="text" data-career-assignment="name" value="{{this.name}}" placeholder="Assignment name"
+                 style="flex:1 1 120px; min-width: 0;"/>
+          <label>Surv</label>
+          <select data-career-assignment="surv-char" style="width: 80px; flex: 0 1 80px;">
+            {{#each ../settings.characteristicsList}}
+              <option value="{{@key}}" {{#if (eq ../../this.survChar @key)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+          </select>
+          <input type="number" data-career-assignment="surv-target" value="{{this.survTarget}}"
+                 style="width: 56px; flex: 0 1 56px;"/>
+          <label>Adv</label>
+          <select data-career-assignment="adv-char" style="width: 80px; flex: 0 1 80px;">
+            {{#each ../settings.characteristicsList}}
+              <option value="{{@key}}" {{#if (eq ../../this.advChar @key)}}selected{{/if}}>{{this}}</option>
+            {{/each}}
+          </select>
+          <input type="number" data-career-assignment="adv-target" value="{{this.advTarget}}"
+                 style="width: 56px; flex: 0 1 56px;"/>
+          <input type="text" data-career-assignment="specialist" value="{{this.specialistCsv}}"
+                 placeholder="Specialist skills (comma-separated)" style="flex:1 1 160px; min-width: 0;"/>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="career-officer-ranks" style="margin-top: 8px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="resource-label">Officer Ranks</span>
+        <a class="item-control" data-career-add-officer-rank data-tooltip="Add Officer Rank"><i
+          class="fa-solid fa-plus"></i></a>
+      </div>
+      {{#each item.system.officerRanks}}
+        <div style="display:flex; gap:8px; align-items:center; margin-bottom:4px;">
+          <span style="min-width: 24px; font-weight: bold;">{{add @index 1}}.</span>
+          <input type="text" name="system.officerRanks.{{@index}}.title" value="{{this.title}}" placeholder="Title"
+                 style="flex:1;"/>
+          <input type="text" name="system.officerRanks.{{@index}}.skill" value="{{this.skill}}" placeholder="Skill"
+                 style="flex:1;"/>
+          <input type="number" name="system.officerRanks.{{@index}}.level" value="{{this.level}}" placeholder="Lvl"
+                 style="width:70px;"/>
+          <a class="item-control" data-career-remove-officer-rank="{{@index}}" data-tooltip="Remove Officer Rank"><i
+            class="fa-solid fa-trash"></i></a>
+        </div>
+      {{/each}}
+    </div>
+  </details>
+
+  <details class="career-json-advanced" style="margin-top: 12px;">
+    <summary><strong>Advanced Career JSON Fields</strong></summary>
+    <span class="resource-label">Advanced Career JSON Fields</span>
+    <p class="notes" style="margin: 4px 0 8px;">
+      Edit structured career payloads directly. Invalid JSON is rejected.
+    </p>
+    <div style="display: grid; gap: 8px;">
+      <div>
+        <label><strong>eventTable</strong></label>
+        <textarea data-career-event-table rows="8"
+                  style="width: 100%; font-family: monospace;">{{eventTableText}}</textarea>
+      </div>
+      <div>
+        <label><strong>mishapTable</strong></label>
+        <textarea data-career-mishap-table rows="6"
+                  style="width: 100%; font-family: monospace;">{{mishapTableText}}</textarea>
+      </div>
+      <div>
+        <label><strong>assignmentTable</strong></label>
+        <textarea data-career-assignment-table rows="6"
+                  style="width: 100%; font-family: monospace;">{{assignmentTableText}}</textarea>
+      </div>
+      <div>
+        <label><strong>officerRanks</strong></label>
+        <textarea data-career-officer-ranks rows="6"
+                  style="width: 100%; font-family: monospace;">{{officerRanksText}}</textarea>
+      </div>
+      <div>
+        <label><strong>chargenExtensions</strong></label>
+        <textarea data-career-chargen-extensions rows="8"
+                  style="width: 100%; font-family: monospace;">{{chargenExtensionsText}}</textarea>
+      </div>
+    </div>
+  </details>
+
+</div>

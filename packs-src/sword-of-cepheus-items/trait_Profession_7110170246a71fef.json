@@ -1,0 +1,23 @@
+{
+  "_id": "7110170246a71fef",
+  "name": "Profession",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is highly skilled in a civil profession, such as an advocate, broker, or scribe and can earn 25gp per month from practicing this profession. Furthermore, when making a throw related to this profession, the character gains Advantage. Note that this Trait can never augment Melee Combat, Archery, Artillery, Sorcery, Alchemy, or Artifice.",
+    "prereq": "EDU 9+",
+    "shortdescr": "Earn 25gp/month from profession; Advantage on related throws.",
+    "subtype": "",
+    "key": "profession",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!7110170246a71fef"
+}

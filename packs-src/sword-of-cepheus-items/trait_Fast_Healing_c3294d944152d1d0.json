@@ -1,0 +1,23 @@
+{
+  "_id": "c3294d944152d1d0",
+  "name": "Fast Healing",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/healing.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character recovers on their own from a Minor Wound within 1D hours (rather than a day) in the absence of treatment, and from a serious wound within 3D days of medical care. This is not cumulative with the increased rate of healing when successfully treated by a Surgeon.",
+    "prereq": "END 9+",
+    "shortdescr": "Minor Wounds heal in 1D hours, Serious in 3D days.",
+    "subtype": "",
+    "key": "fast_healing",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!c3294d944152d1d0"
+}

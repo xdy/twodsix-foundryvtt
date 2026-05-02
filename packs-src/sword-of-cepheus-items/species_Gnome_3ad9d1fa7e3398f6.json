@@ -1,0 +1,89 @@
+{
+  "_id": "3ad9d1fa7e3398f6",
+  "name": "Gnome",
+  "type": "species",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "deltas": {
+      "str": -2,
+      "dex": 0,
+      "end": 0,
+      "int": 2,
+      "edu": 0,
+      "soc": 0
+    },
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 INT, −2 STR.",
+      "+2 DM on aging rolls.",
+      "Sneak/Surprise advantage in nature; −1 to hit from larger foes; 3 starting spells (record separately); stature weapon limits per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 2,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Gnome",
+      "gnomeStartingSpells": 3
+    },
+    "shortdescr": "120cm forest and underground dwellers, innate prankster sorcerers and cunning tinkerers.",
+    "description": "Remotely related to both elves and dwarves, gnomes live deeper in the forests than elves, and even deeper underground than dwarves. In their hidden homes the gnomes lead an idyllic lifestyle far from human civilization. Gnomes are, on average, 120cm tall. They practice innate and mostly benign sorcery and are natural pranksters. However, when external forces threaten their forests, or when the call of adventure lures them out of their woods, gnomes prove themselves to be cunning sorcerers and talented tinkerers. They detest open fighting and excel at using guerrilla tactics and trickery against their foes."
+  },
+  "effects": [
+    {
+      "_id": "3ad9d1fa7e3398f6ef",
+      "name": "Gnome Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.strength.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.intelligence.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!3ad9d1fa7e3398f6.3ad9d1fa7e3398f6ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!3ad9d1fa7e3398f6"
+}

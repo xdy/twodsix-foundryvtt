@@ -28,6 +28,10 @@ foundry/config.mjs
 client.mjs
 foundry/*
 
+# Playwright
+test-results/
+playwright-report/
+
 # AI instructions
 .github/copilot-instructions.md
 .claude/

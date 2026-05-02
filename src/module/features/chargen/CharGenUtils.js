@@ -68,6 +68,64 @@ export function optionsFromCareerNames(names) {
 }
 
 /**
+ * Service / specialist / optional advanced education / characteristic +1 menu used by CDEE term skill picks.
+ * CE uses a different model (personal development + 1d6 on a column); do not use this for CE.
+ * @param {{ edu?: number }} chars
+ * @returns {{ value: string, label: string }[]}
+ */
+export function buildChargenCdeeServiceSpecialistTables(chars) {
+  const canAdv = (chars.edu ?? 0) >= 8;
+  const tables = [
+    { value: 'service', label: game.i18n.localize('TWODSIX.CharGen.Skills.ServiceSkills') },
+    { value: 'specialist', label: game.i18n.localize('TWODSIX.CharGen.Skills.SpecialistSkills') },
+  ];
+  if (canAdv) {
+    tables.push({
+      value: 'advanced',
+      label: game.i18n.format('TWODSIX.CharGen.Skills.AdvancedEducationWithScore', { edu: chars.edu }),
+    });
+  }
+  tables.push({ value: 'char', label: game.i18n.localize('TWODSIX.CharGen.Steps.CDEECharacteristicPlusOne') });
+  return tables;
+}
+
+/**
+ * Same shape as {@link buildChargenCdeeServiceSpecialistTables} for SoC (plain advanced label; characteristic row optional once per term block).
+ * @param {{ edu?: number }} chars
+ * @param {{ includeCharRow: boolean }} opts
+ * @returns {{ value: string, label: string }[]}
+ */
+export function buildChargenSocServiceSpecialistTables(chars, { includeCharRow }) {
+  const tables = [
+    { value: 'service', label: game.i18n.localize('TWODSIX.CharGen.Skills.ServiceSkills') },
+    { value: 'specialist', label: game.i18n.localize('TWODSIX.CharGen.Skills.SpecialistSkills') },
+  ];
+  if ((chars.edu ?? 0) >= 8) {
+    tables.push({ value: 'advanced', label: game.i18n.localize('TWODSIX.CharGen.Skills.AdvancedEducation') });
+  }
+  if (includeCharRow) {
+    tables.push({ value: 'char', label: game.i18n.localize('TWODSIX.CharGen.SOC.Options.CharacteristicPlus1') });
+  }
+  return tables;
+}
+
+/**
+ * First-term filter for CDEE/SOC skill columns: prefer skills still below `cap` when any exist.
+ * @param {string[]} skills
+ * @param {{ skills: Map<string, number> }} state
+ * @param {Record<string, string>} skillNameMap
+ * @param {{ cap?: number }} [opts]
+ * @returns {string[]}
+ */
+export function filterChargenSkillColumnUnderCap(skills, state, skillNameMap, { cap = 2 } = {}) {
+  const available = skills.filter(skill => {
+    const resolved = skillNameMap[skill] ?? skill;
+    return (state.skills.get(resolved) ?? -1) < cap;
+  });
+  return available.length ? available : skills;
+}
+
+/**
  * Assign each characteristic in `charOpts` a distinct value from the shrinking `remainingValues` pool.
  * @param {CharGenApp} app
  * @param {{ value: string, label: string }[]} charOpts
@@ -82,6 +140,7 @@ export async function assignCharacteristicPoolFromChoices(app, charOpts, remaini
     const selection = await app._choose(
       promptFor(opt, i),
       values.map(v => ({ value: String(v), label: String(v) })),
+      { preserveOptionOrder: true },
     );
     const val = parseInt(selection, 10);
     state.chars[opt.value] = val;
@@ -152,8 +211,14 @@ export async function chooseCharacteristicSwap(app) {
   }
   const state = app.charState;
   const charOpts = CHARACTERISTIC_KEYS.map(k => ({ value: k, label: `${k.toUpperCase()}: ${state.chars[k]}` }));
-  const c1 = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.SwapFirstChar'), charOpts);
-  const c2 = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.SwapSecondChar'), charOpts.filter(o => o.value !== c1));
+  const c1 = await app._choose(game.i18n.localize('TWODSIX.CharGen.Steps.SwapFirstChar'), charOpts, {
+    preserveOptionOrder: true,
+  });
+  const c2 = await app._choose(
+    game.i18n.localize('TWODSIX.CharGen.Steps.SwapSecondChar'),
+    charOpts.filter(o => o.value !== c1),
+    { preserveOptionOrder: true },
+  );
   const tmp = state.chars[c1];
   state.chars[c1] = state.chars[c2];
   state.chars[c2] = tmp;
@@ -165,9 +230,7 @@ export async function chooseCharacteristicSwap(app) {
  * @param {CharGenApp} app
  */
 export async function chooseLanguage(app) {
-  const opts = Object.entries(LanguageType)
-    .map(([label, value]) => ({ label, value: String(value) }))
-    .sort((a, b) => a.label.localeCompare(b.label));
+  const opts = Object.entries(LanguageType).map(([label, value]) => ({ label, value: String(value) }));
   const value = await app._choose(game.i18n.localize('TWODSIX.CharGen.App.Language'), opts);
   if (app.charState) {
     app.charState.languageType = parseInt(value);

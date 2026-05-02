@@ -1,7 +1,41 @@
 import { fields, requiredBlankString } from '../commonSchemaUtils.js';
 import { TwodsixItemBaseData } from './item-base.js';
 
+/**
+ * @typedef StructuredEventEntry
+ * @property {number} roll
+ * @property {string} description
+ * @property {object[]} checks
+ * @property {object[]} always
+ * @property {object[]} onSuccess
+ * @property {object[]} onFail
+ * @property {object[]} effects
+ * @property {string|null} branchPrompt
+ * @property {object[]} branchChoices
+ */
+
 export class CareerData extends TwodsixItemBaseData {
+  /**
+   * Shared factory for event/mishap structured table entries.
+   * Both tables use the same shape: a roll-determined description with optional
+   * skill-checks, unconditional effects, success/fail outcomes, effect lists,
+   * and optional branching prompts.
+   * @returns {typeof fields.SchemaField}
+   */
+  static _structuredEventSchema() {
+    return new fields.SchemaField({
+      roll: new fields.NumberField({required: true, integer: true}),
+      description: new fields.StringField({required: true, blank: true}),
+      checks: new fields.ArrayField(new fields.ObjectField({required: false}), {initial: []}),
+      always: new fields.ArrayField(new fields.ObjectField({required: false}), {initial: []}),
+      onSuccess: new fields.ArrayField(new fields.ObjectField({required: false}), {initial: []}),
+      onFail: new fields.ArrayField(new fields.ObjectField({required: false}), {initial: []}),
+      effects: new fields.ArrayField(new fields.ObjectField({required: false}), {initial: []}),
+      branchPrompt: new fields.StringField({required: false, blank: true, nullable: true, initial: null}),
+      branchChoices: new fields.ArrayField(new fields.ObjectField({required: false}), {initial: []}),
+    });
+  }
+
   static defineSchema() {
     const schema = super.defineSchema();
 
@@ -68,12 +102,19 @@ export class CareerData extends TwodsixItemBaseData {
       level: new fields.NumberField({required: true, integer: true, initial: 0})
     }), {initial: []});
 
-    // CDEE (Cepheus Deluxe Enhanced Edition) specific fields
-    schema.eventTable = new fields.ArrayField(new fields.SchemaField({
-      roll: new fields.NumberField({required: true, integer: true}),
-      description: new fields.StringField({required: true, blank: true})
+    // CDEE (Cepheus Deluxe Enhanced Edition) structured tables — shared schema across event and mishap
+    schema.eventTable = new fields.ArrayField(CareerData._structuredEventSchema(), {initial: []});
+    schema.mishapTable = new fields.ArrayField(CareerData._structuredEventSchema(), {initial: []});
+    schema.assignmentTable = new fields.ObjectField({required: false, nullable: false, initial: {}});
+    schema.officerRanks = new fields.ArrayField(new fields.SchemaField({
+      title: new fields.StringField({required: false, blank: true, nullable: true, initial: null}),
+      skill: new fields.StringField({required: false, blank: true, nullable: true, initial: null}),
+      level: new fields.NumberField({required: true, integer: true, initial: 0}),
     }), {initial: []});
     schema.isMilitary = new fields.BooleanField({required: false, initial: false});
+
+    /** Ruleset-agnostic extension payload for third-party chargen. Not used by CE/CU core flows. */
+    schema.chargenExtensions = new fields.ObjectField({ required: false, nullable: false, initial: {} });
 
     return schema;
   }

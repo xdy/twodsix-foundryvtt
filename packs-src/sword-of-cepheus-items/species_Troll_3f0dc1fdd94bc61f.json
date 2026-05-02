@@ -1,0 +1,99 @@
+{
+  "_id": "3f0dc1fdd94bc61f",
+  "name": "Troll",
+  "type": "species",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "deltas": {
+      "str": 2,
+      "dex": 0,
+      "end": 2,
+      "int": -2,
+      "edu": -2,
+      "soc": 0
+    },
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 STR, +2 END, −2 INT, −2 EDU.",
+      "Large weapons/armor; −2 reaction/social; fast healing; acid/fire healing rules per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Troll"
+    },
+    "shortdescr": "Massive lumbering humanoids with great brute strength, often hired as enforcers.",
+    "description": "Trolls are massive, lumbering humanoids. They are not very bright but have great brute strength and are very hardy. Trolls sometimes bully the weak and are often hired to serve as enforcers or bodyguards. Occasionally a troll has been known to become a hero in the service of Law. Whatever the circumstances, a troll is a force to be reckoned with."
+  },
+  "effects": [
+    {
+      "_id": "3f0dc1fdd94bc61fef",
+      "name": "Troll Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.strength.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.endurance.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.intelligence.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.education.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!3f0dc1fdd94bc61f.3f0dc1fdd94bc61fef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!3f0dc1fdd94bc61f"
+}

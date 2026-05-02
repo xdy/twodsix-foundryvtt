@@ -1,0 +1,128 @@
+{
+  "_id": "7bca1a3cfac4b149",
+  "name": "Navy",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "int",
+      "target": 6
+    },
+    "surv": {
+      "char": "int",
+      "target": 5
+    },
+    "comm": {
+      "char": "soc",
+      "target": 7
+    },
+    "adv": {
+      "char": "edu",
+      "target": 6
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Starman",
+        "skill": "Zero-G",
+        "level": 1
+      },
+      {
+        "title": "Midshipman",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lieutenant",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Lt Commander",
+        "skill": "Tactics",
+        "level": 1
+      },
+      {
+        "title": "Commander",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Commodore",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "+1 Int",
+      "+1 Edu",
+      "Melee Combat"
+    ],
+    "service": [
+      "Comms",
+      "Engineering",
+      "Gun Combat",
+      "Gunnery",
+      "Melee Combat",
+      "Vehicle"
+    ],
+    "specialist": [
+      "Gravitics",
+      "Jack o' Trades",
+      "Melee Combat",
+      "Navigation",
+      "Leadership",
+      "Piloting"
+    ],
+    "advanced": [
+      "Advocate",
+      "Computer",
+      "Engineering",
+      "Medicine",
+      "Navigation",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Edu",
+      "Weapon",
+      "Mid Passage",
+      "+1 Soc",
+      "High Passage",
+      "Explorers' Society"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      10000,
+      20000,
+      50000,
+      50000
+    ],
+    "description": "Member of an interstellar armed military force that conducts military operations in interplanetary or interstellar space. Also known as the \"space navy\".",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!7bca1a3cfac4b149"
+}

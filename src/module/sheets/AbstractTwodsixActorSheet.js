@@ -44,7 +44,8 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
       rollDamage: onRollDamage,
       rollInitiative: this._onRollInitiative,
       selectItem: this._onItemSelect,
-      openJournalEntry: openJournalEntry
+      openJournalEntry: openJournalEntry,
+      clearSpecies: this._onClearSpecies
     }
   };
 
@@ -257,6 +258,33 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
    */
   static _onItemSelect(ev, target) {
     target.select();
+  }
+
+  /**
+   * Handle clearing the species item from the actor.
+   * @param {Event} ev   The originating click event
+   * @param {HTMLElement} target
+   * @returns {Promise<void>}
+   * @type {ApplicationClickAction}
+   * @this AbstractTwodsixActorSheet
+   */
+  static async _onClearSpecies(ev, target) {
+    if (!this.actor.isOwner) {
+      ui.notifications.warn("TWODSIX.Warnings.LackPermissionToEdit", {localize: true});
+      return;
+    }
+    const speciesItem = this.actor.itemTypes.species?.[0];
+    if (!speciesItem) {
+      return;
+    }
+    const confirmed = await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.Actor.Species")},
+      content: `<strong>${game.i18n.localize("TWODSIX.Actor.DeleteOwnedItem")}: ${speciesItem.name}</strong>`,
+    });
+    if (!confirmed) {
+      return;
+    }
+    await this.actor.deleteEmbeddedDocuments("Item", [speciesItem.id]);
   }
 
   /**
@@ -484,6 +512,9 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
     context.system = this.actor.system;
     context.limited = this.actor.limited;
     context.isOwner = this.actor.isOwner;
+    context.hasSpecies = this.actor.itemTypes.species?.length > 0;
+    context.speciesReadonly = context.hasSpecies && this.actor.itemTypes.species[0]?.name;
+    context.speciesDisplay = this.actor.itemTypes.species?.[0]?.name ?? this.actor.system.species;
 
     context.dtypes = ["String", "Number", "Boolean"];
 
@@ -805,6 +836,8 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
         }
       }
       //Add consumable labels
+      // NOTE: Mutates it.system for template consumption. These are display-only overrides
+      // that should eventually move to a separate displayProperties map on the context.
       if (["traveller"].includes(actor.type) && it.type === "consumable") {
         const parentItem = actor.items.find((i) => i.system.consumables?.includes(it.id));
         if (parentItem) {
@@ -826,7 +859,8 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
             uuid: it.uuid
           };
         }
-        //replace item damage with linked ammo damage for display
+        // NOTE: Mutating it.system.ammoDamage for template display of linked ammo damage.
+        // Should be replaced by a derived field in prepareDerivedData() or a context displayProperties map.
         if (it.system.isArmament && it.system.ammoLink !== "none") {
           const linkedAmmo = actor.items.get(it.system.ammoLink);
           if (linkedAmmo) {
@@ -1073,11 +1107,11 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
     } else {
       console.warn("Unknown effect control action:", action);
     }
-    //await this.render(false);
   }
 
-  //These aren't necessary with change to prosemirror
   /**
+   * Legacy contenteditable wiring; retained for backward-compatible use.
+   * ProseMirror is now used for rich text editing by default.
    * @param {HTMLElement} element
    * @returns {void}
    */
@@ -1091,13 +1125,13 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
   }
 
   /**
+   * Legacy contenteditable change handler; kept for backward-compatible wiring.
+   * ProseMirror is now used for rich text editing by default.
    * @param {Event} ev
    * @returns {Promise<void>}
    * @override
    */
-  // Not really needed with change to prosemirror
   async _onChangeContenteditable(ev) {
-    //console.log(event);
     if (ev.currentTarget?.name !== 'type') {
       const formField = ev.currentTarget?.closest('div[contenteditable="true"][data-edit]');
       if (formField) {
@@ -1147,11 +1181,12 @@ export class AbstractTwodsixActorSheet extends foundry.applications.api.Handleba
    * Assigns display labels for a skill item on actor sheet display.
    * This is called for each skill item after it is processed for the sheet context.
    *
+   * NOTE: Mutates `skill.system.displayCharMod`, `skill.system.adjustedSkillValue`,
+   * and `skill.system.skillTotal` for template consumption. These should eventually
+   * move to a context-level displayProperties map instead of mutating item data.
+   *
    * @param {TwodsixItem} skill - The skill item to annotate with the display string.
    * @param {TwodsixActor} actor - The actor owning the skill, used to look up characteristic values.
-   *
-   * The resulting strings are stored as `skill.system.displayCharMod`, `skill.system.adjustedSkillValue`,
-   * and `skill.system.skillTotal` for use in templates.
    * @returns {void}
    */
   _processSkillDisplayLabels(skill, actor) {

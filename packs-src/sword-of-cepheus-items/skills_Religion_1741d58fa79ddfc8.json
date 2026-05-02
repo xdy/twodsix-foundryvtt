@@ -1,0 +1,26 @@
+{
+  "_id": "1741d58fa79ddfc8",
+  "name": "Religion",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "EDU",
+    "type": "skills",
+    "description": "Knowledge of gods and demons – and the ways to worship them. In some settings, this skill may grant certain supernatural abilities.<ul><li>Making a theological argument against a heretic: Religion/EDU 8+</li><li>Correctly identifying a demon's name from a list of ancient runes: Religion/EDU 12+</li><li>Understanding a newly encountered barbarian tribe's theology: Religion/INT 8+</li><li>Some Referees may permit characters to use the Religion skill to intimidate sentient undead creatures</li></ul>",
+    "shortdescr": "Knowledge of gods, demons, and worship; may grant supernatural abilities.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!1741d58fa79ddfc8"
+}

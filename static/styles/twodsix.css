@@ -1171,6 +1171,15 @@ img.condition-icon {
   width: 7em;
   border: none;
 }
+.species-clear {
+  cursor: pointer;
+  color: var(--color-level-warning);
+}
+.species-clear.grey {
+  color: var(--color-border-dark-tertiary);
+  cursor: default;
+  pointer-events: none;
+}
 
 .bgi-primaryLanguage input {
   width: 10em;

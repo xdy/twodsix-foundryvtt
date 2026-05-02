@@ -2,20 +2,14 @@
 
 import { CONSUMABLE_SUBTYPES, TWODSIX } from '../config';
 import { ConsumableData } from '../data/items/consumableData.js';
-import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
 import TwodsixItem from '../entities/TwodsixItem';
 import {
-  addPDFLink,
   changeReference,
-  deletePDFLink,
-  deleteReference,
   getConsumableOptions,
   getDamageTypes,
   getDifficultiesSelectObject,
   getRangeTypes,
-  getRollTypeSelectObject,
-  openJournalEntry,
-  openPDFLink
+  getRollTypeSelectObject
 } from '../utils/sheetUtils';
 import { AbstractTwodsixItemSheet, onPasteStripFormatting } from './AbstractTwodsixItemSheet';
 
@@ -45,15 +39,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
       createConsumable: this._onCreateConsumable,
       createAttachment: this._onCreateAttachment,
       editConsumable: this._onEditConsumable,
-      deleteConsumable: this._onDeleteConsumable,
-      editActiveEffect: this._onEditEffect,
-      createActiveEffect: this._onCreateEffect,
-      deleteActiveEffect: this._onDeleteEffect,
-      openPDFLink: openPDFLink,
-      deletePDFLink: deletePDFLink,
-      addPDFLink: addPDFLink,
-      openJournalEntry: openJournalEntry,
-      deleteReference: deleteReference
+      deleteConsumable: this._onDeleteConsumable
     },
     tag: "form"
   };
@@ -83,29 +69,16 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   };
 
   /**
+   * Ship/vehicle items cannot have ActiveEffects edited in cargo.
+   * Delegates to the parent implementation in AbstractTwodsixItemSheet.
    * @returns {Promise<void>}
    */
   static async _onCreateEffect() {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn("TWODSIX.Warnings.CantEditCreateInCargo", {localize: true});
-    } else {
-      const newId = foundry.utils.randomID();
-      if (game.settings.get('twodsix', 'useItemActiveEffects')) {
-        if (await fromUuid(this.item.uuid)) {
-          TwodsixActiveEffect.create({
-            icon: this.item.img,
-            tint: "#ffffff",
-            name: this.item.name,
-            description: "",
-            transfer: game.settings.get('twodsix', "useItemActiveEffects"),
-            disabled: false,
-            _id: newId
-          }, {renderSheet: true, parent: this.item});
-        } else {
-          ui.notifications.warn("TWODSIX.Warnings.CantCreateEffect", {localize: true});
-        }
-      }
+      return;
     }
+    return AbstractTwodsixItemSheet._onCreateEffect.call(this);
   }
 
   /**
@@ -114,35 +87,9 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   static async _onEditEffect() {
     if (this.actor?.type === "ship" || this.actor?.type === "vehicle") {
       ui.notifications.warn("TWODSIX.Warnings.CantEditCreateInCargo", {localize: true});
-    } else if (await fromUuid(this.item.uuid)) {
-      const editSheet = await this.item.effects.contents[0].sheet?.render({force: true});
-      try {
-        editSheet?.bringToFront();
-      } catch (err) {
-        console.log(err);
-      }
-    } else {
-      ui.notifications.warn("TWODSIX.Warnings.CantEditEffect", {localize: true});
+      return;
     }
-  }
-
-  /**
-   * @returns {Promise<void>}
-   */
-  static async _onDeleteEffect() {
-    if (await foundry.applications.api.DialogV2.confirm({
-      window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
-      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
-    })) {
-      if (await fromUuid(this.item.uuid)) {
-        await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
-        if (this.item.actor) {
-          this.item.actor.sheet.render(false);
-        }
-      } else {
-        ui.notifications.warn("TWODSIX.Warnings.CantDeleteEffect", {localize: true});
-      }
-    }
+    return AbstractTwodsixItemSheet._onEditEffect.call(this);
   }
 
   /**
@@ -375,7 +322,6 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     if (!context.editable) {
       return;
     }
-    //Not strictly necessary
     this.handleContentEditable(this.element);
 
     this.element.querySelector('.consumable-use-consumable-for-attack')?.addEventListener('change', this._onChangeUseConsumableForAttack.bind(this));
@@ -391,9 +337,8 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @param {Event} ev
    * @returns {Promise<void>}
    */
-  async _changeName(ev) {
-    // Name uniqueness for skills is now enforced in SkillItem._preUpdate.
-    // No extra logic needed here — the form submitOnChange will trigger the update.
+  _changeName(/*ev*/) {
+    // No-op: name change is handled by form submitOnChange; uniqueness enforced in SkillItem._preUpdate.
   }
 
   /**
@@ -401,7 +346,7 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
    * @returns {Promise<void>}
    */
   async _changeSubtype(ev) {
-    ev.preventDefault(); //Needed?
+    ev.preventDefault();
     const chosenSubtype = ev.target.value;
     // Component constraints (image, weightIsPct, isBaseHull, hardened, pricingBasis) and
     // consumable isAttachment are now enforced in ComponentItem._preUpdate / ConsumableItem._preUpdate.
@@ -454,15 +399,14 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     }
   }
 
-  /* -------------------------------------------- */
   /**
+   * Legacy contenteditable change handler; kept for backward-compatible wiring.
+   * ProseMirror is now used for rich text editing by default.
    * @override
    * @param {Event} event
    * @returns {Promise<void>}
    */
-  // Not really needed with change to prosemirror
   async _onChangeContenteditable(event) {
-    //console.log(event);
     if (event.currentTarget?.name !== 'type') {
       const formField = event.currentTarget?.closest('div[contenteditable="true"][data-edit]');
       if (formField) {
@@ -484,11 +428,9 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
   }
 
   /**
-   * @returns {void}
+   * No-op: non-stackable warnings are now emitted in ArmorItem._preUpdate.
    */
-  _changeNonstackable() {
-    // Warning for multiple layers is now emitted in ArmorItem._preUpdate.
-  }
+  _changeNonstackable() {}
 
   /**
    * @param {HTMLElement} target
@@ -512,8 +454,9 @@ export class TwodsixItemSheet extends foundry.applications.api.HandlebarsApplica
     /*this.render();*/
   }
 
-  //These aren't necessary with change to prosemirror
   /**
+   * Legacy contenteditable wiring; retained for backward-compatible use.
+   * ProseMirror is now used for rich text editing by default.
    * @param {HTMLElement} element
    * @returns {void}
    */

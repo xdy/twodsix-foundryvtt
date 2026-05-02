@@ -1,0 +1,230 @@
+{
+  "_id": "92ad6cc95c8c16a9",
+  "name": "Soldier",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Athletics",
+      "Archery",
+      "Artillery",
+      "Melee",
+      "Scout",
+      "Riding"
+    ],
+    "specialist": [
+      "Craft",
+      "Carousing",
+      "Sneak",
+      "Liaison",
+      "Survival",
+      "Battle"
+    ],
+    "advanced": [
+      "Healing",
+      "Govern",
+      "Jack o’Trades",
+      "Leadership",
+      "Leadership",
+      "Steward"
+    ],
+    "cash": [
+      10,
+      50,
+      50,
+      100,
+      100,
+      200
+    ],
+    "material": [
+      "Weapon",
+      "Hound",
+      "Armor",
+      "Mount",
+      "Steed",
+      "+1 SOC"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Command. Gain Leadership or Battle.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Leadership:1",
+              "SKILL:Battle:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 4,
+        "description": "Barbarians. Melee Combat 8+ or Injury.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "War. INT or Survival 8+ for extra Benefit; fail: Injury.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          },
+          {
+            "skill": "Survival",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Impressed. END 8+: Watercraft; fail loses Benefit.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Watercraft:1"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Art of War. Gain Battle. Battle-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Battle:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Bureaucracy. INT 8+: Govern or Leadership.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Govern:1",
+              "SKILL:Leadership:1"
+            ]
+          }
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Construction. Gain Craft. Craft-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Craft:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Cavalry. Gain Animals or Riding.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Riding:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 12,
+        "description": "Fame. Gain an extra Benefit roll. Extra Benefit roll",
+        "checks": [],
+        "always": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!92ad6cc95c8c16a9"
+}

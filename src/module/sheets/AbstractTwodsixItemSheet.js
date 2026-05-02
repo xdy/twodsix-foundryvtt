@@ -1,13 +1,106 @@
 import { TWODSIX } from '../config';
-import { getDataFromDropEvent, getDocFromDropData, isDisplayableSkill } from '../utils/sheetUtils';
+import { TwodsixActiveEffect } from '../entities/TwodsixActiveEffect';
+import {
+  addPDFLink,
+  deletePDFLink,
+  deleteReference,
+  getDataFromDropEvent,
+  getDocFromDropData,
+  isDisplayableSkill,
+  openJournalEntry,
+  openPDFLink
+} from '../utils/sheetUtils';
 import { sortByItemName } from '../utils/utils';
 
 /**
- * Extend the basic ItemSheetV2 with some very simple modifications
+ * Extend the basic ItemSheetV2 with some very simple modifications.
+ * Shared DEFAULT_OPTIONS.actions provide PDF-link and ActiveEffect handlers
+ * inherited by all item sheets (TwodsixItemSheet, CareerItemSheet, SpeciesItemSheet, etc.).
  * @extends {ItemSheetV2}
  */
 export class AbstractTwodsixItemSheet extends foundry.applications.api.HandlebarsApplicationMixin(
   foundry.applications.sheets.ItemSheetV2) {
+
+  /** @override */
+  static DEFAULT_OPTIONS = {
+    actions: {
+      editActiveEffect: this._onEditEffect,
+      createActiveEffect: this._onCreateEffect,
+      deleteActiveEffect: this._onDeleteEffect,
+      openPDFLink: openPDFLink,
+      deletePDFLink: deletePDFLink,
+      addPDFLink: addPDFLink,
+      openJournalEntry: openJournalEntry,
+      deleteReference: deleteReference
+    }
+  };
+
+  /* -------------------------------------------- */
+  /**
+   * Shared static action handler: create an ActiveEffect on the item.
+   * @returns {Promise<void>}
+   */
+  static async _onCreateEffect() {
+    const newId = foundry.utils.randomID();
+    if (game.settings.get('twodsix', 'useItemActiveEffects')) {
+      if (await fromUuid(this.item.uuid)) {
+        TwodsixActiveEffect.create({
+          icon: this.item.img,
+          tint: "#ffffff",
+          name: this.item.name,
+          description: "",
+          transfer: game.settings.get('twodsix', "useItemActiveEffects"),
+          disabled: false,
+          _id: newId
+        }, {renderSheet: true, parent: this.item});
+      } else {
+        ui.notifications.warn("TWODSIX.Warnings.CantCreateEffect", {localize: true});
+      }
+    }
+  }
+
+  /**
+   * Shared static action handler: edit the item's ActiveEffect.
+   * @returns {Promise<void>}
+   */
+  static async _onEditEffect() {
+    if (await fromUuid(this.item.uuid)) {
+      const editSheet = await this.item.effects.contents[0].sheet?.render({force: true});
+      try {
+        editSheet?.bringToFront();
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      ui.notifications.warn("TWODSIX.Warnings.CantEditEffect", {localize: true});
+    }
+  }
+
+  /*******************
+   *
+   * Drag Drop Handling
+   *
+   *******************/
+
+  /**
+   * Shared static action handler: delete the item's ActiveEffect.
+   * @returns {Promise<void>}
+   */
+  static async _onDeleteEffect() {
+    if (await foundry.applications.api.DialogV2.confirm({
+      window: {title: game.i18n.localize("TWODSIX.ActiveEffects.DeleteEffect")},
+      content: game.i18n.localize("TWODSIX.ActiveEffects.ConfirmDelete")
+    })) {
+      if (await fromUuid(this.item.uuid)) {
+        await this.item.deleteEmbeddedDocuments('ActiveEffect', [], {deleteAll: true});
+        if (this.item.actor) {
+          this.item.actor.sheet.render(false);
+        }
+      } else {
+        ui.notifications.warn("TWODSIX.Warnings.CantDeleteEffect", {localize: true});
+      }
+    }
+  }
 
   /**
    * @param {object} context
@@ -55,12 +148,6 @@ export class AbstractTwodsixItemSheet extends foundry.applications.api.Handlebar
     }
     return context;
   }
-
-  /*******************
-   *
-   * Drag Drop Handling
-   *
-   *******************/
 
   /**
    * @returns {boolean}
@@ -114,7 +201,7 @@ export class AbstractTwodsixItemSheet extends foundry.applications.api.Handlebar
     ev.preventDefault();
     try {
       const dropData = getDataFromDropEvent(ev);
-      this.check(!dropData, "DraggingSomething");
+      this._assertNonNullish(dropData, "DraggingSomething");
       if (['html', 'pdf'].includes(dropData.type)) {
         if (dropData.href) {
           await this.item.update({
@@ -133,16 +220,15 @@ export class AbstractTwodsixItemSheet extends foundry.applications.api.Handlebar
           });
         }
       } else if (dropData.type === 'Item') {
-        //This part handles just comsumables
-        this.check(!this.item.isOwned, "OnlyOwnedItems");
-        this.check(TWODSIX.WeightlessItems.includes(this.item.type), "TraitsandSkillsNoConsumables");
-
-        this.check(dropData.type !== "Item", "OnlyDropItems");
+        //This part handles just consumables
+        this._assert(this.item.isOwned, "OnlyOwnedItems");
+        this._assert(!TWODSIX.WeightlessItems.includes(this.item.type), "TraitsandSkillsNoConsumables");
+        this._assert(dropData.type === "Item", "OnlyDropItems");
 
         const itemData = await getDocFromDropData(dropData);
 
-        this.check(itemData.type !== "consumable", "OnlyDropConsumables");
-        this.check(this.item.type === "consumable" && itemData.system.isAttachment, "CantDropAttachOnConsumables");
+        this._assert(itemData.type === "consumable", "OnlyDropConsumables");
+        this._assert(!(this.item.type === "consumable" && itemData.system.isAttachment), "CantDropAttachOnConsumables");
 
         // If the dropped item has the same actor as the current item let's just use the same id.
         let itemId;
@@ -170,13 +256,26 @@ export class AbstractTwodsixItemSheet extends foundry.applications.api.Handlebar
   }
 
   /**
-   * @param {boolean} cond
-   * @param {string} err
+   * Assert that a condition is true; throws a localized error if not.
+   * @param {boolean} cond    Condition to assert.
+   * @param {string} errorKey Localization key suffix under `TWODSIX.Errors.*`.
    * @returns {void}
    */
-  check(cond, err) {
-    if (cond) {
-      throw new Error(game.i18n.localize(`TWODSIX.Errors.${err}`));
+  _assert(cond, errorKey) {
+    if (!cond) {
+      throw new Error(game.i18n.localize(`TWODSIX.Errors.${errorKey}`));
+    }
+  }
+
+  /**
+   * Assert a value is not null or undefined; throws a localized error if it is.
+   * @param {*} value            The value to check.
+   * @param {string} errorKey    Localization key suffix under `TWODSIX.Errors.*`.
+   * @returns {void}
+   */
+  _assertNonNullish(value, errorKey) {
+    if (value == null) {
+      throw new Error(game.i18n.localize(`TWODSIX.Errors.${errorKey}`));
     }
   }
 }

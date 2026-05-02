@@ -1,0 +1,128 @@
+{
+  "_id": "cdcbeeb22dd769be",
+  "name": "Mercenary",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CE",
+    "qual": {
+      "char": "int",
+      "target": 4
+    },
+    "surv": {
+      "char": "end",
+      "target": 6
+    },
+    "comm": {
+      "char": "int",
+      "target": 7
+    },
+    "adv": {
+      "char": "int",
+      "target": 6
+    },
+    "reenlist": 5,
+    "hasCommAdv": true,
+    "ranks": [
+      {
+        "title": "Private",
+        "skill": "Gun Combat",
+        "level": 1
+      },
+      {
+        "title": "Lieutenant",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Captain",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Major",
+        "skill": "Tactics",
+        "level": 1
+      },
+      {
+        "title": "Lt Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Colonel",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Brigadier",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "personal": [
+      "+1 Str",
+      "+1 Dex",
+      "+1 End",
+      "Zero-G",
+      "Melee Combat",
+      "Gambling"
+    ],
+    "service": [
+      "Comms",
+      "Mechanics",
+      "Gun Combat",
+      "Melee Combat",
+      "Gambling",
+      "Battle Dress"
+    ],
+    "specialist": [
+      "Gravitics",
+      "Gun Combat",
+      "Gunnery",
+      "Melee Combat",
+      "Recon",
+      "Vehicle"
+    ],
+    "advanced": [
+      "Advocate",
+      "Engineering",
+      "Medicine",
+      "Navigation",
+      "Sciences",
+      "Tactics"
+    ],
+    "material": [
+      "Low Passage",
+      "+1 Int",
+      "Weapon",
+      "High Passage",
+      "+1 Soc",
+      "High Passage",
+      "1D6 Ship Shares"
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      20000,
+      20000,
+      50000,
+      100000
+    ],
+    "description": "Professional soldier hired to serve in a foreign military force or perform a specific military action.",
+    "eventTable": [],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "v13",
+    "coreVersion": "13"
+  },
+  "folder": "hQOw5u0dGOAhRyd6",
+  "_key": "!items!cdcbeeb22dd769be"
+}

@@ -56,6 +56,7 @@
       "tool": {"htmlFields": ["description"]},
       "junk": {"htmlFields": ["description"]},
       "skills": {"htmlFields": ["description"]},
+      "species": {"htmlFields": ["description"]},
       "spell": {"htmlFields": ["description"]},
       "trait": {"htmlFields": ["description"]},
       "consumable": {"htmlFields": ["description"]},
@@ -181,33 +182,7 @@
       "entity": "Item",
       "type": "Item"
     },
-    {
-      "name": "ce-srd-careers",
-      "label": "ce srd careers",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/ce-srd-careers",
-      "entity": "Item",
-      "type": "Item"
-    },
-    {
-      "name": "cu-srd-careers",
-      "label": "cu srd careers",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/cu-srd-careers",
-      "entity": "Item",
-      "type": "Item"
-    },
-    {
-      "name": "cdee-srd-careers",
-      "label": "CDEE SRD Careers",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/cdee-srd-careers",
-      "entity": "Item",
-      "type": "Item"
-    },
+
     {
       "name": "cepheus-atom-items",
       "label": "cepheus atom items",
@@ -326,15 +301,6 @@
       "type": "RollTable"
     },
     {
-      "name": "alpha-cephei-skills",
-      "label": "alpha cephei skills",
-      "system": "twodsix",
-      "module": "twodsix",
-      "path": "./packs/alpha-cephei-skills",
-      "entity": "Item",
-      "type": "Item"
-    },
-    {
       "name": "alpha-cephei-items",
       "label": "alpha cephei items",
       "system": "twodsix",
@@ -358,6 +324,24 @@
       "system": "twodsix",
       "module": "twodsix",
       "path": "./packs/cepheus-universal-items",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "sword-of-cepheus-items",
+      "label": "Sword of Cepheus Items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/sword-of-cepheus-items",
+      "entity": "Item",
+      "type": "Item"
+    },
+    {
+      "name": "cepheus-deluxe-enhanced-edition-items",
+      "label": "Cepheus Deluxe Enhanced Edition Items",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/cepheus-deluxe-enhanced-edition-items",
       "entity": "Item",
       "type": "Item"
     },
@@ -390,8 +374,7 @@
       "packs": [
         "ce-srd-gm-screen",
         "ce-srd-items",
-        "ce-srd-roll-tables",
-        "ce-srd-careers"
+        "ce-srd-roll-tables"
       ]
     },
     {
@@ -419,7 +402,7 @@
         "cepheus-deluxe-actors",
         "cepheus-deluxe-tables",
         "cepheus-deluxe-gm-screen",
-        "cdee-srd-careers"
+        "cepheus-deluxe-enhanced-edition-items"
       ]
     },
     {
@@ -443,16 +426,21 @@
       "sorting": "m",
       "packs": [
         "alpha-cephei-actors",
-        "alpha-cephei-items",
-        "alpha-cephei-skills"
+        "alpha-cephei-items"
       ]
     },
     {
       "name": "Cepheus Universal",
       "sorting": "m",
       "packs": [
-        "cepheus-universal-items",
-        "cu-srd-careers"
+        "cepheus-universal-items"
+      ]
+    },
+    {
+      "name": "Sword of Cepheus 2e",
+      "sorting": "m",
+      "packs": [
+        "sword-of-cepheus-items"
       ]
     },
     {

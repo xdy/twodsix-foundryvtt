@@ -1,0 +1,87 @@
+{
+  "_id": "dfd63b7a8bead364",
+  "name": "Geckofolk",
+  "type": "species",
+  "img": "icons/svg/eye.svg",
+  "system": {
+    "deltas": {
+      "str": 0,
+      "dex": 2,
+      "end": 0,
+      "int": 0,
+      "edu": -2,
+      "soc": 0
+    },
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 DEX, −2 EDU.",
+      "Darkvision; climb without Athletics; tail shed vs mortal wound (2d6 weeks regrowth) per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Geckofolk"
+    },
+    "shortdescr": "Slender reptilian hunters from deserts and jungles, patient stalkers with adhesive fingertips.",
+    "description": "Geckofolk hail from the far deserts or deep jungles where they stalk their prey. They are slender and nimble, with large, slit-pupil eyes, thick tails, and adhesive fingertips. The geckofolk world is three-dimensional; these reptilians can easily climb anywhere. And from their perches they lurk, waiting, stalking, and hunting beasts of all kinds. Geckofolk are patient; the world can wait until they act, and when they do act, it is with lightning speed. In the civilizations of humanity, far from their remote homes, geckofolk often find work using their natural predatory talents as hunters, thieves, or assassins."
+  },
+  "effects": [
+    {
+      "_id": "dfd63b7a8bead364ef",
+      "name": "Geckofolk Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.education.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!dfd63b7a8bead364.dfd63b7a8bead364ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!dfd63b7a8bead364"
+}

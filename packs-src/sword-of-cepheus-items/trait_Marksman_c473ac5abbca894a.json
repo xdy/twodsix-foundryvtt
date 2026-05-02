@@ -1,0 +1,23 @@
+{
+  "_id": "c473ac5abbca894a",
+  "name": "Marksman",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to kill unsuspecting victims from a distance. When attacking an unaware target in ranged combat, using an aimed shot, add 1d6 to the attack's total damage.",
+    "prereq": "Archery",
+    "shortdescr": "+1d6 damage vs unaware ranged targets with aimed shot.",
+    "subtype": "",
+    "key": "marksman",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!c473ac5abbca894a"
+}

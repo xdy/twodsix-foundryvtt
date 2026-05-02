@@ -1,0 +1,248 @@
+{
+  "_id": "0053f8e31ba92549",
+  "name": "Noble",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Riding",
+      "Carousing",
+      "Govern",
+      "Leadership",
+      "Melee",
+      "Archery"
+    ],
+    "specialist": [
+      "Govern",
+      "Animals",
+      "Liaison",
+      "Watercraft",
+      "Deception",
+      "Carousing"
+    ],
+    "advanced": [
+      "Healing",
+      "Battle",
+      "Insight",
+      "Artillery",
+      "Natural Phil.",
+      "Religion"
+    ],
+    "cash": [
+      100,
+      200,
+      400,
+      600,
+      600,
+      1000
+    ],
+    "material": [
+      "Ally",
+      "Weapon",
+      "Steed",
+      "Hound",
+      "Retainer",
+      "Holding"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Elevated. You gain one point of Social Standing.",
+        "checks": [],
+        "always": [
+          "[SOC_PLUS1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Invaded. Leadership or Melee Combat 8+: improve skill used; fail loses Benefit.",
+        "checks": [
+          {
+            "skill": "Leadership",
+            "target": 8
+          },
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "IMPROVE_CHECK_SKILL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Attacked. END 8+: gain Melee; fail: Injury.",
+        "checks": [
+          {
+            "skill": "END",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Melee Combat:1"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Duel. Accept the duel or refuse and lose SOC.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "DUEL",
+              "SOC_MINUS1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Politics. Gain Deception, Liaison, or Govern, and an Enemy.",
+        "checks": [],
+        "always": [
+          "[ENEMY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Deception:1",
+              "SKILL:Liaison:1",
+              "SKILL:Govern:1"
+            ]
+          },
+          "ENEMY"
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "War. Leadership or Battle 8+: +1 SOC; fail: improve skill rolled.",
+        "checks": [
+          {
+            "skill": "Leadership",
+            "target": 8
+          },
+          {
+            "skill": "Battle",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SOC_PLUS1"
+        ],
+        "onFail": [
+          "IMPROVE_CHECK_SKILL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Travel. EDU 8+ for Carousing, Riding, or a Language.",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Carousing:1",
+              "SKILL:Riding:1",
+              "SKILL:Language:1"
+            ]
+          }
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Party. Gain Carousing, Deception, or Streetwise.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Carousing:1",
+              "SKILL:Deception:1",
+              "SKILL:Streetwise:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 12,
+        "description": "Great fortune among the nobility. Gain an extra Benefit roll. Extra Benefit roll",
+        "checks": [],
+        "always": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!0053f8e31ba92549"
+}

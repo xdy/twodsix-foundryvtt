@@ -2,79 +2,113 @@
   {{localize "TWODSIX.Actor.Age"}}:
   <input type="number" value="{{system.age.value}}" min="0"
     {{disabled tooltips.age.value}}
-    data-tooltip="{{tooltips.age.value}}"
-    name="system.age.value"
-    placeholder="0" data-dtype="Number" />
+         data-tooltip="{{tooltips.age.value}}"
+         name="system.age.value"
+         placeholder="0" data-dtype="Number"/>
 </span>
 <span class="bgi-gender">{{localize "TWODSIX.Actor.Gender"}}:<input name="system.gender" type="text"
-    value="{{system.gender}}" placeholder='{{localize "TWODSIX.Actor.Gender"}}' onClick="this.select();"/></span>
+                                                                    value="{{system.gender}}"
+                                                                    placeholder='{{localize "TWODSIX.Actor.Gender"}}'
+                                                                    onClick="this.select();"/></span>
 {{#if settings.showHeroPoints}}
   <span class="bgi-armor bgi-heroPoints" data-tooltip='{{localize "TWODSIX.Actor.HeroPoints"}}'>
-    <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}" min="0"
-    step="1" placeholder="2" />
+    <i class="fa-solid fa-medal"></i>:<input type="number" name="system.heroPoints" value="{{system.heroPoints}}"
+                                             min="0"
+                                             step="1" placeholder="2"/>
   </span>
 {{/if}}<br>
 {{#unless settings.useRiderData}}
-  <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:<input name="system.species" type="text"
-    value="{{system.species}}" placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();" />
+  <span class="bgi-species">{{localize "TWODSIX.Actor.Species"}}:{{#if speciesReadonly}}
+    <input name="system.species" type="text" value="{{speciesDisplay}}" disabled readonly
+           data-tooltip='{{localize "TWODSIX.Actor.SpeciesReadonly"}}'/>
+  {{else}}
+    <input name="system.species" type="text" value="{{speciesDisplay}}"
+           placeholder='{{localize "TWODSIX.Actor.Species"}}' onClick="this.select();"/>
+  {{/if}}
+    {{#if isOwner}}<a data-action="clearSpecies" data-tooltip='{{localize "TWODSIX.Actor.SpeciesClear"}}'
+                      class="species-clear{{#unless hasSpecies}} grey{{/unless}}"><i
+      class="fa-solid fa-trash"></i></a>{{/if}}
   </span>
 {{else}}
-  <span class="bgi-primaryLanguage">{{localize "TWODSIX.Actor.PrimaryLanguage"}}:<input name="system.primaryLanguage" type="text"
-    value="{{system.primaryLanguage}}" placeholder='{{localize "TWODSIX.Actor.PrimaryLanguage"}}' onClick="this.select();" />
+  <span class="bgi-primaryLanguage">{{localize "TWODSIX.Actor.PrimaryLanguage"}}:<input name="system.primaryLanguage"
+                                                                                        type="text"
+                                                                                        value="{{system.primaryLanguage}}"
+                                                                                        placeholder='{{localize
+                                                                                          "TWODSIX.Actor.PrimaryLanguage"}}'
+                                                                                        onClick="this.select();"/>
   </span>
 {{/unless}}<br>
 {{#unless settings.useNationality}}
-  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'>{{localize "TWODSIX.Actor.HomeWorld"}}:<input
+  <span class="bgi-homeWorld" data-tooltip='{{localize "TWODSIX.Actor.HomeWorld"}}'>{{localize
+    "TWODSIX.Actor.HomeWorld"}}:<input
     name="system.homeWorld" type="text" value="{{system.homeWorld}}"
-    placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();" /> </span>
+    placeholder='{{localize "TWODSIX.Actor.HomeWorld"}}' onClick="this.select();"/> </span>
 {{else}}
-  <span class="bgi-homeWorld bgi-nationality" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'>{{localize "TWODSIX.Actor.Nationality"}}:<input
+  <span class="bgi-homeWorld bgi-nationality" data-tooltip='{{localize "TWODSIX.Actor.Nationality"}}'>{{localize
+    "TWODSIX.Actor.Nationality"}}:<input
     name="system.nationality" type="text" value="{{system.nationality}}"
-    placeholder='{{localize "TWODSIX.Actor.Nationality"}}' onClick="this.select();" /> </span>
+    placeholder='{{localize "TWODSIX.Actor.Nationality"}}' onClick="this.select();"/> </span>
 {{/unless}}
 <br>
 {{#unless limited}}
   {{#if settings.useCTData}}
-    <span class="bgi-armorType">{{localize "TWODSIX.Items.Armor.Armor"}}:<input type="text" value="{{localize (concat 'TWODSIX.Chat.Roll.ArmorTypes.' system.armorType)}}"
-      placeholder='0' diasbled data-tooltip="{{tooltips.armorType}}"/>
-      {{#if system.reflectOn}}<i class="fa-solid fa-arrow-trend-up" data-tooltip="{{localize 'TWODSIX.Items.Armor.WearingReflec'}}"></i>{{/if}}
+    <span class="bgi-armorType">{{localize "TWODSIX.Items.Armor.Armor"}}:<input type="text" value="{{localize
+      (concat 'TWODSIX.Chat.Roll.ArmorTypes.' system.armorType)}}"
+                                                                                placeholder='0' diasbled
+                                                                                data-tooltip="{{tooltips.armorType}}"/>
+      {{#if system.reflectOn}}<i class="fa-solid fa-arrow-trend-up"
+                                 data-tooltip="{{localize 'TWODSIX.Items.Armor.WearingReflec'}}"></i>{{/if}}
     </span>
     <span class="bgi-armorDM">{{localize "TWODSIX.Items.Armor.armorDM"}}:<input type="number" value="{{system.armorDM}}"
-      placeholder='0' disabled data-tooltip="{{tooltips.armorDM}}"/></span><br>
+                                                                                placeholder='0' disabled
+                                                                                data-tooltip="{{tooltips.armorDM}}"/></span>
+    <br>
   {{else}}
     <span class="bgi-armor">{{localize "TWODSIX.Items.Armor.Armor"}}:
       {{#unless settings.useCUData}}
         <input style="text-align: right; padding-left: 0;" type="number" value="{{system.primaryArmor.value}}"
-        placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') tooltips.primaryArmor.value}}"/>
+               placeholder='0' readonly
+               data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.PrimaryArmor') tooltips.primaryArmor.value}}"/>
         {{#unless settings.showTotalArmor}}
           +<input type="number" value="{{system.secondaryArmor.value}}"
-          placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.SecondaryArmor') system.protectionTypes}}"/>
+                  placeholder='0' readonly
+                  data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.SecondaryArmor') system.protectionTypes}}"/>
         {{else}}
-          /<input type="number" value="{{system.totalArmor}}" placeholder='0' readonly data-tooltip= "{{concat (localize 'TWODSIX.Items.Armor.TotalArmor') system.protectionTypes}}"/>
+          /<input type="number" value="{{system.totalArmor}}" placeholder='0' readonly
+                  data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.TotalArmor') system.protectionTypes}}"/>
         {{/unless}}
       {{else}}
         <input type="number" value="{{system.secondaryArmor.value}}"
-        placeholder='0' readonly data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.ArmorProtectionTypes') system.protectionTypes}}"/>
+               placeholder='0' readonly
+               data-tooltip="{{concat (localize 'TWODSIX.Items.Armor.ArmorProtectionTypes') system.protectionTypes}}"/>
       {{/unless}}
     </span>
     {{#unless settings.useRiderData}}
       <span class="bgi-armor bgi-radProtect">{{localize "TWODSIX.Items.Armor.RadProt"}}:<input type="number"
-        value="{{system.radiationProtection.value}}"
-        placeholder='0' disabled data-tooltip="{{tooltips.radiationProtection.value}}"/>
+                                                                                               value="{{system.radiationProtection.value}}"
+                                                                                               placeholder='0' disabled
+                                                                                               data-tooltip="{{tooltips.radiationProtection.value}}"/>
       </span>
     {{/unless}}
     <br>
   {{/if}}
-  <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip="{{localize 'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input style="text-align: right;"
-    type="number" value="{{system.encumbrance.value}}" placeholder='0' disabled
-    data-tooltip="{{tooltips.encumbrance.value}}"/>/{{#if (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}<input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' disabled
-    data-tooltip="{{tooltips.encumbrance.max}}"/>{{/if}}
+  <span class={{#if settings.useCTData}}"bgi-encumbrance-wide"{{else}}"bgi-encumbrance"{{/if}} data-tooltip="{{localize
+    'TWODSIX.Items.Encumbrance'}}">{{localize "TWODSIX.Items.Enc"}}:<input style="text-align: right;"
+                                                                           type="number"
+                                                                           value="{{system.encumbrance.value}}"
+                                                                           placeholder='0' disabled
+                                                                           data-tooltip="{{tooltips.encumbrance.value}}"/>/{{#if
+    (eq system.encumbrance.max settings.Infinity)}}<i class="fa-solid fa-infinity"></i>{{else}}
+    <input name="system.encumbrance.max" type="number" value="{{system.encumbrance.max}}" placeholder='0' disabled
+           data-tooltip="{{tooltips.encumbrance.max}}"/>{{/if}}
   </span>
   {{#unless settings.useRiderData}}
-    <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">{{localize 'TWODSIX.Actor.Rads'}}:<input name="system.radiationDose.value" style="text-align: right;"
+    <span class="bgi-radExposure" data-tooltip="{{localize 'TWODSIX.Actor.RadiationExposure'}}">{{localize
+      'TWODSIX.Actor.Rads'}}:<input name="system.radiationDose.value" style="text-align: right;"
       {{disabled tooltips.radiationDose.value}}
-      type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0" onClick="this.select();"
-      data-tooltip="{{tooltips.radiationDose.value}}"/>
+                                    type="number" value="{{system.radiationDose.value}}" placeholder='0' min="0"
+                                    onClick="this.select();"
+                                    data-tooltip="{{tooltips.radiationDose.value}}"/>
     </span>
   {{/unless}}<br>
 
@@ -83,8 +117,10 @@
 
   <!-- Characteristic Edit Mode -->
   {{#if isOwner}}
-  <span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i class="fa-solid fa-pen-to-square"></i>:
-    <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}} data-dtype="Boolean" />
+    <span class="bgi-charEdit" data-tooltip='{{localize "TWODSIX.Actor.CharacteristicEdit"}}'><i
+      class="fa-solid fa-pen-to-square"></i>:
+    <input type="checkbox" class="checkbox" name="system.characteristicEdit" {{checked system.characteristicEdit}}
+           data-dtype="Boolean"/>
   </span>
   {{/if}}
 {{/unless}}

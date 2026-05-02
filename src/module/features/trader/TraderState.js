@@ -8,11 +8,9 @@ import {
   DEFAULT_MERCHANT_TRADER,
   HOURS_PER_DAY,
   MILIEU_BASE_YEAR,
-  MORTGAGE_DIVISOR,
-  MORTGAGE_FINANCING_MULTIPLIER,
-  PORT_FEE_DAYS,
   UNSKILLED_PENALTY,
 } from './TraderConstants.js';
+import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import { getWorldCoordinate } from './TraderUtils.js';
 
 // Journey phases
@@ -110,7 +108,6 @@ export const TRADER_STATE_VERSION = 1;
  * @property {string} [ruleset] - Selected trader ruleset
  * @property {string} [shipActorId] - Optional ship Actor id
  * @property {string} [cacheJournalName] - Cache journal name
- * @property {string} [journalName] - Trade journal name
  * @property {number} [startingCredits] - Starting credits override
  * @property {string} [worldSource] - 'travellermap' or 'local'
  * @property {string} [rootFolderId] - Root folder ID for local mode
@@ -120,7 +117,8 @@ export const TRADER_STATE_VERSION = 1;
 /**
  * @typedef {object} GameDate
  * @property {number} year - Current game year
- * @property {number} day - Current game day
+ * @property {number} day - Current game day (1-based within the year)
+ * @property {number} [hour] - Fractional hour within the day (0-23.99); undefined treated as 0
  */
 
 /**
@@ -139,7 +137,7 @@ export const TRADER_STATE_VERSION = 1;
  * @typedef {object} WorldVisitCacheEntry
  * @property {number} arrivalDay - Absolute day number when the ship arrived at the world
  * @property {number} portFeesPaidDays - Number of days for which port fees have already been paid
- * @property {{high: number, middle: number, low: number}|null} passengers - Booked passengers for the current visit (null = not yet rolled)
+ * @property {{high: number, middle: number, steerage?: number, low: number}|null} passengers - Booked passengers for the current visit (null = not yet rolled)
  * @property {number|null} freight - Tons of freight available for the current visit (null = not yet rolled)
  * @property {object|null} tradeInfo - Cache of available trade goods and their quantities
  * @property {boolean} mailChecked - Whether the trader has checked for mail at this port
@@ -149,6 +147,7 @@ export const TRADER_STATE_VERSION = 1;
  * @property {boolean} foundSupplier - Whether a standard supplier has been found
  * @property {boolean} foundBuyer - Whether a standard buyer has been found
  * @property {boolean} foundBlackMarketSupplier - Whether a black market supplier has been found
+ * @property {boolean} foundBlackMarketBuyer - Whether a black market buyer has been found
  * @property {boolean} foundOnlineSupplier - Whether an online supplier has been found
  * @property {boolean} foundPrivateSupplier - Whether a private supplier has been found
  * @property {boolean} foundPrivateBuyer - Whether a private buyer has been found
@@ -156,6 +155,7 @@ export const TRADER_STATE_VERSION = 1;
  * @property {number} lastSearchMonth - Month number of the last search attempt
  * @property {number} priceRejectedUntil - Absolute day number until which prices are frozen (price rejection cooldown)
  * @property {boolean} noGoodsAvailable - Whether the supplier has no goods available
+ * @property {boolean} illegalSalesBlocked - Whether illegal cargo cannot be sold at this world
  */
 
 /**
@@ -177,12 +177,16 @@ export const TRADER_STATE_VERSION = 1;
  * @property {number} monthlyPayment - Calculated monthly ship payment
  * @property {number} monthsPaid - Total number of mortgage payments made
  * @property {number} lastPaidMonth - Month number of last cost accrual
+ * @property {number} lastRunwayWarningMonth - Last paid month that emitted runway warning
  * @property {{currentFuel: number, fuelIsRefined: boolean, fuelCapacity: number, shipCostMcr: number, staterooms: number, lowBerths: number, cargoCapacity: number}} ship - Ship stats and current state
  * @property {CrewMember[]} crew - Current crew list
  * @property {CargoItem[]} cargo - Current cargo inventory
- * @property {{high: number, middle: number, low: number}} passengers - Booked passengers for current trip
+ * @property {{high: number, middle: number, steerage: number, low: number}} passengers - Booked passengers for current trip
  * @property {number} freight - Tons of freight for current trip
+ * @property {Array<{tons:number, rate:number, kind?:string}>} freightLots - Freight lots booked for current trip
  * @property {boolean} hasMail - Whether mail is being carried
+ * @property {number} mailContainers - Number of mail containers accepted
+ * @property {number} mailPaymentPerContainer - Payment per accepted mail container
  * @property {string} destinationHex - Destination hex string for current trip
  * @property {string} destinationGlobalHex - Destination global hex coordinate for current trip
  * @property {string} destinationName - Destination name for current trip
@@ -196,6 +200,7 @@ export const TRADER_STATE_VERSION = 1;
  * @property {number|null} charterExpiryDay - Absolute day when charter expires
  * @property {boolean} useLocalBroker - Whether to use a local broker
  * @property {number} localBrokerSkill - Skill level of local broker
+ * @property {boolean} localBrokerIllegal - Whether hired broker is the illegal/Streetwise broker
  * @property {string|null} journalEntryId - Linked journal entry ID
  * @property {string|null} journalPageId - Linked journal page ID
  * @property {string|null} cacheJournalName - Name of the TravellerMap cache journal
@@ -216,8 +221,9 @@ export function updateMortgageFromShip(state) {
     return;
   }
   const cost = (Number(state.ship.shipCostMcr) || 0) * 1000000;
-  state.monthlyPayment = Math.ceil(cost / MORTGAGE_DIVISOR);
-  state.mortgageRemaining = cost * MORTGAGE_FINANCING_MULTIPLIER;
+  const ruleset = getTraderRuleset(state.ruleset);
+  state.monthlyPayment = Math.ceil(cost / ruleset.getMortgageDivisor());
+  state.mortgageRemaining = cost * ruleset.getMortgageFinancingMultiplier();
 }
 
 /**
@@ -226,7 +232,8 @@ export function updateMortgageFromShip(state) {
  */
 export function freshTraderState() {
   const ship = { ...DEFAULT_MERCHANT_TRADER };
-  const monthlyPayment = Math.ceil(ship.shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
+  const ceRuleset = getTraderRuleset('CE');
+  const monthlyPayment = Math.ceil(ship.shipCostMcr * 1000000 / ceRuleset.getMortgageDivisor());
 
   return {
     _schemaVersion: TRADER_STATE_VERSION,
@@ -237,7 +244,7 @@ export function freshTraderState() {
     sectorName: '',
     milieu: 'M1105',
     ruleset: 'CE',
-    gameDate: { year: 1105, day: 1 },
+    gameDate: { year: 1105, day: 1, hour: 0 },
     phase: PHASE.AT_WORLD,
     worldSource: 'travellermap',
     rootFolderId: null,
@@ -246,10 +253,11 @@ export function freshTraderState() {
     credits: 0,
     totalRevenue: 0,
     totalExpenses: 0,
-    mortgageRemaining: ship.shipCostMcr * 1000000 * MORTGAGE_FINANCING_MULTIPLIER,
+    mortgageRemaining: ship.shipCostMcr * 1000000 * ceRuleset.getMortgageFinancingMultiplier(),
     monthlyPayment,
     monthsPaid: 0,
     lastPaidMonth: 1, // month number of last cost accrual (start at month 1 to avoid charging immediately)
+    lastRunwayWarningMonth: 0,
 
     // Ship
     ship: {
@@ -265,9 +273,12 @@ export function freshTraderState() {
     cargo: [],
 
     // Booked for current trip
-    passengers: { high: 0, middle: 0, low: 0 },
+    passengers: { high: 0, middle: 0, steerage: 0, low: 0 },
     freight: 0,
+    freightLots: [],
     hasMail: false,
+    mailContainers: 0,
+    mailPaymentPerContainer: 0,
 
     // Destination for current trip (set when departing)
     destinationHex: '',
@@ -280,10 +291,14 @@ export function freshTraderState() {
 
     // Per-world-visit cache: keyed by hex.
     // Rolls are fixed for the duration of a visit and only cleared on arrival at a new world.
-    // { [hex]: { passengers: {high,middle,low}|null, freight: number|null,
+    // { [hex]: { passengers: {high,middle,steerage,low}|null, freight: number|null,
     //            tradeInfo: object|null, mailChecked: boolean, privateMessageAccepted: boolean,
     //            privateMessageCredits: number } }
     worldVisitCache: {},
+
+    // Long-lived per-world history (survives leaving and returning).
+    // { [hex]: { searchAttempts: number, lastSearchMonth: number } }
+    worldHistory: {},
 
     // Day number when freight/passengers were last rolled (for reroll logic)
     lastRollDay: 1,
@@ -298,6 +313,7 @@ export function freshTraderState() {
     // Broker state
     useLocalBroker: false,
     localBrokerSkill: 0,
+    localBrokerIllegal: false,
 
     // Journal
     journalEntryId: null,
@@ -308,7 +324,7 @@ export function freshTraderState() {
     sectors: [],               // list of all sectors in milieu
     // Subsector cache keys for which world data actually exists (central load, actor flags, background load).
     // Not the full 3x3 grid of interest — that list lives only during setup in getNeighboringSubsectors.
-    loadedSubsectorKeys: [],   // e.g. ["Spinward Marches:C:M1105", ...]
+    loadedSubsectorKeys: [],   // e.g. ["M1105_Spinward Marches_C", ...]
 
     // Maintenance tracking
     maintenanceMonthsSkipped: 0,
@@ -348,7 +364,83 @@ export function deserializeTraderState(saved) {
     overwrite: true,
   });
   merged._schemaVersion = TRADER_STATE_VERSION;
+  merged.passengers = normalizePassengers(merged.passengers);
+  normalizeFreightState(merged);
+  // Normalize cargo isIllegal to boolean for older serialized state.
+  if (Array.isArray(merged.cargo)) {
+    merged.cargo = merged.cargo.map(c => ({
+      ...c,
+      isIllegal: !!c.isIllegal,
+    }));
+  }
   return merged;
+}
+
+/**
+ * Normalize a passenger count object to the current shape.
+ * @param {object} passengers
+ * @returns {{high: number, middle: number, steerage: number, low: number}}
+ */
+export function normalizePassengers(passengers = {}) {
+  return {
+    high: Math.max(0, passengers.high || 0),
+    middle: Math.max(0, passengers.middle || 0),
+    steerage: Math.max(0, passengers.steerage || 0),
+    low: Math.max(0, passengers.low || 0),
+  };
+}
+
+/**
+ * Normalize freight lots to valid tonnage entries.
+ * @param {Array<{tons:number, rate:number, kind?:string}>} freightLots
+ * @returns {Array<{tons:number, rate:number, kind?:string}>}
+ */
+export function normalizeFreightLots(freightLots = []) {
+  if (!Array.isArray(freightLots)) {
+    return [];
+  }
+  return freightLots
+    .map(lot => ({
+      tons: Math.max(0, Number(lot?.tons) || 0),
+      rate: Math.max(0, Number(lot?.rate) || 0),
+      kind: lot?.kind,
+    }))
+    .filter(lot => lot.tons > 0);
+}
+
+/**
+ * Keep scalar freight and lot freight in sync.
+ * If lots exist, scalar reflects lot sum. If not, scalar is clamped.
+ * @param {TraderState} state
+ */
+export function normalizeFreightState(state) {
+  state.freightLots = normalizeFreightLots(state.freightLots);
+  if (state.freightLots.length > 0) {
+    state.freight = state.freightLots.reduce((sum, lot) => sum + lot.tons, 0);
+    return;
+  }
+  state.freight = Math.max(0, Number(state.freight) || 0);
+}
+
+/**
+ * Calculate how many staterooms are occupied by passengers.
+ * Steerage travels double-occupancy under CEL.
+ * @param {object} passengers
+ * @returns {number}
+ */
+export function getPassengerStateroomUsage(passengers = {}) {
+  const p = normalizePassengers(passengers);
+  return p.high + p.middle + Math.ceil(p.steerage / 2);
+}
+
+/**
+ * Calculate total passenger headcount.
+ * @param {object} passengers
+ * @returns {number}
+ */
+export function getTotalPassengers(passengers = {}) {
+  const p = normalizePassengers(passengers);
+  return p.high + p.middle + p.steerage + p.low;
 }
 
 /**
@@ -364,13 +456,16 @@ export function getCurrentWorld(state) {
 }
 
 /**
- * Calculate used cargo space from cargo + freight + mail.
+ * Calculate used cargo space from cargo + freight + mail + passenger overhead.
  * @param {TraderState} state - Trade state
  * @returns {number} Tons of cargo space in use
  */
 export function getUsedCargoSpace(state) {
   const cargoTons = state.cargo.reduce((sum, c) => sum + c.tons, 0);
-  return cargoTons + state.freight + (state.hasMail ? 5 : 0) + (state.charterCargo || 0);
+  const mailTons = (state.hasMail ? Math.max(1, Number(state.mailContainers) || 1) : 0) * 5;
+  const passengerOverhead = getTraderRuleset(state.ruleset)
+    .getPassengerCargoOverhead(state.passengers, state.ship);
+  return cargoTons + state.freight + mailTons + (state.charterCargo || 0) + passengerOverhead;
 }
 
 /**
@@ -389,7 +484,7 @@ export function getFreeCargoSpace(state) {
  */
 export function getFreeStaterooms(state) {
   return Math.max(0, state.ship.staterooms - state.crew.length
-    - state.passengers.high - state.passengers.middle - (state.charterStaterooms || 0));
+    - getPassengerStateroomUsage(state.passengers) - (state.charterStaterooms || 0));
 }
 
 /**
@@ -398,7 +493,7 @@ export function getFreeStaterooms(state) {
  * @returns {number} Number of free low berths
  */
 export function getFreeLowBerths(state) {
-  return Math.max(0, state.ship.lowBerths - state.passengers.low - (state.charterLowBerths || 0));
+  return Math.max(0, state.ship.lowBerths - normalizePassengers(state.passengers).low - (state.charterLowBerths || 0));
 }
 
 /**
@@ -428,6 +523,19 @@ export function getMonthNumber(gameDate, milieu = 'M1105') {
  */
 export function getAbsoluteDay(gameDate, milieu = 'M1105') {
   return (gameDate.year - getMilieuBaseYear(milieu)) * DAYS_PER_YEAR + gameDate.day;
+}
+
+/**
+ * Cost-accrual period number (mortgage/life-support/maintenance billing window).
+ * Length of a period is ruleset-controlled (CE-family: 30 days)
+ * Maintenance Period — see `BaseTraderRuleset.getCostPeriodDays`).
+ * @param {TraderState} state
+ * @returns {number} 1-based period count since the milieu's base year
+ */
+export function getCostPeriodNumber(state) {
+  const periodDays = Math.max(1, getTraderRuleset(state.ruleset).getCostPeriodDays());
+  const day = getAbsoluteDay(state.gameDate, state.milieu);
+  return Math.ceil(day / periodDays);
 }
 
 /**
@@ -538,11 +646,13 @@ function _getLegacySkillValue(crewMember, skillKey) {
 export function getWorldCache(state) {
   const hex = state.currentWorldHex;
   if (!state.worldVisitCache[hex]) {
+    const ruleset = getTraderRuleset(state.ruleset);
     state.worldVisitCache[hex] = {
       arrivalDay: getAbsoluteDay(state.gameDate, state.milieu),
-      portFeesPaidDays: PORT_FEE_DAYS,
+      portFeesPaidDays: ruleset.getInitialPortFeeDaysPaid(),
       passengers: null,   // null = not yet rolled this visit
       freight: null,
+      freightLots: null,
       tradeInfo: null,
       mailChecked: false,
       privateMessagesTaken: false,
@@ -551,6 +661,7 @@ export function getWorldCache(state) {
       foundSupplier: false,
       foundBuyer: false,
       foundBlackMarketSupplier: false,
+      foundBlackMarketBuyer: false,
       foundOnlineSupplier: false,
       foundPrivateSupplier: false,
       foundPrivateBuyer: false,
@@ -558,9 +669,40 @@ export function getWorldCache(state) {
       lastSearchMonth: getMonthNumber(state.gameDate, state.milieu),
       priceRejectedUntil: 0,
       noGoodsAvailable: false,
+      illegalSalesBlocked: false,
     };
+    // Restore preserved per-world cumulative fields (search-attempt history, etc.)
+    const history = state.worldHistory?.[hex];
+    if (history) {
+      const currentMonth = getMonthNumber(state.gameDate, state.milieu);
+      if (history.lastSearchMonth === currentMonth) {
+        state.worldVisitCache[hex].searchAttempts = Number(history.searchAttempts) || 0;
+        state.worldVisitCache[hex].lastSearchMonth = history.lastSearchMonth;
+      }
+    }
   }
   return state.worldVisitCache[hex];
+}
+
+/**
+ * Persist long-lived per-world fields (e.g. search-attempt history) so that
+ * cumulative penalties survive leaving and returning to the same world in
+ * the same month
+ * @param {TraderState} state
+ */
+export function persistWorldHistory(state) {
+  if (!state.worldHistory) {
+    state.worldHistory = {};
+  }
+  const hex = state.currentWorldHex;
+  const cache = state.worldVisitCache?.[hex];
+  if (!hex || !cache) {
+    return;
+  }
+  state.worldHistory[hex] = {
+    searchAttempts: Number(cache.searchAttempts) || 0,
+    lastSearchMonth: Number(cache.lastSearchMonth) || 0,
+  };
 }
 
 /**
@@ -574,12 +716,19 @@ export function formatGameDate(gameDate) {
 
 /**
  * Advance game date by a number of hours.
+ * Accumulates fractional hours within the day (`gameDate.hour`) and only
+ * carries to the day counter when the running total reaches a full 24h.
+ * This avoids the historical drift caused by `Math.ceil` rounding every
+ * sub-day advance up to a full day (which produced calendars several days
+ * ahead of the displayed elapsed time after a jump + transit).
  * @param {GameDate} gameDate - The game date — mutated in place
- * @param {number} hours - Hours to advance
+ * @param {number} hours - Hours to advance (may be fractional)
  */
 export function advanceDate(gameDate, hours) {
-  const days = hours / HOURS_PER_DAY;
-  gameDate.day += Math.ceil(days);
+  const accumulated = (Number(gameDate.hour) || 0) + Math.max(0, Number(hours) || 0);
+  const dayShift = Math.floor(accumulated / HOURS_PER_DAY);
+  gameDate.hour = accumulated - dayShift * HOURS_PER_DAY;
+  gameDate.day += dayShift;
   while (gameDate.day > DAYS_PER_YEAR) {
     gameDate.day -= DAYS_PER_YEAR;
     gameDate.year += 1;

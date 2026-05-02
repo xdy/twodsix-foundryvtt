@@ -1,0 +1,87 @@
+{
+  "_id": "15a6af92a72f3341",
+  "name": "Insectoid",
+  "type": "species",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "deltas": {
+      "str": 0,
+      "dex": 2,
+      "end": 0,
+      "int": 0,
+      "edu": 0,
+      "soc": -2
+    },
+    "grantedTraitNames": [],
+    "abilityLines": [
+      "+2 DEX, −2 SOC.",
+      "Disease/poison resistance; flight like Draconid athletics rules; 3 pt natural chitin; stature weapon limits per SRD.",
+      "Species abilities: see Sword of Cepheus SRD."
+    ],
+    "agingRollBonus": 0,
+    "homeworld": "",
+    "ruleset": "SOC",
+    "allowedCareers": [],
+    "chargenExtensions": {
+      "socCareerName": "The Insectoid"
+    },
+    "shortdescr": "120cm winged humanoid cockroaches, born merchants and scavengers.",
+    "description": "From the deep deserts, or the deep sewers, come the insectoids. Physically, they resemble 120cm-tall winged slender humanoid cockroaches, walking on their lower four legs and using their two upper limbs for fine manipulation. They have a pair of 30cm-long antennae on their heads, multi-faceted eyes, a mouth with four mouthparts, and four wings on their backs. These sentient insects are opportunistic, resilient, shady, and anarchic in nature. Insectoids are born merchants and scavengers. They travel widely and sometimes build their nests in the bowels of human cities. Insectoids have no kings; at most, a nest-mother may command respect from males, but this is far from any human kind of monarchy."
+  },
+  "effects": [
+    {
+      "_id": "15a6af92a72f3341ef",
+      "name": "Insectoid Characteristics",
+      "type": "base",
+      "img": "icons/svg/aura.svg",
+      "transfer": true,
+      "disabled": false,
+      "sort": 0,
+      "tint": null,
+      "flags": {},
+      "system": {
+        "changes": [
+          {
+            "key": "system.characteristics.dexterity.value",
+            "type": "add",
+            "value": "2",
+            "priority": 20
+          },
+          {
+            "key": "system.characteristics.socialStanding.value",
+            "type": "add",
+            "value": "-2",
+            "priority": 20
+          }
+        ]
+      },
+      "duration": {
+        "startTime": null,
+        "seconds": null,
+        "combat": null,
+        "rounds": null,
+        "turns": null,
+        "startRound": null,
+        "startTurn": null
+      },
+      "statuses": [],
+      "origin": null,
+      "description": "",
+      "_stats": {
+        "coreVersion": "14",
+        "systemId": null,
+        "systemVersion": null,
+        "createdTime": null,
+        "modifiedTime": null,
+        "lastModifiedBy": null,
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_key": "!items.effects!15a6af92a72f3341.15a6af92a72f3341ef"
+    }
+  ],
+  "flags": {},
+  "folder": "LlwujDdJX9JaIjV6",
+  "_key": "!items!15a6af92a72f3341"
+}

@@ -1,0 +1,293 @@
+{
+  "_id": "f811efb1f92513da",
+  "name": "Scholar",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "CDEE",
+    "isMilitary": false,
+    "service": [
+      "Admin",
+      "Computers",
+      "Repair",
+      "Liaison",
+      "Investigation",
+      "Science"
+    ],
+    "specialist": [
+      "Survival",
+      "Language",
+      "Carousing",
+      "Engineering",
+      "Jack of All Trades",
+      "Medicine"
+    ],
+    "advanced": [
+      "Piloting",
+      "Zero-G",
+      "Animals",
+      "Recon",
+      "Athletics",
+      "Leadership"
+    ],
+    "ranks": [
+      {
+        "title": "Student",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Researcher",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Research Adjunct",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Assistant Professor",
+        "skill": "Liaison",
+        "level": 1
+      },
+      {
+        "title": "Associate Professor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Professor",
+        "skill": null,
+        "level": 0
+      },
+      {
+        "title": "Distinguished Professor",
+        "skill": null,
+        "level": 0
+      }
+    ],
+    "cash": [
+      1000,
+      5000,
+      10000,
+      20000,
+      20000,
+      50000
+    ],
+    "material": [
+      "Contact",
+      "+1 EDU",
+      "+1 INT",
+      "Mid Passage",
+      "+1 SOC",
+      "Research Vessel"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injury. Roll on the Injury table.",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Cybered! Your academic institute pays for advanced cybernetic implants. Gain Cr6000 worth of cybernetics.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Breakthrough! You make a breakthrough in your research. Gain DM+2 to a Benefit roll.",
+        "checks": [],
+        "always": [
+          "[BENEFIT_DM:2]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Field Work. Gain a level in Survival, Repair (choose one).",
+        "checks": [],
+        "always": [
+          "[CHOOSE_SKILL:Survival,Repair]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Immoral Research. You are offered an opportunity to engage in immoral, potentially illegal, research.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [],
+        "branchPrompt": "TWODSIX.CharGen.Branches.CDEEScholarImmoralResearchPrompt",
+        "branchChoices": [
+          {
+            "value": "accept",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarImmoralAccept",
+            "onSuccess": [
+              "[CHOOSE_SKILL:Science,Deception,Medicine]"
+            ]
+          },
+          {
+            "value": "refuse",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarImmoralRefuse",
+            "onSuccess": []
+          },
+          {
+            "value": "whistle",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarImmoralWhistle",
+            "onSuccess": [
+              "[ENEMY:Research project lead]"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event. Roll on the Life Events table.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Confidential Project. You work on a secret project for a powerful organization.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [],
+        "branchPrompt": "TWODSIX.CharGen.Branches.CDEEScholarConfidentialPrompt",
+        "branchChoices": [
+          {
+            "value": "silent",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarConfidentialSilent",
+            "onSuccess": [
+              "[CHOOSE_SKILL:Science,Liaison,Medicine]"
+            ]
+          },
+          {
+            "value": "sell",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarConfidentialSell",
+            "onSuccess": [
+              "[BENEFIT_ROLL]",
+              "[ENEMY:Patron organization]"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 9,
+        "description": "Plagiarism. You have an opportunity to steal another scholar’s work.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [],
+        "branchPrompt": "TWODSIX.CharGen.Branches.CDEEScholarPlagiarismPrompt",
+        "branchChoices": [
+          {
+            "value": "exploit",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarPlagiarismExploit",
+            "onSuccess": [
+              "[BENEFIT_ROLL]",
+              "[ENEMY:Plagiarism victim]"
+            ]
+          },
+          {
+            "value": "avoid",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarPlagiarismAvoid",
+            "onSuccess": []
+          }
+        ]
+      },
+      {
+        "roll": 10,
+        "description": "Talent Grab. A rival organization tries to kidnap you and force you to work for them.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [],
+        "branchPrompt": "TWODSIX.CharGen.Branches.CDEEScholarTalentGrabPrompt",
+        "branchChoices": [
+          {
+            "value": "escape",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarTalentGrabEscape",
+            "checks": [
+              {
+                "skill": "DEX",
+                "target": 8
+              }
+            ],
+            "onSuccess": [],
+            "onFail": [
+              "[INJURY]"
+            ]
+          },
+          {
+            "value": "jumpShip",
+            "labelKey": "TWODSIX.CharGen.Branches.CDEEScholarTalentGrabJumpShip",
+            "onSuccess": [
+              "[BENEFIT_ROLL]",
+              "[ENEMY:Former employer]"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Mentor. Gain a Contact.",
+        "checks": [],
+        "always": [
+          "[CONTACT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Advancement. Promotion and free skill.",
+        "checks": [],
+        "always": [
+          "[RANK_UP]",
+          "[FREE_SKILL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14"
+  },
+  "folder": "kwM2V003wYcmPFtP",
+  "effects": [],
+  "_key": "!items!f811efb1f92513da"
+}

@@ -26,6 +26,7 @@ export const ACTION = {
   SELL_BULK_LS: 'sellBulkLifeSupport',
   REFUEL: 'refuel',
   HIRE_BROKER: 'hireBroker',
+  HIRE_ILLEGAL_BROKER: 'hireIllegalBroker',
   FIND_SUPPLIER: 'findSupplier',
   FIND_BUYER: 'findBuyer',
   PRIVATE_MESSAGES: 'privateMessages',
@@ -75,22 +76,21 @@ export async function runTradeLoop(app) {
           break;
       }
       await accrueMonthlyCosts(app);
-      checkGameEnd(app);
-      await app._saveState();
+      await checkGameEnd(app);
+      app.scheduleSave();
     }
   } catch (err) {
     if (err === RESTART) {
       throw err;
     }
     console.error('Twodsix | Trader: runTradeLoop failed:', err);
-    ui.notifications.error(`Trading journey encountered an error: ${err.message}`);
-    // Add an error row to the UI so the user knows something went wrong
+    ui.notifications.error(game.i18n.format('TWODSIX.Trader.Messages.TradeLoopError', { message: err.message }));
     app.rows.push({
-      label: 'Error',
-      result: `An error occurred: ${err.message}. Please check the console (F12) for details.`,
+      label: game.i18n.localize('TWODSIX.Trader.Log.TradeLoopErrorLabel'),
+      result: game.i18n.format('TWODSIX.Trader.Log.TradeLoopErrorDetail', { message: err.message }),
       active: false,
       options: [],
-      maxValue: null
+      maxValue: null,
     });
     app.render();
     throw err;

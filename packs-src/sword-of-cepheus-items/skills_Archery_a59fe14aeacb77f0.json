@@ -1,0 +1,26 @@
+{
+  "_id": "a59fe14aeacb77f0",
+  "name": "Archery",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/bow.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "DEX",
+    "type": "skills",
+    "description": "Using bows and crossbows. In higher-tech settings, this also covers the use of primitive firearms.<ul><li>Stringing a bow: Archery/STR 6+</li><li>Hitting a rope from which a friend is hanging by the neck: Archery/DEX 12+</li></ul>",
+    "shortdescr": "Using bows, crossbows, and primitive firearms.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!a59fe14aeacb77f0"
+}

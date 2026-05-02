@@ -1,11 +1,5 @@
 <form class="st-setup-form" autocomplete="off">
   <div class="form-group">
-    <label>{{localize 'TWODSIX.Trader.Setup.JournalName'}}</label>
-    <input type="text" name="journalName"
-           value="{{#if journalName}}{{journalName}}{{else}}{{defaultJournalName}}{{/if}}"/>
-    <p class="hint">{{localize 'TWODSIX.Trader.Setup.JournalNameHint'}}</p>
-  </div>
-  <div class="form-group">
     <label>{{localize 'TWODSIX.Trader.Setup.CacheJournalName'}}</label>
     <input type="text" name="cacheJournalName" value="{{cacheJournalName}}"/>
     <p class="hint">{{localize 'TWODSIX.Trader.Setup.CacheJournalNameHint'}}</p>
@@ -25,7 +19,7 @@
     <label>{{localize 'TWODSIX.Trader.Setup.Ruleset'}}</label>
     <select name="ruleset">
       {{#each supportedRulesets as |r|}}
-        <option value="{{r.key}}" {{#if r.selected}}selected{{/if}}>{{r.key}}</option>
+        <option value="{{r.key}}" {{#if r.selected}}selected{{/if}}>{{r.label}}</option>
       {{/each}}
     </select>
   </div>

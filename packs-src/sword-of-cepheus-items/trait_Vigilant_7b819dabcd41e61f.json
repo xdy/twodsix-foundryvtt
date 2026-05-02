@@ -1,0 +1,23 @@
+{
+  "_id": "7b819dabcd41e61f",
+  "name": "Vigilant",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character constantly looks out for trouble and is always watching foes, even when on the move. If the character used both actions in a combat round for movement, they automatically enter Overwatch mode without requiring a further action.",
+    "prereq": "INT 9+",
+    "shortdescr": "Both-action movement rounds auto-enter Overwatch.",
+    "subtype": "",
+    "key": "vigilant",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!7b819dabcd41e61f"
+}

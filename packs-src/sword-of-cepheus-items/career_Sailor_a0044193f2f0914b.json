@@ -1,0 +1,214 @@
+{
+  "_id": "a0044193f2f0914b",
+  "name": "Sailor",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Craft",
+      "Watercraft",
+      "Archery",
+      "Steward",
+      "Melee",
+      "Survival"
+    ],
+    "specialist": [
+      "Jack o’Trades",
+      "Craft",
+      "Liaison",
+      "Artillery",
+      "Carousing",
+      "Athletics"
+    ],
+    "advanced": [
+      "Govern",
+      "Leadership",
+      "Religion",
+      "Healing",
+      "Natural Phil.",
+      "Battle"
+    ],
+    "cash": [
+      10,
+      50,
+      50,
+      100,
+      100,
+      200
+    ],
+    "material": [
+      "Weapon",
+      "+1 INT",
+      "+1 EDU",
+      "Ally",
+      "+1 SOC",
+      "Ship"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Severe Weather. Watercraft 8+ or lose Benefit.",
+        "checks": [
+          {
+            "skill": "Watercraft",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Travel. Gain a Language. Language-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Language:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 5,
+        "description": "Outpost. EDU 8+: Survival, Liaison, or Craft.",
+        "checks": [
+          {
+            "skill": "EDU",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Survival:1",
+              "SKILL:Liaison:1",
+              "SKILL:Craft:1"
+            ]
+          }
+        ],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Thief among the crew. Turn them in for Benefit and Enemy, or take a share.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "BENEFIT_ROLL_AND_ENEMY",
+              "CREW_THIEF"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "This and That. Gain Jack of All Trades. Jack of All Trades-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Jack of All Trades:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Bored. Gain Carousing. Carousing-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Carousing:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Really Bored. Gain Healing, Religion, or Natural Philosophy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Healing:1",
+              "SKILL:Religion:1",
+              "SKILL:Natural Philosophy:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Reward. Extra Benefit roll. Extra Benefit roll",
+        "checks": [],
+        "always": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Promoted. Gain Watercraft. Watercraft-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Watercraft:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!a0044193f2f0914b"
+}

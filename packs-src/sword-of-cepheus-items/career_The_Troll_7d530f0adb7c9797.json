@@ -1,0 +1,239 @@
+{
+  "_id": "7d530f0adb7c9797",
+  "name": "The Troll",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Melee",
+      "Athletics",
+      "Archery",
+      "Animals",
+      "Battle",
+      "Survival"
+    ],
+    "specialist": [
+      "Artillery",
+      "Scout",
+      "Sneak",
+      "Liaison",
+      "Streetwise",
+      "Jack o’Trades"
+    ],
+    "advanced": [
+      "Alchemy",
+      "Religion",
+      "Healing",
+      "Craft",
+      "Leadership",
+      "Govern"
+    ],
+    "cash": [
+      10,
+      25,
+      50,
+      50,
+      200,
+      200
+    ],
+    "material": [
+      "+1 STR",
+      "Weapon",
+      "Armor",
+      "+2 END",
+      "+2 STR",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Guard brutality. STR 8+; fail: Enemy; success: Streetwise.",
+        "checks": [
+          {
+            "skill": "STR",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Streetwise:1"
+        ],
+        "onFail": [
+          "ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Troll farming. END+1 or Animals.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "END_PLUS1",
+              "SKILL:Animals:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 5,
+        "description": "Blood sport. Melee Combat 8+; success: Athletics; fail: Injury.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Athletics:1"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Brutish might. Melee Combat 8+; success: Benefit; fail: Injury.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Feed the troll. Melee Combat 8+; fail: Injury; success: END+1.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "END_PLUS1"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Duel. Melee Combat 8+; fail: Enemy; success: Ally.",
+        "checks": [
+          {
+            "skill": "Melee Combat",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "ALLY"
+        ],
+        "onFail": [
+          "ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Gambling. 2d6 8+ (no DM); fail: lose Benefit; success: Benefit.",
+        "checks": [
+          {
+            "type": "raw",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 11,
+        "description": "Circus performance. Extra Benefit roll",
+        "checks": [],
+        "always": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 12,
+        "description": "Shaman. INT 8+; fail: Enemy; success: Sorcery.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "SKILL:Sorcery:1"
+        ],
+        "onFail": [
+          "ENEMY:Shaman"
+        ],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!7d530f0adb7c9797"
+}

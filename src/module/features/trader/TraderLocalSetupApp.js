@@ -3,8 +3,8 @@
  * ApplicationV2 for initial setup of a local trading journey (no Travellermap).
  */
 
-import { DEFAULT_CREW, DEFAULT_MERCHANT_TRADER, MORTGAGE_DIVISOR } from './TraderConstants.js';
-import { TRADER_SUPPORTED_RULESETS } from './TraderRulesetRegistry.js';
+import { getDefaultTraderRulesetKey, getTraderPresetOptions, } from './TraderRulesetRegistry.js';
+import { computeTraderDefaultStartingCredits, resolveTraderSetupRulesetKey } from './traderSetupDefaults.js';
 import { collectWorldsFromFolder, deduplicateWorlds } from './TraderUtils.js';
 
 /**
@@ -31,21 +31,13 @@ export class TraderLocalSetupApp extends foundry.applications.api.HandlebarsAppl
     super(options);
     this.options.window.title = game.i18n.localize(this.options.window.title);
 
-    const monthlyPayment = Math.ceil(DEFAULT_MERCHANT_TRADER.shipCostMcr * 1000000 / MORTGAGE_DIVISOR);
-    const totalMonthlyCrew = DEFAULT_CREW.reduce((s, c) => s + c.salary, 0);
-    this._defaultStartingCredits = (monthlyPayment + totalMonthlyCrew) * 2;
-    this._defaultJournalName = `Trader journal local ${new Date().toLocaleDateString()}`;
-
-    this._journalName = this._defaultJournalName;
     this._shipActorId = '';
     this._rootFolderId = '';
     this._startWorldId = '';
-    this._startingCredits = this._defaultStartingCredits;
 
-    this._ruleset = game.settings.get('twodsix', 'ruleset') || 'CE';
-    if (!TRADER_SUPPORTED_RULESETS.includes(this._ruleset)) {
-      this._ruleset = 'CE';
-    }
+    this._ruleset = resolveTraderSetupRulesetKey(getDefaultTraderRulesetKey());
+    this._defaultStartingCredits = computeTraderDefaultStartingCredits(this._ruleset);
+    this._startingCredits = this._defaultStartingCredits;
 
     this._folders = [];
     this._worlds = [];
@@ -70,13 +62,11 @@ export class TraderLocalSetupApp extends foundry.applications.api.HandlebarsAppl
     }
 
     return {
-      journalName: this._journalName,
-      defaultJournalName: this._defaultJournalName,
       shipActorId: this._shipActorId,
       rootFolderId: this._rootFolderId,
       startWorldId: this._startWorldId,
       ruleset: this._ruleset,
-      supportedRulesets: TRADER_SUPPORTED_RULESETS.map(r => ({ key: r, selected: r === this._ruleset })),
+      supportedRulesets: getTraderPresetOptions().map(r => ({ ...r, selected: r.key === this._ruleset })),
       startingCredits: this._startingCredits,
       defaultStartingCredits: this._defaultStartingCredits,
       folders: this._folders.map(f => ({ ...f, selected: f.id === this._rootFolderId })),
@@ -160,12 +150,9 @@ export class TraderLocalSetupApp extends foundry.applications.api.HandlebarsAppl
       this.render();
     });
 
-    el.querySelector('[name=journalName]')?.addEventListener('input', (e) => {
-      this._journalName = e.target.value.trim();
-    });
-
     el.querySelector('[name=startingCredits]')?.addEventListener('input', (e) => {
-      this._startingCredits = parseInt(e.target.value) || this._defaultStartingCredits;
+      const parsed = Number.parseInt(e.target.value, 10);
+      this._startingCredits = Number.isFinite(parsed) ? Math.max(0, parsed) : this._defaultStartingCredits;
     });
 
     el.querySelector('.st-confirm-btn')?.addEventListener('click', (e) => {
@@ -181,7 +168,6 @@ export class TraderLocalSetupApp extends foundry.applications.api.HandlebarsAppl
   _confirm() {
     if (this._resolve) {
       this._resolve({
-        journalName: this._journalName || this._defaultJournalName,
         shipActorId: this._shipActorId || '',
         rootFolderId: this._rootFolderId,
         startWorldId: this._startWorldId,

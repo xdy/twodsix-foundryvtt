@@ -1,0 +1,26 @@
+{
+  "_id": "adc523af35a71c12",
+  "name": "Streetwise",
+  "type": "skills",
+  "img": "systems/twodsix/assets/icons/streetwise.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "Familiarity with underworld society and the ways of working with it.<ul><li>Locating a fence for stolen goods in a town or city: Streetwise/INT 8+</li><li>Knowing how to behave in front of organized crime bosses: Streetwise/SOC 8+</li><li>Identifying gangs or cartels by their clothing or weaponry: Streetwise/EDU 8+</li></ul>",
+    "shortdescr": "Familiarity with underworld society, fences, gangs, and crime.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!adc523af35a71c12"
+}

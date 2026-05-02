@@ -1,0 +1,26 @@
+{
+  "_id": "164e7f7118049cf0",
+  "name": "Insight",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "This skill combines keen observation, forensics, research, and detailed analysis.<ul><li>Find secrets in a long-forgotten library: Insight/EDU 8+</li><li>Find additional clues at a crime scene: Insight/INT 10+</li><li>Determine if someone is lying to you: Insight/INT (Opposed)</li><li>Spot hidden doors or secret messages embedded in a painting: Insight/INT 10+</li></ul>",
+    "shortdescr": "Keen observation, forensics, research, and detailed analysis.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!164e7f7118049cf0"
+}

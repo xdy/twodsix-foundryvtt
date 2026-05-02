@@ -1,0 +1,23 @@
+{
+  "_id": "f5b3f2d044761b3b",
+  "name": "Awareness",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/clairsentience.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character has sharp senses and is difficult to surprise. When rolling the Scout skill to avoid surprise the character throws with Advantage. This applies even if the character does not have the Scout skill and rolls with the Unskilled penalty. Note that this trait does not apply when the character is setting up a deliberate ambush; the Hunter Trait covers that instead.",
+    "prereq": "INT 9+",
+    "shortdescr": "Sharp senses, Advantage on Scout to avoid surprise.",
+    "subtype": "",
+    "key": "awareness",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!f5b3f2d044761b3b"
+}

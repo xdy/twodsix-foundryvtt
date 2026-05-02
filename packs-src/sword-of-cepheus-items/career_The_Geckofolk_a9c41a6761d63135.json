@@ -1,0 +1,280 @@
+{
+  "_id": "a9c41a6761d63135",
+  "name": "The Geckofolk",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Sneak",
+      "Scout",
+      "Archery",
+      "Survival",
+      "Athletics",
+      "Animals"
+    ],
+    "specialist": [
+      "Battle",
+      "Liaison",
+      "Streetwise",
+      "Carousing",
+      "Melee",
+      "Craft"
+    ],
+    "advanced": [
+      "Jack o’Trades",
+      "Religion",
+      "Healing",
+      "Insight",
+      "Leadership",
+      "Artillery"
+    ],
+    "cash": [
+      10,
+      25,
+      50,
+      100,
+      150,
+      200
+    ],
+    "material": [
+      "+1 DEX",
+      "Thieves’ Tools",
+      "Weapon",
+      "Ally",
+      "Armor",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Traveler. INT 8+ or Sneak 8+; success: Survival, Streetwise, or Deception; fail: lose Benefit.",
+        "checks": [
+          {
+            "skill": "INT",
+            "target": 8
+          },
+          {
+            "skill": "Sneak",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Survival:1",
+              "SKILL:Streetwise:1",
+              "SKILL:Deception:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Assassination. Accept job: extra Benefit; warn victim: Ally.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "BENEFIT_ROLL",
+              "ALLY:Warned victim"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 5,
+        "description": "Tails You Lose. Sneak 8+ or Scout 8+; fail: Injury; success: extra Benefit.",
+        "checks": [
+          {
+            "skill": "Sneak",
+            "target": 8
+          },
+          {
+            "skill": "Scout",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 6,
+        "description": "Underworld Life. Criminal Ally or Streetwise.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "ALLY:Criminal contact",
+              "SKILL:Streetwise:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Petty Theft. Streetwise 8+ or Sneak 8+; fail: lose Benefit; success: Benefit.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          },
+          {
+            "skill": "Sneak",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          "BENEFIT_ROLL"
+        ],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Hunting. Archery 8+ or Survival 8+; fail: Injury; success: Animals or Sneak.",
+        "checks": [
+          {
+            "skill": "Archery",
+            "target": 8
+          },
+          {
+            "skill": "Survival",
+            "target": 8
+          }
+        ],
+        "always": [],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Animals:1",
+              "SKILL:Sneak:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "INJURY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Thieves’ Guild. Accept: lose Benefit, SOC+1; refuse: Enemy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [],
+        "branchPrompt": "TWODSIX.CharGen.Branches.ThievesGuildPrompt",
+        "branchChoices": [
+          {
+            "value": "accept",
+            "labelKey": "TWODSIX.CharGen.Branches.ThievesGuildAccept",
+            "effects": [
+              "LOSE_BENEFIT_AND_SOC"
+            ]
+          },
+          {
+            "value": "refuse",
+            "labelKey": "TWODSIX.CharGen.Branches.ThievesGuildRefuse",
+            "effects": [
+              "ENEMY:Thieves’ guild"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Betrayal. Backstab: SOC+1 and Enemy; refuse: Ally.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SOC_PLUS1_AND_ENEMY",
+              "ALLY"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 12,
+        "description": "Heist. Extra Benefit or Thieves’ Tools.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "BENEFIT_ROLL",
+              "MATERIAL:Thieves’ Tools"
+            ]
+          }
+        ]
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!a9c41a6761d63135"
+}

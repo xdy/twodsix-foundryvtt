@@ -1008,7 +1008,7 @@ const ROLLTYPES = Object.freeze({
   Disadvantage: {key: 'Disadvantage', formula: "3d6kl2"}
 });
 
-const WeightlessItems = ["skills", "trait", "spell", "psiAbility"];
+const WeightlessItems = ["skills", "trait", "spell", "psiAbility", "species"];
 
 /**
  * Frozen constant keys for all valid consumable subtypes. Use these instead of raw string literals.
@@ -1212,6 +1212,18 @@ export const ComponentStates = {
   damaged: "TWODSIX.Items.Component.damaged",
   destroyed: "TWODSIX.Items.Component.destroyed",
   off: "TWODSIX.Items.Component.off"
+};
+
+/**
+ * The state machine transitions for component status cycling.
+ * Maps each state to the next state when clicked (no shift key).
+ * Shift+click toggles between off and operational.
+ */
+export const COMPONENT_STATE_TRANSITIONS = {
+  "operational": "damaged",
+  "damaged": "destroyed",
+  "destroyed": "off",
+  "off": "operational"
 };
 
 /**
@@ -1600,10 +1612,10 @@ export const ITEM_TYPE_SELECT = {
   junk: "TWODSIX.Items.Items.AssignJunk",
   psiAbility: "TWODSIX.Items.Items.AssignPsiAbility",
   storage: "TWODSIX.Items.Items.MoveStorage",
+  species: "TWODSIX.Items.Species.AssignSpecies",
   spell: "TWODSIX.Items.Items.AssignSpell",
   tool: "TWODSIX.Items.Items.AssignTool",
-  weapon: "TWODSIX.Items.Items.AssignWeapon",
-  career: "TWODSIX.Items.Career.AssignCareer"
+  weapon: "TWODSIX.Items.Items.AssignWeapon"
 };
 
 export const CU_DAMAGE_TYPES = {
@@ -1838,6 +1850,7 @@ export const TWODSIX = {
   PowerOptions: PowerOptions,
   HullPricingOptions: HullPricingOptions,
   ComponentStates: ComponentStates,
+  COMPONENT_STATE_TRANSITIONS: COMPONENT_STATE_TRANSITIONS,
   DriveTypes: DriveTypes,
   ComponentTypes: ComponentTypes,
   COMPONENT_SUBTYPES: COMPONENT_SUBTYPES,
@@ -1881,4 +1894,3 @@ export const TWODSIX = {
   WorldFeaturesOptions: WorldFeaturesOptions,
   WorldTravelZones: WorldTravelZones
 };
-

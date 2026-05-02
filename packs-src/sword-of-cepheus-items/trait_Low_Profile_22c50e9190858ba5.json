@@ -1,0 +1,23 @@
+{
+  "_id": "22c50e9190858ba5",
+  "name": "Low Profile",
+  "type": "trait",
+  "img": "systems/twodsix/assets/icons/hidden.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character knows how to utilize cover very effectively. When the character is behind hard cover, treat it as heavy cover (DM-3 to hit the character).",
+    "prereq": "DEX 9+",
+    "shortdescr": "Hard cover treated as heavy cover (DM-3 to hit).",
+    "subtype": "",
+    "key": "low_profile",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!22c50e9190858ba5"
+}

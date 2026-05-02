@@ -1,0 +1,23 @@
+{
+  "_id": "f7c1dbee3eeda84a",
+  "name": "Signature Weapon",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is particularly proficient in using a specific weapon. Choose one specific weapon, such as a character's favorite sword or longbow; when attacking with that specific weapon, the character gains a +1 bonus to hit. You may choose this Trait multiple times, each time the bonus is applied to a different weapon.",
+    "prereq": "Archery or Melee Combat",
+    "shortdescr": "+1 to hit with a chosen specific weapon.",
+    "subtype": "",
+    "key": "signature_weapon",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!f7c1dbee3eeda84a"
+}

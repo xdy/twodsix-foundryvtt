@@ -1,0 +1,23 @@
+{
+  "_id": "138c7119f908a9be",
+  "name": "Master Sailor",
+  "type": "trait",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": 0,
+    "type": "trait",
+    "description": "The character is an expert seaman and can easily outmaneuver others. Throw with Advantage when determining Position in a naval chase.",
+    "prereq": "Watercraft",
+    "shortdescr": "Advantage on Position in naval chases.",
+    "subtype": "",
+    "key": "master_sailor",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "pJvEYeYTcgmMjP1m",
+  "_key": "!items!138c7119f908a9be"
+}

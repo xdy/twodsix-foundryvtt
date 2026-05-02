@@ -1,0 +1,26 @@
+{
+  "_id": "f20e459ce892f811",
+  "name": "Craft",
+  "type": "skills",
+  "img": "icons/svg/item-bag.svg",
+  "system": {
+    "value": -3,
+    "characteristic": "INT",
+    "type": "skills",
+    "description": "The ability to maintain, repair, and build mechanical devices of all sorts, from crossbows to carts. Craft can cover artistic endeavors like sculpture and painting. This skill also covers lockpicking.<ul><li>Disarming a typical trap: Craft/INT or Craft/DEX 8+</li><li>Fixing a broken wagon wheel before the bandits catch up: Craft/INT 12+</li><li>Making a crossbow: Craft/EDU 8+</li><li>Building a bridge with a crew of workers: Craft/EDU 10+</li><li>Painting a mosaic: Craft/EDU 8+</li></ul>",
+    "shortdescr": "Maintain, repair, and build mechanical devices. Also lockpicking and art.",
+    "subtype": "",
+    "key": "key",
+    "difficulty": "Average",
+    "rolltype": "Normal",
+    "trainingNotes": "",
+    "reference": ""
+  },
+  "effects": [],
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "folder": "UcgP3vuzYNAOFFu9",
+  "_key": "!items!f20e459ce892f811"
+}

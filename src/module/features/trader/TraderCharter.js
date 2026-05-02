@@ -4,21 +4,20 @@
  */
 
 import { buildTradeReportRows, } from '../../utils/TradeGenerator.js';
-import {
-  CARGO_SALE_PRICE_MULTIPLIER,
-  CHARTER_RATE,
-  FREIGHT_RATE,
-  FUEL_COST,
-  FUEL_SKIM_RATE,
-  PASSENGER_REVENUE
-} from './TraderConstants.js';
+import { accruePortFees, affordableFuel, applyFuelPurchase, getTradeInfo } from './atWorldBridge.js';
+import { CARGO_SALE_PRICE_MULTIPLIER, FUEL_COST, FUEL_SKIM_RATE, } from './TraderConstants.js';
+import { getTraderRuleset } from './TraderRulesetRegistry.js';
 import {
   addRevenue,
   advanceDate,
   getAbsoluteDay,
+  getCurrentWorld,
   getFreeCargoSpace,
   getFreeLowBerths,
   getFreeStaterooms,
+  getPassengerStateroomUsage,
+  normalizeFreightState,
+  normalizePassengers,
 } from './TraderState.js';
 import { getRefuelOptions, } from './TraderUtils.js';
 
@@ -96,13 +95,16 @@ export async function showCharterDialog(app) {
  */
 export async function evictForCharter(app, charterCargo, charterStaterooms, charterLowBerths, mode) {
   const s = app.state;
-  const { getCurrentWorld } = await import('./TraderState.js');
-  const { getTradeInfo } = await import('./TraderAtWorld.js');
   const world = getCurrentWorld(s);
+  const ruleset = getTraderRuleset(s.ruleset);
+  const passengerRevenue = ruleset.getPassengerRevenue();
+  const freightRate = ruleset.getFreightRate();
 
   // --- Force-sell speculative cargo ---
-  const cargoSpaceNeeded = (mode === 'all') ? s.cargo.reduce((sum, c) => sum + c.tons, 0) : charterCargo - getFreeCargoSpace(s);
-  if ((mode === 'all' || cargoSpaceNeeded > 0) && s.cargo.length > 0) {
+  const cargoSpaceNeeded = mode === 'all'
+    ? s.cargo.reduce((sum, c) => sum + c.tons, 0)
+    : Math.max(0, charterCargo - getFreeCargoSpace(s));
+  if (cargoSpaceNeeded > 0 && s.cargo.length > 0) {
     const tradeInfo = getTradeInfo(app, world);
     const rows = buildTradeReportRows(tradeInfo);
     const salePriceMap = new Map();
@@ -112,44 +114,70 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
       }
     }
 
-    // Sell all cargo lots
-    while (s.cargo.length > 0) {
+    let remainingCargoToSell = cargoSpaceNeeded;
+    while (remainingCargoToSell > 0 && s.cargo.length > 0) {
       const lot = s.cargo[0];
+      const tonsToSell = Math.min(remainingCargoToSell, lot.tons);
       const salePrice = salePriceMap.get(lot.name) || Math.round(lot.purchasePricePerTon * CARGO_SALE_PRICE_MULTIPLIER);
-      const revenue = lot.tons * salePrice;
+      const revenue = tonsToSell * salePrice;
       s.credits += revenue;
       s.totalRevenue += revenue;
       await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionSold", {
-        tons: lot.tons,
+        tons: tonsToSell,
         good: game.i18n.localize(lot.name),
         price: salePrice.toLocaleString(),
         revenue: revenue.toLocaleString()
       }));
-      s.cargo.splice(0, 1);
+      lot.tons -= tonsToSell;
+      remainingCargoToSell -= tonsToSell;
+      if (lot.tons <= 0) {
+        s.cargo.shift();
+      }
     }
   }
 
   // --- Dump freight ---
-  const freightToEvict = (mode === 'all') ? s.freight : Math.max(0, charterCargo - getFreeCargoSpace(s));
+  normalizeFreightState(s);
+  const freightToEvict = mode === 'all' ? s.freight : Math.max(0, charterCargo - getFreeCargoSpace(s));
   if (freightToEvict > 0 && s.freight > 0) {
+    let remainingFreightToEvict = Math.min(s.freight, freightToEvict);
+    let totalRefund = 0;
+    if (s.freightLots.length > 0) {
+      while (remainingFreightToEvict > 0 && s.freightLots.length > 0) {
+        const lot = s.freightLots[0];
+        const removedTons = Math.min(remainingFreightToEvict, lot.tons);
+        totalRefund += removedTons * (lot.rate || freightRate);
+        lot.tons -= removedTons;
+        remainingFreightToEvict -= removedTons;
+        if (lot.tons <= 0) {
+          s.freightLots.shift();
+        }
+      }
+    } else {
+      totalRefund = remainingFreightToEvict * freightRate;
+      remainingFreightToEvict = 0;
+    }
     const evicted = Math.min(s.freight, freightToEvict);
-    const refund = evicted * FREIGHT_RATE;
-    s.freight -= evicted;
-    s.credits -= refund;
-    s.totalRevenue -= refund;
+    s.freight = Math.max(0, s.freight - evicted);
+    normalizeFreightState(s);
+    s.credits -= totalRefund;
+    s.totalRevenue -= totalRefund;
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionDumped", {
       tons: evicted,
-      refund: refund.toLocaleString()
+      refund: totalRefund.toLocaleString()
     }));
   }
 
-  // --- Evict high passengers (staterooms) ---
-  const stateroomsNeeded = (mode === 'all') ? (s.passengers.high + s.passengers.middle) : charterStaterooms - getFreeStaterooms(s);
+  // --- Evict stateroom passengers ---
+  s.passengers = normalizePassengers(s.passengers);
+  const stateroomsNeeded = (mode === 'all')
+    ? getPassengerStateroomUsage(s.passengers)
+    : charterStaterooms - getFreeStaterooms(s);
   if (stateroomsNeeded > 0) {
-    // Evict high passengers first, then middle
+    // Evict high passengers first, then middle, then steerage.
     const highEvict = Math.min(s.passengers.high, stateroomsNeeded);
     if (highEvict > 0) {
-      const refund = highEvict * PASSENGER_REVENUE.high;
+      const refund = highEvict * passengerRevenue.high;
       s.passengers.high -= highEvict;
       s.credits -= refund;
       s.totalRevenue -= refund;
@@ -160,14 +188,15 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
       }));
     }
 
-    const remainingNeeded = stateroomsNeeded - highEvict;
+    let remainingNeeded = stateroomsNeeded - highEvict;
     if (remainingNeeded > 0) {
       const midEvict = Math.min(s.passengers.middle, remainingNeeded);
       if (midEvict > 0) {
-        const refund = midEvict * PASSENGER_REVENUE.middle;
+        const refund = midEvict * passengerRevenue.middle;
         s.passengers.middle -= midEvict;
         s.credits -= refund;
         s.totalRevenue -= refund;
+        remainingNeeded -= midEvict;
         await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionPax", {
           count: midEvict,
           type: 'middle',
@@ -175,13 +204,26 @@ export async function evictForCharter(app, charterCargo, charterStaterooms, char
         }));
       }
     }
+
+    if (remainingNeeded > 0 && s.passengers.steerage > 0) {
+      const steerageEvict = Math.min(s.passengers.steerage, remainingNeeded * 2);
+      const refund = steerageEvict * (passengerRevenue.steerage || 0);
+      s.passengers.steerage -= steerageEvict;
+      s.credits -= refund;
+      s.totalRevenue -= refund;
+      await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterEvictionPax", {
+        count: steerageEvict,
+        type: 'steerage',
+        refund: refund.toLocaleString()
+      }));
+    }
   }
 
   // --- Evict low passengers ---
   const lowBerthsNeeded = (mode === 'all') ? s.passengers.low : charterLowBerths - getFreeLowBerths(s);
   if (lowBerthsNeeded > 0 && s.passengers.low > 0) {
     const lowEvict = Math.min(s.passengers.low, lowBerthsNeeded);
-    const refund = lowEvict * PASSENGER_REVENUE.low;
+    const refund = lowEvict * passengerRevenue.low;
     s.passengers.low -= lowEvict;
     s.credits -= refund;
     s.totalRevenue -= refund;
@@ -274,11 +316,10 @@ export async function acceptCharter(app) {
 
 /**
  * Automatically refuel, picking the best available option.
- * Uses shared fuel helpers from TraderAtWorld.
+ * Uses shared fuel helpers from atWorld refuel module (via atWorldBridge).
  */
 export async function autoRefuel(app, world, jumpFuel) {
   const s = app.state;
-  const { applyFuelPurchase, affordableFuel } = await import('./TraderAtWorld.js');
   const fuelNeeded = Math.min(jumpFuel, s.ship.fuelCapacity) - s.ship.currentFuel;
   if (fuelNeeded <= 0) {
     return;
@@ -346,6 +387,7 @@ export async function autoRefuel(app, world, jumpFuel) {
     s.ship.currentFuel += finalRemaining;
     s.ship.fuelIsRefined = false;
     advanceDate(s.gameDate, skimTime);
+    await accruePortFees(app);
     await app.logEvent(game.i18n.format("TWODSIX.Trader.Log.CharterAutoRefuelGasGiant", {
       tons: finalRemaining,
       time: skimTime
@@ -365,7 +407,8 @@ export function computeCharterFee(state, cargo, staterooms, lowBerths) {
   const c = cargo ?? getFreeCargoSpace(state);
   const s = staterooms ?? getFreeStaterooms(state);
   const l = lowBerths ?? getFreeLowBerths(state);
-  return c * CHARTER_RATE.cargoPerTon
-    + s * CHARTER_RATE.highPassage
-    + l * CHARTER_RATE.lowPassage;
+  const charterRate = getTraderRuleset(state.ruleset).getCharterRate();
+  return c * charterRate.cargoPerTon
+    + s * charterRate.highPassage
+    + l * charterRate.lowPassage;
 }

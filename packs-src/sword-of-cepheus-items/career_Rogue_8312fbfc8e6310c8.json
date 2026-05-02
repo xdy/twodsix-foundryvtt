@@ -1,0 +1,242 @@
+{
+  "_id": "8312fbfc8e6310c8",
+  "name": "Rogue",
+  "type": "career",
+  "img": "icons/svg/book.svg",
+  "system": {
+    "ruleset": "SOC",
+    "service": [
+      "Streetwise",
+      "Craft",
+      "Carousing",
+      "Deception",
+      "Sneak",
+      "Scout"
+    ],
+    "specialist": [
+      "Archery",
+      "Liaison",
+      "Melee",
+      "Riding",
+      "Sneak",
+      "Deception"
+    ],
+    "advanced": [
+      "Survival",
+      "Govern",
+      "Jack o’Trades",
+      "Healing",
+      "Insight",
+      "Battle"
+    ],
+    "cash": [
+      20,
+      20,
+      100,
+      200,
+      400,
+      1000
+    ],
+    "material": [
+      "Thieves’ Tools",
+      "+1 INT",
+      "Weapon",
+      "Ally",
+      "Ally",
+      "Magic Item"
+    ],
+    "eventTable": [
+      {
+        "roll": 2,
+        "description": "Injured. Injury table",
+        "checks": [],
+        "always": [
+          "[INJURY]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 3,
+        "description": "Arrested. Govern 8+ or Liaison 10+ clears charges; fail loses Benefit and gains Enemy.",
+        "checks": [
+          {
+            "skill": "Govern",
+            "target": 8
+          },
+          {
+            "skill": "Liaison",
+            "target": 10
+          }
+        ],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [
+          "LOSE_BENEFIT_ROLL",
+          "ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 4,
+        "description": "Slavery. Deception 8+ for +1 Benefit or Enemy; refusal gains Enemy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SLAVER",
+              "ENEMY"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 5,
+        "description": "Thieves' Guild. Accept: lose Benefit and +1 SOC; refuse: Enemy.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "LOSE_BENEFIT_AND_SOC",
+              "ENEMY"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 6,
+        "description": "Betrayal. Backstab for +1 SOC and Enemy, or refuse for Ally.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SOC_PLUS1_AND_ENEMY",
+              "ALLY"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 7,
+        "description": "Life Event.",
+        "checks": [],
+        "always": [
+          "[LIFE_EVENT]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 8,
+        "description": "Jail. Streetwise 8+: Deception, Battle, or Melee Combat; fail Streetwise and Enemy. Either way -1 SOC.",
+        "checks": [
+          {
+            "skill": "Streetwise",
+            "target": 8
+          }
+        ],
+        "always": [
+          "SOC_MINUS1"
+        ],
+        "onSuccess": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Deception:1",
+              "SKILL:Battle:1",
+              "SKILL:Melee Combat:1"
+            ]
+          }
+        ],
+        "onFail": [
+          "SKILL:Streetwise:1",
+          "ENEMY"
+        ],
+        "effects": []
+      },
+      {
+        "roll": 9,
+        "description": "Gambling. Gain Carousing. Carousing-1",
+        "checks": [],
+        "always": [
+          "[SKILL:Carousing:1]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      },
+      {
+        "roll": 10,
+        "description": "Street Cred. Gain Carousing, Deception, or Leadership.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "SKILL:Carousing:1",
+              "SKILL:Deception:1",
+              "SKILL:Leadership:1"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 11,
+        "description": "Heist. Gain an extra Benefit roll or Thieves' Tools.",
+        "checks": [],
+        "always": [],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": [
+          {
+            "connector": "or",
+            "tags": [
+              "BENEFIT_ROLL",
+              "MATERIAL:Thieves' Tools"
+            ]
+          }
+        ]
+      },
+      {
+        "roll": 12,
+        "description": "Legend. Gain one Benefit. Extra Benefit roll",
+        "checks": [],
+        "always": [
+          "[BENEFIT_ROLL]"
+        ],
+        "onSuccess": [],
+        "onFail": [],
+        "effects": []
+      }
+    ],
+    "mishapTable": [],
+    "assignmentTable": {},
+    "officerRanks": []
+  },
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.2.0",
+    "coreVersion": "14.360"
+  },
+  "folder": "oo82ilfbvRWNkStZ",
+  "_key": "!items!8312fbfc8e6310c8"
+}
