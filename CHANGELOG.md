@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.2.2...v7.3.0) (2026-05-06)
+
+
+### Features
+
+* Various trader and chargen improvements including support for several more rulesets. ([477bc42](https://github.com/xdy/twodsix-foundryvtt/commit/477bc42a853436a0b055f5d4b7a9d0d400d6d356))
+
 ## [7.2.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.2.1...v7.2.2) (2026-05-01)
 
 
