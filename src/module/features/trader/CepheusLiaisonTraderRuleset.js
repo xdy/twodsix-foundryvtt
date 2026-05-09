@@ -1,6 +1,7 @@
 /**
  * Shared trader rules for Cepheus-family rulesets that use Liaison / Streetwise / Carousing
- * search methods (CEL, CLU, CDEE). Characteristic DMs from actors are not yet wired (TODO).
+ * search methods (CEL, CLU, CDEE). Characteristic DMs are derived from the best crew member's
+ * actor (if linked).
  */
 import { BaseTraderRuleset, SEARCH_METHOD } from './BaseTraderRuleset.js';
 
@@ -15,18 +16,21 @@ export class CepheusLiaisonTraderRuleset extends BaseTraderRuleset {
     switch (method) {
       case SEARCH_METHOD.CORPORATE: {
         const liaison = this.getCrewSkill(crew, 'Liaison');
-        const intDM = 0; // TODO Get from actor
-        const socDM = 0;
+        const best = this.getBestCrewMemberForSkill(crew, 'Liaison');
+        const intDM = this._getCharacteristicDM(best?.member, 'intelligence');
+        const socDM = this._getCharacteristicDM(best?.member, 'socialStanding');
         return liaison + Math.max(intDM, socDM);
       }
       case SEARCH_METHOD.BLACK_MARKET: {
         const streetwise = this.getCrewSkill(crew, 'Streetwise');
-        const intDM = 0; // TODO Get from actor
+        const best = this.getBestCrewMemberForSkill(crew, 'Streetwise');
+        const intDM = this._getCharacteristicDM(best?.member, 'intelligence');
         return streetwise + intDM;
       }
       case SEARCH_METHOD.PRIVATE: {
         const carousing = this.getCrewSkill(crew, 'Carousing');
-        const socDM = 0; // TODO Get from actor
+        const best = this.getBestCrewMemberForSkill(crew, 'Carousing');
+        const socDM = this._getCharacteristicDM(best?.member, 'socialStanding');
         return carousing + socDM;
       }
       default: return -3;
@@ -46,8 +50,9 @@ export class CepheusLiaisonTraderRuleset extends BaseTraderRuleset {
   /** @override */
   getPriceRollSkill(crew) {
     const liaison = this.getCrewSkill(crew, 'Liaison');
-    const intDM = 0; // TODO Get from actor
-    const socDM = 0; // TODO Get from actor
+    const best = this.getBestCrewMemberForSkill(crew, 'Liaison');
+    const intDM = this._getCharacteristicDM(best?.member, 'intelligence');
+    const socDM = this._getCharacteristicDM(best?.member, 'socialStanding');
     return liaison + Math.max(intDM, socDM);
   }
 

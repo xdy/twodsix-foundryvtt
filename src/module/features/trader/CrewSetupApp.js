@@ -5,6 +5,43 @@ import { getTraderRuleset } from './TraderRulesetRegistry.js';
 const { HandlebarsApplicationMixin, ApplicationV2 } = foundry.applications.api;
 
 /**
+ * Ruleset-agnostic skill-name aliases.
+ * Different rulesets name the same skill differently (e.g. Computer vs Computers,
+ * Carouse vs Carousing). This map provides symmetric lookups so that actors from
+ * any ruleset are matched against any ruleset's canonical skill names.
+ * @type {Map<string, string>}
+ */
+const SKILL_NAME_ALIASES = new Map([
+  ['computer', 'computers'],
+  ['computers', 'computer'],
+  ['carouse', 'carousing'],
+  ['carousing', 'carouse'],
+]);
+
+/**
+ * Check whether an actor's skill-item name matches a canonical skill name,
+ * accounting for known cross-ruleset aliases (e.g. Computer ↔ Computers).
+ * @param {string} itemName - The name of the actor's skill item
+ * @param {string} canonicalName - The ruleset's canonical skill name
+ * @returns {boolean}
+ */
+function matchSkillName(itemName, canonicalName) {
+  const a = itemName.toLowerCase();
+  const b = canonicalName.toLowerCase();
+  return a === b || SKILL_NAME_ALIASES.get(a) === b;
+}
+
+/**
+ * Compute the default window width based on the number of skill columns.
+ * @param {string[]} skillNames
+ * @returns {number}
+ */
+function computeDefaultWidth(skillNames) {
+  // Position ~90 + Salary ~70 + Name ~190 + each skill ~80 + Clear ~38
+  return Math.max(640, 90 + 70 + 190 + skillNames.length * 80 + 38);
+}
+
+/**
  * ApplicationV2 crew-setup dialog.
  * Stays open while the player generates actors via chargen in a separate window.
  * Resolves a promise with the final crew array when the player clicks Confirm.
@@ -13,7 +50,7 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
   static DEFAULT_OPTIONS = {
     id: 'trader-crew-setup',
     classes: ['twodsix', 'trader-crew'],
-    window: { title: 'TWODSIX.Trader.Setup.CrewTitle', resizable: false },
+    window: { title: 'TWODSIX.Trader.Setup.CrewTitle', resizable: true },
     position: { width: 640, height: 'auto' },
   };
 
@@ -31,12 +68,53 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
     this._shipActorId = options.shipActorId || '';
     this._ruleset = options.ruleset || 'CE';
     this._rows = this._buildInitialRows();
+
+    // Dynamically size the window based on skill count
+    const ruleset = getTraderRuleset(this._ruleset);
+    this.options.position.width = computeDefaultWidth(ruleset.getRelevantSkillNames());
   }
 
   /** Build the initial crew rows from the selected ship's positions, or fall back to DEFAULT_CREW. */
   _buildInitialRows() {
     const ruleset = getTraderRuleset(this._ruleset);
     const skillNames = ruleset.getRelevantSkillNames();
+
+    const makeRow = (positionKey, label, salary, assignedActor = null) => {
+      const skills = {};
+      skillNames.forEach(s => {
+        skills[s.toLowerCase()] = 0;
+      });
+
+      let actorId = '';
+      let manualName = '';
+      let locked = false;
+
+      if (assignedActor) {
+        actorId = assignedActor.id;
+        manualName = assignedActor.name;
+        locked = true;
+        skillNames.forEach(sName => {
+          const item = assignedActor.items?.find(i =>
+            i.type === 'skills' && matchSkillName(i.name, sName)
+          );
+          skills[sName.toLowerCase()] = item?.system?.value ?? 0;
+        });
+      }
+
+      return {
+        position: positionKey,
+        label,
+        salary,
+        manualName,
+        actorId,
+        skills,
+        locked,
+        // legacy fields
+        brokerSkill: skills.broker ?? 0,
+        streetwiseSkill: skills.streetwise ?? 0,
+        computersSkill: skills.computers ?? 0,
+      };
+    };
 
     if (this._shipActorId) {
       const shipActor = game.actors?.get(this._shipActorId);
@@ -50,56 +128,17 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
           const positionKey = count === 1 ? baseKey : `${baseKey}-${count}`;
           const salary = CREW_SALARIES[baseKey] ?? CREW_SALARIES.other;
           const assigned = pos.system?.actors?.[0];
-          let manualName = '';
-          let actorId = '';
-          const skills = {};
-          skillNames.forEach(s => {
-            skills[s.toLowerCase()] = 0;
-          });
-
-          if (assigned) {
-            actorId = assigned.id;
-            manualName = assigned.name;
-            skillNames.forEach(sName => {
-              const item = assigned.items?.find(i =>
-                i.type === 'skill' && i.name.toLowerCase() === sName.toLowerCase()
-              );
-              skills[sName.toLowerCase()] = item?.system?.value ?? 0;
-            });
-          }
-          return {
-            position: positionKey,
-            label: pos.name,
-            salary,
-            manualName,
-            actorId,
-            skills,
-            // legacy fields
-            brokerSkill: skills.broker ?? 0,
-            streetwiseSkill: skills.streetwise ?? 0,
-            computersSkill: skills.computers ?? 0,
-          };
+          return makeRow(positionKey, pos.name, salary, assigned);
         });
       }
     }
-    return DEFAULT_CREW.map(c => {
-      const skills = {};
-      skillNames.forEach(s => {
-        skills[s.toLowerCase()] = 0;
-      });
-      return {
-        position: c.position,
-        label: c.position.charAt(0).toUpperCase() + c.position.slice(1),
-        salary: c.salary,
-        manualName: '',
-        actorId: '',
-        skills,
-        // legacy fields
-        brokerSkill: 0,
-        streetwiseSkill: 0,
-        computersSkill: 0,
-      };
-    });
+    return DEFAULT_CREW.map(c =>
+      makeRow(
+        c.position,
+        c.position.charAt(0).toUpperCase() + c.position.slice(1),
+        c.salary
+      )
+    );
   }
 
   /** Return a promise that resolves to the crew array or null. */
@@ -111,22 +150,48 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
   }
 
   async _prepareContext(_options) {
-    const actors = game.actors.filter(a => a.type === 'traveller')
-      .sort((a, b) => a.name.localeCompare(b.name));
-
     const ruleset = getTraderRuleset(this._ruleset);
     const skillNames = ruleset.getRelevantSkillNames();
+
+    // Pre-resolve actor skill tooltips and relevancy once for all actors
+    const actorCache = new Map();
+    game.actors.filter(a => a.type === 'traveller')
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach(a => {
+        const skillLevels = {};
+        let hasRelevantSkill = false;
+        for (const sName of skillNames) {
+          const item = a.items.find(i =>
+            i.type === 'skills' && matchSkillName(i.name, sName)
+          );
+          const level = item?.system?.value ?? 0;
+          skillLevels[sName.toLowerCase()] = level;
+          if (level >= 1) {
+            hasRelevantSkill = true;
+          }
+        }
+        actorCache.set(a.id, {
+          id: a.id,
+          name: a.name,
+          skillTooltip: skillNames.map(s => `${s}: ${skillLevels[s.toLowerCase()]}`).join(', '),
+          hasRelevantSkill,
+        });
+      });
 
     return {
       skillNames: skillNames.map(s => ({ name: s, label: s })),
       positions: this._rows.map(r => ({
         ...r,
-        actors: actors.map(a => ({ id: a.id, name: a.name, selected: a.id === r.actorId })),
+        hasClearableContent: r.locked || (r.manualName && r.manualName.trim() !== ''),
+        actors: Array.from(actorCache.values()).map(a => ({
+          ...a,
+          selected: a.id === r.actorId,
+        })),
         skillList: skillNames.map(sName => ({
           name: sName,
           key: sName.toLowerCase(),
-          value: r.skills[sName.toLowerCase()] ?? 0
-        }))
+          value: r.skills[sName.toLowerCase()] ?? 0,
+        })),
       })),
     };
   }
@@ -134,7 +199,7 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
   async _onRender(_ctx, _opts) {
     const el = this.element;
 
-    // Actor dropdown -> auto-fill name and skills from actor
+    // Actor dropdown -> auto-fill name and skills from actor, lock the row
     el.querySelectorAll('.st-actor-select').forEach(sel => {
       sel.addEventListener('change', e => {
         const pos = e.target.dataset.position;
@@ -147,12 +212,12 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
           const actor = game.actors.get(e.target.value);
           if (actor) {
             row.manualName = actor.name;
-            // Read skills from actor items
+            row.locked = true;
             const ruleset = getTraderRuleset(this._ruleset);
             const skillNames = ruleset.getRelevantSkillNames();
             skillNames.forEach(sName => {
               const item = actor.items.find(i =>
-                i.type === 'skill' && i.name.toLowerCase() === sName.toLowerCase()
+                i.type === 'skills' && matchSkillName(i.name, sName)
               );
               row.skills[sName.toLowerCase()] = item?.system?.value ?? 0;
             });
@@ -162,36 +227,31 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
             row.computersSkill = row.skills.computers ?? 0;
           }
         } else {
-          row.manualName = '';
-          Object.keys(row.skills).forEach(k => {
-            row.skills[k] = 0;
-          });
-          row.brokerSkill = 0;
-          row.streetwiseSkill = 0;
-          row.computersSkill = 0;
+          // "Manual entry" selected — unlock
+          this._clearRow(row);
         }
         this.render();
       });
     });
 
-    // Manual name input
+    // Manual name input (only used when not locked)
     el.querySelectorAll('.st-name-input').forEach(input => {
       input.addEventListener('change', e => {
         const pos = e.target.dataset.position;
         const row = this._rows.find(r => r.position === pos);
-        if (row) {
+        if (row && !row.locked) {
           row.manualName = e.target.value;
         }
       });
     });
 
-    // Skill input
+    // Skill input (only used when not locked)
     el.querySelectorAll('.st-skill-input').forEach(input => {
       input.addEventListener('change', e => {
         const pos = e.target.dataset.position;
         const skillKey = e.target.dataset.skill;
         const row = this._rows.find(r => r.position === pos);
-        if (row && row.skills) {
+        if (row && !row.locked && row.skills) {
           const val = parseInt(e.target.value) || 0;
           row.skills[skillKey] = val;
           // legacy sync
@@ -204,6 +264,18 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
           if (skillKey === 'computers') {
             row.computersSkill = val;
           }
+        }
+      });
+    });
+
+    // Clear crewmember button
+    el.querySelectorAll('.st-clear-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const pos = e.target.closest('button')?.dataset.position;
+        const row = this._rows.find(r => r.position === pos);
+        if (row && row.locked) {
+          this._clearRow(row);
+          this.render();
         }
       });
     });
@@ -241,11 +313,12 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
         }
         row.actorId = actor.id;
         row.manualName = actor.name;
+        row.locked = true;
         const ruleset = getTraderRuleset(this._ruleset);
         const skillNames = ruleset.getRelevantSkillNames();
         skillNames.forEach(sName => {
           const item = actor.items.find(i =>
-            i.type === 'skill' && i.name.toLowerCase() === sName.toLowerCase()
+            i.type === 'skills' && matchSkillName(i.name, sName)
           );
           row.skills[sName.toLowerCase()] = item?.system?.value ?? 0;
         });
@@ -271,6 +344,22 @@ export class CrewSetupApp extends HandlebarsApplicationMixin(ApplicationV2) {
     el.querySelector('.st-confirm-btn')?.addEventListener('click', () => {
       this._confirm();
     });
+  }
+
+  /** Clear a crew row to its unassigned state. */
+  _clearRow(row) {
+    const ruleset = getTraderRuleset(this._ruleset);
+    const skillNames = ruleset.getRelevantSkillNames();
+
+    row.actorId = '';
+    row.manualName = '';
+    row.locked = false;
+    skillNames.forEach(sName => {
+      row.skills[sName.toLowerCase()] = 0;
+    });
+    row.brokerSkill = 0;
+    row.streetwiseSkill = 0;
+    row.computersSkill = 0;
   }
 
   _confirm() {

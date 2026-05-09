@@ -768,21 +768,61 @@ export class BaseTraderRuleset {
   }
 
   /**
+   * Get the best crew member for a named skill and their skill level.
+   * @param {object[]} crew - Crew skills summary (from state.crew)
+   * @param {string} skillName - Skill name
+   * @returns {{member: object, skill: number}|null} Best crew member + skill, or null if crew is empty
+   */
+  getBestCrewMemberForSkill(crew, skillName) {
+    if (!Array.isArray(crew) || crew.length === 0) {
+      return null;
+    }
+    const skillKey = skillName.toLowerCase();
+    let bestMember = null;
+    let bestVal = -Infinity;
+    for (const c of crew) {
+      const val = c.skills?.[skillKey] ?? this._getLegacySkillValue(c, skillKey) ?? -3;
+      if (val > bestVal) {
+        bestVal = val;
+        bestMember = c;
+      }
+    }
+    return bestMember ? { member: bestMember, skill: bestVal } : null;
+  }
+
+  /**
    * Get the best crew skill level by name.
-   * @param {object} crew - Crew skills summary (from state.crew)
+   * @param {object[]} crew - Crew skills summary (from state.crew)
    * @param {string} skillName - Skill name
    * @returns {number} Highest skill level or UNSKILLED_PENALTY
    */
   getCrewSkill(crew, skillName) {
-    if (!Array.isArray(crew)) {
-      return -3;
+    const result = this.getBestCrewMemberForSkill(crew, skillName);
+    return result ? result.skill : -3;
+  }
+
+  /**
+   * Resolve the linked actor for a crew member.
+   * @param {object|undefined} crewMember - A single crew member object
+   * @returns {import('../../entities/TwodsixActor').default|null}
+   */
+  _getCrewActor(crewMember) {
+    if (!crewMember?.actorId) {
+      return null;
     }
-    const skillKey = skillName.toLowerCase();
-    // Helper to check both the new generic skills map and old specific fields
-    return crew.reduce((best, c) => {
-      const val = c.skills?.[skillKey] ?? this._getLegacySkillValue(c, skillKey);
-      return Math.max(best, val ?? -3);
-    }, -3);
+    return game.actors?.get(crewMember.actorId) ?? null;
+  }
+
+  /**
+   * Resolve the characteristic modifier for a crew member from their linked actor.
+   * Returns 0 if the crew member has no linked actor or the characteristic is unavailable.
+   * @param {object|undefined} crewMember - A single crew member object
+   * @param {string} charKey - The characteristic key (e.g. 'intelligence', 'socialStanding')
+   * @returns {number}
+   */
+  _getCharacteristicDM(crewMember, charKey) {
+    const actor = this._getCrewActor(crewMember);
+    return actor?.system?.characteristics?.[charKey]?.mod ?? 0;
   }
 
   /** @private */
