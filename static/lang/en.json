@@ -2793,7 +2793,9 @@
         "ManualEntry": "— manual entry —",
         "OpenCharacterGeneration": "Open Character Generation",
         "RefreshActors": "Refresh Actors",
-        "ConfirmCrew": "Confirm Crew"
+        "ConfirmCrew": "Confirm Crew",
+        "ClearCrewMember": "Clear",
+        "ClearCrewMemberHint": "Remove assigned crew member"
       },
       "Progress": {
         "Title": "Trading Journey Progress",
