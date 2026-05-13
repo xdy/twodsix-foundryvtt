@@ -11,6 +11,7 @@
       {{#each skillNames}}
         <th>{{label}}</th>
       {{/each}}
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -19,25 +20,35 @@
         <td class="trader-crew-pos">{{label}}</td>
         <td class="trader-crew-salary">Cr{{salary}}</td>
         <td class="trader-crew-assign">
-          <select class="st-actor-select" data-position="{{position}}">
+          <select class="st-actor-select" data-position="{{position}}" {{#if locked}}disabled{{/if}}>
             <option value="">{{localize "TWODSIX.Trader.CrewSetup.ManualEntry"}}</option>
             {{#each actors}}
-              <option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+              <option value="{{id}}" {{#if selected}}selected{{/if}} title="{{skillTooltip}}" class="{{#if hasRelevantSkill}}st-has-relevant-skill{{/if}}">{{name}}</option>
             {{/each}}
           </select>
           <input class="st-name-input" type="text"
                  data-position="{{position}}"
                  value="{{manualName}}"
-                 placeholder="{{label}}"/>
+                 placeholder="{{label}}"
+                 {{#if locked}}disabled{{/if}}/>
         </td>
         {{#each skillList}}
           <td class="trader-crew-skill">
             <input class="st-skill-input" type="number"
                    data-position="{{../position}}"
                    data-skill="{{key}}"
-                   value="{{value}}" min="0" max="4"/>
+                   value="{{value}}" min="0" max="4"
+                   {{#if ../locked}}disabled{{/if}}/>
           </td>
         {{/each}}
+        <td class="trader-crew-clear-cell">
+          <button type="button" class="st-clear-btn"
+                  data-position="{{position}}"
+                  data-tooltip="{{localize "TWODSIX.Trader.CrewSetup.ClearCrewMemberHint"}}"
+                  {{#unless hasClearableContent}}disabled{{/unless}}>
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
       </tr>
     {{/each}}
     </tbody>

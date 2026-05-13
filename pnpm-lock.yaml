@@ -4133,7 +4133,7 @@ snapshots:
   conventional-changelog-writer@8.2.0:
     dependencies:
       conventional-commits-filter: 5.0.0
-      handlebars: 4.7.8
+      handlebars: 4.7.9
       meow: 13.2.0
       semver: 7.8.0
 

@@ -114,7 +114,7 @@ export class OtherActivitiesApp extends HandlebarsApplicationMixin(ApplicationV2
       }
       const position = posSel?.value || 'other';
       const salary = CREW_SALARIES[position] ?? CREW_SALARIES.other;
-      const brokerItem = actor.items.find(i => i.type === 'skill' && i.name.toLowerCase() === 'broker');
+      const brokerItem = actor.items.find(i => i.type === 'skills' && i.name.toLowerCase() === 'broker');
       const newMember = {
         name: actor.name,
         position,
