@@ -300,7 +300,7 @@ export class WeaponItem extends GearItem {
 
     // Update range modifiers if controlled tokens exist
     if (controlledTokens.length === 1 && targetToken) {
-      const targetRange = canvas.grid.measurePath([controlledTokens[0], targetToken]).distance;
+      const targetRange = this.measureTokenDistance(controlledTokens[0], targetToken);
       const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
       Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
       Object.assign(settings, {rollType: rangeData.rollType});
@@ -831,7 +831,7 @@ export class WeaponItem extends GearItem {
     const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
 
     if (targetTokens.length === 1) {
-      const targetRange = canvas.grid.measurePath([controlledTokens[0], targetTokens[0]]).distance;
+      const targetRange = this.measureTokenDistance(controlledTokens[0], targetTokens[0]);
       const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
       rangeModifier = rangeData.rangeModifier;
 
@@ -859,6 +859,162 @@ export class WeaponItem extends GearItem {
     }
 
     return {rangeModifier, rangeLabel};
+  }
+
+  /**
+   * Measure the shortest distance between two tokens, accounting for footprint and elevation.
+   * @param {Token} sourceToken
+   * @param {Token} targetToken
+   * @returns {number}
+   */
+  measureTokenDistance(sourceToken, targetToken) {
+    if (!sourceToken || !targetToken || !canvas?.grid) {
+      return 0;
+    }
+    const sourceDocument = sourceToken.document ?? sourceToken;
+    const targetDocument = targetToken.document ?? targetToken;
+    if (canvas.grid.isHexagonal) {
+      return this.measureHexTokenDistance(sourceDocument, targetDocument);
+    }
+    if (canvas.grid.type === foundry.CONST.GRID_TYPES.SQUARE) {
+      return this.measureSquareTokenDistance(sourceDocument, targetDocument);
+    }
+    return this.measureGridlessTokenDistance(sourceDocument, targetDocument);
+  }
+
+  /**
+   * Measure token distance on hex grids using occupied hex offsets.
+   * Finds the nearest hex-pair center-to-center distance, then subtracts one
+   * hex step to convert to edge-to-edge (adjacent tokens = 0).
+   * @param {TokenDocument} sourceToken
+   * @param {TokenDocument} targetToken
+   * @returns {number}
+   */
+  measureHexTokenDistance(sourceToken, targetToken) {
+    const gridDistance = canvas?.scene?.grid?.distance ?? 0;
+    const sourceOffsets = sourceToken.getOccupiedGridSpaceOffsets();
+    const targetOffsets = targetToken.getOccupiedGridSpaceOffsets();
+    let shortestHorizontal = 0;
+
+    if (sourceOffsets.length > 0 && targetOffsets.length > 0) {
+      let minCellDist = Infinity;
+      for (const sourceOffset of sourceOffsets) {
+        const sourcePoint = canvas.grid.getCenterPoint(sourceOffset);
+        for (const targetOffset of targetOffsets) {
+          const targetPoint = canvas.grid.getCenterPoint(targetOffset);
+          const cellDist = canvas.grid.measurePath([sourcePoint, targetPoint]).distance;
+          if (cellDist < minCellDist) {
+            minCellDist = cellDist;
+          }
+        }
+      }
+      // Subtract one hex step to convert center-to-center → edge-to-edge
+      shortestHorizontal = Math.max(0, minCellDist - gridDistance);
+    }
+
+    const sourceBottom = Number(sourceToken.elevation ?? 0);
+    const targetBottom = Number(targetToken.elevation ?? 0);
+    const sourceTop = sourceBottom + (Number(sourceToken.depth ?? 0) * gridDistance);
+    const targetTop = targetBottom + (Number(targetToken.depth ?? 0) * gridDistance);
+    const verticalDistance = this.getAxisSeparation(sourceBottom, sourceTop, targetBottom, targetTop);
+
+    return Math.hypot(shortestHorizontal, verticalDistance);
+  }
+
+  /**
+   * Measure token distance on square grids using occupied cell offsets and measurePath,
+   * respecting the scene's diagonal cost setting. Finds the nearest cell-pair
+   * center-to-center distance, then subtracts one step to give edge-to-edge distance.
+   * @param {TokenDocument} sourceToken
+   * @param {TokenDocument} targetToken
+   * @returns {number}
+   */
+  measureSquareTokenDistance(sourceToken, targetToken) {
+    const gridDistance = canvas?.scene?.grid?.distance ?? 0;
+    const sourceOffsets = sourceToken.getOccupiedGridSpaceOffsets();
+    const targetOffsets = targetToken.getOccupiedGridSpaceOffsets();
+    let shortestHorizontal = 0;
+
+    if (sourceOffsets.length > 0 && targetOffsets.length > 0) {
+      let minCellDist = Infinity;
+      for (const sourceOffset of sourceOffsets) {
+        const sourcePoint = canvas.grid.getCenterPoint(sourceOffset);
+        for (const targetOffset of targetOffsets) {
+          const targetPoint = canvas.grid.getCenterPoint(targetOffset);
+          const cellDist = canvas.grid.measurePath([sourcePoint, targetPoint]).distance;
+          if (cellDist < minCellDist) {
+            minCellDist = cellDist;
+          }
+        }
+      }
+      // Subtract one grid step to convert center-to-center → edge-to-edge
+      shortestHorizontal = Math.max(0, minCellDist - gridDistance);
+    }
+
+    const sourceBottom = Number(sourceToken.elevation ?? 0);
+    const targetBottom = Number(targetToken.elevation ?? 0);
+    const sourceTop = sourceBottom + (Number(sourceToken.depth ?? 0) * gridDistance);
+    const targetTop = targetBottom + (Number(targetToken.depth ?? 0) * gridDistance);
+    const verticalDistance = this.getAxisSeparation(sourceBottom, sourceTop, targetBottom, targetTop);
+
+    return Math.hypot(shortestHorizontal, verticalDistance);
+  }
+
+  /**
+   * Measure token distance in gridless scenes using pixel bounding boxes and elevation bands.
+   * @param {TokenDocument} sourceToken
+   * @param {TokenDocument} targetToken
+   * @returns {number}
+   */
+  measureGridlessTokenDistance(sourceToken, targetToken) {
+    const sourceBounds = this.getTokenBounds(sourceToken);
+    const targetBounds = this.getTokenBounds(targetToken);
+    const horizontalDistance = Math.hypot(
+      this.getAxisSeparation(sourceBounds.left, sourceBounds.right, targetBounds.left, targetBounds.right),
+      this.getAxisSeparation(sourceBounds.top, sourceBounds.bottom, targetBounds.top, targetBounds.bottom)
+    ) / canvas.dimensions.distancePixels;
+
+    const gridDistance = canvas?.scene?.grid?.distance ?? 0;
+    const sourceBottom = Number(sourceToken.elevation ?? 0);
+    const targetBottom = Number(targetToken.elevation ?? 0);
+    const sourceTop = sourceBottom + (Number(sourceToken.depth ?? 0) * gridDistance);
+    const targetTop = targetBottom + (Number(targetToken.depth ?? 0) * gridDistance);
+    const verticalDistance = this.getAxisSeparation(sourceBottom, sourceTop, targetBottom, targetTop);
+
+    return Math.hypot(horizontalDistance, verticalDistance);
+  }
+
+  /**
+   * Get token bounds in canvas pixels.
+   * @param {TokenDocument} token
+   * @returns {{left: number, right: number, top: number, bottom: number}}
+   */
+  getTokenBounds(token) {
+    const {width, height} = token.getSize();
+    return {
+      left: token.x ?? 0,
+      right: (token.x ?? 0) + width,
+      top: token.y ?? 0,
+      bottom: (token.y ?? 0) + height
+    };
+  }
+
+  /**
+   * Get the distance between two one-dimensional intervals.
+   * @param {number} minA
+   * @param {number} maxA
+   * @param {number} minB
+   * @param {number} maxB
+   * @returns {number}
+   */
+  getAxisSeparation(minA, maxA, minB, maxB) {
+    if (maxA < minB) {
+      return minB - maxA;
+    }
+    if (maxB < minA) {
+      return minA - maxB;
+    }
+    return 0;
   }
 }
 
