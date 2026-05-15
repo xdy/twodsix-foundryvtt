@@ -974,7 +974,7 @@ export class WeaponItem extends GearItem {
       this.getAxisSeparation(sourceBounds.top, sourceBounds.bottom, targetBounds.top, targetBounds.bottom)
     ) / canvas.dimensions.distancePixels;
 
-    const gridDistance = canvas?.scene?.grid?.distance ?? 0;
+    const gridDistance = canvas.scene?.grid?.distance ?? 0;
     const sourceBottom = Number(sourceToken.elevation ?? 0);
     const targetBottom = Number(targetToken.elevation ?? 0);
     const sourceTop = sourceBottom + (Number(sourceToken.depth ?? 0) * gridDistance);
