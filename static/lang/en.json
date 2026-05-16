@@ -3716,6 +3716,10 @@
       "suppressTableWarnings": {
         "hint": "When enabled, the text-editor enrichers will not show warnings if a referenced Roll Table is missing or is not a RollTable.",
         "name": "Suppress Table Warnings"
+      },
+      "useTokenEdgeForDistance": {
+        "hint": "Use the token edge rather than the center when calculating distances for attacks. NOTE: when using this setting, the 'Melee Combat Range' setting should be reduced to somthing less than one grid unit (.e.g. 0 to 0.1) to avoid having melee attacks calculated as in range when tokens aren't adjacent.",
+        "name": "Use token edge for combat distance calculations"
       }
     },
     "Combat": {

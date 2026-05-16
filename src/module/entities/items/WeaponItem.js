@@ -877,6 +877,14 @@ export class WeaponItem extends GearItem {
     const sourceDocument = sourceToken.document ?? sourceToken;
     const targetDocument = targetToken.document ?? targetToken;
 
+    // If the useTokenEdgeForDistance setting is disabled, use simple center-to-center distance measurement (default)
+    if (!game.settings.get('twodsix', 'useTokenEdgeForDistance')) {
+      const horizontalDistance = canvas.grid.measurePath([sourceDocument.getCenterPoint(), targetDocument.getCenterPoint()]).distance;
+      const verticalDistance = Math.abs(sourceDocument.elevation - targetDocument.elevation) ?? 0;
+      return Math.hypot(horizontalDistance, verticalDistance);
+    }
+
+    //Use edge-to-edge distance measurement, accounting for token size and elevation
     if (canvas.grid.isHexagonal) {
       return this.measureHexTokenDistance(sourceDocument, targetDocument);
     } else if (canvas.grid.isSquare) {
