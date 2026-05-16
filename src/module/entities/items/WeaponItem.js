@@ -447,6 +447,9 @@ export class WeaponItem extends GearItem {
    * @returns {object} {rangeModifier: rangeModifier, rollType: rollType}
    */
   getRangeModifier(range, weaponBand, isAutoFull) {
+    if (range === undefined) {
+      return {rangeModifier: 0, rollType: 'Normal'};
+    }
     let rangeModifier = 0;
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
@@ -865,21 +868,22 @@ export class WeaponItem extends GearItem {
    * Measure the shortest distance between two tokens, accounting for footprint and elevation.
    * @param {Token} sourceToken
    * @param {Token} targetToken
-   * @returns {number}
+   * @returns {number|undefined} Distance in scene units, or undefined if tokens or canvas are unavailable.
    */
   measureTokenDistance(sourceToken, targetToken) {
     if (!sourceToken || !targetToken || !canvas?.grid) {
-      return 0;
+      return undefined;
     }
     const sourceDocument = sourceToken.document ?? sourceToken;
     const targetDocument = targetToken.document ?? targetToken;
+
     if (canvas.grid.isHexagonal) {
       return this.measureHexTokenDistance(sourceDocument, targetDocument);
-    }
-    if (canvas.grid.type === foundry.CONST.GRID_TYPES.SQUARE) {
+    } else if (canvas.grid.isSquare) {
       return this.measureSquareTokenDistance(sourceDocument, targetDocument);
+    } else {
+      return this.measureGridlessTokenDistance(sourceDocument, targetDocument);
     }
-    return this.measureGridlessTokenDistance(sourceDocument, targetDocument);
   }
 
   /**
