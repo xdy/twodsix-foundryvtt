@@ -880,7 +880,10 @@ export class WeaponItem extends GearItem {
     // If the useTokenEdgeForDistance setting is disabled, use simple center-to-center distance measurement (default)
     if (!game.settings.get('twodsix', 'useTokenEdgeForDistance')) {
       const horizontalDistance = canvas.grid.measurePath([sourceDocument.getCenterPoint(), targetDocument.getCenterPoint()]).distance;
-      const verticalDistance = Math.abs(sourceDocument.elevation - targetDocument.elevation) ?? 0;
+      let verticalDistance = Math.abs(sourceDocument.elevation - targetDocument.elevation);
+      if (isNaN(verticalDistance)) {
+        verticalDistance = 0;
+      }
       return Math.hypot(horizontalDistance, verticalDistance);
     }
 
