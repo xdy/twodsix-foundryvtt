@@ -1,0 +1,321 @@
+{
+  "folder": "nXYcmotfe59W22Pz",
+  "name": "Armored Personnel Carrier TL8",
+  "type": "vehicle",
+  "img": "systems/twodsix/assets/icons/default_vehicle.png",
+  "system": {
+    "name": "",
+    "techLevel": 6,
+    "docReference": [
+      ""
+    ],
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "description": "A low-tech armored vehicle used to carry infantry, which comes in either tracked or wheeled varieties. A TL8 \n<div>version costs KCr200, has a top speed of 100 km/h, as well as Active Countermeasures.</div>",
+    "notes": "",
+    "cargoList": "",
+    "cargoCapacity": "1",
+    "cost": "200,000",
+    "crew": {
+      "operators": "3",
+      "passengers": "14"
+    },
+    "damageStats": {
+      "armor": {
+        "value": 0,
+        "max": 0,
+        "min": 0,
+        "label": ""
+      },
+      "armorLabel": "Light Armor",
+      "hull": {
+        "value": 0,
+        "max": 0,
+        "min": 0,
+        "label": ""
+      },
+      "structure": {
+        "value": 0,
+        "max": 0,
+        "min": 0,
+        "label": ""
+      },
+      "threshold": {
+        "regular": 0,
+        "critical": 0
+      },
+      "detailedArmor": {
+        "front": {
+          "value": 0,
+          "max": 0,
+          "min": 0,
+          "label": ""
+        },
+        "rear": {
+          "value": 0,
+          "max": 0,
+          "min": 0,
+          "label": ""
+        },
+        "sides": {
+          "value": 0,
+          "max": 0,
+          "min": 0,
+          "label": ""
+        }
+      }
+    },
+    "features": "",
+    "maneuver": {
+      "speed": "100",
+      "speedUnits": "km/h",
+      "range": "500",
+      "rangeUnits": "km",
+      "agility": "-1"
+    },
+    "skillToOperate": "Driving",
+    "systemStatus": {
+      "cargo": "operational",
+      "cockpit": "operational",
+      "computers": "operational",
+      "electronics": "operational",
+      "limbs": "operational",
+      "propulsion": "operational",
+      "powerPlant": "operational",
+      "sensors": "operational"
+    },
+    "weaponsType": "",
+    "openVehicle": false,
+    "traits": "Active COuntermeasures",
+    "weight": "",
+    "shippingSize": "",
+    "spaces": {
+      "value": 0,
+      "max": 0
+    }
+  },
+  "prototypeToken": {
+    "name": "Armored Personnel Carrier",
+    "displayName": 20,
+    "actorLink": false,
+    "appendNumber": true,
+    "prependAdjective": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_vehicle.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {
+      "lightPerception": {
+        "range": null,
+        "enabled": true
+      },
+      "basicSight": {
+        "range": 0,
+        "enabled": true
+      }
+    },
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "flags": {},
+    "randomImg": false,
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "depth": 1
+  },
+  "items": [
+    {
+      "name": "GP Machine Gun",
+      "type": "component",
+      "system": {
+        "subtype": "armament",
+        "status": "operational",
+        "name": "",
+        "description": "",
+        "type": "component",
+        "docReference": [
+          ""
+        ],
+        "pdfReference": {
+          "type": "",
+          "href": "",
+          "label": ""
+        },
+        "priorType": "unknown",
+        "techLevel": 5,
+        "shortdescr": "",
+        "quantity": 1,
+        "weight": 0,
+        "price": 0,
+        "traits": [],
+        "consumables": [],
+        "useConsumableForAttack": "",
+        "skillModifier": 0,
+        "skill": "",
+        "associatedSkillName": "Heavy Weapons",
+        "equipped": "backpack",
+        "powerDraw": 0,
+        "rating": "",
+        "availableQuantity": "",
+        "hits": 0,
+        "damage": "3d6",
+        "radDamage": "",
+        "range": "200/400",
+        "weightIsPct": false,
+        "isIllegal": false,
+        "purchasePrice": 0,
+        "cargoLocation": "",
+        "generatesPower": false,
+        "isRefined": false,
+        "features": "Bulky",
+        "pricingBasis": "perUnit",
+        "powerBasis": "perUnit",
+        "isBaseHull": false,
+        "rollModifier": "",
+        "rateOfFire": "Auto 4",
+        "armorPiercing": "0",
+        "actorLink": "",
+        "hardened": false,
+        "ammunition": {
+          "value": 100,
+          "max": 100,
+          "min": 0,
+          "label": ""
+        },
+        "isPopup": false,
+        "isExtended": false,
+        "bandwidth": 0,
+        "driveType": "other",
+        "buyPricePerTon": 0,
+        "sellPricePerTon": 0,
+        "buyPriceMod": 100,
+        "sellPriceMod": 100,
+        "fireArc": {
+          "startAngle": 0,
+          "endAngle": 0
+        },
+        "shipWeaponType": "other",
+        "ammoLink": "none"
+      },
+      "img": "systems/twodsix/assets/icons/components/armament.svg",
+      "_id": "aXp7ZkSaMa3SV8Ld",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "flags": {
+        "twodsix": {}
+      },
+      "_stats": {
+        "coreVersion": "14.361",
+        "systemId": "twodsix",
+        "systemVersion": "7.3.0",
+        "createdTime": 1779028523445,
+        "modifiedTime": 1779028523445,
+        "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+        "exportSource": null,
+        "compendiumSource": null,
+        "duplicateSource": null
+      },
+      "ownership": {
+        "default": 0
+      },
+      "_key": "!actors.items!am6hrEdCtb27eZE7.aXp7ZkSaMa3SV8Ld"
+    }
+  ],
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.361",
+    "systemId": "twodsix",
+    "systemVersion": "7.3.0",
+    "createdTime": 1779028523445,
+    "modifiedTime": 1779029126703,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "am6hrEdCtb27eZE7",
+  "ownership": {
+    "default": 0,
+    "JY1pSCk6DScGUk1c": 3,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "sort": 0,
+  "_key": "!actors!am6hrEdCtb27eZE7"
+}

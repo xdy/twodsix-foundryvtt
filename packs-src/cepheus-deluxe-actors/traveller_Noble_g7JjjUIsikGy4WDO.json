@@ -210,7 +210,7 @@
       "_stats": {
         "systemId": null,
         "systemVersion": null,
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null,
@@ -262,7 +262,7 @@
       "_stats": {
         "systemId": null,
         "systemVersion": null,
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null,
@@ -314,7 +314,7 @@
       "_stats": {
         "systemId": null,
         "systemVersion": null,
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null,
@@ -366,7 +366,7 @@
       "_stats": {
         "systemId": null,
         "systemVersion": null,
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null,
@@ -418,7 +418,7 @@
       "_stats": {
         "systemId": null,
         "systemVersion": null,
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": null,
         "lastModifiedBy": null,
@@ -487,7 +487,7 @@
       "_stats": {
         "systemId": "twodsix",
         "systemVersion": "2.27.0",
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": 1680633996820,
         "lastModifiedBy": "B4JSPh84Wx3wBFTK",
@@ -553,7 +553,7 @@
       "_stats": {
         "systemId": "twodsix",
         "systemVersion": "2.27.0",
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": 1680633999988,
         "lastModifiedBy": "B4JSPh84Wx3wBFTK",
@@ -631,7 +631,7 @@
       "_stats": {
         "systemId": "twodsix",
         "systemVersion": "2.27.0",
-        "coreVersion": "13.350",
+        "coreVersion": "14.361",
         "createdTime": null,
         "modifiedTime": 1680703832227,
         "lastModifiedBy": "B4JSPh84Wx3wBFTK",
@@ -705,9 +705,6 @@
       "src": "systems/twodsix/assets/icons/default_actor.png",
       "scaleX": 1,
       "scaleY": 1,
-      "offsetX": 0,
-      "offsetY": 0,
-      "rotation": 0,
       "tint": "#ffffff",
       "anchorX": 0.5,
       "anchorY": 0.5,
@@ -725,7 +722,7 @@
       "saturation": 0,
       "contrast": 0
     },
-    "detectionModes": [],
+    "detectionModes": {},
     "appendNumber": false,
     "prependAdjective": false,
     "occludable": {
@@ -749,12 +746,13 @@
       "src": null,
       "disposition": false
     },
-    "movementAction": null
+    "movementAction": null,
+    "depth": 1
   },
   "_stats": {
     "systemId": "twodsix",
     "systemVersion": "6.8.1",
-    "coreVersion": "13.350",
+    "coreVersion": "14.361",
     "createdTime": 1732027080230,
     "modifiedTime": 1760016422821,
     "lastModifiedBy": "g35c71Hsyv7w1Lw4",

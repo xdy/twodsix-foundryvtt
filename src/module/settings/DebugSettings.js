@@ -61,6 +61,7 @@ export default class DebugSettings extends foundry.applications.api.HandlebarsAp
     settings.dragDrop.push(booleanSetting('allowDragDropOfListsShip', false));
     settings.general.push(booleanSetting('useItemActiveEffects', true, false, 'world', deactivateActorAE));
     settings.general.push(booleanSetting('suppressTableWarnings', false, false, 'client'));
+    settings.general.push(booleanSetting('useTokenEdgeForDistance', false));
     return settings;
   }
 

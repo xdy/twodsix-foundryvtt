@@ -1,0 +1,23 @@
+{
+  "type": "Actor",
+  "folder": null,
+  "name": "Vehicles",
+  "color": null,
+  "sorting": "a",
+  "_id": "Se7aVzh3zCQgurle",
+  "description": "",
+  "sort": 100000,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.361",
+    "systemId": "twodsix",
+    "systemVersion": "7.3.0",
+    "createdTime": 1779028523214,
+    "modifiedTime": 1779028523547,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!Se7aVzh3zCQgurle"
+}

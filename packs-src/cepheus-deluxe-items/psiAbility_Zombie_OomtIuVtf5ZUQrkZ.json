@@ -1,0 +1,61 @@
+{
+  "name": "Zombie",
+  "type": "psiAbility",
+  "img": "systems/twodsix/assets/icons/shambling-zombie.svg",
+  "system": {
+    "name": "",
+    "description": "<p>Zombie (PSI 11, 500m): this macabre power allows remote control of a relatively intact corpse as a puppet. The power lasts as long as the psion concentrates. The zombie can perform melee attacks in place of the psion’s actions. Corpses cannot be so finely controlled as to allow ranged attacks.</p>",
+    "type": "psiAbility",
+    "docReference": [
+      ""
+    ],
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "value": 0,
+    "shortdescr": "Zombie (PSI 11, 500m)",
+    "subtype": "",
+    "prereq": "",
+    "key": "key",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 11,
+    "difficulty": "Average",
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "ownership": {
+    "default": 0,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.361",
+    "systemId": "twodsix",
+    "systemVersion": "7.3.0",
+    "createdTime": 1779018463352,
+    "modifiedTime": 1779018463352,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "_id": "OomtIuVtf5ZUQrkZ",
+  "sort": 0,
+  "_key": "!items!OomtIuVtf5ZUQrkZ"
+}
