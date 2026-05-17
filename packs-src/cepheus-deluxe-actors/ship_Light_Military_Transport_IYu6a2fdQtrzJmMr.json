@@ -151,12 +151,9 @@
       "src": "systems/twodsix/assets/icons/default_ship.png",
       "anchorX": 0.5,
       "anchorY": 0.5,
-      "offsetX": 0,
-      "offsetY": 0,
       "fit": "contain",
       "scaleX": 1,
       "scaleY": 1,
-      "rotation": 0,
       "tint": "#ffffff",
       "alphaThreshold": 0.75
     },
@@ -233,7 +230,8 @@
     "flags": {},
     "randomImg": false,
     "appendNumber": false,
-    "prependAdjective": false
+    "prependAdjective": false,
+    "depth": 1
   },
   "items": [
     {
@@ -275,7 +273,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -327,7 +325,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -419,7 +417,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -511,7 +509,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -603,7 +601,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -695,7 +693,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -787,7 +785,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -879,7 +877,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -971,7 +969,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1063,7 +1061,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1155,7 +1153,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1249,7 +1247,7 @@
         "core": {}
       },
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1343,7 +1341,7 @@
         "core": {}
       },
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1435,7 +1433,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1527,7 +1525,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1619,7 +1617,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1711,7 +1709,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1803,7 +1801,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1895,7 +1893,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -1987,7 +1985,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -2079,7 +2077,7 @@
       },
       "flags": {},
       "_stats": {
-        "coreVersion": "14.352",
+        "coreVersion": "14.361",
         "systemId": "twodsix",
         "systemVersion": "6.9.7",
         "createdTime": null,
@@ -2103,7 +2101,7 @@
   "_stats": {
     "systemId": "twodsix",
     "systemVersion": "6.9.7",
-    "coreVersion": "14.352",
+    "coreVersion": "14.361",
     "createdTime": 1732027080223,
     "modifiedTime": 1760016422809,
     "lastModifiedBy": "g35c71Hsyv7w1Lw4",

@@ -1,0 +1,23 @@
+{
+  "name": "Ground Craft",
+  "sorting": "a",
+  "folder": "Se7aVzh3zCQgurle",
+  "type": "Actor",
+  "_id": "nXYcmotfe59W22Pz",
+  "description": "",
+  "sort": 0,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.361",
+    "systemId": "twodsix",
+    "systemVersion": "7.3.0",
+    "createdTime": 1779028523214,
+    "modifiedTime": 1779028523214,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!folders!nXYcmotfe59W22Pz"
+}

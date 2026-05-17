@@ -1,0 +1,223 @@
+{
+  "folder": "B4HKpnX6z2LAa1nc",
+  "name": "Grav Belt",
+  "type": "vehicle",
+  "_id": "gpghe1RLgKH15AFR",
+  "img": "systems/twodsix/assets/icons/default_vehicle.png",
+  "system": {
+    "name": "",
+    "techLevel": 12,
+    "docReference": [
+      ""
+    ],
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "description": "A personal, wearable means of anti-gravity mobility. Its fusion battery can last for a week.",
+    "notes": "",
+    "cargoList": "",
+    "cargoCapacity": "Personal",
+    "cost": "100,000",
+    "crew": {
+      "operators": "1",
+      "passengers": "0"
+    },
+    "damageStats": {
+      "armor": {
+        "value": 0,
+        "max": 0,
+        "min": 0,
+        "label": ""
+      },
+      "armorLabel": "Unarmored",
+      "hull": {
+        "value": 0,
+        "max": 0,
+        "min": 0,
+        "label": ""
+      },
+      "structure": {
+        "value": 0,
+        "max": 0,
+        "min": 0,
+        "label": ""
+      },
+      "threshold": {
+        "regular": 0,
+        "critical": 0
+      },
+      "detailedArmor": {
+        "front": {
+          "value": 0,
+          "max": 0,
+          "min": 0,
+          "label": ""
+        },
+        "rear": {
+          "value": 0,
+          "max": 0,
+          "min": 0,
+          "label": ""
+        },
+        "sides": {
+          "value": 0,
+          "max": 0,
+          "min": 0,
+          "label": ""
+        }
+      }
+    },
+    "features": "",
+    "maneuver": {
+      "speed": "300",
+      "speedUnits": "km/h",
+      "range": "1 week",
+      "rangeUnits": "km",
+      "agility": "+2"
+    },
+    "skillToOperate": "Grav Vehicle",
+    "systemStatus": {
+      "cargo": "operational",
+      "cockpit": "operational",
+      "computers": "operational",
+      "electronics": "operational",
+      "limbs": "operational",
+      "propulsion": "operational",
+      "powerPlant": "operational",
+      "sensors": "operational"
+    },
+    "weaponsType": "",
+    "openVehicle": false,
+    "traits": "Long-range comms.",
+    "weight": "",
+    "shippingSize": "",
+    "spaces": {
+      "value": 0,
+      "max": 0
+    }
+  },
+  "prototypeToken": {
+    "name": "Grav Belt",
+    "displayName": 20,
+    "actorLink": false,
+    "appendNumber": true,
+    "prependAdjective": false,
+    "width": 1,
+    "height": 1,
+    "texture": {
+      "src": "systems/twodsix/assets/icons/default_vehicle.png",
+      "anchorX": 0.5,
+      "anchorY": 0.5,
+      "fit": "contain",
+      "scaleX": 1,
+      "scaleY": 1,
+      "tint": "#ffffff",
+      "alphaThreshold": 0.75
+    },
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 0,
+    "bar1": {
+      "attribute": "hits"
+    },
+    "bar2": {
+      "attribute": null
+    },
+    "light": {
+      "negative": false,
+      "priority": 0,
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "color": null,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      }
+    },
+    "sight": {
+      "enabled": true,
+      "range": 0,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": {
+      "lightPerception": {
+        "range": null,
+        "enabled": true
+      },
+      "basicSight": {
+        "range": 0,
+        "enabled": true
+      }
+    },
+    "occludable": {
+      "radius": 0
+    },
+    "ring": {
+      "enabled": false,
+      "colors": {
+        "ring": null,
+        "background": null
+      },
+      "effects": 1,
+      "subject": {
+        "scale": 1,
+        "texture": null
+      }
+    },
+    "flags": {},
+    "randomImg": false,
+    "turnMarker": {
+      "mode": 1,
+      "animation": null,
+      "src": null,
+      "disposition": false
+    },
+    "movementAction": null,
+    "depth": 1
+  },
+  "items": [],
+  "effects": [],
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.361",
+    "systemId": "twodsix",
+    "systemVersion": "7.3.0",
+    "createdTime": 1779028523451,
+    "modifiedTime": 1779028938814,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "ownership": {
+    "default": 0,
+    "JY1pSCk6DScGUk1c": 3,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "sort": 0,
+  "_key": "!actors!gpghe1RLgKH15AFR"
+}
