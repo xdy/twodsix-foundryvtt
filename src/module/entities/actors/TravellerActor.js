@@ -63,18 +63,25 @@ export class TravellerActor extends CreatureActor {
 
   /** @override */
   async _prepareActorDerivedData() {
+    const {system} = this;
+    const armorValues = system.characteristics && system.hits && system.encumbrance
+      ? this.getArmorValues()
+      : null;
+
+    // Seed armor-derived values before the derived AE pass so effects can modify them.
+    if (armorValues) {
+      system.primaryArmor.value = armorValues.primaryArmor;
+      system.primaryArmor.base = armorValues.primaryArmor;
+      system.secondaryArmor.value = armorValues.secondaryArmor;
+      system.radiationProtection.value = armorValues.radiationProtection;
+    }
+
     await super._prepareActorDerivedData();
 
-    const {system} = this;
-    if (!system.characteristics || !system.hits || !system.encumbrance) {
+    if (!armorValues) {
       return;
     }
 
-    // Apply armor values for traveller
-    const armorValues = this.getArmorValues();
-    system.primaryArmor.value = armorValues.primaryArmor;
-    system.secondaryArmor.value = armorValues.secondaryArmor;
-    system.radiationProtection.value = armorValues.radiationProtection;
     system.layersWorn = armorValues.layersWorn;
     system.wearingNonstackable = armorValues.wearingNonstackable;
     system.armorType = armorValues.CTLabel;
@@ -82,8 +89,7 @@ export class TravellerActor extends CreatureActor {
     system.reflectOn = armorValues.reflectOn;
     system.protectionTypes = armorValues.protectionTypes.length > 0 ? ": " + armorValues.protectionTypes.map(x => game.i18n.localize(x)).join(', ') : "";
     system.totalArmor = armorValues.totalArmor;
-    system.primaryArmor.base = system.primaryArmor.value;
-    if (this.overrides.system?.primaryArmor?.value) {
+    if (this.overrides.system?.primaryArmor?.value !== undefined) {
       system.totalArmor += this.overrides.system.primaryArmor.value - system.primaryArmor.base;
     }
   }
