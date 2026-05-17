@@ -1,0 +1,61 @@
+{
+  "name": "Alter Self",
+  "type": "psiAbility",
+  "_id": "RxfptqpJslwvYoIJ",
+  "img": "systems/twodsix/assets/icons/balaclava.svg",
+  "system": {
+    "name": "",
+    "description": "<p><span style=\"color:rgb(0, 229, 255);font-family:Asap, sans-serif;font-size:14px;font-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-indent:0px;text-transform:none;widows:2;word-spacing:0px;-webkit-text-stroke-width:0px;white-space:normal;background-color:rgba(0, 0, 0, 0.5);text-decoration-thickness:initial;text-decoration-style:initial;text-decoration-color:initial;display:inline !important;float:none\">Alter Self (PSI 6, Personal): the psion can change their appearance, including their fingerprints and other biometric markers, as desired, within the limits of their species or similar subspecies (including choosing a different gender). If the psion studies a target for 10 minutes (even covertly), they can imitate this target and its biometric markers. The disguise lasts for 8 hours.</span></p>",
+    "type": "psiAbility",
+    "docReference": [
+      ""
+    ],
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "priorType": "unknown",
+    "value": 0,
+    "shortdescr": "Alter Self (PSI 6, Personal)",
+    "subtype": "",
+    "prereq": "",
+    "key": "key",
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "duration": "",
+    "associatedSkillName": "",
+    "skill": "",
+    "range": "",
+    "rangeBand": "none",
+    "damage": "",
+    "damageType": "psionic",
+    "psiCost": 6,
+    "difficulty": "Average",
+    "skillModifier": 0
+  },
+  "effects": [],
+  "folder": "3tvDUg0aKiHbJ8Du",
+  "ownership": {
+    "default": 0,
+    "g35c71Hsyv7w1Lw4": 3
+  },
+  "flags": {},
+  "_stats": {
+    "coreVersion": "14.361",
+    "systemId": "twodsix",
+    "systemVersion": "7.3.0",
+    "createdTime": 1779018473015,
+    "modifiedTime": 1779018473015,
+    "lastModifiedBy": "g35c71Hsyv7w1Lw4",
+    "exportSource": null,
+    "compendiumSource": null,
+    "duplicateSource": null
+  },
+  "sort": 0,
+  "_key": "!items!RxfptqpJslwvYoIJ"
+}

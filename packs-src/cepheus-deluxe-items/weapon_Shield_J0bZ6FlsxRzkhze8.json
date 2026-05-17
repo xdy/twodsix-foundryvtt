@@ -64,16 +64,13 @@
         }
       },
       "duration": {
-        "startTime": null,
-        "seconds": null,
-        "combat": null,
-        "rounds": null,
-        "turns": null,
-        "startRound": null,
-        "startTurn": null
+        "value": null,
+        "units": "seconds",
+        "expiry": null,
+        "expired": false
       },
       "_stats": {
-        "coreVersion": "13.346",
+        "coreVersion": "14.361",
         "systemId": null,
         "systemVersion": null,
         "createdTime": null,
@@ -92,7 +89,7 @@
             "key": "system.primaryArmor.value",
             "type": "add",
             "phase": "derived",
-            "value": "1",
+            "value": 1,
             "priority": null
           }
         ]
@@ -100,6 +97,9 @@
       "description": "",
       "statuses": [],
       "sort": 0,
+      "start": null,
+      "showIcon": 1,
+      "folder": null,
       "_key": "!items.effects!J0bZ6FlsxRzkhze8.W0d6O0JNx1bNEnbz"
     }
   ],
@@ -121,7 +121,7 @@
   "_stats": {
     "systemId": "twodsix",
     "systemVersion": "6.8.1",
-    "coreVersion": "13.350",
+    "coreVersion": "14.361",
     "createdTime": 1732026737430,
     "modifiedTime": 1760016422738,
     "lastModifiedBy": "g35c71Hsyv7w1Lw4",
