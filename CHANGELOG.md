@@ -1,3 +1,10 @@
+## [7.4.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.4.0...v7.4.1) (2026-05-17)
+
+
+### Bug Fixes
+
+* Improve crew selection for trading. ([eb946fe](https://github.com/xdy/twodsix-foundryvtt/commit/eb946fe6eb0dbabbdba12c2a9029abd2fe63a414))
+
 # [7.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.3.0...v7.4.0) (2026-05-17)
 
 
