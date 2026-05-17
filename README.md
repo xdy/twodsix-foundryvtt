@@ -122,3 +122,4 @@ Asset licenses:
 
 Other licenses in the code:
 * The name generation code is based on C# code from the MIT-licensed https://github.com/Grauenwolf/TravellerTools and is thus also MIT-licensed.
+
