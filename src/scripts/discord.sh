@@ -16,6 +16,10 @@ WEBHOOK_DATA="{
   \"content\": \"${MESSAGE//$'\n'/\\n}\"
 }"
 
+if [ "$1" == "--" ]; then
+    shift
+fi
+
 REGEX="^(feat|fix):|BREAKING CHANGE"
 if [[ $COMMIT_MESSAGE =~ $REGEX ]];
 then
