@@ -3718,7 +3718,7 @@
         "name": "Suppress Table Warnings"
       },
       "useTokenEdgeForDistance": {
-        "hint": "Use the token edge rather than the center when calculating distances for attacks. NOTE: when using this setting, the 'Melee Combat Range' setting should be reduced to somthing less than one grid unit (e.g. 0 to 0.1) to avoid having melee attacks calculated as in range when tokens aren't adjacent.",
+        "hint": "Use the token edge rather than the center when calculating distances for attacks. NOTE: when using this setting, the 'Melee Combat Range' setting should be reduced to something less than one grid unit (e.g. 0 to 0.1) to avoid having melee attacks calculated as in range when tokens aren't adjacent.",
         "name": "Use token edges for combat distance calculations"
       }
     },

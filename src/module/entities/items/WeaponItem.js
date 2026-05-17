@@ -832,20 +832,27 @@ export class WeaponItem extends GearItem {
     let rangeModifier = 0;
     const isQualitativeBands = ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
     const localizePrefix = "TWODSIX.Chat.Roll.RangeBandTypes.";
+    const unknownLabel = game.i18n.localize("TWODSIX.Ship.Unknown");
+    const gridUnits = canvas.scene?.grid?.units ?? "";
 
     if (targetTokens.length === 1) {
       const targetRange = this.measureTokenDistance(controlledTokens[0], targetTokens[0]);
-      const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
-      rangeModifier = rangeData.rangeModifier;
+      const hasMeasuredRange = Number.isFinite(targetRange);
+      const rangeData = hasMeasuredRange
+        ? (this.getRangeModifier(targetRange, weaponType, isAutoFull) ?? {rangeModifier: 0, rollType: 'Normal'})
+        : {rangeModifier: 0, rollType: 'Normal'};
+      rangeModifier = Number.isFinite(rangeData.rangeModifier) ? rangeData.rangeModifier : 0;
 
-      if (rangeData.rollType !== tmpSettings.rollType) {
+      if (rangeData.rollType && rangeData.rollType !== tmpSettings.rollType) {
         Object.assign(tmpSettings, {rollType: tmpSettings.rollType === 'Normal' ? rangeData.rollType : 'Normal'});
       }
 
       if (isQualitativeBands) {
         rangeLabel = this.system.rangeBand === 'none'
           ? game.i18n.localize(localizePrefix + "none")
-          : `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`;
+          : hasMeasuredRange
+            ? `${game.i18n.localize('TWODSIX.Chat.Roll.WeaponRangeTypes.' + weaponType)} @ ${game.i18n.localize(localizePrefix + getRangeBand(targetRange))}`
+            : unknownLabel;
       } else {
         const ammoMultiplier = this.getAmmoRangeModifier(game.settings.get('twodsix', 'rangeModifierType'));
         const effectiveRange = (this.system.range)
@@ -853,7 +860,10 @@ export class WeaponItem extends GearItem {
           .map((str) => (parseFloat(str) * ammoMultiplier).toLocaleString(game.i18n.lang, {maximumFractionDigits: 1}))
           .join('/')
           .replace('NaN', game.i18n.localize((this.isMeleeWeapon() ? "TWODSIX.DamageType.Melee" : "TWODSIX.Ship.Unknown")));
-        rangeLabel = `${effectiveRange} @ ${targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})}${canvas.scene.grid.units}`;
+        const formattedTargetRange = hasMeasuredRange
+          ? targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})
+          : unknownLabel;
+        rangeLabel = `${effectiveRange} @ ${formattedTargetRange}${hasMeasuredRange ? gridUnits : ''}`;
       }
     } else if (targetTokens.length === 0) {
       rangeLabel = isQualitativeBands && this.system.rangeBand === 'none'
@@ -880,10 +890,7 @@ export class WeaponItem extends GearItem {
     // If the useTokenEdgeForDistance setting is disabled, use simple center-to-center distance measurement (default)
     if (!game.settings.get('twodsix', 'useTokenEdgeForDistance')) {
       const horizontalDistance = canvas.grid.measurePath([sourceDocument.getCenterPoint(), targetDocument.getCenterPoint()]).distance;
-      let verticalDistance = Math.abs(sourceDocument.elevation - targetDocument.elevation);
-      if (isNaN(verticalDistance)) {
-        verticalDistance = 0;
-      }
+      const verticalDistance = Math.abs(Number(sourceDocument.elevation ?? 0) - Number(targetDocument.elevation ?? 0));
       return Math.hypot(horizontalDistance, verticalDistance);
     }
 
@@ -906,7 +913,7 @@ export class WeaponItem extends GearItem {
    * @returns {number}
    */
   measureHexTokenDistance(sourceToken, targetToken) {
-    const gridDistance = canvas?.scene?.grid?.distance ?? 0;
+    const gridDistance = canvas.scene?.grid?.distance ?? 0;
     const sourceOffsets = sourceToken.getOccupiedGridSpaceOffsets();
     const targetOffsets = targetToken.getOccupiedGridSpaceOffsets();
     let shortestHorizontal = 0;
@@ -945,7 +952,7 @@ export class WeaponItem extends GearItem {
    * @returns {number}
    */
   measureSquareTokenDistance(sourceToken, targetToken) {
-    const gridDistance = canvas?.scene?.grid?.distance ?? 0;
+    const gridDistance = canvas.scene?.grid?.distance ?? 0;
     const sourceOffsets = sourceToken.getOccupiedGridSpaceOffsets();
     const targetOffsets = targetToken.getOccupiedGridSpaceOffsets();
     let shortestHorizontal = 0;
