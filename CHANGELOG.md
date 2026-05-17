@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.3.0...v7.4.0) (2026-05-17)
+
+
+### Features
+
+* add better token to token distance calculations and add CD Vehilces ([#1999](https://github.com/xdy/twodsix-foundryvtt/issues/1999)) ([0b94035](https://github.com/xdy/twodsix-foundryvtt/commit/0b940357042d6a7d7163e54dd081500fb96e87ce))
+
 # [7.3.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.2.2...v7.3.0) (2026-05-06)
 
 
