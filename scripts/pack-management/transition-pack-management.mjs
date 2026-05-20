@@ -6,21 +6,20 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import process from 'process';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PACKS_DIR = path.join(__dirname, '..', 'static', 'packs');
-const PACKS_SRC_DIR = path.join(__dirname, '..', 'packs-src');
+const PACKS_DIR = path.join(__dirname, '..', '..', 'static', 'packs');
+const PACKS_SRC_DIR = path.join(__dirname, '..', '..', 'packs-src');
 
 function runGitCommand(command, description) {
   try {
     console.log(`🔄 ${description}...`);
     const output = execSync(command, {
       encoding: 'utf8',
-      cwd: path.join(__dirname, '..'),
+      cwd: path.join(__dirname, '..', '..'),
       stdio: ['pipe', 'pipe', 'pipe']
     });
     if (output.trim()) {
@@ -40,7 +39,7 @@ function checkGitAvailable() {
     return true;
   } catch {
     console.log('⚠️  Git is not available. Skipping git operations.');
-    console.log('   You may need to install Xcode Developer Tools: xcode-select --install');
+    console.log('   Git may not be installed or available on your PATH.');
     return false;
   }
 }

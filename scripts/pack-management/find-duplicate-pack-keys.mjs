@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const PACKS_SRC_DIR = path.join(__dirname, '..', 'packs-src');
+const PACKS_SRC_DIR = path.join(__dirname, '..', '..', 'packs-src');
 
 function scanPackDir(packDir) {
   const idMap = new Map();
@@ -40,8 +40,8 @@ function main() {
   for (const pack of packs) {
     const packDir = path.join(PACKS_SRC_DIR, pack);
     const { idMap, keyMap } = scanPackDir(packDir);
-    const dupIds = Array.from(idMap.entries()).filter(([_, files]) => files.length > 1);
-    const dupKeys = Array.from(keyMap.entries()).filter(([_, files]) => files.length > 1);
+    const dupIds = [...idMap.entries()].filter(([_, files]) => files.length > 1);
+    const dupKeys = [...keyMap.entries()].filter(([_, files]) => files.length > 1);
     if (dupIds.length || dupKeys.length) {
       foundDuplicates = true;
       console.log(`\n❌ Duplicates found in pack: ${pack}`);

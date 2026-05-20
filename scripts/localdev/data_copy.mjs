@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import fse from 'fs-extra';
-import simpleGit from 'simple-git';
 import path from 'path';
-import {getFoundryPaths} from '../../scripts/foundry-paths.mjs';
+import simpleGit from 'simple-git';
+import { getFoundryPaths } from './foundry-paths.mjs';
 
 async function main() {
   const git = simpleGit();

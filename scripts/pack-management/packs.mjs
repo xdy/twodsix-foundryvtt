@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { spawn } from 'child_process';
 import path from 'path';
-import process from 'process';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -37,19 +36,19 @@ function showHelp() {
   console.log(`
 📦 Foundry Pack Management Tool
 
-Usage: node scripts/packs.mjs <command>
+Usage: node scripts/pack-management/packs.mjs <command>
 
 Commands:
-  extract   Extract binary packs to JSON source files (packs-src/)
-  build         Compile JSON source files to binary packs (static/packs/)
-  build-no-wiki Compile JSON source files to binary packs (skipping wiki generation)
-  rebuild       Extract then build (useful for cleaning up)
-  help      Show this help message
+  extract        Extract binary packs to JSON source files (packs-src/)
+  build          Compile JSON source files to binary packs (static/packs/)
+  build-no-wiki  Compile JSON source files to binary packs (skipping wiki generation)
+  rebuild        Extract then build (useful for cleaning up)
+  help           Show this help message
 
 Examples:
-  node scripts/packs.mjs extract  # Convert binary packs to JSON
-  node scripts/packs.mjs build    # Convert JSON to binary packs
-  node scripts/packs.mjs rebuild  # Full extract + build cycle
+  node scripts/pack-management/packs.mjs extract # Convert binary packs to JSON
+  node scripts/pack-management/packs.mjs build # Convert JSON to binary packs
+  node scripts/pack-management/packs.mjs rebuild # Full extract + build cycle
 
 Note: Binary packs should be excluded from version control.
       Only the JSON source files (packs-src/) should be committed.
@@ -89,7 +88,7 @@ async function main() {
         } else {
           console.error(`❌ Unknown command: ${command}`);
         }
-        console.log('Run "node scripts/packs.mjs help" for usage information.');
+        console.log('Run "node scripts/pack-management/packs.mjs help" for usage information.');
         process.exit(1);
     }
   } catch (error) {

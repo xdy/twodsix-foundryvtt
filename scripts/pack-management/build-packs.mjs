@@ -1,22 +1,22 @@
 import { compilePack } from '@foundryvtt/foundryvtt-cli';
-import path from 'path';
+import axios from 'axios';
 import fs from 'fs';
 import { marked } from 'marked';
-import { fileURLToPath } from 'url';
+import path from 'path';
 import process from 'process';
-import axios from 'axios';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PACKS_SRC_DIR = path.join(__dirname, '..', 'packs-src');
-const PACKS_OUTPUT_DIR = path.join(__dirname, '..', 'static', 'packs');
+const PACKS_SRC_DIR = path.join(__dirname, '..', '..', 'packs-src');
+const PACKS_OUTPUT_DIR = path.join(__dirname, '..', '..', 'static', 'packs');
 const WIKI_URL = 'https://github.com/xdy/twodsix-foundryvtt/wiki';
 const PAGES_TO_NOT_ENRICH = ["Custom Journal Page Enhancers"];
 
 // Load version info from config files
-const packageJsonPath = path.join(__dirname, '..', 'package.json');
-const systemJsonPath = path.join(__dirname, '..', 'static', 'system.json');
+const packageJsonPath = path.join(__dirname, '..', '..', 'package.json');
+const systemJsonPath = path.join(__dirname, '..', '..', 'static', 'system.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 const systemJson = JSON.parse(fs.readFileSync(systemJsonPath, 'utf-8'));
 

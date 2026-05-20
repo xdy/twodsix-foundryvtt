@@ -1,8 +1,8 @@
-import {green, red} from 'yoctocolors';
 import fs from 'fs-extra';
 import semver from 'semver';
 import yargs from 'yargs';
-import {hideBin} from 'yargs/helpers';
+import { hideBin } from 'yargs/helpers';
+import { green, red } from 'yoctocolors';
 
 const argv = yargs(hideBin(process.argv)).argv;
 const sourceDirectory = './src';

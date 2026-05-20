@@ -4,7 +4,7 @@ plugins:
   - "@semantic-release/release-notes-generator"
   - "@semantic-release/changelog"
   - - "@semantic-release/exec"
-    - prepareCmd: "./src/scripts/release.sh ${nextRelease.version}"
+    - prepareCmd: "./scripts/release/release.sh ${nextRelease.version}"
   - - "@semantic-release/git"
     - assets:
         - CHANGELOG.md
@@ -20,4 +20,4 @@ plugins:
         - dist/system.json
         - dist/twodsix.zip
 preset: angular
-branches: ['+([0-9])?(.{+([0-9]),x}).x', 'master', {name: 'foundry-0.81', prerelease: true}]
+branches: [ '+([0-9])?(.{+([0-9]),x}).x', 'master', { name: 'foundry-0.81', prerelease: true } ]

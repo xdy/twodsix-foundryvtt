@@ -1,13 +1,13 @@
 import { extractPack } from '@foundryvtt/foundryvtt-cli';
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PACKS_DIR = path.join(__dirname, '..', 'static', 'packs');
-const PACKS_SRC_DIR = path.join(__dirname, '..', 'packs-src');
+const PACKS_DIR = path.join(__dirname, '..', '..', 'static', 'packs');
+const PACKS_SRC_DIR = path.join(__dirname, '..', '..', 'packs-src');
 
 console.log('Starting pack extraction...');
 console.log('Source packs directory:', PACKS_DIR);

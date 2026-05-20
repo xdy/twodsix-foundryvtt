@@ -56,9 +56,9 @@ pnpm run build:watch
 ### Direct Script Usage
 ```bash
 # Run scripts directly with more options
-node scripts/packs.mjs build
-node scripts/packs.mjs extract
-node scripts/packs.mjs help
+node scripts/pack-management/packs.mjs build
+node scripts/pack-management/packs.mjs extract
+node scripts/pack-management/packs.mjs help
 ```
 
 ## Development Workflow

@@ -1,6 +1,7 @@
 # Pack Management Scripts
 
-This directory contains scripts for managing Foundry VTT pack files using the [@foundryvtt/foundryvtt-cli](https://github.com/foundryvtt/foundryvtt-cli) tool.
+This directory contains scripts for managing Foundry VTT pack files using
+the [@foundryvtt/foundryvtt-cli](https://github.com/foundryvtt/foundryvtt-cli) tool.
 
 ## Overview
 
@@ -42,14 +43,14 @@ pnpm run packs:verify
 
 ```bash
 # Using the convenience script
-node scripts/packs.mjs extract   # Extract to JSON
-node scripts/packs.mjs build     # Build to binary
-node scripts/packs.mjs rebuild   # Extract + build
-node scripts/packs.mjs help      # Show help
+node scripts/pack-management/packs.mjs extract   # Extract to JSON
+node scripts/pack-management/packs.mjs build     # Build to binary
+node scripts/pack-management/packs.mjs rebuild   # Extract + build
+node scripts/pack-management/packs.mjs help      # Show help
 
 # Using individual scripts
-node scripts/extract-packs.mjs
-node scripts/build-packs.mjs
+node scripts/pack-management/extract-packs.mjs
+node scripts/pack-management/build-packs.mjs
 ```
 
 ## Workflow
@@ -71,8 +72,9 @@ When transitioning an existing repository:
 3. **Commit the migration**: `git commit -m "feat: migrate to JSON-based pack management"`
 
 The transition script will:
+
 - Remove `static/packs/` from git tracking
-- Add `packs-src/` to git tracking  
+- Add `packs-src/` to git tracking
 - Stage the updated `.gitignore`
 
 > **Note**: If git is not available (missing Xcode Developer Tools), the script will show manual commands to run.
@@ -132,26 +134,31 @@ static/packs/                 # Binary pack files (generated, ignored by git)
 
 Local development scripts use `foundryconfig.json` for two different kinds of paths:
 
-- `installPath` points to the Foundry application installation. This is used by `pnpm run link:intellisense` (alias: `symlinks`) via `tools/create-symlinks.mjs` to create local IntelliSense symlinks in `foundry/`.
-- `dataPath` points to the Foundry user data `Data` directory, the folder that directly contains `systems/`, `worlds/`, and `modules/`. The preferred value is like `/Users/<name>/Library/Application Support/FoundryVTT/Data`.
+- `installPath` points to the Foundry application installation. This is used by `pnpm run link:intellisense` (alias:
+  `symlinks`) via `tools/create-symlinks.mjs` to create local IntelliSense symlinks in `foundry/`.
+- `dataPath` points to the Foundry user data `Data` directory, the folder that directly contains `systems/`, `worlds/`,
+  and `modules/`. The preferred value is like `/Users/<name>/Library/Application Support/FoundryVTT/Data`.
 
 Scripts that use `dataPath`:
 
-- `pnpm run link:system` (aliases: `link`, `link-project`) links `dist/` into `<dataPath>/systems/twodsix` for live Foundry testing.
+- `pnpm run link:system` (aliases: `link`, `link-project`) links `dist/` into `<dataPath>/systems/twodsix` for live
+  Foundry testing.
 - `pnpm run data:copy` copies the `twodsix_dev` world from `<dataPath>/worlds/` into `sample_data/local/`.
 - `pnpm run data:reset` rebuilds a local Foundry data tree from `foundry/foundry_template`, sample data, and `dist/`.
 
 Compatibility note:
 
-- The shared resolver in `scripts/foundry-paths.mjs` accepts either the preferred `.../FoundryVTT/Data` path or the legacy parent folder `.../FoundryVTT`.
-- If a legacy parent folder is configured, the scripts will continue to work but will print a warning and normalize to the `Data` directory.
+- The shared resolver in `scripts/localdev/foundry-paths.mjs` accepts either the preferred `.../FoundryVTT/Data` path or
+  the legacy parent folder `.../FoundryVTT`.
+- If a legacy parent folder is configured, the scripts will continue to work but will print a warning and normalize to
+  the `Data` directory.
 
 Example local config:
 
 ```json
 {
-	"dataPath": "/Users/YourUsername/Library/Application Support/FoundryVTT/Data",
-	"systemName": "twodsix",
-	"installPath": "/Users/YourUsername/Applications/FoundryVTT"
+  "dataPath": "/Users/YourUsername/Library/Application Support/FoundryVTT/Data",
+  "systemName": "twodsix",
+  "installPath": "/Users/YourUsername/Applications/FoundryVTT"
 }
 ```

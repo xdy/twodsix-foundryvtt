@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { execSync } from 'child_process';
 /**
  * Verification script for the pack management workflow
  * This script tests the complete extract → build → verify cycle
@@ -6,19 +7,18 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PACKS_DIR = path.join(__dirname, '..', 'static', 'packs');
-const PACKS_SRC_DIR = path.join(__dirname, '..', 'packs-src');
+const PACKS_DIR = path.join(__dirname, '..', '..', 'static', 'packs');
+const PACKS_SRC_DIR = path.join(__dirname, '..', '..', 'packs-src');
 
 function runCommand(command, description) {
   try {
     console.log(`🔄 ${description}...`);
     execSync(command, {
-      cwd: path.join(__dirname, '..'),
+      cwd: path.join(__dirname, '..', '..'),
       stdio: 'inherit'
     });
     console.log(`✅ ${description} completed successfully\n`);
@@ -76,7 +76,7 @@ function main() {
   // Step 5: Final verification
   console.log('📋 Step 5: Final verification');
   const sourceCount = fs.readdirSync(PACKS_SRC_DIR).filter(f => !f.startsWith('.')).length;
-  const binaryCount = fs.readdirSync(PACKS_DIR).filter(f => !f.startsWith('.')).length;
+  const binaryCount = fs.existsSync(PACKS_DIR) ? fs.readdirSync(PACKS_DIR).filter(f => !f.startsWith('.')).length : 0;
 
   console.log(`📊 Summary:`);
   console.log(`   JSON Source Packs: ${sourceCount}`);

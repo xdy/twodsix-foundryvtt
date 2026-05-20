@@ -1,74 +1,82 @@
 name: Test and release
 
-# Run the workflow when a Pull Request is opened or when changes are pushed to master on 'xdy/twodsix-foundryvtt' (i.e. don't run on forks)
+# Run the workflow when a Pull Request is opened or when changes are pushed to master on the repo below (i.e. don't run on forks)
 on:
   pull_request:
   push:
-    branches: [ master]
+    branches: [ master ]
 
+# Required secrets:
+#   GITHUB_TOKEN             — provided automatically by GitHub
+#   NPM_TOKEN                — for semantic-release npm publishing
+#   FOUNDRYVTT_RELEASE_TOKEN — FoundryVTT Package Release API authorization token
+# Optional secrets:
+#   WEBHOOK_URL              — Discord webhook URL for release notifications
 permissions:
   contents: read
 
-#TODO Parse out these, for now they're hardcoded.
+#Template variables, set as appropriate
 env:
+  repo_name: xdy/twodsix-foundryvtt
+  branch_name: master
   package_type: system
-  node_version: 24
+  set_maximum: 'false'       # Whether to set compatibility maximum from manifest (true) or leave unset (false)
+  use_submodules: 'false'    # Whether to check out git submodules during build
+
+# Serialize releases to prevent concurrent pushes to the same branch
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   test:
-    # Run tests on pull requests
     if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'xdy/twodsix-foundryvtt')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
-          submodules: 'true'
+          submodules: ${{ env.use_submodules }}
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6.0.8
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
-          run_install: false
+          node-version: lts/*
 
-      - name: Install Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version:  24
-          cache: 'pnpm'
+      - run: corepack enable
 
-      - name: Install
-        run: pnpm install
+      - run: pnpm install
 
-      - name: Build
-        run: pnpm run build
+      - run: pnpm run build
+
+      - name: Lint
+        run: pnpm run lint
+
+      - name: Unit tests
+        run: pnpm run test:unit
 
   release:
-    # Only release on push to master on xdy/twodsix-foundryvtt
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/master') && github.repository == 'xdy/twodsix-foundryvtt'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'  && github.repository == 'xdy/twodsix-foundryvtt'
+
     runs-on: ubuntu-latest
-    ## Waits for test jobs for each Node.js version to complete
-    needs: [test]
+    needs: [ test ]
+    timeout-minutes: 20
+
     permissions:
       contents: write
       issues: write
       pull-requests: write
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
-          submodules: 'true'
+          submodules: ${{ env.use_submodules }}
 
-      - uses: pnpm/action-setup@0e279bb959325dab635dd2c09392533439d90093 # v6.0.8
-        name: Install pnpm
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
-          run_install: false
+          node-version: lts/*
 
-      - name: Install Node.js
-        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
-        with:
-          node-version: 22
-          cache: 'pnpm'
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install
         run: pnpm install
@@ -79,63 +87,74 @@ jobs:
       - name: Audit (non-blocking)
         run: pnpm audit --prod --audit-level=high
         continue-on-error: true
+        timeout-minutes: 5
+
+      - name: Make release script executable
+        run: chmod +x ./scripts/release/release.sh
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm exec semantic-release
+        timeout-minutes: 10
 
       - name: Send Webhook Notification
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-        run: bash src/scripts/discord.sh -- "$WEBHOOK_URL"
-        shell: bash
+        run: |
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "WEBHOOK_URL not set, skipping notification"
+            exit 0
+          fi
+          bash scripts/release/discord.sh -- "$WEBHOOK_URL"
+        timeout-minutes: 2
 
-      - name: Get Module ID
-        id: moduleID
-        uses: notiz-dev/github-action-json-property@a5a9c668b16513c737c3e1f8956772c99c73f6e8 # release
-        with:
-          path: "./dist/${{ env.package_type }}.json"
-          prop_path: "id"
-
-      - name: Get mininum
-        id: minimum
-        uses: notiz-dev/github-action-json-property@a5a9c668b16513c737c3e1f8956772c99c73f6e8 # release
-        with:
-          path: "./dist/${{ env.package_type }}.json"
-          prop_path: "compatibility.minimum"
-
-      - name: Get verified
-        id: verified
-        uses: notiz-dev/github-action-json-property@a5a9c668b16513c737c3e1f8956772c99c73f6e8 # release
-        with:
-          path: "./dist/${{ env.package_type }}.json"
-          prop_path: "compatibility.verified"
-
-      - name: get-npm-version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@3cf273023a0dda27efcd3164bdfb51908dd46a5b # v1.3.1
-
-      - name: Get tag
-        run: echo "TWODSIX_VERSION=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+      - name: Read manifest values
+        id: manifest
+        run: |
+          echo "id=$(jq -r .id ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
+          echo "version=$(jq -r .version ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
+          echo "minimum=$(jq -r '."compatibility"."minimum"' ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
+          echo "verified=$(jq -r '."compatibility"."verified"' ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
+          echo "maximum=$(jq -r '."compatibility"."maximum" // empty' ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
+          echo "package-version=$(jq -r .version ./package.json)" >> "$GITHUB_OUTPUT"
+          echo "tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> "$GITHUB_OUTPUT"
 
       - name: Submit package to FoundryVTT Package Release API
+        env:
+          MANIFEST_URL: https://github.com/${{ github.repository }}/releases/download/${{ steps.manifest.outputs.tag }}/${{ env.package_type }}.json
+          NOTES_URL: https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md
         run: |
+          if [ '${{ env.set_maximum }}' = 'true' ]; then
+            EFFECTIVE_MAX='${{ steps.manifest.outputs.maximum }}'
+          else
+            EFFECTIVE_MAX=''
+          fi
+          PAYLOAD=$(jq -n \
+            --arg id '${{ steps.manifest.outputs.id }}' \
+            --arg version '${{ steps.manifest.outputs.version }}' \
+            --arg manifest "$MANIFEST_URL" \
+            --arg notes "$NOTES_URL" \
+            --arg minimum '${{ steps.manifest.outputs.minimum }}' \
+            --arg verified '${{ steps.manifest.outputs.verified }}' \
+            --arg maximum "$EFFECTIVE_MAX" \
+            '{
+              id: $id,
+              "dry-run": false,
+              release: {
+                version: $version,
+                manifest: $manifest,
+                notes: $notes,
+                compatibility: {
+                  minimum: $minimum,
+                  verified: $verified,
+                  maximum: $maximum
+                }
+              }
+            }')
           curl -X POST "https://foundryvtt.com/_api/packages/release_version/" \
             -H "Content-Type: application/json" \
             -H "Authorization: ${{ secrets.FOUNDRYVTT_RELEASE_TOKEN }}" \
-            -d '{
-              "id": "twodsix",
-              "dry-run": false,
-              "release": {
-                "version": "${{ steps.package-version.outputs.current-version}}",
-                "manifest": "https://github.com/${{ github.repository }}/releases/download/${{ env.TWODSIX_VERSION }}/system.json",
-                "notes": "https://github.com/${{ github.repository }}/blob/master/CHANGELOG.md",
-                "compatibility": {
-                  "minimum": "${{ steps.minimum.outputs.prop }}",
-                  "verified": "${{ steps.verified.outputs.prop }}",
-                  "maximum": ""
-                }
-              }
-            }'
+            -d "$PAYLOAD"
+        timeout-minutes: 2

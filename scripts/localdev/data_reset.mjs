@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import fse from 'fs-extra';
-import path from 'path';
 import readline from 'node:readline';
-import {getFoundryPaths} from '../../scripts/foundry-paths.mjs';
+import path from 'path';
+import { getFoundryPaths } from './foundry-paths.mjs';
 
 const args = process.argv.slice(2);
 let force = false;

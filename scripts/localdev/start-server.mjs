@@ -1,7 +1,7 @@
 // Start Foundry dev server using paths from foundryconfig.json
+import { spawn } from 'child_process';
 import fs from 'fs-extra';
 import path from 'path';
-import { spawn } from 'child_process';
 
 const config = fs.readJSONSync('foundryconfig.json');
 
