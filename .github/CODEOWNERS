@@ -1,0 +1,2 @@
+# Restrict changes to GitHub workflow/config files
+.github/ @xdy
