@@ -1,0 +1,65 @@
+{
+  "folder": "Tua6UxhpGQuaPVHU",
+  "name": "15: Starship Encounters",
+  "_id": "4yqJqWCokHbNjCRH",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Chapter 15: Starship Encounters",
+      "type": "text",
+      "_id": "Dpc6WhGRm7rC1gAk",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p class=\"lead\">Space is amazingly vast, and starships are incredibly small in comparison. Aside from points where people tend to congregate, such as within 100 diameters of inhabited planets or potential refueling locations, the chances of encountering another vessel is small enough to essentially occur only at the Referee's discretion. Random encounters with intelligent beings in such areas are extremely unlikely, and player-characters would be correct in assuming that such an encounter was not a random occurrence. Referees are encouraged to simply use the Astrogation Encounter Type table for random encounters under such conditions, simply to avoid violating the players' suspension of disbelief by providing generally non-starship encounters.</p>\n<p>However, within those regions of interplanetary space where people congregate, there's always a chance for a space encounter. As a general rule of thumb, the Referee should check for space encounters when entering or leaving such a region. Roll 1D6; on a 6, a space encounter occurs. Referees may determine the type of space encounter based on the events occurring within the game, or they may randomly determine the type of encounter by rolling 2D6 and consulting the Space Encounters table. Each entry on the Space Encounters table is supported by a sub-table; the Referee can roll 1D6 and consult the sub-table for a more specific example of a random encounter if needed.</p>\n<p>Like any random encounter system, if a result doesn't make sense for the current location in the game, then feel free to ignore it and roll again, or better yet, choose a result that does make sense.</p>\n<h2 id=\"encounter-range\">Encounter Range</h2>\n<p>If two vessels randomly encounter each other while travelling in the depths of interplanetary space, the encounter will begin at Very Long range. More often, ships engage near a planet at Medium range. If the characters do not succeed in a Comms check (as modified by any stealth efforts made by the other vessel), then the encounter begins at one range category closer (Long instead of Very Long, or Short instead of Medium).</p>\n<p>Most civilian vessels, as well as military vessels that are not currently engaged in maneuvers, have transponders that operate as an \"Identification Friend or Foe\" (IFF) system to differentiate friendly from enemy spacecraft on sensors. When these are active, other vessels gain a DM+4 on detection efforts. (It is generally against interstellar law to operate a civilian vessel without such a transponder, but some ship crews have been known to disconnect their transponders when engaging in illicit activities.)</p>\n<p>Some encounters, such as the starship encounter types, ignore the general rules for range, and instead occur at a range determined by the Referee.</p>\n<h2 id=\"space-encounter-descriptions\">Space Encounter Descriptions</h2>\n<p>Most of the entries on the space encounter tables are self-explanatory. However, some encounters have special rules that require further explanation.</p>\n<dl>\n<dt>Comet</dt>\n<dd>Dust and particles from the comet interfere with some sensors, imposing a DM-2 on <a>Comms</a> skill checks while in the comet's tail. An unusual object or vessel may be found at the heart of a comet, but such occurrences are very rare and reaching such sites imposes a risk of impact with space debris.</dd>\n<dt>Debris from collision or attack, Lost equipment or garbage, and Micrometeorite storm</dt>\n<dd>The vessel is in danger of being impacted by small objects with great force. The vessel suffers 1D6 damage for every point of the vessel's Thrust rating, unless the pilot succeeds in a <a>Piloting</a> skill check to avoid the debris.</dd>\n<dt>Interplanetary dust cloud</dt>\n<dd>Dust clouds interfere with some sensors, imposing a -2 on <a>Comms</a> skill checks while in the cloud. The Referee may impose a second space encounter within the cloud, or simply impose a risk of impact with space debris.</dd>\n<dt>Jettisoned cargo pod</dt>\n<dd>For some reason, another vessel has jettisoned its cargo into space, generally to protect the safety of its crew from physical threats or legal actions. The contents of the pod can be determined randomly as per the trade goods rules in <a>Chapter 7: Trade and Commerce</a>, and often come with complications related to who dropped it and why.</dd>\n</dl>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Starship Encounters</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>2D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>2</th>\n<td>Alien Vessel</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Derelict</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Space Habitat</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Astrogation</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Space Junk</td>\n</tr>\n<tr>\n<th>7</th>\n<td>Merchant Vessel</td>\n</tr>\n<tr>\n<th>8</th>\n<td>Personal Vessel</td>\n</tr>\n<tr>\n<th>9</th>\n<td>Hostile Vessel</td>\n</tr>\n<tr>\n<th>10</th>\n<td>Military Vessel</td>\n</tr>\n<tr>\n<th>11</th>\n<td>Spacecraft</td>\n</tr>\n<tr>\n<th>12</th>\n<td>Referee's Choice</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Alien Vessel Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Alien courier</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Alien frontier trader</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Alien merchant freighter</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Alien military vessel</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Alien raider</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Alien research vessel</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Astrogation Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Asteroid (inhabited)</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Asteroid (uninhabited)</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Comet</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Interplanetary dust cloud</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Micrometeorite storm</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Solar flares</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Derelict Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Escape pod or life boat</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Merchant vessel</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Military vessel</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Personal vessel</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Research vessel</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Space habitat</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Hostile Vessel Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Captured merchant vessel</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Captured military vessel</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Enemy military vessel</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Raider</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Ship in distress (false)</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Ship in distress (true)</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Merchant Vessel Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Frontier trader</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Frontier trader</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Merchant freighter</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Merchant liner</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Merchant trader</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Merchant trader</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Military Vessel Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Corvette</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Destroyer</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Patrol frigate</td>\n</tr>\n<tr>\n<th>4</th>\n<td>System defense boat</td>\n</tr>\n<tr>\n<th>5</th>\n<td>System monitor</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Warship (1: Dreadnought; 2-3: Heavy cruiser; 4-6: Light cruiser)</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Personal Vessel Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Asteroid miner</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Courier</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Research vessel</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Survey vessel</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Unusual ship</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Yacht</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Spacecraft Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Cutter</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Launch or life boat</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Fighter</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Pinnace</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Ship's boat</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Shuttle</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Space Habitat Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Medical facility</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Military facility</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Orbital factory</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Orbital habitat</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Refueling station or spaceport</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Research facility</td>\n</tr>\n</tbody>\n</table>\n<table class=\"table table-bordered table-striped table-hover table-responsive-md\"><caption>Table: Space Junk Encounter Type</caption>\n<thead class=\"thead-light\">\n<tr>\n<th>1D6</th>\n<th>Encounter Type</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<th>1</th>\n<td>Astrogational buoy or beacon</td>\n</tr>\n<tr>\n<th>2</th>\n<td>Communications satellite</td>\n</tr>\n<tr>\n<th>3</th>\n<td>Debris from collision or attack</td>\n</tr>\n<tr>\n<th>4</th>\n<td>Defense satellite</td>\n</tr>\n<tr>\n<th>5</th>\n<td>Jettisoned cargo pod</td>\n</tr>\n<tr>\n<th>6</th>\n<td>Lost or abandoned equipment or garbage</td>\n</tr>\n</tbody>\n</table>"
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920743361,
+        "modifiedTime": 1775920743361,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": null,
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "category": null,
+      "_key": "!journal.pages!4yqJqWCokHbNjCRH.Dpc6WhGRm7rC1gAk"
+    }
+  ],
+  "sort": 112500,
+  "ownership": {
+    "default": 0,
+    "3OM2FN1BLzQ1KsJk": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14.360",
+    "createdTime": 1775920743361,
+    "modifiedTime": 1775920743361,
+    "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!4yqJqWCokHbNjCRH"
+}

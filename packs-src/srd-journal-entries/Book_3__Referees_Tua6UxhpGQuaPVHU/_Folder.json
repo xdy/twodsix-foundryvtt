@@ -1,0 +1,23 @@
+{
+  "name": "Book 3: Referees",
+  "sorting": "a",
+  "folder": null,
+  "type": "JournalEntry",
+  "_id": "Tua6UxhpGQuaPVHU",
+  "sort": 300000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14.360",
+    "createdTime": 1775920743302,
+    "modifiedTime": 1775920743419,
+    "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!folders!Tua6UxhpGQuaPVHU"
+}

@@ -1,0 +1,1034 @@
+{
+  "folder": "oMliEiLNWZdU3Hqp",
+  "name": "01.1: Career List",
+  "_id": "EykLBm5UeCemeSNn",
+  "pages": [
+    {
+      "sort": 100000,
+      "name": "Agent",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that secretly collects and reports information on the activities, movements and plans of a political or corporate enemy or competitor. Also known as a spy or intelligence operative.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">6+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:45.3056%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0931%\"></col><col style=\"width:47.2732%\"></col><col style=\"width:40.6769%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Agent </td>\n<td style=\"border-width:1px\">Streetwise-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Special Agent</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Sp Agent in Charge</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Unit Chief</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Section Chief</td>\n<td style=\"border-width:1px\">Admin-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Assistant Director</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Director</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Soc</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>Explorers Society</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Dex</td>\n<td>Admin</td>\n<td>Gun Combat</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 End</td>\n<td>Computer</td>\n<td>Melee Combat</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Int</td>\n<td>Streetwise</td>\n<td>Bribery</td>\n<td>Liaison</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Edu</td>\n<td>Bribery</td>\n<td>Leadership</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Athletics</td>\n<td>Leadership</td>\n<td>Recon</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Carousing</td>\n<td>Vehicle</td>\n<td>Survival</td>\n<td>Leadership</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "QUjFSfRy3GPIzA61",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.QUjFSfRy3GPIzA61"
+    },
+    {
+      "sort": 200000,
+      "name": "Athlete",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that has achieved celebrity status for their proficiency in sports and other forms of physical exercise.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">6+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:142.222px;width:32.9005%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0847%\"></col><col style=\"width:43.9443%\"></col><col style=\"width:43.9443%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\" colspan=\"3\"><strong>Ranks and Skills</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\">Athletics-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>2 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Explorers Society</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>100 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>-</td>\n<td>100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%;height:124.445px\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px\"> </td>\n<td style=\"height:17.7778px\"><strong>Personal Development</strong></td>\n<td style=\"height:17.7778px\"><strong>Service Skills</strong></td>\n<td style=\"height:17.7778px\"><strong>Specialist Skills</strong></td>\n<td style=\"height:17.7778px\"><strong>Adv Education</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>1</strong></td>\n<td style=\"height:17.7778px\">+1 Dex</td>\n<td style=\"height:17.7778px\">Athletics</td>\n<td style=\"height:17.7778px\">Zero-G</td>\n<td style=\"height:17.7778px\">Advocate</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>2</strong></td>\n<td style=\"height:17.7778px\">+1 Int</td>\n<td style=\"height:17.7778px\">Admin</td>\n<td style=\"height:17.7778px\">Athletics</td>\n<td style=\"height:17.7778px\">Computer</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>3</strong></td>\n<td style=\"height:17.7778px\">+1 Edu</td>\n<td style=\"height:17.7778px\">Carousing</td>\n<td style=\"height:17.7778px\">Athletics</td>\n<td style=\"height:17.7778px\">Liaison</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>4</strong></td>\n<td style=\"height:17.7778px\">+1 Soc</td>\n<td style=\"height:17.7778px\">Computer</td>\n<td style=\"height:17.7778px\">Computer</td>\n<td style=\"height:17.7778px\">Linguistics</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>5</strong></td>\n<td style=\"height:17.7778px\">Carousing</td>\n<td style=\"height:17.7778px\">Gambling</td>\n<td style=\"height:17.7778px\">Leadership</td>\n<td style=\"height:17.7778px\">Medicine</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>6</strong></td>\n<td style=\"height:17.7778px\">Melee Combat</td>\n<td style=\"height:17.7778px\">Vehicle</td>\n<td style=\"height:17.7778px\">Gambling</td>\n<td style=\"height:17.7778px\">Sciences</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "fgNEFqJ5VWpl0w4n",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.fgNEFqJ5VWpl0w4n"
+    },
+    {
+      "sort": 300000,
+      "name": "Barbarian",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual from a primitive world (TL4 or less) capable of surviving on their world without support from a technologically advanced civilization.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Str 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:38.4738%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.2133%\"></col><col style=\"width:38.5484%\"></col><col style=\"width:49.7634%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\">Melee Combat-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>0</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 int</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>2 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Weapon</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 End</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>-</td>\n<td>10 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Mechanics</td>\n<td>Gun Combat</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Gun Combat</td>\n<td>Jack o' Trades</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Melee Combat</td>\n<td>Melee Combat</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Recon</td>\n<td>Recon</td>\n<td>Leadership</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Athletics</td>\n<td>Survival</td>\n<td>Animals</td>\n<td>Tactics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gun Combat</td>\n<td>Animals</td>\n<td>Tactics</td>\n<td>Broker</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "RGATdmI4DzFKYyHZ",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.RGATdmI4DzFKYyHZ"
+    },
+    {
+      "sort": 400000,
+      "name": "Belter",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that explores asteroid belts in search of mineral deposits and salvageable material for profit.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Str 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:32.9005%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0847%\"></col><col style=\"width:43.9443%\"></col><col style=\"width:43.9443%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\">Zero-G-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>1D6 Ship Shares</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>-</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Comms</td>\n<td>Zero-G</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Demolitions</td>\n<td>Computer</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Electronics</td>\n<td>Liaison</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Zero-G</td>\n<td>Gunnery</td>\n<td>Prospecting</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Melee Combat</td>\n<td>Prospecting</td>\n<td>Sciences</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gambling</td>\n<td>Piloting</td>\n<td>Vehicle</td>\n<td>Admin</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "PeXFV4siGN5XzhhL",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.PeXFV4siGN5XzhhL"
+    },
+    {
+      "sort": 500000,
+      "name": "Bureaucrat",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Official in a government department, charged with following the details of administrative process.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:38.6536%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.1558%\"></col><col style=\"width:43.4443%\"></col><col style=\"width:44.4518%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Assistant</td>\n<td style=\"border-width:1px\">Admin-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Clerk</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Supervisor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Manager</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Chief</td>\n<td style=\"border-width:1px\">Advocate-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Director</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Minister</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Int</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Mid Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Dex</td>\n<td>Admin</td>\n<td>Admin</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 End</td>\n<td>Computer</td>\n<td>Computer</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Int</td>\n<td>Carousing</td>\n<td>Perception</td>\n<td>Liaison</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Edu</td>\n<td>Bribery</td>\n<td>Leadership</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Athletics</td>\n<td>Leadership</td>\n<td>Steward</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Carousing</td>\n<td>Vehicle</td>\n<td>Vehicle</td>\n<td>Admin</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "p4AXWjx5fUUWe2YX",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.p4AXWjx5fUUWe2YX"
+    },
+    {
+      "sort": 600000,
+      "name": "Colonist",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that moves to a new world or settles in a new planetary colony.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:45.845%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.2101%\"></col><col style=\"width:49.604%\"></col><col style=\"width:38.6236%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Citizen </td>\n<td style=\"border-width:1px\">Survival-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">District Leader</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">District Delegate</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Council Advisor</td>\n<td style=\"border-width:1px\">Liaison-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Councilor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Lieutenent Governor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Governor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Mechanics</td>\n<td>Athletics</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Gun Combat</td>\n<td>Carousing</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Animals</td>\n<td>Jack o' Trades</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Electronics</td>\n<td>Engineering</td>\n<td>Liaison</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Athletics</td>\n<td>Survival</td>\n<td>Animals</td>\n<td>Admin</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gun Combat</td>\n<td>Vehicle</td>\n<td>Vehicle</td>\n<td>Animals</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "OyKZZ9Pm9wl4CFFX",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.OyKZZ9Pm9wl4CFFX"
+    },
+    {
+      "sort": 700000,
+      "name": "Diplomat",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that is appointed by a planetary or interstellar government to conduct official negotiations and maintain political, economic and social relations with another polity or polities.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:41.8897%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0746%\"></col><col style=\"width:47.8486%\"></col><col style=\"width:40.1233%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Attachè</td>\n<td style=\"border-width:1px\">Liaison-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Third Secretary</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Second Secretary</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">First Secretary</td>\n<td style=\"border-width:1px\">Admin-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Counselor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Minister</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Ambassador</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Soc</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>Explorer's Society</td>\n<td>100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%;height:124.445px\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px\"> </td>\n<td style=\"height:17.7778px\"><strong>Personal Development</strong></td>\n<td style=\"height:17.7778px\"><strong>Service Skills</strong></td>\n<td style=\"height:17.7778px\"><strong>Specialist Skills</strong></td>\n<td style=\"height:17.7778px\"><strong>Adv Education</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>1</strong></td>\n<td style=\"height:17.7778px\">+1 Dex</td>\n<td style=\"height:17.7778px\">Admin</td>\n<td style=\"height:17.7778px\">Carousing</td>\n<td style=\"height:17.7778px\">Advocate</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>2</strong></td>\n<td style=\"height:17.7778px\">+1 End</td>\n<td style=\"height:17.7778px\">Computer</td>\n<td style=\"height:17.7778px\">Linguistics</td>\n<td style=\"height:17.7778px\">Computer</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>3</strong></td>\n<td style=\"height:17.7778px\">+1 Int</td>\n<td style=\"height:17.7778px\">Carousing</td>\n<td style=\"height:17.7778px\">Bribery</td>\n<td style=\"height:17.7778px\">Liaison</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>4</strong></td>\n<td style=\"height:17.7778px\">+1 Edu</td>\n<td style=\"height:17.7778px\">Bribery</td>\n<td style=\"height:17.7778px\">Liaison</td>\n<td style=\"height:17.7778px\">Linguistics</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>5</strong></td>\n<td style=\"height:17.7778px\">Athletics</td>\n<td style=\"height:17.7778px\">Liaison</td>\n<td style=\"height:17.7778px\">Steward</td>\n<td style=\"height:17.7778px\">Medicine</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>6</strong></td>\n<td style=\"height:17.7778px\">Carousing</td>\n<td style=\"height:17.7778px\">Vehicle</td>\n<td style=\"height:17.7778px\">Vehicle</td>\n<td style=\"height:17.7778px\">Leadership</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "F7FDTX8qiB4Z2ZWd",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.F7FDTX8qiB4Z2ZWd"
+    },
+    {
+      "sort": 800000,
+      "name": "Drifter",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that continually moves from place to place, without any fixed home or job</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:32.9005%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0847%\"></col><col style=\"width:43.9443%\"></col><col style=\"width:43.9443%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>0</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>2 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Weapon</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Mid Passage</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>-</td>\n<td>10 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Streetwise</td>\n<td>Electronics</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Mechanics</td>\n<td>Melee Combat</td>\n<td>Engineering</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Bribery</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Melee Combat</td>\n<td>Melee Combat</td>\n<td>Streetwise</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Bribery</td>\n<td>Recon</td>\n<td>Gambling</td>\n<td>Liaison</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gambling</td>\n<td>Vehicle</td>\n<td>Recon</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "XOFIunQMnV5yUEMb",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.XOFIunQMnV5yUEMb"
+    },
+    {
+      "sort": 900000,
+      "name": "Entertainer",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that has achieved celebrity status for their proficiency in publicly entertaining others.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">6+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:32.9005%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0847%\"></col><col style=\"width:43.9443%\"></col><col style=\"width:43.9443%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\">Carousing-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>2 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Soc</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Explorer's Society</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>100 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>-</td>\n<td>100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Dex</td>\n<td>Athletics</td>\n<td>Computer</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>Admin</td>\n<td>Carousing</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Edu</td>\n<td>Carousing</td>\n<td>Bribery</td>\n<td>Carousing</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Soc</td>\n<td>Bribery</td>\n<td>Liaison</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Carousing</td>\n<td>Gambling</td>\n<td>Gambling</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Melee Combat</td>\n<td>Vehicle</td>\n<td>Recon</td>\n<td>Sciences</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "BUzTGUpxI3SBehPg",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.BUzTGUpxI3SBehPg"
+    },
+    {
+      "sort": 1000000,
+      "name": "Hunter",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that kills or traps large game, almost always large terrestrial mammals, for meat, other animal by-products (such as horn or bone), trophy or sport.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Str 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">6+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:32.9005%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0847%\"></col><col style=\"width:43.9443%\"></col><col style=\"width:43.9443%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\">Survival-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"height:17.7778px;border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px\">-</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%;height:142.222px\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>1</strong></td>\n<td style=\"height:17.7778px\">Low Passage</td>\n<td style=\"height:17.7778px\">1 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>2</strong></td>\n<td style=\"height:17.7778px\">+1 Int</td>\n<td style=\"height:17.7778px\">5 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>3</strong></td>\n<td style=\"height:17.7778px\">Weapon</td>\n<td style=\"height:17.7778px\">10 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>4</strong></td>\n<td style=\"height:17.7778px\">High Passage</td>\n<td style=\"height:17.7778px\">20 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>5</strong></td>\n<td style=\"height:17.7778px\">1D6 Ship Shares</td>\n<td style=\"height:17.7778px\">20 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>6</strong></td>\n<td style=\"height:17.7778px\">High Passage</td>\n<td style=\"height:17.7778px\">50 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>7</strong></td>\n<td style=\"height:17.7778px\">-</td>\n<td style=\"height:17.7778px\">100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Mechanics</td>\n<td>Admin</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Gun Combat</td>\n<td>Comms</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Melee Combat</td>\n<td>Electronics</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Recon</td>\n<td>Recon</td>\n<td>Liaison</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Athletics</td>\n<td>Survival</td>\n<td>Animals</td>\n<td>Tactics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gun Combat</td>\n<td>Vehicle</td>\n<td>Vehicle</td>\n<td>Animals</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "MHv4VTgLbKHyUMFY",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.MHv4VTgLbKHyUMFY"
+    },
+    {
+      "sort": 1100000,
+      "name": "Mercenary",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Professional soldier hired to serve in a foreign military force or perform a specific military action.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:40.4515%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0596%\"></col><col style=\"width:38.0292%\"></col><col style=\"width:49.5142%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Private</td>\n<td style=\"border-width:1px\">Gun Combat-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lieutenant</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Captain</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Major</td>\n<td style=\"border-width:1px\">Tactics-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lt Colonel</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Colonel</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Brigadier</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Soc</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>1D6 Ship Shares</td>\n<td>100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Comms</td>\n<td>Gravitics</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Mechanics</td>\n<td>Gun Combat</td>\n<td>Engineering</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Gunnery</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Zero-G</td>\n<td>Melee Combat</td>\n<td>Melee Combat</td>\n<td>Navigation</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Melee Combat</td>\n<td>Gambling</td>\n<td>Recon</td>\n<td>Sciences</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gambling</td>\n<td>Battle Dress</td>\n<td>Vehicle</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "q8V1WL7Owr41gLMD",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.q8V1WL7Owr41gLMD"
+    },
+    {
+      "sort": 1200000,
+      "name": "Merchant",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual involved in wholesale interstellar trade, particularly between individual worlds or polities.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">4+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:39.7323%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0962%\"></col><col style=\"width:43.9863%\"></col><col style=\"width:43.9863%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Crewman</td>\n<td style=\"border-width:1px\">Steward-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Deck Cadet</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Fourth Officer</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Third Officer</td>\n<td style=\"border-width:1px\">Pilot-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Second Officer</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">First Officer</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Captain</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>1D6 Ship Shares</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>Explorer's Society</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Comms</td>\n<td>Carousing</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Engineering</td>\n<td>Gunnery</td>\n<td>Engineering</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Jack o' Trades</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Zero-G</td>\n<td>Melee Combat</td>\n<td>Medicine</td>\n<td>Navigation</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Melee Combat</td>\n<td>Broker</td>\n<td>Navigation</td>\n<td>Sciences</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Steward</td>\n<td>Vehicle</td>\n<td>Piloting</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "hujiv6zaxmhmdeJY",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.hujiv6zaxmhmdeJY"
+    },
+    {
+      "sort": 1400000,
+      "name": "Noble",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Member of an elite upper class, having high social or political status.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">6+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:40.0919%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0962%\"></col><col style=\"width:43.9863%\"></col><col style=\"width:43.9863%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Courtier</td>\n<td style=\"border-width:1px\">Carousing-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Knight</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Baron</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Marquis</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Count</td>\n<td style=\"border-width:1px\">Advocate-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Duke</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Archduke</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>High Passage</td>\n<td>2 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Int</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Explorer's Society</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>100 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>1D6 Ship Shares</td>\n<td>100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Dex</td>\n<td>Athletics</td>\n<td>Computer</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>Admin</td>\n<td>Carousing</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Edu</td>\n<td>Carousing</td>\n<td>Gun Combat</td>\n<td>Liaison</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Soc</td>\n<td>Leadership</td>\n<td>Melee Combat</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Carousing</td>\n<td>Gambling</td>\n<td>Liaison</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Melee Combat</td>\n<td>Vehicle</td>\n<td>Animals</td>\n<td>Sciences</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "QiKQQSf90CoLcmJk",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.QiKQQSf90CoLcmJk"
+    },
+    {
+      "sort": 1500000,
+      "name": "Physician",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that is skilled in the science of medicine and is trained and licensed to treat sick and injured people.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:36.676%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0962%\"></col><col style=\"width:53.8832%\"></col><col style=\"width:34.0893%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Intern</td>\n<td style=\"border-width:1px\">Medicine-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Resident</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Senior Resident</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Chief Resident</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Attending Phys.</td>\n<td style=\"border-width:1px\">Admin-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Service Chief</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Hospital Admin.</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>2 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Int</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Explorer's Society</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>100 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.654%\"></col><col style=\"width:22.5267%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Admin</td>\n<td>Computer</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Computer</td>\n<td>Carousing</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Mechanics</td>\n<td>Electronics</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Medicine</td>\n<td>Medicine</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Edu</td>\n<td>Leadership</td>\n<td>Medicine</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gun Combat</td>\n<td>Sciences</td>\n<td>Sciences</td>\n<td>Sciences</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "TZ3KLZTXbLO7rnXr",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.TZ3KLZTXbLO7rnXr"
+    },
+    {
+      "sort": 1600000,
+      "name": "Pirate",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that attacks and steals from interplanetary and interstellar ships in space.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Str 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:142.222px;width:35.9569%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0962%\"></col><col style=\"width:54.9828%\"></col><col style=\"width:32.9897%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Crewman</td>\n<td style=\"border-width:1px;height:17.7778px\">Gunnery-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Corporal</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lieutenant</td>\n<td style=\"border-width:1px;height:17.7778px\">Pilot-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lt Commander</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Commander</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Captain</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Commodore</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Soc</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>1D6 Ship Shares</td>\n<td>100 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Streetwise</td>\n<td>Zero-G</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Electronics</td>\n<td>Comms</td>\n<td>Gravitics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Engineering</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Melee Combat</td>\n<td>Melee Combat</td>\n<td>Gunnery</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Bribery</td>\n<td>Recon</td>\n<td>Navigation</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gambling</td>\n<td>Vehicle</td>\n<td>Piloting</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "p0qJxesKytJa0Uc1",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.p0qJxesKytJa0Uc1"
+    },
+    {
+      "sort": 1700000,
+      "name": "Rogue",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that makes their living through illicit means.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Str 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">4+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:36.676%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.1112%\"></col><col style=\"width:44.0409%\"></col><col style=\"width:44.0409%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Independent</td>\n<td style=\"border-width:1px\">Streetwise-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Associate</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Soldier</td>\n<td style=\"border-width:1px\">Gun Combat-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lieutenant</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Underboss</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Consigliere</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Boss</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Streetwise</td>\n<td>Computer</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Mechanics</td>\n<td>Electronics</td>\n<td>Gravitics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Bribery</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Melee Combat</td>\n<td>Melee Combat</td>\n<td>Broker</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Bribery</td>\n<td>Recon</td>\n<td>Recon</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gambling</td>\n<td>Vehicle</td>\n<td>Vehicle</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "yHQ9oYJAWMKpkklH",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.yHQ9oYJAWMKpkklH"
+    },
+    {
+      "sort": 1800000,
+      "name": "Scientist",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that is engaged in and has expert knowledge of a science, especially a biological or physical science.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:48.7215%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.2277%\"></col><col style=\"width:58.9353%\"></col><col style=\"width:28.882%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Intructor</td>\n<td style=\"border-width:1px\">Sciences-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Adjunct Professor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Research Professor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Assistant Professor</td>\n<td style=\"border-width:1px\">Computer-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Associate Professor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Professor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Distinguished Professor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Soc</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>Research Vessel</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Admin</td>\n<td>Navigation</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Computer</td>\n<td>Admin</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Electronics</td>\n<td>Sciences</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Medicine</td>\n<td>Sciences</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Edu</td>\n<td>Bribery</td>\n<td>Animals</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gun Combat</td>\n<td>Sciences</td>\n<td>Vehicle</td>\n<td>Sciences</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "u20LbFF10MrhTPsP",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.u20LbFF10MrhTPsP"
+    },
+    {
+      "sort": 2100000,
+      "name": "Technician",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Individual that is skilled in mechanical or industrial techniques or in a particular technical field.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 4+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 8+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:41.3504%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.233%\"></col><col style=\"width:49.3816%\"></col><col style=\"width:38.4339%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Technician</td>\n<td style=\"border-width:1px\">Computer-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Team Lead</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Supervisor</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Manager</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Director</td>\n<td style=\"border-width:1px\">Admin-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Vice President</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Executive Officer</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 Int</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Mid Passage</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Admin</td>\n<td>Computer</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Computer</td>\n<td>Electronics</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Mechanics</td>\n<td>Gravitics</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Medicine</td>\n<td>Linguistics</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Edu</td>\n<td>Electronics</td>\n<td>Engineering</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Gun Combat</td>\n<td>Sciences</td>\n<td>Animals</td>\n<td>Sciences</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "DhllJB0z0whsnwFg",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.DhllJB0z0whsnwFg"
+    },
+    {
+      "sort": 1900000,
+      "name": "Scout",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Member of an interplanetary exploratory service, surveying unfamiliar territory in space.</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">6+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:32.9005%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0962%\"></col><col style=\"width:43.9863%\"></col><col style=\"width:43.9863%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">-</td>\n<td style=\"border-width:1px\">Pilot-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">-</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">-</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">-</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">-</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">-</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Explorer's Society</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Courier Vessel</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>-</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Comms</td>\n<td>Engineering</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Electronics</td>\n<td>Gunnery</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Demolitions</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Jack o' Trades</td>\n<td>Gunnery</td>\n<td>Navigation</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Edu</td>\n<td>Recon</td>\n<td>Medicine</td>\n<td>Navigation</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Melee Combat</td>\n<td>Piloting</td>\n<td>Vehicle</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "nm8YNCnLDW45RwIS",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.nm8YNCnLDW45RwIS"
+    },
+    {
+      "sort": 2000000,
+      "name": "Surface System Defense",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Member of a planetary armed military force operating on the non-hydrographic surface of a world. Also known as the \"planetary army\".</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:39.5525%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.3154%\"></col><col style=\"width:44.1301%\"></col><col style=\"width:44.1301%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Private</td>\n<td style=\"border-width:1px\">Gun Combat-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lieutenant</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Captain</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Major</td>\n<td style=\"border-width:1px\">Leadership-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lt Colonel</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Colonel</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">General</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Int</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Weapon</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Mechanics</td>\n<td>Comms</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Gun Combat</td>\n<td>Demolitions</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gunnery</td>\n<td>Gun Combat</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Athletics</td>\n<td>Melee Combat</td>\n<td>Melee Combat</td>\n<td>Linguistics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Melee Combat</td>\n<td>Recon</td>\n<td>Survival</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Vehicle</td>\n<td>Battle Dress</td>\n<td>Vehicle</td>\n<td>Sciences</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "QTvQ1zURQnmVQSCO",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.QTvQ1zURQnmVQSCO"
+    },
+    {
+      "sort": 1300000,
+      "name": "Navy",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Member of an interstellar armed military force that conducts military operations in interplanetary or interstellar space. Also known as the \"space navy\".</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:142.222px;width:36.676%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.3224%\"></col><col style=\"width:49.26%\"></col><col style=\"width:38.4757%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Starman</td>\n<td style=\"border-width:1px;height:17.7778px\">Zero-G-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Midshipman</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lieutenant</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lt Commander</td>\n<td style=\"border-width:1px;height:17.7778px\">Tactics-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Commander</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Captain</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Commodore</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Soc</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>Explorer's Society</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Comms</td>\n<td>Gravitics</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Engineering</td>\n<td>Jack o' Trades</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Melee Combat</td>\n<td>Enginering</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Gunnery</td>\n<td>Navigation</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Edu</td>\n<td>Melee Combat</td>\n<td>Leadership</td>\n<td>Navigation</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Melee Combat</td>\n<td>Vehicle</td>\n<td>Piloting</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "kdfi6oIennNOFacD",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.kdfi6oIennNOFacD"
+    },
+    {
+      "sort": 1075000,
+      "name": "Maritime Systems Defense",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Member of a planetary armed military force operating within and on the surface of a world's oceans. Also known as the \"planetary wet navy\".</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:37.0356%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.2521%\"></col><col style=\"width:47.9872%\"></col><col style=\"width:39.8192%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Seaman</td>\n<td style=\"border-width:1px\">Watercraft-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Ensign</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lieutenant</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lt Commander</td>\n<td style=\"border-width:1px\">Leadership-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Commander</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Captain</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Admiral</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Weapon</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Mechanics</td>\n<td>Comms</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Gun Combat</td>\n<td>Electronics</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gunnery</td>\n<td>Gun Combat</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Athletics</td>\n<td>Melee Combat</td>\n<td>Demolitions</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Melee Combat</td>\n<td>Survival</td>\n<td>Recon</td>\n<td>Leadership</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Vehicle</td>\n<td>Watercraft</td>\n<td>Watercraft</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "In9roY9kiacCVIp8",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.In9roY9kiacCVIp8"
+    },
+    {
+      "sort": 1050000,
+      "name": "Marine",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Member of an interstellar armed military force trained to serve in a variety of environments, often carried on board starships as an adjunct to an interstellar navy. Also known as the \"space marines\".</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Int 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Soc 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">6+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:124.445px;width:32.9005%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:12.0962%\"></col><col style=\"width:43.9863%\"></col><col style=\"width:43.9863%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center;border-width:1px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Trooper</td>\n<td style=\"border-width:1px\">Zero-G-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lieutenant</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Captain</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Major</td>\n<td style=\"border-width:1px\">Tactics-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Lt Colonel</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Colonel</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Brigadier</td>\n<td style=\"border-width:1px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%;height:142.222px\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>1</strong></td>\n<td style=\"height:17.7778px\">Low Passage</td>\n<td style=\"height:17.7778px\">1 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>2</strong></td>\n<td style=\"height:17.7778px\">+1 Edu</td>\n<td style=\"height:17.7778px\">5 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>3</strong></td>\n<td style=\"height:17.7778px\">Weapon</td>\n<td style=\"height:17.7778px\">10 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>4</strong></td>\n<td style=\"height:17.7778px\">Mid Passage</td>\n<td style=\"height:17.7778px\">10 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>5</strong></td>\n<td style=\"height:17.7778px\">+1 Soc</td>\n<td style=\"height:17.7778px\">20 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>6</strong></td>\n<td style=\"height:17.7778px\">High Passage</td>\n<td style=\"height:17.7778px\">50 000</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;height:17.7778px\"><strong>7</strong></td>\n<td style=\"height:17.7778px\">Explorer's Society</td>\n<td style=\"height:17.7778px\">50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Comms</td>\n<td>Electronics</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Demolitions</td>\n<td>Gun Combat</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gun Combat</td>\n<td>Melee Combat</td>\n<td>Gravitics</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>+1 Int</td>\n<td>Gunnery</td>\n<td>Survival</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>+1 Edu</td>\n<td>Melee Combat</td>\n<td>Recon</td>\n<td>Navigation</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Melee Combat</td>\n<td>Battle Dress</td>\n<td>Vehicle</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "ULEqdtNvnRRd8rtm",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.ULEqdtNvnRRd8rtm"
+    },
+    {
+      "sort": 0,
+      "name": "Aerospace System Defense",
+      "type": "text",
+      "title": {
+        "show": true,
+        "level": 1
+      },
+      "image": {},
+      "text": {
+        "format": 1,
+        "content": "<p>Member of a planetary armed military force operating within a world's atmosphere and close orbit. Also known as the \"planetary air force\".</p>\n<table style=\"height:88.889px;width:36.1353%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:54.6791%\"></col><col style=\"width:45.3192%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Qualifications</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">End 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Survival</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Dex 5+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Commision</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 6+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Advancement</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Edu 7+</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"border-width:1px;height:17.7778px\"><strong>Re-enlistment</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">5+</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"height:139.222px;width:39.7323%;border-width:1px\" border=\"1\"><colgroup><col style=\"width:10.4603%\"></col><col style=\"width:51.3643%\"></col><col style=\"width:38.2306%\"></col></colgroup>\n<tbody>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\" colspan=\"3\"><strong>Ranks and Skills</strong><strong><br></strong></td>\n</tr>\n<tr style=\"height:14.7778px\">\n<td style=\"height:14.7778px;text-align:center;border-width:1px\"><strong>0</strong></td>\n<td style=\"height:14.7778px;border-width:1px\">Airman</td>\n<td style=\"border-width:1px;height:14.7778px\">Aircraft-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>1</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Flight Officer</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>2</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Flight Lieutenant</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>3</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Squadron Leader</td>\n<td style=\"border-width:1px;height:17.7778px\">Leadership-1</td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"height:17.7778px;text-align:center;border-width:1px\"><strong>4</strong></td>\n<td style=\"height:17.7778px;border-width:1px\">Wing Commander</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>5</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Group Captain</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n<tr style=\"height:17.7778px\">\n<td style=\"text-align:center;border-width:1px;height:17.7778px\"><strong>6</strong></td>\n<td style=\"border-width:1px;height:17.7778px\">Air Commodore</td>\n<td style=\"border-width:1px;height:17.7778px\"> </td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:43.8674%\" border=\"1\"><colgroup><col style=\"width:8.64618%\"></col><col style=\"width:52.2058%\"></col><col style=\"width:38.7849%\"></col></colgroup>\n<tbody>\n<tr>\n<td style=\"text-align:center\" colspan=\"3\"><strong>Benefits</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>Low Passage</td>\n<td>1 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Edu</td>\n<td>5 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>Weapon</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Mid Passage</td>\n<td>10 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Weapon</td>\n<td>20 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>High Passage</td>\n<td>50 000</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>7</strong></td>\n<td>+1 Soc</td>\n<td>50 000</td>\n</tr>\n</tbody>\n</table>\n<p> </p>\n<table style=\"width:99.96%\" border=\"1\"><colgroup><col style=\"width:7.92942%\"></col><col style=\"width:28.6594%\"></col><col style=\"width:22.5214%\"></col><col style=\"width:20.3642%\"></col><col style=\"width:20.3642%\"></col></colgroup>\n<tbody>\n<tr>\n<td> </td>\n<td><strong>Personal Development</strong></td>\n<td><strong>Service Skills</strong></td>\n<td><strong>Specialist Skills</strong></td>\n<td><strong>Adv Education</strong></td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>1</strong></td>\n<td>+1 Str</td>\n<td>Electronics</td>\n<td>Comms</td>\n<td>Advocate</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>2</strong></td>\n<td>+1 Dex</td>\n<td>Gun Combat</td>\n<td>Gravitics</td>\n<td>Computer</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>3</strong></td>\n<td>+1 End</td>\n<td>Gunnery</td>\n<td>Gun Combat</td>\n<td>Jack o' Trades</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>4</strong></td>\n<td>Athletics</td>\n<td>Melee Combat</td>\n<td>Gunnery</td>\n<td>Medicine</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>5</strong></td>\n<td>Melee Combat</td>\n<td>Survival</td>\n<td>Recon</td>\n<td>Leadership</td>\n</tr>\n<tr>\n<td style=\"text-align:center\"><strong>6</strong></td>\n<td>Vehicle</td>\n<td>Aircraft</td>\n<td>Piloting</td>\n<td>Tactics</td>\n</tr>\n</tbody>\n</table>\n<p> </p>",
+        "markdown": ""
+      },
+      "video": {
+        "controls": true,
+        "volume": 0.5
+      },
+      "src": null,
+      "system": {},
+      "ownership": {
+        "default": -1,
+        "3OM2FN1BLzQ1KsJk": 3
+      },
+      "flags": {
+        "core": {}
+      },
+      "_stats": {
+        "systemId": "twodsix",
+        "systemVersion": "7.1.2",
+        "coreVersion": "14.360",
+        "createdTime": 1775920738475,
+        "modifiedTime": 1775920738475,
+        "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+        "compendiumSource": "JournalEntry.UjiNtkSMMfo0hCki.JournalEntryPage.ZocP5TzuKVO3s94J",
+        "duplicateSource": null,
+        "exportSource": null
+      },
+      "_id": "n3sCfY6wwbaIvj03",
+      "category": null,
+      "_key": "!journal.pages!EykLBm5UeCemeSNn.n3sCfY6wwbaIvj03"
+    }
+  ],
+  "sort": 0,
+  "ownership": {
+    "default": 0,
+    "3OM2FN1BLzQ1KsJk": 3
+  },
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14.360",
+    "createdTime": 1775920738475,
+    "modifiedTime": 1775920738475,
+    "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "categories": [],
+  "_key": "!journal!EykLBm5UeCemeSNn"
+}

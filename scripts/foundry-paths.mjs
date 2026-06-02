@@ -34,20 +34,16 @@ export function getFoundryPaths({warnOnLegacyParent = false} = {}) {
     throw new Error(`User Data path invalid: ${configuredPath} does not exist`);
   }
 
-  if (looksLikeDataDirectory(configuredPath)) {
-    return {
-      config,
-      dataDir: configuredPath,
-      dataRoot: path.dirname(configuredPath),
-    };
-  }
-
+  // Prefer an explicit nested `Data` directory if present. Some Foundry
+  // installations set the dataPath to the parent folder (legacy), while
+  // others point directly at the `Data` folder. Prefer the nested `Data`
+  // directory when it exists to avoid creating links at the wrong level.
   const nestedDataDir = path.join(configuredPath, 'Data');
   if (looksLikeDataDirectory(nestedDataDir)) {
     if (warnOnLegacyParent) {
       console.warn(
-        `Warning: foundryconfig.json dataPath should point to ${nestedDataDir}. ` +
-        `Using that directory for compatibility.`
+        `Warning: foundryconfig.json dataPath points to ${configuredPath}. ` +
+        `Using nested ${nestedDataDir} for compatibility.`
       );
     }
 
@@ -55,6 +51,14 @@ export function getFoundryPaths({warnOnLegacyParent = false} = {}) {
       config,
       dataDir: nestedDataDir,
       dataRoot: configuredPath,
+    };
+  }
+
+  if (looksLikeDataDirectory(configuredPath)) {
+    return {
+      config,
+      dataDir: configuredPath,
+      dataRoot: path.dirname(configuredPath),
     };
   }
 

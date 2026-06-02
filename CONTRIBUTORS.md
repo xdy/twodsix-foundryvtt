@@ -17,6 +17,11 @@ The list is in chronological order - hopefully a correct one - with a Discord us
 * Xanastay - French translation.
 * [cholston](https://github.com/cholston) - Started with improvements to ship actions.
 * JoshB - Adding macros.
+* Snowfall - CE SRD Journal entry compendium
+* Old_Skuul - Adding Cephues Delux vehicle compendium
+* ZEE - improvments to trade report compendium
+* [johncarney] - updates to development instructions and 2e skills
+* [samulopez] - fix css layering
 
 I've probably forgotten someone, tell me on the [Discord](https://discord.gg/VNFUvjv)!
 
