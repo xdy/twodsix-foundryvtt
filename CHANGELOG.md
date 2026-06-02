@@ -1,3 +1,10 @@
+# [7.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.4.3...v7.5.0) (2026-06-02)
+
+
+### Features
+
+* Add CE SRD document as journal entries and fix symlinking path for build:develop ([#2005](https://github.com/xdy/twodsix-foundryvtt/issues/2005)) ([a595bb1](https://github.com/xdy/twodsix-foundryvtt/commit/a595bb17408962540fa24093356b588d34a02947))
+
 ## [7.4.3](https://github.com/xdy/twodsix-foundryvtt/compare/v7.4.2...v7.4.3) (2026-05-17)
 
 
