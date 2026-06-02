@@ -346,6 +346,15 @@
       "type": "Item"
     },
     {
+      "name": "srd-journal-entries",
+      "label": "SRD Journal Entries",
+      "system": "twodsix",
+      "module": "twodsix",
+      "path": "./packs/srd-journal-entries",
+      "entity": "JournalEntry",
+      "type": "JournalEntry"
+    },
+    {
       "label": "Wiki Journal",
       "type": "JournalEntry",
       "name": "wiki-journal",
@@ -374,7 +383,8 @@
       "packs": [
         "ce-srd-gm-screen",
         "ce-srd-items",
-        "ce-srd-roll-tables"
+        "ce-srd-roll-tables",
+        "srd-journal-entries"
       ]
     },
     {

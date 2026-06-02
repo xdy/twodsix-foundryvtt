@@ -1,0 +1,23 @@
+{
+  "name": "Vehicle Design System",
+  "sorting": "a",
+  "folder": null,
+  "type": "JournalEntry",
+  "_id": "qGXvNZFgCoilyI32",
+  "sort": 400000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14.360",
+    "createdTime": 1775920745918,
+    "modifiedTime": 1775920746059,
+    "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!folders!qGXvNZFgCoilyI32"
+}

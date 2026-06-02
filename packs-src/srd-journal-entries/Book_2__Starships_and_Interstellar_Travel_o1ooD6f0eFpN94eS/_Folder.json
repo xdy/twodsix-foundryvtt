@@ -1,0 +1,23 @@
+{
+  "name": "Book 2: Starships and Interstellar Travel",
+  "sorting": "a",
+  "folder": null,
+  "type": "JournalEntry",
+  "_id": "o1ooD6f0eFpN94eS",
+  "sort": 200000,
+  "color": null,
+  "flags": {},
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.1.2",
+    "coreVersion": "14.360",
+    "createdTime": 1775920740903,
+    "modifiedTime": 1775920741101,
+    "lastModifiedBy": "3OM2FN1BLzQ1KsJk",
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "description": "",
+  "_key": "!folders!o1ooD6f0eFpN94eS"
+}
