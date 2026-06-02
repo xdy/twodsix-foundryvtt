@@ -56,7 +56,7 @@
     "@eslint/js": "^10.0.0",
     "@foundryvtt/foundryvtt-cli": "^3.0.3",
     "@league-of-foundry-developers/foundry-vtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#2315d2385e256f8e7011667683f0859f1f769fdf",
-    "@playwright/test": "^1.59.1",
+    "@playwright/test": "^1.60.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",
