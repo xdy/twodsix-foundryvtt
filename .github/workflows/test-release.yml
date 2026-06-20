@@ -7,11 +7,9 @@ on:
     branches: [ master ]
 
 # Required secrets:
-#   GITHUB_TOKEN             — provided automatically by GitHub
-#   NPM_TOKEN                — for semantic-release npm publishing
-#   FOUNDRYVTT_RELEASE_TOKEN — FoundryVTT Package Release API authorization token
+#   GITHUB_TOKEN, NPM_TOKEN, FOUNDRYVTT_RELEASE_TOKEN
 # Optional secrets:
-#   WEBHOOK_URL              — Discord webhook URL for release notifications
+#   WEBHOOK_URL
 permissions:
   contents: read
 
@@ -20,7 +18,7 @@ env:
   repo_name: xdy/twodsix-foundryvtt
   branch_name: master
   package_type: system
-  set_maximum: 'false'       # Whether to set compatibility maximum from manifest (true) or leave unset (false)
+  set_maximum_from_manifest: 'false' # Whether to set compatibility maximum from manifest (true) or leave unset (false)
   use_submodules: 'false'    # Whether to check out git submodules during build
 
 # Serialize releases to prevent concurrent pushes to the same branch
@@ -92,6 +90,10 @@ jobs:
       - name: Make release script executable
         run: chmod +x ./scripts/release/release.sh
 
+      - name: Get current tag before release
+        id: pre_tag
+        run: echo "tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> "$GITHUB_OUTPUT"
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -99,18 +101,31 @@ jobs:
         run: pnpm exec semantic-release
         timeout-minutes: 10
 
-      - name: Send Webhook Notification
-        env:
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+      - name: Check if release was published
+        id: release_check
         run: |
-          if [ -z "$WEBHOOK_URL" ]; then
-            echo "WEBHOOK_URL not set, skipping notification"
+          NEW_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo '')
+          if [ -n "$NEW_TAG" ] && [ "$NEW_TAG" != "${{ steps.pre_tag.outputs.tag }}" ]; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "new_tag=$NEW_TAG" >> "$GITHUB_OUTPUT"
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Send Discord Notification
+        if: steps.release_check.outputs.published == 'true'
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL || secrets.WEBHOOK_URL }}
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "DISCORD_WEBHOOK_URL not set, skipping notification"
             exit 0
           fi
-          bash scripts/release/discord.sh -- "$WEBHOOK_URL"
+          bash scripts/release/discord.sh -- "$DISCORD_WEBHOOK_URL"
         timeout-minutes: 2
 
       - name: Read manifest values
+        if: steps.release_check.outputs.published == 'true'
         id: manifest
         run: |
           echo "id=$(jq -r .id ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
@@ -119,17 +134,18 @@ jobs:
           echo "verified=$(jq -r '."compatibility"."verified"' ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
           echo "maximum=$(jq -r '."compatibility"."maximum" // empty' ./dist/${{ env.package_type }}.json)" >> "$GITHUB_OUTPUT"
           echo "package-version=$(jq -r .version ./package.json)" >> "$GITHUB_OUTPUT"
-          echo "tag=$(git describe --tags --abbrev=0 2>/dev/null || echo '')" >> "$GITHUB_OUTPUT"
+          echo "tag=${{ steps.release_check.outputs.new_tag }}" >> "$GITHUB_OUTPUT"
 
       - name: Submit package to FoundryVTT Package Release API
+        if: steps.release_check.outputs.published == 'true'
         env:
           MANIFEST_URL: https://github.com/${{ github.repository }}/releases/download/${{ steps.manifest.outputs.tag }}/${{ env.package_type }}.json
           NOTES_URL: https://github.com/${{ github.repository }}/blob/${{ github.ref_name }}/CHANGELOG.md
         run: |
-          if [ '${{ env.set_maximum }}' = 'true' ]; then
-            EFFECTIVE_MAX='${{ steps.manifest.outputs.maximum }}'
+          if [ '${{ env.set_maximum_from_manifest }}' = 'true' ]; then
+            MAXIMUM_VERSION='${{ steps.manifest.outputs.maximum }}'
           else
-            EFFECTIVE_MAX=''
+            MAXIMUM_VERSION=''
           fi
           PAYLOAD=$(jq -n \
             --arg id '${{ steps.manifest.outputs.id }}' \
@@ -138,7 +154,7 @@ jobs:
             --arg notes "$NOTES_URL" \
             --arg minimum '${{ steps.manifest.outputs.minimum }}' \
             --arg verified '${{ steps.manifest.outputs.verified }}' \
-            --arg maximum "$EFFECTIVE_MAX" \
+            --arg maximum "$MAXIMUM_VERSION" \
             '{
               id: $id,
               "dry-run": false,
