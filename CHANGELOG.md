@@ -1,3 +1,10 @@
+## [7.5.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.5.0...v7.5.1) (2026-06-20)
+
+
+### Bug Fixes
+
+* No actual changes, just updated dependencies and cleanup of the build and release process ([a64e90d](https://github.com/xdy/twodsix-foundryvtt/commit/a64e90d7ba7d98216a49faebe5826827d177309b))
+
 # [7.5.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.4.3...v7.5.0) (2026-06-02)
 
 
