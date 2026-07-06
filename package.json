@@ -54,7 +54,7 @@
   ],
   "devDependencies": {
     "@eslint/js": "^10.0.0",
-    "@foundryvtt/foundryvtt-cli": "^3.0.3",
+    "@foundryvtt/foundryvtt-cli": "^3.0.4",
     "@league-of-foundry-developers/foundry-vtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#2315d2385e256f8e7011667683f0859f1f769fdf",
     "@playwright/test": "^1.61.0",
     "@semantic-release/changelog": "^6.0.3",
