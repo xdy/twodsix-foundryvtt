@@ -2405,6 +2405,7 @@ a.ship-positions-tab.active, a.ship-crew-tab.active, a.ship-component-tab.active
   border-radius: 0;
   align-content: space-evenly;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .ship-position-add-box {

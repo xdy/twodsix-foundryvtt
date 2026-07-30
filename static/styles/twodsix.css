@@ -2925,6 +2925,7 @@ a.ship-crew-tab.active, a.ship-positions-tab.active, a.ship-storage-tab.active, 
   min-height: 6ch;
   border-radius: 0;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .ship-position-add-box {
