@@ -211,6 +211,7 @@ export class TwodsixActiveEffect extends ActiveEffect {
     }
     //console.log(data, options, user);
     this.updatePhases(data, options, user);
+    return allowed;
   }
 
   /**
