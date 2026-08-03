@@ -1770,6 +1770,7 @@
       "Weapons": "Weapons",
       "MCr": "MCr",
       "ShipValue": "Ship Value",
+      "PercentOwnership": "Percentage Ownership",
       "MortgagePerMonth": "Est. Mortgage Payment",
       "MaintenancePerMonth": "Maintenance Cost",
       "CrPerMonth": "Cr / month",

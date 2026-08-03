@@ -52,7 +52,11 @@ export class ShipActor extends TwodsixVehicleBaseActor {
   /** @override */
   async _preUpdate(data, options, user) {
     const allowed = await super._preUpdate(data, options, user);
+    if (allowed === false) {
+      return false;
+    }
 
+    /* Update common funds*/
     const financeDiff = {
       financesCash:
         data?.system?.financeValues?.cash !== this.system._source.financeValues?.cash
@@ -63,8 +67,14 @@ export class ShipActor extends TwodsixVehicleBaseActor {
           ? data.system?.commonFunds
           : undefined,
     };
+
     if (financeDiff.financesCash !== undefined || financeDiff.commonFunds !== undefined) {
       updateShipFinances(this, data, financeDiff);
+    }
+
+    /* Clamp Percent Ownership */
+    if (data?.system?.financeValues?.percentOwnership) {
+      data.system.financeValues.percentOwnership = Math.clamp(data.system.financeValues.percentOwnership, 0, 100);
     }
 
     return allowed;
@@ -228,6 +238,8 @@ export class ShipActor extends TwodsixVehicleBaseActor {
     calcShipStats.cost.total = calcShipStats.cost.componentValue + calcShipStats.cost.baseHullValue * (1 + calcShipStats.cost.percentHull / 100);
 
     const totalCost = Number.isFinite(calcShipStats.cost.total) ? calcShipStats.cost.total : 0;
+    const percentOwnership = Math.clamp(this.system.financeValues.percentOwnership, 0, 100);
+    const mortgageValue = Number.isFinite(percentOwnership) ? (totalCost * (1 - percentOwnership / 100)) : totalCost;
     const mortgageTerm = Number.isFinite(this.system.financeValues.mortgagePaymentTerm) && this.system.financeValues.mortgagePaymentTerm > 0
       ? this.system.financeValues.mortgagePaymentTerm
       : game.settings.get('twodsix', 'mortgageTerm');
@@ -254,7 +266,7 @@ export class ShipActor extends TwodsixVehicleBaseActor {
       cost: {
         total: totalCost,
         shipValue: totalCost.toLocaleString(game.i18n.lang, {minimumFractionDigits: 1, maximumFractionDigits: 1}),
-        mortgageCost: formatMCrAsCredits(totalCost / mortgageTerm),
+        mortgageCost: formatMCrAsCredits(mortgageValue / mortgageTerm),
         maintenanceCost: formatMCrAsCredits(totalCost * 0.001 / 12)
       }
     };

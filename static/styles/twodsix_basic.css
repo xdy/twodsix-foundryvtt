@@ -2713,12 +2713,12 @@ div.ship-value {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 42ch;
+  height: 54ch;
   border: 1px solid var(--s2d6-color-border-light-tertiary);
   border-radius: 0 3px 3px;
-  width: 35ch;
+  width: 40ch;
+  gap: 1ch;
   padding: 0 2ch;
-  /* font-size: 15px; */
   overflow-y: auto;
 }
 
@@ -2741,7 +2741,7 @@ div.ship-value {
   border: 1px solid var(--s2d6-color-border-light-tertiary);
   background-color: var(--s2d6-input-background) !important;
   width: 75ch;
-  height: 35ch;
+  height: 42ch;
   border-radius: 0 3px 3px;
   overflow-y: auto;
   padding: 0.2em;

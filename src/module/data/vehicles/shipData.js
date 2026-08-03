@@ -21,6 +21,7 @@ export class ShipData extends TwodsixVehicleBaseData {
       cash: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
       mortgagePaymentTerm: new fields.NumberField({required: true, nullable: false, integer: true, initial: 240}),
       massProductionDiscount: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0.1}),
+      percentOwnership: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0.0})
     });
     schema.reqPower = new fields.SchemaField({
       systems: new fields.NumberField({...requiredInteger, initial: 0}),
