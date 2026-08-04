@@ -28,7 +28,7 @@ export class SkillItem extends TwodsixItem {
   async _preUpdate(data, options, user) {
     const allowed = await super._preUpdate(data, options, user);
     // Enforce unique skill names within an actor
-    if (data.name !== undefined && this.actor) {
+    if (data.name !== undefined && this.actor && data.name !== this.name) {
       const uniqueName = this.actor.generateUniqueSkillName(data.name);
       if (uniqueName !== data.name) {
         data.name = uniqueName;
