@@ -24,7 +24,7 @@
           <span class="item-name showChat" data-action="showChat">{{item.name}}</span>
           <span class="item-name centre">{{item.system.value}}</span>
           <span class="item-name centre">{{item.system.shortdescr}}
-            {{#if @root/settings.showTraitAE}}
+            {{#if @root.settings.showTraitAE}}
             <ul>
               {{#each item.effects.contents.[0].system.changes as |change|}}
               <li>{{change.key}} {{change.type}} {{change.value}}</li>
