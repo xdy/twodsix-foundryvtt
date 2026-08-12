@@ -508,6 +508,9 @@ export default class TwodsixItem extends Item {
       //console.log(rollFormula);
       if (confirmFormula) {
         rollFormula = await confirmRollFormula(rollFormula, game.i18n.localize("TWODSIX.Damage.DamageFormula"));
+        if (!rollFormula) {
+          return;
+        }
       }
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
