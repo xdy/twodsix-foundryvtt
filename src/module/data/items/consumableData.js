@@ -47,6 +47,10 @@ export class ConsumableData extends GearData {
     return this.subtype === CONSUMABLE_SUBTYPES.SOFTWARE;
   }
 
+  get canProcess() {
+    return [CONSUMABLE_SUBTYPES.PROCESSOR, CONSUMABLE_SUBTYPES.SUITE].includes(this.subtype);
+  }
+
   /** True for software, processor, and suite — automatically marked as attachments. */
   get isAttachmentType() {
     return [CONSUMABLE_SUBTYPES.SOFTWARE, CONSUMABLE_SUBTYPES.PROCESSOR, CONSUMABLE_SUBTYPES.SUITE].includes(this.subtype);
