@@ -71,7 +71,7 @@
     "glob": "^13.0.6",
     "marked": "^18.0.7",
     "prettier": "^3.9.6",
-    "sass": "^1.102.0",
+    "sass": "^1.104.0",
     "semantic-release": "^25.0.8",
     "semver": "^7.8.5",
     "simple-git": "^3.36.0",
