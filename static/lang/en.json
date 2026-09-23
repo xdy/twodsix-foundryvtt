@@ -3576,7 +3576,7 @@
         "name": "Display Tech Level in Compendium and Item Tab lists"
       },
       "omitPSIifZero": {
-        "hint": "Hides psionic strength characteristic if value set to zero.",
+        "hint": "Hides psionic strength characteristic and psionic abilities if characterisitc value is set to zero.",
         "name": "Omit PSI characteristic from actor sheets if value zero"
       },
       "omitALTifZero": {

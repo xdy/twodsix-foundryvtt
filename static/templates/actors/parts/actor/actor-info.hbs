@@ -46,6 +46,7 @@
 </div>
 
 <!-- Psionic Abilities -->
+{{#if actor.system.characteristics.psionicStrength.displayChar}}
 <div><span class="pusher"></span>
   <span class="item-title">{{localize "TWODSIX.Actor.Items.PSIONIC_ABILITIES"}}</span>
   <div class="items-psiAbilities gear-header">
@@ -80,6 +81,7 @@
     {{/each}}
   </section>
 </div>
+{{/if}}
 
 <!-- Spells -->
 {{#if settings.showSpells}}
