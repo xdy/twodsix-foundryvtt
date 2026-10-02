@@ -7,6 +7,16 @@ import Crit from './crit';
 import { TwodsixRollSettings } from './TwodsixRollSettings';
 import { addSign, capitalizeFirstLetter, getKeyByValue, simplifySkillName } from './utils';
 
+const ATTACK_TYPE_LOCALIZATION_KEYS = {
+  "auto-burst": "TWODSIX.Dialogs.ROFBurst",
+  "auto-full": "TWODSIX.Dialogs.ROFFull",
+  "burst-attack-dm": "TWODSIX.Dialogs.ROFBurst",
+  "burst-bonus-damage": "TWODSIX.Dialogs.ROFBurst",
+  "double-tap": "TWODSIX.Dialogs.ROFDoubleTap",
+  "multi": "TWODSIX.Dialogs.ROFMulti",
+  "fan": "TWODSIX.Dialogs.ROFFan"
+};
+
 export class TwodsixDiceRoll {
   /** @type {TwodsixRollSettings} */
   rollSettings;
@@ -409,7 +419,18 @@ export class TwodsixDiceRoll {
 
     }
 
+    const attackType = this.rollSettings.flags.attackType;
+    const attackTypeLocalizationKey = ATTACK_TYPE_LOCALIZATION_KEYS[attackType];
+    if (attackType !== "single" && attackTypeLocalizationKey) {
+      const attackModifier = this.rollSettings.rollModifiers.rof;
+      const attackModifierText = attackModifier ? addSign(attackModifier) : "";
+      flavorTable += `<tr><td>${game.i18n.localize("TWODSIX.Chat.Roll.Attack")}</td><td>${game.i18n.localize(attackTypeLocalizationKey)}</td><td class="centre">${attackModifierText}</td></tr>`;
+    }
+
     for (const modifierName of this.modifierList) {
+      if (modifierName === "rof" && attackTypeLocalizationKey && attackType !== "single") {
+        continue;
+      }
       const description = game.i18n.localize(`TWODSIX.Chat.Roll.${capitalizeFirstLetter(modifierName)}`);
       if (modifierName === "characteristic") {
         const characteristicValue = addSign(this.actor.getCharacteristicModifier(this.rollSettings.rollModifiers.characteristic));
@@ -460,7 +481,9 @@ export class TwodsixDiceRoll {
           default:
             break;
         }
-        const modValue = addSign(this.rollSettings.rollModifiers[modifierName]);
+        const modValue = modifierName === "item"
+          ? addSign(this.rollSettings.rollModifiers.item ?? 0) || "0"
+          : addSign(this.rollSettings.rollModifiers[modifierName]);
         flavorText += showModifiers ? `(${modValue})` : ``;
         flavorTable += `<td class="centre">${modValue}</td></tr>`;
       }
