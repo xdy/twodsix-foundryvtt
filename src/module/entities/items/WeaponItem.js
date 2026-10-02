@@ -3,7 +3,7 @@ import { getTargetStatusModifiers } from '../../utils/targetModifiers';
 import { TwodsixRollSettings } from '../../utils/TwodsixRollSettings';
 import { getCharacteristicFromDisplayLabel } from '../../utils/utils';
 import { GearItem } from './GearItem.js';
-import { getValueFromRollFormula } from './item-base.js';
+import { getValueFromRollFormula } from './BaseItem.js';
 
 /** @typedef {import("../TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../../utils/TwodsixDiceRoll").TwodsixDiceRoll} TwodsixDiceRoll */
@@ -336,13 +336,7 @@ export class WeaponItem extends GearItem {
    * @returns {Promise<void>}
    */
   async handleDamageRoll(roll, settings, targetTokens, attackIndex, isAOE, showInChat) {
-    const addEffect = game.settings.get('twodsix', 'addEffectToDamage');
-    let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
-    if (settings.bonusDamage !== "0" && settings.bonusDamage !== "") {
-      totalBonusDamage += (addEffect ? ` + ` : ``) + `${settings.bonusDamage}`;
-    }
-
-    const damagePayload = (await this.rollDamage(settings.messageMode, totalBonusDamage, showInChat, false, roll.effect)) || null;
+    const damagePayload = (await this.rollDamage(settings.messageMode, settings.bonusDamage, showInChat, false, roll.effect)) || null;
     if (targetTokens.length >= 1 && damagePayload) {
       if (isAOE) {
         for (const target of targetTokens) {
@@ -1061,7 +1055,7 @@ function parseCustomCTValue(inputString, isAuto) {
 }
 
 /**
- * @param {import('./item-base.js').default} weapon
+ * @param {import('./BaseItem.js').default} weapon
  * @returns {Promise<string>}
  */
 async function promptForCELROF(weapon) {
