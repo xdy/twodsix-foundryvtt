@@ -675,10 +675,12 @@ export default class TwodsixItem extends Item {
   /**
    * A method for drawing a measured template for an item action - accounting for consumables
    * having attachements with AOE's
-   * @returns {Promise<boolean>}
+   * @param {boolean} [returnPlacedRegion=false] Return region placement details for callers that need its origin
+  * @returns {Promise<boolean|{isAOE: boolean, region: object|null}>}
    */
-  async drawItemTemplate() {
+  async drawItemTemplate(returnPlacedRegion = false) {
     let returnValue = false;
+    let placedRegion = null;
     const magazine = this.system.useConsumableForAttack ? this.actor?.items.get(this.system.useConsumableForAttack) : undefined;
     const itemForAOE = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
     if (itemForAOE.system.target?.type !== "none") {
@@ -686,9 +688,9 @@ export default class TwodsixItem extends Item {
       try {
         const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
         if (itemTemplate) {
-          const regionDoc = await itemTemplate.drawPreview();
-          if (regionDoc && game.settings.get('twodsix', 'autoTargetAOE')) {
-            ItemTemplate.targetTokensForPlacedRegion(regionDoc);
+          placedRegion = await itemTemplate.drawPreview();
+          if (placedRegion && game.settings.get('twodsix', 'autoTargetAOE')) {
+            ItemTemplate.targetTokensForPlacedRegion(placedRegion);
           }
         } else {
           console.error("Failed to create ItemTemplate from item:", itemForAOE);
@@ -698,7 +700,7 @@ export default class TwodsixItem extends Item {
         console.log("Template error: ", err);
       }
     }
-    return returnValue;
+    return returnPlacedRegion ? {isAOE: returnValue, region: placedRegion} : returnValue;
   }
 
   /**
