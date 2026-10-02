@@ -1,5 +1,5 @@
 import { fields, makeValueField, requiredInteger } from '../commonSchemaUtils.js';
-import { GearData } from './gear-data.js';
+import { GearData } from './gearData.js';
 
 export class ArmorData extends GearData {
   static defineSchema() {

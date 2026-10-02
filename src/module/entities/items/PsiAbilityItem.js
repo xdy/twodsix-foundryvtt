@@ -1,6 +1,6 @@
 import { TWODSIX } from '../../config';
 import { TwodsixRollSettings } from '../../utils/TwodsixRollSettings';
-import TwodsixItem from './item-base.js';
+import TwodsixItem from './BaseItem.js';
 
 /**
  * Document class for psiAbility item type.

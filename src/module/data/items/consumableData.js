@@ -1,7 +1,7 @@
 import { fields, migrateNumberToString, requiredBlankString, requiredInteger } from '../commonSchemaUtils.js';
 import { CONSUMABLE_SUBTYPES } from '../../config.js';
-import { GearData } from './gear-data.js';
-import { makeTargetTemplate } from './item-base.js';
+import { GearData } from './gearData.js';
+import { makeTargetTemplate } from './baseItemData.js';
 
 export class ConsumableData extends GearData {
   static defineSchema() {

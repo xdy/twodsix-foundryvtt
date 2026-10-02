@@ -470,8 +470,7 @@ export default class TwodsixItem extends Item {
 
         // Roll damage and post, if necessary
         if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit") && rollEffect >= 0) {
-          const bonusDamage = game.settings.get("twodsix", "addEffectToDamage") && rollEffect !== 0 ? ` ${rollEffect}` : ``;
-          const damagePayload = await this.rollDamage(messageMode || game.settings.get('core', 'messageMode'), bonusDamage, true, showThrowDiag, rollEffect);
+          const damagePayload = await this.rollDamage(messageMode || game.settings.get('core', 'messageMode'), "", true, showThrowDiag, rollEffect);
           if (damagePayload?.damageValue > 0) {
             const targetTokens = Array.from(game.user.targets);
             if (targetTokens.length > 0) {
@@ -512,13 +511,18 @@ export default class TwodsixItem extends Item {
           return;
         }
       }
+      const effectSetting = this.actor?.type === "ship" ? "addEffectForShipDamage" : "addEffectToDamage";
+      const hasEffectReference = /@effect(?![\w.])/i.test(rollFormula);
+      if (game.settings.get("twodsix", effectSetting) && effect !== 0 && !hasEffectReference) {
+        rollFormula += ` + ${effect}`;
+      }
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
 
       let damage = {};
       let apValue = 0;
       if (Roll.validate(rollFormula)) {
-        damage = new Roll(rollFormula, this.actor?.getRollData());
+        damage = new Roll(rollFormula, {...this.actor?.getRollData(), effect});
         await damage.evaluate();
         apValue += this.getValueFromRollFormula("armorPiercing");
         apValue += this.getConsumableBonus("armorPiercing");
@@ -533,7 +537,7 @@ export default class TwodsixItem extends Item {
         if (Roll.validate(this.system.radDamage)) {
           const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
           //radFormula = simplifyRollFormula(radFormula);
-          radDamage = new Roll(radFormula, this.actor?.getRollData());
+          radDamage = new Roll(radFormula, {...this.actor?.getRollData(), effect});
           await radDamage.evaluate();
         }
       }

@@ -1,5 +1,5 @@
 import { applyAllStatusEffects } from '../../utils/showStatusIcons';
-import TwodsixItem from './item-base.js';
+import TwodsixItem from './BaseItem.js';
 
 /**
  * Document class for trait item type.

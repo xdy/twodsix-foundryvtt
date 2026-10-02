@@ -1,4 +1,4 @@
-import TwodsixItem from './item-base.js';
+import TwodsixItem from './BaseItem.js';
 
 /**
  * Document class for skills item type.

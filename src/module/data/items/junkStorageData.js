@@ -1,4 +1,4 @@
-import { GearData } from './gear-data.js';
+import { GearData } from './gearData.js';
 
 export class JunkStorageData extends GearData {
   static defineSchema() {
