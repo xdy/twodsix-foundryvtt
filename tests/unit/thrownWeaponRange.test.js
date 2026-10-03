@@ -6,6 +6,7 @@ const thrownWeapon = {
   rangeModifierType: 'doubleBand',
   units: 'm'
 };
+const CD_THROWN_RANGE = {effective: 4, maximum: 8};
 
 describe('derivative thrown weapon ranges', () => {
   test.each([
@@ -15,13 +16,13 @@ describe('derivative thrown weapon ranges', () => {
     ['CLU', 4, 8],
     ['CEFTL', 1, 2],
     ['AC', 2, 4]
-  ])('%s uses its ruleset Strength multipliers', (ruleset, effectiveMultiplier, maximumMultiplier) => {
+  ])('%s uses its ruleset Strength multipliers', (_ruleset, effectiveMultiplier, maximumMultiplier) => {
     const effectiveRange = 6 * effectiveMultiplier;
     const maximumRange = 6 * maximumMultiplier;
     const getModifier = (range) => getThrownWeaponRangeData({
       ...thrownWeapon,
       range,
-      ruleset,
+      thrownRange: {effective: effectiveMultiplier, maximum: maximumMultiplier},
       strength: 6
     }).rangeModifier;
 
@@ -35,7 +36,7 @@ describe('derivative thrown weapon ranges', () => {
     const rangeData = getThrownWeaponRangeData({
       ...thrownWeapon,
       range: 40,
-      ruleset: 'CD',
+      thrownRange: CD_THROWN_RANGE,
       strength: 3,
       units: 'ft'
     });
@@ -45,30 +46,23 @@ describe('derivative thrown weapon ranges', () => {
     expect(rangeData.rangeModifier).toBe(INTERMEDIATE_RANGE_MODIFIER);
   });
 
-  test('does not apply to non-thrown weapons, other rulesets, or non-double-band modes', () => {
+  test('does not apply to non-thrown weapons, rulesets without multipliers, or non-double-band modes', () => {
     expect(getThrownWeaponRangeData({
       ...thrownWeapon,
       range: 100,
-      ruleset: 'CD',
+      thrownRange: CD_THROWN_RANGE,
       strength: 6,
       weaponType: 'Demolition'
     })).toBeUndefined();
     expect(getThrownWeaponRangeData({
       ...thrownWeapon,
       range: 100,
-      ruleset: 'CEQ',
       strength: 6
     })).toBeUndefined();
     expect(getThrownWeaponRangeData({
       ...thrownWeapon,
       range: 100,
-      ruleset: 'CEATOM',
-      strength: 6
-    })).toBeUndefined();
-    expect(getThrownWeaponRangeData({
-      ...thrownWeapon,
-      range: 100,
-      ruleset: 'CD',
+      thrownRange: CD_THROWN_RANGE,
       strength: 6,
       rangeModifierType: 'CE_Bands'
     })).toBeUndefined();
@@ -77,7 +71,7 @@ describe('derivative thrown weapon ranges', () => {
   test('supports legacy explicit thrown range labels but not placed explosives', () => {
     const baseOptions = {
       range: 30,
-      ruleset: 'CD',
+      thrownRange: CD_THROWN_RANGE,
       rangeModifierType: 'doubleBand',
       strength: 6,
       weaponType: 'Ranged'
@@ -97,7 +91,7 @@ describe('derivative thrown weapon ranges', () => {
     expect(getThrownWeaponRangeData({
       ...thrownWeapon,
       range: 100,
-      ruleset: 'CD',
+      thrownRange: CD_THROWN_RANGE,
       strength: undefined
     }).rangeModifier).toBe(0);
   });
@@ -106,7 +100,7 @@ describe('derivative thrown weapon ranges', () => {
     expect(getThrownWeaponRangeData({
       ...thrownWeapon,
       range: undefined,
-      ruleset: 'CD',
+      thrownRange: CD_THROWN_RANGE,
       strength: 6
     })).toMatchObject({
       rangeModifier: 0,

@@ -472,7 +472,7 @@ export class WeaponItem extends GearItem {
       range,
       weaponType: this.system.weaponType,
       rangeBand: this.system.rangeBand,
-      ruleset: game.settings.get('twodsix', 'ruleset'),
+      thrownRange: TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')]?.thrownRange,
       rangeModifierType,
       strength: this.actor?.system.characteristics.strength.current,
       units: canvas.scene?.grid?.units

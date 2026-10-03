@@ -285,6 +285,7 @@ const RULESETS = Object.freeze({
   CEL: {
     key: "CEL",
     name: "Cepheus Light",
+    thrownRange: {effective: 2, maximum: 4},
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics_",
       difficultyListUsed: "CEL",
@@ -336,6 +337,7 @@ const RULESETS = Object.freeze({
   CEFTL: {
     key: "CEFTL",
     name: "Cepheus Faster Than Light",
+    thrownRange: {effective: 1, maximum: 2},
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics",
       difficultyListUsed: "CEL",
@@ -529,6 +531,7 @@ const RULESETS = Object.freeze({
   CD: {
     key: "CD",
     name: "Cepheus Deluxe",
+    thrownRange: {effective: 4, maximum: 8},
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
       difficultyListUsed: "CD",
@@ -589,6 +592,7 @@ const RULESETS = Object.freeze({
   CDEE: {
     key: "CDEE",
     name: "Cepheus Deluxe Enhanced Edition",
+    thrownRange: {effective: 2, maximum: 4},
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
       difficultyListUsed: "CD",
@@ -649,6 +653,7 @@ const RULESETS = Object.freeze({
   CLU: {
     key: "CLU",
     name: "Cepheus Light Upgraded",
+    thrownRange: {effective: 4, maximum: 8},
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics + @characteristics.intelligence.mod",
       difficultyListUsed: "CD",
@@ -763,6 +768,7 @@ const RULESETS = Object.freeze({
   AC: {
     key: "AC",
     name: "Alpha Cephei",
+    thrownRange: {effective: 2, maximum: 4},
     settings: {
       initiativeFormula: "2d6 + @skills.Tactics",
       difficultyListUsed: "AC",

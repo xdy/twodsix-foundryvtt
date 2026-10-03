@@ -1,15 +1,6 @@
 // Modifier between effective and maximum range; set to -2 to restore the earlier penalty.
 export const INTERMEDIATE_RANGE_MODIFIER = 0;
 
-const THROWN_RANGE_MULTIPLIERS = Object.freeze({
-  CEL: {effective: 2, maximum: 4},
-  CD: {effective: 4, maximum: 8},
-  CDEE: {effective: 2, maximum: 4},
-  CLU: {effective: 4, maximum: 8},
-  CEFTL: {effective: 1, maximum: 2},
-  AC: {effective: 2, maximum: 4}
-});
-
 const METERS_PER_UNIT = Object.freeze({
   cm: 0.01,
   ft: 0.3048,
@@ -33,20 +24,20 @@ const METERS_PER_UNIT = Object.freeze({
  * @param {number} options.range Measured distance in the scene's units
  * @param {string} options.weaponType Weapon's type label
  * @param {string} options.rangeBand Legacy range label used to identify existing thrown items
- * @param {string} options.ruleset Active ruleset key
+ * @param {{effective: number, maximum: number}} [options.thrownRange] Ruleset Strength multipliers for thrown range
  * @param {string} options.rangeModifierType Active range modifier mode
  * @param {number} options.strength Actor's current Strength
  * @param {string} options.units Scene distance units
  * @returns {{rangeModifier: number, rollType: string, effectiveRange?: number, maximumRange?: number}|undefined}
  */
-export function getThrownWeaponRangeData({range, weaponType, rangeBand, ruleset, rangeModifierType, strength, units}) {
+export function getThrownWeaponRangeData({range, weaponType, rangeBand, thrownRange, rangeModifierType, strength, units}) {
   const isThrownWeapon = weaponType?.trim().toLowerCase() === 'thrown' ||
     rangeBand?.trim().toLowerCase().startsWith('thrown');
   if (!isThrownWeapon || rangeModifierType !== 'doubleBand') {
     return undefined;
   }
 
-  const multipliers = THROWN_RANGE_MULTIPLIERS[ruleset];
+  const multipliers = thrownRange;
   if (!multipliers) {
     return undefined;
   }
