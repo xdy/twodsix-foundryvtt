@@ -39,7 +39,7 @@
     "type": "weapon",
     "lawLevel": "",
     "rangeBand": "Thrown 10/20",
-    "weaponType": "Ranged",
+    "weaponType": "Thrown",
     "damageType": "fire",
     "rateOfFire": "1",
     "recoil": false,
