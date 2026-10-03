@@ -194,6 +194,18 @@ export class WeaponItem extends GearItem {
         weaponsRange: rangeModifier,
         rangeLabel: rangeLabel
       });
+
+      // Let the user back out of a throw past maximum range before the grenade is consumed
+      if (isAOE && isThrownWeapon && rangeModifier <= INFEASIBLE) {
+        const throwAnyway = await foundry.applications.api.DialogV2.confirm({
+          window: {title: game.i18n.localize("TWODSIX.Warnings.BeyondMaxThrowTitle")},
+          content: game.i18n.localize("TWODSIX.Warnings.BeyondMaxThrow")
+        });
+        if (!throwAnyway) {
+          await placedRegion?.delete();
+          return;
+        }
+      }
     }
     // Assign applied statuses if exactly one target token
     const appliedStatuses = targetTokens.length === 1 ? getTargetStatusModifiers(targetTokens[0].actor) : [];

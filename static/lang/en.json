@@ -3863,6 +3863,8 @@
       "NoDamageToApply": "Damage or healing values must greater than zero.",
       "MissingUntrainedSkill": "Actor is missing untrained skill. Reload application to fix.",
       "TooManyTargets": "More targets than the number of attacks, targets will be chosen in order selected.",
+      "BeyondMaxThrowTitle": "Beyond Maximum Range",
+      "BeyondMaxThrow": "The target point is beyond this weapon's maximum throwing range. Throw anyway?",
       "WearingMultipleLayers": "Multiple armor layers equipped while wearing non-stackable armor.",
       "ResetEffectForManualDamage": "Effects not included in damage rolls.  Resetting effects in manual rolls to false.",
       "tableNotFound": "Cannot find RollTable '{id}' referenced in Journal Entry.",
