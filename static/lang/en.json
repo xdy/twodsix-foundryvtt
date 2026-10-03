@@ -1576,6 +1576,7 @@
         "Range": "Range",
         "lawLevel": "Law Level",
         "rangeBand": "Range Band",
+        "ThrownRangeTooltip": "Thrown range from Strength {strength}: x{effective} / x{maximum}, in meters",
         "weaponType": "Weapon Type",
         "damageType": "Damage Type",
         "rateOfFire": "Rate of Fire/Auto X",

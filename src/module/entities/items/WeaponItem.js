@@ -1,7 +1,7 @@
 import { TWODSIX } from '../../config';
 import { getTargetStatusModifiers } from '../../utils/targetModifiers';
 import { TwodsixRollSettings } from '../../utils/TwodsixRollSettings';
-import { getThrownWeaponRangeData } from '../../utils/thrownWeaponRange.js';
+import { formatThrownRangeLimits, getThrownWeaponRangeData } from '../../utils/thrownWeaponRange.js';
 import { getCharacteristicFromDisplayLabel } from '../../utils/utils';
 import { GearItem } from './GearItem.js';
 import { getValueFromRollFormula } from './BaseItem.js';
@@ -464,6 +464,43 @@ export class WeaponItem extends GearItem {
   }
 
   /**
+   * Strength-derived range data for a thrown weapon under the active ruleset.
+   * @param {number} [range] Measured distance; omit to get only the range limits
+   * @returns {object|undefined} Helper result, or undefined when Strength-derived ranges do not apply
+   */
+  getThrownRangeData(range) {
+    return getThrownWeaponRangeData({
+      range,
+      weaponType: this.system.weaponType,
+      rangeBand: this.system.rangeBand,
+      thrownRange: TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')]?.thrownRange,
+      rangeModifierType: game.settings.get('twodsix', 'rangeModifierType'),
+      strength: this.actor?.system.characteristics.strength.current,
+      units: canvas.scene?.grid?.units
+    });
+  }
+
+  /**
+   * Range text and tooltip for sheets when the range comes from the owner's Strength.
+   * @returns {{text: string, tooltip: string}|undefined} Undefined when the stored range should be shown
+   */
+  get displayRange() {
+    const rangeData = this.getThrownRangeData();
+    if (rangeData?.effectiveRange === undefined) {
+      return undefined;
+    }
+    const thrownRange = TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')].thrownRange;
+    return {
+      text: formatThrownRangeLimits(rangeData, game.i18n.lang),
+      tooltip: game.i18n.format("TWODSIX.Items.Weapon.ThrownRangeTooltip", {
+        strength: this.actor.system.characteristics.strength.current,
+        effective: thrownRange.effective,
+        maximum: thrownRange.maximum
+      })
+    };
+  }
+
+  /**
    * A method to get the weapons range modifer based on the weapon type and measured range (distance).
    * Valid for Classic Traveller, Cepheus Engine, and Cepheus Universal band types as well as other rule sets with range values.
    * @param {number} range  The measured distance to the target
@@ -480,15 +517,7 @@ export class WeaponItem extends GearItem {
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const ammoModifier = this.getAmmoRangeModifier(rangeModifierType);
 
-    const thrownRangeData = getThrownWeaponRangeData({
-      range,
-      weaponType: this.system.weaponType,
-      rangeBand: this.system.rangeBand,
-      thrownRange: TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')]?.thrownRange,
-      rangeModifierType,
-      strength: this.actor?.system.characteristics.strength.current,
-      units: canvas.scene?.grid?.units
-    });
+    const thrownRangeData = this.getThrownRangeData(range);
     if (thrownRangeData) {
       return thrownRangeData;
     }
@@ -903,12 +932,11 @@ export class WeaponItem extends GearItem {
       }
 
       if (rangeData.effectiveRange !== undefined) {
-        const formattedRanges = [rangeData.effectiveRange, rangeData.maximumRange]
-          .map((value) => value.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1}));
+        const formattedRanges = formatThrownRangeLimits(rangeData, game.i18n.lang);
         const formattedTargetRange = hasMeasuredRange
           ? targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})
           : unknownLabel;
-        rangeLabel = `${formattedRanges.join('/')} m @ ${formattedTargetRange}${hasMeasuredRange ? gridUnits : ''}`;
+        rangeLabel = `${formattedRanges} m @ ${formattedTargetRange}${hasMeasuredRange ? gridUnits : ''}`;
       } else if (isQualitativeBands) {
         rangeLabel = this.system.rangeBand === 'none'
           ? game.i18n.localize(localizePrefix + "none")

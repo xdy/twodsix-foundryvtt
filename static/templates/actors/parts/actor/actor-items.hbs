@@ -36,6 +36,8 @@
               <span class="item-name centre">{{item.system.weight}}</span>
               {{#if ../settings.ShowRangeBandAndHideRange}}
               <span class="item-name centre" data-tooltip='{{localize (concat "TWODSIX.Chat.Roll.WeaponRangeTypes." item.system.rangeBand)}}'>{{localize (lookup ../settings.rangeTypes item.system.rangeBand)}}</span>
+              {{else if item.displayRange}}
+              <span class="item-name centre" data-tooltip="{{item.displayRange.tooltip}}">{{item.displayRange.text}}</span>
               {{else}}
               <span class="item-name centre">{{item.system.range}}</span>
               {{/if}}

@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {getThrownWeaponRangeData, INTERMEDIATE_RANGE_MODIFIER} from '../../src/module/utils/thrownWeaponRange.js';
+import {formatThrownRangeLimits, getThrownWeaponRangeData, INTERMEDIATE_RANGE_MODIFIER} from '../../src/module/utils/thrownWeaponRange.js';
 
 const thrownWeapon = {
   weaponType: 'Thrown',
@@ -94,6 +94,11 @@ describe('derivative thrown weapon ranges', () => {
       thrownRange: CD_THROWN_RANGE,
       strength: undefined
     }).rangeModifier).toBe(0);
+  });
+
+  test('formats range limits as effective/maximum', () => {
+    expect(formatThrownRangeLimits({effectiveRange: 24, maximumRange: 48}, 'en')).toBe('24/48');
+    expect(formatThrownRangeLimits({effectiveRange: 7.25, maximumRange: 14.5}, 'en')).toBe('7.3/14.5');
   });
 
   test('returns dynamic limits when distance is unavailable for the chat label', () => {

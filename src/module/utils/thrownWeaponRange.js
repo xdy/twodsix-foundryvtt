@@ -19,6 +19,18 @@ const METERS_PER_UNIT = Object.freeze({
 });
 
 /**
+ * Format Strength-derived thrown range limits as "effective/maximum".
+ * @param {{effectiveRange: number, maximumRange: number}} limits Limits in meters
+ * @param {string} [locale] Locale used for number formatting
+ * @returns {string}
+ */
+export function formatThrownRangeLimits({effectiveRange, maximumRange}, locale) {
+  return [effectiveRange, maximumRange]
+    .map((value) => value.toLocaleString(locale, {maximumFractionDigits: 1}))
+    .join('/');
+}
+
+/**
  * Calculate the derivative ruleset range modifier for a thrown weapon.
  * @param {object} options
  * @param {number} options.range Measured distance in the scene's units
