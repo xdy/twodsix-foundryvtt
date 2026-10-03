@@ -1,8 +1,13 @@
+// Modifier between effective and maximum range; set to -2 to restore the earlier penalty.
+export const INTERMEDIATE_RANGE_MODIFIER = 0;
+
 const THROWN_RANGE_MULTIPLIERS = Object.freeze({
   CEL: {effective: 2, maximum: 4},
   CD: {effective: 4, maximum: 8},
   CDEE: {effective: 2, maximum: 4},
-  CLU: {effective: 4, maximum: 8}
+  CLU: {effective: 4, maximum: 8},
+  CEFTL: {effective: 1, maximum: 2},
+  AC: {effective: 2, maximum: 4}
 });
 
 const METERS_PER_UNIT = Object.freeze({
@@ -61,7 +66,7 @@ export function getThrownWeaponRangeData({range, weaponType, rangeBand, ruleset,
   const rangeModifier = rangeInMeters <= effectiveRange
     ? 0
     : rangeInMeters <= maximumRange
-      ? -2
+      ? INTERMEDIATE_RANGE_MODIFIER
       : -99;
 
   return {rangeModifier, rollType: 'Normal', effectiveRange, maximumRange};

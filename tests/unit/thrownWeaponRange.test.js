@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {getThrownWeaponRangeData} from '../../src/module/utils/thrownWeaponRange.js';
+import {getThrownWeaponRangeData, INTERMEDIATE_RANGE_MODIFIER} from '../../src/module/utils/thrownWeaponRange.js';
 
 const thrownWeapon = {
   weaponType: 'Thrown',
@@ -12,7 +12,9 @@ describe('derivative thrown weapon ranges', () => {
     ['CEL', 2, 4],
     ['CDEE', 2, 4],
     ['CD', 4, 8],
-    ['CLU', 4, 8]
+    ['CLU', 4, 8],
+    ['CEFTL', 1, 2],
+    ['AC', 2, 4]
   ])('%s uses its ruleset Strength multipliers', (ruleset, effectiveMultiplier, maximumMultiplier) => {
     const effectiveRange = 6 * effectiveMultiplier;
     const maximumRange = 6 * maximumMultiplier;
@@ -24,8 +26,8 @@ describe('derivative thrown weapon ranges', () => {
     }).rangeModifier;
 
     expect(getModifier(effectiveRange)).toBe(0);
-    expect(getModifier(effectiveRange + 0.1)).toBe(-2);
-    expect(getModifier(maximumRange)).toBe(-2);
+    expect(getModifier(effectiveRange + 0.1)).toBe(INTERMEDIATE_RANGE_MODIFIER);
+    expect(getModifier(maximumRange)).toBe(INTERMEDIATE_RANGE_MODIFIER);
     expect(getModifier(maximumRange + 0.1)).toBe(-99);
   });
 
@@ -40,7 +42,7 @@ describe('derivative thrown weapon ranges', () => {
 
     expect(rangeData.effectiveRange).toBe(12);
     expect(rangeData.maximumRange).toBe(24);
-    expect(rangeData.rangeModifier).toBe(-2);
+    expect(rangeData.rangeModifier).toBe(INTERMEDIATE_RANGE_MODIFIER);
   });
 
   test('does not apply to non-thrown weapons, other rulesets, or non-double-band modes', () => {
@@ -55,6 +57,12 @@ describe('derivative thrown weapon ranges', () => {
       ...thrownWeapon,
       range: 100,
       ruleset: 'CEQ',
+      strength: 6
+    })).toBeUndefined();
+    expect(getThrownWeaponRangeData({
+      ...thrownWeapon,
+      range: 100,
+      ruleset: 'CEATOM',
       strength: 6
     })).toBeUndefined();
     expect(getThrownWeaponRangeData({
@@ -78,7 +86,7 @@ describe('derivative thrown weapon ranges', () => {
     expect(getThrownWeaponRangeData({
       ...baseOptions,
       rangeBand: 'Thrown STR*4/STR*8'
-    }).rangeModifier).toBe(-2);
+    }).rangeModifier).toBe(INTERMEDIATE_RANGE_MODIFIER);
     expect(getThrownWeaponRangeData({
       ...baseOptions,
       rangeBand: 'placed'

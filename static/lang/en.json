@@ -1186,7 +1186,9 @@
           "veryLong":"Very Long",
           "vLong": "v.Long",
           "distant": "Distant",
-          "thr": "Thr."
+          "thr": "Thr.",
+          "grenade": "Grenade",
+          "gren": "Gren."
         },
         "RangeBandTypes": {
           "personal": "Personal",

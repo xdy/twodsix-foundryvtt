@@ -173,7 +173,8 @@ export class WeaponItem extends GearItem {
     }
 
     const isThrownWeapon = this.system.weaponType?.trim().toLowerCase() === 'thrown' ||
-      this.system.rangeBand?.trim().toLowerCase().startsWith('thrown');
+      this.system.rangeBand?.trim().toLowerCase().startsWith('thrown') ||
+      this.system.rangeBand === 'grenade';
     const rangeTargetPoint = isAOE && isThrownWeapon ? placedRegion?.object?.center : undefined;
 
     //Get weapons range modifier for roll dialog - note, values only apply if single target, otherwise empty or undefined returned.
@@ -804,6 +805,16 @@ export class WeaponItem extends GearItem {
                 returnVal = INFEASIBLE;
               } else {
                 returnVal = -2; //Thrown weapons default to DIFFICULT
+              }
+            } else if (weaponBand === 'grenade') {
+              // Grenades: 10m + 2xSTR, Average (0) task, +1 under half distance
+              const maxThrow = 10 + 2 * this.actor?.system.characteristics.strength.value;
+              if (range < maxThrow / 2) {
+                returnVal = 1;
+              } else if (range > maxThrow) {
+                returnVal = INFEASIBLE;
+              } else {
+                returnVal = 0;
               }
             } else {
               returnVal = CU_Range_Table[weaponBand][targetDistanceBand];
