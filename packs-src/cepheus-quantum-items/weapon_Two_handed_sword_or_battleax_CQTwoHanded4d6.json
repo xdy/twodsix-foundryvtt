@@ -1,0 +1,72 @@
+{
+  "_id": "CQTwoHanded4d6",
+  "name": "Two-handed sword or battleax",
+  "type": "weapon",
+  "img": "./systems/twodsix/assets/icons/broadsword.svg",
+  "system": {
+    "name": "Two-handed sword or battleax",
+    "techLevel": 0,
+    "description": "A large two-handed sword or battleax. This weapon requires both hands to wield.",
+    "shortdescr": "Two-handed sword or battleax - melee",
+    "quantity": 1,
+    "weight": 2,
+    "price": 25,
+    "traits": [],
+    "consumables": [],
+    "skillModifier": 0,
+    "skill": "",
+    "associatedSkillName": "Combat",
+    "equipped": "equipped",
+    "docReference": "",
+    "pdfReference": {
+      "type": "",
+      "href": "",
+      "label": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "m",
+      "type": "none"
+    },
+    "range": "0",
+    "damage": "4d6",
+    "damageBonus": 0,
+    "magazineSize": 0,
+    "ammo": "0",
+    "useConsumableForAttack": "",
+    "magazineCost": 0,
+    "type": "weapon",
+    "lawLevel": "8",
+    "rangeBand": "reach",
+    "weaponType": "melee",
+    "damageType": "slashing",
+    "rateOfFire": "",
+    "recoil": false,
+    "features": "",
+    "armorPiercing": 0,
+    "handlingModifiers": "",
+    "location": ""
+  },
+  "effects": [],
+  "folder": "GPBSNXRjYCvOMJl6",
+  "sort": 100000,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "twodsix": {}
+  },
+  "_stats": {
+    "systemId": "twodsix",
+    "systemVersion": "7.6.4",
+    "coreVersion": "14",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null,
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null
+  },
+  "_key": "!items!CQTwoHanded4d6"
+}

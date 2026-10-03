@@ -1,13 +1,13 @@
 {
   "_id": "4DBwAFpXqAI7ygBa",
-  "name": "Autopistol",
+  "name": "Handgun",
   "type": "weapon",
   "img": "./systems/twodsix/assets/icons/auto-pistol.svg",
   "system": {
-    "name": "Auto Pistol",
+    "name": "Handgun",
     "techLevel": 5,
-    "description": "Autopistol (TL5): Semi-automatic handgun fed from a magazine. Preloaded magazines may be inserted into an empty pistol, but require a reload action to complete.",
-    "shortdescr": "Auto Pistol - ranged",
+    "description": "Handgun (TL5): Semi-automatic handgun fed from a magazine. Preloaded magazines may be inserted into an empty pistol, but require a reload action to complete.",
+    "shortdescr": "Handgun - ranged",
     "quantity": 1,
     "weight": 1,
     "price": 150,
