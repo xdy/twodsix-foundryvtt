@@ -29,7 +29,7 @@
       "units": "m",
       "type": "none"
     },
-    "range": "0",
+    "range": "100/500",
     "damage": "by grenade",
     "damageBonus": 0,
     "magazineSize": 0,
@@ -38,7 +38,7 @@
     "magazineCost": 0,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "100/500",
+    "rangeBand": "rocket",
     "weaponType": "Ranged",
     "damageType": "NONE",
     "rateOfFire": "1",

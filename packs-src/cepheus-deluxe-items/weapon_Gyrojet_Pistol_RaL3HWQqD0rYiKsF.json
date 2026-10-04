@@ -29,7 +29,7 @@
       "units": "m",
       "type": "none"
     },
-    "range": "0",
+    "range": "10/20",
     "damage": "2d6",
     "damageBonus": 0,
     "magazineSize": 0,
@@ -38,7 +38,7 @@
     "magazineCost": 10,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "10/20",
+    "rangeBand": "pistol",
     "weaponType": "ranged",
     "damageType": "ballistic",
     "rateOfFire": "1",

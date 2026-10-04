@@ -38,7 +38,7 @@
     "magazineCost": 2000,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "100/400",
+    "rangeBand": "rifle",
     "weaponType": "Ranged",
     "damageType": "laser",
     "rateOfFire": "",

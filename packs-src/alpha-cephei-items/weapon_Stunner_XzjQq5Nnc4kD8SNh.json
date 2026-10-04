@@ -41,7 +41,7 @@
     "magazineCost": 10,
     "type": "weapon",
     "lawLevel": "2",
-    "rangeBand": "10/30",
+    "rangeBand": "none",
     "weaponType": "ranged",
     "damageType": "stun",
     "rateOfFire": "1",

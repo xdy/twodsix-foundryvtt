@@ -38,7 +38,7 @@
     "magazineCost": 1,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "50/200",
+    "rangeBand": "rocket",
     "weaponType": "Ranged",
     "damageType": "ballistic",
     "rateOfFire": "1",

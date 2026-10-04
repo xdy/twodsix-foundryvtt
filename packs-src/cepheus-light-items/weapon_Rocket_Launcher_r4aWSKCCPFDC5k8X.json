@@ -29,7 +29,7 @@
       "units": "m",
       "type": "radius"
     },
-    "range": "0",
+    "range": "50/200",
     "damage": "5d6",
     "damageBonus": 0,
     "magazineSize": 0,
@@ -38,7 +38,7 @@
     "magazineCost": 0,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "50/200",
+    "rangeBand": "rocket",
     "weaponType": "ranged",
     "damageType": "ballistic",
     "rateOfFire": "1",

@@ -38,7 +38,7 @@
     "magazineCost": 25,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "5/20",
+    "rangeBand": "none",
     "weaponType": "support",
     "damageType": "fire",
     "rateOfFire": "1",

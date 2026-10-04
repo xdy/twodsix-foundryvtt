@@ -38,7 +38,7 @@
     "magazineCost": 0,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "5/15",
+    "rangeBand": "grenade",
     "weaponType": "Thrown",
     "damageType": "ballistic",
     "rateOfFire": "1",

@@ -38,7 +38,7 @@
     "magazineCost": 15,
     "type": "weapon",
     "lawLevel": "4",
-    "rangeBand": "50/200",
+    "rangeBand": "assaultWeapon",
     "weaponType": "ranged",
     "damageType": "ballistic",
     "rateOfFire": "2",
