@@ -1,5 +1,4 @@
-// Modifier between effective and maximum range; set to -2 to restore the earlier penalty.
-export const INTERMEDIATE_RANGE_MODIFIER = 0;
+export const INTERMEDIATE_RANGE_MODIFIER = -2;
 
 const METERS_PER_UNIT = Object.freeze({
   cm: 0.01,
@@ -30,22 +29,33 @@ export function formatThrownRangeLimits({effectiveRange, maximumRange}, locale) 
     .join('/');
 }
 
+function hasExplicitRange(weaponRange) {
+  const rangeValues = typeof weaponRange === 'number'
+    ? [weaponRange]
+    : typeof weaponRange === 'string'
+      ? weaponRange.split('/', 2).map((value) => parseFloat(value))
+      : [];
+  return rangeValues.some((value) => Number.isFinite(value) && value > 0);
+}
+
 /**
  * Calculate the derivative ruleset range modifier for a thrown weapon.
  * @param {object} options
  * @param {number} options.range Measured distance in the scene's units
  * @param {string} options.weaponType Weapon's type label
  * @param {string} options.rangeBand Legacy range label used to identify existing thrown items
+ * @param {string|number} options.weaponRange Stored weapon range; zero may be a placeholder for thrown weapons
  * @param {{effective: number, maximum: number}} [options.thrownRange] Ruleset Strength multipliers for thrown range
  * @param {string} options.rangeModifierType Active range modifier mode
  * @param {number} options.strength Actor's current Strength
  * @param {string} options.units Scene distance units
+ * @param {boolean} [options.isAOE] Whether the attack targets an area
  * @returns {{rangeModifier: number, rollType: string, effectiveRange?: number, maximumRange?: number}|undefined}
  */
-export function getThrownWeaponRangeData({range, weaponType, rangeBand, thrownRange, rangeModifierType, strength, units}) {
+export function getThrownWeaponRangeData({range, weaponType, rangeBand, weaponRange, thrownRange, rangeModifierType, strength, units, isAOE = false}) {
   const isThrownWeapon = weaponType?.trim().toLowerCase() === 'thrown' ||
     rangeBand?.trim().toLowerCase().startsWith('thrown');
-  if (!isThrownWeapon || rangeModifierType !== 'doubleBand') {
+  if (!isThrownWeapon || hasExplicitRange(weaponRange) || rangeModifierType !== 'doubleBand') {
     return undefined;
   }
 
@@ -69,7 +79,7 @@ export function getThrownWeaponRangeData({range, weaponType, rangeBand, thrownRa
   const rangeModifier = rangeInMeters <= effectiveRange
     ? 0
     : rangeInMeters <= maximumRange
-      ? INTERMEDIATE_RANGE_MODIFIER
+      ? isAOE ? 0 : INTERMEDIATE_RANGE_MODIFIER
       : -99;
 
   return {rangeModifier, rollType: 'Normal', effectiveRange, maximumRange};
