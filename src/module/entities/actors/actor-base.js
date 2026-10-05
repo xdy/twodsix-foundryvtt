@@ -522,7 +522,8 @@ export default class TwodsixActor extends Actor {
         "damageType": game.settings.get('twodsix', 'ruleset') === 'CU' ? "melee" : "bludgeoning",
         "range": "Melee",
         "rangeBand": rangeSetting,
-        "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : ""
+        "handlingModifiers": game.settings.get('twodsix', 'ruleset') === 'CT' ? "STR 6/-2 9/1" : "",
+        "weaponType": "melee"
       }
     };
   }
