@@ -136,8 +136,7 @@ export class TwodsixShipActions {
             extra.component = linkedAmmo;
           }
         }
-        const bonusDamage = game.settings.get("twodsix", "addEffectForShipDamage") ? result.effect.toString() : "";
-        await (extra.component).rollDamage((game.settings.get('core', 'messageMode')), bonusDamage, true, false, result.effect);
+        await (extra.component).rollDamage((game.settings.get('core', 'messageMode')), "", true, false, result.effect);
       } else {
         await TwodsixShipActions.chatMessage(game.i18n.localize("TWODSIX.Ship.ActionMisses").replace("_WHILE_USING_", usingCompStr).replace("_EFFECT_VALUE_", result.effect.toString()), extra);
       }

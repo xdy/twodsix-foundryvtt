@@ -470,8 +470,7 @@ export default class TwodsixItem extends Item {
 
         // Roll damage and post, if necessary
         if (this.system.damage !== "" && this.system.damage !== "0" && game.settings.get("twodsix", "automateDamageRollOnHit") && rollEffect >= 0) {
-          const bonusDamage = game.settings.get("twodsix", "addEffectToDamage") && rollEffect !== 0 ? ` ${rollEffect}` : ``;
-          const damagePayload = await this.rollDamage(messageMode || game.settings.get('core', 'messageMode'), bonusDamage, true, showThrowDiag, rollEffect);
+          const damagePayload = await this.rollDamage(messageMode || game.settings.get('core', 'messageMode'), "", true, showThrowDiag, rollEffect);
           if (damagePayload?.damageValue > 0) {
             const targetTokens = Array.from(game.user.targets);
             if (targetTokens.length > 0) {
@@ -512,13 +511,18 @@ export default class TwodsixItem extends Item {
           return;
         }
       }
+      const effectSetting = this.actor?.type === "ship" ? "addEffectForShipDamage" : "addEffectToDamage";
+      const hasEffectReference = /@effect(?![\w.])/i.test(rollFormula);
+      if (game.settings.get("twodsix", effectSetting) && effect !== 0 && !hasEffectReference) {
+        rollFormula += ` + ${effect}`;
+      }
       rollFormula = rollFormula.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
       //rollFormula = simplifyRollFormula(rollFormula, { preserveFlavor: true });
 
       let damage = {};
       let apValue = 0;
       if (Roll.validate(rollFormula)) {
-        damage = new Roll(rollFormula, this.actor?.getRollData());
+        damage = new Roll(rollFormula, {...this.actor?.getRollData(), effect});
         await damage.evaluate();
         apValue += this.getValueFromRollFormula("armorPiercing");
         apValue += this.getConsumableBonus("armorPiercing");
@@ -533,7 +537,7 @@ export default class TwodsixItem extends Item {
         if (Roll.validate(this.system.radDamage)) {
           const radFormula = this.system.radDamage.replace(/dd/ig, "d6*10"); //Parse for a destructive damage roll DD = d6*10
           //radFormula = simplifyRollFormula(radFormula);
-          radDamage = new Roll(radFormula, this.actor?.getRollData());
+          radDamage = new Roll(radFormula, {...this.actor?.getRollData(), effect});
           await radDamage.evaluate();
         }
       }
@@ -671,10 +675,12 @@ export default class TwodsixItem extends Item {
   /**
    * A method for drawing a measured template for an item action - accounting for consumables
    * having attachements with AOE's
-   * @returns {Promise<boolean>}
+   * @param {boolean} [returnPlacedRegion=false] Return region placement details for callers that need its origin
+  * @returns {Promise<boolean|{isAOE: boolean, region: object|null}>}
    */
-  async drawItemTemplate() {
+  async drawItemTemplate(returnPlacedRegion = false) {
     let returnValue = false;
+    let placedRegion = null;
     const magazine = this.system.useConsumableForAttack ? this.actor?.items.get(this.system.useConsumableForAttack) : undefined;
     const itemForAOE = (magazine?.system.target.type !== "none" && magazine) ? magazine : this;
     if (itemForAOE.system.target?.type !== "none") {
@@ -682,9 +688,9 @@ export default class TwodsixItem extends Item {
       try {
         const itemTemplate = await ItemTemplate.fromItem(itemForAOE);
         if (itemTemplate) {
-          const regionDoc = await itemTemplate.drawPreview();
-          if (regionDoc && game.settings.get('twodsix', 'autoTargetAOE')) {
-            ItemTemplate.targetTokensForPlacedRegion(regionDoc);
+          placedRegion = await itemTemplate.drawPreview();
+          if (placedRegion && game.settings.get('twodsix', 'autoTargetAOE')) {
+            ItemTemplate.targetTokensForPlacedRegion(placedRegion);
           }
         } else {
           console.error("Failed to create ItemTemplate from item:", itemForAOE);
@@ -694,7 +700,7 @@ export default class TwodsixItem extends Item {
         console.log("Template error: ", err);
       }
     }
-    return returnValue;
+    return returnPlacedRegion ? {isAOE: returnValue, region: placedRegion} : returnValue;
   }
 
   /**

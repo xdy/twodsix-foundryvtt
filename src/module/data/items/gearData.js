@@ -1,5 +1,5 @@
 import { fields, migrateStringToNumber, requiredBlankString, requiredInteger } from '../commonSchemaUtils.js';
-import { TwodsixItemBaseData } from './item-base.js';
+import { TwodsixItemBaseData } from './baseItemData.js';
 
 export class GearData extends TwodsixItemBaseData {
   static defineSchema() {

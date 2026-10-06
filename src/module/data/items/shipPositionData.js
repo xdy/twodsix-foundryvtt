@@ -1,5 +1,5 @@
 import { fields, requiredBlankString, requiredInteger } from '../commonSchemaUtils.js';
-import { TwodsixItemBaseData } from './item-base.js';
+import { TwodsixItemBaseData } from './baseItemData.js';
 
 export class ShipPositionData extends TwodsixItemBaseData {
   static defineSchema() {

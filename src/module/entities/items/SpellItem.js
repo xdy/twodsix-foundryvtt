@@ -1,5 +1,5 @@
 import { TwodsixRollSettings } from '../../utils/TwodsixRollSettings';
-import TwodsixItem from './item-base.js';
+import TwodsixItem from './BaseItem.js';
 
 /**
  * Document class for spell item type.

@@ -1,5 +1,5 @@
 import { fields, requiredBlankString, requiredInteger } from '../commonSchemaUtils.js';
-import { TwodsixItemBaseData } from './item-base.js';
+import { TwodsixItemBaseData } from './baseItemData.js';
 
 /**
  * Data model for `species` item type. Represents an ancestry/alien species an actor can have.

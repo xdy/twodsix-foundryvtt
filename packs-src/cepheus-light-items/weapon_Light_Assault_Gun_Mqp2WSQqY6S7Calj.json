@@ -29,7 +29,7 @@
       "units": "m",
       "type": "none"
     },
-    "range": "0",
+    "range": "100/300",
     "damage": "5d6",
     "damageBonus": 0,
     "magazineSize": 0,
@@ -38,7 +38,7 @@
     "magazineCost": 0,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "100/300",
+    "rangeBand": "assaultWeapon",
     "weaponType": "Ranged",
     "damageType": "ballistic",
     "rateOfFire": "1",

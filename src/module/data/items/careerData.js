@@ -1,5 +1,5 @@
 import { fields, requiredBlankString } from '../commonSchemaUtils.js';
-import { TwodsixItemBaseData } from './item-base.js';
+import { TwodsixItemBaseData } from './baseItemData.js';
 
 /**
  * @typedef StructuredEventEntry

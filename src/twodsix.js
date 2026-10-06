@@ -20,7 +20,7 @@ import { CareerData } from './module/data/items/careerData.js';
 import { ComponentData } from './module/data/items/componentData.js';
 import { ComputerData } from './module/data/items/computerData.js';
 import { ConsumableData } from './module/data/items/consumableData.js';
-import { GearData } from './module/data/items/gear-data.js';
+import { GearData } from './module/data/items/gearData.js';
 import { JunkStorageData } from './module/data/items/junkStorageData.js';
 import { PsiAbilityData } from './module/data/items/psiAbilityData.js';
 import { ShipPositionData } from './module/data/items/shipPositionData.js';

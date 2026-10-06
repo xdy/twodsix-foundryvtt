@@ -38,7 +38,7 @@
     "magazineCost": 0,
     "type": "weapon",
     "lawLevel": "1",
-    "rangeBand": "5/20",
+    "rangeBand": "pistol",
     "weaponType": "ranged",
     "damageType": "ballistic",
     "rateOfFire": "1",

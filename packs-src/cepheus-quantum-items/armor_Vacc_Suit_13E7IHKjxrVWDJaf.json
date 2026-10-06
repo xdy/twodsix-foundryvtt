@@ -1,5 +1,5 @@
 {
-  "name": "Vacc Suit",
+  "name": "Space Suit",
   "ownership": {
     "default": 0,
     "XuPrg9IcPetFHQzW": 3
@@ -8,7 +8,7 @@
   "system": {
     "name": "",
     "techLevel": 9,
-    "description": "A Vacc suit carries life support supplies for up to 6 hours. Counts as two items towards encumbrance. Protects against Vaccum, Tained and Exotic atmospheres, as well as airborne pathogens. Offers 2D hours of protection against Corrosive atmospheres, and 1Dx10 minutes protection against insidious atmospheres. Reduces radiation by 60 rads.<br><br>Skill Required: Zero-G 0",
+    "description": "A space suit carries life support supplies for up to 6 hours. Counts as two items towards encumbrance. Protects against Vaccum, Tained and Exotic atmospheres, as well as airborne pathogens. Offers 2D hours of protection against Corrosive atmospheres, and 1Dx10 minutes protection against insidious atmospheres. Reduces radiation by 60 rads.<br><br>Skill Required: Zero-G 0",
     "shortdescr": "A standard, futuristic space suit",
     "quantity": 1,
     "weight": 2,

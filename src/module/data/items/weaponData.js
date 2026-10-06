@@ -5,8 +5,8 @@ import {
   requiredBlankString,
   requiredInteger
 } from '../commonSchemaUtils.js';
-import { GearData } from './gear-data.js';
-import { makeTargetTemplate } from './item-base.js';
+import { GearData } from './gearData.js';
+import { makeTargetTemplate } from './baseItemData.js';
 
 export class WeaponData extends GearData {
   static defineSchema() {

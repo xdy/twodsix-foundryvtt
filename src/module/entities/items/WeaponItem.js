@@ -1,9 +1,10 @@
 import { TWODSIX } from '../../config';
 import { getTargetStatusModifiers } from '../../utils/targetModifiers';
 import { TwodsixRollSettings } from '../../utils/TwodsixRollSettings';
+import { formatThrownRangeLimits, getThrownWeaponRangeData } from '../../utils/thrownWeaponRange.js';
 import { getCharacteristicFromDisplayLabel } from '../../utils/utils';
 import { GearItem } from './GearItem.js';
-import { getValueFromRollFormula } from './item-base.js';
+import { getValueFromRollFormula } from './BaseItem.js';
 
 /** @typedef {import("../TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../../utils/TwodsixDiceRoll").TwodsixDiceRoll} TwodsixDiceRoll */
@@ -126,7 +127,7 @@ export class WeaponItem extends GearItem {
     tmpSettings.rollType = overrideSettings?.rollType || skill.system.rolltype || "Normal";
 
     // Apply measured template if valid AOE. drawItemTemplate handles region placement and targeting.
-    const isAOE = await this.drawItemTemplate();
+    const {isAOE, region: placedRegion} = await this.drawItemTemplate(true);
     if (isAOE) {
       // Switch back to token control after region placement for user convenience
       if (canvas.tokens && typeof canvas.tokens.activate === 'function') {
@@ -171,16 +172,41 @@ export class WeaponItem extends GearItem {
       Object.assign(tmpSettings.rollModifiers, {weaponsHandling: this.getWeaponsHandlingMod(rateOfFireCE)});
     }
 
+    const isThrownWeapon = this.system.weaponType?.trim().toLowerCase() === 'thrown' ||
+      this.system.rangeBand?.trim().toLowerCase().startsWith('thrown') ||
+      this.system.rangeBand === 'grenade';
+    const rangeTargetPoint = isAOE && isThrownWeapon ? placedRegion?.object?.center : undefined;
+
     //Get weapons range modifier for roll dialog - note, values only apply if single target, otherwise empty or undefined returned.
     if (controlledTokens?.length === 1) {
       const {
         rangeModifier,
         rangeLabel
-      } = this.calculateRangeAndLabel(controlledTokens, targetTokens, weaponType, isAutoFull, tmpSettings);
+      } = this.calculateRangeAndLabel(
+        controlledTokens,
+        targetTokens,
+        weaponType,
+        isAutoFull,
+        tmpSettings,
+        rangeTargetPoint,
+        isAOE
+      );
       Object.assign(tmpSettings.rollModifiers, {
         weaponsRange: rangeModifier,
         rangeLabel: rangeLabel
       });
+
+      // Let the user back out of a throw past maximum range before the grenade is consumed
+      if (isAOE && isThrownWeapon && rangeModifier <= INFEASIBLE) {
+        const throwAnyway = await foundry.applications.api.DialogV2.confirm({
+          window: {title: game.i18n.localize("TWODSIX.Warnings.BeyondMaxThrowTitle")},
+          content: game.i18n.localize("TWODSIX.Warnings.BeyondMaxThrow")
+        });
+        if (!throwAnyway) {
+          await placedRegion?.delete();
+          return;
+        }
+      }
     }
     // Assign applied statuses if exactly one target token
     const appliedStatuses = targetTokens.length === 1 ? getTargetStatusModifiers(targetTokens[0].actor) : [];
@@ -208,7 +234,7 @@ export class WeaponItem extends GearItem {
       ui.notifications.warn("TWODSIX.Warnings.TooManyTargets", {localize: true});
     }
     //Make attack rolls
-    await this.executeAttackRolls(numberOfAttacks, targetTokens, controlledTokens, weaponType, isAutoFull, settings, showInChat, isAOE, attackType);
+    await this.executeAttackRolls(numberOfAttacks, targetTokens, controlledTokens, weaponType, isAutoFull, settings, showInChat, isAOE, attackType, rangeTargetPoint);
   }
 
   /**
@@ -236,6 +262,7 @@ export class WeaponItem extends GearItem {
    * @param {TwodsixRollSettings} settings - The settings used for the attack roll.
    * @param {boolean} showInChat - Whether to display the attack roll results in the chat.
    * @param {boolean} isAOE - Whether the attack is an area-of-effect attack.
+    * @param {{x: number, y: number}} [rangeTargetPoint] Point to measure to for thrown area attacks.
    * @returns {Promise<void>} A promise that resolves when all attack rolls and damage handling are complete.
    */
   async executeAttackRolls(
@@ -247,7 +274,8 @@ export class WeaponItem extends GearItem {
     settings,
     showInChat,
     isAOE,
-    attackType
+    attackType,
+    rangeTargetPoint
   ) {
     const targetModifiers = [...settings.rollModifiers.targetModifier];
     Object.assign(settings.flags, {attackType: attackType ?? ""});
@@ -255,7 +283,7 @@ export class WeaponItem extends GearItem {
       const targetToken = targetedTokens[i % targetedTokens.length];
       // Update modifiers for each target if multi attack, otherwise use settings that have been preselected
       if (targetedTokens.length > 1) {
-        this.updateRollModifiers(settings, targetToken, controlledTokens, weaponType, isAutoFull, isAOE, targetModifiers);
+        this.updateRollModifiers(settings, targetToken, controlledTokens, weaponType, isAutoFull, isAOE, targetModifiers, rangeTargetPoint);
       }
 
       // Perform the skill roll
@@ -277,6 +305,7 @@ export class WeaponItem extends GearItem {
    * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
    * @param {boolean} isAOE - Whether the attack is an area-of-effect attack.
    * @param {any[]} targetModifiers - A list of target-specific modifiers to apply.
+  * @param {{x: number, y: number}} [rangeTargetPoint] Point to measure to for thrown area attacks.
    * @returns {void}
    */
   updateRollModifiers(
@@ -286,7 +315,8 @@ export class WeaponItem extends GearItem {
     weaponType,
     isAutoFull,
     isAOE,
-    targetModifiers
+    targetModifiers,
+    rangeTargetPoint
   ) {
     // Update dodge/parry modifiers
     const dodgeParryInfo = this.getDodgeParryValues(targetToken, isAOE);
@@ -299,9 +329,11 @@ export class WeaponItem extends GearItem {
     }
 
     // Update range modifiers if controlled tokens exist
-    if (controlledTokens.length === 1 && targetToken) {
-      const targetRange = this.measureTokenDistance(controlledTokens[0], targetToken);
-      const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull);
+    if (controlledTokens.length === 1 && (targetToken || rangeTargetPoint)) {
+      const targetRange = rangeTargetPoint
+        ? this.measureTokenDistanceToPoint(controlledTokens[0], rangeTargetPoint)
+        : this.measureTokenDistance(controlledTokens[0], targetToken);
+      const rangeData = this.getRangeModifier(targetRange, weaponType, isAutoFull, isAOE);
       Object.assign(settings.rollModifiers, {weaponsRange: rangeData.rangeModifier});
       Object.assign(settings, {rollType: rangeData.rollType});
     }
@@ -336,13 +368,7 @@ export class WeaponItem extends GearItem {
    * @returns {Promise<void>}
    */
   async handleDamageRoll(roll, settings, targetTokens, attackIndex, isAOE, showInChat) {
-    const addEffect = game.settings.get('twodsix', 'addEffectToDamage');
-    let totalBonusDamage = addEffect ? `${roll.effect}` : ``;
-    if (settings.bonusDamage !== "0" && settings.bonusDamage !== "") {
-      totalBonusDamage += (addEffect ? ` + ` : ``) + `${settings.bonusDamage}`;
-    }
-
-    const damagePayload = (await this.rollDamage(settings.messageMode, totalBonusDamage, showInChat, false, roll.effect)) || null;
+    const damagePayload = (await this.rollDamage(settings.messageMode, settings.bonusDamage, showInChat, false, roll.effect)) || null;
     if (targetTokens.length >= 1 && damagePayload) {
       if (isAOE) {
         for (const target of targetTokens) {
@@ -439,6 +465,45 @@ export class WeaponItem extends GearItem {
   }
 
   /**
+   * Strength-derived range data for a thrown weapon under the active ruleset.
+   * @param {number} [range] Measured distance; omit to get only the range limits
+   * @returns {object|undefined} Helper result, or undefined when Strength-derived ranges do not apply
+   */
+  getThrownRangeData(range, isAOE = false) {
+    return getThrownWeaponRangeData({
+      range,
+      weaponType: this.system.weaponType,
+      rangeBand: this.system.rangeBand,
+      weaponRange: this.system.range,
+      thrownRange: TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')]?.thrownRange,
+      rangeModifierType: game.settings.get('twodsix', 'rangeModifierType'),
+      strength: this.actor?.system.characteristics.strength.current,
+      units: canvas.scene?.grid?.units,
+      isAOE
+    });
+  }
+
+  /**
+   * Range text and tooltip for sheets when the range comes from the owner's Strength.
+   * @returns {{text: string, tooltip: string}|undefined} Undefined when the stored range should be shown
+   */
+  get displayRange() {
+    const rangeData = this.getThrownRangeData();
+    if (rangeData?.effectiveRange === undefined) {
+      return undefined;
+    }
+    const thrownRange = TWODSIX.RULESETS[game.settings.get('twodsix', 'ruleset')].thrownRange;
+    return {
+      text: formatThrownRangeLimits(rangeData, game.i18n.lang),
+      tooltip: game.i18n.format("TWODSIX.Items.Weapon.ThrownRangeTooltip", {
+        strength: this.actor.system.characteristics.strength.current,
+        effective: thrownRange.effective,
+        maximum: thrownRange.maximum
+      })
+    };
+  }
+
+  /**
    * A method to get the weapons range modifer based on the weapon type and measured range (distance).
    * Valid for Classic Traveller, Cepheus Engine, and Cepheus Universal band types as well as other rule sets with range values.
    * @param {number} range  The measured distance to the target
@@ -446,7 +511,7 @@ export class WeaponItem extends GearItem {
    * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
    * @returns {object} {rangeModifier: rangeModifier, rollType: rollType}
    */
-  getRangeModifier(range, weaponBand, isAutoFull) {
+  getRangeModifier(range, weaponBand, isAutoFull, isAOE = false) {
     if (range === undefined) {
       return {rangeModifier: 0, rollType: 'Normal'};
     }
@@ -454,6 +519,11 @@ export class WeaponItem extends GearItem {
     let rollType = 'Normal';
     const rangeModifierType = game.settings.get('twodsix', 'rangeModifierType');
     const ammoModifier = this.getAmmoRangeModifier(rangeModifierType);
+
+    const thrownRangeData = this.getThrownRangeData(range, isAOE);
+    if (thrownRangeData) {
+      return thrownRangeData;
+    }
 
     // Validate weapon range
     if (typeof this.system.range !== 'string') {
@@ -780,6 +850,16 @@ export class WeaponItem extends GearItem {
               } else {
                 returnVal = -2; //Thrown weapons default to DIFFICULT
               }
+            } else if (weaponBand === 'grenade') {
+              // Grenades: 10m + 2xSTR, Average (0) task, +1 under half distance
+              const maxThrow = 10 + 2 * this.actor?.system.characteristics.strength.value;
+              if (range < maxThrow / 2) {
+                returnVal = 1;
+              } else if (range > maxThrow) {
+                returnVal = INFEASIBLE;
+              } else {
+                returnVal = 0;
+              }
             } else {
               returnVal = CU_Range_Table[weaponBand][targetDistanceBand];
             }
@@ -823,11 +903,12 @@ export class WeaponItem extends GearItem {
    * @param {string} weaponType - The type of weapon being used (e.g., rifle, pistol).
    * @param {boolean} isAutoFull - Whether the attack is a full-auto attack.
    * @param {object} tmpSettings - Temporary settings for the attack roll.
+   * @param {{x: number, y: number}} [rangeTargetPoint] Point to measure to for an untargeted area attack.
    * @returns {object} An object containing the range modifier and range label.
    * @property {number} rangeModifier - The calculated range modifier for the attack.
    * @property {string} rangeLabel - The label describing the range of the attack.
    */
-  calculateRangeAndLabel(controlledTokens, targetTokens, weaponType, isAutoFull, tmpSettings) {
+  calculateRangeAndLabel(controlledTokens, targetTokens, weaponType, isAutoFull, tmpSettings, rangeTargetPoint, isAOE) {
     let rangeLabel = "";
     let rangeModifier = 0;
     const isQualitativeBands = ['CE_Bands', 'CT_Bands', 'CU_Bands'].includes(game.settings.get('twodsix', 'rangeModifierType'));
@@ -835,11 +916,17 @@ export class WeaponItem extends GearItem {
     const unknownLabel = game.i18n.localize("TWODSIX.Ship.Unknown");
     const gridUnits = canvas.scene?.grid?.units ?? "";
 
-    if (targetTokens.length === 1) {
-      const targetRange = this.measureTokenDistance(controlledTokens[0], targetTokens[0]);
+    let targetRange;
+    if (rangeTargetPoint) {
+      targetRange = this.measureTokenDistanceToPoint(controlledTokens[0], rangeTargetPoint);
+    } else if (targetTokens.length === 1) {
+      targetRange = this.measureTokenDistance(controlledTokens[0], targetTokens[0]);
+    }
+
+    if (targetTokens.length === 1 || targetRange !== undefined) {
       const hasMeasuredRange = Number.isFinite(targetRange);
       const rangeData = hasMeasuredRange
-        ? (this.getRangeModifier(targetRange, weaponType, isAutoFull) ?? {rangeModifier: 0, rollType: 'Normal'})
+        ? (this.getRangeModifier(targetRange, weaponType, isAutoFull, isAOE) ?? {rangeModifier: 0, rollType: 'Normal'})
         : {rangeModifier: 0, rollType: 'Normal'};
       rangeModifier = Number.isFinite(rangeData.rangeModifier) ? rangeData.rangeModifier : 0;
 
@@ -847,7 +934,13 @@ export class WeaponItem extends GearItem {
         Object.assign(tmpSettings, {rollType: tmpSettings.rollType === 'Normal' ? rangeData.rollType : 'Normal'});
       }
 
-      if (isQualitativeBands) {
+      if (rangeData.effectiveRange !== undefined) {
+        const formattedRanges = formatThrownRangeLimits(rangeData, game.i18n.lang);
+        const formattedTargetRange = hasMeasuredRange
+          ? targetRange.toLocaleString(game.i18n.lang, {maximumFractionDigits: 1})
+          : unknownLabel;
+        rangeLabel = `${formattedRanges} m @ ${formattedTargetRange}${hasMeasuredRange ? gridUnits : ''}`;
+      } else if (isQualitativeBands) {
         rangeLabel = this.system.rangeBand === 'none'
           ? game.i18n.localize(localizePrefix + "none")
           : hasMeasuredRange
@@ -902,6 +995,20 @@ export class WeaponItem extends GearItem {
     } else {
       return this.measureGridlessTokenDistance(sourceDocument, targetDocument);
     }
+  }
+
+  /**
+   * Measure center-to-point distance for a placed area attack with no targeted tokens.
+   * @param {Token} sourceToken
+   * @param {{x: number, y: number}} targetPoint
+   * @returns {number|undefined} Distance in scene units
+   */
+  measureTokenDistanceToPoint(sourceToken, targetPoint) {
+    if (!sourceToken || !Number.isFinite(targetPoint?.x) || !Number.isFinite(targetPoint?.y) || !canvas?.grid) {
+      return undefined;
+    }
+    const sourceDocument = sourceToken.document ?? sourceToken;
+    return canvas.grid.measurePath([sourceDocument.getCenterPoint(), targetPoint]).distance;
   }
 
   /**
@@ -1061,7 +1168,7 @@ function parseCustomCTValue(inputString, isAuto) {
 }
 
 /**
- * @param {import('./item-base.js').default} weapon
+ * @param {import('./BaseItem.js').default} weapon
  * @returns {Promise<string>}
  */
 async function promptForCELROF(weapon) {

@@ -171,16 +171,11 @@ export async function onChatCardAction(event, target) {
 
     const useInvertedShiftClick = (game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
-    const bonusDamage = message.getFlag("twodsix", "bonusDamage");
+    const bonusDamage = message.getFlag("twodsix", "bonusDamage") ?? "";
     const effect = message.getFlag("twodsix", "effect") ?? 0;
-    const addEffect = game.settings.get('twodsix', 'addEffectToDamage');
-    let totalBonusDamage = addEffect ? `${effect}` : ``;
-    if (bonusDamage !== "0" && bonusDamage !== "") {
-      totalBonusDamage += ((addEffect) ? ` + ` : ``) + `${bonusDamage}`;
-    }
     switch (action) {
       case "damage":
-        await item.rollDamage((game.settings.get('core', 'messageMode')), totalBonusDamage, true, showFormulaDialog, effect);
+        await item.rollDamage((game.settings.get('core', 'messageMode')), bonusDamage, true, showFormulaDialog, effect);
         break;
       case "opposed":
         //opposed roll

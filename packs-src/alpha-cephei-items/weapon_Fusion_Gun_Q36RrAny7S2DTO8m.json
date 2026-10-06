@@ -38,7 +38,7 @@
     "magazineCost": 65000,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "300/600",
+    "rangeBand": "rifle",
     "weaponType": "Ranged",
     "damageType": "plasma",
     "rateOfFire": "",

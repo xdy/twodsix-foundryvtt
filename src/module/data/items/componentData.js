@@ -7,7 +7,7 @@ import {
   requiredInteger
 } from '../commonSchemaUtils.js';
 import { COMPONENT_SUBTYPES } from '../../config.js';
-import { GearData } from './gear-data.js';
+import { GearData } from './gearData.js';
 
 export class ComponentData extends GearData {
   static defineSchema() {

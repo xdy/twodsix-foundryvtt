@@ -1,6 +1,6 @@
 import { COMPONENT_SUBTYPES } from '../../../config.js';
 import { ComponentData } from '../../../data/items/componentData.js';
-import TwodsixItem from '../item-base.js';
+import TwodsixItem from '../BaseItem.js';
 
 /**
  * Base document class for all component subtypes.

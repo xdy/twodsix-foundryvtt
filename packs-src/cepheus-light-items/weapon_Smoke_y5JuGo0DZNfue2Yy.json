@@ -41,7 +41,7 @@
     "magazineCost": 0,
     "type": "weapon",
     "lawLevel": "",
-    "rangeBand": "Thrown str/2*str",
+    "rangeBand": "Thrown STR*2/STR*4",
     "weaponType": "Thrown",
     "damageType": "smoke",
     "rateOfFire": "1",

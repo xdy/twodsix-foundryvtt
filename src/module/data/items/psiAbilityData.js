@@ -1,5 +1,5 @@
 import { fields, requiredBlankString, requiredInteger } from '../commonSchemaUtils.js';
-import { makeTargetTemplate } from './item-base.js';
+import { makeTargetTemplate } from './baseItemData.js';
 import { TraitData } from './traitData.js';
 
 export class PsiAbilityData extends TraitData {

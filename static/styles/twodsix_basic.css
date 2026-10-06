@@ -3798,6 +3798,10 @@ input[type="text"], input[type="number"], input[type="password"], input[type="da
   padding: 0 2px;
 }
 
+.character-characteristics input[readonly] {
+    box-shadow: none;
+}
+
 .overlap-header {
   overflow-y: auto;
   container-type: inline-size;
