@@ -1,3 +1,10 @@
+# [7.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.6.4...v7.7.0) (2026-10-06)
+
+
+### Features
+
+* expose and centralize roll effect to damage, improve grenade throwing range calcs ([#2030](https://github.com/xdy/twodsix-foundryvtt/issues/2030)) ([4b8f19c](https://github.com/xdy/twodsix-foundryvtt/commit/4b8f19ce39b75ea0d0a2369c0f50fc4b57d6a1eb))
+
 ## [7.6.4](https://github.com/xdy/twodsix-foundryvtt/compare/v7.6.3...v7.6.4) (2026-09-23)
 
 
