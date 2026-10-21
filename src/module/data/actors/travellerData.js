@@ -2,6 +2,7 @@ import {
   fields,
   makeValueField,
   migrateStringToNumber,
+  parseLocaleNumber,
   requiredBlankString,
   requiredInteger
 } from '../commonSchemaUtils.js';
@@ -44,7 +45,7 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.financeValues = new fields.SchemaField({
       cash: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
       pension: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
-      payment: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
+      payments: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
       debt: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
       livingCosts: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0})
     });
@@ -133,19 +134,37 @@ export class TravellerData extends TwodsixActorBaseData {
    * @returns {object}
    */
   static migrateData(source) {
+    // convert age from string to age.value number
     if ("age" in source) {
       migrateStringToNumber(source.age, "value");
     }
+
+    // Make certain that empty or null finances get converted to srtring zero
     if ("finances" in source) {
       const fin = source.finances;
       if (fin && typeof fin === 'object') {
         for (const [key, value] of Object.entries(fin)) {
-          if (value === "" || value === null || value === undefined) {
+          if (key === 'financial-notes') {
+            continue;
+          } else if (value === "" || value === null || value === undefined) {
             source.finances[key] = "0";
           }
         }
       }
     }
+
+    // Fix typo of finanaceValues.payment to financeValues.payments
+    if (source.financeValues && typeof source.financeValues === 'object' && "payment" in source.financeValues) {
+      const rawText = source.finances?.payments;
+      const parsed = typeof rawText === "string" ? TravellerData.getParsedFinanceText(rawText) : null;
+
+      source.financeValues.payments = parsed?.num
+        ? parseLocaleNumber(parsed.num) * TravellerData.getMultiplier(parsed.units)
+        : 0;
+
+      delete source.financeValues.payment;
+    }
+
     return super.migrateData(source);
   }
 }
