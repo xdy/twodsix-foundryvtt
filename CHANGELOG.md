@@ -1,3 +1,10 @@
+## [7.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.7.0...v7.7.1) (2026-10-22)
+
+
+### Bug Fixes
+
+* a typo in financeValues.payment and improve financial data entry and display ([#2033](https://github.com/xdy/twodsix-foundryvtt/issues/2033)) ([fd1cab1](https://github.com/xdy/twodsix-foundryvtt/commit/fd1cab1e9691ae1f9fe7d09d49387ebd146b7705))
+
 # [7.7.0](https://github.com/xdy/twodsix-foundryvtt/compare/v7.6.4...v7.7.0) (2026-10-06)
 
 
