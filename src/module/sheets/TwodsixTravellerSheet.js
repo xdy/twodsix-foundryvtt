@@ -2,6 +2,7 @@
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
 
 import { CONSUMABLE_SUBTYPES, TWODSIX } from '../config';
+import { TravellerData } from '../data/actors/travellerData';
 import { enrichContextFields } from '../utils/sheetUtils';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 
@@ -343,6 +344,29 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   getConsumableItem(ev, target) {
     const itemId = target.closest('.consumable-row').dataset.consumableId;
     return this.actor.items.get(itemId);
+  }
+
+  /** @override */
+  async _processSubmitData(event, formData, updateData, options) {
+    const finances = updateData.system?.finances;
+
+    if (finances) {
+      for (const [key, value] of Object.entries(finances)) {
+        if (key === "financial-notes") continue;
+
+        // Use your root validator directly against the form input
+        const isValid = TravellerData.getParsedFinanceText(value);
+        if (!isValid) {
+          // Clear the invalid field out of the update payload completely
+          delete updateData.system.finances[key];
+
+          // Force Foundry to re-sync the interface element to the database value
+          this.render();
+        }
+      }
+    }
+
+    return super._processSubmitData(event, formData, updateData, options);
   }
 }
 

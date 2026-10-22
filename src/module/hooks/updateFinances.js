@@ -41,40 +41,38 @@ export function updateShipFinances(actor, update, financeDiff) {
  * @param {Record<string, any>} update - The update object to be merged.
  * @param {any} financeDiff - The difference object containing finance changes.
  */
-function updateFinanceValues(actor, update, financeDiff) {
-  const updateMods = {};
-  for (const financeField in financeDiff.finances) {
-    if (financeField !== "financial-notes") {
-      const isDelta = ["+", "-"].includes(update.system.finances[financeField][0]);
+function updateFinanceValues(actor, update) {
+  if (!update?.system?.finances) {
+    return;
+  }
 
-      if (isDelta) {
-        const delta = TravellerData.getParsedFinanceText(update.system.finances[financeField]);
-        foundry.utils.mergeObject(updateMods, {
-          financeValues: {
-            [financeField]: actor.system.financeValues[financeField] + (parseFloat(delta.num) * TravellerData.getMultiplier(delta.units))
-          }
-        });
-        const parsedText = TravellerData.getParsedFinanceText(actor.system.finances[financeField]);
-        foundry.utils.mergeObject(updateMods, {
-          finances: {
-            [financeField]: TravellerData.convertNumberToFormattedText(
-              updateMods.financeValues[financeField],
-              (TravellerData.getMultiplier(parsedText.units) > TravellerData.getMultiplier(delta.units) ? parsedText.units : delta.units)
-            )
-          }
-        });
-      } else {
-        const parsedText = TravellerData.getParsedFinanceText(update.system.finances[financeField]);
-        if (parsedText) {
-          foundry.utils.mergeObject(updateMods, {
-            financeValues: {
-              [financeField]: parseLocaleNumber(parsedText.num) * TravellerData.getMultiplier(parsedText.units)
-            }
-          });
-        }
-      }
+  const updateMods = { financeValues: {}, finances: {} };
+
+  for (const [financeField, rawInput] of Object.entries(update.system.finances)) {
+    if (financeField === "financial-notes") {
+      continue;
+    }
+
+    const delta = TravellerData.getParsedFinanceText(rawInput);
+    const isDelta = ["+", "-"].includes(rawInput[0]);
+    const currentVal = actor.system.financeValues?.[financeField] || 0;
+
+    if (isDelta) {
+      updateMods.financeValues[financeField] = currentVal + (parseFloat(delta.num) * TravellerData.getMultiplier(delta.units));
+
+      const parsedText = TravellerData.getParsedFinanceText(actor.system.finances?.[financeField] || "0");
+      const currentUnits = parsedText?.units || "";
+
+      updateMods.finances[financeField] = TravellerData.convertNumberToFormattedText(
+        updateMods.financeValues[financeField],
+        (TravellerData.getMultiplier(currentUnits) > TravellerData.getMultiplier(delta.units) ? currentUnits : delta.units)
+      );
+    } else {
+      updateMods.financeValues[financeField] = parseLocaleNumber(delta.num) * TravellerData.getMultiplier(delta.units);
+      updateMods.finances[financeField] = TravellerData.convertNumberToFormattedText(updateMods.financeValues[financeField], delta.units);
     }
   }
+
   foundry.utils.mergeObject(update.system, updateMods);
 }
 

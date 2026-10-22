@@ -105,9 +105,20 @@ export class TravellerData extends TwodsixActorBaseData {
    * @returns {Record<string, any> | undefined} - Object with keys num and units, or undefined if parsing fails.
    */
   static getParsedFinanceText(financeString) {
-    const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.\-+]*)(?<sp>\s*)(?<units>.*?)$/);
+    if (typeof financeString !== "string") {
+      return undefined;
+    }
+
+    // Hardened Regex: Moves signs completely out of the number group, forcing clean numeric matches
+    const re = new RegExp(/^(?<pre>.*?)(?<num>[0-9,.]+)(?<sp>\s*)(?<units>.*?)$/);
     const parsedResult = re.exec(financeString);
-    return parsedResult?.groups;
+
+    // Guard: If the text didn't contain any digits, return undefined to trigger delta/update skips
+    if (!parsedResult?.groups?.num) {
+      return undefined;
+    }
+
+    return parsedResult.groups;
   }
 
   /**
@@ -117,12 +128,14 @@ export class TravellerData extends TwodsixActorBaseData {
    * @returns {string} - The localized number as a string, with units if provided.
    */
   static convertNumberToFormattedText(newValue, units) {
-    const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
     if (units) {
       newValue /= TravellerData.getMultiplier(units);
     }
     return ''.concat(
-      newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}),
+      newValue.toLocaleString(game.i18n.lang, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 6
+      }),
       (units ? ' ' + units : '')
     );
   }
