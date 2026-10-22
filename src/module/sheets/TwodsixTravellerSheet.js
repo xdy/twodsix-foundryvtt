@@ -347,18 +347,19 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
   }
 
   /** @override */
-  async _processSubmitData(event, formData, updateData, options) {
-    const finances = updateData.system?.finances;
+  async _processSubmitData(event, form, submitData, options) {
+    const finances = submitData.system?.finances;
 
-    if (finances) {
+    if (finances && typeof finances === "object") {
       for (const [key, value] of Object.entries(finances)) {
         if (key === "financial-notes") continue;
+        if (typeof value !== "string") continue;
 
-        // Use your root validator directly against the form input
+        // Use validator directly against the form input
         const isValid = TravellerData.getParsedFinanceText(value);
         if (!isValid) {
           // Clear the invalid field out of the update payload completely
-          delete updateData.system.finances[key];
+          delete submitData.system.finances[key];
 
           // Force Foundry to re-sync the interface element to the database value
           this.render();
@@ -366,7 +367,7 @@ export class TwodsixTravellerSheet extends foundry.applications.api.HandlebarsAp
       }
     }
 
-    return super._processSubmitData(event, formData, updateData, options);
+    return super._processSubmitData(event, form, submitData, options);
   }
 }
 
