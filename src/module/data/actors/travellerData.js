@@ -2,6 +2,7 @@ import {
   fields,
   makeValueField,
   migrateStringToNumber,
+  parseLocaleNumber,
   requiredBlankString,
   requiredInteger
 } from '../commonSchemaUtils.js';
@@ -44,7 +45,7 @@ export class TravellerData extends TwodsixActorBaseData {
     schema.financeValues = new fields.SchemaField({
       cash: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
       pension: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
-      payment: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
+      payments: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
       debt: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0}),
       livingCosts: new fields.NumberField({required: true, nullable: false, integer: false, initial: 0})
     });
@@ -104,9 +105,20 @@ export class TravellerData extends TwodsixActorBaseData {
    * @returns {Record<string, any> | undefined} - Object with keys num and units, or undefined if parsing fails.
    */
   static getParsedFinanceText(financeString) {
-    const re = new RegExp(/^(?<pre>\D*?)(?<num>[0-9,.\-+]*)(?<sp>\s*)(?<units>.*?)$/);
+    if (typeof financeString !== "string") {
+      return undefined;
+    }
+
+    // Hardened Regex: Moves signs completely out of the number group, forcing clean numeric matches
+    const re = new RegExp(/^(?<pre>.*?)(?<num>[0-9,.]+)(?<sp>\s*)(?<units>.*?)$/);
     const parsedResult = re.exec(financeString);
-    return parsedResult?.groups;
+
+    // Guard: If the text didn't contain any digits, return undefined to trigger delta/update skips
+    if (!parsedResult?.groups?.num) {
+      return undefined;
+    }
+
+    return parsedResult.groups;
   }
 
   /**
@@ -116,12 +128,14 @@ export class TravellerData extends TwodsixActorBaseData {
    * @returns {string} - The localized number as a string, with units if provided.
    */
   static convertNumberToFormattedText(newValue, units) {
-    const numberDigits = newValue === 0 ? 1 : Math.floor(Math.log10(Math.abs(newValue))) + 1;
     if (units) {
       newValue /= TravellerData.getMultiplier(units);
     }
     return ''.concat(
-      newValue.toLocaleString(game.i18n.lang, {minimumSignificantDigits: numberDigits}),
+      newValue.toLocaleString(game.i18n.lang, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 6
+      }),
       (units ? ' ' + units : '')
     );
   }
@@ -133,19 +147,37 @@ export class TravellerData extends TwodsixActorBaseData {
    * @returns {object}
    */
   static migrateData(source) {
+    // convert age from string to age.value number
     if ("age" in source) {
       migrateStringToNumber(source.age, "value");
     }
+
+    // Make certain that empty or null finances get converted to srtring zero
     if ("finances" in source) {
       const fin = source.finances;
       if (fin && typeof fin === 'object') {
         for (const [key, value] of Object.entries(fin)) {
-          if (value === "" || value === null || value === undefined) {
+          if (key === 'financial-notes') {
+            continue;
+          } else if (value === "" || value === null || value === undefined) {
             source.finances[key] = "0";
           }
         }
       }
     }
+
+    // Fix typo of finanaceValues.payment to financeValues.payments
+    if (source.financeValues && typeof source.financeValues === 'object' && "payment" in source.financeValues) {
+      const rawText = source.finances?.payments;
+      const parsed = typeof rawText === "string" ? TravellerData.getParsedFinanceText(rawText) : null;
+
+      source.financeValues.payments = parsed?.num
+        ? parseLocaleNumber(parsed.num) * TravellerData.getMultiplier(parsed.units)
+        : 0;
+
+      delete source.financeValues.payment;
+    }
+
     return super.migrateData(source);
   }
 }
