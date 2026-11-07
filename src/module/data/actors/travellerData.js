@@ -3,6 +3,7 @@ import {
   makeValueField,
   migrateStringToNumber,
   parseLocaleNumber,
+  parseStrictLocaleNumber,
   requiredBlankString,
   requiredInteger
 } from '../commonSchemaUtils.js';
@@ -102,23 +103,28 @@ export class TravellerData extends TwodsixActorBaseData {
   /**
    * Parse a finance text field into separate value and units.
    * @param {string} financeString - The finance string to parse.
-   * @returns {Record<string, any> | undefined} - Object with keys num and units, or undefined if parsing fails.
+   * @returns {Record<string, string> | undefined} - Parsed sign, number, and units, or undefined if parsing fails.
    */
   static getParsedFinanceText(financeString) {
     if (typeof financeString !== "string") {
       return undefined;
     }
 
-    // Hardened Regex: Moves signs completely out of the number group, forcing clean numeric matches
-    const re = new RegExp(/^(?<pre>.*?)(?<num>[0-9,.]+)(?<sp>\s*)(?<units>.*?)$/);
-    const parsedResult = re.exec(financeString);
-
-    // Guard: If the text didn't contain any digits, return undefined to trigger delta/update skips
-    if (!parsedResult?.groups?.num) {
+    const re = /^(?<sign>[+\-−]?)\s*(?<prefix>[^0-9+\-−.,]*?)(?<num>[0-9.,][0-9.,\s]*)(?<units>[^0-9]*)$/;
+    const groups = re.exec(financeString.trim())?.groups;
+    if (!groups) {
       return undefined;
     }
-
-    return parsedResult.groups;
+    groups.num = groups.num.trim();
+    groups.units = groups.units.trim();
+    const value = parseStrictLocaleNumber(groups.num) * TravellerData.getMultiplier(groups.units);
+    if (!Number.isFinite(value)) {
+      return undefined;
+    }
+    if (groups.sign === '\u2212') {
+      groups.sign = '-';
+    }
+    return groups;
   }
 
   /**
@@ -128,14 +134,17 @@ export class TravellerData extends TwodsixActorBaseData {
    * @returns {string} - The localized number as a string, with units if provided.
    */
   static convertNumberToFormattedText(newValue, units) {
-    if (units) {
-      newValue /= TravellerData.getMultiplier(units);
+    const multiplier = units ? TravellerData.getMultiplier(units) : 1;
+    let displayValue = newValue / multiplier;
+    if (multiplier > 1 && displayValue !== 0 && Math.abs(displayValue) < 0.0000005) {
+      units = units.slice(1);
+      displayValue = newValue;
     }
+    const options = displayValue !== 0 && Math.abs(displayValue) < 0.0000005
+      ? {maximumSignificantDigits: 6}
+      : {minimumFractionDigits: 0, maximumFractionDigits: 6};
     return ''.concat(
-      newValue.toLocaleString(game.i18n.lang, {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 6
-      }),
+      displayValue.toLocaleString(game.i18n.lang, options),
       (units ? ' ' + units : '')
     );
   }
@@ -172,7 +181,9 @@ export class TravellerData extends TwodsixActorBaseData {
       const parsed = typeof rawText === "string" ? TravellerData.getParsedFinanceText(rawText) : null;
 
       source.financeValues.payments = parsed?.num
-        ? parseLocaleNumber(parsed.num) * TravellerData.getMultiplier(parsed.units)
+        ? (parsed.sign === "-" ? -1 : 1)
+          * parseLocaleNumber(parsed.num)
+          * TravellerData.getMultiplier(parsed.units)
         : 0;
 
       delete source.financeValues.payment;
@@ -181,4 +192,3 @@ export class TravellerData extends TwodsixActorBaseData {
     return super.migrateData(source);
   }
 }
-

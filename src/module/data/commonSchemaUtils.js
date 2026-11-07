@@ -45,23 +45,72 @@ export function makeSecondaryArmorField(initialValue = 0, schemaOptions = {}) {
 }
 
 /**
- * Parse a localized number string to a float.
+ * Normalize a localized number and identify its grouping and decimal separators.
  * @param {string} stringNumber - The localized number string.
- * @returns {number} - The float value of the localized number.
+ * @returns {{input: string, thousandSeparator: string, decimalSeparator: string} | undefined} Normalized input and separators, or undefined for empty or non-string input.
+ */
+function normalizeLocaleNumber(stringNumber) {
+  if (typeof stringNumber !== 'string' || !stringNumber.trim()) {
+    return undefined;
+  }
+
+  const parts = Intl.NumberFormat(game.i18n.lang).formatToParts(1234567.8);
+  const normalizeSpaces = str => str.replace(/[\u00A0\u202F]/g, ' ');
+  return {
+    input: normalizeSpaces(stringNumber.trim()).replace(/^\u2212/, '-'),
+    thousandSeparator: normalizeSpaces(parts.find(p => p.type === 'group')?.value || ''),
+    decimalSeparator: parts.find(p => p.type === 'decimal')?.value || '.'
+  };
+}
+
+/**
+ * Parse a localized number using permissive legacy parsing.
+ * @param {string} stringNumber - The localized number string.
+ * @returns {number} - The parsed number, or NaN.
  */
 export function parseLocaleNumber(stringNumber) {
-  if (stringNumber) {
-    const thousandSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(11111)[1].value;
-    const decimalSeparator = Intl.NumberFormat(game.i18n.lang).formatToParts(1.1)[1].value;
-
-    return parseFloat(
-      stringNumber
-        .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
-        .replace(new RegExp('\\' + decimalSeparator), '.')
-    );
-  } else {
+  const normalized = normalizeLocaleNumber(stringNumber);
+  if (!normalized) {
     return NaN;
   }
+  const {input, thousandSeparator, decimalSeparator} = normalized;
+  const ungrouped = thousandSeparator ? input.replaceAll(thousandSeparator, '') : input;
+  return parseFloat(ungrouped.replace(decimalSeparator, '.'));
+}
+
+/**
+ * Parse a complete localized number, requiring correctly grouped digits.
+ * @param {string} stringNumber - The localized number string.
+ * @returns {number} - The parsed finite number, or NaN.
+ */
+export function parseStrictLocaleNumber(stringNumber) {
+  const normalized = normalizeLocaleNumber(stringNumber);
+  if (!normalized) {
+    return NaN;
+  }
+  const {thousandSeparator, decimalSeparator} = normalized;
+  let {input} = normalized;
+
+  let sign = '';
+  if (input.startsWith('-') || input.startsWith('+')) {
+    sign = input[0];
+    input = input.slice(1);
+  }
+
+  const numberParts = input.split(decimalSeparator);
+  if (numberParts.length > 2 || (numberParts.length === 2 && !/^\d*$/.test(numberParts[1]))) {
+    return NaN;
+  }
+  const integer = numberParts[0];
+  const groups = thousandSeparator ? integer.split(thousandSeparator) : [integer];
+  const validInteger = groups.length === 1
+    ? /^\d*$/.test(integer)
+    : /^\d{1,3}$/.test(groups[0]) && groups.slice(1).every(group => /^\d{3}$/.test(group));
+  if (!validInteger || (!integer && !numberParts[1])) {
+    return NaN;
+  }
+  const result = Number(`${sign}${groups.join('') || '0'}${numberParts.length === 2 ? `.${numberParts[1]}` : ''}`);
+  return Number.isFinite(result) ? result : NaN;
 }
 
 /**
