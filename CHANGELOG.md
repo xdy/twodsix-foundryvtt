@@ -1,3 +1,10 @@
+## [7.7.2](https://github.com/xdy/twodsix-foundryvtt/compare/v7.7.1...v7.7.2) (2026-11-08)
+
+
+### Bug Fixes
+
+* localized finance parsing and updates ([#2035](https://github.com/xdy/twodsix-foundryvtt/issues/2035)) ([49ee3aa](https://github.com/xdy/twodsix-foundryvtt/commit/49ee3aab5a7f29f3abfcbcdaeaef404d3e7417c1))
+
 ## [7.7.1](https://github.com/xdy/twodsix-foundryvtt/compare/v7.7.0...v7.7.1) (2026-10-22)
 
 
