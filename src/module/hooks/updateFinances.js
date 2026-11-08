@@ -1,6 +1,6 @@
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 import { TravellerData } from '../data/actors/travellerData.js';
-import { parseLocaleNumber } from '../data/commonSchemaUtils.js';
+import { parseStrictLocaleNumber } from '../data/commonSchemaUtils.js';
 
 /**
  * Update the finances for a traveller actor based on the provided financeDiff.
@@ -13,7 +13,8 @@ export function updateFinances(actor, update, financeDiff) {
   if (["traveller"].includes(actor.type)) {
     if (!foundry.utils.isEmpty(financeDiff.finances)) {
       updateFinanceValues(actor, update, financeDiff);
-    } else if (!foundry.utils.isEmpty(financeDiff.financeValues)) {
+    }
+    if (!foundry.utils.isEmpty(financeDiff.financeValues)) {
       updateFinanceText(actor, update, financeDiff);
     }
   }
@@ -41,48 +42,52 @@ export function updateShipFinances(actor, update, financeDiff) {
  * @param {Record<string, any>} update - The update object to be merged.
  * @param {any} financeDiff - The difference object containing finance changes.
  */
-/**
- * Update finance values for an actor, handling both delta and absolute changes.
- * @param {TwodsixActor} actor - The actor whose finances are being updated.
- * @param {Record<string, any>} update - The update object to be merged.
- * @param {any} financeDiff - The difference object containing finance changes.
- */
 function updateFinanceValues(actor, update, financeDiff) {
-  // Guard against missing financial update targets in partial payloads
-  if (!financeDiff?.finances || !update?.system?.finances) return;
+  if (!financeDiff?.finances || !update?.system?.finances) {
+    return;
+  }
 
   const updateMods = { financeValues: {}, finances: {} };
 
-  // Correctly use financeDiff to target ONLY fields that the user actively changed
   for (const financeField in financeDiff.finances) {
-    if (financeField === "financial-notes") continue;
+    if (financeField === "financial-notes") {
+      continue;
+    }
 
-    const rawInput = update.system.finances[financeField]?.trim();
-    if (typeof rawInput !== "string" || !rawInput) continue;
-
+    const rawInput = update.system.finances[financeField];
     const delta = TravellerData.getParsedFinanceText(rawInput);
-    if (!delta) continue; // Safety check for regex extraction matches
+    if (!delta) {
+      console.warn(`TWODSIX | Ignoring invalid finance value for ${financeField}`, rawInput);
+      delete update.system.finances[financeField];
+      continue;
+    }
 
-    const isDelta = ["+", "-"].includes(rawInput[0]);
+    const isDelta = ["+", "-"].includes(delta.sign);
     const currentVal = actor.system.financeValues?.[financeField] || 0;
+    const amount = parseStrictLocaleNumber(delta.num) * TravellerData.getMultiplier(delta.units);
+    const sign = delta.sign === "-" ? -1 : 1;
+    const newValue = isDelta ? currentVal + sign * amount : amount;
+    if (!Number.isFinite(newValue)) {
+      console.warn(`TWODSIX | Ignoring out-of-range finance value for ${financeField}`, rawInput);
+      delete update.system.finances[financeField];
+      continue;
+    }
+    updateMods.financeValues[financeField] = newValue;
 
     if (isDelta) {
-      updateMods.financeValues[financeField] = currentVal + (parseFloat(delta.num) * TravellerData.getMultiplier(delta.units));
-
       const parsedText = TravellerData.getParsedFinanceText(actor.system.finances?.[financeField] || "0");
       const currentUnits = parsedText?.units || "";
+      const useCurrentUnits = !delta.units || TravellerData.getMultiplier(currentUnits) > TravellerData.getMultiplier(delta.units);
 
       updateMods.finances[financeField] = TravellerData.convertNumberToFormattedText(
-        updateMods.financeValues[financeField],
-        (TravellerData.getMultiplier(currentUnits) > TravellerData.getMultiplier(delta.units) ? currentUnits : delta.units)
+        newValue,
+        useCurrentUnits ? currentUnits : delta.units
       );
     } else {
-      updateMods.financeValues[financeField] = parseLocaleNumber(delta.num) * TravellerData.getMultiplier(delta.units);
-      updateMods.finances[financeField] = TravellerData.convertNumberToFormattedText(updateMods.financeValues[financeField], delta.units);
+      updateMods.finances[financeField] = TravellerData.convertNumberToFormattedText(newValue, delta.units);
     }
   }
 
-  // Safely pack the updates into the system payload
   foundry.utils.mergeObject(update.system, updateMods);
 }
 
@@ -95,6 +100,10 @@ function updateFinanceValues(actor, update, financeDiff) {
 function updateFinanceText(actor, update, financeDiff) {
   const financeTextUpdates = {};
   for (const financeField in financeDiff.financeValues) {
+    if (Object.hasOwn(financeDiff.finances || {}, financeField)
+      && Object.hasOwn(update.system.finances || {}, financeField)) {
+      continue;
+    }
     const parsedText = TravellerData.getParsedFinanceText(actor.system.finances[financeField] || "0");
     const newValue = financeDiff.financeValues[financeField];
     foundry.utils.mergeObject(financeTextUpdates, {
@@ -103,4 +112,3 @@ function updateFinanceText(actor, update, financeDiff) {
   }
   foundry.utils.mergeObject(update.system, {finances: financeTextUpdates});
 }
-
