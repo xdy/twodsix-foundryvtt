@@ -362,7 +362,7 @@ export class TwodsixRollSettings {
  * @param {TwodsixItem | null} skill
  * @returns {void}
  */
-function handleRender(ev, htmlRend, skill) {
+function handleRender(_ev, htmlRend, skill) {
   htmlRend.element.querySelector(".select-skill")?.addEventListener("change", () => {
     const characteristicElement = htmlRend.element.querySelector('[name="rollModifiers.characteristic"]');
     let newSkill;
