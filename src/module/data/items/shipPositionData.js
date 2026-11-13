@@ -8,6 +8,7 @@ export class ShipPositionData extends TwodsixItemBaseData {
     schema.icon = new fields.StringField({...requiredBlankString});
     schema.actions = new fields.ObjectField({required: true, initial: {}});
     schema.order = new fields.NumberField({...requiredInteger, initial: 0});
+    schema.crewSkillLevel = new fields.NumberField({...requiredInteger, initial: 0});
     return schema;
   }
 }

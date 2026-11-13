@@ -1,5 +1,6 @@
 import { TWODSIX } from '../config';
 import { confirmRollFormula } from './sheetUtils';
+import { getCrewSpeaker, isSyntheticCrew } from './syntheticCrew';
 import { getInitialSettingsFromFormula, TwodsixRollSettings } from './TwodsixRollSettings';
 
 export class TwodsixShipActions {
@@ -37,7 +38,7 @@ export class TwodsixShipActions {
    * @returns {Promise<ChatMessage>}
    */
   static async chatMessage(msgStr, extra) {
-    const speakerData = ChatMessage.getSpeaker({actor: extra.actor});
+    const speakerData = getCrewSpeaker(extra.actor);
     if (msgStr.startsWith("/r") || msgStr.startsWith("/R")) {
       const parsedText = msgStr.split('#');
       let rollText = parsedText[0].substring(msgStr.indexOf(' ') + 1).trim();
@@ -74,20 +75,22 @@ export class TwodsixShipActions {
 
     const settings = getInitialSettingsFromFormula(text, extra.actor);
     if (settings) {
+      const uncrewed = isSyntheticCrew(extra.actor);
       Object.assign(settings, {
         extraFlavor: game.i18n.localize("TWODSIX.Ship.MakesChatRollAction").replace("_ACTION_NAME_", extra.actionName || game.i18n.localize("TWODSIX.Ship.Unknown")).replace("_POSITION_NAME_", (extra.positionName || game.i18n.localize("TWODSIX.Ship.Unknown"))),
-        flags: {tokenUUID: extra.ship?.uuid}
+        rollContext: {actor: extra.actor},
+        flags: {
+          tokenUUID: uncrewed ? extra.ship?.token?.uuid ?? "" : extra.ship?.uuid,
+          ...(uncrewed ? {actorUUID: "", shipUUID: extra.ship?.uuid} : {})
+        }
       });
       Object.assign(settings.rollModifiers, {item: extra.diceModifier ? parseInt(extra.diceModifier) : 0});
       const skill = settings.skill;
       delete settings.skill;
-      if (!settings.skillRoll) {
+      if (!settings.skillRoll && !extra.component) {
         // Special case of characteristic roll
         if (settings.rollModifiers.characteristic) {
-          extra.actor.characteristicRoll({
-            rollModifiers: settings.rollModifiers,
-            difficulty: settings.difficulty
-          }, true);
+          return await extra.actor.characteristicRoll(settings, true);
         } else {
           return false;
         }

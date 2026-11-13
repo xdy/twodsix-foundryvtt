@@ -6,6 +6,12 @@ A Foundry VTT system for running games using various 2d6-based role-playing game
 
 Instructions on how to set up your game for some of the most common variants can be found in our [WIKI here](https://github.com/xdy/twodsix-foundryvtt/wiki/System-Configuration-Guide).
 
+## Uncrewed ship positions
+
+Ship positions without assigned actors can perform actions using their **Uncrewed Skill Level**, set on the position sheet and defaulting to 0. This level applies to all skill rolls; characteristic modifiers are neutral. Both ship and battle sheets use a temporary, unsaved Traveller for these actions. Ship action macros receive this temporary actor as `actor`, alongside `ship` and `component`; they should not rely on its UUID or expect changes to it to persist. Assigned crew continue to use their own skills.
+
+Uncrewed roll chat cards identify the ship separately for permission checks; the temporary crew has no persistent actor UUID. Characteristic-only actions with a component still apply its modifiers and consumables, without adding the crew skill level.
+
 Also, see the [PUBLISHERS.md](../PUBLISHERS.md) for details of the rpg publishers that have explicitly granted us permission to support their products.
 
 Twodsix has been translated by users of the system into the following languages:

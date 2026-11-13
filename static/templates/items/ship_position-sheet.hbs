@@ -8,6 +8,11 @@
     <input class="form-input" type="number" name="system.order" value="{{system.order}}" data-dtype="Number"/>
   </div>
 
+  <div class="item-data">
+    <label for="system.crewSkillLevel" class="resource-label" data-tooltip="{{localize "TWODSIX.Ship.CrewSkillLevelHint"}}">{{localize "TWODSIX.Ship.CrewSkillLevel"}}</label>
+    <input class="form-input" type="number" name="system.crewSkillLevel" value="{{system.crewSkillLevel}}" data-dtype="Number"/>
+  </div>
+
   {{#if hasShipActor}}
     <div class="position-data">
       <span class="item-title-npc">{{localize "TWODSIX.Ship.Travellers"}}</span>
