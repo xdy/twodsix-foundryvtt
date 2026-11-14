@@ -3895,7 +3895,8 @@
       "NoLinkedAmmo": "No ammunition linked",
       "AmmoNotFound": "Can't find ammunition",
       "NoAmmoToReload": "No ammunition remains to reload",
-      "InsufficientFunds": "Not enough common funds to make transaction."
+      "InsufficientFunds": "Not enough common funds to make transaction.",
+      "LackPermissionToRoll": "You do not have permission to roll for this actor."
     }
   },
   "TYPES": {
