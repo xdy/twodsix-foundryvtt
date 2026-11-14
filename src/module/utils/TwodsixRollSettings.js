@@ -1,6 +1,7 @@
 import { TWODSIX } from '../config';
 import { getDifficultiesSelectObject, getRollTypeSelectObject } from './sheetUtils';
 import { getTargetDMSelectObject } from './targetModifiers';
+import { isSyntheticCrew } from './syntheticCrew';
 
 /** @typedef {import("../entities/TwodsixActor").default} TwodsixActor */
 /** @typedef {import("../entities/TwodsixItem").default} TwodsixItem */
@@ -49,6 +50,8 @@ export class TwodsixRollSettings {
   skillName;
   /** @type {object} */
   flags;
+  /** @type {{actor: TwodsixActor} | undefined} */
+  rollContext;
 
   /**
    * @param {object} settings
@@ -65,9 +68,10 @@ export class TwodsixRollSettings {
     const itemName = anItem?.name ?? "";
     const characteristic = settings?.rollModifiers?.characteristic ?? (aSkill && game.settings.get('twodsix', 'ruleset') !== 'CT' ? skill.characteristic : "NONE");
     //Create Flag data for Automated Automations Module
-    const itemUUID = settings?.flags?.itemUUID ?? anItem?.uuid ?? aSkill?.uuid ?? "";
+    const syntheticCrew = sourceActor?.getFlag?.("twodsix", "syntheticCrew") === true;
+    const itemUUID = settings?.flags?.itemUUID ?? anItem?.uuid ?? (syntheticCrew ? "" : aSkill?.uuid) ?? "";
     const tokenUUID = settings?.flags?.tokenUUID ?? (sourceActor)?.getActiveTokens()[0]?.document.uuid ?? "";
-    const actorUUID = settings?.flags?.actorUUID ?? (sourceActor)?.uuid ?? "";
+    const actorUUID = settings?.flags?.actorUUID ?? (syntheticCrew ? "" : sourceActor?.uuid) ?? "";
     let rollClass = "";
     this.bonusDamage = settings?.bonusDamage ?? "";
 
@@ -156,6 +160,7 @@ export class TwodsixRollSettings {
     this.extraFlavor = settings?.extraFlavor ?? "";
     this.selectedTimeUnit = "none";
     this.timeRollFormula = "1d6";
+    this.rollContext = settings?.rollContext;
     this.rollModifiers = {
       rof: settings?.rollModifiers?.rof ?? 0,
       characteristic: characteristic,
@@ -175,7 +180,7 @@ export class TwodsixRollSettings {
       targetModifierOverride: settings?.rollModifiers?.targetModifierOverride ?? false,
       appliedEffects: {},
       chain: settings?.rollModifiers?.chain ?? 0,
-      selectedSkill: aSkill?.uuid || settings?.rollModifiers?.selectedSkill,
+      selectedSkill: (isSyntheticCrew(aSkill?.actor) ? aSkill?.id : aSkill?.uuid) || settings?.rollModifiers?.selectedSkill,
       skillLevelMax: settings?.rollModifiers?.skillLevelMax ?? undefined,
       armorModifier: settings?.rollModifiers?.armorModifier ?? 0,
       armorLabel: settings?.rollModifiers?.armorLabel ?? ""
@@ -185,6 +190,8 @@ export class TwodsixRollSettings {
       tokenUUID: tokenUUID,
       itemUUID: itemUUID,
       actorUUID: actorUUID,
+      shipUUID: settings?.flags?.shipUUID ?? "",
+      syntheticCrewName: syntheticCrew ? sourceActor.name : "",
       bonusDamage: this.bonusDamage
     };
     //console.log("Modifiers: ", this.rollModifiers);
@@ -252,7 +259,7 @@ export class TwodsixRollSettings {
       rollTypes: getRollTypeSelectObject(),
       difficulty: getKeyByValue(this.difficulties, this.difficulty),
       difficultyList: getDifficultiesSelectObject(this.difficulties),
-      skillsList: (skill?.actor)?.getSkillNameList() ?? {},
+      skillsList: (skill?.actor)?.getSkillNameList(isSyntheticCrew(skill.actor)) ?? {},
       messageMode: this.messageMode,
       messageModes: CONFIG.ChatMessage.modes,
       characteristicList: _getTranslatedCharacteristicList(skill?.actor),
@@ -340,7 +347,7 @@ export class TwodsixRollSettings {
       window: {title: title, icon: "fa-solid fa-dice"},
       content: html,
       buttons: buttons,
-      render: handleRender,
+      render: (event, dialog) => handleRender(event, dialog, skill),
       close: () => {
         Promise.resolve();
       },
@@ -352,16 +359,19 @@ export class TwodsixRollSettings {
 /**
  * @param {Event} ev
  * @param {foundry.applications.api.ApplicationV2} htmlRend
+ * @param {TwodsixItem | null} skill
  * @returns {void}
  */
-function handleRender(ev, htmlRend) {
+function handleRender(_ev, htmlRend, skill) {
   htmlRend.element.querySelector(".select-skill")?.addEventListener("change", () => {
     const characteristicElement = htmlRend.element.querySelector('[name="rollModifiers.characteristic"]');
     let newSkill;
     if (characteristicElement) {
-      const newSkillUuid = htmlRend.element.querySelector('[name="rollModifiers.selectedSkill"]')?.value;
-      if (newSkillUuid) {
-        newSkill = fromUuidSync(newSkillUuid);
+      const selectedSkill = htmlRend.element.querySelector('[name="rollModifiers.selectedSkill"]')?.value;
+      if (selectedSkill) {
+        newSkill = isSyntheticCrew(skill?.actor)
+          ? skill.actor.items.get(selectedSkill)
+          : (selectedSkill === skill?.uuid ? skill : fromUuidSync(selectedSkill));
         characteristicElement.value = newSkill?.system.characteristic || "NONE";
       }
     }

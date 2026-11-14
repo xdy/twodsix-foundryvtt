@@ -40,15 +40,14 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
       const selectedPositionId = li?.dataset.itemId;
       let selectedActorId = "";
       let selectedActionId = "";
+      let uncrewed = false;
       if (selectedPositionId) {
-        if (li?.querySelector("[name='selectedActor']").length > 0) {
-          selectedActorId = li.querySelector("[name='selectedActor']")?.value;
-        }
-        if (li?.querySelector("[name='selectedAction']").length > 0) {
-          selectedActionId = li.querySelector("[name='selectedAction']")?.value;
-        }
+        const actorSelect = li.querySelector("[name='selectedActor']");
+        selectedActorId = actorSelect?.value ?? "";
+        uncrewed = this.actor.items.get(selectedPositionId)?.system?.actors?.length === 0;
+        selectedActionId = li.querySelector("[name='selectedAction']")?.value ?? "";
       }
-      TwodsixShipSheet.performShipAction(ev, selectedPositionId, selectedActorId, selectedActionId, this.actor);
+      TwodsixShipSheet.performShipAction(ev, selectedPositionId, selectedActorId, selectedActionId, this.actor, uncrewed);
     }
   }
 
@@ -92,6 +91,9 @@ export class TwodsixBattleSheet extends foundry.applications.api.HandlebarsAppli
         if (!defaultActor) {
           defaultActor = actor.id;
         }
+      }
+      if (!defaultActor) {
+        actors[""] = game.i18n.localize("TWODSIX.Ship.UncrewedPositionName").replace("_POSITION_NAME_", position.name).trim();
       }
       positionData.push({
         id: position.id,

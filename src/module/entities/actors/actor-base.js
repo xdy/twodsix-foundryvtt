@@ -850,9 +850,10 @@ export default class TwodsixActor extends Actor {
 
   /**
    * Get skills level pairs.
+   * @param {boolean} [useLocalIds=false] Use embedded item IDs instead of UUIDs.
    * @return {object} an object with skill name /level pairs
    */
-  getSkillNameList() {
+  getSkillNameList(useLocalIds = false) {
     const returnObject = {};
     const skillsArray = sortByItemName(this.itemTypes.skills);
     if (!skillsArray || !this.system.skills) {
@@ -867,7 +868,7 @@ export default class TwodsixActor extends Actor {
           || (skill.system.value >= 0 || this.system.skills[simplifySkillName(skill.name)] >= 0)
           || (skill.getFlag("twodsix", "untrainedSkill"))
           || (skill._id === this.system.untrainedSkill)) {
-          Object.assign(returnObject, {[skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
+          Object.assign(returnObject, {[useLocalIds ? skill.id : skill.uuid]: `${skill.name} (${this.system.skills[simplifySkillName(skill.name)]})`});
         }
       }
     }
@@ -936,7 +937,7 @@ export default class TwodsixActor extends Actor {
     }
     // If skill missing, try to use Untrained
     if (!skill) {
-      skill = this.itemTypes.skills.find((itm) => itm.name === game.i18n.localize("TWODSIX.Actor.Skills.Untrained"));
+      skill = this.getUntrainedSkill();
     }
     return skill;
   }
@@ -1180,7 +1181,7 @@ export async function correctMissingUntrainedSkill(actor) {
 /**
  * @returns {object}
  */
-function buildUntrainedSkillData() {
+export function buildUntrainedSkillData() {
   return {
     "name": game.i18n.localize("TWODSIX.Actor.Skills.Untrained"),
     "type": "skills",

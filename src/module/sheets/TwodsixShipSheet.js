@@ -3,6 +3,7 @@
 import { TWODSIX } from '../config';
 import TwodsixItem from '../entities/TwodsixItem';
 import { enrichContextFields, getDataFromDropEvent, getDocFromDropData } from '../utils/sheetUtils';
+import { createSyntheticCrew } from '../utils/syntheticCrew';
 import { TwodsixShipActions } from '../utils/TwodsixShipActions';
 import { AbstractTwodsixActorSheet } from './AbstractTwodsixActorSheet';
 import { TwodsixShipPositionSheet } from './TwodsixShipPositionSheet';
@@ -74,20 +75,20 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
   static _onExecuteAction(ev, target) {
     if (target !== null) {
       let actorId;
+      let uncrewed = false;
       const shipPosEl = target.closest(".ship-position");
       const shipPosActors = shipPosEl.querySelectorAll(".ship-position-actor-token");
       if (shipPosActors.length === 1) {
         actorId = shipPosActors[0].dataset.id;
       } else if (shipPosActors.length === 0) {
-        ui.notifications.warn("TWODSIX.Ship.NoActorsForAction", {localize: true});
-        return null;
+        uncrewed = true;
       } else {
         actorId = shipPosEl.querySelector(".ship-position-actor-token.force-border")?.dataset.id;
       }
 
       const actionId = target.dataset.id;
       const shipPositionId = shipPosEl.dataset.id;
-      TwodsixShipSheet.performShipAction(ev, shipPositionId, actorId, actionId, this.actor);
+      TwodsixShipSheet.performShipAction(ev, shipPositionId, actorId, actionId, this.actor, uncrewed);
     }
   }
 
@@ -97,10 +98,11 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
    * @param {string} actorId
    * @param {string} actionId
    * @param {TwodsixActor} shipActor
+   * @param {boolean} [uncrewed] - true if the position has no crew; a synthetic crew actor is used
    * @returns {boolean|void}
    */
-  static performShipAction(ev, positionId, actorId, actionId, shipActor) {
-    if (!actorId) {
+  static performShipAction(ev, positionId, actorId, actionId, shipActor, uncrewed = false) {
+    if (!actorId && !uncrewed) {
       ui.notifications.warn("TWODSIX.Ship.ActorMustBeSelectedForAction", {localize: true});
       return false;
     }
@@ -109,7 +111,7 @@ export class TwodsixShipSheet extends foundry.applications.api.HandlebarsApplica
     if (action) {
       const component = shipActor.items.find(item => item.id === action.component);
       const extra = {
-        actor: game.actors?.get(actorId),
+        actor: uncrewed ? createSyntheticCrew(shipPosition) : game.actors?.get(actorId),
         ship: shipActor,
         component: component,
         event: ev,

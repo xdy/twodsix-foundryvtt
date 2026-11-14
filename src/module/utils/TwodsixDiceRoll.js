@@ -4,6 +4,7 @@ import { TWODSIX } from '../config';
 import { advanceTime } from '../hooks/timeIntegration';
 import { advantageDisadvantageTerm } from '../i18n';
 import Crit from './crit';
+import { getCrewSpeaker, isSyntheticCrew } from './syntheticCrew';
 import { TwodsixRollSettings } from './TwodsixRollSettings';
 import { addSign, capitalizeFirstLetter, getKeyByValue, simplifySkillName } from './utils';
 
@@ -57,7 +58,12 @@ export class TwodsixDiceRoll {
   constructor(rollSettings, actor, skill = null, item = null) {
     this.rollSettings = rollSettings;
     this.actor = actor;
-    this.skill = rollSettings.rollModifiers.selectedSkill ? fromUuidSync(rollSettings.rollModifiers.selectedSkill) : skill;
+    const selectedSkill = rollSettings.rollModifiers.selectedSkill;
+    if (selectedSkill && isSyntheticCrew(actor)) {
+      this.skill = actor.items.get(selectedSkill) ?? null;
+    } else {
+      this.skill = selectedSkill ? (fromUuidSync(selectedSkill) ?? (skill?.uuid === selectedSkill ? skill : null)) : skill;
+    }
     this.item = item;
   }
 
@@ -583,7 +589,7 @@ export class TwodsixDiceRoll {
     await this.roll?.toMessage(
       {
         title: game.i18n.localize(title),
-        speaker: ChatMessage.getSpeaker({actor: this.actor}),
+        speaker: getCrewSpeaker(this.actor),
         style: CONST.CHAT_MESSAGE_STYLES.OTHER,
         rolls: [this.roll],
         flavor: flavor,
@@ -600,6 +606,8 @@ export class TwodsixDiceRoll {
           "twodsix.tokenUUID": this.rollSettings.flags.tokenUUID ?? "",
           "twodsix.rollClass": this.rollSettings.flags.rollClass ?? "",
           "twodsix.actorUUID": this.rollSettings.flags.actorUUID ?? "",
+          "twodsix.shipUUID": this.rollSettings.flags.shipUUID ?? "",
+          "twodsix.syntheticCrewName": this.rollSettings.flags.syntheticCrewName ?? "",
           "twodsix.bonusDamage": this.rollSettings.flags.bonusDamage ?? "",
           "twodsix.attackType": this.rollSettings.flags.attackType ?? ""
         }

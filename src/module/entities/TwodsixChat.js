@@ -153,6 +153,9 @@ export async function onChatCardAction(event, target) {
     // Recover the actor for the chat card
     const actor = await getChatCardActor(message);
     if (!actor) {
+      if (message.getFlag("twodsix", "syntheticCrewName")) {
+        ui.notifications.warn("TWODSIX.Errors.SourceActorNotFound", {localize: true});
+      }
       return;
     }
 
@@ -161,29 +164,28 @@ export async function onChatCardAction(event, target) {
     if (!(isTargettedAction || game.user.isGM || actor.isOwner)) {
       return;
     }
-    // Get the Item from stored flag data
-    const storedData = message.getFlag("twodsix", "itemUUID");
-    const item = storedData ? await fromUuid(storedData) : {};
-    if (!item) {
-      const err = game.i18n.format("TWODSIX.Errors.ActionWarningNoItem", {item: storedData, name: actor.name});
-      return ui.notifications.error(err);
-    }
-
     const useInvertedShiftClick = (game.settings.get('twodsix', 'invertSkillRollShiftClick'));
     const showFormulaDialog = useInvertedShiftClick ? event["shiftKey"] : !event["shiftKey"];
     const bonusDamage = message.getFlag("twodsix", "bonusDamage") ?? "";
     const effect = message.getFlag("twodsix", "effect") ?? 0;
     switch (action) {
-      case "damage":
+      case "damage": {
+        const storedData = message.getFlag("twodsix", "itemUUID");
+        const item = storedData ? await fromUuid(storedData) : null;
+        if (!item) {
+          const err = game.i18n.format("TWODSIX.Errors.ActionWarningNoItem", {item: storedData, name: actor.name});
+          return ui.notifications.error(err);
+        }
         await item.rollDamage((game.settings.get('core', 'messageMode')), bonusDamage, true, showFormulaDialog, effect);
         break;
+      }
       case "opposed":
         //opposed roll
-        makeSecondaryRoll(message, "opposed", showFormulaDialog);
+        await makeSecondaryRoll(message, "opposed", showFormulaDialog);
         break;
       case "chain":
         //chain roll
-        makeSecondaryRoll(message, "chain", showFormulaDialog);
+        await makeSecondaryRoll(message, "chain", showFormulaDialog);
         break;
       default:
         break;
@@ -233,12 +235,14 @@ function applyChatCardDamage(li, multiplier) {
 /* -------------------------------------------- */
 
 /**
- * Get the Actor which is the author of a chat card
+ * Get the actor used for chat-card permissions, or the ship for an uncrewed roll.
  * @param {ChatMessage} message    The chat card being used
  * @returns {Actor|null}        The Actor document or null
  */
 async function getChatCardActor(message) {
-  const actor = await fromUuid(message.getFlag("twodsix", "actorUUID"));
+  const actorUUID = message.getFlag("twodsix", "actorUUID");
+  const shipUUID = message.getFlag("twodsix", "syntheticCrewName") ? message.getFlag("twodsix", "shipUUID") : "";
+  const actor = actorUUID || shipUUID ? await fromUuid(actorUUID || shipUUID) : null;
   if (actor) {
     return actor;
   } else {
@@ -312,7 +316,7 @@ async function makeSecondaryRoll(message, type, showDialog) {
   let winnerName = "";
   if (roll && type === "opposed") {
     if (originalEffect > roll.effect) {
-      winnerName = (await fromUuid(message.getFlag("twodsix", "actorUUID"))).name;
+      winnerName = message.getFlag("twodsix", "syntheticCrewName") || (await fromUuid(message.getFlag("twodsix", "actorUUID")))?.name || "";
     } else if (roll.effect > originalEffect) {
       winnerName = secondActor.name;
     }

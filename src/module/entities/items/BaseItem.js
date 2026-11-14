@@ -178,7 +178,7 @@ export default class TwodsixItem extends Item {
    */
   prepareData() {
     super.prepareData();
-    if (this.getFlag("twodsix", "untrainedSkill")) {
+    if (this.getFlag("twodsix", "untrainedSkill") && !this.actor?.getFlag("twodsix", "syntheticCrew")) {
       this.name = game.i18n.localize("TWODSIX.Actor.Skills.Untrained");
     }
   }
@@ -298,9 +298,9 @@ export default class TwodsixItem extends Item {
    */
   async skillRoll(showThrowDialog, tmpSettings, showInChat = true) {
     const { skill: resolvedSkill, item, workingActor } = await this._resolveSkillAndItem(tmpSettings);
-    let skill = resolvedSkill;
+    let skill = tmpSettings?.skillRoll === false ? null : resolvedSkill;
 
-    if (!skill) {
+    if (!skill && tmpSettings?.skillRoll !== false) {
       if (!workingActor) {
         ui.notifications.error("TWODSIX.Errors.NoActorForSkillRoll", {localize: true});
         return;
@@ -325,6 +325,12 @@ export default class TwodsixItem extends Item {
       }
     }
 
+    const diceRoll = new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
+    if (tmpSettings.skillRoll && !diceRoll.skill) {
+      ui.notifications.error("TWODSIX.Errors.NoSkillForSkillRoll", {localize: true});
+      return;
+    }
+
     /* Decrement the item's consumable by one if present and not a weapon (attack role handled separately)*/
     if (this.system.useConsumableForAttack && item?.type !== "weapon") {
       // Update consumables for use
@@ -333,7 +339,6 @@ export default class TwodsixItem extends Item {
       }
     }
 
-    const diceRoll = new TwodsixDiceRoll(tmpSettings, workingActor, skill, item);
     await diceRoll.evaluateRoll();
 
     if (showInChat) {
